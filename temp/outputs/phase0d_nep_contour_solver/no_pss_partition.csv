@@ -1,0 +1,131 @@
+case,role,state_index,state_name
+no_pss,retained_interface,0,delta GENROU 1
+no_pss,retained_interface,1,delta GENROU 2
+no_pss,retained_interface,2,delta GENROU 3
+no_pss,retained_interface,3,delta GENROU 4
+no_pss,retained_interface,4,delta GENROU 5
+no_pss,retained_interface,5,delta GENROU 6
+no_pss,retained_interface,6,delta GENROU 7
+no_pss,retained_interface,7,delta GENROU 8
+no_pss,retained_interface,8,delta GENROU 9
+no_pss,retained_interface,9,delta GENROU 10
+no_pss,retained_interface,10,omega GENROU 1
+no_pss,retained_interface,11,omega GENROU 2
+no_pss,retained_interface,12,omega GENROU 3
+no_pss,retained_interface,13,omega GENROU 4
+no_pss,retained_interface,14,omega GENROU 5
+no_pss,retained_interface,15,omega GENROU 6
+no_pss,retained_interface,16,omega GENROU 7
+no_pss,retained_interface,17,omega GENROU 8
+no_pss,retained_interface,18,omega GENROU 9
+no_pss,retained_interface,19,omega GENROU 10
+no_pss,condensed_control,20,e1q GENROU 1
+no_pss,condensed_control,21,e1q GENROU 2
+no_pss,condensed_control,22,e1q GENROU 3
+no_pss,condensed_control,23,e1q GENROU 4
+no_pss,condensed_control,24,e1q GENROU 5
+no_pss,condensed_control,25,e1q GENROU 6
+no_pss,condensed_control,26,e1q GENROU 7
+no_pss,condensed_control,27,e1q GENROU 8
+no_pss,condensed_control,28,e1q GENROU 9
+no_pss,condensed_control,29,e1q GENROU 10
+no_pss,condensed_control,30,e1d GENROU 1
+no_pss,condensed_control,31,e1d GENROU 2
+no_pss,condensed_control,32,e1d GENROU 3
+no_pss,condensed_control,33,e1d GENROU 4
+no_pss,condensed_control,34,e1d GENROU 5
+no_pss,condensed_control,35,e1d GENROU 6
+no_pss,condensed_control,36,e1d GENROU 7
+no_pss,condensed_control,37,e1d GENROU 8
+no_pss,condensed_control,38,e1d GENROU 9
+no_pss,condensed_control,39,e1d GENROU 10
+no_pss,condensed_control,40,e2d GENROU 1
+no_pss,condensed_control,41,e2d GENROU 2
+no_pss,condensed_control,42,e2d GENROU 3
+no_pss,condensed_control,43,e2d GENROU 4
+no_pss,condensed_control,44,e2d GENROU 5
+no_pss,condensed_control,45,e2d GENROU 6
+no_pss,condensed_control,46,e2d GENROU 7
+no_pss,condensed_control,47,e2d GENROU 8
+no_pss,condensed_control,48,e2d GENROU 9
+no_pss,condensed_control,49,e2d GENROU 10
+no_pss,condensed_control,50,e2q GENROU 1
+no_pss,condensed_control,51,e2q GENROU 2
+no_pss,condensed_control,52,e2q GENROU 3
+no_pss,condensed_control,53,e2q GENROU 4
+no_pss,condensed_control,54,e2q GENROU 5
+no_pss,condensed_control,55,e2q GENROU 6
+no_pss,condensed_control,56,e2q GENROU 7
+no_pss,condensed_control,57,e2q GENROU 8
+no_pss,condensed_control,58,e2q GENROU 9
+no_pss,condensed_control,59,e2q GENROU 10
+no_pss,condensed_control,60,LAG_y TGOV1N TGOV1 1
+no_pss,condensed_control,61,LAG_y TGOV1N TGOV1 2
+no_pss,condensed_control,62,LAG_y TGOV1N TGOV1 3
+no_pss,condensed_control,63,LAG_y TGOV1N TGOV1 4
+no_pss,condensed_control,64,LAG_y TGOV1N TGOV1 5
+no_pss,condensed_control,65,LAG_y TGOV1N TGOV1 6
+no_pss,condensed_control,66,LAG_y TGOV1N TGOV1 7
+no_pss,condensed_control,67,LAG_y TGOV1N TGOV1 8
+no_pss,condensed_control,68,LAG_y TGOV1N TGOV1 9
+no_pss,condensed_control,69,LAG_y TGOV1N TGOV1 10
+no_pss,condensed_control,70,LL_x TGOV1N TGOV1 1
+no_pss,condensed_control,71,LL_x TGOV1N TGOV1 2
+no_pss,condensed_control,72,LL_x TGOV1N TGOV1 3
+no_pss,condensed_control,73,LL_x TGOV1N TGOV1 4
+no_pss,condensed_control,74,LL_x TGOV1N TGOV1 5
+no_pss,condensed_control,75,LL_x TGOV1N TGOV1 6
+no_pss,condensed_control,76,LL_x TGOV1N TGOV1 7
+no_pss,condensed_control,77,LL_x TGOV1N TGOV1 8
+no_pss,condensed_control,78,LL_x TGOV1N TGOV1 9
+no_pss,condensed_control,79,LL_x TGOV1N TGOV1 10
+no_pss,condensed_control,80,vp IEEEX1 1
+no_pss,condensed_control,81,vp IEEEX1 2
+no_pss,condensed_control,82,vp IEEEX1 3
+no_pss,condensed_control,83,vp IEEEX1 4
+no_pss,condensed_control,84,vp IEEEX1 5
+no_pss,condensed_control,85,vp IEEEX1 6
+no_pss,condensed_control,86,vp IEEEX1 7
+no_pss,condensed_control,87,vp IEEEX1 8
+no_pss,condensed_control,88,vp IEEEX1 9
+no_pss,condensed_control,89,vp IEEEX1 10
+no_pss,condensed_control,90,LA_y IEEEX1 1
+no_pss,condensed_control,91,LA_y IEEEX1 2
+no_pss,condensed_control,92,LA_y IEEEX1 3
+no_pss,condensed_control,93,LA_y IEEEX1 4
+no_pss,condensed_control,94,LA_y IEEEX1 5
+no_pss,condensed_control,95,LA_y IEEEX1 6
+no_pss,condensed_control,96,LA_y IEEEX1 7
+no_pss,condensed_control,97,LA_y IEEEX1 8
+no_pss,condensed_control,98,LA_y IEEEX1 9
+no_pss,condensed_control,99,LA_y IEEEX1 10
+no_pss,condensed_control,100,W_x IEEEX1 1
+no_pss,condensed_control,101,W_x IEEEX1 2
+no_pss,condensed_control,102,W_x IEEEX1 3
+no_pss,condensed_control,103,W_x IEEEX1 4
+no_pss,condensed_control,104,W_x IEEEX1 5
+no_pss,condensed_control,105,W_x IEEEX1 6
+no_pss,condensed_control,106,W_x IEEEX1 7
+no_pss,condensed_control,107,W_x IEEEX1 8
+no_pss,condensed_control,108,W_x IEEEX1 9
+no_pss,condensed_control,109,W_x IEEEX1 10
+no_pss,condensed_control,110,L_y BusFreq 1
+no_pss,condensed_control,111,L_y BusFreq 2
+no_pss,condensed_control,112,L_y BusFreq 3
+no_pss,condensed_control,113,L_y BusFreq 4
+no_pss,condensed_control,114,L_y BusFreq 5
+no_pss,condensed_control,115,L_y BusFreq 6
+no_pss,condensed_control,116,L_y BusFreq 7
+no_pss,condensed_control,117,L_y BusFreq 8
+no_pss,condensed_control,118,L_y BusFreq 9
+no_pss,condensed_control,119,L_y BusFreq 10
+no_pss,condensed_control,120,WO_x BusFreq 1
+no_pss,condensed_control,121,WO_x BusFreq 2
+no_pss,condensed_control,122,WO_x BusFreq 3
+no_pss,condensed_control,123,WO_x BusFreq 4
+no_pss,condensed_control,124,WO_x BusFreq 5
+no_pss,condensed_control,125,WO_x BusFreq 6
+no_pss,condensed_control,126,WO_x BusFreq 7
+no_pss,condensed_control,127,WO_x BusFreq 8
+no_pss,condensed_control,128,WO_x BusFreq 9
+no_pss,condensed_control,129,WO_x BusFreq 10

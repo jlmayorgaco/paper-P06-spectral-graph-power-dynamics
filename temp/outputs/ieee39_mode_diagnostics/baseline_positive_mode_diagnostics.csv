@@ -1,0 +1,6 @@
+variant,removed,path,n_eigs,n_positive,n_positive_osc,max_real,critical_real,critical_imag,critical_zeta,critical_freq_hz
+base,,C:\Users\walla\anaconda3\Lib\site-packages\andes\cases\ieee39\ieee39_full.xlsx,160,9,0,1.0841198736877613,-1.346013072429833,8.61148480240536,0.15442935855929482,1.3705603736635468
+no_tgov,TGOV1N,outputs\ieee39_mode_diagnostics\ieee39_no_tgov1n.xlsx,140,4,0,1.0869865712352125,-0.22231771928276664,3.910659597404146,0.05675752030040982,0.6224008056766313
+no_pss,IEEEST,outputs\ieee39_mode_diagnostics\ieee39_no_ieeest.xlsx,130,0,0,-1.93394186907237e-13,-1.34634537929171,8.611042315453796,0.1544743228879957,1.3704899496779517
+no_exciter_pss,"IEEEX1,IEEEST",outputs\ieee39_mode_diagnostics\ieee39_no_ieeex1_ieeest.xlsx,100,0,0,7.823193186391519e-16,-1.3421341889429583,8.623720405003803,0.1537815769634465,1.372507730298797
+genrou_only,"TGOV1N,IEEEX1,IEEEST,ACEc,Toggler",outputs\ieee39_mode_diagnostics\ieee39_no_tgov1n_ieeex1_ieeest_acec_toggler.xlsx,80,0,0,-1.7126852625111069e-12,-0.2398557990451031,3.9490387471346593,0.0606260438383933,0.6285090370679064

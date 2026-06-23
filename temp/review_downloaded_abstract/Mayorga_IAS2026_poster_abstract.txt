@@ -1,0 +1,68 @@
+                  Network or Control? A Validated Spectral Bridge for
+                              Inverter-Dominated Grids
+                                                            Jorge L. Mayorga Taborda
+                                                    Universidad de los Andes, Bogotá, Colombia
+
+
+   Abstract—As industrial grids and microgrids replace synchronous            argument principle. The polish step refines the intrinsic condition of the
+machines with inverter-based resources (IBR), damping is no longer            problem, not the ANDES pole, so the test is not circular: ANDES
+supplied mainly by machine inertia. It comes instead from controller          eigenvalues enter only afterward, for comparison. Extracted modes are
+states: phase-locked loops, exciters, governors, stabilizers, and             labeled network-family or control-family by condensed-state
+inverter loops. This breaks a working assumption behind standard              participation.
+stability screening, which represents damping as a fixed nodal
+coefficient. The consequence is practical. A planner using the standard                         III. VALIDATION ON IEEE 39-BUS
+reduced model can read a comfortable margin on a low-frequency                A. The scalar bridge fails, the rational bridge does not
+mode while the true least-damped mode goes unseen. We develop a               On IEEE 39-bus ANDES cases, a static scalar reduction with a nodal
+controller-aware spectral bridge that keeps the condensed controller          damping coefficient does not reproduce the observed modal damping,
+states as a frequency-dependent self-energy rather than collapsing            because the machine damping coefficient is zero. The controller-aware
+them into a scalar damping term. On IEEE 39-bus ANDES cases, the              bridge recovers the full ANDES critical poles to machine-level
+scalar bridge fails because the machine damping coefficient is zero,
+                                                                              agreement in the no-PSS, base, and 60% inverter-mix cases, with worst
+                                                                              errors of 8.47×10−11% in frequency and 2.48×10−9% in damping.
+while the controller-aware bridge recovers the full ANDES critical
+poles to machine-level agreement in no-PSS, base, and 60%
+inverter-mix cases. In the inverter-mix case the least-damped mode is         B. The critical mode can be a control mode
+not the 1.49 Hz electromechanical mode but a 13.74 Hz PLL-family              In the inverter-mix case the least-damped stable mode is not the 1.49 Hz
+mode, missed by both scalar and fixed-point reductions. The bridge            electromechanical mode. It is a 13.74 Hz mode dominated by the
+then classifies weak nodes and weak links by family, so a planner can         phase-locked loops, with control participation πc = 0.853, recovered by
+tell whether a weakness calls for network reinforcement or control            the bridge from the control-band contour and missed by both the scalar
+retuning.                                                                     bridge and a fixed-point Schur iteration. This is the practical message: in
+   Index Terms—Inverter-based resources, small-signal stability, damping      an IBR grid the mode that matters may be the one the standard reduced
+margin, phase-locked loop, nonlinear eigenvalue problem, weak node            model cannot see.
+identification, power system planning.                                                      IV. USE FOR WEAK NODES AND LINKS
+                          I. INTRODUCTION                                        Because the bridge keeps the controller self-energy, it gives
+   Power systems are moving from synchronous-machine dynamics                 weak-node and weak-link analysis a discriminator that classical graph
+toward networks with a high share of inverter-based resources. Reduced        participation lacks: a bus is no longer simply weak or strong, its
+inertia is the effect quoted most often, but the harder small-signal effect   weakness has a family. A network-family weak node responds to
+is that damping no longer tracks inertia or network stiffness. A              reinforcement, so copper helps. A control-family weak node does not;
+synchronous generator supplies both inertia and damping through its           reinforcing the network around it leaves the controller mode untouched,
+electromechanical dynamics. A grid-following inverter supplies                and the fix is retuning. A third case is sharper: a minority of line
+damping through its phase-locked loop and current controller; a               reinforcements are control-resonant, pulling a network mode toward a
+grid-forming       inverter   supplies       it   through     droop      or   controller pole and lowering damping rather than raising it. In the audit
+virtual-synchronous-machine behavior. In the linearized model these           this appears in 40 of 348 reinforcement records, a real but minority
+appear as heterogeneous, non-commuting dynamic coefficients.                  mechanism, modal-local and control-conditional. The value for planning
+   That shift undermines a habit built into standard stability screening.     is that the bridge tells an engineer which lever fits which weakness,
+To study a large network, planners reduce thousands of states to a            instead of treating every weak bus the same.
+second-order model in which damping sits in a fixed nodal coefficient.                             V. SCOPE AND NEXT STEPS
+The reduction worked while damping physically lived there. In IBR-rich
+grids it does not: the machine damping coefficient is often zero, and the        The bridge is validated at machine-level agreement against full
+measured modal damping is carried by controller states. Folding those         ANDES eigenanalysis for the diagnostic cases studied here. The
+states into a constant can miss the critical mode and report safety on the    underlying tools, Schur complements, contour eigensolvers, and
+wrong one. This work asks what reduced object preserves the                   eigenvalue perturbation, are established; what is new is their assembly
+damping-margin mechanisms once the controller states are condensed.           into a controller-aware damping-margin bridge and the evidence that the
+The answer is a controller-aware rational self-energy, validated against      scalar object fails. The weak-element ranking the bridge enables is
+full ANDES eigenanalysis. The tools behind it are standard; the               formulated here but still needs validation against full ANDES poles over
+contribution is the power-system formulation and its validation.              calibrated controller operating ranges, the next registered experiment.
+                                                                              Stated plainly: the bridge is proven, and the planning rule it supports is
+                              II. METHOD                                      the part still under test.
+   We linearize the network around an operating point and split the full
+ANDES state matrix into retained network and interface states on one
+side, and condensed controller and auxiliary states on the other.
+Eliminating the condensed block by a Schur complement leaves a
+frequency-dependent self-energy, Σ(s) = D0 + C(sI − Acc)−1B, so the
+retained system becomes a rational nonlinear eigenvalue problem T(s) =
+s2M + sΣ(s) + L, with L the inertia-normalized network Laplacian.
+Unlike a static reduction, Σ(s) keeps the controller dynamics that carry
+the damping. Zeros are extracted by Beyn contour integration over the
+relevant frequency bands, with completeness checked through the
+

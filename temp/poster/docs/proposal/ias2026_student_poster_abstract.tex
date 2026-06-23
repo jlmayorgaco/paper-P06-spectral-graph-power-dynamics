@@ -1,0 +1,55 @@
+\documentclass[conference]{IEEEtran}
+
+\usepackage{amsmath,amssymb}
+\usepackage{cite}
+\usepackage{url}
+
+\newcommand{\Lt}{\widetilde L}
+\newcommand{\Dt}{\widetilde D}
+
+\title{A Coupling-Diagnostic Spectral Screen for Damping-Margin Planning in Inverter-Dominated Industrial Power Grids}
+
+\author{\IEEEauthorblockN{Jorge L. Mayorga Taborda}
+\IEEEauthorblockA{Universidad de los Andes\\
+Bogota, Colombia}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This poster proposes a damping-margin planning diagnostic for inverter-dominated industrial power grids. The central result is a rational graph-filter correction that detects when classical Laplacian/frequency screens can recommend line or control actions that improve modal stiffness while reducing the true small-signal damping margin.
+\end{abstract}
+
+\begin{IEEEkeywords}
+inverter-based resources, small-signal stability, damping ratio, industrial power systems, quadratic eigenvalue problem, graph signal processing, line reinforcement, planning diagnostics
+\end{IEEEkeywords}
+
+\section*{Problem and IAS Relevance}
+Industrial and utility power systems are increasingly operated with inverter-based resources (IBRs), grid-following controls, grid-forming controls, and heterogeneous damping mechanisms. In this regime, a classical network-strengthening action can improve a graph-frequency metric while reducing the true small-signal damping margin. This creates a practical planning problem for industry-facing grids: how can an engineer screen line reinforcements, damping additions, or synchronous-generator-to-IBR transitions without solving a full quadratic eigenvalue problem (QEP) for every candidate action?
+
+\section*{Classical Baseline and SOTA Gap}
+Starting from the linearized model
+\begin{equation}
+M\ddot{\theta}+D\dot{\theta}+L\theta=p,
+\end{equation}
+classical screening diagonalizes the inertial Laplacian \(\Lt=M^{-1/2}LM^{-1/2}\), forms modal stiffnesses \(\nu_k\), and estimates damping from \(\delta_k=q_k^T\Dt q_k\), where \(\Dt=M^{-1/2}DM^{-1/2}\). This is exact only when damping and stiffness commute. Full/reduced QEP eigensolves and modal perturbation can capture non-proportional damping, but they are heavier and less interpretable as fast planning screens.
+
+\section*{Proposed Contribution}
+The proposed contribution is to expose the missing non-proportional damping term through a second-order correction to the critical pole:
+\begin{multline}
+\Delta s_c=
+\frac{s_0^2}{2s_0+\delta_c}
+\sum_{\ell\neq c}
+\frac{E_{c\ell}E_{\ell c}}
+{s_0^2+\delta_\ell s_0+\nu_\ell},\\
+E=\operatorname{offdiag}(Q^T\Dt Q).
+\end{multline}
+This expression is interpreted as a rational graph filter of the operator pair \((\Lt,\Dt)\) evaluated at the critical pole. It therefore explains why a polynomial graph filter of \(\Lt\) alone cannot represent IBR damping: the relevant information is the off-diagonal modal coupling induced by non-proportional damping.
+
+\section*{Preliminary Results}
+Preliminary results support the mechanism. In a reproducible six-bus synthetic case with moderate non-proportional damping, the frequency-only top line reinforcement raises the critical modal stiffness by \(+0.0931\) under a \(+10\%\) line-weight change, but the full-QEP damping margin drops from \(0.04204\) to \(0.04068\). The second-order correction predicts the harmful direction with \(16.8\%\) relative error on the damping-margin movement, while a damping-aware line choice improves the margin. On an IEEE39-derived reduced surrogate, \(35/46\) line reinforcements raise the critical modal stiffness while lowering \(\zeta_{\min}\). Estimator tests on the same surrogate reduce median relative error from \(0.468\%\) for the diagonal screen to \(0.0321\%\) for the second-order correction, and a reduced grid-following inverter model with PLL memory improves from \(2.16\%\) to \(0.09\%\) median error over 399 stable cases.
+
+\section*{Poster Message}
+The intended IAS contribution is an interpretable planning diagnostic, not a replacement for full small-signal analysis. The workflow is: use the diagonal graph screen when modal coupling is weak, apply the rational correction when off-diagonal damping matters, and fall back to reduced or full QEP solves when modes are clustered or strongly coupled. This directly supports IAS-relevant planning questions in industrial and converter-dominated power systems: which reinforcement actually improves damping, where damping should be added, and when a cheap spectral metric is unsafe.
+
+\end{document}

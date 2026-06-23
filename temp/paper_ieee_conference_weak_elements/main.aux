@@ -1,0 +1,118 @@
+\relax 
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {II}From Electrical Model to Damping Certificate}{1}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Why Fig.~\ref {fig:certificate_workflow} is needed. Static planning signals can point in the wrong direction for damping: a line reinforcement may increase synchronizing stiffness while reducing the damping ratio, and an inertia perturbation can worsen damping in the validated GENROU gate. The common failure is that neither static graph strength nor modal visibility measures distance to condensed controller poles.}}{2}{}\protected@file@percent }
+\newlabel{fig:failure_modes}{{1}{2}{}{figure.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Controller-aware robustness workflow. The certificate turns weak-node and weak-link analysis into a typed engineering statement: the element is weak for a specified mode, action, and controller configuration.}}{2}{}\protected@file@percent }
+\newlabel{fig:certificate_workflow}{{2}{2}{}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Electrical Network and Linearized Power Flow}{2}{}\protected@file@percent }
+\newlabel{eq:phasor}{{1}{2}{}{equation.1}{}}
+\newlabel{eq:current}{{2}{2}{}{equation.2}{}}
+\newlabel{eq:complexpower}{{3}{2}{}{equation.3}{}}
+\newlabel{eq:acpower}{{4}{2}{}{equation.4}{}}
+\newlabel{eq:lineflow}{{5}{2}{}{equation.5}{}}
+\newlabel{eq:jacentries}{{6}{2}{}{equation.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Step-by-step route from phasors to the controller-aware damping certificate.}}{3}{}\protected@file@percent }
+\newlabel{fig:tutorial_pipeline}{{3}{3}{}{figure.3}{}}
+\newlabel{eq:incidence}{{7}{3}{}{equation.7}{}}
+\newlabel{eq:edgegradient}{{8}{3}{}{equation.8}{}}
+\newlabel{eq:edgeflow}{{9}{3}{}{equation.9}{}}
+\newlabel{eq:lapflow}{{10}{3}{}{equation.10}{}}
+\newlabel{eq:lapincidence}{{11}{3}{}{equation.11}{}}
+\newlabel{eq:lapentries}{{12}{3}{}{equation.12}{}}
+\newlabel{eq:line_rankone}{{13}{3}{}{equation.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Swing and Grid-Forming Interface Dynamics}{3}{}\protected@file@percent }
+\newlabel{eq:thetadot}{{14}{3}{}{equation.14}{}}
+\newlabel{eq:swing}{{15}{3}{}{equation.15}{}}
+\newlabel{eq:secondorderbasic}{{16}{3}{}{equation.16}{}}
+\newlabel{eq:em_state}{{17}{3}{}{equation.17}{}}
+\newlabel{eq:aem_def}{{18}{3}{}{equation.18}{}}
+\newlabel{eq:qep_basic}{{19}{3}{}{equation.19}{}}
+\newlabel{eq:modalzeta}{{20}{3}{}{equation.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-C}}Controller States and the Hidden Channel}{4}{}\protected@file@percent }
+\newlabel{eq:networkcontrol}{{21}{4}{}{equation.21}{}}
+\newlabel{eq:controlstates}{{22}{4}{}{equation.22}{}}
+\newlabel{eq:lap_network}{{23}{4}{}{equation.23}{}}
+\newlabel{eq:lap_control}{{24}{4}{}{equation.24}{}}
+\newlabel{eq:xc_elim}{{25}{4}{}{equation.25}{}}
+\newlabel{eq:derivednep}{{26}{4}{}{equation.26}{}}
+\newlabel{eq:sigmadef_intro}{{27}{4}{}{equation.27}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-D}}Why Poles, Not Only Eigenvectors, Define Stability Margin}{4}{}\protected@file@percent }
+\newlabel{eq:pole_zeta_intro}{{28}{4}{}{equation.28}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {III}Controller-Aware Reduction}{4}{}\protected@file@percent }
+\newlabel{eq:partition}{{29}{4}{}{equation.29}{}}
+\newlabel{eq:schur}{{30}{4}{}{equation.30}{}}
+\newlabel{eq:selfenergy}{{31}{4}{}{equation.31}{}}
+\newlabel{eq:implicit_nep}{{32}{4}{}{equation.32}{}}
+\newlabel{eq:left_right_null}{{33}{4}{}{equation.33}{}}
+\newlabel{eq:implicit_diff}{{34}{4}{}{equation.34}{}}
+\newlabel{eq:nepsens}{{35}{4}{}{equation.35}{}}
+\newlabel{eq:ss}{{36}{4}{}{equation.36}{}}
+\newlabel{eq:schur_derivative_step}{{37}{4}{}{equation.37}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Electrical origin of the controller-aware object. The graph Laplacian $L_B$ comes from linearized line flows. IBR and legacy control states add the frequency-dependent self-energy $\Sigma (s)$; weak elements are actions that move zeros of this combined object, not static graph nodes or edges alone.}}{5}{}\protected@file@percent }
+\newlabel{fig:electric_model}{{4}{5}{}{figure.4}{}}
+\newlabel{eq:ts}{{38}{5}{}{equation.38}{}}
+\newlabel{eq:tp_general}{{39}{5}{}{equation.39}{}}
+\newlabel{eq:line_derivative_tutorial}{{40}{5}{}{equation.40}{}}
+\newlabel{eq:zeta}{{41}{5}{}{equation.41}{}}
+\newlabel{eq:zeta_chain}{{42}{5}{}{equation.42}{}}
+\newlabel{eq:zetasens}{{43}{5}{}{equation.43}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Local certificate pipeline. The graph enters through $S_p$ or $T_p$, but the decision is made after the pole and damping-ratio derivatives are computed.}}{5}{}\protected@file@percent }
+\newlabel{fig:certificate_pipeline}{{5}{5}{}{figure.5}{}}
+\newlabel{eq:engineering_chain}{{44}{5}{}{equation.44}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Weak Elements Are Dynamic Certificates}{5}{}\protected@file@percent }
+\newlabel{eq:gp}{{45}{5}{}{equation.45}{}}
+\newlabel{eq:dist}{{46}{6}{}{equation.46}{}}
+\newlabel{eq:phi}{{47}{6}{}{equation.47}{}}
+\newlabel{eq:weaklink}{{48}{6}{}{equation.48}{}}
+\newlabel{eq:residue}{{49}{6}{}{equation.49}{}}
+\newlabel{eq:residue2}{{50}{6}{}{equation.50}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Weak-element objects and what they can certify.}}{6}{}\protected@file@percent }
+\newlabel{tab:baseline_objects}{{I}{6}{}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Why Participation Is Not Enough}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {V}Control-Resonant Braess Mechanism}{6}{}\protected@file@percent }
+\newlabel{eq:abc}{{51}{6}{}{equation.51}{}}
+\newlabel{eq:cert1}{{52}{7}{}{equation.52}{}}
+\newlabel{eq:cert2}{{53}{7}{}{equation.53}{}}
+\newlabel{eq:cert3}{{54}{7}{}{equation.54}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}Reproducible Audit Procedure}{7}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Minimal three-bus witness. Strengthening line 2--3 increases the largest network stiffness, so a static synchronizing-torque screen sees a stronger graph. The controller-aware pole, however, moves toward a control pole and its damping ratio decreases.}}{7}{}\protected@file@percent }
+\newlabel{fig:synthetic}{{6}{7}{}{figure.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Minimal Synthetic Witness}{7}{}\protected@file@percent }
+\newlabel{eq:syntheticL}{{55}{7}{}{equation.55}{}}
+\newlabel{eq:syntheticfull}{{57}{7}{}{equation.57}{}}
+\newlabel{eq:syntheticT}{{58}{7}{}{equation.58}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Controller-aware Schur-NEP bridge validation against full ANDES eigensolve.}}{8}{}\protected@file@percent }
+\newlabel{tab:bridge}{{II}{8}{}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Control-resonant line-reinforcement audit.}}{8}{}\protected@file@percent }
+\newlabel{tab:braess}{{III}{8}{}{table.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VII}IEEE 39-Bus ANDES Evidence}{8}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Audit-level application view. Many line reinforcements reduce damping, but only a strict subset satisfies the controller-resonance certificate. This avoids confusing ordinary damping-ratio geometry with the proposed IBR-specific mechanism.}}{8}{}\protected@file@percent }
+\newlabel{fig:audit_summary}{{7}{8}{}{figure.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Engineering report for the clearest weak link. A stiffness-only or graph-only view is nearly silent, but the controller-aware decomposition shows that the self-energy term dominates, the damping margin falls, and the mode moves closer to a PLL-dominated control pole.}}{8}{}\protected@file@percent }
+\newlabel{fig:weaklink_report}{{8}{8}{}{figure.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-A}}What This Shows Against Static Rankings}{8}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces IEEE 39-bus inertia witness: the most participating machine is not the best inertia action.}}{9}{}\protected@file@percent }
+\newlabel{tab:inertia_witness}{{IV}{9}{}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {VII-B}}Inertia Witness: Participation Can Pick the Wrong Machine}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VIII}Rational-Filter Interpretation}{9}{}\protected@file@percent }
+\newlabel{eq:modalself}{{59}{9}{}{equation.59}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces Novelty boundary for the proposed conference paper.}}{9}{}\protected@file@percent }
+\newlabel{tab:novelty}{{V}{9}{}{table.5}{}}
+\newlabel{eq:rationalfilter}{{60}{9}{}{equation.60}{}}
+\newlabel{eq:signalpath}{{61}{9}{}{equation.61}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {IX}Discussion}{9}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IX-A}}What This Gives to Power Engineers}{9}{}\protected@file@percent }
+\bibcite{kundur1994power}{1}
+\bibcite{rogers2000oscillations}{2}
+\bibcite{dorfler2014sync}{3}
+\bibcite{braess1968}{4}
+\bibcite{tisseur2001}{5}
+\bibcite{beyn2012}{6}
+\bibcite{cui2021andes}{7}
+\bibcite{andesdocs}{8}
+\bibcite{liyanage2025}{9}
+\bibcite{setareh2025}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {X}Conclusion}{10}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{References}{10}{}\protected@file@percent }
+\gdef \@abspage@last{10}

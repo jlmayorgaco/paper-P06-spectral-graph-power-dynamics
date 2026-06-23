@@ -1,0 +1,375 @@
+\chapter{Introduction}
+
+Power-system small-signal stability is a theory of operators before it is a
+theory of plots. A linearized power system is stable or unstable because the
+spectrum of its differential-algebraic representation lies in particular
+regions of the complex plane, because the corresponding eigenvectors project
+onto physical states in particular ways, and because perturbations of
+parameters move those eigenvalues through mechanisms that can be traced
+mathematically. The familiar language of damping ratio, participation factors,
+critical modes, and modal frequencies is a compact engineering vocabulary for
+that operator theory \cite{kundur1994power,rogers2000oscillations,kundur2004definition}.
+
+The same vocabulary becomes harder to use in converter-rich systems. A
+synchronous-machine dominated model permits a useful separation: inertia is
+stored in rotating masses, synchronizing stiffness comes from the network and
+power-angle relation, and damping can often be represented by a fixed local
+coefficient. Converter-interfaced resources alter this separation. A
+grid-following converter may contribute phase-locked-loop states, current-loop
+states, plant controllers, filters, and protection-related dynamics. A
+grid-forming converter may contribute droop, virtual oscillator, virtual
+synchronous-machine, voltage-loop, current-loop, and current-limiting dynamics.
+The extended IEEE/CIGRE stability taxonomy explicitly recognizes that
+power-electronic interfaces introduce faster and device-dependent dynamic
+phenomena that do not fit cleanly into the classical electromechanical
+classification \cite{hatziargyriou2021stability}.
+
+This dissertation asks a sharper theoretical question:
+
+\begin{quote}
+\itshape
+What is the reduced dynamic operator that preserves grid strength, fragility,
+and actionable pole motion in a converter-rich power system?
+\end{quote}
+
+That question has a planning consequence. If a utility asks how much
+converter-based generation can be hosted, where virtual inertia should be
+placed, or which lines should be reinforced before installing batteries, the
+answer cannot be read from voltage limits or graph connectivity alone. A
+hosting decision is dynamic only if it states the damping, resolvent, or
+protection margin that must survive the conversion. A line decision is robust
+only if it separates useful stiffness increase from damping-ratio loss or
+controller-resonant reinforcement risk.
+
+The answer developed here is hierarchical, but the hierarchy is not the final
+claim. Fixed scalar damping is the uniform-decay member of a broader sequence
+of increasingly expressive operators. The exact decoupling condition for fixed
+damping is not \(D=\gamma M\) alone. It is commutation of the
+inertia-normalized stiffness and damping operators. A fixed but non-commuting
+\(D\) keeps the problem quadratic, but it couples graph modes through the modal
+damping matrix. A controller-condensed converter-rich model changes the problem
+more fundamentally: the reduced correction depends on the spectral parameter
+\(s\). The effective operator is then a rational self-energy \(\Pi(s)\),
+obtained by a Schur complement of the eliminated controller states. The object
+that turns this hierarchy into an action theory is the dynamic Green function
+\(G_T(s)=T(s)^{-1}\), whose port projections measure how finite physical
+actions move poles.
+
+\section{Thesis Statement}
+
+The thesis statement is:
+
+\begin{quote}
+Dynamic grid strength in converter-rich power systems is an operator-valued
+property. Its static limit is encoded by graph stiffness, its oscillatory
+behavior by the Green function of the QEP, its controller-mediated behavior by
+rational self-energy \(\Pi(s)\), its finite-action behavior by low-rank
+determinant identities, its fragility by structured pseudospectra, and its
+nonlinear extension by memory kernels. The damping-channel symbol
+\(\Sigma(s)\) is reserved for the velocity channel after
+\(\Pi(s)=\Pi_K(s)+s\Pi_D(s)\) has been declared. Spectral graph methods remain
+valuable, but their role changes from certificate to screen whenever damping
+and stiffness cease to share an eigenbasis, whenever eliminated controllers
+contribute frequency-dependent dynamics, or whenever an action claim requires
+a certified finite perturbation rather than a local derivative.
+\end{quote}
+
+This statement does not claim novelty for Laplacian linearizations,
+generalized graph modes, effective resistance, QEP or NEP sensitivity
+formulas, Schur complements, or the existence of Braess-like phenomena in
+oscillator and power networks. Those are established mathematical and
+engineering ingredients. The novelty sought by this theoretical thesis is the
+synthesis: a single operator hierarchy that explains when classical damping
+intuition is mathematically justified, when it fails, and what reduced object
+must replace it.
+
+\thesisbox{thesisorange}{Originality boundary}{
+Known mathematics is used as the foundation; it is not claimed as the
+dissertation's invention. The doctoral contribution is the operator-valued
+planning synthesis. The strongest original claims are the graph roughness of
+\(D_i/M_i\) as a modal-coupling obstruction, the graph-time response atlas,
+the spectral effective resistance law for finite topology updates, and the
+controller-induced reinforcement-reversal certificate. Claims about universal
+weak nodes, completed sheaf-grid theory, or empirical benchmark closure remain
+validation targets rather than defended theorems.}
+
+\thesisbox{thesisgreen}{Doctoral reading contract}{
+Every planning statement in this dissertation must answer four questions:
+which operator is being used, which port or action family is being tested,
+which margin is being protected, and which validation gate turns the
+calculation from a screen into evidence.}
+
+\section{The Operator Hierarchy}
+
+The hierarchy begins with the second-order swing equation
+\begin{equation}
+  M\ddot\theta+D\dot\theta+L\theta=p,
+  \label{eq:intro_swing}
+\end{equation}
+where \(M\) is inertia, \(D\) is damping, \(L\) is synchronizing stiffness, and
+\(\theta\) is the vector of bus or machine angles after removing the uniform
+reference. In inertia-normalized coordinates, the stiffness becomes
+\(\Lt=M^{-1/2}LM^{-1/2}\) and the damping becomes
+\(\Dt=M^{-1/2}DM^{-1/2}\).
+
+The first theoretical floor is fixed damping. In inertia-normalized
+coordinates,
+\begin{equation}
+  \Lt=M^{-1/2}LM^{-1/2},\qquad
+  \Dt=M^{-1/2}DM^{-1/2}.
+  \label{eq:intro_normalized_operators}
+\end{equation}
+Exact modal decoupling occurs when
+\begin{equation}
+  [\Lt,\Dt]=\Lt\Dt-\Dt\Lt=0.
+  \label{eq:intro_commutation_condition}
+\end{equation}
+For symmetric matrices, this is the condition for simultaneous orthogonal
+diagonalization. The familiar \(D=\gamma M\) case gives
+\(\Dt=\gamma I\), so it certainly satisfies
+\eqref{eq:intro_commutation_condition}; it is the special case in which every
+underdamped mode has the same real decay rate \(-\gamma/2\). Rayleigh damping
+\(D=\alpha M+\beta L\) also commutes in normalized coordinates and therefore
+decouples graph modes, but it does not produce a uniform decay rate.
+
+The second floor keeps \(D\) fixed but removes proportionality. Now
+\(Q^T\Dt Q\) is not diagonal in the graph eigenbasis \(Q\). Off-diagonal modal
+damping couples the modes. The eigenvalue problem remains a quadratic
+eigenvalue problem (QEP), but graph-frequency movement is no longer a damping
+certificate \cite{tisseur2001qep}.
+
+The third floor appears when auxiliary states are eliminated. If the full
+linearization is partitioned into retained electromechanical states \(x_e\) and
+condensed controller states \(x_c\),
+\begin{equation}
+  A=
+  \begin{bmatrix}
+    A_{ee} & A_{ec}\\
+    A_{ce} & A_{cc}
+  \end{bmatrix},
+  \label{eq:intro_partition}
+\end{equation}
+then Schur condensation gives a nonlinear retained-state operator,
+\begin{equation}
+  S(s)=sI-A_{ee}-A_{ec}(sI-A_{cc})^{-1}A_{ce}.
+  \label{eq:intro_schur}
+\end{equation}
+In second-order retained coordinates the general condensed operator is
+\begin{equation}
+  T(s)=s^2M+sD_0+\Lt+\Pi(s),
+  \qquad
+  \Pi(s)=\Pi_K(s)+s\Pi_D(s).
+  \label{eq:intro_sigma}
+\end{equation}
+The rational correction may contain stiffness-like and damping-like channels.
+Only when the stiffness-like part is absent or explicitly absorbed does this
+reduce to \(T(s)=s^2M+s\Sigma(s)+\Lt\), with
+\(\Sigma(s)=D_0+\Pi_D(s)\). The reduced damping object is then rational in
+\(s\), with poles inherited from the eliminated controller block.
+
+The same operator also defines the thesis' action calculus. On the resolvent
+set of \(T\), let
+\begin{equation}
+  G_T(s)=T(s)^{-1}.
+  \label{eq:intro_green_function}
+\end{equation}
+For a line \(e=(i,j)\), with incidence vector \(a_e=e_i-e_j\), define
+\begin{equation}
+  \mathcal R_e(s)=a_e^TG_T(s)a_e .
+  \label{eq:intro_dynamic_resistance}
+\end{equation}
+At \(s=0\), when the reduced operator has the Laplacian limit and the reference
+angle is removed, this recovers classical effective resistance
+\(a_e^TL^\dagger a_e\). Away from zero it is a dynamic effective resistance:
+it records stiffness, inertia, damping, non-normality, controller poles,
+residues, and modal coupling through the same port projection. A finite line
+change \(\Delta b_e\) then satisfies
+\begin{equation}
+  \det(T(s)+\Delta b_ea_ea_e^T)
+  =
+  \det T(s)\left(1+\Delta b_e\mathcal R_e(s)\right).
+  \label{eq:intro_line_action_law}
+\end{equation}
+Thus a local line sensitivity is only the small-\(\Delta b_e\) limit of an
+exact scalar finite-action law.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  box/.style={rectangle, rounded corners=2pt, draw=black!65, align=center,
+    minimum height=1.06cm, text width=0.72\textwidth},
+  level0/.style={box, fill=softblue, draw=thesisblue},
+  level1/.style={box, fill=softgreen, draw=thesisgreen},
+  level2/.style={box, fill=softorange, draw=thesisorange},
+  transition/.style={font=\small, align=center, fill=white, inner sep=2pt},
+  arrow/.style={-{Latex[length=2.4mm]}, thick}
+]
+\node[level0] (l0) {Level 0: commuting fixed damping\\
+\([\Lt,\Dt]=0\), including \(D=\gamma M\) and Rayleigh damping};
+\node[level1, below=1.15cm of l0] (l1) {Level 1: fixed non-commuting damping\\
+\(D\) is constant, but \(Q^T\Dt Q\) couples graph modes};
+\node[level2, below=1.15cm of l1] (l2) {Level 2: rational self-energy and Green function\\
+\(\Pi(s)=\Pi_K(s)+s\Pi_D(s)\), \(G_T(s)=T(s)^{-1}\)};
+\draw[arrow] (l0) -- node[transition,right=0.25cm]{non-commuting damping operator} (l1);
+\draw[arrow] (l1) -- node[transition,right=0.25cm]{controller-state condensation} (l2);
+\end{tikzpicture}
+\caption{Damping-operator hierarchy developed in this thesis. Each transition
+keeps part of the previous intuition but removes one mathematical guarantee.}
+\label{fig:intro_operator_hierarchy}
+\end{figure}
+
+\section{Core Calibrated Messages}
+
+The hierarchy leads to five messages that are strong enough to guide the
+thesis, but only if their assumptions are stated precisely.
+
+\begin{enumerate}
+\item \textbf{Pure inertia is not damping.} In the fixed-mode, fixed-\(D\)
+screen,
+\begin{equation}
+  \frac{\partial\zeta_k}{\partial M_i}
+  \approx
+  -\frac{1}{2}\zeta_k\phi_k(i)^2.
+  \label{eq:intro_inertia_message}
+\end{equation}
+Thus adding inertia at a modal antinode can reduce the scalar damping-ratio
+screen if damping is not co-designed. This does not say inertia is bad. It
+says inertia, damping ratio, RoCoF, and nadir are distinct objectives.
+
+\item \textbf{Graph stiffness is not a damping certificate.} For a line
+\(e=(i,j)\),
+\begin{equation}
+  \frac{\partial\zeta_k}{\partial b_e}
+  =
+  -\frac{\zeta_k}{2\nu_k}(\phi_k(i)-\phi_k(j))^2
+  +
+  \frac{\zeta_k}{\delta_k}
+  \frac{\partial\delta_k}{\partial b_e}.
+  \label{eq:intro_line_message}
+\end{equation}
+If the line action raises stiffness but does not raise modal damping, the
+scalar damping-ratio screen can decrease. Therefore algebraic connectivity and
+effective-resistance improvements are graph screens, not automatic
+small-signal damping certificates.
+
+\item \textbf{Modal reduction and controller condensation share a resolvent
+structure.} Eliminating coupled graph modes from a fixed-\(D\) QEP produces a
+rational correction such as \eqref{eq:general_modal_correction}. Eliminating
+controller states produces the Schur self-energy
+\(\Pi(s)=G(sI-A_{cc})^{-1}(B_\theta+sB_\omega)\). The common mechanism is not
+the physical origin of the eliminated states; it is the resolvent injected into
+the retained operator. The damping-channel notation \(\Sigma(s)\) is used only
+after the rational correction has been projected onto the velocity channel.
+
+\item \textbf{Static damping bridges have a spectral validity region.} In the
+damping-channel specialization, the NEP sensitivity denominator contains
+\begin{equation}
+  T_s(s)=2sM+\Sigma(s)+s\Sigma'(s).
+  \label{eq:intro_spectral_memory}
+\end{equation}
+The term \(s\Sigma'(s)\) is the spectral memory of the condensed controller
+block. Setting it to zero is acceptable only when the rational self-energy is
+locally flat enough over the critical region. Near a controller resonance, a
+static bridge can predict the wrong pole-motion direction.
+\item \textbf{Finite actions are not only derivatives.} For line, damping,
+inertia, and controller actions that enter \(T(s)\) through low-rank port
+updates, the pole condition can be reduced to a determinant whose dimension is
+the number of action ports. This does not replace full-model validation, but it
+does give the right intermediate object between a scalar graph score and a
+large NEP recomputation.
+\end{enumerate}
+
+None of these messages is presented as an industry-wide theorem without
+qualification. They are calibrated statements: exact in the commuting
+constant-\(D\) floor, first-order screens in fixed non-commuting damping, and
+validation gates after controller condensation.
+
+\section{Research Questions}
+
+The thesis is organized around eight research questions.
+
+\begin{enumerate}
+\item What exact assumptions make graph-mode damping analysis valid in the
+classical swing model?
+\item How does the operating point induce the operational graph
+\(L=B W(z^\star)B^T\), and how do power-flow geometry, line loading, cut
+structure, and cycle structure shape dynamic modes?
+\item How does fixed non-commuting damping create modal coupling, and how
+can that coupling be expressed as a rational correction?
+\item How does Schur condensation of controller states transform a fixed
+damping matrix into a rational self-energy \(\Pi(s)\), and when is its
+damping-channel projection \(\Sigma(s)\) legitimate?
+\item How does the dynamic Green function \(G_T(s)\) turn effective
+resistance, line reinforcement, damping placement, inertia placement, and
+controller retuning into one low-rank action calculus?
+\item What theoretical requirements must a planning metric satisfy before it
+can claim to identify weak buses, weak lines, or useful converter actions in a
+converter-rich grid?
+\item How can dynamic hosting capacity, virtual-inertia placement, and
+line-reinforcement screening be expressed as spectral margin problems rather
+than as static graph or voltage heuristics?
+\item Which certificates decide when a reduced QEP, a Schur NEP, a
+data-identified self-energy, or a full DAE is adequate for a protected
+decision?
+\end{enumerate}
+
+The first five questions are mathematical. The last three are epistemic,
+planning-oriented, and computational: they define what future empirical
+validation must show before a screen becomes an engineering certificate.
+
+\section{Contributions}
+
+The dissertation makes one central contribution and five supporting
+contributions.
+
+\begin{enumerate}
+\item \textbf{Central contribution: operator-valued dynamic grid strength.}
+The dissertation treats graph stiffness, damping-to-inertia roughness,
+spectral effective resistance, rational controller self-energy, and nonlinear
+memory as successive mechanisms in one retained operator
+\(T(s)=s^2M+sD+L+\Pi(s)\).
+\item \textbf{Damping-to-inertia graph roughness.} It shows how
+non-commutation between inertia-normalized stiffness and damping becomes the
+graph-gradient energy of \(D_i/M_i\), and how this roughness, together with
+small modal gaps, predicts modal mixing.
+\item \textbf{Graph-time resonance atlas.} It defines
+\(H_G(\omega)=[Q^T\widetilde T(j\omega)Q]^{-1}\) as the joint spatial-mode
+and temporal-frequency response used to locate resonant modal conversion.
+\item \textbf{Spectral effective resistance.} It defines
+\(\mathcal R_e(s)=a_e^TG_T(s)a_e\) and derives the finite line-update law
+\(1+\Delta w_e\mathcal R_e(s)=0\), recovering static effective resistance at
+the Laplacian limit.
+\item \textbf{Controller-induced reinforcement reversal.} It formalizes the
+case in which a line or parameter action passes a static graph or fixed-\(D\)
+screen but reverses once the controller Schur resolvent is included.
+\item \textbf{Certificate/screen/gate planning methodology.} It formulates
+weak elements, dynamic hosting, virtual-inertia placement, and line
+reinforcement as operator-, margin-, action-, and validation-gate-relative
+claims rather than graph-intrinsic labels.
+\end{enumerate}
+
+\section{Dissertation Organization}
+
+The dissertation is now organized as a modular monograph. Part~I builds the
+problem statement, the physical grid framework, the spectral preliminaries, and
+the state of the art. The new physical framework chapter develops the AC
+network, phasor, power-flow, swing-equation, DAE, and operator chain before the
+more compact mathematical chapters use those objects. Part~II develops the
+operational graph theory: power-flow geometry, total derivatives of
+\(L=B W(z^\star)B^T\), graph roughness of damping-to-inertia fields,
+graph-time response, dynamic effective resistance, and structured fragility
+radii. Part~III closes the constant-\(D\) theory: QEP identities, commuting
+damping, uniform decay, Rayleigh damping, non-commuting coupling, and
+reduced-QEP gates. Part~IV develops rational self-energy \(\Pi(s)\), its
+damping-channel specialization \(\Sigma(s)\), Schur condensation,
+finite-action laws, NEP sensitivities, port equivalence, passivity screens,
+structured fragility, and controller-resolvent reversals. Part~V separates
+genuine nonlinear DAE stability from spectral NEP theory by treating
+equilibria, nonlinear memory, bifurcation, energy, and regions of attraction.
+Part~VI turns the operators into applications: weak elements, planning risk
+vectors, dynamic hosting regions, reinforcement envelopes, and reproducible
+benchmark protocols.
+
+The integrated source-to-claim ledger is not part of the main scientific
+progression. It is kept as an appendix-level traceability record that maps
+claims to sources, scripts, figures, and validation gates.

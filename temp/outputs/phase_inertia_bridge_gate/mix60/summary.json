@@ -1,0 +1,59 @@
+{
+  "case": "mix60",
+  "case_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\ieee39_ibr_mix60.xlsx",
+  "eps": 0.01,
+  "n_candidates": 4,
+  "base_full_critical": {
+    "real": -10.751357900248504,
+    "imag": 86.34193765604479,
+    "freq_hz": 13.741746174091784,
+    "zeta": 0.12356640434765424,
+    "pi_c": 0.8532274445178317,
+    "family": "II_control"
+  },
+  "base_bridge_critical": {
+    "real": -10.75135790052832,
+    "imag": 86.34193765611796,
+    "freq_hz": 13.74174617410343,
+    "zeta": 0.12356640435071799,
+    "pi_c": 0.8532274444325421,
+    "family": "II_control"
+  },
+  "virtual_inertia_columns": {
+    "REGF1": [
+      "wdrp",
+      "Tpm",
+      "gammap"
+    ]
+  },
+  "virtual_inertia_validation_status": "BLOCKED_NO_EXPLICIT_GFM_VIRTUAL_INERTIA_COLUMN",
+  "gate1_bridge_vs_full": {
+    "status": "WEAK_SIGNAL",
+    "sign_rate_global": 1.0,
+    "sign_rate_matched": 1.0,
+    "top3_overlap": 1.0,
+    "median_mag_rel_error_global": 8.916494881080291e-07,
+    "median_mag_rel_error_matched": 8.916494881080291e-07,
+    "finite_signal_count": 0,
+    "acceptance_rule": "PASS if global sign rate >= 80%, top-3 overlap is complete, and signal is not numerically weak."
+  },
+  "gate1_local_nep_sensitivity": {
+    "status": "WEAK_SIGNAL",
+    "sign_rate_vs_full_matched": 1.0,
+    "sign_rate_vs_bridge_matched": 1.0,
+    "top3_overlap_vs_full_global": 1.0,
+    "median_mag_rel_error_vs_full_matched": 0.0001697003416013677,
+    "median_mag_rel_error_vs_bridge_matched": 0.00016880853570239005,
+    "note": "Local NEP derivative uses ds/deps=-y^H T_p x/(y^H T_s x), with T_p estimated from the Schur-operator perturbation at the base pole."
+  },
+  "gate2_substitutability": {
+    "status": "NOT_APPLICABLE_TO_CONTROL_CRITICAL",
+    "reason": "Critical bridge mode is control-family. Projecting the network-inertia shunt residual onto this control-family mode would not test the original red-inertia classifier."
+  },
+  "gate3_inertia_reversal": {
+    "status": "NO_SIGN_REVERSAL_OBSERVED",
+    "n_negative_full_global": 0,
+    "n_negative_bridge_global": 0,
+    "negative_full_indices": []
+  }
+}

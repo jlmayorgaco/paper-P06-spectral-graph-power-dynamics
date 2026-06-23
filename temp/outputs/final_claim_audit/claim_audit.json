@@ -1,0 +1,66 @@
+[
+  {
+    "claim": "C1 damping-region coordinate system",
+    "what_was_verified": "Exact in commuting/proportional damping by simultaneous diagonalization; figure shows non-proportional screen failure mode.",
+    "control_or_comparison": "Commuting case versus non-proportional coupled-QEP case.",
+    "not_proven": "The region language itself is not proven novel; outside commuting damping it is a screen, not a certificate.",
+    "status": "theoretical/diagnostic",
+    "confidence": "high for the mathematics; medium for novelty and planning value"
+  },
+  {
+    "claim": "C2 closed-form second-order damping-margin correction",
+    "what_was_verified": "On the IEEE39-derived surrogate, median relative error improves from 0.468% diagonal to 0.0321% second order; reduced PLL Monte Carlo reported in the manuscript improves 2.16% to 0.09% median error.",
+    "control_or_comparison": "Full QEP of the surrogate; diagonal all-mode screen; reduced QEP fallback.",
+    "not_proven": "Not yet validated against full calibrated ANDES IBR poles; second order does not dominate large reduced QEP in tails.",
+    "status": "verified on reduced models; benchmark pending",
+    "confidence": "high for reduced models; medium for full IBR generalization"
+  },
+  {
+    "claim": "C2 adaptive workflow diagonal -> second order -> reduced QEP",
+    "what_was_verified": "Tail behavior requires fallback: second-order p95 is 9.91%, reduced-QEP p95 is 5.44%, adaptive p95 is 7.43% on the IEEE39-derived surrogate.",
+    "control_or_comparison": "Always-diagonal, always-second-order, and reduced-QEP estimates.",
+    "not_proven": "No universal trigger threshold is proved; false-safe behavior must be measured on calibrated ANDES IBR cases.",
+    "status": "diagnostic workflow",
+    "confidence": "medium"
+  },
+  {
+    "claim": "C3 SG-to-IBR conversion ranking",
+    "what_was_verified": "5/5 generated SG-to-IBR ANDES cases load, solve power flow, and run eigenanalysis; 1/5 is small-signal stable with generic uncalibrated gains. Phase-1 ran 50 case/profile audits; 1/5 cases have a stable controller-only profile and 4/5 have a stable diagnostic retained-SG-control-removal profile.",
+    "control_or_comparison": "ANDES pflow/eigenanalysis feasibility, device inventory checks, controller-only profiles, and diagnostic retained-control removal.",
+    "not_proven": "No low-regret conversion ranking against full eigensolve has been demonstrated yet; stable cases are still calibration candidates, not final benchmark tuning.",
+    "status": "case-construction and calibration audit",
+    "confidence": "high for construction; low for planning superiority"
+  },
+  {
+    "claim": "C4 damping-aware weak links and Braess-like reversals",
+    "what_was_verified": "On the IEEE39-derived surrogate, 35/46 line reinforcements increase critical modal stiffness while reducing damping margin; the best damping-aware reinforcement is line 25-37.",
+    "control_or_comparison": "Frequency-only line effect versus finite post-action damping-margin change.",
+    "not_proven": "Not yet a full ANDES IBR topology claim; generic QEP sensitivity prior art must be distinguished.",
+    "status": "surrogate planning diagnostic",
+    "confidence": "medium"
+  },
+  {
+    "claim": "C5 inertia-placement sign reversal",
+    "what_was_verified": "With fixed local damping-per-inertia, 5447/16229 perturbations reduced both the diagonal modal screen and the full-QEP damping margin; the strongest reported example matches the analytic sign against finite differences.",
+    "control_or_comparison": "Fixed D/M nontrivial check versus fixed-D direct damping-dilution control.",
+    "not_proven": "Not validated on calibrated ANDES IBR dynamics; the theorem is a reduced-model modal sign condition, not a universal inertia-planning law.",
+    "status": "verified reduced-model sign diagnostic",
+    "confidence": "medium"
+  },
+  {
+    "claim": "C6 joint inertia-damping cross term",
+    "what_was_verified": "The manuscript derives the local off-diagonal coupling term for simultaneous inertia and damping perturbations and shows that it reduces to the existing second-order damping correction when Delta M is zero.",
+    "control_or_comparison": "Special-case reduction to the fixed-inertia second-order correction; separation of first-order diagonal shift from second-order modal coupling.",
+    "not_proven": "No Monte Carlo or ANDES validation is claimed for finite SG-to-IBR conversion accuracy; large conversions must be recomputed.",
+    "status": "theoretical local mechanism",
+    "confidence": "medium for derivation; low for finite-conversion prediction"
+  },
+  {
+    "claim": "ANDES IEEE39 benchmark readiness",
+    "what_was_verified": "Packaged baseline has 9 positive-real non-oscillatory modes; removing IEEEST gives 0 positive modes while keeping the 1.37 Hz oscillatory pair essentially unchanged. GFL/PLL cases exist: yes; GFM cases exist: yes. Phase-1 found 9/50 stable case/profile runs. The strict physical bridge audit status is BLOCKED (base critical frequency error 12.4%, damping-ratio error 100%).",
+    "control_or_comparison": "Baseline versus removed-model-family diagnostics; IBR device inventory checks.",
+    "not_proven": "A defensible calibrated dynamic library and physically matched extraction of reduced L,M,D/control coupling from full ANDES DAE are still pending; the strict physical bridge audit remains blocked.",
+    "status": "benchmark harness and calibration audit ready; final validation pending",
+    "confidence": "high for harness status; low for final empirical claim"
+  }
+]

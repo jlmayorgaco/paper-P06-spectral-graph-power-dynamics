@@ -1,0 +1,415 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{amsmath,amssymb,bm}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!black,
+  urlcolor=blue!50!black,
+  citecolor=blue!50!black
+}
+
+\lstset{
+  basicstyle=\ttfamily\scriptsize,
+  breaklines=true,
+  breakatwhitespace=false,
+  columns=fullflexible,
+  frame=single,
+  rulecolor=\color{black!20},
+  xleftmargin=0.5em,
+  xrightmargin=0.5em
+}
+
+\newcommand{\artifact}[1]{\path{#1}}
+
+\title{\textbf{Complete Master Compendium}\\
+Controller-Aware Spectral Graph Theory for Damping Margins in IBR Grids}
+\author{Internal research consolidation}
+\date{Compiled \today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This compendium is intentionally redundant. It preserves the full IEEE
+manuscript, the unified theory note with the Gemini extensions, the diagrams,
+and the validation reports. This front matter explains how the final merged PDF
+is organized and appends the raw gate ledgers. The source papers themselves are
+merged after this front matter as complete PDFs, so their equations and figures
+are not rewritten or dropped.
+\end{abstract}
+
+\tableofcontents
+\clearpage
+
+\section*{How to Read This Compendium}
+\addcontentsline{toc}{section}{How to Read This Compendium}
+
+The final merged artifact has four layers:
+\begin{enumerate}
+\item this front matter and artifact appendix;
+\item the unified theory note with calibrated Gemini additions;
+\item the full IEEE Transactions manuscript with all equations, tables, figures,
+derivation appendices, gates, and reviewer checklists;
+\item raw validation reports and compact CSV ledgers.
+\end{enumerate}
+
+The document is deliberately not concise. Its role is to preserve the entire
+research state before splitting the material into submission-sized papers.
+
+\section*{Recovered Content Manifest}
+\addcontentsline{toc}{section}{Recovered Content Manifest}
+
+\begin{longtable}{p{0.30\linewidth}p{0.62\linewidth}}
+\toprule
+Source & Preserved content\\
+\midrule
+\artifact{internal\_unified\_theory/main.pdf}
+& Gemini extensions after correction: protected resolvent sensitivity,
+flow-feasible retrofitting candidate, damping-operator hierarchy, and explicit
+novelty boundaries.\\
+\artifact{paper\_ieee\_transactions/main.pdf}
+& Full prior manuscript: all equations, the second-order correction, rational
+graph-filter identity, joint inertia--damping perturbation, ANDES IEEE39
+sections, NEP bridge, Braess mechanism, hidden margin, weak nodes/links,
+planning scores, line reinforcement, appendices, and all manuscript figures.\\
+\artifact{outputs/phase0d\_nep\_contour\_solver}
+& Non-circular Beyn/NEP bridge validation against ANDES, including Mix60
+control-family critical mode at 13.742 Hz.\\
+\artifact{outputs/phase\_braess\_nep}
+& Resonant Braess mechanism test and classification: strict resonant minority
+cases plus negative controls.\\
+\artifact{outputs/phase\_inertia\_bridge\_gate}
+& Gate for inertia sensitivity over the controller-aware bridge.\\
+\artifact{outputs/phase\_coordination\_lever\_gate}
+& Reduced-model gate for coordinated topology/damping/inertia packages and the
+absence of robust nonlinear synergy.\\
+\artifact{outputs/phase\_gamma\_robustness\_gate}
+& Robustness of the protected-resolvent discrepancy under physical and random
+diagonal protection profiles.\\
+\artifact{outputs/final\_claim\_audit}
+& Final claim-readiness ledger and status labels.\\
+\bottomrule
+\end{longtable}
+
+\clearpage
+\section{Explicit Gemini Addendum: Flow-Feasible Graph-Filter Shaping}
+
+The newest Gemini proposal is worth preserving because it points to a clean
+conference-paper split:
+\begin{quote}
+\emph{Flow-Feasible Graph-Filter Shaping: Coordinating Topology, Damping, and
+Virtual Inertia in Non-Normal IBR Grids.}
+\end{quote}
+The proposal is included here, but with the same claim discipline used
+throughout the project.  The useful idea is not that every formula in the raw
+proposal is already a theorem.  The useful idea is that the local protected
+resolvent provides a common currency for topology, damping, and virtual inertia
+when the state matrix is non-normal.
+
+\subsection{Gemini G1: Bi-Orthogonal Resolvent Sensitivity}
+
+Let
+\[
+    H(j\omega)=C(j\omega I-A_{\rm sys})^{-1}B,
+    \qquad
+    g_{\rm prot}=\sigma_1(H(j\omega^\star)),
+\]
+where $\omega^\star$ is the protected-resonance peak.  Let $u^\star$ and
+$v^\star$ be the left and right singular vectors of $H(j\omega^\star)$ associated
+with $g_{\rm prot}$.  Define
+\[
+    \phi^{\rm in}=(j\omega^\star I-A_{\rm sys})^{-1}Bv^\star ,
+    \qquad
+    \phi^{\rm out}=(j\omega^\star I-A_{\rm sys})^{-H}C^H u^\star .
+\]
+For a smooth real parameter $p$ in $A_{\rm sys}$, the first-order sensitivity of
+the protected log-gain $\mathcal S=\log g_{\rm prot}$ is
+\[
+    \boxed{
+    \frac{\partial \mathcal S}{\partial p}
+    =
+    \frac{1}{g_{\rm prot}}
+    \operatorname{Re}\!\left[
+      (\phi^{\rm out})^H
+      \frac{\partial A_{\rm sys}}{\partial p}
+      \phi^{\rm in}
+    \right].}
+\]
+
+\textbf{Status.} This is standard singular-value perturbation applied to the
+power-system resolvent.  The contribution is the use of this expression as a
+planning exchange rate across grid levers in an IBR damping-margin setting, not
+the invention of singular-value perturbation.
+
+\subsection{Gemini G2: Spatial Decoupling, Corrected}
+
+The raw Gemini note states a strong damping-placement rule of the form
+$\partial \mathcal S/\partial D_i\propto-|\phi^{\rm out}_i|^2$.  That rule is
+\emph{not} generally valid for non-normal systems.  In the general case the
+correct local damping sensitivity is a bi-orthogonal product.  For a second-order
+state $x=[\theta^T,\omega^T]^T$ with local damping entering the $\omega_i$
+equation as $-\Delta D_i/M_i$, one obtains
+\[
+    \boxed{
+    \frac{\partial \mathcal S}{\partial D_i}
+    =
+    -\frac{1}{g_{\rm prot}M_i}
+    \operatorname{Re}\!\left[
+      \overline{\phi^{\rm out}_{\omega_i}}
+      \phi^{\rm in}_{\omega_i}
+    \right].}
+\]
+The simplified $-|\phi_i|^2$ expression is recovered only in aligned or nearly
+normal cases where input and output spatial profiles coincide.  The actual
+non-normal insight is stronger:
+\begin{quote}
+the location that receives forcing and the location where response should be
+damped need not be the same bus.
+\end{quote}
+
+For a line $e=(i,j)$ with incidence vector $b_e=e_i-e_j$ and stiffness change
+$w_e$, the corresponding topology sensitivity has the form
+\[
+    \boxed{
+    \frac{\partial \mathcal S}{\partial w_e}
+    =
+    -\frac{1}{g_{\rm prot}}
+    \operatorname{Re}\!\left[
+      (\phi^{\rm out}_{\omega})^H
+      M^{-1} b_e b_e^T
+      \phi^{\rm in}_{\theta}
+    \right],}
+\]
+up to the precise state ordering and sign convention used in the assembled
+$A_{\rm sys}$.  This is the graph-filter version of a weak-link score: a line is
+dangerous or useful according to how it couples the forcing profile to the
+response profile, not only according to Fiedler participation or stiffness gain.
+
+\textbf{Status.} The certificate-discrepancy gates support that the modal damping
+margin $S_\zeta$ and protected resolvent $S_g$ disagree robustly under several
+protection profiles.  The mechanism of the discrepancy is not fully explained:
+global non-normality and global commutator descriptors were weak predictors.
+The spatial-decoupling theorem is therefore a strong candidate, not yet a closed
+validated theorem over ANDES.
+
+\subsection{Gemini G3: Flow-Feasible Dynamic Braess}
+
+A line reinforcement is a \emph{flow-feasible dynamic Braess} candidate if, at a
+given operating point, it satisfies the three local conditions
+\[
+    \frac{\partial \nu_c}{\partial w_e}>0,
+    \qquad
+    \frac{\partial \mathcal S}{\partial w_e}>0,
+    \qquad
+    |f_0+\Delta f(w_e,P)|\leq \bar f .
+\]
+The first condition says that the line improves a frequency or stiffness proxy.
+The second says that the protected dynamic gain worsens.  The third prevents a
+purely dynamic claim from ignoring steady-state flow feasibility.
+
+The local retrofit problem suggested by Gemini can be written as
+\[
+    \begin{aligned}
+    \min_{z=(\Delta w,\Delta D,\Delta M)}\quad & c^Tz\\
+    \text{s.t.}\quad
+       & \mathcal S_0+\nabla\mathcal S^Tz \leq \mathcal S_{\rm target},\\
+       & F_0+J_F z \leq \bar F,\\
+       & z_{\min}\leq z\leq z_{\max}.
+    \end{aligned}
+\]
+This is not yet a global optimality theorem.  It is a local planning layer that
+can be tested against full NEP or ANDES eigensolves after a candidate package is
+selected.
+
+\subsection{Algorithm G1: Flow-Feasible Resolvent Retrofitting}
+
+\begin{enumerate}
+\item Build or import $A_{\rm sys}$, protected input/output matrices $B,C$, flow
+limits $\bar F$, and action costs $c$.
+\item Find $\omega^\star$, $g_{\rm prot}$, and singular vectors $u^\star,v^\star$
+of $H(j\omega)$.
+\item Compute $\phi^{\rm in}$ and $\phi^{\rm out}$ from the two resolvent solves.
+\item Generate exchange rates
+$\partial\mathcal S/\partial w_e$,
+$\partial\mathcal S/\partial D_i$, and
+$\partial\mathcal S/\partial M_i$.
+\item Compute flow penalties from $J_F$ or from an AC/DC sensitivity model.
+\item Solve the local retrofit LP for a sparse package
+$z^\star=(\Delta w^\star,\Delta D^\star,\Delta M^\star)$.
+\item Validate the selected package against the NEP/ANDES poles.  If the
+critical singular vectors or pole family switch, rerun the local model.
+\end{enumerate}
+
+\subsection{Figures Needed for This Spin-Off Paper}
+
+The Gemini note proposes three figures.  They should be generated only after the
+corresponding gates are passed.
+\begin{enumerate}
+\item \textbf{Spatial decoupling heatmap:} forcing bus/location versus damping
+placement bus/location from $\phi^{\rm in}$ and $\phi^{\rm out}$.
+\item \textbf{Flow-feasible Braess witness:} a line that improves the stiffness
+proxy, keeps flows legal, but worsens the protected resolvent or damping margin.
+\item \textbf{Cost-synergy frontier:} topology-only, damping/inertia-only, and
+coordinated packages.  Existing gates support $w+D$ and $w+M$ as reduced-model
+coordination candidates, but do not support a strong nonlinear synergy claim.
+\end{enumerate}
+
+\subsection{Claim Boundary for the Gemini Direction}
+
+This direction is promising because it converts weak nodes and weak links from
+single-score graph objects into input-output objects.  The claim should be:
+\begin{quote}
+Protected-resolvent sensitivities define a common local exchange rate for
+topology, damping, and inertia actions in non-normal IBR grids, and early
+reduced-model gates show robust disagreement with modal damping-margin rankings.
+\end{quote}
+It should \emph{not} yet be:
+\begin{quote}
+The optimal damping bus is always the output hot spot, or coordinated packages
+are always synergistic, or the LP is globally optimal.
+\end{quote}
+
+\clearpage
+\section{Figure and Diagram Recovery Appendix}
+
+\subsection{Manuscript Figures}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.82\linewidth]{paper_ieee_transactions/figures/fig1_damping_region.pdf}
+\caption{Damping-region geometry from the full manuscript.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.82\linewidth]{paper_ieee_transactions/figures/fig2_estimator_errors.pdf}
+\caption{Estimator error stress test from the full manuscript.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.82\linewidth]{paper_ieee_transactions/figures/fig3_adaptive_workflow.pdf}
+\caption{Adaptive workflow: diagonal screen, correction, and fallback.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.82\linewidth]{paper_ieee_transactions/figures/fig4_line_tradeoff.pdf}
+\caption{Frequency-only versus damping-aware line reinforcement tradeoff.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.92\linewidth]{paper_ieee_transactions/figures/fig5_ieee39_ibr_map.pdf}
+\caption{IEEE39 SG-to-IBR replacement map.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.92\linewidth]{paper_ieee_transactions/figures/fig6_ieee39_result_map.pdf}
+\caption{IEEE39 result map and validation status overview.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.82\linewidth]{paper_ieee_transactions/figures/fig7_braess_nep_s_plane.pdf}
+\caption{Control-resonant Braess example in the complex plane.}
+\end{figure}
+
+\clearpage
+\subsection{Output Figures}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.92\linewidth]{outputs/phase0d_nep_contour_solver/fig_phase0d_s_plane.pdf}
+\caption{Phase-0D NEP contour validation: ANDES poles, NEP zeros, control poles,
+and contours.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.82\linewidth]{outputs/phase_braess_nep/fig_braess_nep_s_plane.pdf}
+\caption{Phase Braess-NEP resonant line-reinforcement witness.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.92\linewidth]{outputs/ieee39_phase0_bridge/fig_ieee39_mix60_ibr_map.pdf}
+\caption{Mix60 IBR map generated during the ANDES bridge phase.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.92\linewidth]{outputs/ieee39_result_map/fig_ieee39_result_map.pdf}
+\caption{IEEE39 result-map artifact.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.82\linewidth]{outputs/ieee39_rational_filter/fig_estimator_errors_by_rho.pdf}
+\caption{Estimator errors by IBR penetration in the rational-filter artifact set.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.82\linewidth]{outputs/ieee39_rational_filter/fig_line_frequency_vs_damping.pdf}
+\caption{Line frequency score versus damping score in the rational-filter artifact set.}
+\end{figure}
+
+\clearpage
+\section{Raw Gate Reports and Result Ledgers}
+
+\subsection{Phase-0D NEP Contour Solver Report}
+\lstinputlisting{outputs/phase0d_nep_contour_solver/phase0d_nep_report.md}
+
+\subsection{Phase Braess-NEP Report}
+\lstinputlisting{outputs/phase_braess_nep/phase_braess_nep_report.md}
+
+\subsection{Phase Inertia Bridge Gate Report}
+\lstinputlisting{outputs/phase_inertia_bridge_gate/phase_inertia_bridge_gate_report.md}
+
+\subsection{Phase Coordination Lever Gate Report}
+\lstinputlisting{outputs/phase_coordination_lever_gate/phase_coordination_lever_gate_report.md}
+
+\subsection{Phase Gamma Robustness Gate Report}
+\lstinputlisting{outputs/phase_gamma_robustness_gate/phase_gamma_robustness_gate_report.md}
+
+\subsection{Final Claim Readiness Report}
+\lstinputlisting{outputs/final_claim_audit/final_readiness_report.md}
+
+\clearpage
+\newgeometry{margin=0.35in}
+\section{Compact CSV Ledgers}
+
+\lstset{basicstyle=\ttfamily\tiny}
+
+\subsection{Claim Audit CSV}
+\lstinputlisting{outputs/final_claim_audit/claim_audit.csv}
+
+\subsection{Phase-0D Critical Validation CSV: No-PSS}
+\lstinputlisting{outputs/phase0d_nep_contour_solver/no_pss_critical_validation.csv}
+
+\subsection{Phase-0D Critical Validation CSV: Base}
+\lstinputlisting{outputs/phase0d_nep_contour_solver/base_critical_validation.csv}
+
+\subsection{Phase-0D Critical Validation CSV: Mix60}
+\lstinputlisting{outputs/phase0d_nep_contour_solver/mix60_critical_validation.csv}
+
+\subsection{Coordination Aggregate Table}
+\lstinputlisting{outputs/phase_coordination_lever_gate/coordination_aggregate_table.csv}
+
+\subsection{Gamma Aggregate Table}
+\lstinputlisting{outputs/phase_gamma_robustness_gate/gamma_aggregate_table.csv}
+
+\end{document}

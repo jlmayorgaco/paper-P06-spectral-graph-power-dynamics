@@ -1,0 +1,5 @@
+name: mix60
+source: data/processed/mix60/mix60.xlsx
+conversion_protocol: configs/cases/conversion_protocol.yaml
+profile: mix60
+tags: [ibr, mix60]

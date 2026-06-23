@@ -1,0 +1,1008 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts,bm}
+\usepackage{booktabs,longtable,array}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=blue!55!black,
+  urlcolor=blue!55!black
+}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\Real}{\operatorname{Re}}
+\newcommand{\Imag}{\operatorname{Im}}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\Lt}{\widetilde L}
+\newcommand{\Dt}{\widetilde D}
+\newcommand{\Sigmae}{\Sigma}
+\newcommand{\zetaReq}{\zeta_{\rm req}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\title{\bfseries Internal Unified Theory Note:\\
+Damping-Operator Hierarchy, Rational Self-Energy, and Flow-Feasible Retrofitting in IBR Grids}
+\author{Project working document}
+\date{June 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This document is the internal map of the project. It is not a submission draft.
+It organizes the verified results, failed hypotheses, and open gates under one
+operator hierarchy. The central thesis is that the transition from synchronous
+grids to inverter-rich grids is a descent through a damping-operator hierarchy:
+proportional viscous damping, non-proportional viscous damping, and rational
+frequency-dependent damping induced by controller self-energy. Each descent
+breaks a classical guarantee and creates a planning risk. Level 0 gives normal
+modes and topology-invariant decay under proportional damping. Level 1 breaks
+classical modal separation; heterogeneous $D/M$ creates modal coupling, dynamic
+Braess-like reversals, and non-monotone inertia effects. Level 2 condenses
+controller states into a rational self-energy
+\[
+  \Sigma(s)=D_0+C(sI-A_{cc})^{-1}B,
+\]
+which yields a nonlinear eigenvalue problem. This bridge was validated against
+full ANDES eigensolves on IEEE 39-bus cases, including a 13.7417 Hz PLL-family
+critical mode in Mix60. The document also integrates the newer resolvent-margin
+and coordinated-retrofitting gates. Those gates support a secondary but useful
+claim: modal damping-ratio and protected-resolvent certificates rank actions
+differently across several protection weightings, and equal-cost packages
+$w+D$ and $w+M$ often beat the best single lever under the protected resolvent.
+The mechanism of that certificate discrepancy is still open; simple global
+non-normality and commutator descriptors correlated weakly. Every claim below
+is labeled by validation status.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{Executive Thesis}
+
+The project can be read as one question:
+\[
+  \text{What object preserves damping-margin mechanisms after IBR controls are condensed?}
+\]
+The answer changed as the work progressed. A scalar $(L,M,D)$ bridge is useful
+for intuition but not enough for detailed IBR dynamics. The correct reduced
+object for the ANDES cases is a rational Schur self-energy or, equivalently,
+a retained-state nonlinear eigenvalue problem (NEP). Once that bridge exists,
+we can ask smaller planning questions: which line is weak, which node is weak,
+which damping/inertia/topology action moves the margin, and whether packages of
+actions beat single levers under flow feasibility.
+
+\subsection{The operator hierarchy}
+
+The useful organizing device is a three-level hierarchy of damping operators.
+Each level has a mathematical owner in the literature, a guarantee, and a
+planning risk when the grid leaves that level.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{p{0.14\textwidth}p{0.26\textwidth}p{0.27\textwidth}p{0.19\textwidth}}
+\toprule
+Level & Operator & Classical guarantee & Planning risk when violated\\
+\midrule
+0 & Proportional viscous damping, $D=\gamma M$ or Rayleigh/Caughey-class damping
+& Normal-mode separation; common decay for underdamped proportional modes; topology moves frequency more than decay
+& Frequency-only planning can look valid, but only inside the proportional floor\\
+1 & Constant non-proportional viscous damping, $[\Lt,\Dt]\neq0$
+& Modal coordinates are no longer decoupled; off-diagonal modal damping moves poles
+& Line reinforcement or inertia can reduce damping ratio; Fiedler/frequency rankings can fail\\
+2 & Rational/nonviscous damping, $\Sigma(s)=D_0+C(sI-A_{cc})^{-1}B$
+& Constant-coefficient QEP is no longer the reduced object; controller poles can become critical
+& Static bridge and fixed-point screens can miss control-family critical modes\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+This hierarchy is not a claim that Rayleigh damping, non-proportional modal
+perturbation, nonviscous damping, Schur complements, or contour eigensolvers are
+new. They are not. The project contribution, if it survives adversarial review,
+is the power-system formulation and validation: treating IBR grids as active
+nonviscous networked structures and using a controller-aware rational bridge to
+classify network-family and control-family margin mechanisms.
+
+\subsection{The material-active candidate framing}
+
+The most compact physical sentence is:
+
+\begin{quote}
+An IBR-dominated grid behaves like a viscoelastic structure made of active
+material: its controller self-energy can have oscillatory, band-active poles,
+so nonviscous modes can become the critical small-signal modes.
+\end{quote}
+
+This is a candidate framing, not a closed novelty claim. Passive viscoelastic
+models have a long literature, including hereditary kernels and nonviscous
+damping models. The power-system observation is that a PLL or inverter-control
+kernel is not a passive relaxation kernel in the same sense. In Mix60, the
+critical pole is a 13.7417 Hz control-family mode with $\pi_c=0.853$, close to
+a PLL-dominated condensed-control pole. That is the empirical anchor. The
+adversarial literature search for ``active viscoelastic structures,'' active
+nonviscous kernels, and nonviscous damping in power grids remains open.
+
+\subsection{What papers can come out}
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{Paper 1: the controller-aware bridge.} This is the strongest
+validated paper. It reports the scalar bridge failure, the Schur NEP bridge,
+Beyn contour extraction, network/control-family classification, Mix60's
+control-family critical mode, and the resonant Braess mechanism with negative
+control.
+\item \textbf{Paper 2: the hierarchy and passivity gate.} This is conditional.
+It becomes strong if a passivity/active-kernel test separates cases where the
+static bridge is safe from cases where Level 2 is required.
+\item \textbf{Paper 3: flow-feasible resolvent retrofitting.} This is a
+conference-scale candidate. The Gate 1 and Gamma gates show a real phenomenon:
+protected-resolvent and modal certificates recommend different actions, and
+$w+D$ or $w+M$ packages often beat single levers under the protected resolvent.
+The missing piece is a convincing local mechanism descriptor.
+\item \textbf{Thesis material.} The weak-node/weak-link maps, substitutability
+spectrum, inertia reversals, and graph-configuration optimization are useful
+thesis chapters. Several are formulated or surrogate-verified rather than full
+ANDES-validated.
+\end{itemize}
+
+\section{Validation Ledger}
+
+Table~\ref{tab:ledger} is the most important table in the document. It separates
+validated bridge results from formulated planning ideas and dead ends.
+
+\begin{longtable}{p{0.20\textwidth}p{0.25\textwidth}p{0.24\textwidth}p{0.20\textwidth}}
+\caption{Claim ledger. Status terms are intentionally blunt.}\label{tab:ledger}\\
+\toprule
+Claim & Evidence & Control or comparison & Status\\
+\midrule
+\endfirsthead
+\toprule
+Claim & Evidence & Control or comparison & Status\\
+\midrule
+\endhead
+Scalar $(L,M,D)$ bridge is insufficient for detailed ANDES damping
+& In IEEE39 no-PSS/base/Mix60, local scalar damping from GENROU.D is zero while modal damping exists; Phase-0D reports scalar $D$ norm zero and nonzero Schur damping diagnostics.
+& Full ANDES eigensolve and Schur diagnostics.
+& ANDES-validated failure mode\\
+\midrule
+Controller-aware Schur NEP bridge recovers critical poles
+& Phase-0D: no-PSS, base, Mix60 pass. Worst reported errors: Mix60 frequency $8.475\times10^{-11}\%$, damping $2.479\times10^{-9}\%$.
+& Full ANDES eigensolve; contour argument counts; non-circular polish.
+& ANDES-validated\\
+\midrule
+Mix60 critical mode is control-family
+& Pole $-10.7514+j86.3419$, $f=13.7417$ Hz, $\zeta=0.12357$, $\pi_c=0.853$; nearest $A_{cc}$ pole distance 0.215; top reconstructed states PLL1/REGF1.
+& Scalar bridge and fixed-point Schur reduction missed or misidentified the mode.
+& ANDES-validated mechanism anchor\\
+\midrule
+Resonant Braess mechanism exists in benchmark
+& Phase Braess-NEP: 40/348 strict resonant records. Clearest case Line\_42 (20--34), self-energy term $C$ dominates with control denominator fraction 0.9594 and median analytic-vs-NEP smooth error $8.08\times10^{-4}$.
+& Requires network-family damping decrease, closer $A_{cc}$ pole, PLL-dominated nearest pole, and dominant self-energy term; soft-GFL negative control removes resonances.
+& ANDES/NEP mechanism validated, minority and local\\
+\midrule
+Second-order modal correction improves diagonal screen in weak/mild regimes
+& Synthetic and reduced-PLL audits: weak surrogate improvement from diagonal to second order; reduced PLL reported $2.16\%\to0.09\%$ median in prior cross-check.
+& Diagonal screen and reduced QEP fallback.
+& Numerically verified outside full ANDES; estimator validation pending\\
+\midrule
+Second-order correction always beats large reduced QEP
+& Refuted by cross-checks; QEP $r=20$ can beat or match second order in tails.
+& Reduced QEP size sweep.
+& KILLED\\
+\midrule
+Inertia can reduce damping margin
+& Fixed-$D_i/M_i$ surrogate audit: 5447/16229 perturbations reduce both diagonal and full-QEP margin. ANDES GENROU.M gate: no-PSS/base have 5/10 negative GENROU.M perturbations.
+& Fixed-$D_i$ versus fixed-$D_i/M_i$ control; full ANDES eigensolve for GENROU.M cases.
+& Valid for mechanical inertia checks; virtual inertia GFM blocked\\
+\midrule
+Virtual-inertia assignment works over controller-aware IBR bridge
+& REGF1 sheets expose no clear $M$, $H$, or $T_j$ knob. Mix60 response to retained GENROU.M is weak signal.
+& Phase inertia bridge gate.
+& BLOCKED; do not claim\\
+\midrule
+Certificate discrepancy $S_\zeta$ vs $S_g$
+& Gate 1: ranking agreement 28.3\%. Gamma gate: physical profiles have agreement 21--29\%.
+& Four physical Gamma choices and eight random diagonal profiles.
+& Robust phenomenon, mechanism weak\\
+\midrule
+Coordinated packages beat single levers at equal cost
+& Gate 1/Gamma: under $S_g$, $w+D$ has $CV<0$ in 72.1--73.8\%, $w+M$ in 67.2--73.8\%; $D+M$ not robust.
+& Equal-cost budget, DC flow feasibility, same seeds, Gamma profiles.
+& Reduced-model gate supports $w+D$ and $w+M$ only\\
+\midrule
+Nonlinear synergy of levers
+& SynNorm $<-0.10$ never exceeds 50\% in Gate 1.
+& Three eps sizes and all lever pairs.
+& KILLED as headline\\
+\midrule
+Cross inertia-control term is empirically frequent in ANDES
+& Phase E0 found 0/13 measurable singleton cases.
+& ANDES bridge checks.
+& KILLED as empirical headline; remains local theory\\
+\bottomrule
+\end{longtable}
+
+\section{Level 0: The Classical Floor}
+
+The starting point is the second-order model
+\begin{equation}
+  M\ddot x+D\dot x+Lx=0,
+  \label{eq:level0-second-order}
+\end{equation}
+where $M\succ0$ and $L=L^T\succeq0$. Inertia-normalized coordinates
+$y=M^{1/2}x$ give
+\begin{equation}
+  \ddot y+\Dt\dot y+\Lt y=0,\qquad
+  \Lt=M^{-1/2}LM^{-1/2},\quad
+  \Dt=M^{-1/2}DM^{-1/2}.
+  \label{eq:normalized-coords}
+\end{equation}
+If $D=\gamma M$, then $\Dt=\gamma I$ and every eigenvector of $\Lt$ is also
+an eigenvector of $\Dt$. Writing $\Lt q_k=\mu_kq_k$, each nonzero mode obeys
+\begin{equation}
+  \ddot z_k+\gamma\dot z_k+\mu_k z_k=0,
+  \label{eq:level0-scalar}
+\end{equation}
+with poles
+\begin{equation}
+  s_{k,\pm}=\frac{-\gamma\pm\sqrt{\gamma^2-4\mu_k}}{2}.
+  \label{eq:level0-poles}
+\end{equation}
+For underdamped modes, $\mu_k>\gamma^2/4$, the real part is exactly
+\begin{equation}
+  \Real(s_{k,\pm})=-\gamma/2.
+  \label{eq:rigid-decay}
+\end{equation}
+
+\begin{proposition}[Topology-invariant decay at the proportional floor]
+Under $D=\gamma M$, every mode that remains underdamped has decay rate
+$-\gamma/2$, independent of topology.
+\end{proposition}
+
+\noindent This is a floor theorem, not a project contribution. It is the same
+normal-mode logic behind classical proportional damping and Rayleigh damping.
+It explains why many graph-frequency intuitions feel safe in homogeneous
+systems. The escape channel is also clear: topology can move $\mu_k$ across
+the overdamped/underdamped boundary. The rigorous statement is not that
+topology never matters. It is that decay is invariant for modes that stay in
+the underdamped proportional class.
+
+The project validation notes recorded numerical deviations at the level of
+$5.8\times10^{-16}$ to $1.4\times10^{-16}$ in proportional tests. Those numbers
+are useful sanity checks, not new theory.
+
+\section{Level 1: Non-Proportional Viscous Damping}
+
+Level 1 begins when $\Dt$ and $\Lt$ no longer share eigenvectors. In modal
+coordinates of $\Lt$,
+\begin{equation}
+  \ddot z+\Gamma\dot z+\Lambda z=0,\qquad
+  \Gamma=Q^T\Dt Q,\quad \Lambda=\diag(\nu_k).
+  \label{eq:level1-modal}
+\end{equation}
+Write
+\begin{equation}
+  \Gamma=\Delta+E,\qquad \Delta=\diag(\delta_k),\qquad E_{kk}=0.
+  \label{eq:level1-offdiag}
+\end{equation}
+The diagonal screen uses scalar modal polynomials
+\begin{equation}
+  p_k(s)=s^2+\delta_ks+\nu_k.
+  \label{eq:scalar-modal-polynomial}
+\end{equation}
+The actual QEP is coupled by $sE$. This is the first place where topology,
+damping, and inertia can interact in non-intuitive ways.
+
+\subsection{QEP sensitivities}
+
+For the QEP
+\begin{equation}
+  P(s)v=(s^2M+sD+L)v=0,
+  \label{eq:qep-general}
+\end{equation}
+assume a simple eigenvalue and use the complex-symmetric bilinear product
+$v^T(\cdot)v$ when $M,D,L$ are real symmetric. Define
+\begin{equation}
+  \xi=v^T(2sM+D)v.
+  \label{eq:qep-xi}
+\end{equation}
+Then the local parameter sensitivities are
+\begin{align}
+  \frac{\partial s}{\partial M_i}
+  &= -\frac{s^2 v_i^2}{\xi}, \label{eq:qep-sens-M}\\
+  \frac{\partial s}{\partial D_i}
+  &= -\frac{s v_i^2}{\xi}, \label{eq:qep-sens-D}\\
+  \frac{\partial s}{\partial w_e}
+  &= -\frac{(b_e^Tv)^2}{\xi}, \label{eq:qep-sens-w}
+\end{align}
+where $b_e$ is the signed incidence vector of line $e$ in the selected
+coordinates. These formulas are standard perturbation theory. In the project
+they were used as a common local currency for topology, damping, and inertia.
+They were checked against central differences with relative errors around
+$10^{-8}$ in the three channels in the associated validation notes.
+
+\subsection{Why inertia can be deceptive}
+
+At the proportional point $D=\gamma M$, holding $D$ fixed while perturbing $M_i$
+breaks proportionality. That direction is not the same as increasing both
+$M_i$ and $D_i$ proportionally. For an underdamped proportional mode, the
+directional derivative of the real part can move the pole right; in the
+project notes the exact local rate was written as a positive proportional
+quantity of the modal participation. The correct interpretation is damping
+dilution: if damping is held fixed and inertia is added, the ratio between
+energy storage and dissipation changes.
+
+The stronger phrase ``inertia is universally Braessian'' is false and must not
+be used. Monte Carlo and fixed-ratio controls rejected it. The defensible
+statement is narrower:
+
+\begin{quote}
+Under heterogeneous damping, increasing inertia frequently but not universally
+reduces damping margin; at the proportional point, the harmful direction can be
+computed exactly when damping is held fixed.
+\end{quote}
+
+The current full-ANDES evidence is also limited. In no-PSS and base IEEE39
+checks, retained mechanical GENROU.M perturbations had 5/10 negative margin
+effects and the local NEP sensitivity matched full ANDES. In Mix60, the
+critical mode was control-family and the retained GENROU.M signal was too weak.
+No GFM virtual-inertia claim is available until a physical REGF1 inertia knob
+is identified.
+
+\subsection{The line Braess dichotomy}
+
+At Level 0, small-signal Braess-like damping degradation is blocked for
+underdamped proportional modes because line actions move modal frequency but
+not decay. At Level 1, off-diagonal modal damping allows a line action to move
+both the frequency and the decay rate. The damping-ratio derivative is
+\begin{equation}
+  \frac{\partial \zeta}{\partial \rho}
+  = -\frac{1}{|s|}\Real\!\left(\frac{\partial s}{\partial \rho}\right)
+    +\frac{\Real(s)}{|s|^3}
+      \Real\!\left(\overline{s}\frac{\partial s}{\partial \rho}\right),
+  \label{eq:zeta-derivative}
+\end{equation}
+so a line can improve a graph stiffness proxy while reducing damping ratio.
+The project found such reversals in surrogate and NEP audits. The resonant
+Level-2 version is stronger and appears below.
+
+\subsection{Second-order modal correction}
+
+Let $s_0$ be a diagonal-screen pole of the critical mode $c$:
+\begin{equation}
+  p_c(s_0)=s_0^2+\delta_cs_0+\nu_c=0.
+  \label{eq:critical-diagonal-pole}
+\end{equation}
+To second order in $E$, eliminating the noncritical modal coordinates gives
+\begin{equation}
+  \Delta s_c
+  =-\frac{s_0^2}{2s_0+\delta_c}
+    \sum_{\ell\ne c}
+    \frac{E_{c\ell}E_{\ell c}}
+    {s_0^2+\delta_\ell s_0+\nu_\ell}
+    +O(\norm{E}^3),
+  \label{eq:second-order-correction}
+\end{equation}
+up to sign convention depending on whether the eliminated term is moved to the
+left or right side. The useful object is the denominator:
+\begin{equation}
+  H_{\ell\ell}(s_0)=\frac{1}{s_0^2+\delta_\ell s_0+\nu_\ell}.
+  \label{eq:rational-filter-H}
+\end{equation}
+Then the correction is a rational graph/modal filter:
+\begin{equation}
+  \Delta s_c \propto [E\,H(\Lambda,\Delta;s_0)\,E]_{cc}.
+  \label{eq:rational-filter-form}
+\end{equation}
+This is not a new perturbation theorem. Its value in the project is
+interpretive: each term says which noncritical mode couples into the critical
+margin and how strongly its modal denominator amplifies the effect.
+
+The empirical status is mixed in a useful way. The correction improves the
+diagonal screen in weak-to-mild non-proportional regimes and in a reduced PLL
+model. It does not replace a large reduced QEP in clustered or strongly coupled
+tails. Therefore the estimator is a workflow:
+\[
+  \text{diagonal screen}\quad\to\quad
+  \text{second-order correction}\quad\to\quad
+  \text{reduced/full QEP or NEP fallback}.
+\]
+
+\section{Level 2: Rational Nonviscous Bridge}
+
+\subsection{Schur self-energy}
+
+Let the full linearized ANDES state matrix be partitioned as
+\begin{equation}
+  A=
+  \begin{bmatrix}
+  A_{ee} & A_{ec}\\
+  A_{ce} & A_{cc}
+  \end{bmatrix},
+  \label{eq:schur-partition}
+\end{equation}
+where $x_e$ are retained network/interface states and $x_c$ are condensed
+controller, exciter, stabilizer, PLL, governor, and auxiliary states. The
+Schur NEP is
+\begin{equation}
+  S_e(s)=sI-A_{ee}-A_{ec}(sI-A_{cc})^{-1}A_{ce}.
+  \label{eq:schur-nep}
+\end{equation}
+When the retained coordinates are reduced to a second-order form, the same
+structure can be written as
+\begin{equation}
+  T(s)=s^2M+s\Sigma(s)+\Lt,\qquad
+  \Sigma(s)=D_0+C(sI-A_{cc})^{-1}B.
+  \label{eq:rational-self-energy}
+\end{equation}
+This is the Level-2 object. It is a rational nonviscous damping operator.
+It is also the correct place to connect power-system IBR controls to the
+structural-dynamics literature on hereditary and nonviscous damping.
+
+\subsection{Beyn contour validation}
+
+The Phase-0D gate solved \eqref{eq:schur-nep} by Beyn contour integration.
+No fixed-point iteration was used for acceptance. The contour solver first
+extracted zeros from contour moments and only afterward compared them with
+ANDES poles.
+
+\begin{center}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Case & retained & condensed & pole family & $f$ Hz & $\zeta$ & critical error\\
+\midrule
+no-PSS & 20 & 110 & network & 1.3705 & 0.15447 & $4.861\times10^{-14}\%$ freq\\
+base & 20 & 140 & network & 1.3706 & 0.15443 & $1.62\times10^{-13}\%$ freq\\
+Mix60 & 11 & 167 & control & 13.7417 & 0.12357 & $8.475\times10^{-11}\%$ freq\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+For Mix60, the matched pole was
+\begin{equation}
+  s_{\rm crit}=-10.7514+j86.3419,
+  \label{eq:mix60-critical-pole}
+\end{equation}
+with $\pi_c=0.853$. The nearest condensed-control pole was at distance 0.215
+and the reconstructed condensed states were dominated by PLL1 and REGF1
+components. The scalar bridge and fixed-point reduction did not capture this
+mode. This is the strongest full-ANDES result in the project.
+
+\subsection{Active nonviscous material}
+
+Passive nonviscous damping kernels in structural dynamics are usually designed
+to dissipate energy. Their extra nonviscous modes are not expected to become
+the least-damped oscillatory modes in the same way a PLL-family mode can in an
+IBR grid. In contrast, the condensed IBR/control self-energy can have poles and
+frequency bands that act like active material. A concise way to write the
+candidate test is to define a passivity defect:
+\begin{equation}
+  \Pi_{\rm pass}
+  =
+  \max_{\omega\in\Omega}
+  \left[-\lambda_{\min}\left(
+  \frac{\Sigma(j\omega)+\Sigma(j\omega)^*}{2}
+  \right)\right]_+ .
+  \label{eq:passivity-defect}
+\end{equation}
+The conjectured rule is:
+
+\begin{conjecture}[Passive-kernel screening safety]
+If $\Pi_{\rm pass}$ is small on the relevant band and the Level-1 Caughey defect
+\begin{equation}
+  \chi_{\rm CK}=\frac{\norm{\Lt\Dt-\Dt\Lt}_F}{\norm{\Lt}_F\norm{\Dt}_F}
+  \label{eq:caughey-defect}
+\end{equation}
+is small, then Level-0/1 screens are reliable for network-family modes. If
+$\Pi_{\rm pass}$ is large, control-family modes can become critical and the
+full rational bridge is required.
+\end{conjecture}
+
+This is not yet a theorem. The Gamma gate already showed that simple global
+non-normality and global $\chi$ do not explain certificate discrepancy strongly.
+The passivity defect must therefore be tested locally at the critical mode and
+controller-pole band, not sold as an established result.
+
+\section{Resonant Braess and Hidden Control Margin}
+
+For a line reinforcement parameter $\rho$, the Schur NEP sensitivity is
+\begin{equation}
+  \frac{\partial s}{\partial \rho}
+  =
+  -\frac{y^H S_\rho(s)x}{y^HS_s(s)x},
+  \label{eq:schur-sensitivity}
+\end{equation}
+where $x$ and $y$ are right and left null vectors of $S_e(s)$. The derivative
+$S_s(s)$ includes the resolvent-square term
+\begin{equation}
+  A_{ec}(sI-A_{cc})^{-2}A_{ce}.
+  \label{eq:control-resolvent-square}
+\end{equation}
+This term is the signature of frequency-dependent control self-energy.
+
+The Phase Braess-NEP gate decomposed the damping-ratio movement into retained
+network terms and a condensed-control term. A reinforcement was called
+resonant only if it satisfied all of the following:
+\begin{enumerate}[leftmargin=*]
+\item the tracked network-family damping ratio decreased;
+\item the tracked mode moved closer to a matched $A_{cc}$ pole;
+\item the nearest condensed pole was PLL-dominated;
+\item the self-energy term dominated the retained terms;
+\item the effect survived finite-difference NEP/ANDES comparison.
+\end{enumerate}
+The gate found 40 strict resonant records among 348 reversals. The clearest
+case was Mix60/no-PSS Line\_42 (20--34), mode rank 2:
+\[
+\zeta_{\rm margin}:0.123566\to0.123558,\quad
+\zeta_{\rm network}:0.133884\to0.133816,
+\]
+with distance to the matched $A_{cc}$ pole $3.33227\to3.3279$. The self-energy
+component was $-6.874\times10^{-3}$, while the retained terms were orders of
+magnitude smaller, and the finite-difference derivative was
+$-6.860\times10^{-3}$.
+
+This result should be written as a mechanism result. It is not a claim that
+every line reinforcement or every IBR grid exhibits resonant Braess behavior.
+The soft-GFL negative control moved the system away from the resonance band and
+removed the strict resonant cases.
+
+\section{Protected Resolvent Certificates and Coordination}
+
+\subsection{Two margins}
+
+The modal margin used throughout the earlier project is
+\begin{equation}
+  S_\zeta=\log\frac{\zetaReq}{\zeta_{\rm crit}},
+  \label{eq:modal-margin}
+\end{equation}
+where lower is better and $S_\zeta\le0$ is safe. The protected-resolvent margin is
+\begin{equation}
+  S_g=\log g_{\rm prot},\qquad
+  g_{\rm prot}=\sup_{\omega\in\Omega}
+  \sigma_1\!\left(
+  \Gamma_y C(j\omega I-A)^{-1}B\Gamma_u
+  \right).
+  \label{eq:protected-resolvent}
+\end{equation}
+The Gate 1 baseline used identity protection weights. The Gamma gate repeated
+the test with physically motivated and random diagonal protection weights.
+
+\subsection{Bi-orthogonal resolvent sensitivity}
+
+Let $\omega^\star$ be a simple maximizer of \eqref{eq:protected-resolvent}, and
+let $u^\star,v^\star$ be the leading left and right singular vectors of
+\[
+  H^\star=\Gamma_y C(j\omega^\star I-A)^{-1}B\Gamma_u.
+\]
+Set
+\begin{align}
+  \phi^{\rm in}&=(j\omega^\star I-A)^{-1}B\Gamma_u v^\star,\\
+  \phi^{\rm out}&=(j\omega^\star I-A)^{-H}C^H\Gamma_y^H u^\star .
+\end{align}
+For a parameter $p$ that changes $A$ but not the protection weights, the local
+sensitivity is
+\begin{equation}
+  \frac{\partial S_g}{\partial p}
+  =
+  \frac{1}{g_{\rm prot}}
+  \Real\left[
+  (\phi^{\rm out})^H
+  \frac{\partial A}{\partial p}
+  \phi^{\rm in}
+  \right],
+  \label{eq:resolvent-sensitivity}
+\end{equation}
+provided the peak and singular value are simple. This is standard singular-value
+perturbation applied to the resolvent. Its value is that all levers can be
+priced in the same margin units.
+
+For the swing first-order matrix
+\[
+A=\begin{bmatrix}
+0&I\\
+-M^{-1}L&-M^{-1}D
+\end{bmatrix},
+\]
+write $\phi=(\phi_\theta,\phi_\omega)$. Then local damping at bus $i$ has
+\begin{equation}
+  \frac{\partial A}{\partial D_i}
+  =
+  \begin{bmatrix}
+  0&0\\
+  0&-M_i^{-1}e_ie_i^T
+  \end{bmatrix},
+  \label{eq:dA-dD}
+\end{equation}
+so
+\begin{equation}
+  \frac{\partial S_g}{\partial D_i}
+  =
+  -\frac{1}{g_{\rm prot}M_i}
+  \Real\left[
+  \overline{\phi^{\rm out}_{\omega,i}}\,
+  \phi^{\rm in}_{\omega,i}
+  \right].
+  \label{eq:damping-resolvent-placement}
+\end{equation}
+This is the corrected version of the Gemini suggestion. It is not generally
+$-|\phi_i^{\rm out}|^2$ unless the system is normal or the input and output
+spatial vectors align. The important point is the bi-orthogonal product. In a
+non-normal grid, the forcing vector and response vector can be spatially
+different. That is the mathematical source of spatial decoupling.
+
+For a line $e=(i,j)$ with incidence $b_e$, $L$ changes by $b_eb_e^T$, giving
+\begin{equation}
+  \frac{\partial A}{\partial w_e}
+  =
+  \begin{bmatrix}
+  0&0\\
+  -M^{-1}b_eb_e^T&0
+  \end{bmatrix},
+  \label{eq:dA-dw}
+\end{equation}
+and therefore
+\begin{equation}
+  \frac{\partial S_g}{\partial w_e}
+  =
+  -\frac{1}{g_{\rm prot}}
+  \Real\left[
+  (\phi^{\rm out}_\omega)^H
+  M^{-1}b_e b_e^T
+  \phi^{\rm in}_\theta
+  \right].
+  \label{eq:line-resolvent-placement}
+\end{equation}
+This formula explains why a line action is not judged only by flow loading or
+graph centrality. It is judged by the overlap between the output response path
+and the input forcing path through that edge.
+
+\subsection{Gate results}
+
+Gate 1 tested 60 connected Watts-Strogatz cases with $n=5,\ldots,9$ and two
+IEEE topology templates, with DC flow feasibility enforced after topology
+changes. Costs were fixed at
+\[
+  c_w=1,\qquad c_D=2,\qquad c_M=8.
+\]
+Two subtests were run. Nonlinear synergy was measured by
+\begin{equation}
+  \operatorname{Syn}_\epsilon(a,b)
+  =
+  S(p+\epsilon a+\epsilon b)-S(p+\epsilon a)-S(p+\epsilon b)+S(p),
+  \label{eq:synergy}
+\end{equation}
+normalized by $|\Delta S(a)|+|\Delta S(b)|+\eta$. Equal-cost coordination was
+measured by
+\begin{equation}
+  CV(a,b)=\Delta S_{\rm equalcost}(a,b)
+  -\min\{\Delta S_{\rm equalcost}(a),\Delta S_{\rm equalcost}(b)\}.
+  \label{eq:coordination-value}
+\end{equation}
+Negative $CV$ means the package beats the best individual lever at the same
+total cost.
+
+The nonlinear-synergy headline died. $\operatorname{SynNorm}<-0.10$ never
+exceeded 50\% of cases. But equal-cost coordination under $S_g$ survived:
+\[
+\begin{array}{c|ccc}
+\text{Gamma profile} & w+D & w+M & D+M\\
+\hline
+\text{identity} & 72.1\% & 67.2\% & 51.6\%\\
+\text{inertia output} & 73.8\% & 73.8\% & 48.4\%\\
+\text{type input low inertia} & 73.8\% & 70.5\% & 48.4\%
+\end{array}
+\]
+Thus $w+D$ and $w+M$ are supported in this reduced-model gate; $D+M$ is not.
+
+The certificate discrepancy also survived Gamma changes. Ranking agreement
+between $S_\zeta$ and $S_g$ was 29.0\% for identity, 21.0\% for inertia-output,
+22.6\% for type-input-low-inertia, and 29.0\% for the frequency-output control.
+Eight random positive diagonal Gamma samples did not remove the discrepancy.
+
+The mechanism is not yet explained. The maximum absolute Spearman correlation
+between the tested global descriptors and ranking disagreement was only 0.216.
+The correct status is therefore:
+
+\begin{quote}
+Certificate discrepancy is robust to tested Gamma choices, but the global
+non-normality descriptors and alignment descriptors used so far do not explain
+it well.
+\end{quote}
+
+\subsection{Flow-feasible resolvent retrofitting algorithm}
+
+The Gemini proposal can be included as an algorithmic candidate, but only after
+correcting the sensitivity formulas as above and adding the status labels.
+
+\begin{algorithm}[h]
+\caption{Flow-feasible protected-resolvent retrofitting}
+\begin{algorithmic}[1]
+\REQUIRE Dynamic model $A$, input/output matrices $B,C$, protection weights
+$\Gamma_u,\Gamma_y$, DC dispatch $P$, flow limits $\bar f$, action costs.
+\STATE Compute $g_{\rm prot}$, $\omega^\star$, and singular vectors
+$u^\star,v^\star$ of $\Gamma_y C(j\omega I-A)^{-1}B\Gamma_u$.
+\STATE Compute $\phi^{\rm in}$ and $\phi^{\rm out}$.
+\STATE For each bus, compute damping and inertia exchange rates using
+\eqref{eq:resolvent-sensitivity}. For inertia, use the actual parameter map;
+do not substitute a virtual-inertia formula unless the controller exposes one.
+\STATE For each line, compute the topology exchange rate
+\eqref{eq:line-resolvent-placement} and the DC flow sensitivity/feasibility
+penalty.
+\STATE Solve a local cost-constrained problem
+\[
+  \min_z c^Tz\quad
+  \text{s.t.}\quad
+  S_g+\nabla S_g^Tz\le0,\quad
+  |f(w+\Delta w;P)|\le\bar f,\quad z\in\mathcal Z.
+\]
+\STATE Validate the proposed package by recomputing the full eigensolve and
+the protected resolvent. Reject if the local prediction is not matched.
+\end{algorithmic}
+\end{algorithm}
+
+This algorithm is not yet validated on full ANDES IBR. It is the natural next
+step for the protected-resolvent paper.
+
+\section{Weak Nodes, Weak Links, and Substitutability}
+
+The weak-element language should be mode- and certificate-specific. A bus is
+not weak in the abstract. It is weak for a margin, a mode family, and a lever
+set.
+
+\begin{definition}[Local weak node]
+For a margin $S$ and admissible local action set $\mathcal A_i$ at bus $i$,
+define
+\begin{equation}
+  W_i(S)=\max_{a\in\mathcal A_i}
+  \left[\nabla S^T a\right]_+ .
+  \label{eq:weak-node}
+\end{equation}
+The node is weak if its best admissible perturbation can increase the risk
+margin to first order.
+\end{definition}
+
+\begin{definition}[Repairability]
+For the same node, define
+\begin{equation}
+  R_i(S)=\max_{a\in\mathcal A_i,\;c^Ta\le1}
+  \left[-\nabla S^T a\right]_+ .
+  \label{eq:repairability}
+\end{equation}
+Weakness and repairability are different. A node can be exposed but expensive
+to repair, or easy to repair but not currently exposed.
+\end{definition}
+
+For a line $e$, replace $\mathcal A_i$ by admissible line actions and include
+the DC feasibility constraint. A line reinforcement that improves a graph
+stiffness score but increases $S_\zeta$ or $S_g$ is a dynamic Braess candidate.
+It is flow-feasible only if
+\begin{equation}
+  |f(w+\Delta w;P)|\le \bar f.
+  \label{eq:flow-feasible}
+\end{equation}
+
+Substitutability compares lever subspaces. In the simplest matrix-geometric
+picture, existing-line changes live in
+\[
+  \mathcal L_{\rm existing}=\operatorname{span}\{b_eb_e^T:e\in E\},
+\]
+new-line changes live in missing-edge directions, and shunt/inertia-like
+changes live in diagonal directions. A mode-specific substitutability score
+asks whether the desired pole motion can be achieved by cheap line directions
+or requires local equipment. This is a useful planning language. The current
+status is formulation plus surrogate audits, not full ANDES validation.
+
+\section{Open Gates}
+
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Adversarial literature search for active nonviscous power grids.}
+Search terms must include active viscoelastic structures, non-dissipative
+nonviscous damping, active material damping kernels, and power-grid NEPs.
+\item \textbf{Passivity-defect gate.} Compute \eqref{eq:passivity-defect} for
+no-PSS, base, Mix60, soft-GFL controls, and future calibrated IBR cases.
+Check whether it predicts when the scalar bridge fails.
+\item \textbf{Local discrepancy mechanism.} The Gamma gate rejected global
+$d_F(A)$ and global $\chi$ as strong explanations. Test local descriptors:
+peak resolvent frequency, singular-vector spatial separation, critical-mode
+condition number, and local self-energy denominator fraction.
+\item \textbf{Estimator validation over the NEP bridge.} Run diagonal,
+second-order, reduced-QEP, and full NEP/ANDES comparisons on calibrated IBR
+operating ranges.
+\item \textbf{Planning validation.} Compare weak-node, weak-link, conversion,
+and coordinated-retrofitting rankings against full recomputation and against
+SCR, impedance, Fiedler, flow loading, damping participation, and published
+damping-index baselines.
+\end{enumerate}
+
+\section{What Is Actually New}
+
+The safest novelty statement is:
+
+\begin{quote}
+The project formulates detailed IBR small-signal damping margin analysis as a
+controller aware rational self-energy problem, validates the Schur NEP bridge
+against full ANDES eigensolves including a control-family critical mode, and
+uses that bridge to separate network-family and controller-family mechanisms.
+\end{quote}
+
+The strongest current pieces are:
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Validated rational bridge.} The Phase-0D result is precise,
+non-circular, and full-ANDES-based.
+\item \textbf{Control-family criticality.} Mix60's PLL-family 13.7417 Hz mode
+is the anchor that explains why static and fixed-point bridges fail.
+\item \textbf{Resonant Braess mechanism.} Strict but minority cases show line
+reinforcement moving a network-family mode toward a PLL-dominated control pole.
+\item \textbf{Certificate discrepancy.} $S_\zeta$ and $S_g$ disagree under
+several Gamma choices; $w+D$ and $w+M$ packages have protected-resolvent
+coordination value. The mechanism remains open.
+\item \textbf{Unified hierarchy.} The hierarchy itself is a synthesis, not a
+single theorem. Its value is that it prevents overclaim: each broken classical
+guarantee maps to a specific planning risk.
+\end{enumerate}
+
+\section{Submission Map}
+
+\subsection*{Paper 1: Controller-aware rational bridge}
+Core content: Level 2 bridge, Beyn contour validation, Mix60 control-family
+mode, resonant Braess mechanism, scalar/fixed-point failures, and negative
+controls. This is the nearest to a defensible submission.
+
+\subsection*{Paper 2: Active nonviscous IBR grids}
+Core content: damping-operator hierarchy and active-material framing. This
+requires the passivity-defect gate and an adversarial literature search before
+it can be claimed.
+
+\subsection*{Paper 3: Flow-feasible protected-resolvent retrofitting}
+Core content: bi-orthogonal resolvent sensitivity, spatial decoupling,
+flow-feasible retrofit LP, and Gamma-robust certificate discrepancy. This needs
+local mechanism descriptors and stronger comparisons against H2, SCR,
+impedance, Fiedler, and transmission-switching baselines.
+
+\section*{Acknowledgment of Dead Ends}
+
+The project produced several attractive hypotheses that did not survive gates.
+They should remain in the internal ledger because they prevent future
+backsliding:
+\begin{itemize}[leftmargin=*]
+\item Nonlinear three-lever synergy as a headline: killed by Gate 1.
+\item Universal inertia Braess: killed by fixed-ratio and Monte Carlo controls.
+\item Second order always beating large reduced QEP: killed by cross-checks.
+\item Inertia-control cross term as frequent ANDES mechanism: killed by 0/13
+measurable cases.
+\item Virtual-inertia placement over the controller-aware bridge: blocked by
+missing physical GFM inertia parameter in REGF1 sheets.
+\item Global non-normality or global commutator defect as explanation for
+certificate discrepancy: weak in Gamma gate, not killed as a family but not
+currently supported.
+\end{itemize}
+
+\begin{thebibliography}{99}
+
+\bibitem{rayleigh1894}
+J. W. Strutt (Lord Rayleigh), \emph{The Theory of Sound}, 2nd ed. London:
+Macmillan, 1894.
+
+\bibitem{caughey1965}
+T. K. Caughey and M. E. J. O'Kelly, ``Classical normal modes in damped linear
+dynamic systems,'' \emph{Journal of Applied Mechanics}, vol. 32, no. 3,
+pp. 583--588, 1965.
+
+\bibitem{biot1955}
+M. A. Biot, ``Variational principles in irreversible thermodynamics with
+application to viscoelasticity,'' \emph{Physical Review}, vol. 97, no. 6,
+pp. 1463--1469, 1955.
+
+\bibitem{golla1985}
+D. F. Golla and P. C. Hughes, ``Dynamics of viscoelastic structures--a time
+domain, finite element formulation,'' \emph{Journal of Applied Mechanics},
+vol. 52, no. 4, pp. 897--906, 1985.
+
+\bibitem{mctavish1993}
+D. J. McTavish and P. C. Hughes, ``Modeling of linear viscoelastic space
+structures,'' \emph{Journal of Vibration and Acoustics}, vol. 115, no. 1,
+pp. 103--110, 1993.
+
+\bibitem{adhikari2001}
+S. Adhikari, ``Dynamics of non-viscously damped linear systems,''
+\emph{Journal of Engineering Mechanics}, vol. 127, no. 3, pp. 328--339, 2001.
+
+\bibitem{tisseur2001}
+F. Tisseur and K. Meerbergen, ``The quadratic eigenvalue problem,''
+\emph{SIAM Review}, vol. 43, no. 2, pp. 235--286, 2001.
+
+\bibitem{beyn2012}
+W.-J. Beyn, ``An integral method for solving nonlinear eigenvalue problems,''
+\emph{Linear Algebra and its Applications}, vol. 436, no. 10, pp. 3839--3863,
+2012.
+
+\bibitem{trefethen2005}
+L. N. Trefethen and M. Embree, \emph{Spectra and Pseudospectra: The Behavior of
+Nonnormal Matrices and Operators}. Princeton, NJ: Princeton University Press,
+2005.
+
+\bibitem{kundur1994}
+P. Kundur, \emph{Power System Stability and Control}. New York: McGraw-Hill,
+1994.
+
+\bibitem{rogers2000}
+G. Rogers, \emph{Power System Oscillations}. Boston: Kluwer Academic
+Publishers, 2000.
+
+\bibitem{dorfler2014}
+F. D\"orfler, M. Chertkov, and F. Bullo, ``Synchronization in complex networks
+of phase oscillators: A survey,'' \emph{Automatica}, vol. 50, no. 6,
+pp. 1539--1564, 2014.
+
+\bibitem{poolla2017}
+B. K. Poolla, S. Bolognani, and F. D\"orfler, ``Optimal placement of virtual
+inertia in power grids,'' \emph{IEEE Transactions on Automatic Control},
+vol. 62, no. 12, pp. 6209--6220, 2017.
+
+\bibitem{pagnier2019}
+L. Pagnier and P. Jacquod, ``Optimal placement of inertia and primary control
+in high voltage power grids,'' \emph{arXiv:1906.06922}, 2019.
+
+\bibitem{harnefors2007}
+L. Harnefors, ``Modeling of three-phase dynamic systems using complex transfer
+functions and transfer matrices,'' \emph{IEEE Transactions on Industrial
+Electronics}, vol. 54, no. 4, pp. 2239--2248, 2007.
+
+\bibitem{sun2011}
+J. Sun, ``Impedance-based stability criterion for grid-connected inverters,''
+\emph{IEEE Transactions on Power Electronics}, vol. 26, no. 11,
+pp. 3075--3078, 2011.
+
+\bibitem{witthaut2012}
+D. Witthaut and M. Timme, ``Braess's paradox in oscillator networks,
+desynchronization and power outage,'' \emph{New Journal of Physics}, vol. 14,
+083036, 2012.
+
+\bibitem{han2020}
+Y. Han and D. J. Hill, ``Transmission switching for power system stability:
+H2-performance and graph-theoretic viewpoints,'' [VERIFY exact bibliographic
+details], 2020.
+
+\bibitem{cui2021}
+H. Cui, F. Li, and K. Tomsovic, ``Hybrid symbolic-numeric framework for power
+system modeling and analysis,'' \emph{IEEE Transactions on Power Systems},
+vol. 36, no. 2, pp. 1373--1384, 2021.
+
+\bibitem{pan2020}
+D. Pan, X. Fu, Q. Chen, P. Lu, and J. Tan, ``A modal perturbation method for
+eigenvalue problem of non-proportionally damped system,'' \emph{Applied
+Sciences}, vol. 10, no. 1, 341, 2020.
+
+\bibitem{liyanage2025}
+C. Liyanage \emph{et al.}, ``Strategic placement of grid-forming inverters
+considering spatiotemporal dynamics and composite stability index,''
+\emph{IEEE Open Journal of the Industrial Electronics Society}, vol. 6,
+pp. 290--308, 2025.
+
+\bibitem{setareh2025}
+M. Setareh and M. S. Ghazizadeh, ``A systematic approach to compute power
+system oscillatory modes damping-ratio sensitivities considering different
+synchronous generator models,'' \emph{Computers and Electrical Engineering},
+vol. 126, 110501, 2025.
+
+\end{thebibliography}
+
+\end{document}

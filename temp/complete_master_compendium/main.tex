@@ -1,0 +1,269 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{amsmath,amssymb,bm}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!black,
+  urlcolor=blue!50!black,
+  citecolor=blue!50!black
+}
+
+\lstset{
+  basicstyle=\ttfamily\scriptsize,
+  breaklines=true,
+  breakatwhitespace=false,
+  columns=fullflexible,
+  frame=single,
+  rulecolor=\color{black!20},
+  xleftmargin=0.5em,
+  xrightmargin=0.5em
+}
+
+\newcommand{\artifact}[1]{\texttt{#1}}
+
+\title{\textbf{Complete Master Compendium}\\
+Controller-Aware Spectral Graph Theory for Damping Margins in IBR Grids}
+\author{Internal research consolidation}
+\date{Compiled \today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This compendium is intentionally redundant.  It does not replace the IEEE
+Transactions manuscript or the shorter unified-theory note.  It preserves both,
+then appends the verification artifacts that led to the present claim
+calibration.  The purpose is to avoid losing equations, figures, negative
+results, diagrams, and gate reports while the research direction is being
+refined.
+\end{abstract}
+
+\tableofcontents
+\clearpage
+
+\section*{How to Read This Compendium}
+\addcontentsline{toc}{section}{How to Read This Compendium}
+
+The document has four layers.
+
+\begin{enumerate}
+\item \textbf{Part I} reproduces the unified theory note that integrates the
+Gemini proposals under calibrated claims: damping-operator hierarchy,
+controller-aware rational bridge, protected resolvent, flow-feasible
+retrofitting, weak nodes, weak links, and open gates.
+\item \textbf{Part II} reproduces the full IEEE manuscript that already contains
+the detailed derivations, equations, ANDES sections, diagrams, claim-readiness
+tables, appendices, and reviewer checklist.
+\item \textbf{Part III} collects the main figures that should remain visible
+even if the paper is later split into multiple submissions.
+\item \textbf{Part IV} appends the raw gate reports, so every number in the
+theory has a traceable validation status.
+\end{enumerate}
+
+The governing claim discipline is unchanged: a result is not called original or
+validated merely because the algebra is correct.  The tables and reports below
+separate verified claims, model-reduced claims, ANDES/NEP claims, negative
+controls, and open gates.
+
+\section*{Recovered Content Manifest}
+\addcontentsline{toc}{section}{Recovered Content Manifest}
+
+\begin{longtable}{p{0.30\linewidth}p{0.62\linewidth}}
+\toprule
+Source & What is preserved here\\
+\midrule
+\artifact{internal\_unified\_theory/main.pdf}
+& Gemini extensions after correction: protected resolvent sensitivity,
+flow-feasible retrofitting candidate, damping-operator hierarchy, and explicit
+novelty boundaries.\\
+\artifact{paper\_ieee\_transactions/main.pdf}
+& Full prior manuscript: all equations, the second-order correction, rational
+graph-filter identity, joint inertia--damping perturbation, ANDES IEEE39
+sections, NEP bridge, Braess mechanism, hidden margin, weak nodes/links,
+planning scores, line reinforcement, appendices, and all seven manuscript
+figures.\\
+\artifact{outputs/phase0d\_nep\_contour\_solver}
+& Non-circular Beyn/NEP bridge validation against ANDES, including Mix60
+control-family critical mode at 13.742 Hz.\\
+\artifact{outputs/phase\_braess\_nep}
+& Resonant Braess mechanism test and classification: strict resonant minority
+cases plus negative controls.\\
+\artifact{outputs/phase\_inertia\_bridge\_gate}
+& Gate for inertia sensitivity over the controller-aware bridge.\\
+\artifact{outputs/phase\_coordination\_lever\_gate}
+& Reduced-model gate for coordinated topology/damping/inertia packages and the
+absence of robust nonlinear synergy.\\
+\artifact{outputs/phase\_gamma\_robustness\_gate}
+& Robustness of the protected-resolvent discrepancy under physical and random
+diagonal protection profiles.\\
+\artifact{outputs/final\_claim\_audit}
+& Final claim-readiness ledger and status labels.\\
+\bottomrule
+\end{longtable}
+
+\clearpage
+\part*{Part I: Unified Theory Note With Gemini Additions}
+\addcontentsline{toc}{part}{Part I: Unified Theory Note With Gemini Additions}
+
+\includepdf[
+  pages=-,
+  pagecommand={},
+  scale=0.96,
+  addtotoc={1,section,1,{Unified Theory Note},unified-note}
+]{internal_unified_theory/main.pdf}
+
+\clearpage
+\part*{Part II: Full IEEE Manuscript With Equations and Figures}
+\addcontentsline{toc}{part}{Part II: Full IEEE Manuscript With Equations and Figures}
+
+\includepdf[
+  pages=-,
+  pagecommand={},
+  scale=0.96,
+  addtotoc={1,section,1,{Full IEEE Transactions Manuscript},ieee-paper}
+]{paper_ieee_transactions/main.pdf}
+
+\clearpage
+\part*{Part III: Figure and Diagram Recovery Appendix}
+\addcontentsline{toc}{part}{Part III: Figure and Diagram Recovery Appendix}
+
+\section{Manuscript Figures}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.82\linewidth]{paper_ieee_transactions/figures/fig1_damping_region.pdf}
+\caption{Damping-region geometry from the full manuscript.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.82\linewidth]{paper_ieee_transactions/figures/fig2_estimator_errors.pdf}
+\caption{Estimator error stress test from the full manuscript.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.82\linewidth]{paper_ieee_transactions/figures/fig3_adaptive_workflow.pdf}
+\caption{Adaptive workflow: diagonal screen, correction, and fallback.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.82\linewidth]{paper_ieee_transactions/figures/fig4_line_tradeoff.pdf}
+\caption{Frequency-only versus damping-aware line reinforcement tradeoff.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.92\linewidth]{paper_ieee_transactions/figures/fig5_ieee39_ibr_map.pdf}
+\caption{IEEE39 SG-to-IBR replacement map.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.92\linewidth]{paper_ieee_transactions/figures/fig6_ieee39_result_map.pdf}
+\caption{IEEE39 result map and validation status overview.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.82\linewidth]{paper_ieee_transactions/figures/fig7_braess_nep_s_plane.pdf}
+\caption{Control-resonant Braess example in the complex plane.}
+\end{figure}
+
+\clearpage
+\section{Output Figures Not to Lose}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.92\linewidth]{outputs/phase0d_nep_contour_solver/fig_phase0d_s_plane.pdf}
+\caption{Phase-0D NEP contour validation: ANDES poles, NEP zeros, control poles,
+and contours.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.82\linewidth]{outputs/phase_braess_nep/fig_braess_nep_s_plane.pdf}
+\caption{Phase Braess-NEP resonant line-reinforcement witness.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.92\linewidth]{outputs/ieee39_phase0_bridge/fig_ieee39_mix60_ibr_map.pdf}
+\caption{Mix60 IBR map generated during the ANDES bridge phase.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.92\linewidth]{outputs/ieee39_result_map/fig_ieee39_result_map.pdf}
+\caption{IEEE39 result-map artifact.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.82\linewidth]{outputs/ieee39_rational_filter/fig_estimator_errors_by_rho.pdf}
+\caption{Estimator errors by IBR penetration in the rational-filter artifact set.}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.82\linewidth]{outputs/ieee39_rational_filter/fig_line_frequency_vs_damping.pdf}
+\caption{Line frequency score versus damping score in the rational-filter artifact set.}
+\end{figure}
+
+\clearpage
+\part*{Part IV: Raw Gate Reports and Result Ledgers}
+\addcontentsline{toc}{part}{Part IV: Raw Gate Reports and Result Ledgers}
+
+\section{Phase-0D NEP Contour Solver Report}
+\lstinputlisting{outputs/phase0d_nep_contour_solver/phase0d_nep_report.md}
+
+\section{Phase Braess-NEP Report}
+\lstinputlisting{outputs/phase_braess_nep/phase_braess_nep_report.md}
+
+\section{Phase Inertia Bridge Gate Report}
+\lstinputlisting{outputs/phase_inertia_bridge_gate/phase_inertia_bridge_gate_report.md}
+
+\section{Phase Coordination Lever Gate Report}
+\lstinputlisting{outputs/phase_coordination_lever_gate/phase_coordination_lever_gate_report.md}
+
+\section{Phase Gamma Robustness Gate Report}
+\lstinputlisting{outputs/phase_gamma_robustness_gate/phase_gamma_robustness_gate_report.md}
+
+\section{Final Claim Readiness Report}
+\lstinputlisting{outputs/final_claim_audit/final_readiness_report.md}
+
+\clearpage
+\section{Compact CSV Ledgers}
+
+\subsection{Claim Audit CSV}
+\lstinputlisting{outputs/final_claim_audit/claim_audit.csv}
+
+\subsection{Phase-0D Critical Validation CSV: No-PSS}
+\lstinputlisting{outputs/phase0d_nep_contour_solver/no_pss_critical_validation.csv}
+
+\subsection{Phase-0D Critical Validation CSV: Base}
+\lstinputlisting{outputs/phase0d_nep_contour_solver/base_critical_validation.csv}
+
+\subsection{Phase-0D Critical Validation CSV: Mix60}
+\lstinputlisting{outputs/phase0d_nep_contour_solver/mix60_critical_validation.csv}
+
+\subsection{Coordination Aggregate Table}
+\lstinputlisting{outputs/phase_coordination_lever_gate/coordination_aggregate_table.csv}
+
+\subsection{Gamma Aggregate Table}
+\lstinputlisting{outputs/phase_gamma_robustness_gate/gamma_aggregate_table.csv}
+
+\end{document}

@@ -1,0 +1,186 @@
+{
+  "overall_status": "CONSERVATIVE_SCOPE",
+  "abstract_implication": "Do not claim validated virtual-inertia assignment over the controller-aware bridge. Report GENROU.M sensitivity checks and keep GFM virtual inertia as blocked pending a physical parameter mapping.",
+  "random_seed": 20260608,
+  "git_commit": "46f48b23d2ca168678e843f32d844eae5f4d93e5",
+  "eps": 0.01,
+  "cases": [
+    {
+      "case": "no_pss",
+      "case_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\ieee39_mode_diagnostics\\ieee39_no_ieeest.xlsx",
+      "eps": 0.01,
+      "n_candidates": 10,
+      "base_full_critical": {
+        "real": -1.34634537929171,
+        "imag": 8.611042315453796,
+        "freq_hz": 1.3704899496779517,
+        "zeta": 0.1544743228879957,
+        "pi_c": 0.6804033305071358,
+        "family": "I_network"
+      },
+      "base_bridge_critical": {
+        "real": -1.346345379291718,
+        "imag": 8.611042315453792,
+        "freq_hz": 1.370489949677951,
+        "zeta": 0.15447432288799667,
+        "pi_c": 0.6804033305071333,
+        "family": "I_network"
+      },
+      "virtual_inertia_columns": {},
+      "virtual_inertia_validation_status": "BLOCKED_NO_EXPLICIT_GFM_VIRTUAL_INERTIA_COLUMN",
+      "gate1_bridge_vs_full": {
+        "status": "PASS",
+        "sign_rate_global": 1.0,
+        "sign_rate_matched": 1.0,
+        "top3_overlap": 1.0,
+        "median_mag_rel_error_global": 5.953760970988758e-11,
+        "median_mag_rel_error_matched": 5.953760970988758e-11,
+        "finite_signal_count": 10,
+        "acceptance_rule": "PASS if global sign rate >= 80%, top-3 overlap is complete, and signal is not numerically weak."
+      },
+      "gate1_local_nep_sensitivity": {
+        "status": "PASS",
+        "sign_rate_vs_full_matched": 1.0,
+        "sign_rate_vs_bridge_matched": 1.0,
+        "top3_overlap_vs_full_global": 1.0,
+        "median_mag_rel_error_vs_full_matched": 0.025414663673654414,
+        "median_mag_rel_error_vs_bridge_matched": 0.02541466363347749,
+        "note": "Local NEP derivative uses ds/deps=-y^H T_p x/(y^H T_s x), with T_p estimated from the Schur-operator perturbation at the base pole."
+      },
+      "gate2_substitutability": {
+        "status": "NETWORK_MODE_SCOPE",
+        "reason": "Critical mode is network-family; structural substitutability can be tested on retained network modes."
+      },
+      "gate3_inertia_reversal": {
+        "status": "SIGN_REVERSAL_OBSERVED_ON_FULL_ANDES",
+        "n_negative_full_global": 5,
+        "n_negative_bridge_global": 5,
+        "negative_full_indices": [
+          "GENROU_1",
+          "GENROU_2",
+          "GENROU_3",
+          "GENROU_5",
+          "GENROU_9"
+        ]
+      }
+    },
+    {
+      "case": "base",
+      "case_path": "C:\\Users\\walla\\anaconda3\\Lib\\site-packages\\andes\\cases\\ieee39\\ieee39_full.xlsx",
+      "eps": 0.01,
+      "n_candidates": 10,
+      "base_full_critical": {
+        "real": -1.346013072429833,
+        "imag": 8.61148480240536,
+        "freq_hz": 1.3705603736635468,
+        "zeta": 0.15442935855929482,
+        "pi_c": 0.6525558503249194,
+        "family": "I_network"
+      },
+      "base_bridge_critical": {
+        "real": -1.3460130724298205,
+        "imag": 8.611484802405375,
+        "freq_hz": 1.370560373663549,
+        "zeta": 0.15442935855929318,
+        "pi_c": 0.65255585032492,
+        "family": "I_network"
+      },
+      "virtual_inertia_columns": {},
+      "virtual_inertia_validation_status": "BLOCKED_NO_EXPLICIT_GFM_VIRTUAL_INERTIA_COLUMN",
+      "gate1_bridge_vs_full": {
+        "status": "PASS",
+        "sign_rate_global": 1.0,
+        "sign_rate_matched": 1.0,
+        "top3_overlap": 1.0,
+        "median_mag_rel_error_global": 1.10614276881088e-10,
+        "median_mag_rel_error_matched": 1.10614276881088e-10,
+        "finite_signal_count": 10,
+        "acceptance_rule": "PASS if global sign rate >= 80%, top-3 overlap is complete, and signal is not numerically weak."
+      },
+      "gate1_local_nep_sensitivity": {
+        "status": "PASS",
+        "sign_rate_vs_full_matched": 1.0,
+        "sign_rate_vs_bridge_matched": 1.0,
+        "top3_overlap_vs_full_global": 1.0,
+        "median_mag_rel_error_vs_full_matched": 0.025377474948259322,
+        "median_mag_rel_error_vs_bridge_matched": 0.025377474990941465,
+        "note": "Local NEP derivative uses ds/deps=-y^H T_p x/(y^H T_s x), with T_p estimated from the Schur-operator perturbation at the base pole."
+      },
+      "gate2_substitutability": {
+        "status": "NETWORK_MODE_SCOPE",
+        "reason": "Critical mode is network-family; structural substitutability can be tested on retained network modes."
+      },
+      "gate3_inertia_reversal": {
+        "status": "SIGN_REVERSAL_OBSERVED_ON_FULL_ANDES",
+        "n_negative_full_global": 5,
+        "n_negative_bridge_global": 5,
+        "negative_full_indices": [
+          "GENROU_1",
+          "GENROU_2",
+          "GENROU_3",
+          "GENROU_5",
+          "GENROU_9"
+        ]
+      }
+    },
+    {
+      "case": "mix60",
+      "case_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\ieee39_ibr_mix60.xlsx",
+      "eps": 0.01,
+      "n_candidates": 4,
+      "base_full_critical": {
+        "real": -10.751357900248504,
+        "imag": 86.34193765604479,
+        "freq_hz": 13.741746174091784,
+        "zeta": 0.12356640434765424,
+        "pi_c": 0.8532274445178317,
+        "family": "II_control"
+      },
+      "base_bridge_critical": {
+        "real": -10.75135790052832,
+        "imag": 86.34193765611796,
+        "freq_hz": 13.74174617410343,
+        "zeta": 0.12356640435071799,
+        "pi_c": 0.8532274444325421,
+        "family": "II_control"
+      },
+      "virtual_inertia_columns": {
+        "REGF1": [
+          "wdrp",
+          "Tpm",
+          "gammap"
+        ]
+      },
+      "virtual_inertia_validation_status": "BLOCKED_NO_EXPLICIT_GFM_VIRTUAL_INERTIA_COLUMN",
+      "gate1_bridge_vs_full": {
+        "status": "WEAK_SIGNAL",
+        "sign_rate_global": 1.0,
+        "sign_rate_matched": 1.0,
+        "top3_overlap": 1.0,
+        "median_mag_rel_error_global": 8.916494881080291e-07,
+        "median_mag_rel_error_matched": 8.916494881080291e-07,
+        "finite_signal_count": 0,
+        "acceptance_rule": "PASS if global sign rate >= 80%, top-3 overlap is complete, and signal is not numerically weak."
+      },
+      "gate1_local_nep_sensitivity": {
+        "status": "WEAK_SIGNAL",
+        "sign_rate_vs_full_matched": 1.0,
+        "sign_rate_vs_bridge_matched": 1.0,
+        "top3_overlap_vs_full_global": 1.0,
+        "median_mag_rel_error_vs_full_matched": 0.0001697003416013677,
+        "median_mag_rel_error_vs_bridge_matched": 0.00016880853570239005,
+        "note": "Local NEP derivative uses ds/deps=-y^H T_p x/(y^H T_s x), with T_p estimated from the Schur-operator perturbation at the base pole."
+      },
+      "gate2_substitutability": {
+        "status": "NOT_APPLICABLE_TO_CONTROL_CRITICAL",
+        "reason": "Critical bridge mode is control-family. Projecting the network-inertia shunt residual onto this control-family mode would not test the original red-inertia classifier."
+      },
+      "gate3_inertia_reversal": {
+        "status": "NO_SIGN_REVERSAL_OBSERVED",
+        "n_negative_full_global": 0,
+        "n_negative_bridge_global": 0,
+        "negative_full_indices": []
+      }
+    }
+  ]
+}

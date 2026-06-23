@@ -1,0 +1,93 @@
+{
+  "case": "C:\\Users\\walla\\anaconda3\\Lib\\site-packages\\andes\\cases\\ieee39\\ieee39_full.xlsx",
+  "inventory": {
+    "Bus": 39,
+    "Line": 46,
+    "GENROU": 10,
+    "GENCLS": 0,
+    "TGOV1": 0,
+    "IEEEST": 10,
+    "PSS": 10,
+    "REGCA1": 0,
+    "REGCP1": 0,
+    "REGF1": 0,
+    "REGF2": 0,
+    "PLL1": 0
+  },
+  "eigs": {
+    "n_eigs": 160,
+    "n_positive_real": 9,
+    "n_zero": 2,
+    "n_oscillatory": 64,
+    "max_real": 1.0841198736877613,
+    "critical_stable_osc": {
+      "real": -1.346013072429833,
+      "imag": -8.61148480240536,
+      "zeta": 0.15442935855929482,
+      "freq_hz": 1.3705603736635468
+    },
+    "least_damped_stable_oscillatory": [
+      {
+        "real": -1.346013072429833,
+        "imag": -8.61148480240536,
+        "zeta": 0.15442935855929482,
+        "freq_hz": 1.3705603736635468
+      },
+      {
+        "real": -1.346013072429833,
+        "imag": 8.61148480240536,
+        "zeta": 0.15442935855929482,
+        "freq_hz": 1.3705603736635468
+      },
+      {
+        "real": -1.2591160872721545,
+        "imag": -7.754988586227082,
+        "zeta": 0.16026343427853224,
+        "freq_hz": 1.2342447671192691
+      },
+      {
+        "real": -1.2591160872721545,
+        "imag": 7.754988586227082,
+        "zeta": 0.16026343427853224,
+        "freq_hz": 1.2342447671192691
+      },
+      {
+        "real": -1.525668116215229,
+        "imag": -9.356565621075257,
+        "zeta": 0.16093314221454685,
+        "freq_hz": 1.4891436689578168
+      },
+      {
+        "real": -1.525668116215229,
+        "imag": 9.356565621075257,
+        "zeta": 0.16093314221454685,
+        "freq_hz": 1.4891436689578168
+      },
+      {
+        "real": -1.7862464827133802,
+        "imag": -10.267136971060507,
+        "zeta": 0.1714024085636896,
+        "freq_hz": 1.6340656003458298
+      },
+      {
+        "real": -1.7862464827133802,
+        "imag": 10.267136971060507,
+        "zeta": 0.1714024085636896,
+        "freq_hz": 1.6340656003458298
+      },
+      {
+        "real": -1.7763014099550039,
+        "imag": -9.891249057410455,
+        "zeta": 0.1767555489598749,
+        "freq_hz": 1.5742411808399244
+      },
+      {
+        "real": -1.7763014099550039,
+        "imag": 9.891249057410455,
+        "zeta": 0.1767555489598749,
+        "freq_hz": 1.5742411808399244
+      }
+    ]
+  },
+  "limitation": "The packaged ieee39_full.xlsx case has synchronous GENROU dynamics and no active REGCA1/REGCP1/REGF devices. IBR experiments below are IEEE39-derived surrogate experiments, not full ANDES IBR simulations."
+}

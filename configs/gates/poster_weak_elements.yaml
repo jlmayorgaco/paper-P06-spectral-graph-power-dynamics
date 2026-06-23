@@ -1,0 +1,7 @@
+name: poster-weak-elements
+case: mix60
+requires:
+  - outputs/stage1_build_ibr_case/mix60/manifest.json
+outputs:
+  directory: outputs/poster_weak_elements
+

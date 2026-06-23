@@ -1,0 +1,156 @@
+\chapter{Fixed Non-Commuting Damping and Modal Coupling}
+
+The second level of the hierarchy keeps the damping matrix fixed but drops the
+commutation condition \([\Lt,\Dt]=0\). The eigenvalue problem remains a QEP,
+but graph modes are no longer independent. This chapter develops the resulting
+modal coupling and shows that it already has the algebraic form of a rational
+correction. The term non-proportional is used only in this precise sense:
+damping is non-proportional for the present modal analysis when it is not
+simultaneously diagonalizable with stiffness in inertia-normalized
+coordinates.
+
+\section{Modal Damping Matrix}
+
+In graph modal coordinates,
+\begin{equation}
+  \ddot z+\Gamma\dot z+\Lambda z=0,\qquad
+  \Gamma=Q^T\Dt Q.
+  \label{eq:nonprop_modal_system}
+\end{equation}
+Write
+\begin{equation}
+  \Gamma=\Gamma_0+E,\qquad
+  \Gamma_0=\diag(\Gamma_{11},\ldots,\Gamma_{nn}),
+  \label{eq:nonprop_split}
+\end{equation}
+where \(E\) contains the off-diagonal entries. If \(E=0\), modes are decoupled.
+If \(E\ne0\), the velocity of one graph mode enters the equation of another.
+Equivalently, for a simple spectrum of \(\Lt\), nonzero off-diagonal entries
+of \(\Gamma\) are the modal expression of the commutator \([\Lt,\Dt]\).
+
+The off-diagonal entries are not numerical noise. They are the representation
+of damping heterogeneity in the stiffness eigenbasis. A bus with large local
+damping can still be ineffective for a critical mode if that mode has small
+shape at the bus. Conversely, a small local damping change can matter if it
+projects strongly onto the left-right structure of a sensitive eigenpair.
+
+\section{Two-Mode Illustration}
+
+For two graph modes, the QEP is
+\begin{equation}
+  \begin{bmatrix}
+    s^2+s\gamma_1+\nu_1 & s\epsilon\\
+    s\epsilon & s^2+s\gamma_2+\nu_2
+  \end{bmatrix}
+  \begin{bmatrix} z_1\\z_2\end{bmatrix}=0.
+  \label{eq:two_mode_nonprop}
+\end{equation}
+The characteristic equation is
+\begin{equation}
+  (s^2+s\gamma_1+\nu_1)(s^2+s\gamma_2+\nu_2)-s^2\epsilon^2=0.
+  \label{eq:two_mode_char}
+\end{equation}
+Eliminating \(z_2\) yields an exact scalar nonlinear equation for \(z_1\):
+\begin{equation}
+  s^2+s\gamma_1+\nu_1
+  -
+  \frac{s^2\epsilon^2}{s^2+s\gamma_2+\nu_2}
+  =0.
+  \label{eq:two_mode_rational}
+\end{equation}
+The correction is rational in \(s\). Even before converter controls are
+introduced, eliminating coupled modal coordinates converts a fixed-coefficient
+QEP into a frequency-dependent scalar equation for the retained mode.
+
+\section{General Modal Correction}
+
+Partition the modal coordinates into one target mode \(k\) and the remaining
+modes \(\bar k\). The modal QEP can be written as
+\begin{equation}
+  \begin{bmatrix}
+    p_k(s) & sE_{k\bar k}\\
+    sE_{\bar k k} &
+    s^2I+s\Gamma_{\bar k\bar k}+\Lambda_{\bar k\bar k}
+  \end{bmatrix}
+  \begin{bmatrix}
+    z_k\\z_{\bar k}
+  \end{bmatrix}=0,
+  \label{eq:general_modal_partition}
+\end{equation}
+where
+\begin{equation}
+  p_k(s)=s^2+s\Gamma_{kk}+\nu_k.
+\end{equation}
+Eliminating \(z_{\bar k}\) gives
+\begin{equation}
+  p_k(s)
+  -
+  s^2E_{k\bar k}
+  \left(s^2I+s\Gamma_{\bar k\bar k}+\Lambda_{\bar k\bar k}\right)^{-1}
+  E_{\bar k k}
+  =0.
+  \label{eq:general_modal_correction}
+\end{equation}
+This expression shows three facts.
+
+\begin{enumerate}
+\item Off-diagonal damping affects a mode through products of coupling terms,
+not through diagonal damping alone.
+\item Nearby modal denominators matter more than distant denominators.
+\item The correction has the same resolvent structure that later appears in
+controller condensation.
+\end{enumerate}
+
+\section{Perturbation View}
+
+For small \(E\), one may evaluate the correction near an unperturbed root
+\(s_{k,0}\) of \(p_k(s)\). The leading eigenvalue shift is governed by
+\begin{equation}
+  \Delta s_k
+  \approx
+  \frac{
+  s_{k,0}^2E_{k\bar k}
+  \left(s_{k,0}^2I+s_{k,0}\Gamma_{\bar k\bar k}
+  +\Lambda_{\bar k\bar k}\right)^{-1}
+  E_{\bar k k}
+  }{
+  2s_{k,0}+\Gamma_{kk}
+  }.
+  \label{eq:nonprop_shift}
+\end{equation}
+The denominator \(2s_{k,0}+\Gamma_{kk}\) is the derivative of the decoupled
+scalar polynomial. This is the scalar version of the general QEP sensitivity
+formula. The modal correction can move both real and imaginary parts, so its
+effect on damping ratio must be computed rather than inferred from graph
+frequency alone.
+
+\section{Non-Proportionality as a Gate}
+
+The previous equations suggest a theoretical gate before using graph metrics as
+damping screens. A fixed-\(D\) graph screen is plausible when
+\begin{equation}
+  \norm{E}\ll\norm{\Gamma_0}
+  \label{eq:small_nonprop_gate_1}
+\end{equation}
+and when the resolvent denominators in
+\eqref{eq:general_modal_correction} are not near resonance over the frequency
+band of interest. This does not prove that the screen is accurate; it states
+the conditions under which the modal coupling neglected by the screen is small.
+
+Structural-dynamics non-proportionality indices formalize similar ideas:
+measure how far the damping operator is from the modal subspace in which the
+undamped system is diagonal \cite{conde2021nonproportionality}. The power-grid
+interpretation is more specific. The off-diagonal damping matrix identifies
+which graph modes exchange damping through heterogeneous device locations and
+damping-to-inertia ratios.
+
+\section{Connection to the Next Level}
+
+Fixed non-commuting damping is not the same as converter self-energy. In
+\eqref{eq:general_modal_correction}, the eliminated coordinates are other
+graph modes of the same fixed-QEP system. In controller self-energy, the
+eliminated coordinates are physical control and auxiliary states. The algebraic
+similarity is nevertheless important. It shows that rational dependence is not
+an exotic artifact; it is the natural result of eliminating coupled dynamic
+coordinates. The next chapter applies that logic to controller-state
+condensation.

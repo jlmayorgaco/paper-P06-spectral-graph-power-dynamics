@@ -1,0 +1,68 @@
+\chapter{Reproducibility of the Theoretical Manuscript}
+
+This appendix records how to rebuild the thesis artifact. It intentionally does
+not define a simulation protocol. The present manuscript is the theoretical
+part of the dissertation.
+
+\section{Source Layout}
+
+The LaTeX source lives under:
+
+\begin{verbatim}
+reports/thesis/
+\end{verbatim}
+
+The main file is:
+
+\begin{verbatim}
+reports/thesis/main.tex
+\end{verbatim}
+
+The chapter files are:
+
+\begin{verbatim}
+reports/thesis/chapters/
+\end{verbatim}
+
+The bibliography is:
+
+\begin{verbatim}
+reports/thesis/references.bib
+\end{verbatim}
+
+\section{Compile the Thesis}
+
+From the repository root, the manual build is:
+
+\begin{verbatim}
+cd reports/thesis
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+bibtex main
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+\end{verbatim}
+
+The final PDF is copied to:
+
+\begin{verbatim}
+outputs/pdf/thesis_draft.pdf
+\end{verbatim}
+
+\section{Evidence Boundary}
+
+This theoretical manuscript does not use plots or time-domain traces as
+evidence. Numerical studies, when added later, should be treated as a separate
+validation layer. A future validation artifact should record:
+
+\begin{enumerate}
+\item the full dynamic model and operating point;
+\item the retained and condensed state partition;
+\item the construction of \(\Pi(s)\), its channel decomposition, and any
+\(\Sigma(s)\) approximation;
+\item full-model eigenvalue targets;
+\item accepted error tolerances;
+\item failure cases and rejected hypotheses.
+\end{enumerate}
+
+This boundary protects the thesis from mixing mathematical derivation with
+uncalibrated simulation evidence.

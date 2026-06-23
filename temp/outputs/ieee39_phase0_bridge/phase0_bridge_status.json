@@ -1,0 +1,111 @@
+{
+  "diagram": {
+    "case": "ieee39_ibr_mix60",
+    "generator_to_bus": {
+      "1": 30,
+      "2": 31,
+      "3": 32,
+      "4": 33,
+      "5": 34,
+      "6": 35,
+      "7": 36,
+      "8": 37,
+      "9": 38,
+      "10": 39
+    },
+    "gfl_gens": [
+      9,
+      7,
+      5
+    ],
+    "gfl_buses": [
+      34,
+      36,
+      38
+    ],
+    "gfm_gens": [
+      8,
+      6,
+      4
+    ],
+    "gfm_buses": [
+      33,
+      35,
+      37
+    ],
+    "sg_retained_buses": [
+      30,
+      31,
+      32,
+      39
+    ],
+    "figure_pdf": "outputs\\ieee39_phase0_bridge\\fig_ieee39_mix60_ibr_map.pdf",
+    "figure_png": "outputs\\ieee39_phase0_bridge\\fig_ieee39_mix60_ibr_map.png",
+    "paper_figure_pdf": "paper_ieee_transactions\\figures\\fig5_ieee39_ibr_map.pdf"
+  },
+  "gates": [
+    {
+      "gate": "G0.1 baseline ANDES load/PFlow/EIG",
+      "status": "PASS",
+      "evidence": "39 buses, 46 lines, 160 eigenvalues",
+      "next_action": "Use as synchronous extraction benchmark, not as IBR validation."
+    },
+    {
+      "gate": "G0.2 packaged-case positive-mode diagnostic",
+      "status": "PASS-DIAGNOSTIC",
+      "evidence": "Removing IEEEST/PSS removes all positive-real modes",
+      "next_action": "Report positive modes as a model-quality warning."
+    },
+    {
+      "gate": "G0.3 SG-to-GFL/GFM case generation",
+      "status": "PASS",
+      "evidence": "5/5 derived cases solved PFlow and EIG",
+      "next_action": "Use generated cases as reproducible benchmark artifacts."
+    },
+    {
+      "gate": "G0.4 generic IBR small-signal stability",
+      "status": "PARTIAL",
+      "evidence": "1/5 cases stable under generic gains: ieee39_ibr_mix60",
+      "next_action": "Calibrate REGCP1/REECA1/REPCA1/PLL1 and REGF1 gains before final validation."
+    },
+    {
+      "gate": "G0.5 physical ANDES-to-(L,M,D) IBR bridge",
+      "status": "BLOCKED",
+      "evidence": "Strict bridge audit BLOCKED: critical frequency error 12.4% and damping-ratio error 100.0%",
+      "next_action": "Extract a matched reduced model from the full ANDES Jacobian and compare poles first."
+    },
+    {
+      "gate": "G0.6 final estimator validation against full ANDES IBR poles",
+      "status": "BLOCKED",
+      "evidence": "Requires G0.4 and G0.5 before estimator errors can be claimed.",
+      "next_action": "Compare diagonal, second-order, reduced QEP, and adaptive estimates against full eigensolve."
+    }
+  ],
+  "surrogate_snapshot": {
+    "n_trials": 300,
+    "errors": {
+      "diag": {
+        "median": 0.004684237915574147,
+        "p95": 0.24145838523802338,
+        "mean": 0.04181821618191818
+      },
+      "second": {
+        "median": 0.0003209648869323165,
+        "p95": 0.0990523306880931,
+        "mean": 0.017543167124613526
+      },
+      "rqep": {
+        "median": 0.0003691180304801403,
+        "p95": 0.05441349163770851,
+        "mean": 0.010878388608625295
+      },
+      "adaptive": {
+        "median": 0.0003058873366788631,
+        "p95": 0.0743476405149445,
+        "mean": 0.016336832655115607
+      }
+    },
+    "braess_like_count": 35,
+    "n_lines_tested": 46
+  }
+}

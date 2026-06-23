@@ -1,0 +1,667 @@
+\chapter{Dynamic Hosting Capacity and Spectral Planning Levers}
+
+The preceding chapters define the damping operator hierarchy. This chapter
+uses that hierarchy to formulate the planning questions that motivated the
+project: how much inverter-based resource (IBR) conversion can be hosted, where
+virtual inertia or virtual damping should be placed, and which network
+reinforcements can improve robustness before resorting to batteries or other
+large storage devices. The common theme is that every planning answer must be
+attached to a margin. Voltage feasibility, graph connectivity, damping ratio,
+protected resolvent gain, and controller-resonance distance are different
+objects.
+
+\section{From Static Hosting to Spectral Hosting}
+
+Let an operating point be described by complex bus voltages
+\(V_i=|V_i|e^{j\theta_i}\) and bus admittance matrix
+\(Y_{\rm bus}=G+jB\). The exact AC active- and reactive-power injections are
+\begin{align}
+  P_i(V,\theta)
+  &=
+  |V_i|\sum_{j=1}^n |V_j|
+  \left(
+  G_{ij}\cos(\theta_i-\theta_j)
+  +
+  B_{ij}\sin(\theta_i-\theta_j)
+  \right),
+  \label{eq:ac_active_power}\\
+  Q_i(V,\theta)
+  &=
+  |V_i|\sum_{j=1}^n |V_j|
+  \left(
+  G_{ij}\sin(\theta_i-\theta_j)
+  -
+  B_{ij}\cos(\theta_i-\theta_j)
+  \right).
+  \label{eq:ac_reactive_power}
+\end{align}
+The linearized active-power stiffness is the angle block of the AC Jacobian.
+After removing the uniform angle reference, write the corresponding positive
+semidefinite stiffness as \(L_{\rm op}\). In the lossless small-angle
+approximation, \(L_{\rm op}\) reduces to a weighted Laplacian.
+
+A static hosting set for a vector of converter injections or conversions
+\(\rho\in\mathcal U\) can be written abstractly as
+\begin{equation}
+  \mathcal H_{\rm stat}
+  =
+  \{\rho\in\mathcal U:\ c_{\rm V}(\rho)\le0,\ 
+  c_{\rm th}(\rho)\le0,\ c_{\rm q}(\rho)\le0\},
+  \label{eq:static_hosting_set}
+\end{equation}
+where the constraints may represent voltage, thermal, protection, power
+quality, or operational limits. This is the classical hosting-capacity
+language. It is indispensable, but it does not by itself certify small-signal
+damping.
+
+\begin{definition}[Dynamic spectral hosting set]
+For a target damping ratio \(\zetaReq\), protected resolvent threshold
+\(g_{\rm req}\), and admissible static set \(\mathcal H_{\rm stat}\), define
+the dynamic spectral hosting set
+\begin{equation}
+  \mathcal H_{\rm dyn}
+  =
+  \left\{
+  \rho\in\mathcal H_{\rm stat}:
+  \zeta_{\min}(\rho)\ge \zetaReq,\ 
+  g_{\rm prot}(\rho)\le g_{\rm req},\
+  T(s;\rho)\hbox{ has no forbidden roots}
+  \right\}.
+  \label{eq:dynamic_hosting_set}
+\end{equation}
+For a penetration direction \(\alpha\ge0\), the directional dynamic hosting
+capacity is
+\begin{equation}
+  h_{\rm dyn}(\alpha)
+  =
+  \sup\{\eta\ge0:\ \eta\alpha\in\mathcal H_{\rm dyn}\}.
+  \label{eq:directional_dynamic_hosting}
+\end{equation}
+\end{definition}
+
+This definition deliberately extends time-varying hosting-capacity ideas
+\cite{oliveira2019dynamicHosting,jain2020dynamicHosting}. In distribution
+planning, dynamic hosting often means that voltage or thermal violations are
+counted with their duration and severity. Here it means that the electromechanical
+and controller spectra also impose capacity limits. A system can be voltage
+safe and still dynamically unsafe if the critical pole violates
+\(\zetaReq\), if the protected resolvent gain is too large, or if a stable
+network-family pole lies close to a controller pole with large self-energy
+sensitivity.
+
+\section{First-Order Spectral Hosting Screen}
+
+In the fixed-\(D\) layer, let
+\begin{equation}
+  L(\rho)\phi_k(\rho)
+  =
+  \nu_k(\rho)M(\rho)\phi_k(\rho),
+  \qquad
+  \phi_k(\rho)^TM(\rho)\phi_\ell(\rho)=\delta_{k\ell}.
+  \label{eq:hosting_generalized_modes}
+\end{equation}
+The diagonal damping-region screen from Chapter~4 is
+\begin{equation}
+  h_k(\rho)
+  =
+  \delta_k(\rho)-2\zetaReq\sqrt{\nu_k(\rho)}
+  \ge0,
+  \qquad
+  \delta_k(\rho)=\phi_k(\rho)^TD(\rho)\phi_k(\rho).
+  \label{eq:hosting_modal_gap}
+\end{equation}
+The quantity \(h_k\) is a modal headroom, not an eigenvalue. It is exact only
+when the relevant modes decouple and becomes a screen otherwise.
+
+For a simple generalized mode and small perturbation \(\rho_a\),
+\begin{equation}
+  \frac{\partial \nu_k}{\partial \rho_a}
+  =
+  \phi_k^T
+  \left(
+  L_a-\nu_k M_a
+  \right)
+  \phi_k,
+  \label{eq:hosting_nu_derivative}
+\end{equation}
+where \(L_a=\partial L/\partial\rho_a\) and
+\(M_a=\partial M/\partial\rho_a\). The direct damping derivative is
+\(\phi_k^TD_a\phi_k\), with modal-rotation corrections when damping is
+non-proportional. The first-order hosting-gap derivative is therefore
+\begin{equation}
+  g_{ka}
+  =
+  \frac{\partial h_k}{\partial\rho_a}
+  =
+  \frac{\partial\delta_k}{\partial\rho_a}
+  -
+  \frac{\zetaReq}{\sqrt{\nu_k}}
+  \frac{\partial\nu_k}{\partial\rho_a}.
+  \label{eq:hosting_gap_gradient}
+\end{equation}
+
+\begin{proposition}[Linear spectral hosting screen]
+Assume \(h_k(0)>0\) for every monitored mode \(k\in\mathcal K\), and assume
+that the first-order expansion of \eqref{eq:hosting_modal_gap} is used as a
+tangent screen. Define
+\begin{equation}
+  A_{ka}=-g_{ka},
+  \qquad
+  b_k=h_k(0).
+  \label{eq:hosting_polytope_matrices}
+\end{equation}
+Then the polytope
+\begin{equation}
+  \mathcal P_{\rm host}^{(1)}
+  =
+  \{\rho\in\mathcal U:\ A\rho\le b\}
+  \label{eq:hosting_polytope}
+\end{equation}
+is the first-order spectral hosting screen associated with the damping-region
+margin. It is not, by itself, a certified inner approximation of
+\(\mathcal H_{\rm dyn}\).
+\end{proposition}
+
+\begin{proof}
+The first-order expansion gives
+\[
+  h_k(\rho)=h_k(0)+\sum_a g_{ka}\rho_a+O(\norm{\rho}^2).
+\]
+Dropping the higher-order term and imposing \(h_k(\rho)\ge0\) gives
+\(-\sum_ag_{ka}\rho_a\le h_k(0)\), which is \eqref{eq:hosting_polytope}.
+\end{proof}
+
+\begin{proposition}[Curvature-certified hosting region]
+Suppose that, on a trust region \(\mathcal B_r=\{\rho:\norm{\rho}_2\le r\}\),
+each monitored headroom satisfies
+\[
+  \norm{\nabla^2 h_k(\rho)}_2\le \beta_k .
+\]
+Then every \(\rho\in\mathcal U\cap\mathcal B_r\) satisfying
+\begin{equation}
+  h_k(0)+g_k^T\rho-\frac{\beta_k}{2}\norm{\rho}_2^2\ge0,
+  \qquad k\in\mathcal K,
+  \label{eq:hosting_curvature_certificate}
+\end{equation}
+also satisfies the second-order lower bound for the monitored modal headrooms.
+\end{proposition}
+
+\begin{proof}
+Taylor's theorem with the stated Hessian bound gives
+\[
+  h_k(\rho)
+  \ge
+  h_k(0)+g_k^T\rho-\frac{\beta_k}{2}\norm{\rho}_2^2
+\]
+for all \(\rho\in\mathcal B_r\). Imposing
+\eqref{eq:hosting_curvature_certificate} therefore certifies nonnegative
+headroom for the monitored screen.
+\end{proof}
+
+The certified set is generally quadratic or conic, not a polytope. This is the
+right object when the claim is an inner dynamic-hosting region rather than a
+first-order ranking.
+
+\section{Certified Hosting and Model Escalation}
+
+A dynamic-hosting screen becomes a certified hosting statement only after the
+model level is certified over the protected region. Let \(\Gamma\) enclose the
+set of eigenvalues whose damping ratio, abscissa, or controller-resonance
+distance limits hosting. For a reduced screen \(\widehat T(s;\rho)\), define
+\begin{equation}
+  \eta_\Gamma(\rho)
+  =
+  \sup_{s\in\Gamma}
+  \left\|
+  \widehat T(s;\rho)^{-1}
+  \left[T(s;\rho)-\widehat T(s;\rho)\right]
+  \right\|_2 .
+  \label{eq:hosting_eta_gamma}
+\end{equation}
+If \(\eta_\Gamma(\rho)<1\), the reduced model preserves the protected
+eigenvalue count inside \(\Gamma\). If \(\eta_\Gamma(\rho)\ge1\), the hosting
+decision must escalate from the diagonal screen to the QEP, from the QEP to the
+Schur NEP, or from the identified NEP to the full DAE, depending on where the
+uncertainty enters.
+
+For finite penetration increments, the same principle should be stated as a
+fragility budget. Given a protected boundary \(\partial\mathcal S\), define
+\begin{equation}
+  r_{\rm host}(\rho)
+  =
+  \inf
+  \left\{
+  \|W_u u\|:
+  \exists s\in\partial\mathcal S,\ 
+  \det T(s;\rho,u)=0
+  \right\}.
+  \label{eq:hosting_fragility_budget}
+\end{equation}
+A hosting point is not robust merely because the first-order headroom is
+positive. It is robust to the declared uncertainty family only if
+\(r_{\rm host}\) exceeds the uncertainty or action budget assigned to that
+point. This is the dynamic analogue of a voltage or thermal security margin.
+
+\begin{remark}[SG-to-IBR conversion]
+If action \(\rho_i\) replaces synchronous inertia and damping at bus \(i\)
+without changing the network stiffness, then locally
+\[
+  M_i(\rho_i)=M_i^0-\rho_i\Delta M_i,\qquad
+  D_i(\rho_i)=D_i^0-\rho_i\Delta D_i.
+\]
+The direct mode-frequency contribution is
+\[
+  \frac{\partial\nu_k}{\partial\rho_i}
+  =
+  \nu_k\Delta M_i\,\phi_k(i)^2.
+\]
+The direct damping contribution is approximately
+\[
+  \frac{\partial\delta_k}{\partial\rho_i}
+  \approx
+  -\Delta D_i\,\phi_k(i)^2
+  +
+  \hbox{modal-rotation terms}.
+\]
+Therefore SG-to-IBR conversion is most restrictive where the monitored mode
+has large \(\phi_k(i)^2\) and the removed damping-to-inertia package is large.
+This is the mathematical reason a hosting limit is not only a voltage limit.
+\end{remark}
+
+\section{Where to Place Virtual Inertia}
+
+Virtual inertia is not a single planning lever. It may mean inertia-only
+emulation, virtual synchronous-machine control with damping, grid-forming
+droop with filtering, or a controller whose reduced effect is frequency
+dependent. The fixed-\(D\) screen is still useful because it identifies what
+would be true if the virtual device were represented locally by added mass and
+added damping:
+\begin{equation}
+  M_i(\mu_i)=M_i^0+\mu_i,\qquad
+  D_i(\mu_i)=D_i^0+\gamma_i^v\mu_i.
+  \label{eq:virtual_inertia_local_model}
+\end{equation}
+Using the fixed-mode approximations of Chapter~4,
+\begin{equation}
+  \frac{\partial h_k}{\partial \mu_i}
+  \approx
+  \left(\gamma_i^v-\delta_k+\zetaReq\sqrt{\nu_k}\right)\phi_k(i)^2.
+  \label{eq:virtual_inertia_hosting_gradient}
+\end{equation}
+Thus inertia-only support \((\gamma_i^v=0)\) can reduce the damping-region
+headroom near the boundary \( \delta_k\approx2\zetaReq\sqrt{\nu_k}\). The same
+bus can still be excellent for RoCoF or frequency-nadir objectives because
+inertia reduces modal acceleration. It is not automatically excellent for
+damping ratio.
+
+For a set of monitored modes, a placement score that respects this distinction
+is
+\begin{equation}
+  J_i^{\rm VI}
+  =
+  \sum_{k\in\mathcal K}\omega_k
+  \left[
+  \eta_{\rm f}\nu_k\phi_k(i)^2
+  +
+  \eta_{\rm h}
+  \left(\gamma_i^v-\delta_k+\zetaReq\sqrt{\nu_k}\right)\phi_k(i)^2
+  \right],
+  \label{eq:virtual_inertia_score}
+\end{equation}
+where the first term rewards frequency-security leverage and the second term
+rewards damping-headroom leverage. The weights \(\eta_{\rm f}\) and
+\(\eta_{\rm h}\) must be declared before ranking. Otherwise the ranking hides
+a tradeoff between slower frequency motion and better modal damping.
+
+\section{Line-Shunt Taxonomy and Substitutability}
+
+The project also asks whether the network can be improved before installing
+batteries or local inertial devices. A structural answer comes from separating
+line and shunt directions.
+
+Let \(b_{ij}=e_i-e_j\) and define
+\begin{equation}
+  \mathcal L_{\rm all}
+  =
+  \operatorname{span}\{b_{ij}b_{ij}^T:\ 1\le i<j\le n\},
+  \qquad
+  \mathcal D_{\rm sh}
+  =
+  \{\operatorname{diag}(g):\ g\in\R^n\}.
+  \label{eq:line_shunt_spaces}
+\end{equation}
+
+\begin{theorem}[Line-shunt decomposition]
+Every real symmetric matrix \(X\in\R^{n\times n}\) has a unique decomposition
+\begin{equation}
+  X=X_{\mathcal L}+X_{\mathcal D},
+  \qquad
+  X_{\mathcal L}\in\mathcal L_{\rm all},\quad
+  X_{\mathcal D}\in\mathcal D_{\rm sh}.
+  \label{eq:line_shunt_decomposition}
+\end{equation}
+Equivalently,
+\[
+  \operatorname{Sym}(n)=\mathcal L_{\rm all}\oplus\mathcal D_{\rm sh}.
+\]
+\end{theorem}
+
+\begin{proof}
+Set the off-diagonal entries of \(X_{\mathcal L}\) equal to those of \(X\) and
+choose the diagonal of \(X_{\mathcal L}\) so that every row sums to zero. Then
+\(X_{\mathcal L}\) is a Laplacian-type matrix and
+\(X_{\mathcal D}=X-X_{\mathcal L}\) is diagonal. The intersection of the two
+spaces is zero because a diagonal zero-row-sum matrix must be zero.
+\end{proof}
+
+For local inertia,
+\begin{equation}
+  \frac{\partial\Lt}{\partial M_i}
+  =
+  -\frac{1}{2M_i}
+  \left(E_i\Lt+\Lt E_i\right),
+  \qquad
+  E_i=e_ie_i^T.
+  \label{eq:local_inertia_operator_location}
+\end{equation}
+This perturbation cannot create off-diagonal support on a non-existing edge.
+Therefore it lies structurally in existing-line directions plus a shunt
+residual:
+\begin{equation}
+  \frac{\partial\Lt}{\partial M_i}
+  \in
+  \mathcal L_{\rm ex}\oplus\mathcal D_{\rm sh}.
+  \label{eq:inertia_existing_shunt}
+\end{equation}
+It has no new-line component. This statement does not mean inertia and line
+reinforcement are dynamically equivalent. It says where the inertia action
+lives in the perturbation space.
+
+Let
+\begin{equation}
+  -\frac{\partial\Lt}{\partial M_i}
+  =
+  X_i^{\rm ex}+\operatorname{diag}(r_i),
+  \qquad
+  X_i^{\rm ex}\in\mathcal L_{\rm ex}.
+  \label{eq:inertia_shunt_residual}
+\end{equation}
+For a critical mode \(q_c\), define the modal substitutability score
+\begin{equation}
+  s_i
+  =
+  1-
+  \frac{|r_i^T(q_c\odot q_c)|}
+  {\norm{r_i}_2\,\norm{q_c\odot q_c}_2+\varepsilon_{\rm reg}}.
+  \label{eq:modal_substitutability_score}
+\end{equation}
+High \(s_i\) means the shunt residual is nearly invisible to the critical
+mode; existing-line actions may be tried before local inertia. Low \(s_i\)
+means the shunt residual aligns with the critical mode; topology-only actions
+are less likely to substitute for a local inertial or synchronous-condenser
+lever. Internal random-graph checks in \texttt{temp/poster/} verified the
+algebraic residual of this decomposition to approximately \(10^{-14}\), which
+is a structural verification rather than a power-system performance proof.
+The score is still not a feasibility certificate for construction. A physical
+line-only substitute must solve a constrained projection with nonnegative line
+increments, corridor limits, and costs; membership in a linear span is only the
+algebraic first screen.
+\begin{equation}
+  \min_{\Delta b\in\mathcal C_{\rm line}}
+  \left\|
+  -\frac{\partial\Lt}{\partial M_i}
+  -
+  \sum_{e\in\mathcal E_{\rm cand}}\Delta b_e a_ea_e^T
+  \right\|_W,
+  \qquad
+  \mathcal C_{\rm line}=\{\Delta b\ge0:\ c^T\Delta b\le B,\ 
+  \Delta b_e\le \bar b_e\}.
+  \label{eq:line_inertia_constrained_projection}
+\end{equation}
+
+\section{Reinforcing Lines Without Batteries}
+
+For a line \(e=(i,j)\), the modal-frequency derivative is
+\begin{equation}
+  \frac{\partial\nu_k}{\partial b_e}
+  =
+  (\phi_k(i)-\phi_k(j))^2.
+  \label{eq:hosting_line_frequency}
+\end{equation}
+The damping-headroom derivative is
+\begin{equation}
+  \frac{\partial h_k}{\partial b_e}
+  =
+  \frac{\partial\delta_k}{\partial b_e}
+  -
+  \frac{\zetaReq}{\sqrt{\nu_k}}
+  (\phi_k(i)-\phi_k(j))^2.
+  \label{eq:hosting_line_headroom}
+\end{equation}
+This equation is the cleanest answer to the line-reinforcement question. A
+line that strongly raises modal stiffness can still reduce damping headroom
+unless it also raises modal damping through eigenvector rotation, damping
+placement, or controller action.
+
+The network-only benefits should still be used. If the objective is to improve
+algebraic connectivity, use \(G_e^{(2)}=(\phi_2(i)-\phi_2(j))^2\). If the
+objective is to reduce total effective resistance, use
+\begin{equation}
+  G_e^{(K)}
+  =
+  a_e^T(L^+)^2a_e,
+  \qquad
+  \frac{\partial}{\partial b_e}
+  n\operatorname{trace}(L^+)
+  =
+  -nG_e^{(K)}.
+  \label{eq:effective_resistance_line_gain}
+\end{equation}
+But a dynamic-hosting line screen should report the vector
+\begin{equation}
+  \ell_e
+  =
+  \begin{bmatrix}
+  G_e^{(2)}\\
+  G_e^{(K)}\\
+  -\min_{k\in\mathcal K}\partial h_k/\partial b_e\\
+  \partial S_g/\partial b_e\\
+  F_e
+  \end{bmatrix},
+  \label{eq:line_screen_vector}
+\end{equation}
+where \(F_e\) is a feasibility penalty. A line should be called a robustness
+improvement only after the selected margin improves and feasibility is
+acceptable. Otherwise it is only a graph-stiffness improvement.
+
+For controller-aware planning, the line report should be extended to a safe
+reinforcement envelope:
+\begin{equation}
+  \mathcal R_e
+  =
+  \begin{bmatrix}
+  G_e^{(2)}\\
+  G_e^{(K)}\\
+  \zeta_{p,e}^{\rm static}\\
+  \zeta_{p,e}^{\rm NEP}\\
+  \rho_{{\rm ctrl},e}\\
+  \rho_{{\rm mem},e}\\
+  p_{e,\max}^{\rm safe}
+  \end{bmatrix}.
+  \label{eq:line_safe_reinforcement_envelope}
+\end{equation}
+Here \(\rho_{{\rm ctrl},e}\) is a magnitude-normalized controller-channel
+dominance score, \(\rho_{{\rm mem},e}\) is the memory-dominance score induced
+by \(\Pi_s(s)\), and \(p_{e,\max}^{\rm safe}\) is the local action budget before
+a protected margin is exhausted. The controller-distance term is
+\(d^{\rm ctrl}_{k\ell}=|s_k-\mu_\ell|/(|s_k|+|\mu_\ell|)\), where
+\(\mu_\ell\) is a condensed controller pole. A first-order version is
+\begin{equation}
+  p_{e,\max}^{\rm safe}
+  =
+  \min_{k,\ell}
+  \left\{
+  \frac{\zeta_k-\zetaReq}
+       {[-\zeta_{p,e,k}^{\rm NEP}]_+},
+  \frac{d^{\rm ctrl}_{k\ell}-d_{\rm req}}
+       {[-d_{p,e,k\ell}^{\rm ctrl}]_+}
+  \right\},
+  \label{eq:line_safe_reinforcement_budget}
+\end{equation}
+with the convention that a zero denominator gives no active local restriction.
+Finite upgrades must still be checked by continuation or full eigenvalue
+recomputation.
+
+This envelope separates four planning classes:
+\begin{enumerate}
+\item Safe reinforcement: graph strength and protected damping both improve.
+\item Ordinary tradeoff: graph strength improves, but damping ratio falls for
+the static stiffness-frequency reason.
+\item Control-amplified reversal: the controller channel worsens a degradation
+already visible in the static screen.
+\item Controller-induced reversal: the static screen accepts the line but the
+controller-aware model rejects it.
+\end{enumerate}
+The fourth class is the most publishable because it says the reduced static
+model can choose the wrong reinforcement.
+
+\section{Braess, Braess-Like, and Control-Resonant Reversals}
+
+The literature uses Braess' paradox for cases where adding or increasing
+network capacity decreases system performance
+\cite{braess2005traffic,schafer2022braess}. In power systems, the performance
+loss may be larger flow on an already stressed line, loss of synchrony, or
+weaker linear stability \cite{witthaut2012braess,coletta2016braess}. The
+present thesis separates three cases.
+
+\begin{definition}[Three reinforcement reversals]
+Let \(b_e\) be an upgraded line.
+\begin{enumerate}
+\item A flow Braess reversal occurs when an upgrade increases loading on a
+protected line in the direction of its pre-existing flow.
+\item A damping-margin reversal occurs when
+\(\partial h_c/\partial b_e<0\) or
+\(\partial\zeta_c/\partial b_e<0\) for the protected critical mode.
+\item A control-resonant reversal occurs when the line action decreases the
+damping of a network-family pole, moves it closer to a condensed controller
+pole, and the self-energy term dominates the NEP sensitivity.
+\end{enumerate}
+\end{definition}
+
+Only the first case is a classical flow Braess statement. The second is a
+Braess-like spectral warning. The third is a stronger mechanism that belongs
+to the rational self-energy layer:
+\begin{equation}
+  \frac{ds}{db_e}
+  =
+  -
+  \frac{
+  y^*\left(s\,\Sigma_{b_e}(s)+L_{b_e}\right)x
+  }{
+  y^*T_s(s)x
+  }.
+  \label{eq:control_resonant_line_sensitivity}
+\end{equation}
+If the dominant negative contribution comes from the \(s\Sigma_{b_e}(s)\)
+channel rather than from \(L_{b_e}\) alone, the reinforcement is not explained
+by scalar graph stiffness. It is a network-control resonance.
+
+\section{Internal Validation Gates from the Project}
+
+The project material preserved in \texttt{temp/} contains useful evidence, but
+it must be read as gates and diagnostics. The key validated and negative
+records are summarized in Table~\ref{tab:internal_validation_gates}.
+
+\begin{table}[ht]
+\centering
+\caption{Internal validation gates used to calibrate the theory. These are not
+universal claims; they define what the later empirical thesis must reproduce
+or falsify under registered controls.}
+\label{tab:internal_validation_gates}
+\begin{tabular}{L{0.27\textwidth}L{0.35\textwidth}L{0.28\textwidth}}
+\toprule
+\rowcolor{softblue}
+\thead{Gate} & \thead{Main record} & \thead{Thesis use}\\
+\midrule
+Adaptive damping screen &
+In the \texttt{ieee39\_rational\_filter} output, 300 surrogate trials gave
+median relative error \(4.68\times10^{-3}\) for the diagonal screen,
+\(3.21\times10^{-4}\) for the second-order correction, and
+\(3.69\times10^{-4}\) for the reduced QEP. &
+Use diagonal damping as a fast screen and reduced QEP as a correction, not as
+a universal replacement for the full model.\\
+\addlinespace
+Weak nodes and weak links &
+The same surrogate ranked bus 30 as the strongest local damping action
+(\(\Delta\zeta=1.12\times10^{-2}\)) and line 25--37 as the strongest positive
+line action (\(\Delta\zeta=6.31\times10^{-3}\)); other buses and lines were
+negative. &
+Weak elements are action- and margin-relative. A centrality list is not enough.\\
+\addlinespace
+Braess-NEP phase &
+The \texttt{phase\_braess\_nep} output tested 460 line-mode perturbations:
+348 margin reversals, 232 network-family reversals, and 40 resonant reversals.
+The clearest case was line 20--34 with self-energy-dominated
+\(\Delta\zeta\) and a reported internal denominator metric of \(0.959\),
+which must be recomputed as a magnitude-normalized memory or controller-channel
+dominance index. &
+Call the effect control-resonant reinforcement risk after NEP validation, not a
+generic graph Braess theorem. The missing extraction is the strict subset with
+\(d\zeta_{\rm static}/dp\ge0\) and \(d\zeta_{\rm NEP}/dp<0\).\\
+\addlinespace
+Inertia-control cross term &
+The registered full-ANDES gate found 0/13 measurable singleton
+GENROU-inertia by PLL-gain cross cases; the strongest cross-dominance index was
+\(2.24\times10^{-4}\). &
+Keep cross terms in the local theory, but do not use them as the empirical
+headline.\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\section{Measurement Gate for Frequency Security}
+
+Dynamic hosting is also limited by what the protection and estimation layer can
+see. The estimator draft in the project compares frequency estimators under
+low-inertia IBR conditions and uses the trip-risk exposure
+\begin{equation}
+  T_{\rm risk}(e_{\rm th})
+  =
+  \sum_{m=0}^{N-1}\Delta t\,
+  \mathbf 1_{\{|e[m]|>e_{\rm th}\}},
+  \label{eq:trip_risk_duration}
+\end{equation}
+where \(e[m]\) is the estimator error relative to the reference frequency.
+This metric is included here for one reason: a low RMS estimator can still be
+unacceptable if its peak error or latency creates a long protection exposure.
+Thus a complete dynamic hosting study should pair spectral margins with
+measurement and protection margins. The theoretical hosting set
+\eqref{eq:dynamic_hosting_set} can be extended by adding
+\(T_{\rm risk}\le T_{\rm max}\) as a protection-aware constraint.
+
+\section{Planning Rule}
+
+The final planning rule is deliberately conservative.
+
+\begin{enumerate}
+\item Use static hosting constraints to reject voltage, thermal, and power
+quality violations.
+\item Use \(\mathcal P_{\rm host}^{(1)}\) to screen SG-to-IBR conversions by
+damping headroom.
+\item Rank virtual-inertia sites with separate RoCoF and damping-headroom
+weights; do not mix the objectives silently.
+\item Rank line upgrades by \(G_e^{(2)}\), \(G_e^{(K)}\), and
+\(\partial h_k/\partial b_e\), then reject actions that improve graph
+stiffness while degrading the protected dynamic margin.
+\item If controller states are condensed, verify important candidates with the
+NEP sensitivity \eqref{eq:control_resonant_line_sensitivity} or full
+eigenvalue recomputation.
+\end{enumerate}
+
+This rule gives a defensible version of the practical advice: improve the
+graph first when the weak mechanism is graph-mediated, add damping when the
+weak mechanism is modal dissipation, add virtual inertia only with the correct
+frequency-security objective or co-designed damping, and call a reinforcement
+Braess-like only after the measured margin actually worsens.

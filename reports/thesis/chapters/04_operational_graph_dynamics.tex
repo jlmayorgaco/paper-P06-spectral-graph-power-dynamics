@@ -1,0 +1,743 @@
+\chapter{Operational Graph Dynamics and Graph-Time Resonance}
+
+The graph should not appear only as a static stiffness screen. In a
+converter-rich power system, the graph is the spatial support on which power
+flow, inertia, damping, controller memory, resonance, fragility, and design
+act together. This chapter builds the missing dynamic graph layer. Its central
+operator is
+\begin{equation}
+  T(s;z^\star)
+  =
+  s^2M+sD+B W(z^\star)B^T+\Pi(s;z^\star),
+  \label{eq:graph_dynamic_master_operator}
+\end{equation}
+where \(B\) is an oriented incidence matrix, \(W(z^\star)\) contains
+incremental line stiffnesses at the AC equilibrium \(z^\star\), \(M\) is a
+nodal inertia measure, \(D\) is a nodal or device-level dissipative field, and
+\(\Pi(s;z^\star)\) is the condensed controller self-energy. This turns the
+thesis into a theory of damped, controlled waves on electrical graphs.
+
+\thesisbox{thesisblue}{Graph-dynamic thesis}{
+Dynamic stability is a joint property of topology, operating point, spatial
+inertia and damping fields, and controller memory. A resonance occurs when
+temporal proximity, spatial alignment, port visibility, low damping, and
+resolvent amplification coincide.}
+
+\section{Power-Flow Geometry of the Operational Graph}
+
+Consider a connected lossless graph with \(n\) buses, \(m\) lines, and an
+arbitrarily oriented incidence matrix \(B\in\R^{n\times m}\). Let
+\begin{equation}
+  \eta=B^T\theta
+  \label{eq:graph_eta}
+\end{equation}
+be the vector of line angle differences. For line \(e=(i,j)\), define
+\begin{equation}
+  \kappa_e=b_eV_iV_j>0.
+  \label{eq:graph_kappa}
+\end{equation}
+The oriented active line flow is
+\begin{equation}
+  f_e(\theta,V)=\kappa_e\sin\eta_e,
+  \label{eq:graph_line_flow}
+\end{equation}
+and the nodal active-power injection map is
+\begin{equation}
+  p(\theta,V)=B\operatorname{diag}(\kappa)\sin(B^T\theta).
+  \label{eq:graph_power_flow_compact}
+\end{equation}
+At an equilibrium \(z^\star=(\theta^\star,V^\star,\ldots)\),
+\begin{equation}
+  f_e^\star=\kappa_e^\star\sin\eta_e^\star,
+  \qquad
+  w_e^\star=\kappa_e^\star\cos\eta_e^\star.
+  \label{eq:graph_flow_stiffness_pair}
+\end{equation}
+Thus the operating-point stiffness is
+\begin{equation}
+  L^\star=B W^\star B^T,\qquad
+  W^\star=\operatorname{diag}(w_e^\star).
+  \label{eq:graph_operational_laplacian}
+\end{equation}
+If \(|\eta_e^\star|<\pi/2\) for all lines, then \(W^\star\succ0\). For a
+connected graph, \(L^\star\succeq0\) and
+\(\ker L^\star=\operatorname{span}\{\ones\}\). The uniform angle direction is
+removed by projection onto \(\ones^\perp\).
+
+The flow-stiffness pair in \eqref{eq:graph_flow_stiffness_pair} is the first
+dynamic graph fact:
+\begin{equation}
+  \frac{\partial w_e}{\partial \eta_e}
+  =
+  -\kappa_e\sin\eta_e
+  =
+  -f_e.
+  \label{eq:graph_stiffness_angle_derivative}
+\end{equation}
+A heavily loaded line can lose synchronizing stiffness rapidly under an
+additional angular perturbation. This is the direct bridge from power flow to
+modal fragility.
+
+\section{Total Derivative of the Operational Laplacian}
+
+Let \(\rho\) be a planning parameter that may change injections,
+susceptances, voltages, topology, or the operating point. The reduced
+equilibrium equation is
+\begin{equation}
+  F(\theta,\rho)
+  =
+  B\operatorname{diag}(\kappa(\rho))\sin(B^T\theta)-p(\rho)=0.
+  \label{eq:graph_equilibrium_F}
+\end{equation}
+Assume the reduced Laplacian \(L\) is invertible on \(\ones^\perp\). Then
+\begin{equation}
+  \theta_\rho
+  =
+  L^\dagger
+  \left[
+  p_\rho-B\operatorname{diag}(\sin\eta)\kappa_\rho
+  \right],
+  \qquad
+  \eta_\rho=B^T\theta_\rho.
+  \label{eq:graph_theta_rho}
+\end{equation}
+Since \(w=\kappa\odot\cos\eta\),
+\begin{equation}
+  w_\rho
+  =
+  \cos\eta\odot\kappa_\rho
+  -
+  f\odot\eta_\rho,
+  \label{eq:graph_w_rho}
+\end{equation}
+and
+\begin{equation}
+  L_\rho=B\operatorname{diag}(w_\rho)B^T.
+  \label{eq:graph_L_rho}
+\end{equation}
+
+Equation~\eqref{eq:graph_w_rho} separates the direct line-parameter channel
+from the operating-point channel:
+\begin{equation}
+  L_\rho
+  =
+  B\operatorname{diag}(\cos\eta\odot\kappa_\rho)B^T
+  -
+  B\operatorname{diag}(f\odot\eta_\rho)B^T.
+  \label{eq:graph_L_rho_split}
+\end{equation}
+The second term is often the one missed by frozen-graph screens. A physical
+line change modifies flows and angles; those changes modify many incremental
+line stiffnesses, not only the line being touched.
+
+\section{Mode Sensitivity to Power-Flow Geometry}
+
+For generalized graph modes
+\begin{equation}
+  L\phi_k=\nu_kM\phi_k,
+  \qquad
+  \phi_k^TM\phi_\ell=\delta_{k\ell},
+  \label{eq:graph_generalized_modes}
+\end{equation}
+a simple eigenvalue satisfies
+\begin{equation}
+  (\nu_k)_\rho
+  =
+  \phi_k^T(L_\rho-\nu_kM_\rho)\phi_k.
+  \label{eq:graph_nu_rho_general}
+\end{equation}
+Let \(a_e\) be the incidence vector of line \(e\), and define the modal line
+deformation
+\begin{equation}
+  g_{e,k}=a_e^T\phi_k.
+  \label{eq:graph_modal_line_deformation}
+\end{equation}
+Then
+\begin{equation}
+  (\nu_k)_\rho
+  =
+  \sum_{e=1}^m (w_e)_\rho g_{e,k}^2
+  -
+  \nu_k\sum_{i=1}^n (M_i)_\rho \phi_k(i)^2.
+  \label{eq:graph_nu_rho_edges}
+\end{equation}
+
+If only injections change while \(\kappa\) and \(M\) are fixed, then
+\(\theta_\rho=L^\dagger p_\rho\), and
+\begin{equation}
+  (\nu_k)_\rho
+  =
+  -
+  \sum_e f_e g_{e,k}^2 a_e^TL^\dagger p_\rho.
+  \label{eq:graph_injection_nu_rho}
+\end{equation}
+Equivalently,
+\begin{equation}
+  \nabla_p\nu_k
+  =
+  -L^\dagger B\operatorname{diag}(f)c_k,
+  \qquad
+  c_k=(g_{1,k}^2,\ldots,g_{m,k}^2)^T.
+  \label{eq:graph_grad_p_nu}
+\end{equation}
+The flow-weighted modal centrality
+\begin{equation}
+  \chi_{e,k}^{\rm flow}
+  =
+  |f_e|\,|g_{e,k}|^2
+  \label{eq:graph_flow_modal_centrality}
+\end{equation}
+flags lines that simultaneously carry high flow and sit across a large jump of
+the critical mode. This is more physical than degree, betweenness, or
+\(\partial\lambda_2/\partial b_e\) alone.
+
+\section{Cycle and Cut Spaces}
+
+The DC flow induced by \(p\in\ones^\perp\) is
+\begin{equation}
+  f^\star=W B^T L^\dagger p.
+  \label{eq:graph_dc_flow}
+\end{equation}
+It is the unique solution of
+\begin{equation}
+  \min_f\ \frac12 f^TW^{-1}f
+  \quad
+  \text{subject to}\quad Bf=p.
+  \label{eq:graph_min_energy_flow}
+\end{equation}
+The Lagrange multiplier proof is immediate: stationarity gives
+\(f=WB^T\lambda\), and the constraint gives \(L\lambda=p\).
+
+If \(C\) spans the cycle space, \(BC=0\), every feasible flow can be written
+as \(f=f_0+Cq\). Changing a line weight changes the metric \(W^{-1}\), modifies
+cycle redistribution, changes the operating point, and then changes \(L\).
+This is the formal bridge between topology control, Braess-like effects, and
+modal dynamics.
+
+For a cut \(S\subset\mathcal V\), define
+\begin{equation}
+  m_S=\sum_{i\in S}M_i,\qquad
+  m_{S^c}=\sum_{i\notin S}M_i,\qquad
+  w(\partial S)=\sum_{e\in\partial S}w_e.
+  \label{eq:graph_cut_quantities}
+\end{equation}
+The first nonzero generalized eigenvalue satisfies
+\begin{equation}
+  \nu_2
+  \le
+  w(\partial S)
+  \left(
+  \frac1{m_S}+\frac1{m_{S^c}}
+  \right)
+  \label{eq:graph_inertia_cut_bound}
+\end{equation}
+for every nontrivial cut. The proof is the Rayleigh quotient evaluated on the
+two-area vector that is constant on \(S\) and \(S^c\) and has zero
+center-of-inertia mean.
+
+\section{Graph Roughness of Damping-to-Inertia Fields}
+
+Assume \(M=\diag(M_i)\) and \(D=\diag(D_i)\), and define the nodal field
+\begin{equation}
+  \gamma_i=\frac{D_i}{M_i}.
+  \label{eq:graph_gamma_field}
+\end{equation}
+Then
+\begin{equation}
+  \Dt=M^{-1/2}DM^{-1/2}=\diag(\gamma_i).
+  \label{eq:graph_Dt_gamma}
+\end{equation}
+For \(i\ne j\),
+\begin{equation}
+  [\Lt,\Dt]_{ij}
+  =
+  \Lt_{ij}(\gamma_j-\gamma_i).
+  \label{eq:graph_commutator_entry}
+\end{equation}
+Therefore
+\begin{equation}
+  \norm{[\Lt,\Dt]}_F^2
+  =
+  2\sum_{e=(i,j)}
+  \frac{w_e^2}{M_iM_j}
+  (\gamma_i-\gamma_j)^2.
+  \label{eq:graph_roughness_identity}
+\end{equation}
+This is a Dirichlet energy over an auxiliary graph with weights
+\(\widehat w_e=w_e^2/(M_iM_j)\). Within the diagonal nodal damping class, and
+for a connected graph,
+\begin{equation}
+  [\Lt,\Dt]=0
+  \quad\Longleftrightarrow\quad
+  \gamma_i=\gamma\ \text{for all }i
+  \quad\Longleftrightarrow\quad
+  D=\gamma M.
+  \label{eq:graph_diagonal_commuting_iff}
+\end{equation}
+Thus non-proportionality is spatial roughness of the damping-to-inertia field.
+
+Let \(\Lt Q=Q\Lambda\) and \(\Gamma=Q^T\Dt Q\). Since
+\begin{equation}
+  Q^T[\Lt,\Dt]Q=[\Lambda,\Gamma],
+  \label{eq:graph_commutator_modal}
+\end{equation}
+for \(k\ne\ell\),
+\begin{equation}
+  (\nu_k-\nu_\ell)\Gamma_{k\ell}
+  =
+  q_k^T[\Lt,\Dt]q_\ell.
+  \label{eq:graph_modal_coupling_identity}
+\end{equation}
+Therefore
+\begin{equation}
+  |\Gamma_{k\ell}|
+  \le
+  \frac{\norm{[\Lt,\Dt]}_2}{|\nu_k-\nu_\ell|}
+  \le
+  \frac{
+  \left(
+  2\sum_{e=(i,j)}
+  \frac{w_e^2}{M_iM_j}(\gamma_i-\gamma_j)^2
+  \right)^{1/2}}
+  {|\nu_k-\nu_\ell|}.
+  \label{eq:graph_modal_mixing_bound}
+\end{equation}
+Large graph roughness and small spectral separation are the two ingredients of
+strong modal mixing. The design reading is direct: smooth the field
+\(D_i/M_i\), avoid abrupt local damping-to-inertia jumps across high-stiffness
+edges, or escalate from a graph-mode damping screen to the full QEP whenever
+\eqref{eq:graph_modal_mixing_bound} is not small in the protected mode band.
+
+\section{Dynamic Roughness of Local Control Fields}
+
+If the damping-channel self-energy is approximately local,
+\begin{equation}
+  \Sigma(s)=\diag(\sigma_i(s)),
+  \qquad
+  \gamma_i(s)=\frac{\sigma_i(s)}{M_i},
+  \label{eq:graph_dynamic_gamma}
+\end{equation}
+then, frequency by frequency,
+\begin{equation}
+  \norm{[\Lt,\widetilde\Sigma(s)]}_F^2
+  =
+  2\sum_{e=(i,j)}
+  \frac{w_e^2}{M_iM_j}
+  |\gamma_i(s)-\gamma_j(s)|^2.
+  \label{eq:graph_dynamic_roughness}
+\end{equation}
+The band function
+\begin{equation}
+  \mathcal E_\gamma(\omega)
+  =
+  \sum_{e=(i,j)}
+  \frac{w_e^2}{M_iM_j}
+  |\gamma_i(j\omega)-\gamma_j(j\omega)|^2
+  \label{eq:graph_dynamic_roughness_band}
+\end{equation}
+identifies frequencies where the spatial distribution of control is
+incompatible with the electrical topology. If \(\Pi(s)\) is dense, it should
+be decomposed into edge-like, shunt-like, and irreducibly nonlocal parts:
+\begin{equation}
+  \Pi(j\omega)
+  =
+  B K_\Pi(j\omega)B^T
+  +
+  \diag(k_\Pi(j\omega))
+  +
+  \Pi_{\rm nonlocal}(j\omega).
+  \label{eq:graph_pi_edge_shunt_nonlocal}
+\end{equation}
+This is the dynamic extension of the line-shunt decomposition used later for
+static perturbations.
+
+\section{Joint Graph-Time Frequency Response}
+
+Normalize the retained operator:
+\begin{equation}
+  \widetilde T(s)=M^{-1/2}T(s)M^{-1/2}.
+  \label{eq:graph_normalized_T}
+\end{equation}
+Let \(\Lt=Q\Lambda Q^T\). In graph-frequency coordinates,
+\begin{equation}
+  T_G(s)
+  =
+  Q^T\widetilde T(s)Q
+  =
+  s^2I+s\Gamma+\Lambda+\Pi_G(s),
+  \label{eq:graph_time_operator}
+\end{equation}
+where \(\Pi_G(s)=Q^TM^{-1/2}\Pi(s)M^{-1/2}Q\). The graph-time transfer
+function is
+\begin{equation}
+  H_G(\omega)=T_G(j\omega)^{-1}.
+  \label{eq:graph_time_transfer}
+\end{equation}
+The index \(k\) is a spatial graph frequency, while \(\omega\) is temporal
+frequency. \(H_{G,kk}(\omega)\) measures amplification of spatial mode \(k\),
+and \(H_{G,k\ell}(\omega)\) measures conversion from spatial mode \(\ell\) to
+spatial mode \(k\).
+
+Let
+\begin{equation}
+  d_k(\omega)
+  =
+  \nu_k-\omega^2
+  +j\omega\Gamma_{kk}
+  +[\Pi_G(j\omega)]_{kk},
+  \label{eq:graph_dk}
+\end{equation}
+and write
+\begin{equation}
+  T_G(j\omega)=D_0(\omega)+E(\omega),
+  \qquad
+  D_0(\omega)=\diag(d_1,\ldots,d_n).
+  \label{eq:graph_TG_split}
+\end{equation}
+If \(\alpha(\omega)=\norm{D_0(\omega)^{-1}E(\omega)}_2<1\), then
+\begin{equation}
+  \norm{H_G(\omega)-D_0(\omega)^{-1}}_2
+  \le
+  \frac{\norm{D_0^{-1}}_2^2\norm{E}_2}{1-\alpha(\omega)}.
+  \label{eq:graph_cross_resonance_bound}
+\end{equation}
+To first order,
+\begin{equation}
+  [H_G(\omega)]_{k\ell}
+  \approx
+  -\frac{E_{k\ell}(\omega)}{d_k(\omega)d_\ell(\omega)},
+  \qquad k\ne\ell.
+  \label{eq:graph_cross_resonance_first_order}
+\end{equation}
+A cross-modal resonance therefore requires temporal amplification in both
+modes and a strong off-diagonal channel from damping, self-energy, nonnormal
+AC stiffness, or nonlocal control.
+
+\section{Resonance Taxonomy}
+
+The graph-time response separates six mechanisms:
+\begin{enumerate}
+\item \textbf{Natural resonance:} \(\det T(s)=0\).
+\item \textbf{Forced resonance:} \(j\Omega\) lies near a visible pole and the
+input shape has strong projection on the corresponding left eigenvector.
+\item \textbf{Cross-modal graph resonance:} \(|H_{G,k\ell}(\omega)|\) is large
+for \(k\ne\ell\).
+\item \textbf{Network-control resonance:} a pole of \(\Pi(s)\) is close to a
+network-family pole and has a visible residue.
+\item \textbf{Parametric topology resonance:} a time-varying line weight
+modulates \(L(t)=L_0+\varepsilon L_1\cos\Omega t\).
+\item \textbf{Internal nonlinear resonance:} finite-amplitude dynamics satisfy
+\(m\omega_k\approx n\omega_\ell\) and require normal forms, continuation, or
+harmonic balance.
+\end{enumerate}
+
+For parametric line modulation,
+\begin{equation}
+  L_1=B\widehat W B^T,\qquad
+  c_{k\ell}=\phi_k^TL_1\phi_\ell
+  =
+  \sum_e \widehat w_e(a_e^T\phi_k)(a_e^T\phi_\ell).
+  \label{eq:graph_parametric_coupling}
+\end{equation}
+The coefficient \(c_{k\ell}\) is the exact spatial bridge from a modulated
+edge to the two interacting graph modes.
+
+\section{Dynamic Effective Resistance and Low-Rank Updates}
+
+Let
+\begin{equation}
+  G(s)=T(s)^{-1}
+  \label{eq:graph_green_function}
+\end{equation}
+on the projected nonzero-angle subspace. For line \(e\), define the dynamic
+effective resistance
+\begin{equation}
+  \mathcal R_e(s)=a_e^TG(s)a_e.
+  \label{eq:graph_dynamic_effective_resistance}
+\end{equation}
+If \(s=0\), \(\Pi(0)=0\), and \(T(0)=L\), this reduces to the static effective
+resistance \(a_e^TL^\dagger a_e\). For \(s\ne0\), it contains topology,
+operating point, inertia, damping, controller poles, memory, and resolvent
+amplification.
+
+For a frozen operating point and a rank-one stiffness update,
+\begin{equation}
+  T_\Delta(s)=T(s)+\Delta w_ea_ea_e^T,
+  \label{eq:graph_rank_one_update}
+\end{equation}
+the determinant lemma gives
+\begin{equation}
+  \det T_\Delta(s)
+  =
+  \det T(s)\left[1+\Delta w_e\mathcal R_e(s)\right].
+  \label{eq:graph_det_rank_one}
+\end{equation}
+New or shifted poles caused by this finite frozen update satisfy
+\begin{equation}
+  1+\Delta w_e\mathcal R_e(s)=0.
+  \label{eq:graph_pole_update_equation}
+\end{equation}
+The corresponding Green function update is
+\begin{equation}
+  G_\Delta(s)
+  =
+  G(s)
+  -
+  \frac{\Delta w_e\,G(s)a_ea_e^TG(s)}
+  {1+\Delta w_e\mathcal R_e(s)}.
+  \label{eq:graph_green_update}
+\end{equation}
+
+For multiple candidate lines with incidence matrix \(A_C\),
+\begin{equation}
+  K_C(s)=A_C^TG(s)A_C,
+  \label{eq:graph_candidate_kernel}
+\end{equation}
+and
+\begin{equation}
+  \det T_\Delta(s)
+  =
+  \det T(s)\det\!\left[I+\Delta W K_C(s)\right].
+  \label{eq:graph_multi_det_update}
+\end{equation}
+This reduces a large spectral update to a matrix whose dimension is the number
+of candidate actions. It is exact for frozen low-rank stiffness updates and a
+predictor for physical line changes that also move the operating point.
+
+\section{Dynamic Edge Centrality}
+
+For an input shape \(b\), an output shape \(c\), and
+\begin{equation}
+  h(s)=c^TG(s)b,
+  \label{eq:graph_transfer_scalar}
+\end{equation}
+the frozen line-weight derivative is
+\begin{equation}
+  \frac{\partial h(s)}{\partial w_e}
+  =
+  -
+  \left[c^TG(s)a_e\right]
+  \left[a_e^TG(s)b\right].
+  \label{eq:graph_dynamic_edge_derivative}
+\end{equation}
+Thus
+\begin{equation}
+  \mathcal C_e(\omega;b,c)
+  =
+  |c^TG(j\omega)a_e|\,
+  |a_e^TG(j\omega)b|
+  \label{eq:graph_dynamic_edge_centrality}
+\end{equation}
+is a frequency-specific dynamic centrality. It identifies a line that is
+reachable from the disturbance, transmits energy toward the protected output,
+and matters in the resonant band. It need not have high static degree,
+betweenness, or Fiedler sensitivity.
+
+\section{Structured Fragility Radii}
+
+There is no single maximum perturbation. At least four different radii are
+needed.
+
+For topology or parameter changes, define a protected spectral region
+\(\mathcal S\). With candidate line matrix \(A_C\), the structured topological
+radius is
+\begin{equation}
+  r_{\rm top}
+  =
+  \inf\left\{
+  \norm{\Delta W}:
+  \exists s\in\partial\mathcal S,\ 
+  \det[T(s)+A_C\Delta W A_C^T]=0
+  \right\}.
+  \label{eq:graph_topological_radius}
+\end{equation}
+Using \eqref{eq:graph_multi_det_update}, the reduced condition is
+\begin{equation}
+  \det[I+\Delta W K_C(s)]=0.
+  \label{eq:graph_reduced_fragility_condition}
+\end{equation}
+With a declared physical uncertainty structure, this becomes the structured
+radius
+\begin{equation}
+  r_{\rm top}
+  =
+  \left[
+  \sup_{s\in\partial\mathcal S}
+  \mu_\Delta(K_C(s))
+  \right]^{-1}.
+  \label{eq:graph_mu_radius}
+\end{equation}
+
+For a single frozen line update, the complex unstructured line radius along a
+protected boundary is especially transparent:
+\begin{equation}
+  r_{e}^{\C}
+  =
+  \left[
+  \sup_{s\in\partial\mathcal S}
+  |\mathcal R_e(s)|
+  \right]^{-1}.
+  \label{eq:graph_complex_line_radius}
+\end{equation}
+This is the smallest complex scalar \(\Delta w_e\) that can satisfy
+\(1+\Delta w_e\mathcal R_e(s)=0\) for some boundary point. A physical line
+weight is real, so the real frozen-line radius is
+\begin{equation}
+  r_{e}^{\R}
+  =
+  \min_{\substack{s\in\partial\mathcal S\\
+  \operatorname{Im}\mathcal R_e(s)=0}}
+  \frac{1}{|\operatorname{Re}\mathcal R_e(s)|},
+  \label{eq:graph_real_line_radius}
+\end{equation}
+with the convention \(r_e^{\R}=\infty\) if the feasibility set is empty. Thus
+dynamic effective resistance is not only a ranking score; it gives an exact
+single-line fragility radius for the declared spectral boundary.
+
+For a forced input in a stable linear model, increasing amplitude does not move
+poles. It can still violate an operational limit:
+\begin{equation}
+  |\widehat u|_{\max}^{\Omega}
+  =
+  \frac{y_{\max}}
+  {\sup_{\omega\in\Omega}
+  \sigma_{\max}\!\left(C_yG(j\omega)B_u\right)}.
+  \label{eq:graph_forced_amplitude_radius}
+\end{equation}
+For nonlinear loss of stability, the relevant object is a region-of-attraction
+radius,
+\begin{equation}
+  r_{\rm ROA}
+  =
+  \inf_{x\in\partial\mathcal B(x^\star)}
+  \norm{W_x(x-x^\star)}.
+  \label{eq:graph_roa_radius}
+\end{equation}
+The first is a parametric fragility radius, the second is an input-output
+exposure bound, and the third is a nonlinear stability quantity.
+
+\section{Stability Recovery Design}
+
+The graph-dynamic design problem combines line, damping, inertia, and
+controller actions:
+\begin{equation}
+  u=
+  \begin{bmatrix}
+  \Delta w & \Delta D & \Delta M & \Delta\kappa
+  \end{bmatrix}^T.
+  \label{eq:graph_design_vector}
+\end{equation}
+A unified recovery problem is
+\begin{align}
+  \min_u\quad&
+  c_w^T|\Delta w|
+  +c_D^T|\Delta D|
+  +c_M^T|\Delta M|
+  +c_\kappa^T|\Delta\kappa|
+  \label{eq:graph_recovery_problem}\\
+  \text{subject to}\quad&
+  F(z^\star,u)=0,\nonumber\\
+  &|f_e(z^\star,u)|\le \overline f_e,\nonumber\\
+  &|B^T\theta^\star|\le \eta_{\max},\nonumber\\
+  &\Real s_k(u)\le-\alpha_\star,\qquad
+    \zeta_k(u)\ge\zeta_\star,\nonumber\\
+  &\sup_{\omega\in\Omega}
+    \sigma_{\max}\!\left(C_yT(j\omega,u)^{-1}B_u\right)
+    \le g_\star,\nonumber\\
+  &r_{\rm top}(u)\ge r_\star.\nonumber
+\end{align}
+Sequential versions should use pole sensitivities and resolvent-gradient
+steps only inside a trust region, followed by continuation of the operating
+point and the protected poles.
+
+\section{AC, Directed, and Matrix-Weighted Extensions}
+
+The scalar lossless Laplacian is the symmetric floor, not the universal model.
+For the AC Jacobian,
+\begin{equation}
+  \begin{bmatrix}
+  \Delta P\\
+  \Delta Q
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+  J_{P\theta}&J_{PV}\\
+  J_{Q\theta}&J_{QV}
+  \end{bmatrix}
+  \begin{bmatrix}
+  \Delta\theta\\
+  \Delta V
+  \end{bmatrix},
+  \label{eq:graph_ac_jacobian}
+\end{equation}
+eliminating voltage increments under \(\Delta Q=0\) gives
+\begin{equation}
+  L_{\rm AC}
+  =
+  J_{P\theta}-J_{PV}J_{QV}^{-1}J_{Q\theta}.
+  \label{eq:graph_ac_condensed_L}
+\end{equation}
+In general \(L_{\rm AC}\ne L_{\rm AC}^T\). Its symmetric part is
+stiffness-like; its skew part is circulatory and nonconservative. This
+nonnormal layer requires left-right eigenvectors and resolvent gains.
+
+For multivariable ports, assign each bus an \(r\)-dimensional vector and set
+\(\mathcal B=B\otimes I_r\). With line admittances
+\(Y_e(s)\in\C^{r\times r}\),
+\begin{equation}
+  \mathcal L(s)
+  =
+  \mathcal B
+  \operatorname{blkdiag}(Y_1(s),\ldots,Y_m(s))
+  \mathcal B^T.
+  \label{eq:graph_matrix_laplacian}
+\end{equation}
+For a matrix update on line \(e\), with \(\mathcal A_e=a_e\otimes I_r\),
+\begin{equation}
+  \mathcal R_e^{(r)}(s)
+  =
+  \mathcal A_e^T\mathcal T(s)^{-1}\mathcal A_e,
+  \label{eq:graph_matrix_effective_resistance}
+\end{equation}
+and
+\begin{equation}
+  \det\mathcal T_\Delta(s)
+  =
+  \det\mathcal T(s)
+  \det\!\left[I_r+\Delta Y_e(s)\mathcal R_e^{(r)}(s)\right].
+  \label{eq:graph_matrix_det_update}
+\end{equation}
+This is the natural extension to \(dq\) coupling, voltage-frequency channels,
+frequency-dependent line models, directed effects, and multivariable converter
+ports.
+
+\section{Paper Extraction}
+
+This chapter supports a focused Transactions-style paper:
+\begin{quote}
+\itshape
+Graph-Time Resonance, Spectral Effective Resistance, and Structured Topology
+Fragility in Converter-Rich Power Systems.
+\end{quote}
+The broad dissertation contribution is operator-valued dynamic grid strength.
+The narrower article should be sold as controller-resolvent-aware spectral
+graph planning. Its minimum publishable package is:
+\begin{enumerate}
+\item graph roughness of \(D_i/M_i\) and the modal-mixing bound
+\eqref{eq:graph_modal_mixing_bound};
+\item graph-time transfer \(H_G(\omega)\) and cross-resonance atlas;
+\item finite dynamic-effective-resistance updates
+\(1+\Delta w_e\mathcal R_e(s)=0\);
+\item structured topology-fragility radii
+\eqref{eq:graph_complex_line_radius}--\eqref{eq:graph_real_line_radius};
+\item a controller-induced reinforcement-reversal gate, using the Schur
+self-energy machinery developed later in the thesis.
+\end{enumerate}
+The novelty claim should not be that Laplacians or effective resistance are
+new, that Schur complements are new, or that adding a line can never hurt in
+existing literature. The defensible claim is narrower and stronger:
+power-flow-induced stiffness, damping-to-inertia roughness, graph-time modal
+conversion, finite low-rank topology updates, rational controller self-energy,
+and structured stability radii are projections of one operator
+\(T(s;z^\star)\), and that operator determines when a topological improvement
+really improves a protected dynamic margin.

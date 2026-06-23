@@ -1,0 +1,110 @@
+{
+  "top_weak_nodes": [
+    {
+      "bus": 30,
+      "action": "increase_local_damping_10pct",
+      "base_zeta": 0.250348186632764,
+      "post_zeta": 0.2615035902674693,
+      "delta_zeta": 0.0111554036347052,
+      "sensitivity_fd": 0.0093047495724554
+    },
+    {
+      "bus": 38,
+      "action": "increase_local_damping_10pct",
+      "base_zeta": 0.250348186632764,
+      "post_zeta": 0.2513406555197719,
+      "delta_zeta": 0.0009924688870079,
+      "sensitivity_fd": 0.0003900091784166
+    },
+    {
+      "bus": 36,
+      "action": "increase_local_damping_10pct",
+      "base_zeta": 0.250348186632764,
+      "post_zeta": 0.2506253603694911,
+      "delta_zeta": 0.0002771737367271,
+      "sensitivity_fd": 0.0001742394218262
+    }
+  ],
+  "best_weak_link": {
+    "line_index": 44,
+    "from_bus": 25,
+    "to_bus": 37,
+    "base_weight": 45.50836534062071,
+    "base_zeta": 0.250348186632764,
+    "post_zeta": 0.2566580266718588,
+    "delta_zeta": 0.0063098400390947,
+    "base_nu_critical": 0.7292358678957851,
+    "post_nu_critical": 0.7292443855711614,
+    "delta_nu_critical": 8.517675376351619e-06,
+    "braess_like_reversal": false
+  },
+  "worst_braess_like_reversals": [
+    {
+      "line_index": 2,
+      "from_bus": 2,
+      "to_bus": 3,
+      "base_weight": 71.20997245901965,
+      "base_zeta": 0.250348186632764,
+      "post_zeta": 0.2476618929858196,
+      "delta_zeta": -0.0026862936469443,
+      "base_nu_critical": 0.7292358678957851,
+      "post_nu_critical": 0.729241147838429,
+      "delta_nu_critical": 5.279942643876545e-06,
+      "braess_like_reversal": true
+    },
+    {
+      "line_index": 29,
+      "from_bus": 25,
+      "to_bus": 26,
+      "base_weight": 33.96996848803698,
+      "base_zeta": 0.250348186632764,
+      "post_zeta": 0.2478295019717886,
+      "delta_zeta": -0.0025186846609752,
+      "base_nu_critical": 0.7292358678957851,
+      "post_nu_critical": 0.7292702154845604,
+      "delta_nu_critical": 3.434758877529642e-05,
+      "braess_like_reversal": true
+    },
+    {
+      "line_index": 0,
+      "from_bus": 1,
+      "to_bus": 2,
+      "base_weight": 26.567831861908708,
+      "base_zeta": 0.250348186632764,
+      "post_zeta": 0.2483025924589967,
+      "delta_zeta": -0.0020455941737672,
+      "base_nu_critical": 0.7292358678957851,
+      "post_nu_critical": 0.7292630423166014,
+      "delta_nu_critical": 2.7174420816344916e-05,
+      "braess_like_reversal": true
+    },
+    {
+      "line_index": 4,
+      "from_bus": 3,
+      "to_bus": 4,
+      "base_weight": 50.71017135478421,
+      "base_zeta": 0.250348186632764,
+      "post_zeta": 0.2490386359790666,
+      "delta_zeta": -0.0013095506536973,
+      "base_nu_critical": 0.7292358678957851,
+      "post_nu_critical": 0.7292390040902698,
+      "delta_nu_critical": 3.136194484665289e-06,
+      "braess_like_reversal": true
+    },
+    {
+      "line_index": 1,
+      "from_bus": 1,
+      "to_bus": 39,
+      "base_weight": 43.12025273443464,
+      "base_zeta": 0.250348186632764,
+      "post_zeta": 0.2491092275020888,
+      "delta_zeta": -0.0012389591306751,
+      "base_nu_critical": 0.7292358678957851,
+      "post_nu_critical": 0.7292524503505712,
+      "delta_nu_critical": 1.6582454786084888e-05,
+      "braess_like_reversal": true
+    }
+  ],
+  "figure_pdf": "outputs\\ieee39_result_map\\fig_ieee39_result_map.pdf",
+  "paper_figure_pdf": "paper_ieee_transactions\\figures\\fig6_ieee39_result_map.pdf"
+}

@@ -1,0 +1,247 @@
+{
+  "gate": "coordination_lever_value",
+  "overall_status": "COORDINATION_VALUE_OBSERVED",
+  "git_commit": "46f48b23d2ca168678e843f32d844eae5f4d93e5",
+  "random_seed": 20260609,
+  "costs": {
+    "w": 1.0,
+    "D": 2.0,
+    "M": 8.0
+  },
+  "equal_cost_budget": 1.0,
+  "eps_grid": [
+    0.05,
+    0.1,
+    0.2
+  ],
+  "topk_combined": 6,
+  "resolvent_freq_grid_rad_s": {
+    "min": 0.05,
+    "max": 20.0,
+    "count": 80
+  },
+  "version_manifest": {
+    "python": "3.13.9 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 19:09:58) [MSC v.1929 64 bit (AMD64)]",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "scipy": "1.16.3",
+    "andes": "2.0.0"
+  },
+  "aggregate": {
+    "aggregate_rows": [
+      {
+        "metric": "S_zeta",
+        "pair": "w+D",
+        "eps": 0.05,
+        "n_syn": 62,
+        "median_syn_norm": 0.007668302773441172,
+        "pct_syn_norm_lt_minus_0p10": 0.0,
+        "n_cv": 61,
+        "median_cv": 0.01729617454846455,
+        "pct_cv_lt_0": 0.3114754098360656
+      },
+      {
+        "metric": "S_zeta",
+        "pair": "w+D",
+        "eps": 0.1,
+        "n_syn": 62,
+        "median_syn_norm": 0.022069472696906192,
+        "pct_syn_norm_lt_minus_0p10": 0.0,
+        "n_cv": 61,
+        "median_cv": 0.01729617454846455,
+        "pct_cv_lt_0": 0.3114754098360656
+      },
+      {
+        "metric": "S_zeta",
+        "pair": "w+D",
+        "eps": 0.2,
+        "n_syn": 62,
+        "median_syn_norm": 0.04991209754616945,
+        "pct_syn_norm_lt_minus_0p10": 0.04838709677419355,
+        "n_cv": 61,
+        "median_cv": 0.01729617454846455,
+        "pct_cv_lt_0": 0.3114754098360656
+      },
+      {
+        "metric": "S_zeta",
+        "pair": "w+M",
+        "eps": 0.05,
+        "n_syn": 62,
+        "median_syn_norm": -0.002966170657092108,
+        "pct_syn_norm_lt_minus_0p10": 0.11290322580645161,
+        "n_cv": 61,
+        "median_cv": -0.0018149072526383314,
+        "pct_cv_lt_0": 0.5081967213114754
+      },
+      {
+        "metric": "S_zeta",
+        "pair": "w+M",
+        "eps": 0.1,
+        "n_syn": 62,
+        "median_syn_norm": -0.005119928887203324,
+        "pct_syn_norm_lt_minus_0p10": 0.22580645161290322,
+        "n_cv": 61,
+        "median_cv": -0.0018149072526383314,
+        "pct_cv_lt_0": 0.5081967213114754
+      },
+      {
+        "metric": "S_zeta",
+        "pair": "w+M",
+        "eps": 0.2,
+        "n_syn": 62,
+        "median_syn_norm": 0.020647076852967912,
+        "pct_syn_norm_lt_minus_0p10": 0.1774193548387097,
+        "n_cv": 61,
+        "median_cv": -0.0018149072526383314,
+        "pct_cv_lt_0": 0.5081967213114754
+      },
+      {
+        "metric": "S_zeta",
+        "pair": "D+M",
+        "eps": 0.05,
+        "n_syn": 62,
+        "median_syn_norm": 0.00464058018071738,
+        "pct_syn_norm_lt_minus_0p10": 0.0,
+        "n_cv": 62,
+        "median_cv": 0.03640714147183133,
+        "pct_cv_lt_0": 0.20967741935483872
+      },
+      {
+        "metric": "S_zeta",
+        "pair": "D+M",
+        "eps": 0.1,
+        "n_syn": 62,
+        "median_syn_norm": 0.016413039731715137,
+        "pct_syn_norm_lt_minus_0p10": 0.06451612903225806,
+        "n_cv": 62,
+        "median_cv": 0.03640714147183133,
+        "pct_cv_lt_0": 0.20967741935483872
+      },
+      {
+        "metric": "S_zeta",
+        "pair": "D+M",
+        "eps": 0.2,
+        "n_syn": 62,
+        "median_syn_norm": 0.03434226439295836,
+        "pct_syn_norm_lt_minus_0p10": 0.04838709677419355,
+        "n_cv": 62,
+        "median_cv": 0.03640714147183133,
+        "pct_cv_lt_0": 0.20967741935483872
+      },
+      {
+        "metric": "S_g",
+        "pair": "w+D",
+        "eps": 0.05,
+        "n_syn": 62,
+        "median_syn_norm": 0.000763786402409719,
+        "pct_syn_norm_lt_minus_0p10": 0.0,
+        "n_cv": 61,
+        "median_cv": -0.052937125774324745,
+        "pct_cv_lt_0": 0.7213114754098361
+      },
+      {
+        "metric": "S_g",
+        "pair": "w+D",
+        "eps": 0.1,
+        "n_syn": 62,
+        "median_syn_norm": 0.04140606492944125,
+        "pct_syn_norm_lt_minus_0p10": 0.0,
+        "n_cv": 61,
+        "median_cv": -0.052937125774324745,
+        "pct_cv_lt_0": 0.7213114754098361
+      },
+      {
+        "metric": "S_g",
+        "pair": "w+D",
+        "eps": 0.2,
+        "n_syn": 62,
+        "median_syn_norm": 0.14274149902187033,
+        "pct_syn_norm_lt_minus_0p10": 0.0,
+        "n_cv": 61,
+        "median_cv": -0.052937125774324745,
+        "pct_cv_lt_0": 0.7213114754098361
+      },
+      {
+        "metric": "S_g",
+        "pair": "w+M",
+        "eps": 0.05,
+        "n_syn": 62,
+        "median_syn_norm": 0.0003818153534009315,
+        "pct_syn_norm_lt_minus_0p10": 0.12903225806451613,
+        "n_cv": 61,
+        "median_cv": -0.07362958055494628,
+        "pct_cv_lt_0": 0.6721311475409836
+      },
+      {
+        "metric": "S_g",
+        "pair": "w+M",
+        "eps": 0.1,
+        "n_syn": 62,
+        "median_syn_norm": 0.25547186035613817,
+        "pct_syn_norm_lt_minus_0p10": 0.11290322580645161,
+        "n_cv": 61,
+        "median_cv": -0.07362958055494628,
+        "pct_cv_lt_0": 0.6721311475409836
+      },
+      {
+        "metric": "S_g",
+        "pair": "w+M",
+        "eps": 0.2,
+        "n_syn": 62,
+        "median_syn_norm": 0.5423448925195331,
+        "pct_syn_norm_lt_minus_0p10": 0.11290322580645161,
+        "n_cv": 61,
+        "median_cv": -0.07362958055494628,
+        "pct_cv_lt_0": 0.6721311475409836
+      },
+      {
+        "metric": "S_g",
+        "pair": "D+M",
+        "eps": 0.05,
+        "n_syn": 62,
+        "median_syn_norm": 0.022979968380308628,
+        "pct_syn_norm_lt_minus_0p10": 0.016129032258064516,
+        "n_cv": 62,
+        "median_cv": -0.006759082333347433,
+        "pct_cv_lt_0": 0.5161290322580645
+      },
+      {
+        "metric": "S_g",
+        "pair": "D+M",
+        "eps": 0.1,
+        "n_syn": 62,
+        "median_syn_norm": 0.08476068376507855,
+        "pct_syn_norm_lt_minus_0p10": 0.0,
+        "n_cv": 62,
+        "median_cv": -0.006759082333347433,
+        "pct_cv_lt_0": 0.5161290322580645
+      },
+      {
+        "metric": "S_g",
+        "pair": "D+M",
+        "eps": 0.2,
+        "n_syn": 62,
+        "median_syn_norm": 0.1519477284993449,
+        "pct_syn_norm_lt_minus_0p10": 0.016129032258064516,
+        "n_cv": 62,
+        "median_cv": -0.006759082333347433,
+        "pct_cv_lt_0": 0.5161290322580645
+      }
+    ],
+    "n_cases": 62,
+    "n_synthetic_cases": 60,
+    "n_ieee_topology_cases": 2,
+    "median_topology_feasible_ratio": 1.0,
+    "metric_disagreement": {
+      "n_pair_cases": 184,
+      "pct_same_cv_sign": 0.5,
+      "pct_same_single_ranking": 0.2826086956521739
+    },
+    "verdict": {
+      "status": "COORDINATION_VALUE_OBSERVED",
+      "implication": "Equal-cost mixed packages beat the best single lever in a majority of cases for at least one metric/pair.",
+      "n_cv_majority_rows": 4,
+      "n_syn_majority_rows": 0
+    }
+  }
+}

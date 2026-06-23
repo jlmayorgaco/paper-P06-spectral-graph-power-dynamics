@@ -1,0 +1,59 @@
+{
+  "gate": "Braess resonant network-control mechanism over Phase-0D NEP bridge",
+  "verdict": "PASS_RESONANT_FOUND",
+  "random_seed": 20260608,
+  "git_commit": "46f48b23d2ca168678e843f32d844eae5f4d93e5",
+  "eps": 0.01,
+  "cases_requested": [
+    "mix60",
+    "mix60_soft_gfl",
+    "mix60_no_pss"
+  ],
+  "cases_tested": [
+    "mix60",
+    "mix60_soft_gfl",
+    "mix60_no_pss"
+  ],
+  "case_summaries": [
+    {
+      "case": "mix60",
+      "ok": true,
+      "path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\ieee39_ibr_mix60.xlsx",
+      "n_lines": 46,
+      "base_max_real": 2.000000026702864e-09,
+      "base_margin_zeta": 0.12356640435071799,
+      "base_network_zeta": 0.1332264582033462
+    },
+    {
+      "case": "mix60_soft_gfl",
+      "ok": true,
+      "path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\soft_gfl\\ieee39_ibr_mix60.xlsx",
+      "n_lines": 46,
+      "base_max_real": 4.000000053405728e-10,
+      "base_margin_zeta": 0.16079394128521782,
+      "base_network_zeta": 0.16079394128521782
+    },
+    {
+      "case": "mix60_no_pss",
+      "ok": true,
+      "path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+      "n_lines": 46,
+      "base_max_real": 2.000000026702864e-09,
+      "base_margin_zeta": 0.12356640435071801,
+      "base_network_zeta": 0.13322645820331006
+    }
+  ],
+  "n_rows": 460,
+  "n_ok": 460,
+  "n_margin_reversals": 348,
+  "n_network_mode_reversals": 232,
+  "n_resonant": 40,
+  "median_smooth_rel_error": 0.000807729516004942,
+  "interpretation": "At least one line reinforcement produced a network-family damping decrease, moved the tracked mode closer to a matched condensed-control pole, and was dominated by the self-energy term.  The resonant Braess mechanism is observed in this benchmark.",
+  "outputs": {
+    "line_csv": "outputs\\phase_braess_nep\\phase_braess_nep_line_decomposition.csv",
+    "status_json": "outputs\\phase_braess_nep\\phase_braess_nep_status.json",
+    "report": "outputs\\phase_braess_nep\\phase_braess_nep_report.md",
+    "figure_png": "outputs\\phase_braess_nep\\fig_braess_nep_s_plane.png"
+  }
+}

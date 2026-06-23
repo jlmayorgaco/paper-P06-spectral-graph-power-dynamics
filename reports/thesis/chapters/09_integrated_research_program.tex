@@ -1,0 +1,1155 @@
+\chapter{Integrated Claim Ledger and Algebraic Research Program}
+
+The previous chapters built the theory in layers. This chapter records how the
+project artifacts in \texttt{temp/} and the companion drafts map into that
+theory. Its purpose is traceability. A doctoral thesis cannot rely on the
+statement that a formula was ``modified to taste.'' It must state where the
+formula comes from, what model it assumes, what it proves, what it only
+screens, and what validation gate is still missing.
+
+The central integrated object is
+\begin{equation}
+  T(s;\rho)
+  =
+  s^2M(\rho)+sD_0(\rho)+L(\rho)+\Pi(s;\rho),
+  \qquad
+  \Pi(s;\rho)=\Pi_K(s;\rho)+s\Pi_D(s;\rho).
+  \label{eq:integrated_operator}
+\end{equation}
+Here \(L\) is the operating-point stiffness inherited from power flow,
+\(M\) is physical or virtual inertia, and \(\Pi(s)\) is the condensed
+controller self-energy. The damping-channel specialization defines
+\(\Sigma(s)=D_0+\Pi_D(s)\) when \(\Pi_K\) is absent or explicitly absorbed into
+stiffness. The fixed-\(D\) theory is the special case \(\Pi(s)=0\) with direct
+damping \(D_0=D\). The uniform proportional damping floor is the smaller
+special case \(D=\gamma M\), while the broader decoupled fixed-\(D\) class is
+\([\Lt,\Dt]=0\). This single inclusion chain is the clean way to organize the
+project:
+\begin{equation}
+  \begin{aligned}
+  D=\gamma M
+  &\subset
+  \{D:\ [\Lt,\Dt]=0\}\\
+  &\subset
+  \{D:\ [\Lt,\Dt]\neq0,\ D\ {\rm fixed}\}\\
+  &\subset
+  \{\Pi(s)\ {\rm rational}\}\\
+  &\subset
+  \{{\rm nonlinear\ memory}\}.
+  \end{aligned}
+  \label{eq:integrated_inclusion_chain}
+\end{equation}
+
+\thesisbox{thesisblue}{Chapter visual promise}{
+This chapter turns the project archive into a controlled research program. The
+reader should be able to trace each idea from source, to operator, to margin,
+to action, and finally to a validation gate.}
+
+\begin{table}[ht]
+\centering
+\caption{Claim-status vocabulary used in this chapter.}
+\label{tab:claim_status_vocabulary}
+\begin{tabular}{L{0.19\textwidth}L{0.67\textwidth}}
+\toprule
+\rowcolor{softblue}
+\thead{Status} & \thead{Meaning}\\
+\midrule
+\statuspill{thesisgreen}{Algebraic result} &
+The statement follows from matrix identities or perturbation formulas under
+declared assumptions.\\
+\statuspill{thesisblue}{Screen} &
+The calculation ranks candidates or flags risk, but does not by itself certify
+the protected margin.\\
+\statuspill{thesisorange}{Gate} &
+The result is an internal validation or rejection test that constrains what can
+be claimed next.\\
+\statuspill{thesisred}{Candidate} &
+The mechanism is mathematically coherent but still requires a registered
+benchmark before it becomes an empirical contribution.\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\section{Source-to-Claim Ledger}
+
+Tables~\ref{tab:source_claim_ledger_main} and
+\ref{tab:source_claim_ledger_validation} convert the reviewed material into
+thesis claims. The language is deliberately conservative: an algebraic
+derivation is not a benchmark validation, and a validated internal gate is not
+an industry-wide theorem.
+
+\begin{table}[p]
+\centering
+\small
+\caption{Ledger linking the main project sources to mathematical objects and
+claim status.}
+\label{tab:source_claim_ledger_main}
+\begin{tabular}{L{0.17\textwidth}L{0.25\textwidth}L{0.30\textwidth}L{0.12\textwidth}}
+\toprule
+\rowcolor{softblue}
+\thead{Source} & \thead{Mathematical object} & \thead{Incorporated thesis claim} & \thead{Status}\\
+\midrule
+Handoff protocol &
+\(\zeta_k\simeq\delta_k/(2\sqrt{\nu_k})\), adaptive reduced QEP, line
+sensitivity warnings &
+Graph-frequency metrics are screens; damping-margin rankings must use
+post-action \(\zeta_{\min}\) or pole recomputation. &
+Calibrated protocol\\
+\addlinespace
+Consolidated blueprint &
+Damping-region inequality
+\(\delta_k\ge 2\zeta_\star\sqrt{\nu_k}\), reduced QEP selection, exact QEP
+sensitivity &
+Use the diagonal damping region when modes are separated, then promote only
+coupled low-damping clusters to a reduced QEP. &
+Theory plus surrogate gate\\
+\addlinespace
+Unified attribution note &
+\(T(s)=s^2M+sD_0+L+\Pi(s)\), self-energy contribution, weak nodes and weak
+links &
+The final reduced controller object for IBR-rich models is rational in \(s\);
+its damping-channel projection is \(\Sigma(s)\), not generally a constant
+\(D\). &
+Core thesis frame\\
+\addlinespace
+Hidden-resonance note &
+Distance \(d^{\rm ctrl}_{kj}\), self-energy dominance \(\phi_\Sigma^{\rm abs}\), hidden
+action margin &
+A stable pole may be close to a controller-resonant damping loss even when its
+present damping ratio is acceptable. &
+Candidate diagnostic\\
+\addlinespace
+Line-shunt derivation &
+\(\operatorname{Sym}(n)=\mathcal L_{\rm all}\oplus\mathcal D_{\rm sh}\) and
+\(\partial\Lt/\partial M_i\) &
+Virtual inertia has an existing-line plus shunt structural footprint in the
+inertia-normalized stiffness; it does not create new-line directions. &
+Algebraic result\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\small
+\caption{Ledger linking internal drafts and validation records to incorporated
+claims.}
+\label{tab:source_claim_ledger_validation}
+\begin{tabular}{L{0.17\textwidth}L{0.25\textwidth}L{0.30\textwidth}L{0.12\textwidth}}
+\toprule
+\rowcolor{softblue}
+\thead{Source} & \thead{Mathematical object} & \thead{Incorporated thesis claim} & \thead{Status}\\
+\midrule
+Hosting-capacity draft PDF &
+Mass-normalized Laplacian, first-order spectral hosting screen, stochastic fragility,
+edge and node fragility &
+Dynamic hosting capacity should be a set constrained by damping, resolvent,
+and stochastic frequency-security margins, not only voltage limits. &
+Internal draft, integrated cautiously\\
+\addlinespace
+Beyond-voltage draft PDF &
+Kirchhoff-consistent AC power flow, weak nodes, hidden dynamic margins &
+Voltage-safe operating points can still violate dynamic spectral margins; the
+power-flow Jacobian is the bridge from electrical operating point to \(L\). &
+Internal draft, integrated cautiously\\
+\addlinespace
+Frequency-estimator draft and ZIP &
+\(T_{\rm risk}\), latency, peak-error exposure &
+A dynamic hosting certificate should include what the protection and
+measurement layer can actually observe. &
+Protection gate\\
+\addlinespace
+Braess-NEP phase &
+NEP line sensitivity with self-energy contribution &
+Some line reinforcements are control-resonant damping risks, not generic
+topological Braess theorems. &
+Internal NEP gate\\
+\addlinespace
+Rational-filter output &
+Diagonal, second-order, reduced-QEP, and adaptive errors &
+The adaptive estimator is useful because diagonal screens are often accurate
+but fail under clustered or strongly coupled damping. &
+Surrogate validation\\
+\addlinespace
+Coordination-lever gate &
+Equal-cost topology, damping, and inertia packages &
+Mixed lever packages can outperform the best single lever, but modal and
+resolvent margins need separate reporting. &
+Planning gate\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\section{Step-by-Step Analysis Stack}
+
+The analysis should be read as a sequence. Each step adds one layer of physics
+or mathematics.
+
+\begin{enumerate}
+\item \textbf{Start from the electrical operating point.} Bus voltages,
+current injections, and admittances satisfy \(I=Y_{\rm bus}V\). Complex power
+is \(S_i=P_i+jQ_i=V_iI_i^*\). This gives the nonlinear AC power-flow map.
+\item \textbf{Linearize active power with respect to angle.} At a feasible
+operating point, the block \(J_{P\theta}=\partial P/\partial\theta\) gives the
+synchronizing stiffness. After the reference-angle direction is removed, write
+the positive stiffness as \(L\). In the lossless small-angle case, \(L\) is a
+weighted Laplacian.
+\item \textbf{Attach nodal dynamics.} Structure-preserving power-system models
+retain bus-level dynamics instead of hiding all loads inside a reduced network
+\cite{bergen1981structure,kundur1994power,sauer2017power,milano2010power}.
+For the electromechanical layer this gives
+\[
+  M\ddot\theta+D\dot\theta+L\theta=p.
+\]
+\item \textbf{Remove the uniform angle mode.} Work on a subspace orthogonal to
+the rotational symmetry. If \(R^T\mathbf 1=0\), define
+\[
+  M_r=R^TMR,\qquad D_r=R^TDR,\qquad L_r=R^TLR.
+\]
+\item \textbf{Normalize inertia.} With
+\[
+  \Lt=M_r^{-1/2}L_rM_r^{-1/2},\qquad
+  \Dt=M_r^{-1/2}D_rM_r^{-1/2},
+\]
+the QEP becomes
+\[
+  \left(s^2I+s\Dt+\Lt\right)v=0.
+\]
+\item \textbf{Diagonalize stiffness, not damping.} Let
+\(\Lt Q=Q\operatorname{diag}(\nu_k)\). The modal damping matrix is
+\[
+  \Gamma=Q^T\Dt Q.
+\]
+Only when \(\Gamma\) is diagonal do graph modes decouple exactly.
+\item \textbf{Use the diagonal damping screen first.} The first screen is
+\[
+  \hat\zeta_k=\frac{\Gamma_{kk}}{2\sqrt{\nu_k}},
+  \qquad
+  h_k=\Gamma_{kk}-2\zeta_\star\sqrt{\nu_k}.
+\]
+It is exact under proportional or commuting damping, and a first-order
+diagnostic otherwise.
+\item \textbf{Promote dangerous clusters to a reduced QEP.} If off-diagonal
+modal damping is large or the graph frequencies are clustered, solve the QEP
+on the selected modal subspace.
+\item \textbf{Condense controllers only after admitting that the object
+changes.} Eliminating controller states produces \(\Pi(s)\), with
+\(\Sigma(s)\) only as a declared damping-channel specialization, so the problem
+becomes the rational NEP \eqref{eq:integrated_operator}.
+\item \textbf{Plan with margins, not labels.} A bus, line, or controller is
+weak only relative to a margin and an action family: \(\zeta_{\min}\), protected
+resolvent gain, control-pole distance, stochastic variance, or protection
+exposure.
+\end{enumerate}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  nodebox/.style={
+    rectangle,
+    rounded corners=3pt,
+    draw=#1!70!black,
+    fill=#1!10,
+    text width=0.22\textwidth,
+    minimum height=1.05cm,
+    align=center,
+    font=\small
+  },
+  arr/.style={-{Latex[length=2.2mm]}, thick, draw=thesisgray}
+]
+\node[nodebox=thesisblue] (op) {\textbf{Operating point}\\
+\(V^\star,\theta^\star\)};
+\node[nodebox=thesisgreen, right=0.45cm of op] (lm) {\textbf{Graph stiffness}\\
+\(L,\Lt,\nu_k,q_k\)};
+\node[nodebox=thesisorange, right=0.45cm of lm] (dm) {\textbf{Damping screen}\\
+\(\delta_k,\hat\zeta_k,h_k\)};
+\node[nodebox=thesisred, below=0.7cm of lm] (nep) {\textbf{Controller bridge}\\
+\(\Sigma(s),s\Sigma'(s)\)};
+\node[nodebox=thesisgold, right=0.45cm of nep] (act) {\textbf{Action ranking}\\
+\(\Delta w,\Delta M,\Delta D,\Delta\kappa\)};
+\draw[arr] (op) -- (lm);
+\draw[arr] (lm) -- (dm);
+\draw[arr] (dm.south) -- ++(0,-0.38) -| ([xshift=0.24cm]act.north);
+\draw[arr] (lm.south) -- (nep.north);
+\draw[arr] (nep) -- (act);
+\end{tikzpicture}
+\caption{Analysis stack used by the integrated research program. The diagonal
+damping screen is the fast route; the controller bridge is invoked when static
+damping cannot preserve the pole-motion mechanism.}
+\label{fig:integrated_analysis_stack}
+\end{figure}
+
+\FloatBarrier
+
+\section{Adaptive Reduced-QEP Algebra}
+
+The off-diagonal entries of \(\Gamma\) are the algebraic reason the scalar
+screen can fail. A compact coupling diagnostic is
+\begin{equation}
+  \eta_{\rm off}
+  =
+  \frac{\norm{\Gamma-\operatorname{diag}(\Gamma)}_F}{\norm{\Gamma}_F},
+  \label{eq:eta_off}
+\end{equation}
+and a mode-pair diagnostic is
+\begin{equation}
+  c_{k\ell}
+  =
+  \frac{|\Gamma_{k\ell}|}
+       {|\sqrt{\nu_k}-\sqrt{\nu_\ell}|+\varepsilon_{\rm gap}}.
+  \label{eq:pair_coupling}
+\end{equation}
+Large \(c_{k\ell}\) means that the damping coupling is not small relative to
+the frequency separation. This is a direct application of matrix perturbation
+logic \cite{stewart1990matrix,kato1995perturbation}: small denominators make
+apparently small off-diagonal terms important.
+
+The adaptive estimator used by the project is therefore:
+\begin{enumerate}
+\item Compute \((\nu_k,q_k)\) of \(\Lt\) and \(\Gamma=Q^T\Dt Q\).
+\item Rank all modes by \(\hat\zeta_k=\Gamma_{kk}/(2\sqrt{\nu_k})\).
+\item Select low-\(\hat\zeta_k\) modes and augment the set with neighbors whose
+\(c_{k\ell}\) exceeds a declared threshold.
+\item Build \(V=[q_k]_{k\in\mathcal I}\), \(L_{\mathcal I}=V^T\Lt V\), and
+\(D_{\mathcal I}=V^T\Dt V\).
+\item Solve
+\[
+  \det(s^2I_{\mathcal I}+sD_{\mathcal I}+L_{\mathcal I})=0.
+\]
+\item Report the reduced-QEP damping margin and the gap to the diagonal
+screen. If the gap is large, the graph-only explanation is not enough.
+\end{enumerate}
+
+The \texttt{ieee39\_rational\_filter} surrogate record supports this workflow:
+over 300 trials the diagonal screen had median relative error
+\(4.68\times10^{-3}\), while the second-order correction and reduced-QEP
+variants reduced the median to approximately \(3.2\times10^{-4}\) and
+\(3.7\times10^{-4}\), respectively. This does not prove universal accuracy. It
+does justify using the diagonal formula as a fast screen and the reduced QEP as
+a targeted correction.
+
+\section{Exact Lever Sensitivities}
+
+Let \(p\) be any scalar action: line weight, local inertia, local damping,
+converter gain, or hosting-penetration coordinate. For the fixed-\(D\) QEP
+\[
+  T_Q(s,p)=s^2I+s\Dt(p)+\Lt(p),
+\]
+with right and left eigenvectors \(v\) and \(y\), a simple pole satisfies
+\begin{equation}
+  \frac{ds}{dp}
+  =
+  -
+  \frac{y^*\left(s\,\Dt_p+\Lt_p\right)v}
+       {y^*\left(2sI+\Dt\right)v}.
+  \label{eq:integrated_qep_sensitivity}
+\end{equation}
+This is the QEP version of the nonlinear eigenvalue sensitivity used for
+matrix polynomials and NEPs \cite{tisseur2001qep,guettel2017nep,beyn2012integral}.
+If \(s=\sigma+j\omega\), \(ds/dp=a+jb\), and
+\(\zeta=-\sigma/|s|\), then
+\begin{equation}
+  \frac{d\zeta}{dp}
+  =
+  \frac{\sigma\omega b-\omega^2a}{|s|^3}.
+  \label{eq:zeta_from_pole_sensitivity}
+\end{equation}
+This equation is important because a line can move a pole left in real part
+and still reduce damping ratio if it increases oscillation frequency too much.
+
+For a line \(e=(i,j)\) in the inertia-normalized graph layer,
+\begin{equation}
+  \frac{\partial\nu_k}{\partial w_e}
+  =
+  \left(
+  \frac{q_k(i)}{\sqrt{M_i}}-
+  \frac{q_k(j)}{\sqrt{M_j}}
+  \right)^2.
+  \label{eq:integrated_line_nu}
+\end{equation}
+But damping requires more than \(\partial\nu_k/\partial w_e\). With fixed
+modal labeling,
+\begin{align}
+  \frac{\partial \zeta_k}{\partial w_e}
+  &=
+  \frac{1}{2\sqrt{\nu_k}}\frac{\partial\delta_k}{\partial w_e}
+  -
+  \frac{\delta_k}{4\nu_k^{3/2}}
+  \frac{\partial\nu_k}{\partial w_e},
+  \label{eq:integrated_line_zeta}\\
+  \frac{\partial\delta_k}{\partial w_e}
+  &=
+  q_k^T\Dt_{w_e}q_k
+  +
+  2\sum_{\ell\ne k}
+  \frac{
+    (q_\ell^T\Lt_{w_e}q_k)(q_\ell^T\Dt q_k)
+  }{\nu_k-\nu_\ell}.
+  \label{eq:integrated_delta_rotation}
+\end{align}
+The first term in \eqref{eq:integrated_delta_rotation} is direct damping
+change. The sum is modal rotation. It is zero under proportional damping and
+can be decisive under heterogeneous damping.
+
+For the controller-condensed NEP \eqref{eq:integrated_operator},
+\begin{equation}
+  \frac{ds}{dp}
+  =
+  -
+  \frac{
+  y^*\left(s^2M_p+sD_{0,p}+L_p+\Pi_p(s)\right)x
+  }{
+  y^*\left(2sM+D_0+\Pi_s(s)\right)x
+  }.
+  \label{eq:integrated_nep_sensitivity}
+\end{equation}
+Here the subscript \(p\) denotes a total derivative after re-solving the
+operating point and updating the controller blocks. The additional term
+\(\Pi_s(s)\), which reduces to \(\Sigma(s)+s\Sigma'(s)-D_0\) in the
+damping-channel case, is the spectral memory of the condensed controller block.
+It is exactly the term that a static damping bridge removes.
+
+\subsection{Mechanism-Resolved Attribution}
+
+Equation~\eqref{eq:integrated_nep_sensitivity} is not only a way to compute a
+pole derivative. It is also an attribution identity once the total derivative
+is logged by mechanism. For a declared operating-point continuation, write
+\begin{equation}
+  T_p
+  =
+  T_p^{\rm net}
+  +T_p^{\rm op}
+  +T_p^{\rm ports}
+  +T_p^{\rm ctrl}
+  +T_p^{M,D}.
+  \label{eq:mechanism_tp_split}
+\end{equation}
+The terms mean, respectively: direct network change, equilibrium or power-flow
+shift, change in controller port visibility and residues, movement of
+condensed controller poles, and direct mass-damping change. This split is not
+unique until the model assembly is fixed, but after that bookkeeping choice it
+is algebraic.
+
+Let \(s=\sigma+j\omega\) and define the real linear map
+\begin{equation}
+  \mathcal D_\zeta(s)[\eta]
+  =
+  \frac{\sigma\omega\,\Imag \eta-\omega^2\,\Real \eta}{|s|^3}.
+  \label{eq:zeta_linear_map}
+\end{equation}
+For each channel \(c\in\{\rm net,op,ports,ctrl,MD\}\), set
+\begin{equation}
+  g_c
+  =
+  \mathcal D_\zeta(s)
+  \left[
+  \frac{-y^*T_p^c x}{y^*T_sx}
+  \right].
+  \label{eq:channel_zeta_gain}
+\end{equation}
+Then
+\begin{equation}
+  \frac{d\zeta}{dp}
+  =
+  g_{\rm net}
+  +g_{\rm op}
+  +g_{\rm ports}
+  +g_{\rm ctrl}
+  +g_{M,D}.
+  \label{eq:zeta_channel_decomposition}
+\end{equation}
+The denominator \(y^*T_sx\) is shared by all channels. Therefore the rational
+memory term \(\Pi_s(s)\) does more than add one extra numerator contribution:
+it can rotate or amplify every channel simultaneously. This is the causal
+language needed to turn a pole plot into a mechanism statement.
+
+\begin{definition}[Strict controller-induced reinforcement reversal]
+For a line or parameter action \(p\), a strict controller-induced reinforcement
+reversal occurs when a network-strength score improves and the static
+reduction does not predict damping degradation, but the controller-aware NEP
+does:
+\begin{equation}
+  \frac{dG_{\rm graph}}{dp}>0,
+  \qquad
+  \frac{d\zeta_{\rm static}}{dp}\ge0,
+  \qquad
+  \frac{d\zeta_{\rm NEP}}{dp}<0.
+  \label{eq:strict_controller_reversal}
+\end{equation}
+Equivalently, the static and controller-aware models disagree in sign:
+\begin{equation}
+  \operatorname{sign}
+  \left(\frac{d\zeta_{\rm static}}{dp}\right)
+  \ne
+  \operatorname{sign}
+  \left(\frac{d\zeta_{\rm NEP}}{dp}\right).
+  \label{eq:static_nep_sign_mismatch}
+\end{equation}
+\end{definition}
+
+This definition is intentionally stronger than the statement
+\(d\lambda_2/dp>0\) and \(d\zeta/dp<0\). The latter can occur in an elementary
+QEP because increasing stiffness may raise modal frequency faster than decay.
+The stronger claim is that the usual static reduction can recommend the wrong
+line or parameter action.
+
+\begin{proposition}[Controller-induced reversal certificate]
+Assume a simple protected pole and the decomposition
+\eqref{eq:mechanism_tp_split}. Suppose the rational self-energy admits a local
+pole-residue expansion
+\begin{equation}
+  \Pi(s,p)
+  =
+  \sum_\ell \frac{Q_\ell(s,p)}{s-\alpha_\ell(p)}
+  +\Pi_{\rm rem}(s,p),
+  \label{eq:pi_pole_residue_expansion}
+\end{equation}
+and the contribution of all neglected or grouped terms to \(d\zeta/dp\) is
+bounded above by \(\bar r\). Let
+\begin{equation}
+  g_0=g_{\rm net}+g_{\rm op}+g_{M,D}
+  \label{eq:base_static_gain}
+\end{equation}
+and let \(g_\ell\) be the damping-ratio contribution of one dominant
+controller pole \(\alpha_\ell\):
+\begin{equation}
+  g_\ell
+  =
+  \mathcal D_\zeta(s)
+  \left[
+  \frac{-y^*\Pi_{p,\ell}(s)x}{y^*T_sx}
+  \right],
+  \qquad
+  \Pi_{p,\ell}(s)
+  =
+  \frac{Q_{\ell,p}(s)}{s-\alpha_\ell}
+  +
+  \frac{Q_\ell(s)\alpha_{\ell,p}}{(s-\alpha_\ell)^2}.
+  \label{eq:dominant_pole_reversal_gain}
+\end{equation}
+If
+\begin{equation}
+  g_0\ge0,
+  \qquad
+  g_0+g_\ell+\bar r<0,
+  \label{eq:controller_induced_reversal_certificate}
+\end{equation}
+then the first-order degradation is certified as controller-induced rather
+than merely controller-correlated.
+\end{proposition}
+
+\begin{proof}
+Linearity of \eqref{eq:integrated_nep_sensitivity} and
+\eqref{eq:zeta_linear_map} gives the channel sum
+\eqref{eq:zeta_channel_decomposition}. The pole-residue derivative in
+\eqref{eq:dominant_pole_reversal_gain} separates residue change from movement
+of the condensed pole. If the non-controller baseline is nonnegative and the
+dominant controller-pole term plus the worst admissible remainder is negative,
+then every compatible completion of the grouped remainder has negative total
+first-order damping-ratio derivative. The sign reversal is therefore forced by
+the rational controller channel.
+\end{proof}
+
+\section{Hidden Control-Resonance Margin}
+
+Let \(\mu_j\in\operatorname{spec}(A_{cc})\) be a condensed controller pole and
+let \(s_k\) be a retained network-family pole. Define
+\begin{equation}
+  d^{\rm ctrl}_{kj}
+  =
+  \frac{|s_k-\mu_j|}{|s_k|+|\mu_j|},
+  \qquad
+  \phi_\Sigma^{\rm abs}(k)
+  =
+  \frac{|y_k^*s_k\Sigma'(s_k)x_k|}
+  {|y_k^*2s_kMx_k|+
+   |y_k^*\Sigma(s_k)x_k|+
+   |y_k^*s_k\Sigma'(s_k)x_k|+
+   \varepsilon_{\rm reg}}.
+  \label{eq:hidden_ctrl_metrics}
+\end{equation}
+Small \(d^{\rm ctrl}_{kj}\) and large \(\phi_\Sigma^{\rm abs}(k)\) mean that a presently
+stable pole lies in the resolvent shadow of a controller pole. If \(A_{cc}\) is
+diagonalizable with eigenvector condition factor \(\kappa_c\), then outside
+\(\operatorname{spec}(A_{cc})\)
+\begin{equation}
+  \norm{(sI-A_{cc})^{-1}}
+  \le
+  \frac{\kappa_c}{\Delta_c(s)},
+  \qquad
+  \Delta_c(s)=\min_j |s-\mu_j|,
+  \label{eq:resolvent_bound}
+\end{equation}
+and
+\begin{equation}
+  \norm{\Sigma'(s)}
+  \le
+  \frac{\norm{C}\norm{B}\kappa_c^2}{\Delta_c(s)^2}.
+  \label{eq:sigma_prime_bound}
+\end{equation}
+Thus the warning is algebraic, not rhetorical: as a retained pole approaches a
+condensed controller pole, the self-energy slope can become large.
+\(\phi_\Sigma^{\rm abs}\) is a dominance index, not a strict fraction; the
+absolute denominator avoids artificial inflation or suppression caused by
+complex cancellation in \(y^*T_sx\).
+
+For an admissible action \(p\) and target margin \(\zeta_\star\), define
+\begin{equation}
+  m_p^\zeta(k)
+  =
+  \frac{\zeta_k-\zeta_\star}
+       {\left[-\partial\zeta_k/\partial p\right]_+},
+  \qquad
+  m_p^d(k,j)
+  =
+  \frac{d^{\rm ctrl}_{kj}-d_\star}
+       {\left[-\partial d^{\rm ctrl}_{kj}/\partial p\right]_+}.
+  \label{eq:hidden_action_margins}
+\end{equation}
+The hidden margin is
+\begin{equation}
+  m_p^{\rm hid}(k,j)=\min\{m_p^\zeta(k),m_p^d(k,j)\}.
+  \label{eq:hidden_margin}
+\end{equation}
+This quantity says how much of action \(p\) can be applied before either the
+damping threshold or the controller-distance threshold is locally exhausted.
+The \texttt{phase\_braess\_nep} record gives one internal mechanism gate: 460
+line-mode perturbations produced 40 strict resonant cases, and the clearest
+line action moved a network-family mode toward a PLL-dominated condensed pole
+with a self-energy-dominated damping decrease. The correct thesis claim is
+therefore control-resonant reinforcement risk, not a universal Braess paradox.
+The next extraction must count the smaller but stronger subset satisfying
+\eqref{eq:strict_controller_reversal}; that subset is the empirical target for
+the controller-induced reversal paper.
+
+\subsection{Static Adequacy Gate and Resolvent Shadow}
+
+The practical question is when the fixed-\(D\) or static-QEP screen is
+sufficient. Let \(\Omega_k\) be a disk or contour neighborhood of a protected
+pole \(s_k\) with radius \(r_k\). A first-order staticization error indicator is
+\begin{equation}
+  \varepsilon_{{\rm static},k}
+  =
+  \kappa_k r_k
+  \sup_{\xi\in\Omega_k}\norm{\Pi_s(\xi)}_2,
+  \qquad
+  \kappa_k
+  =
+  \frac{\norm{x_k}_2\norm{y_k}_2}
+       {|y_k^*T_s(s_k)x_k|+\varepsilon_{\rm reg}}.
+  \label{eq:static_adequacy_gate}
+\end{equation}
+If \(\varepsilon_{{\rm static},k}<\tau m_k^{\rm margin}\) for a declared
+tolerance \(\tau\), then the static screen is acceptable for that mode-action
+pair. Otherwise the candidate lies in the resolvent shadow and must be checked
+with the Schur NEP or the full DAE model. This turns the hierarchy into a
+computational policy: use the cheap QEP broadly, escalate only shadowed modes,
+and reserve full-model recomputation for finalists.
+
+Distance to a condensed pole is not enough when \(A_{cc}\) is non-normal. The
+screen should combine port-visible resolvent gain, modal projection, rational
+memory, and pole conditioning:
+\begin{align}
+  \chi_c(s_k)
+  &=
+  \norm{C(s_kI-A_{cc})^{-1}(B_\theta+s_kB_\omega)}_2,
+  \label{eq:port_visible_resolvent_gain}\\
+  \chi_{k\ell}^{\rm proj}
+  &=
+  \frac{|y_k^*Q_\ell(s_k)x_k|}
+       {|s_k-\alpha_\ell|\,\norm{y_k}_2\norm{x_k}_2+\varepsilon_{\rm reg}},
+  \label{eq:projected_resolvent_shadow}\\
+  \rho_{{\rm mem},k}
+  &=
+  \frac{|y_k^*\Pi_s(s_k)x_k|}
+       {|y_k^*(2s_kM+D_0)x_k|+|y_k^*\Pi_s(s_k)x_k|
+        +\varepsilon_{\rm reg}}.
+  \label{eq:memory_dominance_index}
+\end{align}
+The desired empirical result is not that every large value produces a
+reversal. It is that strict sign reversals concentrate where
+\(\chi_{k\ell}^{\rm proj}\), \(\rho_{{\rm mem},k}\), and \(\kappa_k\) are large.
+That statement can be tested with precision, recall, false-negative rate, and
+the share of strict reversals captured after reviewing only the top decile of
+line actions by resolvent-shadow score.
+
+\section{Stochastic Fragility and Protection Exposure}
+
+The hosting draft also contains a stochastic interpretation. In first-order
+state form
+\begin{equation}
+  \dot x=Ax+B\xi,\qquad z=Cx,
+  \label{eq:stochastic_state}
+\end{equation}
+with white input \(\xi\), the stationary covariance \(X\) satisfies
+\begin{equation}
+  AX+XA^T+BB^T=0,
+  \qquad
+  \mathbb E\norm{z}^2=\operatorname{trace}(CXC^T).
+  \label{eq:lyapunov_variance}
+\end{equation}
+This is the same Gramian object used in network coherence analysis
+\cite{bamieh2012coherence,tyloo2018robustness}. In a homogeneous proportional
+limit, the graph contribution reduces to Kirchhoff-index-like quantities such
+as \(\operatorname{trace}(L^+)\), which explains why effective resistance can
+describe average vulnerability. In heterogeneous damping or rational
+self-energy models, however, the covariance must be computed from the actual
+linearization or an explicitly justified reduction.
+
+The protection layer adds a separate constraint. Let \(e[m]\) be a frequency
+estimator error and \(e_{\rm th}\) a protection threshold. The estimator draft
+uses
+\begin{equation}
+  T_{\rm risk}
+  =
+  \sum_{m=0}^{N-1}\Delta t\,
+  \mathbf 1_{\{|e[m]|>e_{\rm th}\}},
+  \label{eq:integrated_trip_risk}
+\end{equation}
+which measures how long a protection-relevant error is exceeded. A complete
+dynamic hosting set can therefore be written as
+\begin{align}
+  \mathcal H_{\rm dyn}^{\rm full}
+  =
+  \{\,\rho\in\mathcal H_{\rm stat}:&
+  \ \zeta_{\min}(\rho)\ge\zeta_\star,\ 
+  g_{\rm prot}(\rho)\le g_\star,\nonumber\\
+  &
+  \operatorname{trace}(C X(\rho) C^T)\le \sigma_\star^2,\ 
+  T_{\rm risk}(\rho)\le T_\star,\ 
+  d^{\rm ctrl}_{kj}(\rho)\ge d_\star
+  \,\}.
+  \label{eq:full_dynamic_hosting_set}
+\end{align}
+The point is not that every study must include every constraint. The point is
+that each omitted constraint must be named.
+
+\section{Pole-Motion Cone and Planning Optimization}
+
+Collect line, inertia, damping, and controller actions in
+\begin{equation}
+  u=
+  \begin{bmatrix}
+    \Delta w & \Delta M & \Delta D & \Delta\kappa
+  \end{bmatrix}^T.
+  \label{eq:integrated_action_vector}
+\end{equation}
+For each monitored pole \(s_k\), NEP sensitivity gives
+\begin{equation}
+  \Delta s_k\simeq J_k u,
+  \qquad
+  J_k=
+  \begin{bmatrix}
+    \partial s_k/\partial p_1 & \cdots & \partial s_k/\partial p_r
+  \end{bmatrix}.
+  \label{eq:pole_motion_cone}
+\end{equation}
+Through \eqref{eq:zeta_from_pole_sensitivity}, this induces
+\[
+  \Delta\zeta_k\simeq g_k^Tu.
+\]
+Feasible actions therefore form a cone of pole motions in the complex plane.
+Safe actions lie in the damping-improving half-space. Hidden-resonant actions
+may still improve a graph metric while moving a pole toward a dangerous
+controller resolvent region.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  scale=0.95,
+  axis/.style={->, thick, draw=thesisgray},
+  safe/.style={fill=softgreen, draw=thesisgreen!70!black, line width=0.45pt},
+  risk/.style={fill=softred, draw=thesisred!70!black, line width=0.45pt},
+  arrow/.style={-{Latex[length=2.2mm]}, thick},
+  lab/.style={font=\small}
+]
+\draw[axis] (-4.2,0) -- (2.2,0) node[right,lab] {\(\Real(s)\)};
+\draw[axis] (0,-2.6) -- (0,2.6) node[above,lab] {\(\Imag(s)\)};
+\draw[dashed, thesisgray] (-0.95,-2.3) -- (-0.95,2.3)
+  node[above,lab] {target damping boundary};
+\path[safe] (-2.6,0.35) -- (-3.65,1.45) -- (-3.65,-0.75) -- cycle;
+\path[risk] (-2.6,0.35) -- (-1.05,1.15) -- (-0.95,-0.25) -- cycle;
+\fill[thesisblue] (-2.6,0.35) circle (2.1pt)
+  node[above left,lab] {current pole \(s_k\)};
+\fill[thesisred] (-1.2,1.5) circle (2.1pt)
+  node[above right,lab] {controller pole \(\mu_j\)};
+\draw[arrow, thesisgreen] (-2.6,0.35) -- (-3.25,0.95)
+  node[midway,above left,lab] {safe action};
+\draw[arrow, thesisred] (-2.6,0.35) -- (-1.45,1.05)
+  node[midway,below right,lab] {hidden-resonant action};
+\node[lab, align=center, text width=0.26\textwidth] at (-3.35,-1.85)
+  {larger damping ratio\\and larger controller distance};
+\node[lab, align=center, text width=0.26\textwidth] at (1.0,-1.65)
+  {rightward motion or\\controller approach is rejected};
+\end{tikzpicture}
+\caption{Pole-motion cone induced by the sensitivity matrix \(J_k\). A graph
+action is acceptable only if its pole-motion vector improves the protected
+margin and does not move the mode into a controller-resonant region.}
+\label{fig:pole_motion_cone_visual}
+\end{figure}
+
+A local planning problem follows:
+\begin{align}
+  \max_{u,t}\quad & t \label{eq:planning_problem}\\
+  \text{subject to}\quad
+  & \zeta_k+g_k^Tu\ge t,\qquad k\in\mathcal K, \nonumber\\
+  & d^{\rm ctrl}_{kj}+h_{kj}^Tu\ge d_\star,\qquad (k,j)\in\mathcal R,
+    \nonumber\\
+  & c^T|u|\le B,\qquad u_{\min}\le u\le u_{\max}, \nonumber\\
+  & \text{AC, thermal, voltage, and protection feasibility gates hold.}
+    \nonumber
+\end{align}
+This problem states exactly what the project can do with the new analysis:
+rank SG-to-IBR conversions by dynamic headroom, identify where virtual damping
+or inertia is honest, find line upgrades that improve damping rather than only
+stiffness, detect control-resonant line risks, and compare mixed packages of
+topology, damping, inertia, and control under equal cost.
+
+\section{What This Analysis Enables}
+
+The framework is useful because it converts broad planning questions into
+declared algebraic tasks. Table~\ref{tab:analysis_enables} summarizes the
+main actions.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Planning and research tasks enabled by the integrated analysis.}
+\label{tab:analysis_enables}
+\begin{tabular}{L{0.22\textwidth}L{0.25\textwidth}L{0.25\textwidth}L{0.16\textwidth}}
+\toprule
+\rowcolor{softblue}
+\thead{Task} & \thead{Algebraic object} & \thead{Output} & \thead{Required gate}\\
+\midrule
+SG-to-IBR hosting direction &
+\(h_k(\rho)=\delta_k-2\zeta_\star\sqrt{\nu_k}\) &
+Maximum conversion direction before damping headroom is exhausted &
+Full QEP or NEP recomputation\\
+\addlinespace
+Virtual inertia placement &
+\(\partial h_k/\partial M_i\), RoCoF and damping weights &
+Bus ranking that separates frequency support from damping support &
+Post-action \(\zeta_{\min}\) and time-domain response\\
+\addlinespace
+Line reinforcement without batteries &
+\(\partial\nu_k/\partial w_e\), \(\partial\zeta_k/\partial w_e\) &
+Line list that improves margin, not only graph stiffness &
+Flow, voltage, and damping checks\\
+\addlinespace
+Control-resonant risk audit &
+\(d^{\rm ctrl}_{kj}\), \(\phi_\Sigma^{\rm abs}(k)\), \(s\Sigma'(s)\) &
+Flag for stable poles that are close to controller-mediated damping loss &
+Schur NEP or full DAE eigenanalysis\\
+\addlinespace
+Mixed lever package design &
+Pole-motion cone \(J_ku\) and budget \(c^T|u|\le B\) &
+Equal-cost packages of topology, damping, inertia, and control &
+Registered baseline comparison\\
+\addlinespace
+Protection-aware hosting &
+\(T_{\rm risk}\), estimator latency, protected gain &
+Hosting set that includes what protection can observe &
+Estimator and relay exposure test\\
+\addlinespace
+Self-energy passivity retuning &
+\(\mu_\Sigma(\Omega)=\inf_{\omega\in\Omega}
+\lambda_{\min}H_\Sigma(\omega)\) and \(ds_\star/d\rho\) &
+Controller-gain update that improves both a passivity screen and the protected
+pole-motion direction &
+Schur NEP plus full-model retuning gate\\
+\addlinespace
+Sheaf weak-element research &
+Cellular-sheaf Laplacian with bus/controller stalks and line restriction maps &
+Candidate weak-node or weak-link certificate that is richer than scalar
+Laplacian sensitivity &
+New benchmark showing information not recovered by \(L\), QEP, or
+\(\Sigma(s)\) alone\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+The last two rows are deliberately not ordinary planning claims. The passivity
+row is a near-term extension because it uses the existing Schur self-energy
+operator and adds a controller-respected dissipativity screen. The sheaf row is
+a longer-term research program. It may become a powerful structural language
+only if it produces a weak-element certificate that scalar graph theory and the
+present self-energy diagnostics cannot already reproduce.
+
+\section{Three Go--No-Go Studies}
+
+The next work should be staged sequentially. First, the sign-characteristic
+bridge must be grounded in the exact hypotheses of the matrix-polynomial
+literature. Second, the passivity-retuning result should be made operational
+because it extends the existing \(\Sigma(s)\) framework and can fail cleanly.
+Third, the cellular-sheaf idea should be tested as a falsifiable structural
+extension, not adopted as a new language by default.
+
+\subsection{Sign-Characteristic Gate}
+
+The strongest possible theoretical headline is not that controller condensation
+makes a rational operator. That is Schur-complement mathematics. The stronger
+claim is that a planning action can move a network-family pole through the
+resolvent of a condensed controller and produce a sign collision that a
+constant-\(D\) model cannot predict.
+
+This claim needs a gate before it becomes a theorem. The gate has four steps:
+\begin{enumerate}
+\item Read the sign-characteristic definitions in the Hermitian
+matrix-polynomial and self-adjoint meromorphic literature and list their
+assumptions: regularity, symmetry, leading coefficient, elementary divisors, and
+structure-preserving transformations.
+\item State exactly which assumptions fail for
+\(T(s)=s^2M+sD_0+L+\Pi(s)\): rationality, dissipation, non-normality, and loss
+of a fixed symplectic or Hermitian product.
+\item Build a two-bus SCR benchmark with a synchronous source and a
+grid-following converter. The reduced coefficients must come from the exact
+linearized algebraic-differential Jacobian; placeholders such as ``or similar''
+are not allowed.
+\item Track three quantities while varying SCR or PLL bandwidth:
+\(\chi_k^{\rm op}\), \(\phi_\Sigma^{\rm abs}\), and the full-model eigenvalues.
+The gate passes only if the same event appears as signature change or
+singularity, self-energy dominance, and damping loss.
+\end{enumerate}
+
+If this gate passes, the first Transactions-style paper should be narrowly
+framed around controller-resolvent reinforcement reversals:
+\[
+  \frac{dG_{\rm graph}}{dp}>0,
+  \qquad
+  \frac{d\zeta_{\rm static}}{dp}\ge0,
+  \qquad
+  \frac{d\zeta_{\rm NEP}}{dp}<0,
+\]
+with the degradation attributed to \(\Pi_p(s)\) or \(\Pi_s(s)\), not to the
+static graph term alone. That paper should not mix frequency-estimator latency,
+stochastic fragility, sheaves, and broad hosting optimization. The minimum
+package is a structured Schur derivation, total NEP sensitivity, a
+channel-resolved attribution, finite-difference validation, and ablation of
+\(L_p\), \(\Pi_p\), and \(\Pi_s\). The empirical headline should be the rate
+of wrong-sign static recommendations,
+\[
+  \Pr\left[
+  \operatorname{sign}(\zeta_p^{\rm static})
+  \ne
+  \operatorname{sign}(\zeta_p^{\rm full})
+  \right],
+\]
+plus the recall achieved by the resolvent-shadow filter when only a small
+fraction of line actions are escalated to the full model.
+
+\begin{table}[ht]
+\centering
+\caption{Minimal result package for the controller-induced reinforcement
+reversal paper.}
+\label{tab:controller_reversal_paper_package}
+\begin{tabular}{L{0.18\textwidth}L{0.34\textwidth}L{0.34\textwidth}}
+\toprule
+\rowcolor{softblue}
+\thead{Result} & \thead{Claim} & \thead{Evidence required}\\
+\midrule
+A & Exact Schur derivation and mechanism-resolved sensitivity attribution &
+Derive \(\Pi(s)\), \(T_s\), and the channel gains \(g_c\).\\
+\addlinespace
+B & Robust sufficient certificate for controller-induced sign reversal &
+Show \(g_0\ge0\) and \(g_0+g_\ell+\bar r<0\) under a registered remainder
+bound.\\
+\addlinespace
+C & Static model wrong-sign rate &
+Report strict cases where \(d\zeta_{\rm static}/dp\ge0\) but
+\(d\zeta_{\rm full}/dp<0\).\\
+\addlinespace
+D & Resolvent-shadow computational filter &
+Measure precision, recall, false negatives, and cases captured by the top
+5--10\% of candidate line actions.\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Passivity Retuning Study}
+
+For a controller parameter \(\kappa\), such as a PLL bandwidth or integral gain,
+the core object is
+\[
+  \mu_\Sigma(\Omega;\kappa)=
+  \inf_{\omega\in\Omega}
+  \lambda_{\min} H_\Sigma(\omega;\kappa).
+\]
+The computational question is whether \(\mu_\Sigma\) can be moved from negative
+to positive after a stressed operating condition or an \(N-1\) contingency, while
+the protected eigenvalue also moves toward the required damping region. The
+study is deliberately narrow:
+\begin{enumerate}
+\item Select a contingency, IBR penetration level, and weak-grid operating
+point; re-solve the power flow instead of freezing the pre-contingency
+linearization.
+\item Sweep \(\kappa\) over the admissible controller range and compute
+\(\mu_\Sigma(\Omega;\kappa)\) from the Schur self-energy.
+\item Record the active frequency \(\omega_\star\), active Hermitian eigenvector
+\(q_\star\), and the envelope derivative
+\(q_\star^H(\partial H_\Sigma/\partial\kappa)q_\star\).
+\item Identify whether the margin is monotone, locally unimodal, or nonregular
+because active frequencies switch.
+\item At the best candidate \(\kappa_\star\), recompute the full DAE eigenvalues
+and time-domain response. The passivity screen is a gate; the final claim still
+needs the full-model check.
+\item Compare against a static nodal-\(D\) screen. The negative control is
+important: if a scalar damping change predicts the same action, the rational
+self-energy did not add design information.
+\end{enumerate}
+
+A successful result is not merely a plot where an eigenvalue moves left. It is a
+three-part certificate: the self-energy passivity margin improves, the protected
+pole moves in the desired direction, and the full model confirms the damping
+recovery. Failure is also useful. If \(\mu_\Sigma\) is nonmonotone with multiple
+active-frequency switches, the thesis has identified a controller interaction
+that cannot be summarized by one PLL retuning knob.
+
+\subsection{Cellular-Sheaf Weak-Link Test}
+
+The sheaf extension has one binary question:
+\[
+\text{Does a nonconstant sheaf Laplacian reveal a weak link that scalar }
+\partial\nu_k/\partial w_e\text{ does not?}
+\]
+The smallest useful construction is enough for this test. Let each converter bus
+carry a stalk \(\mathcal F(v_i)\simeq\R^2\) representing a local PLL phase and
+frequency frame. Let each edge stalk \(\mathcal F(e_{ij})\) represent the frame
+discrepancy that the line must reconcile. The restriction maps
+\(\mathcal F_{v_i\to e_{ij}}\) and \(\mathcal F_{v_j\to e_{ij}}\) are determined
+from the solved operating angles and the converter reference frames. With
+identity restrictions, this reduces to the constant sheaf and recovers the
+ordinary scalar graph intuition. With nontrivial frame rotations, the sheaf
+coboundary
+\[
+  \delta_{\mathcal F}: C^0(G;\mathcal F)\to C^1(G;\mathcal F)
+\]
+produces the sheaf Laplacian \(L_{\mathcal F}=\delta_{\mathcal F}^\ast
+\delta_{\mathcal F}\) on node stalks.
+
+The go--no-go protocol is:
+\begin{enumerate}
+\item Build \(L_{\mathcal F}\) on the same 39-bus operating point used by the
+QEP and Schur studies. The solved angles, not the bare topology, define the
+restriction maps.
+\item Compare the low spectrum of \(L_{\mathcal F}\) with the scalar
+inertia-normalized Laplacian. The comparison should be made under the same
+loading and IBR placement assumptions.
+\item Remove or down-weight each candidate line and measure the collapse of the
+lowest informative sheaf eigenvalues. This gives a sheaf weak-link ranking.
+\item Compare that ranking against \(\partial\nu_k/\partial w_e\) and the
+existing damping-risk vector. A material ranking difference is the first success
+condition.
+\item Compute the first harmonic obstruction
+\(\dim\ker\delta_{\mathcal F}^\ast\) on high-angle subgraphs. A nonzero value
+would indicate a frame-consistency obstruction, i.e., a synchronization
+frustration not visible in a scalar Laplacian screen.
+\item Validate any sheaf-only weak link in the full model. A sheaf ranking that
+does not predict a changed damping, synchronization, or protection-relevant
+response is only a mathematical artifact.
+\end{enumerate}
+
+The decision rule should be explicit. The sheaf program is a \emph{GO} only if
+it produces a weak-link or weak-node ranking that differs materially from the
+scalar ranking in at least one sweep case, and the difference has a physical
+explanation in frame rotation, PLL alignment, or controller-coordinate
+compatibility. It is a \emph{NO-GO} if the sheaf ranking reproduces the scalar
+ranking up to scale. In that case the sheaf remains a future mathematical
+extension, while the passivity-retuning paper remains the safer near-term
+contribution.
+
+\section{Mathematical Audit Gates Before Publication}
+
+The following gates prevent the thesis from overclaiming:
+\begin{enumerate}
+\item \textbf{Structured Schur gate.} A condensed model must state whether the
+rational correction is \(\Pi(s)\), \(\Pi_K(s)\), or \(s\Pi_D(s)\). Calling the
+whole Schur correction ``dynamic damping'' is not allowed unless the stiffness
+channel has been eliminated or justified.
+\item \textbf{Sign-convention gate.} The active-power Jacobian must be tied to
+one convention. This thesis uses exported electrical power, so \(L=J_{P\theta}\)
+on retained angles.
+\item \textbf{Invariant diagnostic gate.} Mode-family labels must use physical
+weights, port visibility, left-right participation, or projectors. Raw
+controller-state norm ratios are not admissible evidence.
+\item \textbf{Curvature gate.} A first-order hosting polytope is a tangent
+screen. An inner hosting certificate needs a trust region and a Hessian or model
+error bound.
+\item \textbf{Cluster gate.} Near repeated or clustered modes, use spectral
+projectors and eigenvalue conditioning rather than derivatives of a named mode.
+\item \textbf{Resolvent gate.} Controller-pole distance is only a proxy.
+Non-normal \(A_{cc}\) requires resolvent gain or port-visible self-energy
+dominance.
+\item \textbf{Passivity gate.} A Hermitian part of \(\Sigma(j\omega)\) has a
+passivity interpretation only after the conjugate ports and supply rate are
+declared.
+\item \textbf{Total-derivative gate.} A line, inertia, or controller action must
+be differentiated through the re-solved operating point whenever the claim is a
+planning claim rather than a frozen-linearization screen.
+\end{enumerate}
+
+\section{Validation Ladder}
+
+Every claim should climb the same ladder:
+\begin{enumerate}
+\item \textbf{Algebraic identity.} Verify formulas such as
+\(\partial\Lt/\partial M_i\) and the line-shunt decomposition to numerical
+precision.
+\item \textbf{Surrogate QEP.} Compare diagonal, second-order, reduced-QEP, and
+full-QEP damping margins over controlled synthetic systems.
+\item \textbf{IEEE topology QEP.} Use realistic network topology and operating
+points, while still keeping the reduced second-order abstraction explicit.
+\item \textbf{Schur NEP.} Condense controller states and test whether
+\(\Pi(s)\), its damping-channel projection \(\Sigma(s)\), and resolvent
+dominance explain pole motion.
+\item \textbf{Full ANDES eigenanalysis.} Recompute the complete DAE
+linearization after each selected action.
+\item \textbf{Time-domain and protection gate.} Check RoCoF, nadir,
+oscillation decay, estimator exposure, and protection-relevant thresholds.
+\end{enumerate}
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  rung/.style={
+    rectangle,
+    rounded corners=3pt,
+    draw=#1!70!black,
+    fill=#1!10,
+    text width=0.25\textwidth,
+    minimum height=0.78cm,
+    align=center,
+    font=\small
+  },
+  arr/.style={-{Latex[length=2.1mm]}, thick, draw=thesisgray}
+]
+\node[rung=thesisblue] (r1) {1. Algebraic identity};
+\node[rung=thesisgreen, right=0.36cm of r1] (r2) {2. Surrogate QEP};
+\node[rung=thesisorange, right=0.36cm of r2] (r3) {3. IEEE topology QEP};
+\node[rung=thesisred, below=0.55cm of r3] (r4) {4. Schur NEP};
+\node[rung=thesisgold, left=0.36cm of r4] (r5) {5. Full ANDES};
+\node[rung=thesisblue, left=0.36cm of r5] (r6) {6. Time-domain and protection};
+\draw[arr] (r1) -- (r2);
+\draw[arr] (r2) -- (r3);
+\draw[arr] (r3) -- (r4);
+\draw[arr] (r4) -- (r5);
+\draw[arr] (r5) -- (r6);
+\end{tikzpicture}
+\caption{Validation ladder for this research program. A result becomes more
+credible as it moves from algebraic identity to full linearization and
+time-domain/protection checks.}
+\label{fig:validation_ladder_visual}
+\end{figure}
+
+Negative gates are part of the thesis. The registered inertia-control cross
+term is mathematically real in the local expansion, but the full-ANDES
+singleton gate found no measurable effect in 13 tested cases. The correct use
+is therefore as a possible second-order diagnostic, not as a headline. The same
+discipline applies to hidden margins, line reinforcement, and virtual inertia:
+the theory names the mechanism; validation decides whether it is a planning
+claim in a given benchmark.

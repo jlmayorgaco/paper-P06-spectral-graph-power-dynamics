@@ -1,0 +1,276 @@
+[
+  {
+    "name": "ieee39_ibr_gfl20",
+    "path": "validation\\ieee39_rational_filter\\cases\\ieee39_ibr_gfl20.xlsx",
+    "gfl": [
+      9,
+      8
+    ],
+    "gfm": [],
+    "test": {
+      "case": "validation\\ieee39_rational_filter\\cases\\ieee39_ibr_gfl20.xlsx",
+      "ok": true,
+      "pflow_ok": true,
+      "eig_ok": true,
+      "inventory": {
+        "Bus": 39,
+        "Line": 46,
+        "PV": 9,
+        "Slack": 1,
+        "GENROU": 8,
+        "TGOV1N": 8,
+        "IEEEX1": 8,
+        "IEEEST": 8,
+        "REGCP1": 2,
+        "REGCA1": 0,
+        "REECA1": 2,
+        "REPCA1": 2,
+        "REGF1": 0,
+        "REGF2": 0,
+        "PLL1": 2
+      },
+      "poles": {
+        "n_eigs": 174,
+        "n_positive_real": 1,
+        "n_positive_oscillatory": 0,
+        "n_zero": 16,
+        "n_oscillatory": 50,
+        "max_real": 1.0123522856080835,
+        "small_signal_stable": false,
+        "dominant_positive": {
+          "real": 1.0123522856080835,
+          "imag": 0.0,
+          "zeta": -1.0,
+          "freq_hz": 0.0
+        },
+        "critical_stable_osc": {
+          "real": -9.970948394940374,
+          "imag": 86.25363329814405,
+          "zeta": 0.11483557660235834,
+          "freq_hz": 13.727692099035325
+        }
+      }
+    }
+  },
+  {
+    "name": "ieee39_ibr_gfm20",
+    "path": "validation\\ieee39_rational_filter\\cases\\ieee39_ibr_gfm20.xlsx",
+    "gfl": [],
+    "gfm": [
+      9,
+      8
+    ],
+    "test": {
+      "case": "validation\\ieee39_rational_filter\\cases\\ieee39_ibr_gfm20.xlsx",
+      "ok": true,
+      "pflow_ok": true,
+      "eig_ok": true,
+      "inventory": {
+        "Bus": 39,
+        "Line": 46,
+        "PV": 9,
+        "Slack": 1,
+        "GENROU": 8,
+        "TGOV1N": 8,
+        "IEEEX1": 8,
+        "IEEEST": 8,
+        "REGCP1": 0,
+        "REGCA1": 0,
+        "REECA1": 0,
+        "REPCA1": 0,
+        "REGF1": 2,
+        "REGF2": 0,
+        "PLL1": 0
+      },
+      "poles": {
+        "n_eigs": 158,
+        "n_positive_real": 6,
+        "n_positive_oscillatory": 2,
+        "n_zero": 7,
+        "n_oscillatory": 60,
+        "max_real": 4.290989690254703,
+        "small_signal_stable": false,
+        "dominant_positive": {
+          "real": 4.290989690254703,
+          "imag": 18.771432783238122,
+          "zeta": -0.22284338251874963,
+          "freq_hz": 2.987566316369602
+        },
+        "critical_stable_osc": {
+          "real": -1.2700026207118937,
+          "imag": 8.73986071151362,
+          "zeta": 0.1438012574005331,
+          "freq_hz": 1.390992034172042
+        }
+      }
+    }
+  },
+  {
+    "name": "ieee39_ibr_mix20",
+    "path": "validation\\ieee39_rational_filter\\cases\\ieee39_ibr_mix20.xlsx",
+    "gfl": [
+      9
+    ],
+    "gfm": [
+      8
+    ],
+    "test": {
+      "case": "validation\\ieee39_rational_filter\\cases\\ieee39_ibr_mix20.xlsx",
+      "ok": true,
+      "pflow_ok": true,
+      "eig_ok": true,
+      "inventory": {
+        "Bus": 39,
+        "Line": 46,
+        "PV": 9,
+        "Slack": 1,
+        "GENROU": 8,
+        "TGOV1N": 8,
+        "IEEEX1": 8,
+        "IEEEST": 8,
+        "REGCP1": 1,
+        "REGCA1": 0,
+        "REECA1": 1,
+        "REPCA1": 1,
+        "REGF1": 1,
+        "REGF2": 0,
+        "PLL1": 1
+      },
+      "poles": {
+        "n_eigs": 166,
+        "n_positive_real": 3,
+        "n_positive_oscillatory": 0,
+        "n_zero": 12,
+        "n_oscillatory": 56,
+        "max_real": 1.0696008390417835,
+        "small_signal_stable": false,
+        "dominant_positive": {
+          "real": 1.0696008390417835,
+          "imag": 0.0,
+          "zeta": -1.0,
+          "freq_hz": 0.0
+        },
+        "critical_stable_osc": {
+          "real": -11.948284220487341,
+          "imag": 86.39821347165757,
+          "zeta": 0.1369894284660841,
+          "freq_hz": 13.750702748323086
+        }
+      }
+    }
+  },
+  {
+    "name": "ieee39_ibr_mix40",
+    "path": "validation\\ieee39_rational_filter\\cases\\ieee39_ibr_mix40.xlsx",
+    "gfl": [
+      9,
+      7
+    ],
+    "gfm": [
+      8,
+      6
+    ],
+    "test": {
+      "case": "validation\\ieee39_rational_filter\\cases\\ieee39_ibr_mix40.xlsx",
+      "ok": true,
+      "pflow_ok": true,
+      "eig_ok": true,
+      "inventory": {
+        "Bus": 39,
+        "Line": 46,
+        "PV": 9,
+        "Slack": 1,
+        "GENROU": 6,
+        "TGOV1N": 6,
+        "IEEEX1": 6,
+        "IEEEST": 6,
+        "REGCP1": 2,
+        "REGCA1": 0,
+        "REECA1": 2,
+        "REPCA1": 2,
+        "REGF1": 2,
+        "REGF2": 0,
+        "PLL1": 2
+      },
+      "poles": {
+        "n_eigs": 172,
+        "n_positive_real": 2,
+        "n_positive_oscillatory": 0,
+        "n_zero": 15,
+        "n_oscillatory": 58,
+        "max_real": 1.0719957908759101,
+        "small_signal_stable": false,
+        "dominant_positive": {
+          "real": 1.0719957908759101,
+          "imag": 0.0,
+          "zeta": -1.0,
+          "freq_hz": 0.0
+        },
+        "critical_stable_osc": {
+          "real": -11.056688178524581,
+          "imag": 86.61758981207653,
+          "zeta": 0.12662201021457303,
+          "freq_hz": 13.785617577298174
+        }
+      }
+    }
+  },
+  {
+    "name": "ieee39_ibr_mix60",
+    "path": "validation\\ieee39_rational_filter\\cases\\ieee39_ibr_mix60.xlsx",
+    "gfl": [
+      9,
+      7,
+      5
+    ],
+    "gfm": [
+      8,
+      6,
+      4
+    ],
+    "test": {
+      "case": "validation\\ieee39_rational_filter\\cases\\ieee39_ibr_mix60.xlsx",
+      "ok": true,
+      "pflow_ok": true,
+      "eig_ok": true,
+      "inventory": {
+        "Bus": 39,
+        "Line": 46,
+        "PV": 9,
+        "Slack": 1,
+        "GENROU": 4,
+        "TGOV1N": 4,
+        "IEEEX1": 4,
+        "IEEEST": 4,
+        "REGCP1": 3,
+        "REGCA1": 0,
+        "REECA1": 3,
+        "REPCA1": 3,
+        "REGF1": 3,
+        "REGF2": 0,
+        "PLL1": 3
+      },
+      "poles": {
+        "n_eigs": 178,
+        "n_positive_real": 0,
+        "n_positive_oscillatory": 0,
+        "n_zero": 21,
+        "n_oscillatory": 56,
+        "max_real": 2.000000026702864e-09,
+        "small_signal_stable": true,
+        "dominant_positive": {
+          "real": NaN,
+          "imag": NaN,
+          "zeta": NaN,
+          "freq_hz": NaN
+        },
+        "critical_stable_osc": {
+          "real": -10.751357900248504,
+          "imag": 86.34193765604479,
+          "zeta": 0.12356640434765424,
+          "freq_hz": 13.741746174091784
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "status": "NOT_MEASURABLE",
+  "n_cases": 13,
+  "n_measurable": 0,
+  "best_by_cross_fraction": {
+    "label": "all_active__all_active",
+    "genrou_target": "all_active",
+    "pll_target": "all_active",
+    "status": "NOT_MEASURABLE",
+    "mode_selector": "network",
+    "base_real": -0.6566405263625017,
+    "base_imag": 4.884817877082756,
+    "base_freq_hz": 0.777442911241379,
+    "base_zeta": 0.13322645820334167,
+    "base_pi_c": 0.5478620121062632,
+    "base_family": "I_network",
+    "true_shift_abs": 0.015568425031081487,
+    "cross_shift_abs": 3.4854899485604545e-06,
+    "cross_fraction_of_true_shift": 0.00022388198816526844,
+    "add_complex_error": 2.804224687445613e-05,
+    "cross_complex_error": 3.1527632396109435e-05,
+    "complex_error_improvement_fraction": -0.1242905226980284,
+    "add_zeta_abs_error": 4.6798228980904355e-07,
+    "cross_zeta_abs_error": 5.318994095449003e-07,
+    "zeta_error_improvement_fraction": -0.13658021067835208
+  }
+}

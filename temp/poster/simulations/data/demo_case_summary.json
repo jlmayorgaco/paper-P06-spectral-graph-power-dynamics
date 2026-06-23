@@ -1,0 +1,225 @@
+{
+  "master_seed": 20260608,
+  "case_seed": 727986944,
+  "search_attempts": 2,
+  "regime": "moderate",
+  "n_buses": 6,
+  "reinforcement_fraction": 0.1,
+  "inertia_M": [
+    4.063286422492764,
+    3.7187162296423355,
+    5.535951325304221,
+    3.1498935084109707,
+    5.684820979295082,
+    2.968444677609134
+  ],
+  "damping_per_inertia_D_over_M": [
+    0.046739524149311866,
+    0.05832938880425929,
+    0.31065025278953434,
+    0.19377088674361614,
+    0.5223507456568349,
+    0.07972757214379031
+  ],
+  "physical_damping_D": [
+    0.18991607386967158,
+    0.21691044481151694,
+    1.7197446786363138,
+    0.6103576582727539,
+    2.9694704774604044,
+    0.23666688718893258
+  ],
+  "weight_matrix": [
+    [
+      0.0,
+      0.47770589210946807,
+      2.70314664437791,
+      0.7110530788042737,
+      2.443350422400326,
+      0.40804923233701934
+    ],
+    [
+      0.47770589210946807,
+      0.0,
+      0.7323317505705955,
+      0.0,
+      1.1962398321180385,
+      0.36268683777881916
+    ],
+    [
+      2.70314664437791,
+      0.7323317505705955,
+      0.0,
+      0.0,
+      0.7543132223819692,
+      0.0
+    ],
+    [
+      0.7110530788042737,
+      0.0,
+      0.0,
+      0.0,
+      0.42324466513862763,
+      0.0
+    ],
+    [
+      2.443350422400326,
+      1.1962398321180385,
+      0.7543132223819692,
+      0.42324466513862763,
+      0.0,
+      0.0
+    ],
+    [
+      0.40804923233701934,
+      0.36268683777881916,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  ],
+  "edges": [
+    {
+      "edge_index": 0,
+      "from_bus": 1,
+      "to_bus": 2,
+      "base_weight": 0.47770589210946807
+    },
+    {
+      "edge_index": 1,
+      "from_bus": 1,
+      "to_bus": 3,
+      "base_weight": 2.70314664437791
+    },
+    {
+      "edge_index": 2,
+      "from_bus": 1,
+      "to_bus": 4,
+      "base_weight": 0.7110530788042737
+    },
+    {
+      "edge_index": 3,
+      "from_bus": 1,
+      "to_bus": 5,
+      "base_weight": 2.443350422400326
+    },
+    {
+      "edge_index": 4,
+      "from_bus": 1,
+      "to_bus": 6,
+      "base_weight": 0.40804923233701934
+    },
+    {
+      "edge_index": 5,
+      "from_bus": 2,
+      "to_bus": 3,
+      "base_weight": 0.7323317505705955
+    },
+    {
+      "edge_index": 6,
+      "from_bus": 2,
+      "to_bus": 5,
+      "base_weight": 1.1962398321180385
+    },
+    {
+      "edge_index": 7,
+      "from_bus": 2,
+      "to_bus": 6,
+      "base_weight": 0.36268683777881916
+    },
+    {
+      "edge_index": 8,
+      "from_bus": 3,
+      "to_bus": 5,
+      "base_weight": 0.7543132223819692
+    },
+    {
+      "edge_index": 9,
+      "from_bus": 4,
+      "to_bus": 5,
+      "base_weight": 0.42324466513862763
+    }
+  ],
+  "base": {
+    "zeta_full": 0.04204058278461888,
+    "pole_full": {
+      "real": -0.060389287035353637,
+      "imag": 1.4351822240549232
+    },
+    "zeta_diag": 0.0442246298901207,
+    "zeta_second_order": 0.043250670130060134,
+    "s0": {
+      "real": -0.06396703870653717,
+      "imag": 1.4449969238868794
+    },
+    "s2": {
+      "real": -0.062311818165810794,
+      "imag": 1.439365212528345
+    },
+    "delta_s_second_order": {
+      "real": 0.0016552205407263736,
+      "imag": -0.005631711358534408
+    },
+    "critical_mode_index_zero_based": 4,
+    "nu_critical": 2.092107892083427,
+    "delta_critical": 0.12793407741307433,
+    "offdiag_modal_damping_ratio_eta": 0.5855970144481789,
+    "min_modal_denominator": 1.1161017268506748
+  },
+  "selected_reversal_frequency_top": {
+    "edge_index": 1,
+    "from_bus": 1,
+    "to_bus": 3,
+    "base_weight": 2.70314664437791,
+    "delta_w": 0.270314664437791,
+    "dnu_dw_frequency": 0.33799610060575114,
+    "delta_nu_fd_10pct": 0.09311279967767039,
+    "dzeta_dw_qep_analytic": -0.005721581000946389,
+    "ds_dw_qep_real": 0.003107056838462798,
+    "ds_dw_qep_imag": 0.12182847889969538,
+    "delta_zeta_full_fd_10pct": -0.0013640973110314245,
+    "dzeta_dw_full_fd": -0.005046331148435906,
+    "delta_zeta_second_order_fd_10pct": -0.0015931034640124173,
+    "dzeta_dw_second_order_fd": -0.005893514757424664,
+    "post_zeta_full": 0.04067648547358745,
+    "post_zeta_second": 0.04165756666604772,
+    "frequency_rank": 1,
+    "damping_rank": 7,
+    "is_frequency_top": true,
+    "is_damping_top": false,
+    "is_reversal": true,
+    "second_order_delta_abs_error": 0.0002290061529809928,
+    "second_order_delta_rel_error": 0.1678810969928796,
+    "second_order_direction_correct": true
+  },
+  "selected_damping_aware_top": {
+    "edge_index": 6,
+    "from_bus": 2,
+    "to_bus": 5,
+    "base_weight": 1.1962398321180385,
+    "delta_w": 0.11962398321180386,
+    "dnu_dw_frequency": 0.022076334662855957,
+    "delta_nu_fd_10pct": 0.0027681826951684307,
+    "dzeta_dw_qep_analytic": 0.003588952916627501,
+    "ds_dw_qep_real": -0.005342503627126439,
+    "ds_dw_qep_imag": 0.0042306552487516285,
+    "delta_zeta_full_fd_10pct": 0.0004510724836405619,
+    "dzeta_dw_full_fd": 0.0037707529170124847,
+    "delta_zeta_second_order_fd_10pct": 0.0005624939456903219,
+    "dzeta_dw_second_order_fd": 0.004702183714233803,
+    "post_zeta_full": 0.04249165526825944,
+    "post_zeta_second": 0.043813164075750456,
+    "frequency_rank": 7,
+    "damping_rank": 1,
+    "is_frequency_top": false,
+    "is_damping_top": true,
+    "is_reversal": false,
+    "second_order_delta_abs_error": 0.00011142146204976,
+    "second_order_delta_rel_error": 0.24701453999252687,
+    "second_order_direction_correct": true
+  },
+  "reversal_count": 5,
+  "n_lines_tested": 10,
+  "poster_summary": "A six-bus synthetic network with log-uniform inertia and moderate log-uniform D_i/M_i heterogeneity was found after two seeded search attempts. Under a 10% reinforcement, the line ranked first by critical-mode frequency sensitivity increases the critical modal stiffness but reduces the full-QEP damping margin. The QEP-aware damping sensitivity ranks a different line first, and that line improves the damping margin. The second-order rational-filter correction predicts the harmful line's damping movement in the correct direction."
+}

@@ -1,0 +1,7 @@
+{
+  "status": "not_run",
+  "reason": "This harness requires ANDES and an IEEE 39 dynamic case.",
+  "raw": null,
+  "dyr": null,
+  "required_next_step": "Implement model-specific extraction of full poles and M,D,L surrogate."
+}

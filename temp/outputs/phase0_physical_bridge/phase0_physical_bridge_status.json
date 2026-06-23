@@ -1,0 +1,358 @@
+{
+  "gate": "G0.5 physical ANDES-to-(L,M,D) bridge",
+  "status": "BLOCKED",
+  "acceptance_rule": "critical mode frequency error <= 5%, first-six mean frequency error <= 5%, and positive damping sign reproduced by physically extracted scalar D",
+  "results": [
+    {
+      "case": "base",
+      "path": "C:\\Users\\walla\\anaconda3\\Lib\\site-packages\\andes\\cases\\ieee39\\ieee39_full.xlsx",
+      "n_full_modes_in_band": 11,
+      "n_surrogate_modes": 9,
+      "critical_freq_pass_5pct": false,
+      "critical_damping_sign_pass": false,
+      "mean_first_six_freq_pass_5pct": false,
+      "accepted": false,
+      "blocking_reason": "Physical L and M place several frequencies in the electromechanical band, but GENROU.D is zero in the packaged case, so the extracted scalar D cannot reproduce the positive damping of the full ANDES modes. Controller/exciter/PSS states provide damping that is not captured by a scalar nodal D without a validated reduction.",
+      "critical_match": {
+        "andes_mode_index": 71,
+        "andes_freq_hz": 1.3705603736635468,
+        "surrogate_freq_hz": 1.200335334561611,
+        "relative_freq_error": 0.12420105117071158,
+        "andes_zeta": 0.15442935855929482,
+        "surrogate_zeta": 1.7100930194784588e-16,
+        "relative_zeta_error": 0.9999999999999989,
+        "damping_sign_correct": false,
+        "em_participation": 1.08445,
+        "andes_top_states": "omega GENROU 1:0.3682; delta GENROU 1:0.3422; omega GENROU 8:0.09063; delta GENROU 8:0.08027; omega GENROU 3:0.05055"
+      },
+      "full_modes": [
+        {
+          "mode_index": 71,
+          "real": -1.346013072429833,
+          "imag": 8.61148480240536,
+          "freq_hz": 1.3705603736635468,
+          "zeta": 0.15442935855929482,
+          "em_participation": 1.08445,
+          "top_states": "omega GENROU 1:0.3682; delta GENROU 1:0.3422; omega GENROU 8:0.09063; delta GENROU 8:0.08027; omega GENROU 3:0.05055"
+        },
+        {
+          "mode_index": 75,
+          "real": -1.2591160872721545,
+          "imag": 7.754988586227082,
+          "freq_hz": 1.2342447671192691,
+          "zeta": 0.16026343427853224,
+          "em_participation": 1.0813800000000002,
+          "top_states": "omega GENROU 3:0.1872; omega GENROU 6:0.1723; delta GENROU 3:0.171; delta GENROU 6:0.157; omega GENROU 2:0.1052"
+        },
+        {
+          "mode_index": 69,
+          "real": -1.525668116215229,
+          "imag": 9.356565621075257,
+          "freq_hz": 1.4891436689578168,
+          "zeta": 0.16093314221454685,
+          "em_participation": 1.0556200000000002,
+          "top_states": "omega GENROU 2:0.358; delta GENROU 2:0.3249; omega GENROU 3:0.1903; delta GENROU 3:0.1751; LAG_y TGOV1N TGOV1 2:0.0198"
+        },
+        {
+          "mode_index": 64,
+          "real": -1.7862464827133802,
+          "imag": 10.267136971060507,
+          "freq_hz": 1.6340656003458298,
+          "zeta": 0.1714024085636896,
+          "em_participation": 1.07072,
+          "top_states": "omega GENROU 7:0.3725; delta GENROU 7:0.3345; omega GENROU 6:0.1458; delta GENROU 6:0.1343; omega GENROU 4:0.04101"
+        },
+        {
+          "mode_index": 66,
+          "real": -1.7763014099550039,
+          "imag": 9.891249057410455,
+          "freq_hz": 1.5742411808399244,
+          "zeta": 0.1767555489598749,
+          "em_participation": 1.0807000000000002,
+          "top_states": "omega GENROU 4:0.4176; delta GENROU 4:0.3767; omega GENROU 6:0.07034; delta GENROU 6:0.06459; omega GENROU 5:0.06029"
+        },
+        {
+          "mode_index": 80,
+          "real": -1.126034267402583,
+          "imag": 6.05070631684272,
+          "freq_hz": 0.9629998195228747,
+          "zeta": 0.18295840013221698,
+          "em_participation": 1.13916,
+          "top_states": "omega GENROU 9:0.3731; delta GENROU 9:0.3345; omega GENROU 5:0.1363; delta GENROU 5:0.119; omega GENROU 4:0.03084"
+        },
+        {
+          "mode_index": 86,
+          "real": -0.7717123003299589,
+          "imag": 4.013410336256466,
+          "freq_hz": 0.6387540936713223,
+          "zeta": 0.1888244162492133,
+          "em_participation": 1.0853300000000001,
+          "top_states": "omega GENROU 10:0.1844; delta GENROU 10:0.1822; omega GENROU 9:0.1016; delta GENROU 9:0.08929; omega GENROU 5:0.07212"
+        },
+        {
+          "mode_index": 77,
+          "real": -1.477015390717552,
+          "imag": 7.001887542461461,
+          "freq_hz": 1.1143850133563047,
+          "zeta": 0.2064030441836189,
+          "em_participation": 1.18496,
+          "top_states": "omega GENROU 5:0.3066; delta GENROU 5:0.2669; omega GENROU 3:0.07947; omega GENROU 6:0.07862; delta GENROU 3:0.07158"
+        },
+        {
+          "mode_index": 60,
+          "real": -2.443841815864353,
+          "imag": 10.6026130708754,
+          "freq_hz": 1.68745827992056,
+          "zeta": 0.22460513319145942,
+          "em_participation": 1.09315,
+          "top_states": "omega GENROU 8:0.4587; delta GENROU 8:0.4041; omega GENROU 1:0.1142; delta GENROU 1:0.1061; e2q GENROU 8:0.04451"
+        },
+        {
+          "mode_index": 100,
+          "real": -0.6102095563486911,
+          "imag": 0.9679071421503601,
+          "freq_hz": 0.15404720612717962,
+          "zeta": 0.5333054435461808,
+          "em_participation": 0.36448,
+          "top_states": "LL2_x IEEEST 10:0.1873; e1q GENROU 10:0.1267; W_x IEEEX1 10:0.1246; omega GENROU 10:0.08779; delta GENROU 10:0.08058"
+        }
+      ],
+      "surrogate_modes": [
+        {
+          "real": -2.5352632573975147e-16,
+          "imag": 4.671434547504844,
+          "freq_hz": 0.7434818995656473,
+          "zeta": 5.4271621096600323e-17
+        },
+        {
+          "real": -1.2897400713981847e-15,
+          "imag": 7.541929337806007,
+          "freq_hz": 1.200335334561611,
+          "zeta": 1.7100930194784588e-16
+        },
+        {
+          "real": -1.4471677631597232e-15,
+          "imag": 10.382080409633357,
+          "freq_hz": 1.6523594167706783,
+          "zeta": 1.3939092224877402e-16
+        },
+        {
+          "real": 1.3062662979408794e-22,
+          "imag": 10.737531173503365,
+          "freq_hz": 1.7089311628663804,
+          "zeta": -1.216542496439319e-23
+        },
+        {
+          "real": -1.1742116957985986e-16,
+          "imag": 11.820030276336952,
+          "freq_hz": 1.8812162459748876,
+          "zeta": 9.934083655854127e-18
+        },
+        {
+          "real": -1.8076393642472794e-16,
+          "imag": 15.841835174994358,
+          "freq_hz": 2.521306375747413,
+          "zeta": 1.1410542681952397e-17
+        },
+        {
+          "real": -1.3756289335103608e-15,
+          "imag": 16.351515860008472,
+          "freq_hz": 2.6024245761658724,
+          "zeta": 8.412852638786776e-17
+        },
+        {
+          "real": -1.74597539724251e-22,
+          "imag": 16.58187857034668,
+          "freq_hz": 2.639087940220245,
+          "zeta": 1.0529418544680649e-23
+        },
+        {
+          "real": 6.391396247666793e-16,
+          "imag": 17.086653391789604,
+          "freq_hz": 2.7194253482012147,
+          "zeta": -3.740578158352505e-17
+        }
+      ],
+      "outputs": {
+        "mode_match_csv": "outputs\\phase0_physical_bridge\\base_mode_match.csv",
+        "matrices_json": "outputs\\phase0_physical_bridge\\base_matrices.json"
+      }
+    },
+    {
+      "case": "no_pss",
+      "path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\ieee39_mode_diagnostics\\ieee39_no_ieeest.xlsx",
+      "n_full_modes_in_band": 11,
+      "n_surrogate_modes": 9,
+      "critical_freq_pass_5pct": false,
+      "critical_damping_sign_pass": false,
+      "mean_first_six_freq_pass_5pct": false,
+      "accepted": false,
+      "blocking_reason": "Physical L and M place several frequencies in the electromechanical band, but GENROU.D is zero in the packaged case, so the extracted scalar D cannot reproduce the positive damping of the full ANDES modes. Controller/exciter/PSS states provide damping that is not captured by a scalar nodal D without a validated reduction.",
+      "critical_match": {
+        "andes_mode_index": 71,
+        "andes_freq_hz": 1.3704899496779517,
+        "surrogate_freq_hz": 1.200335334561614,
+        "relative_freq_error": 0.12415604737292822,
+        "andes_zeta": 0.1544743228879957,
+        "surrogate_zeta": -9.168782653837949e-30,
+        "relative_zeta_error": 1.0,
+        "damping_sign_correct": false,
+        "em_participation": 1.08499,
+        "andes_top_states": "omega GENROU 1:0.3684; delta GENROU 1:0.3423; omega GENROU 8:0.09074; delta GENROU 8:0.08036; omega GENROU 3:0.05055"
+      },
+      "full_modes": [
+        {
+          "mode_index": 71,
+          "real": -1.34634537929171,
+          "imag": 8.611042315453796,
+          "freq_hz": 1.3704899496779517,
+          "zeta": 0.1544743228879957,
+          "em_participation": 1.08499,
+          "top_states": "omega GENROU 1:0.3684; delta GENROU 1:0.3423; omega GENROU 8:0.09074; delta GENROU 8:0.08036; omega GENROU 3:0.05055"
+        },
+        {
+          "mode_index": 75,
+          "real": -1.2596942998753742,
+          "imag": 7.753058879206725,
+          "freq_hz": 1.2339376447082602,
+          "zeta": 0.16037401961335285,
+          "em_participation": 1.0824099999999999,
+          "top_states": "omega GENROU 3:0.1874; omega GENROU 6:0.1724; delta GENROU 3:0.1712; delta GENROU 6:0.1571; omega GENROU 2:0.1053"
+        },
+        {
+          "mode_index": 68,
+          "real": -1.5264662599649392,
+          "imag": 9.355298715565064,
+          "freq_hz": 1.4889420346834394,
+          "zeta": 0.1610363906472949,
+          "em_participation": 1.0563800000000003,
+          "top_states": "omega GENROU 2:0.3582; delta GENROU 2:0.3251; omega GENROU 3:0.1904; delta GENROU 3:0.1753; LAG_y TGOV1N TGOV1 2:0.02286"
+        },
+        {
+          "mode_index": 64,
+          "real": -1.786914007073866,
+          "imag": 10.265048281830888,
+          "freq_hz": 1.633733175130353,
+          "zeta": 0.17149844205199252,
+          "em_participation": 1.07142,
+          "top_states": "omega GENROU 7:0.3726; delta GENROU 7:0.3345; omega GENROU 6:0.1458; delta GENROU 6:0.1342; omega GENROU 4:0.04129"
+        },
+        {
+          "mode_index": 66,
+          "real": -1.7774193365004332,
+          "imag": 9.890777839068312,
+          "freq_hz": 1.5741661841114967,
+          "zeta": 0.17687147507972564,
+          "em_participation": 1.0809000000000002,
+          "top_states": "omega GENROU 4:0.4174; delta GENROU 4:0.3765; omega GENROU 6:0.07055; delta GENROU 6:0.06479; omega GENROU 5:0.06025"
+        },
+        {
+          "mode_index": 80,
+          "real": -1.1249115916098436,
+          "imag": 6.045902912822648,
+          "freq_hz": 0.9622353340294127,
+          "zeta": 0.18292244577962927,
+          "em_participation": 1.14127,
+          "top_states": "omega GENROU 9:0.3739; delta GENROU 9:0.3352; omega GENROU 5:0.1364; delta GENROU 5:0.119; omega GENROU 4:0.03091"
+        },
+        {
+          "mode_index": 84,
+          "real": -0.7686478064890911,
+          "imag": 4.00997708879188,
+          "freq_hz": 0.6382076753664758,
+          "zeta": 0.18825651250524983,
+          "em_participation": 1.08713,
+          "top_states": "omega GENROU 10:0.1843; delta GENROU 10:0.1821; omega GENROU 9:0.1024; delta GENROU 9:0.09002; omega GENROU 5:0.07208"
+        },
+        {
+          "mode_index": 77,
+          "real": -1.476989690366484,
+          "imag": 6.999449971131903,
+          "freq_hz": 1.1139970618300665,
+          "zeta": 0.20646842113741315,
+          "em_participation": 1.18548,
+          "top_states": "omega GENROU 5:0.3068; delta GENROU 5:0.2671; omega GENROU 3:0.07963; omega GENROU 6:0.07858; delta GENROU 3:0.07172"
+        },
+        {
+          "mode_index": 49,
+          "real": -2.4443559652890565,
+          "imag": 10.602172797296754,
+          "freq_hz": 1.6873882082042058,
+          "zeta": 0.2246588605010299,
+          "em_participation": 1.09336,
+          "top_states": "omega GENROU 8:0.4588; delta GENROU 8:0.4042; omega GENROU 1:0.1142; delta GENROU 1:0.1061; LAG_y TGOV1N TGOV1 8:0.03401"
+        },
+        {
+          "mode_index": 93,
+          "real": -0.4164156051026967,
+          "imag": 0.7563528355053344,
+          "freq_hz": 0.12037729249224517,
+          "zeta": 0.4822935502750943,
+          "em_participation": 0.67154,
+          "top_states": "omega GENROU 10:0.1961; delta GENROU 10:0.1715; W_x IEEEX1 9:0.0489; e1q GENROU 4:0.04305; delta GENROU 5:0.03892"
+        }
+      ],
+      "surrogate_modes": [
+        {
+          "real": 8.881784197001487e-16,
+          "imag": 4.671434547504847,
+          "freq_hz": 0.7434818995656478,
+          "zeta": -1.9012969370930208e-16
+        },
+        {
+          "real": 6.915031088894742e-29,
+          "imag": 7.5419293378060255,
+          "freq_hz": 1.200335334561614,
+          "zeta": -9.168782653837949e-30
+        },
+        {
+          "real": -1.0693658739902995e-15,
+          "imag": 10.382080409633389,
+          "freq_hz": 1.6523594167706834,
+          "zeta": 1.0300111651977282e-16
+        },
+        {
+          "real": -1.4250260389246577e-15,
+          "imag": 10.737531173503388,
+          "freq_hz": 1.708931162866384,
+          "zeta": 1.327144960883692e-16
+        },
+        {
+          "real": 8.88178419700186e-16,
+          "imag": 11.820030276336986,
+          "freq_hz": 1.8812162459748931,
+          "zeta": -7.514180581062195e-17
+        },
+        {
+          "real": -9.394618763823481e-17,
+          "imag": 15.841835174994339,
+          "freq_hz": 2.5213063757474097,
+          "zeta": 5.9302591272079925e-18
+        },
+        {
+          "real": 1.3924429068499014e-15,
+          "imag": 16.351515860008455,
+          "freq_hz": 2.6024245761658698,
+          "zeta": -8.515680862686583e-17
+        },
+        {
+          "real": -6.288524171472215e-17,
+          "imag": 16.581878570346674,
+          "freq_hz": 2.639087940220244,
+          "zeta": 3.792407563952353e-18
+        },
+        {
+          "real": 2.833632456980685e-16,
+          "imag": 17.08665339178962,
+          "freq_hz": 2.719425348201218,
+          "zeta": -1.6583893826407722e-17
+        }
+      ],
+      "outputs": {
+        "mode_match_csv": "outputs\\phase0_physical_bridge\\no_pss_mode_match.csv",
+        "matrices_json": "outputs\\phase0_physical_bridge\\no_pss_matrices.json"
+      }
+    }
+  ],
+  "proceed_to_phase2": false
+}

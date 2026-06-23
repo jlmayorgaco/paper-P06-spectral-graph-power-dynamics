@@ -1,0 +1,67 @@
+[
+  {
+    "variant": "base",
+    "removed": "",
+    "path": "C:\\Users\\walla\\anaconda3\\Lib\\site-packages\\andes\\cases\\ieee39\\ieee39_full.xlsx",
+    "n_eigs": 160,
+    "n_positive": 9,
+    "n_positive_osc": 0,
+    "max_real": 1.0841198736877613,
+    "critical_real": -1.346013072429833,
+    "critical_imag": 8.61148480240536,
+    "critical_zeta": 0.15442935855929482,
+    "critical_freq_hz": 1.3705603736635468
+  },
+  {
+    "variant": "no_tgov",
+    "removed": "TGOV1N",
+    "path": "outputs\\ieee39_mode_diagnostics\\ieee39_no_tgov1n.xlsx",
+    "n_eigs": 140,
+    "n_positive": 4,
+    "n_positive_osc": 0,
+    "max_real": 1.0869865712352125,
+    "critical_real": -0.22231771928276664,
+    "critical_imag": 3.910659597404146,
+    "critical_zeta": 0.05675752030040982,
+    "critical_freq_hz": 0.6224008056766313
+  },
+  {
+    "variant": "no_pss",
+    "removed": "IEEEST",
+    "path": "outputs\\ieee39_mode_diagnostics\\ieee39_no_ieeest.xlsx",
+    "n_eigs": 130,
+    "n_positive": 0,
+    "n_positive_osc": 0,
+    "max_real": -1.93394186907237e-13,
+    "critical_real": -1.34634537929171,
+    "critical_imag": 8.611042315453796,
+    "critical_zeta": 0.1544743228879957,
+    "critical_freq_hz": 1.3704899496779517
+  },
+  {
+    "variant": "no_exciter_pss",
+    "removed": "IEEEX1,IEEEST",
+    "path": "outputs\\ieee39_mode_diagnostics\\ieee39_no_ieeex1_ieeest.xlsx",
+    "n_eigs": 100,
+    "n_positive": 0,
+    "n_positive_osc": 0,
+    "max_real": 7.823193186391519e-16,
+    "critical_real": -1.3421341889429583,
+    "critical_imag": 8.623720405003803,
+    "critical_zeta": 0.1537815769634465,
+    "critical_freq_hz": 1.372507730298797
+  },
+  {
+    "variant": "genrou_only",
+    "removed": "TGOV1N,IEEEX1,IEEEST,ACEc,Toggler",
+    "path": "outputs\\ieee39_mode_diagnostics\\ieee39_no_tgov1n_ieeex1_ieeest_acec_toggler.xlsx",
+    "n_eigs": 80,
+    "n_positive": 0,
+    "n_positive_osc": 0,
+    "max_real": -1.7126852625111069e-12,
+    "critical_real": -0.2398557990451031,
+    "critical_imag": 3.9490387471346593,
+    "critical_zeta": 0.0606260438383933,
+    "critical_freq_hz": 0.6285090370679064
+  }
+]

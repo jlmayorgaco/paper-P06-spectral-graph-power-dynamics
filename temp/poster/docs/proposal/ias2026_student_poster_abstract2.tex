@@ -1,0 +1,54 @@
+\documentclass[conference]{IEEEtran}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{booktabs}
+\usepackage{array}
+\setlength{\parskip}{0pt}
+\raggedbottom
+\newcommand{\blocktitle}[1]{%
+  \vspace{0.42em}%
+  \noindent\centerline{\scshape #1}%
+  \vspace{0.16em}%
+}
+
+\title{\LARGE Network or Control?\\
+A Validated Spectral Bridge for Weak-Node and Weak-Link Analysis in Inverter-Dominated Grids}
+
+\author{\IEEEauthorblockN{Jorge L. Mayorga Taborda}
+\IEEEauthorblockA{Universidad de los Andes\\
+Bogot\'a, Colombia}}
+
+\begin{document}
+\maketitle
+\vspace{-1.15em}
+
+\begin{abstract}
+As industrial grids and microgrids replace synchronous machines with inverter-based resources, damping is no longer supplied mainly by machine inertia but by controller states: phase-locked loops, exciters, governors, stabilizers, and inverter loops. A consequence for planning is that classical weak-node and weak-link analysis, based on graph participation or Fiedler structure, can be blind to the actual source of weakness. The critical mode may belong to the control family, not the network family.
+
+This work develops a controller-aware spectral bridge that retains condensed controller states as a frequency-dependent self-energy, rather than collapsing them into a fixed nodal damping coefficient. On IEEE 39-bus ANDES cases, a static scalar bridge fails because the machine damping coefficient is zero, while the controller-aware bridge reproduces the full ANDES critical poles to machine-level numerical agreement in no-PSS, base, and 60\% inverter-mix cases. In the inverter-mix case, the least-damped mode is not the classical 1.49 Hz electromechanical mode but a 13.7417 Hz PLL-family mode with \(\pi_c=0.853\), missed by scalar and fixed-point reductions.
+
+The bridge classifies weak nodes and weak links by family: network weaknesses call for reinforcement, control weaknesses call for retuning, and a minority of line reinforcements are control-resonant, reducing damping by pulling a network mode toward a control pole. The bridge validation is at machine-level agreement; the controller-aware weak-element ranking is a formulation whose full operating-range validation is in progress.
+\end{abstract}
+
+\begin{IEEEkeywords}
+inverter-based resources, small-signal stability, damping margin, phase-locked loop, weak node identification, power system planning
+\end{IEEEkeywords}
+
+\blocktitle{Poster hook}
+Not every weak node is weak for the same reason: some need copper, some need control.
+
+\blocktitle{Verified bridge result}
+\noindent\textbf{Scalar bridge failure.} \texttt{GENROU.D}=0, yet the full eigensolve has modal damping.
+
+\noindent\textbf{Controller-aware bridge.} The rational Schur bridge matches no-PSS, base, and Mix60 ANDES critical poles; worst errors are \(8.47\times10^{-11}\%\) in frequency and \(2.48\times10^{-9}\%\) in damping.
+
+\noindent\textbf{Missed critical mode.} Mix60's least-damped pole is 13.7417 Hz PLL-family with \(\pi_c=0.853\), not the 1.49 Hz electromechanical mode.
+
+\blocktitle{Scope guard}
+The controller-aware weak-element ranking is a formulation under validation. Calibrated full-ANDES tests across operating ranges remain open. The control-resonant line mechanism is documented as minority, modal-local, and control-conditional.
+
+\blocktitle{Numbers checked}
+The repo supports the headline values used here: 13.7417 Hz, \(\pi_c=0.853\), no-PSS/base/Mix60 pole recovery, worst bridge errors \(8.47\times10^{-11}\%\) frequency and \(2.48\times10^{-9}\%\) damping. The line audit reports 40 strict control-resonant records out of 348 global-margin-reversal records; the abstract keeps this as a minority mechanism rather than a headline dominance claim.
+
+\end{document}

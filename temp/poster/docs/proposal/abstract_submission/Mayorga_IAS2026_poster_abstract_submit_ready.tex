@@ -1,0 +1,100 @@
+\documentclass[conference,9pt]{IEEEtran}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{microtype}
+\usepackage[top=0.63in,bottom=0.66in,left=0.64in,right=0.64in]{geometry}
+
+\pagestyle{empty}
+\IEEEoverridecommandlockouts
+\setlength{\abovedisplayskip}{3pt}
+\setlength{\belowdisplayskip}{3pt}
+\setlength{\abovedisplayshortskip}{2pt}
+\setlength{\belowdisplayshortskip}{2pt}
+
+\title{Beyond Nodal Damping: A Self-Energy Bridge for Inverter-Dominated Grids}
+
+\author{
+\IEEEauthorblockN{Jorge L. Mayorga Taborda}
+\IEEEauthorblockA{\textit{Universidad de los Andes, Bogot\'a, Colombia}}
+}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+Low-inertia screening often reduces a detailed dynamic model to an \(L,M,D\) object. That shortcut is only useful if damping can be represented by a fixed nodal coefficient. The assumption is weakest in inverter-rich grids, where damping may be carried by phase-locked loops, current controls, droop loops, exciters, governors, and stabilizers. A nodal-\(D\) screen can then point to the wrong margin-setting mode.
+
+The proposed reduced object keeps the condensed controller block as a Schur self-energy, \(\Sigma(s)\), rather than replacing it with a scalar damping term. The study will evaluate this bridge on IEEE 39-bus ANDES scenarios built by replacing synchronous generators with grid-following inverter-based resources over a penetration sweep. For each scenario, the protocol compares the full ANDES eigensolve, the self-energy poles extracted by contour integration, and the scalar \(L,M,D\) reduction used as a negative control. Time-domain transients will be used as a separate check on the modal predictions. The same reduced object labels critical modes as network-family or control-family, giving weak-node and weak-link screening a planning interpretation: some weak elements call for topology reinforcement, while others call for control retuning.
+\end{abstract}
+
+\begin{IEEEkeywords}
+inverter-based resources, small-signal stability, damping margin, phase-locked loop, nonlinear eigenvalue problem, weak-node identification, power-system planning
+\end{IEEEkeywords}
+
+\section{Introduction}
+
+Low-inertia operation is usually discussed as an inertia problem. The damping problem is less tidy. In a synchronous-generator model, inertia and damping sit close to the electromechanical coordinates. In an IBR-rich model, damping can be supplied by PLLs, current loops, droop loops, exciters, governors, and stabilizers. Those states are not a scalar correction to the Laplacian.
+
+That distinction matters for screening. A scalar bridge reduces the full model to a second-order object with damping in a fixed nodal coefficient. The proposed ANDES study treats that scalar bridge as the negative control. It asks when a reduced model that collapses controller dynamics to a constant tracks the wrong pole, and when the frequency-dependent self-energy is needed.
+
+\section{Formulation}
+
+The bridge starts from the linearized state matrix. Retained network/interface states are \(x_r\); condensed controller and auxiliary states are \(x_c\):
+{\small
+\[
+\dot{x}=\begin{bmatrix}A_{rr}&A_{rc}\\A_{cr}&A_{cc}\end{bmatrix}x,
+\qquad
+x=\begin{bmatrix}x_r\\x_c\end{bmatrix}.
+\]
+}
+At a trial pole \(s\), the controller block is condensed through the resolvent, not replaced by a constant:
+{\small
+\[
+\begin{gathered}
+x_c=(sI-A_{cc})^{-1}A_{cr}x_r,\\
+S_r(s)=sI-A_{rr}-A_{rc}(sI-A_{cc})^{-1}A_{cr}.
+\end{gathered}
+\]
+}
+The same reduced object can be written as a second-order self-energy bridge:
+{\small
+\[
+\begin{gathered}
+T(s)=s^2M+s\Sigma(s)+L,\\
+\Sigma(s)=D_0+C(sI-A_{cc})^{-1}B .
+\end{gathered}
+\]
+}
+Two scalar diagnostics carry the engineering meaning:
+{\small
+\[
+\zeta(s)=-\frac{\Re(s)}{|s|},\qquad
+\pi_c=\frac{\|\hat{x}_c\|_2^2}{\|\hat{x}_r\|_2^2+\|\hat{x}_c\|_2^2}.
+\]
+}
+Here \(\zeta\) is the damping margin and \(\pi_c\) says whether a critical pole is network-family or control-family. ANDES poles enter only after this reduced extraction, for validation.
+
+\section{ANDES Validation Protocol}
+
+Evaluation will use the IEEE 39-bus system in ANDES. Starting from the packaged synchronous case, scenarios will replace selected synchronous generators with grid-following IBR models while preserving a solved operating point. The main sweep is IBR penetration. Secondary sweeps will vary dispatch, loading, and controller parameters such as PLL bandwidth and current-control gains.
+
+For each scenario, ANDES will solve the power flow, form the full small-signal Jacobian, and compute the reference eigensolve. The same linearization will be condensed into \(S_r(s)\) and \(T(s)\); poles from the self-energy bridge will be extracted by contour integration. Validation will report pole-matching error, damping-margin error, and agreement on the family of the margin-setting pole. Transient checks will apply small disturbances such as load steps, set-point changes, and selected line outages, then compare the observed dominant frequency and damping with the eigenvalue predictions.
+
+\section{Weak Nodes and Weak Links}
+
+With the controller self-energy retained, weak-node and weak-link analysis becomes a family classification. A compact local line score is the predicted damping loss
+\[
+\eta_e=\max_{k\in\mathcal K}\{-\zeta_{k,w_e},0\}.
+\]
+A network-family weak node points to topology reinforcement. A control-family weak node points to tuning.
+
+Line reinforcement exposes a narrower case to be tested in the sweep. Some reinforcements may be control-resonant: they can pull a network mode toward a controller pole and lower damping rather than raising it. The audit will report how often this happens and whether it is tied to controller family, loading, or IBR location.
+
+\section{Next Steps}
+
+Next steps are to run the penetration and controller-parameter sweeps, then compare the weak-element ranking against Fiedler participation, impedance/SCR, power-flow loading, and damping-participation baselines. The audit should separate three outcomes: topology reinforcement that improves damping, control retuning that moves the controller pole, and line actions that are rejected because they reduce distance to a control pole.
+
+\end{document}

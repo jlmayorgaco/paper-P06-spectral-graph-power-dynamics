@@ -1,0 +1,2365 @@
+[
+  {
+    "status": "NOT_MEASURABLE",
+    "random_seed": 20260608,
+    "git_commit": "46f48b23d2ca168678e843f32d844eae5f4d93e5",
+    "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+    "mode_selector": "network",
+    "eps": 0.01,
+    "half_step": 0.005,
+    "tau": 0.7,
+    "base_mode": {
+      "real": -0.6566405263625017,
+      "imag": 4.884817877082756,
+      "freq_hz": 0.777442911241379,
+      "zeta": 0.13322645820334167,
+      "pi_c": 0.5478620121062632,
+      "family": "I_network"
+    },
+    "perturbations": [
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_M_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.0,
+        "genrou_targets": "all_active",
+        "pll_targets": "all_active",
+        "n_genrou_m_scaled": 4,
+        "n_pll_kp_scaled": 0,
+        "n_pll_ki_scaled": 0,
+        "label": "M_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_C_h_eps0.01.xlsx",
+        "inertia_scale": 1.0,
+        "control_scale": 1.005,
+        "genrou_targets": "all_active",
+        "pll_targets": "all_active",
+        "n_genrou_m_scaled": 0,
+        "n_pll_kp_scaled": 3,
+        "n_pll_ki_scaled": 3,
+        "label": "C_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.005,
+        "genrou_targets": "all_active",
+        "pll_targets": "all_active",
+        "n_genrou_m_scaled": 4,
+        "n_pll_kp_scaled": 3,
+        "n_pll_ki_scaled": 3,
+        "label": "MC_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_eps_eps0.01.xlsx",
+        "inertia_scale": 1.01,
+        "control_scale": 1.01,
+        "genrou_targets": "all_active",
+        "pll_targets": "all_active",
+        "n_genrou_m_scaled": 4,
+        "n_pll_kp_scaled": 3,
+        "n_pll_ki_scaled": 3,
+        "label": "MC_eps"
+      }
+    ],
+    "mode_rows": [
+      {
+        "label": "base",
+        "real": -0.6566405263625017,
+        "imag": 4.884817877082756,
+        "freq_hz": 0.777442911241379,
+        "zeta": 0.13322645820334167,
+        "pi_c": 0.5478620121062632,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0
+      },
+      {
+        "label": "M_h",
+        "real": -0.6550730533235822,
+        "imag": 4.877029529958541,
+        "freq_hz": 0.7762033572980447,
+        "zeta": 0.1331225547546846,
+        "pi_c": 0.5473564829436273,
+        "family": "I_network",
+        "distance_to_base_pole": 0.007944515256137279
+      },
+      {
+        "label": "C_h",
+        "real": -0.6566063160205522,
+        "imag": 4.884974248797266,
+        "freq_hz": 0.7774677985727031,
+        "zeta": 0.13321545163897622,
+        "pi_c": 0.5478426123173264,
+        "family": "I_network",
+        "distance_to_base_pole": 0.00016007017397129782
+      },
+      {
+        "label": "MC_h",
+        "real": -0.6550386490628637,
+        "imag": 4.877185052152291,
+        "freq_hz": 0.7762281094239405,
+        "zeta": 0.13311151754606712,
+        "pi_c": 0.547337086596087,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0077991042628122
+      },
+      {
+        "label": "MC_eps",
+        "real": -0.6534431756335151,
+        "imag": 4.869581315585349,
+        "freq_hz": 0.7750179371633431,
+        "zeta": 0.1329967111035802,
+        "pi_c": 0.5468143834590888,
+        "family": "I_network",
+        "distance_to_base_pole": 0.015568425031081487
+      }
+    ],
+    "prediction_rows": [
+      {
+        "prediction": "additive",
+        "real": -0.6534371596007638,
+        "imag": 4.869553926263348,
+        "freq_hz": 0.7750135780173586,
+        "zeta": 0.13299624312129038,
+        "complex_error": 2.804224687445613e-05,
+        "zeta_abs_error": 4.6798228980904355e-07
+      },
+      {
+        "prediction": "additive_plus_cross",
+        "real": -0.6534363839256876,
+        "imag": 4.869550528180306,
+        "freq_hz": 0.7750130371956455,
+        "zeta": 0.13299617920417064,
+        "complex_error": 3.1527632396109435e-05,
+        "zeta_abs_error": 5.318994095449003e-07
+      }
+    ],
+    "cross_metrics": {
+      "true_shift_abs": 0.015568425031081487,
+      "cross_shift_abs": 3.4854899485604545e-06,
+      "cross_fraction_of_true_shift": 0.00022388198816526844,
+      "add_complex_error": 2.804224687445613e-05,
+      "cross_complex_error": 3.1527632396109435e-05,
+      "complex_error_improvement_fraction": -0.1242905226980284,
+      "add_zeta_abs_error": 4.6798228980904355e-07,
+      "cross_zeta_abs_error": 5.318994095449003e-07,
+      "zeta_error_improvement_fraction": -0.13658021067835208,
+      "d_m_real": 0.31349460778389293,
+      "d_m_imag": -1.557669424842878,
+      "d_c_real": 0.006842068389900646,
+      "d_c_imag": 0.031274342902065655,
+      "d_cross_real": 0.007756750761700459,
+      "d_cross_imag": -0.03398083041616928
+    },
+    "partition_meta": {
+      "case_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+      "n_states": 166,
+      "n_retained": 11,
+      "n_condensed": 155,
+      "partition_rationale": "x_e matches Phase-0B: delta/omega GENROU states plus explicit grid-forming angle states (delta REGF1). PLL, BusFreq, REGCP1/REECA1/REPCA1, exciters, PSS, governors, GENROU internal voltage states, and REGF1 internal controls are kept in x_c and enter through the rational Schur term."
+    },
+    "sweep_index": 1,
+    "genrou_target_label": "all_active",
+    "pll_target_label": "all_active"
+  },
+  {
+    "status": "NOT_MEASURABLE",
+    "random_seed": 20260608,
+    "git_commit": "46f48b23d2ca168678e843f32d844eae5f4d93e5",
+    "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+    "mode_selector": "network",
+    "eps": 0.01,
+    "half_step": 0.005,
+    "tau": 0.7,
+    "base_mode": {
+      "real": -0.6566405263625017,
+      "imag": 4.884817877082756,
+      "freq_hz": 0.777442911241379,
+      "zeta": 0.13322645820334167,
+      "pi_c": 0.5478620121062632,
+      "family": "I_network"
+    },
+    "perturbations": [
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_M_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.0,
+        "genrou_targets": [
+          "GENROU_1"
+        ],
+        "pll_targets": [
+          "PLL1_G9"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 0,
+        "n_pll_ki_scaled": 0,
+        "label": "M_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_C_h_eps0.01.xlsx",
+        "inertia_scale": 1.0,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_1"
+        ],
+        "pll_targets": [
+          "PLL1_G9"
+        ],
+        "n_genrou_m_scaled": 0,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "C_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_1"
+        ],
+        "pll_targets": [
+          "PLL1_G9"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_eps_eps0.01.xlsx",
+        "inertia_scale": 1.01,
+        "control_scale": 1.01,
+        "genrou_targets": [
+          "GENROU_1"
+        ],
+        "pll_targets": [
+          "PLL1_G9"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_eps"
+      }
+    ],
+    "mode_rows": [
+      {
+        "label": "base",
+        "real": -0.6566405263625017,
+        "imag": 4.884817877082756,
+        "freq_hz": 0.777442911241379,
+        "zeta": 0.13322645820334167,
+        "pi_c": 0.5478620121062632,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0
+      },
+      {
+        "label": "M_h",
+        "real": -0.6562125561297145,
+        "imag": 4.883643838702268,
+        "freq_hz": 0.7772560572297448,
+        "zeta": 0.13317260644310705,
+        "pi_c": 0.5477742358751242,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0012496097947001614
+      },
+      {
+        "label": "C_h",
+        "real": -0.6566137307308855,
+        "imag": 4.884849893099759,
+        "freq_hz": 0.7774480067487431,
+        "zeta": 0.13322026044630791,
+        "pi_c": 0.5478572503141139,
+        "family": "I_network",
+        "distance_to_base_pole": 4.1749625368863596e-05
+      },
+      {
+        "label": "MC_h",
+        "real": -0.6561857798448518,
+        "imag": 4.883675817406356,
+        "freq_hz": 0.777261146798574,
+        "zeta": 0.13316641226935952,
+        "pi_c": 0.5477694718290401,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0012292659190641343
+      },
+      {
+        "label": "MC_eps",
+        "real": -0.6557300357410945,
+        "imag": 4.88253059365163,
+        "freq_hz": 0.7770788787770632,
+        "zeta": 0.1331062225959849,
+        "pi_c": 0.5476766765756779,
+        "family": "I_network",
+        "distance_to_base_pole": 0.002461840503763858
+      }
+    ],
+    "prediction_rows": [
+      {
+        "prediction": "additive",
+        "real": -0.6557309946336949,
+        "imag": 4.882533832355786,
+        "freq_hz": 0.7770793942328388,
+        "zeta": 0.13310632706396672,
+        "complex_error": 3.3776737003744705e-06,
+        "zeta_abs_error": 1.044679818207328e-07
+      },
+      {
+        "prediction": "additive_plus_cross",
+        "real": -0.655731072020709,
+        "imag": 4.8825336831041275,
+        "freq_hz": 0.7770793704786996,
+        "zeta": 0.13310634649115063,
+        "complex_error": 3.2586181385912218e-06,
+        "zeta_abs_error": 1.2389516573785286e-07
+      }
+    ],
+    "cross_metrics": {
+      "true_shift_abs": 0.002461840503763858,
+      "cross_shift_abs": 1.6812140677082896e-07,
+      "cross_fraction_of_true_shift": 6.829094188424943e-05,
+      "add_complex_error": 3.3776737003744705e-06,
+      "cross_complex_error": 3.2586181385912218e-06,
+      "complex_error_improvement_fraction": 0.035247798438922465,
+      "add_zeta_abs_error": 1.044679818207328e-07,
+      "cross_zeta_abs_error": 1.2389516573785286e-07,
+      "zeta_error_improvement_fraction": -0.18596304416464304,
+      "d_m_real": 0.08559404655743563,
+      "d_m_imag": -0.23480767609758146,
+      "d_c_real": 0.005359126323245533,
+      "d_c_imag": 0.006403203400573432,
+      "d_cross_real": -0.0007738701413018134,
+      "d_cross_imag": -0.0014925165814361208
+    },
+    "partition_meta": {
+      "case_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+      "n_states": 166,
+      "n_retained": 11,
+      "n_condensed": 155,
+      "partition_rationale": "x_e matches Phase-0B: delta/omega GENROU states plus explicit grid-forming angle states (delta REGF1). PLL, BusFreq, REGCP1/REECA1/REPCA1, exciters, PSS, governors, GENROU internal voltage states, and REGF1 internal controls are kept in x_c and enter through the rational Schur term."
+    },
+    "sweep_index": 2,
+    "genrou_target_label": "GENROU_1",
+    "pll_target_label": "PLL1_G9"
+  },
+  {
+    "status": "NOT_MEASURABLE",
+    "random_seed": 20260608,
+    "git_commit": "46f48b23d2ca168678e843f32d844eae5f4d93e5",
+    "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+    "mode_selector": "network",
+    "eps": 0.01,
+    "half_step": 0.005,
+    "tau": 0.7,
+    "base_mode": {
+      "real": -0.6566405263625017,
+      "imag": 4.884817877082756,
+      "freq_hz": 0.777442911241379,
+      "zeta": 0.13322645820334167,
+      "pi_c": 0.5478620121062632,
+      "family": "I_network"
+    },
+    "perturbations": [
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_M_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.0,
+        "genrou_targets": [
+          "GENROU_1"
+        ],
+        "pll_targets": [
+          "PLL1_G7"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 0,
+        "n_pll_ki_scaled": 0,
+        "label": "M_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_C_h_eps0.01.xlsx",
+        "inertia_scale": 1.0,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_1"
+        ],
+        "pll_targets": [
+          "PLL1_G7"
+        ],
+        "n_genrou_m_scaled": 0,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "C_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_1"
+        ],
+        "pll_targets": [
+          "PLL1_G7"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_eps_eps0.01.xlsx",
+        "inertia_scale": 1.01,
+        "control_scale": 1.01,
+        "genrou_targets": [
+          "GENROU_1"
+        ],
+        "pll_targets": [
+          "PLL1_G7"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_eps"
+      }
+    ],
+    "mode_rows": [
+      {
+        "label": "base",
+        "real": -0.6566405263625017,
+        "imag": 4.884817877082756,
+        "freq_hz": 0.777442911241379,
+        "zeta": 0.13322645820334167,
+        "pi_c": 0.5478620121062632,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0
+      },
+      {
+        "label": "M_h",
+        "real": -0.6562125561297145,
+        "imag": 4.883643838702268,
+        "freq_hz": 0.7772560572297448,
+        "zeta": 0.13317260644310705,
+        "pi_c": 0.5477742358751242,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0012496097947001614
+      },
+      {
+        "label": "C_h",
+        "real": -0.6566362700028365,
+        "imag": 4.884884475675055,
+        "freq_hz": 0.7774535107365464,
+        "zeta": 0.13322382584622675,
+        "pi_c": 0.5478541620272693,
+        "family": "I_network",
+        "distance_to_base_pole": 6.673446706081651e-05
+      },
+      {
+        "label": "MC_h",
+        "real": -0.6562082971770324,
+        "imag": 4.883710336073948,
+        "freq_hz": 0.7772666406151503,
+        "zeta": 0.13316997632413657,
+        "pi_c": 0.5477663831833091,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0011888940890433615
+      },
+      {
+        "label": "MC_eps",
+        "real": -0.6557748060330024,
+        "imag": 4.88259915745123,
+        "freq_hz": 0.7770897910446866,
+        "zeta": 0.13311331331549214,
+        "pi_c": 0.5476705291214208,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0023816356757965958
+      }
+    ],
+    "prediction_rows": [
+      {
+        "prediction": "additive",
+        "real": -0.655776073177597,
+        "imag": 4.882602997506379,
+        "freq_hz": 0.7770904022084454,
+        "zeta": 0.13311346313517114,
+        "complex_error": 4.0437209317851374e-06,
+        "zeta_abs_error": 1.498196789961881e-07
+      },
+      {
+        "prediction": "additive_plus_cross",
+        "real": -0.6557760628055294,
+        "imag": 4.882602592623901,
+        "freq_hz": 0.7770903377693977,
+        "zeta": 0.13311347190973574,
+        "complex_error": 3.6578529861817416e-06,
+        "zeta_abs_error": 1.585942435988752e-07
+      }
+    ],
+    "cross_metrics": {
+      "true_shift_abs": 0.0023816356757965958,
+      "cross_shift_abs": 4.050153090810397e-07,
+      "cross_fraction_of_true_shift": 0.00017005762602442228,
+      "add_complex_error": 4.0437209317851374e-06,
+      "cross_complex_error": 3.6578529861817416e-06,
+      "complex_error_improvement_fraction": 0.09542398007002202,
+      "add_zeta_abs_error": 1.498196789961881e-07,
+      "cross_zeta_abs_error": 1.585942435988752e-07,
+      "zeta_error_improvement_fraction": -0.05856750369162359,
+      "d_m_real": 0.08559404655743563,
+      "d_m_imag": -0.23480767609758146,
+      "d_c_real": 0.0008512719330333596,
+      "d_c_imag": 0.013319718459925411,
+      "d_cross_real": 0.0001037206764920029,
+      "d_cross_imag": -0.004048824777669324
+    },
+    "partition_meta": {
+      "case_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+      "n_states": 166,
+      "n_retained": 11,
+      "n_condensed": 155,
+      "partition_rationale": "x_e matches Phase-0B: delta/omega GENROU states plus explicit grid-forming angle states (delta REGF1). PLL, BusFreq, REGCP1/REECA1/REPCA1, exciters, PSS, governors, GENROU internal voltage states, and REGF1 internal controls are kept in x_c and enter through the rational Schur term."
+    },
+    "sweep_index": 3,
+    "genrou_target_label": "GENROU_1",
+    "pll_target_label": "PLL1_G7"
+  },
+  {
+    "status": "NOT_MEASURABLE",
+    "random_seed": 20260608,
+    "git_commit": "46f48b23d2ca168678e843f32d844eae5f4d93e5",
+    "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+    "mode_selector": "network",
+    "eps": 0.01,
+    "half_step": 0.005,
+    "tau": 0.7,
+    "base_mode": {
+      "real": -0.6566405263625017,
+      "imag": 4.884817877082756,
+      "freq_hz": 0.777442911241379,
+      "zeta": 0.13322645820334167,
+      "pi_c": 0.5478620121062632,
+      "family": "I_network"
+    },
+    "perturbations": [
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_M_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.0,
+        "genrou_targets": [
+          "GENROU_1"
+        ],
+        "pll_targets": [
+          "PLL1_G5"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 0,
+        "n_pll_ki_scaled": 0,
+        "label": "M_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_C_h_eps0.01.xlsx",
+        "inertia_scale": 1.0,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_1"
+        ],
+        "pll_targets": [
+          "PLL1_G5"
+        ],
+        "n_genrou_m_scaled": 0,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "C_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_1"
+        ],
+        "pll_targets": [
+          "PLL1_G5"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_eps_eps0.01.xlsx",
+        "inertia_scale": 1.01,
+        "control_scale": 1.01,
+        "genrou_targets": [
+          "GENROU_1"
+        ],
+        "pll_targets": [
+          "PLL1_G5"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_eps"
+      }
+    ],
+    "mode_rows": [
+      {
+        "label": "base",
+        "real": -0.6566405263625017,
+        "imag": 4.884817877082756,
+        "freq_hz": 0.777442911241379,
+        "zeta": 0.13322645820334167,
+        "pi_c": 0.5478620121062632,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0
+      },
+      {
+        "label": "M_h",
+        "real": -0.6562125561297145,
+        "imag": 4.883643838702268,
+        "freq_hz": 0.7772560572297448,
+        "zeta": 0.13317260644310705,
+        "pi_c": 0.5477742358751242,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0012496097947001614
+      },
+      {
+        "label": "C_h",
+        "real": -0.6566373705868105,
+        "imag": 4.884875631035323,
+        "freq_hz": 0.7774521030684132,
+        "zeta": 0.13322428211510695,
+        "pi_c": 0.547855224635851,
+        "family": "I_network",
+        "distance_to_base_pole": 5.784010682326506e-05
+      },
+      {
+        "label": "MC_h",
+        "real": -0.6562093953017987,
+        "imag": 4.8837015032205295,
+        "freq_hz": 0.7772652348228671,
+        "zeta": 0.13317043180927354,
+        "pi_c": 0.5477674464168845,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0011967307933552652
+      },
+      {
+        "label": "MC_eps",
+        "real": -0.6557769859637044,
+        "imag": 4.882581602617802,
+        "freq_hz": 0.7770869971061715,
+        "zeta": 0.13311421808762333,
+        "pi_c": 0.5476726464073167,
+        "family": "I_network",
+        "distance_to_base_pole": 0.002397212027118035
+      }
+    ],
+    "prediction_rows": [
+      {
+        "prediction": "additive",
+        "real": -0.6557782743455449,
+        "imag": 4.882585308226914,
+        "freq_hz": 0.7770875868721787,
+        "zeta": 0.13311437574203536,
+        "complex_error": 3.9231959749693995e-06,
+        "zeta_abs_error": 1.576544120251988e-07
+      },
+      {
+        "prediction": "additive_plus_cross",
+        "real": -0.6557782541366464,
+        "imag": 4.882584950489693,
+        "freq_hz": 0.7770875299365317,
+        "zeta": 0.13311438129278735,
+        "complex_error": 3.580015196640005e-06,
+        "zeta_abs_error": 1.632051640221288e-07
+      }
+    ],
+    "cross_metrics": {
+      "true_shift_abs": 0.002397212027118035,
+      "cross_shift_abs": 3.583075759706068e-07,
+      "cross_fraction_of_true_shift": 0.0001494684541531229,
+      "add_complex_error": 3.9231959749693995e-06,
+      "cross_complex_error": 3.580015196640005e-06,
+      "complex_error_improvement_fraction": 0.08747479874034875,
+      "add_zeta_abs_error": 1.576544120251988e-07,
+      "cross_zeta_abs_error": 1.632051640221288e-07,
+      "zeta_error_improvement_fraction": -0.03520835177161293,
+      "d_m_real": 0.08559404655743563,
+      "d_m_imag": -0.23480767609758146,
+      "d_c_real": 0.0006311551382420788,
+      "d_c_imag": 0.011550790513403797,
+      "d_cross_real": 0.0002020889855458563,
+      "d_cross_imag": -0.0035773722117937723
+    },
+    "partition_meta": {
+      "case_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+      "n_states": 166,
+      "n_retained": 11,
+      "n_condensed": 155,
+      "partition_rationale": "x_e matches Phase-0B: delta/omega GENROU states plus explicit grid-forming angle states (delta REGF1). PLL, BusFreq, REGCP1/REECA1/REPCA1, exciters, PSS, governors, GENROU internal voltage states, and REGF1 internal controls are kept in x_c and enter through the rational Schur term."
+    },
+    "sweep_index": 4,
+    "genrou_target_label": "GENROU_1",
+    "pll_target_label": "PLL1_G5"
+  },
+  {
+    "status": "NOT_MEASURABLE",
+    "random_seed": 20260608,
+    "git_commit": "46f48b23d2ca168678e843f32d844eae5f4d93e5",
+    "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+    "mode_selector": "network",
+    "eps": 0.01,
+    "half_step": 0.005,
+    "tau": 0.7,
+    "base_mode": {
+      "real": -0.6566405263625017,
+      "imag": 4.884817877082756,
+      "freq_hz": 0.777442911241379,
+      "zeta": 0.13322645820334167,
+      "pi_c": 0.5478620121062632,
+      "family": "I_network"
+    },
+    "perturbations": [
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_M_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.0,
+        "genrou_targets": [
+          "GENROU_2"
+        ],
+        "pll_targets": [
+          "PLL1_G9"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 0,
+        "n_pll_ki_scaled": 0,
+        "label": "M_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_C_h_eps0.01.xlsx",
+        "inertia_scale": 1.0,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_2"
+        ],
+        "pll_targets": [
+          "PLL1_G9"
+        ],
+        "n_genrou_m_scaled": 0,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "C_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_2"
+        ],
+        "pll_targets": [
+          "PLL1_G9"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_eps_eps0.01.xlsx",
+        "inertia_scale": 1.01,
+        "control_scale": 1.01,
+        "genrou_targets": [
+          "GENROU_2"
+        ],
+        "pll_targets": [
+          "PLL1_G9"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_eps"
+      }
+    ],
+    "mode_rows": [
+      {
+        "label": "base",
+        "real": -0.6566405263625017,
+        "imag": 4.884817877082756,
+        "freq_hz": 0.777442911241379,
+        "zeta": 0.13322645820334167,
+        "pi_c": 0.5478620121062632,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0
+      },
+      {
+        "label": "M_h",
+        "real": -0.6558631971262241,
+        "imag": 4.883646069719819,
+        "freq_hz": 0.7772564123072161,
+        "zeta": 0.13310290376606632,
+        "pi_c": 0.5477581764888655,
+        "family": "I_network",
+        "distance_to_base_pole": 0.00140619103873006
+      },
+      {
+        "label": "C_h",
+        "real": -0.6566137307308855,
+        "imag": 4.884849893099759,
+        "freq_hz": 0.7774480067487431,
+        "zeta": 0.13322026044630791,
+        "pi_c": 0.5478572503141139,
+        "family": "I_network",
+        "distance_to_base_pole": 4.1749625368863596e-05
+      },
+      {
+        "label": "MC_h",
+        "real": -0.6558364239884209,
+        "imag": 4.883678019837177,
+        "freq_hz": 0.777261497326326,
+        "zeta": 0.13309671126865752,
+        "pi_c": 0.5477534169043371,
+        "family": "I_network",
+        "distance_to_base_pole": 0.001394939127095063
+      },
+      {
+        "label": "MC_eps",
+        "real": -0.655031632473089,
+        "imag": 4.8825341854869135,
+        "freq_hz": 0.7770794504354033,
+        "zeta": 0.13296686588214052,
+        "pi_c": 0.5476445859025489,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0027935258818041417
+      }
+    ],
+    "prediction_rows": [
+      {
+        "prediction": "additive",
+        "real": -0.655032276626714,
+        "imag": 4.882538294390888,
+        "freq_hz": 0.7770801043877815,
+        "zeta": 0.13296688440891266,
+        "complex_error": 4.159089535393391e-06,
+        "zeta_abs_error": 1.852677214420062e-08
+      },
+      {
+        "prediction": "additive_plus_cross",
+        "real": -0.6550323666019662,
+        "imag": 4.8825380307923085,
+        "freq_hz": 0.7770800624347646,
+        "zeta": 0.1329669094020315,
+        "complex_error": 3.914756542746398e-06,
+        "zeta_abs_error": 4.351989099649067e-08
+      }
+    ],
+    "cross_metrics": {
+      "true_shift_abs": 0.0027935258818041417,
+      "cross_shift_abs": 2.785314292202633e-07,
+      "cross_fraction_of_true_shift": 9.970604927432405e-05,
+      "add_complex_error": 4.159089535393391e-06,
+      "cross_complex_error": 3.914756542746398e-06,
+      "complex_error_improvement_fraction": 0.05874674987584337,
+      "add_zeta_abs_error": 1.852677214420062e-08,
+      "cross_zeta_abs_error": 4.351989099649067e-08,
+      "zeta_error_improvement_fraction": -1.3490271623011012,
+      "d_m_real": 0.15546584725552037,
+      "d_m_imag": -0.23436147258735218,
+      "d_c_real": 0.005359126323245533,
+      "d_c_imag": 0.006403203400573432,
+      "d_cross_real": -0.0008997525213771951,
+      "d_cross_imag": -0.002635985794086082
+    },
+    "partition_meta": {
+      "case_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+      "n_states": 166,
+      "n_retained": 11,
+      "n_condensed": 155,
+      "partition_rationale": "x_e matches Phase-0B: delta/omega GENROU states plus explicit grid-forming angle states (delta REGF1). PLL, BusFreq, REGCP1/REECA1/REPCA1, exciters, PSS, governors, GENROU internal voltage states, and REGF1 internal controls are kept in x_c and enter through the rational Schur term."
+    },
+    "sweep_index": 5,
+    "genrou_target_label": "GENROU_2",
+    "pll_target_label": "PLL1_G9"
+  },
+  {
+    "status": "NOT_MEASURABLE",
+    "random_seed": 20260608,
+    "git_commit": "46f48b23d2ca168678e843f32d844eae5f4d93e5",
+    "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+    "mode_selector": "network",
+    "eps": 0.01,
+    "half_step": 0.005,
+    "tau": 0.7,
+    "base_mode": {
+      "real": -0.6566405263625017,
+      "imag": 4.884817877082756,
+      "freq_hz": 0.777442911241379,
+      "zeta": 0.13322645820334167,
+      "pi_c": 0.5478620121062632,
+      "family": "I_network"
+    },
+    "perturbations": [
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_M_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.0,
+        "genrou_targets": [
+          "GENROU_2"
+        ],
+        "pll_targets": [
+          "PLL1_G7"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 0,
+        "n_pll_ki_scaled": 0,
+        "label": "M_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_C_h_eps0.01.xlsx",
+        "inertia_scale": 1.0,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_2"
+        ],
+        "pll_targets": [
+          "PLL1_G7"
+        ],
+        "n_genrou_m_scaled": 0,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "C_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_2"
+        ],
+        "pll_targets": [
+          "PLL1_G7"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_eps_eps0.01.xlsx",
+        "inertia_scale": 1.01,
+        "control_scale": 1.01,
+        "genrou_targets": [
+          "GENROU_2"
+        ],
+        "pll_targets": [
+          "PLL1_G7"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_eps"
+      }
+    ],
+    "mode_rows": [
+      {
+        "label": "base",
+        "real": -0.6566405263625017,
+        "imag": 4.884817877082756,
+        "freq_hz": 0.777442911241379,
+        "zeta": 0.13322645820334167,
+        "pi_c": 0.5478620121062632,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0
+      },
+      {
+        "label": "M_h",
+        "real": -0.6558631971262241,
+        "imag": 4.883646069719819,
+        "freq_hz": 0.7772564123072161,
+        "zeta": 0.13310290376606632,
+        "pi_c": 0.5477581764888655,
+        "family": "I_network",
+        "distance_to_base_pole": 0.00140619103873006
+      },
+      {
+        "label": "C_h",
+        "real": -0.6566362700028365,
+        "imag": 4.884884475675055,
+        "freq_hz": 0.7774535107365464,
+        "zeta": 0.13322382584622675,
+        "pi_c": 0.5478541620272693,
+        "family": "I_network",
+        "distance_to_base_pole": 6.673446706081651e-05
+      },
+      {
+        "label": "MC_h",
+        "real": -0.6558589090859633,
+        "imag": 4.883712552775219,
+        "freq_hz": 0.777266993414115,
+        "zeta": 0.13310026910764347,
+        "pi_c": 0.5477503255540026,
+        "family": "I_network",
+        "distance_to_base_pole": 0.00135376046323337
+      },
+      {
+        "label": "MC_eps",
+        "real": -0.6550762745608167,
+        "imag": 4.882602805979473,
+        "freq_hz": 0.7770903717259915,
+        "zeta": 0.13297393187420325,
+        "pi_c": 0.5476384276789795,
+        "family": "I_network",
+        "distance_to_base_pole": 0.002711719692680926
+      }
+    ],
+    "prediction_rows": [
+      {
+        "prediction": "additive",
+        "real": -0.6550773551706162,
+        "imag": 4.8826074595414815,
+        "freq_hz": 0.7770911123633881,
+        "zeta": 0.13297402285325785,
+        "complex_error": 4.777379711383921e-06,
+        "zeta_abs_error": 9.097905459554134e-08
+      },
+      {
+        "prediction": "additive_plus_cross",
+        "real": -0.6550772284482338,
+        "imag": 4.882606997393885,
+        "freq_hz": 0.7770910388103137,
+        "zeta": 0.13297400994842795,
+        "complex_error": 4.298587672418056e-06,
+        "zeta_abs_error": 7.807422469641168e-08
+      }
+    ],
+    "cross_metrics": {
+      "true_shift_abs": 0.002711719692680926,
+      "cross_shift_abs": 4.792065976891006e-07,
+      "cross_fraction_of_true_shift": 0.0001767168630970614,
+      "add_complex_error": 4.777379711383921e-06,
+      "cross_complex_error": 4.298587672418056e-06,
+      "complex_error_improvement_fraction": 0.10022063723027115,
+      "add_zeta_abs_error": 9.097905459554134e-08,
+      "cross_zeta_abs_error": 7.807422469641168e-08,
+      "zeta_error_improvement_fraction": 0.14184396569627686,
+      "d_m_real": 0.15546584725552037,
+      "d_m_imag": -0.23436147258735218,
+      "d_c_real": 0.0008512719330333596,
+      "d_c_imag": 0.013319718459925411,
+      "d_cross_real": 0.0012672238236532962,
+      "d_cross_imag": -0.004621475966359867
+    },
+    "partition_meta": {
+      "case_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+      "n_states": 166,
+      "n_retained": 11,
+      "n_condensed": 155,
+      "partition_rationale": "x_e matches Phase-0B: delta/omega GENROU states plus explicit grid-forming angle states (delta REGF1). PLL, BusFreq, REGCP1/REECA1/REPCA1, exciters, PSS, governors, GENROU internal voltage states, and REGF1 internal controls are kept in x_c and enter through the rational Schur term."
+    },
+    "sweep_index": 6,
+    "genrou_target_label": "GENROU_2",
+    "pll_target_label": "PLL1_G7"
+  },
+  {
+    "status": "NOT_MEASURABLE",
+    "random_seed": 20260608,
+    "git_commit": "46f48b23d2ca168678e843f32d844eae5f4d93e5",
+    "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+    "mode_selector": "network",
+    "eps": 0.01,
+    "half_step": 0.005,
+    "tau": 0.7,
+    "base_mode": {
+      "real": -0.6566405263625017,
+      "imag": 4.884817877082756,
+      "freq_hz": 0.777442911241379,
+      "zeta": 0.13322645820334167,
+      "pi_c": 0.5478620121062632,
+      "family": "I_network"
+    },
+    "perturbations": [
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_M_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.0,
+        "genrou_targets": [
+          "GENROU_2"
+        ],
+        "pll_targets": [
+          "PLL1_G5"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 0,
+        "n_pll_ki_scaled": 0,
+        "label": "M_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_C_h_eps0.01.xlsx",
+        "inertia_scale": 1.0,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_2"
+        ],
+        "pll_targets": [
+          "PLL1_G5"
+        ],
+        "n_genrou_m_scaled": 0,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "C_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_2"
+        ],
+        "pll_targets": [
+          "PLL1_G5"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_eps_eps0.01.xlsx",
+        "inertia_scale": 1.01,
+        "control_scale": 1.01,
+        "genrou_targets": [
+          "GENROU_2"
+        ],
+        "pll_targets": [
+          "PLL1_G5"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_eps"
+      }
+    ],
+    "mode_rows": [
+      {
+        "label": "base",
+        "real": -0.6566405263625017,
+        "imag": 4.884817877082756,
+        "freq_hz": 0.777442911241379,
+        "zeta": 0.13322645820334167,
+        "pi_c": 0.5478620121062632,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0
+      },
+      {
+        "label": "M_h",
+        "real": -0.6558631971262241,
+        "imag": 4.883646069719819,
+        "freq_hz": 0.7772564123072161,
+        "zeta": 0.13310290376606632,
+        "pi_c": 0.5477581764888655,
+        "family": "I_network",
+        "distance_to_base_pole": 0.00140619103873006
+      },
+      {
+        "label": "C_h",
+        "real": -0.6566373705868105,
+        "imag": 4.884875631035323,
+        "freq_hz": 0.7774521030684132,
+        "zeta": 0.13322428211510695,
+        "pi_c": 0.547855224635851,
+        "family": "I_network",
+        "distance_to_base_pole": 5.784010682326506e-05
+      },
+      {
+        "label": "MC_h",
+        "real": -0.6558600114896398,
+        "imag": 4.883703721269437,
+        "freq_hz": 0.7772655878363147,
+        "zeta": 0.13310072529631078,
+        "pi_c": 0.547751388435251,
+        "family": "I_network",
+        "distance_to_base_pole": 0.001360347986035594
+      },
+      {
+        "label": "MC_eps",
+        "real": -0.6550784714991603,
+        "imag": 4.8825852565172845,
+        "freq_hz": 0.7770875786423357,
+        "zeta": 0.13297483944340538,
+        "pi_c": 0.547640543557558,
+        "family": "I_network",
+        "distance_to_base_pole": 0.002724813752434024
+      }
+    ],
+    "prediction_rows": [
+      {
+        "prediction": "additive",
+        "real": -0.6550795563385641,
+        "imag": 4.882589770262016,
+        "freq_hz": 0.7770882970271216,
+        "zeta": 0.13297493500579954,
+        "complex_error": 4.6422804778930715e-06,
+        "zeta_abs_error": 9.556239416452783e-08
+      },
+      {
+        "prediction": "additive_plus_cross",
+        "real": -0.6550794368949917,
+        "imag": 4.882589360650219,
+        "freq_hz": 0.7770882318353793,
+        "zeta": 0.13297492214693027,
+        "complex_error": 4.2161470868618315e-06,
+        "zeta_abs_error": 8.270352488959354e-08
+      }
+    ],
+    "cross_metrics": {
+      "true_shift_abs": 0.002724813752434024,
+      "cross_shift_abs": 4.266715260713811e-07,
+      "cross_fraction_of_true_shift": 0.00015658740920925093,
+      "add_complex_error": 4.6422804778930715e-06,
+      "cross_complex_error": 4.2161470868618315e-06,
+      "complex_error_improvement_fraction": 0.091793977778922,
+      "add_zeta_abs_error": 9.556239416452783e-08,
+      "cross_zeta_abs_error": 8.270352488959354e-08,
+      "zeta_error_improvement_fraction": 0.1345599321506684,
+      "d_m_real": 0.15546584725552037,
+      "d_m_imag": -0.23436147258735218,
+      "d_c_real": 0.0006311551382420788,
+      "d_c_imag": 0.011550790513403797,
+      "d_cross_real": 0.0011944357236615133,
+      "d_cross_imag": -0.004096117969254465
+    },
+    "partition_meta": {
+      "case_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+      "n_states": 166,
+      "n_retained": 11,
+      "n_condensed": 155,
+      "partition_rationale": "x_e matches Phase-0B: delta/omega GENROU states plus explicit grid-forming angle states (delta REGF1). PLL, BusFreq, REGCP1/REECA1/REPCA1, exciters, PSS, governors, GENROU internal voltage states, and REGF1 internal controls are kept in x_c and enter through the rational Schur term."
+    },
+    "sweep_index": 7,
+    "genrou_target_label": "GENROU_2",
+    "pll_target_label": "PLL1_G5"
+  },
+  {
+    "status": "NOT_MEASURABLE",
+    "random_seed": 20260608,
+    "git_commit": "46f48b23d2ca168678e843f32d844eae5f4d93e5",
+    "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+    "mode_selector": "network",
+    "eps": 0.01,
+    "half_step": 0.005,
+    "tau": 0.7,
+    "base_mode": {
+      "real": -0.6566405263625017,
+      "imag": 4.884817877082756,
+      "freq_hz": 0.777442911241379,
+      "zeta": 0.13322645820334167,
+      "pi_c": 0.5478620121062632,
+      "family": "I_network"
+    },
+    "perturbations": [
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_M_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.0,
+        "genrou_targets": [
+          "GENROU_3"
+        ],
+        "pll_targets": [
+          "PLL1_G9"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 0,
+        "n_pll_ki_scaled": 0,
+        "label": "M_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_C_h_eps0.01.xlsx",
+        "inertia_scale": 1.0,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_3"
+        ],
+        "pll_targets": [
+          "PLL1_G9"
+        ],
+        "n_genrou_m_scaled": 0,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "C_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_3"
+        ],
+        "pll_targets": [
+          "PLL1_G9"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_eps_eps0.01.xlsx",
+        "inertia_scale": 1.01,
+        "control_scale": 1.01,
+        "genrou_targets": [
+          "GENROU_3"
+        ],
+        "pll_targets": [
+          "PLL1_G9"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_eps"
+      }
+    ],
+    "mode_rows": [
+      {
+        "label": "base",
+        "real": -0.6566405263625017,
+        "imag": 4.884817877082756,
+        "freq_hz": 0.777442911241379,
+        "zeta": 0.13322645820334167,
+        "pi_c": 0.5478620121062632,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0
+      },
+      {
+        "label": "M_h",
+        "real": -0.6553468921791104,
+        "imag": 4.8828507984531795,
+        "freq_hz": 0.7771298409540315,
+        "zeta": 0.13302125590085492,
+        "pi_c": 0.5477339099058396,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0023543338198679714
+      },
+      {
+        "label": "C_h",
+        "real": -0.6566137307308855,
+        "imag": 4.884849893099759,
+        "freq_hz": 0.7774480067487431,
+        "zeta": 0.13322026044630791,
+        "pi_c": 0.5478572503141139,
+        "family": "I_network",
+        "distance_to_base_pole": 4.1749625368863596e-05
+      },
+      {
+        "label": "MC_h",
+        "real": -0.655320134519771,
+        "imag": 4.882882706317473,
+        "freq_hz": 0.7771349192483574,
+        "zeta": 0.13301506694047618,
+        "pi_c": 0.5477291536408032,
+        "family": "I_network",
+        "distance_to_base_pole": 0.00234271648074481
+      },
+      {
+        "label": "MC_eps",
+        "real": -0.6540010887155636,
+        "imag": 4.880941678028013,
+        "freq_hz": 0.7768259950014086,
+        "zeta": 0.1328039149539681,
+        "pi_c": 0.5475962737565051,
+        "family": "I_network",
+        "distance_to_base_pole": 0.004689514922042615
+      }
+    ],
+    "prediction_rows": [
+      {
+        "prediction": "additive",
+        "real": -0.6539996667324866,
+        "imag": 4.880947751857609,
+        "freq_hz": 0.7768269616814123,
+        "zeta": 0.13280346894784986,
+        "complex_error": 6.23806394879972e-06,
+        "zeta_abs_error": 4.460061182320896e-07
+      },
+      {
+        "prediction": "additive_plus_cross",
+        "real": -0.6539998186215941,
+        "imag": 4.880947319246773,
+        "freq_hz": 0.7768268928292593,
+        "zeta": 0.1328035108101284,
+        "complex_error": 5.782429228795815e-06,
+        "zeta_abs_error": 4.041438396995556e-07
+      }
+    ],
+    "cross_metrics": {
+      "true_shift_abs": 0.004689514922042615,
+      "cross_shift_abs": 4.585002033185677e-07,
+      "cross_fraction_of_true_shift": 9.777134968980086e-05,
+      "add_complex_error": 6.23806394879972e-06,
+      "cross_complex_error": 5.782429228795815e-06,
+      "complex_error_improvement_fraction": 0.0730410466682655,
+      "add_zeta_abs_error": 4.460061182320896e-07,
+      "cross_zeta_abs_error": 4.041438396995556e-07,
+      "zeta_error_improvement_fraction": 0.09386032348271507,
+      "d_m_real": 0.2587268366782691,
+      "d_m_imag": -0.3934157259152471,
+      "d_c_real": 0.005359126323245533,
+      "d_c_imag": 0.006403203400573432,
+      "d_cross_real": -0.0015188910751362528,
+      "d_cross_imag": -0.0043261083604306805
+    },
+    "partition_meta": {
+      "case_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+      "n_states": 166,
+      "n_retained": 11,
+      "n_condensed": 155,
+      "partition_rationale": "x_e matches Phase-0B: delta/omega GENROU states plus explicit grid-forming angle states (delta REGF1). PLL, BusFreq, REGCP1/REECA1/REPCA1, exciters, PSS, governors, GENROU internal voltage states, and REGF1 internal controls are kept in x_c and enter through the rational Schur term."
+    },
+    "sweep_index": 8,
+    "genrou_target_label": "GENROU_3",
+    "pll_target_label": "PLL1_G9"
+  },
+  {
+    "status": "NOT_MEASURABLE",
+    "random_seed": 20260608,
+    "git_commit": "46f48b23d2ca168678e843f32d844eae5f4d93e5",
+    "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+    "mode_selector": "network",
+    "eps": 0.01,
+    "half_step": 0.005,
+    "tau": 0.7,
+    "base_mode": {
+      "real": -0.6566405263625017,
+      "imag": 4.884817877082756,
+      "freq_hz": 0.777442911241379,
+      "zeta": 0.13322645820334167,
+      "pi_c": 0.5478620121062632,
+      "family": "I_network"
+    },
+    "perturbations": [
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_M_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.0,
+        "genrou_targets": [
+          "GENROU_3"
+        ],
+        "pll_targets": [
+          "PLL1_G7"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 0,
+        "n_pll_ki_scaled": 0,
+        "label": "M_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_C_h_eps0.01.xlsx",
+        "inertia_scale": 1.0,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_3"
+        ],
+        "pll_targets": [
+          "PLL1_G7"
+        ],
+        "n_genrou_m_scaled": 0,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "C_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_3"
+        ],
+        "pll_targets": [
+          "PLL1_G7"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_eps_eps0.01.xlsx",
+        "inertia_scale": 1.01,
+        "control_scale": 1.01,
+        "genrou_targets": [
+          "GENROU_3"
+        ],
+        "pll_targets": [
+          "PLL1_G7"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_eps"
+      }
+    ],
+    "mode_rows": [
+      {
+        "label": "base",
+        "real": -0.6566405263625017,
+        "imag": 4.884817877082756,
+        "freq_hz": 0.777442911241379,
+        "zeta": 0.13322645820334167,
+        "pi_c": 0.5478620121062632,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0
+      },
+      {
+        "label": "M_h",
+        "real": -0.6553468921791104,
+        "imag": 4.8828507984531795,
+        "freq_hz": 0.7771298409540315,
+        "zeta": 0.13302125590085492,
+        "pi_c": 0.5477339099058396,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0023543338198679714
+      },
+      {
+        "label": "C_h",
+        "real": -0.6566362700028365,
+        "imag": 4.884884475675055,
+        "freq_hz": 0.7774535107365464,
+        "zeta": 0.13322382584622675,
+        "pi_c": 0.5478541620272693,
+        "family": "I_network",
+        "distance_to_base_pole": 6.673446706081651e-05
+      },
+      {
+        "label": "MC_h",
+        "real": -0.6553425851879272,
+        "imag": 4.882917208140164,
+        "freq_hz": 0.7771404103839843,
+        "zeta": 0.1330186200223831,
+        "pi_c": 0.547726061969373,
+        "family": "I_network",
+        "distance_to_base_pole": 0.002301563321307844
+      },
+      {
+        "label": "MC_eps",
+        "real": -0.6540455941495389,
+        "imag": 4.881010174504311,
+        "freq_hz": 0.7768368965541959,
+        "zeta": 0.13281096206518847,
+        "pi_c": 0.5475901142968634,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0046078489684194725
+      }
+    ],
+    "prediction_rows": [
+      {
+        "prediction": "additive",
+        "real": -0.6540447452763887,
+        "imag": 4.8810169170082025,
+        "freq_hz": 0.7768379696570189,
+        "zeta": 0.1328106125076381,
+        "complex_error": 6.795729861328222e-06,
+        "zeta_abs_error": 3.495575503775772e-07
+      },
+      {
+        "prediction": "additive_plus_cross",
+        "real": -0.6540445427503168,
+        "imag": 4.881016161386941,
+        "freq_hz": 0.7768378493961601,
+        "zeta": 0.13281059230550554,
+        "complex_error": 6.0785034297508125e-06,
+        "zeta_abs_error": 3.697596829277394e-07
+      }
+    ],
+    "cross_metrics": {
+      "true_shift_abs": 0.0046078489684194725,
+      "cross_shift_abs": 7.82291697979564e-07,
+      "cross_fraction_of_true_shift": 0.00016977372811936934,
+      "add_complex_error": 6.795729861328222e-06,
+      "cross_complex_error": 6.0785034297508125e-06,
+      "complex_error_improvement_fraction": 0.10554075076745732,
+      "add_zeta_abs_error": 3.495575503775772e-07,
+      "cross_zeta_abs_error": 3.697596829277394e-07,
+      "zeta_error_improvement_fraction": -0.05779343781400444,
+      "d_m_real": 0.2587268366782691,
+      "d_m_imag": -0.3934157259152471,
+      "d_c_real": 0.0008512719330333596,
+      "d_c_imag": 0.013319718459925411,
+      "d_cross_real": 0.0020252607191295624,
+      "d_cross_imag": -0.007556212615611457
+    },
+    "partition_meta": {
+      "case_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+      "n_states": 166,
+      "n_retained": 11,
+      "n_condensed": 155,
+      "partition_rationale": "x_e matches Phase-0B: delta/omega GENROU states plus explicit grid-forming angle states (delta REGF1). PLL, BusFreq, REGCP1/REECA1/REPCA1, exciters, PSS, governors, GENROU internal voltage states, and REGF1 internal controls are kept in x_c and enter through the rational Schur term."
+    },
+    "sweep_index": 9,
+    "genrou_target_label": "GENROU_3",
+    "pll_target_label": "PLL1_G7"
+  },
+  {
+    "status": "NOT_MEASURABLE",
+    "random_seed": 20260608,
+    "git_commit": "46f48b23d2ca168678e843f32d844eae5f4d93e5",
+    "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+    "mode_selector": "network",
+    "eps": 0.01,
+    "half_step": 0.005,
+    "tau": 0.7,
+    "base_mode": {
+      "real": -0.6566405263625017,
+      "imag": 4.884817877082756,
+      "freq_hz": 0.777442911241379,
+      "zeta": 0.13322645820334167,
+      "pi_c": 0.5478620121062632,
+      "family": "I_network"
+    },
+    "perturbations": [
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_M_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.0,
+        "genrou_targets": [
+          "GENROU_3"
+        ],
+        "pll_targets": [
+          "PLL1_G5"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 0,
+        "n_pll_ki_scaled": 0,
+        "label": "M_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_C_h_eps0.01.xlsx",
+        "inertia_scale": 1.0,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_3"
+        ],
+        "pll_targets": [
+          "PLL1_G5"
+        ],
+        "n_genrou_m_scaled": 0,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "C_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_3"
+        ],
+        "pll_targets": [
+          "PLL1_G5"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_eps_eps0.01.xlsx",
+        "inertia_scale": 1.01,
+        "control_scale": 1.01,
+        "genrou_targets": [
+          "GENROU_3"
+        ],
+        "pll_targets": [
+          "PLL1_G5"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_eps"
+      }
+    ],
+    "mode_rows": [
+      {
+        "label": "base",
+        "real": -0.6566405263625017,
+        "imag": 4.884817877082756,
+        "freq_hz": 0.777442911241379,
+        "zeta": 0.13322645820334167,
+        "pi_c": 0.5478620121062632,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0
+      },
+      {
+        "label": "M_h",
+        "real": -0.6553468921791104,
+        "imag": 4.8828507984531795,
+        "freq_hz": 0.7771298409540315,
+        "zeta": 0.13302125590085492,
+        "pi_c": 0.5477339099058396,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0023543338198679714
+      },
+      {
+        "label": "C_h",
+        "real": -0.6566373705868105,
+        "imag": 4.884875631035323,
+        "freq_hz": 0.7774521030684132,
+        "zeta": 0.13322428211510695,
+        "pi_c": 0.547855224635851,
+        "family": "I_network",
+        "distance_to_base_pole": 5.784010682326506e-05
+      },
+      {
+        "label": "MC_h",
+        "real": -0.6553436889942825,
+        "imag": 4.882908384838953,
+        "freq_hz": 0.7771390061119822,
+        "zeta": 0.13301907621293763,
+        "pi_c": 0.5477271245392579,
+        "family": "I_network",
+        "distance_to_base_pole": 0.002308234777649733
+      },
+      {
+        "label": "MC_eps",
+        "real": -0.6540477965954639,
+        "imag": 4.880992657703707,
+        "freq_hz": 0.7768341086687924,
+        "zeta": 0.13281186963020453,
+        "pi_c": 0.5475922289263625,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0046210984562912085
+      }
+    ],
+    "prediction_rows": [
+      {
+        "prediction": "additive",
+        "real": -0.6540469464443366,
+        "imag": 4.880999227728737,
+        "freq_hz": 0.7768351543207523,
+        "zeta": 0.13281152442569608,
+        "complex_error": 6.6248008153460745e-06,
+        "zeta_abs_error": 3.452045084506583e-07
+      },
+      {
+        "prediction": "additive_plus_cross",
+        "real": -0.6540467568077901,
+        "imag": 4.880998557461564,
+        "freq_hz": 0.7768350476444185,
+        "zeta": 0.13281150451332316,
+        "complex_error": 5.990684533672943e-06,
+        "zeta_abs_error": 3.6511688136786624e-07
+      }
+    ],
+    "cross_metrics": {
+      "true_shift_abs": 0.0046210984562912085,
+      "cross_shift_abs": 6.965774209555914e-07,
+      "cross_fraction_of_true_shift": 0.00015073849378977505,
+      "add_complex_error": 6.6248008153460745e-06,
+      "cross_complex_error": 5.990684533672943e-06,
+      "complex_error_improvement_fraction": 0.09571854299441393,
+      "add_zeta_abs_error": 3.452045084506583e-07,
+      "cross_zeta_abs_error": 3.6511688136786624e-07,
+      "zeta_error_improvement_fraction": -0.05768282982913041,
+      "d_m_real": 0.2587268366782691,
+      "d_m_imag": -0.3934157259152471,
+      "d_c_real": 0.0006311551382420788,
+      "d_c_imag": 0.011550790513403797,
+      "d_cross_real": 0.001896365464659766,
+      "d_cross_imag": -0.006702671733194165
+    },
+    "partition_meta": {
+      "case_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+      "n_states": 166,
+      "n_retained": 11,
+      "n_condensed": 155,
+      "partition_rationale": "x_e matches Phase-0B: delta/omega GENROU states plus explicit grid-forming angle states (delta REGF1). PLL, BusFreq, REGCP1/REECA1/REPCA1, exciters, PSS, governors, GENROU internal voltage states, and REGF1 internal controls are kept in x_c and enter through the rational Schur term."
+    },
+    "sweep_index": 10,
+    "genrou_target_label": "GENROU_3",
+    "pll_target_label": "PLL1_G5"
+  },
+  {
+    "status": "NOT_MEASURABLE",
+    "random_seed": 20260608,
+    "git_commit": "46f48b23d2ca168678e843f32d844eae5f4d93e5",
+    "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+    "mode_selector": "network",
+    "eps": 0.01,
+    "half_step": 0.005,
+    "tau": 0.7,
+    "base_mode": {
+      "real": -0.6566405263625017,
+      "imag": 4.884817877082756,
+      "freq_hz": 0.777442911241379,
+      "zeta": 0.13322645820334167,
+      "pi_c": 0.5478620121062632,
+      "family": "I_network"
+    },
+    "perturbations": [
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_M_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.0,
+        "genrou_targets": [
+          "GENROU_10"
+        ],
+        "pll_targets": [
+          "PLL1_G9"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 0,
+        "n_pll_ki_scaled": 0,
+        "label": "M_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_C_h_eps0.01.xlsx",
+        "inertia_scale": 1.0,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_10"
+        ],
+        "pll_targets": [
+          "PLL1_G9"
+        ],
+        "n_genrou_m_scaled": 0,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "C_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_10"
+        ],
+        "pll_targets": [
+          "PLL1_G9"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_eps_eps0.01.xlsx",
+        "inertia_scale": 1.01,
+        "control_scale": 1.01,
+        "genrou_targets": [
+          "GENROU_10"
+        ],
+        "pll_targets": [
+          "PLL1_G9"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_eps"
+      }
+    ],
+    "mode_rows": [
+      {
+        "label": "base",
+        "real": -0.6566405263625017,
+        "imag": 4.884817877082756,
+        "freq_hz": 0.777442911241379,
+        "zeta": 0.13322645820334167,
+        "pi_c": 0.5478620121062632,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0
+      },
+      {
+        "label": "M_h",
+        "real": -0.6575651876508007,
+        "imag": 4.881337051267996,
+        "freq_hz": 0.7768889206069182,
+        "zeta": 0.13350416554914396,
+        "pi_c": 0.5476757541175808,
+        "family": "I_network",
+        "distance_to_base_pole": 0.003601547840967024
+      },
+      {
+        "label": "C_h",
+        "real": -0.6566137307308855,
+        "imag": 4.884849893099759,
+        "freq_hz": 0.7774480067487431,
+        "zeta": 0.13322026044630791,
+        "pi_c": 0.5478572503141139,
+        "family": "I_network",
+        "distance_to_base_pole": 4.1749625368863596e-05
+      },
+      {
+        "label": "MC_h",
+        "real": -0.6575383248334474,
+        "imag": 4.881369095223153,
+        "freq_hz": 0.7768940205607776,
+        "zeta": 0.13349794810493282,
+        "pi_c": 0.5476709876829486,
+        "family": "I_network",
+        "distance_to_base_pole": 0.003563725355517153
+      },
+      {
+        "label": "MC_eps",
+        "real": -0.6584304408556816,
+        "imag": 4.877953050452086,
+        "freq_hz": 0.776350340149639,
+        "zeta": 0.13376777629505535,
+        "pi_c": 0.5474817926289808,
+        "family": "I_network",
+        "distance_to_base_pole": 0.007094338486571529
+      }
+    ],
+    "prediction_rows": [
+      {
+        "prediction": "additive",
+        "real": -0.6584362576758673,
+        "imag": 4.877920257487243,
+        "freq_hz": 0.7763451209871856,
+        "zeta": 0.13376982010400532,
+        "complex_error": 3.3304863612955805e-05,
+        "zeta_abs_error": 2.0438089499696943e-06
+      },
+      {
+        "prediction": "additive_plus_cross",
+        "real": -0.658435988932919,
+        "imag": 4.877920369239859,
+        "freq_hz": 0.7763451387731668,
+        "zeta": 0.13376976347260439,
+        "complex_error": 3.3148797771038386e-05,
+        "zeta_abs_error": 1.9871775490398758e-06
+      }
+    ],
+    "cross_metrics": {
+      "true_shift_abs": 0.007094338486571529,
+      "cross_shift_abs": 2.910522624481329e-07,
+      "cross_fraction_of_true_shift": 4.102599037232988e-05,
+      "add_complex_error": 3.3304863612955805e-05,
+      "cross_complex_error": 3.3148797771038386e-05,
+      "complex_error_improvement_fraction": 0.004685977511606069,
+      "add_zeta_abs_error": 2.0438089499696943e-06,
+      "cross_zeta_abs_error": 1.9871775490398758e-06,
+      "zeta_error_improvement_fraction": 0.02770875473984899,
+      "d_m_real": -0.18493225765980892,
+      "d_m_imag": -0.6961651629518784,
+      "d_c_real": 0.005359126323245533,
+      "d_c_imag": 0.006403203400573432,
+      "d_cross_real": 0.00268742948339451,
+      "d_cross_imag": 0.0011175261604989828
+    },
+    "partition_meta": {
+      "case_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+      "n_states": 166,
+      "n_retained": 11,
+      "n_condensed": 155,
+      "partition_rationale": "x_e matches Phase-0B: delta/omega GENROU states plus explicit grid-forming angle states (delta REGF1). PLL, BusFreq, REGCP1/REECA1/REPCA1, exciters, PSS, governors, GENROU internal voltage states, and REGF1 internal controls are kept in x_c and enter through the rational Schur term."
+    },
+    "sweep_index": 11,
+    "genrou_target_label": "GENROU_10",
+    "pll_target_label": "PLL1_G9"
+  },
+  {
+    "status": "NOT_MEASURABLE",
+    "random_seed": 20260608,
+    "git_commit": "46f48b23d2ca168678e843f32d844eae5f4d93e5",
+    "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+    "mode_selector": "network",
+    "eps": 0.01,
+    "half_step": 0.005,
+    "tau": 0.7,
+    "base_mode": {
+      "real": -0.6566405263625017,
+      "imag": 4.884817877082756,
+      "freq_hz": 0.777442911241379,
+      "zeta": 0.13322645820334167,
+      "pi_c": 0.5478620121062632,
+      "family": "I_network"
+    },
+    "perturbations": [
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_M_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.0,
+        "genrou_targets": [
+          "GENROU_10"
+        ],
+        "pll_targets": [
+          "PLL1_G7"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 0,
+        "n_pll_ki_scaled": 0,
+        "label": "M_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_C_h_eps0.01.xlsx",
+        "inertia_scale": 1.0,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_10"
+        ],
+        "pll_targets": [
+          "PLL1_G7"
+        ],
+        "n_genrou_m_scaled": 0,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "C_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_10"
+        ],
+        "pll_targets": [
+          "PLL1_G7"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_eps_eps0.01.xlsx",
+        "inertia_scale": 1.01,
+        "control_scale": 1.01,
+        "genrou_targets": [
+          "GENROU_10"
+        ],
+        "pll_targets": [
+          "PLL1_G7"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_eps"
+      }
+    ],
+    "mode_rows": [
+      {
+        "label": "base",
+        "real": -0.6566405263625017,
+        "imag": 4.884817877082756,
+        "freq_hz": 0.777442911241379,
+        "zeta": 0.13322645820334167,
+        "pi_c": 0.5478620121062632,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0
+      },
+      {
+        "label": "M_h",
+        "real": -0.6575651876508007,
+        "imag": 4.881337051267996,
+        "freq_hz": 0.7768889206069182,
+        "zeta": 0.13350416554914396,
+        "pi_c": 0.5476757541175808,
+        "family": "I_network",
+        "distance_to_base_pole": 0.003601547840967024
+      },
+      {
+        "label": "C_h",
+        "real": -0.6566362700028365,
+        "imag": 4.884884475675055,
+        "freq_hz": 0.7774535107365464,
+        "zeta": 0.13322382584622675,
+        "pi_c": 0.5478541620272693,
+        "family": "I_network",
+        "distance_to_base_pole": 6.673446706081651e-05
+      },
+      {
+        "label": "MC_h",
+        "real": -0.6575609109015088,
+        "imag": 4.881403704308471,
+        "freq_hz": 0.7768995287677818,
+        "zeta": 0.13350152229588122,
+        "pi_c": 0.547667905663621,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0035360547835563347
+      },
+      {
+        "label": "MC_eps",
+        "real": -0.6584754842898469,
+        "imag": 4.878021974105249,
+        "freq_hz": 0.7763613096897359,
+        "zeta": 0.13377490726386787,
+        "pi_c": 0.5474756714895337,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0070392732490512
+      }
+    ],
+    "prediction_rows": [
+      {
+        "prediction": "additive",
+        "real": -0.6584813362197695,
+        "imag": 4.877989422637836,
+        "freq_hz": 0.7763561289627923,
+        "zeta": 0.13377695158671302,
+        "complex_error": 3.307329911823587e-05,
+        "zeta_abs_error": 2.044322845146107e-06
+      },
+      {
+        "prediction": "additive_plus_cross",
+        "real": -0.6584812546612624,
+        "imag": 4.877989640430536,
+        "freq_hz": 0.7763561636255769,
+        "zeta": 0.13377692944784547,
+        "complex_error": 3.2844538461696366e-05,
+        "zeta_abs_error": 2.022183977601344e-06
+      }
+    ],
+    "cross_metrics": {
+      "true_shift_abs": 0.0070392732490512,
+      "cross_shift_abs": 2.3256278721884995e-07,
+      "cross_fraction_of_true_shift": 3.303789737814146e-05,
+      "add_complex_error": 3.307329911823587e-05,
+      "cross_complex_error": 3.2844538461696366e-05,
+      "complex_error_improvement_fraction": 0.006916777661692977,
+      "add_zeta_abs_error": 2.044322845146107e-06,
+      "cross_zeta_abs_error": 2.022183977601344e-06,
+      "zeta_error_improvement_fraction": 0.010829438020187498,
+      "d_m_real": -0.18493225765980892,
+      "d_m_imag": -0.6961651629518784,
+      "d_c_real": 0.0008512719330333596,
+      "d_c_imag": 0.013319718459925411,
+      "d_cross_real": 0.00081558507059043,
+      "d_cross_imag": 0.0021779269943067447
+    },
+    "partition_meta": {
+      "case_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+      "n_states": 166,
+      "n_retained": 11,
+      "n_condensed": 155,
+      "partition_rationale": "x_e matches Phase-0B: delta/omega GENROU states plus explicit grid-forming angle states (delta REGF1). PLL, BusFreq, REGCP1/REECA1/REPCA1, exciters, PSS, governors, GENROU internal voltage states, and REGF1 internal controls are kept in x_c and enter through the rational Schur term."
+    },
+    "sweep_index": 12,
+    "genrou_target_label": "GENROU_10",
+    "pll_target_label": "PLL1_G7"
+  },
+  {
+    "status": "NOT_MEASURABLE",
+    "random_seed": 20260608,
+    "git_commit": "46f48b23d2ca168678e843f32d844eae5f4d93e5",
+    "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+    "mode_selector": "network",
+    "eps": 0.01,
+    "half_step": 0.005,
+    "tau": 0.7,
+    "base_mode": {
+      "real": -0.6566405263625017,
+      "imag": 4.884817877082756,
+      "freq_hz": 0.777442911241379,
+      "zeta": 0.13322645820334167,
+      "pi_c": 0.5478620121062632,
+      "family": "I_network"
+    },
+    "perturbations": [
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_M_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.0,
+        "genrou_targets": [
+          "GENROU_10"
+        ],
+        "pll_targets": [
+          "PLL1_G5"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 0,
+        "n_pll_ki_scaled": 0,
+        "label": "M_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_C_h_eps0.01.xlsx",
+        "inertia_scale": 1.0,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_10"
+        ],
+        "pll_targets": [
+          "PLL1_G5"
+        ],
+        "n_genrou_m_scaled": 0,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "C_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_h_eps0.01.xlsx",
+        "inertia_scale": 1.005,
+        "control_scale": 1.005,
+        "genrou_targets": [
+          "GENROU_10"
+        ],
+        "pll_targets": [
+          "PLL1_G5"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_h"
+      },
+      {
+        "base_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+        "out_case": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\phase_cross_inertia_control\\perturbed_cases\\ieee39_ibr_mix60_network_MC_eps_eps0.01.xlsx",
+        "inertia_scale": 1.01,
+        "control_scale": 1.01,
+        "genrou_targets": [
+          "GENROU_10"
+        ],
+        "pll_targets": [
+          "PLL1_G5"
+        ],
+        "n_genrou_m_scaled": 1,
+        "n_pll_kp_scaled": 1,
+        "n_pll_ki_scaled": 1,
+        "label": "MC_eps"
+      }
+    ],
+    "mode_rows": [
+      {
+        "label": "base",
+        "real": -0.6566405263625017,
+        "imag": 4.884817877082756,
+        "freq_hz": 0.777442911241379,
+        "zeta": 0.13322645820334167,
+        "pi_c": 0.5478620121062632,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0
+      },
+      {
+        "label": "M_h",
+        "real": -0.6575651876508007,
+        "imag": 4.881337051267996,
+        "freq_hz": 0.7768889206069182,
+        "zeta": 0.13350416554914396,
+        "pi_c": 0.5476757541175808,
+        "family": "I_network",
+        "distance_to_base_pole": 0.003601547840967024
+      },
+      {
+        "label": "C_h",
+        "real": -0.6566373705868105,
+        "imag": 4.884875631035323,
+        "freq_hz": 0.7774521030684132,
+        "zeta": 0.13322428211510695,
+        "pi_c": 0.547855224635851,
+        "family": "I_network",
+        "distance_to_base_pole": 5.784010682326506e-05
+      },
+      {
+        "label": "MC_h",
+        "real": -0.6575620114261456,
+        "imag": 4.881394845745933,
+        "freq_hz": 0.7768981188837653,
+        "zeta": 0.13350197970375782,
+        "pi_c": 0.5476689692549076,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0035448946747948062
+      },
+      {
+        "label": "MC_eps",
+        "real": -0.6584776737889362,
+        "imag": 4.87800431705638,
+        "freq_hz": 0.776358499483128,
+        "zeta": 0.1337758196835408,
+        "pi_c": 0.5474777901704921,
+        "family": "I_network",
+        "distance_to_base_pole": 0.0070568910222192985
+      }
+    ],
+    "prediction_rows": [
+      {
+        "prediction": "additive",
+        "real": -0.6584835373877174,
+        "imag": 4.877971733358371,
+        "freq_hz": 0.7763533136265256,
+        "zeta": 0.13377786721543916,
+        "complex_error": 3.310708635040229e-05,
+        "zeta_abs_error": 2.047531898363708e-06
+      },
+      {
+        "prediction": "additive_plus_cross",
+        "real": -0.6584834555918615,
+        "imag": 4.87797189545985,
+        "freq_hz": 0.7763533394257772,
+        "zeta": 0.1337778465290936,
+        "complex_error": 3.293310138192171e-05,
+        "zeta_abs_error": 2.026845552810519e-06
+      }
+    ],
+    "cross_metrics": {
+      "true_shift_abs": 0.0070568910222192985,
+      "cross_shift_abs": 1.815694123485905e-07,
+      "cross_fraction_of_true_shift": 2.57293773953575e-05,
+      "add_complex_error": 3.310708635040229e-05,
+      "cross_complex_error": 3.293310138192171e-05,
+      "complex_error_improvement_fraction": 0.005255218373466729,
+      "add_zeta_abs_error": 2.047531898363708e-06,
+      "cross_zeta_abs_error": 2.026845552810519e-06,
+      "zeta_error_improvement_fraction": 0.010103063873984438,
+      "d_m_real": -0.18493225765980892,
+      "d_m_imag": -0.6961651629518784,
+      "d_c_real": 0.0006311551382420788,
+      "d_c_imag": 0.011550790513403797,
+      "d_cross_real": 0.0008179585586631788,
+      "d_cross_imag": 0.0016210147890660664
+    },
+    "partition_meta": {
+      "case_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\phase1_calibrated\\no_pss\\ieee39_ibr_mix60.xlsx",
+      "n_states": 166,
+      "n_retained": 11,
+      "n_condensed": 155,
+      "partition_rationale": "x_e matches Phase-0B: delta/omega GENROU states plus explicit grid-forming angle states (delta REGF1). PLL, BusFreq, REGCP1/REECA1/REPCA1, exciters, PSS, governors, GENROU internal voltage states, and REGF1 internal controls are kept in x_c and enter through the rational Schur term."
+    },
+    "sweep_index": 13,
+    "genrou_target_label": "GENROU_10",
+    "pll_target_label": "PLL1_G5"
+  }
+]

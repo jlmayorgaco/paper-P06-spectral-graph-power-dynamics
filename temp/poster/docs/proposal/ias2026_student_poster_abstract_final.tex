@@ -1,0 +1,33 @@
+\documentclass[conference]{IEEEtran}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\title{Copper or Controlled Support? A Spectral Screening Rule for Damping-Margin Planning in Inverter-Dominated Industrial Grids}
+
+\author{\IEEEauthorblockN{Jorge L. Mayorga Taborda}
+\IEEEauthorblockA{Universidad de los Andes\\
+Bogota, Colombia}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Industrial plants and microgrids with high inverter-based-resource penetration face a planning choice at a weak bus: add copper by reinforcing existing lines, or install controlled equipment such as virtual inertia, synchronous condenser, or STATCOM support. The cheaper-looking choice can be misleading because frequency and stiffness screens do not measure damping margin directly. In a six-bus test case with non-proportional damping, the line selected by a frequency ranking increased network stiffness but reduced the true damping margin, verified against the full quadratic-eigenvalue eigensolve.
+
+The line/shunt split is classical; here it is used as a node-by-node planning taxonomy. We separate the linearized effect of virtual inertia into the part matched by strengthening existing lines and the remaining local shunt part. No new corridors are required. The shunt remainder marks where copper is insufficient; that is the practical role of a synchronous condenser or STATCOM. A spectral node score then sorts weak buses into two planning classes: copper is likely sufficient, or equipment-based support is needed.
+
+The split was checked on 40 random networks with 4 to 11 buses and densities from 0.33 to 1.0, with residuals near 1e-14. Linearized formulas matched finite-difference sensitivities to about 1e-4 relative error, and the test system showed an 8.9x score separation across weak nodes. The result is a network-inertia diagnostic for reduced and synthetic models where GENROU damping is treated as near zero; full ANDES validation with detailed inverter-control dynamics remains pending.
+\end{abstract}
+
+\begin{IEEEkeywords}
+inverter-based resources, damping margin, virtual inertia, power system planning, synchronous condenser
+\end{IEEEkeywords}
+
+\section*{Poster Hook}
+A weak industrial grid node can sometimes be strengthened with existing copper, but sometimes only local inertia or shunt support can supply the missing damping margin.
+
+\section*{Scope Note}
+This abstract does not claim full-ANDES validation with detailed inverter controls or universal validity beyond the linearized network-inertia regime.
+
+\end{document}

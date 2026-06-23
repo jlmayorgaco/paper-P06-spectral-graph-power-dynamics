@@ -1,0 +1,7 @@
+gate,status,evidence,next_action
+G0.1 baseline ANDES load/PFlow/EIG,PASS,"39 buses, 46 lines, 160 eigenvalues","Use as synchronous extraction benchmark, not as IBR validation."
+G0.2 packaged-case positive-mode diagnostic,PASS-DIAGNOSTIC,Removing IEEEST/PSS removes all positive-real modes,Report positive modes as a model-quality warning.
+G0.3 SG-to-GFL/GFM case generation,PASS,5/5 derived cases solved PFlow and EIG,Use generated cases as reproducible benchmark artifacts.
+G0.4 generic IBR small-signal stability,PARTIAL,1/5 cases stable under generic gains: ieee39_ibr_mix60,Calibrate REGCP1/REECA1/REPCA1/PLL1 and REGF1 gains before final validation.
+"G0.5 physical ANDES-to-(L,M,D) IBR bridge",BLOCKED,Strict bridge audit BLOCKED: critical frequency error 12.4% and damping-ratio error 100.0%,Extract a matched reduced model from the full ANDES Jacobian and compare poles first.
+G0.6 final estimator validation against full ANDES IBR poles,BLOCKED,Requires G0.4 and G0.5 before estimator errors can be claimed.,"Compare diagonal, second-order, reduced QEP, and adaptive estimates against full eigensolve."

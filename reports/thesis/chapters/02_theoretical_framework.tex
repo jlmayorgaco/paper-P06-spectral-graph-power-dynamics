@@ -1,0 +1,825 @@
+\chapter{Physical and Theoretical Framework}
+
+This chapter explains the physical model behind the operator hierarchy. The
+later chapters are intentionally abstract, but the abstraction is not detached
+from the grid. Every matrix in the thesis comes from a physical layer: phasor
+voltages, line admittances, active-power balance, rotor or converter dynamics,
+controller states, and the operating point around which the system is
+linearized. The purpose of this chapter is to make that chain explicit before
+the thesis uses \(L\), \(M\), \(D\), \(\Pi(s)\), and \(T(s)^{-1}\) as technical
+objects.
+
+\thesisbox{thesisblue}{Chapter message}{
+The problem is not only to compute eigenvalues. The problem is to identify
+which physical mechanism creates, moves, amplifies, or protects those
+eigenvalues. That is why the thesis needs a hierarchy from network stiffness to
+fixed damping, rational self-energy, Green functions, structured fragility, and
+nonlinear memory.}
+
+\section{How to Read This Chapter Step by Step}
+
+The rest of the thesis uses compact notation, so this chapter starts from the
+physical chain and builds the operator one piece at a time. The intended
+reading order is:
+\begin{enumerate}
+\item Start with the electrical graph: buses are nodes, lines are edges, and
+line admittances create the network equation \(I=Y_{\rm bus}V\).
+\item Fix an operating point: the same topology can have different
+small-signal stiffness under a different dispatch, voltage profile, or angle
+stress.
+\item Linearize active-power balance: the derivative of power with respect to
+angles becomes the synchronizing stiffness matrix \(L\).
+\item Add dynamic storage and damping: inertia gives \(M\ddot\theta\), damping
+or damping-like control gives \(D\dot\theta\), and stiffness gives
+\(L\theta\).
+\item Introduce the spectral parameter \(s\): an oscillatory response
+\(\theta(t)=ve^{st}\) converts the differential equation into an operator
+\(s^2M+sD+L\).
+\item Escalate only when needed: if hidden controller states are eliminated,
+the missing frequency-dependent physics appears as \(\Pi(s)\), and the object
+becomes \(T(s)=s^2M+sD_0+L+\Pi(s)\).
+\end{enumerate}
+The key point is that each symbol is a physical commitment. A graph eigenvalue
+is not automatically a stability certificate; it is a certificate only when
+the dynamic terms that can change the protected margin have been accounted for.
+
+\section{The Grid as a Networked Dynamic System}
+
+A power grid is a networked dynamical system, not a single aggregate machine.
+The buses form the electrical graph, the lines and transformers define the
+admittance matrix, the generators and converters inject dynamic behavior, and
+the loads close the power balance. A useful small-signal model must preserve
+all four roles: network geometry, operating-point physics, dynamic storage, and
+control memory.
+
+\begin{figure}[ht]
+\centering
+\resizebox{0.96\textwidth}{!}{%
+\begin{tikzpicture}[
+  bus/.style={circle,draw=thesisink!65,fill=white,line width=0.45pt,minimum size=6pt,inner sep=0pt},
+  gen/.style={circle,draw=thesisblue!85!black,fill=thesisblue!10,line width=0.9pt,minimum size=8pt,inner sep=0pt},
+  conv/.style={regular polygon,regular polygon sides=4,draw=thesisorange!85!black,fill=thesisorange!12,line width=0.9pt,minimum size=9pt,inner sep=0pt},
+  load/.style={rectangle,draw=thesisgray!85!black,fill=softgray,line width=0.6pt,minimum width=8pt,minimum height=6pt,inner sep=0pt},
+  line/.style={draw=thesisgray!76,line width=0.7pt},
+  ctrl/.style={rectangle,rounded corners=2pt,draw=thesisred!75!black,fill=softred,align=center,font=\scriptsize,text width=2.25cm},
+  lbl/.style={font=\scriptsize\color{thesisink}},
+  flow/.style={-{Latex[length=2.0mm]},draw=thesisgray,line width=0.55pt}
+]
+\coordinate (b1) at (0,1.6);
+\coordinate (b2) at (1.7,2.2);
+\coordinate (b3) at (3.4,1.55);
+\coordinate (b4) at (5.0,2.15);
+\coordinate (b5) at (6.5,1.25);
+\coordinate (b6) at (1.1,0.25);
+\coordinate (b7) at (2.8,-0.35);
+\coordinate (b8) at (4.8,0.05);
+\coordinate (b9) at (6.2,-0.55);
+\draw[line] (b1)--(b2)--(b3)--(b4)--(b5)--(b9)--(b8)--(b7)--(b6)--(b1);
+\draw[line] (b2)--(b6) (b2)--(b7) (b3)--(b7) (b3)--(b8) (b4)--(b8) (b5)--(b8);
+\foreach \p in {b1,b4,b6,b8} \node[bus] at (\p) {};
+\node[gen] (g1) at (b2) {};
+\node[conv] (c1) at (b3) {};
+\node[gen] (g2) at (b5) {};
+\node[conv] (c2) at (b7) {};
+\node[load] (l1) at (b9) {};
+\node[lbl,above=0.08cm of g1] {SG};
+\node[lbl,above=0.08cm of c1] {IBR};
+\node[lbl,above=0.08cm of g2] {SG};
+\node[lbl,below=0.10cm of c2] {GFM/GFL};
+\node[lbl,below=0.08cm of l1] {load};
+\node[ctrl] (pll) at (3.4,3.20) {PLL/current loop\\voltage loop\\plant control};
+\node[ctrl] (gov) at (0.95,3.20) {governor\\exciter\\stabilizer};
+\draw[flow] (gov.south) -- (g1.north);
+\draw[flow] (pll.south) -- (c1.north);
+\node[lbl,align=center,text width=4.2cm] at (9.1,1.80) {\textbf{Electrical graph}\\
+\(Y_{\rm bus}=G+jB\)\\
+\(I=Y_{\rm bus}V\)};
+\node[lbl,align=center,text width=4.2cm] at (9.1,0.60) {\textbf{Dynamic devices}\\
+\(M\ddot\theta+D\dot\theta\)\\
+or converter states \(z\)};
+\node[lbl,align=center,text width=4.2cm] at (9.1,-0.65) {\textbf{Planning actions}\\
+line, damping, inertia,\\
+controller retuning};
+\draw[flow] (6.95,1.25) -- (7.65,1.62);
+\draw[flow] (6.95,0.18) -- (7.65,0.48);
+\draw[flow] (6.95,-0.48) -- (7.65,-0.62);
+\end{tikzpicture}}
+\caption{A converter-rich grid contains a physical graph, dynamic devices, and
+hidden controller states. The retained variables may be bus or machine angles,
+frequencies, voltages, and selected ports; the eliminated variables reappear as
+self-energy when they are condensed.}
+\label{fig:framework_networked_grid}
+\end{figure}
+
+Figure~\ref{fig:framework_networked_grid} shows the modeling issue. The
+electrical graph tells us which buses are connected, but not which dynamic
+margin is protected. A synchronous generator contributes inertia, damping,
+exciter, governor, and stabilizer dynamics. A grid-following or grid-forming
+converter contributes synchronization, current-loop, voltage-loop, filter,
+limiter, and plant-level dynamics. If those internal states are removed from a
+reduced model, their effect must go somewhere. In this thesis, that place is
+the rational self-energy \(\Pi(s)\).
+
+\section{AC Phasors, Power Flow, and Network Stiffness}
+
+The first physical object is the AC phasor voltage. At bus \(i\),
+\begin{equation}
+  V_i=|V_i|e^{j\theta_i},
+  \label{eq:framework_phasor}
+\end{equation}
+where \(|V_i|\) is voltage magnitude and \(\theta_i\) is phase angle. The
+network admittance matrix maps bus voltages to currents,
+\begin{equation}
+  I=Y_{\rm bus}V,\qquad Y_{\rm bus}=G+jB,
+  \label{eq:framework_ybus}
+\end{equation}
+and the complex power injected at the bus is
+\begin{equation}
+  S_i=P_i+jQ_i=V_iI_i^* .
+  \label{eq:framework_complex_power}
+\end{equation}
+The operating point is therefore not only a graph. It is a solution of the AC
+power-flow equations at a particular dispatch, load, voltage profile, topology,
+and controller setting.
+
+The active-power stiffness matrix is the first derivative of active power with
+respect to phase angles at the operating point. With voltage magnitudes fixed
+inside the small-signal angle block,
+\begin{equation}
+  \Delta P\approx J_{P\theta}\Delta\theta,
+  \qquad
+  J_{P\theta}
+  =
+  \left.
+  \frac{\partial P}{\partial \theta}
+  \right|_{(V^\star,\theta^\star)} .
+  \label{eq:framework_jacobian}
+\end{equation}
+Depending on the sign convention for exported electrical power, the
+synchronizing matrix is \(L=J_{P\theta}\) or \(L=-J_{P\theta}\). The thesis
+always states the convention before using a derivative. The important fact is
+that \(L\) is an operating-point derivative, not a purely topological matrix.
+
+\begin{figure}[ht]
+\centering
+\resizebox{0.92\textwidth}{!}{%
+\begin{tikzpicture}[
+  axis/.style={-{Latex[length=2.0mm]},draw=thesisink!70,line width=0.55pt},
+  curve/.style={draw=thesisblue,line width=1.05pt},
+  tangent/.style={draw=thesisorange,line width=0.85pt},
+  guide/.style={draw=thesisgray!70,densely dashed,line width=0.45pt},
+  lbl/.style={font=\small\color{thesisink}}
+]
+\draw[axis] (-3.55,0) -- (3.65,0) node[right,lbl] {\(\delta=\theta_i-\theta_j\)};
+\draw[axis] (0,-1.75) -- (0,1.95) node[above,lbl] {\(P_{ij}\)};
+\draw[curve] plot[smooth] coordinates {
+  (-3.14,0) (-2.62,-0.50) (-2.09,-0.87) (-1.57,-1.00)
+  (-1.05,-0.87) (-0.52,-0.50) (0,0) (0.52,0.50)
+  (1.05,0.87) (1.57,1.00) (2.09,0.87) (2.62,0.50) (3.14,0)
+};
+\coordinate (op) at (0.78,0.70);
+\draw[guide] (op) -- (0.78,0) node[below,lbl] {\(\delta^\star\)};
+\draw[guide] (op) -- (0,0.70);
+\draw[tangent] (-0.35,-0.26) -- (1.85,1.66);
+\node[circle,fill=thesisred,inner sep=1.7pt] at (op) {};
+\node[lbl,anchor=west] at (1.00,0.44) {operating point};
+\node[lbl,align=center,text width=4.8cm] at (-2.05,1.32)
+{\(\displaystyle P_{ij}\approx |V_i||V_j|B_{ij}\sin\delta\)};
+\node[lbl,align=center,text width=5.3cm] at (2.05,-1.25)
+{\(\displaystyle \frac{\partial P_{ij}}{\partial \delta}
+=|V_i^\star||V_j^\star|B_{ij}\cos\delta^\star\)};
+\end{tikzpicture}}
+\caption{A line contributes synchronizing stiffness because active power is
+sensitive to angle separation. The slope at the operating point becomes the
+edge weight in the linearized stiffness matrix \(L\).}
+\label{fig:framework_power_angle_plot}
+\end{figure}
+
+Figure~\ref{fig:framework_power_angle_plot} gives the physical reason \(L\)
+acts like a stiffness matrix. For a lossless two-bus line,
+\begin{equation}
+  P_{ij}\approx |V_i||V_j|B_{ij}\sin(\theta_i-\theta_j).
+  \label{eq:framework_line_power}
+\end{equation}
+Linearization gives a slope proportional to
+\(|V_i^\star||V_j^\star|B_{ij}\cos(\theta_i^\star-\theta_j^\star)\). This
+slope is large when the line is electrically strong and the operating point is
+not close to the angular stability limit. It decreases as the operating point
+approaches a stressed angle difference. Thus the same physical line can have
+different small-signal stiffness under different operating conditions.
+
+\section{From Physical Balance to the Swing Equation}
+
+The second physical object is rotational or emulated energy storage. For a
+synchronous machine, the rotor accelerates when mechanical input and
+electrical output are imbalanced:
+\begin{equation}
+  M_i\dot\omega_i=P_{m,i}-P_{e,i}-D_i\omega_i,
+  \qquad
+  \omega_i=\dot\theta_i .
+  \label{eq:framework_single_swing}
+\end{equation}
+After linearization around a balanced operating point,
+\begin{equation}
+  M_i\Delta\ddot\theta_i+D_i\Delta\dot\theta_i+\Delta P_{e,i}=p_i .
+  \label{eq:framework_single_linear_swing}
+\end{equation}
+The network supplies \(\Delta P_e\approx L\Delta\theta\). Stacking retained
+angle variables gives
+\begin{equation}
+  M\ddot\theta+D\dot\theta+L\theta=p .
+  \label{eq:framework_network_swing}
+\end{equation}
+The three matrices are not interchangeable. \(M\) multiplies acceleration,
+\(D\) multiplies velocity, and \(L\) multiplies angle displacement. A planning
+action that changes one term should not be interpreted as if it changed the
+others.
+
+The uniform angle direction has no restoring force. Mathematically,
+\begin{equation}
+  L\ones=0 .
+  \label{eq:framework_reference_invariance}
+\end{equation}
+Physically, adding the same constant angle to every bus does not change any
+angle difference or power flow. All spectral statements therefore occur after
+fixing an angle reference, using center-of-inertia coordinates, or projecting
+onto the nonzero-angle subspace.
+
+\section{Converter States and the DAE Layer}
+
+Converter-rich grids add a hidden dynamic layer between the electrical graph
+and the retained swing-like variables. A generic local model has differential
+states \(x\), algebraic variables \(y\), and parameters or actions \(\rho\):
+\begin{align}
+  \dot x &= f(x,y,\rho), \label{eq:framework_dae_f}\\
+  0 &= g(x,y,\rho). \label{eq:framework_dae_g}
+\end{align}
+The algebraic variables include network constraints such as nodal current
+balance and voltage equations. The differential states include machine rotor
+states, exciter states, governor states, PLL states, current controllers,
+voltage controllers, filters, and plant controls.
+
+At a regular equilibrium, \(g_y\) is nonsingular and the algebraic variables
+can be eliminated locally. The first-order small-signal matrix is
+\begin{equation}
+  A_{\rm red}=f_x-f_y g_y^{-1}g_x .
+  \label{eq:framework_reduced_A}
+\end{equation}
+This formula explains why the operating point matters. The Jacobians \(f_x\),
+\(f_y\), \(g_x\), and \(g_y\) are all evaluated at
+\((x^\star,y^\star,\rho^\star)\). If the dispatch, IBR penetration, line
+status, voltage setpoints, or controller gains change, the linearized operator
+changes.
+
+\begin{figure}[ht]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+  layer/.style={rectangle,rounded corners=3pt,draw=#1!75!black,fill=#1!9,
+    minimum height=1.0cm,text width=2.85cm,align=center,font=\small},
+  arrow/.style={-{Latex[length=2.2mm]},draw=thesisgray,line width=0.7pt},
+  note/.style={font=\scriptsize\color{thesisgray},align=center,text width=2.8cm}
+]
+\node[layer=thesisblue] (net) {Electrical network\\\(Y_{\rm bus},V,\theta\)};
+\node[layer=thesisgreen, right=0.55cm of net] (opf) {Operating point\\\(P,Q,V^\star,\theta^\star\)};
+\node[layer=thesisorange, right=0.55cm of opf] (jac) {Linearization\\\(L,J_{xy},A_{\rm red}\)};
+\node[layer=thesisred, right=0.55cm of jac] (dyn) {Dynamic operator\\\(T(s)\)};
+\node[layer=thesisteal, right=0.55cm of dyn] (dec) {Decision\\margin, action,\\certificate};
+\draw[arrow] (net) -- (opf);
+\draw[arrow] (opf) -- (jac);
+\draw[arrow] (jac) -- (dyn);
+\draw[arrow] (dyn) -- (dec);
+\node[note, below=0.25cm of net] {topology and admittance};
+\node[note, below=0.25cm of opf] {dispatch and constraints};
+\node[note, below=0.25cm of jac] {small-signal physics};
+\node[note, below=0.25cm of dyn] {QEP or Schur NEP};
+\node[note, below=0.25cm of dec] {hosting or retuning};
+\end{tikzpicture}}
+\caption{The thesis follows the physical modeling chain from network data to
+an operator-valued decision. A planning result is not reproducible unless the
+operating point, retained variables, action family, margin, and certification
+gate are all declared.}
+\label{fig:framework_modeling_pipeline}
+\end{figure}
+
+\section{Why the Spectral Parameter Appears}
+
+Small-signal stability studies the free response after an infinitesimal
+disturbance. For the fixed-\(D\) second-order model, set \(p=0\) and try
+\(\theta(t)=ve^{st}\). Since
+\[
+  \dot\theta=sve^{st},
+  \qquad
+  \ddot\theta=s^2ve^{st},
+\]
+substitution into \eqref{eq:framework_network_swing} gives
+\begin{equation}
+  (s^2M+sD+L)v=0.
+  \label{eq:framework_qep}
+\end{equation}
+This quadratic eigenvalue problem is the first spectral object of the thesis.
+The term \(s^2M\) is inertia, the term \(sD\) is velocity damping, and the
+term \(L\) is synchronizing stiffness.
+
+When controller states are eliminated rather than retained, the operator is no
+longer a fixed-coefficient QEP. Partition the linearized dynamics into retained
+states \(x_r\) and condensed states \(x_c\). Eliminating \(x_c\) gives a Schur
+complement with the resolvent \((sI-A_{cc})^{-1}\). In second-order retained
+coordinates this appears as
+\begin{equation}
+  T(s)=s^2M+sD_0+L+\Pi(s),
+  \qquad
+  \Pi(s)=\Pi_K(s)+s\Pi_D(s).
+  \label{eq:framework_nep}
+\end{equation}
+The rational term \(\Pi(s)\) is the spectral memory of the eliminated
+controller block. It contains poles and residues. A static damping matrix
+cannot exactly represent those poles.
+
+\section{What a Pole Means Physically}
+
+A root \(s=\sigma+j\omega\) of the retained operator produces a modal response
+of the form
+\[
+  e^{st}=e^{\sigma t}e^{j\omega t}.
+\]
+The real part \(\sigma\) controls growth or decay, and the imaginary part
+\(\omega\) controls oscillation frequency. The damping ratio is
+\begin{equation}
+  \zeta=-\frac{\sigma}{\sqrt{\sigma^2+\omega^2}} .
+  \label{eq:framework_damping_ratio}
+\end{equation}
+The same pole can be interpreted in several physical ways: a slow
+electromechanical oscillation, a local plant mode, a controller interaction
+mode, or a mixed network-control mode. This is why the thesis does not name a
+mode only by frequency. It asks which operator term and which port direction
+make the mode visible.
+
+\begin{figure}[ht]
+\centering
+\resizebox{0.86\textwidth}{!}{%
+\begin{tikzpicture}[
+  axis/.style={-{Latex[length=2.0mm]},draw=thesisink!75,line width=0.55pt},
+  stable/.style={fill=softgreen,draw=none,opacity=0.55},
+  protect/.style={draw=thesisorange,line width=0.85pt,densely dashed},
+  pole/.style={circle,fill=thesisblue,inner sep=1.7pt},
+  badpole/.style={circle,fill=thesisred,inner sep=1.8pt},
+  arrow/.style={-{Latex[length=2.1mm]},draw=thesisred,line width=0.8pt},
+  lbl/.style={font=\small\color{thesisink}}
+]
+\fill[stable] (-4.0,-2.0) rectangle (0,2.25);
+\draw[axis] (-4.05,0) -- (1.45,0) node[right,lbl] {\(\Real(s)\)};
+\draw[axis] (0,-2.05) -- (0,2.35) node[above,lbl] {\(\Imag(s)\)};
+\draw[protect] (-1.0,-2.0) -- (-1.0,2.15);
+\node[lbl,anchor=east] at (-1.05,1.92) {protected boundary};
+\node[pole] (p1) at (-2.15,1.18) {};
+\node[pole] (p2) at (-2.15,-1.18) {};
+\node[pole] (p3) at (-0.58,0.78) {};
+\node[badpole] (p4) at (0.18,0.72) {};
+\draw[arrow] (p3) -- (p4);
+\node[lbl,align=center,text width=3.2cm] at (-2.75,-1.70) {stable and protected};
+\node[lbl,align=center,text width=3.4cm] at (0.52,1.38) {action or uncertainty can move a pole};
+\end{tikzpicture}}
+\caption{The spectral plane makes the margin explicit. A nominally stable pole
+can still be fragile if a physically admissible perturbation moves it across a
+protected damping, abscissa, resonance, or passivity boundary.}
+\label{fig:framework_spectral_plane}
+\end{figure}
+
+Figure~\ref{fig:framework_spectral_plane} explains why a nominal eigenvalue
+plot is not enough. A system may be stable at the base point but fragile under
+small line uncertainty, controller retuning, model-identification error, or
+operating-point movement. The thesis therefore uses structured fragility
+rather than only nominal roots.
+
+\section{Why Scalar Grid Strength Is Not Enough}
+
+Classical strength metrics are useful because they compress a complicated
+network into a small number. Short-circuit ratio describes local electrical
+stiffness. Algebraic connectivity describes a global graph bottleneck. A
+damping ratio describes one pole. Effective resistance describes a static
+graph compliance. None of these scalars is wrong. The problem is that each one
+protects only one mechanism.
+
+\begin{table}[ht]
+\centering
+\caption{Why a scalar metric is not a complete dynamic-strength theory.}
+\label{tab:framework_scalar_limits}
+\begin{tabular}{L{0.20\textwidth}L{0.28\textwidth}L{0.34\textwidth}}
+\toprule
+\rowcolor{softblue}
+\thead{Scalar} & \thead{What it sees} & \thead{What it can miss}\\
+\midrule
+SCR & local fault-level or Thevenin stiffness & damping, controller poles,
+non-normal amplification, multi-port interactions\\
+\(\lambda_2(L)\) & global graph connectivity & heterogeneous damping,
+inertia placement, operating-point residues\\
+\(\zeta_k\) & decay of one pole & finite-action fragility, nearby controller
+poles, hidden input-output gain\\
+\(a_e^TL^\dagger a_e\) & static effective resistance & frequency-dependent
+compliance, resonant Green-function peaks\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The dynamic replacement is not another scalar. It is the retained operator
+\begin{equation}
+  T(s)=s^2M+sD_0+L+\Pi(s)
+  \label{eq:framework_core_operator}
+\end{equation}
+and its Green function
+\begin{equation}
+  G_T(s)=T(s)^{-1}.
+  \label{eq:framework_green}
+\end{equation}
+The scalar quantities used for planning are projections of this operator onto a
+declared port, action family, frequency band, or protected boundary.
+
+\begin{figure}[ht]
+\centering
+\resizebox{0.86\textwidth}{!}{%
+\begin{tikzpicture}[
+  axis/.style={-{Latex[length=2.0mm]},draw=thesisink!75,line width=0.55pt},
+  curveA/.style={draw=thesisblue,line width=1.0pt},
+  curveB/.style={draw=thesisred,line width=1.0pt},
+  curveC/.style={draw=thesisorange,line width=1.0pt,densely dashed},
+  lbl/.style={font=\small\color{thesisink}},
+  leg/.style={font=\scriptsize\color{thesisink},anchor=west}
+]
+\draw[axis] (0,0) -- (7.55,0) node[right,lbl] {line stiffness \(b_e\)};
+\draw[axis] (0,0) -- (0,3.55) node[above,lbl] {normalized margin};
+\draw[curveA] plot[smooth] coordinates {(0.45,0.55) (1.15,1.02) (1.95,1.55) (2.85,2.04) (3.75,2.38) (4.70,2.66) (5.55,2.84)};
+\draw[curveB] plot[smooth] coordinates {(0.45,2.80) (1.15,2.60) (1.95,2.30) (2.85,1.88) (3.75,1.38) (4.70,0.92) (5.55,0.62)};
+\draw[curveC] plot[smooth] coordinates {(0.45,2.45) (1.15,2.42) (1.95,2.26) (2.85,1.90) (3.75,1.20) (4.70,0.78) (5.55,1.02)};
+\draw[curveA] (5.95,2.70) -- (6.45,2.70);
+\node[leg] at (6.55,2.70) {graph stiffness};
+\draw[curveB] (5.95,2.33) -- (6.45,2.33);
+\node[leg] at (6.55,2.33) {damping headroom};
+\draw[curveC] (5.95,1.96) -- (6.45,1.96);
+\node[leg] at (6.55,1.96) {controller-aware margin};
+\end{tikzpicture}}
+\caption{A stiffness-improving line action need not improve a dynamic margin.
+The graph metric, fixed-\(D\) damping screen, and controller-aware margin can
+move in different directions.}
+\label{fig:framework_scalar_failure_plot}
+\end{figure}
+
+Figure~\ref{fig:framework_scalar_failure_plot} is the central planning
+motivation. If a line upgrade increases graph stiffness but reduces damping
+headroom, a scalar graph score gives the wrong engineering message. If the
+static screen accepts the line but the controller-aware model rejects it, the
+missing mechanism is not topology. It is controller memory.
+
+\section{A Three-Bus Example Where Classical Screens Fail}
+
+This section gives the smallest possible example that contains the dissertation
+problem. The example is not meant to represent a full test system. It is a
+teaching model that shows why a line action that is excellent for a classical
+graph metric can be bad for a dynamic margin.
+
+\subsection{Step 1: Build the Three-Bus Graph}
+
+Consider the three-bus chain in Figure~\ref{fig:framework_three_bus}. Bus 1 is
+a synchronous source with appreciable damping, bus 2 is a passive transfer
+bus, and bus 3 is a converter-dominated bus with weak damping. The base system
+has two lines, \(1\)--\(2\) and \(2\)--\(3\), both with unit synchronizing
+weight. The candidate planning action is a new tie line \(1\)--\(3\) with
+incremental stiffness \(p\ge 0\).
+
+\begin{figure}[ht]
+\centering
+\resizebox{0.90\textwidth}{!}{%
+\begin{tikzpicture}[
+  bus/.style={circle,draw=thesisink!70,fill=white,line width=0.7pt,
+    minimum size=10mm,align=center,font=\small},
+  gen/.style={circle,draw=thesisblue!85!black,fill=thesisblue!12,line width=1.0pt,
+    minimum size=11mm,align=center,font=\small},
+  conv/.style={regular polygon,regular polygon sides=4,draw=thesisorange!85!black,
+    fill=thesisorange!13,line width=1.0pt,minimum size=11mm,align=center,font=\small},
+  line/.style={draw=thesisgray!78,line width=1.2pt},
+  cand/.style={draw=thesisred!82,line width=1.0pt,densely dashed},
+  lbl/.style={font=\small\color{thesisink},align=center},
+  note/.style={rectangle,rounded corners=2pt,draw=thesisgray!45,fill=softgray,
+    align=center,font=\scriptsize,text width=3.3cm}
+]
+\node[gen] (b1) at (0,0) {1};
+\node[bus] (b2) at (3.8,0) {2};
+\node[conv,rotate=45] (b3) at (7.6,0) {\rotatebox{-45}{3}};
+\draw[line] (b1) -- node[above,lbl] {\(b_{12}=1\)} (b2);
+\draw[line] (b2) -- node[above,lbl] {\(b_{23}=1\)} (b3);
+\draw[cand] (b1) to[bend right=60] node[pos=0.50,below=0.70cm,lbl] {candidate tie \(p\)} (b3);
+\node[lbl,below=0.36cm of b1] {SG\\\(d_1=0.60\)};
+\node[lbl,below=0.36cm of b2] {transfer bus\\\(d_2=0.60\)};
+\node[lbl,below=0.36cm of b3] {IBR bus\\\(d_3=0.02\)};
+\node[note] at (1.45,1.60) {classical graph screen:\\increase connectivity};
+\node[note] at (6.05,1.60) {dynamic screen:\\protect damping and resonance};
+\end{tikzpicture}}
+\caption{Three-bus teaching example. The candidate tie \(1\)--\(3\) improves
+the static graph, but it also changes the frequency of the endpoint mode that
+uses the weakly damped converter bus.}
+\label{fig:framework_three_bus}
+\end{figure}
+
+\subsection{Step 2: Derive the Stiffness Matrix}
+
+With only the chain lines present, the Laplacian stiffness is
+\begin{equation}
+  L_0=
+  \begin{bmatrix}
+  1 & -1 & 0\\
+  -1 & 2 & -1\\
+  0 & -1 & 1
+  \end{bmatrix}.
+  \label{eq:framework_three_bus_L0}
+\end{equation}
+The nonzero graph modes are
+\begin{equation}
+  \nu_1=1,\quad
+  \phi_1=\frac{1}{\sqrt 2}
+  \begin{bmatrix}1\\0\\-1\end{bmatrix},
+  \qquad
+  \nu_2=3,\quad
+  \phi_2=\frac{1}{\sqrt 6}
+  \begin{bmatrix}1\\-2\\1\end{bmatrix}.
+  \label{eq:framework_three_bus_modes}
+\end{equation}
+The candidate tie has incidence vector
+\begin{equation}
+  a_{13}=e_1-e_3=
+  \begin{bmatrix}1\\0\\-1\end{bmatrix},
+  \qquad
+  L(p)=L_0+p\,a_{13}a_{13}^T .
+  \label{eq:framework_three_bus_action}
+\end{equation}
+Because \(a_{13}\) is aligned with \(\phi_1\), the tie line changes the first
+nonzero stiffness exactly:
+\begin{equation}
+  \nu_1(p)=1+2p,\qquad \nu_2(p)=3 .
+  \label{eq:framework_three_bus_eigs}
+\end{equation}
+For \(0\le p\le 1\), the algebraic connectivity therefore increases from
+\(1\) to \(3\). The static effective resistance between buses 1 and 3 also
+decreases:
+\begin{equation}
+  R_{13}^{\rm stat}(p)=\frac{2}{1+2p}.
+  \label{eq:framework_three_bus_resistance}
+\end{equation}
+A classical graph-only decision would say that increasing \(p\) is
+unambiguously good: the network becomes more connected and the endpoint
+resistance becomes smaller.
+
+\subsection{Step 3: Add the First Dynamic Screen}
+
+Now add unit inertia and heterogeneous damping,
+\begin{equation}
+  M=I,\qquad
+  D=\operatorname{diag}(0.60,0.60,0.02).
+  \label{eq:framework_three_bus_MD}
+\end{equation}
+The endpoint mode \(\phi_1\) moves bus 1 against bus 3 while bus 2 stays nearly
+still. Its frozen graph-mode damping estimate is
+\begin{equation}
+  \delta_1=\phi_1^TD\phi_1
+  =\frac{d_1+d_3}{2}
+  =0.31 .
+  \label{eq:framework_three_bus_modal_damping}
+\end{equation}
+The same line that increases stiffness also raises the modal frequency. A
+first dynamic damping-ratio screen gives
+\begin{equation}
+  \zeta_1(p)\approx
+  \frac{\delta_1}{2\sqrt{\nu_1(p)}}
+  =
+  \frac{0.31}{2\sqrt{1+2p}} .
+  \label{eq:framework_three_bus_zeta}
+\end{equation}
+The sign of the conclusion changes. The graph metric improves with \(p\), but
+the damping ratio falls with \(p\). If the planning rule requires
+\(\zeta\ge 0.10\), the base case passes and the strong tie \(p=1\) fails.
+
+\begin{figure}[ht]
+\centering
+\resizebox{0.82\textwidth}{!}{%
+\begin{tikzpicture}[
+  axis/.style={-{Latex[length=2.0mm]},draw=thesisink!75,line width=0.55pt},
+  grid/.style={draw=thesisgray!24,line width=0.35pt},
+  stiff/.style={draw=thesisblue,line width=1.1pt},
+  damp/.style={draw=thesisred,line width=1.1pt},
+  ctrl/.style={draw=thesisorange,line width=1.0pt,densely dashed},
+  thresh/.style={draw=thesisink!55,line width=0.6pt,densely dotted},
+  lbl/.style={font=\small\color{thesisink}},
+  smalllbl/.style={font=\scriptsize\color{thesisink}},
+  leg/.style={font=\scriptsize\color{thesisink},anchor=west}
+]
+\foreach \x in {0.70,1.95,3.20,4.45,5.70} \draw[grid] (\x,0.70) -- (\x,3.35);
+\foreach \y in {0.95,1.50,2.05,2.60,3.15} \draw[grid] (0.55,\y) -- (5.95,\y);
+\draw[axis] (0.55,0.70) -- (6.25,0.70) node[right,lbl] {tie strength \(p\)};
+\draw[axis] (0.55,0.70) -- (0.55,3.55) node[above,lbl] {normalized score};
+\node[smalllbl] at (0.70,0.43) {0};
+\node[smalllbl] at (3.20,0.43) {0.5};
+\node[smalllbl] at (5.70,0.43) {1};
+\draw[stiff] plot[smooth] coordinates {(0.70,1.05) (1.95,1.52) (3.20,2.03) (4.45,2.55) (5.70,3.05)};
+\draw[damp] plot[smooth] coordinates {(0.70,2.92) (1.95,2.42) (3.20,1.85) (4.45,1.42) (5.70,1.18)};
+\draw[ctrl] plot[smooth] coordinates {(0.70,2.65) (1.95,2.06) (3.20,1.33) (4.45,0.88) (5.70,0.80)};
+\draw[thresh] (0.55,1.33) -- (5.95,1.33);
+\node[smalllbl,anchor=east] at (0.46,1.33) {requirement};
+\draw[stiff] (0.90,0.08) -- (1.32,0.08);
+\node[leg] at (1.42,0.08) {\(\lambda_2(L(p))\)};
+\draw[damp] (2.80,0.08) -- (3.22,0.08);
+\node[leg] at (3.32,0.08) {\(\zeta_1(p)\)};
+\draw[ctrl] (4.45,0.08) -- (4.87,0.08);
+\node[leg] at (4.97,0.08) {controller distance};
+\end{tikzpicture}}
+\caption{In the three-bus example, the classical graph score and the dynamic
+margin move in opposite directions. This is the simplest visible failure of a
+connectivity-only planning rule.}
+\label{fig:framework_three_bus_plot}
+\end{figure}
+
+\subsection{Step 4: Show the Classical Failure}
+
+Table~\ref{tab:framework_three_bus_failure} summarizes the contradiction. The
+line action is attractive under two classical static metrics:
+\(\lambda_2(L(p))\) rises and \(R_{13}^{\rm stat}(p)\) falls. The same action
+is unattractive under the dynamic damping screen because it raises the
+frequency of a mode that uses the weakly damped converter bus.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Three-bus example: static improvement but dynamic degradation.}
+\label{tab:framework_three_bus_failure}
+\begin{tabular}{c c c c c L{0.23\textwidth}}
+\toprule
+\rowcolor{softblue}
+\thead{\(p\)} & \thead{\(\lambda_2\)} & \thead{\(R_{13}^{\rm stat}\)}
+& \thead{\(\omega_1\approx\sqrt{1+2p}\)}
+& \thead{\(\zeta_1\)} & \thead{Decision if \(\zeta_{\rm req}=0.10\)}\\
+\midrule
+0 & 1.00 & 2.00 & 1.00 & 0.155 & passes the damping screen\\
+0.5 & 2.00 & 1.00 & 1.41 & 0.110 & barely passes\\
+1.0 & 3.00 & 0.67 & 1.73 & 0.089 & fails even though graph strength improved\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This is the basic reason the thesis cannot stop at graph strength. A graph
+method answers, ``Did the network become stiffer?'' The stability question is
+different: ``Did the protected dynamic margin improve?'' In this example the
+answer to the first question is yes, while the answer to the second is no.
+
+\subsection{Step 5: Add the Hidden Controller Mechanism}
+
+The previous step used only \(M\), \(D\), and \(L(p)\). Converter-rich systems
+can fail one level higher. Suppose the eliminated converter/controller block at
+bus 3 has a lightly damped internal pole near
+\begin{equation}
+  \mu_c=-0.05+j1.70 .
+  \label{eq:framework_three_bus_controller_pole}
+\end{equation}
+A static graph screen cannot see this pole. A fixed-\(D\) screen cannot
+represent it exactly either, because the reduced effect is frequency
+dependent. After Schur condensation, it appears inside \(\Pi(s)\), and the
+mode must be tested through
+\begin{equation}
+  T(s;p)=s^2I+sD+L(p)+\Pi(s).
+  \label{eq:framework_three_bus_nep}
+\end{equation}
+A simple resonance-distance gate is
+\begin{equation}
+  d_c(p)=
+  \frac{|j\sqrt{1+2p}-\mu_c|}
+       {|j\sqrt{1+2p}|+|\mu_c|}.
+  \label{eq:framework_three_bus_controller_distance}
+\end{equation}
+For \(p=0\), \(d_c\approx0.260\). For \(p=0.5\), \(d_c\approx0.093\). For
+\(p=1\), \(d_c\approx0.017\). Thus the same tie that the classical graph
+method ranks best also moves the network mode toward the hidden controller
+pole. The correct escalation is not cosmetic; it changes the engineering
+decision. The controller-aware analysis asks whether
+\(\Pi(s)\), residues, port direction, and dynamic effective resistance create a
+fragile interaction near the protected frequency band.
+
+\subsection{What the Example Teaches}
+
+The three-bus example separates three statements that are often conflated:
+\begin{enumerate}
+\item \textbf{Topology statement:} adding the tie \(1\)--\(3\) increases
+\(\lambda_2\) and lowers static resistance.
+\item \textbf{Fixed-dynamics statement:} the same tie can lower damping ratio
+because it raises frequency without adding proportional damping.
+\item \textbf{Controller-aware statement:} if a hidden controller pole sits in
+the new frequency band, the reduced operator must include \(\Pi(s)\), and the
+planning question becomes a port-resolvent question.
+\end{enumerate}
+This is why the dissertation develops a hierarchy instead of a single graph
+index. Classical methods are valuable first screens, but they fail when the
+protected margin depends on heterogeneous damping, hidden controller memory, or
+finite line actions. The rest of the thesis formalizes exactly when each level
+is enough and when the analysis must escalate.
+
+\section{Dynamic Effective Resistance as the Bridge}
+
+The classical effective resistance of a line \(e=(i,j)\) is
+\begin{equation}
+  R_e^{\rm stat}=a_e^TL^\dagger a_e,
+  \qquad a_e=e_i-e_j .
+  \label{eq:framework_static_resistance}
+\end{equation}
+This quantity measures static graph compliance between the endpoints of the
+line. The thesis generalizes it by replacing the static pseudoinverse with the
+dynamic Green function:
+\begin{equation}
+  \mathcal R_e(s)=a_e^TT(s)^{-1}a_e .
+  \label{eq:framework_dynamic_resistance}
+\end{equation}
+At \(s=0\) and \(\Pi(0)=0\), this reduces to
+\(a_e^TL^\dagger a_e\). Away from zero, it is a frequency-dependent,
+controller-aware port compliance.
+
+This definition matters because a finite line action has an exact scalar pole
+condition:
+\begin{equation}
+  \det\!\left(T(s)+\Delta b_ea_ea_e^T\right)
+  =
+  \det T(s)\left(1+\Delta b_e\mathcal R_e(s)\right).
+  \label{eq:framework_line_determinant}
+\end{equation}
+Thus the new or shifted poles created by the line action satisfy
+\begin{equation}
+  1+\Delta b_e\mathcal R_e(s)=0.
+  \label{eq:framework_line_condition}
+\end{equation}
+The usual line sensitivity is the local residue limit of this finite-action
+law. That is the reason dynamic effective resistance is the bridge between
+spectral graph theory and controller-aware planning.
+
+\section{Operator Hierarchy and Escalation Logic}
+
+The thesis uses a hierarchy because no single model level is always necessary
+or always sufficient. The cheapest valid model should be used, but it must pass
+the gate attached to the claim.
+
+\begin{figure}[ht]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+  level/.style={rectangle,rounded corners=3pt,draw=#1!75!black,fill=#1!9,
+    minimum height=1.12cm,text width=2.7cm,align=center,font=\small},
+  arrow/.style={-{Latex[length=2.2mm]},draw=thesisgray,line width=0.7pt},
+  gate/.style={diamond,aspect=2.1,draw=thesisink!55,fill=softyellow,
+    align=center,font=\scriptsize,text width=2.15cm,inner sep=1pt}
+]
+\node[level=thesisblue] (l0) {\(D=\gamma M\)\\uniform decay};
+\node[gate, right=0.40cm of l0] (g0) {commuting?};
+\node[level=thesisgreen, right=0.40cm of g0] (l1) {fixed \(D\)\\QEP};
+\node[gate, right=0.40cm of l1] (g1) {modal coupling small?};
+\node[level=thesisorange, right=0.40cm of g1] (l2) {Schur NEP\\\(\Pi(s)\)};
+\node[gate, below=0.70cm of l2] (g2) {finite action or uncertainty?};
+\node[level=thesisred, left=0.55cm of g2] (l3) {Green function\\\(T(s)^{-1}\)};
+\node[level=thesisteal, right=0.55cm of g2] (l4) {structured fragility\\\(r_{\rm frag}\)};
+\node[level=thesisgray, below=0.70cm of g2] (l5) {nonlinear memory\\\(K(x,\tau)\)};
+\draw[arrow] (l0) -- (g0);
+\draw[arrow] (g0) -- (l1);
+\draw[arrow] (l1) -- (g1);
+\draw[arrow] (g1) -- (l2);
+\draw[arrow] (l2) -- (g2);
+\draw[arrow] (g2) -- (l3);
+\draw[arrow] (g2) -- (l4);
+\draw[arrow] (g2) -- (l5);
+\end{tikzpicture}}
+\caption{Escalation logic of the thesis. The analysis becomes richer only
+when the protected claim requires the richer operator: modal coupling,
+controller memory, finite actions, structured uncertainty, or nonlinear
+amplitude effects.}
+\label{fig:framework_escalation}
+\end{figure}
+
+Figure~\ref{fig:framework_escalation} is the practical answer to why the full
+analysis is necessary. If damping commutes with stiffness, graph modes can
+certify more. If damping does not commute, the fixed-\(D\) QEP is needed. If
+controller states are condensed, \(\Pi(s)\) is needed. If the question concerns
+a finite line, damping, inertia, or controller action, \(T(s)^{-1}\) is needed.
+If the question concerns minimum physical perturbation to failure, structured
+fragility is needed. If the question concerns finite-amplitude behavior,
+nonlinear memory is needed.
+
+\section{Decision Contract for the Rest of the Thesis}
+
+Every claim in the rest of the dissertation should be readable through the
+same four-part contract:
+\begin{enumerate}
+\item \textbf{Operator:} Which model is being used: \(L\), QEP, Schur NEP,
+Green function, structured fragility, or nonlinear memory?
+\item \textbf{Port or action:} Which line, bus, converter, controller channel,
+input-output pair, or uncertainty family is being tested?
+\item \textbf{Margin:} Which quantity is protected: damping ratio, spectral
+abscissa, protected gain, passivity, resonance distance, or hosting feasibility?
+\item \textbf{Certificate:} Which theorem, bound, contour test, finite-action
+law, or full-model validation turns the calculation into evidence?
+\end{enumerate}
+Without these four items, a weak-bus list, line-ranking plot, or hosting number
+is not reproducible. With these four items, the thesis can distinguish a graph
+screen from a dynamic certificate.
+
+\FloatBarrier

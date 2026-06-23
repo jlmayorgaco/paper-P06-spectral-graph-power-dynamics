@@ -1,0 +1,59 @@
+{
+  "case": "base",
+  "case_path": "C:\\Users\\walla\\anaconda3\\Lib\\site-packages\\andes\\cases\\ieee39\\ieee39_full.xlsx",
+  "eps": 0.01,
+  "n_candidates": 10,
+  "base_full_critical": {
+    "real": -1.346013072429833,
+    "imag": 8.61148480240536,
+    "freq_hz": 1.3705603736635468,
+    "zeta": 0.15442935855929482,
+    "pi_c": 0.6525558503249194,
+    "family": "I_network"
+  },
+  "base_bridge_critical": {
+    "real": -1.3460130724298205,
+    "imag": 8.611484802405375,
+    "freq_hz": 1.370560373663549,
+    "zeta": 0.15442935855929318,
+    "pi_c": 0.65255585032492,
+    "family": "I_network"
+  },
+  "virtual_inertia_columns": {},
+  "virtual_inertia_validation_status": "BLOCKED_NO_EXPLICIT_GFM_VIRTUAL_INERTIA_COLUMN",
+  "gate1_bridge_vs_full": {
+    "status": "PASS",
+    "sign_rate_global": 1.0,
+    "sign_rate_matched": 1.0,
+    "top3_overlap": 1.0,
+    "median_mag_rel_error_global": 1.10614276881088e-10,
+    "median_mag_rel_error_matched": 1.10614276881088e-10,
+    "finite_signal_count": 10,
+    "acceptance_rule": "PASS if global sign rate >= 80%, top-3 overlap is complete, and signal is not numerically weak."
+  },
+  "gate1_local_nep_sensitivity": {
+    "status": "PASS",
+    "sign_rate_vs_full_matched": 1.0,
+    "sign_rate_vs_bridge_matched": 1.0,
+    "top3_overlap_vs_full_global": 1.0,
+    "median_mag_rel_error_vs_full_matched": 0.025377474948259322,
+    "median_mag_rel_error_vs_bridge_matched": 0.025377474990941465,
+    "note": "Local NEP derivative uses ds/deps=-y^H T_p x/(y^H T_s x), with T_p estimated from the Schur-operator perturbation at the base pole."
+  },
+  "gate2_substitutability": {
+    "status": "NETWORK_MODE_SCOPE",
+    "reason": "Critical mode is network-family; structural substitutability can be tested on retained network modes."
+  },
+  "gate3_inertia_reversal": {
+    "status": "SIGN_REVERSAL_OBSERVED_ON_FULL_ANDES",
+    "n_negative_full_global": 5,
+    "n_negative_bridge_global": 5,
+    "negative_full_indices": [
+      "GENROU_1",
+      "GENROU_2",
+      "GENROU_3",
+      "GENROU_5",
+      "GENROU_9"
+    ]
+  }
+}

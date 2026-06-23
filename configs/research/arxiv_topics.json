@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "description": "arXiv search topics for the spectral graph, rational self-energy, dynamic hosting, and IBR stability thesis literature review.",
+  "default_year_start": 2010,
+  "topics": [
+    {
+      "slug": "power_system_ibr_stability",
+      "label": "IBR and converter-dominated power-system stability",
+      "review_question": "How do grid-following, grid-forming, PLL, weak-grid, and low-inertia converter dynamics change small-signal and damping stability claims?",
+      "query": "(cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\"inverter-based\" OR all:\"inverter based\" OR all:\"grid-forming\" OR all:\"grid following\" OR all:\"grid-following\" OR all:\"PLL\" OR all:\"phase locked loop\" OR all:\"converter-dominated\" OR all:\"power electronics dominated\" OR all:\"low inertia\")"
+    },
+    {
+      "slug": "schur_nep_self_energy",
+      "label": "Schur complements, rational self-energy, and nonlinear eigenvalue problems",
+      "review_question": "What NEP, rational eigenvalue, Schur-complement, matrix-polynomial, and transfer-function results support controller condensation into Pi(s) or Sigma(s)?",
+      "query": "(cat:math.NA OR cat:math.SP OR cat:math.OC OR cat:cs.SY OR cat:eess.SY) AND (all:\"nonlinear eigenvalue problem\" OR all:\"rational eigenvalue\" OR all:\"Schur complement\" OR all:\"matrix polynomial\" OR all:\"self energy\" OR all:\"self-energy\" OR all:\"transfer function\" OR all:\"resolvent\")"
+    },
+    {
+      "slug": "spectral_graph_power_networks",
+      "label": "Spectral graph theory for power networks",
+      "review_question": "How do Laplacian spectra, algebraic connectivity, effective resistance, Kirchhoff indices, and synchronization metrics support or fail as power-network robustness screens?",
+      "query": "(cat:eess.SY OR cat:cs.SI OR cat:cs.SY OR cat:math.OC OR cat:math.SP OR cat:nlin.AO) AND (all:\"spectral graph\" OR all:\"Laplacian\" OR all:\"algebraic connectivity\" OR all:\"effective resistance\" OR all:\"Kirchhoff index\" OR all:\"power grid\" OR all:\"power network\" OR all:\"synchronization\")"
+    },
+    {
+      "slug": "dynamic_hosting_capacity",
+      "label": "Dynamic hosting capacity and converter hosting limits",
+      "review_question": "How is hosting capacity extended from voltage and thermal constraints to dynamic, spectral, damping, protection, and controller-aware constraints?",
+      "query": "(cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\"hosting capacity\" OR all:\"dynamic hosting\" OR all:\"distributed energy resources\" OR all:\"DER hosting\" OR all:\"renewable hosting\" OR all:\"inverter hosting\" OR all:\"converter hosting\")"
+    },
+    {
+      "slug": "virtual_inertia_damping_placement",
+      "label": "Virtual inertia, damping, and primary-control placement",
+      "review_question": "Where should inertia, virtual inertia, damping, or primary control be placed, and how do these actions differ under heterogeneous network modes?",
+      "query": "(cat:eess.SY OR cat:cs.SY OR cat:math.OC OR cat:math.DS) AND (all:\"virtual inertia\" OR all:\"inertia allocation\" OR all:\"inertia placement\" OR all:\"damping placement\" OR all:\"primary control\" OR all:\"frequency nadir\" OR all:\"RoCoF\")"
+    },
+    {
+      "slug": "braess_reinforcement_power_networks",
+      "label": "Braess effects, line reinforcement, and network expansion",
+      "review_question": "When can line additions, line reinforcement, or topology changes worsen flows, synchronization, damping, or stability margins?",
+      "query": "(cat:eess.SY OR cat:cs.SY OR cat:physics.soc-ph OR cat:nlin.AO OR cat:math.OC) AND (all:\"Braess\" OR all:\"line reinforcement\" OR all:\"transmission expansion\" OR all:\"network reinforcement\" OR all:\"line capacity\" OR all:\"topology control\" OR all:\"power grid\" OR all:\"power network\")"
+    },
+    {
+      "slug": "networked_control_resolvent_passivity",
+      "label": "Networked control, resolvents, nonnormality, and passivity",
+      "review_question": "What control-system results explain resolvent amplification, nonnormality, small-gain/small-phase stability, passivity, and decentralized stability in networked systems?",
+      "query": "(cat:cs.SY OR cat:eess.SY OR cat:math.OC OR cat:math.DS) AND (all:\"networked control\" OR all:\"nonnormal\" OR all:\"non-normal\" OR all:\"resolvent\" OR all:\"pseudospectrum\" OR all:\"small gain\" OR all:\"small phase\" OR all:\"passivity\" OR all:\"decentralized stability\")"
+    },
+    {
+      "slug": "krein_sign_dissipation_matrix_polynomials",
+      "label": "Krein signatures, sign characteristics, and dissipation-induced instability",
+      "review_question": "Which mathematical results on sign characteristics, Krein signatures, indefinite damping, and dissipation-induced instability can be adapted to rational converter-condensed NEPs?",
+      "query": "(cat:math.SP OR cat:math.NA OR cat:math.DS OR cat:math-ph OR cat:physics.class-ph) AND (all:\"Krein signature\" OR all:\"sign characteristic\" OR all:\"dissipation-induced\" OR all:\"indefinite damping\" OR all:\"Hamiltonian\" OR all:\"gyroscopic\" OR all:\"matrix polynomial\")"
+    },
+    {
+      "slug": "blackbox_converter_modal_identification",
+      "label": "Black-box converter models, impedance, and modal identification",
+      "review_question": "How do impedance-based, black-box, frequency-response, Loewner, and modal-identification methods recover converter dynamics without explicit controller states?",
+      "query": "(cat:eess.SY OR cat:cs.SY OR cat:math.NA OR cat:math.OC) AND (all:\"impedance based\" OR all:\"impedance-based\" OR all:\"black-box\" OR all:\"converter model\" OR all:\"frequency response\" OR all:\"Loewner\" OR all:\"modal identification\" OR all:\"data-driven\" OR all:\"system identification\")"
+    }
+  ]
+}

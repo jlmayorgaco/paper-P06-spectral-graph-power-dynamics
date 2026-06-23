@@ -1,0 +1,201 @@
+\chapter{Conclusions}
+
+This dissertation has developed an operator-valued theory of dynamic grid
+strength in converter-rich power systems and used it to define dynamic hosting
+capacity, virtual-inertia placement, weak elements, damping-aware network
+reinforcement, and a traceable source-to-claim ledger for the project
+artifacts. The hierarchy begins with the operational graph induced by the
+power-flow operating point, continues through commuting fixed damping, isolates
+the uniform-decay case \(D=\gamma M\), passes through fixed non-commuting
+damping, continues to rational self-energy \(\Pi(s)\) after controller-state
+condensation, introduces the Green function \(T(s)^{-1}\) as the carrier of
+finite-action behavior, and then separates genuine nonlinear memory from
+small-signal NEP theory. The central conclusion is that a damping, hosting, or
+grid-strength claim is meaningful only relative to the operator, port/action
+family, margin, and validation gate that carry the mechanism.
+
+\section{Theoretical Conclusions}
+
+A first conclusion is that graph topology becomes dynamic only after the
+operating point is included. In the lossless retained model, the linearized
+stiffness is
+\[
+  L(z^\star)=B W(z^\star)B^T,\qquad
+  w_e=\kappa_e\cos\eta_e .
+\]
+Thus line loading, angle cohesion, cuts, cycles, inertia placement, and local
+control fields enter the same graph-time operator. Static graph metrics are
+useful screens, but the protected object is the response of
+\(T(s;z^\star)=s^2M+sD+BWB^T+\Pi(s;z^\star)\).
+
+The second conclusion is that \(D=\gamma M\) is a special floor, not the full
+decouplable class. The exact fixed-\(D\) decoupling condition is
+\([\Lt,\Dt]=0\). Under \(D=\gamma M\), graph modes decouple and every
+underdamped mode has real part \(-\gamma/2\). Under Rayleigh or other
+commuting damping, graph modes still decouple, but modal decay is not uniform.
+This distinction gives a precise foundation for classical graph-frequency
+intuition and also limits it.
+
+The third conclusion is that fixed non-commuting damping breaks modal
+decoupling. The graph eigenvectors diagonalize \(\Lt\), but the modal damping
+matrix \(\Gamma=Q^T\Dt Q\) need not be diagonal. Off-diagonal damping creates
+coupled modal dynamics, and eliminating the other modes produces rational
+corrections. Thus, even a fixed-\(D\) system can require a frequency-dependent
+modal interpretation when one insists on reducing to a single retained mode.
+
+The fourth conclusion is that controller-state condensation changes the reduced
+operator class. A Schur complement of the eliminated controller block gives
+\[
+  T(s)=s^2M+sD_0+L+\Pi(s),
+  \qquad
+  \Pi(s)=\Pi_K(s)+s\Pi_D(s).
+\]
+This rational correction has poles and residues inherited from the eliminated
+dynamics. A constant damping matrix cannot represent those features exactly.
+Static damping bridges are therefore local approximations whose validity must
+be tested, not assumed.
+
+The fifth conclusion is that dynamic effective resistance closes the loop
+between graph metrics and finite actions. The Green function
+\(G_T(s)=T(s)^{-1}\) defines
+\[
+  \mathcal R_e(s)=a_e^TG_T(s)a_e ,
+\]
+which reduces to classical effective resistance at the static graph limit and
+becomes a meromorphic port compliance away from zero. A finite line action
+satisfies \(1+\Delta b_e\mathcal R_e(s)=0\), and general low-rank actions
+satisfy a small action determinant. Therefore local sensitivities are tangent
+approximations of exact finite-action laws, not standalone planning objects.
+
+The sixth conclusion is that reduced models need certificates. A QEP screen,
+static self-energy approximation, data-identified \(\widehat\Pi(s)\), or
+condensed NEP should be accepted over a protected contour only when the
+relative perturbation bound
+\[
+  \sup_{\Gamma}\|\widehat T(s)^{-1}(T(s)-\widehat T(s))\|_2<1
+\]
+or an equivalent certificate preserves the protected eigenvalue count. A
+margin derivative should be treated as a recommendation only when its sign is
+larger than its error bound.
+
+The seventh conclusion is that fragility is structured. An unstructured
+pseudospectrum warns about non-normality, but a planning decision needs a
+physical perturbation family: line uncertainty, damping, inertia, controller
+gains, delays, operating-point variation, or identified-model error. The
+resulting fragility radius measures the smallest admissible perturbation that
+can move a pole to a protected boundary.
+
+The eighth conclusion is that NEP theory and nonlinear stability are different
+modules. The Schur NEP preserves linearized memory around an operating point.
+The nonlinear DAE layer must still address equilibrium regularity,
+bifurcations, finite-amplitude stability, and regions of attraction. A
+small-signal damping margin is therefore a local gate, not a large-signal
+certificate.
+
+The ninth conclusion is that hosting capacity in converter-rich systems is
+not only a voltage or thermal number. A static-feasible IBR penetration can
+still violate a damping-ratio margin, a protected resolvent-gain threshold, or
+a controller-resonance gate. The first-order spectral hosting screen is
+therefore a useful tangent screen, but it becomes an inner certificate only with
+curvature bounds and must be checked against the QEP or NEP when modal coupling
+or controller self-energy is important.
+
+The tenth conclusion is that graph reinforcement and dynamic robustness are
+not synonymous. A line upgrade may improve algebraic connectivity or effective
+resistance while reducing damping headroom. The correct planning object is a
+vector containing graph gain, damping-margin derivative, protected-gain
+derivative, feasibility, and possible Braess-like or control-resonant reversal
+flags.
+
+\section{Consequences for Research Practice}
+
+The hierarchy imposes discipline on future simulation and planning studies.
+Before a graph metric is used as evidence, the study must state whether the
+operator is an operational graph at a fixed operating point, uniform
+proportional damping, commuting fixed damping, non-commuting fixed damping,
+rational self-energy, or nonlinear memory. Before a weak bus or weak line is
+named, the margin and action family must be named. Before a reduced converter
+model is trusted, the spectral effect of removed states must be visible in
+either the retained matrix or the self-energy.
+
+This thesis therefore separates three epistemic levels:
+
+\begin{enumerate}
+\item a certificate, which implies a margin under explicit assumptions;
+\item a screen, which identifies candidates but does not imply the margin;
+\item a gate, which tests whether the screen is reliable enough for the next
+claim.
+\end{enumerate}
+
+The distinction is not editorial. It is necessary because the same graph
+quantity can be a certificate under proportional damping, a screen under fixed
+non-commuting damping, and an incomplete descriptor after controller
+condensation.
+
+\section{Open Theoretical Work}
+
+Several theoretical problems remain open.
+
+\begin{enumerate}
+\item Develop graph-time resonance atlases that relate operating-point
+geometry, graph-mode conversion, controller self-energy, and protected
+frequency-response peaks.
+\item Turn the total derivative of \(L=B W(z^\star)B^T\) into a continuation
+tool for planning actions, so that line, dispatch, and converter changes are
+distinguished from frozen-stiffness perturbations.
+\item Develop computable error bounds between the full Schur NEP and static or
+identified approximations of \(\Pi(s)\) or its damping-channel projection
+\(\Sigma(s)\) over specified spectral regions.
+\item Turn the dynamic effective resistance law
+\(1+\Delta b_e\mathcal R_e(s)=0\) into scalable algorithms for finite line
+screening and certified reinforcement budgets.
+\item Define non-commutation measures tailored to inertia-normalized power
+networks, with explicit links to damping-ratio error.
+\item Connect passivity or positive-real properties of \(\Sigma(s)\) to
+small-signal damping margins in non-normal retained systems.
+\item Replace scalar passivity summaries with directional passivity matrices
+or dynamic multipliers when MIMO channel geometry is important.
+\item Develop a passivity-retuning protocol in which converter-controller
+gains are adjusted to improve a band-limited self-energy passivity index while
+also moving the protected Schur NEP pole in a damping-improving direction.
+\item Compute structured fragility radii for topology, line loading, damping,
+inertia, controller, delay, and operating-point uncertainty families.
+\item Characterize when grid-strength or Laplacian placement metrics are
+certificates, screens, or invalid descriptors for a given converter-control
+family.
+\item Test whether cellular-sheaf Laplacians with bus/controller stalks and
+line restriction maps reveal weak nodes or weak links that scalar Laplacian
+sensitivity, fixed-\(D\) QEP screens, and Schur self-energy diagnostics miss.
+\item Build theory-to-validation protocols that combine NEP sensitivity,
+pole-residue analysis, and full DAE eigenvalue recomputation.
+\item Combine Loewner or contour-integral NEP extraction with continuation
+tracking so that local pole-motion maps can be followed through high-dimensional
+hosting and controller-retuning sweeps.
+\item Extend the dynamic hosting screen beyond first order, including
+non-commuting damping, controller self-energy, nonlinear memory, structured
+fragility, and uncertainty in operating points.
+\item Identify \(\Pi(s)\) from black-box converter data with stability,
+causality, port, and passivity constraints, then propagate identification
+error to certified planning decisions.
+\item Register line-reinforcement and virtual-inertia planning baselines so
+that Braess-like reversals and placement gains can be compared against
+meaningful controls.
+\end{enumerate}
+
+\section{Closing Statement}
+
+The transition from synchronous-machine dominated grids to converter-rich
+grids is often described as a loss of inertia. That description is incomplete.
+The deeper theoretical change is a change in the strength, damping, fragility,
+and memory operator. Uniform viscous damping, commuting fixed damping,
+non-commuting modal damping, rational controller self-energy, Green-function
+action calculus, structured fragility, and nonlinear memory are different
+mathematical objects. Static hosting, dynamic hosting, virtual inertia,
+controller retuning, and line reinforcement are likewise different planning
+questions unless they share the same port, operator, and protected margin. A
+doctoral theory of dynamic grid strength must keep those objects separate and
+then reconnect them through certificates. This dissertation provides that path:
+from static topology to operational graph-time resonance, from effective
+resistance to dynamic effective resistance, from fixed \(D\) to \(\Pi(s)\),
+from \(\Pi(s)\) to structured fragility, and from linear self-energy to
+nonlinear memory.

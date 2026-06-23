@@ -1,0 +1,556 @@
+\chapter{From Power Flow to Spectral Dynamics}
+
+This chapter derives the mathematical objects used throughout the thesis from
+the electrical model upward. The purpose is pedagogical as much as technical:
+the reader should see where the matrix \(L\) comes from, why the swing equation
+has the form \(M\ddot\theta+D\dot\theta+L\theta=p\), and why substituting
+\(e^{st}\) produces the quadratic operator \(s^2M+sD+L\). Later chapters use
+these equations aggressively, so this chapter builds them slowly.
+
+\section{The Physical Picture}
+
+A power grid is a network of buses connected by lines and transformers. A bus
+is a node where generators, loads, converters, transformers, or transmission
+lines meet. At each AC bus, the voltage is not only a magnitude. It is a
+sinusoid with a phase angle. In phasor notation,
+\begin{equation}
+  V_i=|V_i|e^{j\theta_i},
+  \label{eq:guide_voltage_phasor}
+\end{equation}
+where \(|V_i|\) is the voltage magnitude and \(\theta_i\) is the phase angle.
+Power transfer in an AC network depends strongly on differences of angles,
+not on absolute angles. If every angle is shifted by the same constant, the
+physics is unchanged. This is the reason a Laplacian matrix will later have
+one zero eigenvalue.
+
+The network itself is represented by the bus-admittance matrix
+\begin{equation}
+  Y_{\rm bus}=G+jB.
+  \label{eq:guide_ybus}
+\end{equation}
+This matrix is built from the impedances of lines and transformers. It maps
+bus voltages to injected currents:
+\begin{equation}
+  I=Y_{\rm bus}V.
+  \label{eq:guide_current_balance}
+\end{equation}
+Equation~\eqref{eq:guide_current_balance} is Kirchhoff's current law in matrix
+form. It is the electrical network before any dynamic-machine model is added.
+
+\section{Complex Power and Power Flow}
+
+The complex power injected at bus \(i\) is
+\begin{equation}
+  S_i=P_i+jQ_i=V_i I_i^*,
+  \label{eq:guide_complex_power}
+\end{equation}
+where \(P_i\) is active power and \(Q_i\) is reactive power. Substituting
+\(I=Y_{\rm bus}V\) gives the AC power-flow equations:
+\begin{align}
+  P_i(V,\theta)
+  &=
+  |V_i|\sum_{j=1}^n |V_j|
+  \left(
+  G_{ij}\cos(\theta_i-\theta_j)
+  +
+  B_{ij}\sin(\theta_i-\theta_j)
+  \right),
+  \label{eq:guide_active_power}\\
+  Q_i(V,\theta)
+  &=
+  |V_i|\sum_{j=1}^n |V_j|
+  \left(
+  G_{ij}\sin(\theta_i-\theta_j)
+  -
+  B_{ij}\cos(\theta_i-\theta_j)
+  \right).
+  \label{eq:guide_reactive_power}
+\end{align}
+These equations determine the operating point. A power-flow solution provides
+the steady voltages \(V^\star\), angles \(\theta^\star\), and injections that
+balance generation and load. The dynamic model in this thesis is always a
+small-signal model around such an operating point.
+
+\begin{remark}[Where power flow enters the thesis]
+The matrix \(L\) is not chosen by hand. It is the linearized active-power
+response around a solved operating point. If the loading, generation dispatch,
+network topology, line parameters, or converter injections change, the power
+flow changes, and therefore the stiffness matrix \(L\) changes.
+\end{remark}
+
+\section{From Active-Power Jacobian to the Laplacian \texorpdfstring{\(L\)}{L}}
+
+To obtain a dynamic model, perturb the angles around the operating point:
+\begin{equation}
+  \theta=\theta^\star+\Delta\theta.
+  \label{eq:guide_angle_perturbation}
+\end{equation}
+The first-order change in active power is
+\begin{equation}
+  \Delta P
+  \approx
+  J_{P\theta}\Delta\theta,
+  \qquad
+  J_{P\theta}
+  =
+  \left.
+  \frac{\partial P}{\partial\theta}
+  \right|_{(V^\star,\theta^\star)}.
+  \label{eq:guide_active_jacobian}
+\end{equation}
+In this dissertation \(P\) denotes exported electrical power in the swing
+equation. With that convention, the synchronizing stiffness is this incremental
+power response:
+\begin{equation}
+  L=J_{P\theta}
+  \quad
+  \hbox{on the retained angle coordinates.}
+  \label{eq:guide_L_from_jacobian}
+\end{equation}
+If instead \(P\) is defined as net injected disturbance with the opposite sign,
+the formula becomes \(L=-J_{P\theta}\). The sign convention must be fixed before
+using any derivative formula.
+
+Under the common lossless approximation \(G_{ij}\approx0\), fixed voltage
+magnitudes, and sufficiently small angle differences, the off-diagonal
+entries become
+\begin{equation}
+  L_{ij}
+  =
+  -|V_i^\star||V_j^\star|B_{ij}
+  \cos(\theta_i^\star-\theta_j^\star),
+  \qquad i\ne j,
+  \label{eq:guide_L_offdiag}
+\end{equation}
+and the diagonal is chosen so that each row sums to zero:
+\begin{equation}
+  L_{ii}=-\sum_{j\ne i}L_{ij},
+  \qquad
+  L\ones=0.
+  \label{eq:guide_L_rowsum}
+\end{equation}
+This is the graph Laplacian structure. The line weight is roughly
+\(|V_i^\star||V_j^\star|B_{ij}\cos(\theta_i^\star-\theta_j^\star)\). A line
+with high susceptance, high voltage magnitudes, and small angle separation
+contributes stronger synchronizing stiffness.
+
+\begin{example}[Two-bus stiffness]
+For two buses connected by one lossless line, active power from bus 1 to bus 2
+is approximately
+\[
+  P_{12}=|V_1||V_2|B_{12}\sin(\theta_1-\theta_2).
+\]
+Linearizing around \(\theta^\star\) gives
+\[
+  \Delta P_{12}
+  \approx
+  |V_1^\star||V_2^\star|B_{12}
+  \cos(\theta_1^\star-\theta_2^\star)
+  (\Delta\theta_1-\Delta\theta_2).
+\]
+Thus the line resists angle separation like a spring. That spring constant is
+the line weight that appears inside \(L\).
+\end{example}
+
+\section{The Single-Machine Swing Equation}
+
+The swing equation is Newton's second law for rotor angle. A synchronous
+machine stores kinetic energy in a rotating mass. Let \(\theta_i\) be the
+electrical angle of machine \(i\) relative to a synchronous reference, and let
+\(\omega_i=\dot\theta_i\) be the frequency deviation. The power imbalance
+accelerates the rotor:
+\begin{equation}
+  M_i\dot\omega_i
+  =
+  P_{m,i}-P_{e,i}-D_i\omega_i.
+  \label{eq:guide_single_swing_speed}
+\end{equation}
+Here \(P_{m,i}\) is mechanical or commanded input power, \(P_{e,i}\) is
+electrical air-gap power exported to the network, \(D_i\omega_i\) is a
+linearized damping or primary-control term, and \(M_i\) is the inertia
+coefficient in the chosen per-unit convention. Since \(\omega_i=\dot\theta_i\),
+\eqref{eq:guide_single_swing_speed} becomes
+\begin{equation}
+  M_i\ddot\theta_i+D_i\dot\theta_i
+  =
+  P_{m,i}-P_{e,i}.
+  \label{eq:guide_single_swing_angle}
+\end{equation}
+
+At the operating point, \(P_{m,i}^\star=P_{e,i}^\star\). The dynamic equation
+therefore concerns deviations from that balance. Let \(p_i\) be a small input
+disturbance and let \(\Delta P_{e,i}\) be the incremental electrical power.
+Then
+\begin{equation}
+  M_i\Delta\ddot\theta_i+D_i\Delta\dot\theta_i+\Delta P_{e,i}=p_i.
+  \label{eq:guide_single_linear_swing}
+\end{equation}
+The previous section showed that, to first order,
+\(\Delta P_e\approx L\Delta\theta\). Therefore the electrical network supplies
+the restoring term in the swing equation.
+
+\section{The Networked Swing Model}
+
+Stack all retained angles into \(\theta\), all inertia coefficients into
+\(M=\diag(M_i)\), and all damping coefficients into \(D=\diag(D_i)\). Dropping
+the \(\Delta\) notation for readability gives
+\begin{equation}
+  M\ddot\theta+D\dot\theta+L\theta=p.
+  \label{eq:guide_network_swing}
+\end{equation}
+This is the model used in the fixed-\(D\) chapters. Each term has a physical
+meaning:
+\begin{itemize}
+\item \(M\ddot\theta\): inertia resists acceleration;
+\item \(D\dot\theta\): damping or primary control resists speed deviation;
+\item \(L\theta\): network synchronizing stiffness resists angle separation;
+\item \(p\): disturbance or control input.
+\end{itemize}
+
+Because \(L\ones=0\), the uniform angle direction must be removed by selecting
+a reference bus, center-of-inertia coordinates, or a projection onto
+\(\ones^\perp\). After that reduction, \(L\) is positive definite on the
+retained nonzero-angle subspace if the network is connected and the operating
+point is regular.
+
+\section{Why the Exponential Ansatz Produces \texorpdfstring{\(s^2M+sD+L\)}{s2M+sD+L}}
+
+Small-signal stability asks what happens to a tiny perturbation if no further
+input is applied. Set \(p=0\) and look for modal solutions of the form
+\begin{equation}
+  \theta(t)=ve^{st},
+  \label{eq:guide_modal_ansatz}
+\end{equation}
+where \(v\) is the mode shape and \(s\) is the complex growth rate. Then
+\begin{equation}
+  \dot\theta(t)=sve^{st},\qquad
+  \ddot\theta(t)=s^2ve^{st}.
+  \label{eq:guide_exponential_derivatives}
+\end{equation}
+Substituting \eqref{eq:guide_modal_ansatz} into
+\eqref{eq:guide_network_swing} gives
+\[
+  Ms^2ve^{st}+Dsve^{st}+Lve^{st}=0.
+\]
+Since \(e^{st}\ne0\), it can be divided out:
+\begin{equation}
+  (s^2M+sD+L)v=0.
+  \label{eq:guide_qep_from_swing}
+\end{equation}
+This is the quadratic eigenvalue problem (QEP). It is not an arbitrary
+mathematical object. The factor \(s^2\) comes from acceleration, \(s\) comes
+from velocity damping, and the constant term comes from the network restoring
+force.
+
+\begin{table}[ht]
+\centering
+\caption{Physical origin of the QEP terms.}
+\label{tab:qep_origin}
+\begin{tabular}{lll}
+\toprule
+\rowcolor{softblue}
+\thead{Term} & \thead{Physical source} & \thead{Engineering interpretation}\\
+\midrule
+\(s^2M\) & rotor or virtual mass & acceleration and inertia\\
+\(sD\) & damping, droop, primary response & decay of speed deviations\\
+\(L\) & linearized active-power network & synchronizing stiffness\\
+\((sI-A_{cc})^{-1}\) & eliminated controller states & dynamic memory of controls\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{How to Read a Complex Pole}
+
+If a root is \(s=\sigma+j\omega\), the perturbation contains
+\[
+  e^{st}=e^{\sigma t}e^{j\omega t}.
+\]
+The real part \(\sigma\) controls decay or growth. The imaginary part
+\(\omega\) controls oscillation frequency. Stability requires
+\(\sigma<0\). The damping ratio is
+\begin{equation}
+  \zeta=-\frac{\sigma}{\sqrt{\sigma^2+\omega^2}}.
+  \label{eq:guide_zeta}
+\end{equation}
+This number measures how quickly the oscillation decays relative to its
+frequency. A line upgrade can increase \(\omega\) by stiffening the network,
+but if \(\sigma\) does not become more negative, \(\zeta\) may decrease. This
+is the basic reason graph stiffness and damping margin must be kept separate.
+
+\section{Where Inverters Enter the Same Chain}
+
+An inverter-based resource can enter this chain at several levels. In a simple
+reduced model, a grid-forming inverter may be represented by effective
+inertia, damping, or droop terms added to \(M\) and \(D\). A grid-following
+inverter may alter the operating point and the Jacobian through its injection
+and controls. In a detailed small-signal model, inverter controllers add
+states: PLL states, current-loop states, voltage-loop states, filters, limits,
+and plant controls. If those states are retained, they appear in the full
+state matrix. If they are mathematically eliminated, they appear through a
+Schur complement and produce the rational self-energy \(\Pi(s)\) developed in
+the self-energy part of the thesis. The dynamic damping object \(\Sigma(s)\)
+is the special case where
+the rational correction enters through the velocity channel.
+
+Thus the thesis path is:
+\begin{equation}
+  \hbox{power flow}
+  \rightarrow
+  L
+  \rightarrow
+  M\ddot\theta+D\dot\theta+L\theta=p
+  \rightarrow
+  s^2M+sD+L
+  \rightarrow
+  s^2M+sD_0+L+\Pi(s).
+  \label{eq:guide_thesis_path}
+\end{equation}
+Every later result is a refinement of one arrow in this chain.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[
+  stage/.style={
+    rectangle,
+    rounded corners=3pt,
+    draw=#1!70!black,
+    fill=#1!10,
+    text width=0.25\textwidth,
+    minimum height=1.15cm,
+    align=center,
+    font=\small
+  },
+  flow/.style={-{Latex[length=2.2mm]}, thick, draw=thesisgray},
+  note/.style={font=\scriptsize\color{thesisgray}, align=center}
+]
+\node[stage=thesisblue] (pf) {\textbf{Power-flow solution}\\
+\(V^\star,\theta^\star,Y_{\rm bus}\)};
+\node[stage=thesisgreen, right=0.65cm of pf] (jac) {\textbf{Active-power Jacobian}\\
+\(L=J_{P\theta}\)};
+\node[stage=thesisorange, right=0.65cm of jac] (swing) {\textbf{Swing layer}\\
+\(M\ddot\theta+D\dot\theta+L\theta=p\)};
+\node[stage=thesisblue, below=0.85cm of jac] (qep) {\textbf{Fixed-\(D\) spectral problem}\\
+\((s^2M+sD+L)v=0\)};
+\node[stage=thesisred, right=0.65cm of qep] (nep) {\textbf{Condensed-controller problem}\\
+\(T(s)=s^2M+sD_0+L+\Pi(s)\)};
+\draw[flow] (pf) -- (jac);
+\draw[flow] (jac) -- (swing);
+\draw[flow] (swing.south) -- ++(0,-0.42) -| ([xshift=0.32cm]qep.north);
+\draw[flow] (jac.south) -- (qep.north);
+\draw[flow] (qep) -- (nep);
+\node[note, below=0.18cm of pf] {electrical constraints};
+\node[note, below=0.18cm of qep] {modal damping screen};
+\node[note, below=0.18cm of nep] {controller memory};
+\end{tikzpicture}
+\caption{Modeling chain from AC power flow to the rational NEP. The same
+network operating point that sets voltages and flows also defines the
+stiffness operator \(L\). Controller condensation changes the operator class,
+because the damping contribution becomes frequency dependent.}
+\label{fig:prelim_modeling_chain}
+\end{figure}
+
+\FloatBarrier
+
+\section{Linearization and Spectral Parameter}
+
+Let a power-system dynamic model be written locally as a differential-algebraic
+system,
+\begin{align}
+  \dot x &= f(x,y,\rho),\\
+  0 &= g(x,y,\rho),
+\end{align}
+where \(x\) are dynamic states, \(y\) are algebraic variables, and \(\rho\) is
+a parameter or action. At a regular equilibrium
+\((x^\star,y^\star)\), algebraic variables can be eliminated locally when
+\(g_y\) is nonsingular, giving a reduced state matrix
+\begin{equation}
+  A_{\rm red}=f_x-f_y g_y^{-1}g_x.
+  \label{eq:dae_reduced_A}
+\end{equation}
+Small-signal stability is determined by the eigenvalues of \(A_{\rm red}\).
+The spectral parameter is denoted by \(s\in\C\), and a pole is stable when
+\(\Real(s)<0\).
+
+For an oscillatory pole \(s=\sigma+j\omega\), the frequency and damping ratio
+are
+\begin{equation}
+  f=\frac{|\omega|}{2\pi},\qquad
+  \zeta=-\frac{\sigma}{\sqrt{\sigma^2+\omega^2}}.
+  \label{eq:prelim_zeta}
+\end{equation}
+The damping-ratio derivative satisfies
+\begin{equation}
+  d\zeta
+  =
+  -\frac{\omega^2}{(\sigma^2+\omega^2)^{3/2}}\,d\sigma
+  +
+  \frac{\sigma\omega}{(\sigma^2+\omega^2)^{3/2}}\,d\omega,
+  \label{eq:prelim_dzeta}
+\end{equation}
+so a frequency shift alone is not a damping certificate.
+
+\section{Graph Laplacians and Synchronizing Stiffness}
+
+Under a lossless active-power approximation, the synchronizing stiffness matrix
+has Laplacian structure. For \(i\ne j\),
+\begin{equation}
+  L_{ij}=-V_iV_j b_{ij}\cos(\theta_i^\star-\theta_j^\star),
+  \label{eq:prelim_lap_offdiag}
+\end{equation}
+with diagonal entries chosen so that
+\begin{equation}
+  L\ones=0.
+\end{equation}
+If the network is reciprocal and the operating point is sufficiently regular,
+\(L=L^T\succeq0\). The zero eigenvalue corresponds to uniform angle shift and
+is removed by fixing a reference or projecting onto \(\ones^\perp\).
+
+Let \(M=\diag(M_i)\succ0\). The inertia-normalized stiffness is
+\begin{equation}
+  \Lt=M^{-1/2}LM^{-1/2}.
+  \label{eq:prelim_ltilde}
+\end{equation}
+On the nonzero subspace, write
+\begin{equation}
+  \Lt Q=Q\Lambda,\qquad Q^TQ=I,\qquad
+  \Lambda=\diag(\nu_1,\ldots,\nu_n),\quad \nu_k>0.
+  \label{eq:prelim_graph_modes}
+\end{equation}
+The columns of \(Q\) are graph-inertia modes. They diagonalize stiffness. They
+do not automatically diagonalize damping.
+
+\section{Second-Order Systems and QEPs}
+
+The retained second-order model is
+\begin{equation}
+  M\ddot\theta+D\dot\theta+L\theta=p.
+  \label{eq:prelim_second_order}
+\end{equation}
+Substituting \(\theta(t)=ve^{st}\) gives
+\begin{equation}
+  P(s)v=(s^2M+sD+L)v=0.
+  \label{eq:prelim_qep}
+\end{equation}
+This is a QEP. The corresponding first-order linearization is
+\begin{equation}
+  \mathcal A=
+  \begin{bmatrix}
+    0&I\\
+    -M^{-1}L&-M^{-1}D
+  \end{bmatrix},
+  \label{eq:prelim_first_order}
+\end{equation}
+but the second-order form should be retained conceptually because the matrices
+\(M\), \(D\), and \(L\) have distinct physical meanings.
+
+In inertia-normalized variables \(\vartheta=M^{1/2}\theta\),
+\begin{equation}
+  \ddot\vartheta+\Dt\dot\vartheta+\Lt\vartheta=M^{-1/2}p,\qquad
+  \Dt=M^{-1/2}DM^{-1/2}.
+  \label{eq:prelim_normalized}
+\end{equation}
+The modal damping matrix is
+\begin{equation}
+  \Gamma=Q^T\Dt Q.
+  \label{eq:prelim_gamma}
+\end{equation}
+The equality \(Q^T\Lt Q=\Lambda\) is automatic by construction; the equality
+\(Q^T\Dt Q=\diag(\cdot)\) is an additional damping assumption.
+
+\section{Simple Eigenvalue Sensitivity}
+
+For a polynomial or nonlinear eigenvalue problem
+\begin{equation}
+  T(s,\rho)v=0,\qquad u^HT(s,\rho)=0,
+\end{equation}
+with a simple eigenvalue \(s_\star\), the first derivative is
+\begin{equation}
+  \frac{ds_\star}{d\rho}
+  =
+  -\frac{u^H T_\rho(s_\star,\rho)v}
+  {u^H T_s(s_\star,\rho)v}.
+  \label{eq:prelim_nep_sens}
+\end{equation}
+For a QEP \(T(s)=s^2M+sD+L\), this becomes
+\begin{equation}
+  \frac{ds_\star}{d\rho}
+  =
+  -\frac{u^H(s_\star D_\rho+L_\rho)v}
+  {u^H(2s_\star M+D)v}
+  \label{eq:prelim_qep_sens}
+\end{equation}
+when \(M\) is fixed. Equation~\eqref{eq:prelim_qep_sens} is central because it
+shows that line actions and damping actions enter the numerator differently,
+while the denominator depends on the mode and the damping operator.
+
+\section{Schur Complements}
+
+Partition a full first-order linearization into retained states \(x_e\) and
+condensed states \(x_c\):
+\begin{equation}
+  A=
+  \begin{bmatrix}
+    A_{ee} & A_{ec}\\
+    A_{ce} & A_{cc}
+  \end{bmatrix}.
+  \label{eq:prelim_partitioned_A}
+\end{equation}
+The eigenvalue equation \((sI-A)x=0\) is equivalent, when \(sI-A_{cc}\) is
+invertible, to
+\begin{equation}
+  \left[sI-A_{ee}-A_{ec}(sI-A_{cc})^{-1}A_{ce}\right]x_e=0.
+  \label{eq:prelim_schur}
+\end{equation}
+This is an exact nonlinear eigenvalue problem for the retained states. It does
+not approximate the eliminated states; it represents them through their
+resolvent.
+
+\section{Rational Matrix Functions and Self-Energy}
+
+A rational matrix function has the form
+\begin{equation}
+  R(s)=R_0+\sum_{\ell=1}^m \frac{R_\ell}{s-\alpha_\ell}
+  \label{eq:prelim_rational}
+\end{equation}
+after partial-fraction expansion when the poles are simple. The residues
+\(R_\ell\) determine how strongly each eliminated pole \(\alpha_\ell\) couples
+to the retained coordinates. In the Schur operator, those residues are
+generated by \(A_{ec}\), \(A_{ce}\), and the eigenvectors of \(A_{cc}\).
+
+In a second-order retained representation, the rational contribution appears as
+a self-energy,
+\begin{equation}
+  T(s)=s^2M+sD_0+L+\Pi(s),
+  \qquad
+  \Pi(s)=G(sI-A_{cc})^{-1}(B_\theta+sB_\omega).
+  \label{eq:prelim_sigma}
+\end{equation}
+The term self-energy is useful because it emphasizes that the retained model is
+not isolated. It carries the dynamic influence of states that have been
+mathematically eliminated. When \(\Pi(s)=s\Pi_D(s)\), the dynamic damping
+matrix is \(\Sigma(s)=D_0+\Pi_D(s)\).
+
+\section{Certificates, Screens, and Gates}
+
+The thesis uses three words with specific meanings.
+
+\begin{definition}[Certificate]
+A certificate is a mathematical or numerical condition that directly implies a
+claimed margin property under stated assumptions.
+\end{definition}
+
+\begin{definition}[Screen]
+A screen is a lower-cost indicator that may identify candidates for action or
+inspection but does not imply the claimed margin property by itself.
+\end{definition}
+
+\begin{definition}[Gate]
+A gate is an accept/reject test that a proposed certificate or screen must pass
+before it is used for a stronger claim.
+\end{definition}
+
+The distinction matters throughout the dissertation. A graph eigenvalue can be
+a certificate in a proportional or commuting fixed-\(D\) theory, a screen in a
+non-commuting fixed-\(D\) theory, and an incomplete descriptor after controller
+condensation. The same number changes epistemic status when the operator class
+changes.

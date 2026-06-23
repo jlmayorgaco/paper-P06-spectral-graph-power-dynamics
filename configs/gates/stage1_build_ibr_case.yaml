@@ -1,0 +1,6 @@
+name: stage1-build-ibr-case
+case: mix60
+profile: mix60
+protocol: configs/cases/conversion_protocol.yaml
+output_dir: outputs/stage1_build_ibr_case/mix60
+seed: 0

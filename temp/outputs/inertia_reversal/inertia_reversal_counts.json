@@ -1,0 +1,14 @@
+{
+  "fixed_damping_per_inertia": {
+    "tested": 16229,
+    "diag_reversal": 6949,
+    "full_reversal": 7694,
+    "both": 5447
+  },
+  "fixed_physical_damping": {
+    "tested": 16229,
+    "diag_reversal": 10112,
+    "full_reversal": 11054,
+    "both": 8425
+  }
+}

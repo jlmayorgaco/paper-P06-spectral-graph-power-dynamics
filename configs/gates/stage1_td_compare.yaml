@@ -1,0 +1,12 @@
+name: stage1-td-compare
+profile: mix60
+protocol: configs/cases/conversion_protocol.yaml
+base_case: data/raw/ieee39_full.xlsx
+processed_case: data/processed/mix60/mix60.xlsx
+event:
+  type: toggler_load_disconnect
+  model: PQ
+  dev: PQ_7
+  time: 12.0
+outputs:
+  directory: outputs/stage1_td_compare/mix60

@@ -1,0 +1,577 @@
+\chapter{Fixed-Damping Spectral Theory}
+
+The first level of the hierarchy assumes that damping is a fixed matrix. This
+is the last level at which one can still try to extract a large amount of
+engineering information from the graph Laplacian \(L\), the inertia matrix
+\(M\), and the damping matrix \(D\) without retaining converter-control
+states. The chapter develops that analysis aggressively. It derives the
+spectral screens, the exact first-order eigenvalue sensitivities, the
+decoupled modal formulas for \(d/dL\), \(d/dD\), and \(d/dM\), and the limits
+of graph-only reinforcement.
+
+The conclusion is deliberately sharp. With fixed \(D\), adding inertia is not
+automatically stabilizing for oscillatory damping margins. Adding a line is not
+automatically stabilizing either. Damping ratio is a quotient: it improves when
+modal damping rises faster than modal frequency. If an action raises stiffness
+or inertia but does not raise effective modal damping, the damping ratio can
+fall even while a graph metric improves.
+
+\section{The Classical Swing Operator}
+
+Consider
+\begin{equation}
+  M\ddot\theta+D\dot\theta+L\theta=p,
+  \label{eq:fixed_swing}
+\end{equation}
+with \(M\succ0\), \(D\succeq0\), and \(L=L^T\succeq0\) on the projected
+subspace orthogonal to uniform angle shift. The homogeneous modal ansatz
+\(\theta(t)=ve^{st}\) gives the QEP
+\begin{equation}
+  P(s)v=(s^2M+sD+L)v=0.
+  \label{eq:fixed_qep}
+\end{equation}
+This is the basic fixed-\(D\) operator. All planning screens in this chapter
+are approximations or consequences of \eqref{eq:fixed_qep}.
+
+In inertia-normalized coordinates,
+\begin{equation}
+  \ddot\vartheta+\Dt\dot\vartheta+\Lt\vartheta=0,
+  \label{eq:fixed_normalized}
+\end{equation}
+where
+\begin{equation}
+  \Lt=M^{-1/2}LM^{-1/2},\qquad
+  \Dt=M^{-1/2}DM^{-1/2}.
+\end{equation}
+Let \(\Lt Q=Q\Lambda\). In modal coordinates \(z=Q^T\vartheta\),
+\begin{equation}
+  \ddot z+\Gamma \dot z+\Lambda z=0,\qquad
+  \Gamma=Q^T\Dt Q.
+  \label{eq:fixed_modal}
+\end{equation}
+The graph diagonalizes stiffness. It diagonalizes damping only when
+\begin{equation}
+  \Lt\Dt=\Dt\Lt
+  \label{eq:commutation_condition}
+\end{equation}
+on the nonzero modal subspace. Equation~\eqref{eq:commutation_condition} is the
+first hidden assumption behind graph-only damping arguments.
+
+A basis-dependent off-diagonal ratio is useful only when the eigenvalues of
+\(\Lt\) are well separated. For clustered eigenvalues, the basis inside the
+cluster can rotate without changing the physics. A coordinate-free global gate is
+\begin{equation}
+  \eta_{\rm comm}
+  =
+  \frac{\norm{\Lt\Dt-\Dt\Lt}_F}
+  {2\norm{\Lt}_F\norm{\Dt}_F+\varepsilon_{\rm reg}}.
+  \label{eq:commutator_nonprop_index}
+\end{equation}
+For two spectral clusters \(I\) and \(J\), with orthogonal projectors
+\(P_I\) and \(P_J\), the cross-cluster damping gate is
+\begin{equation}
+  \eta_{IJ}
+  =
+  \frac{\norm{P_I\Dt P_J}_2}
+  {\operatorname{sep}(\Lambda_I,\Lambda_J)+\varepsilon_{\rm reg}}.
+  \label{eq:projector_cluster_nonprop}
+\end{equation}
+This form is invariant to rotations of the modal basis inside each cluster and
+is the safer trigger for adaptive reduced-QEP construction.
+
+\section{Exact QEP Energy Identities}
+
+The scalar decoupled formulas used later as screens have an exact ancestor in
+the full QEP. Let \(P(s)x=0\) for
+\[
+  P(s)=s^2M+sD+L,
+  \qquad
+  M\succ0,\quad D\succeq0,\quad L\succ0
+\]
+on the nonzero-angle subspace. Assume \(s=\sigma+j\omega\) with
+\(\omega\ne0\). Multiplying by \(x^H\) gives
+\begin{equation}
+  s^2 m+s d+\ell=0,
+  \qquad
+  m=x^HMx,\quad d=x^HDx,\quad \ell=x^HLx.
+  \label{eq:qep_scalar_energy_identity}
+\end{equation}
+Since \(M,D,L\) are Hermitian in this fixed-\(D\) layer, \(m,d,\ell\) are real
+and \(m>0\). Separating real and imaginary parts yields
+\begin{align}
+  \sigma
+  &=
+  -\frac{x^HDx}{2x^HMx}, \label{eq:qep_exact_sigma}\\
+  |s|^2
+  &=
+  \frac{x^HLx}{x^HMx}, \label{eq:qep_exact_modulus}\\
+  \zeta
+  &=
+  \frac{x^HDx}
+  {2\sqrt{(x^HMx)(x^HLx)}}. \label{eq:qep_exact_zeta}
+\end{align}
+These identities do not require \(D=\gamma M\). They require the fixed
+Hermitian QEP structure and an oscillatory root.
+
+\begin{proposition}[Absence of undamped oscillatory modes]
+For the fixed Hermitian QEP, an oscillatory eigenvalue on the imaginary axis
+\(s=j\omega\), \(\omega\ne0\), exists only if there is a nonzero vector \(x\)
+such that
+\begin{equation}
+  Dx=0,\qquad Lx=\omega^2Mx.
+  \label{eq:undamped_mode_condition}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+If \(s=j\omega\), then \eqref{eq:qep_exact_sigma} gives \(x^HDx=0\). Since
+\(D\succeq0\), this implies \(Dx=0\). The QEP then reduces to
+\((-\,\omega^2M+L)x=0\). The converse follows by substitution.
+\end{proof}
+
+\section{Generalized Graph Modes}
+
+For placement calculations it is often cleaner to use the generalized
+eigenproblem
+\begin{equation}
+  L\phi_k=\nu_k M\phi_k,\qquad
+  \phi_k^T M\phi_\ell=\delta_{k\ell}.
+  \label{eq:generalized_modes}
+\end{equation}
+The zero mode is removed. The scalar modal stiffness is \(\nu_k\), and the
+frozen-mode scalar damping is
+\begin{equation}
+  \delta_k=\phi_k^TD\phi_k.
+  \label{eq:modal_delta_physical}
+\end{equation}
+If the modes are decoupled, mode \(k\) is governed by
+\begin{equation}
+  s^2+\delta_k s+\nu_k=0.
+  \label{eq:fixed_scalar_generalized}
+\end{equation}
+The damping ratio is
+\begin{equation}
+  \zeta_k=\frac{\delta_k}{2\sqrt{\nu_k}}.
+  \label{eq:fixed_zeta_generalized}
+\end{equation}
+This formula is a screen outside the decoupled case. It is still extremely
+useful because it exposes the competing effects:
+\begin{equation}
+  \frac{d\zeta_k}{\zeta_k}
+  =
+  \frac{d\delta_k}{\delta_k}
+  -
+  \frac{1}{2}\frac{d\nu_k}{\nu_k}.
+  \label{eq:zeta_log_differential}
+\end{equation}
+An action improves damping ratio only if it raises modal damping faster than
+half the relative increase in modal stiffness.
+
+\section{Uniform-Decay Case \texorpdfstring{\(D=\gamma M\)}{D=gamma M}}
+
+The most restrictive decoupled case is
+\begin{equation}
+  D=\gamma M,\qquad \gamma>0.
+  \label{eq:proportional_damping}
+\end{equation}
+Then \(\delta_k=\gamma\), \(\Gamma=\gamma I\), and every nonzero graph mode
+satisfies
+\begin{equation}
+  s^2+\gamma s+\nu_k=0.
+  \label{eq:fixed_scalar_mode}
+\end{equation}
+The roots are
+\begin{equation}
+  s_{k,\pm}=\frac{-\gamma\pm\sqrt{\gamma^2-4\nu_k}}{2}.
+  \label{eq:fixed_proportional_roots}
+\end{equation}
+When \(\nu_k>\gamma^2/4\), the roots are underdamped and
+\begin{equation}
+  \Real(s_{k,\pm})=-\gamma/2.
+  \label{eq:fixed_decay_floor}
+\end{equation}
+
+\begin{proposition}[Proportional-damping floor]
+Under \(D=\gamma M\), every underdamped nonzero mode has the same decay rate
+\(-\gamma/2\). Network topology changes \(\nu_k\) and therefore modal
+frequency, but it does not change the real decay rate of an underdamped mode
+inside the proportional class.
+\end{proposition}
+
+\begin{proof}
+Equation~\eqref{eq:fixed_scalar_mode} gives the two roots directly. If
+\(\nu_k>\gamma^2/4\), the square root is imaginary and the real part is
+\(-\gamma/2\). The expression contains no dependence on \(\nu_k\) in its real
+part.
+\end{proof}
+
+The proposition is sometimes counterintuitive because it does not say topology
+is irrelevant. Topology can move a mode between overdamped and underdamped
+regions, and it changes frequency. It states only that, after a mode is
+underdamped, its decay rate is fixed by \(\gamma\) in this uniform
+damping-to-inertia model.
+
+\section{Commuting and Generalized Proportional Damping}
+
+Uniform damping is not the whole decouplable class. The exact condition is
+\begin{equation}
+  [\Lt,\Dt]=0.
+  \label{eq:fixed_commuting_decoupling}
+\end{equation}
+For real symmetric matrices, \eqref{eq:fixed_commuting_decoupling} is
+equivalent to simultaneous orthogonal diagonalization. Therefore there exists
+an orthogonal \(Q\) such that
+\begin{equation}
+  Q^T\Lt Q=\diag(\nu_k),
+  \qquad
+  Q^T\Dt Q=\diag(\delta_k).
+  \label{eq:fixed_simultaneous_diagonalization}
+\end{equation}
+Each mode then satisfies
+\begin{equation}
+  s_k^2+\delta_k s_k+\nu_k=0,
+  \qquad
+  \zeta_k=\frac{\delta_k}{2\sqrt{\nu_k}}.
+  \label{eq:fixed_commuting_scalar_modes}
+\end{equation}
+
+Rayleigh damping is the most important generalized proportional example:
+\begin{equation}
+  D=\alpha M+\beta L.
+  \label{eq:rayleigh_damping}
+\end{equation}
+In normalized coordinates,
+\begin{equation}
+  \Dt=\alpha I+\beta\Lt,
+  \label{eq:rayleigh_normalized}
+\end{equation}
+so \([\Lt,\Dt]=0\). Mode \(k\) satisfies
+\begin{equation}
+  s_k^2+(\alpha+\beta\nu_k)s_k+\nu_k=0,
+  \label{eq:rayleigh_mode_polynomial}
+\end{equation}
+and its underdamped real part and damping ratio are
+\begin{align}
+  \Real(s_k)&=-\frac{\alpha+\beta\nu_k}{2},
+  \label{eq:rayleigh_real_part}\\
+  \zeta_k&=
+  \frac{\alpha}{2\sqrt{\nu_k}}
+  +
+  \frac{\beta\sqrt{\nu_k}}{2}.
+  \label{eq:rayleigh_zeta}
+\end{align}
+Unlike the \(D=\gamma M\) floor, Rayleigh damping lets network stiffness change
+both frequency and decay. Depending on the modal range and on the signs and
+magnitudes of \(\alpha\) and \(\beta\), reinforcement can improve one set of
+modes while degrading another damping-ratio target. This is why the thesis
+uses the commuting condition as the decoupling test and reserves
+\(D=\gamma M\) for the uniform-decay case.
+
+\section{Exact QEP Sensitivities}
+
+Let a scalar action \(\rho\) perturb all three operators:
+\begin{equation}
+  P(s,\rho)=s^2M(\rho)+sD(\rho)+L(\rho).
+\end{equation}
+For a simple eigenvalue \(s_\star\), right vector \(v\), and left vector \(w\),
+the QEP sensitivity is
+\begin{equation}
+  \frac{ds_\star}{d\rho}
+  =
+  -\frac{
+  w^H\left(s_\star^2M_\rho+s_\star D_\rho+L_\rho\right)v
+  }{
+  w^H\left(2s_\star M+D\right)v
+  }.
+  \label{eq:fixed_full_qep_sens}
+\end{equation}
+This formula, standard in QEP perturbation theory \cite{tisseur2001qep}, is
+the most compact answer to how \(d/dL\), \(d/dD\), and \(d/dM\) mix.
+
+The three numerator terms have different phase factors:
+\begin{equation}
+  L_\rho,\qquad s_\star D_\rho,\qquad s_\star^2M_\rho.
+  \label{eq:phase_weighted_terms}
+\end{equation}
+For an oscillatory pole, those terms are not collinear in the complex plane.
+Thus, line reinforcement, damping addition, and inertia addition do not point
+in the same eigenvalue direction. A scalar ranking that ignores these phase
+weights is not a damping certificate.
+
+For \(s=\sigma+j\omega\), the damping-ratio derivative is
+\begin{equation}
+  \frac{d\zeta}{d\rho}
+  =
+  -\frac{\omega^2}{(\sigma^2+\omega^2)^{3/2}}
+  \Real\left(\frac{ds}{d\rho}\right)
+  +
+  \frac{\sigma\omega}{(\sigma^2+\omega^2)^{3/2}}
+  \Imag\left(\frac{ds}{d\rho}\right).
+  \label{eq:fixed_zeta_sensitivity}
+\end{equation}
+The real-part movement alone is insufficient when the frequency movement is
+large.
+
+\section{Derivative with Respect to the Graph \texorpdfstring{\(L\)}{L}}
+
+Let a candidate line \(e=(i,j)\) have incidence vector \(a_e=e_i-e_j\) and
+susceptance-like weight \(b_e\). In the Laplacian approximation,
+\begin{equation}
+  L=\sum_{e} b_e a_ea_e^T,\qquad
+  \frac{\partial L}{\partial b_e}=a_ea_e^T.
+  \label{eq:laplacian_edge_sum}
+\end{equation}
+For the generalized graph mode \eqref{eq:generalized_modes},
+\begin{equation}
+  \frac{\partial \nu_k}{\partial b_e}
+  =
+  (\phi_k(i)-\phi_k(j))^2.
+  \label{eq:edge_spectral_derivative}
+\end{equation}
+Equation~\eqref{eq:edge_spectral_derivative} is the core weak-link screen:
+edges across large modal angle differences have the strongest effect on modal
+frequency.
+
+For the scalar decoupled damping-ratio screen with fixed \(D\),
+\begin{equation}
+  \frac{\partial \zeta_k}{\partial b_e}
+  =
+  -\frac{\zeta_k}{2\nu_k}
+  (\phi_k(i)-\phi_k(j))^2
+  +
+  \frac{\zeta_k}{\delta_k}
+  \frac{\partial \delta_k}{\partial b_e}.
+  \label{eq:zeta_edge_derivative_general}
+\end{equation}
+If modal damping is frozen under the line action, the second term is zero and
+line reinforcement reduces \(\zeta_k\) for that mode. It may still improve
+angle coherence, synchronizing torque, or protected resolvent gain, but it does
+not improve scalar damping ratio by itself.
+
+\begin{example}[A reinforced cut can hide a damping loss]
+Suppose a critical mode has \(\delta_k\) fixed and a line across its modal cut
+has \((\phi_k(i)-\phi_k(j))^2\) large. Reinforcing that line raises
+\(\nu_k\), which is good for graph stiffness. Yet
+\eqref{eq:zeta_edge_derivative_general} gives
+\(\partial\zeta_k/\partial b_e<0\) if \(\partial\delta_k/\partial b_e=0\).
+The graph has become stiffer, but the damping ratio has decreased. This is a
+hidden margin failure.
+\end{example}
+
+\section{Derivative with Respect to Damping \texorpdfstring{\(D\)}{D}}
+
+For a local damping addition at bus \(i\),
+\begin{equation}
+  D_\rho=e_ie_i^T.
+\end{equation}
+The frozen-mode damping derivative is
+\begin{equation}
+  \frac{\partial\delta_k}{\partial D_i}=\phi_k(i)^2.
+  \label{eq:damping_node_derivative}
+\end{equation}
+Therefore
+\begin{equation}
+  \frac{\partial\zeta_k}{\partial D_i}
+  =
+  \frac{\phi_k(i)^2}{2\sqrt{\nu_k}}
+  \label{eq:zeta_damping_derivative}
+\end{equation}
+in the decoupled scalar screen. The best damping location for a single mode is
+an antinode of that mode, not necessarily the largest generator, the largest
+load, or the highest-degree bus.
+
+For multiple modes, a risk-weighted damping placement score is
+\begin{equation}
+  \mathcal D_i
+  =
+  \sum_{k\in\mathcal K}
+  \omega_k
+  \frac{\phi_k(i)^2}{2\sqrt{\nu_k}},
+  \label{eq:damping_placement_score}
+\end{equation}
+where \(\mathcal K\) is the set of monitored modes and \(\omega_k\ge0\) weights
+criticality. This is a screen. The exact acceptance test remains
+\eqref{eq:fixed_full_qep_sens} or full eigenvalue recomputation.
+
+\begin{example}[A low-degree bus can be the best damping site]
+A bus with modest graph degree can have large \(\phi_k(i)^2\) for the critical
+mode. Equation~\eqref{eq:zeta_damping_derivative} ranks it highly for damping
+placement even if graph centrality ranks it poorly. This is a weak-node
+mechanism: the bus is weak because the critical mode lives there.
+\end{example}
+
+\section{Derivative with Respect to Inertia \texorpdfstring{\(M\)}{M}}
+
+For a local inertia addition at bus \(i\),
+\begin{equation}
+  M_\rho=e_ie_i^T.
+\end{equation}
+The generalized eigenvalue derivative is
+\begin{equation}
+  \frac{\partial\nu_k}{\partial M_i}
+  =
+  -\nu_k\phi_k(i)^2.
+  \label{eq:inertia_frequency_derivative}
+\end{equation}
+Local inertia lowers the modal frequency most strongly where the mode has large
+amplitude. That fact supports inertia placement for frequency nadir or RoCoF
+objectives, and it is consistent with studies showing that virtual-inertia
+placement can be posed as a network performance problem
+\cite{poolla2017virtual}, that inertia location and slow modes shape
+disturbance propagation \cite{pagnier2019inertia_location}, and that inertia
+and primary-control placement separate under heterogeneous parameters
+\cite{pagnier2019optimal}.
+
+For oscillatory damping ratio, however, the conclusion is more delicate. The
+exact answer is still the QEP derivative \eqref{eq:fixed_full_qep_sens}. As a
+fixed-mode planning screen, if physical damping \(D\) is not co-added, the
+frozen-shape normalization gives
+\begin{equation}
+  \frac{\partial\delta_k}{\partial M_i}
+  \approx
+  -\delta_k\phi_k(i)^2.
+  \label{eq:inertia_damping_dilution}
+\end{equation}
+Combining \eqref{eq:zeta_log_differential},
+\eqref{eq:inertia_frequency_derivative}, and
+\eqref{eq:inertia_damping_dilution} yields
+\begin{equation}
+  \frac{\partial\zeta_k}{\partial M_i}
+  \approx
+  -\frac{1}{2}\zeta_k\phi_k(i)^2.
+  \label{eq:inertia_zeta_dilution}
+\end{equation}
+Thus, in a fixed-\(D\) model, inertia-only placement at a modal antinode can
+decrease the scalar damping-ratio screen. It may still improve RoCoF or reduce
+frequency peaks, but it is not a free damping improvement. Any candidate that
+matters operationally should therefore be rechecked with
+\eqref{eq:fixed_full_qep_sens} or with a full eigenvalue recomputation.
+
+If inertia is co-designed with proportional damping,
+\begin{equation}
+  D_i=\gamma M_i,
+  \label{eq:co_designed_proportional}
+\end{equation}
+then the damping-to-inertia ratio is preserved. The real decay floor remains
+\(-\gamma/2\), and the damping ratio increases as \(\nu_k\) decreases. This is
+the engineering difference between adding inertia alone and adding a
+properly-damped inertial device.
+
+\begin{example}[Inertia placement has two different objectives]
+Placing inertia where \(\phi_k(i)^2\) is large is attractive if the objective
+is to slow a disturbance. Under fixed \(D\), the same placement can reduce
+\(\zeta_k\) through damping dilution. A correct planning statement must say
+whether the target is RoCoF, frequency nadir, decay rate, damping ratio, or
+input-output amplification.
+\end{example}
+
+\section{Graph Robustness Without Adding Inertia}
+
+If inertia is unavailable or undesirable, the graph can be strengthened through
+line weights, switching, topology control, or series compensation. The oldest
+spectral screen is algebraic connectivity: maximize \(\nu_2\), the first
+nonzero Laplacian eigenvalue introduced by Fiedler's graph connectivity theory
+\cite{fiedler1973algebraic}. The local derivative is
+\begin{equation}
+  \frac{\partial\nu_2}{\partial b_e}
+  =
+  (\phi_2(i)-\phi_2(j))^2.
+  \label{eq:fiedler_edge_score}
+\end{equation}
+This favors lines across the Fiedler cut.
+
+A different robustness screen is total effective resistance, also called the
+Kirchhoff index:
+\begin{equation}
+  K_f=n\,\mathrm{trace}(L^+)
+  =
+  n\sum_{k=2}^n\frac{1}{\lambda_k}.
+  \label{eq:kirchhoff_index}
+\end{equation}
+Minimizing effective resistance is a convex edge-weight allocation problem in
+standard graph settings \cite{ghosh2008effective}. Its derivative is
+\begin{equation}
+  \frac{\partial\,\mathrm{trace}(L^+)}{\partial b_e}
+  =
+  -a_e^T(L^+)^2a_e
+  =
+  -\sum_{k=2}^n
+  \frac{(q_k(i)-q_k(j))^2}{\lambda_k^2}.
+  \label{eq:effective_resistance_derivative}
+\end{equation}
+This favors lines that reduce many slow modes, not only the Fiedler mode.
+Effective resistance also underlies spectral sparsification, where edges are
+sampled or weighted according to their resistance contribution while preserving
+quadratic forms \cite{spielman2011sparsification}.
+
+The hidden damping question remains:
+\begin{equation}
+  \hbox{Does the graph action also improve }
+  \zeta_k,\ \Real(s_k),\hbox{ or }g_{\rm prot}?
+  \label{eq:graph_hidden_question}
+\end{equation}
+If not, the action is graph-robust but damping-ambiguous. It must be paired
+with damping, controller retuning, or a certificate that the chosen margin is
+not damping ratio.
+
+\section{Weak Nodes, Weak Links, and Hidden Margins}
+
+The fixed-\(D\) theory gives precise first-order definitions.
+
+\begin{definition}[Weak node for damping]
+For a monitored mode set \(\mathcal K\), bus \(i\) is weak for damping if its
+modal damping placement score \(\mathcal D_i\) in
+\eqref{eq:damping_placement_score} is large while the current local damping
+contribution \(D_i\phi_k(i)^2\) is small for critical modes.
+\end{definition}
+
+\begin{definition}[Weak link for graph stiffness]
+Line \(e\) is weak for a graph metric if the derivative of that metric with
+respect to \(b_e\) is large. Examples are
+\eqref{eq:fiedler_edge_score} for algebraic connectivity and
+\eqref{eq:effective_resistance_derivative} for total effective resistance.
+\end{definition}
+
+\begin{definition}[Hidden damping margin]
+A graph action has hidden damping risk for mode \(k\) if
+\begin{equation}
+  \frac{\partial \nu_k}{\partial\rho}>0
+  \quad\hbox{but}\quad
+  \frac{\partial \zeta_k}{\partial\rho}<0
+  \label{eq:hidden_margin_definition}
+\end{equation}
+under the selected damping model. It improves a stiffness screen while
+degrading a damping-ratio screen.
+\end{definition}
+
+This definition prevents a common overclaim: a stronger graph is not the same
+as a better damping margin.
+
+\section{A Fixed-\texorpdfstring{\(D\)}{D} Spectral Planning Screen}
+
+The following screen extracts the maximum information available before moving
+to the full QEP or Schur NEP.
+
+\begin{enumerate}
+\item Compute generalized modes \(L\phi_k=\nu_kM\phi_k\).
+\item Compute modal damping \(\delta_k=\phi_k^TD\phi_k\) and
+\(\zeta_k=\delta_k/(2\sqrt{\nu_k})\).
+\item Compute node damping scores \(\mathcal D_i\).
+\item Compute inertia-dilution scores
+\begin{equation}
+  \mathcal M_i
+  =
+  \sum_{k\in\mathcal K}
+  \omega_k\zeta_k\phi_k(i)^2.
+  \label{eq:inertia_dilution_score}
+\end{equation}
+\item Compute line graph scores using \(\partial\nu_2/\partial b_e\) and
+\(\partial\mathrm{trace}(L^+)/\partial b_e\).
+\item Flag hidden-margin conflicts where graph scores are positive but
+\(\partial\zeta_k/\partial b_e<0\).
+\item Verify accepted candidates with the exact QEP derivative
+\eqref{eq:fixed_full_qep_sens}.
+\end{enumerate}
+
+This screen is intentionally not the final thesis method. It is the strongest
+fixed-\(D\) layer before controller self-energy is introduced.

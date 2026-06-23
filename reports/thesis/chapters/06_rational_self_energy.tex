@@ -1,0 +1,867 @@
+\chapter{Rational Self-Energy and Schur Nonlinear Eigenproblems}
+
+The third level of the hierarchy begins when converter and auxiliary controller
+states are condensed. The reduced problem is no longer a fixed-coefficient QEP.
+It is a nonlinear eigenvalue problem whose retained correction is rational in
+the spectral parameter. This chapter derives that object and explains why
+\(\Pi(s)\), not a static damping matrix, is the general theoretical replacement
+after controller or algebraic states are eliminated.
+
+\section{Full and Retained State Partitions}
+
+Let the linearized state matrix be partitioned as
+\begin{equation}
+  A=
+  \begin{bmatrix}
+    A_{ee} & A_{ec}\\
+    A_{ce} & A_{cc}
+  \end{bmatrix}.
+  \label{eq:self_full_partition}
+\end{equation}
+The retained states \(x_e\) may include angles, speeds, or selected interface
+variables. The condensed states \(x_c\) may include exciters, governors,
+stabilizers, PLLs, voltage and current controllers, plant controllers, filters,
+and other auxiliary dynamics. The eigenvalue equation is
+\begin{align}
+  (sI-A_{ee})x_e-A_{ec}x_c &=0,\\
+  -A_{ce}x_e+(sI-A_{cc})x_c &=0.
+\end{align}
+When \(sI-A_{cc}\) is invertible,
+\begin{equation}
+  x_c=(sI-A_{cc})^{-1}A_{ce}x_e.
+\end{equation}
+Substitution gives
+\begin{equation}
+  S(s)x_e=0,\qquad
+  S(s)=sI-A_{ee}-A_{ec}(sI-A_{cc})^{-1}A_{ce}.
+  \label{eq:self_schur_operator}
+\end{equation}
+
+\begin{proposition}[Exact Schur equivalence]
+If \(sI-A_{cc}\) is invertible, then \(s\) is an eigenvalue of the full matrix
+\(A\) with retained component \(x_e\ne0\) if and only if \(S(s)x_e=0\).
+\end{proposition}
+
+\begin{proof}
+The proof follows by the two substitutions above. Starting from a full
+eigenpair gives \(S(s)x_e=0\). Conversely, if \(S(s)x_e=0\), define
+\(x_c=(sI-A_{cc})^{-1}A_{ce}x_e\). Then the block eigenvalue equations are
+satisfied. \qed
+\end{proof}
+
+The result is exact, but the retained operator is nonlinear in \(s\). Any
+constant reduced matrix that tries to replace \(A_{ec}(sI-A_{cc})^{-1}A_{ce}\)
+must be an approximation.
+
+\section{Descriptor Schur Complement}
+
+Power-system linearizations are often descriptor systems rather than explicit
+ODEs. The more general eigenvalue equation is
+\begin{equation}
+  (sE-A)x=0.
+  \label{eq:self_descriptor_pencil}
+\end{equation}
+Partition retained and condensed variables as
+\begin{equation}
+  sE-A
+  =
+  \begin{bmatrix}
+    sE_{rr}-A_{rr} & sE_{rc}-A_{rc}\\
+    sE_{cr}-A_{cr} & sE_{cc}-A_{cc}
+  \end{bmatrix}.
+  \label{eq:self_descriptor_partition}
+\end{equation}
+When \(sE_{cc}-A_{cc}\) is invertible, the exact retained pencil is
+\begin{equation}
+  S(s)
+  =
+  sE_{rr}-A_{rr}
+  -
+  (sE_{rc}-A_{rc})
+  (sE_{cc}-A_{cc})^{-1}
+  (sE_{cr}-A_{cr}).
+  \label{eq:self_descriptor_schur}
+\end{equation}
+This form is the correct starting point for DAEs, semi-explicit models,
+algebraic variables that are not eliminated first, and identified port models.
+The explicit-state formula \eqref{eq:self_schur_operator} is the special case
+\(E=I\) with compatible zero off-diagonal descriptor blocks. The descriptor
+form also makes visible which eliminated poles are genuine dynamic poles and
+which are algebraic or infinite-eigenvalue artifacts of the chosen
+representation.
+
+\section{Port Equivalence of Self-Energy}
+
+The self-energy must be treated as a port map, not as a property of one hidden
+state realization. Let two condensed subsystems have hidden coordinates
+\(z_1\) and \(z_2\), possibly of different dimensions, and suppose they produce
+the same retained correction on a spectral domain \(\mathcal D\):
+\begin{equation}
+  \Pi_1(s)=\Pi_2(s),\qquad s\in\mathcal D .
+  \label{eq:self_port_equiv_pi}
+\end{equation}
+Then every retained-port statement that uses only
+\begin{equation}
+  T(s)=s^2M+sD_0+L+\Pi(s)
+  \label{eq:self_port_equiv_T}
+\end{equation}
+is invariant under the change of hidden realization.
+
+\begin{theorem}[Spectral sufficiency of the port self-energy]
+\label{thm:self_port_sufficiency}
+Assume that the retained matrices \(M,D_0,L\) are the same and that two hidden
+subsystems satisfy \eqref{eq:self_port_equiv_pi} on a domain \(\mathcal D\)
+that contains the protected roots and the contours used for certification.
+Then the two reduced operators have the same retained roots in
+\(\mathcal D\), the same retained Green function \(T(s)^{-1}\) wherever the
+inverse exists, and the same low-rank action determinants for any action that
+is expressed only through the retained ports.
+\end{theorem}
+
+\begin{proof}
+Under \eqref{eq:self_port_equiv_pi}, the two retained operators
+\eqref{eq:self_port_equiv_T} are identical on \(\mathcal D\). Equality of
+roots, inverses on the resolvent set, and any determinant formula built from
+that inverse follows directly. The full hidden-state eigenvectors may differ,
+but those coordinates are not observables of a retained-port decision.
+\end{proof}
+
+This theorem is deliberately modest. It does not say that hidden
+participation factors, Euclidean controller-state norms, or internal energy
+coordinates are invariant. It says that a retained-port planning claim should
+depend on the map \(\Pi(s)\), the port normalization, and the protected
+spectral region. Similarity transformations \(z=S\widehat z\), changes of
+hidden units, or a different order of Schur elimination are harmless only to
+the extent that they preserve the same port self-energy on the domain being
+used.
+
+\section{General Second-Order Self-Energy Form}
+
+The exact Schur operator \eqref{eq:self_schur_operator} does not by itself imply
+that the reduced second-order model contains only a dynamic damping term. To see
+the required structure, write a retained mechanical model with eliminated
+controller states \(z\):
+\begin{align}
+  M\ddot\theta+D_0\dot\theta+\Lt\theta+Gz &=0,\\
+  \dot z &= A_{cc}z+B_\theta\theta+B_\omega\dot\theta .
+  \label{eq:self_structured_controller}
+\end{align}
+After Laplace transformation and elimination of \(z\),
+\begin{equation}
+  T(s)
+  =
+  s^2M+sD_0+\Lt+\Pi(s),
+  \qquad
+  \Pi(s)=G(sI-A_{cc})^{-1}(B_\theta+sB_\omega).
+  \label{eq:self_general_pi}
+\end{equation}
+The sign of \(G,B_\theta,B_\omega\) depends on the port convention; the
+important point is the channel separation. In general, \(\Pi(s)\) contains a
+rational stiffness contribution and a rational damping contribution:
+\begin{equation}
+  \Pi(s)=\Pi_K(s)+s\Pi_D(s).
+  \label{eq:self_pi_decomposition}
+\end{equation}
+Only under the additional assumption \(\Pi_K(s)=0\), or after a defensible
+absorption of \(\Pi_K\) into a stated stiffness correction, does the operator
+reduce to the dynamic-damping form
+\begin{equation}
+  T(s)=s^2M+s\Sigma(s)+\Lt,
+  \label{eq:self_second_order}
+\end{equation}
+where
+\begin{equation}
+  \Sigma(s)=D_0+\Pi_D(s)
+  =
+  D_0+C(sI-A_{cc})^{-1}B
+  \quad\hbox{in the damping-channel special case.}
+  \label{eq:self_sigma_def}
+\end{equation}
+This is the precise transition from a fixed \(D\) to a rational
+self-energy \(\Pi(s)\). The broader self-energy is \(\Pi(s)\);
+\(\Sigma(s)\) names the dynamic damping component.
+
+The notation \(\Sigma(s)\) is therefore deliberately restricted. It is not
+simply damping in the classical viscous sense. It can include dissipative,
+anti-dissipative, phase-lag, resonant, and cross-channel effects, depending on
+the poles and residues of the condensed block. Its Hermitian part on
+\(s=j\omega\) may suggest dissipative behavior over a frequency band, but the
+full eigenvalue effect also depends on eigenvectors and on \(T_s(s)\).
+
+\section{Dynamic Green Function and Effective Resistance}
+
+The inverse of the retained operator is the dynamic Green function of the
+condensed network:
+\begin{equation}
+  G_T(s)=T(s)^{-1},
+  \qquad s\in\rho(T),
+  \label{eq:self_green_function}
+\end{equation}
+where \(\rho(T)\) denotes the resolvent set. This object is the map from a
+retained port injection to the retained response at spectral parameter \(s\).
+It is therefore the natural carrier of dynamic grid strength: it contains the
+graph stiffness, inertia, fixed damping, controller self-energy, and
+non-normal amplification in one operator.
+
+\begin{definition}[Dynamic effective resistance]
+For a line or candidate line \(e=(i,j)\), let \(a_e=e_i-e_j\). The dynamic
+effective resistance of the line is
+\begin{equation}
+  \mathcal R_e(s)=a_e^TG_T(s)a_e
+  =
+  a_e^T
+  \left[
+    s^2M+sD_0+L+\Pi(s)
+  \right]^{-1}
+  a_e .
+  \label{eq:self_dynamic_resistance}
+\end{equation}
+\end{definition}
+
+When \(s=0\), \(\Pi(0)=0\), and the uniform angle reference is removed, this
+quantity reduces to the classical graph effective resistance
+\begin{equation}
+  \mathcal R_e(0)=a_e^TL^\dagger a_e .
+  \label{eq:self_static_resistance_limit}
+\end{equation}
+For \(s\ne0\), \(\mathcal R_e(s)\) is not a physical resistor. It is a
+meromorphic port compliance. Its poles are the retained roots of \(T(s)\), and
+its residues measure how strongly each mode is seen across the endpoint
+difference of line \(e\).
+
+\begin{theorem}[Exact finite line-action law]
+\label{thm:self_finite_line_action}
+Let a finite line-weight change enter the retained operator as
+\begin{equation}
+  T_{\rm new}(s)=T(s)+\Delta b_ea_ea_e^T .
+  \label{eq:self_line_action_update}
+\end{equation}
+For all \(s\) where \(T(s)\) is invertible,
+\begin{equation}
+  \det T_{\rm new}(s)
+  =
+  \det T(s)\left[1+\Delta b_e\mathcal R_e(s)\right].
+  \label{eq:self_line_action_determinant}
+\end{equation}
+Thus any new or shifted root created by this rank-one line action and not
+already a root of \(T\) satisfies
+\begin{equation}
+  1+\Delta b_e\mathcal R_e(s)=0 .
+  \label{eq:self_line_action_scalar}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Apply the matrix determinant lemma to
+\(T(s)+\Delta b_ea_ea_e^T\). This gives
+\[
+  \det(T+\Delta b_ea_ea_e^T)
+  =
+  \det T\left(1+\Delta b_ea_e^TT^{-1}a_e\right),
+\]
+which is \eqref{eq:self_line_action_determinant}.
+\end{proof}
+
+This result is stronger than a local derivative. It gives an exact scalar
+equation for a finite rank-one line modification even when \(T(s)\) is a large
+rational NEP. The same equation also explains why classical effective
+resistance is a static shadow of a richer dynamic object: the graph quantity
+is the zero-frequency limit of the port Green function.
+
+\section{Low-Rank Dynamic Action Calculus}
+
+Line reinforcement is only one member of a broader action family. Suppose a
+planning or retuning action enters through a low-rank retained-port update
+\begin{equation}
+  T_u(s)=T(s)+U(s)K_u(s)V(s)^* .
+  \label{eq:self_low_rank_action}
+\end{equation}
+Define the action interaction matrix
+\begin{equation}
+  \mathcal G_u(s)=V(s)^*T(s)^{-1}U(s).
+  \label{eq:self_action_green_matrix}
+\end{equation}
+Then the determinant lemma gives
+\begin{equation}
+  \det T_u(s)
+  =
+  \det T(s)\det\!\left[I+K_u(s)\mathcal G_u(s)\right].
+  \label{eq:self_low_rank_determinant}
+\end{equation}
+The large NEP has been reduced, for the purpose of this action, to a
+determinant whose dimension is the number of action ports.
+
+Several planning levers become special cases of
+\eqref{eq:self_low_rank_determinant}:
+\begin{align}
+  \hbox{line } e:\quad
+  &U=V=a_e,\qquad K_u(s)=\Delta b_e, \label{eq:self_action_line}\\
+  \hbox{local damping at bus } i:\quad
+  &U=V=e_i,\qquad K_u(s)=s\Delta d_i, \label{eq:self_action_damping}\\
+  \hbox{local inertia at bus } i:\quad
+  &U=V=e_i,\qquad K_u(s)=s^2\Delta m_i, \label{eq:self_action_inertia}\\
+  \hbox{controller retuning through ports}:\quad
+  &U=U_c,\quad V=V_c,\quad K_u(s)=\Delta K_c(s).
+  \label{eq:self_action_controller}
+\end{align}
+Thus line, damping, inertia, and controller actions are not four unrelated
+sensitivity formulas. They are four kernels projected through the same Green
+function \(T(s)^{-1}\).
+
+\section{Modal Sensitivity as a Local Limit}
+
+The usual NEP sensitivity is recovered by expanding the Green function near a
+simple root. Let \(T(s_k)x_k=0\), \(y_k^*T(s_k)=0\), and
+\(y_k^*T_s(s_k)x_k\ne0\). Then
+\begin{equation}
+  T(s)^{-1}
+  \sim
+  \frac{x_ky_k^*}
+  {(s-s_k)y_k^*T_s(s_k)x_k}.
+  \label{eq:self_green_pole_expansion}
+\end{equation}
+For a line \(e\),
+\begin{equation}
+  \mathcal R_e(s)
+  \sim
+  \frac{(a_e^Tx_k)(y_k^*a_e)}
+  {(s-s_k)y_k^*T_s(s_k)x_k}.
+  \label{eq:self_resistance_residue}
+\end{equation}
+Substituting this expansion into the finite-action equation
+\eqref{eq:self_line_action_scalar} gives
+\begin{equation}
+  s-s_k
+  \approx
+  -\Delta b_e
+  \frac{y_k^*a_ea_e^Tx_k}
+  {y_k^*T_s(s_k)x_k},
+  \label{eq:self_line_local_shift}
+\end{equation}
+which is exactly the first-order line sensitivity
+\begin{equation}
+  \frac{ds_k}{db_e}
+  =
+  -
+  \frac{y_k^*a_ea_e^Tx_k}
+  {y_k^*T_s(s_k)x_k}.
+  \label{eq:self_line_sensitivity_limit}
+\end{equation}
+The sensitivity is therefore not an isolated formula. It is the local residue
+limit of an exact finite-action law.
+
+\section{Pole-Residue Structure}
+
+Assume for exposition that \(A_{cc}\) is diagonalizable:
+\begin{equation}
+  A_{cc}=R\Lambda_c R^{-1},\qquad
+  \Lambda_c=\diag(\alpha_1,\ldots,\alpha_m).
+\end{equation}
+Then
+\begin{equation}
+  C(sI-A_{cc})^{-1}B
+  =
+  \sum_{\ell=1}^m
+  \frac{C r_\ell \ell_\ell^T B}{s-\alpha_\ell},
+  \label{eq:self_partial_fraction}
+\end{equation}
+where \(r_\ell\) and \(\ell_\ell\) are right and left eigenvectors of
+\(A_{cc}\), normalized so that \(\ell_\ell^Tr_\ell=1\). The residue
+\(C r_\ell \ell_\ell^T B\) measures how strongly the eliminated controller pole
+\(\alpha_\ell\) is seen by retained coordinates.
+
+This expression explains why a nearby controller pole can dominate a damping
+margin. If \(s\) is close to \(\alpha_\ell\), the denominator is small. If the
+residue projects strongly onto the retained eigenvectors, the self-energy term
+can dominate the eigenvalue sensitivity.
+
+\section{NEP Sensitivity with Self-Energy}
+
+For \(T(s,\rho)v=0\), the simple-root sensitivity is
+\begin{equation}
+  \frac{ds_\star}{d\rho}
+  =
+  -\frac{u^H T_\rho(s_\star,\rho)v}
+  {u^H T_s(s_\star,\rho)v}.
+  \label{eq:self_nep_sens}
+\end{equation}
+For the general operator \eqref{eq:self_general_pi},
+\begin{equation}
+  T_s(s)=2sM+D_0+\Pi_s(s).
+  \label{eq:self_Ts_general}
+\end{equation}
+In the damping-channel specialization \eqref{eq:self_second_order},
+\begin{equation}
+  T_s(s)=2sM+\Sigma(s)+s\Sigma'(s),
+  \label{eq:self_Ts}
+\end{equation}
+with
+\begin{equation}
+  \Sigma'(s)=-C(sI-A_{cc})^{-2}B.
+  \label{eq:self_sigma_prime}
+\end{equation}
+Thus even the denominator of the sensitivity contains controller-resolvent
+terms. A fixed scalar damping bridge cannot reproduce this dependence unless
+the rational term is negligible over the critical spectral region.
+
+The additional denominator term \(s\Sigma'(s)\) is the precise mathematical
+place where the condensed controller block retains spectral memory. It is not
+another static damping coefficient; it is a slope of the self-energy with
+respect to the eigenvalue being solved for. Using
+\eqref{eq:self_sigma_prime}, this slope contains the squared resolvent
+\((sI-A_{cc})^{-2}\). Hence it becomes large when the retained pole is close to
+a visible condensed-controller pole. In that regime, replacing
+\(\Sigma(s)\) by a constant matrix may preserve one fitted value of the
+self-energy while losing the local pole-motion geometry.
+
+\section{Why Static Damping Bridges Fail}
+
+A static bridge assumes that the reduced damping mechanism can be represented
+by a constant matrix \(D_{\rm red}\). In the self-energy theory, that assumption
+requires
+\begin{equation}
+  C(sI-A_{cc})^{-1}B\approx D_{\rm red}-D_0
+  \label{eq:self_static_approx}
+\end{equation}
+over all poles and frequency bands relevant to the claim. This is a strong
+condition. It can hold locally if the controller poles are far away and the
+resolvent varies slowly. It fails when the critical pole is near a controller
+pole, when residues are large, or when the relevant mode is dominated by
+condensed states.
+
+The failure is structural rather than cosmetic. A constant matrix has no poles.
+It cannot represent the denominator \(s-\alpha_\ell\). It can approximate the
+rational term at a selected point, but it cannot preserve the full spectral
+mechanism over a region unless additional assumptions are imposed.
+
+\begin{remark}[Static models are local models]
+The conclusion is not that every static reduced model is useless. The
+conclusion is that a static bridge has a validity region. It is defensible
+when controller poles are far from the protected region, when residues are
+small in the retained eigenvector directions, and when \(\Sigma'(s)\) is small
+enough that the denominator of \eqref{eq:self_nep_sens} is not materially
+changed. It is not defensible as a universal damping-margin surrogate near a
+controller resonance.
+\end{remark}
+
+\section{Certified Adequacy of Reduced Operators}
+
+The hierarchy is useful only if it contains an escalation rule. Let
+\(\widehat T(s)\) be a reduced or approximate operator, such as a static bridge,
+a fitted self-energy, or a lower-order rational approximation of \(\Pi(s)\).
+On a closed contour \(\Gamma\) that bounds a protected region, define
+\begin{equation}
+  \eta_\Gamma
+  =
+  \sup_{s\in\Gamma}
+  \left\|
+  \widehat T(s)^{-1}\left[T(s)-\widehat T(s)\right]
+  \right\|_2 .
+  \label{eq:self_eta_gamma}
+\end{equation}
+
+\begin{theorem}[Contour adequacy certificate]
+\label{thm:self_contour_adequacy}
+Assume that \(T\) and \(\widehat T\) are regular analytic matrix functions on
+and inside \(\Gamma\), that \(\widehat T(s)\) is nonsingular on \(\Gamma\), and
+that
+\begin{equation}
+  \eta_\Gamma<1 .
+  \label{eq:self_eta_condition}
+\end{equation}
+Then \(T\) and \(\widehat T\) have the same number of eigenvalues inside
+\(\Gamma\), counted with algebraic multiplicity.
+\end{theorem}
+
+\begin{proof}
+The statement is the matrix-function analogue of Rouche's theorem. Since
+\(\|\widehat T^{-1}(T-\widehat T)\|_2<1\) on \(\Gamma\), the homotopy
+\(\widehat T+\tau(T-\widehat T)\) remains nonsingular on \(\Gamma\) for
+\(0\le\tau\le1\). The argument principle for regular analytic matrix
+functions then preserves the eigenvalue count inside the contour
+\cite{kato1995perturbation,guettel2017nep}.
+\end{proof}
+
+This certificate turns the operator hierarchy into a computational policy:
+\begin{equation}
+  \eta_\Gamma<1
+  \quad\Longrightarrow\quad
+  \hbox{the reduced operator preserves the protected eigenvalue count,}
+  \label{eq:self_eta_policy_accept}
+\end{equation}
+whereas
+\begin{equation}
+  \eta_\Gamma\ge1
+  \quad\Longrightarrow\quad
+  \hbox{escalate to a richer NEP, identified self-energy, or full DAE.}
+  \label{eq:self_eta_policy_escalate}
+\end{equation}
+
+A local decision also needs a sign certificate. If an approximate model
+predicts a margin derivative \(\widehat g\), and an error analysis gives
+\begin{equation}
+  |g-\widehat g|\le\varepsilon_g ,
+  \label{eq:self_sign_error_bound}
+\end{equation}
+then
+\begin{equation}
+  |\widehat g|>\varepsilon_g
+  \quad\Longrightarrow\quad
+  \operatorname{sign}(g)=\operatorname{sign}(\widehat g).
+  \label{eq:self_sign_certificate}
+\end{equation}
+Without a bound of this type, a ranked action is a screen rather than a
+certified recommendation.
+
+\section{Data-Identified Self-Energy}
+
+The self-energy theory should not require access to proprietary hidden
+matrices. If a manufacturer, EMT model, or field experiment provides only
+terminal data, the retained-port object can be estimated as
+\begin{equation}
+  \widehat\Pi(s)
+  \approx
+  \Pi(s)
+  \label{eq:self_identified_pi}
+\end{equation}
+from frequency scans, injected perturbations, PMU records, or black-box
+simulation. The estimation method may be vector fitting, Loewner realization,
+gray-box calibration, or a structure-preserving DAE identification method.
+Recent converter-identification work is moving in this direction by combining
+terminal time-series data with physics-informed converter structure and
+frequency-domain validation \cite{darii2026graybox}; recent
+port-Hamiltonian DAE identification similarly emphasizes preserving
+interconnection and passivity structure under noisy input-output data
+\cite{hagelaars2026identification}.
+
+An identified self-energy is useful for planning only if it comes with an
+error model. On a protected frequency or contour set \(\Omega\), require
+\begin{equation}
+  \|\Pi(s)-\widehat\Pi(s)\|_2\le\varepsilon_\Pi(s),
+  \qquad s\in\Omega .
+  \label{eq:self_pi_identification_error}
+\end{equation}
+This bound propagates through the same adequacy certificate:
+\begin{equation}
+  \widehat T(s)=s^2M+sD_0+L+\widehat\Pi(s),
+  \qquad
+  \eta_\Gamma
+  =
+  \sup_{s\in\Gamma}
+  \left\|
+  \widehat T(s)^{-1}\left[\Pi(s)-\widehat\Pi(s)\right]
+  \right\|_2 .
+  \label{eq:self_identified_eta}
+\end{equation}
+The practical chain is therefore
+\begin{equation}
+  \hbox{data}
+  \rightarrow
+  \widehat\Pi(s)
+  \rightarrow
+  \varepsilon_\Pi
+  \rightarrow
+  \eta_\Gamma
+  \rightarrow
+  \hbox{certified or rejected action}.
+  \label{eq:self_data_to_certification}
+\end{equation}
+The thesis contribution is not merely to identify a converter. It is to decide
+how much identification error can be tolerated before a planning recommendation
+changes sign or loses its protected eigenvalue count.
+
+\section{Mode Families}
+
+The Schur partition motivates a mode-family diagnostic, but a raw Euclidean
+ratio of retained and condensed state norms is not invariant under a change of
+units or controller realization. If physically meaningful weights are available,
+use the weighted index
+\begin{equation}
+  \pi_c^{(W)}
+  =
+  \frac{x_c^H W_c x_c}
+  {x_e^H W_e x_e+x_c^H W_c x_c},
+  \label{eq:self_control_participation}
+\end{equation}
+where \(W_e,W_c\succeq0\) represent compatible energy, power, or per-unit
+normalization choices. Small \(\pi_c^{(W)}\) indicates a retained-state or
+network-family mode. Large \(\pi_c^{(W)}\) indicates a control-family mode.
+Intermediate values indicate mixed modes.
+
+When no defensible \(W_c\) exists, the more invariant diagnostic is not internal
+state size but port visibility:
+\begin{equation}
+  \mathcal V_c(s)
+  =
+  \norm{C(sI-A_{cc})^{-1}B}_2 .
+  \label{eq:self_controller_visibility}
+\end{equation}
+This quantity asks whether the condensed block is visible from retained
+coordinates at the frequency being tested. It changes under input-output
+scaling, so the ports must still be normalized, but it is not changed by a
+similarity transformation of the hidden controller state.
+
+\section{Structured Pseudospectrum and Fragility Radius}
+
+Nominal eigenvalues do not fully describe a non-normal converter-rich model.
+The unstructured NEP pseudospectrum is
+\begin{equation}
+  \Lambda_\varepsilon(T)
+  =
+  \left\{
+  s:\sigma_{\min}(T(s))\le\varepsilon
+  \right\}.
+  \label{eq:self_unstructured_pseudospectrum}
+\end{equation}
+This set is useful as a numerical warning, but it permits arbitrary matrix
+perturbations. Planning perturbations are not arbitrary: they come from line
+uncertainty, damping placement, inertia placement, controller gains, delays,
+operating-point errors, or identified-model errors. The relevant object is
+therefore the action-structured pseudospectrum
+\begin{equation}
+  \Lambda_\varepsilon^{\mathcal A}(T)
+  =
+  \left\{
+  s:\exists u\in\mathcal A,\ 
+  \|W_uu\|\le\varepsilon,\ 
+  \det T(s,u)=0
+  \right\},
+  \label{eq:self_structured_pseudospectrum}
+\end{equation}
+where \(\mathcal A\) is the declared physical action or uncertainty family and
+\(W_u\) normalizes units and costs. Recent nonlinear spectral algorithms make
+the broader computation of spectra and pseudospectra increasingly relevant for
+NEPs, but the power-system decision must still restrict perturbations to
+physically admissible directions \cite{colbrook2025universal}.
+
+For a protected spectral boundary \(\partial\mathcal S\), define the dynamic
+fragility radius
+\begin{equation}
+  r_{\rm frag}
+  =
+  \inf
+  \left\{
+  \|W_uu\|:
+  \exists s\in\partial\mathcal S,\ 
+  \det T(s,u)=0
+  \right\}.
+  \label{eq:self_fragility_radius}
+\end{equation}
+This number answers the planning question directly: what is the smallest
+physical perturbation that can violate the protected margin? A damping-ratio
+margin, an abscissa margin, a distance-to-resonance margin, a passivity margin,
+or a protected-gain margin can each be used to define
+\(\partial\mathcal S\). Local pole-motion cones and hidden-margin derivatives
+are then first-order approximations to \eqref{eq:self_fragility_radius}, not
+substitutes for it.
+
+\section{Passivity and Resolvent Gates}
+
+A stable \(A_{cc}\) block does not guarantee that the condensed self-energy is
+benign. A passivity statement requires a declared input-output pairing and a
+supply rate in the sense of dissipativity theory \cite{willems1972dissipative}.
+For a MIMO retained port, reducing passivity to one scalar index can hide the
+direction that causes the deficiency. With input and output normalizers
+\(W_u\) and \(W_y\), define the directional passivity matrix
+\begin{equation}
+  \mathcal P_\Sigma(\omega)
+  =
+  \frac12
+  \left[
+  W_y\Sigma(j\omega)W_u^{-1}
+  +
+  W_u^{-*}\Sigma(j\omega)^*W_y^*
+  \right].
+  \label{eq:self_directional_passivity}
+\end{equation}
+This matrix records both intensity and direction of passivity excess or
+deficit. Recent matrix-valued passivity work is useful here precisely because
+scalar indices can lose MIMO channel structure \cite{ru2026matrix}. The
+unweighted Hermitian screen used below is the special case
+\begin{equation}
+  H_\Sigma(\omega)=
+  \frac{\Sigma(j\omega)+\Sigma(j\omega)^H}{2}.
+  \label{eq:self_hermitian}
+\end{equation}
+Negative eigenvalues of \(H_\Sigma(\omega)\), or of the weighted matrix
+\(\mathcal P_\Sigma(\omega)\), indicate frequencies where the condensed
+contribution acts like negative damping in a retained port direction. Large
+singular values of the resolvent identify frequencies where the eliminated
+block strongly amplifies retained-state motion. Dynamic passivity multipliers
+provide a broader certificate family when strict passivity in the trivial
+metric is too conservative \cite{gorbunov2026dynamic}.
+
+Recent passivity-based grid-forming work suggests a useful interpretation of
+this gate \cite{he2024passivity,gui2024passivity}. If a controller parameter
+\(\kappa\) changes the condensed block, write
+\(A_{cc}=A_{cc}(\kappa)\) and define the band-limited self-energy passivity
+screen
+\begin{equation}
+  \mu_\Sigma(\Omega;\kappa)
+  =
+  \inf_{\omega\in\Omega}
+  \lambda_{\min}\!\left(H_\Sigma(\omega;\kappa)\right),
+  \label{eq:self_passivity_index}
+\end{equation}
+over the frequency band \(\Omega\) that contains the protected electromechanical
+or controller-interaction modes. If \(\mu_\Sigma(\Omega;\kappa)>0\), the condensed
+controller contribution is dissipative in the retained coordinates over that
+band. If \(\mu_\Sigma(\Omega;\kappa)<0\), there exists a retained direction and a
+frequency where the condensed block supplies negative damping.
+
+\begin{theorem}[Local self-energy passivity-retuning certificate]
+\label{thm:self_passivity_retuning}
+Let \(\Omega\subset\R\) be compact. Assume \(A_{cc}(\kappa)\), \(B(\kappa)\),
+and \(C(\kappa)\) are continuously differentiable on an interval
+\(\mathcal K\), and that \(j\omega I-A_{cc}(\kappa)\) is invertible for all
+\((\omega,\kappa)\in\Omega\times\mathcal K\). At a fixed \(\kappa\), suppose
+the infimum in \eqref{eq:self_passivity_index} is attained at a unique
+\(\omega_\star\), and that the smallest eigenvalue of
+\(H_\Sigma(\omega_\star;\kappa)\) is simple with unit eigenvector \(q_\star\).
+Then \(\mu_\Sigma\) is differentiable at \(\kappa\), and
+\begin{equation}
+  \frac{d\mu_\Sigma}{d\kappa}
+  =
+  q_\star^H
+  \frac{\partial H_\Sigma(\omega_\star;\kappa)}{\partial\kappa}
+  q_\star .
+  \label{eq:self_passivity_envelope}
+\end{equation}
+If this quantity is nonnegative throughout an interval, then
+\(\mu_\Sigma\) is nondecreasing on that interval. If it is positive before a
+single zero and negative afterward, the band-limited passivity margin is locally
+unimodal and the zero gives a candidate retuning optimum.
+\end{theorem}
+
+\begin{proof}
+For fixed \(\omega\), \(H_\Sigma(\omega;\kappa)\) is Hermitian and differentiable
+under the stated invertibility assumptions. The standard simple-eigenvalue
+perturbation formula gives
+\(\partial_\kappa\lambda_{\min}=q_\star^H(\partial_\kappa H_\Sigma)q_\star\)
+at the active frequency. Since the margin is an infimum over the compact
+frequency set, Danskin's envelope theorem applies to the active minimizer
+\cite{danskin1967maxmin,rockafellar1998variational}. Under uniqueness and
+simplicity, the directional formula collapses to
+\eqref{eq:self_passivity_envelope}. Monotonicity follows by integrating the
+derivative over the interval. The unimodal statement is the same first-order
+condition with one sign change.
+\end{proof}
+
+The derivative in \eqref{eq:self_passivity_envelope} is computable from the same
+resolvent that defines the self-energy. With \(R(s,\kappa)=(sI-A_{cc}(\kappa))^{-1}\),
+\begin{equation}
+  \frac{\partial\Sigma}{\partial\kappa}
+  =
+  C_\kappa R B
+  +
+  C R_\kappa B
+  +
+  C R B_\kappa,\qquad
+  R_\kappa
+  =
+  R\,\frac{\partial A_{cc}}{\partial\kappa}\,R.
+  \label{eq:self_sigma_kappa_derivative}
+\end{equation}
+If only the controller matrix \(A_{cc}\) depends on \(\kappa\), the first and
+third terms vanish. The sign of \(d\mu_\Sigma/d\kappa\) is therefore not a
+generic algebraic fact; it is a physical property of the controller family,
+operating point, and frequency band.
+
+For a grid-following PLL, this distinction matters. Increasing PLL bandwidth can
+improve phase tracking over one range and degrade weak-grid damping over another.
+The thesis therefore treats monotonicity as a local certificate, not as a global
+law. The actionable design problem is
+\begin{equation}
+  \kappa_\star\in
+  \operatorname*{arg\,max}_{\kappa\in\mathcal K}
+  \mu_\Sigma(\Omega;\kappa),
+  \qquad
+  \text{subject to a protected-pole gate.}
+  \label{eq:self_passivity_optimal_kappa}
+\end{equation}
+This formulation also explains what must be validated after retuning:
+\(\mu_\Sigma\) should increase in the relevant band, and the protected pole
+should move in the desired direction.
+
+This is not a complete stability theorem for the retained NEP. It is a
+certificate candidate. The missing companion step is the pole sensitivity:
+\begin{equation}
+  \frac{d}{d\rho}\mu_\Sigma(\Omega;\rho),
+  \qquad
+  \frac{ds_\star}{d\rho}
+  =
+  -\frac{u^H T_\rho(s_\star,\rho)v}
+  {u^H T_s(s_\star,\rho)v}.
+  \label{eq:self_passivity_retuning}
+\end{equation}
+A controller-retuning action is credible only if it increases the passivity
+screen in the relevant band and moves the protected pole in the correct
+direction. This gives a principled version of ``PLL retuning'': the action is
+not merely moving an eigenvalue numerically; it is attempting to restore a
+band-limited dissipativity margin of the Schur self-energy.
+
+These diagnostics are gates, not standalone stability theorems. They must be
+connected to eigenvalue sensitivities and full-model validation before they can
+support planning decisions. Their theoretical value is that they point to the
+operator that must be inspected: \(\Sigma(s)\), not a scalar damping constant.
+
+\section{Sign Characteristic and Controller-Resolvent Collisions}
+
+The language of Krein signature is mature for Hamiltonian and self-adjoint
+spectral problems, and the matrix-polynomial literature uses the more precise
+term \emph{sign characteristic} \cite{gohberg1982matrixpolynomials,
+gohberg1983meromorphic,mehrmann2016sign}. Kollár and Miller give a useful
+graphical interpretation through Evans--Krein functions for polynomial operator
+pencils \cite{kollar2014graphical}. That literature should not be cited as if it
+already proved the converter result needed here. The thesis uses it as the
+correct mathematical foundation for a narrower question: can a rational,
+controller-condensed self-energy produce an operational sign collision that
+predicts weak-grid synchronization loss?
+
+For a Hermitian matrix polynomial, the sign characteristic is invariant under
+structure-preserving transformations and is tied to the perturbation behavior of
+real or imaginary-axis eigenvalues. A converter-condensed operator
+\[
+  T(s)=s^2M+sD_0+\Lt+\Pi(s)
+\]
+is usually not Hermitian as a function of \(s\), and its rational term may be
+dissipative and non-normal. Therefore the following object is only an
+operational signature gate, not a completed Krein theorem:
+\begin{equation}
+  \chi_k^{\rm op}
+  =
+  \operatorname{sign}
+  \Real\!\left(v_k^H T_s(s_k)v_k\right),
+  \qquad
+  T(s_k)v_k=0.
+  \label{eq:self_operational_signature}
+\end{equation}
+If left and right eigenvectors differ strongly, the bilinear variant
+\(u_k^H T_s(s_k)v_k\) should be tracked together with eigenvalue conditioning.
+If \(s_k=j\omega_k\) lies on a symmetry line where a Hermitian reduction is
+available, one may instead inspect the inertia of
+\((T_s(j\omega_k)+T_s(j\omega_k)^H)/2\) on the active eigenspace.
+
+The reason this is relevant to controller-resonant instability is the derivative
+term
+\[
+  T_s(s)=2sM+D_0+\Pi_s(s)
+  \quad
+  \hbox{or, in the damping-channel case,}\quad
+  T_s(s)=2sM+\Sigma(s)+s\Sigma'(s).
+\]
+Near a pole of \(A_{cc}\), the resolvent derivative contains squared-resolvent
+growth. A mode can then become dominated by the controller self-energy rather
+than by the mechanical part of the QEP. The proposed mechanism is a
+controller-resolvent sign collision: two tracked modes approach while their
+operational signatures differ, and the denominator
+\(u^H T_s(s)v\) in the NEP sensitivity becomes small or ill-conditioned.
+
+This bridge is a research claim, not a settled theorem. It is credible only if a
+benchmark shows the same event in three views: a sign change or singularity in
+\eqref{eq:self_operational_signature}, growth of the absolute self-energy
+dominance index, and a full-model eigenvalue or time-domain loss of damping. The
+general theory of dissipation-induced instabilities explains why such collisions
+are plausible \cite{krechetnikov2007dissipation}; the new power-system claim
+would be that the Schur self-energy identifies the controller channel that
+causes them.

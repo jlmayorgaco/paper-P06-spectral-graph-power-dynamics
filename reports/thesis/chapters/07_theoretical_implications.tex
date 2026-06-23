@@ -1,0 +1,357 @@
+\chapter{Risk Vectors, Weak Elements, and Planning Metrics}
+
+The damping-operator hierarchy changes how weak elements and planning actions
+should be defined. A weak bus, weak line, or useful converter placement is not
+an intrinsic property of a graph alone. It is a property relative to a dynamic
+margin, an operator class, an action family, and a validation gate. This
+chapter turns the spectral derivatives into a planning language.
+
+\section{Margins Must Name the Mechanism}
+
+The most common small-signal margin is the critical damping ratio,
+\begin{equation}
+  S_\zeta=\log\frac{\zetaReq}{\zeta_{\rm crit}}.
+  \label{eq:imp_zeta_margin}
+\end{equation}
+The case satisfies the requirement when \(S_\zeta\le0\). This margin is natural
+for oscillatory eigenvalues, but it does not measure non-normal amplification,
+input-output gain, or protection-weighted response.
+
+For a state matrix \(A\), selected inputs \(B\), selected outputs \(C\), and
+weights \(\Gamma_u,\Gamma_y\), a protected resolvent gain can be defined as
+\begin{equation}
+  g_{\rm prot}=
+  \sup_{\omega\in\Omega}
+  \sigma_1\left(\Gamma_yC(j\omega I-A)^{-1}B\Gamma_u\right).
+  \label{eq:imp_protected_gain}
+\end{equation}
+The corresponding log margin is
+\begin{equation}
+  S_g=\log g_{\rm prot}.
+  \label{eq:imp_Sg}
+\end{equation}
+The two margins can rank actions differently. That disagreement is not an
+error; it means the mechanisms being measured are different.
+
+\section{Action Coordinates}
+
+Let a planning action be parameterized as
+\begin{equation}
+  \rho=
+  \begin{bmatrix}
+  \rho_L\\
+  \rho_D\\
+  \rho_M
+  \end{bmatrix},
+  \label{eq:action_vector}
+\end{equation}
+where \(\rho_L\) changes line weights or topology, \(\rho_D\) changes damping
+or primary-control gain, and \(\rho_M\) changes physical or virtual inertia.
+For a simple pole \(s_\star\), the total first-order movement is
+\begin{equation}
+  ds_\star
+  =
+  \nabla_Ls_\star^T d\rho_L
+  +
+  \nabla_Ds_\star^T d\rho_D
+  +
+  \nabla_Ms_\star^T d\rho_M.
+  \label{eq:mixed_gradient}
+\end{equation}
+The three gradients are computed from the exact QEP sensitivity
+\eqref{eq:fixed_full_qep_sens} or, after condensation, from the NEP
+sensitivity \eqref{eq:self_nep_sens}. The key point is that the gradients are
+not interchangeable. \(L\)-moves are stiffness moves, \(D\)-moves are
+dissipation moves, and \(M\)-moves are inertia and normalization moves.
+
+\section{Finite-Action Coordinates}
+
+The action coordinates above are local, but the rational self-energy chapter
+gives a finite-action object. For any low-rank action
+\[
+  T_u(s)=T(s)+U(s)K_u(s)V(s)^*,
+\]
+the action interaction matrix is
+\begin{equation}
+  \mathcal G_u(s)=V(s)^*T(s)^{-1}U(s),
+  \label{eq:imp_action_green_matrix}
+\end{equation}
+and the protected roots created or shifted by the action satisfy
+\begin{equation}
+  \det\!\left[I+K_u(s)\mathcal G_u(s)\right]=0.
+  \label{eq:imp_action_root_condition}
+\end{equation}
+This formula changes how a planning action should be reported. A derivative
+\(ds_\star/du\) is the tangent of \eqref{eq:imp_action_root_condition}; it is
+not the full action law. For a finite line increment, the scalar interaction is
+the dynamic effective resistance
+\(\mathcal R_e(s)=a_e^TT(s)^{-1}a_e\). For finite damping, inertia, and
+controller-retuning actions, the relevant object is the corresponding block of
+\(\mathcal G_u(s)\).
+
+A local risk vector should therefore be interpreted as the first-order
+linearization of three finite objects:
+\begin{equation}
+  \hbox{action determinant}
+  \quad
+  \hbox{protected margin boundary}
+  \quad
+  \hbox{structured fragility radius}.
+  \label{eq:imp_finite_action_objects}
+\end{equation}
+This interpretation prevents a candidate from being accepted only because its
+infinitesimal derivative is favorable at the base point. The finite action must
+remain inside the protected margin and outside the structured pseudospectral
+boundary over the declared budget.
+
+\section{Risk Vector for a Candidate Action}
+
+For any candidate action \(a\), define a local risk vector after normalizing the
+action coordinate and each margin. A gain component must be dimensionless, e.g.
+\(S_g=\log(g_{\rm prot}/g_{\rm req})\), not the logarithm of a dimensional
+quantity. With a declared action scale \(\bar a\), derivatives below are taken
+with respect to \(\hat a=a/\bar a\):
+\begin{equation}
+  r(a)=
+  \begin{bmatrix}
+  r_\sigma(a)\\
+  r_\zeta(a)\\
+  r_g(a)\\
+  r_h(a)\\
+  r_f(a)
+  \end{bmatrix}.
+  \label{eq:risk_vector}
+\end{equation}
+The components are:
+\begin{align}
+  r_\sigma(a)
+  &=
+  \left[
+  \frac{d\Real(s_{\rm crit})}{da}
+  \right]_+,
+  \label{eq:risk_sigma}\\
+  r_\zeta(a)
+  &=
+  \left[
+  \frac{dS_\zeta}{da}
+  \right]_+,
+  \label{eq:risk_zeta}\\
+  r_g(a)
+  &=
+  \left[
+  \frac{dS_g}{da}
+  \right]_+,
+  \label{eq:risk_gain}\\
+  r_h(a)
+  &=
+  \mathbf 1\left\{
+  \frac{d\nu_k}{da}>0,\ 
+  \frac{d\zeta_k}{da}<0
+  \right\},
+  \label{eq:risk_hidden}\\
+  r_f(a)
+  &=
+  \hbox{normalized feasibility penalty}.
+  \label{eq:risk_feasibility}
+\end{align}
+Here \([x]_+=\max(x,0)\). The first entry detects rightward pole movement. The
+second detects damping-ratio margin loss. The third detects protected
+input-output amplification. The fourth detects the hidden-margin conflict from
+Chapter~4. The fifth records voltage, flow, current, protection, or dispatch
+constraints.
+
+All entries in \eqref{eq:risk_vector} are dimensionless local rates after the
+chosen normalization. Without that convention, the angle between two risk
+vectors can change simply because the same action is expressed in MW, per-unit,
+or percent penetration.
+
+A scalar screening score may be formed as
+\begin{equation}
+  \mathcal R(a)=w^Tr(a),\qquad w\ge0,
+  \label{eq:scalar_risk_score}
+\end{equation}
+but the vector should be reported before scalarization. Otherwise, a strong
+graph improvement can hide a damping loss.
+
+\section{Bus Risk Vector}
+
+For bus \(i\), define a fixed-\(D\) spectral bus vector
+\begin{equation}
+  r_i^{\rm bus}=
+  \begin{bmatrix}
+  \mathcal D_i\\
+  \mathcal M_i\\
+  \Pi_i\\
+  H_i
+  \end{bmatrix},
+  \label{eq:bus_risk_vector}
+\end{equation}
+where
+\begin{equation}
+  \mathcal D_i=
+  \sum_{k\in\mathcal K}
+  \omega_k
+  \frac{\phi_k(i)^2}{2\sqrt{\nu_k}}
+  \label{eq:bus_D_score}
+\end{equation}
+is damping placement leverage,
+\begin{equation}
+  \mathcal M_i=
+  \sum_{k\in\mathcal K}
+  \omega_k\zeta_k\phi_k(i)^2
+  \label{eq:bus_M_score}
+\end{equation}
+is inertia-dilution exposure under fixed \(D\),
+\begin{equation}
+  \Pi_i=
+  \sum_{k\in\mathcal K}\omega_k\phi_k(i)^2
+  \label{eq:bus_participation_score}
+\end{equation}
+is modal participation exposure, and \(H_i\) records whether incident graph
+actions produce hidden damping conflicts. A high \(\mathcal D_i\) says
+``put damping here.'' A high \(\mathcal M_i\) says ``do not put inertia here
+without co-designed damping if the objective is damping ratio.'' A high
+\(\Pi_i\) says the bus is dynamically visible.
+
+\section{Line Risk Vector}
+
+For a line \(e=(i,j)\), define
+\begin{equation}
+  r_e^{\rm line}=
+  \begin{bmatrix}
+  G_e^{(2)}\\
+  G_e^{(K)}\\
+  Z_e\\
+  H_e\\
+  F_e
+  \end{bmatrix}.
+  \label{eq:line_risk_vector}
+\end{equation}
+The algebraic-connectivity gain is
+\begin{equation}
+  G_e^{(2)}=(\phi_2(i)-\phi_2(j))^2.
+  \label{eq:line_fiedler_gain}
+\end{equation}
+The effective-resistance gain is
+\begin{equation}
+  G_e^{(K)}
+  =
+  a_e^T(L^+)^2a_e.
+  \label{eq:line_kirchhoff_gain}
+\end{equation}
+The damping-ratio risk for a monitored mode \(k\) is
+\begin{equation}
+  Z_e^{(k)}
+  =
+  -\frac{\partial\zeta_k}{\partial b_e},
+  \qquad
+  Z_e=\max_{k\in\mathcal K} Z_e^{(k)}.
+  \label{eq:line_zeta_risk}
+\end{equation}
+The hidden-margin flag is
+\begin{equation}
+  H_e=\mathbf 1\left\{
+  G_e^{(2)}>0,\ Z_e>0
+  \right\},
+  \label{eq:line_hidden_flag}
+\end{equation}
+and \(F_e\) is a feasibility penalty for thermal, voltage, protection, or
+right-of-way constraints. A high \(G_e^{(2)}\) or \(G_e^{(K)}\) is not enough:
+the line is attractive only if \(Z_e\) and \(F_e\) are acceptable.
+
+\section{Weak Nodes Are Relative Objects}
+
+A bus is weak only after the following items are specified:
+\begin{enumerate}
+\item the base operating point and dynamic model;
+\item the operator class being used: uniform \(D=\gamma M\), commuting fixed
+\(D\), non-commuting fixed \(D\), rational \(\Pi(s)\), or damping-channel
+\(\Sigma(s)\);
+\item the margin: damping ratio, decay rate, protected resolvent gain, or
+another registered metric;
+\item the action family: line change, damping addition, inertia change,
+converter placement, controller retuning, or protection setting;
+\item the accept/reject gate that turns a screen into evidence.
+\end{enumerate}
+
+Without those items, a weak-node list is not reproducible. A bus may be weak
+for damping-ratio improvement under controller retuning and irrelevant for
+protected-gain reduction under line reinforcement.
+
+\section{Improving the Graph Without Adding Inertia}
+
+When the objective is to improve graph robustness without adding inertia, the
+candidate action should be selected from graph derivatives and then passed
+through damping gates. A conservative procedure is:
+\begin{enumerate}
+\item rank candidate lines by \(G_e^{(2)}\) if the target is algebraic
+connectivity;
+\item rank candidate lines by \(G_e^{(K)}\) if the target is total effective
+resistance or broad slow-mode coherence;
+\item remove candidates with unacceptable \(F_e\);
+\item remove or pair candidates with damping support if \(H_e=1\);
+\item verify the remaining candidates with QEP or NEP sensitivity.
+\end{enumerate}
+
+This gives a mathematically defensible answer to the question ``how do we
+improve \(L\) without adding inertia?'' Improve \(L\) where it moves the slow
+graph modes most, but do not confuse that with damping unless the damping gate
+passes.
+
+\section{Substitutability of Actions}
+
+Two actions are substitutable only if they improve the same margin through
+compatible mechanisms. Adding physical damping, changing virtual damping,
+placing a grid-forming converter, retuning a PLL, reinforcing a line, or
+placing inertia can all move the critical eigenvalue, but they do not generally
+act through the same operator term.
+
+Let \(a\) and \(b\) be candidate actions. A local substitutability test is
+\begin{equation}
+  \cos\angle(r(a),r(b))
+  =
+  \frac{r(a)^Tr(b)}{\norm{r(a)}\,\norm{r(b)}}.
+  \label{eq:risk_vector_angle}
+\end{equation}
+High alignment means the actions stress or relieve the same risks. Low
+alignment means they are not substitutes even if both improve one scalar
+metric. If one action improves \(S_\zeta\) by adding damping and another
+improves \(S_g\) by reducing resolvent amplification, their risk vectors will
+not generally align.
+
+\section{Theory-to-Validation Protocol}
+
+The theoretical hierarchy implies a protocol for future empirical work.
+
+\begin{enumerate}
+\item Start with the proportional model only as a baseline and state which
+margin it certifies.
+\item Measure non-commutation through \(\Gamma=Q^T\Dt Q\) before trusting
+graph-mode damping claims.
+\item If controller states are eliminated, construct or approximate
+\(\Pi(s)\), then inspect its poles, residues, channel decomposition, and any
+damping-channel \(\Sigma(s)\) over the frequency band of interest.
+\item Use eigenvalue sensitivity to decompose action effects into retained and
+condensed contributions.
+\item Validate screens against full eigenvalue recomputation before using them
+as planning rules.
+\end{enumerate}
+
+This protocol prevents a visually plausible graph or time-domain result from
+being mistaken for a damping certificate.
+
+\section{Implications for Converter-Rich Systems}
+
+Converter-rich systems make the risk vector more important because converter
+controls can supply both damping and destabilizing feedback. A grid-following
+PLL, a grid-forming droop loop, a current controller, and a plant controller do
+not merely add scalar damping. They add states. If those states are retained,
+they appear in the full matrix \(A\). If they are condensed, they appear in
+\(\Pi(s)\), or in its declared damping-channel specialization \(\Sigma(s)\).
+
+The planning implication is direct. A reduced model that removes converter
+states must show where their spectral effect went. If the answer is a constant
+coefficient, the model is making a static approximation. If the answer is a
+rational self-energy, the model has preserved the mechanism in the reduced
+operator. The practical value of the theory is to make that distinction visible
+before numerical ranking begins.

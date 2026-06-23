@@ -1,0 +1,58 @@
+\documentclass[conference]{IEEEtran}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{microtype}
+
+\pagestyle{empty}
+\IEEEoverridecommandlockouts
+
+\title{Network or Control? A Validated Spectral Bridge for Inverter-Dominated Grids}
+
+\author{
+\IEEEauthorblockN{Jorge L. Mayorga Taborda}
+\IEEEauthorblockA{Universidad de los Andes, Bogot\'a, Colombia}
+}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+Industrial grids and microgrids are replacing synchronous machines with inverter-based resources, so damping is no longer supplied mainly by rotating-machine inertia. Much of it now lives in controller states: phase-locked loops, exciters, governors, and inverter loops. This shift breaks a common shortcut in weak-node and weak-link screening. A static reduced model that assigns damping to a fixed nodal coefficient can report a benign electromechanical margin while the actual least-damped pole belongs to a controller family.
+
+This poster presents a controller-aware spectral bridge for that case. Instead of collapsing condensed controller dynamics into a scalar nodal damping coefficient, the bridge retains them as a frequency-dependent self-energy inside a rational Schur nonlinear eigenvalue problem. On IEEE 39-bus ANDES diagnostic cases, the scalar bridge fails because the packaged \texttt{GENROU.D} coefficients are zero, while the full eigensolve still shows modal damping supplied by controller and auxiliary states. The controller-aware bridge recovers the full ANDES critical poles in no-PSS, base, and Mix60 cases. The worst observed errors are \(8.47\times10^{-11}\%\) in frequency and \(2.48\times10^{-9}\%\) in damping. In Mix60, the least-damped mode is not the \(1.49\) Hz electromechanical mode found by scalar and fixed-point reductions. It is a \(13.7417\) Hz PLL-family mode with damping ratio \(\zeta=0.12357\) and control participation \(\pi_c=0.853\).
+\end{abstract}
+
+\begin{IEEEkeywords}
+inverter-based resources, small-signal stability, damping margin, phase-locked loop, weak-node identification, weak-link analysis, power-system planning
+\end{IEEEkeywords}
+
+\section{Motivation and Reduced Object}
+
+Partition the linearized ANDES model into retained electrical or network-interface states and condensed controller states. Eliminating the condensed block gives a rational reduced object,
+\[
+F(s)=A_{rr}-sI + A_{rc}(sI-A_{cc})^{-1}A_{cr},
+\]
+or, in second-order notation, a network operator corrected by a frequency-dependent self-energy \(\Sigma(s)\). This is the object that should be screened. The static limit loses the frequency dependence that carries the control poles, and it is not reliable when \(A_{cc}\) contains integral controller states or is ill-conditioned near zero frequency.
+
+The tools are classical: Schur complements, rational eigenvalue problems, contour integration, and modal participation. The contribution is the formulation and validation of this object as a planning bridge. If a reduced model is going to speak about damping margins, it must retain the controller dependence that supplies those margins. Otherwise it can track the wrong pole.
+
+\section{Validation Result}
+
+The bridge audit compares rational reduced poles with the full ANDES eigensolve in three diagnostic cases. In no-PSS and base cases, the critical modes remain network-family. In Mix60, where \(60\%\) of synchronous generation is replaced by a mix of grid-following and grid-forming inverter models, the critical mode changes family. Scalar and fixed-point reductions continue to look near the low-frequency electromechanical mode. The rational bridge finds the PLL-family pole at \(13.7417\) Hz.
+
+This result changes the engineering question. The issue is no longer only where the grid is weak. It is what makes the weak element weak. A low-frequency network mode and a PLL-family mode ask for different interventions. A ranking that cannot separate those families can point to the wrong class of action.
+
+\section{Weak Nodes, Weak Links, and Scope}
+
+The poster uses the bridge as a classifier before using it as a ranking tool. Network-family weak nodes are candidates for topology reinforcement. Control-family weak nodes should be treated as tuning problems first. Control-resonant weak links require more care: reinforcing the line may pull a network mode toward a condensed controller pole and reduce damping instead of improving it.
+
+The present evidence supports the bridge and one bridge-enabled mechanism audit. It does not yet support a full planning claim across calibrated operating ranges. The ANDES cases are diagnostic, and the controller parameters are generic. The strict resonant mechanism appears in a minority of audited records, \(40/348\), and none of those resonant network modes becomes the global critical pole. The claim is limited by design: the bridge identifies a mechanism that scalar reductions miss, not a universal rule for every reinforcement reversal.
+
+\section{Poster Hook and Takeaway}
+
+Not every weak node is weak for the same reason. Some need copper. Some need control. The poster centers this point with the Mix60 complex-plane view: the mode that classical reductions find near \(1.49\) Hz is not the least-damped mode. The critical pole is the \(13.7417\) Hz PLL-family mode.
+
+\end{document}

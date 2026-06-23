@@ -1,0 +1,337 @@
+{
+  "seed": 20260609,
+  "graph_count": 40,
+  "n_range": [
+    4,
+    11
+  ],
+  "density_range": [
+    0.33,
+    1.0
+  ],
+  "max_abs_residual": 6.749862613701585e-14,
+  "max_relative_residual": 5.670191096847199e-15,
+  "interpretation": "The inertia-induced perturbation lies in existing-edge Laplacians plus diagonal shunts; no new-edge component is needed.",
+  "cases": [
+    {
+      "graph_index": 0,
+      "n": 8,
+      "edge_count": 23,
+      "density": 0.8643013438280671,
+      "max_abs_residual": 6.749862613701585e-14,
+      "max_relative_residual": 5.032652505935024e-15
+    },
+    {
+      "graph_index": 1,
+      "n": 11,
+      "edge_count": 31,
+      "density": 0.6851934719497399,
+      "max_abs_residual": 2.522725932031914e-14,
+      "max_relative_residual": 4.507668346585338e-15
+    },
+    {
+      "graph_index": 2,
+      "n": 11,
+      "edge_count": 43,
+      "density": 0.8020063247702034,
+      "max_abs_residual": 4.5804985212098195e-14,
+      "max_relative_residual": 3.9088233901586025e-15
+    },
+    {
+      "graph_index": 3,
+      "n": 10,
+      "edge_count": 32,
+      "density": 0.7393746437709646,
+      "max_abs_residual": 3.279772192755159e-14,
+      "max_relative_residual": 3.36925276898576e-15
+    },
+    {
+      "graph_index": 4,
+      "n": 6,
+      "edge_count": 5,
+      "density": 0.34996008114911353,
+      "max_abs_residual": 3.680434364140007e-15,
+      "max_relative_residual": 1.2682832212946193e-15
+    },
+    {
+      "graph_index": 5,
+      "n": 11,
+      "edge_count": 37,
+      "density": 0.5660857760633298,
+      "max_abs_residual": 3.325321459372672e-14,
+      "max_relative_residual": 3.4991828041988148e-15
+    },
+    {
+      "graph_index": 6,
+      "n": 8,
+      "edge_count": 15,
+      "density": 0.6163991333713068,
+      "max_abs_residual": 1.3384971649191997e-14,
+      "max_relative_residual": 1.7728661904064813e-15
+    },
+    {
+      "graph_index": 7,
+      "n": 4,
+      "edge_count": 6,
+      "density": 0.9631353402034477,
+      "max_abs_residual": 5.573333055253698e-15,
+      "max_relative_residual": 1.1125242896303078e-15
+    },
+    {
+      "graph_index": 8,
+      "n": 7,
+      "edge_count": 16,
+      "density": 0.7569360716401283,
+      "max_abs_residual": 1.3271240109079667e-14,
+      "max_relative_residual": 1.6044139371718095e-15
+    },
+    {
+      "graph_index": 9,
+      "n": 7,
+      "edge_count": 18,
+      "density": 0.9388868337275917,
+      "max_abs_residual": 2.3401197435109872e-14,
+      "max_relative_residual": 2.529984372054791e-15
+    },
+    {
+      "graph_index": 10,
+      "n": 5,
+      "edge_count": 10,
+      "density": 0.9033934517803721,
+      "max_abs_residual": 7.939808108252249e-15,
+      "max_relative_residual": 8.676586034035277e-16
+    },
+    {
+      "graph_index": 11,
+      "n": 11,
+      "edge_count": 47,
+      "density": 0.8094246561508738,
+      "max_abs_residual": 4.034417848931314e-14,
+      "max_relative_residual": 3.44023253721029e-15
+    },
+    {
+      "graph_index": 12,
+      "n": 9,
+      "edge_count": 17,
+      "density": 0.4461967611833572,
+      "max_abs_residual": 1.1099773369033639e-14,
+      "max_relative_residual": 1.5074109269604535e-15
+    },
+    {
+      "graph_index": 13,
+      "n": 10,
+      "edge_count": 26,
+      "density": 0.45475368853987796,
+      "max_abs_residual": 1.4445538801246286e-14,
+      "max_relative_residual": 1.622654475052233e-15
+    },
+    {
+      "graph_index": 14,
+      "n": 10,
+      "edge_count": 19,
+      "density": 0.4356619488297338,
+      "max_abs_residual": 1.639802159268388e-14,
+      "max_relative_residual": 1.8057374987052904e-15
+    },
+    {
+      "graph_index": 15,
+      "n": 11,
+      "edge_count": 24,
+      "density": 0.4609374686290254,
+      "max_abs_residual": 1.9846407640177808e-14,
+      "max_relative_residual": 5.670191096847199e-15
+    },
+    {
+      "graph_index": 16,
+      "n": 4,
+      "edge_count": 5,
+      "density": 0.5322056972502147,
+      "max_abs_residual": 3.1890060783171724e-15,
+      "max_relative_residual": 7.908974139777739e-16
+    },
+    {
+      "graph_index": 17,
+      "n": 5,
+      "edge_count": 10,
+      "density": 0.9781473682902184,
+      "max_abs_residual": 6.090723777092301e-15,
+      "max_relative_residual": 8.311433666663692e-16
+    },
+    {
+      "graph_index": 18,
+      "n": 11,
+      "edge_count": 28,
+      "density": 0.5360541280504346,
+      "max_abs_residual": 1.532133077050414e-14,
+      "max_relative_residual": 1.7635936679165849e-15
+    },
+    {
+      "graph_index": 19,
+      "n": 5,
+      "edge_count": 5,
+      "density": 0.5270716993160663,
+      "max_abs_residual": 2.747942376169982e-15,
+      "max_relative_residual": 9.119312369057343e-16
+    },
+    {
+      "graph_index": 20,
+      "n": 11,
+      "edge_count": 39,
+      "density": 0.7131923990844742,
+      "max_abs_residual": 3.8378029486448917e-14,
+      "max_relative_residual": 2.9259391715323246e-15
+    },
+    {
+      "graph_index": 21,
+      "n": 6,
+      "edge_count": 12,
+      "density": 0.901003010907582,
+      "max_abs_residual": 1.633666038437661e-14,
+      "max_relative_residual": 2.000387355486189e-15
+    },
+    {
+      "graph_index": 22,
+      "n": 6,
+      "edge_count": 6,
+      "density": 0.38644941365414515,
+      "max_abs_residual": 1.0642927439705164e-14,
+      "max_relative_residual": 4.315391802539098e-15
+    },
+    {
+      "graph_index": 23,
+      "n": 4,
+      "edge_count": 5,
+      "density": 0.7948663315658138,
+      "max_abs_residual": 1.1691899219693094e-14,
+      "max_relative_residual": 2.9270264236600985e-15
+    },
+    {
+      "graph_index": 24,
+      "n": 11,
+      "edge_count": 25,
+      "density": 0.4866652997159838,
+      "max_abs_residual": 1.2624508028624427e-14,
+      "max_relative_residual": 1.829659852875353e-15
+    },
+    {
+      "graph_index": 25,
+      "n": 5,
+      "edge_count": 5,
+      "density": 0.4395496987854296,
+      "max_abs_residual": 1.5664799304247994e-14,
+      "max_relative_residual": 3.1466297206415996e-15
+    },
+    {
+      "graph_index": 26,
+      "n": 4,
+      "edge_count": 5,
+      "density": 0.7432728484122678,
+      "max_abs_residual": 2.162793866957265e-15,
+      "max_relative_residual": 1.1131316119621125e-15
+    },
+    {
+      "graph_index": 27,
+      "n": 8,
+      "edge_count": 19,
+      "density": 0.5620731180344208,
+      "max_abs_residual": 1.1784298186106472e-14,
+      "max_relative_residual": 1.482280440476464e-15
+    },
+    {
+      "graph_index": 28,
+      "n": 8,
+      "edge_count": 23,
+      "density": 0.7633895066271407,
+      "max_abs_residual": 3.3627345986643565e-14,
+      "max_relative_residual": 5.1032462356524055e-15
+    },
+    {
+      "graph_index": 29,
+      "n": 7,
+      "edge_count": 17,
+      "density": 0.6748282288495977,
+      "max_abs_residual": 1.3407369625580591e-14,
+      "max_relative_residual": 1.6014461171761857e-15
+    },
+    {
+      "graph_index": 30,
+      "n": 9,
+      "edge_count": 12,
+      "density": 0.39836259716604167,
+      "max_abs_residual": 1.7212142744969242e-14,
+      "max_relative_residual": 5.463958308405382e-15
+    },
+    {
+      "graph_index": 31,
+      "n": 8,
+      "edge_count": 10,
+      "density": 0.5332522552757217,
+      "max_abs_residual": 1.1373819873821995e-14,
+      "max_relative_residual": 2.366530658172612e-15
+    },
+    {
+      "graph_index": 32,
+      "n": 10,
+      "edge_count": 17,
+      "density": 0.4377888609558853,
+      "max_abs_residual": 1.4824209349932326e-14,
+      "max_relative_residual": 1.8862453090733033e-15
+    },
+    {
+      "graph_index": 33,
+      "n": 10,
+      "edge_count": 22,
+      "density": 0.4924331370547983,
+      "max_abs_residual": 1.2231031192979811e-14,
+      "max_relative_residual": 1.4651155548497313e-15
+    },
+    {
+      "graph_index": 34,
+      "n": 8,
+      "edge_count": 16,
+      "density": 0.5178347450287738,
+      "max_abs_residual": 2.97891303561349e-14,
+      "max_relative_residual": 3.4279343359595417e-15
+    },
+    {
+      "graph_index": 35,
+      "n": 6,
+      "edge_count": 13,
+      "density": 0.8473160320607078,
+      "max_abs_residual": 2.4952437024215168e-14,
+      "max_relative_residual": 3.4185196504246693e-15
+    },
+    {
+      "graph_index": 36,
+      "n": 11,
+      "edge_count": 26,
+      "density": 0.5206605395318993,
+      "max_abs_residual": 2.1452021044139694e-14,
+      "max_relative_residual": 1.906230249118162e-15
+    },
+    {
+      "graph_index": 37,
+      "n": 11,
+      "edge_count": 25,
+      "density": 0.4652086972630889,
+      "max_abs_residual": 1.741309642273484e-14,
+      "max_relative_residual": 1.766342233546824e-15
+    },
+    {
+      "graph_index": 38,
+      "n": 9,
+      "edge_count": 14,
+      "density": 0.37802330151486946,
+      "max_abs_residual": 9.998085487749892e-15,
+      "max_relative_residual": 1.7518162159319262e-15
+    },
+    {
+      "graph_index": 39,
+      "n": 11,
+      "edge_count": 31,
+      "density": 0.5878911520002467,
+      "max_abs_residual": 2.0221835602057885e-14,
+      "max_relative_residual": 1.7347622240026161e-15
+    }
+  ]
+}

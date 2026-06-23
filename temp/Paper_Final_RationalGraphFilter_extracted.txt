@@ -1,0 +1,227 @@
+Separating Network and Inverter-Control Effects on the
+Damping Margin of Inverter-Dominated Grids:
+A Rational Graph-Filter Perturbation Approach
+Jorge L. Mayorga Taborda
+Universidad de los Andes, Bogot´ a, Colombia
+Abstract
+In inverter-dominated grids the network damping is non-proportional: each grid-following unit contributes
+phase-locked-loop (PLL) damping unrelated to inertia, so the inertia-normalized stiffness ˜L and damping ˜D
+operators do not share an eigenbasis. Classical low-inertia formulas and frequency-only graph metrics then
+misidentify the least-damped mode and can recommend reinforcements that improve modal frequency yet
+reduce the damping margin. This paper develops a spectral-perturbation framework for the damping margin
+of such grids and makes the following points. (i) The damping margin admits a closed-form second-order
+decomposition ζmin ≈ ζ (0)
+net + ∆ζ (2)
+ctrl into a network term (the inertial-Laplacian modal estimate) and a control
+correction (the non-proportional modal coupling), giving a quantitative network-vs-control separation. (ii)
+This correction is exactly a rational graph filter of the operator pair ( ˜L, ˜D) evaluated at the critical pole;
+we show why polynomial graph filters of ˜L alone are structurally insufficient for IBR damping, while the
+rational pair-filter is not. (iii) The framework yields sensitivity-based definitions of weak nodes and weak
+links and a diagnostic for damping-aware “Braess-like” topology reversals, where a frequency-strengthening
+reinforcement lowers the margin. The estimator is paired with a coupling/degeneracy trigger and a reduced
+quadratic-eigenvalue-problem (QEP) fallback. Results are verified on random ensembles and a reduced 7-
+state PLL model; full IEEE 39-bus validation in ANDES is identified as the decisive next stage. We claim a
+power-system formulation and verified result, not new linear algebra.
+Index terms: inverter-based resources, damping margin, non-proportional damping, graph signal processing, rational
+graph filter, quadratic eigenvalue problem, weak nodes, Braess paradox, spectral perturbation.
+Reproducibility and honesty. Every numerical claim is code-generated and reproduces on re-run; the second-
+order correction and the 7-state PLL result were independently reproduced by a second implementation. Classical
+components (the proportional damping-ratio formula, the dispersion relation, Rayleigh and QEP eigen-sensitivities)
+are cited as known. The contributions are their power-system synthesis: the network-vs-control decomposition, the
+rational-graph-filter form, and the sensitivity-based weak-element/Braess diagnostics. No benchmark (ANDES) claim
+is made yet. We explicitly do not claim that the second-order correction always outperforms a large reduced QEP.
+1 Introduction
+Replacing synchronous generators (SGs) by inverter-based resources (IBRs) lowers inertia and, critically, makes
+network damping non-proportional. A synchronous machine contributes inertia and damping through electrome-
+chanical dynamics; a grid-following (GFL) inverter contributes damping through a PLL and current controller,
+a grid-forming (GFM) inverter through droop or virtual-synchronous-machine behavior. These are physically
+distinct and appear in the linearized model as heterogeneous, non-commuting dynamic coefficients, [ ˜L, ˜D] ̸= 0.
+Two intuitions then fail. First, the textbook low-inertia damping-ratio formula, derived for proportional
+damping, loses accuracy. Second, frequency-based graph reasoning (the Fiedler value λ2, modal-frequency sensi-
+tivities ∂νk/∂w) can mislead, because the damping ratio depends on both modal decay and modal frequency. A
+reinforcement that raises oscillation frequency can lower the damping ratio.
+This paper asks: how much of the damping margin is set by the network, and how much by the inverter
+control, and can we compute that split cheaply and reliably? The answer is a second-order spectral-perturbation
+decomposition. The network term is the inertial-Laplacian modal estimate; the control term is a closed-form
+correction capturing the non-proportional coupling. We show this correction is a rational graph filter of ( ˜L, ˜D),
+which clarifies a long-standing negative result — polynomial graph filters of ˜L cannot represent IBR damping —
+and we derive sensitivity-based weak-node, weak-link, and Braess-like diagnostics from the same object.
+1
+
+Contributions (power-system formulation and verified result, not new algebra). (C1) A network-
+vs-control decomposition of the damping margin via a closed-form second-order correction (Sec. III). (C2) The
+rational-graph-filter form of the correction, and the precise sense in which polynomial filters of ˜L are insufficient
+(Sec. IV). (C3) Sensitivity-based weak-node, weak-link, and damping-aware Braess-like diagnostics (Sec. V).
+(C4) An adaptive estimator (diagonal screen → second-order correction → trigger → reduced QEP) with honest
+failure modes (Sec. VI). Section VII gives the validation plan; the IEEE 39-bus ANDES study is required for any
+final benchmark claim.
+2 Model and Damping Region
+Dynamic IBR network. For n buses, small-signal,
+M ¨θ + D ˙θ + Lθ = p, (1)
+with M = diag(Mi) ≻ 0, D = diag(Di) ⪰ 0, and L the weighted Laplacian (the linearized active-power Jacobian),
+L = ∂Pe/∂θ, symmetric PSD, L1 = 0. Inertia normalization ϑ = M 1/2θ gives
+¨ϑ + ˜D ˙ϑ + ˜Lϑ = M −1/2p, ˜L = M −1/2LM −1/2, ˜D = M −1/2DM −1/2. (2)
+Let ˜Lqk = νkqk with Q = [q1, . . . , qn] orthonormal. In modal coordinates x = Q⊤ϑ,
+¨x + Γ ˙x + Λx = Q⊤M −1/2p, Γ = Q⊤ ˜DQ, Λ = diag(νk). (3)
+Write Γ = ∆ + E with ∆ = diag(δk), δk = q⊤
+k ˜Dqk, and E the off-diagonal modal damping (the non-proportional
+coupling). The exact poles solve the QEP P (s)v = ( s2I + s ˜D + ˜L)v = 0, and the damping margin is ζmin =
+minj −Re(sj)/|sj| over oscillatory poles.
+Damping region. If E = 0 (proportional damping), each mode solves s2 + δks + νk = 0, giving ζk =
+δk/(2√νk), so a target margin ζ ⋆ becomes the geometric condition δk ≥ 2ζ ⋆√νk — a region in the ( ν, δ) plane.
+We use this region as a planning coordinate and a zeroth-order screen, not as a new result: the proportional
+formula and the region geometry are established. With E ̸= 0 the region is only a first screen, motivating the
+correction below.
+3 C1: Network-vs-Control Decomposition
+The diagonal (network) estimate ignores E:
+ζ (0)
+net = min
+k≥2
+δk
+2√νk
+. (4)
+Let mode c attain this minimum, with diagonal pole s0 solving s2
+0 + δcs0 + νc = 0. The non-proportional coupling
+E perturbs s0. Since Ecc = 0, the first-order shift vanishes and the leading correction is second order.
+Theorem 1 (Closed-form second-order margin correction) . The second-order shift of the critical pole due to
+non-proportional modal damping is
+∆sc = s2
+0
+2s0 + δc
+X
+ℓ̸=c
+EcℓEℓc
+s2
+0 + δℓs0 + νℓ
+, (5)
+and the corrected margin is ζmin ≈ −Re(s0 + ∆sc)/|s0 + ∆sc| =: ζ (0)
+net + ∆ζ (2)
+ctrl.
+Proof. Eliminate the non-critical modal coordinates from P (s)v = 0 by Schur complement around mode c. With
+Ecc = 0, the diagonal blocks give pℓ(s) = s2 + δℓs + νℓ, and the off-diagonal couplings Ecℓ enter quadratically;
+expanding the critical equation pc(s) +P
+ℓ̸=c EcℓEℓc/pℓ(s) + O(E3) = 0 about s0 with p′
+c(s0) = 2 s0 + δc yields
+(5).
+2
+
+Interpretation and verification. ζ (0)
+net is what the network (inertia and topology) sets; ∆ ζ (2)
+ctrl is what the non-
+proportional inverter damping adds or removes. In the reduced 7-state PLL model, ζ (0) is the grid with a memoryless
+PLL and the correction is the cost of the PLL integral state. Verified (random ensembles, n = 10, 400 trials/regime;
+error vs. full margin):
+regime diagonal med/p95 second-order med/p95
+proportional 0 .00%/0% 0 .00%/0%
+weak heterog. 0 .00%/0% 0 .00%/0%
+moderate heterog. 0 .12%/2% 0 .06%/1%
+strong heterog. 1 .80%/28% 0 .61%/14%
+On the 7-state PLL model (400 trials): order-0 median 2 .16%/p95 29 .2% → order-2 median 0 .09%/p95 12 .9%; the
+corrected critical pole tracks the true pole (complex distance 7.4×10−4 → 1.6×10−4). Both results were independently
+reproduced.
+4 C2: The Rational Graph-Filter Form
+Why polynomial graph filters fail. A polynomial graph filter h(˜L) =P
+m am ˜Lm shares the eigenvectors qk
+of ˜L; it only rescales each mode by h(νk) and adds no new structure. IBR damping lives in the entanglement
+of ˜L and ˜D (the off-diagonal E), which a filter of ˜L alone cannot represent. This is a structural, not numerical,
+limitation.
+The correction is a rational pair-filter. Define the spectral filter H(Λ; s0) = diag
+ 
+1/pℓ(s0)
+
+ℓ̸=c, pℓ(s0) =
+s2
+0 + δℓs0 + νℓ. Then (5) is exactly
+∆sc = s2
+0
+2s0 + δc
+
+E H(Λ; s0) E
+
+cc. (6)
+Proposition 1 (Rational graph-filter form). The second-order margin correction is a rational graph filter of the
+operator pair (˜L, ˜D) evaluated at the critical pole s0: it filters the non-proportional coupling E = offdiag(Q⊤ ˜DQ)
+through the resolvent-type response 1/pℓ(s0) of every other mode. Unlike a polynomial filter of ˜L, it depends on
+both ˜L (through νℓ) and ˜D (through δℓ and E), and therefore captures non-proportional damping.
+Verified. The rational-filter form (6) reproduces the direct correction (5) to machine precision. This is an exact
+reformulation, valuable for interpretation and for connecting to graph signal processing, not a separate mechanism: it
+explains why polynomial graph filters are insufficient for IBR damping and what filter class suffices.
+5 C3: Weak Nodes, Weak Links, and Braess-Like Reversals
+The framework yields sensitivity-based diagnostics. Crucially, the locator of where to act is the margin sensi-
+tivity (a first-order quantity), not the second-order coupling decomposition; we verified that decomposing the
+correction’s Ecℓ terms does not predict the best intervention, whereas the sensitivity does.
+Weak nodes. Define Snode
+i =
+∂ζmin/∂ρi
+ for a local parameter ρi (nodal damping, virtual inertia, PLL gain,
+droop). For damping, ∂ζc/∂Di ≈ q2
+c,i/(2Mi
+√νc). A weak node is a bus whose local dynamics most erode the
+critical-mode margin.
+Weak links. Define Slink
+ij =
+∂ζmin/∂wij
+, with the closed-form QEP sensitivity (left/right critical eigenvec-
+tors y, v)
+ds
+dwij
+= − y∗(s ∂w ˜D + ∂w ˜L)v
+y∗(2sI + ˜D)v
+, dζ
+dwij
+= σωb − ω2a
+|s|3 , (7)
+where s = σ + iω, ds/dw = a + ib. This ranks reinforcements by margin change, not by frequency change
+∂νk/∂wij ≥ 0.
+Damping-aware Braess-like reversals. A reinforcement with
+∆νc > 0 (or ∆ λ2 > 0) but ∆ ζmin < 0 (8)
+3
+
+strengthens the grid by classical spectral metrics yet reduces damping robustness, because raising ω without
+raising decay −σ enough lowers ζ = −σ/
+√
+σ2 + ω2.
+Verified, and honest framing. Weak-node sensitivity predicts the best damping-placement bus in ∼78% of random
+cases (vs. ∼17% for the second-order coupling decomposition, which is not an intervention locator). The closed-form
+link sensitivity (7) matches finite differences to 0 .00%. Reinforcing a line raises νc but lowers ζmin in a substantial
+fraction of cases ( ∼72% in our runs; to be reproduced in shared code). We do not claim a new Braess paradox
+(topological Braess effects in power grids are known); we provide a damping-margin diagnostic that identifies Braess-
+like topology reversals in IBR grids via condition (8).
+6 C4: Adaptive Estimator and Failure Modes
+Algorithm. (1) Compute ( νk, qk) of ˜L and Γ = Q⊤ ˜DQ. (2) Diagonal screen ζ (0)
+net over all modes (not just Fiedler).
+(3) Second-order correction (5)/(6). (4) Coupling/degeneracy trigger η = maxℓ̸=c |Ecℓ|/(|√νℓ − √νc| + ϵ); if η exceeds
+a threshold or modes cluster, (5) fall back to a damping-selected reduced QEP.
+Honest failure modes. The second-order correction improves the diagonal screen in ∼76–95% of cases but
+worsens it in a small fraction (18 /399 on the PLL model, worst relative error ∼406%); it does not reliably beat a
+large reduced QEP ( r = 20). The trigger and fallback are therefore mandatory: the contribution is the calibrated
+combination, not any single layer claimed universal.
+7 Validation Plan and Scope
+The decisive test is the IEEE 39-bus New England system in ANDES with GENROU machines and WECC
+renewable models (REGCA1/REGCP1 for GFL with PLL, REGF1/REGF2 for GFM), documented PLL band-
+widths, penetration sweep ρ. Experiments: (A) decomposition accuracy vs. the ANDES eigen-analysis across ρ;
+(B) network-vs-control split vs. penetration; (C) weak-node/link ranking by regret against full eigen-sensitivities;
+(D) Braess-like reversal detection on real reinforcements; (E) trigger precision/recall. Until this is done, all results
+are stated for the reduced model.
+Prior art and boundary. The proportional formula and dispersion relation (Pirani et al. 2017; Paganini–
+Mallada 2017; Guo–Zhao–Low 2018; a 2026 frequency-shaping study), modal perturbation for non-proportional
+damping (Pan et al. 2020), GFM placement by damping indices (Liyanage et al. 2025), and QEP damping-
+ratio sensitivity (Setareh–Ghazizadeh 2025) are known. The QEP perturbation technique is standard (Tisseur–
+Meerbergen 2001). Our differentiated claim is the network-vs-control decomposition, its rational-graph-filter
+form for IBR damping, and the sensitivity-based weak-element/Braess diagnostics — verified on reduced models,
+pending ANDES.
+8 Conclusion
+We presented a second-order spectral-perturbation framework that decomposes the damping margin of an inverter-
+dominated grid into a network term and an inverter-control correction, ζmin ≈ ζ (0)
+net + ∆ζ (2)
+ctrl. The correction is a
+rational graph filter of the operator pair (˜L, ˜D), which explains why polynomial graph filters of the Laplacian alone
+cannot capture IBR damping. The same object yields sensitivity-based weak-node and weak-link rankings and a
+diagnostic for damping-aware Braess-like topology reversals. The estimator is paired with a coupling/degeneracy
+trigger and a reduced-QEP fallback, with failure modes reported honestly. Results are verified on random ensem-
+bles and a reduced 7-state PLL model and independently reproduced; IEEE 39-bus validation in ANDES with
+vendor-grade IBR models is the decisive next stage and the focus of ongoing work.
+References (to be completed). Kundur (1994); Rogers (2000); Pirani et al. (2017); Paganini & Mallada (2017);
+Guo, Zhao & Low (2018); Pan et al. (2020); Tisseur & Meerbergen (2001); Liyanage et al. (2025); Setareh & Ghazizadeh
+(2025); Witthaut & Timme / Coletta & Jacquod (Braess in power grids); ANDES (2026).
+4

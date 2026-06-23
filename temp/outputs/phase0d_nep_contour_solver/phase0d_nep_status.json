@@ -1,0 +1,2001 @@
+{
+  "gate": "G0.5D rational Schur NEP by Beyn contour integration",
+  "status": "PASS",
+  "random_seed": 20260608,
+  "acceptance_rule": "For each of no_pss, base, and mix60: critical mode frequency error <= 5%, critical damping-ratio error <= 10%, correct damping sign, and accepted Beyn zero from contour with residual <= 1e-5.",
+  "solver": {
+    "type": "Beyn contour integral",
+    "nep": "S_e(s)=sI-Aee-Aec(sI-Acc)^(-1)Ace",
+    "fixed_point_used_for_acceptance": false,
+    "contours": [
+      {
+        "name": "network_margin",
+        "real_min": -4.0,
+        "real_max": 0.8,
+        "imag_min": 3.5,
+        "imag_max": 12.0,
+        "nodes_per_side": 128,
+        "quadrature_nodes": 512,
+        "frequency_band_hz": [
+          0.5570423008216338,
+          1.909859317102744
+        ]
+      },
+      {
+        "name": "pll_control",
+        "real_min": -25.0,
+        "real_max": 0.8,
+        "imag_min": 60.0,
+        "imag_max": 95.0,
+        "nodes_per_side": 128,
+        "quadrature_nodes": 512,
+        "frequency_band_hz": [
+          9.549296585513721,
+          15.119719593730057
+        ]
+      }
+    ]
+  },
+  "cases": [
+    {
+      "case": "no_pss",
+      "path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\outputs\\ieee39_mode_diagnostics\\ieee39_no_ieeest.xlsx",
+      "n_states": 130,
+      "n_retained_interface_states": 20,
+      "n_condensed_states": 110,
+      "partition_rationale": "x_e matches Phase-0B: delta/omega GENROU states plus explicit grid-forming angle states (delta REGF1). PLL, BusFreq, REGCP1/REECA1/REPCA1, exciters, PSS, governors, GENROU internal voltage states, and REGF1 internal controls are kept in x_c and enter through the rational Schur term.",
+      "retained_state_names": [
+        "delta GENROU 1",
+        "delta GENROU 2",
+        "delta GENROU 3",
+        "delta GENROU 4",
+        "delta GENROU 5",
+        "delta GENROU 6",
+        "delta GENROU 7",
+        "delta GENROU 8",
+        "delta GENROU 9",
+        "delta GENROU 10",
+        "omega GENROU 1",
+        "omega GENROU 2",
+        "omega GENROU 3",
+        "omega GENROU 4",
+        "omega GENROU 5",
+        "omega GENROU 6",
+        "omega GENROU 7",
+        "omega GENROU 8",
+        "omega GENROU 9",
+        "omega GENROU 10"
+      ],
+      "condensed_state_name_sample": [
+        "e1q GENROU 1",
+        "e1q GENROU 2",
+        "e1q GENROU 3",
+        "e1q GENROU 4",
+        "e1q GENROU 5",
+        "e1q GENROU 6",
+        "e1q GENROU 7",
+        "e1q GENROU 8",
+        "e1q GENROU 9",
+        "e1q GENROU 10",
+        "e1d GENROU 1",
+        "e1d GENROU 2",
+        "e1d GENROU 3",
+        "e1d GENROU 4",
+        "e1d GENROU 5",
+        "e1d GENROU 6",
+        "e1d GENROU 7",
+        "e1d GENROU 8",
+        "e1d GENROU 9",
+        "e1d GENROU 10",
+        "e2d GENROU 1",
+        "e2d GENROU 2",
+        "e2d GENROU 3",
+        "e2d GENROU 4",
+        "e2d GENROU 5",
+        "e2d GENROU 6",
+        "e2d GENROU 7",
+        "e2d GENROU 8",
+        "e2d GENROU 9",
+        "e2d GENROU 10",
+        "e2q GENROU 1",
+        "e2q GENROU 2",
+        "e2q GENROU 3",
+        "e2q GENROU 4",
+        "e2q GENROU 5",
+        "e2q GENROU 6",
+        "e2q GENROU 7",
+        "e2q GENROU 8",
+        "e2q GENROU 9",
+        "e2q GENROU 10",
+        "LAG_y TGOV1N TGOV1 1",
+        "LAG_y TGOV1N TGOV1 2",
+        "LAG_y TGOV1N TGOV1 3",
+        "LAG_y TGOV1N TGOV1 4",
+        "LAG_y TGOV1N TGOV1 5",
+        "LAG_y TGOV1N TGOV1 6",
+        "LAG_y TGOV1N TGOV1 7",
+        "LAG_y TGOV1N TGOV1 8",
+        "LAG_y TGOV1N TGOV1 9",
+        "LAG_y TGOV1N TGOV1 10"
+      ],
+      "contours": [
+        {
+          "case": "no_pss",
+          "name": "network_margin",
+          "real_min": -4.0,
+          "real_max": 0.8,
+          "imag_min": 3.5,
+          "imag_max": 12.0,
+          "nodes_per_side": 128,
+          "quadrature_nodes": 512,
+          "frequency_band_hz": [
+            0.5570423008216338,
+            1.909859317102744
+          ],
+          "beyn_rank": 14,
+          "accepted_zeros": 9,
+          "trace_count_real": 9.000064187314056,
+          "trace_count_imag": 3.5089947398610893e-06,
+          "trace_count_rounded": 9,
+          "acc_poles_in_contour_upper": 0,
+          "andes_poles_in_contour_upper": 9,
+          "argument_count_plus_acc_poles": 9.000064187314056,
+          "count_error_abs": 6.418731405588574e-05,
+          "count_check_pass": true,
+          "linear_solve_failures": 0,
+          "leading_singular_values": "5.802e+02; 2.343e+02; 2.114e+02; 1.835e+02; 1.361e+02; 1.300e+02; 9.192e+01; 7.382e+01"
+        },
+        {
+          "case": "no_pss",
+          "name": "pll_control",
+          "real_min": -25.0,
+          "real_max": 0.8,
+          "imag_min": 60.0,
+          "imag_max": 95.0,
+          "nodes_per_side": 128,
+          "quadrature_nodes": 512,
+          "frequency_band_hz": [
+            9.549296585513721,
+            15.119719593730057
+          ],
+          "beyn_rank": 20,
+          "accepted_zeros": 0,
+          "trace_count_real": -2.1897889878361394e-06,
+          "trace_count_imag": 1.5631066066183183e-06,
+          "trace_count_rounded": 0,
+          "acc_poles_in_contour_upper": 0,
+          "andes_poles_in_contour_upper": 0,
+          "argument_count_plus_acc_poles": -2.1897889878361394e-06,
+          "count_error_abs": 2.1897889878361394e-06,
+          "count_check_pass": true,
+          "linear_solve_failures": 0,
+          "leading_singular_values": "2.643e-05; 2.144e-05; 2.035e-05; 1.894e-05; 1.746e-05; 1.492e-05; 1.227e-05; 1.128e-05"
+        }
+      ],
+      "n_beyn_zeros": 9,
+      "accepted": true,
+      "count_checks_pass": true,
+      "critical_match": {
+        "andes_mode_index": 71,
+        "andes_real": -1.34634537929171,
+        "andes_imag": 8.611042315453796,
+        "andes_freq_hz": 1.3704899496779517,
+        "andes_zeta": 0.1544743228879957,
+        "andes_top_states": "omega GENROU 1:0.3684; delta GENROU 1:0.3423; omega GENROU 8:0.09074; delta GENROU 8:0.08036; omega GENROU 3:0.05055; delta GENROU 3:0.04642; e2q GENROU 1:0.02908; omega GENROU 9:0.02118",
+        "nep_real": -1.346345379291718,
+        "nep_imag": 8.611042315453792,
+        "nep_freq_hz": 1.370489949677951,
+        "nep_zeta": 0.15447432288799667,
+        "nep_family": "I_network",
+        "nep_pi_c": 0.6804033305071333,
+        "nep_relative_residual": 5.4665204419076374e-17,
+        "relative_freq_error": 4.860552351599713e-16,
+        "relative_zeta_error": 6.288716003962517e-15,
+        "damping_sign_correct": true,
+        "pole_distance": 8.747542958250513e-15,
+        "nearest_acc_real": -0.44777986616109694,
+        "nearest_acc_imag": 0.5849571139737398,
+        "nearest_acc_freq_hz": 0.0930988161856899,
+        "distance_to_nearest_acc": 8.076228305515192,
+        "top_condensed_states": "LAG_y TGOV1N TGOV1 1:3.536; LAG_y TGOV1N TGOV1 8:2.216; LAG_y TGOV1N TGOV1 9:1.144; LAG_y TGOV1N TGOV1 3:1.122; LA_y IEEEX1 9:1.025; LA_y IEEEX1 7:0.7354"
+      },
+      "full_modes": [
+        {
+          "mode_index": 71,
+          "pole": {
+            "real": -1.34634537929171,
+            "imag": 8.611042315453796
+          },
+          "real": -1.34634537929171,
+          "imag": 8.611042315453796,
+          "freq_hz": 1.3704899496779517,
+          "zeta": 0.1544743228879957,
+          "top_states": "omega GENROU 1:0.3684; delta GENROU 1:0.3423; omega GENROU 8:0.09074; delta GENROU 8:0.08036; omega GENROU 3:0.05055; delta GENROU 3:0.04642; e2q GENROU 1:0.02908; omega GENROU 9:0.02118"
+        },
+        {
+          "mode_index": 75,
+          "pole": {
+            "real": -1.2596942998753742,
+            "imag": 7.753058879206725
+          },
+          "real": -1.2596942998753742,
+          "imag": 7.753058879206725,
+          "freq_hz": 1.2339376447082602,
+          "zeta": 0.16037401961335285,
+          "top_states": "omega GENROU 3:0.1874; omega GENROU 6:0.1724; delta GENROU 3:0.1712; delta GENROU 6:0.1571; omega GENROU 2:0.1053; delta GENROU 2:0.09481; omega GENROU 7:0.07072; delta GENROU 7:0.0628"
+        },
+        {
+          "mode_index": 68,
+          "pole": {
+            "real": -1.5264662599649392,
+            "imag": 9.355298715565064
+          },
+          "real": -1.5264662599649392,
+          "imag": 9.355298715565064,
+          "freq_hz": 1.4889420346834394,
+          "zeta": 0.1610363906472949,
+          "top_states": "omega GENROU 2:0.3582; delta GENROU 2:0.3251; omega GENROU 3:0.1904; delta GENROU 3:0.1753; LAG_y TGOV1N TGOV1 2:0.02286; e2d GENROU 2:0.01519; e2q GENROU 2:0.01294; LAG_y TGOV1N TGOV1 3:0.01026"
+        },
+        {
+          "mode_index": 64,
+          "pole": {
+            "real": -1.786914007073866,
+            "imag": 10.265048281830888
+          },
+          "real": -1.786914007073866,
+          "imag": 10.265048281830888,
+          "freq_hz": 1.633733175130353,
+          "zeta": 0.17149844205199252,
+          "top_states": "omega GENROU 7:0.3726; delta GENROU 7:0.3345; omega GENROU 6:0.1458; delta GENROU 6:0.1342; omega GENROU 4:0.04129; delta GENROU 4:0.03737; LAG_y TGOV1N TGOV1 7:0.02453; e1d GENROU 6:0.01732"
+        },
+        {
+          "mode_index": 66,
+          "pole": {
+            "real": -1.7774193365004332,
+            "imag": 9.890777839068312
+          },
+          "real": -1.7774193365004332,
+          "imag": 9.890777839068312,
+          "freq_hz": 1.5741661841114967,
+          "zeta": 0.17687147507972564,
+          "top_states": "omega GENROU 4:0.4174; delta GENROU 4:0.3765; omega GENROU 6:0.07055; delta GENROU 6:0.06479; omega GENROU 5:0.06025; delta GENROU 5:0.05382; LAG_y TGOV1N TGOV1 4:0.02729; e2q GENROU 4:0.00996"
+        },
+        {
+          "mode_index": 80,
+          "pole": {
+            "real": -1.1249115916098436,
+            "imag": 6.045902912822648
+          },
+          "real": -1.1249115916098436,
+          "imag": 6.045902912822648,
+          "freq_hz": 0.9622353340294127,
+          "zeta": 0.18292244577962927,
+          "top_states": "omega GENROU 9:0.3739; delta GENROU 9:0.3352; omega GENROU 5:0.1364; delta GENROU 5:0.119; omega GENROU 4:0.03091; omega GENROU 6:0.02876; delta GENROU 4:0.02723; delta GENROU 6:0.0258"
+        },
+        {
+          "mode_index": 84,
+          "pole": {
+            "real": -0.7686478064890911,
+            "imag": 4.00997708879188
+          },
+          "real": -0.7686478064890911,
+          "imag": 4.00997708879188,
+          "freq_hz": 0.6382076753664758,
+          "zeta": 0.18825651250524983,
+          "top_states": "omega GENROU 10:0.1843; delta GENROU 10:0.1821; omega GENROU 9:0.1024; delta GENROU 9:0.09002; omega GENROU 5:0.07208; delta GENROU 5:0.06244; omega GENROU 6:0.05411; omega GENROU 4:0.05017"
+        },
+        {
+          "mode_index": 77,
+          "pole": {
+            "real": -1.476989690366484,
+            "imag": 6.999449971131903
+          },
+          "real": -1.476989690366484,
+          "imag": 6.999449971131903,
+          "freq_hz": 1.1139970618300665,
+          "zeta": 0.20646842113741315,
+          "top_states": "omega GENROU 5:0.3068; delta GENROU 5:0.2671; omega GENROU 3:0.07963; omega GENROU 6:0.07858; delta GENROU 3:0.07172; delta GENROU 6:0.07058; omega GENROU 2:0.04662; omega GENROU 9:0.04242"
+        },
+        {
+          "mode_index": 49,
+          "pole": {
+            "real": -2.4443559652890565,
+            "imag": 10.602172797296754
+          },
+          "real": -2.4443559652890565,
+          "imag": 10.602172797296754,
+          "freq_hz": 1.6873882082042058,
+          "zeta": 0.2246588605010299,
+          "top_states": "omega GENROU 8:0.4588; delta GENROU 8:0.4042; omega GENROU 1:0.1142; delta GENROU 1:0.1061; LAG_y TGOV1N TGOV1 8:0.03401; e1d GENROU 8:0.03148; e2d GENROU 8:0.03001; e2q GENROU 8:0.024"
+        },
+        {
+          "mode_index": 93,
+          "pole": {
+            "real": -0.4164156051026967,
+            "imag": 0.7563528355053344
+          },
+          "real": -0.4164156051026967,
+          "imag": 0.7563528355053344,
+          "freq_hz": 0.12037729249224517,
+          "zeta": 0.4822935502750943,
+          "top_states": "omega GENROU 10:0.1961; delta GENROU 10:0.1715; W_x IEEEX1 9:0.0489; e1q GENROU 4:0.04305; delta GENROU 5:0.03892; delta GENROU 9:0.03374; e1q GENROU 5:0.03141; e1q GENROU 9:0.03122"
+        },
+        {
+          "mode_index": 106,
+          "pole": {
+            "real": -0.15530477714241164,
+            "imag": 0.2809761244740981
+          },
+          "real": -0.15530477714241164,
+          "imag": 0.2809761244740981,
+          "freq_hz": 0.044718739100856386,
+          "zeta": 0.4837541100011981,
+          "top_states": "W_x IEEEX1 8:0.362; e1q GENROU 8:0.3503; e1q GENROU 1:0.04599; vp IEEEX1 8:0.03931; e2d GENROU 8:0.02484; W_x IEEEX1 1:0.019; e1d GENROU 8:0.01636; delta GENROU 8:0.01483"
+        },
+        {
+          "mode_index": 109,
+          "pole": {
+            "real": -0.25228846322836884,
+            "imag": 0.34769611655427646
+          },
+          "real": -0.25228846322836884,
+          "imag": 0.34769611655427646,
+          "freq_hz": 0.05533755564346888,
+          "zeta": 0.5872860856749874,
+          "top_states": "e1q GENROU 3:0.2945; W_x IEEEX1 3:0.2776; W_x IEEEX1 7:0.095; e1q GENROU 1:0.06467; e1q GENROU 2:0.05727; e1q GENROU 7:0.05043; W_x IEEEX1 2:0.03207; W_x IEEEX1 1:0.02601"
+        },
+        {
+          "mode_index": 113,
+          "pole": {
+            "real": -0.23543778151049377,
+            "imag": 0.3228993640214162
+          },
+          "real": -0.23543778151049377,
+          "imag": 0.3228993640214162,
+          "freq_hz": 0.051391029905237695,
+          "zeta": 0.5891563566650215,
+          "top_states": "W_x IEEEX1 7:0.2118; e1q GENROU 4:0.1855; W_x IEEEX1 4:0.1606; e1q GENROU 7:0.1166; e1q GENROU 5:0.09447; W_x IEEEX1 5:0.07135; e2q GENROU 4:0.06294; e1d GENROU 4:0.04375"
+        },
+        {
+          "mode_index": 101,
+          "pole": {
+            "real": -0.38054620578649334,
+            "imag": 0.4761464384417898
+          },
+          "real": -0.38054620578649334,
+          "imag": 0.4761464384417898,
+          "freq_hz": 0.0757810593136117,
+          "zeta": 0.6243238964627689,
+          "top_states": "W_x IEEEX1 10:0.2437; e1q GENROU 10:0.2182; omega GENROU 10:0.06163; vp IEEEX1 10:0.056; delta GENROU 10:0.0461; W_x IEEEX1 9:0.01824; e2d GENROU 10:0.01576; delta GENROU 9:0.00963"
+        },
+        {
+          "mode_index": 111,
+          "pole": {
+            "real": -0.2727930639428093,
+            "imag": 0.3264290439508573
+          },
+          "real": -0.2727930639428093,
+          "imag": 0.3264290439508573,
+          "freq_hz": 0.051952795913540496,
+          "zeta": 0.6412504146640823,
+          "top_states": "e1q GENROU 1:0.5403; W_x IEEEX1 1:0.2223; e1q GENROU 3:0.05396; W_x IEEEX1 3:0.05241; W_x IEEEX1 7:0.03521; e1q GENROU 8:0.03182; W_x IEEEX1 8:0.03088; vp IEEEX1 1:0.02615"
+        },
+        {
+          "mode_index": 103,
+          "pole": {
+            "real": -0.38959187822738345,
+            "imag": 0.4477870386148417
+          },
+          "real": -0.38959187822738345,
+          "imag": 0.4477870386148417,
+          "freq_hz": 0.07126752064803347,
+          "zeta": 0.6563819287820957,
+          "top_states": "W_x IEEEX1 9:0.2652; omega GENROU 10:0.1521; delta GENROU 10:0.111; e1q GENROU 9:0.1032; e1d GENROU 9:0.0774; W_x IEEEX1 7:0.06538; delta GENROU 9:0.05889; LL_x TGOV1N TGOV1 9:0.05179"
+        }
+      ],
+      "beyn_zeros": [
+        {
+          "pole": {
+            "real": -1.346345379291718,
+            "imag": 8.611042315453792
+          },
+          "real": -1.346345379291718,
+          "imag": 8.611042315453792,
+          "freq_hz": 1.370489949677951,
+          "zeta": 0.15447432288799667,
+          "abs_residual": 6.520116678042544e-14,
+          "relative_residual": 5.4665204419076374e-17,
+          "contour": "network_margin",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.6804033305071333,
+          "pi_c_raw_norm": 0.8331335287321464,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "I_network",
+          "nearest_acc_real": -0.44777986616109694,
+          "nearest_acc_imag": 0.5849571139737398,
+          "nearest_acc_freq_hz": 0.0930988161856899,
+          "distance_to_nearest_acc": 8.076228305515192,
+          "top_condensed_states": "LAG_y TGOV1N TGOV1 1:3.536; LAG_y TGOV1N TGOV1 8:2.216; LAG_y TGOV1N TGOV1 9:1.144; LAG_y TGOV1N TGOV1 3:1.122; LA_y IEEEX1 9:1.025; LA_y IEEEX1 7:0.7354"
+        },
+        {
+          "pole": {
+            "real": -1.2596942998753955,
+            "imag": 7.7530588792067245
+          },
+          "real": -1.2596942998753955,
+          "imag": 7.7530588792067245,
+          "freq_hz": 1.2339376447082602,
+          "zeta": 0.1603740196133555,
+          "abs_residual": 9.278147442183102e-14,
+          "relative_residual": 7.779607614010527e-17,
+          "contour": "network_margin",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.6571836657725162,
+          "pi_c_raw_norm": 0.81804273737759,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "I_network",
+          "nearest_acc_real": -0.44777986616109694,
+          "nearest_acc_imag": 0.5849571139737398,
+          "nearest_acc_freq_hz": 0.0930988161856899,
+          "distance_to_nearest_acc": 7.213937064073254,
+          "top_condensed_states": "LAG_y TGOV1N TGOV1 6:2.284; LAG_y TGOV1N TGOV1 3:1.953; LAG_y TGOV1N TGOV1 7:1.619; LAG_y TGOV1N TGOV1 2:1.604; LA_y IEEEX1 7:1.409; LA_y IEEEX1 3:0.9924"
+        },
+        {
+          "pole": {
+            "real": -1.5264662599649337,
+            "imag": 9.355298715565073
+          },
+          "real": -1.5264662599649337,
+          "imag": 9.355298715565073,
+          "freq_hz": 1.4889420346834408,
+          "zeta": 0.1610363906472942,
+          "abs_residual": 8.663608753291266e-14,
+          "relative_residual": 7.262982559837995e-17,
+          "contour": "network_margin",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.6484475736589641,
+          "pi_c_raw_norm": 0.8122346686657177,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "I_network",
+          "nearest_acc_real": -9.943282155925296,
+          "nearest_acc_imag": 8.54488866988801,
+          "nearest_acc_freq_hz": 1.3599612699826076,
+          "distance_to_nearest_acc": 8.455740905954093,
+          "top_condensed_states": "LAG_y TGOV1N TGOV1 2:3.377; LAG_y TGOV1N TGOV1 3:2.253; LA_y IEEEX1 2:0.9563; LA_y IEEEX1 3:0.8376; LAG_y TGOV1N TGOV1 1:0.3136; WO_x BusFreq 2:0.2638"
+        },
+        {
+          "pole": {
+            "real": -1.7869140070738654,
+            "imag": 10.265048281830893
+          },
+          "real": -1.7869140070738654,
+          "imag": 10.265048281830893,
+          "freq_hz": 1.6337331751303539,
+          "zeta": 0.17149844205199236,
+          "abs_residual": 1.7215727775649287e-13,
+          "relative_residual": 1.443073092253047e-16,
+          "contour": "network_margin",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.741614175602757,
+          "pi_c_raw_norm": 0.8706535038980439,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "II_control",
+          "nearest_acc_real": -9.943282155925296,
+          "nearest_acc_imag": 8.54488866988801,
+          "nearest_acc_freq_hz": 1.3599612699826076,
+          "distance_to_nearest_acc": 8.335783734608139,
+          "top_condensed_states": "LAG_y TGOV1N TGOV1 7:4.583; LA_y IEEEX1 7:3.624; LAG_y TGOV1N TGOV1 6:2.571; LAG_y TGOV1N TGOV1 4:1.735; LA_y IEEEX1 6:0.5478; vp IEEEX1 7:0.4832"
+        },
+        {
+          "pole": {
+            "real": -1.7774193365004278,
+            "imag": 9.890777839068342
+          },
+          "real": -1.7774193365004278,
+          "imag": 9.890777839068342,
+          "freq_hz": 1.5741661841115016,
+          "zeta": 0.1768714750797246,
+          "abs_residual": 1.5682258187288003e-13,
+          "relative_residual": 1.3145997645591318e-16,
+          "contour": "network_margin",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.7283619071033945,
+          "pi_c_raw_norm": 0.8627950585715682,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "II_control",
+          "nearest_acc_real": -9.943282155925296,
+          "nearest_acc_imag": 8.54488866988801,
+          "nearest_acc_freq_hz": 1.3599612699826076,
+          "distance_to_nearest_acc": 8.276033666037275,
+          "top_condensed_states": "LAG_y TGOV1N TGOV1 4:5.226; LAG_y TGOV1N TGOV1 5:1.911; LAG_y TGOV1N TGOV1 6:1.779; LA_y IEEEX1 5:1.632; LA_y IEEEX1 4:0.8191; LAG_y TGOV1N TGOV1 1:0.6283"
+        },
+        {
+          "pole": {
+            "real": -1.1249115916098442,
+            "imag": 6.04590291282265
+          },
+          "real": -1.1249115916098442,
+          "imag": 6.04590291282265,
+          "freq_hz": 0.9622353340294132,
+          "zeta": 0.1829224457796293,
+          "abs_residual": 1.2536952804094404e-13,
+          "relative_residual": 1.0513720648542834e-16,
+          "contour": "network_margin",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.6957029562367832,
+          "pi_c_raw_norm": 0.8428108219159228,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "I_network",
+          "nearest_acc_real": -0.44777986616109694,
+          "nearest_acc_imag": 0.5849571139737398,
+          "nearest_acc_freq_hz": 0.0930988161856899,
+          "distance_to_nearest_acc": 5.502766249040092,
+          "top_condensed_states": "LAG_y TGOV1N TGOV1 9:3.831; LAG_y TGOV1N TGOV1 5:2.013; LA_y IEEEX1 9:1.92; LA_y IEEEX1 5:1.426; LAG_y TGOV1N TGOV1 4:0.9795; LAG_y TGOV1N TGOV1 6:0.8436"
+        },
+        {
+          "pole": {
+            "real": -0.7686478064891012,
+            "imag": 4.009977088791858
+          },
+          "real": -0.7686478064891012,
+          "imag": 4.009977088791858,
+          "freq_hz": 0.6382076753664724,
+          "zeta": 0.18825651250525316,
+          "abs_residual": 1.1089187293711432e-13,
+          "relative_residual": 9.300858875035421e-17,
+          "contour": "network_margin",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.5662797394515146,
+          "pi_c_raw_norm": 0.7538147740053119,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "I_network",
+          "nearest_acc_real": -0.44777986616109694,
+          "nearest_acc_imag": 0.5849571139737398,
+          "nearest_acc_freq_hz": 0.0930988161856899,
+          "distance_to_nearest_acc": 3.4400171602818266,
+          "top_condensed_states": "LAG_y TGOV1N TGOV1 9:1.482; LAG_y TGOV1N TGOV1 5:1.102; LAG_y TGOV1N TGOV1 4:0.9384; LAG_y TGOV1N TGOV1 6:0.8997; LAG_y TGOV1N TGOV1 7:0.817; LA_y IEEEX1 5:0.6411"
+        },
+        {
+          "pole": {
+            "real": -1.4769896903664717,
+            "imag": 6.99944997113189
+          },
+          "real": -1.4769896903664717,
+          "imag": 6.99944997113189,
+          "freq_hz": 1.1139970618300645,
+          "zeta": 0.20646842113741187,
+          "abs_residual": 7.632971955215083e-14,
+          "relative_residual": 6.400608868125663e-17,
+          "contour": "network_margin",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.6739001862806563,
+          "pi_c_raw_norm": 0.8289568930566408,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "I_network",
+          "nearest_acc_real": -0.44777986616109694,
+          "nearest_acc_imag": 0.5849571139737398,
+          "nearest_acc_freq_hz": 0.0930988161856899,
+          "distance_to_nearest_acc": 6.496536883353606,
+          "top_condensed_states": "LAG_y TGOV1N TGOV1 5:2.973; LA_y IEEEX1 5:2.057; LAG_y TGOV1N TGOV1 6:1.387; LAG_y TGOV1N TGOV1 9:1.265; LAG_y TGOV1N TGOV1 3:1.136; LAG_y TGOV1N TGOV1 7:1.054"
+        },
+        {
+          "pole": {
+            "real": -2.444355965289066,
+            "imag": 10.602172797296697
+          },
+          "real": -2.444355965289066,
+          "imag": 10.602172797296697,
+          "freq_hz": 1.6873882082041967,
+          "zeta": 0.22465886050103187,
+          "abs_residual": 2.7959367497115674e-14,
+          "relative_residual": 2.3434983541294986e-17,
+          "contour": "network_margin",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.7082346204011183,
+          "pi_c_raw_norm": 0.8505853566282782,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "II_control",
+          "nearest_acc_real": -9.943282155925296,
+          "nearest_acc_imag": 8.54488866988801,
+          "nearest_acc_freq_hz": 1.3599612699826076,
+          "distance_to_nearest_acc": 7.776008744432951,
+          "top_condensed_states": "LAG_y TGOV1N TGOV1 8:5.1; LAG_y TGOV1N TGOV1 1:2.031; LA_y IEEEX1 8:1.037; WO_x BusFreq 8:0.4358; L_y BusFreq 8:0.4246; LAG_y TGOV1N TGOV1 9:0.3848"
+        }
+      ],
+      "effective_damping": {
+        "s0_static": {
+          "available": true,
+          "eval_pole": {
+            "real": 0.0,
+            "imag": 0.0
+          },
+          "cond_sI_minus_Acc": 89395.1380100419,
+          "linear_solve_mode": "solve",
+          "paired_genrou_ids": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "scalar_D_norm": 0.0,
+          "D_eff_real_fro": 9.968155699989408,
+          "D_eff_imag_fro": 0.0,
+          "D_eff_real_diag": [
+            2.380952392290249,
+            3.3003300487191582,
+            2.793296102686885,
+            3.4965035131535136,
+            3.8461538644688646,
+            2.873563232074439,
+            3.787878805916306,
+            4.115226357044876,
+            2.8985507384403038,
+            0.20000000095238096
+          ],
+          "D_eff_imag_diag": [
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "L_eff_real_fro": 0.34676634633041103,
+          "note": "D_eff is the local omega-omega block -A_eff_ww(s_eval). At s=0 this is the Sigma(0)-style static Schur damping diagnostic; at the critical pole it matches the Phase-0B reported diagnostic."
+        },
+        "critical_pole": {
+          "available": true,
+          "eval_pole": {
+            "real": -1.346345379291718,
+            "imag": 8.611042315453792
+          },
+          "cond_sI_minus_Acc": 21209.834440956467,
+          "linear_solve_mode": "solve",
+          "paired_genrou_ids": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "scalar_D_norm": 0.0,
+          "D_eff_real_fro": 4.053173923314434,
+          "D_eff_imag_fro": 2.1775122777765468,
+          "D_eff_real_diag": [
+            0.968124339098577,
+            1.3419545294435722,
+            1.13578833078604,
+            1.421721057417491,
+            1.56389316315924,
+            1.1684259264982824,
+            1.5401978122022817,
+            1.6733013268370467,
+            1.1785861519460936,
+            0.08132244448428046
+          ],
+          "D_eff_imag_diag": [
+            -0.5201115655746598,
+            -0.7209467245589345,
+            -0.6101867529088189,
+            -0.7638002011935565,
+            -0.840180221312912,
+            -0.6277208550038997,
+            -0.8274502179596861,
+            -0.8989582614870665,
+            -0.633179297221325,
+            -0.04368937150827142
+          ],
+          "L_eff_real_fro": 0.5665151156442824,
+          "note": "D_eff is the local omega-omega block -A_eff_ww(s_eval). At s=0 this is the Sigma(0)-style static Schur damping diagnostic; at the critical pole it matches the Phase-0B reported diagnostic.",
+          "phase0b_D_eff_real_fro": 4.053173923314433,
+          "phase0b_D_eff_imag_fro": 2.1775122777765485,
+          "phase0b_eval_pole": {
+            "real": -1.3463453792917204,
+            "imag": 8.611042315453803
+          }
+        }
+      },
+      "outputs": {
+        "partition_csv": "outputs\\phase0d_nep_contour_solver\\no_pss_partition.csv",
+        "zeros_csv": "outputs\\phase0d_nep_contour_solver\\no_pss_zeros.csv",
+        "contour_counts_csv": "outputs\\phase0d_nep_contour_solver\\no_pss_contour_counts.csv",
+        "critical_validation_csv": "outputs\\phase0d_nep_contour_solver\\no_pss_critical_validation.csv"
+      },
+      "status_label": "PASS"
+    },
+    {
+      "case": "base",
+      "path": "C:\\Users\\walla\\anaconda3\\Lib\\site-packages\\andes\\cases\\ieee39\\ieee39_full.xlsx",
+      "n_states": 160,
+      "n_retained_interface_states": 20,
+      "n_condensed_states": 140,
+      "partition_rationale": "x_e matches Phase-0B: delta/omega GENROU states plus explicit grid-forming angle states (delta REGF1). PLL, BusFreq, REGCP1/REECA1/REPCA1, exciters, PSS, governors, GENROU internal voltage states, and REGF1 internal controls are kept in x_c and enter through the rational Schur term.",
+      "retained_state_names": [
+        "delta GENROU 1",
+        "delta GENROU 2",
+        "delta GENROU 3",
+        "delta GENROU 4",
+        "delta GENROU 5",
+        "delta GENROU 6",
+        "delta GENROU 7",
+        "delta GENROU 8",
+        "delta GENROU 9",
+        "delta GENROU 10",
+        "omega GENROU 1",
+        "omega GENROU 2",
+        "omega GENROU 3",
+        "omega GENROU 4",
+        "omega GENROU 5",
+        "omega GENROU 6",
+        "omega GENROU 7",
+        "omega GENROU 8",
+        "omega GENROU 9",
+        "omega GENROU 10"
+      ],
+      "condensed_state_name_sample": [
+        "e1q GENROU 1",
+        "e1q GENROU 2",
+        "e1q GENROU 3",
+        "e1q GENROU 4",
+        "e1q GENROU 5",
+        "e1q GENROU 6",
+        "e1q GENROU 7",
+        "e1q GENROU 8",
+        "e1q GENROU 9",
+        "e1q GENROU 10",
+        "e1d GENROU 1",
+        "e1d GENROU 2",
+        "e1d GENROU 3",
+        "e1d GENROU 4",
+        "e1d GENROU 5",
+        "e1d GENROU 6",
+        "e1d GENROU 7",
+        "e1d GENROU 8",
+        "e1d GENROU 9",
+        "e1d GENROU 10",
+        "e2d GENROU 1",
+        "e2d GENROU 2",
+        "e2d GENROU 3",
+        "e2d GENROU 4",
+        "e2d GENROU 5",
+        "e2d GENROU 6",
+        "e2d GENROU 7",
+        "e2d GENROU 8",
+        "e2d GENROU 9",
+        "e2d GENROU 10",
+        "e2q GENROU 1",
+        "e2q GENROU 2",
+        "e2q GENROU 3",
+        "e2q GENROU 4",
+        "e2q GENROU 5",
+        "e2q GENROU 6",
+        "e2q GENROU 7",
+        "e2q GENROU 8",
+        "e2q GENROU 9",
+        "e2q GENROU 10",
+        "LAG_y TGOV1N TGOV1 1",
+        "LAG_y TGOV1N TGOV1 2",
+        "LAG_y TGOV1N TGOV1 3",
+        "LAG_y TGOV1N TGOV1 4",
+        "LAG_y TGOV1N TGOV1 5",
+        "LAG_y TGOV1N TGOV1 6",
+        "LAG_y TGOV1N TGOV1 7",
+        "LAG_y TGOV1N TGOV1 8",
+        "LAG_y TGOV1N TGOV1 9",
+        "LAG_y TGOV1N TGOV1 10"
+      ],
+      "contours": [
+        {
+          "case": "base",
+          "name": "network_margin",
+          "real_min": -4.0,
+          "real_max": 0.8,
+          "imag_min": 3.5,
+          "imag_max": 12.0,
+          "nodes_per_side": 128,
+          "quadrature_nodes": 512,
+          "frequency_band_hz": [
+            0.5570423008216338,
+            1.909859317102744
+          ],
+          "beyn_rank": 14,
+          "accepted_zeros": 9,
+          "trace_count_real": 9.000065358876544,
+          "trace_count_imag": 4.143233800258583e-06,
+          "trace_count_rounded": 9,
+          "acc_poles_in_contour_upper": 0,
+          "andes_poles_in_contour_upper": 9,
+          "argument_count_plus_acc_poles": 9.000065358876544,
+          "count_error_abs": 6.535887654379735e-05,
+          "count_check_pass": true,
+          "linear_solve_failures": 0,
+          "leading_singular_values": "5.783e+02; 2.340e+02; 2.110e+02; 1.833e+02; 1.359e+02; 1.299e+02; 9.182e+01; 7.379e+01"
+        },
+        {
+          "case": "base",
+          "name": "pll_control",
+          "real_min": -25.0,
+          "real_max": 0.8,
+          "imag_min": 60.0,
+          "imag_max": 95.0,
+          "nodes_per_side": 128,
+          "quadrature_nodes": 512,
+          "frequency_band_hz": [
+            9.549296585513721,
+            15.119719593730057
+          ],
+          "beyn_rank": 20,
+          "accepted_zeros": 0,
+          "trace_count_real": -2.1897881950166233e-06,
+          "trace_count_imag": 1.5631064497948853e-06,
+          "trace_count_rounded": 0,
+          "acc_poles_in_contour_upper": 0,
+          "andes_poles_in_contour_upper": 0,
+          "argument_count_plus_acc_poles": -2.1897881950166233e-06,
+          "count_error_abs": 2.1897881950166233e-06,
+          "count_check_pass": true,
+          "linear_solve_failures": 0,
+          "leading_singular_values": "2.643e-05; 2.144e-05; 2.035e-05; 1.894e-05; 1.746e-05; 1.492e-05; 1.227e-05; 1.128e-05"
+        }
+      ],
+      "n_beyn_zeros": 9,
+      "accepted": true,
+      "count_checks_pass": true,
+      "critical_match": {
+        "andes_mode_index": 71,
+        "andes_real": -1.346013072429833,
+        "andes_imag": 8.61148480240536,
+        "andes_freq_hz": 1.3705603736635468,
+        "andes_zeta": 0.15442935855929482,
+        "andes_top_states": "omega GENROU 1:0.3682; delta GENROU 1:0.3422; omega GENROU 8:0.09063; delta GENROU 8:0.08027; omega GENROU 3:0.05055; delta GENROU 3:0.04643; e2q GENROU 1:0.03479; omega GENROU 9:0.02119",
+        "nep_real": -1.3460130724298205,
+        "nep_imag": 8.611484802405375,
+        "nep_freq_hz": 1.370560373663549,
+        "nep_zeta": 0.15442935855929318,
+        "nep_family": "I_network",
+        "nep_pi_c": 0.65255585032492,
+        "nep_relative_residual": 2.9814005509336663e-17,
+        "relative_freq_error": 1.6201008667097224e-15,
+        "relative_zeta_error": 1.0604065034002843e-14,
+        "damping_sign_correct": true,
+        "pole_distance": 1.888293221827313e-14,
+        "nearest_acc_real": -0.4957392820467232,
+        "nearest_acc_imag": 0.710380304412895,
+        "nearest_acc_freq_hz": 0.1130605369224376,
+        "distance_to_nearest_acc": 7.946723715268416,
+        "top_condensed_states": "LAG_y TGOV1N TGOV1 1:3.536; LAG_y TGOV1N TGOV1 8:2.215; LAG_y TGOV1N TGOV1 9:1.145; LAG_y TGOV1N TGOV1 3:1.123; LA_y IEEEX1 9:0.9703; LA_y IEEEX1 7:0.7134"
+      },
+      "full_modes": [
+        {
+          "mode_index": 71,
+          "pole": {
+            "real": -1.346013072429833,
+            "imag": 8.61148480240536
+          },
+          "real": -1.346013072429833,
+          "imag": 8.61148480240536,
+          "freq_hz": 1.3705603736635468,
+          "zeta": 0.15442935855929482,
+          "top_states": "omega GENROU 1:0.3682; delta GENROU 1:0.3422; omega GENROU 8:0.09063; delta GENROU 8:0.08027; omega GENROU 3:0.05055; delta GENROU 3:0.04643; e2q GENROU 1:0.03479; omega GENROU 9:0.02119"
+        },
+        {
+          "mode_index": 75,
+          "pole": {
+            "real": -1.2591160872721545,
+            "imag": 7.754988586227082
+          },
+          "real": -1.2591160872721545,
+          "imag": 7.754988586227082,
+          "freq_hz": 1.2342447671192691,
+          "zeta": 0.16026343427853224,
+          "top_states": "omega GENROU 3:0.1872; omega GENROU 6:0.1723; delta GENROU 3:0.171; delta GENROU 6:0.157; omega GENROU 2:0.1052; delta GENROU 2:0.09471; omega GENROU 7:0.07058; delta GENROU 7:0.06268"
+        },
+        {
+          "mode_index": 69,
+          "pole": {
+            "real": -1.525668116215229,
+            "imag": 9.356565621075257
+          },
+          "real": -1.525668116215229,
+          "imag": 9.356565621075257,
+          "freq_hz": 1.4891436689578168,
+          "zeta": 0.16093314221454685,
+          "top_states": "omega GENROU 2:0.358; delta GENROU 2:0.3249; omega GENROU 3:0.1903; delta GENROU 3:0.1751; LAG_y TGOV1N TGOV1 2:0.0198; e2d GENROU 2:0.01518; e2q GENROU 2:0.01183; e2d GENROU 3:0.00966"
+        },
+        {
+          "mode_index": 64,
+          "pole": {
+            "real": -1.7862464827133802,
+            "imag": 10.267136971060507
+          },
+          "real": -1.7862464827133802,
+          "imag": 10.267136971060507,
+          "freq_hz": 1.6340656003458298,
+          "zeta": 0.1714024085636896,
+          "top_states": "omega GENROU 7:0.3725; delta GENROU 7:0.3345; omega GENROU 6:0.1458; delta GENROU 6:0.1343; omega GENROU 4:0.04101; delta GENROU 4:0.03711; LAG_y TGOV1N TGOV1 7:0.02452; e1d GENROU 6:0.01733"
+        },
+        {
+          "mode_index": 66,
+          "pole": {
+            "real": -1.7763014099550039,
+            "imag": 9.891249057410455
+          },
+          "real": -1.7763014099550039,
+          "imag": 9.891249057410455,
+          "freq_hz": 1.5742411808399244,
+          "zeta": 0.1767555489598749,
+          "top_states": "omega GENROU 4:0.4176; delta GENROU 4:0.3767; omega GENROU 6:0.07034; delta GENROU 6:0.06459; omega GENROU 5:0.06029; delta GENROU 5:0.05386; LAG_y TGOV1N TGOV1 4:0.01473; omega GENROU 1:0.00931"
+        },
+        {
+          "mode_index": 80,
+          "pole": {
+            "real": -1.126034267402583,
+            "imag": 6.05070631684272
+          },
+          "real": -1.126034267402583,
+          "imag": 6.05070631684272,
+          "freq_hz": 0.9629998195228747,
+          "zeta": 0.18295840013221698,
+          "top_states": "omega GENROU 9:0.3731; delta GENROU 9:0.3345; omega GENROU 5:0.1363; delta GENROU 5:0.119; omega GENROU 4:0.03084; omega GENROU 6:0.02867; delta GENROU 4:0.02717; delta GENROU 6:0.02573"
+        },
+        {
+          "mode_index": 86,
+          "pole": {
+            "real": -0.7717123003299589,
+            "imag": 4.013410336256466
+          },
+          "real": -0.7717123003299589,
+          "imag": 4.013410336256466,
+          "freq_hz": 0.6387540936713223,
+          "zeta": 0.1888244162492133,
+          "top_states": "omega GENROU 10:0.1844; delta GENROU 10:0.1822; omega GENROU 9:0.1016; delta GENROU 9:0.08929; omega GENROU 5:0.07212; delta GENROU 5:0.06246; omega GENROU 6:0.05408; omega GENROU 4:0.04995"
+        },
+        {
+          "mode_index": 77,
+          "pole": {
+            "real": -1.477015390717552,
+            "imag": 7.001887542461461
+          },
+          "real": -1.477015390717552,
+          "imag": 7.001887542461461,
+          "freq_hz": 1.1143850133563047,
+          "zeta": 0.2064030441836189,
+          "top_states": "omega GENROU 5:0.3066; delta GENROU 5:0.2669; omega GENROU 3:0.07947; omega GENROU 6:0.07862; delta GENROU 3:0.07158; delta GENROU 6:0.07062; omega GENROU 2:0.04655; omega GENROU 9:0.04252"
+        },
+        {
+          "mode_index": 60,
+          "pole": {
+            "real": -2.443841815864353,
+            "imag": 10.6026130708754
+          },
+          "real": -2.443841815864353,
+          "imag": 10.6026130708754,
+          "freq_hz": 1.68745827992056,
+          "zeta": 0.22460513319145942,
+          "top_states": "omega GENROU 8:0.4587; delta GENROU 8:0.4041; omega GENROU 1:0.1142; delta GENROU 1:0.1061; e2q GENROU 8:0.04451; e2d GENROU 8:0.03923; LAG_y TGOV1N TGOV1 8:0.034; e1d GENROU 8:0.03147"
+        },
+        {
+          "mode_index": 105,
+          "pole": {
+            "real": -0.28450851978399305,
+            "imag": 0.5178573973827301
+          },
+          "real": -0.28450851978399305,
+          "imag": 0.5178573973827301,
+          "freq_hz": 0.08241956461016543,
+          "zeta": 0.4815119305220044,
+          "top_states": "W_x IEEEX1 10:0.1576; omega GENROU 10:0.1427; e1q GENROU 10:0.126; delta GENROU 10:0.1104; W_x IEEEX1 4:0.08729; e1q GENROU 4:0.05323; LL2_x IEEEST 10:0.05275; W_x IEEEX1 5:0.04166"
+        },
+        {
+          "mode_index": 115,
+          "pole": {
+            "real": -0.15843239930119546,
+            "imag": 0.2755730985769297
+          },
+          "real": -0.15843239930119546,
+          "imag": 0.2755730985769297,
+          "freq_hz": 0.04385882082166851,
+          "zeta": 0.4984187967082902,
+          "top_states": "e1q GENROU 8:0.3488; W_x IEEEX1 8:0.1415; vp IEEEX1 8:0.06803; e1q GENROU 1:0.0484; delta GENROU 8:0.03538; e2d GENROU 8:0.03229; e2q GENROU 8:0.02776; W_x IEEEX1 1:0.02423"
+        },
+        {
+          "mode_index": 100,
+          "pole": {
+            "real": -0.6102095563486911,
+            "imag": 0.9679071421503601
+          },
+          "real": -0.6102095563486911,
+          "imag": 0.9679071421503601,
+          "freq_hz": 0.15404720612717962,
+          "zeta": 0.5333054435461808,
+          "top_states": "LL2_x IEEEST 10:0.1873; e1q GENROU 10:0.1267; W_x IEEEX1 10:0.1246; omega GENROU 10:0.08779; delta GENROU 10:0.08058; F1_y IEEEST 10:0.06221; vp IEEEX1 10:0.05388; WO_x IEEEST 10:0.03575"
+        },
+        {
+          "mode_index": 117,
+          "pole": {
+            "real": -0.2553049027364962,
+            "imag": 0.3473334204516463
+          },
+          "real": -0.2553049027364962,
+          "imag": 0.3473334204516463,
+          "freq_hz": 0.05527983076589512,
+          "zeta": 0.5922589651921581,
+          "top_states": "W_x IEEEX1 3:0.3398; e1q GENROU 3:0.2312; W_x IEEEX1 7:0.07544; e1q GENROU 1:0.06674; e1q GENROU 7:0.06648; e1q GENROU 2:0.05135; W_x IEEEX1 4:0.03331; W_x IEEEX1 1:0.0325"
+        },
+        {
+          "mode_index": 122,
+          "pole": {
+            "real": -0.23888130559115633,
+            "imag": 0.31857335553117677
+          },
+          "real": -0.23888130559115633,
+          "imag": 0.31857335553117677,
+          "freq_hz": 0.05070252427015858,
+          "zeta": 0.5999217046664931,
+          "top_states": "W_x IEEEX1 4:0.3184; W_x IEEEX1 5:0.1764; e1q GENROU 4:0.1683; W_x IEEEX1 7:0.1249; e1q GENROU 7:0.1124; e1q GENROU 5:0.08546; W_x IEEEX1 3:0.05353; e2q GENROU 4:0.0522"
+        },
+        {
+          "mode_index": 120,
+          "pole": {
+            "real": -0.27430985094110627,
+            "imag": 0.3234877142520078
+          },
+          "real": -0.27430985094110627,
+          "imag": 0.3234877142520078,
+          "freq_hz": 0.051484668752705604,
+          "zeta": 0.6467518164665682,
+          "top_states": "e1q GENROU 1:0.5245; W_x IEEEX1 1:0.2604; W_x IEEEX1 3:0.06756; e1q GENROU 3:0.04485; e1q GENROU 8:0.02749; vp IEEEX1 1:0.02526; W_x IEEEX1 7:0.01918; e1q GENROU 7:0.01637"
+        },
+        {
+          "mode_index": 107,
+          "pole": {
+            "real": -0.47758991153325314,
+            "imag": 0.47076417182235736
+          },
+          "real": -0.47758991153325314,
+          "imag": 0.47076417182235736,
+          "freq_hz": 0.07492444497609052,
+          "zeta": 0.7121777069307016,
+          "top_states": "e1q GENROU 9:0.2861; W_x IEEEX1 9:0.2765; W_x IEEEX1 10:0.1591; e1d GENROU 9:0.1342; omega GENROU 10:0.103; e1q GENROU 10:0.08904; delta GENROU 10:0.08073; LL_x TGOV1N TGOV1 9:0.07149"
+        }
+      ],
+      "beyn_zeros": [
+        {
+          "pole": {
+            "real": -1.3460130724298205,
+            "imag": 8.611484802405375
+          },
+          "real": -1.3460130724298205,
+          "imag": 8.611484802405375,
+          "freq_hz": 1.370560373663549,
+          "zeta": 0.15442935855929318,
+          "abs_residual": 3.5560244584226526e-14,
+          "relative_residual": 2.9814005509336663e-17,
+          "contour": "network_margin",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.65255585032492,
+          "pi_c_raw_norm": 0.8324718307650321,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "I_network",
+          "nearest_acc_real": -0.4957392820467232,
+          "nearest_acc_imag": 0.710380304412895,
+          "nearest_acc_freq_hz": 0.1130605369224376,
+          "distance_to_nearest_acc": 7.946723715268416,
+          "top_condensed_states": "LAG_y TGOV1N TGOV1 1:3.536; LAG_y TGOV1N TGOV1 8:2.215; LAG_y TGOV1N TGOV1 9:1.145; LAG_y TGOV1N TGOV1 3:1.123; LA_y IEEEX1 9:0.9703; LA_y IEEEX1 7:0.7134"
+        },
+        {
+          "pole": {
+            "real": -1.259116087272165,
+            "imag": 7.754988586227093
+          },
+          "real": -1.259116087272165,
+          "imag": 7.754988586227093,
+          "freq_hz": 1.234244767119271,
+          "zeta": 0.16026343427853332,
+          "abs_residual": 8.205166583424516e-14,
+          "relative_residual": 6.879925587462027e-17,
+          "contour": "network_margin",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.6268257593853952,
+          "pi_c_raw_norm": 0.8163150391905544,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "I_network",
+          "nearest_acc_real": -0.4957392820467232,
+          "nearest_acc_imag": 0.710380304412895,
+          "nearest_acc_freq_hz": 0.1130605369224376,
+          "distance_to_nearest_acc": 7.085848572398467,
+          "top_condensed_states": "LAG_y TGOV1N TGOV1 6:2.285; LAG_y TGOV1N TGOV1 3:1.954; LAG_y TGOV1N TGOV1 7:1.618; LAG_y TGOV1N TGOV1 2:1.604; LA_y IEEEX1 7:1.331; LA_y IEEEX1 3:0.9256"
+        },
+        {
+          "pole": {
+            "real": -1.5256681162152363,
+            "imag": 9.356565621075246
+          },
+          "real": -1.5256681162152363,
+          "imag": 9.356565621075246,
+          "freq_hz": 1.4891436689578152,
+          "zeta": 0.16093314221454783,
+          "abs_residual": 9.289366890583647e-14,
+          "relative_residual": 7.787574611909634e-17,
+          "contour": "network_margin",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.6190062913662999,
+          "pi_c_raw_norm": 0.811270635398091,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "I_network",
+          "nearest_acc_real": -9.943280923493752,
+          "nearest_acc_imag": 8.544889660700747,
+          "nearest_acc_freq_hz": 1.3599614276753522,
+          "distance_to_nearest_acc": 8.456655558665563,
+          "top_condensed_states": "LAG_y TGOV1N TGOV1 2:3.377; LAG_y TGOV1N TGOV1 3:2.253; LA_y IEEEX1 2:0.8825; LA_y IEEEX1 3:0.771; LAG_y TGOV1N TGOV1 1:0.313; WO_x BusFreq 2:0.2639"
+        },
+        {
+          "pole": {
+            "real": -1.7862464827133984,
+            "imag": 10.267136971060493
+          },
+          "real": -1.7862464827133984,
+          "imag": 10.267136971060493,
+          "freq_hz": 1.6340656003458276,
+          "zeta": 0.17140240856369152,
+          "abs_residual": 1.0178799048068873e-13,
+          "relative_residual": 8.532167281697356e-17,
+          "contour": "network_margin",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.7142543061553573,
+          "pi_c_raw_norm": 0.8686519562327623,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "II_control",
+          "nearest_acc_real": -9.943280923493752,
+          "nearest_acc_imag": 8.544889660700747,
+          "nearest_acc_freq_hz": 1.3599614276753522,
+          "distance_to_nearest_acc": 8.33686671754552,
+          "top_condensed_states": "LAG_y TGOV1N TGOV1 7:4.584; LA_y IEEEX1 7:3.404; LAG_y TGOV1N TGOV1 6:2.572; LAG_y TGOV1N TGOV1 4:1.729; LA_y IEEEX1 6:0.5453; vp IEEEX1 7:0.4538"
+        },
+        {
+          "pole": {
+            "real": -1.7763014099550076,
+            "imag": 9.891249057410466
+          },
+          "real": -1.7763014099550076,
+          "imag": 9.891249057410466,
+          "freq_hz": 1.5742411808399261,
+          "zeta": 0.17675554895987508,
+          "abs_residual": 1.1505801353392576e-13,
+          "relative_residual": 9.644990442283193e-17,
+          "contour": "network_margin",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.7030010464349993,
+          "pi_c_raw_norm": 0.8623070062884249,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "II_control",
+          "nearest_acc_real": -9.943280923493752,
+          "nearest_acc_imag": 8.544889660700747,
+          "nearest_acc_freq_hz": 1.3599614276753522,
+          "distance_to_nearest_acc": 8.277211970202897,
+          "top_condensed_states": "LAG_y TGOV1N TGOV1 4:5.227; LAG_y TGOV1N TGOV1 5:1.912; LAG_y TGOV1N TGOV1 6:1.777; LA_y IEEEX1 5:1.576; LA_y IEEEX1 4:0.734; LAG_y TGOV1N TGOV1 1:0.6279"
+        },
+        {
+          "pole": {
+            "real": -1.126034267402587,
+            "imag": 6.050706316842708
+          },
+          "real": -1.126034267402587,
+          "imag": 6.050706316842708,
+          "freq_hz": 0.962999819522873,
+          "zeta": 0.18295840013221792,
+          "abs_residual": 1.1875401616855676e-13,
+          "relative_residual": 9.958927703214673e-17,
+          "contour": "network_margin",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.6657096514530185,
+          "pi_c_raw_norm": 0.8404793186197149,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "I_network",
+          "nearest_acc_real": -0.4957392820467232,
+          "nearest_acc_imag": 0.710380304412895,
+          "nearest_acc_freq_hz": 0.1130605369224376,
+          "distance_to_nearest_acc": 5.377392833669423,
+          "top_condensed_states": "LAG_y TGOV1N TGOV1 9:3.834; LAG_y TGOV1N TGOV1 5:2.015; LA_y IEEEX1 9:1.727; LA_y IEEEX1 5:1.344; LAG_y TGOV1N TGOV1 4:0.9799; LAG_y TGOV1N TGOV1 6:0.8436"
+        },
+        {
+          "pole": {
+            "real": -0.7717123003299586,
+            "imag": 4.013410336256476
+          },
+          "real": -0.7717123003299586,
+          "imag": 4.013410336256476,
+          "freq_hz": 0.6387540936713241,
+          "zeta": 0.18882441624921276,
+          "abs_residual": 5.0092126124510984e-14,
+          "relative_residual": 4.2013873315192796e-17,
+          "contour": "network_margin",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.5356792825954396,
+          "pi_c_raw_norm": 0.7532302399762765,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "I_network",
+          "nearest_acc_real": -0.4957392820467232,
+          "nearest_acc_imag": 0.710380304412895,
+          "nearest_acc_freq_hz": 0.1130605369224376,
+          "distance_to_nearest_acc": 3.314538957092067,
+          "top_condensed_states": "LAG_y TGOV1N TGOV1 9:1.48; LAG_y TGOV1N TGOV1 5:1.104; LAG_y TGOV1N TGOV1 4:0.9392; LAG_y TGOV1N TGOV1 6:0.9008; LAG_y TGOV1N TGOV1 7:0.8176; LA_y IEEEX1 5:0.5837"
+        },
+        {
+          "pole": {
+            "real": -1.477015390717539,
+            "imag": 7.001887542461501
+          },
+          "real": -1.477015390717539,
+          "imag": 7.001887542461501,
+          "freq_hz": 1.1143850133563111,
+          "zeta": 0.20640304418361605,
+          "abs_residual": 8.669914891770538e-14,
+          "relative_residual": 7.270133038996774e-17,
+          "contour": "network_margin",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.6434413314834109,
+          "pi_c_raw_norm": 0.8268245291425076,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "I_network",
+          "nearest_acc_real": -0.4957392820467232,
+          "nearest_acc_imag": 0.710380304412895,
+          "nearest_acc_freq_hz": 0.1130605369224376,
+          "distance_to_nearest_acc": 6.367571446624383,
+          "top_condensed_states": "LAG_y TGOV1N TGOV1 5:2.974; LA_y IEEEX1 5:1.944; LAG_y TGOV1N TGOV1 6:1.389; LAG_y TGOV1N TGOV1 9:1.268; LAG_y TGOV1N TGOV1 3:1.136; LAG_y TGOV1N TGOV1 7:1.054"
+        },
+        {
+          "pole": {
+            "real": -2.4438418158643214,
+            "imag": 10.602613070875416
+          },
+          "real": -2.4438418158643214,
+          "imag": 10.602613070875416,
+          "freq_hz": 1.6874582799205624,
+          "zeta": 0.22460513319145634,
+          "abs_residual": 3.55085095178602e-14,
+          "relative_residual": 2.976252211659131e-17,
+          "contour": "network_margin",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.682317104613371,
+          "pi_c_raw_norm": 0.8503559924610237,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "I_network",
+          "nearest_acc_real": -9.943280923493752,
+          "nearest_acc_imag": 8.544889660700747,
+          "nearest_acc_freq_hz": 1.3599614276753522,
+          "distance_to_nearest_acc": 7.776619610204848,
+          "top_condensed_states": "LAG_y TGOV1N TGOV1 8:5.1; LAG_y TGOV1N TGOV1 1:2.031; LA_y IEEEX1 8:0.9818; WO_x BusFreq 8:0.4358; L_y BusFreq 8:0.4247; LAG_y TGOV1N TGOV1 9:0.3849"
+        }
+      ],
+      "effective_damping": {
+        "s0_static": {
+          "available": true,
+          "eval_pole": {
+            "real": 0.0,
+            "imag": 0.0
+          },
+          "cond_sI_minus_Acc": 7.705594364839976e+18,
+          "linear_solve_mode": "pinv",
+          "paired_genrou_ids": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "scalar_D_norm": 0.0,
+          "D_eff_real_fro": 9.968155699989525,
+          "D_eff_imag_fro": 0.0,
+          "D_eff_real_diag": [
+            2.380952392290156,
+            3.300330048719005,
+            2.7932961026870595,
+            3.496503513153601,
+            3.846153864468904,
+            2.873563232074448,
+            3.787878805916306,
+            4.115226357044985,
+            2.8985507384404663,
+            0.20000000095238846
+          ],
+          "D_eff_imag_diag": [
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "L_eff_real_fro": 0.3467663463303819,
+          "note": "D_eff is the local omega-omega block -A_eff_ww(s_eval). At s=0 this is the Sigma(0)-style static Schur damping diagnostic; at the critical pole it matches the Phase-0B reported diagnostic."
+        },
+        "critical_pole": {
+          "available": true,
+          "eval_pole": {
+            "real": -1.3460130724298205,
+            "imag": 8.611484802405375
+          },
+          "cond_sI_minus_Acc": 25701.19380176759,
+          "linear_solve_mode": "solve",
+          "paired_genrou_ids": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "scalar_D_norm": 0.0,
+          "D_eff_real_fro": 4.0530671181727,
+          "D_eff_imag_fro": 2.1775072625979925,
+          "D_eff_real_diag": [
+            0.9680988280647029,
+            1.34191916761444,
+            1.1357584016401545,
+            1.4216835936614522,
+            1.5638519530275974,
+            1.1683951373194694,
+            1.540157226466573,
+            1.6732572336920797,
+            1.178555095035291,
+            0.08132030155743505
+          ],
+          "D_eff_imag_diag": [
+            -0.5201103676698781,
+            -0.7209450640968609,
+            -0.6101853475456671,
+            -0.7637984420326884,
+            -0.8401782862359571,
+            -0.6277194092567495,
+            -0.8274483122020789,
+            -0.8989561910343574,
+            -0.6331778389024604,
+            -0.04368927088426976
+          ],
+          "L_eff_real_fro": 0.566732002035211,
+          "note": "D_eff is the local omega-omega block -A_eff_ww(s_eval). At s=0 this is the Sigma(0)-style static Schur damping diagnostic; at the critical pole it matches the Phase-0B reported diagnostic.",
+          "phase0b_D_eff_real_fro": 4.0530671181727,
+          "phase0b_D_eff_imag_fro": 2.177507262597991,
+          "phase0b_eval_pole": {
+            "real": -1.3460130724298172,
+            "imag": 8.611484802405371
+          }
+        }
+      },
+      "outputs": {
+        "partition_csv": "outputs\\phase0d_nep_contour_solver\\base_partition.csv",
+        "zeros_csv": "outputs\\phase0d_nep_contour_solver\\base_zeros.csv",
+        "contour_counts_csv": "outputs\\phase0d_nep_contour_solver\\base_contour_counts.csv",
+        "critical_validation_csv": "outputs\\phase0d_nep_contour_solver\\base_critical_validation.csv"
+      },
+      "status_label": "PASS"
+    },
+    {
+      "case": "mix60",
+      "path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\validation\\ieee39_rational_filter\\cases\\ieee39_ibr_mix60.xlsx",
+      "n_states": 178,
+      "n_retained_interface_states": 11,
+      "n_condensed_states": 167,
+      "partition_rationale": "x_e matches Phase-0B: delta/omega GENROU states plus explicit grid-forming angle states (delta REGF1). PLL, BusFreq, REGCP1/REECA1/REPCA1, exciters, PSS, governors, GENROU internal voltage states, and REGF1 internal controls are kept in x_c and enter through the rational Schur term.",
+      "retained_state_names": [
+        "delta GENROU 1",
+        "delta GENROU 2",
+        "delta GENROU 3",
+        "delta GENROU 10",
+        "omega GENROU 1",
+        "omega GENROU 2",
+        "omega GENROU 3",
+        "omega GENROU 10",
+        "delta REGF1 G8",
+        "delta REGF1 G6",
+        "delta REGF1 G4"
+      ],
+      "condensed_state_name_sample": [
+        "e1q GENROU 1",
+        "e1q GENROU 2",
+        "e1q GENROU 3",
+        "e1q GENROU 10",
+        "e1d GENROU 1",
+        "e1d GENROU 2",
+        "e1d GENROU 3",
+        "e1d GENROU 10",
+        "e2d GENROU 1",
+        "e2d GENROU 2",
+        "e2d GENROU 3",
+        "e2d GENROU 10",
+        "e2q GENROU 1",
+        "e2q GENROU 2",
+        "e2q GENROU 3",
+        "e2q GENROU 10",
+        "LAG_y TGOV1N TGOV1 1",
+        "LAG_y TGOV1N TGOV1 2",
+        "LAG_y TGOV1N TGOV1 3",
+        "LAG_y TGOV1N TGOV1 10",
+        "LL_x TGOV1N TGOV1 1",
+        "LL_x TGOV1N TGOV1 2",
+        "LL_x TGOV1N TGOV1 3",
+        "LL_x TGOV1N TGOV1 10",
+        "vp IEEEX1 1",
+        "vp IEEEX1 2",
+        "vp IEEEX1 3",
+        "vp IEEEX1 10",
+        "LA_y IEEEX1 1",
+        "LA_y IEEEX1 2",
+        "LA_y IEEEX1 3",
+        "LA_y IEEEX1 10",
+        "W_x IEEEX1 1",
+        "W_x IEEEX1 2",
+        "W_x IEEEX1 3",
+        "W_x IEEEX1 10",
+        "F2_x2 IEEEST 1",
+        "F2_x2 IEEEST 2",
+        "F2_x2 IEEEST 3",
+        "F2_x2 IEEEST 10",
+        "LL2_x IEEEST 1",
+        "LL2_x IEEEST 2",
+        "LL2_x IEEEST 3",
+        "LL2_x IEEEST 10",
+        "WO_x IEEEST 1",
+        "WO_x IEEEST 2",
+        "WO_x IEEEST 3",
+        "WO_x IEEEST 10",
+        "L_y BusFreq 1",
+        "L_y BusFreq 2"
+      ],
+      "contours": [
+        {
+          "case": "mix60",
+          "name": "network_margin",
+          "real_min": -4.0,
+          "real_max": 0.8,
+          "imag_min": 3.5,
+          "imag_max": 12.0,
+          "nodes_per_side": 128,
+          "quadrature_nodes": 512,
+          "frequency_band_hz": [
+            0.5570423008216338,
+            1.909859317102744
+          ],
+          "beyn_rank": 9,
+          "accepted_zeros": 4,
+          "trace_count_real": 4.000028652410521,
+          "trace_count_imag": -6.169866595420617e-06,
+          "trace_count_rounded": 4,
+          "acc_poles_in_contour_upper": 0,
+          "andes_poles_in_contour_upper": 4,
+          "argument_count_plus_acc_poles": 4.000028652410521,
+          "count_error_abs": 2.8652410520635385e-05,
+          "count_check_pass": true,
+          "linear_solve_failures": 0,
+          "leading_singular_values": "2.850e+02; 1.499e+02; 1.193e+02; 7.231e+01; 4.008e-05; 4.811e-06; 2.621e-06; 4.013e-08"
+        },
+        {
+          "case": "mix60",
+          "name": "pll_control",
+          "real_min": -25.0,
+          "real_max": 0.8,
+          "imag_min": 60.0,
+          "imag_max": 95.0,
+          "nodes_per_side": 128,
+          "quadrature_nodes": 512,
+          "frequency_band_hz": [
+            9.549296585513721,
+            15.119719593730057
+          ],
+          "beyn_rank": 11,
+          "accepted_zeros": 3,
+          "trace_count_real": -1.8899635686489677e-06,
+          "trace_count_imag": 1.1377210681490491e-06,
+          "trace_count_rounded": 0,
+          "acc_poles_in_contour_upper": 3,
+          "andes_poles_in_contour_upper": 3,
+          "argument_count_plus_acc_poles": 2.9999981100364312,
+          "count_error_abs": 1.88996356875748e-06,
+          "count_check_pass": true,
+          "linear_solve_failures": 0,
+          "leading_singular_values": "6.993e-01; 1.104e-02; 6.423e-03; 9.353e-06; 5.645e-06; 4.467e-06; 9.288e-07; 2.249e-08"
+        }
+      ],
+      "n_beyn_zeros": 7,
+      "accepted": true,
+      "count_checks_pass": true,
+      "critical_match": {
+        "andes_mode_index": 46,
+        "andes_real": -10.751357900248504,
+        "andes_imag": 86.34193765604479,
+        "andes_freq_hz": 13.741746174091784,
+        "andes_zeta": 0.12356640434765424,
+        "andes_top_states": "am PLL1 G7:0.124; am PLL1 G5:0.1035; ae PLL1 G5:0.04002; ae PLL1 G7:0.03956; am PLL1 G9:0.00702; af_y PLL1 G7:0.00469; af_y PLL1 G5:0.00397; ae PLL1 G9:0.0024",
+        "nep_real": -10.75135790052832,
+        "nep_imag": 86.34193765611796,
+        "nep_freq_hz": 13.74174617410343,
+        "nep_zeta": 0.12356640435071799,
+        "nep_family": "II_control",
+        "nep_pi_c": 0.8532274444325421,
+        "nep_relative_residual": 8.606266985913992e-11,
+        "relative_freq_error": 8.474756622316766e-13,
+        "relative_zeta_error": 2.4794309742639428e-11,
+        "damping_sign_correct": true,
+        "pole_distance": 2.8922600597485146e-10,
+        "nearest_acc_real": -10.5593179330641,
+        "nearest_acc_imag": 86.24595386311101,
+        "nearest_acc_freq_hz": 13.726469878989665,
+        "distance_to_nearest_acc": 0.2146910282793857,
+        "top_condensed_states": "ae PLL1 G7:14.18; ae PLL1 G5:13.83; Qsen_y REGF1 G6:7.926; Qsig_y REGF1 G6:3.478; am PLL1 G7:3.266; am PLL1 G5:3.185"
+      },
+      "full_modes": [
+        {
+          "mode_index": 46,
+          "pole": {
+            "real": -10.751357900248504,
+            "imag": 86.34193765604479
+          },
+          "real": -10.751357900248504,
+          "imag": 86.34193765604479,
+          "freq_hz": 13.741746174091784,
+          "zeta": 0.12356640434765424,
+          "top_states": "am PLL1 G7:0.124; am PLL1 G5:0.1035; ae PLL1 G5:0.04002; ae PLL1 G7:0.03956; am PLL1 G9:0.00702; af_y PLL1 G7:0.00469; af_y PLL1 G5:0.00397; ae PLL1 G9:0.0024"
+        },
+        {
+          "mode_index": 90,
+          "pole": {
+            "real": -0.6566405263623374,
+            "imag": 4.884817877083008
+          },
+          "real": -0.6566405263623374,
+          "imag": 4.884817877083008,
+          "freq_hz": 0.7774429112414192,
+          "zeta": 0.13322645820330217,
+          "top_states": "PIvd_xi REGF1 G4:0.1569; omega GENROU 10:0.1468; delta GENROU 10:0.1455; PIvd_xi REGF1 G6:0.1146; omega GENROU 3:0.09546; delta GENROU 3:0.0864; omega GENROU 2:0.05699; delta GENROU 2:0.05104"
+        },
+        {
+          "mode_index": 44,
+          "pole": {
+            "real": -11.652512476966585,
+            "imag": 86.38482654238844
+          },
+          "real": -11.652512476966585,
+          "imag": 86.38482654238844,
+          "freq_hz": 13.748572152357083,
+          "zeta": 0.13368002632189946,
+          "top_states": "am PLL1 G9:0.2991; ae PLL1 G9:0.102; am PLL1 G5:0.03306; af_y PLL1 G9:0.01715; ae PLL1 G5:0.01275; am PLL1 G7:0.0072; af_y PLL1 G5:0.0026; ae PLL1 G7:0.00229"
+        },
+        {
+          "mode_index": 42,
+          "pole": {
+            "real": -12.112315013522606,
+            "imag": 89.65410117569668
+          },
+          "real": -12.112315013522606,
+          "imag": 89.65410117569668,
+          "freq_hz": 14.268893370573032,
+          "zeta": 0.13388420029626216,
+          "top_states": "am PLL1 G7:0.09647; am PLL1 G5:0.09112; am PLL1 G9:0.05; ae PLL1 G5:0.03511; ae PLL1 G7:0.03067; delta REGF1 G4:0.02711; ae PLL1 G9:0.01704; af_y PLL1 G7:0.01635"
+        },
+        {
+          "mode_index": 70,
+          "pole": {
+            "real": -1.525558297844992,
+            "imag": 9.358437122454273
+          },
+          "real": -1.525558297844992,
+          "imag": 9.358437122454273,
+          "freq_hz": 1.4894415276532906,
+          "zeta": 0.16089051009667546,
+          "top_states": "omega GENROU 2:0.3628; delta GENROU 2:0.3293; omega GENROU 3:0.1917; delta GENROU 3:0.1764; LAG_y TGOV1N TGOV1 2:0.02647; e2d GENROU 3:0.02388; e2d GENROU 2:0.0225; e2q GENROU 2:0.01306"
+        },
+        {
+          "mode_index": 74,
+          "pole": {
+            "real": -1.5373182521241664,
+            "imag": 8.700427116106534
+          },
+          "real": -1.5373182521241664,
+          "imag": 8.700427116106534,
+          "freq_hz": 1.3847159825391184,
+          "zeta": 0.1739992361839412,
+          "top_states": "omega GENROU 1:0.4919; delta GENROU 1:0.456; omega GENROU 3:0.1912; delta GENROU 3:0.175; omega GENROU 2:0.06006; delta GENROU 2:0.05417; e2q GENROU 1:0.05176; PIvd_xi REGF1 G4:0.03474"
+        },
+        {
+          "mode_index": 72,
+          "pole": {
+            "real": -2.6795251677077667,
+            "imag": 9.227939558325994
+          },
+          "real": -2.6795251677077667,
+          "imag": 9.227939558325994,
+          "freq_hz": 1.4686721952608235,
+          "zeta": 0.27885299526417884,
+          "top_states": "omega GENROU 1:0.237; PIvd_xi REGF1 G4:0.2298; delta GENROU 1:0.2172; omega GENROU 3:0.1881; delta GENROU 3:0.1698; PIvd_xi REGF1 G6:0.1322; delta REGF1 G4:0.1202; Psig_y REGF1 G4:0.07935"
+        },
+        {
+          "mode_index": 38,
+          "pole": {
+            "real": -76.04395170203199,
+            "imag": 128.44642037157135
+          },
+          "real": -76.04395170203199,
+          "imag": 128.44642037157135,
+          "freq_hz": 20.442882724595105,
+          "zeta": 0.5094431477148021,
+          "top_states": "delta REGF1 G6:0.3087; Psen_y REGF1 G6:0.2582; Qsen_y REGF1 G6:0.2032; delta REGF1 G4:0.1278; Psen_y REGF1 G4:0.1069; udLag_y REGF1 G6:0.1066; Qsen_y REGF1 G4:0.08738; Psig_y REGF1 G6:0.07855"
+        },
+        {
+          "mode_index": 108,
+          "pole": {
+            "real": -0.40127139273578194,
+            "imag": 0.4697351777945369
+          },
+          "real": -0.40127139273578194,
+          "imag": 0.4697351777945369,
+          "freq_hz": 0.07476067549015086,
+          "zeta": 0.6495225927655432,
+          "top_states": "e1q GENROU 10:0.6209; W_x IEEEX1 10:0.4761; omega GENROU 10:0.141; vp IEEEX1 10:0.106; delta GENROU 10:0.1057; e1q GENROU 3:0.03875; af_y PLL1 G9:0.03497; LL_x TGOV1N TGOV1 10:0.02616"
+        },
+        {
+          "mode_index": 113,
+          "pole": {
+            "real": -0.27367161467396073,
+            "imag": 0.3192863077919245
+          },
+          "real": -0.27367161467396073,
+          "imag": 0.3192863077919245,
+          "freq_hz": 0.05081599414664513,
+          "zeta": 0.6507881335590807,
+          "top_states": "e1q GENROU 1:0.3476; e1q GENROU 3:0.2002; W_x IEEEX1 3:0.1861; W_x IEEEX1 1:0.1245; e1q GENROU 2:0.03809; vp IEEEX1 3:0.02217; e2d GENROU 3:0.01894; delta GENROU 3:0.01728"
+        },
+        {
+          "mode_index": 110,
+          "pole": {
+            "real": -0.31673430975202965,
+            "imag": 0.357158547118265
+          },
+          "real": -0.31673430975202965,
+          "imag": 0.357158547118265,
+          "freq_hz": 0.05684354824139149,
+          "zeta": 0.6634974961980792,
+          "top_states": "e1q GENROU 3:0.4115; W_x IEEEX1 3:0.3287; e1q GENROU 2:0.1792; e1q GENROU 1:0.1517; omega GENROU 10:0.09374; delta GENROU 10:0.05706; delta GENROU 3:0.05689; af_y PLL1 G9:0.05678"
+        },
+        {
+          "mode_index": 88,
+          "pole": {
+            "real": -5.85698110611655,
+            "imag": 6.331762546540283
+          },
+          "real": -5.85698110611655,
+          "imag": 6.331762546540283,
+          "freq_hz": 1.007731307766013,
+          "zeta": 0.679048276423989,
+          "top_states": "PIvd_xi REGF1 G8:0.4703; delta REGF1 G8:0.3925; Psig_y REGF1 G8:0.2777; PIplim_xi REGF1 G8:0.2283; PIvq_xi REGF1 G8:0.1018; PIvd_xi REGF1 G4:0.02995; Qsen_y REGF1 G8:0.02381; PIqlim_xi REGF1 G8:0.0225"
+        },
+        {
+          "mode_index": 68,
+          "pole": {
+            "real": -9.956908575426493,
+            "imag": 8.520985231290888
+          },
+          "real": -9.956908575426493,
+          "imag": 8.520985231290888,
+          "freq_hz": 1.356156919572982,
+          "zeta": 0.7597656669689761,
+          "top_states": "LA_y IEEEX1 1:0.5618; vp IEEEX1 1:0.5132; e1q GENROU 1:0.0178; W_x IEEEX1 1:0.01258; e2d GENROU 1:0.00852; PIvd_xi REGF1 G8:0.00124; Psig_y REGF1 G8:0.00107; delta REGF1 G8:0.00093"
+        },
+        {
+          "mode_index": 40,
+          "pole": {
+            "real": -73.5964042683573,
+            "imag": 62.333329749684175
+          },
+          "real": -73.5964042683573,
+          "imag": 62.333329749684175,
+          "freq_hz": 9.920657549039332,
+          "zeta": 0.7630822531146059,
+          "top_states": "Qsen_y REGF1 G4:0.3759; delta REGF1 G4:0.3177; Psen_y REGF1 G4:0.2174; udLag_y REGF1 G4:0.1779; Psig_y REGF1 G4:0.1565; Qsen_y REGF1 G6:0.136; delta REGF1 G6:0.1175; PIId_xi REGF1 G4:0.1005"
+        },
+        {
+          "mode_index": 105,
+          "pole": {
+            "real": -0.5765897940017123,
+            "imag": 0.4440594792914295
+          },
+          "real": -0.5765897940017123,
+          "imag": 0.4440594792914295,
+          "freq_hz": 0.07067426115604414,
+          "zeta": 0.7922726640839272,
+          "top_states": "omega GENROU 10:0.6551; delta GENROU 10:0.5449; af_y PLL1 G9:0.2305; LL_x TGOV1N TGOV1 1:0.1503; LL_x TGOV1N TGOV1 10:0.1339; e1q GENROU 10:0.1146; af_y PLL1 G5:0.1109; W_x IEEEX1 10:0.1105"
+        },
+        {
+          "mode_index": 115,
+          "pole": {
+            "real": -0.3174583868511571,
+            "imag": 0.2415327424054234
+          },
+          "real": -0.3174583868511571,
+          "imag": 0.2415327424054234,
+          "freq_hz": 0.03844112987236458,
+          "zeta": 0.7958428069568217,
+          "top_states": "e1q GENROU 2:0.5483; W_x IEEEX1 2:0.1829; W_x IEEEX1 3:0.1477; e1q GENROU 3:0.1369; delta GENROU 2:0.03908; LL_x TGOV1N TGOV1 2:0.03907; vp IEEEX1 2:0.0316; e1d GENROU 2:0.03084"
+        }
+      ],
+      "beyn_zeros": [
+        {
+          "pole": {
+            "real": -10.75135790052832,
+            "imag": 86.34193765611796
+          },
+          "real": -10.75135790052832,
+          "imag": 86.34193765611796,
+          "freq_hz": 13.74174617410343,
+          "zeta": 0.12356640435071799,
+          "abs_residual": 7.056085551677147e-08,
+          "relative_residual": 8.606266985913992e-11,
+          "contour": "pll_control",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.8532274444325421,
+          "pi_c_raw_norm": 0.9577179743681223,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "II_control",
+          "nearest_acc_real": -10.5593179330641,
+          "nearest_acc_imag": 86.24595386311101,
+          "nearest_acc_freq_hz": 13.726469878989665,
+          "distance_to_nearest_acc": 0.2146910282793857,
+          "top_condensed_states": "ae PLL1 G7:14.18; ae PLL1 G5:13.83; Qsen_y REGF1 G6:7.926; Qsig_y REGF1 G6:3.478; am PLL1 G7:3.266; am PLL1 G5:3.185"
+        },
+        {
+          "pole": {
+            "real": -0.6566405263625269,
+            "imag": 4.884817877082774
+          },
+          "real": -0.6566405263625269,
+          "imag": 4.884817877082774,
+          "freq_hz": 0.777442911241382,
+          "zeta": 0.1332264582033462,
+          "abs_residual": 1.0215019780621775e-13,
+          "relative_residual": 1.3506336541857273e-16,
+          "contour": "network_margin",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.5386108981245439,
+          "pi_c_raw_norm": 0.8197716190484607,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "I_network",
+          "nearest_acc_real": -0.742435843185865,
+          "nearest_acc_imag": 0.6338617598560794,
+          "nearest_acc_freq_hz": 0.10088223231802294,
+          "distance_to_nearest_acc": 4.2518218150547975,
+          "top_condensed_states": "Qsig_y REGF1 G4:1.843; Qsen_y REGF1 G4:1.826; Qsig_y REGF1 G6:1.555; Qsen_y REGF1 G6:1.541; LAG_y TGOV1N TGOV1 3:1.002; LAG_y TGOV1N TGOV1 1:0.8919"
+        },
+        {
+          "pole": {
+            "real": -11.652512476873913,
+            "imag": 86.38482654265168
+          },
+          "real": -11.652512476873913,
+          "imag": 86.38482654265168,
+          "freq_hz": 13.748572152398978,
+          "zeta": 0.13368002632045523,
+          "abs_residual": 1.1348852040311306e-08,
+          "relative_residual": 1.2944566321126009e-11,
+          "contour": "pll_control",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.8587678666970091,
+          "pi_c_raw_norm": 0.9595012708939967,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "II_control",
+          "nearest_acc_real": -11.444684244769977,
+          "nearest_acc_imag": 86.22751577657135,
+          "nearest_acc_freq_hz": 13.723535366375721,
+          "distance_to_nearest_acc": 0.2606515896445428,
+          "top_condensed_states": "ae PLL1 G9:18.88; ae PLL1 G5:8.407; Qsen_y REGF1 G4:6.475; S1_y REECA1 1:4.815; am PLL1 G9:4.35; ae PLL1 G7:3.741"
+        },
+        {
+          "pole": {
+            "real": -12.112315013554266,
+            "imag": 89.65410117572445
+          },
+          "real": -12.112315013554266,
+          "imag": 89.65410117572445,
+          "freq_hz": 14.268893370577452,
+          "zeta": 0.13388420029656511,
+          "abs_residual": 2.028907453667015e-10,
+          "relative_residual": 2.4913131581261593e-13,
+          "contour": "pll_control",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.6886201323354055,
+          "pi_c_raw_norm": 0.8960163933531553,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "I_network",
+          "nearest_acc_real": -12.904655501083283,
+          "nearest_acc_imag": 86.41740384471285,
+          "nearest_acc_freq_hz": 13.753756991054612,
+          "distance_to_nearest_acc": 3.332268455685304,
+          "top_condensed_states": "Qsen_y REGF1 G4:5.131; Qsen_y REGF1 G6:3.787; ae PLL1 G5:3.032; ae PLL1 G7:2.92; Qsig_y REGF1 G4:2.186; ae PLL1 G9:1.666"
+        },
+        {
+          "pole": {
+            "real": -1.525558297845011,
+            "imag": 9.358437122454253
+          },
+          "real": -1.525558297845011,
+          "imag": 9.358437122454253,
+          "freq_hz": 1.4894415276532875,
+          "zeta": 0.16089051009667774,
+          "abs_residual": 1.5921562018983314e-13,
+          "relative_residual": 2.1041801731510657e-16,
+          "contour": "network_margin",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.5313096202800469,
+          "pi_c_raw_norm": 0.8153946356939582,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "I_network",
+          "nearest_acc_real": -9.935235049593148,
+          "nearest_acc_imag": 8.52847496633044,
+          "nearest_acc_freq_hz": 1.3573489479269754,
+          "distance_to_nearest_acc": 8.450532542360321,
+          "top_condensed_states": "LAG_y TGOV1N TGOV1 2:3.394; LAG_y TGOV1N TGOV1 3:2.17; LA_y IEEEX1 2:0.9402; LA_y IEEEX1 3:0.8408; LAG_y TGOV1N TGOV1 1:0.5288; Qsig_y REGF1 G4:0.5107"
+        },
+        {
+          "pole": {
+            "real": -1.5373182521241802,
+            "imag": 8.700427116106532
+          },
+          "real": -1.5373182521241802,
+          "imag": 8.700427116106532,
+          "freq_hz": 1.3847159825391182,
+          "zeta": 0.17399923618394272,
+          "abs_residual": 4.133884808818743e-14,
+          "relative_residual": 5.465039026906071e-17,
+          "contour": "network_margin",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.6155856169526327,
+          "pi_c_raw_norm": 0.8618691711044454,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "I_network",
+          "nearest_acc_real": -0.742435843185865,
+          "nearest_acc_imag": 0.6338617598560794,
+          "nearest_acc_freq_hz": 0.10088223231802294,
+          "distance_to_nearest_acc": 8.105634749401156,
+          "top_condensed_states": "LAG_y TGOV1N TGOV1 1:3.185; Qsig_y REGF1 G4:2.54; Qsen_y REGF1 G4:2.504; Qsig_y REGF1 G6:1.9; Qsen_y REGF1 G6:1.873; LAG_y TGOV1N TGOV1 3:1.615"
+        },
+        {
+          "pole": {
+            "real": -2.6795251677076544,
+            "imag": 9.2279395583265
+          },
+          "real": -2.6795251677076544,
+          "imag": 9.2279395583265,
+          "freq_hz": 1.468672195260904,
+          "zeta": 0.2788529952641539,
+          "abs_residual": 2.5045314760457005e-14,
+          "relative_residual": 3.311479428634117e-17,
+          "contour": "network_margin",
+          "n_contour_duplicates": 1,
+          "pi_c": 0.6828202705630038,
+          "pi_c_raw_norm": 0.893482015294698,
+          "participation_note": "pi_c is RMS-normalized by block size; pi_c_raw_norm is the unscaled norm ratio.",
+          "family": "I_network",
+          "nearest_acc_real": -9.935235049593148,
+          "nearest_acc_imag": 8.52847496633044,
+          "nearest_acc_freq_hz": 1.3573489479269754,
+          "distance_to_nearest_acc": 7.289346788673662,
+          "top_condensed_states": "Qsig_y REGF1 G4:4.277; Qsen_y REGF1 G4:4.111; Qsig_y REGF1 G6:3.138; Qsen_y REGF1 G6:3.016; LAG_y TGOV1N TGOV1 1:1.771; LAG_y TGOV1N TGOV1 3:1.273"
+        }
+      ],
+      "effective_damping": {
+        "s0_static": {
+          "available": true,
+          "eval_pole": {
+            "real": 0.0,
+            "imag": 0.0
+          },
+          "cond_sI_minus_Acc": 3.849032107487829e+20,
+          "linear_solve_mode": "pinv",
+          "paired_genrou_ids": [
+            "1",
+            "2",
+            "3",
+            "10"
+          ],
+          "scalar_D_norm": 0.0,
+          "D_eff_real_fro": 4.940001603487702,
+          "D_eff_imag_fro": 0.0,
+          "D_eff_real_diag": [
+            2.380952392293495,
+            3.300330048719822,
+            2.793296102676757,
+            0.2000000009520067
+          ],
+          "D_eff_imag_diag": [
+            -0.0,
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "L_eff_real_fro": 0.2256108958409495,
+          "note": "D_eff is the local omega-omega block -A_eff_ww(s_eval). At s=0 this is the Sigma(0)-style static Schur damping diagnostic; at the critical pole it matches the Phase-0B reported diagnostic."
+        },
+        "critical_pole": {
+          "available": true,
+          "eval_pole": {
+            "real": -10.75135790052832,
+            "imag": 86.34193765611796
+          },
+          "cond_sI_minus_Acc": 139647.12140134428,
+          "linear_solve_mode": "solve",
+          "paired_genrou_ids": [
+            "1",
+            "2",
+            "3",
+            "10"
+          ],
+          "scalar_D_norm": 0.0,
+          "D_eff_real_fro": 0.054441864411544076,
+          "D_eff_imag_fro": 0.5386794603972137,
+          "D_eff_real_diag": [
+            0.02623956381305494,
+            0.03637167261215536,
+            0.030783845814198536,
+            0.002204123360296615
+          ],
+          "D_eff_imag_diag": [
+            -0.25962950072807406,
+            -0.35988247625673636,
+            -0.3045932690105897,
+            -0.02180887806115822
+          ],
+          "L_eff_real_fro": 0.5297937018490654,
+          "note": "D_eff is the local omega-omega block -A_eff_ww(s_eval). At s=0 this is the Sigma(0)-style static Schur damping diagnostic; at the critical pole it matches the Phase-0B reported diagnostic.",
+          "phase0b_D_eff_real_fro": 2.215550236675031,
+          "phase0b_D_eff_imag_fro": 0.8199559735844505,
+          "phase0b_eval_pole": {
+            "real": -0.6566405263624159,
+            "imag": 4.884817877082754
+          }
+        }
+      },
+      "outputs": {
+        "partition_csv": "outputs\\phase0d_nep_contour_solver\\mix60_partition.csv",
+        "zeros_csv": "outputs\\phase0d_nep_contour_solver\\mix60_zeros.csv",
+        "contour_counts_csv": "outputs\\phase0d_nep_contour_solver\\mix60_contour_counts.csv",
+        "critical_validation_csv": "outputs\\phase0d_nep_contour_solver\\mix60_critical_validation.csv"
+      },
+      "status_label": "PASS"
+    }
+  ],
+  "proceed_to_phase2": true,
+  "interpretation": "Phase-0D passed for all three cases. The rational Schur NEP contour solver can be used as the bridge for later validation phases.",
+  "outputs": {
+    "report": "outputs\\phase0d_nep_contour_solver\\phase0d_nep_report.md",
+    "status_json": "outputs\\phase0d_nep_contour_solver\\phase0d_nep_status.json",
+    "s_plane_png": "outputs\\phase0d_nep_contour_solver\\fig_phase0d_s_plane.png",
+    "s_plane_pdf": "outputs\\phase0d_nep_contour_solver\\fig_phase0d_s_plane.pdf"
+  }
+}

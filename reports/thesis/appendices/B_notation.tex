@@ -1,0 +1,130 @@
+\chapter{Notation}
+
+This appendix records the principal notation used in the theoretical thesis.
+
+\begin{description}[leftmargin=3.2cm,style=nextline]
+\item[\(s\)] Complex spectral parameter or eigenvalue.
+\item[\(x\)] Dynamic state vector in a first-order DAE or state-space model.
+\item[\(y\)] Algebraic variable vector in a DAE model.
+\item[\(A\)] Linearized first-order state matrix after algebraic elimination.
+\item[\(A_{ee}\)] Retained-state block of a partitioned state matrix.
+\item[\(A_{cc}\)] Condensed controller or auxiliary-state block.
+\item[\(A_{ec},A_{ce}\)] Coupling blocks between retained and condensed states.
+\item[\(M\)] Diagonal inertia or mass matrix in a second-order retained model.
+\item[\(D\)] Fixed damping matrix. The case \(D=\gamma M\) is the uniform
+damping-to-inertia case, not the full decouplable class.
+\item[\(\gamma_i\)] Local damping-to-inertia ratio \(D_i/M_i\) used in graph
+roughness and commutation diagnostics.
+\item[\(L\)] Synchronizing stiffness or active-power Jacobian Laplacian.
+\item[\(B\)] Oriented branch-bus incidence matrix of the retained network.
+\item[\(\eta\)] Branch angle-difference vector, \(\eta=B^T\theta\).
+\item[\(\kappa_e\)] Nominal or parameter-dependent branch stiffness
+coefficient before the operating-point cosine factor.
+\item[\(f_e\)] Active power flow on branch \(e\), \(f_e=\kappa_e\sin\eta_e\)
+in the lossless branch model.
+\item[\(w_e\)] Operational branch stiffness \(w_e=\kappa_e\cos\eta_e\).
+\item[\(W\)] Diagonal matrix of operational branch stiffnesses, so that
+\(L=BWB^T\) on the angle subspace.
+\item[\(\ones\)] Uniform angle-shift vector.
+\item[\(\Lt\)] Inertia-normalized stiffness \(M^{-1/2}LM^{-1/2}\).
+\item[\(\Dt\)] Inertia-normalized damping \(M^{-1/2}DM^{-1/2}\).
+\item[\(\operatorname{comm}(\Lt,\Dt)\)] Commutator \(\Lt\Dt-\Dt\Lt\). For symmetric fixed
+operators, \([\Lt,\Dt]=0\) is the exact modal decoupling condition.
+\item[\(Q\)] Orthogonal modal basis of \(\Lt\) on the nonzero angle subspace.
+\item[\(\nu_k\)] Nonzero eigenvalue of \(\Lt\), interpreted as squared modal
+frequency in the undamped model.
+\item[\(\phi_k\)] Generalized graph mode satisfying \(L\phi_k=\nu_kM\phi_k\)
+and \(\phi_k^TM\phi_\ell=\delta_{k\ell}\).
+\item[\(\delta_k\)] Frozen-mode scalar damping \(\phi_k^TD\phi_k\).
+\item[\(\Lambda\)] Diagonal matrix of nonzero \(\Lt\) eigenvalues.
+\item[\(\Gamma\)] Modal damping matrix \(Q^T\Dt Q\).
+\item[\(E\)] Off-diagonal part of \(\Gamma\), responsible for modal damping
+coupling.
+\item[\(a_e\)] Incidence vector of line \(e=(i,j)\), usually \(a_e=e_i-e_j\).
+\item[\(b_e\)] Susceptance-like or stiffness weight of line \(e\).
+\item[\(L^+\)] Moore--Penrose pseudoinverse of the Laplacian \(L\).
+\item[\(K_f\)] Kirchhoff index or total effective resistance, \(n\mathrm{trace}(L^+)\).
+\item[\(P(s)\)] Quadratic eigenvalue operator \(s^2M+sD+L\).
+\item[\(T(s)\)] Nonlinear retained second-order operator.
+\item[\(G_T(s)\)] Dynamic Green function or retained compliance,
+\(G_T(s)=T(s)^{-1}\) on the resolvent set.
+\item[\(H_G(\omega)\)] Graph-time transfer obtained by projecting the
+inertia-normalized operator into the graph-mode basis and evaluating at
+\(s=j\omega\).
+\item[\(\mathcal R_e(s)\)] Dynamic effective resistance of line \(e\),
+\(a_e^TG_T(s)a_e\).
+\item[\(S(s)\)] First-order Schur complement operator for retained states.
+\item[\(\Pi(s)\)] General rational self-energy obtained after Schur
+condensation of controller or auxiliary states.
+\item[\(\widehat\Pi(s)\)] Identified or approximate self-energy obtained from
+frequency scans, EMT data, PMU data, or black-box models.
+\item[\(\Pi_K(s),\Pi_D(s)\)] Stiffness-like and damping-like channels in
+\(\Pi(s)=\Pi_K(s)+s\Pi_D(s)\).
+\item[\(\Sigma(s)\)] Damping-channel specialization
+\(\Sigma(s)=D_0+\Pi_D(s)\), used only after the channel decomposition is
+declared.
+\item[\(\mathcal P_\Sigma(\omega)\)] Weighted directional passivity matrix of
+the damping-channel self-energy.
+\item[\(U,K_u,V\)] Low-rank action factors in
+\(T_u(s)=T(s)+U(s)K_u(s)V(s)^*\).
+\item[\(\mathcal G_u(s)\)] Action interaction matrix
+\(V(s)^*T(s)^{-1}U(s)\).
+\item[\(\eta_\Gamma\)] Contour adequacy error
+\(\sup_{s\in\Gamma}\|\widehat T(s)^{-1}(T(s)-\widehat T(s))\|_2\).
+\item[\(\Lambda_\varepsilon^{\mathcal A}(T)\)] Structured pseudospectrum under
+the declared physical action or uncertainty family \(\mathcal A\).
+\item[\(r_{\rm frag}\)] Structured dynamic fragility radius, the smallest
+normalized admissible perturbation that moves a root to a protected boundary.
+\item[\(r_{\rm top}\)] Structured topology fragility radius over admissible
+line or edge-weight perturbations.
+\item[\(r_e^{\C},r_e^{\R}\)] Complex and real frozen-line fragility radii for
+line \(e\) on a declared protected spectral boundary.
+\item[\(r_{\rm forced}\)] Smallest admissible forcing or input amplitude that
+violates a declared protected response margin.
+\item[\(r_{\rm ROA}\)] Nonlinear region-of-attraction fragility radius around
+the protected equilibrium.
+\item[\(D_0\)] Direct retained damping term inside the damping-channel
+specialization.
+\item[\(\zeta\)] Damping ratio of a complex pole.
+\item[\(\zetaReq\)] Required damping ratio.
+\item[\(S_\zeta\)] Log damping-ratio margin.
+\item[\(g_{\rm prot}\)] Protected resolvent gain over selected frequency,
+input, and output channels.
+\item[\(S_g\)] Log protected-resolvent margin.
+\item[\(\rho\)] Planning or hosting action vector, such as IBR conversion,
+line reinforcement, damping addition, or virtual-inertia placement.
+\item[\(\mathcal H_{\rm stat}\)] Static hosting set defined by voltage,
+thermal, power-quality, protection, or operating constraints.
+\item[\(\mathcal H_{\rm dyn}\)] Dynamic spectral hosting set after adding
+damping-ratio, protected-gain, and forbidden-root constraints.
+\item[\(h_{\rm dyn}(\alpha)\)] Directional dynamic hosting capacity in
+penetration direction \(\alpha\).
+\item[\(h_k\)] Modal damping-region headroom
+\(\delta_k-2\zetaReq\sqrt{\nu_k}\).
+\item[\(\mathcal P_{\rm host}^{(1)}\)] First-order spectral hosting polytope.
+\item[\(\gamma_i^v\)] Virtual-damping-to-virtual-inertia coefficient at bus
+\(i\) in a local fixed-\(D\) screen.
+\item[\(J_i^{\rm VI}\)] Virtual-inertia placement score with declared
+frequency-security and damping-headroom weights.
+\item[\(\mathcal L_{\rm all}\)] Linear space spanned by all edge Laplacian
+directions \(b_{ij}b_{ij}^T\).
+\item[\(\mathcal L_{\rm ex}\)] Linear space spanned by existing-line Laplacian
+directions.
+\item[\(\mathcal D_{\rm sh}\)] Diagonal shunt space used in the line-shunt
+decomposition.
+\item[\(s_i\)] Modal substitutability score for replacing local inertia with
+existing-line actions.
+\item[\(T_{\rm risk}\)] Frequency-estimation trip-risk exposure duration.
+\item[\(\pi_c\)] Fraction of eigenvector norm associated with condensed
+controller states.
+\item[\(\mathcal D_i\)] Fixed-\(D\) damping placement score at bus \(i\).
+\item[\(\mathcal M_i\)] Fixed-\(D\) inertia-dilution exposure at bus \(i\).
+\item[\(G_e^{(2)}\)] Algebraic-connectivity gain score for line \(e\).
+\item[\(G_e^{(K)}\)] Effective-resistance gain score for line \(e\).
+\item[\(H_i,H_e\)] Hidden damping-margin flags for bus- or line-related actions.
+\item[\(r(a)\)] Risk vector for a candidate planning action \(a\).
+\item[\(\mathcal R(a)\)] Scalarized risk score \(w^Tr(a)\) after vector
+components have been reported.
+\item[\texttt{GFL}] Grid-following converter control family.
+\item[\texttt{GFM}] Grid-forming converter control family.
+\end{description}

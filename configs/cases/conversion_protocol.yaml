@@ -1,0 +1,162 @@
+name: ieee39_ibr_conversion_protocol
+base_case: data/raw/ieee39_full.xlsx
+active_profile: mix60
+eligible_buses: [31, 32, 33, 34, 35, 36, 37, 38]
+preserve_power_flow: true
+
+profiles:
+  mix20:
+    output_case: data/processed/mix20/mix20.xlsx
+    keep_synchronous: [30, 31, 32, 33, 34, 37, 38, 39]
+    replacements:
+      gfl:
+        gens: [7]
+        buses: [36]
+        model: REGCP1
+        with_pll: true
+        parameter_set: published_gfl_baseline
+        source: andes_rengen_regcp1
+      gfm:
+        gens: [6]
+        buses: [35]
+        model: REGF1
+        with_pll: false
+        parameter_set: published_droop_gfm_baseline
+        source: andes_rengen_regf1
+
+  mix40:
+    output_case: data/processed/mix40/mix40.xlsx
+    keep_synchronous: [30, 31, 32, 34, 37, 39]
+    replacements:
+      gfl:
+        gens: [7, 9]
+        buses: [36, 38]
+        model: REGCP1
+        with_pll: true
+        parameter_set: published_gfl_baseline
+        source: andes_rengen_regcp1
+      gfm:
+        gens: [4, 6]
+        buses: [33, 35]
+        model: REGF1
+        with_pll: false
+        parameter_set: published_droop_gfm_baseline
+        source: andes_rengen_regf1
+
+  mix60:
+    output_case: data/processed/mix60/mix60.xlsx
+    keep_synchronous: [30, 31, 32, 39]
+    replacements:
+      gfl:
+        gens: [5, 7, 9]
+        buses: [34, 36, 38]
+        model: REGCP1
+        with_pll: true
+        parameter_set: published_gfl_baseline
+        source: andes_rengen_regcp1
+      gfm:
+        gens: [4, 6, 8]
+        buses: [33, 35, 37]
+        model: REGF1
+        with_pll: false
+        parameter_set: published_droop_gfm_baseline
+        source: andes_rengen_regf1
+
+  mix80:
+    output_case: data/processed/mix80/mix80.xlsx
+    keep_synchronous: [30, 39]
+    replacements:
+      gfl:
+        gens: [3, 5, 7, 9]
+        buses: [32, 34, 36, 38]
+        model: REGCP1
+        with_pll: true
+        parameter_set: published_gfl_baseline
+        source: andes_rengen_regcp1
+      gfm:
+        gens: [2, 4, 6, 8]
+        buses: [31, 33, 35, 37]
+        model: REGF1
+        with_pll: false
+        parameter_set: published_droop_gfm_baseline
+        source: andes_rengen_regf1
+
+parameter_sets:
+  published_gfl_baseline:
+    REGCP1:
+      Tg: 0.1
+      Rrpwr: 10
+      Brkpt: 1.0
+      Zerox: 0.5
+      Lvplsw: 1
+      Lvpl1: 1
+      Volim: 1.2
+      Lvpnt1: 0.8
+      Lvpnt0: 0.4
+      Iolim: -1.5
+      Tfltr: 0.1
+      Khv: 0.7
+      Iqrmax: 1
+      Iqrmin: -1
+    REECA1:
+      PFFLAG: 0
+      VFLAG: 0
+      QFLAG: 0
+      PFLAG: 0
+      PQFLAG: 0
+      Vdip: 0.8
+      Vup: 1.1
+      Trv: 0.02
+      Kqv: 20
+      Imax: 10
+    REPCA1:
+      VCFlag: 1
+      RefFlag: 1
+      Fflag: 0
+      PLflag: 0
+      Tfltr: 0.02
+      Kp: 1
+      Ki: 0.1
+      Kpg: 1
+      Kig: 0.1
+      Ddn: 10
+      Dup: 10
+    PLL1:
+      Kp: 1
+      Ki: 0.2
+      Tf: 0.05
+      Tp: 0.05
+
+  published_droop_gfm_baseline:
+    REGF1:
+      xf: 0.2
+      Vdip: 0.8
+      PQFLAG: 1
+      wdrp: 0.033
+      Qdrp: 0.045
+      Tr: 0.005
+      Te: 0.005
+      KPi: 0.5
+      KIi: 20
+      KPv: 3
+      KIv: 10
+      KPplim: 5
+      KIplim: 30
+      KPqlim: 0.1
+      KIqlim: 1.5
+      Tpm: 0.025
+
+citations:
+  - andes_ieee39_dynamic_case
+  - andes_rengen_models
+  - matpower_case39_bus39_interconnection
+  - samanta2025_state_of_art_ibr_ieee39
+  - yang2021_gfm_placement_modified39
+  - zoghby2024_coupling_modes_ieee39
+  - conte2020_frequency_stability_full_replica39
+
+notes:
+  - "No canonical official IEEE 39 IBR benchmark is assumed."
+  - "The base_case path is strict. No package fallback is used at runtime."
+  - "Bus 39 remains synchronous because it represents an external interconnection/equivalent."
+  - "Profiles mix20/mix40/mix60/mix80 encode the conversion level declaratively."
