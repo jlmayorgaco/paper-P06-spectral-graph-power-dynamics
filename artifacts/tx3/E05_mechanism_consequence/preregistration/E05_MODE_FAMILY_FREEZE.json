@@ -1,0 +1,162 @@
+{
+  "created_utc": "2026-08-27T21:21:01.903331+00:00",
+  "discovery_consequence_sha256": "47f95d19e9320e00516c68aa8e9e37272f10cea3ab2aef4d9bd2eeb834a08ed4",
+  "freeze_id": "TX3-E05-MODE-FAMILIES-1.0",
+  "holdout_consequences_inspected_before_freeze": false,
+  "minimum_tracking_bmac": 0.7,
+  "selected_mode_families": [
+    {
+      "candidate_id": "C_R",
+      "coalition_key": "A7-A8",
+      "median_absolute_damping_externality": 0.0001862208194118864,
+      "median_damping_externality": -0.0001862208194118864,
+      "median_real_part_externality_per_s": 0.004658385956105349,
+      "minimum_tracking_bmac": 0.9986033444637252,
+      "reference_mode": {
+        "damping_ratio": 0.6862134623986291,
+        "eigenvalue_imag_per_s": 8.776655698718141,
+        "eigenvalue_real_per_s": -8.27970504699817,
+        "frequency_hz": 1.3968481382666447,
+        "reference_mode_id": "M012",
+        "reference_mode_index": 46,
+        "top_state_participation": [
+          {
+            "normalized_participation": 0.44646946027211953,
+            "state_index": 84,
+            "state_name": "PI_xi PLL2 37"
+          },
+          {
+            "normalized_participation": 0.4420373235376886,
+            "state_index": 87,
+            "state_name": "am PLL2 37"
+          },
+          {
+            "normalized_participation": 0.02582609102013486,
+            "state_index": 85,
+            "state_name": "PI_xi PLL2 38"
+          },
+          {
+            "normalized_participation": 0.02556971342457125,
+            "state_index": 88,
+            "state_name": "am PLL2 38"
+          },
+          {
+            "normalized_participation": 0.02411237312196249,
+            "state_index": 83,
+            "state_name": "PI_xi PLL2 36"
+          },
+          {
+            "normalized_participation": 0.023873007736023234,
+            "state_index": 86,
+            "state_name": "am PLL2 36"
+          }
+        ]
+      },
+      "reference_mode_id": "M012",
+      "selection_rule": "largest discovery median absolute damping-ratio Mobius externality among reference mode families with >=12/16 valid BMAC-tracked points",
+      "valid_discovery_points": 16
+    },
+    {
+      "candidate_id": "C_F",
+      "coalition_key": "A3-A6",
+      "median_absolute_damping_externality": 0.00040437128479392515,
+      "median_damping_externality": -0.00040437128479392515,
+      "median_real_part_externality_per_s": 0.0064121410491218,
+      "minimum_tracking_bmac": 0.9986033444637252,
+      "reference_mode": {
+        "damping_ratio": 0.6862134623986291,
+        "eigenvalue_imag_per_s": 8.776655698718141,
+        "eigenvalue_real_per_s": -8.27970504699817,
+        "frequency_hz": 1.3968481382666447,
+        "reference_mode_id": "M012",
+        "reference_mode_index": 46,
+        "top_state_participation": [
+          {
+            "normalized_participation": 0.44646946027211953,
+            "state_index": 84,
+            "state_name": "PI_xi PLL2 37"
+          },
+          {
+            "normalized_participation": 0.4420373235376886,
+            "state_index": 87,
+            "state_name": "am PLL2 37"
+          },
+          {
+            "normalized_participation": 0.02582609102013486,
+            "state_index": 85,
+            "state_name": "PI_xi PLL2 38"
+          },
+          {
+            "normalized_participation": 0.02556971342457125,
+            "state_index": 88,
+            "state_name": "am PLL2 38"
+          },
+          {
+            "normalized_participation": 0.02411237312196249,
+            "state_index": 83,
+            "state_name": "PI_xi PLL2 36"
+          },
+          {
+            "normalized_participation": 0.023873007736023234,
+            "state_index": 86,
+            "state_name": "am PLL2 36"
+          }
+        ]
+      },
+      "reference_mode_id": "M012",
+      "selection_rule": "largest discovery median absolute damping-ratio Mobius externality among reference mode families with >=12/16 valid BMAC-tracked points",
+      "valid_discovery_points": 16
+    },
+    {
+      "candidate_id": "C_3",
+      "coalition_key": "A2-A7-A8",
+      "median_absolute_damping_externality": 1.1829687810799294e-05,
+      "median_damping_externality": 1.1829687810799294e-05,
+      "median_real_part_externality_per_s": -0.0002172211319124706,
+      "minimum_tracking_bmac": 0.9965403784103906,
+      "reference_mode": {
+        "damping_ratio": 0.4939047349771024,
+        "eigenvalue_imag_per_s": 7.82407638167444,
+        "eigenvalue_real_per_s": -4.444252058976149,
+        "frequency_hz": 1.245240431272038,
+        "reference_mode_id": "M011",
+        "reference_mode_index": 52,
+        "top_state_participation": [
+          {
+            "normalized_participation": 0.37670887779613044,
+            "state_index": 88,
+            "state_name": "am PLL2 38"
+          },
+          {
+            "normalized_participation": 0.3720578679437131,
+            "state_index": 85,
+            "state_name": "PI_xi PLL2 38"
+          },
+          {
+            "normalized_participation": 0.02854221602320399,
+            "state_index": 97,
+            "state_name": "S0_y REGCP1 38"
+          },
+          {
+            "normalized_participation": 0.02659331837557142,
+            "state_index": 87,
+            "state_name": "am PLL2 37"
+          },
+          {
+            "normalized_participation": 0.02626498582738,
+            "state_index": 84,
+            "state_name": "PI_xi PLL2 37"
+          },
+          {
+            "normalized_participation": 0.015784805859057525,
+            "state_index": 0,
+            "state_name": "delta GENROU 30"
+          }
+        ]
+      },
+      "reference_mode_id": "M011",
+      "selection_rule": "largest discovery median absolute damping-ratio Mobius externality among reference mode families with >=12/16 valid BMAC-tracked points",
+      "valid_discovery_points": 16
+    }
+  ]
+}
