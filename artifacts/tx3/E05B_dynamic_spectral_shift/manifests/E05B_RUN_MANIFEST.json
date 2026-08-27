@@ -1,0 +1,21 @@
+{
+  "E05C_or_E06_executed": false,
+  "contour_candidates": [
+    "A7-A8",
+    "A3-A6",
+    "A2-A7-A8",
+    "A2-A5-A8"
+  ],
+  "decisions": {
+    "D1": "SUPPORTED",
+    "D2": "SUPPORTED",
+    "D3": "SUPPORTED"
+  },
+  "development_cases": 2016,
+  "development_operating_points": 24,
+  "holdout_cases": 1344,
+  "independent_holdout_operating_points": 16,
+  "new_paraemt_scientific_runs": 0,
+  "stage": "TX3_E05B_DYNAMIC_SPECTRAL_SHIFT",
+  "unique_operator_builds": 3720
+}

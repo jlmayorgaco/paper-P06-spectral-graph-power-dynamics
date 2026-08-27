@@ -1,0 +1,80 @@
+{
+  "C1": "SUPPORTED_UNCHANGED",
+  "C2": "SUPPORTED_UNCHANGED",
+  "C3a": "REJECTED_UNCHANGED",
+  "D1_exact_schur_factorization": "SUPPORTED",
+  "D2_reproducible_finite_pole_externality": "SUPPORTED",
+  "D3_connected_contour_localization": "SUPPORTED",
+  "E05C_or_E06_executed": false,
+  "contour_candidate_decisions": [
+    {
+      "candidate_id": "D01",
+      "coalition_key": "A7-A8",
+      "frozen_dominant_component": "real",
+      "maximum_numerical_contour_error": 1.2392920847055199e-15,
+      "median_mu1_absolute_per_s": 0.004749128265775431,
+      "median_mu1_imag_per_s": -0.0008994340311803128,
+      "median_mu1_real_per_s": 0.004656319558600686,
+      "order": 2,
+      "same_sign_fraction": 1.0,
+      "status": "SUPPORTED",
+      "valid_resolved_holdout_points": 16
+    },
+    {
+      "candidate_id": "D02",
+      "coalition_key": "A3-A6",
+      "frozen_dominant_component": "imag",
+      "maximum_numerical_contour_error": 0.9150835322621026,
+      "median_mu1_absolute_per_s": 0.014220564085180975,
+      "median_mu1_imag_per_s": 0.013047847432562598,
+      "median_mu1_real_per_s": -0.0012082875646011182,
+      "order": 2,
+      "same_sign_fraction": 0.0,
+      "status": "REJECTED",
+      "valid_resolved_holdout_points": 0
+    },
+    {
+      "candidate_id": "D03",
+      "coalition_key": "A2-A7-A8",
+      "frozen_dominant_component": "real",
+      "maximum_numerical_contour_error": 2.558671344014303e-14,
+      "median_mu1_absolute_per_s": 0.0009024619947196073,
+      "median_mu1_imag_per_s": -0.000335143491706269,
+      "median_mu1_real_per_s": -0.0008379239113160963,
+      "order": 3,
+      "same_sign_fraction": 1.0,
+      "status": "SUPPORTED",
+      "valid_resolved_holdout_points": 16
+    },
+    {
+      "candidate_id": "D04",
+      "coalition_key": "A2-A5-A8",
+      "frozen_dominant_component": "imag",
+      "maximum_numerical_contour_error": 2.2144786744853164e-14,
+      "median_mu1_absolute_per_s": 0.0025628044725138073,
+      "median_mu1_imag_per_s": 0.0020285900776357835,
+      "median_mu1_real_per_s": 0.0015826830448730789,
+      "order": 3,
+      "same_sign_fraction": 1.0,
+      "status": "SUPPORTED",
+      "valid_resolved_holdout_points": 16
+    }
+  ],
+  "factorization": {
+    "maximum_component_closure_residual": 3.410605131648481e-13,
+    "maximum_development_integrated_residual": 2.2737367544323206e-13,
+    "maximum_pointwise_logdet_residual": 7.389644451905042e-13
+  },
+  "holdout": {
+    "operating_points": 16,
+    "reproducible_pairs": 10,
+    "reproducible_triples": 5,
+    "smooth_valid_coverage": 1.0
+  },
+  "material_modal_margin_externality": "NOT_ESTABLISHED",
+  "new_paraemt_scientific_runs": 0,
+  "original_C3_cycle_or_SCC": "UNASSESSED",
+  "progression_authorized": false,
+  "stage": "TX3_E05B_DYNAMIC_SPECTRAL_SHIFT",
+  "stop_reason": "E05B complete; independent review is required before any separately preregistered E05C or E06"
+}
