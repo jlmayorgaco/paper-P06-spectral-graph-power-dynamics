@@ -1,0 +1,40 @@
+{
+  "C3a_reopened": false,
+  "D1_factorization_supported_rule": {
+    "all_24_development_points_and_all_pair_triple_cases_present": true,
+    "maximum_component_closure_residual": 1e-10,
+    "maximum_development_integrated_full_factorization_residual": 1e-07,
+    "maximum_pointwise_factorization_residual": 1e-07
+  },
+  "D2_holdout_dynamic_supported_rule": {
+    "minimum_distinct_pairs": 2,
+    "minimum_distinct_triples": 2,
+    "minimum_same_sign_fraction": 0.75,
+    "minimum_valid_smooth_coverage": 0.9,
+    "resolved_holdout_points_per_coalition": 8
+  },
+  "D3_contour_localization_supported_rule": {
+    "minimum_reproducible_pairs": 1,
+    "minimum_reproducible_triples": 1,
+    "minimum_same_sign_fraction_of_mu1_real_or_imag_dominant_component": 0.75,
+    "mu0_required": 0,
+    "numerical_contour_error_maximum": 1e-08,
+    "resolved_mu1_holdout_points_per_candidate": 8,
+    "valid_single_pole_holdout_points_per_candidate": 8
+  },
+  "development_selection_rule": {
+    "eligible": "resolved at >=12/24 development points and same-sign fraction >=0.75",
+    "mandatory_diagnostics": [
+      "A7-A8",
+      "A3-A6",
+      "A2-A7-A8"
+    ],
+    "modal_family": "at OP00 choose the isolated positive-imaginary pole in 0.1-30 Hz with single-pole occupancy at every coalition vertex and largest absolute connected mu1",
+    "rank": "descending median absolute DeltaPhi_poles_96; select top two pairs and top two triples"
+  },
+  "dynamic_resolution_rule": "abs(DeltaPhi_poles_96) >= 5*(abs(DeltaPhi_poles_96-DeltaPhi_poles_48) + 2^order*1e-10 + 2^order*max_initialization_residual)",
+  "freeze_id": "TX3-E05B-GATES-1.0",
+  "material_damping_gate_changed": false,
+  "progression_requires_independent_review": true,
+  "significance_multiplier_K": 5.0
+}
