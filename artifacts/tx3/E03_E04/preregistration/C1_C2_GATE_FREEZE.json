@@ -1,0 +1,21 @@
+{
+  "C1_supported_rule": {
+    "distinct_pair_coalitions_resolved_on_at_least_four_holdout_ops": 2,
+    "distinct_triple_coalitions_resolved_on_at_least_four_holdout_ops": 2,
+    "minimum_same_sign_fraction_within_each_reproducible_coalition": 0.75,
+    "valid_smooth_coverage_minimum": 0.9
+  },
+  "C1_unresolved_rule": "valid smooth coverage below 0.90 or uncertainty prevents applying the supported/rejected rule",
+  "C2_primary_case_gate": "abs(reconstruction-direct) <= 5*combined_uncertainty",
+  "C2_supported_rule": {
+    "absolute_systematic_bias_maximum": "median combined uncertainty on holdout",
+    "holdout_all_orders_fraction_within_gate": 0.95,
+    "holdout_each_order_fraction_within_gate": 0.9,
+    "valid_reconstruction_coverage_minimum": 0.9
+  },
+  "correlation_is_sufficient": false,
+  "failure_denominators_retained": true,
+  "freeze_id": "TX3-E03-E04-GATES-1.0",
+  "significance_multiplier_K": 5.0,
+  "unresolved_rule": "abs(direct_externality) < 5*direct_uncertainty"
+}

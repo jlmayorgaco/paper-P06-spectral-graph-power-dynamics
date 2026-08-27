@@ -1,0 +1,245 @@
+{
+  "discovery_count": 16,
+  "freeze_id": "TX3-E03-OPS-1.0",
+  "generator": "scrambled Sobol; first 22 points from a 32-point base-2 draw plus two explicit points",
+  "git_sha": "14dd51ce1528533843508b9f5af08284528bc728",
+  "holdout_count": 8,
+  "operating_points": [
+    {
+      "gfl_dispatch_scale": 1.0,
+      "load_scale": 1.0,
+      "operating_point_id": "OP00",
+      "reactive_load_scale": 1.0,
+      "redispatch_mw": 0.0,
+      "role": "accepted_E02C_baseline",
+      "split": "discovery"
+    },
+    {
+      "gfl_dispatch_scale": 0.98,
+      "load_scale": 0.94,
+      "operating_point_id": "OP01",
+      "reactive_load_scale": 0.96,
+      "redispatch_mw": 0.0,
+      "role": "preregistered_less_stressed",
+      "split": "discovery"
+    },
+    {
+      "gfl_dispatch_scale": 1.0407195204868913,
+      "load_scale": 0.9205625523626805,
+      "operating_point_id": "OP02",
+      "reactive_load_scale": 0.9987896211445332,
+      "redispatch_mw": 0.6431630998849869,
+      "role": "sobol_static_ensemble",
+      "split": "discovery"
+    },
+    {
+      "gfl_dispatch_scale": 0.9949370114132762,
+      "load_scale": 1.0001894122362138,
+      "operating_point_id": "OP03",
+      "reactive_load_scale": 1.0385153144598007,
+      "redispatch_mw": -11.577498139813542,
+      "role": "sobol_static_ensemble",
+      "split": "discovery"
+    },
+    {
+      "gfl_dispatch_scale": 1.024263998027891,
+      "load_scale": 1.0556879499554634,
+      "operating_point_id": "OP04",
+      "reactive_load_scale": 0.9724925016053021,
+      "redispatch_mw": 14.225148567929864,
+      "role": "sobol_static_ensemble",
+      "split": "discovery"
+    },
+    {
+      "gfl_dispatch_scale": 0.9645168173126876,
+      "load_scale": 0.9760600899159909,
+      "operating_point_id": "OP05",
+      "reactive_load_scale": 1.0155930412001908,
+      "redispatch_mw": -3.6131920851767063,
+      "role": "sobol_static_ensemble",
+      "split": "discovery"
+    },
+    {
+      "gfl_dispatch_scale": 1.0015882047824562,
+      "load_scale": 0.9809314958751202,
+      "operating_point_id": "OP06",
+      "reactive_load_scale": 1.0313238604925572,
+      "redispatch_mw": -6.5395821165293455,
+      "role": "sobol_static_ensemble",
+      "split": "discovery"
+    },
+    {
+      "gfl_dispatch_scale": 0.9621654636226594,
+      "load_scale": 1.061148575246334,
+      "operating_point_id": "OP07",
+      "reactive_load_scale": 0.9805904752574861,
+      "redispatch_mw": 9.431540463119745,
+      "role": "sobol_static_ensemble",
+      "split": "discovery"
+    },
+    {
+      "gfl_dispatch_scale": 1.0321053398773075,
+      "load_scale": 1.0353177762031556,
+      "operating_point_id": "OP08",
+      "reactive_load_scale": 1.0083039047196507,
+      "redispatch_mw": -8.88594064861536,
+      "role": "sobol_static_ensemble",
+      "split": "discovery"
+    },
+    {
+      "gfl_dispatch_scale": 0.9785226145759225,
+      "load_scale": 0.9551021571457387,
+      "operating_point_id": "OP09",
+      "reactive_load_scale": 0.9543909886851907,
+      "redispatch_mw": 5.2028541918843985,
+      "role": "sobol_static_ensemble",
+      "split": "discovery"
+    },
+    {
+      "gfl_dispatch_scale": 1.0138105999678373,
+      "load_scale": 0.9480900314450265,
+      "operating_point_id": "OP10",
+      "reactive_load_scale": 1.0032712429761887,
+      "redispatch_mw": 7.6804672088474035,
+      "role": "sobol_static_ensemble",
+      "split": "discovery"
+    },
+    {
+      "gfl_dispatch_scale": 0.9720442809164523,
+      "load_scale": 1.0277205274999142,
+      "operating_point_id": "OP11",
+      "reactive_load_scale": 0.9586432822048664,
+      "redispatch_mw": -4.480734430253506,
+      "role": "sobol_static_ensemble",
+      "split": "discovery"
+    },
+    {
+      "gfl_dispatch_scale": 1.045890405867249,
+      "load_scale": 1.0731593169271947,
+      "operating_point_id": "OP12",
+      "reactive_load_scale": 1.0301479113288223,
+      "redispatch_mw": 7.2163900919258595,
+      "role": "sobol_static_ensemble",
+      "split": "discovery"
+    },
+    {
+      "gfl_dispatch_scale": 0.993088758457452,
+      "load_scale": 0.9935301285982132,
+      "operating_point_id": "OP13",
+      "reactive_load_scale": 0.9825471733696759,
+      "redispatch_mw": -10.562490848824382,
+      "role": "sobol_static_ensemble",
+      "split": "discovery"
+    },
+    {
+      "gfl_dispatch_scale": 1.0310421188361942,
+      "load_scale": 0.9683845210075379,
+      "operating_point_id": "OP14",
+      "reactive_load_scale": 0.9642722374759615,
+      "redispatch_mw": -13.503486681729555,
+      "role": "sobol_static_ensemble",
+      "split": "discovery"
+    },
+    {
+      "gfl_dispatch_scale": 0.982916031870991,
+      "load_scale": 1.04859789326787,
+      "operating_point_id": "OP15",
+      "reactive_load_scale": 1.0230328901670873,
+      "redispatch_mw": 2.4081762973219156,
+      "role": "sobol_static_ensemble",
+      "split": "discovery"
+    },
+    {
+      "gfl_dispatch_scale": 1.0098992697894573,
+      "load_scale": 1.0128660576045514,
+      "operating_point_id": "OP16",
+      "reactive_load_scale": 0.9882738092914224,
+      "redispatch_mw": -1.7745715845376253,
+      "role": "sobol_static_ensemble",
+      "split": "holdout"
+    },
+    {
+      "gfl_dispatch_scale": 0.9509331669658422,
+      "load_scale": 0.9326515325903892,
+      "operating_point_id": "OP17",
+      "reactive_load_scale": 1.0498119236901402,
+      "redispatch_mw": 12.254763543605804,
+      "role": "sobol_static_ensemble",
+      "split": "holdout"
+    },
+    {
+      "gfl_dispatch_scale": 1.0076947542838752,
+      "load_scale": 0.9386019235849381,
+      "operating_point_id": "OP18",
+      "reactive_load_scale": 0.9602464240975678,
+      "redispatch_mw": -8.432061653584242,
+      "role": "sobol_static_ensemble",
+      "split": "holdout"
+    },
+    {
+      "gfl_dispatch_scale": 0.9533307022415101,
+      "load_scale": 1.0183805049955845,
+      "operating_point_id": "OP19",
+      "reactive_load_scale": 1.0016673629172146,
+      "redispatch_mw": 3.7804171163588762,
+      "role": "sobol_static_ensemble",
+      "split": "holdout"
+    },
+    {
+      "gfl_dispatch_scale": 1.0271766854450106,
+      "load_scale": 1.0426488707959654,
+      "operating_point_id": "OP20",
+      "reactive_load_scale": 0.9872214496135712,
+      "redispatch_mw": -7.021329263225198,
+      "role": "sobol_static_ensemble",
+      "split": "holdout"
+    },
+    {
+      "gfl_dispatch_scale": 0.9869729617610574,
+      "load_scale": 0.9628686955571175,
+      "operating_point_id": "OP21",
+      "reactive_load_scale": 1.025474277883768,
+      "redispatch_mw": 10.823477245867252,
+      "role": "sobol_static_ensemble",
+      "split": "holdout"
+    },
+    {
+      "gfl_dispatch_scale": 1.049853497184813,
+      "load_scale": 0.9977166041731835,
+      "operating_point_id": "OP22",
+      "reactive_load_scale": 1.0214564988389612,
+      "redispatch_mw": 13.742500199005008,
+      "role": "sobol_static_ensemble",
+      "split": "holdout"
+    },
+    {
+      "gfl_dispatch_scale": 0.9893247989937664,
+      "load_scale": 1.0780939309298994,
+      "operating_point_id": "OP23",
+      "reactive_load_scale": 0.9658479364588857,
+      "redispatch_mw": -2.220439910888672,
+      "role": "sobol_static_ensemble",
+      "split": "holdout"
+    }
+  ],
+  "range_selection_used_static_pf_only": true,
+  "ranges": {
+    "gfl_dispatch_scale": [
+      0.95,
+      1.05
+    ],
+    "load_scale": [
+      0.92,
+      1.08
+    ],
+    "reactive_load_scale": [
+      0.95,
+      1.05
+    ],
+    "redispatch_mw": [
+      -15.0,
+      15.0
+    ]
+  },
+  "seed": 20260827
+}

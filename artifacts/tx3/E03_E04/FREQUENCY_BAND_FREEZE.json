@@ -1,0 +1,19 @@
+{
+  "basis": "E02C terminal FRF validated to 30 Hz; 50 Hz is sensitivity only",
+  "primary_band_hz": [
+    0.1,
+    30.0
+  ],
+  "secondary_sensitivity_band_hz": [
+    0.1,
+    50.0
+  ],
+  "sigma_candidates": [
+    0.0,
+    0.0001,
+    0.001,
+    0.01
+  ],
+  "sigma_selection_rule": "choose the first fixed candidate whose minimum LU pivot ratio is >=1e-12 over every pilot point; use the same sigma everywhere",
+  "weight": "1/(omega*log(omega_max/omega_min)); implemented as normalized Gauss-Legendre integration in log frequency"
+}
