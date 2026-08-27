@@ -1,0 +1,108 @@
+{
+  "freeze_id": "TX3-E05C-BASE-HOLDOUT-1.0",
+  "generator": "independent scrambled Sobol base-2 draw of eight points",
+  "old_points_reused": false,
+  "operating_points": [
+    {
+      "gfl_dispatch_scale": 1.0214890564233066,
+      "load_scale": 0.9710834469646216,
+      "operating_point_id": "C00",
+      "reactive_load_scale": 0.9839027612097562,
+      "redispatch_mw": -7.066312599927187,
+      "role": "independent_E05C_scrambled_Sobol_seed",
+      "seed_id": "C00",
+      "split": "e05c_blind_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 0.9858715373277664,
+      "load_scale": 0.9893508070707321,
+      "operating_point_id": "C01",
+      "reactive_load_scale": 1.0192698986642064,
+      "redispatch_mw": 6.371449567377567,
+      "role": "independent_E05C_scrambled_Sobol_seed",
+      "seed_id": "C01",
+      "split": "e05c_blind_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 1.0099136150069534,
+      "load_scale": 1.010152808353305,
+      "operating_point_id": "C02",
+      "reactive_load_scale": 0.9905949676968158,
+      "redispatch_mw": -2.5851422362029552,
+      "role": "independent_E05C_scrambled_Sobol_seed",
+      "seed_id": "C02",
+      "split": "e05c_blind_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 0.9817960963584482,
+      "load_scale": 0.9496564438939095,
+      "operating_point_id": "C03",
+      "reactive_load_scale": 1.0147010003589094,
+      "redispatch_mw": 3.352639153599739,
+      "role": "independent_E05C_scrambled_Sobol_seed",
+      "seed_id": "C03",
+      "split": "e05c_blind_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 1.0048405223712324,
+      "load_scale": 0.9594868548214435,
+      "operating_point_id": "C04",
+      "reactive_load_scale": 1.0252129771374165,
+      "redispatch_mw": 0.9012909978628159,
+      "role": "independent_E05C_scrambled_Sobol_seed",
+      "seed_id": "C04",
+      "split": "e05c_blind_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 0.9729874232783914,
+      "load_scale": 1.0002343774586917,
+      "operating_point_id": "C05",
+      "reactive_load_scale": 0.9706931135989725,
+      "redispatch_mw": -0.0360993854701519,
+      "role": "independent_E05C_scrambled_Sobol_seed",
+      "seed_id": "C05",
+      "split": "e05c_blind_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 1.0237347467057407,
+      "load_scale": 0.9991613809764385,
+      "operating_point_id": "C06",
+      "reactive_load_scale": 1.0016680799238384,
+      "redispatch_mw": 8.822407014667988,
+      "role": "independent_E05C_scrambled_Sobol_seed",
+      "seed_id": "C06",
+      "split": "e05c_blind_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 0.9993816471658648,
+      "load_scale": 0.9611848542839289,
+      "operating_point_id": "C07",
+      "reactive_load_scale": 0.9958944572694599,
+      "redispatch_mw": -9.61496414616704,
+      "role": "independent_E05C_scrambled_Sobol_seed",
+      "seed_id": "C07",
+      "split": "e05c_blind_holdout"
+    }
+  ],
+  "outcomes_inspected_before_freeze": false,
+  "range_basis": "strict interior of the previously feasible E03/E05B region; no E05C outcomes used",
+  "ranges": {
+    "gfl_dispatch_scale": [
+      0.97,
+      1.03
+    ],
+    "load_scale": [
+      0.94,
+      1.02
+    ],
+    "reactive_load_scale": [
+      0.97,
+      1.03
+    ],
+    "redispatch_mw": [
+      -10.0,
+      10.0
+    ]
+  },
+  "seed": 20260829
+}
