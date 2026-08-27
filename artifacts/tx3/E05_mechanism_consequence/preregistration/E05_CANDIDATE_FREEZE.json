@@ -1,0 +1,55 @@
+{
+  "candidates": [
+    {
+      "actions": [
+        "A7",
+        "A8"
+      ],
+      "candidate_id": "C_R",
+      "class": "curvature_dominated",
+      "coalition_key": "A7-A8",
+      "median_absolute_externality": 0.004073663428982854,
+      "median_eta_feedback": 0.1692337355959329,
+      "median_externality": -0.004073663428982854,
+      "resolved_holdout_points": 8,
+      "same_sign_fraction": 1.0,
+      "selection_rule": "largest absolute median reproducible holdout pair externality with median eta_feedback <= 0.5"
+    },
+    {
+      "actions": [
+        "A3",
+        "A6"
+      ],
+      "candidate_id": "C_F",
+      "class": "feedback_dominated",
+      "coalition_key": "A3-A6",
+      "median_absolute_externality": 0.00032407192873051827,
+      "median_eta_feedback": 1.0,
+      "median_externality": -0.00032407192873051827,
+      "resolved_holdout_points": 8,
+      "same_sign_fraction": 1.0,
+      "selection_rule": "largest absolute median reproducible holdout pair externality with median eta_feedback >= 0.9"
+    },
+    {
+      "actions": [
+        "A2",
+        "A7",
+        "A8"
+      ],
+      "candidate_id": "C_3",
+      "class": "genuine_third_order",
+      "coalition_key": "A2-A7-A8",
+      "median_absolute_externality": 2.1063417307232157e-05,
+      "median_eta_feedback": 0.1466841532354842,
+      "median_externality": -2.1063417307232157e-05,
+      "resolved_holdout_points": 7,
+      "same_sign_fraction": 1.0,
+      "selection_rule": "largest absolute median reproducible holdout triple externality"
+    }
+  ],
+  "created_utc": "2026-08-27T21:20:06.803811+00:00",
+  "freeze_id": "TX3-E05-CANDIDATES-1.0",
+  "selection_population_rule": "resolved on >=4/8 holdout points with same-sign fraction >=0.75",
+  "selection_used_e05_consequence_results": false,
+  "source_stage": "accepted E03/E04 holdout"
+}

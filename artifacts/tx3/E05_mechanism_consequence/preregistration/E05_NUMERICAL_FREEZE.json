@@ -1,0 +1,42 @@
+{
+  "E06_or_later_permitted": false,
+  "density_frequency_band_hz": [
+    0.1,
+    30.0
+  ],
+  "density_frequency_nodes": 256,
+  "density_grid": "uniform in log frequency including endpoints",
+  "density_integral": "trapezoid in log frequency divided by log(omega_max/omega_min)",
+  "discovery_mode_family_minimum_valid_points": 12,
+  "freeze_id": "TX3-E05-NUMERICS-1.0",
+  "git_sha_before_e05": "47f36a97ba7daba731039e1c1f251db0b5cdbd3c",
+  "holdout_consequences_inspected_before_freeze": false,
+  "holdout_minimum_valid_points": 6,
+  "minimum_tracking_bmac": 0.7,
+  "modal_reduction": "exact algebraic Schur complement followed by descriptor-mass scaling",
+  "new_paraemt_runs_permitted": false,
+  "primary_consequence_metric": "finite Mobius externality of the BMAC-tracked modal damping ratio",
+  "reference_mode_band_hz": [
+    0.1,
+    30.0
+  ],
+  "reference_operating_point": "OP00",
+  "secondary_metrics": [
+    "tracked-mode real-part externality per second",
+    "tracked-mode frequency externality Hz",
+    "tracked-mode log pole-resolvent externality",
+    "joint endpoint changes",
+    "system spectral-abscissa externality"
+  ],
+  "sigma": 0.0,
+  "source_hashes": {
+    "experiments/tx3/E05_discovery_holdout/mechanism_consequence.py": "3f80b35fc68dd1c9fba696b12548e576bc7d85bc0a0d5633b45881a693bc0b3a",
+    "experiments/tx3/E05_discovery_holdout/run_e05_campaign.py": "5d2d78028cf363fbdf2f6d150366bc9cc64d60eb4b0d0a0a05074aace420ba1b",
+    "tests/unit/test_e05_mode_tracking.py": "ca003d08ea5516dc538aff2dff7850e3cbf886806785730d4d861bfbc2f0d0be"
+  },
+  "tracking_method": "one-to-one Hungarian assignment maximizing scale-invariant left/right biorthogonal MAC",
+  "tracking_target_band_hz": [
+    0.05,
+    45.0
+  ]
+}
