@@ -1,0 +1,157 @@
+{
+  "candidates": [
+    {
+      "actions": [
+        "A7",
+        "A8"
+      ],
+      "candidate_id": "D01",
+      "coalition_key": "A7-A8",
+      "development_statistics": {
+        "coalition_key": "A7-A8",
+        "median_absolute_delta_phi_poles": 0.0005807692261612374,
+        "median_algebraic_fraction_absolute": 0.8591322725024013,
+        "median_delta_phi_poles": -0.0005807692261612374,
+        "median_pole_fraction_absolute": 0.14086772749759868,
+        "order": 2,
+        "resolved_development_points": 24,
+        "same_sign_fraction": 1.0
+      },
+      "mandatory_E05_diagnostic": true,
+      "modal_selection_rule": "largest absolute OP00 connected mu1 among isolated 0.1-30 Hz single-pole contours",
+      "modal_selection_valid_choice_count": 18,
+      "op00_contour_radius_per_s": 0.33698532303476403,
+      "op00_mu1_absolute_per_s": 0.004732278216703437,
+      "op00_mu1_imag_per_s": -0.0009244988967722634,
+      "op00_mu1_real_per_s": 0.00464109458103934,
+      "order": 2,
+      "reference_eigenvalue_imag_per_s": 8.776655698718141,
+      "reference_eigenvalue_real_per_s": -8.27970504699817,
+      "reference_frequency_hz": 1.3968481382666447,
+      "selected_by_top_dynamic_rule": true
+    },
+    {
+      "actions": [
+        "A3",
+        "A6"
+      ],
+      "candidate_id": "D02",
+      "coalition_key": "A3-A6",
+      "development_statistics": {
+        "coalition_key": "A3-A6",
+        "median_absolute_delta_phi_poles": 0.00032854798459425183,
+        "median_algebraic_fraction_absolute": 0.0,
+        "median_delta_phi_poles": -0.00032854798459425183,
+        "median_pole_fraction_absolute": 1.0,
+        "order": 2,
+        "resolved_development_points": 24,
+        "same_sign_fraction": 1.0
+      },
+      "mandatory_E05_diagnostic": true,
+      "modal_selection_rule": "largest absolute OP00 connected mu1 among isolated 0.1-30 Hz single-pole contours",
+      "modal_selection_valid_choice_count": 17,
+      "op00_contour_radius_per_s": 1.4594442453616407,
+      "op00_mu1_absolute_per_s": 0.013082995194212724,
+      "op00_mu1_imag_per_s": 0.012890995419686746,
+      "op00_mu1_real_per_s": -0.0022331592736319905,
+      "order": 2,
+      "reference_eigenvalue_imag_per_s": 7.82407638167444,
+      "reference_eigenvalue_real_per_s": -4.444252058976149,
+      "reference_frequency_hz": 1.245240431272038,
+      "selected_by_top_dynamic_rule": true
+    },
+    {
+      "actions": [
+        "A2",
+        "A7",
+        "A8"
+      ],
+      "candidate_id": "D03",
+      "coalition_key": "A2-A7-A8",
+      "development_statistics": {
+        "coalition_key": "A2-A7-A8",
+        "median_absolute_delta_phi_poles": 2.1785673141039297e-05,
+        "median_algebraic_fraction_absolute": 0.0,
+        "median_delta_phi_poles": -2.1785673141039297e-05,
+        "median_pole_fraction_absolute": 1.0,
+        "order": 3,
+        "resolved_development_points": 22,
+        "same_sign_fraction": 1.0
+      },
+      "mandatory_E05_diagnostic": true,
+      "modal_selection_rule": "largest absolute OP00 connected mu1 among isolated 0.1-30 Hz single-pole contours",
+      "modal_selection_valid_choice_count": 17,
+      "op00_contour_radius_per_s": 3.038123225733654,
+      "op00_mu1_absolute_per_s": 0.0008987775952740499,
+      "op00_mu1_imag_per_s": -0.0003328612571849021,
+      "op00_mu1_real_per_s": -0.0008348679831158279,
+      "order": 3,
+      "reference_eigenvalue_imag_per_s": 6.645033036871856,
+      "reference_eigenvalue_real_per_s": -51.19362248176169,
+      "reference_frequency_hz": 1.0575898548271048,
+      "selected_by_top_dynamic_rule": true
+    },
+    {
+      "actions": [
+        "A2",
+        "A5",
+        "A8"
+      ],
+      "candidate_id": "D04",
+      "coalition_key": "A2-A5-A8",
+      "development_statistics": {
+        "coalition_key": "A2-A5-A8",
+        "median_absolute_delta_phi_poles": 6.731226733336371e-06,
+        "median_algebraic_fraction_absolute": 0.0,
+        "median_delta_phi_poles": -6.731226733336371e-06,
+        "median_pole_fraction_absolute": 1.0,
+        "order": 3,
+        "resolved_development_points": 21,
+        "same_sign_fraction": 1.0
+      },
+      "mandatory_E05_diagnostic": false,
+      "modal_selection_rule": "largest absolute OP00 connected mu1 among isolated 0.1-30 Hz single-pole contours",
+      "modal_selection_valid_choice_count": 16,
+      "op00_contour_radius_per_s": 2.578801945653512,
+      "op00_mu1_absolute_per_s": 0.002553144116056754,
+      "op00_mu1_imag_per_s": 0.002016734710075241,
+      "op00_mu1_real_per_s": 0.0015656710978149135,
+      "order": 3,
+      "reference_eigenvalue_imag_per_s": 13.324837887541063,
+      "reference_eigenvalue_real_per_s": -56.30917292689982,
+      "reference_frequency_hz": 2.120713815700329,
+      "selected_by_top_dynamic_rule": true
+    }
+  ],
+  "created_utc": "2026-08-27T22:08:33.678132+00:00",
+  "development_component_sha256": "9ae373758425e1942abf19efe0e7fda5f10139cfe1894f1a25137a9eda82dfb8",
+  "development_population": "all 24 already-seen E03 operating points; treated as development only",
+  "development_spectra_sha256": "ecfd23b3cdd678bc695a6f1e3e9c6ac920662298b0db41d28089172b98ed8840",
+  "eligible_pair_count": 11,
+  "eligible_triple_count": 5,
+  "freeze_id": "TX3-E05B-CANDIDATE-CONTOUR-1.0",
+  "holdout_inspected_before_freeze": false,
+  "mandatory_diagnostics": [
+    "A7-A8",
+    "A3-A6",
+    "A2-A7-A8"
+  ],
+  "selection_rule": {
+    "eligible": "resolved at >=12/24 development points and same-sign fraction >=0.75",
+    "mandatory_diagnostics": [
+      "A7-A8",
+      "A3-A6",
+      "A2-A7-A8"
+    ],
+    "modal_family": "at OP00 choose the isolated positive-imaginary pole in 0.1-30 Hz with single-pole occupancy at every coalition vertex and largest absolute connected mu1",
+    "rank": "descending median absolute DeltaPhi_poles_96; select top two pairs and top two triples"
+  },
+  "top_dynamic_pairs": [
+    "A7-A8",
+    "A3-A6"
+  ],
+  "top_dynamic_triples": [
+    "A2-A7-A8",
+    "A2-A5-A8"
+  ]
+}
