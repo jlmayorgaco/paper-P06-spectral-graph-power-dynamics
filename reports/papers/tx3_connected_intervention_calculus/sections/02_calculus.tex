@@ -1,0 +1,147 @@
+\section{Finite Connected Intervention Calculus}
+\subsection{Actions and Re-Equilibrated Descriptor Operator}
+
+Let $a=(a_1,\ldots,a_m)\in[0,1]^m$ denote normalized engineering actions.
+Coordinate $a_i=0$ is the registered baseline and $a_i=1$ is the complete
+finite action. Intermediate values provide a smooth interpolation; they are
+not a first-order approximation. At every $a$, the ac equations are solved and
+the dynamic model is reinitialized. Linearization of the resulting
+differential--algebraic equations gives
+\begin{equation}
+T(s,a)=
+\begin{bmatrix}
+sM(a)-f_x(a) & -f_y(a)\\
+-g_x(a) & -g_y(a)
+\end{bmatrix},
+\label{eq:descriptor}
+\end{equation}
+where $x$ and $y$ are differential and algebraic variables, respectively.
+All derivatives in this paper are \emph{total} derivatives along the
+re-equilibrated action path. They therefore contain direct parameter changes,
+the implicit movement of the equilibrium, and the resulting Jacobian
+curvature.
+
+For a registered band $\Omega=[\omega_\ell,\omega_h]$ and fixed real
+contour shift $\sigma$, define
+\begin{equation}
+\begin{aligned}
+\Phi_\Omega(a)=\int_\Omega w(\omega)\big[&
+\log|\det T(\sigma+j\omega,a)|\\
+&-\log|\det T(\sigma+j\omega,0)|\big]\,d\omega .
+\end{aligned}
+\label{eq:phi}
+\end{equation}
+We use $w(\omega)=1/[\omega\log(\omega_h/\omega_\ell)]$, so
+\eqref{eq:phi} is an average on logarithmic frequency. The baseline
+subtraction makes $\Phi_\Omega(0)=0$. The real log-absolute determinant has
+no complex-log branch choice. Fixed nonsingular left and right matrix
+scalings add only action-independent constants and hence cancel in every
+higher-order finite difference.
+
+Equivalently, define the finite-dimensional relative determinant
+$D(s,a)=\det T(s,a)/\det T(s,0)$ wherever the fixed contour is regular; then
+the integrand in \eqref{eq:phi} is $\log|D(s,a)|$. This notation is only a
+finite non-normal determinant ratio. Contour statements below follow from the
+argument principle and registered numerical certificates, not from
+self-adjoint spectral-shift theory.
+
+The log determinant is used as a compact characteristic functional, not as a
+standalone stability index. It aggregates how the full descriptor operator
+changes across the selected frequency band. Its factor and modal
+interpretations are tested later rather than assumed.
+
+\subsection{Direct Finite Externality}
+
+For a nonempty action set $S\subseteq\{1,\ldots,m\}$, let $1_U$ activate
+exactly the subset $U\subseteq S$. The finite M\"obius externality is
+\begin{equation}
+\ext{S}\Phi=\sum_{U\subseteq S}(-1)^{|S|-|U|}\Phi(1_U).
+\label{eq:mobius}
+\end{equation}
+For a pair, this is the joint response minus both singleton responses plus the
+baseline. For a triple, it removes the three singleton and three pair
+contributions. A nonzero triple coefficient is thus a genuine third-order
+set-function dividend (M\"obius coefficient) in the chosen finite set
+function. It is not, without additional
+evidence, an irreducible three-device causal mechanism.
+
+Equation \eqref{eq:mobius} is coordinate dependent in the ordinary sense that
+the physical definition and amplitude of each action matter. It supports an
+existential statement for the frozen actions, not a universal statement that
+all portfolios or parameterizations are non-additive.
+
+\subsection{Finite-to-Connected Bridge}
+
+If the re-equilibrated map is sufficiently smooth on the full $|S|$-
+dimensional hypercube, repeated application of the fundamental theorem of
+calculus yields
+\begin{equation}
+\ext{S}\Phi
+=\int_{[0,1]^{|S|}}\partial_S\Phi(a_S;a_{\bar S}=0)\, da_S .
+\label{eq:bridge}
+\end{equation}
+This identity turns a vertex-level M\"obius coefficient into an integral of
+a connected mixed derivative. It requires a smooth valid path, not merely
+valid endpoints.
+
+Write $G=T^{-1}$ and let $T_B$ be the mixed total derivative with labels in the
+nonempty block $B\subseteq S$. Jacobi's identity and repeated product
+differentiation give the complex connected derivative
+\begin{equation}
+\begin{aligned}
+\partial_S\log\det T
+={}&\sum_{\pi\in\Part(S)}\frac{(-1)^{k-1}}{k}\\[-2pt]
+&\times\sum_{\rho\in\operatorname{Perm}(\pi)}
+\tr\!\left(\prod_{r=1}^{k}GT_{B_{\rho(r)}}\right),
+\end{aligned}
+\label{eq:connected}
+\end{equation}
+where $\pi=\{B_1,\ldots,B_k\}$ is a set partition of $S$. The $1/k$
+factor removes cyclic overcounting under the trace. The real part of
+\eqref{eq:connected}, integrated over frequency and the action hypercube,
+reconstructs \eqref{eq:mobius}. For a pair,
+\begin{equation}
+\partial_{12}\log\det T
+=\tr(GT_{12})-\tr(GT_1GT_2),
+\label{eq:pair}
+\end{equation}
+which explicitly separates mixed curvature from the familiar feedback
+product. Triples contain intrinsic $T_{123}$, mixed-curvature/feedback, and
+three-factor connected feedback terms. Omitting $T_{12}$ or higher mixed
+terms is a frozen-affine diagnostic, not the finite calculus.
+
+\subsection{Exact Descriptor-Factor Anatomy}
+
+Assume the algebraic Jacobian $g_y(a)$ and the registered differential mass
+block $M(a)$ are nonsingular. The model is then index one on the tested path,
+and the Schur identity gives
+\begin{align}
+\det T(s,a)
+&=\det[-g_y(a)]\det[sM(a)-A_r(a)] ,\label{eq:schur1}\\
+A_r(a)&=f_x(a)-f_y(a)g_y(a)^{-1}g_x(a),\label{eq:ared}\\
+\det[sM-A_r]&=\det M\,\det[sI-A(a)],\quad
+A=M^{-1}A_r.\label{eq:schur2}
+\end{align}
+Consequently, the finite externality of \eqref{eq:phi} separates exactly:
+\begin{equation}
+\ext{S}\Phi=
+\ext{S}\Phi_{\mathrm{alg}}+
+\ext{S}\Phi_{\mathrm{mass}}+
+\ext{S}\Phi_{\mathrm{pole}}.
+\label{eq:factor}
+\end{equation}
+The first term comes from $\det(-g_y)$, the second from $\det M$, and the
+third from $\det(sI-A)$. Algebraic and mass factors are frequency independent
+but may still depend on the action and contribute to the integrated finite
+functional. They vanish from an $s$ derivative, not necessarily from
+\eqref{eq:factor}.
+
+The pole term permits a finite-dimensional perturbation-determinant reading,
+conceptually related to trace and determinant theories
+\cite{krein1953trace,simon1977determinants}. We do not transfer
+self-adjoint spectral-shift theorems to the non-normal power-system operator.
+Instead, pole attribution is accepted only when a registered complex contour
+avoids poles, preserves occupancy, and satisfies numerical quadrature and
+moment closure. Condition numbers and biorthogonal matching are retained
+because eigenvectors of a non-normal matrix can be sensitive
+\cite{trefethen1997pseudospectra}.

@@ -1,0 +1,140 @@
+\section{Discussion}
+\subsection{What the Calculus Adds}
+
+The central practical object is the finite coalition remainder. Suppose an
+analyst plans to change a converter set point, retune a controller, and alter a
+nearby network element. Standard first-order screening estimates each
+increment around one baseline and then sums. The present calculation instead
+asks: after every subset has moved to its own ac equilibrium and its DAE has
+been rebuilt, what part of the full-portfolio characteristic change cannot be
+assigned to lower-order subsets?
+
+That question is useful even when the answer is not operationally material.
+It distinguishes three failure modes of a simpler approximation:
+\begin{enumerate}
+    \item \emph{finite-action error}: a local Taylor model is inaccurate over
+    the specified amplitude;
+    \item \emph{re-equilibration error}: the operating point and algebraic
+    Jacobian move jointly with the actions;
+    \item \emph{interaction-order error}: pair or triple terms remain after
+    all lower-order terms are removed.
+\end{enumerate}
+The A7--A8 result contains all three. At OP00, a frozen-affine representation
+misses about 84.1\% of the finite coefficient, while exact factor anatomy
+shows that its largest contribution is algebraic re-equilibration. A3--A6,
+however, has a reproducible pole-only coefficient. The method thus prevents
+the blanket conclusion that a characteristic externality must be merely a
+power-flow artifact or a dangerous control mode.
+
+The connected reconstruction also supplies a stringent internal check. Direct
+M\"obius differencing and integrated connected traces have different numerical
+error paths. Their locked-holdout agreement makes it difficult for a sign
+convention, missing partition, or omitted curvature term to survive
+undetected. Exact Schur closure adds a second independent identity at the
+descriptor-factor level.
+
+\subsection{Finite Portfolio Information Absent from a Baseline First-Order Screen}
+
+A first eigenvalue sensitivity can rank actions for one mode near one
+equilibrium. Higher-order and equilibrium-point sensitivities extend that
+local picture \cite{nam2000eigensensitivity,zamoracardenas2013multiparameter}.
+Selective modal analysis can reduce the calculation to relevant state groups
+\cite{perezarriaga1982sma}. These remain the appropriate tools when the
+decision question is local and the limiting modal family is known.
+
+The finite calculus contributes when the decision variable is a named
+portfolio at a non-infinitesimal amplitude. It does not approximate the
+M\"obius coefficient from a derivative at zero; it evaluates the coefficient
+directly and then reconstructs it by integrating the derivative over the
+whole hypercube. This is why mixed re-equilibration curvature matters. The
+6.3-fold A7--A8 discrepancy would not be repaired merely by better tracking of
+the baseline eigenvalue.
+
+Conversely, the critical-mode audit shows what the spectral functional can
+miss if used alone: relevance to the limiting mode. The functional found
+converter-control interactions reproducibly, and the pole factor verified
+that some were dynamic. But these modes were strongly damped. A separate
+minimum-damping search was required to show that the operative margin belonged
+to a synchronous family and that the externality barely moved it. Modal
+association tools---BMAC, participation, residues, condition numbers, and
+homotopy---support that family identification; none is a causal proof.
+
+\subsection{Power-System Relevance}
+
+Three features make the experiment more than a matrix identity exercise.
+First, actions are recognizable engineering changes: 20\% controller-bandwidth
+adjustments, a 20-MW dispatch change, and a 10\% branch-reactance change.
+Second, every coalition is required to satisfy the ac equations, dynamic
+initialization, and smooth-path checks. Third, the strongest pair couples
+dispatch and its incident network path, exactly the setting in which frozen
+network or fixed-operating-point screening is most vulnerable.
+
+The negative materiality result is also relevant. Interaction-detection
+methods are often motivated by weak-grid risk, but interaction is not
+synonymous with limiting instability. In this benchmark, conventional SCR
+values provide useful context yet do not identify which modal family sets the
+5\% screen. The critical mode is synchronous-electromechanical despite the
+presence of three GFL plants and conspicuous converter-mode externalities.
+Planning studies should therefore distinguish at least three questions:
+\begin{enumerate}
+    \item Is a portfolio non-additive in a chosen dynamic functional?
+    \item Does the non-additivity arise in algebraic coordinates or finite
+    poles?
+    \item Does it materially change the mode or constraint that limits the
+    operating decision?
+\end{enumerate}
+The first two can be positive while the third is negative.
+
+\subsection{Limitations}
+
+The action space contains eight coordinates and only one matched IEEE 39-bus
+GFL testbed. The results establish reproducible existence, not prevalence
+across converter vendors, control architectures, larger networks, or action
+amplitudes. The three converter models share a common class. Grid-forming
+controls, hybrid populations, protection and saturation events, unbalanced
+dynamics, and topology-discontinuous actions remain outside scope.
+
+The spectral functional is dimensionless and band dependent. Its sign and
+magnitude are not direct measures of damping, instability probability,
+energy, or economic cost. The normalized logarithmic frequency weight and
+0.1--30 Hz band were frozen before the campaign, but another defensible
+functional may rank coalitions differently.
+
+The finite-to-connected identity requires smooth re-equilibrated interpolation
+throughout the hypercube. It does not cover a path that crosses a power-flow
+bifurcation, limiter discontinuity, state-dimension change, or singular
+algebraic Jacobian. The exact Schur anatomy further assumes index-one behavior,
+nonsingular $g_y$, and a nonsingular registered dynamic mass block. Contour
+localization is conditional on pole-free boundaries and numerical occupancy
+certificates; A3--A6 demonstrates that a pole externality may exist even when
+a selected contour cannot certify its localized moment.
+
+The materiality ladder is deliberately narrow. The 0.0025 damping-externality
+threshold and 5\% screen are preregistered study rules, not universal
+standards. E05C ended at a voltage boundary before finding material
+composition. E05D could not start because all empty baselines were already
+below the screen; it therefore leaves weak-grid materiality unresolved. No
+coalition result from E05D was viewed.
+
+Finally, no cycle or SCC localization, mechanism-targeted correction,
+matched-cost negative control, nonlinear time-domain consequence, or blind EMT
+transfer was performed. E02C validates the benchmark infrastructure only.
+Consequently, this paper does not offer an industrial mitigation or claim that
+a particular interaction graph is causal.
+
+\subsection{Implications for Future Use}
+
+The terminal findings suggest a disciplined workflow for other systems when
+finite portfolio composition is the decision question.
+First, define finite actions in physical units and solve every coalition
+vertex. Second, resolve direct externalities against numerical uncertainty.
+Third, use connected reconstruction as an implementation and anatomy check.
+Fourth, split algebraic and pole factors exactly. Fifth, identify the actual
+constraint-setting modal family independently of the externality search.
+Only if the same family carries a material, reproducible finite effect should
+an intervention experiment be designed.
+
+This ordering limits unnecessary controller surgery. In the present testbed,
+the descriptive audit explains why further tuning of the externality-dominant
+converter modes would not answer the registered stability-margin question.
+The correct terminal outcome is a boundary statement, not a new stress search.

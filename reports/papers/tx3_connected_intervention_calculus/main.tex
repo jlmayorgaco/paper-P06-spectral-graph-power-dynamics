@@ -1,0 +1,102 @@
+\documentclass[journal]{IEEEtran}
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{balance}
+
+\graphicspath{{figures/}%
+{../../../artifacts/tx3/E03_E04/figures/}%
+{../../../artifacts/tx3/E05_mechanism_consequence/figures/}%
+{../../../artifacts/tx3/E05B_dynamic_spectral_shift/figures/}%
+{../../../artifacts/tx3/E05C_margin_conditioned/figures/}%
+{../../../artifacts/tx3/critical_mode_baseline_audit/figures/}}
+
+\newcommand{\ext}[1]{\Delta_{#1}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Part}{\operatorname{Part}}
+
+\title{Finite Connected Externalities in Converter-Rich Power-System
+Dynamics: Re-Equilibrated Reconstruction, Pole Anatomy, and the Boundary of
+Modal Materiality}
+
+\author{Authors withheld for double-blind review}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Engineering actions in converter-rich grids are commonly screened one at a
+time or through local sensitivities. Such calculations do not isolate the
+finite non-additive effect of a portfolio after its operating point has moved.
+This paper formulates a connected intervention calculus for finite actions on
+an index-one differential--algebraic power-system model. Every coalition is
+solved at its own ac equilibrium, reinitialized, and rebuilt before a
+band-integrated relative log-determinant is evaluated. Pair and triple
+M\"obius externalities are reconstructed independently from connected total
+derivatives over the action hypercube. In a matched IEEE 39-bus benchmark with
+three grid-following converters, 266 of 672 pair cases and 147 of 1,344 triple
+cases exceeded five conservative uncertainty budgets. All 129 locked-holdout
+reconstructions closed within the same five-budget criterion. An exact Schur
+factorization then separates algebraic, mass-scaling, and finite-pole terms;
+its largest closure error is $7.39\times10^{-13}$. For the leading dispatch--
+network pair, a frozen-affine calculation underestimates the finite effect by
+approximately $6.3\times$ at the OP00 reference point. Yet the strongest
+externalities are concentrated in well-damped converter-control modes, whereas
+the actual limiting mode is a $1.22$-Hz synchronous-electromechanical mode.
+Across all 15 retained coalitions, the largest baseline critical-mode damping
+externality is only $5.15\times10^{-6}$. Thus a reproducible dynamic
+externality can exist without materially consuming the registered damping
+margin. This distinction defines both the contribution and the limit of the
+method: it diagnoses finite interaction structure, but is not by itself a
+stability or mitigation certificate.
+\end{abstract}
+
+\begin{IEEEkeywords}
+converter-driven stability, differential--algebraic equations, eigenvalue
+analysis, grid-following converters, higher-order interactions, M\"obius
+inversion, power-system dynamics, spectral determinant
+\end{IEEEkeywords}
+
+\input{sections/01_introduction}
+\input{sections/02_calculus}
+\input{sections/03_protocol}
+\input{sections/04_externalities}
+\input{sections/05_mechanisms}
+\input{sections/06_surgery_emt}
+\input{sections/07_discussion}
+\input{sections/08_conclusion}
+
+\section*{Data and Code Availability}
+The frozen protocols, manifests, source code, machine-readable tables,
+failure ledgers, and figure-generating inputs used in this paper are included
+with the review package. Each terminal experiment records source and input
+hashes. The E05D weak-grid package is retained unchanged, and the descriptive
+critical-mode audit is stored separately so that it cannot alter a registered
+gate.
+
+\section*{Ethics, Contributions, Funding, and Competing Interests}
+No human participants, animals, or personal data were involved. Author names
+and CRediT roles are withheld for double-blind review and must be completed at
+submission. Funding and competing-interest declarations are likewise withheld
+during review and must be supplied by the authors before publication.
+
+\section*{Generative-AI Disclosure}
+A generative-AI coding assistant was used to help organize evidence, draft
+prose, and check software artifacts. All numerical claims were taken from
+frozen, executable experiment outputs; the authors are responsible for the
+analysis, verification, citations, and final text.
+
+\balance
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,138 @@
+\section{Introduction}
+\IEEEPARstart{C}{onverter-rich} power systems couple controller parameters,
+active-power schedules, and network conditions through both the ac operating
+point and the dynamic Jacobian. The effect of changing two devices together
+therefore need not equal the sum of changing them separately. This elementary
+observation is operationally important: screening tools are frequently local
+or one-action-at-a-time, while actual planning and tuning decisions arrive as
+finite portfolios.
+
+Several mature theories already illuminate parts of this problem. Classical
+modal analysis relates states, residues, participations, and eigenvalue
+sensitivities to oscillatory behavior
+\cite{perezarriaga1982sma,pagola1989sensitivities}. Augmented and
+multi-parameter sensitivities can retain equilibrium dependence and
+higher-order terms \cite{nam2000eigensensitivity,zamoracardenas2013multiparameter}.
+Return-ratio and impedance methods expose feedback interactions without
+requiring the same internal coordinate description
+\cite{macfarlane1970return,sun2011impedance,rygg2016sequence}. Recent work
+also uses open-loop modal proximity and second-order eigenvalue displacement to
+identify converter interaction modes \cite{dewangan2026interaction}.
+
+These methods answer valuable but different questions. A derivative is local
+to its expansion point. An impedance or return-ratio criterion evaluates a
+feedback interconnection. A participation factor associates a mode with
+states. None of these objects, by itself, is the finite inclusion--exclusion
+remainder of a specified engineering portfolio after every subset has been
+physically applied and independently re-equilibrated. The combinatorial
+operation needed to isolate that remainder is M\"obius inversion
+\cite{rota1964mobius,grabisch1997kadditive}. The missing bridge is to apply it
+to a re-equilibrated differential--algebraic operator and then connect the
+finite result to derivative, factor, and modal descriptions without confusing
+existence with consequence.
+
+This paper develops and tests that bridge. A normalized action coordinate
+maps zero to a registered baseline and one to a finite engineering change.
+For each coalition vertex, the ac power flow is solved again, dynamic states
+are initialized again, and the descriptor operator is rebuilt. A relative
+real log-determinant, integrated over a fixed frequency band, summarizes the
+resulting operator. Direct pair and triple M\"obius differences define the
+finite externality. Independently, a connected set-partition formula
+integrates mixed total derivatives over the action hypercube. The two routes
+must close within a case-specific uncertainty budget.
+
+The contribution is not a new M\"obius identity, Schur complement, trace
+formula, perturbation determinant, or eigenvalue sensitivity. It is the
+following integrated, experimentally gated workflow:
+\begin{enumerate}
+    \item a finite set function whose every vertex is an independently
+    re-equilibrated power-system DAE;
+    \item a connected reconstruction that retains mixed physical and
+    equilibrium curvature rather than only singleton feedback;
+    \item an exact descriptor-factor anatomy separating algebraic,
+    mass-scaling, and finite-pole externalities;
+    \item a registered modal-materiality ladder that asks whether the
+    externality reaches the mode that actually sets the damping margin.
+\end{enumerate}
+
+Table~\ref{tab:methods} makes the novelty perimeter explicit. The first four
+rows are established approaches; none is displaced here. M\"obius inversion
+supplies the set-function coefficient, higher-order sensitivity supplies local
+derivative information, and return-ratio/impedance methods supply loop-level
+stability information. The proposed contribution is the registered
+combination of a finite re-equilibrated power-system set function, complete
+pair/triple subset evaluation, connected reconstruction, descriptor-factor
+anatomy, and a separate materiality test.
+
+\begin{table*}[t]
+\caption{Method-to-Method Novelty Perimeter}
+\label{tab:methods}
+\centering
+\scriptsize
+\begin{tabular}{p{0.17\textwidth}p{0.12\textwidth}p{0.16\textwidth}p{0.21\textwidth}p{0.19\textwidth}}
+\toprule
+Approach & Amplitude & Equilibrium treatment & Interaction object & Primary interpretation\\
+\midrule
+First-order eigen-sensitivity
+& Local
+& One expansion point
+& Singleton derivative of a selected eigenvalue
+& Directional modal change\\
+Higher-order total sensitivity
+& Local Taylor series
+& May include implicit equilibrium derivatives
+& Selected mixed derivatives to a truncation order
+& Local curvature and parameter ranking\\
+Return-ratio / impedance
+& Frequency-domain model
+& Operating point supplied to the model
+& Ports, loops, or interconnection blocks
+& Nyquist/loop stability and coupling\\
+Proximal eigenvalue displacement \cite{dewangan2026interaction}
+& First-/second-order modal displacement
+& Not an all-subset finite-action requirement
+& Proximal open-loop modal coupling
+& Identification of converter interaction modes\\
+M\"obius set-function coefficient
+& Finite
+& Domain-agnostic vertex values
+& All subsets of a specified set
+& Pure higher-order set-function dividend\\
+This work
+& Finite registered actions
+& New AC solution and DAE at every required vertex
+& All vertices of every registered pair and triple
+& Externality, exact factor anatomy, then separate registered modal materiality\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The tests use a canonical IEEE 39-bus system with three grid-following (GFL)
+converters and eight moderate actions. The main positive result is numerical
+and structural: reproducible pair and genuine third-order finite-pole
+externalities exist, and the connected reconstruction closes the direct
+finite computation. The main negative result is equally important: the
+largest externalities found in the registered search do not materially alter
+the limiting damping mode. A post-mortem identifies a family mismatch. The
+externality-dominant modes are well-damped converter-control or
+phase-locked-loop (PLL) modes, while the limiting mode is a lightly damped
+synchronous-electromechanical mode. Hence \emph{dynamic externality existence
+and operational interpretation under a registered modal-materiality screen
+are distinct claims}.
+
+This distinction narrows the practical interpretation. The calculus can tell
+an analyst that a finite portfolio contains reproducible, non-additive dynamic
+structure, quantify what a frozen model misses, and locate pole motion when a
+contour certificate is valid. It does not certify instability, identify an
+industrial mitigation, establish cycle or strongly connected component
+(SCC) causality, or transfer a mechanism to electromagnetic-transient (EMT)
+simulation. The cross-domain EMT work in this study validates only the matched
+benchmark infrastructure used to launch the phasor-domain campaign.
+
+The remainder of the paper is organized as follows. Section II defines the
+finite calculus and exact factorization. Section III describes the registered
+benchmark, actions, uncertainty budgets, and holdout discipline. Section IV
+reports finite externalities and connected reconstruction. Section V separates
+algebraic and pole contributions and presents contour localization. Section VI
+reports the modal consequence and materiality boundary. Sections VII and VIII
+discuss interpretation, limitations, and conclusions.
