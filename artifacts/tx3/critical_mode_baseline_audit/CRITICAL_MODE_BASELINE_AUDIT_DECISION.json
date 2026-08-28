@@ -1,0 +1,60 @@
+{
+  "E06_authorized": false,
+  "claim_gate_created": false,
+  "connected_case_success_rate": 1.0,
+  "critical_converter_control_participation_range": [
+    0.0075621838739441125,
+    0.010680375672599367
+  ],
+  "critical_damping_range": [
+    0.041653633818923945,
+    0.045275060170048856
+  ],
+  "critical_frequency_range_hz": [
+    1.219733450114019,
+    1.2290597523360376
+  ],
+  "critical_mode_classification_counts": {
+    "synchronous_electromechanical": 8
+  },
+  "critical_synchronous_participation_range": [
+    0.9861906801435865,
+    0.9898199754651831
+  ],
+  "externality_mode_damping_range": [
+    0.49390473497710047,
+    0.9916807040171075
+  ],
+  "hard_failure_count_descriptive": 0,
+  "interpretation": "the actual margin-setting mode is synchronous-electromechanical, whereas E05B-population externality-dominant development modes are converter-control/PLL families with much larger damping",
+  "maximum_absolute_Delta_zeta": 5.146738799623185e-06,
+  "maximum_rho_comp": 0.00013928566543522106,
+  "mechanism_surgery_authorized": false,
+  "median_absolute_rho_comp": 6.3878246931305445e-06,
+  "minimum_rho_comp": -9.639156126803247e-06,
+  "scope": "DESCRIPTIVE_POST_MORTEM_ONLY",
+  "screen_failure_count_descriptive": 0,
+  "statuses_unchanged": {
+    "C3a": "REJECTED",
+    "C3b-A": "REJECTED",
+    "C3b-B": "REJECTED",
+    "C3c": "UNRESOLVED"
+  },
+  "strongest_destabilizing": {
+    "Delta_lambda_real": 4.567672696220715e-05,
+    "Delta_zeta": -5.146738799623185e-06,
+    "coalition": "A7-A8",
+    "lambda_full_real": -0.3278899139131993,
+    "lambda_lower_real": -0.32793559064016153,
+    "rho_comp": 0.00013928566543522106,
+    "seed_id": "D02"
+  },
+  "strongest_stabilizing": {
+    "Delta_lambda_real": -3.370021940118928e-06,
+    "Delta_zeta": 4.510890558584446e-07,
+    "coalition": "A5-A8",
+    "rho_comp": -9.639156126803247e-06,
+    "seed_id": "D06"
+  },
+  "tracking_success_rate": 1.0
+}
