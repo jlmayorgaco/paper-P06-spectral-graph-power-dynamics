@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 ARTIFACT = ROOT / "artifacts" / "tx3" / "E05D_weak_grid"
-OUTPUT = ROOT / f"TX3_E05D_WEAK_GRID_REVIEW_CHATGPT_UPLOAD_{datetime.now(UTC).date().isoformat()}.zip"
+OUTPUT = ROOT / f"TX3_E05D_WEAK_GRID_REVIEW_CHATGPT_UPLOAD_{datetime.now().date().isoformat()}.zip"
 MANIFEST = ARTIFACT / "manifests" / "PACKAGE_MANIFEST.json"
 VALIDATION = ARTIFACT / "manifests" / "PACKAGE_SOURCE_VALIDATION.json"
 

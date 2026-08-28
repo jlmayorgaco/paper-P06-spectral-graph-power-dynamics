@@ -1,0 +1,529 @@
+{
+  "E05E_results_included": false,
+  "E06_results_included": false,
+  "coalition_results_included": false,
+  "created_utc": "2026-08-28T03:00:58.453122+00:00",
+  "file_count_excluding_manifest": 102,
+  "files": [
+    {
+      "bytes": 43,
+      "path": "LICENSE",
+      "sha256": "73ca1348c9d172bca0ee59c9b81c8d875606b3df7c3a2e3941b6494f54750977"
+    },
+    {
+      "bytes": 2117,
+      "path": "README.md",
+      "sha256": "0b29572bf0b40a78308f542e9088c9d5d50ff94edad7a7ade476dc55b7c94fb2"
+    },
+    {
+      "bytes": 2519,
+      "path": "artifacts/tx3/E03_E04/preregistration/ACTION_SET_FREEZE.json",
+      "sha256": "a9b1004eebca5a541aac370c8f465b0fb2156fe3dba34160e1ae3db28b1e33bb"
+    },
+    {
+      "bytes": 2983,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/E05B_FINAL_DECISION.json",
+      "sha256": "d98666d6677ef2b5def80f809b6c14163d5ee8636a3c0832078ac04f1722e7af"
+    },
+    {
+      "bytes": 7653,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/tables/holdout_dynamic_reproducibility.parquet",
+      "sha256": "d75857bd5ebab2aa712131ea44b53c90d92fc12c6357710a5bdd098fcd7cc226"
+    },
+    {
+      "bytes": 2143,
+      "path": "artifacts/tx3/E05C_margin_conditioned/E05C_FINAL_DECISION.json",
+      "sha256": "83677ed494bd0a4fd2d30e5f3d124bd8143647af8822831e36ce0d89f0f8f373"
+    },
+    {
+      "bytes": 253,
+      "path": "artifacts/tx3/E05D_weak_grid/E05D_C3C_DECISION.md",
+      "sha256": "129b01795868eab531c117ce5a3a890354d492b6b7fe67c368abd2769ee6eb97"
+    },
+    {
+      "bytes": 204,
+      "path": "artifacts/tx3/E05D_weak_grid/E05D_CANDIDATE_FREEZE.md",
+      "sha256": "ef4fc7706b81ef39115583514d005e5cca0ffedbbe4e300bb873ed212ed8eda9"
+    },
+    {
+      "bytes": 132,
+      "path": "artifacts/tx3/E05D_weak_grid/E05D_COMPOSITION_FAILURES.md",
+      "sha256": "5a536abef684d986d09d8a8c00c709941c8d683033bf973fd63ad8e20d963b2e"
+    },
+    {
+      "bytes": 141,
+      "path": "artifacts/tx3/E05D_weak_grid/E05D_CONDITIONING_ANALYSIS.md",
+      "sha256": "6ea583c02a761511b0b3a05fb52eda1d6d7426105bb9d57f9893f0a411a0041d"
+    },
+    {
+      "bytes": 165,
+      "path": "artifacts/tx3/E05D_weak_grid/E05D_CONNECTED_POLE_RESULTS.md",
+      "sha256": "7c3071a5a77cd66ef8a034106a27dbd38ff406d94a51784b160b2f080df27fc9"
+    },
+    {
+      "bytes": 245,
+      "path": "artifacts/tx3/E05D_weak_grid/E05D_CRITICAL_MODE_RULE.md",
+      "sha256": "67f12050c939db94599b76b7beeef929707f923db51f203e3574a722edba684a"
+    },
+    {
+      "bytes": 478,
+      "path": "artifacts/tx3/E05D_weak_grid/E05D_FAILURE_LEDGER.md",
+      "sha256": "66419974d32ca7eb95a54c4fe5c186e10bed3a573a0dd1bb776586d922315d82"
+    },
+    {
+      "bytes": 2098,
+      "path": "artifacts/tx3/E05D_weak_grid/E05D_FINAL_DECISION.json",
+      "sha256": "10d6e423b22bb260ae7c65f576563ee6e2facc9d6ab10f9cc7d40a5d5f4c3d05"
+    },
+    {
+      "bytes": 538,
+      "path": "artifacts/tx3/E05D_weak_grid/E05D_FINAL_REVIEW.md",
+      "sha256": "4e282dc409293b8601c357458fec6a727611d8ddca5efdf06ac40044a9953043"
+    },
+    {
+      "bytes": 1065,
+      "path": "artifacts/tx3/E05D_weak_grid/E05D_GRID_STRENGTH_IMPLEMENTATION.md",
+      "sha256": "188fdec71b9243b5c943b19498a4365aa45d840fd11453e6c26d73db05dc88a7"
+    },
+    {
+      "bytes": 197,
+      "path": "artifacts/tx3/E05D_weak_grid/E05D_GRID_STRESS_BRANCH_FREEZE.md",
+      "sha256": "3f277b5f70e7f8193de24587aa84e89ebfe8a8fa17c30a766a803b58bef9a1a9"
+    },
+    {
+      "bytes": 166,
+      "path": "artifacts/tx3/E05D_weak_grid/E05D_HOLDOUT_FREEZE.md",
+      "sha256": "548f810b63f8d299cd943e3666de99a20789098a47c689f174d43452e16f6e40"
+    },
+    {
+      "bytes": 147,
+      "path": "artifacts/tx3/E05D_weak_grid/E05D_MARGIN_CONSUMPTION.md",
+      "sha256": "6d25354b71237b2d4cbd0f9697ada72e16e14f259a972fdfd7919b648ec1e270"
+    },
+    {
+      "bytes": 143,
+      "path": "artifacts/tx3/E05D_weak_grid/E05D_MODE_TRACKING_AUDIT.md",
+      "sha256": "f4e74bb7945f03ac80a249565f51651ab7df1ad440a8df959599318631a69806"
+    },
+    {
+      "bytes": 1313,
+      "path": "artifacts/tx3/E05D_weak_grid/E05D_PREREGISTRATION.md",
+      "sha256": "d53e726aa3144cb72a54a6adc0e7a207982e77f0e2bc26f9ac66ba760ff69854"
+    },
+    {
+      "bytes": 248,
+      "path": "artifacts/tx3/E05D_weak_grid/E05D_REVIEWER1_AUDIT.md",
+      "sha256": "8de78bcc64c047d7b37e3754a87245ab6a3ea2ce6ea2fa57200d37a5bd95e62e"
+    },
+    {
+      "bytes": 283,
+      "path": "artifacts/tx3/E05D_weak_grid/E05D_REVIEWER2_AUDIT.md",
+      "sha256": "9ded40e77755dd66491c0839c57150e7cec35eb272e5119d64a2976eac08be77"
+    },
+    {
+      "bytes": 449,
+      "path": "artifacts/tx3/E05D_weak_grid/E05D_STRESS_ENDPOINTS.md",
+      "sha256": "b2e7dc74a55e06595a6af0541b83d859e271b4be34a001832acd9b5dddafd1d7"
+    },
+    {
+      "bytes": 24800,
+      "path": "artifacts/tx3/E05D_weak_grid/baseline_calibration/E05D_BASELINE_CALIBRATION_TRACE.parquet",
+      "sha256": "88c60eea7b517dcc17bbdc70f2489c5cb54a46bb764569b98e3bd315ce85c25a"
+    },
+    {
+      "bytes": 24800,
+      "path": "artifacts/tx3/E05D_weak_grid/baseline_calibration/E05D_BASELINE_ELIGIBILITY.parquet",
+      "sha256": "88c60eea7b517dcc17bbdc70f2489c5cb54a46bb764569b98e3bd315ce85c25a"
+    },
+    {
+      "bytes": 20700,
+      "path": "artifacts/tx3/E05D_weak_grid/figures/figure_E05D_1_weak_grid_stress.pdf",
+      "sha256": "43f830c863453dbd1b90ec26e78761e017619bd08f689e1b5dff60b19abcdaa1"
+    },
+    {
+      "bytes": 64596,
+      "path": "artifacts/tx3/E05D_weak_grid/figures/figure_E05D_1_weak_grid_stress.png",
+      "sha256": "fb9668af5692d1bb0cd68e31aee4fc851159bd3cecc3276bb6cae9e4e852fdc0"
+    },
+    {
+      "bytes": 19815,
+      "path": "artifacts/tx3/E05D_weak_grid/figures/figure_E05D_2_empty_critical_margin.pdf",
+      "sha256": "e48ae81da63d50602fdee1d2620ebfecb6b428fea21d308a7ee5cc79ea29efb1"
+    },
+    {
+      "bytes": 87886,
+      "path": "artifacts/tx3/E05D_weak_grid/figures/figure_E05D_2_empty_critical_margin.png",
+      "sha256": "4c017ebf70914c937c4b7f95d95be4ea15ad75994b83866a70ed23138e22a7cb"
+    },
+    {
+      "bytes": 15976,
+      "path": "artifacts/tx3/E05D_weak_grid/figures/figure_E05D_3_all_candidate_rho_heatmap.pdf",
+      "sha256": "0cc468ed02496c3513428ac9c92d1e822a59c89bdbe2035c46e35cd78bc40a31"
+    },
+    {
+      "bytes": 26227,
+      "path": "artifacts/tx3/E05D_weak_grid/figures/figure_E05D_3_all_candidate_rho_heatmap.png",
+      "sha256": "d04ad894dbaa3331ce4de345b4c715644dc6808929947850cf11c26c3dc710d1"
+    },
+    {
+      "bytes": 15162,
+      "path": "artifacts/tx3/E05D_weak_grid/figures/figure_E05D_4_lower_order_vs_full_pole.pdf",
+      "sha256": "b7aae626f8044890ae2b48fa4e4ee601ff9af7f4ff93fdf2b1262064626f32ef"
+    },
+    {
+      "bytes": 26177,
+      "path": "artifacts/tx3/E05D_weak_grid/figures/figure_E05D_4_lower_order_vs_full_pole.png",
+      "sha256": "5b0957b3fd5792d69f8560b9ac4740857326d85b937f6de1e7dd9c55aef63d58"
+    },
+    {
+      "bytes": 16388,
+      "path": "artifacts/tx3/E05D_weak_grid/figures/figure_E05D_5_damping_screen.pdf",
+      "sha256": "8810486a9dac07aead67797f38aa5ecd820e6d916df021259d8cfadc07c0fcd8"
+    },
+    {
+      "bytes": 27535,
+      "path": "artifacts/tx3/E05D_weak_grid/figures/figure_E05D_5_damping_screen.png",
+      "sha256": "691ce61741de45bd6063d33c3e4bd2527fb7bf6fd041375b4670a2a3886e28aa"
+    },
+    {
+      "bytes": 16627,
+      "path": "artifacts/tx3/E05D_weak_grid/figures/figure_E05D_6_grid_strength_vs_connected_relevance.pdf",
+      "sha256": "70302a12e1536a5bea0c9dca89c91e39ea4d25872030153a632605d3762d479a"
+    },
+    {
+      "bytes": 29725,
+      "path": "artifacts/tx3/E05D_weak_grid/figures/figure_E05D_6_grid_strength_vs_connected_relevance.png",
+      "sha256": "cee0aa0f78641d4895570762ac26cdc2519b0cc98e136877c337d5feca3bdb1a"
+    },
+    {
+      "bytes": 14832,
+      "path": "artifacts/tx3/E05D_weak_grid/figures/figure_E05D_7_pair_vs_triple.pdf",
+      "sha256": "cc26f2e53f2d4fbaa8ad93794a3846670ecce520b4fd0b98a20320da1f4b9a79"
+    },
+    {
+      "bytes": 23805,
+      "path": "artifacts/tx3/E05D_weak_grid/figures/figure_E05D_7_pair_vs_triple.png",
+      "sha256": "3bbd6e3ab418c5200900129b77e610e97482644bd82a82b82845ff6100258b14"
+    },
+    {
+      "bytes": 15096,
+      "path": "artifacts/tx3/E05D_weak_grid/figures/figure_E05D_8_conditioning.pdf",
+      "sha256": "6599264e7e54bfe8e9f35255837db49fb1cbc2a686e8d4caf7e825c3df9ba9f5"
+    },
+    {
+      "bytes": 25992,
+      "path": "artifacts/tx3/E05D_weak_grid/figures/figure_E05D_8_conditioning.png",
+      "sha256": "91129af3b9664f191d3a098e7647ef71be8d0ef7847bc369d716b2e42d5961b6"
+    },
+    {
+      "bytes": 12541,
+      "path": "artifacts/tx3/E05D_weak_grid/holdout/e05d_composition_failures.parquet",
+      "sha256": "7d55ed36c3015bb94747f223060ed04dd67636a52aa92bad935a2a66da3dcbc4"
+    },
+    {
+      "bytes": 12541,
+      "path": "artifacts/tx3/E05D_weak_grid/holdout/e05d_conditioning.parquet",
+      "sha256": "7d55ed36c3015bb94747f223060ed04dd67636a52aa92bad935a2a66da3dcbc4"
+    },
+    {
+      "bytes": 12541,
+      "path": "artifacts/tx3/E05D_weak_grid/holdout/e05d_connected_externalities.parquet",
+      "sha256": "7d55ed36c3015bb94747f223060ed04dd67636a52aa92bad935a2a66da3dcbc4"
+    },
+    {
+      "bytes": 26864,
+      "path": "artifacts/tx3/E05D_weak_grid/holdout/e05d_failure_ledger.parquet",
+      "sha256": "fb5604eb9c3fe34a9bab165ca8b05ab0be30c84a7ec4569d64da84b640ddd288"
+    },
+    {
+      "bytes": 12541,
+      "path": "artifacts/tx3/E05D_weak_grid/holdout/e05d_margin_consumption.parquet",
+      "sha256": "7d55ed36c3015bb94747f223060ed04dd67636a52aa92bad935a2a66da3dcbc4"
+    },
+    {
+      "bytes": 12541,
+      "path": "artifacts/tx3/E05D_weak_grid/holdout/e05d_mode_tracking.parquet",
+      "sha256": "7d55ed36c3015bb94747f223060ed04dd67636a52aa92bad935a2a66da3dcbc4"
+    },
+    {
+      "bytes": 12541,
+      "path": "artifacts/tx3/E05D_weak_grid/holdout/e05d_subset_poles.parquet",
+      "sha256": "7d55ed36c3015bb94747f223060ed04dd67636a52aa92bad935a2a66da3dcbc4"
+    },
+    {
+      "bytes": 381,
+      "path": "artifacts/tx3/E05D_weak_grid/logs/E05D_BASELINE_INELIGIBILITY.json",
+      "sha256": "b6bfd7cd28785b86fd8d3c75b508c7ca44e381e754afda444eb036398600bd8f"
+    },
+    {
+      "bytes": 347,
+      "path": "artifacts/tx3/E05D_weak_grid/manifests/E05D_RUN_MANIFEST.json",
+      "sha256": "2917e7953ac30503266b6b8c346647f16f3f87c5a70ea359360cb3348721539a"
+    },
+    {
+      "bytes": 235,
+      "path": "artifacts/tx3/E05D_weak_grid/manifests/PACKAGE_SOURCE_VALIDATION.json",
+      "sha256": "731efd7050b4e3d521c214517551023ec8180e2418edf46867b0d95f44329d29"
+    },
+    {
+      "bytes": 1072,
+      "path": "artifacts/tx3/E05D_weak_grid/preregistration/E05D_C3C_GATE_FREEZE.json",
+      "sha256": "9dcba0ea13ebccba9f5e8cf6a56fbc2716900e18f193c4956cc8747a0acbb19b"
+    },
+    {
+      "bytes": 6874,
+      "path": "artifacts/tx3/E05D_weak_grid/preregistration/E05D_CANDIDATE_FREEZE.json",
+      "sha256": "5c74186cd44c2135dc231bd5e0e5023ad06af031b5274517e82d673d3f116c4b"
+    },
+    {
+      "bytes": 684,
+      "path": "artifacts/tx3/E05D_weak_grid/preregistration/E05D_CRITICAL_MODE_RULE_FREEZE.json",
+      "sha256": "ef3e710e5828c127700d08f04e471c840953ea609bb2d68507971eed5926a15b"
+    },
+    {
+      "bytes": 13699,
+      "path": "artifacts/tx3/E05D_weak_grid/preregistration/E05D_GRID_STRESS_BRANCH_FREEZE.json",
+      "sha256": "06f498ccd6ef18cfb43716ec91cfadf0bbc0cc8698e65737ef50e4f9c87ce7fb"
+    },
+    {
+      "bytes": 3887,
+      "path": "artifacts/tx3/E05D_weak_grid/preregistration/E05D_HOLDOUT_FREEZE.json",
+      "sha256": "4d1751b8ca06bfbcb0c65a0e12cb4509de06712eb464f3d41cb20eb75a5459ee"
+    },
+    {
+      "bytes": 2095,
+      "path": "artifacts/tx3/E05D_weak_grid/preregistration/E05D_NUMERICAL_FREEZE.json",
+      "sha256": "48f012bd6c81c8b4d38b26de2117ba603b760ce5620b9ab97cd8517c64850f51"
+    },
+    {
+      "bytes": 1313,
+      "path": "artifacts/tx3/E05D_weak_grid/preregistration/E05D_PREREGISTRATION.md",
+      "sha256": "d53e726aa3144cb72a54a6adc0e7a207982e77f0e2bc26f9ac66ba760ff69854"
+    },
+    {
+      "bytes": 1367,
+      "path": "artifacts/tx3/E05D_weak_grid/preregistration/E05D_PREREGISTRATION_SHA256.json",
+      "sha256": "1c84b6dea50d85adbbe3f66d76c374415cad2ed39b2535f485102cfd408b5e6a"
+    },
+    {
+      "bytes": 3701,
+      "path": "artifacts/tx3/E05D_weak_grid/preregistration/E05D_STRESS_RULE_FREEZE.json",
+      "sha256": "621350a1d856eabdf1013cea083be39a1952fe6471af513f632ba7e52221e532"
+    },
+    {
+      "bytes": 635,
+      "path": "artifacts/tx3/E05D_weak_grid/preregistration/E05D_TRACKING_FREEZE.json",
+      "sha256": "a96e757db8bb2d3d79f39e84998ddc95733811c9e411734ad7d2d0a7fee4f2c9"
+    },
+    {
+      "bytes": 6688,
+      "path": "artifacts/tx3/E05D_weak_grid/preregistration/e05d_candidates.parquet",
+      "sha256": "cedbc4186e96ec0be81018fb0ae81111fc4cbd0ccece5b5e0e646fef486a0d12"
+    },
+    {
+      "bytes": 6298,
+      "path": "artifacts/tx3/E05D_weak_grid/preregistration/e05d_holdout_manifest.parquet",
+      "sha256": "eafa3a8c53231e623ab4d6f45acd9c855355cd33ec670e1f47084d0d8e876643"
+    },
+    {
+      "bytes": 12541,
+      "path": "artifacts/tx3/E05D_weak_grid/tables/e05d_critical_modes.parquet",
+      "sha256": "7d55ed36c3015bb94747f223060ed04dd67636a52aa92bad935a2a66da3dcbc4"
+    },
+    {
+      "bytes": 5164,
+      "path": "artifacts/tx3/E05D_weak_grid/tables/e05d_grid_strength.parquet",
+      "sha256": "e59fb06a6a57a6d85c04d575fed7bde7c679f33fae01f54402b9785833f019c0"
+    },
+    {
+      "bytes": 10960,
+      "path": "artifacts/tx3/E05D_weak_grid/tables/e05d_seed_stress_limits.parquet",
+      "sha256": "595eea5488ac625c174213fc9b10331ea3fa96c626a442458164825ca92cd066"
+    },
+    {
+      "bytes": 5455,
+      "path": "artifacts/tx3/E05_mechanism_consequence/E05_FINAL_DECISION.json",
+      "sha256": "9b69b5103a50f058e3b5abcdb76d8f61058c54fd83804b72d2bc0ca36360a263"
+    },
+    {
+      "bytes": 9661,
+      "path": "configs/tx3_gfl_common.yaml",
+      "sha256": "f07a6a40369af8a4d1ec4213fe5be1919fbb169ed15a71e05a585bb1054623d5"
+    },
+    {
+      "bytes": 101,
+      "path": "dicgrid/__init__.py",
+      "sha256": "8bee1b52dcd7e600637a5bb3bc47ec95aab00bad873a53616ed4ee7b9fa7f0be"
+    },
+    {
+      "bytes": 243,
+      "path": "dicgrid/adapters/__init__.py",
+      "sha256": "7e627bedcc1bdd7583cad4858ee213d3499564043c6447de3be9b0c44bb84891"
+    },
+    {
+      "bytes": 7797,
+      "path": "dicgrid/adapters/andes.py",
+      "sha256": "ff15e85b9b3ceff25726019ab7522a416331ff5f488586c2dc7bf24539625ac0"
+    },
+    {
+      "bytes": 9289,
+      "path": "dicgrid/adapters/paraemt.py",
+      "sha256": "158c5175e2d86f4f8c5d9c220496472c5924190e43880a19eac55b5f95978f16"
+    },
+    {
+      "bytes": 337,
+      "path": "dicgrid/connected/__init__.py",
+      "sha256": "0ed1e47252aa55ebc5e981ef46a330605a8c94065253a15f7f802fb8559ed992"
+    },
+    {
+      "bytes": 3426,
+      "path": "dicgrid/connected/logdet.py",
+      "sha256": "efd162494ff4510ffc2be283037d493fa6a7f3b2c5533365cd6b7943404df532"
+    },
+    {
+      "bytes": 696,
+      "path": "dicgrid/connected/mobius.py",
+      "sha256": "cd8c3d44236ff4d098624d7f8212f5c4fc174f600a75cd524039750d5569c404"
+    },
+    {
+      "bytes": 891,
+      "path": "dicgrid/connected/partitions.py",
+      "sha256": "72844042824cd66d3395d351f3a764a7f1180b2095c64335328b28fa72c21e9f"
+    },
+    {
+      "bytes": 3257,
+      "path": "dicgrid/connected/sparse_logdet.py",
+      "sha256": "9a421942d8e142bb63fe5dbb3bea3e2370b828a5975bf0a8dfb25aae992a44f6"
+    },
+    {
+      "bytes": 9507,
+      "path": "dicgrid/equilibrium.py",
+      "sha256": "9337da0bcc8beb4dba172dd055148f9b373ce4841923325abdb93074beb34b37"
+    },
+    {
+      "bytes": 283,
+      "path": "dicgrid/reproducibility/__init__.py",
+      "sha256": "8decc8855b3eddc0f49075dec355cf6eabfec005092343c0deb1088795c97567"
+    },
+    {
+      "bytes": 867,
+      "path": "dicgrid/reproducibility/logging.py",
+      "sha256": "8b7719faf9840a22bfebfdef72569a1af28e7ef0786cde78a1aaf7525bae5c23"
+    },
+    {
+      "bytes": 2901,
+      "path": "dicgrid/reproducibility/manifest.py",
+      "sha256": "e365f659ff6cf4e076f9e32d018345496cc20c849b9731e35ce1a3eed21bb50a"
+    },
+    {
+      "bytes": 10663,
+      "path": "experiments/tx3/E03_finite_externality/campaign_core.py",
+      "sha256": "3f51a9c1f4935bd0e80bbab15b388434a080bcf97eab6c5c8ba074fb2a16c5fb"
+    },
+    {
+      "bytes": 16471,
+      "path": "experiments/tx3/E05C_margin_conditioned/margin_conditioned.py",
+      "sha256": "4d2ed292c2420b2caccc176038ff55a962426277a68064bf7e925b019dcdb989"
+    },
+    {
+      "bytes": 944,
+      "path": "experiments/tx3/E05D_weak_grid/README.md",
+      "sha256": "415e5ef72a191795fd890bc772ea90fc975d065d1333a414f5493099a49138b9"
+    },
+    {
+      "bytes": 7916,
+      "path": "experiments/tx3/E05D_weak_grid/calibrate_e05d_stress.py",
+      "sha256": "151e0fb1b081bd1758c2b1107e80c603e7f21df80bce9406f89c1c8446625e4f"
+    },
+    {
+      "bytes": 26444,
+      "path": "experiments/tx3/E05D_weak_grid/finalize_e05d.py",
+      "sha256": "24723a54cc803152387e3c48a87e1a8cfd4ca6f10e96af33778546d0ebd6f335"
+    },
+    {
+      "bytes": 15599,
+      "path": "experiments/tx3/E05D_weak_grid/finalize_e05d_baseline_ineligible.py",
+      "sha256": "0477e83e5f22c1f9189af99a0c031128d6158d1b7cd6f496007e7da8929e6878"
+    },
+    {
+      "bytes": 11592,
+      "path": "experiments/tx3/E05D_weak_grid/freeze_e05d_endpoints_modes.py",
+      "sha256": "cf21c2f63d4dd716fcbd1e7af32b0c2316be086b9a3ea19902406f905f392d99"
+    },
+    {
+      "bytes": 5361,
+      "path": "experiments/tx3/E05D_weak_grid/package_e05d.py",
+      "sha256": "fecfe73b3868237655fe96a095ea70b0e02cd7f77033f80569c624d13abacf03"
+    },
+    {
+      "bytes": 5314,
+      "path": "experiments/tx3/E05D_weak_grid/package_e05d_baseline_ineligible.py",
+      "sha256": "2b8af6ba03469bfda1c1809391ac143eeee7394b08e7c5a8f17382d8d7947125"
+    },
+    {
+      "bytes": 14340,
+      "path": "experiments/tx3/E05D_weak_grid/preregister_e05d.py",
+      "sha256": "5703758e38f25546a9b642177c2781112819cdffa3199ad6d2c3b341698b3f78"
+    },
+    {
+      "bytes": 18673,
+      "path": "experiments/tx3/E05D_weak_grid/run_e05d_campaign.py",
+      "sha256": "2e2b238d88f9071b58a9ac37c13b7c8a9805d5f4d3a39bdb27edfb9a3db1a0ee"
+    },
+    {
+      "bytes": 10829,
+      "path": "experiments/tx3/E05D_weak_grid/validate_e05d.py",
+      "sha256": "c4a3e946d24fed738b55e0424bfa2ffdfb4b8b11ad6fd10bb63aed978f844a5a"
+    },
+    {
+      "bytes": 7128,
+      "path": "experiments/tx3/E05D_weak_grid/validate_e05d_baseline_ineligible.py",
+      "sha256": "a65a5f4d18f4933d7ea5c4d172403da2d591b2a5814003c186cd1c3ae2ac98e6"
+    },
+    {
+      "bytes": 15061,
+      "path": "experiments/tx3/E05D_weak_grid/weak_grid.py",
+      "sha256": "d5746de27fab61dddeae8db720a84b137deb7d325615946fb9385a64c8fa0234"
+    },
+    {
+      "bytes": 1020,
+      "path": "pyproject.toml",
+      "sha256": "3421384cb6592e333da458df816f58738727153ae93c6cc3c0ceae62cfd1015f"
+    },
+    {
+      "bytes": 6841,
+      "path": "reports/papers/tx3_connected_intervention_calculus/CLAIMS_EVIDENCE_MATRIX.md",
+      "sha256": "ebd2cecddfb755f9357ab875e8ec99d5786017fac8c336b41f05e9dc24535d7b"
+    },
+    {
+      "bytes": 7775,
+      "path": "reports/papers/tx3_connected_intervention_calculus/CLAIMS_EVIDENCE_MATRIX_E05C.md",
+      "sha256": "15f68a7dc2a71a0e37bb502c7ed52d716a3dbdecdb959093dac5fed1cb964c37"
+    },
+    {
+      "bytes": 8588,
+      "path": "reports/papers/tx3_connected_intervention_calculus/CLAIMS_EVIDENCE_MATRIX_E05D.md",
+      "sha256": "f96f6a031cc1e12bd92a9cbe3f79964b6410b91606001a693d718258e30ba05b"
+    },
+    {
+      "bytes": 33248,
+      "path": "systems/ieee39_tx3_gfl3/andes_case.xlsx",
+      "sha256": "c317fbc530df0da8766fab614d839d750163012813e662e0022281de6b50a33e"
+    },
+    {
+      "bytes": 2110,
+      "path": "tests/unit/test_e05d_weak_grid.py",
+      "sha256": "c6dbc5230f3155d0af5cbd0ea5f4c3ce072a7768199bab7a3b2abc69fe10c713"
+    }
+  ],
+  "historical_package_references": {
+    "E05B": "TX3_E05B_DYNAMIC_SPECTRAL_SHIFT_REVIEW_CHATGPT_UPLOAD_2026-08-27.zip",
+    "E05C": "TX3_E05C_MARGIN_CONDITIONED_REVIEW_CHATGPT_UPLOAD_2026-08-27.zip"
+  },
+  "manifest_self_excluded_from_hash_list": true,
+  "new_paraemt_scientific_results_included": false,
+  "package": "TX3_E05D_WEAK_GRID_REVIEW_CHATGPT_UPLOAD_2026-08-27.zip",
+  "scope": "TX3 E05D terminal baseline-ineligibility review; no coalition outcomes; stop before E06",
+  "terminal_status": "BASELINE_INELIGIBLE",
+  "uncompressed_bytes_excluding_manifest": 982541
+}
