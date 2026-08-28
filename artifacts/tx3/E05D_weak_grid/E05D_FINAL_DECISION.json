@@ -1,0 +1,58 @@
+{
+  "C1": "SUPPORTED_UNCHANGED",
+  "C2": "SUPPORTED_UNCHANGED",
+  "C3a_nominal_material_damping_externality": "REJECTED_UNCHANGED",
+  "C3b_A_load_stress_amplification": "REJECTED_UNCHANGED",
+  "C3b_B_load_stress_material_consequence": "REJECTED_UNCHANGED",
+  "C3c_WEAK_GRID_MATERIAL_EXTERNALITY": "UNRESOLVED",
+  "Delta_zeta_le_minus_0_0025_points": 0,
+  "E05B_D1": "SUPPORTED_UNCHANGED",
+  "E05B_D2": "SUPPORTED_UNCHANGED",
+  "E05B_D3": "SUPPORTED_UNCHANGED",
+  "E05E_authorized": false,
+  "E06_executed": false,
+  "SCR36_nominal_range": [
+    2.6027489769701533,
+    2.6440132785380563
+  ],
+  "SCR37_nominal_range": [
+    2.5778261979453387,
+    2.6536626106243477
+  ],
+  "SCR38_nominal_range": [
+    1.3214082255638895,
+    1.4056136973421047
+  ],
+  "baseline_below_screen_count": 8,
+  "baseline_critical_damping_range": [
+    0.041653633818923945,
+    0.045275060170048856
+  ],
+  "baseline_valid_physical_eigen_count": 8,
+  "c3_mechanism_localization_authorized": false,
+  "coalition_result_rows": 0,
+  "coalition_results_computed": false,
+  "conditioning": null,
+  "e06_consideration_authorized": false,
+  "frozen_candidate_count": 15,
+  "hard_composition_failure_points": 0,
+  "kappa_end_range": null,
+  "largest_destabilizing_Delta_lambda_real_per_s": null,
+  "materiality_search_closed": true,
+  "maximum_rho_comp": null,
+  "maximum_stress_critical_damping_range": null,
+  "median_seed_maximum_rho_comp": null,
+  "mode_tracking_success_rate": null,
+  "new_paraemt_scientific_runs": 0,
+  "new_seed_count": 8,
+  "original_C3_cycle_or_SCC": "UNASSESSED",
+  "pair_count": 10,
+  "rho_comp_ge_0_25_points": 0,
+  "screen_composition_failure_points": 0,
+  "stage": "TX3_E05D_WEAK_GRID",
+  "stop_reason": "No admissible kappa_grid>=1 safe endpoint exists without changing the frozen 5% screen or critical-mode rule",
+  "strongest_negative_result": "8/8 frozen baselines are already below the immutable 5% damping screen at kappa_grid=1",
+  "strongest_positive_result": null,
+  "terminal_status": "BASELINE_INELIGIBLE",
+  "triple_count": 5
+}

@@ -1,0 +1,7 @@
+{
+  "attempt_result": "8/8 INVALID_AT_KAPPA_1 because DAMPING_SCREEN",
+  "attempted_calibration_command": "python experiments/tx3/E05D_weak_grid/calibrate_e05d_stress.py --workers 8",
+  "coalition_evaluations": 0,
+  "physical_eigen_status": "8/8 SUCCESS",
+  "resolution": "stop before coalition outcomes; do not amend threshold, mode rule, stress coordinate, or endpoint"
+}
