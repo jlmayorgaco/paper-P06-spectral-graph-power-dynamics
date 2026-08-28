@@ -1,0 +1,26 @@
+{
+  "band_hz": [
+    0.1,
+    30.0
+  ],
+  "excluded": [
+    "zero modes",
+    "algebraic/infinite modes",
+    "numerical artifacts"
+  ],
+  "freeze_before_coalition_results": true,
+  "freeze_id": "TX3-E05D-CRITICAL-MODE-RULE-1.0",
+  "manual_replacement_permitted": false,
+  "selection_population": "per-seed EMPTY coalition at tau=1 only",
+  "selection_rule": "valid positive-imaginary oscillatory mode with minimum damping ratio in 0.1-30 Hz",
+  "stored_fields": [
+    "lambda",
+    "frequency",
+    "damping",
+    "left eigenvector",
+    "right eigenvector",
+    "condition number",
+    "dominant device/state participation",
+    "eigenpair residual"
+  ]
+}
