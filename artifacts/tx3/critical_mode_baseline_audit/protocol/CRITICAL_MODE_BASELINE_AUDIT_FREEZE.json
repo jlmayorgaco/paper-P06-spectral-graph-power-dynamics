@@ -1,0 +1,93 @@
+{
+  "BMAC_minimum": 0.9,
+  "E06_authorized": false,
+  "classification": {
+    "descriptor_endogeneity": "conj(left_k)*M_k*right_k/(left^H M right); absolute magnitudes normalized for group comparison",
+    "dominance_threshold": 0.6,
+    "groups": {
+      "PLL_dominated": [
+        "PLL2",
+        "BusFreq"
+      ],
+      "current_control_dominated": [
+        "REGCP1",
+        "REECB1",
+        "REPCA1"
+      ],
+      "synchronous_electromechanical": [
+        "GENROU",
+        "GAST",
+        "SEXS"
+      ]
+    },
+    "hybrid_rule": "no non-other group reaches 0.60 and the two largest groups each reach 0.20",
+    "otherwise": "other",
+    "participation": "abs(conj(left_k)*right_k), normalized over dynamic states"
+  },
+  "created_utc": "2026-08-28T03:32:42.359937+00:00",
+  "eigenpair_residual_maximum": 1e-10,
+  "freeze_id": "TX3-CRITICAL-MODE-BASELINE-AUDIT-1.0",
+  "git_sha_before_freeze": "c46e987fedb17a825c78d1e1d75981822e0776c4",
+  "historical_statuses_immutable": {
+    "C3a": "REJECTED",
+    "C3b-A": "REJECTED",
+    "C3b-B": "REJECTED",
+    "C3c": "UNRESOLVED"
+  },
+  "input_hashes": {
+    "artifacts/tx3/E03_E04/preregistration/ACTION_SET_FREEZE.json": "a9b1004eebca5a541aac370c8f465b0fb2156fe3dba34160e1ae3db28b1e33bb",
+    "artifacts/tx3/E05B_dynamic_spectral_shift/tables/holdout_dynamic_reproducibility.parquet": "d75857bd5ebab2aa712131ea44b53c90d92fc12c6357710a5bdd098fcd7cc226",
+    "artifacts/tx3/E05C_margin_conditioned/preregistration/e05c_mode_family_freeze.parquet": "990f7dd8f1b02b35f871321cf5580ca4808efe2ecb43d97dcd095d0d132442e3",
+    "artifacts/tx3/E05D_weak_grid/E05D_FINAL_DECISION.json": "10d6e423b22bb260ae7c65f576563ee6e2facc9d6ab10f9cc7d40a5d5f4c3d05",
+    "artifacts/tx3/E05D_weak_grid/preregistration/E05D_CANDIDATE_FREEZE.json": "5c74186cd44c2135dc231bd5e0e5023ad06af031b5274517e82d673d3f116c4b",
+    "artifacts/tx3/E05D_weak_grid/preregistration/E05D_HOLDOUT_FREEZE.json": "4d1751b8ca06bfbcb0c65a0e12cb4509de06712eb464f3d41cb20eb75a5459ee",
+    "experiments/tx3/E05C_margin_conditioned/margin_conditioned.py": "4d2ed292c2420b2caccc176038ff55a962426277a68064bf7e925b019dcdb989",
+    "experiments/tx3/E05D_weak_grid/weak_grid.py": "d5746de27fab61dddeae8db720a84b137deb7d325615946fb9385a64c8fa0234",
+    "systems/ieee39_tx3_gfl3/andes_case.xlsx": "c317fbc530df0da8766fab614d839d750163012813e662e0022281de6b50a33e"
+  },
+  "mechanism_surgery_authorized": false,
+  "mode_rule": "minimum-damping valid positive-imaginary mode in 0.1-30 Hz, selected independently per seed from EMPTY only",
+  "new_ParaEMT_authorized": false,
+  "outputs": [
+    "Delta_S lambda_crit",
+    "Delta_S zeta_crit",
+    "lambda_<q",
+    "rho_comp",
+    "rho_baseline"
+  ],
+  "population": {
+    "E05B_frozen_coalition_count": 15,
+    "E05D_frozen_seed_count": 8,
+    "pair_count": 10,
+    "triple_count": 5
+  },
+  "scope": "descriptive post-mortem at kappa_grid=1 only; no new claim gate",
+  "source_hashes": {
+    "experiments/tx3/critical_mode_baseline_audit/finalize_audit.py": "fa5c588f65a260863674030a1241dd4d767c23da8fab0b9963f6891833648e85",
+    "experiments/tx3/critical_mode_baseline_audit/freeze_protocol.py": "6f75603b558cfffdc7997333b92428d502464a6e042295434d58af6e9fea9ab1",
+    "experiments/tx3/critical_mode_baseline_audit/run_audit.py": "77210572950b7dd2525d630bfd444c4f696d334d506569424a739f8043d73181",
+    "experiments/tx3/critical_mode_baseline_audit/validate_audit.py": "c7fc358b311f99f9371ee9511326d255b2b1971c2febcdbefb3cd8c432a056d5",
+    "tests/unit/test_critical_mode_baseline_audit.py": "59f0994fd938544de43cf422bfdf0337e56c9e368ea4b8198781f908dc9c89d2"
+  },
+  "stress": {
+    "continuation": false,
+    "kappa_grid": 1.0,
+    "new_stress_coordinate": false
+  },
+  "tracking": {
+    "BMAC_minimum": 0.9,
+    "action_homotopy_nodes": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "algorithm": "global one-to-one Hungarian biorthogonal MAC at every action-homotopy step",
+    "manual_mode_replacement": false,
+    "refinement_node_counts": [
+      9,
+      17
+    ]
+  }
+}
