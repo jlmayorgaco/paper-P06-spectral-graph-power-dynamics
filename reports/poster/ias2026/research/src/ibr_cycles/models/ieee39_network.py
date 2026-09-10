@@ -42,6 +42,8 @@ class Ieee39Network:
     slack_pmax: float
     machines: dict[int, dict[str, float]]
     source_sha256: str
+    #: the frozen JSON this network was read from; selects the controller data
+    config_path: str = ""
 
     @property
     def n_bus(self) -> int:
@@ -139,6 +141,7 @@ def load_network(path: Path = CONFIG) -> Ieee39Network:
         slack_pmax=float(slack["pmax"]),
         machines=machines,
         source_sha256=payload["source"]["sha256"],
+        config_path=str(Path(path)),
     )
 
 

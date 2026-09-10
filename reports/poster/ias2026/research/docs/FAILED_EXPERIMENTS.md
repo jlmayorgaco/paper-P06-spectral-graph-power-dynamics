@@ -152,6 +152,32 @@ Label agreement with the frozen leak `w = 0.05` is 89 % at `w = 0.02` and 72 % a
 area fractions are therefore conditional on `w`; every qualitative F7 result was
 re-traced at all three leaks and survives (`results/F7/F7_leak_qualitative.txt`).
 
+## F15 — A class-A factorial row was misread during F8 (post-freeze)
+
+While F8 was running, the configurations "classical surviving fleet (frozen
+EMFs), D = 2" were read as "manual excitation, D = 2" and briefly reported as
+"manual excitation gives H = EMPTY". Rechecked the same session: with EMF
+dynamics kept, manual excitation makes the base aperiodically unstable
+(`+0.23 s^-1`) at every point and every damping. The written F8 report and O75
+state the corrected result; the factor codes of the key table were fixed
+(`F8_tables.py`).
+
+## F16 — The band-limited protected region misses Kundur's dominant instability (F12)
+
+The preregistered 0.3–1.5 Hz window was carried over from IEEE-39 unchanged. On
+Kundur every pair of replacements diverges aperiodically (real eigenvalue
+`+20 ... +1 250 s^-1`), which the window excludes by construction, so every
+band-safe Kundur point is unstable for some subset. The preregistered decision is
+still reported as specified (REPRODUCED); a full-RHP sensitivity is reported
+beside it and labelled post-hoc (O80). Lesson: the protected region must include
+the real axis wherever grid-following synchronization loss is possible.
+
+## F17 — IEEE 68-bus replication not performed
+
+No documented IEEE 68-bus/NETS-NYPS dynamic dataset was available offline; the
+brief's alternative (Kundur) was used. The 68-bus replication remains open and is
+listed as a TPWRS prerequisite in `TRANSACTIONS_FINAL_RESULT_AUDIT.md`.
+
 ## Not attempted
 
 Everything from IEEE-39 onward: the flagship model, the twelve-action census,

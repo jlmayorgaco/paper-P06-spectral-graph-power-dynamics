@@ -1,0 +1,13 @@
+variable,mean,g,A_fixed_mean_lines,A_lines_where_h_changes_H,B_fixed_h_lines,B_lines_where_mean_changes_H,distinct_H,kappa_values,base_unstable_points
+KA,arithmetic,0.0,23,20,21,21,28,"[-1, 1, 2, 3, 4]",293
+KA,geometric,0.0,32,31,21,21,25,"[-1, 1, 2, 3, 4]",303
+KA,harmonic,0.0,33,33,19,18,21,"[-1, 1, 2, 3, 4]",305
+TE,arithmetic,0.0,33,23,21,21,17,"[1, 2, 3, 4]",1
+TE,arithmetic,0.05,33,18,21,21,18,"[-1, 1, 2, 3, 4]",1
+TE,arithmetic,0.2,33,17,21,21,23,"[-1, 1, 2, 3, 4]",1
+TE,geometric,0.0,33,28,21,21,17,"[1, 2, 3, 4]",9
+TE,geometric,0.05,33,20,21,21,17,"[-1, 1, 2, 3, 4]",9
+TE,geometric,0.2,33,19,21,21,19,"[-1, 1, 2, 3, 4]",9
+TE,harmonic,0.0,33,33,21,21,16,"[-1, 1, 2, 3, 4]",16
+TE,harmonic,0.05,33,23,21,21,17,"[-1, 1, 2, 3, 4]",16
+TE,harmonic,0.2,33,22,21,19,18,"[-1, 1, 2, 3, 4]",16

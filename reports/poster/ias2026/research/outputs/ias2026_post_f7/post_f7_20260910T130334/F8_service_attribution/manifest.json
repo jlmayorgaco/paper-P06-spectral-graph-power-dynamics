@@ -1,0 +1,137 @@
+{
+  "experiment": "F8_service_attribution",
+  "question": "Which synchronous services reshape the incompatibility hypergraph?",
+  "verdict": "COMPUTED",
+  "seed": null,
+  "config": {
+    "points": {
+      "P_inf": {
+        "g": 1.0,
+        "k": 0.5,
+        "t": 1.5,
+        "h": 1.0,
+        "frozen_label": "EMPTY",
+        "depth_nodes": 366.2594708673074
+      },
+      "P4": {
+        "g": 0.03625,
+        "k": 1.4249999999999998,
+        "t": 1.5,
+        "h": 1.0,
+        "frozen_label": "30+33+35+37",
+        "depth_nodes": 38.47076812334269
+      },
+      "P3": {
+        "g": 0.0,
+        "k": 1.63125,
+        "t": 1.5,
+        "h": 1.0,
+        "frozen_label": "30+33+35|30+33+37",
+        "depth_nodes": 28.844410203711913
+      },
+      "P2": {
+        "g": 0.11,
+        "k": 1.85,
+        "t": 1.5,
+        "h": 1.0,
+        "frozen_label": "30+33|33+35|33+37|30+35+37",
+        "depth_nodes": 16.1245154965971
+      },
+      "P1": {
+        "g": 0.1325,
+        "k": 2.178125,
+        "t": 1.5,
+        "h": 1.0,
+        "frozen_label": "30|33|35|37",
+        "depth_nodes": 17.0
+      },
+      "P_fold": {
+        "g": 0.10257,
+        "k": 1.25954,
+        "t": 1.5,
+        "h": 1.0,
+        "frozen_label": "30+33+35+37 (inside tongue, 0.01 above tip)",
+        "depth_nodes": 0.0
+      }
+    },
+    "R_factors": {
+      "EM_rating": [
+        0.25,
+        1.0
+      ],
+      "S1_inertia": [
+        0.01,
+        1.0
+      ],
+      "S2_damping": [
+        0.0,
+        2.0
+      ],
+      "S3_flux": [
+        0.0,
+        1.0
+      ],
+      "S4_avr": [
+        0.0,
+        1.0
+      ],
+      "S5_pss": [
+        0.0,
+        1.0
+      ],
+      "S6_qshare": [
+        0.0,
+        1.0
+      ]
+    },
+    "A_factors": {
+      "A1_inertia": [
+        0.5,
+        1.0,
+        2.0
+      ],
+      "A2_damping": [
+        0.0,
+        2.0
+      ],
+      "A3_flux": [
+        0.0,
+        1.0
+      ],
+      "A4_avr": [
+        0.0,
+        1.0
+      ],
+      "A5_pss": [
+        0.0,
+        1.0
+      ]
+    },
+    "n_configs": 178,
+    "source_map": "frozen F7A",
+    "S7": "governor not represented; excluded"
+  },
+  "workers": 16,
+  "git_commit": "f12ae3a0364b03db32b3081eaaae42625ac127c9",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 16.16,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-10T18:03:34Z",
+  "elapsed_s": 211.67,
+  "notes": [
+    "1068 (point, intervention) cases on 16 workers"
+  ],
+  "results": {
+    "cases": 1068,
+    "elapsed_s": 211.60714650154114
+  }
+}

@@ -1,0 +1,32 @@
+    296 single-service paths
+  -> COMPUTED   manifest C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics\reports\poster\ias2026\research\outputs\ias2026_post_f7\post_f7_20260910T130334\F8C_service_closure\manifest.json
+{
+ "paths": 296,
+ "located": 1531,
+ "boundary_types": {
+  "IMAGINARY_AXIS": 1511,
+  "UPPER_BAND_EDGE": 20
+ },
+ "port_visible": 1511,
+ "imaginary_axis": 1511,
+ "multi_port": 1193,
+ "multi_closure_lt_1e-4": 1193,
+ "closure_max": 9.721821687567628e-06,
+ "single_port": 318,
+ "single_individual_max": 2.6597399544991053e-06,
+ "port_errors": 0,
+ "by_factor": {
+  "A1_inertia": 145,
+  "A2_damping": 24,
+  "A3_flux": 83,
+  "A5_pss": 11,
+  "EM_presence": 14,
+  "EM_rating": 740,
+  "S1_inertia": 212,
+  "S2_damping": 24,
+  "S3_flux": 218,
+  "S4_avr": 22,
+  "S6_qshare": 32,
+  "virtual_h": 6
+ }
+}

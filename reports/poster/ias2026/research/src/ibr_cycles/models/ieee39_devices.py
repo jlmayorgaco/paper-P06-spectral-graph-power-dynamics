@@ -107,6 +107,19 @@ class MachineParameters:
     #: which is manual excitation rather than a gain of zero: driving ``ka`` to
     #: zero would let the field decay instead of holding it.
     avr_manual: bool = False
+    #: F8 service homotopies. ``avr_blend`` multiplies the field-voltage
+    #: derivative: 1 is the AVR, 0 holds the field (manual excitation), and the
+    #: equilibrium is the same for every value. ``flux_blend`` does the same for
+    #: the two transient-EMF derivatives: 0 is the classical machine (constant
+    #: EMF behind transient reactance), removing electromagnetic transient
+    #: dynamics while keeping the electromagnetic presence. Both default to 1.
+    avr_blend: float = 1.0
+    flux_blend: float = 1.0
+    #: SEXS lead-lag (F12, Kundur case): the AVR input passes through
+    #: (1 + s TA)/(1 + s TB) with TA = avr_tatb * avr_tb before K/(1 + s TE).
+    #: avr_tb = 0 (the default) is the first-order AVR, with no extra state.
+    avr_tatb: float = 1.0
+    avr_tb: float = 0.0
 
     def with_services(
         self,
@@ -115,6 +128,9 @@ class MachineParameters:
         pss_scale: float = 1.0,
         avr_scale: float = 1.0,
         avr_manual: bool = False,
+        avr_blend: float | None = None,
+        flux_blend: float | None = None,
+        damping: float | None = None,
     ) -> MachineParameters:
         """Scale individual synchronous services for attribution experiments."""
 
@@ -126,6 +142,9 @@ class MachineParameters:
             pss_gain=self.pss_gain * pss_scale,
             ka=self.ka * avr_scale,
             avr_manual=avr_manual,
+            avr_blend=self.avr_blend if avr_blend is None else float(avr_blend),
+            flux_blend=self.flux_blend if flux_blend is None else float(flux_blend),
+            d=self.d if damping is None else float(damping),
         )
 
 
@@ -147,11 +166,12 @@ class SynchronousMachine:
 
     @property
     def labels(self) -> tuple[str, ...]:
-        return tuple(f"{name}_sg{self.bus}" for name in MACHINE_LABELS)
+        names = MACHINE_LABELS + (("avr_ll",) if self.parameters.avr_tb > 0.0 else ())
+        return tuple(f"{name}_sg{self.bus}" for name in names)
 
     @property
     def n_states(self) -> int:
-        return 7
+        return 8 if self.parameters.avr_tb > 0.0 else 7
 
     def _currents(
         self, x: NDArray[np.float64], v: complex
@@ -173,7 +193,28 @@ class SynchronousMachine:
         terminal = float(abs(v))
         stabilizer = p.pss_gain * float(x[6])
         washout_out = p.pss_washout * (power - float(x[5])) / p.pss_wash_lag
-        return np.array(
+        if p.avr_tb > 0.0:
+            avr_in = p.vref + stabilizer - terminal
+            lead_lag = p.avr_tatb * avr_in + (1.0 - p.avr_tatb) * float(x[7])
+            field = (p.ka * lead_lag - float(x[4])) / p.ta
+            out = np.array(
+                [
+                    OMEGA_B * (float(x[1]) - 1.0),
+                    (p.pm - power - p.d * (float(x[1]) - 1.0)) / p.m,
+                    (float(x[4]) - float(x[2]) - (p.xd - p.xd1) * id_) / p.td10,
+                    (-float(x[3]) + (p.xq - p.xq1) * iq) / p.tq10,
+                    0.0 if p.avr_manual else field,
+                    (power - float(x[5])) / p.pss_wash_lag,
+                    (washout_out - float(x[6])) / p.pss_lag,
+                    (avr_in - float(x[7])) / p.avr_tb,
+                ]
+            )
+            if p.flux_blend != 1.0:
+                out[2:4] *= p.flux_blend
+            if p.avr_blend != 1.0:
+                out[4] *= p.avr_blend
+            return out
+        out = np.array(
             [
                 OMEGA_B * (float(x[1]) - 1.0),
                 (p.pm - power - p.d * (float(x[1]) - 1.0)) / p.m,
@@ -186,6 +227,11 @@ class SynchronousMachine:
                 (washout_out - float(x[6])) / p.pss_lag,
             ]
         )
+        if p.flux_blend != 1.0:
+            out[2:4] *= p.flux_blend
+        if p.avr_blend != 1.0:
+            out[4] *= p.avr_blend
+        return out
 
     def injection(self, x: NDArray[np.float64], v: complex) -> complex:
         id_, iq, _, _ = self._currents(x, v)
@@ -224,8 +270,11 @@ class SynchronousMachine:
         terminal = float(abs(v))
         vref = terminal if p.avr_manual else terminal + efd / p.ka
         tuned = replace(p, pm=power, vref=vref)
-        state = np.array([delta, 1.0, eq1, ed1, efd, power, 0.0])
-        return replace(self, parameters=tuned), state
+        values = [delta, 1.0, eq1, ed1, efd, power, 0.0]
+        if p.avr_tb > 0.0:
+            # the lead-lag state equals its input at equilibrium
+            values.append(vref - terminal)
+        return replace(self, parameters=tuned), np.array(values)
 
 
 @dataclass(frozen=True)
@@ -260,6 +309,14 @@ class ConverterParameters:
     #: and a continuum of equilibria. The defaults reproduce the plain PI exactly.
     voltage_gain: float = 1.0
     voltage_leak: float = 0.0
+    #: F8 synthetic inertia: inertia WITHOUT electromagnetic presence. The
+    #: active-power command becomes p_ref - 2 h_virtual d(dw_pll)/dt, the
+    #: derivative taken through a first-order filter of time constant
+    #: ``inertia_filter`` (one extra state when ``inertia_emulation``). With
+    #: h_virtual = 0 the state is decoupled at -1/inertia_filter.
+    inertia_emulation: bool = False
+    h_virtual: float = 0.0
+    inertia_filter: float = 0.05
 
     @staticmethod
     def pll_from_design(wn: float, zeta: float) -> dict[str, float]:
@@ -279,6 +336,7 @@ CONVERTER_LABELS = (
     "x_iq",
 )
 VOLTAGE_LABEL = "x_v"
+INERTIA_LABEL = "y_vi"
 
 
 @dataclass
@@ -301,11 +359,17 @@ class GridFollowingConverter:
         names = CONVERTER_LABELS
         if self.parameters.voltage_control:
             names = (*names, VOLTAGE_LABEL)
+        if self.parameters.inertia_emulation:
+            names = (*names, INERTIA_LABEL)
         return tuple(f"{name}_gfl{self.bus}" for name in names)
 
     @property
     def n_states(self) -> int:
-        return 11 if self.parameters.voltage_control else 10
+        return (
+            10
+            + int(self.parameters.voltage_control)
+            + int(self.parameters.inertia_emulation)
+        )
 
     def derivatives(self, x: NDArray[np.float64], v: complex) -> NDArray[np.float64]:
         p = self.parameters
@@ -323,7 +387,13 @@ class GridFollowingConverter:
         else:
             error = 0.0
             q_command = p.q_ref
-        id_ref = p.kp_p * (p.p_ref - float(x[2])) + float(x[4])
+        p_command = p.p_ref
+        if p.inertia_emulation:
+            slot = 10 + int(p.voltage_control)
+            deviation = (p.kp_pll * v_q + float(x[1])) / OMEGA_B
+            rocof = (deviation - float(x[slot])) / p.inertia_filter
+            p_command = p.p_ref - 2.0 * p.h_virtual * rocof
+        id_ref = p.kp_p * (p_command - float(x[2])) + float(x[4])
         iq_ref = -(p.kp_q * (q_command - float(x[3])) + float(x[5]))
         e_d = v_d + p.kp_i * (id_ref - i_d) + float(x[8]) - p.xf * i_q
         e_q = v_q + p.kp_i * (iq_ref - i_q) + float(x[9]) + p.xf * i_d
@@ -332,7 +402,7 @@ class GridFollowingConverter:
             p.ki_pll * v_q,
             (power - float(x[2])) / p.tau_p,
             (reactive - float(x[3])) / p.tau_p,
-            p.ki_p * (p.p_ref - float(x[2])),
+            p.ki_p * (p_command - float(x[2])),
             p.ki_q * (q_command - float(x[3])),
             (OMEGA_B / p.xf) * (e_d - v_d - p.rf * i_d + p.xf * i_q),
             (OMEGA_B / p.xf) * (e_q - v_q - p.rf * i_q - p.xf * i_d),
@@ -344,6 +414,8 @@ class GridFollowingConverter:
             if p.voltage_leak:
                 integral -= p.voltage_leak * (float(x[10]) - p.q_ref)
             derivatives.append(integral)
+        if p.inertia_emulation:
+            derivatives.append(rocof)
         return np.array(derivatives)
 
     def injection(self, x: NDArray[np.float64], v: complex) -> complex:
@@ -368,6 +440,8 @@ class GridFollowingConverter:
             # The regulator integrator holds the steady reactive command, so the
             # voltage error is zero at the operating point.
             values.append(q_ref)
+        if p.inertia_emulation:
+            values.append(0.0)
         return replace(self, parameters=tuned), np.array(values)
 
 

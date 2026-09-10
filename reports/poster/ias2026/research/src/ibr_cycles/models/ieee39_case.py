@@ -210,6 +210,8 @@ def _machine_parameters(
         d=raw["D"] if damping is None else float(damping),
         ka=avr["KA"],
         ta=avr["TE"],
+        avr_tatb=float(avr.get("TATB", 1.0)),
+        avr_tb=float(avr.get("TB", 0.0)),
         pss_gain=pss["KS"],
         pss_washout=pss["T5"],
         pss_wash_lag=pss["T6"],
@@ -217,13 +219,15 @@ def _machine_parameters(
     )
 
 
-@lru_cache(maxsize=1)
-def _controller_payload() -> dict:
+@lru_cache(maxsize=8)
+def _controller_payload(path: str | None = None) -> dict:
     import json
+    from pathlib import Path
 
     from .ieee39_network import CONFIG
 
-    data = json.loads(CONFIG.read_text(encoding="utf-8"))
+    source = Path(path) if path else CONFIG
+    data = json.loads(source.read_text(encoding="utf-8"))
     order = [int(row["bus"]) for row in data["machines"]]
     return {
         "avr_by_bus": {bus: row for bus, row in zip(order, data["avr"], strict=True)},
@@ -321,7 +325,7 @@ def build_dae(
     """
 
     net = network or load_network()
-    payload = _controller_payload()
+    payload = _controller_payload(net.config_path or None)
     rho = plan.mapping
     base_converter = converter or ConverterParameters()
 
@@ -354,8 +358,11 @@ def build_dae(
             # converter carries every displaced megawatt. This is the physically
             # interpretable version of "retain the synchronous service without
             # retaining the synchronous generation".
-            machine_share = complex(0.0, generation.imag)
-            converter_share = complex(generation.real, 0.0)
+            # ``q_share`` (F8, default 1) splits the bus reactive output between
+            # the condenser and the converter; the bus injection is unchanged.
+            q_share = float(services.get("q_share", 1.0))
+            machine_share = complex(0.0, q_share * generation.imag)
+            converter_share = complex(generation.real, (1.0 - q_share) * generation.imag)
             entries = (
                 ("sg", machine_share, condenser_fraction),
                 ("gfl", converter_share, fraction),
@@ -408,6 +415,9 @@ def build_dae(
                         pss_scale=machine_services.get("pss", 1.0),
                         avr_scale=machine_services.get("avr", 1.0),
                         avr_manual=bool(machine_services.get("avr_manual", 0.0)),
+                        avr_blend=machine_services.get("avr_blend"),
+                        flux_blend=machine_services.get("flux_blend"),
+                        damping=machine_services.get("damping"),
                     )
                 if condenser_fraction > RATING_FLOOR and fraction > RATING_FLOOR:
                     parameters = parameters.with_services(
@@ -415,6 +425,9 @@ def build_dae(
                         pss_scale=services.get("pss", 1.0),
                         avr_scale=services.get("avr", 1.0),
                         avr_manual=bool(services.get("avr_manual", 0.0)),
+                        avr_blend=services.get("avr_blend"),
+                        flux_blend=services.get("flux_blend"),
+                        damping=services.get("damping"),
                     )
                 device = SynchronousMachine(
                     bus=bus, parameters=parameters, weight=weight
