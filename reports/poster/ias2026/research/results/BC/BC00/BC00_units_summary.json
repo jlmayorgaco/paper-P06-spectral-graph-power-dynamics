@@ -1,0 +1,109 @@
+{
+ "replaced_mw_is_mva": true,
+ "flagship_reported_MW": 4270.7,
+ "flagship_displaced_active_MW": 2096.6077190001433,
+ "flagship_active_nameplate_MW": 2983.0,
+ "flagship_ratio_reported_to_active": 2.0369571099531507,
+ "E21_rows": [
+  {
+   "kind": "E21 unrepaired",
+   "portfolio": "30+33+35+37",
+   "inverter_rating_MVA": 4270.7,
+   "reported_as_MW_by_replaced_mw": 4270.7,
+   "displaced_active_MW": 2096.6077190001433,
+   "displaced_reactive_Mvar": 420.64905181849554,
+   "active_nameplate_MW": 2983.0,
+   "condenser_MVA": 0.0,
+   "ratio_reported_to_active": 2.0369571099531507
+  },
+  {
+   "kind": "E21 RA restore 30",
+   "portfolio": "33+35+37",
+   "inverter_rating_MVA": 3230.7,
+   "reported_as_MW_by_replaced_mw": 3230.7,
+   "displaced_active_MW": 1660.5213340001349,
+   "displaced_reactive_Mvar": 327.9534039778381,
+   "active_nameplate_MW": 1943.0,
+   "condenser_MVA": 0.0,
+   "ratio_reported_to_active": 1.9455937926538782
+  },
+  {
+   "kind": "E21 RA restore 37",
+   "portfolio": "30+33+35",
+   "inverter_rating_MVA": 3300.5,
+   "reported_as_MW_by_replaced_mw": 3300.5,
+   "displaced_active_MW": 1775.086381000136,
+   "displaced_reactive_Mvar": 448.2661676098297,
+   "active_nameplate_MW": 2419.0,
+   "condenser_MVA": 0.0,
+   "ratio_reported_to_active": 1.8593461339838577
+  },
+  {
+   "kind": "E21 RB / RC retune",
+   "portfolio": "30+33+35+37",
+   "inverter_rating_MVA": 4270.7,
+   "reported_as_MW_by_replaced_mw": 4270.7,
+   "displaced_active_MW": 2096.6077190001433,
+   "displaced_reactive_Mvar": 420.64905181849554,
+   "active_nameplate_MW": 2983.0,
+   "condenser_MVA": 0.0,
+   "ratio_reported_to_active": 2.0369571099531507
+  },
+  {
+   "kind": "E21 RD condenser 25 %",
+   "portfolio": "30+33+35+37",
+   "inverter_rating_MVA": 4270.7,
+   "reported_as_MW_by_replaced_mw": 4270.7,
+   "displaced_active_MW": 2096.6077190001433,
+   "displaced_reactive_Mvar": 420.64905181849554,
+   "active_nameplate_MW": 2983.0,
+   "condenser_MVA": 1067.675,
+   "ratio_reported_to_active": 2.0369571099531507
+  }
+ ],
+ "E39_ranker": [
+  {
+   "size": 4,
+   "n": 126,
+   "unstable": 10,
+   "predictor": "old column (MVA rating, labelled MW)",
+   "roc_auc_higher_is_more_unstable": 0.8129310344827586
+  },
+  {
+   "size": 4,
+   "n": 126,
+   "unstable": 10,
+   "predictor": "displaced active power (MW)",
+   "roc_auc_higher_is_more_unstable": 0.571551724137931
+  },
+  {
+   "size": 5,
+   "n": 126,
+   "unstable": 51,
+   "predictor": "old column (MVA rating, labelled MW)",
+   "roc_auc_higher_is_more_unstable": 0.7733333333333333
+  },
+  {
+   "size": 5,
+   "n": 126,
+   "unstable": 51,
+   "predictor": "displaced active power (MW)",
+   "roc_auc_higher_is_more_unstable": 0.636078431372549
+  },
+  {
+   "size": 6,
+   "n": 84,
+   "unstable": 78,
+   "predictor": "old column (MVA rating, labelled MW)",
+   "roc_auc_higher_is_more_unstable": 0.8611111111111112
+  },
+  {
+   "size": 6,
+   "n": 84,
+   "unstable": 78,
+   "predictor": "displaced active power (MW)",
+   "roc_auc_higher_is_more_unstable": 0.7264957264957265
+  }
+ ],
+ "config_dir": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\poster\\ias2026\\research\\configs\\binary_certification_v1"
+}

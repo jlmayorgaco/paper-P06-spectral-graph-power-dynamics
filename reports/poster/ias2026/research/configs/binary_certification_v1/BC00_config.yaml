@@ -1,0 +1,48 @@
+# BC00-BC02 (Phase I) preregistration.
+# Frozen BEFORE any benchmark hypergraph was recomputed with the physical
+# criterion. Only these had been run: the unit trace (BC00-A), the synthetic
+# checks and a smoke test of the classifier on eight single cases, used to fix
+# the code. No H or kappa had been computed.
+
+classification:
+  states: [STABLE, UNSTABLE, BOUNDARY_OR_UNRESOLVED, INFEASIBLE]
+  safety_factor: 10
+  matrix_error: "|| A(h) - A(2h) ||, the difference between the reduced matrices from central-difference Jacobians at the unit step and at twice the step (scale_x = scale_z = 2), transformed with the balancing similarity"
+  backward_error: "max_k ||A x_k - lambda_k x_k|| / (||A|| ||x_k||), floored at machine epsilon"
+  resolved_count_rule: "d_axis = min_w sigma_min(A - i w I) > safety * eps  =>  the RHP count is exact"
+  first_order_rule: "Re(lambda) > safety * kappa(lambda) * eps  =>  resolved positive (UNSTABLE; count is a lower bound)"
+  d_axis_numerics: "sigma_min at w = 0, at |Im lambda| for Re(lambda) > -0.5, and on a 24-point log grid, then bounded refinement around the two smallest; a numerical criterion, not an interval certificate"
+  balancing: "scipy matrix_balance (diagonal, powers of two, no permutation); the error matrix is transformed with it"
+  no_disc: "no eigenvalue is removed by magnitude; 1e-2, 1e-3, 1e-4, 1e-6, 1e-8 are diagnostic windows only"
+
+symmetry:
+  generator: "R_x = 1 on every rotor angle (delta) and PLL angle (theta_pll), 0 elsewhere; R_z = j v on every bus voltage (vx, vy) -> (-vy, vx)"
+  checks: ["f_x R_x + f_z R_z = 0", "g_x R_x + g_z R_z = 0", "A R_x = 0"]
+  frequency_partner: "w: machine speed/slip +1, PLL integrator +omega_B, synthetic-inertia filter +1, 68-bus PSS washout +K; exists only if every machine has D = 0; check A w = omega_B R_x"
+  dead_states: "rows of A that are identically zero (states frozen by blend = 0); removed exactly (block triangular), ledgered"
+  objects: {physical: "A_q = Z^T A Z (quotient by R)", rest: "A_qq = A_q deflated by the exact neutral eigenvector Z^T w (only if w is verified)"}
+
+audit_sets:
+  ieee39:
+    f8_points: "the six F8 points (P_inf, P4, P3, P2, P1, P_fold), 16 subsets, plain replacement (R_none)"
+    g2_points: "the tongue line k = 1.30 at g = 0.020, 0.042, 0.102, 0.173 (t = 1.5), 16 subsets"
+    f7_nodes: "per frozen F7 map (F7A, F7B, F7C): every point with g <= 0.005 plus 200 points drawn uniformly (numpy default_rng seed 20260911) from the base-stable points; 16 subsets each, on the direct path"
+  kundur:
+    nodes: "every G1 node of K12A and K12B (3721 + 2196), 8 subsets, direct path"
+    crossings: "the 194 G1 APERIODIC_THROUGH_ORIGIN boundaries (results/G1/G1_rhp_boundaries.csv)"
+  ieee68:
+    nodes: "the 31 nodes on k = 1 (j = 10), the 31 nodes on g = 0, and 60 random nodes (seed 20260911) of the G3 map; 16 subsets; exact affine assembly A(g, k) with the anchors' error matrices assembled the same way"
+    family12: "NOT in Phase I (4096 x 3 physical classifications); deferred to Phase III (BC05)"
+
+bc01_crossings:
+  sides: "evaluate the witness subset at g_star * (1 - 0.25) and g_star * (1 + 0.25), and at g = 0 when g_star * 0.75 < 0.001; widen by factors of 2 (at most 6 times) until the physical real eigenvalue of A_qq changes sign or the bracket leaves [0, 1]"
+  localize: "bisection of g on the sign of the rightmost real eigenvalue of A_qq, 40 iterations"
+  representations: {full_descriptor: "generalized eigenvalues of the DAE pencil (finite part)", quotient: "A_q, A_qq", port: "r_S(s) = det T_S(s) / det T_0(s) continued analytically through s = 0 (mean value on a circle of radius rho = 1e-5 when the windings of det T_S and det T_0 on that circle are equal)"}
+  port_evaluable_at_zero: "the windings of det T_S and det T_0 on |s| = rho are equal (structural zeros cancel), the mean-value estimate is stable when rho is halved (relative change < 1e-3), and the sign of r_S(0) changes across the crossing"
+  no_target: "no result count is targeted; 194/194 is not assumed"
+
+bc02:
+  representations: [A_control_affine_fixed_S, B_port_locality_common_equilibrium, C_common_realization_affine_in_delta]
+  common_realization: "every candidate bus carries its machine with weight (1 - delta_i) Sn/100 and its converter with weight delta_i * rating; the absent device is kept at its intensive (per-unit) equilibrium. Variant C1: absent device keeps its own dynamics (ghost). Variant C2: its dynamics rows replaced by the stable filler -(x - x0), which is affine in delta and whose determinant contribution is known."
+  checks: ["J(delta) = J0 + sum_i delta_i J_i on all vertices (relative Frobenius error)", "common equilibrium: f = g = 0 at every vertex", "vertex equivalence: finite spectrum of the realization = spectrum of the actual portfolio + filler/ghost spectrum", "ghost/filler Hurwitz"]
+  families: {ieee39: "16 core vertices at the six F8 points", kundur: "8 vertices at 3 declared nodes", ieee68: "16 candidate vertices at g in {0, 0.25, 1}, k = 1; 4096 twelve-plant vertices checked only for affinity on 64 random vertices plus all 12 singletons (seed 20260911)"}
