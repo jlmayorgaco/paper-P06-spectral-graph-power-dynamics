@@ -44,6 +44,13 @@ class Ieee39Network:
     source_sha256: str
     #: the frozen JSON this network was read from; selects the controller data
     config_path: str = ""
+    #: Model switches of the frozen JSON's ``model`` block (IEEE 68-bus, Gate 3).
+    #: The defaults are the IEEE-39 / Kundur conventions and change nothing there.
+    machine_model: str = "two_axis"
+    load_model: str = "power"
+    enforce_ratings: bool = True
+    #: converter rating = |S_gen| / converter_loading when set (68-bus rule)
+    converter_loading: float = 0.0
 
     @property
     def n_bus(self) -> int:
@@ -130,6 +137,7 @@ def load_network(path: Path = CONFIG) -> Ieee39Network:
     }
     slack = payload["slack"][0]
     machines = {int(row["bus"]): dict(row) for row in payload["machines"]}
+    model = payload.get("model", {})
     return Ieee39Network(
         bus_idx=order,
         ybus=_build_ybus(payload),
@@ -142,6 +150,10 @@ def load_network(path: Path = CONFIG) -> Ieee39Network:
         machines=machines,
         source_sha256=payload["source"]["sha256"],
         config_path=str(Path(path)),
+        machine_model=str(model.get("machine_model", "two_axis")),
+        load_model=str(model.get("load_model", "power")),
+        enforce_ratings=bool(model.get("enforce_ratings", True)),
+        converter_loading=float(model.get("converter_loading", 0.0)),
     )
 
 

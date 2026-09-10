@@ -146,6 +146,14 @@ Two consequences bind this project:
 | O81 | On IEEE-39 the band-limited hypergraph equals the full-RHP hypergraph at 100 % (F7A, F7C) and 96.5 % (F7B) of map points, and every one of 42 436 `H = EMPTY` points is fully small-signal stable | NUMERICAL OBSERVATION | F12 post-hoc analysis of the frozen F7 maps | all map points | high | "On IEEE-39 the protected band loses nothing; on Kundur it would." |
 | N23 | The `-1` crossing, or a per-subset return-difference test, is a contribution of this work | **REFUTED / DOWNGRADED** | F10 | generalized Nyquist on every sub-loop is identical | high | "The test is generalized Nyquist; the contribution is the hypergraph map, its theory, its policy dependence and its mechanism." |
 | N24 | The ~100x speed-up of the localized or port-core evaluation holds generally | **RESTRICTED** | F11 | re-equilibrated regime | high | "Only at a common operating point." |
+| O82 | Whole-RHP safety is the planning object. `H_RHP = min(H_1 ∪ ... ∪ H_r)` over any partition of the RHP into mechanisms, every band hyperedge contains an RHP hyperedge, and `H_Gamma = EMPTY` implies stability only if `Gamma` covers every mechanism | THEOREM | F2E Props 1–3 | counterexamples: Kundur (`H_IA = EMPTY` at 556/374 nodes, `H_RHP` never empty), the undamped condenser, the 68-bus 12-plant family at `g = 0.25` | proof | "`H_Gamma = EMPTY` does not imply small-signal stability unless `Gamma` covers every instability mechanism of interest." |
+| O83 | IEEE-39 F7 maps under `Gamma_RHP`: `H_RHP = H_IA` at 100 % (F7A, F7C) and 96.46 % (F7B, all band-edge exits of the same branch); 128/128 RHP policy boundaries oscillatory and port-visible | NUMERICAL OBSERVATION | G1 | 345 229 map points | high | "On IEEE-39 the inter-area hypergraph is the planning hypergraph, except near the band edge on F7B." |
+| O84 | F8 under `Gamma_RHP`: all 156 changes (85.4 % identical) come from condensers with `D = 0`, destabilized on their own 7.7–14.3 Hz swing mode. With `D = 2` or flux dynamics, electromagnetic presence empties `H_RHP` at RHP thresholds of 0.24–0.25 % (P_fold), 2.5–2.6 % (P4), 9.1–10.5 % (P3), 19 % (P2) and 45 % (P1) of the retired rating. F8D: P3 never RHP-composable along the AVR path | NUMERICAL OBSERVATION | G1, G1 follow-up, G1c | 1 068 + 480 lattices; 186 path points; TDS at P4 | high, IEEE-39 | "Electromagnetic presence restores whole-RHP composability provided the condenser damps its own swing mode." |
+| O85 | The nonlinear phasor-domain model (not EMT) confirms the eigen-predictions for 16 declared cases x 2 disturbances: verdict 32/32; oscillatory modes to within `2.5e-4` Hz and `6e-4` s^-1; the aperiodic Kundur pair diverges along the predicted real mode (+0.77 against +0.685); threshold sides for the condenser (2.47 % against 2.48 %), the tongue (U-S-U-S) and the Kundur policy boundary | NUMERICAL OBSERVATION | G2 | kick and pulse disturbances; no limits, no EMT | high | "Time-domain simulation of the nonlinear phasor model reproduces the predicted frequencies, growth rates and threshold sides." |
+| O86 | IEEE 68-bus (documented, preregistered): the model reproduces the report's power flow (`5e-5`) and all 15 Table-4 modes (`5e-4` Hz). With the preregistered candidates G9, G6, G3, G4, `H_RHP = EMPTY` on the whole 31 x 31 (g, k) map (NOT REPRODUCED). In the 12-plant family at k = 1, `kappa_RHP = 6, 9, 11` at `g = 0, 0.25, 1`; the mechanism changes from the in-band 0.6 Hz G13 inter-area mode to converter PLL modes at 2.3–3.5 Hz | NUMERICAL OBSERVATION | G3, G3c (post-hoc anatomy) | 961 nodes, 60 spot checks, 3 x 4 096 portfolios | high for the reproduction; three points for the family | "On the 68-bus system the incompatibility structure needs at least six of twelve plants replaced; the preregistered four-plant replication is composable everywhere." |
+| N25 | O72: a condenser with 1 % inertia, frozen EMFs and no damping restores composability | **RESTATED** | G1 | band statement only; under `Gamma_RHP` that condenser is unstable on its own swing mode at every rating and point | high | "Electromagnetic presence restores composability once the condenser's swing mode is damped (D = 2 or flux dynamics); the thresholds are unchanged." |
+| N26 | F8: a surviving-AVR slowing window exists in which every point is viable and composable | **REFUTED under Gamma_RHP** | G1c | at P3 no `beta` is RHP-composable; the inter-area family drops below the band | high | "Slowing the AVR orders the regions and reaches RHP-composability before base failure at P1, P2, P4 and P_fold, not at P3." |
+| N27 | Policy-dependent composability is a general property of SG-to-IBR replacement | **RESTRICTED** | G3 | on the 68-bus system the preregistered candidates are composable everywhere | high | "System-dependent: present on IEEE-39 and Kundur, and on the 68-bus system only at high penetration." |
 | H1 | The toy coincidence `tr(H_abc) = tr(H_acb)` generalizes | HYPOTHESIS | not tested | `K` is demonstrably non-symmetric here | low | do not state |
 | H4 | The IEEE-9 effect is driven by a closed action cycle | HYPOTHESIS | E01 measured it: the SCC is the trivial three-action component and the strongest cycle score is `1.6e-3` | low | do not state |
 | H2 | `abs(H_p) ~ delta^-p` detuning scaling | HYPOTHESIS | E19 not run | none | none | do not state |
@@ -229,6 +237,16 @@ Two consequences bind this project:
   modes, without the full-RHP result beside it: O80, O81
 - "the AVR causes the failure" as an on/off statement: O75, it orders the
   regions and cannot be removed from this grid
+- "composable", "safe" or "`H = EMPTY`" without `Gamma_RHP`, or a band hypergraph
+  used as a safety statement: O82
+- the F8 "minimal condenser" (D = 0, classical) as a restoring configuration: N25
+- "a window of AVR speed in which every point is composable": N26
+- "policy-dependent composability" as a general property, or any 68-bus
+  statement without "at least six of twelve plants": N27, O86
+- calling the G2 simulations EMT, transient-stability or large-disturbance
+  validation: O85 is small-signal, in a nonlinear phasor model
+- claiming generalized Nyquist, the `-1` crossing, hypergraphs/clutters or
+  non-monotone damping as new: G5
 - "first ever", "universal", "always"
 - any transient-stability, EMT or industrial-validation claim
 - `delta^-p` or `alpha^(-p/2)` scaling as fact

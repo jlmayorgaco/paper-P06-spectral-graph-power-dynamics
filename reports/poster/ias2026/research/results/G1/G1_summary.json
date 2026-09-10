@@ -1,0 +1,634 @@
+{
+  "IEEE39": {
+    "F7A": {
+      "points": 120390,
+      "H_equal": 1.0,
+      "kappa_equal": 1.0,
+      "discrepancy_classes": {
+        "NO_DISCREPANCY": 120390
+      },
+      "distinct_H_RHP": 30,
+      "distinct_H_IA": 30,
+      "kappa_RHP_values": [
+        -1,
+        1,
+        2,
+        3,
+        4
+      ],
+      "H_RHP_EMPTY_points": 12041
+    },
+    "F7B": {
+      "points": 79028,
+      "H_equal": 0.9645695196639166,
+      "kappa_equal": 0.9992787366503012,
+      "discrepancy_classes": {
+        "NO_DISCREPANCY": 76228,
+        "BAND_EDGE_ARTIFACT": 2800
+      },
+      "distinct_H_RHP": 36,
+      "distinct_H_IA": 33,
+      "kappa_RHP_values": [
+        -1,
+        1,
+        2,
+        3,
+        4
+      ],
+      "H_RHP_EMPTY_points": 11208
+    },
+    "F7C": {
+      "points": 145811,
+      "H_equal": 1.0,
+      "kappa_equal": 1.0,
+      "discrepancy_classes": {
+        "NO_DISCREPANCY": 145811
+      },
+      "distinct_H_RHP": 16,
+      "distinct_H_IA": 16,
+      "kappa_RHP_values": [
+        -1,
+        2,
+        3,
+        4
+      ],
+      "H_RHP_EMPTY_points": 19187
+    }
+  },
+  "Kundur": {
+    "K12A": {
+      "nodes": 3721,
+      "H_equal": 0.08223595807578608,
+      "band_label_reproduced": 1.0,
+      "kappa_equal": 0.8441279226014512,
+      "discrepancy_classes": {
+        "APERIODIC": 3116,
+        "NO_DISCREPANCY": 306,
+        "BAND_EDGE_ARTIFACT": 129,
+        "OSCILLATORY": 101,
+        "BAND_EDGE_ARTIFACT+OSCILLATORY": 49,
+        "APERIODIC+BAND_EDGE_ARTIFACT": 11,
+        "APERIODIC+OSCILLATORY": 9
+      },
+      "distinct_H_RHP": 4,
+      "H_RHP_counts": {
+        "2|3+4": 2180,
+        "2+3|2+4|3+4": 956,
+        "2|3|4": 518,
+        "2|4": 67
+      },
+      "kappa_RHP_values": [
+        1,
+        2
+      ],
+      "policy_lines_H_RHP_changes": 61,
+      "policy_lines": 61,
+      "H_RHP_EMPTY_nodes": 0
+    },
+    "K12B": {
+      "nodes": 2196,
+      "H_equal": 0.00273224043715847,
+      "band_label_reproduced": 1.0,
+      "kappa_equal": 0.8101092896174863,
+      "discrepancy_classes": {
+        "APERIODIC": 1930,
+        "BAND_EDGE_ARTIFACT": 142,
+        "BAND_EDGE_ARTIFACT+OSCILLATORY": 92,
+        "OSCILLATORY": 16,
+        "APERIODIC+BAND_EDGE_ARTIFACT": 10,
+        "NO_DISCREPANCY": 6
+      },
+      "distinct_H_RHP": 5,
+      "H_RHP_counts": {
+        "2|3+4": 1307,
+        "2+3|2+4|3+4": 633,
+        "2|3|4": 228,
+        "2|4": 22,
+        "2": 6
+      },
+      "kappa_RHP_values": [
+        1,
+        2
+      ],
+      "policy_lines_H_RHP_changes": 36,
+      "policy_lines": 36,
+      "H_RHP_EMPTY_nodes": 0
+    }
+  },
+  "F8_under_RHP": {
+    "cases": 1068,
+    "H_RHP_equals_frozen_H_IA": 0.8539325842696629,
+    "differences": [
+      {
+        "point": "P_inf",
+        "config": "R_0000000",
+        "label": "EMPTY",
+        "H_RHP": "37"
+      },
+      {
+        "point": "P_inf",
+        "config": "R_0000001",
+        "label": "EMPTY",
+        "H_RHP": "30|33|35"
+      },
+      {
+        "point": "P_inf",
+        "config": "R_0000010",
+        "label": "EMPTY",
+        "H_RHP": "37"
+      },
+      {
+        "point": "P_inf",
+        "config": "R_0000011",
+        "label": "EMPTY",
+        "H_RHP": "30|33|35"
+      },
+      {
+        "point": "P_inf",
+        "config": "R_0000100",
+        "label": "EMPTY",
+        "H_RHP": "37"
+      },
+      {
+        "point": "P_inf",
+        "config": "R_0000101",
+        "label": "EMPTY",
+        "H_RHP": "30|33|35"
+      },
+      {
+        "point": "P_inf",
+        "config": "R_0000110",
+        "label": "EMPTY",
+        "H_RHP": "37"
+      },
+      {
+        "point": "P_inf",
+        "config": "R_0000111",
+        "label": "EMPTY",
+        "H_RHP": "30|33|35"
+      },
+      {
+        "point": "P_inf",
+        "config": "R_1000000",
+        "label": "EMPTY",
+        "H_RHP": "37"
+      },
+      {
+        "point": "P_inf",
+        "config": "R_1000001",
+        "label": "EMPTY",
+        "H_RHP": "30|33|35"
+      },
+      {
+        "point": "P_inf",
+        "config": "R_1000010",
+        "label": "EMPTY",
+        "H_RHP": "37"
+      },
+      {
+        "point": "P_inf",
+        "config": "R_1000011",
+        "label": "EMPTY",
+        "H_RHP": "30|33|35"
+      },
+      {
+        "point": "P_inf",
+        "config": "R_1000100",
+        "label": "EMPTY",
+        "H_RHP": "37"
+      },
+      {
+        "point": "P_inf",
+        "config": "R_1000101",
+        "label": "EMPTY",
+        "H_RHP": "30|33|35"
+      },
+      {
+        "point": "P_inf",
+        "config": "R_1000110",
+        "label": "EMPTY",
+        "H_RHP": "37"
+      },
+      {
+        "point": "P_inf",
+        "config": "R_1000111",
+        "label": "EMPTY",
+        "H_RHP": "30|33|35"
+      },
+      {
+        "point": "P_inf",
+        "config": "R_1001001",
+        "label": "EMPTY",
+        "H_RHP": "30+33"
+      },
+      {
+        "point": "P_inf",
+        "config": "R_1001011",
+        "label": "EMPTY",
+        "H_RHP": "30+33"
+      },
+      {
+        "point": "P_inf",
+        "config": "R_1001101",
+        "label": "EMPTY",
+        "H_RHP": "30+33"
+      },
+      {
+        "point": "P_inf",
+        "config": "R_1001111",
+        "label": "EMPTY",
+        "H_RHP": "30+33"
+      },
+      {
+        "point": "P4",
+        "config": "R_0000000",
+        "label": "EMPTY",
+        "H_RHP": "37|30+33+35"
+      },
+      {
+        "point": "P4",
+        "config": "R_0000001",
+        "label": "EMPTY",
+        "H_RHP": "30|33|35"
+      },
+      {
+        "point": "P4",
+        "config": "R_0000010",
+        "label": "EMPTY",
+        "H_RHP": "37|30+33+35"
+      },
+      {
+        "point": "P4",
+        "config": "R_0000011",
+        "label": "EMPTY",
+        "H_RHP": "30|33|35"
+      },
+      {
+        "point": "P4",
+        "config": "R_0000100",
+        "label": "EMPTY",
+        "H_RHP": "37|30+33+35"
+      },
+      {
+        "point": "P4",
+        "config": "R_0000101",
+        "label": "EMPTY",
+        "H_RHP": "30|33|35"
+      },
+      {
+        "point": "P4",
+        "config": "R_0000110",
+        "label": "EMPTY",
+        "H_RHP": "37|30+33+35"
+      },
+      {
+        "point": "P4",
+        "config": "R_0000111",
+        "label": "EMPTY",
+        "H_RHP": "30|33|35"
+      },
+      {
+        "point": "P4",
+        "config": "R_1000000",
+        "label": "EMPTY",
+        "H_RHP": "37"
+      },
+      {
+        "point": "P4",
+        "config": "R_1000001",
+        "label": "EMPTY",
+        "H_RHP": "30|33|35"
+      },
+      {
+        "point": "P4",
+        "config": "R_1000010",
+        "label": "EMPTY",
+        "H_RHP": "37"
+      },
+      {
+        "point": "P4",
+        "config": "R_1000011",
+        "label": "EMPTY",
+        "H_RHP": "30|33|35"
+      },
+      {
+        "point": "P4",
+        "config": "R_1000100",
+        "label": "EMPTY",
+        "H_RHP": "37"
+      },
+      {
+        "point": "P4",
+        "config": "R_1000101",
+        "label": "EMPTY",
+        "H_RHP": "30|33|35"
+      },
+      {
+        "point": "P4",
+        "config": "R_1000110",
+        "label": "EMPTY",
+        "H_RHP": "37"
+      },
+      {
+        "point": "P4",
+        "config": "R_1000111",
+        "label": "EMPTY",
+        "H_RHP": "30|33|35"
+      },
+      {
+        "point": "P4",
+        "config": "R_1001001",
+        "label": "EMPTY",
+        "H_RHP": "30+33"
+      },
+      {
+        "point": "P4",
+        "config": "R_1001011",
+        "label": "EMPTY",
+        "H_RHP": "30+33"
+      },
+      {
+        "point": "P4",
+        "config": "R_1001101",
+        "label": "EMPTY",
+        "H_RHP": "30+33"
+      },
+      {
+        "point": "P4",
+        "config": "R_1001111",
+        "label": "EMPTY",
+        "H_RHP": "30+33"
+      }
+    ],
+    "key": [
+      {
+        "point": "P_inf",
+        "config": "R_none",
+        "label": "EMPTY",
+        "H_RHP": "EMPTY"
+      },
+      {
+        "point": "P_inf",
+        "config": "R_virtual_inertia",
+        "label": "EMPTY",
+        "H_RHP": "EMPTY"
+      },
+      {
+        "point": "P_inf",
+        "config": "R_0000000",
+        "label": "EMPTY",
+        "H_RHP": "37"
+      },
+      {
+        "point": "P_inf",
+        "config": "R_1000000",
+        "label": "EMPTY",
+        "H_RHP": "37"
+      },
+      {
+        "point": "P_inf",
+        "config": "A_00111",
+        "label": "EMPTY",
+        "H_RHP": "EMPTY"
+      },
+      {
+        "point": "P_inf",
+        "config": "A_11011",
+        "label": "EMPTY",
+        "H_RHP": "EMPTY"
+      },
+      {
+        "point": "P_inf",
+        "config": "A_20111",
+        "label": "EMPTY",
+        "H_RHP": "EMPTY"
+      },
+      {
+        "point": "P4",
+        "config": "R_none",
+        "label": "30+33+35+37",
+        "H_RHP": "30+33+35+37"
+      },
+      {
+        "point": "P4",
+        "config": "R_virtual_inertia",
+        "label": "30+33+35+37",
+        "H_RHP": "30+33+35+37"
+      },
+      {
+        "point": "P4",
+        "config": "R_0000000",
+        "label": "EMPTY",
+        "H_RHP": "37|30+33+35"
+      },
+      {
+        "point": "P4",
+        "config": "R_1000000",
+        "label": "EMPTY",
+        "H_RHP": "37"
+      },
+      {
+        "point": "P4",
+        "config": "A_00111",
+        "label": "EMPTY",
+        "H_RHP": "EMPTY"
+      },
+      {
+        "point": "P4",
+        "config": "A_11011",
+        "label": "EMPTY",
+        "H_RHP": "EMPTY"
+      },
+      {
+        "point": "P4",
+        "config": "A_20111",
+        "label": "BASE_UNSTABLE",
+        "H_RHP": "BASE_UNSTABLE"
+      },
+      {
+        "point": "P3",
+        "config": "R_none",
+        "label": "30+33+35|30+33+37",
+        "H_RHP": "30+33+35|30+33+37"
+      },
+      {
+        "point": "P3",
+        "config": "R_virtual_inertia",
+        "label": "30+33+35|30+33+37|33+35+37",
+        "H_RHP": "30+33+35|30+33+37|33+35+37"
+      },
+      {
+        "point": "P3",
+        "config": "R_0000000",
+        "label": "EMPTY",
+        "H_RHP": "37|30+33+35"
+      },
+      {
+        "point": "P3",
+        "config": "R_1000000",
+        "label": "EMPTY",
+        "H_RHP": "37"
+      },
+      {
+        "point": "P3",
+        "config": "A_00111",
+        "label": "30+33+35+37",
+        "H_RHP": "30+33+35+37"
+      },
+      {
+        "point": "P3",
+        "config": "A_11011",
+        "label": "EMPTY",
+        "H_RHP": "EMPTY"
+      },
+      {
+        "point": "P3",
+        "config": "A_20111",
+        "label": "BASE_UNSTABLE",
+        "H_RHP": "BASE_UNSTABLE"
+      },
+      {
+        "point": "P2",
+        "config": "R_none",
+        "label": "30+33|33+35|33+37|30+35+37",
+        "H_RHP": "30+33|33+35|33+37|30+35+37"
+      },
+      {
+        "point": "P2",
+        "config": "R_virtual_inertia",
+        "label": "30+33",
+        "H_RHP": "30+33"
+      },
+      {
+        "point": "P2",
+        "config": "R_0000000",
+        "label": "EMPTY",
+        "H_RHP": "37|30+33+35"
+      },
+      {
+        "point": "P2",
+        "config": "R_1000000",
+        "label": "EMPTY",
+        "H_RHP": "37"
+      },
+      {
+        "point": "P2",
+        "config": "A_00111",
+        "label": "EMPTY",
+        "H_RHP": "EMPTY"
+      },
+      {
+        "point": "P2",
+        "config": "A_11011",
+        "label": "EMPTY",
+        "H_RHP": "EMPTY"
+      },
+      {
+        "point": "P2",
+        "config": "A_20111",
+        "label": "BASE_UNSTABLE",
+        "H_RHP": "BASE_UNSTABLE"
+      },
+      {
+        "point": "P1",
+        "config": "R_none",
+        "label": "30|33|35|37",
+        "H_RHP": "30|33|35|37"
+      },
+      {
+        "point": "P1",
+        "config": "R_virtual_inertia",
+        "label": "30|33|35|37",
+        "H_RHP": "30|33|35|37"
+      },
+      {
+        "point": "P1",
+        "config": "R_0000000",
+        "label": "30|33|37",
+        "H_RHP": "30|33|37"
+      },
+      {
+        "point": "P1",
+        "config": "R_1000000",
+        "label": "EMPTY",
+        "H_RHP": "37"
+      },
+      {
+        "point": "P1",
+        "config": "A_00111",
+        "label": "EMPTY",
+        "H_RHP": "EMPTY"
+      },
+      {
+        "point": "P1",
+        "config": "A_11011",
+        "label": "EMPTY",
+        "H_RHP": "EMPTY"
+      },
+      {
+        "point": "P1",
+        "config": "A_20111",
+        "label": "BASE_UNSTABLE",
+        "H_RHP": "BASE_UNSTABLE"
+      },
+      {
+        "point": "P_fold",
+        "config": "R_none",
+        "label": "30+33+35+37",
+        "H_RHP": "30+33+35+37"
+      },
+      {
+        "point": "P_fold",
+        "config": "R_virtual_inertia",
+        "label": "EMPTY",
+        "H_RHP": "EMPTY"
+      },
+      {
+        "point": "P_fold",
+        "config": "R_0000000",
+        "label": "EMPTY",
+        "H_RHP": "37|30+33+35"
+      },
+      {
+        "point": "P_fold",
+        "config": "R_1000000",
+        "label": "EMPTY",
+        "H_RHP": "37"
+      },
+      {
+        "point": "P_fold",
+        "config": "A_00111",
+        "label": "EMPTY",
+        "H_RHP": "EMPTY"
+      },
+      {
+        "point": "P_fold",
+        "config": "A_11011",
+        "label": "EMPTY",
+        "H_RHP": "EMPTY"
+      },
+      {
+        "point": "P_fold",
+        "config": "A_20111",
+        "label": "30|33|35|37",
+        "H_RHP": "30|33|35|37"
+      }
+    ]
+  },
+  "rhp_boundaries": {
+    "located": 795,
+    "by_benchmark_and_type": {
+      "IEEE-39|OSCILLATORY_AXIS_CROSSING": 128,
+      "Kundur|APERIODIC_THROUGH_ORIGIN": 194,
+      "Kundur|OSCILLATORY_AXIS_CROSSING": 473
+    },
+    "oscillatory_port_visible": 601,
+    "oscillatory": 601,
+    "closure_max_multi": 9.992786174039284e-07,
+    "individual_max_single": 7.757183324660606e-07,
+    "freq_range_hz": [
+      0.0,
+      0.7281779013727147
+    ]
+  }
+}

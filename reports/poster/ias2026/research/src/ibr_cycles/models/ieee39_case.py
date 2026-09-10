@@ -182,9 +182,18 @@ class Ieee39Dae:
             injection[position] += slot.device.injection(
                 x[slot.start : slot.stop], complex(v[position])
             )
-        for bus, load in self.network.loads.items():
-            position = self.network.position(bus)
-            injection[position] -= np.conj(load) / np.conj(v[position])
+        if self.network.load_model == "impedance":
+            # constant shunt impedance fixed by the power-flow voltage (68-bus)
+            v0 = self.power_flow.voltages
+            for bus, load in self.network.loads.items():
+                position = self.network.position(bus)
+                injection[position] -= (
+                    np.conj(load) / abs(v0[position]) ** 2 * v[position]
+                )
+        else:
+            for bus, load in self.network.loads.items():
+                position = self.network.position(bus)
+                injection[position] -= np.conj(load) / np.conj(v[position])
         residual = self.network.ybus @ v - injection
         out = np.empty(self.n_z)
         out[0::2] = residual.real
@@ -233,6 +242,46 @@ def _controller_payload(path: str | None = None) -> dict:
         "avr_by_bus": {bus: row for bus, row in zip(order, data["avr"], strict=True)},
         "pss_by_bus": {bus: row for bus, row in zip(order, data["pss"], strict=True)},
     }
+
+
+@lru_cache(maxsize=2)
+def _ieee68_parameters(path: str) -> dict:
+    import json
+    from pathlib import Path
+
+    from .ieee68_devices import Ieee68MachineParameters
+
+    data = json.loads(Path(path).read_text(encoding="utf-8"))
+    return {
+        int(bus): Ieee68MachineParameters.from_rows(m, a, p)
+        for bus, m, a, p in zip(
+            data["machine_order"],
+            data["machines"],
+            data["avr"],
+            data["pss"],
+            strict=True,
+        )
+    }
+
+
+def _ieee68_machine(
+    network: Ieee39Network, bus: int, weight: float, scaling: dict[str, float] | None
+):
+    """Documented 68-bus generator; ``scaling['ka']`` is the regulator-gain scale."""
+
+    from dataclasses import replace as _replace
+
+    from .ieee68_devices import Ieee68Machine
+
+    parameters = _ieee68_parameters(network.config_path)[bus]
+    unknown = set(scaling or {}) - {"ka"}
+    if unknown:
+        raise ValueError(
+            f"68-bus machines accept only the 'ka' coordinate, not {sorted(unknown)}"
+        )
+    if scaling and "ka" in scaling:
+        parameters = _replace(parameters, gain_scale=float(scaling["ka"]))
+    return Ieee68Machine(bus=bus, parameters=parameters, weight=weight)
 
 
 class InfeasibleReplacement(RuntimeError):
@@ -362,7 +411,9 @@ def build_dae(
             # the condenser and the converter; the bus injection is unchanged.
             q_share = float(services.get("q_share", 1.0))
             machine_share = complex(0.0, q_share * generation.imag)
-            converter_share = complex(generation.real, (1.0 - q_share) * generation.imag)
+            converter_share = complex(
+                generation.real, (1.0 - q_share) * generation.imag
+            )
             entries = (
                 ("sg", machine_share, condenser_fraction),
                 ("gfl", converter_share, fraction),
@@ -388,13 +439,28 @@ def build_dae(
             if weight_fraction <= RATING_FLOOR:
                 continue
             weight = weight_fraction * rating
+            if kind == "gfl" and net.converter_loading > 0.0:
+                # 68-bus rule (G3 preregistration): the machine MVA column is a
+                # per-unit base, not a rating, so the converter is rated at
+                # |S_gen| / converter_loading.
+                weight = weight_fraction * abs(generation) / net.converter_loading
             loading = float(abs(share) / weight)
-            if loading > LOADING_LIMIT:
+            if loading > LOADING_LIMIT and net.enforce_ratings:
                 raise InfeasibleReplacement(
                     f"{kind} at bus {bus} would run at {loading:.3f} of its rating "
                     f"under plan {plan.label}"
                 )
-            if kind == "sg":
+            if kind == "sg" and net.machine_model == "ieee68_subtransient":
+                if (
+                    condenser_fraction > RATING_FLOOR
+                    or machine_services
+                    or machine_overrides
+                ):
+                    raise ValueError(
+                        "services and condensers are not defined for the 68-bus model"
+                    )
+                device = _ieee68_machine(net, bus, weight, machine_scaling)
+            elif kind == "sg":
                 parameters = _scale_machine(
                     _override_machine(
                         _machine_parameters(net, bus, payload, plan.machine_damping),

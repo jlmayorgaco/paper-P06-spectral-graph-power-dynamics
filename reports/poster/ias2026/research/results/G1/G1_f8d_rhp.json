@@ -1,0 +1,66 @@
+{
+ "cases": 480,
+ "H_RHP_equals_band": 0.9729166666666667,
+ "per_point": {
+  "P1|D=0": {
+   "H_RHP_empty_at_beta_max": 0.52867,
+   "band_empty_at_beta_max": 0.52867,
+   "differences": 0
+  },
+  "P1|D=2": {
+   "H_RHP_empty_at_beta_max": 0.7271,
+   "band_empty_at_beta_max": 0.7271,
+   "differences": 0
+  },
+  "P2|D=0": {
+   "H_RHP_empty_at_beta_max": 0.61999,
+   "band_empty_at_beta_max": 0.61999,
+   "differences": 0
+  },
+  "P2|D=2": {
+   "H_RHP_empty_at_beta_max": 0.7271,
+   "band_empty_at_beta_max": 0.7271,
+   "differences": 0
+  },
+  "P3|D=0": {
+   "H_RHP_empty_at_beta_max": null,
+   "band_empty_at_beta_max": 0.23832,
+   "differences": 4
+  },
+  "P3|D=2": {
+   "H_RHP_empty_at_beta_max": null,
+   "band_empty_at_beta_max": 0.23832,
+   "differences": 4
+  },
+  "P4|D=0": {
+   "H_RHP_empty_at_beta_max": 0.8527,
+   "band_empty_at_beta_max": 0.8527,
+   "differences": 2
+  },
+  "P4|D=2": {
+   "H_RHP_empty_at_beta_max": 0.8527,
+   "band_empty_at_beta_max": 0.8527,
+   "differences": 3
+  },
+  "P_fold|D=0": {
+   "H_RHP_empty_at_beta_max": 0.8527,
+   "band_empty_at_beta_max": 0.8527,
+   "differences": 0
+  },
+  "P_fold|D=2": {
+   "H_RHP_empty_at_beta_max": 1.0,
+   "band_empty_at_beta_max": 1.0,
+   "differences": 0
+  },
+  "P_inf|D=0": {
+   "H_RHP_empty_at_beta_max": 1.0,
+   "band_empty_at_beta_max": 1.0,
+   "differences": 0
+  },
+  "P_inf|D=2": {
+   "H_RHP_empty_at_beta_max": 1.0,
+   "band_empty_at_beta_max": 1.0,
+   "differences": 0
+  }
+ }
+}

@@ -178,6 +178,57 @@ No documented IEEE 68-bus/NETS-NYPS dynamic dataset was available offline; the
 brief's alternative (Kundur) was used. The 68-bus replication remains open and is
 listed as a TPWRS prerequisite in `TRANSACTIONS_FINAL_RESULT_AUDIT.md`.
 
+## F18 — Sustained load step and fixed-Jacobian integrator rejected for G2 (journal gates)
+
+Two parts of the first G2 design were changed after test runs and before the
+full run. Cases, horizons and outcome rules were not changed.
+
+- **The disturbance.** The first design was the E25/E32 sustained +2 % load
+  step. Without governors that step has no equilibrium. The common frequency
+  drifted without bound (`-0.008 pu` after 10 s on Kundur), left the
+  small-signal regime, and ended in a numerical collapse at about 12 s, even
+  for a case with `alpha = -0.085`. It was replaced by a 1e-4 pu rotor-speed
+  kick and a 0.2 s +2 % load pulse. Both leave the equilibrium unchanged.
+- **The integrator's Jacobian.** BDF was first given the equilibrium `A_red` as
+  a fixed Jacobian. Its Newton iteration then stalled on fast converter PLL
+  transients: the step size collapsed to `1e-15` at `t = 0.10 s`. It was
+  replaced by BDF's own finite-difference Jacobian.
+
+Lesson: a governor-free model admits only disturbances that conserve power
+balance.
+
+## F19 — The F8 "minimal condenser" is not a safe configuration (journal gate 1)
+
+F8 reported (O72) that a condenser with 1 % inertia, frozen EMFs and zero
+damping empties `H_Gamma`. That was a band statement. Under `Gamma_RHP` this
+condenser is unstable on its own swing mode: 7.7–14.3 Hz, condenser
+participation at least 98 %, `Re` up to `+0.50 s^-1`. This holds at every
+rating from 0.1 % to 100 % and at every F8 point, including the safe `P_inf`.
+G2 reproduces the mode in the nonlinear model at 8.65 Hz. The band hid it by
+construction. O72 is restated as N25. With either damping or rotor-flux
+dynamics added, the thresholds are unchanged.
+
+## F20 — F17 superseded: the 68-bus replication was performed (journal gate 3)
+
+The documented data were found in Singh & Pal (2013), the IEEE PES TF
+benchmark report, Appendix B. The protocol was preregistered in commit
+`d9fa097e` before any 68-bus code existed. The model reproduces the report's
+power flow to `5e-5` and all 15 electromechanical modes of its Table 4 to
+`5e-4` Hz. The F17 entry is kept unchanged as a record of the earlier state.
+
+The preregistered four-candidate replication itself is **NOT REPRODUCED**:
+every portfolio is stable over the whole map. It is reported as specified. The
+secondary 12-plant check finds `kappa_RHP = 6, 9, 11` (O86).
+
+## F21 — F8's "viable and composable AVR window" does not survive whole-RHP safety (journal gate 1)
+
+F8D reported a window of surviving-AVR slowing (`beta` about 0.2–0.5) in which
+every point is both viable and composable. Under `Gamma_RHP` the claim fails.
+Slowing the AVRs pushes the inter-area family below 0.3 Hz (0.21–0.27 Hz). The
+band then drops it while single replacements are already RHP-unstable. P3 is
+never RHP-composable before its base fails, and at P4 the window narrows. The
+ordering of the regions by AVR speed stands (G1 §3).
+
 ## Not attempted
 
 Everything from IEEE-39 onward: the flagship model, the twelve-action census,

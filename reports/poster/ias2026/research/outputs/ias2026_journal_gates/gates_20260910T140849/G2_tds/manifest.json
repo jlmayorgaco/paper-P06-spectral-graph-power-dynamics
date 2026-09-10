@@ -1,0 +1,80 @@
+{
+  "experiment": "G2_tds",
+  "question": "Does the nonlinear phasor-domain model do what the eigenvalues say?",
+  "verdict": "COMPUTED",
+  "seed": null,
+  "config": {
+    "kind": "nonlinear phasor-domain DAE, NOT EMT",
+    "step": 0.02,
+    "diverge_pu": 0.05,
+    "linear_window_pu": 0.001,
+    "horizon": [
+      30.0,
+      120.0
+    ],
+    "cases": [
+      "SAFE P_inf flagship",
+      "K4 P4 flagship",
+      "K4-proper P4 30+33+35",
+      "K2 P2 30+33",
+      "K2-single P2 30",
+      "K2-single P2 33",
+      "TONGUE g=0.020 before gap",
+      "TONGUE g=0.042 gap",
+      "TONGUE g=0.102 interior",
+      "TONGUE g=0.173 after",
+      "COND- P4 flagship + SC(D=2) 2.0%",
+      "COND+ P4 flagship + SC(D=2) 3.0%",
+      "SWING P_inf 37 + undamped classical SC 25%",
+      "OSC- K12A 2 g=0.08",
+      "OSC+ K12A 2 g=0.11",
+      "APER K12A 2+3 g=0"
+    ],
+    "disturbances": {
+      "IEEE-39": {
+        "D1": {
+          "kind": "kick",
+          "machine": 31,
+          "load_bus": 20
+        },
+        "D2": {
+          "kind": "pulse",
+          "machine": null,
+          "load_bus": 20
+        }
+      },
+      "Kundur": {
+        "D1": {
+          "kind": "kick",
+          "machine": 1,
+          "load_bus": 7
+        },
+        "D2": {
+          "kind": "pulse",
+          "machine": null,
+          "load_bus": 7
+        }
+      }
+    }
+  },
+  "workers": 8,
+  "git_commit": "d9fa097ed40f1cdc00bfcab4f9ac434a9a85e364",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 16.03,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-10T20:31:52Z",
+  "elapsed_s": 275.34,
+  "notes": [],
+  "results": {
+    "elapsed_s": 275.2478573322296
+  }
+}
