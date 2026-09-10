@@ -1,0 +1,76 @@
+# IEEE-39 SG -> PV-GFL replacement study, preregistration.
+# Written before any pair or triple portfolio was evaluated.
+
+case:
+  source: data/raw/ieee39_full.xlsx
+  frozen: configs/ias2026/ieee39_network.json
+  cross_check: configs/ias2026/ieee39_andes_powerflow_reference.json
+
+fidelity:
+  machine: two_axis_4th_order         # delta, omega, Eq1, Ed1
+  avr: first_order                    # KA and TE from the case
+  pss: ieeest_power_input_2_state     # KS, T4, T5, T6 from the case
+  governor: not_retained
+  exciter_ieeex1: not_retained
+  reason_exciter: >
+    Six of ten machines carry KE < 0. ANDES own eigenanalysis of the source case
+    returns six unstable real modes near +1.0 with an ill-conditioned algebraic
+    Jacobian (rcond about 1e-20). Reproducing that pathology would make base-case
+    eligibility impossible to assess.
+
+reference_mode:
+  # No governor is retained, so the common angle and common frequency are
+  # undetermined: the system carries a double eigenvalue at the origin.
+  exclusion_threshold_abs_lambda: 1.0e-3
+  expected_count: 2
+  assertion: excluded modes must be dominated by machine delta and omega
+
+criteria:
+  # ORIGINAL, stated in the pre-run plan before the model existed.
+  original_zeta_req: 0.03
+  # MEASURED base value at the declared fidelity.
+  measured_base_zeta_min: 0.026123
+  # AMENDMENT, made after the base-case eligibility test and the single
+  # replacement atlas, and BEFORE any pair or triple was evaluated.
+  amendment: >
+    An absolute 3 percent damping gate is unusable because the base case itself
+    does not meet it, which would make every portfolio fail vacuously. The
+    primary criterion is therefore threshold-free instability; the damping
+    criterion becomes relative to the base and is reported descriptively.
+  primary_instability: "max Re(lambda) > 1e-6 over non-reference modes"
+  secondary_material_degradation_pp: -0.5    # percentage points of zeta_min
+  oscillatory_band_hz: [0.1, 5.0]
+
+replacement:
+  candidates: [30, 31, 32, 33, 34, 35, 36, 37, 38]
+  excluded: [39]
+  exclusion_reason: >
+    The bus-39 machine carries M = 100 on its own base and represents the rest
+    of the interconnection, not a replaceable plant.
+  rho_grid_singles: [0.25, 0.50, 0.75, 1.00]
+  rho_pairs_triples: 1.00
+  q_policies: [matched, unity_pf]
+  loading_limit: 1.0
+
+converter:
+  model: gfl_10_state                 # identical to the IEEE-9 gate device
+  battery: false
+  gfm: false
+  rating: equal to the replaced machine Sn
+  kp_pll: 53.0
+  ki_pll: 1400.0
+  tau_p: 0.03
+  kp_p: 0.20
+  ki_p: 8.0
+  kp_q: 0.20
+  ki_q: 8.0
+  kp_i: 0.25
+  ki_i: 6.0
+  xf: 0.15
+  rf: 0.01
+
+mechanism_classification:
+  # Applied to every portfolio whose smaller subsets are all safe.
+  A_genuine_high_order: "lower-order truncation stays safe AND the irreducible term is required to cross"
+  B_lower_order_accumulation: "a lower-order truncation already crosses"
+  C_ambiguous: "otherwise"

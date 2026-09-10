@@ -1,0 +1,72 @@
+{
+  "experiment": "E31_v2c_order4_audit",
+  "seed": 0,
+  "config": {
+    "core": [
+      30,
+      33,
+      35,
+      37
+    ],
+    "observable": "alpha_IA family envelope",
+    "family_threshold": 0.8,
+    "pinned_basis": 12
+  },
+  "python": "3.13.14",
+  "platform_name": "Windows-11-10.0.26200-SP0",
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "dependencies": {
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1",
+    "networkx": "3.6.1",
+    "pyarrow": "25.0.1"
+  },
+  "started_utc": "2026-09-10T05:09:54.365862+00:00",
+  "results": {
+    "survives": true,
+    "truncations": {
+      "alpha_le_0": -0.12647823618208578,
+      "alpha_le_1": -0.20782092787359382,
+      "alpha_le_2": -0.33522495696984866,
+      "alpha_le_3": -0.28838414709425164,
+      "alpha_le_4": 0.14467022043327094
+    },
+    "truncations_single_branch": {
+      "alpha_le_0": -0.12647823618208578,
+      "alpha_le_1": -0.20782092787359382,
+      "alpha_le_2": -0.33522495696984866,
+      "alpha_le_3": -0.555176927078022,
+      "alpha_le_4": -0.7343555084811686
+    },
+    "mu4": 0.4330543675275226,
+    "mu4_single_branch": -0.17917858140314658,
+    "overlap_min": 0.9405192684012874,
+    "family_sizes": {
+      "2": 16
+    },
+    "reconstruction_residual": 2.7755575615628914e-17,
+    "band_rhp_by_size": {
+      "0": [
+        0
+      ],
+      "1": [
+        0
+      ],
+      "2": [
+        0
+      ],
+      "3": [
+        0
+      ],
+      "4": [
+        1
+      ]
+    },
+    "elapsed_s": 6.509695529937744
+  },
+  "status": "SUCCESS",
+  "config_sha256": "8096a6088ad0a2217c54fda06da81622715698ab5107eabd485d8829ee210f7b",
+  "finished_utc": "2026-09-10T05:09:54.371421+00:00"
+}

@@ -1,0 +1,64 @@
+{
+  "experiment": "E17_gauge_invariance",
+  "seed": 20260909,
+  "config": {
+    "core": [
+      30,
+      33,
+      35,
+      37
+    ],
+    "conditions": [
+      1.0,
+      10.0,
+      100.0,
+      1000.0
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ]
+  },
+  "python": "3.13.14",
+  "platform_name": "Windows-11-10.0.26200-SP0",
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "dependencies": {
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1",
+    "networkx": "3.6.1",
+    "pyarrow": "25.0.1"
+  },
+  "started_utc": "2026-09-10T01:11:59.288283+00:00",
+  "results": {
+    "created_mode": {
+      "real": 0.14467022043327096,
+      "imag": 3.6108277568825344
+    },
+    "worst_invariant_error": 7.2589388280964794e-12,
+    "worst_invariant_error_all_conditions": 1.9174139455816323e-08,
+    "closure_distance_max": 1.6085675779822557e-07,
+    "tolerance": 1e-06,
+    "non_invariant_relative_change": {
+      "sigma_min_i_plus_q": 0.9981305704856701,
+      "norm_q": 554.1505194828713
+    },
+    "reference_split": {
+      "full": 4.1832764448951946e-08,
+      "individual": 0.11586325454889851,
+      "collective": 3.610529040287622e-07,
+      "spectral_radius_q": 1.0000001549039121,
+      "closest_q_eigenvalue_to_minus_one": [
+        -1.0000001549039117,
+        3.002747401767425e-08
+      ],
+      "distance_to_minus_one": 1.5778742362790312e-07
+    },
+    "elapsed_s": 0.3285951614379883
+  },
+  "status": "SUCCESS",
+  "config_sha256": "e9045c007e9b83464f06f78c6f9b7bd13a80217ca6228f10b81c32a98fe7ecfc",
+  "finished_utc": "2026-09-10T01:11:59.289323+00:00"
+}

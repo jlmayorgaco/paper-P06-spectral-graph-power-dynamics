@@ -1,0 +1,251 @@
+{
+  "experiment": "E13_baseline_challenge",
+  "seed": 20260909,
+  "config": {
+    "census": "E12_compatibility_census_portfolios.csv",
+    "predictors": [
+      "min_scr",
+      "mean_scr",
+      "gscr",
+      "max_miif",
+      "replaced_mw",
+      "replaced_inertia_fraction",
+      "additive_prediction",
+      "pairwise_prediction"
+    ]
+  },
+  "python": "3.13.14",
+  "platform_name": "Windows-11-10.0.26200-SP0",
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "dependencies": {
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1",
+    "networkx": "3.6.1",
+    "pyarrow": "25.0.1"
+  },
+  "started_utc": "2026-09-09T22:06:27.264331+00:00",
+  "results": {
+    "minimum_failing_order": 4,
+    "auc_by_size": [
+      {
+        "size": 4,
+        "predictor": "min_scr",
+        "auc": 0.6047413793103448,
+        "cases": 126,
+        "unstable": 10
+      },
+      {
+        "size": 4,
+        "predictor": "mean_scr",
+        "auc": 0.5879310344827586,
+        "cases": 126,
+        "unstable": 10
+      },
+      {
+        "size": 4,
+        "predictor": "gscr",
+        "auc": 0.6387931034482759,
+        "cases": 126,
+        "unstable": 10
+      },
+      {
+        "size": 4,
+        "predictor": "max_miif",
+        "auc": 0.4706896551724138,
+        "cases": 126,
+        "unstable": 10
+      },
+      {
+        "size": 4,
+        "predictor": "replaced_mw",
+        "auc": 0.8129310344827586,
+        "cases": 126,
+        "unstable": 10
+      },
+      {
+        "size": 4,
+        "predictor": "replaced_inertia_fraction",
+        "auc": 0.8689655172413793,
+        "cases": 126,
+        "unstable": 10
+      },
+      {
+        "size": 4,
+        "predictor": "additive_prediction",
+        "auc": 0.14396551724137932,
+        "cases": 126,
+        "unstable": 10
+      },
+      {
+        "size": 4,
+        "predictor": "pairwise_prediction",
+        "auc": 0.15258620689655172,
+        "cases": 126,
+        "unstable": 10
+      },
+      {
+        "size": 5,
+        "predictor": "min_scr",
+        "auc": 0.6529411764705882,
+        "cases": 126,
+        "unstable": 51
+      },
+      {
+        "size": 5,
+        "predictor": "mean_scr",
+        "auc": 0.6201307189542483,
+        "cases": 126,
+        "unstable": 51
+      },
+      {
+        "size": 5,
+        "predictor": "gscr",
+        "auc": 0.6258823529411764,
+        "cases": 126,
+        "unstable": 51
+      },
+      {
+        "size": 5,
+        "predictor": "max_miif",
+        "auc": 0.5515032679738562,
+        "cases": 126,
+        "unstable": 51
+      },
+      {
+        "size": 5,
+        "predictor": "replaced_mw",
+        "auc": 0.7733333333333333,
+        "cases": 126,
+        "unstable": 51
+      },
+      {
+        "size": 5,
+        "predictor": "replaced_inertia_fraction",
+        "auc": 0.7845751633986928,
+        "cases": 126,
+        "unstable": 51
+      },
+      {
+        "size": 5,
+        "predictor": "additive_prediction",
+        "auc": 0.14640522875816994,
+        "cases": 126,
+        "unstable": 51
+      },
+      {
+        "size": 5,
+        "predictor": "pairwise_prediction",
+        "auc": 0.1469281045751634,
+        "cases": 126,
+        "unstable": 51
+      },
+      {
+        "size": 6,
+        "predictor": "min_scr",
+        "auc": 0.6784188034188035,
+        "cases": 84,
+        "unstable": 78
+      },
+      {
+        "size": 6,
+        "predictor": "mean_scr",
+        "auc": 0.6645299145299145,
+        "cases": 84,
+        "unstable": 78
+      },
+      {
+        "size": 6,
+        "predictor": "gscr",
+        "auc": 0.7200854700854701,
+        "cases": 84,
+        "unstable": 78
+      },
+      {
+        "size": 6,
+        "predictor": "max_miif",
+        "auc": 0.75,
+        "cases": 84,
+        "unstable": 78
+      },
+      {
+        "size": 6,
+        "predictor": "replaced_mw",
+        "auc": 0.8611111111111112,
+        "cases": 84,
+        "unstable": 78
+      },
+      {
+        "size": 6,
+        "predictor": "replaced_inertia_fraction",
+        "auc": 0.8461538461538461,
+        "cases": 84,
+        "unstable": 78
+      },
+      {
+        "size": 6,
+        "predictor": "additive_prediction",
+        "auc": 0.08974358974358974,
+        "cases": 84,
+        "unstable": 78
+      },
+      {
+        "size": 6,
+        "predictor": "pairwise_prediction",
+        "auc": 0.1047008547008547,
+        "cases": 84,
+        "unstable": 78
+      }
+    ],
+    "screening_at_minimum_order": [
+      {
+        "predictor": "min_scr",
+        "precision_at_k": 0.2,
+        "recall_at_k": 0.2,
+        "false_negatives": 8,
+        "k": 10
+      },
+      {
+        "predictor": "mean_scr",
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "false_negatives": 10,
+        "k": 10
+      },
+      {
+        "predictor": "gscr",
+        "precision_at_k": 0.1,
+        "recall_at_k": 0.1,
+        "false_negatives": 9,
+        "k": 10
+      },
+      {
+        "predictor": "max_miif",
+        "precision_at_k": 0.0,
+        "recall_at_k": 0.0,
+        "false_negatives": 10,
+        "k": 10
+      },
+      {
+        "predictor": "replaced_mw",
+        "precision_at_k": 0.3,
+        "recall_at_k": 0.3,
+        "false_negatives": 7,
+        "k": 10
+      },
+      {
+        "predictor": "replaced_inertia_fraction",
+        "precision_at_k": 0.5,
+        "recall_at_k": 0.5,
+        "false_negatives": 5,
+        "k": 10
+      }
+    ],
+    "best_conventional_auc_at_minimum_order": 0.8689655172413793,
+    "pairwise_auc_at_minimum_order": 0.15258620689655172
+  },
+  "status": "SUCCESS",
+  "config_sha256": "1c037725d3ea62f921cf98d04828753693450f5e6c4845e3ed3fa6a6a9737637",
+  "finished_utc": "2026-09-09T22:06:27.267717+00:00"
+}

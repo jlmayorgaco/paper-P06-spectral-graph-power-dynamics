@@ -1,0 +1,68 @@
+{
+  "experiment": "E33_closure_continuation",
+  "question": "Does the port closure see the same boundary the full eigenproblem sees?",
+  "verdict": "PASS",
+  "seed": null,
+  "config": {
+    "loads": [
+      0.9,
+      1.05,
+      0.0025
+    ],
+    "availabilities": [
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95,
+      1.0
+    ],
+    "band_samples_frozen": 61,
+    "refinement": "golden section, SECONDARY only, frozen metric not replaced",
+    "deterministic": true
+  },
+  "workers": 16,
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 17.71,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-10T06:08:54Z",
+  "elapsed_s": 20.32,
+  "notes": [
+    "427 continuation points on 16 workers"
+  ],
+  "results": {
+    "checks": {
+      "points_total": 427,
+      "points_dispatchable": 290,
+      "points_evaluated": 290,
+      "spearman_m4_frozen_vs_abs_alpha": 0.8609697683887341,
+      "spearman_m4_frozen_p": 1.5365653155963446e-86,
+      "spearman_m4_refined_vs_abs_alpha": 0.8607203087002141,
+      "log_m4_slope_on_abs_alpha": 7.200707784850462,
+      "median_abs_delta_f_hz": 0.007488346207183527,
+      "p95_abs_delta_f_hz": 0.1606384732520915,
+      "median_abs_delta_f_near_boundary_hz": 0.004892093972607814,
+      "p95_abs_delta_f_near_boundary_hz": 0.009343035132158728,
+      "n_near_boundary": 26,
+      "min_m4_frozen_near_boundary": 0.004876263297770259,
+      "min_m4_refined_near_boundary": 0.0011610107546576832,
+      "median_boundary_error_frozen": 0.0024999999999999467,
+      "median_boundary_error_refined": 0.0,
+      "worst_cond_T0": 8835.770677028415,
+      "worst_solve_residual": 3.637629877282137e-17,
+      "mu_closest_approach_to_minus_one": 0.004876263297770259
+    },
+    "elapsed_s": 20.241878509521484
+  }
+}

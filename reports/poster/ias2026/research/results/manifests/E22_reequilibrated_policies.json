@@ -1,0 +1,97 @@
+{
+  "experiment": "E22_reequilibrated_policies",
+  "seed": 20260909,
+  "config": {
+    "cores": [
+      "30+32+33+35",
+      "30+32+33+38",
+      "30+33+35+36",
+      "30+33+35+37",
+      "30+33+35+38",
+      "30+33+36+38",
+      "30+33+37+38",
+      "30+35+36+38",
+      "30+35+37+38"
+    ],
+    "capability": 0.33
+  },
+  "python": "3.13.14",
+  "platform_name": "Windows-11-10.0.26200-SP0",
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "dependencies": {
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1",
+    "networkx": "3.6.1",
+    "pyarrow": "25.0.1"
+  },
+  "started_utc": "2026-09-10T02:24:54.671481+00:00",
+  "results": {
+    "survival": {
+      "matched": {
+        "cases": 9,
+        "system_unstable": 9,
+        "branch_resolved": 9,
+        "tracked_branch_unstable": 9,
+        "median_abscissa": 0.14467022043327096,
+        "min_mac": 1.0,
+        "min_voltage": 1.0018571199790343
+      },
+      "voltage_control": {
+        "cases": 9,
+        "system_unstable": 0,
+        "branch_resolved": 6,
+        "tracked_branch_unstable": 0,
+        "median_abscissa": -0.13366466175015265,
+        "min_mac": 0.8356786108818451,
+        "min_voltage": 1.0018571199790343
+      },
+      "unity_pf": {
+        "cases": 9,
+        "system_unstable": 9,
+        "branch_resolved": 6,
+        "tracked_branch_unstable": 2,
+        "median_abscissa": 78.9229771099462,
+        "min_mac": 0.8566087764288544,
+        "min_voltage": 0.803545875657673
+      }
+    },
+    "flagship_survives_reequilibration": true,
+    "flagship_rows": [
+      {
+        "policy": "matched",
+        "spectral_abscissa": 0.14467022043327096,
+        "tracked_real": 0.14467022043327096,
+        "tracked_frequency_hz": 0.5746810861612759,
+        "tracked_mac": 1.0,
+        "min_voltage": 1.0018571199790343
+      },
+      {
+        "policy": "voltage_control",
+        "spectral_abscissa": -0.0953230702522868,
+        "tracked_real": -0.09532307025228803,
+        "tracked_frequency_hz": 0.7250706144054127,
+        "tracked_mac": 0.9200122929974669,
+        "min_voltage": 1.0018571199790343
+      },
+      {
+        "policy": "unity_pf",
+        "spectral_abscissa": 0.44359044877408144,
+        "tracked_real": 0.44359044877408144,
+        "tracked_frequency_hz": 0.581084093168688,
+        "tracked_mac": 0.9930849681027442,
+        "min_voltage": 0.9540347754137215
+      }
+    ],
+    "matched_reactive_within_capability": true,
+    "max_reactive_over_rating": 0.2077249119603075,
+    "unity_pf_min_voltage": 0.803545875657673,
+    "unity_pf_max_voltage_change": 0.24925712434232694,
+    "voltage_control_stabilizes": 9,
+    "elapsed_s": 3.8567750453948975
+  },
+  "status": "SUCCESS",
+  "config_sha256": "a32250599e1ce3a7f665dbfae617f29dc0f2d543d02e148d11a382dbb687617b",
+  "finished_utc": "2026-09-10T02:24:54.675490+00:00"
+}

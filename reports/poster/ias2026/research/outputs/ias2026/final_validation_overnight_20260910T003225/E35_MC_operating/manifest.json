@@ -1,0 +1,124 @@
+{
+  "experiment": "E35_MC_operating",
+  "question": "Do the Track-A statements hold across a fresh held-out operating envelope?",
+  "verdict": "G3_MIXED",
+  "seed": 20260913,
+  "config": {
+    "n_draw": 2000,
+    "load_range": [
+      0.85,
+      1.15
+    ],
+    "reactive_range": [
+      0.9,
+      1.1
+    ],
+    "availability_range": [
+      0.7,
+      1.0
+    ],
+    "load_scatter": 0.05,
+    "dispatch_jitter": 0.1,
+    "subsets_per_sample": 16,
+    "seed_never_used_before": true
+  },
+  "workers": 16,
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 8.82,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-10T06:12:28Z",
+  "elapsed_s": 419.13,
+  "notes": [
+    "2000 draws on 16 workers, 16 subsets each"
+  ],
+  "results": {
+    "summary": [
+      {
+        "probability": "P1 all proper subsets stable",
+        "successes": 951,
+        "trials": 1004,
+        "estimate": 0.9472111553784861,
+        "ci_low": 0.9315164620870864,
+        "ci_high": 0.9602109127230825
+      },
+      {
+        "probability": "P2 full portfolio unstable",
+        "successes": 240,
+        "trials": 1004,
+        "estimate": 0.23904382470119523,
+        "ci_low": 0.21296095320307962,
+        "ci_high": 0.26666632016351605
+      },
+      {
+        "probability": "P3 order<=3 stable while exact unstable",
+        "successes": 209,
+        "trials": 1004,
+        "estimate": 0.20816733067729085,
+        "ci_low": 0.1834412503629013,
+        "ci_high": 0.2346172783565644
+      },
+      {
+        "probability": "P4 inter-area family retained",
+        "successes": 1004,
+        "trials": 1004,
+        "estimate": 1.0,
+        "ci_low": 0.9963325588270309,
+        "ci_high": 1.0
+      },
+      {
+        "probability": "P6 RC repair succeeds (unstable samples)",
+        "successes": 117,
+        "trials": 240,
+        "estimate": 0.4875,
+        "ci_low": 0.42267786721538625,
+        "ci_high": 0.552634646976889
+      },
+      {
+        "probability": "P7 condenser succeeds (unstable samples)",
+        "successes": 240,
+        "trials": 240,
+        "estimate": 1.0,
+        "ci_low": 0.9847471895987213,
+        "ci_high": 1.0
+      },
+      {
+        "probability": "P5 closure smaller near the boundary (Mann-Whitney p)",
+        "successes": 59,
+        "trials": 1004,
+        "estimate": 7.297835931234198e-38,
+        "ci_low": 0.02138822973930503,
+        "ci_high": 0.1873161823391846
+      }
+    ],
+    "checks": {
+      "drawn": 2000,
+      "accepted": 1004,
+      "rejected": 996,
+      "rejection_reasons": {
+        "not dispatchable": 996
+      },
+      "tracking_failures": 0,
+      "p5_mannwhitney": 7.297835931234198e-38,
+      "near_median_m4": 0.02138822973930503,
+      "far_median_m4": 0.1873161823391846,
+      "family_sizes": [
+        2,
+        2
+      ],
+      "overlap_min": 0.8406806926572119
+    },
+    "elapsed_s": 418.9949812889099,
+    "rc_failure_note": "The RC converter retune, frozen from E21 at the nominal point, restores stability in 117 of 240 unstable held-out samples, 0.4875 [0.4227, 0.5526]. It is NOT a robust repair across the operating envelope. The 25 percent synchronous condenser succeeds in all 240. This is a genuine negative result for the fixed retune and is reported as such.",
+    "conditional_note": "Unconditionally, a genuine order-4 crossing occurs at 0.208 [0.183, 0.235] of dispatchable operating points. CONDITIONAL on the portfolio being unstable it is 0.871 [0.822, 0.911]: when this portfolio fails, it almost always fails as an irreducible fourth-order effect."
+  }
+}

@@ -1,0 +1,181 @@
+# Track A, frozen protocol v1.1.
+#
+# Written 2026-09-09 after gates 1 to 4 passed and BEFORE any held-out sample was
+# drawn. Nothing in this file may be changed after the held-out campaign starts.
+# If a parameter has to move, the campaign is void and this file gets a v2.
+
+title: >
+  Collective destabilization of an inter-area mode under reactive-setpoint
+  grid-following replacement
+
+# ---------------------------------------------------------------- roles ------
+reference:
+  description: base synchronous system, all ten machines
+  case: configs/ias2026/ieee39_network.json
+  fidelity: two_axis_4th_order + first_order_avr + ieeest_2_state_pss
+  governor: not_retained
+  spectral_abscissa: -0.126478
+  inter_area_branch_hz: 0.63855
+
+nominal_replacement:
+  description: >
+    Four PV-GFL replacements operating on a reactive-power SETPOINT. This is the
+    nominal case because it is where the phenomenon lives, and because setpoint
+    operation is a real dispatch practice. Voltage-regulating control is NOT a
+    second nominal: it is the intervention on exactly the variable the mechanism
+    predicts should matter, so promoting it to nominal would destroy the causal
+    question.
+  buses: [30, 33, 35, 37]
+  rho: 1.0
+  q_policy: matched          # converter carries its rating share of the bus Q
+  reequilibrated: true       # the DAE equilibrium is re-solved and certified
+  spectral_abscissa: 0.144670
+  inter_area_branch_hz: 0.57468
+  irreducible_fourth_order_term: 0.219051
+  closure_distance: 1.578e-07
+
+robustness_and_falsification:
+  unity_power_factor:
+    description: >
+      Stress policy. The bus is retyped to PQ with zero reactive injection, the
+      power flow genuinely moves and every device is reinitialized. Retained
+      because it shows the result is not an artefact of holding Q fixed.
+    spectral_abscissa: 0.443590
+    inter_area_branch_hz: 0.58108
+    mac_to_nominal_branch: 0.99308
+    min_voltage: 0.95403
+  held_out_operating_points: see monte_carlo below
+  held_out_portfolios: the other eight genuine order-4 cores
+
+mitigations:
+  M1_voltage_control:
+    description: >
+      Converter regulates its terminal voltage through a PI that generates the
+      reactive reference. Predeclared as the mechanism-based mitigation: E14B
+      attributes the failure to the loss of electromagnetic voltage-source
+      character, so restoring voltage-source-like regulation is the predicted
+      cure. It adds no inertia, no PSS and no synchronous megavolt-amperes.
+    kp_v: 2.0
+    ki_v: 20.0
+    spectral_abscissa: -0.095323
+    pv_mw_retained: 4270.7
+    synchronous_mva_added: 0.0
+  M2_active_power_retune:
+    description: minimum-norm retune of the converter loops
+    p_loop_scale_for_target_minus_0_05: 0.4273
+    relative_log_change_for_base_margin: 1.1324
+    spectral_abscissa_at_base_margin: -0.126
+    pv_mw_retained: 4270.7
+    synchronous_mva_added: 0.0
+  M3_synchronous_condenser:
+    rating_fraction: 0.25
+    services: full
+    spectral_abscissa: -0.201119
+    pv_mw_retained: 4270.7
+    synchronous_mva_added: 1067.675
+  M4_restore_machine:
+    bus: 37
+    spectral_abscissa: -0.163500
+    pv_mw_forgone: 970.2
+    synchronous_mva_added: 970.2
+
+# ------------------------------------------------- measurement protocol ------
+tracked_branch:
+  # AMENDED to v1.1 on 2026-09-09 after a 40-sample INSTRUMENTATION PILOT and
+  # BEFORE the held-out campaign. The pilot results are void and are not used.
+  # Two defects were found and both are protocol defects, not data-dependent
+  # choices:
+  #   1. anchoring on the critical mode of the replacement case is wrong whenever
+  #      that case is stable, because its critical mode is then whatever happens
+  #      to be least damped and need not be the inter-area branch at all. In the
+  #      pilot this made the comparison run against a different mode in about
+  #      half the samples.
+  #   2. the sampler let the slack machine absorb the entire load increase, which
+  #      pushed it past its own rating and rejected 37 percent of samples for a
+  #      reason that is an artefact of the dispatch model.
+  definition: >
+    The mode of the SAMPLE's own base case with the highest modal assurance to
+    the eigenvector of the NOMINAL discovery inter-area branch, restricted to
+    0.3 to 1.5 Hz. That single anchor is then tracked into every replacement
+    configuration of the same sample. The matching basis is the machine delta and
+    omega coordinates that survive in the replacement case, which are a subset of
+    the base survivors, so the basis is well defined for every configuration.
+  anchor_frequency_band_hz: [0.3, 1.5]
+  matching: modal assurance criterion on the common machine coordinates
+  mac_floor: 0.80
+  primary_variable: real part of the tracked eigenvalue
+  secondary_variables: [frequency_hz, damping, spectral_abscissa]
+  forbidden: >
+    the spectral abscissa alone, because it is a maximum over modes and switches
+    branches; and any minimum-damping-in-a-band quantity, because the criterion
+    is instability of a branch.
+
+reference_modes:
+  exclusion_threshold_abs_lambda: 1.0e-3
+  reason: no governor is retained, so the common angle and frequency are free
+
+feasibility:
+  power_flow_mismatch_max: 1.0e-9
+  equilibrium_residual_max: 1.0e-9
+  gz_condition_max: 1.0e8
+  min_voltage: 0.85
+  max_voltage: 1.15
+  device_loading_max: 1.0
+  exclusion: >
+    a sample failing any of these is recorded and excluded from the statistics;
+    the rejection rate is reported.
+
+# ----------------------------------------------- held-out Monte Carlo --------
+monte_carlo:
+  purpose: >
+    Not a head count of unstable cases. The frozen hypothesis is DIRECTIONAL and
+    is about the same tracked branch:
+      H1  reactive-setpoint replacement degrades it:  d_alpha_Q > 0
+      H2  voltage regulation mitigates that:          d_alpha_V < 0
+      H3  ordering: alpha_unityPF > alpha_Qset > alpha_Vctrl
+  design: latin_hypercube
+  samples: 500
+  seed: 20260909
+  variables:
+    global_active_load: [0.85, 1.15]
+    global_reactive_load: [0.90, 1.10]
+    per_bus_load_scatter: 0.05
+    dispatch_redistribution: 0.10
+    generation_follows_load: true   # amended v1.1, see tracked_branch note
+    pv_availability: [0.70, 1.00]
+  branches_evaluated: [base, q_setpoint, unity_pf, voltage_control]
+  statistic: >
+    fraction of accepted samples satisfying each hypothesis, with a bootstrap
+    95 percent confidence interval over 5000 resamples.
+  success_criterion:
+    h1_lower_confidence_bound: 0.80
+    h2_lower_confidence_bound: 0.80
+    note: >
+      Success is the lower bound of the confidence interval, not the point
+      estimate. If either falls below its bound the claim is downgraded to the
+      discovery operating point and said so.
+
+frozen_after_this_point:
+  - tracked branch definition and matching procedure
+  - MAC floor
+  - primary variable
+  - nominal reactive policy
+  - voltage regulator gains
+  - selected retune and condenser rating
+  - feasibility and exclusion criteria
+  - sampling distributions and seed
+  - success criterion
+
+wording:
+  permitted: >
+    When grid-following replacements operate on a reactive-power setpoint, the
+    simultaneous retirement of four electromagnetic voltage sources degrades a
+    pre-existing inter-area branch until it becomes unstable. Converter voltage
+    regulation reverses that degradation without restoring synchronous capacity.
+  forbidden:
+    - replacing synchronous machines with grid-following converters causes this
+      instability, which is far too broad
+    - the converters create a new mode; the same branch is followed at MAC 0.967
+    - a four-cycle causes it; E18 refutes any single-cycle attribution
+    - voltage control is the cheapest mitigation; there is no cost model. Say
+      least intrusive in the studied control and model space

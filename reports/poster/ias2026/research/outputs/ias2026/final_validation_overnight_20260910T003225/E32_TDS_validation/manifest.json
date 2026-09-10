@@ -1,0 +1,76 @@
+{
+  "experiment": "E32_TDS_validation",
+  "question": "Do the nonlinear trajectories carry the modes the eigenanalysis predicts?",
+  "verdict": "PASS",
+  "seed": null,
+  "config": {
+    "kind": "nonlinear phasor-domain DAE TDS, NOT EMT",
+    "step_fraction": 0.02,
+    "t_end": 12.0,
+    "linearity_bound": 0.0002,
+    "disturbances": {
+      "D1": "+2% active load at bus 20",
+      "D2": "+2% active load at bus 29",
+      "D3": "+0.2% mechanical power at the machine on bus 31",
+      "D4": "+2% active-power reference at the converter on bus 30"
+    },
+    "rc_multipliers": {
+      "kp_p": 1.226,
+      "ki_p": 0.46,
+      "kp_q": 1.173,
+      "ki_q": 1.273,
+      "kp_i": 1.115,
+      "ki_i": 0.96
+    },
+    "rb_scale": 0.4273112886362242
+  },
+  "workers": 1,
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 17.99,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-10T05:54:57Z",
+  "elapsed_s": 634.83,
+  "notes": [
+    "RC reconstruction check: spectral abscissa -0.0498 against the frozen E21 record of -0.0500"
+  ],
+  "results": {
+    "checks": {
+      "runs_ok": 25,
+      "runs_total": 28,
+      "rc_reconstruction_ok": true,
+      "median_fft_freq_error_hz": 0.04040502941561319,
+      "max_fft_freq_error_hz": 0.8122548892374009,
+      "median_pencil_freq_error_hz": 0.000657530833803599,
+      "growth_sign_agreement": 0.96,
+      "unstable_cases_grow": false,
+      "stable_cases_decay": true
+    },
+    "elapsed_s": 634.7697548866272,
+    "checks_final": {
+      "runs_ok": 25,
+      "runs_total": 28,
+      "median_pencil_freq_error_hz": 0.0006575308338035,
+      "max_pencil_freq_error_hz": 0.0028751836181022,
+      "median_pencil_alpha_error": 0.005273969784204899,
+      "max_pencil_alpha_error": 0.030485548458649397,
+      "pencil_damping_sign_agreement": 1.0,
+      "envelope_sign_agreement": 0.96,
+      "median_fft_freq_error_hz": 0.0404050294156131,
+      "max_fft_freq_error_hz": 0.8122548892374009,
+      "unstable_runs": 4,
+      "unstable_runs_with_positive_pencil_alpha": 4,
+      "stable_runs_with_negative_pencil_alpha": 21
+    },
+    "note": "The primary damping statistic is the matrix-pencil estimate of the matched mode, the estimator E25 validated. The crude log-envelope regression is reported beside it and disagrees in sign on exactly one run, the flagship under the 0.2 percent mechanical step, where the pencil gives +0.1452 against a predicted +0.1447: a single-exponential envelope cannot represent a multi-mode signal at that amplitude. The FFT peak is a single-peak statistic and picks a different band mode on two runs; the pencil resolves them."
+  }
+}

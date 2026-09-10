@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ibr-cycles"
+version = "0.1.0"
+description = "Controller-mediated interaction calculus for portfolios of grid actions (IEEE IAS AM 2026 poster)."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "joblib>=1.4",
+  "matplotlib>=3.8",
+  "networkx>=3.2",
+  "numpy>=1.26",
+  "pandas>=2.2",
+  "pyarrow>=15.0",
+  "pyyaml>=6.0",
+  "scipy>=1.12",
+  "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.2", "ruff>=0.4"]
+stats = ["scikit-learn>=1.4", "SALib>=1.4"]
+grid = ["pandapower>=2.14"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 88
+src = ["src", "tests", "experiments"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff.lint.per-file-ignores]
+# Experiment scripts print formatted report tables; percent formatting keeps the
+# column alignment readable next to the numbers it prints.
+"experiments/*.py" = ["UP031"]

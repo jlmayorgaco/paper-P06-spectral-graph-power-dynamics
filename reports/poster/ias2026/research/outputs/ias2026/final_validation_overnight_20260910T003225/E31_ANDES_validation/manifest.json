@@ -1,0 +1,66 @@
+{
+  "experiment": "E31_ANDES_validation",
+  "question": "Does an independent dynamic implementation reproduce the qualitative flagship ordering?",
+  "verdict": "G2_MIXED",
+  "seed": null,
+  "config": {
+    "andes_version": "2.0.0",
+    "andes_case": "andes/cases/ieee39/ieee39_full.xlsx",
+    "shared_configuration": "machine removed, constant-power injection kept",
+    "bands_declared_before_comparison": {
+      "base_frequency_relative": 0.1,
+      "base_damping_sign": "must agree",
+      "ordering_full_portfolio_is_worst": "must agree",
+      "ordering_spearman_alpha_vs_size": 0.5,
+      "per_subset_shift_sign_agreement": 0.8,
+      "note": "device models differ by construction, so magnitudes are not compared; only the frequency, the sign of the damping and the ordering are"
+    },
+    "band_hz": [
+      0.3,
+      1.5
+    ]
+  },
+  "workers": 1,
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 16.96,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-10T05:44:39Z",
+  "elapsed_s": 3.52,
+  "notes": [
+    "ANDES: 32 of 32 cases solved"
+  ],
+  "results": {
+    "checks": {
+      "base_frequency_relative": 0.040708062171029576,
+      "base_damping_sign_agrees": true,
+      "internal_full_portfolio_is_worst": true,
+      "andes_full_portfolio_is_worst": false,
+      "spearman_internal_alpha_vs_size": -0.337464595092843,
+      "spearman_andes_alpha_vs_size": -0.9280276365053183,
+      "shift_sign_agreement": 0.7333333333333333,
+      "internal_static_flagship_unstable": true,
+      "andes_flagship_unstable": false,
+      "andes_spurious_rhp_total_base": 6,
+      "median_rel_freq_error": 0.061563019403608615
+    },
+    "bands": {
+      "base_frequency_relative": 0.1,
+      "base_damping_sign": "must agree",
+      "ordering_full_portfolio_is_worst": "must agree",
+      "ordering_spearman_alpha_vs_size": 0.5,
+      "per_subset_shift_sign_agreement": 0.8,
+      "note": "device models differ by construction, so magnitudes are not compared; only the frequency, the sign of the damping and the ordering are"
+    },
+    "elapsed_s": 3.4625818729400635
+  }
+}

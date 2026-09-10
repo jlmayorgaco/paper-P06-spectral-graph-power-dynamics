@@ -1,0 +1,178 @@
+{
+  "experiment": "E28_v2b_boundary",
+  "seed": 20260911,
+  "config": {
+    "protocol": "configs/ias2026/trackA_v2B.yaml",
+    "load_strata": [
+      0.9,
+      0.95,
+      0.98,
+      1.0,
+      1.02,
+      1.05
+    ],
+    "availability_strata": [
+      0.75,
+      0.85,
+      0.92,
+      0.96,
+      1.0
+    ],
+    "per_cell": 20,
+    "band_hz": [
+      0.3,
+      1.5
+    ]
+  },
+  "python": "3.13.14",
+  "platform_name": "Windows-11-10.0.26200-SP0",
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "dependencies": {
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1",
+    "networkx": "3.6.1",
+    "pyarrow": "25.0.1"
+  },
+  "started_utc": "2026-09-10T04:38:22.269419+00:00",
+  "results": {
+    "drawn": 400,
+    "accepted": 293,
+    "rejection_rate": 0.26749999999999996,
+    "H4B": {
+      "verdict": "PASS",
+      "linear": {
+        "const": {
+          "coefficient": 116.58500726279307,
+          "standard_error": 13.025235672998233,
+          "p_value": 4.517227958059403e-17
+        },
+        "L": {
+          "coefficient": -285.34896834133235,
+          "standard_error": 25.817651896459605,
+          "p_value": 6.783445834788707e-24
+        },
+        "A": {
+          "coefficient": 41.08630001232763,
+          "standard_error": 8.997044644572812,
+          "p_value": 7.362941299607225e-06
+        },
+        "L*A": {
+          "coefficient": -49.12923731216348,
+          "standard_error": 8.185087211424365,
+          "p_value": 5.859682317269307e-09
+        },
+        "L^2": {
+          "coefficient": 174.11341407865666,
+          "standard_error": 14.066993857911102,
+          "p_value": 1.742452384739786e-28
+        },
+        "A^2": {
+          "coefficient": 2.5058719939283196,
+          "standard_error": 3.6770896797048294,
+          "p_value": 0.4961158103071045
+        }
+      },
+      "linear_ci95": {
+        "const": [
+          91.0560144475793,
+          142.11400007800685
+        ],
+        "L": [
+          -335.9506362356601,
+          -234.7473004470046
+        ],
+        "A": [
+          23.45241653752779,
+          58.720183487127464
+        ],
+        "L*A": [
+          -65.17171346063932,
+          -33.08676116368765
+        ],
+        "L^2": [
+          146.5426127399347,
+          201.68421541737862
+        ],
+        "A^2": [
+          -4.701091347908331,
+          9.71283533576497
+        ]
+      },
+      "logistic": {
+        "const": {
+          "coefficient": -1642.3458122412326,
+          "standard_error": 1256.2048214395206,
+          "p_value": 0.19108132117805798
+        },
+        "L": {
+          "coefficient": 3109.3657014418177,
+          "standard_error": 2931.6134880143004,
+          "p_value": 0.288856767023159
+        },
+        "A": {
+          "coefficient": 42.514502276972344,
+          "standard_error": 631.8391651108906,
+          "p_value": 0.9463533010559352
+        },
+        "L*A": {
+          "coefficient": -339.7625144418696,
+          "standard_error": 827.841411318041,
+          "p_value": 0.6814980171029157
+        },
+        "L^2": {
+          "coefficient": -1310.098304570546,
+          "standard_error": 1747.0374597047294,
+          "p_value": 0.4533166881424062
+        },
+        "A^2": {
+          "coefficient": 139.47380482784214,
+          "standard_error": 139.84021738985373,
+          "p_value": 0.318580203671078
+        }
+      },
+      "interaction_p": 5.859682317269307e-09,
+      "logistic_interaction_p": 0.6814980171029157,
+      "r_squared": 0.4898897810583217,
+      "pseudo_r_squared": 0.6864925682518651,
+      "logistic_converged": false,
+      "curves_exist_inside_dispatchable": true,
+      "effect_curve_points_inside": 25,
+      "stability_curve_points_inside": 25
+    },
+    "H2B": {
+      "verdict": "PASS",
+      "fraction": 1.0,
+      "ci": [
+        1.0,
+        1.0
+      ],
+      "n_unstable": 96
+    },
+    "H5B": {
+      "verdict": "FAIL",
+      "n_near": 0,
+      "n_far": 264,
+      "median_m4_near": null,
+      "median_m4_far": 0.13093327671332433,
+      "mannwhitney_p": NaN,
+      "median_frequency_gap_hz": NaN
+    },
+    "diagnostics": {
+      "samples_with_a_split_band": 293,
+      "mean_band_modes_above_mac_floor_q": 2.0,
+      "mean_band_modes_above_mac_floor_base": 1.4095563139931742,
+      "tracked_and_band_envelope_disagree_in_sign": 43,
+      "band_envelope_unstable": 139,
+      "band_envelope_unstable_and_repaired": 139,
+      "min_abs_alpha_q_tracked": 0.09800961430756937,
+      "min_abs_alpha_q_band_envelope": 0.0012514642265245644
+    },
+    "worst_condition_T0": 8908.622666320105,
+    "elapsed_s": 159.85098958015442
+  },
+  "status": "REPORTED",
+  "config_sha256": "8acfc222b29caaa185b8610e2ccd921549aa2ffba68133a51cee559eff89a876",
+  "finished_utc": "2026-09-10T04:38:22.270227+00:00"
+}

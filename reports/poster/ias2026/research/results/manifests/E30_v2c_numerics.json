@@ -1,0 +1,40 @@
+{
+  "experiment": "E30_v2c_numerics",
+  "seed": 20260912,
+  "config": {
+    "perturbation": 1e-13,
+    "ensemble": 40,
+    "band_samples": 61,
+    "extended_precision": "unavailable: no mpmath and no pip in the pinned venv"
+  },
+  "python": "3.13.14",
+  "platform_name": "Windows-11-10.0.26200-SP0",
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "dependencies": {
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1",
+    "networkx": "3.6.1",
+    "pyarrow": "25.0.1"
+  },
+  "started_utc": "2026-09-10T05:08:00.057656+00:00",
+  "results": {
+    "headroom_factor": 362386239.6651569,
+    "elapsed_s": 105.18698239326477,
+    "n_audited": 21,
+    "max_backward_residual": 3.018534362432397e-17,
+    "max_algorithm_spread": 8.26561041833429e-14,
+    "max_reimplementation_gap": 0.0,
+    "max_iterative_refinement_shift": 8.104628079763643e-15,
+    "max_ensemble_std": 9.930669613887545e-12,
+    "max_ensemble_shift": 3.077005317209114e-11,
+    "max_grid_shift": 0.02952078461554953,
+    "max_local_shift": 0.0312929889794321,
+    "min_m4_audited": 0.01115064386333104,
+    "max_cond_T0": 3214.416390205521
+  },
+  "status": "REPORTED",
+  "config_sha256": "f4a3ae8b027151e1e1c50f7a5222c9c17d691a4821eee0c902cc8f84c5c23329",
+  "finished_utc": "2026-09-10T05:08:00.060330+00:00"
+}

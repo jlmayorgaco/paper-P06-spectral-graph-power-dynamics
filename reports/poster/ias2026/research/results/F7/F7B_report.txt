@@ -1,0 +1,314 @@
+===== F7B =====
+{
+ "points": 88163,
+ "stable_base_points": 79028,
+ "kappa_values": [
+  -1,
+  1,
+  2,
+  3,
+  4
+ ],
+ "distinct_hypergraphs": 33,
+ "hypergraphs_per_kappa": {
+  "-1": 1,
+  "1": 10,
+  "2": 15,
+  "3": 6,
+  "4": 1
+ },
+ "fragmented_labels": [
+  {
+   "label": "30+33+35",
+   "components": 4,
+   "substantial_components": 3,
+   "component_sizes": [
+    6942,
+    1892,
+    580,
+    1
+   ]
+  },
+  {
+   "label": "30+33+35|30+33+37",
+   "components": 5,
+   "substantial_components": 3,
+   "component_sizes": [
+    8518,
+    1867,
+    240,
+    3,
+    2
+   ]
+  },
+  {
+   "label": "30|33",
+   "components": 2,
+   "substantial_components": 2,
+   "component_sizes": [
+    500,
+    346
+   ]
+  },
+  {
+   "label": "30|33|37",
+   "components": 3,
+   "substantial_components": 2,
+   "component_sizes": [
+    399,
+    219,
+    4
+   ]
+  }
+ ],
+ "kappa_components": [
+  {
+   "kappa": -1,
+   "components": 1,
+   "substantial_components": 1,
+   "component_sizes": [
+    290996
+   ],
+   "node_fraction": 0.7633002303047473
+  },
+  {
+   "kappa": 1,
+   "components": 1,
+   "substantial_components": 1,
+   "component_sizes": [
+    19469
+   ],
+   "node_fraction": 0.051068372705477476
+  },
+  {
+   "kappa": 2,
+   "components": 2,
+   "substantial_components": 1,
+   "component_sizes": [
+    15662,
+    1
+   ],
+   "node_fraction": 0.0410850029115976
+  },
+  {
+   "kappa": 3,
+   "components": 3,
+   "substantial_components": 2,
+   "component_sizes": [
+    12988,
+    11310,
+    1
+   ],
+   "node_fraction": 0.06373775686323885
+  },
+  {
+   "kappa": 4,
+   "components": 1,
+   "substantial_components": 1,
+   "component_sizes": [
+    30807
+   ],
+   "node_fraction": 0.08080863721493886
+  }
+ ],
+ "points_with_closure_defect": 3099,
+ "closure_defect_sets": [
+  "30+33",
+  "30+33+35",
+  "30+33+35+37",
+  "30+33+37",
+  "30+35",
+  "30+35+37",
+  "30+37",
+  "33+35",
+  "33+35+37",
+  "33+37",
+  "35+37"
+ ],
+ "island_or_tongue_cells": 1,
+ "island_examples": [
+  {
+   "I": 28,
+   "J": 576,
+   "size": 4,
+   "corner_label": "30+33+35",
+   "labels_inside": "30+33+35/30+33+35|30+35+37"
+  }
+ ],
+ "events": {
+  "subset_crossings": 10928,
+  "H_changing_crossings": 9823,
+  "boundary_types_all": {
+   "IMAGINARY_AXIS_TRANSVERSAL": 10800,
+   "LOWER_BAND_EDGE": 128
+  },
+  "boundary_types_H_changing": {
+   "IMAGINARY_AXIS_TRANSVERSAL": 9695,
+   "LOWER_BAND_EDGE": 128
+  },
+  "moves": {
+   "DELETION": 5336,
+   "EXPANSION": 3917,
+   "INSERTION": 366,
+   "CONTRACTION": 204
+  },
+  "H_witness_subsets": {
+   "30+33+35+37": 1053,
+   "30+33+35": 942,
+   "30+33+37": 886,
+   "30+35+37": 754,
+   "30": 638,
+   "30+33": 624,
+   "33+37": 605,
+   "33": 578,
+   "37": 568,
+   "30+35": 561,
+   "35+37": 548,
+   "35": 529,
+   "33+35+37": 525,
+   "30+37": 517,
+   "33+35": 495
+  },
+  "unresolved": 0,
+  "replay_mismatch": 0,
+  "rhp_change_by_type": {
+   "IMAGINARY_AXIS_TRANSVERSAL": [
+    1
+   ],
+   "LOWER_BAND_EDGE": [
+    0
+   ]
+  },
+  "freq_range_hz_by_type": {
+   "IMAGINARY_AXIS_TRANSVERSAL": [
+    0.3003049685678403,
+    0.7189710070486292
+   ],
+   "LOWER_BAND_EDGE": [
+    0.2999999999999991,
+    0.3000000000000011
+   ]
+  },
+  "tangencies": [],
+  "admissibility_events": 609,
+  "admissibility_types": {
+   "BASE_STABILITY_BOUNDARY": 609
+  },
+  "port": {
+   "imaginary_axis_events": 10800,
+   "port_visible": 10800,
+   "port_invisible": 0,
+   "multi_port_events": 8487,
+   "multi_port_detected_closure_lt_1e-4": 8487,
+   "closure_distance_max": 2.6089295200564307e-06,
+   "closure_distance_median": 9.2544087735381e-08,
+   "closure_min_refined_max": 1.395896554260578e-06,
+   "freq_port_error_max_hz": 9.140732021295506e-08,
+   "single_port_events": 2313,
+   "single_port_individual_factor_max": 9.783889446809492e-07,
+   "factorization_residual_max": 6.864500621169099e-07,
+   "solve_residual_max": 6.152665231912944e-17,
+   "direct_re_at_star_max_abs": 2.9779327892498486e-09,
+   "port_errors": 0
+  }
+ },
+ "policy_moves_along_g": {
+  "events": 2178,
+  "kappa_pairs_increasing_coordinate": {
+   "4->inf": 579,
+   "3->3": 525,
+   "3->4": 391,
+   "2->2": 301,
+   "1->1": 149,
+   "4->3": 45,
+   "3->2": 35,
+   "2->inf": 33,
+   "2->3": 27,
+   "inf->4": 25,
+   "1->2": 21,
+   "3->inf": 18,
+   "2->1": 17,
+   "1->inf": 12
+  },
+  "unsafe_to_safe_increasing": 642,
+  "safe_to_unsafe_increasing": 25,
+  "H_changes_same_kappa": 975
+ },
+ "moves_along_t": {
+  "events": 7645,
+  "kappa_pairs_increasing_coordinate": {
+   "2->2": 2495,
+   "1->1": 2119,
+   "3->3": 918,
+   "1->2": 529,
+   "2->3": 474,
+   "3->4": 451,
+   "4->inf": 420,
+   "1->inf": 80,
+   "2->inf": 55,
+   "4->3": 52,
+   "inf->4": 29,
+   "3->inf": 23
+  },
+  "unsafe_to_safe_increasing": 578,
+  "safe_to_unsafe_increasing": 29,
+  "H_changes_same_kappa": 5532
+ },
+ "flagship_lines": 396,
+ "flagship_lines_unsafe_at_g0": 396,
+ "flagship_lines_made_safe_by_g": 396,
+ "flagship_lines_with_2plus_switches": 2,
+ "chain_4_3_2_in_order_g_columns": 0,
+ "chain_g_columns": 20,
+ "spot_check": {
+  "n": 400,
+  "in_homogeneous_leaves": 386,
+  "errors": 0,
+  "error_upper95": 0.007730925914285606,
+  "boundary_cell_points": 14,
+  "nearest_node_errors_all_points": 0,
+  "nearest_node_error_upper95": 0.007461355528799601,
+  "fast_vs_direct_label_disagreements": 0,
+  "mismatches": []
+ },
+ "safeguard_A_direct_spot_points": {
+  "direct_points": 385,
+  "state_dimension_constant_per_subset": true,
+  "artificial_zero_eigenvalues": 2,
+  "gz_condition_max_relative_spread": 7.612466982237705e-09
+ }
+}
+                        label  kappa  n_edges               kappa_witnesses             maximal_safe_portfolios  area_fraction  area_fraction_in_boundary_cells  components  points  points_with_closure_defect
+                        EMPTY     -1        0                          none                         30+33+35+37       0.896559                         0.002352           1   11208                           0
+                           30      1        1                            30                            33+35+37       0.012333                         0.007197           1    1593                        1327
+                  30|33|35|37      1        4                   30|33|35|37                                           0.008578                         0.002003           1    6356                          21
+                  30|33|35+37      1        3                         30|33                               35|37       0.007733                         0.001925           1    5488                         142
+               33|30+35|30+37      1        3                            33                            35+37|30       0.003445                         0.000884           1    3099                          13
+                     30|33+37      1        2                            30                         33+35|35+37       0.002203                         0.001204           1     421                         331
+                        30|33      1        2                         30|33                               35+37       0.001705                         0.001267           2     846                         212
+                     30|33|37      1        3                      30|33|37                                  35       0.001342                         0.000941           2     622                         182
+                     30|33|35      1        3                      30|33|35                                  37       0.000906                         0.000582           1     561                           0
+                        30|37      1        2                         30|37                               33+35       0.000741                         0.000651           1      99                          99
+         33|30+35|30+37|35+37      1        4                            33                            30|35|37       0.000475                         0.000467           1     384                           0
+                        30+33      2        1                         30+33                   30+35+37|33+35+37       0.007580                         0.003639           1    2051                         595
+      30+33|30+35+37|33+35+37      2        3                         30+33       30+35|30+37|33+35|33+37|35+37       0.003839                         0.001050           1    3523                           0
+30+33|30+35|30+37|33+35|33+37      2        5 30+33|30+35|30+37|33+35|33+37                         35+37|30|33       0.002289                         0.001018           1    2137                           0
+   30+33|33+35|33+37|30+35+37      2        4             30+33|33+35|33+37                30+35|30+37|35+37|33       0.001764                         0.000631           1    1767                           0
+               30+33|33+35+37      2        2                         30+33                30+35+37|33+35|33+37       0.001552                         0.000767           1    1526                           0
+            30+33|30+35|33+37      2        3             30+33|30+35|33+37                   30+37|33+35|35+37       0.001549                         0.000849           1     494                          72
+                  30+33|30+35      2        2                   30+33|30+35                      33+35+37|30+37       0.001193                         0.000893           1     240                          51
+         30+33|33+35|30+35+37      2        3                   30+33|33+35             30+35|30+37|33+37|35+37       0.001078                         0.000505           1    1417                           0
+      30+33|30+37|33+35|33+37      2        4       30+33|30+37|33+35|33+37                      30+35|35+37|33       0.000861                         0.000371           1    1478                           0
+      30+33|30+35|30+37|33+37      2        4       30+33|30+35|30+37|33+37                      33+35|35+37|30       0.000803                         0.000503           1     217                          22
+               30+33|30+35+37      2        2                         30+33                33+35+37|30+35|30+37       0.000681                         0.000461           1     209                           0
+      30+33|30+35|33+35|33+37      2        4       30+33|30+35|33+35|33+37                      30+37|35+37|33       0.000633                         0.000344           1     360                           0
+         30+33|33+37|30+35+37      2        3                   30+33|33+37             30+35|30+37|33+35|35+37       0.000483                         0.000317           1     226                           0
+         30+33|30+35|33+35+37      2        3                   30+33|30+35             30+37|33+35|33+37|35+37       0.000010                         0.000010           0       4                           0
+            30+33|30+37|33+35      2        3             30+33|30+37|33+35                   30+35|33+37|35+37       0.000007                         0.000007           0      14                           0
+            30+33+35|30+33+37      3        2             30+33+35|30+33+37             30+35+37|33+35+37|30+33       0.009546                         0.001267           3    8798                           0
+                     30+33+35      3        1                      30+33+35          30+33+37|30+35+37|33+35+37       0.005273                         0.001076           3    7133                           0
+   30+33+35|30+33+37|33+35+37      3        3    30+33+35|30+33+37|33+35+37          30+35+37|30+33|33+35|33+37       0.001727                         0.000542           1    2361                           0
+   30+33+35|30+33+37|30+35+37      3        3    30+33+35|30+33+37|30+35+37          33+35+37|30+33|30+35|30+37       0.000757                         0.000103           1    1561                           0
+                     30+33+37      3        1                      30+33+37          30+33+35|30+35+37|33+35+37       0.000707                         0.000577           1     217                          32
+            30+33+35|30+35+37      3        2             30+33+35|30+35+37             30+33+37|33+35+37|30+35       0.000057                         0.000053           1     115                           0
+                  30+33+35+37      4        1                   30+33+35+37 30+33+35|30+33+37|30+35+37|33+35+37       0.021590                         0.001698           1   12503                           0

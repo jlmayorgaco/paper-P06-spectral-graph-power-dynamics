@@ -1,0 +1,41 @@
+{
+  "experiment": "E29_family_continuation",
+  "seed": 0,
+  "config": {
+    "band_hz": [
+      0.3,
+      1.5
+    ],
+    "threshold": 0.8,
+    "deterministic": true,
+    "purpose": "pre-registration evidence for v2C; no random sample"
+  },
+  "python": "3.13.14",
+  "platform_name": "Windows-11-10.0.26200-SP0",
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "dependencies": {
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1",
+    "networkx": "3.6.1",
+    "pyarrow": "25.0.1"
+  },
+  "started_utc": "2026-09-10T04:53:29.649597+00:00",
+  "results": {
+    "dispatchable_points": 175,
+    "family_sizes": {
+      "2": 175
+    },
+    "subspace_similarity_min": 0.999951662748062,
+    "subspace_similarity_median": 0.9999891139611151,
+    "independence_min": 0.05649034768249415,
+    "argmax_sign_disagreements": 19,
+    "near_boundary_points_envelope": 16,
+    "near_boundary_points_argmax": 1,
+    "elapsed_s": 62.08487391471863
+  },
+  "status": "REPORTED",
+  "config_sha256": "9a550135f0f3a4f498e3af2990126e067e493a65dbc7fb51767276db2811df88",
+  "finished_utc": "2026-09-10T04:53:29.650315+00:00"
+}

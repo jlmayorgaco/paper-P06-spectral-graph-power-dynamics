@@ -1,0 +1,67 @@
+{
+  "experiment": "E40_numerical_stress",
+  "question": "Is the closure computation numerically trustworthy?",
+  "verdict": "REPORTED",
+  "seed": null,
+  "config": {
+    "perturbations": [
+      1e-14,
+      1e-13,
+      1e-12
+    ],
+    "ensemble": 30,
+    "grids": [
+      61,
+      121,
+      241
+    ],
+    "algorithms": [
+      "LU",
+      "QR",
+      "SVD"
+    ],
+    "no_explicit_inverse": true,
+    "longdouble_mantissa_bits": 53,
+    "extended_precision": "unavailable: numpy longdouble is 53-bit on this platform and no package may be installed"
+  },
+  "workers": 1,
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 5.75,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-10T06:38:19Z",
+  "elapsed_s": 499.0,
+  "notes": [],
+  "results": {
+    "checks": {
+      "cases": 43,
+      "max_backward_residual": 3.637629877282137e-17,
+      "max_algorithm_spread": 4.4369022345058795e-14,
+      "max_grid_variation": 0.022923636232819802,
+      "max_freq_variation_hz": 0.010000000000000009,
+      "max_local_reduction": 0.02619803169657437,
+      "min_m4": 0.004876263297770259,
+      "min_m4_local": 0.0011610107546576832,
+      "max_cond_T0": 3032.0154928095803,
+      "longdouble_mantissa_bits": 53,
+      "max_ensemble_shift_1e-14": 2.3862578579780802e-12,
+      "max_ensemble_eigenvalue_shift_1e-14": 2.414999108977387e-12,
+      "max_ensemble_shift_1e-13": 3.6543823522805496e-11,
+      "max_ensemble_eigenvalue_shift_1e-13": 3.694191154135103e-11,
+      "max_ensemble_shift_1e-12": 2.7889923703838804e-10,
+      "max_ensemble_eigenvalue_shift_1e-12": 2.800047483498068e-10,
+      "headroom_factor": 17483960.693299007,
+      "grid_is_the_dominant_error": true
+    },
+    "elapsed_s": 498.7439534664154
+  }
+}

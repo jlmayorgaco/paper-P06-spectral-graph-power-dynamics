@@ -1,0 +1,164 @@
+{
+  "experiment": "E00_regression_toy",
+  "seed": 20260909,
+  "config": {
+    "model": "toy5",
+    "parameters": {
+      "b01": 0.85,
+      "b02": 3.2,
+      "b12": 0.73,
+      "d": 0.587,
+      "a": 2.4,
+      "k": 0.47
+    },
+    "actions": {
+      "A": {
+        "b01": 3.8
+      },
+      "B": {
+        "b02": 1.85
+      },
+      "C": {
+        "k": 1.1
+      }
+    },
+    "probe_points": [
+      "(0.3+1.1j)",
+      "(-0.2+1.94j)",
+      "(0.05+2.21j)",
+      "(2-0.7j)",
+      "(-1.3+0j)"
+    ],
+    "abscissa_tolerance": 1e-06
+  },
+  "python": "3.13.14",
+  "platform_name": "Windows-11-10.0.26200-SP0",
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "dependencies": {
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1",
+    "networkx": "3.6.1",
+    "pyarrow": "25.0.1"
+  },
+  "started_utc": "2026-09-09T21:30:42.954080+00:00",
+  "results": {
+    "max_abscissa_deviation": 4.1681039086860494e-07,
+    "minimum_destabilizing_order": 3,
+    "identities": {
+      "schur_determinant_max_relative_error": 8.159911291155012e-14,
+      "angle_self_energy_max_relative_error": 2.224685144389041e-14,
+      "determinant_lemma_max_absolute_error": 3.8360688142637946e-12,
+      "individual_collective_factorization_error": 1.6234155373476294e-14,
+      "self_energy_pole_expansion_error": 1.8672895279303769e-16,
+      "max_action_reconstruction_error": 2.0185873175002843e-16,
+      "max_action_numerical_rank": 1
+    },
+    "cumulant_best_relative_errors": {
+      "pair_AB": 3.765194644303254e-08,
+      "pair_AC": 1.592041020673676e-08,
+      "pair_BC": 2.064633494124422e-08,
+      "triple_ABC": 9.172635984918369e-07
+    },
+    "mobius_third_order_term": 0.0700046745193491,
+    "mobius_truncation_order_1": -0.06429811724547563,
+    "mobius_truncation_order_2": -0.023223457034253322,
+    "mobius_truncation_order_3": 0.04678121748509577,
+    "action_graph_feedback_cores": [
+      [
+        "A",
+        "B",
+        "C"
+      ]
+    ],
+    "strongest_cycle": {
+      "members": [
+        "B",
+        "C"
+      ],
+      "magnitude": 0.2337345595589553
+    },
+    "controller_surgery": {
+      "k_critical": 1.3518262659354245,
+      "k_repair_target_minus_0_02": 1.2595567952662912,
+      "k_unsafe": 1.57
+    },
+    "provenance": {
+      "regions": [
+        {
+          "region": "circle_r0.1",
+          "verdict": "COLLECTIVE",
+          "winding_full": 0.9999999999999994,
+          "winding_individual": -6.446697205917805e-17,
+          "winding_collective": 1.0,
+          "integer_full": 1,
+          "integer_individual": 0,
+          "integer_collective": 1,
+          "residual_full": 5.551115123125783e-16,
+          "min_magnitude_full": 0.09513417320468713,
+          "admissible": 1,
+          "clearance": 0.05287833836344809,
+          "admissibility_reason": "admissible"
+        },
+        {
+          "region": "circle_r0.15",
+          "verdict": "COLLECTIVE",
+          "winding_full": 0.9999999999999993,
+          "winding_individual": 4.881440504770043e-16,
+          "winding_collective": 0.9999999999999999,
+          "integer_full": 1,
+          "integer_individual": 0,
+          "integer_collective": 1,
+          "residual_full": 6.661338147750939e-16,
+          "min_magnitude_full": 0.12307077189128286,
+          "admissible": 1,
+          "clearance": 0.002879478126815354,
+          "admissibility_reason": "admissible"
+        },
+        {
+          "region": "circle_r0.2",
+          "verdict": "INADMISSIBLE_REGION",
+          "winding_full": 0.9999999999999983,
+          "winding_individual": -7.9858979306712e-17,
+          "winding_collective": 1.0000000000000013,
+          "integer_full": 1,
+          "integer_individual": 0,
+          "integer_collective": 1,
+          "residual_full": 1.6653345369377348e-15,
+          "min_magnitude_full": 0.13401531398342809,
+          "admissible": 0,
+          "clearance": 0.01435013586179476,
+          "admissibility_reason": "Omega also encloses base or lower-order modes, so the individual/collective split is not interpretable"
+        },
+        {
+          "region": "circle_r0.3",
+          "verdict": "INADMISSIBLE_REGION",
+          "winding_full": 1.0000000000000009,
+          "winding_individual": 0.9999999999999994,
+          "winding_collective": -4.663502106186686e-16,
+          "integer_full": 1,
+          "integer_individual": 1,
+          "integer_collective": 0,
+          "residual_full": 8.881784197001252e-16,
+          "min_magnitude_full": 0.06299930311214905,
+          "admissible": 0,
+          "clearance": 0.004179808028737135,
+          "admissibility_reason": "Omega also encloses base or lower-order modes, so the individual/collective split is not interpretable"
+        }
+      ],
+      "right_half_plane_windings": {
+        "A": 0,
+        "B": 0,
+        "C": 0,
+        "AB": 0,
+        "AC": 0,
+        "BC": 0,
+        "ABC": 2
+      }
+    }
+  },
+  "status": "SUCCESS",
+  "config_sha256": "b5cce90428d8cde9bff41f068e77af2f2cb310164bc9ec68538247b4067dbbb1",
+  "finished_utc": "2026-09-09T21:30:55.067067+00:00"
+}
