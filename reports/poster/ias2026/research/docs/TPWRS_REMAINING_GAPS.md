@@ -1,5 +1,13 @@
 # Remaining gaps for a Transactions on Power Systems submission
 
+> **Superseded status (2026-09-11).** This document predates the final cross-tool
+> campaign (commit 0a4e18c2). Gap 1 is **no longer blocking**: the network,
+> equilibrium, equation-equivalent synchronous dynamics and branch sensitivities
+> are independently reproduced. Only an equation-equivalent reproduction of the
+> custom GFL remains open, and it is not a blocker. The current gap-by-gap status
+> is in `docs/20260911_CANONICAL_THEORY_LEDGER.md` §6. The text below is kept as
+> the historical record.
+
 Ordered by how likely a reviewer is to stop on them. Each names the decisive
 experiment, not a wish.
 

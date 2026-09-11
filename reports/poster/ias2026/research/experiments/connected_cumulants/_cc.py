@@ -36,7 +36,6 @@ from _f7_common import (  # noqa: E402
 )
 from _overnight import RESEARCH  # noqa: E402
 from ibr_cycles.certification.binary import (  # noqa: E402
-    all_vertices,
     build_common_realization,
     reduced,
 )
@@ -123,25 +122,35 @@ class Realization:
         kw = {} if th is None else kwargs_of(th)
         kw.update(extra)
         self.cr = build_common_realization(self.members, **kw)
-        self.jac = {}
-        for delta, s in all_vertices(self.members):
-            j, _, _ = self.cr.jacobian(delta, "C2")
-            self.jac[tuple(sorted(s))] = j
+        self._jac = {}
         net = self.cr.case.dae.network
         self.ch = {
             b: [2 * net.position(b), 2 * net.position(b) + 1] for b in self.members
         }
         self.idx = [c for b in self.members for c in self.ch[b]]
 
+    def jac(self, subset):
+        """C2 vertex Jacobian of ``subset``, computed on first use.
+
+        Identical to FC18's eager dict (same ``cr.jacobian(delta, "C2")`` call); only
+        the vertices actually used are evaluated.
+        """
+
+        key = tuple(sorted(subset))
+        if key not in self._jac:
+            delta = {b: (1 if b in key else 0) for b in self.members}
+            self._jac[key], _, _ = self.cr.jacobian(delta, "C2")
+        return self._jac[key]
+
     def m_matrix(self, s):
-        t0 = port_t(self.jac[()], s)
+        t0 = port_t(self.jac(()), s)
         kfull = np.linalg.inv(t0)
         k = kfull[np.ix_(self.idx, self.idx)]
         n = 2 * len(self.members)
         d = np.zeros((n, n), complex)
         for i, b in enumerate(self.members):
             c = self.ch[b]
-            d[2 * i : 2 * i + 2, 2 * i : 2 * i + 2] = (port_t(self.jac[(b,)], s) - t0)[
+            d[2 * i : 2 * i + 2, 2 * i : 2 * i + 2] = (port_t(self.jac((b,)), s) - t0)[
                 np.ix_(c, c)
             ]
         return d, k
@@ -162,7 +171,7 @@ class Realization:
         return [2 * self.members.index(b) + c for b in subset for c in (0, 1)]
 
     def vertex_spectrum(self, subset):
-        return np.linalg.eigvals(reduced(self.jac[tuple(sorted(subset))]))
+        return np.linalg.eigvals(reduced(self.jac(subset)))
 
 
 def direct_perp(members, th):
