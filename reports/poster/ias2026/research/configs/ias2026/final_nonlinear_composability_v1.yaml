@@ -90,5 +90,13 @@ complex:
   H_NL: "minimal non-faces of K_NL(rho)"
   kappa_NL: "min |H|, H in H_NL"
   R_k: "min_{|S| <= k} r_S^d, k = 1..4"
+planning:   # declared before any FC05 threshold was computed
+  rho_star: {D1: 200.0, D2: 200.0, D3: 0.35}
+  rho_star_meaning: "D1: a 200 MW load block for 0.5 s (61 % of the bus-16 load); D2: a 200 MW turbine runback at SG36 for 0.5 s; D3: a 35 % dip of the portfolio's PV output for 0.5 s"
+  objective_mw: "replaced_pg_mw (measured active dispatch), never Sn"
+  P1: "maximize replaced_pg_mw subject to: no spectral hyperedge of H_RHP_perp contained (any-order safe)"
+  P2: "the same, additionally no H_NL(rho_star) hyperedge contained, for each family separately and for all three jointly"
+  P3: "minimum damped-condenser rating (G1 R_0010000, D = 2, common rating fraction at the four core buses; MVA = fraction x 4270.7) making the P4 flagship (a) transversely stable, (b) tolerant of rho_star for each family"
+  axes: "MW replaced, synchronous MVA added, controller-change norm: reported separately; no weighted scalar"
 workers: 16
 seed: "none needed (deterministic)"
