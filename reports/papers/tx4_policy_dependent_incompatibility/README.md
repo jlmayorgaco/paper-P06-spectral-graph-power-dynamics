@@ -1,55 +1,81 @@
-# TX4: Policy-dependent minimal incompatibility of SG-to-inverter replacement portfolios
+# TX4: Policy-Dependent Minimal Incompatibility of Synchronous-to-Inverter Replacement Portfolios: Network-Closure Interactions and Transverse Stability
 
-`main.pdf` is the 12-page IEEEtran journal manuscript. It is not the IAS poster
-and not the TX3 paper; neither of those was modified.
+`main.pdf` is the hardened final draft: 11 pages, IEEEtran journal format. It is
+not the IAS poster and not the TX3 paper; neither of those was modified.
+
+## Evidence state
+
+- The final scientific evidence is frozen by tag
+  `IAS2026_FINAL_SCIENTIFIC_EVIDENCE_FREEZE` at commit `b9f274e2`.
+- The manuscript also cites these post-freeze evidence addenda:
+  - `f775db89`: FC18 targeted port checks, i.e. the boundary anatomy in
+    Tables III–IV and Figs. 5–7;
+  - `7a772808` and `f2946257`: Monte Carlo preregistration and its amendment;
+  - `cfe9fe4b`: Monte Carlo results (Table VI, Fig. 9).
+- No new experiments were run during manuscript hardening.
+
+## Story: three contributions only
+
+- **C1: policy-dependent minimal incompatibility.** H(theta), kappa(theta), the
+  transverse definition, and any-order-safe planning. The governor result is
+  central: the four-unit witness is conditional on the absence of primary
+  frequency control, while policy dependence persists.
+- **C2: network-closure anatomy.** Local descriptor-affine actions, exact
+  network closure, a principal-minor hierarchy, and a coalition-specific zero
+  (Fig. 1). At all ten frozen boundaries, no truncation below the cardinality
+  of the changing minimal coalition reaches the zero.
+- **C3: actionable boundary motion.** Exact boundary normals, iterative Q/V
+  retuning, and a symmetry-deflated zero-frequency port (Kundur: 28/28 zero
+  crossings, one coalescence correctly not flagged, 0/445 false positives).
+
+Everything else is supporting evidence, robustness analysis, or a limitation:
+Monte Carlo validation, the nonlinear scope check, the second-order curvature
+audit (Appendix B), the rank negative control, and the non-convergent walk
+expansion.
+
+## Explicitly not claimed
+
+- Rank explains kappa (negative control: rank 7–8 throughout 4 → 3 → 2 → 3 → 4).
+- A dominant path explains a failure (Neumann walk expansion non-convergent,
+  rho ≥ 1.003).
+- A simple cycle causes a failure (falsified earlier).
+- Nonlinear composability as a contribution.
 
 ## Build
 
-`latexmk` needs Perl, which is not installed here. Build with:
+`latexmk` needs Perl, which is not installed. Build with:
 
 ```
 pdflatex main && bibtex main && pdflatex main && pdflatex main
 ```
 
-`p2_numbers.tex` holds the IEEE-39 P2 Monte Carlo numbers used in Table III and
-Section VI.
+If `main.pdf` is open in a viewer on Windows, close it first; otherwise
+pdflatex cannot write the file.
 
-## Figures
+## Figures and sources
 
-Every figure in `figures/` is produced by
-`reports/poster/ias2026/research/experiments/paper_tx4/MC03_paper_figures.py` and
-comes with a `*_source.csv` holding the plotted data.
+Every figure is produced by
+`reports/poster/ias2026/research/experiments/paper_tx4/MC03_paper_figures.py`
+and has a `*_source.csv` in `figures/`. The only exception is Fig. 1, which is
+drawn in TikZ inside `main.tex`.
 
-## Provenance of every number
+## Reviewer hardening
 
-| paper element | source |
-|---|---|
-| Theorems 1–5, Props 1–4 | `research/theory/` notes (TRANSVERSE_STABILITY_QUOTIENT, PRINCIPAL_MINOR_PORTFOLIO_STRUCTURE, FINAL_COMBINATORIAL_THEOREMS, SYMMETRY_DEFLECTED_PORT_CLOSURE) |
-| Table III, Fig. 1 | Monte Carlo run `outputs/ias2026/paper_mc_20260911T083722` (MC01 synthetic, MC02 IEEE-39, MC04 post-hoc); summaries copied to `research/results/paper_mc/` |
-| preregistration | `research/configs/ias2026/paper_mc_validation_v1.yaml`, committed as 7a772808; amendment v1.1 as f2946257 |
-| Tables IV–V, Figs. 4–6 | FC18 targeted port checks (`research/results/FC18/`, `docs/FC18_TARGETED_PORT_CHECKS.md`) |
-| Fig. 3 and the F7 statements | FC01 transverse re-audit (`research/results/TSQ_ieee39_reaudit.csv`) |
-| Table VI, Fig. 7 | FC03 governed replication |
-| Figs. 8–9, Table VII | FC05/FC06 nonlinear thresholds, FC07 v2 curvature, FC13 Hopf |
-| Table VIII | FC10 census, FC12 planning |
-| Fig. 10 | FC02 zero-frequency port holdout |
-| claim status and wording | `research/docs/FINAL_TRANSACTION_THEORY_AND_EVIDENCE.md`, `FINAL_TPWRS_CLAIMS.md`, `FINAL_REJECTED_WORDING.md` |
+`reports/poster/ias2026/research/docs/REVIEWER_1_2_ATTACKS.md` lists 17
+objections, each with an evidence-backed response and an explicit concession.
 
-## Deviations disclosed in the paper (Section VI-C)
+## Deviations disclosed in the paper (Sec. VI)
 
-1. **P1 amendment.** The spectral-identity rule matched the numerically split
-   Jordan pair. It was amended before the run, with the threshold unchanged.
-2. **P2 failed as implemented.** The bisection stopped at the classifier band.
-   The post-hoc re-bisection (MC04) is reported beside the failure.
-3. **S7 generator defect.** Three coalescence-class draws contained a genuine
-   zero crossing. In addition, 183 S7 draws were left undecided by the
-   device-flip rule.
-4. **P1 chart redraws.** Two draws needed a redrawn off-equilibrium state.
-5. **FC07 v1.** The first-order-hold coefficient was wrong. The v1 run is
-   archived; only v2 is reported.
+1. **P1 amendment.** Made before the run; threshold unchanged.
+2. **P2.** Failed as implemented. The post-hoc re-bisection is reported
+   separately and never counted as a preregistered pass.
+3. **S7.** Three coalescence-class draws contained a genuine zero crossing,
+   and 183 draws were left undecided by the device-flip rule.
+4. **P1 chart.** Two draws needed a redrawn off-equilibrium state.
 
 ## Before submission (author action)
 
 - Confirm the affiliation and e-mail line.
 - Add funding and acknowledgments, if any.
 - Choose the repository or DOI to cite in the Reproducibility statement.
+- Check the target journal's page policy (the draft has 11 pages).
