@@ -1,0 +1,49 @@
+point,criterion,target,A,B,C,replaced_pg_mw
+P4,spectral,BASE,True,True,True,0.0
+P4,spectral,30,True,True,True,436.0863850000088
+P4,spectral,33,True,True,True,651.9999980000102
+P4,spectral,35,True,True,True,686.9999980001168
+P4,spectral,37,True,True,True,321.5213380000083
+P4,spectral,30+33,True,True,True,1088.0863830000194
+P4,spectral,30+35,True,True,True,1123.086383000137
+P4,spectral,30+37,True,True,True,757.6077230000176
+P4,spectral,33+35,True,True,True,1338.9999960001394
+P4,spectral,33+37,True,True,True,973.5213360000218
+P4,spectral,35+37,True,True,True,1008.521336000136
+P4,spectral,30+33+35,True,True,True,1775.0863810001342
+P4,spectral,30+33+37,True,True,True,1409.607721000027
+P4,spectral,30+35+37,True,True,True,1444.607721000138
+P4,spectral,33+35+37,True,True,True,1660.521334000142
+P4,spectral,30+33+35+37,False,False,False,2096.6077190001497
+P_inf,spectral,BASE,True,True,True,0.0
+P_inf,spectral,30,True,True,True,436.0863850000069
+P_inf,spectral,33,True,True,True,651.9999980000107
+P_inf,spectral,35,True,True,True,686.9999980001146
+P_inf,spectral,37,True,True,True,321.5213380000094
+P_inf,spectral,30+33,True,True,True,1088.0863830000155
+P_inf,spectral,30+35,True,True,True,1123.0863830001258
+P_inf,spectral,30+37,True,True,True,757.6077230000154
+P_inf,spectral,33+35,True,True,True,1338.9999960001237
+P_inf,spectral,33+37,True,True,True,973.5213360000156
+P_inf,spectral,35+37,True,True,True,1008.5213360001233
+P_inf,spectral,30+33+35,True,True,True,1775.086381000132
+P_inf,spectral,30+33+37,True,True,True,1409.6077210000276
+P_inf,spectral,30+35+37,True,True,True,1444.607721000136
+P_inf,spectral,33+35+37,True,True,True,1660.5213340001328
+P_inf,spectral,30+33+35+37,True,True,True,2096.607719000146
+P_inf,nonlinear D2,BASE,True,True,True,0.0
+P_inf,nonlinear D2,30,True,True,True,436.0863850000069
+P_inf,nonlinear D2,33,True,True,True,651.9999980000107
+P_inf,nonlinear D2,35,True,True,True,686.9999980001146
+P_inf,nonlinear D2,37,True,True,True,321.5213380000094
+P_inf,nonlinear D2,30+33,True,True,True,1088.0863830000155
+P_inf,nonlinear D2,30+35,True,True,True,1123.0863830001258
+P_inf,nonlinear D2,30+37,True,True,True,757.6077230000154
+P_inf,nonlinear D2,33+35,True,True,True,1338.9999960001237
+P_inf,nonlinear D2,33+37,True,True,True,973.5213360000156
+P_inf,nonlinear D2,35+37,True,True,True,1008.5213360001233
+P_inf,nonlinear D2,30+33+35,True,True,True,1775.086381000132
+P_inf,nonlinear D2,30+33+37,True,True,True,1409.6077210000276
+P_inf,nonlinear D2,30+35+37,True,True,True,1444.607721000136
+P_inf,nonlinear D2,33+35+37,True,True,True,1660.5213340001328
+P_inf,nonlinear D2,30+33+35+37,True,True,True,2096.607719000146

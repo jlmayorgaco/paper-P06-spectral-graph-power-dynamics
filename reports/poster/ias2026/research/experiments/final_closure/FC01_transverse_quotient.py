@@ -38,8 +38,14 @@ from F12_kundur import solve as k_solve  # noqa: E402
 from G3_ieee68 import solve as s68  # noqa: E402
 from ibr_cycles.certification.classify import SAFETY, classify_spectrum  # noqa: E402
 from ibr_cycles.certification.physical import physical_matrices  # noqa: E402
-from ibr_cycles.certification.symmetry import frequency_partner, rotation_generator  # noqa: E402
-from ibr_cycles.certification.transverse import center_subspace, transverse_operator  # noqa: E402
+from ibr_cycles.certification.symmetry import (  # noqa: E402
+    frequency_partner,
+    rotation_generator,
+)
+from ibr_cycles.certification.transverse import (  # noqa: E402
+    center_subspace,
+    transverse_operator,
+)
 from ibr_cycles.diagnosis.composability import hypergraph_label  # noqa: E402
 
 OUT = out_dir("FC01_transverse_quotient")
@@ -108,7 +114,9 @@ def structure_row(bench, point, members, case):
         "rhp_perp": int((perp.real > 0).sum()),
         "alpha_perp": float(perp.real.max()),
         "modes_A_abs_lt_1e-2": ";".join(f"{v:.3e}" for v in full[np.abs(full) < 1e-2]),
-        "modes_perp_abs_lt_1e-2": ";".join(f"{v:.3e}" for v in perp[np.abs(perp) < 1e-2]),
+        "modes_perp_abs_lt_1e-2": ";".join(
+            f"{v:.3e}" for v in perp[np.abs(perp) < 1e-2]
+        ),
         "partner": partner.reason,
     }
 
@@ -122,8 +130,14 @@ def part1():
         for m in SUBSETS:
             rows.append(structure_row("IEEE-39", name, m, solve_config(m, th, rnone)))
     for m in ((), (2,), (3,), (4,), (2, 3), (2, 4), (3, 4), (2, 3, 4)):
-        rows.append(structure_row("Kundur", "K12A g=0.08 k=1.25", m,
-                                  k_solve(m, {"g": 0.08, "k": 1.25, "t": 1.0})))
+        rows.append(
+            structure_row(
+                "Kundur",
+                "K12A g=0.08 k=1.25",
+                m,
+                k_solve(m, {"g": 0.08, "k": 1.25, "t": 1.0}),
+            )
+        )
     for m in ((), (3, 4, 6, 9)):
         rows.append(structure_row("IEEE-68", "g=0 k=1", m, s68(m, 0.0, 1.0)))
     return pd.DataFrame(rows)
@@ -195,7 +209,9 @@ def chunk_task(chunk):
 def part2(workers):
     g1 = pd.read_csv(RESULTS / "G1" / "G1_ieee39_points.csv.gz")
     g1["idx"] = np.arange(len(g1))
-    recs = g1[["idx", "map", "g", "k", "t", "h", "H_RHP", "kappa_RHP"]].to_dict("records")
+    recs = g1[["idx", "map", "g", "k", "t", "h", "H_RHP", "kappa_RHP"]].to_dict(
+        "records"
+    )
     chunks = [recs[i : i + CHUNK] for i in range(0, len(recs), CHUNK)]
     rows = []
     with Pool(workers, initializer=_init) as pool:
@@ -227,33 +243,55 @@ def direct_task(r):
         tr = transverse_operator(a, r_x, w)
         statuses[m] = classify_spectrum(tr.a_perp, tr.z.T @ d @ tr.z, SAFETY).status
     info = h_of(statuses)
-    return {"idx": r["idx"], "H_perp_direct": info["H"], "kappa_perp_direct": info["kappa"],
-            "exact_direct": info["exact"], "unresolved_direct": info["unresolved"]}
+    return {
+        "idx": r["idx"],
+        "H_perp_direct": info["H"],
+        "kappa_perp_direct": info["kappa"],
+        "exact_direct": info["exact"],
+        "unresolved_direct": info["unresolved"],
+    }
 
 
 def main(argv) -> int:
     exp = FCExperiment(
         name="FC01_transverse_quotient",
-        question="Do the frozen F7 / H / kappa labels survive the exact transverse quotient?",
+        question=(
+            "Do the frozen F7 / H / kappa labels survive the exact transverse quotient?"
+        ),
         config={"margin": MARGIN, "safety": SAFETY, "chunk": CHUNK, "workers": WORKERS},
         workers=WORKERS,
     )
     started = time.time()
     p1 = part1()
     p1.to_csv(OUT / "FC01_structure.csv", index=False)
-    print(p1.groupby("benchmark")[["dim_C", "invariance_residual", "coupling_residual",
-                                   "spectral_identity_maxdist", "left_condition"]].max())
+    print(
+        p1.groupby("benchmark")[
+            [
+                "dim_C",
+                "invariance_residual",
+                "coupling_residual",
+                "spectral_identity_maxdist",
+                "left_condition",
+            ]
+        ].max()
+    )
     p2 = part2(WORKERS)
     p2["same_as_G1"] = p2.H_perp == p2.H_RHP_G1
     redo = p2[(~p2.exact | ~p2.same_as_G1) & (p2.g <= 0.005)]
     print(f"part3: {len(redo)} low-g points recomputed on the direct path", flush=True)
     if len(redo):
         with Pool(WORKERS, initializer=_init3) as pool:
-            p3 = pd.DataFrame(pool.map(direct_task, redo.to_dict("records"), chunksize=1))
+            p3 = pd.DataFrame(
+                pool.map(direct_task, redo.to_dict("records"), chunksize=1)
+            )
         p2 = p2.merge(p3, on="idx", how="left")
     p2.to_csv(OUT / "FC01_points.csv.gz", index=False)
-    final_h = p2.get("H_perp_direct", pd.Series(index=p2.index, dtype=object)).fillna(p2.H_perp)
-    final_exact = p2.get("exact_direct", pd.Series(index=p2.index, dtype=object)).fillna(p2.exact)
+    final_h = p2.get("H_perp_direct", pd.Series(index=p2.index, dtype=object)).fillna(
+        p2.H_perp
+    )
+    final_exact = p2.get(
+        "exact_direct", pd.Series(index=p2.index, dtype=object)
+    ).fillna(p2.exact)
     p2["H_perp_final"], p2["exact_final"] = final_h, final_exact.astype(bool)
     p2["same_final"] = p2.H_perp_final == p2.H_RHP_G1
     diff = p2[~p2.same_final | ~p2.exact_final]
@@ -267,7 +305,9 @@ def main(argv) -> int:
             "H_perp_equals_G1": int(grp.same_final.sum()),
             "differs_and_exact": int((~grp.same_final & grp.exact_final).sum()),
             "unresolved_final": int((~grp.exact_final).sum()),
-            "unresolved_final_g_le_0.005": int((~grp.exact_final & (grp.g <= 0.005)).sum()),
+            "unresolved_final_g_le_0.005": int(
+                (~grp.exact_final & (grp.g <= 0.005)).sum()
+            ),
             "near_axis_subset_evaluations": int(grp.near_axis_subsets.sum()),
             "max_rotation_residual": float(grp.max_rotation_residual.max()),
         }

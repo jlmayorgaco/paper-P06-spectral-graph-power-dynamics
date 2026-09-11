@@ -1,4 +1,6 @@
-"""FC02 (Decision 3): holdout validation of the frozen relocated port (port_relocation_v1).
+"""FC02 (Decision 3): holdout validation of the frozen relocated port.
+
+Frozen definition: configs/port_relocation_v1.yaml.
 
 The relocation, beta pairs, detection rule, ground truth and holdout slices are
 those of configs/port_relocation_v1.yaml, committed before this script ran.
@@ -15,32 +17,47 @@ from multiprocessing import Pool
 import numpy as np
 import pandas as pd
 import yaml
-from _fc import CONFIGS, ROOT, WORKERS, FCExperiment, out_dir, publish, write_json
+from _fc import ROOT, WORKERS, FCExperiment, out_dir, publish, write_json
 
 from _overnight import pin_blas_threads  # noqa: E402
 from F12_kundur import solve as k_solve  # noqa: E402
 from ibr_cycles.certification.port_origin import relocated_port  # noqa: E402
-from ibr_cycles.certification.symmetry import frequency_partner, rotation_generator  # noqa: E402
+from ibr_cycles.certification.symmetry import (  # noqa: E402
+    frequency_partner,
+    rotation_generator,
+)
 from ibr_cycles.certification.transverse import transverse_operator  # noqa: E402
 from ibr_cycles.dynamics.linearize import central_difference_jacobians  # noqa: E402
 
 OUT = out_dir("FC02_port_holdout")
-CFG = yaml.safe_load((ROOT / "configs" / "port_relocation_v1.yaml").read_text(encoding="utf-8"))
+CFG = yaml.safe_load(
+    (ROOT / "configs" / "port_relocation_v1.yaml").read_text(encoding="utf-8")
+)
 SUBSETS = [(), (2,), (3,), (4,), (2, 3), (2, 4), (3, 4), (2, 3, 4)]
-BETAS = ((CFG["normalization"]["beta"], CFG["normalization"]["beta2"]),
-         tuple(CFG["normalization"]["consistency_pair"]))
+BETAS = (
+    (CFG["normalization"]["beta"], CFG["normalization"]["beta2"]),
+    tuple(CFG["normalization"]["consistency_pair"]),
+)
 BISECT = 40
 
 
 def counts(members, th):
     case = k_solve(members, th)
-    jac = central_difference_jacobians(case.dae, case.equilibrium.x, case.equilibrium.z, {})
+    jac = central_difference_jacobians(
+        case.dae, case.equilibrium.x, case.equilibrium.z, {}
+    )
     a = jac.fx - jac.fz @ np.linalg.solve(jac.gz, jac.gx)
     r_x, _ = rotation_generator(case.dae, case.equilibrium.z)
     w = frequency_partner(case.dae).w
     ev = np.linalg.eigvals(transverse_operator(a, r_x, w).a_perp)
     real = np.abs(ev.imag) <= 1e-9 * max(1.0, np.abs(ev).max())
-    return int(((ev.real > 0) & real).sum()), int(((ev.real > 0) & ~real).sum()), jac, r_x, w
+    return (
+        int(((ev.real > 0) & real).sum()),
+        int(((ev.real > 0) & ~real).sum()),
+        jac,
+        r_x,
+        w,
+    )
 
 
 def port(jac, r_x, w):
@@ -73,8 +90,12 @@ def evaluate_pair(members, th, g_lo, g_hi, kind):
         flip = a["t0_sign"] != b["t0_sign"]
         dev_flip = a["device_sign"] != b["device_sign"]
         verdicts.append(flip and not dev_flip)
-        rows[key] = (flip, dev_flip, max(a["identity_residual"], b["identity_residual"]),
-                     min(a["min_abs_eig_relocated"], b["min_abs_eig_relocated"]))
+        rows[key] = (
+            flip,
+            dev_flip,
+            max(a["identity_residual"], b["identity_residual"]),
+            min(a["min_abs_eig_relocated"], b["min_abs_eig_relocated"]),
+        )
     consistent = len(set(verdicts)) == 1
     k1 = next(iter(rows))
     return {
@@ -108,19 +129,35 @@ def line_task(task):
     for i in range(len(scan) - 1):
         if c[i][0] != c[i + 1][0]:
             lo, hi = bisect(members, th, scan[i], scan[i + 1], 0)
-            rows.append({**evaluate_pair(members, th, scan[i], scan[i + 1], "REAL_CROSSING"),
-                         "g_star": 0.5 * (lo + hi), "slice": slice_name})
+            rows.append(
+                {
+                    **evaluate_pair(members, th, scan[i], scan[i + 1], "REAL_CROSSING"),
+                    "g_star": 0.5 * (lo + hi),
+                    "slice": slice_name,
+                }
+            )
     same = [i for i in range(len(scan) - 1) if c[i] == c[i + 1]]
     for i in same[:: max(1, len(same) // 3)][:3]:
-        rows.append({**evaluate_pair(members, th, scan[i], scan[i + 1], "NO_CROSSING"),
-                     "slice": slice_name})
+        rows.append(
+            {
+                **evaluate_pair(members, th, scan[i], scan[i + 1], "NO_CROSSING"),
+                "slice": slice_name,
+            }
+        )
     osc = np.linspace(0.003, 1.0, 81)
     co = [counts(members, {**th, "g": g})[:2] for g in osc]
     for i in range(len(osc) - 1):
         if co[i][1] != co[i + 1][1] and co[i][0] == co[i + 1][0]:
             lo, hi = bisect(members, th, osc[i], osc[i + 1], 1)
-            rows.append({**evaluate_pair(members, th, osc[i], osc[i + 1], "OSCILLATORY_CROSSING"),
-                         "g_star": 0.5 * (lo + hi), "slice": slice_name})
+            rows.append(
+                {
+                    **evaluate_pair(
+                        members, th, osc[i], osc[i + 1], "OSCILLATORY_CROSSING"
+                    ),
+                    "g_star": 0.5 * (lo + hi),
+                    "slice": slice_name,
+                }
+            )
     return rows
 
 
@@ -164,17 +201,28 @@ def synthetic_suite(draws=200, seed=20260921):
         for d in range(draws):
             state = rng.bit_generator.state
             lo = synthetic(rng, kind, -1.0)
-            rng.bit_generator.state = state  # same system, opposite sign of the crossing
+            rng.bit_generator.state = (
+                state  # same system, opposite sign of the crossing
+            )
             hi = synthetic(rng, kind, +1.0)
             verdicts = []
             res = 0.0
             for b1, b2 in BETAS:
                 a = relocated_port(*lo, b1, b2)
                 b = relocated_port(*hi, b1, b2)
-                verdicts.append(a.t0_sign != b.t0_sign and a.device_sign == b.device_sign)
+                verdicts.append(
+                    a.t0_sign != b.t0_sign and a.device_sign == b.device_sign
+                )
                 res = max(res, a.identity_residual, b.identity_residual)
-            rows.append({"kind": kind, "draw": d, "port_flip": bool(verdicts[0] and len(set(verdicts)) == 1),
-                         "beta_consistent": len(set(verdicts)) == 1, "identity_residual": res})
+            rows.append(
+                {
+                    "kind": kind,
+                    "draw": d,
+                    "port_flip": bool(verdicts[0] and len(set(verdicts)) == 1),
+                    "beta_consistent": len(set(verdicts)) == 1,
+                    "identity_residual": res,
+                }
+            )
     return pd.DataFrame(rows)
 
 
@@ -182,7 +230,9 @@ def main(argv) -> int:
     pin_blas_threads()
     exp = FCExperiment(
         name="FC02_port_holdout",
-        question="Does the frozen relocated port detect unseen zero-frequency crossings?",
+        question=(
+            "Does the frozen relocated port detect unseen zero-frequency crossings?"
+        ),
         config={"port_config": CFG, "bisect": BISECT},
         workers=WORKERS,
     )
@@ -214,8 +264,12 @@ def main(argv) -> int:
                         "negative_controls": int(len(neg)),
                         "false_positives": int(neg.port_flip.sum()),
                         "beta_inconsistent": int((~kundur.beta_consistent).sum()),
-                        "max_determinant_residual": float(kundur.identity_residual.max()),
-                        "min_abs_eig_relocated": float(kundur.min_abs_eig_relocated.min()),
+                        "max_determinant_residual": float(
+                            kundur.identity_residual.max()
+                        ),
+                        "min_abs_eig_relocated": float(
+                            kundur.min_abs_eig_relocated.min()
+                        ),
                     },
                     {
                         "source": "synthetic",
@@ -223,7 +277,9 @@ def main(argv) -> int:
                         "detected": int(syn[syn.kind == "REAL"].port_flip.sum()),
                         "missed": int((~syn[syn.kind == "REAL"].port_flip).sum()),
                         "negative_controls": int((syn.kind == "COMPLEX").sum()),
-                        "false_positives": int(syn[syn.kind == "COMPLEX"].port_flip.sum()),
+                        "false_positives": int(
+                            syn[syn.kind == "COMPLEX"].port_flip.sum()
+                        ),
                         "beta_inconsistent": int((~syn.beta_consistent).sum()),
                         "max_determinant_residual": float(syn.identity_residual.max()),
                         "min_abs_eig_relocated": float("nan"),
@@ -247,7 +303,9 @@ def main(argv) -> int:
     publish(OUT / "zero_frequency_port_validation.csv")
     summary = {
         "table": table.to_dict("records"),
-        "kundur_by_kind": kundur.groupby("kind").port_flip.agg(["size", "sum"]).to_dict(),
+        "kundur_by_kind": kundur.groupby("kind")
+        .port_flip.agg(["size", "sum"])
+        .to_dict(),
         "kundur_real_by_subset": real.groupby("subset").size().to_dict(),
         "elapsed_s": round(time.time() - started, 1),
     }

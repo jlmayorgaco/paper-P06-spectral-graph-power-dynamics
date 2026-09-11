@@ -1,0 +1,128 @@
+{
+  "experiment": "FC06_resilience_complex",
+  "question": "What are K_NL, H_NL, kappa_NL, R_k, and do the topology statements hold?",
+  "verdict": "COMPUTED",
+  "seed": null,
+  "config": {},
+  "workers": 1,
+  "git_commit": "d79fb29526e75769aa62db07c1a7c50281eb0508",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 6.91,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-11T06:03:20Z",
+  "elapsed_s": 0.34,
+  "notes": [],
+  "results": {
+    "P4|D1": {
+      "rho_scope": 130.46875,
+      "checks": {
+        "down_closed": true,
+        "nonfaces_eq_minimal_unsafe": true,
+        "local_sphere": true,
+        "filtration": true,
+        "R_k_monotone": true
+      },
+      "H_NL_0plus_equals_H_RHP_perp": true,
+      "R_k": {
+        "1": 375.78125,
+        "2": 192.1875,
+        "3": 130.46875,
+        "4": 0.0
+      }
+    },
+    "P4|D2": {
+      "rho_scope": 97.65625,
+      "checks": {
+        "down_closed": true,
+        "nonfaces_eq_minimal_unsafe": true,
+        "local_sphere": true,
+        "filtration": true,
+        "R_k_monotone": true
+      },
+      "H_NL_0plus_equals_H_RHP_perp": true,
+      "R_k": {
+        "1": 272.65625,
+        "2": 170.3125,
+        "3": 97.65625,
+        "4": 0.0
+      }
+    },
+    "P4|D3": {
+      "rho_scope": 0.090625,
+      "checks": {
+        "down_closed": true,
+        "nonfaces_eq_minimal_unsafe": true,
+        "local_sphere": true,
+        "filtration": true,
+        "R_k_monotone": true
+      },
+      "H_NL_0plus_equals_H_RHP_perp": true,
+      "R_k": {
+        "1": 0.69140625,
+        "2": 0.2046875,
+        "3": 0.090625,
+        "4": 0.0
+      }
+    },
+    "P_inf|D1": {
+      "rho_scope": 88.28125,
+      "checks": {
+        "down_closed": true,
+        "nonfaces_eq_minimal_unsafe": true,
+        "local_sphere": true,
+        "filtration": true,
+        "R_k_monotone": true
+      },
+      "H_NL_0plus_equals_H_RHP_perp": true,
+      "R_k": {
+        "1": 310.15625,
+        "2": 192.1875,
+        "3": 138.28125,
+        "4": 88.28125
+      }
+    },
+    "P_inf|D2": {
+      "rho_scope": 360.78125,
+      "checks": {
+        "down_closed": true,
+        "nonfaces_eq_minimal_unsafe": true,
+        "local_sphere": true,
+        "filtration": true,
+        "R_k_monotone": true
+      },
+      "H_NL_0plus_equals_H_RHP_perp": true,
+      "R_k": {
+        "1": 367.96875,
+        "2": 360.78125,
+        "3": 360.78125,
+        "4": 360.78125
+      }
+    },
+    "P_inf|D3": {
+      "rho_scope": 0.3078125,
+      "checks": {
+        "down_closed": true,
+        "nonfaces_eq_minimal_unsafe": true,
+        "local_sphere": true,
+        "filtration": true,
+        "R_k_monotone": true
+      },
+      "H_NL_0plus_equals_H_RHP_perp": true,
+      "R_k": {
+        "1": 0.94921875,
+        "2": 0.4765625,
+        "3": 0.3640624999999999,
+        "4": 0.3078125
+      }
+    }
+  }
+}

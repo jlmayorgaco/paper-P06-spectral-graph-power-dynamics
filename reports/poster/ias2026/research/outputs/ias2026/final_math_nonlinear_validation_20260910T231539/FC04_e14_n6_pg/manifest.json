@@ -1,0 +1,41 @@
+{
+  "experiment": "FC04_e14_n6_pg",
+  "question": "Do the Pg-matched stable controls carry the failing branch damped?",
+  "verdict": "COMPUTED",
+  "seed": null,
+  "config": {
+    "definition": "frozen v2C family (_v2c_common)",
+    "match": "UC02 Pg rule"
+  },
+  "workers": 1,
+  "git_commit": "a489e4fee9785fc93c3bcdf33f51ba9c3f40a5ce",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 4.74,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-11T04:27:45Z",
+  "elapsed_s": 37.14,
+  "notes": [],
+  "results": {
+    "controls": 25,
+    "controls_tracked": 25,
+    "controls_family_alpha_max": -0.11446291844475807,
+    "controls_family_damping_min": 0.03852928816272657,
+    "failing": 10,
+    "failing_tracked": 10,
+    "failing_family_alpha_range": [
+      -0.9968369334024345,
+      0.3889348092041216
+    ],
+    "failing_family_positive": 8,
+    "elapsed_s": 36.7
+  }
+}

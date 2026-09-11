@@ -56,7 +56,9 @@ class Tgov1n:
 def documented_governors(path: Path = CONFIG) -> dict[int, Tgov1n]:
     payload = json.loads(Path(path).read_text(encoding="utf-8"))
     return {
-        int(g["bus"]): Tgov1n(g["R"], g["T1"], g["T2"], g["T3"], g["Dt"], g["VMAX"], g["VMIN"])
+        int(g["bus"]): Tgov1n(
+            g["R"], g["T1"], g["T2"], g["T3"], g["Dt"], g["VMAX"], g["VMIN"]
+        )
         for g in payload["governors"]
     }
 
@@ -96,7 +98,9 @@ class GovernedMachine:
         omega = float(x[1])
         x1, x2 = float(x[n0]), float(x[n0 + 1])
         pd = self.pref - (omega - 1.0) / self.gov.r
-        dev = replace(self.base, parameters=replace(self.base.parameters, pm=self.mechanical(x)))
+        dev = replace(
+            self.base, parameters=replace(self.base.parameters, pm=self.mechanical(x))
+        )
         return np.concatenate(
             [
                 dev.derivatives(np.asarray(x[:n0]), v),
@@ -111,8 +115,6 @@ class GovernedMachine:
 def govern(case, governors: dict[int, Tgov1n] | None = None):
     """(dae, x0, z0) of the governed version of a solved frozen case."""
 
-    from ..models.ieee39_case import DeviceSlot
-
     governors = governors or documented_governors()
     dae = case.dae
     x_old = case.equilibrium.x
@@ -121,12 +123,16 @@ def govern(case, governors: dict[int, Tgov1n] | None = None):
         dev = slot.device
         xs = x_old[slot.start : slot.stop]
         params = getattr(dev, "parameters", None)
-        is_generator = slot.kind == "sg" and params is not None and hasattr(params, "pm")
+        is_generator = (
+            slot.kind == "sg" and params is not None and hasattr(params, "pm")
+        )
         if is_generator and abs(params.pm) > 1e-9 and slot.bus in governors:
             gov = governors[slot.bus]
             pref = float(params.pm)
             if not (gov.vmin <= pref <= gov.vmax):
-                raise ValueError(f"valve limit active at bus {slot.bus}: Pm0 = {pref:.3f}")
+                raise ValueError(
+                    f"valve limit active at bus {slot.bus}: Pm0 = {pref:.3f}"
+                )
             dev = GovernedMachine(dev, gov, pref)
             xs = np.concatenate([xs, [pref, pref]])
         slots.append(replace(slot, device=dev, start=cursor, stop=cursor + xs.size))

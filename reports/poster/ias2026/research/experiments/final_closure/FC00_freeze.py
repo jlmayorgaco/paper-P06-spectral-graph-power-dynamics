@@ -31,24 +31,36 @@ MODEL_FILES = [
 
 
 def git(*args):
-    return subprocess.run(["git", *args], cwd=REPO, capture_output=True, text=True).stdout.strip()
+    return subprocess.run(
+        ["git", *args], cwd=REPO, capture_output=True, text=True
+    ).stdout.strip()
 
 
 def main() -> int:
     andes = subprocess.run(
-        [str(REPO / ".venv" / "tx3-andes" / "Scripts" / "python.exe"), "-c",
-         "import andes; print(andes.__version__)"],
-        capture_output=True, text=True,
+        [
+            str(REPO / ".venv" / "tx3-andes" / "Scripts" / "python.exe"),
+            "-c",
+            "import andes; print(andes.__version__)",
+        ],
+        capture_output=True,
+        text=True,
     ).stdout.strip()
     try:
         import ctypes
 
         class MS(ctypes.Structure):
-            _fields_ = [("dwLength", ctypes.c_ulong), ("dwMemoryLoad", ctypes.c_ulong),
-                        ("ullTotalPhys", ctypes.c_ulonglong), ("a", ctypes.c_ulonglong),
-                        ("b", ctypes.c_ulonglong), ("c", ctypes.c_ulonglong),
-                        ("d", ctypes.c_ulonglong), ("e", ctypes.c_ulonglong),
-                        ("f", ctypes.c_ulonglong)]
+            _fields_ = [
+                ("dwLength", ctypes.c_ulong),
+                ("dwMemoryLoad", ctypes.c_ulong),
+                ("ullTotalPhys", ctypes.c_ulonglong),
+                ("a", ctypes.c_ulonglong),
+                ("b", ctypes.c_ulonglong),
+                ("c", ctypes.c_ulonglong),
+                ("d", ctypes.c_ulonglong),
+                ("e", ctypes.c_ulonglong),
+                ("f", ctypes.c_ulonglong),
+            ]
 
         ms = MS()
         ms.dwLength = ctypes.sizeof(MS)
@@ -60,7 +72,9 @@ def main() -> int:
         "git_commit": git("rev-parse", "HEAD"),
         "git_branch": git("branch", "--show-current"),
         "git_tag": "IAS2026_PRE_FINAL_VALIDATION",
-        "git_status_research": git("status", "--short", "--", "reports/poster/ias2026/research"),
+        "git_status_research": git(
+            "status", "--short", "--", "reports/poster/ias2026/research"
+        ),
         "python": sys.version,
         "numpy": numpy.__version__,
         "scipy": scipy.__version__,
@@ -70,7 +84,10 @@ def main() -> int:
         "cpu": platform.processor(),
         "logical_cpus": os.cpu_count(),
         "ram_bytes": ram,
-        "seeds": {"campaign_base": 20260920, "note": "each FC script declares its own seed"},
+        "seeds": {
+            "campaign_base": 20260920,
+            "note": "each FC script declares its own seed",
+        },
         "solver_tolerances": {
             "power_flow_newton": 1e-12,
             "dae_equilibrium_newton": 1e-9,
@@ -80,8 +97,10 @@ def main() -> int:
             "jacobian": "central differences (dynamics.linearize), unit and 2x scale",
         },
         "model_hashes": {f: sha256(ROOT / f) for f in MODEL_FILES},
-        "frozen_tags": ["IAS2026_TRACKA_F7_POLICY_HYPERGRAPH_FREEZE",
-                        "IAS2026_TRACKA_F8_F12_POST_F7_FREEZE"],
+        "frozen_tags": [
+            "IAS2026_TRACKA_F7_POLICY_HYPERGRAPH_FREEZE",
+            "IAS2026_TRACKA_F8_F12_POST_F7_FREEZE",
+        ],
         "run_directory": str(RUN),
     }
     write_json(RUN / "FC00_freeze_record.json", record)

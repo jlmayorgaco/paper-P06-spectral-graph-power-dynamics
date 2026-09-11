@@ -30,10 +30,14 @@ from scipy.integrate import BDF
 from scipy.linalg import lu_factor, lu_solve
 
 from ..dynamics.linearize import central_difference_jacobians
-from ..models.ieee39_devices import OMEGA_B
 
 F0 = 60.0
-LIMITS = Path(__file__).resolve().parents[3] / "configs" / "ias2026" / "ieee39_documented_limits_v1.json"
+LIMITS = (
+    Path(__file__).resolve().parents[3]
+    / "configs"
+    / "ias2026"
+    / "ieee39_documented_limits_v1.json"
+)
 
 RECOVERS = "RECOVERS"
 FAILS = "FAILS_DECLARED_SECURITY"
@@ -116,7 +120,9 @@ class _Observer:
             viol = "bus_voltage"
         sp = (om - 1.0) * F0
         obs["speed_hz_min"], obs["speed_hz_max"] = float(sp.min()), float(sp.max())
-        if viol is None and not (self.g.speed_hz[0] <= sp.min() and sp.max() <= self.g.speed_hz[1]):
+        if viol is None and not (
+            self.g.speed_hz[0] <= sp.min() and sp.max() <= self.g.speed_hz[1]
+        ):
             viol = "machine_speed"
         if viol is None and not (self.g.coi_hz[0] <= obs["coi_hz"] <= self.g.coi_hz[1]):
             viol = "coi_frequency"
@@ -146,8 +152,15 @@ class _Observer:
             gv = [min(gv[0], abs(vb)), max(gv[1], abs(vb))]
             gi, gs, gq = max(gi, i_mag), max(gs, abs(vb) * i_mag), max(gq, abs(q))
             pll = [min(pll[0], f_pll), max(pll[1], f_pll)]
-        obs.update(gfl_vmin=gv[0], gfl_vmax=gv[1], gfl_i=gi, gfl_s=gs, gfl_q=gq,
-                   pll_hz_min=pll[0], pll_hz_max=pll[1])
+        obs.update(
+            gfl_vmin=gv[0],
+            gfl_vmax=gv[1],
+            gfl_i=gi,
+            gfl_s=gs,
+            gfl_q=gq,
+            pll_hz_min=pll[0],
+            pll_hz_max=pll[1],
+        )
         if viol is None and self.gfl:
             if not (self.g.gfl_v[0] <= gv[0] and gv[1] <= self.g.gfl_v[1]):
                 viol = "gfl_terminal_voltage"
@@ -206,8 +219,14 @@ def _envelope_growth(t, y):
     return float(np.polyfit(t, np.log(y), 1)[0])
 
 
-def simulate(case, pulse_dae, *, guards: Guards | None = None, rules: Rules | None = None,
-             keep_trace: bool = True) -> dict:
+def simulate(
+    case,
+    pulse_dae,
+    *,
+    guards: Guards | None = None,
+    rules: Rules | None = None,
+    keep_trace: bool = True,
+) -> dict:
     """One pulse run from the equilibrium of ``case``; one label."""
 
     guards = guards or Guards.documented()
@@ -219,10 +238,14 @@ def simulate(case, pulse_dae, *, guards: Guards | None = None, rules: Rules | No
     trace, label, reason, t_label = [], None, "", None
     peak, post = 0.0, []
     t_pe = rules.pulse_s
-    seg_list = [(0.0, rules.pulse_s, pulse_dae), (rules.pulse_s, rules.pulse_s + rules.after_s, dae0)]
+    seg_list = [
+        (0.0, rules.pulse_s, pulse_dae),
+        (rules.pulse_s, rules.pulse_s + rules.after_s, dae0),
+    ]
     x = x0
 
     for t0, t1, dae in seg_list:
+
         def rhs(t, xx, dae=dae):
             z, res = net.solve(dae, xx)
             if z is None:
@@ -236,7 +259,9 @@ def simulate(case, pulse_dae, *, guards: Guards | None = None, rules: Rules | No
             j = central_difference_jacobians(dae, xx, z, {})
             return j.fx - j.fz @ np.linalg.solve(j.gz, j.gx)
 
-        solver = BDF(rhs, t0, x, t1, jac=jac, rtol=1e-7, atol=1e-9, max_step=rules.max_step)
+        solver = BDF(
+            rhs, t0, x, t1, jac=jac, rtol=1e-7, atol=1e-9, max_step=rules.max_step
+        )
         while solver.status == "running":
             try:
                 solver.step()
@@ -249,7 +274,11 @@ def simulate(case, pulse_dae, *, guards: Guards | None = None, rules: Rules | No
             z, res = net.solve(dae, solver.y)
             if z is None or res > guards.residual:
                 # the network has no nearby solution: voltage collapse or numerics
-                label, reason, t_label = NUMERICAL, f"network_residual_{res:.1e}", solver.t
+                label, reason, t_label = (
+                    NUMERICAL,
+                    f"network_residual_{res:.1e}",
+                    solver.t,
+                )
                 break
             obs, viol = obs_fn(solver.y, z)
             dval = max(obs["s1"] / rules.s1_scale, obs["s2"] / rules.s2_scale)
@@ -264,7 +293,9 @@ def simulate(case, pulse_dae, *, guards: Guards | None = None, rules: Rules | No
                 if solver.t <= t_pe + rules.window_s:
                     peak = max(peak, dval)
                 elif peak > 0 and dval > rules.growth_factor * peak:
-                    arr = np.array([p for p in post if p[0] >= solver.t - rules.growth_fit_s])
+                    arr = np.array(
+                        [p for p in post if p[0] >= solver.t - rules.growth_fit_s]
+                    )
                     if len(arr) > 5 and _envelope_growth(arr[:, 0], arr[:, 1]) > 0:
                         label, reason, t_label = FAILS, "growth", solver.t
                         break
@@ -281,18 +312,37 @@ def simulate(case, pulse_dae, *, guards: Guards | None = None, rules: Rules | No
     if label is None:
         tail = tr[tr.t >= tr.t.iloc[-1] - rules.tail_s]
         final = float(tr.D.iloc[-1])
-        growth = _envelope_growth(tail.t.to_numpy(), tail.D.to_numpy()) if len(tail) > 5 else np.nan
+        growth = (
+            _envelope_growth(tail.t.to_numpy(), tail.D.to_numpy())
+            if len(tail) > 5
+            else np.nan
+        )
         if peak > 0 and final <= rules.decay_factor * peak and growth < 0:
             label, reason = RECOVERS, "decayed"
         else:
-            label, reason = FAILS, f"not_recovered final/peak={final / max(peak, 1e-300):.3g} growth={growth:.3g}"
+            label, reason = (
+                FAILS,
+                f"not_recovered final/peak={final / max(peak, 1e-300):.3g} "
+                f"growth={growth:.3g}",
+            )
         t_label = float(tr.t.iloc[-1])
     summary = {"label": label, "reason": reason, "t_label": t_label, "D_peak": peak}
     if len(tr):
-        for k in ("vmin", "gfl_vmin", "pss_max", "coi_hz", "max_rel_angle", "gfl_i", "efd_margin"):
+        for k in (
+            "vmin",
+            "gfl_vmin",
+            "pss_max",
+            "coi_hz",
+            "max_rel_angle",
+            "gfl_i",
+            "efd_margin",
+        ):
             if k in tr:
-                summary[f"extreme_{k}"] = float(tr[k].min() if k in ("vmin", "gfl_vmin", "efd_margin")
-                                                else tr[k].abs().max())
+                summary[f"extreme_{k}"] = float(
+                    tr[k].min()
+                    if k in ("vmin", "gfl_vmin", "efd_margin")
+                    else tr[k].abs().max()
+                )
     return {"summary": summary, "trace": tr}
 
 
@@ -320,7 +370,10 @@ def pulse_dae(case, family: str, amplitude: float, spec: dict):
         for slot in dae.slots:
             if slot.kind == "gfl":
                 p = slot.device.parameters
-                dev = replace(slot.device, parameters=replace(p, p_ref=p.p_ref * (1.0 - amplitude)))
+                dev = replace(
+                    slot.device,
+                    parameters=replace(p, p_ref=p.p_ref * (1.0 - amplitude)),
+                )
                 slot = replace(slot, device=dev)
             slots.append(slot)
         return replace(dae, slots=tuple(slots))
@@ -333,7 +386,9 @@ def transverse_alpha(case) -> float:
 
     r_x, _ = rotation_generator(case.dae, case.equilibrium.z)
     w = frequency_partner(case.dae).w
-    return float(np.linalg.eigvals(transverse_operator(case.system.A, r_x, w).a_perp).real.max())
+    return float(
+        np.linalg.eigvals(transverse_operator(case.system.A, r_x, w).a_perp).real.max()
+    )
 
 
 __all__ = ["simulate", "pulse_dae", "Guards", "Rules", "transverse_alpha"]

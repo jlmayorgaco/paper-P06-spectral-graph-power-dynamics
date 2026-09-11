@@ -1,0 +1,84 @@
+{
+  "experiment": "FC01_transverse_quotient",
+  "question": "Do the frozen F7 / H / kappa labels survive the exact transverse quotient?",
+  "verdict": "COMPUTED",
+  "seed": null,
+  "config": {
+    "margin": 0.002,
+    "safety": 10.0,
+    "chunk": 400,
+    "workers": 16
+  },
+  "workers": 16,
+  "git_commit": "d79fb29526e75769aa62db07c1a7c50281eb0508",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 6.18,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-11T04:17:41Z",
+  "elapsed_s": 5088.38,
+  "notes": [],
+  "results": {
+    "structure": {
+      "dim_C": [
+        2
+      ],
+      "jordan_chain_all": true,
+      "jordan_12_range": [
+        376.991118429287,
+        376.9911184307753
+      ],
+      "max_invariance_residual": 1.1254736352660317e-11,
+      "max_coupling_residual": 4.7956166848999115e-11,
+      "max_spectral_identity_dist": 3.149693839077372e-08,
+      "max_left_condition": 2212.4841332877872,
+      "rhp_old_equals_perp": 106,
+      "rows": 106
+    },
+    "f7": {
+      "F7A": {
+        "points": 120390,
+        "exact_final": 118898,
+        "H_perp_equals_G1": 119791,
+        "differs_and_exact": 0,
+        "unresolved_final": 1492,
+        "unresolved_final_g_le_0.005": 8,
+        "near_axis_subset_evaluations": 33389,
+        "max_rotation_residual": 4.561307510141975e-10
+      },
+      "F7B": {
+        "points": 79028,
+        "exact_final": 78038,
+        "H_perp_equals_G1": 78598,
+        "differs_and_exact": 0,
+        "unresolved_final": 990,
+        "unresolved_final_g_le_0.005": 4,
+        "near_axis_subset_evaluations": 25471,
+        "max_rotation_residual": 4.5744887982425807e-10
+      },
+      "F7C": {
+        "points": 145811,
+        "exact_final": 143165,
+        "H_perp_equals_G1": 144463,
+        "differs_and_exact": 0,
+        "unresolved_final": 2646,
+        "unresolved_final_g_le_0.005": 4,
+        "near_axis_subset_evaluations": 44093,
+        "max_rotation_residual": 4.5661347020398965e-10
+      }
+    },
+    "total_points": 345229,
+    "total_equal_G1": 342852,
+    "total_unresolved_final": 5128,
+    "total_differs_exact": 0,
+    "elapsed_s": 5088.2
+  }
+}

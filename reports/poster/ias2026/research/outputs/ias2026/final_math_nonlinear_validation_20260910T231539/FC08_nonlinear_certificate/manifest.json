@@ -1,0 +1,129 @@
+{
+  "experiment": "FC08_nonlinear_certificate",
+  "question": "What fraction of the TDS threshold does a local Lyapunov certificate reach?",
+  "verdict": "COMPUTED",
+  "seed": null,
+  "config": {
+    "cases": [
+      "P4:()",
+      "P4:(30,)",
+      "P4:(30, 33)",
+      "P4:(30, 33, 35)",
+      "P_inf:()",
+      "P_inf:(30, 33, 35, 37)"
+    ],
+    "seed": 20260922
+  },
+  "workers": 1,
+  "git_commit": "d79fb29526e75769aa62db07c1a7c50281eb0508",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 6.07,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-11T06:03:45Z",
+  "elapsed_s": 3.92,
+  "notes": [],
+  "results": {
+    "rows": [
+      {
+        "point": "P4",
+        "subset": "BASE",
+        "status": "ESTIMATE (sampled curvature, linearized forced phase)",
+        "beta": 2.4982618877231796e-06,
+        "lambda_min_P": 0.05186564442890679,
+        "lambda_max_P": 200139.14572250104,
+        "L_hat": 3.8610492418419895,
+        "r_cert_state": 1.6767965002564436e-13,
+        "a_cert_MW": 1.9306335339116363e-11,
+        "r_TDS_MW": 681.25,
+        "r_TDS_type": "OUTSIDE_MODEL_SCOPE",
+        "conservatism_ratio": 2.8339574809712092e-14,
+        "cpu_s": 0.5
+      },
+      {
+        "point": "P4",
+        "subset": "30",
+        "status": "ESTIMATE (sampled curvature, linearized forced phase)",
+        "beta": 1.9033205213708821e-06,
+        "lambda_min_P": 0.000772013783694546,
+        "lambda_max_P": 262698.79107900907,
+        "L_hat": 6.591852530379436,
+        "r_cert_state": 8.485382565164645e-16,
+        "a_cert_MW": 1.0511374998067022e-14,
+        "r_TDS_MW": 681.25,
+        "r_TDS_type": "OUTSIDE_MODEL_SCOPE",
+        "conservatism_ratio": 1.542954128156627e-17,
+        "cpu_s": 0.6
+      },
+      {
+        "point": "P4",
+        "subset": "30+33",
+        "status": "ESTIMATE (sampled curvature, linearized forced phase)",
+        "beta": 8.230748369302463e-07,
+        "lambda_min_P": 0.0007609686520654251,
+        "lambda_max_P": 607478.1752104199,
+        "L_hat": 67.51043772609876,
+        "r_cert_state": 1.5272301442173682e-17,
+        "a_cert_MW": 1.3827223411485452e-16,
+        "r_TDS_MW": 450.78125,
+        "r_TDS_type": "OUTSIDE_MODEL_SCOPE",
+        "conservatism_ratio": 3.0673909820972927e-19,
+        "cpu_s": 0.4
+      },
+      {
+        "point": "P4",
+        "subset": "30+33+35",
+        "status": "ESTIMATE (sampled curvature, linearized forced phase)",
+        "beta": 2.6159314125505286e-07,
+        "lambda_min_P": 0.000757256843911498,
+        "lambda_max_P": 1911365.0977282347,
+        "L_hat": 169.31235544486472,
+        "r_cert_state": 6.121209690441286e-19,
+        "a_cert_MW": 3.661726017760375e-18,
+        "r_TDS_MW": 130.46875,
+        "r_TDS_type": "OUTSIDE_MODEL_SCOPE",
+        "conservatism_ratio": 2.806592396846276e-20,
+        "cpu_s": 0.6
+      },
+      {
+        "point": "P_inf",
+        "subset": "BASE",
+        "status": "ESTIMATE (sampled curvature, linearized forced phase)",
+        "beta": 1.7779641927268205e-05,
+        "lambda_min_P": 0.058572463339581715,
+        "lambda_max_P": 28122.051166461468,
+        "L_hat": 1.2140945928109885,
+        "r_cert_state": 3.050120382659762e-11,
+        "a_cert_MW": 8.596130706317106e-09,
+        "r_TDS_MW": 668.75,
+        "r_TDS_type": "OUTSIDE_MODEL_SCOPE",
+        "conservatism_ratio": 1.285402722439941e-11,
+        "cpu_s": 0.6
+      },
+      {
+        "point": "P_inf",
+        "subset": "30+33+35+37",
+        "status": "ESTIMATE (sampled curvature, linearized forced phase)",
+        "beta": 1.652365890701704e-05,
+        "lambda_min_P": 0.00035403492985974517,
+        "lambda_max_P": 30259.64181502602,
+        "L_hat": 1971.3783187960223,
+        "r_cert_state": 9.806602570863729e-17,
+        "a_cert_MW": 1.5865650084691838e-15,
+        "r_TDS_MW": 88.28125,
+        "r_TDS_type": "OUTSIDE_MODEL_SCOPE",
+        "conservatism_ratio": 1.7971709830447392e-17,
+        "cpu_s": 0.6
+      }
+    ],
+    "energy_certificate": "NOT_APPLICABLE (see module docstring)"
+  }
+}

@@ -37,7 +37,9 @@ def run_directory() -> Path:
         path = Path(stamp.read_text(encoding="utf-8").strip())
         if path.exists():
             return path
-    path = OUT_ROOT / f"final_math_nonlinear_validation_{time.strftime('%Y%m%dT%H%M%S')}"
+    path = (
+        OUT_ROOT / f"final_math_nonlinear_validation_{time.strftime('%Y%m%dT%H%M%S')}"
+    )
     path.mkdir(parents=True, exist_ok=True)
     stamp.write_text(str(path), encoding="utf-8")
     return path

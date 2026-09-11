@@ -1,0 +1,47 @@
+{
+ "git_commit": "f970fe073e06a0adc4e39676a2d8c4e5de9d7c88",
+ "git_branch": "ias2026/final-closure-campaign",
+ "git_tag": "IAS2026_PRE_FINAL_VALIDATION",
+ "git_status_research": "?? reports/poster/ias2026/research/docs.zip\n?? reports/poster/ias2026/research/experiments/final_closure/\n?? reports/poster/ias2026/research/outputs/ias2026/FINAL_CLOSURE_CURRENT_RUN\n?? reports/poster/ias2026/research/src/ibr_cycles/certification/transverse.py",
+ "python": "3.13.14 (tags/v3.13.14:fd17997, Jun 10 2026, 13:03:48) [MSC v.1944 64 bit (AMD64)]",
+ "numpy": "2.5.2",
+ "scipy": "1.18.1",
+ "pandas": "3.0.5",
+ "andes": "2.0.0",
+ "platform": "Windows-11-10.0.26200-SP0",
+ "cpu": "Intel64 Family 6 Model 170 Stepping 4, GenuineIntel",
+ "logical_cpus": 22,
+ "ram_bytes": 33863831552,
+ "seeds": {
+  "campaign_base": 20260920,
+  "note": "each FC script declares its own seed"
+ },
+ "solver_tolerances": {
+  "power_flow_newton": 1e-12,
+  "dae_equilibrium_newton": 1e-09,
+  "tds_BDF_rtol": 1e-07,
+  "tds_BDF_atol": 1e-09,
+  "tds_network_newton": 1e-10,
+  "jacobian": "central differences (dynamics.linearize), unit and 2x scale"
+ },
+ "model_hashes": {
+  "configs/ias2026/ieee39_network.json": "705f53299b57cbd536ababfe5236f3b2ec621e8b305a5737135cfba8363d995e",
+  "configs/kundur/kundur_network.json": "d63986ccdcbac3c5e73dfce81cb5cfffa35ec674efbc7672e8aaceb7f78db170",
+  "configs/ieee68/ieee68_network.json": "0cee6c94248f8faf1809e7726315d8509e979ce9e3f559278e900c52af510448",
+  "src/ibr_cycles/models/ieee39_devices.py": "bcf0c76be65b171b580684065cde4eb88d0433c6b4d7beefec966f8711036d90",
+  "src/ibr_cycles/models/ieee68_devices.py": "3cb4259cc4317b1802c0a7e57a7eb4ca3018ed002bb6c720547d2a332793b5b5",
+  "src/ibr_cycles/models/ieee39_case.py": "1f38a8e541780ab7205809dc1ba58bdafb6c923933f5772d46407064edc8c722",
+  "src/ibr_cycles/models/ieee39_network.py": "f42144cd02a6dc779ed690fd866ad026f33eb7844584c7f10281fc7d98e3fe13",
+  "src/ibr_cycles/dynamics/linearize.py": "7844b92d3eb3d186abc94ea69daf24d2c3eb0746259a742ff4456eeda12094f3",
+  "experiments/_f7_common.py": "2e6ac2b3490c061d5ee3c344043dbfa6dd663e50bfbe4aadab304ad0a8dfd44f",
+  "experiments/F8_service_attribution.py": "44be3ae39b2a383f5006c9e2aafe4ccd31219fed61fc543a4b6dd8b7aebff25d",
+  "experiments/F12_kundur.py": "7a9b5b4e27f2c9c305c296d3190ec1a22dcae0e18957dc54b6e9acaa2a1594f8",
+  "experiments/G3_ieee68.py": "876821689d62c319d670909a56522f8a1fc60a93a8da2b4e7ff6e7a75c456897",
+  "experiments/G2_tds.py": "5e7ccfe73ec731d92c41c05ea8d0ecf1e7a72fb4dc1486a547f9a6dfaeefdb09"
+ },
+ "frozen_tags": [
+  "IAS2026_TRACKA_F7_POLICY_HYPERGRAPH_FREEZE",
+  "IAS2026_TRACKA_F8_F12_POST_F7_FREEZE"
+ ],
+ "run_directory": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\poster\\ias2026\\research\\outputs\\ias2026\\final_math_nonlinear_validation_20260910T231539"
+}

@@ -83,6 +83,35 @@ assumptions fails. For example:
 - the G1 condensers with `D = 2` leave `C = span{R_x}`;
 - the governed model of §6 also leaves `C = span{R_x}`.
 
+**The nonlinear statement.** In the governor-free L0 equations, time derivatives
+depend on the speeds only through the angle equations (`delta' = omega_B
+(omega − 1)`, and for a PLL `theta' = kp vq + x_pll`). There is no damping and
+the swing equations are in power form (Kundur also; the 68-bus torque form with
+`D = 0` and a slip-input washout also, with the washout component in `w`).
+Therefore the vector field satisfies, for every state and every `c`,
+
+    r(x + phi R_x) = r(x),      r(x + c w) = r(x) + c omega_B R_x,
+
+where `r(x) = f(x, psi(x))` is the reduced field. The rotation acts covariantly
+on `psi`. Both directions of `C` are thus exact continuous symmetries of the
+reduced equations modulo `C`: `Z^T r(x + v) = Z^T r(x)` for every `v` in `C`.
+
+The **nonlinear** transverse dynamics on a section `x = x* + Z y` is the exact
+reduced system
+
+    y' = Z^T r(x* + Z y),
+
+whose linearization is `A_perp`. This exactness justifies two uses:
+
+- the relative-equilibrium recovery criterion of the nonlinear campaign
+  (`configs/ias2026/final_nonlinear_composability_v1.yaml`);
+- standard Hopf / normal-form analysis on the transverse system (FC13).
+
+**Physical status, stated separately.** The translation along `w` is an
+invariance of these equations only *because* the plant has no frequency
+restoration. It is a model-scope property, not a gauge. The rotation along
+`R_x` is a gauge. The paper states them separately.
+
 ## 3. Transverse dynamics
 
 Let `U` be an orthonormal basis of `C` and `Z` an orthonormal basis of its

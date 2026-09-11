@@ -1,0 +1,1 @@
+﻿INVALID for M1/M2: first-order-hold coefficient Gamma1/dt^2 instead of Gamma1/dt (1/dt = 1000x too large), and the pulse-end output sample compared pulse-on reference against pulse-off models. M0 frequency columns are unaffected. Superseded by v2 in the parent directory. Kept for the record only.
