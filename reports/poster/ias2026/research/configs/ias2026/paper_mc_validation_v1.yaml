@@ -126,6 +126,19 @@ ieee39:
       nonlinear_drift: >
         c ~ U(-0.02, 0.02): ||r(x + c w) - r(x) - c omega_b R_x|| <= 1e-8 (1 + ||r(x)||)
 
+    amendment_v1_1:
+      date: "2026-09-11, after a one-draw smoke test and BEFORE the full P1 run"
+      finding: >
+        the rule 'spectral_identity <= 1e-6' matched the two structural zeros too;
+        a size-2 Jordan block splits in floating point by O(sqrt(eps ||A|| omega_b)),
+        about 2e-5 here (smoke draw: 2.0e-5), so the rule is violated by
+        construction and says nothing about the theorem.
+      change: >
+        the spectral identity is evaluated between sigma(A) minus the two
+        eigenvalues nearest 0 and sigma(A_perp) (threshold unchanged, 1e-6
+        (1 + |lambda|)); the magnitude of the numerical Jordan split is reported
+        separately (expected <= 1e-3). Nothing else changes.
+
   P2_segments:                  # Theorem 2 and Proposition 3 on the physical model
     segments: 120
     points_per_segment: 21

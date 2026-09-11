@@ -124,8 +124,14 @@ def p1_task(task):
     cs = center_subspace(a, r_x, w, left=False)
     tr = transverse_operator(a, r_x, w)
     ev_full = np.linalg.eigvals(a)
-    ev_perp = np.concatenate([np.zeros(2), np.linalg.eigvals(tr.a_perp)])
-    c = np.abs(ev_full[:, None] - ev_perp[None, :]) / (1 + np.abs(ev_perp[None, :]))
+    # amendment v1.1: the structural Jordan pair splits numerically by
+    # O(sqrt(eps ||A|| omega_b)); it is removed (the two eigenvalues nearest 0)
+    # and its split is reported separately
+    order = np.argsort(np.abs(ev_full))
+    jordan_split = float(np.abs(ev_full[order[:2]]).max())
+    ev_rest = ev_full[order[2:]]
+    ev_perp = np.linalg.eigvals(tr.a_perp)
+    c = np.abs(ev_rest[:, None] - ev_perp[None, :]) / (1 + np.abs(ev_perp[None, :]))
     r, cc = linear_sum_assignment(c)
     spec_id = float(c[r, cc].max())
     # nonlinear symmetries at a random off-equilibrium state
@@ -155,6 +161,7 @@ def p1_task(task):
         "jordan_rel": abs(cs.jordan[0, 1] / OMEGA_B - 1.0),
         "invariance": cs.invariance_residual,
         "spectral_identity": spec_id,
+        "jordan_split": jordan_split,
         "nonlinear_rotation": rot_res,
         "nonlinear_drift": drift_res,
         "phi": phi,
@@ -176,6 +183,7 @@ def run_p1():
         "jordan_rel_max": float(df.jordan_rel.max()),
         "invariance_max": float(df.invariance.max()),
         "spectral_identity_max": float(df.spectral_identity.max()),
+        "jordan_split_max": float(df.jordan_split.max()),
         "nonlinear_rotation_max": float(df.nonlinear_rotation.max()),
         "nonlinear_drift_max": float(df.nonlinear_drift.max()),
         "unstable_draws": int((df.alpha_perp > 0).sum()),
