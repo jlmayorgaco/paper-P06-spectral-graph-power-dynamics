@@ -1,0 +1,209 @@
+{
+ "census_portfolios": 511,
+ "census_status": {
+  "OK": 511
+ },
+ "max_abs_sn_minus_legacy_MVA": 1.8189894035458565e-12,
+ "max_abs_pg_measured_minus_base_dispatch_MW": 3.2741809263825417e-11,
+ "legacy_over_pg_range": [
+  1.1637241411412564,
+  3.017529119638006
+ ],
+ "spearman_legacy_vs_pg": 0.9635622014216642,
+ "flagship_per_bus": [
+  {
+   "bus": 30,
+   "Pg_MW": 436.08638500000893,
+   "Pmax_MW": 1040.0,
+   "Qg_Mvar": 92.69564784065741,
+   "Sn_MVA": 1040.0
+  },
+  {
+   "bus": 33,
+   "Pg_MW": 651.9999980000136,
+   "Pmax_MW": 682.0,
+   "Qg_Mvar": 130.0435828538664,
+   "Sn_MVA": 1174.8
+  },
+  {
+   "bus": 35,
+   "Pg_MW": 686.9999980001136,
+   "Pmax_MW": 697.0,
+   "Qg_Mvar": 225.5269369153059,
+   "Sn_MVA": 1085.7
+  },
+  {
+   "bus": 37,
+   "Pg_MW": 321.52133800000746,
+   "Pmax_MW": 564.0,
+   "Qg_Mvar": -27.617115791334168,
+   "Sn_MVA": 970.2
+  },
+  {
+   "bus": "total",
+   "Pg_MW": 2096.6077190001433,
+   "Pmax_MW": 2983.0,
+   "Qg_Mvar": 420.64905181849554,
+   "Sn_MVA": 4270.7
+  }
+ ],
+ "named_cases": [
+  {
+   "case": "flagship unrepaired (30+33+35+37)",
+   "legacy_replaced_mw_column": 4270.7,
+   "replaced_sn_mva": 4270.7,
+   "retired_sg_sn_mva": 4270.7,
+   "replaced_pg_mw": 2096.607719000153,
+   "replaced_q_mvar": 420.64905181849997,
+   "replaced_pmax_mw": 2983.0,
+   "sg_sn_mva_left_at_replaced_buses": 0.0,
+   "condenser_sn_mva": 0.0,
+   "pmax_documented": true,
+   "pg_mw_base_dispatch": 2096.6077190001433
+  },
+  {
+   "case": "RB weaken P loop x0.427",
+   "legacy_replaced_mw_column": 4270.7,
+   "replaced_sn_mva": 4270.7,
+   "retired_sg_sn_mva": 4270.7,
+   "replaced_pg_mw": 2096.6077190001556,
+   "replaced_q_mvar": 420.6490518184989,
+   "replaced_pmax_mw": 2983.0,
+   "sg_sn_mva_left_at_replaced_buses": 0.0,
+   "condenser_sn_mva": 0.0,
+   "pmax_documented": true,
+   "pg_mw_base_dispatch": 2096.6077190001433
+  },
+  {
+   "case": "RC minimum-norm retune",
+   "legacy_replaced_mw_column": 4270.7,
+   "replaced_sn_mva": 4270.7,
+   "retired_sg_sn_mva": 4270.7,
+   "replaced_pg_mw": 2096.6077190001533,
+   "replaced_q_mvar": 420.6490518184988,
+   "replaced_pmax_mw": 2983.0,
+   "sg_sn_mva_left_at_replaced_buses": 0.0,
+   "condenser_sn_mva": 0.0,
+   "pmax_documented": true,
+   "pg_mw_base_dispatch": 2096.6077190001433
+  },
+  {
+   "case": "RD condenser 0.25 x Sn at each retired bus",
+   "legacy_replaced_mw_column": 4270.7,
+   "replaced_sn_mva": 4270.7,
+   "retired_sg_sn_mva": 4270.7,
+   "replaced_pg_mw": 2096.607719000147,
+   "replaced_q_mvar": 6.050715484207103e-13,
+   "replaced_pmax_mw": 2983.0,
+   "sg_sn_mva_left_at_replaced_buses": 1067.675,
+   "condenser_sn_mva": 1067.675,
+   "pmax_documented": true,
+   "pg_mw_base_dispatch": 2096.6077190001433
+  },
+  {
+   "case": "restore SG30",
+   "legacy_replaced_mw_column": 3230.7,
+   "replaced_sn_mva": 3230.7,
+   "retired_sg_sn_mva": 3230.7,
+   "replaced_pg_mw": 1660.521334000144,
+   "replaced_q_mvar": 327.9534039778406,
+   "replaced_pmax_mw": 1943.0,
+   "sg_sn_mva_left_at_replaced_buses": 0.0,
+   "condenser_sn_mva": 0.0,
+   "pmax_documented": true,
+   "pg_mw_base_dispatch": 1660.5213340001349
+  },
+  {
+   "case": "restore SG33",
+   "legacy_replaced_mw_column": 3095.9,
+   "replaced_sn_mva": 3095.8999999999996,
+   "retired_sg_sn_mva": 3095.8999999999996,
+   "replaced_pg_mw": 1444.607721000145,
+   "replaced_q_mvar": 290.6054689646328,
+   "replaced_pmax_mw": 2301.0,
+   "sg_sn_mva_left_at_replaced_buses": 0.0,
+   "condenser_sn_mva": 0.0,
+   "pmax_documented": true,
+   "pg_mw_base_dispatch": 1444.6077210001301
+  },
+  {
+   "case": "restore SG35",
+   "legacy_replaced_mw_column": 3185.0,
+   "replaced_sn_mva": 3185.0,
+   "retired_sg_sn_mva": 3185.0,
+   "replaced_pg_mw": 1409.6077210000271,
+   "replaced_q_mvar": 195.12211490318938,
+   "replaced_pmax_mw": 2286.0,
+   "sg_sn_mva_left_at_replaced_buses": 0.0,
+   "condenser_sn_mva": 0.0,
+   "pmax_documented": true,
+   "pg_mw_base_dispatch": 1409.60772100003
+  },
+  {
+   "case": "restore SG37",
+   "legacy_replaced_mw_column": 3300.5,
+   "replaced_sn_mva": 3300.5,
+   "retired_sg_sn_mva": 3300.5,
+   "replaced_pg_mw": 1775.0863810001456,
+   "replaced_q_mvar": 448.2661676098322,
+   "replaced_pmax_mw": 2419.0,
+   "sg_sn_mva_left_at_replaced_buses": 0.0,
+   "condenser_sn_mva": 0.0,
+   "pmax_documented": true,
+   "pg_mw_base_dispatch": 1775.086381000136
+  },
+  {
+   "case": "E34 condenser 0.16 x Sn at bus 30",
+   "legacy_replaced_mw_column": 4270.7,
+   "replaced_sn_mva": 4270.7,
+   "retired_sg_sn_mva": 4270.7,
+   "replaced_pg_mw": 2096.6077190001492,
+   "replaced_q_mvar": 327.9534039778399,
+   "replaced_pmax_mw": 2983.0,
+   "sg_sn_mva_left_at_replaced_buses": 166.4,
+   "condenser_sn_mva": 166.4,
+   "pmax_documented": true,
+   "pg_mw_base_dispatch": 2096.6077190001433
+  },
+  {
+   "case": "E34 condenser 0.20 x Sn at bus 30",
+   "legacy_replaced_mw_column": 4270.7,
+   "replaced_sn_mva": 4270.7,
+   "retired_sg_sn_mva": 4270.7,
+   "replaced_pg_mw": 2096.607719000151,
+   "replaced_q_mvar": 327.9534039778401,
+   "replaced_pmax_mw": 2983.0,
+   "sg_sn_mva_left_at_replaced_buses": 208.0,
+   "condenser_sn_mva": 208.0,
+   "pmax_documented": true,
+   "pg_mw_base_dispatch": 2096.6077190001433
+  },
+  {
+   "case": "E34 condenser 0.24 x Sn at bus 30",
+   "legacy_replaced_mw_column": 4270.7,
+   "replaced_sn_mva": 4270.7,
+   "retired_sg_sn_mva": 4270.7,
+   "replaced_pg_mw": 2096.607719000148,
+   "replaced_q_mvar": 327.9534039778399,
+   "replaced_pmax_mw": 2983.0,
+   "sg_sn_mva_left_at_replaced_buses": 249.6,
+   "condenser_sn_mva": 249.6,
+   "pmax_documented": true,
+   "pg_mw_base_dispatch": 2096.6077190001433
+  },
+  {
+   "case": "E34 condenser 0.26 x Sn at bus 30",
+   "legacy_replaced_mw_column": 4270.7,
+   "replaced_sn_mva": 4270.7,
+   "retired_sg_sn_mva": 4270.7,
+   "replaced_pg_mw": 2096.607719000149,
+   "replaced_q_mvar": 327.9534039778399,
+   "replaced_pmax_mw": 2983.0,
+   "sg_sn_mva_left_at_replaced_buses": 270.40000000000003,
+   "condenser_sn_mva": 270.40000000000003,
+   "pmax_documented": true,
+   "pg_mw_base_dispatch": 2096.6077190001433
+  }
+ ],
+ "elapsed_s": 13.6
+}

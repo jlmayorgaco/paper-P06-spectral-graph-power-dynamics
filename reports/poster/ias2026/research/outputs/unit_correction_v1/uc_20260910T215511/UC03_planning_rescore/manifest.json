@@ -1,0 +1,50 @@
+{
+  "experiment": "UC03_planning_rescore",
+  "question": "Which planning statements change once MW and MVA are separated?",
+  "verdict": "COMPUTED",
+  "seed": null,
+  "config": {
+    "inputs": {
+      "E34_mitigation_frontier.csv": "43c86be21b9d7e708d2c9c2d23e8b0cb31972f390fe33d7d8ebc78ba2fa29ba0",
+      "E34_pareto_front.csv": "518a5871c46f9de91aa1d493f016f3c2bd6645f4cde1320a75b51e91ed94904c",
+      "E21_minimal_repair_strategies.csv": "e8751cb549caafb07d680c3eb0bf89d0048a859e644a4669655e398e6aff6819",
+      "E23_closure_and_frontier_frontier.csv": "b289f1990ead04cdd72f8f297ffd6b897e8f2e9a0f0825f9df62ae39c6277193",
+      "E11_replacement_atlas_limits.csv": "2acac89fafed5b2e5f7b35a806408d4a58e49cdd1f030e1ec961e0dc9d80f9ca"
+    }
+  },
+  "workers": 12,
+  "git_commit": "2bf87ec2d84b8a0f7f4a79d68b7ae1eb1f08f61d",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 11.15,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-11T03:11:59Z",
+  "elapsed_s": 2.8,
+  "notes": [],
+  "results": {
+    "flagship_pg_mw": 2096.607719000153,
+    "e34_options": 198,
+    "e34_measured_plans": 23,
+    "e34_frozen_front_points": 10,
+    "e34_front_recomputed_with_frozen_axes_equals_frozen": true,
+    "e34_front_pg_points": 10,
+    "e34_points_added_by_pg_axis": [],
+    "e34_points_removed_by_pg_axis": [],
+    "e34_m4_ever_pareto_efficient_pg": false,
+    "e34_zero_pg_forgone_strategies": [
+      "M1 converter only",
+      "M2 condenser only",
+      "M3 converter + condenser"
+    ],
+    "e23_restore_choice_unchanged": true,
+    "elapsed_s": 2.7
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "experiment": "UC01_quantities",
+  "question": "What are the MW, MVA and Mvar of every audited portfolio, measured?",
+  "verdict": "COMPUTED",
+  "seed": null,
+  "config": {
+    "census": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\poster\\ias2026\\research\\results\\tables\\E12_compatibility_census_portfolios.csv",
+    "census_sha256": "798617d5b8753ae5672fe3f1be12014cbe7c4d651be3b8f26cff99a230282b9c",
+    "networks": {
+      "IEEE-39": "705f53299b57cbd536ababfe5236f3b2ec621e8b305a5737135cfba8363d995e",
+      "Kundur": "d63986ccdcbac3c5e73dfce81cb5cfffa35ec674efbc7672e8aaceb7f78db170",
+      "IEEE-68": "0cee6c94248f8faf1809e7726315d8509e979ce9e3f559278e900c52af510448"
+    }
+  },
+  "workers": 12,
+  "git_commit": "2bf87ec2d84b8a0f7f4a79d68b7ae1eb1f08f61d",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 11.38,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-11T03:11:24Z",
+  "elapsed_s": 13.76,
+  "notes": [],
+  "results": {
+    "census_portfolios": 511,
+    "census_status": {
+      "OK": 511
+    },
+    "max_abs_sn_minus_legacy_MVA": 1.8189894035458565e-12,
+    "max_abs_pg_measured_minus_base_dispatch_MW": 3.2741809263825417e-11,
+    "legacy_over_pg_range": [
+      1.1637241411412564,
+      3.017529119638006
+    ],
+    "spearman_legacy_vs_pg": 0.9635622014216642,
+    "flagship_per_bus": [
+      {
+        "bus": 30,
+        "Pg_MW": 436.08638500000893,
+        "Pmax_MW": 1040.0,
+        "Qg_Mvar": 92.69564784065741,
+        "Sn_MVA": 1040.0
+      },
+      {
+        "bus": 33,
+        "Pg_MW": 651.9999980000136,
+        "Pmax_MW": 682.0,
+        "Qg_Mvar": 130.0435828538664,
+        "Sn_MVA": 1174.8
+      },
+      {
+        "bus": 35,
+        "Pg_MW": 686.9999980001136,
+        "Pmax_MW": 697.0,
+        "Qg_Mvar": 225.5269369153059,
+        "Sn_MVA": 1085.7
+      },
+      {
+        "bus": 37,
+        "Pg_MW": 321.52133800000746,
+        "Pmax_MW": 564.0,
+        "Qg_Mvar": -27.617115791334168,
+        "Sn_MVA": 970.2
+      },
+      {
+        "bus": "total",
+        "Pg_MW": 2096.6077190001433,
+        "Pmax_MW": 2983.0,
+        "Qg_Mvar": 420.64905181849554,
+        "Sn_MVA": 4270.7
+      }
+    ],
+    "elapsed_s": 13.6
+  }
+}

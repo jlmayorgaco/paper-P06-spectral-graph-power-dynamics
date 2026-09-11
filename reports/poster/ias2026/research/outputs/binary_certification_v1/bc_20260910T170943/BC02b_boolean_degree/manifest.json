@@ -1,0 +1,40 @@
+{
+  "experiment": "BC02b_boolean_degree",
+  "question": "What is the exact Boolean degree of each object in delta?",
+  "verdict": "COMPUTED",
+  "seed": null,
+  "config": {
+    "s_values": [
+      "(0.5+2j)",
+      "(0.1+4j)",
+      "(2+0.5j)",
+      "(0.05+3.46j)"
+    ],
+    "variant": "C2"
+  },
+  "workers": 1,
+  "git_commit": "2bf87ec2d84b8a0f7f4a79d68b7ae1eb1f08f61d",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 10.81,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-11T03:12:05Z",
+  "elapsed_s": 230.79,
+  "notes": [],
+  "results": {
+    "elapsed_s": 230.66456174850464,
+    "families": [
+      "IEEE-39 core at P4",
+      "Kundur K12A g=0.08 k=1.25",
+      "IEEE-68 cand g=0"
+    ]
+  }
+}

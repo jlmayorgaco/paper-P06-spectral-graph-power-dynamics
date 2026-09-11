@@ -15,3 +15,4 @@ C11c,"No device block has RHP poles (N_h = 0)",VERIFIED_ON_MODEL,results/BC/BC02
 C12,"Binary and cardinality certificates (T3/T4/T5/(29)) on the models",UNKNOWN,-,"Phases II-III not run"
 C13,"Exact minimal-witness search without monotonicity on the models",UNKNOWN,-,"BC05 not run"
 C14,"Any-order-safe design vs endpoint/stationary sequence/transition on the models",UNKNOWN,-,"BC07/BC11 not run; T6 proved synthetically"
+C11d,"Exact Boolean structure: J(delta) degree 1; h_S multiplicative; all interaction in det(I+M_SS) whose Moebius coefficients are principal-minor sums of M (degree m)",VERIFIED_ON_MODEL,results/BC/BC02b/BC02b_summary.json,"reduced A rational and full-degree"
