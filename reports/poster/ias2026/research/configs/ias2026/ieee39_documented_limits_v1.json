@@ -1,0 +1,94 @@
+{
+ "purpose": "documented limiter values used ONLY as model-scope guards (the frozen L0 model contains no limiter)",
+ "source": {
+  "file": "data/raw/ieee39_full.xlsx",
+  "sha256": "9c2048dc94201ee48ffe816de65d53831fa1f4b0e7fdf32f24c50f1017edcfe5",
+  "sheets": [
+   "IEEEX1",
+   "IEEEST"
+  ]
+ },
+ "note": "VRMAX/VRMIN are IEEEX1 regulator-output limits; applied to the harmonized first-order field voltage efd as a declared proxy",
+ "machines": [
+  {
+   "bus": 30,
+   "syn": "GENROU_1",
+   "VRMAX": 8.0,
+   "VRMIN": -8.0,
+   "LSMAX": 0.1,
+   "LSMIN": -0.1
+  },
+  {
+   "bus": 31,
+   "syn": "GENROU_2",
+   "VRMAX": 5.2,
+   "VRMIN": -5.0,
+   "LSMAX": 0.1,
+   "LSMIN": -0.1
+  },
+  {
+   "bus": 32,
+   "syn": "GENROU_3",
+   "VRMAX": 5.0,
+   "VRMIN": -5.0,
+   "LSMAX": 0.1,
+   "LSMIN": -0.1
+  },
+  {
+   "bus": 33,
+   "syn": "GENROU_4",
+   "VRMAX": 5.0,
+   "VRMIN": -5.0,
+   "LSMAX": 0.1,
+   "LSMIN": -0.1
+  },
+  {
+   "bus": 34,
+   "syn": "GENROU_5",
+   "VRMAX": 9.9,
+   "VRMIN": -9.9,
+   "LSMAX": 0.1,
+   "LSMIN": -0.1
+  },
+  {
+   "bus": 35,
+   "syn": "GENROU_6",
+   "VRMAX": 5.0,
+   "VRMIN": -5.0,
+   "LSMAX": 0.1,
+   "LSMIN": -0.1
+  },
+  {
+   "bus": 36,
+   "syn": "GENROU_7",
+   "VRMAX": 6.5,
+   "VRMIN": -6.5,
+   "LSMAX": 0.1,
+   "LSMIN": -0.1
+  },
+  {
+   "bus": 37,
+   "syn": "GENROU_8",
+   "VRMAX": 5.0,
+   "VRMIN": -5.0,
+   "LSMAX": 0.1,
+   "LSMIN": -0.1
+  },
+  {
+   "bus": 38,
+   "syn": "GENROU_9",
+   "VRMAX": 9.9,
+   "VRMIN": -9.9,
+   "LSMAX": 0.1,
+   "LSMIN": -0.1
+  },
+  {
+   "bus": 39,
+   "syn": "GENROU_10",
+   "VRMAX": 9.9,
+   "VRMIN": -9.9,
+   "LSMAX": 0.1,
+   "LSMIN": -0.1
+  }
+ ]
+}

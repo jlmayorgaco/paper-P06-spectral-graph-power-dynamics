@@ -27,7 +27,7 @@ ROOT = RESEARCH
 RESULTS = ROOT / "results"
 CONFIGS = ROOT / "configs" / "ias2026"
 OUT_ROOT = ROOT / "outputs" / "ias2026"
-WORKERS = 16
+WORKERS = int(__import__("os").environ.get("FC_WORKERS", "16"))
 CORE = (30, 33, 35, 37)
 
 
