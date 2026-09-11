@@ -1,0 +1,91 @@
+{
+ "seed": 20260912,
+ "all_gated_pass": true,
+ "T3": [
+  {
+   "system": "path (composite)",
+   "kappa_pushed_1.02": 4.0,
+   "H_pushed": "[(0, 1, 2, 3)]",
+   "boundary_eigenvalue": "(-2.5618237041916353e-16+0j)",
+   "max_alpha_proper_at_boundary": -0.12596795110235798,
+   "abs_F_V_at_zero": 1.2722023809422943e-16,
+   "abs_chi_V": 2.7755575615628914e-17,
+   "abs_composite": 1.1102230246251565e-16,
+   "nu_V": 1.2110840056505716e-17,
+   "support_connected": true,
+   "pair_cumulants": {
+    "01": 0.381966,
+    "12": 0.381966,
+    "23": 0.381966
+   }
+  },
+  {
+   "system": "ring (connected)",
+   "kappa_pushed_1.02": 4.0,
+   "H_pushed": "[(0, 1, 2, 3)]",
+   "boundary_eigenvalue": "(-1.454203689526501e-16+0j)",
+   "max_alpha_proper_at_boundary": -1.0,
+   "abs_F_V_at_zero": 8.881784197001244e-16,
+   "abs_chi_V": 1.0000000000000009,
+   "abs_composite": 1.0,
+   "nu_V": 0.5000000000000002,
+   "support_connected": true,
+   "pair_cumulants": {}
+  },
+  {
+   "system": "star (composite)",
+   "kappa_pushed_1.02": 4.0,
+   "H_pushed": "[(0, 1, 2, 3)]",
+   "boundary_eigenvalue": "(-1.5700924586837754e-16+0j)",
+   "max_alpha_proper_at_boundary": -0.1835034190722737,
+   "abs_F_V_at_zero": 3.330669073875488e-16,
+   "abs_chi_V": 0.0,
+   "abs_composite": 4.440892098500626e-16,
+   "nu_V": 0.0,
+   "support_connected": true,
+   "pair_cumulants": {
+    "01": 0.333333,
+    "02": 0.333333,
+    "03": 0.333333
+   }
+  }
+ ],
+ "C4": [
+  {
+   "example": "(a) directed ring",
+   "kappa": 4.0,
+   "d_alg": 4,
+   "d_conn": 4,
+   "H": "[(0, 1, 2, 3)]"
+  },
+  {
+   "example": "(b) symmetric path",
+   "kappa": 4.0,
+   "d_alg": 4,
+   "d_conn": 2,
+   "H": "[(0, 1, 2, 3)]"
+  },
+  {
+   "example": "(c) symmetric star",
+   "kappa": 4.0,
+   "d_alg": 2,
+   "d_conn": 2,
+   "H": "[(0, 1, 2, 3)]"
+  },
+  {
+   "example": "(d) tuned det G = 0",
+   "kappa": 4.0,
+   "d_alg": 3,
+   "d_conn": 4,
+   "H": "[(0, 1, 2, 3)]"
+  },
+  {
+   "example": "(e) ring + unstable pair",
+   "kappa": 2.0,
+   "d_alg": 4,
+   "d_conn": 4,
+   "H": "[(0, 2)]"
+  }
+ ],
+ "elapsed_s": 2.7
+}
