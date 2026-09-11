@@ -1,0 +1,60 @@
+# Relocated zero-frequency port, v1 — FROZEN before any holdout evaluation.
+#
+# Status of the 194/194 Kundur result of BC01: METHOD DEVELOPMENT (the relocation
+# was introduced after the original port failed on those same crossings). Only
+# the holdout below may be used as validation evidence.
+
+port_variables: "every bus-voltage coordinate z = (vx, vy) of the network, interleaved real form; the port is the Schur complement of the full DAE Jacobian onto z"
+
+derivation_from_the_dae:
+  symmetry: "R = (R_x, R_z): R_x = 1 on every delta and theta_pll, R_z = jV; f_x R_x + f_z R_z = 0 and g_x R_x + g_z R_z = 0 (rigid rotation invariance of the phasor DAE)"
+  partner: "w: machine speed +1, PLL integrator +omega_B, synthetic-inertia filter +1, 68-bus speed-input PSS washout +K; A w = omega_B R_x whenever every machine has D = 0 and no governor (common-frequency drift)"
+  center_subspace: "C = span{R_x, w}, exactly A-invariant, Jordan block [[0, omega_B], [0, 0]]"
+  reason: "det T(s) inherits the structural double zero of det(sI - A) at s = 0, so the unrelocated port carries no information at the origin; moving exactly the two center eigenvalues away from 0 leaves every other eigenvalue unchanged (T1a and Brauer's rank-one theorem)"
+
+transformation:
+  step_1: "f_x# = f_x - beta * U U^T, U = R_x / ||R_x||"
+  step_2: "x0 = w + a R_x, a = omega_B / beta - (U^T w) / ||R_x||  (exact null vector of A#)"
+  step_3: "f_x## = f_x# - beta2 * x0 x0^T / ||x0||^2"
+  port_at_zero: "T##(0) = g_z - g_x (f_x##)^-1 f_z"
+  identity_checked: "det T##(0) = det(g_z) det(-A##) / det(-f_x##), A## = f_x## - f_z g_z^-1 g_x"
+  applicability: "only when the partner w exists and is verified (A w = omega_B R_x within 10 eps)"
+
+normalization:
+  beta: 1.0       # s^-1
+  beta2: 1.0      # s^-1
+  consistency_pair: [2.0, 0.5]   # the detection verdict must be identical for both pairs
+
+jacobian: "central differences, dynamics.linearize.central_difference_jacobians, unit step (frozen)"
+
+detection_rule: >
+  A real (aperiodic) transverse eigenvalue crossing between two parameter points
+  p_lo, p_hi on the same line is DETECTED iff sign det T##(0) differs between p_lo
+  and p_hi, sign det(-f_x##) is equal at both points (no device-internal flip),
+  and the verdict is the same for both beta pairs. Anything else is MISSED.
+  A FALSE POSITIVE is a sign flip of det T##(0) between two points with no real
+  transverse eigenvalue crossing between them.
+
+ground_truth: >
+  The number of real positive eigenvalues of the transverse operator A_perp
+  (quotient by C, theory/TRANSVERSE_STABILITY_QUOTIENT.md), computed from the
+  eigenvalues, independent of the port. Crossings are bracketed on a fixed scan
+  and bisected (40 iterations) on that count; the port is evaluated at the final
+  bracket endpoints.
+
+holdout_design:
+  kundur:
+    description: "new operating/control slices never used to design the relocation (BC01 used the 194 G1 crossings of K12A (t = 1, k grid linspace(0.5, 2, 61)) and K12B (k = 1, t in [0.5, 1.375]))"
+    slices:
+      - {name: "KH1 t=1.6", t: 1.6, k: [0.55, 0.85, 1.15, 1.45, 1.75]}
+      - {name: "KH2 k-midpoints t=1", t: 1.0, k: [0.5125, 0.8125, 1.1125, 1.4125, 1.7125, 1.9875]}
+      - {name: "KH3 t=0.7 k-midpoints", t: 0.7, k: [0.6625, 1.2625, 1.8625]}
+    subsets: "all 8 subsets of {2, 3, 4}"
+    real_scan: "g in linspace(0, 0.003, 61)"
+    oscillatory_negative_controls: "complex-pair transverse crossings on the same lines, g in linspace(0.003, 1, 81), bisected; the port must NOT flip"
+    no_crossing_negative_controls: "consecutive scan points with identical transverse real and complex RHP counts; the port must NOT flip"
+  ieee68: "eligible only if a real transverse crossing exists; the frozen G3 map and the BC01 IEEE-68 audit contain none, so none is eligible"
+  synthetic: "random descriptor systems with an exact rotation, an exact Jordan partner and one parameterized real eigenvalue crossing 0 (FC02 synthetic test), 200 draws, seed 20260921"
+
+reporting: [holdout_crossings, detected, missed, false_positives, determinant_residual, conditioning]
+no_result_dependent_changes_after: "this file is committed before FC02 runs"
