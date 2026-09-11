@@ -1,0 +1,76 @@
+{
+ "prereg_commit": "5d0b1986",
+ "n_draws": 423,
+ "seed": 20260917,
+ "N_lhs": 100,
+ "machine_groups": {
+  "M": [
+   "m",
+   0.8,
+   1.2
+  ],
+  "XP": [
+   "xd1",
+   "xq1",
+   0.9,
+   1.1
+  ],
+  "KA": [
+   "ka",
+   0.85,
+   1.15
+  ],
+  "TE": [
+   "ta",
+   0.85,
+   1.15
+  ],
+  "PSS_K": [
+   "pss_gain",
+   0.8,
+   1.2
+  ],
+  "PSS_T": [
+   "pss_washout",
+   "pss_wash_lag",
+   "pss_lag",
+   0.8,
+   1.2
+  ]
+ },
+ "converter_groups": {
+  "PLL": [
+   "kp_pll",
+   "ki_pll",
+   0.8,
+   1.2
+  ],
+  "OUTER": [
+   "kp_p",
+   "ki_p",
+   "kp_q",
+   "ki_q",
+   0.8,
+   1.2
+  ],
+  "CURRENT": [
+   "kp_i",
+   "ki_i",
+   0.8,
+   1.2
+  ],
+  "TAU_P": [
+   "tau_p",
+   0.8,
+   1.2
+  ],
+  "XF": [
+   "xf",
+   0.9,
+   1.1
+  ]
+ },
+ "nominal_alpha_H4": 0.12700646714420022,
+ "nominal_g_star": 0.20768139434978364,
+ "elapsed_s": 571.0
+}
