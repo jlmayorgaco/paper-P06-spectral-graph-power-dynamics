@@ -1,0 +1,17 @@
+{
+  "auc_raw": {
+    "local_logabs": 0.3439655172413793,
+    "network_logabs": 0.496551724137931,
+    "fullorder_logabs": 0.19913793103448277,
+    "replaced_pg_mw": 0.571551724137931
+  },
+  "auc_best": {
+    "local_logabs": 0.6560344827586206,
+    "network_logabs": 0.503448275862069,
+    "fullorder_logabs": 0.8008620689655173,
+    "replaced_pg_mw": 0.571551724137931
+  },
+  "unstable": 10,
+  "n": 126,
+  "max_factor_error": 0.43106246663653225
+}

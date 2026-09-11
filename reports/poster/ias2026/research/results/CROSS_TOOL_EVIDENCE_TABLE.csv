@@ -1,0 +1,56 @@
+phase,check,comparison,measured,gate,verdict,note
+A,PF convergence mismatch,Python,2.7532731382577167e-12,<1e-10,PASS,
+A,pytest ieee39 network+baseline,Python,9 passed in 3.83s,all pass,PASS,
+A,Ybus max abs error (pu),Python vs frozen ANDES npy + restored shunts,1.139086659085919e-13,<=1e-9,PASS,"pack method; stale npy omits bus-4/5 shunts, pack adds them"
+A,Vm max abs error (pu),Python vs frozen ANDES PF,1.724304485861694e-07,<=1e-5,PASS,
+A,Va gauge-aligned max error (rad),Python vs frozen ANDES PF,1.711858622910345e-07,<=1e-5,PASS,
+A,PV generator P max error (pu),Python vs frozen ANDES PF,1.1359801987964602e-12,<=1e-8,PASS,supplementary
+A,slack generator P error (pu),Python vs frozen ANDES PF,5.689183169899081e-06,<=1e-8,FAIL (literal); EXPLAINED,ANDES line equations add +1e-8 to r and x (line.py:200); mirrored in Python -> 1.5e-12 (DIAGNOSTIC)
+A,generator Q max error (pu),Python vs frozen ANDES PF,3.5742095099156046e-06,<=1e-5,PASS,supplementary
+B,PF converged,pandapower 3.4.0 (as supplied) vs Python,True,True,PASS,
+B,Ybus max abs error (pu),pandapower 3.4.0 (as supplied) vs Python,9.382716049382793,<=1e-9,FAIL,"supplementary; as supplied, from_ppc puts the tap on the HV winding of branches 35, 37, 38"
+B,Vm max abs error (pu),pandapower 3.4.0 (as supplied) vs Python,0.09262033060114405,<=1e-5,FAIL,pack
+B,Va gauge-aligned max error (rad),pandapower 3.4.0 (as supplied) vs Python,0.017522414090965138,<=1e-5,FAIL,pack
+B,generator P max error incl. slack (pu),pandapower 3.4.0 (as supplied) vs Python,0.03013624562481798,<=1e-8,FAIL,supplementary
+B,generator Q max error incl. slack (pu),pandapower 3.4.0 (as supplied) vs Python,5.430267467009678,<=1e-5,FAIL,supplementary
+B,"branch terminal P/Q max error (MVA), pack formula",pandapower 3.4.0 (as supplied) vs Python,420.2661754621918,<=1e-3,FAIL,pack
+B,"branch terminal P/Q max error (MVA), pandapower native",pandapower 3.4.0 (as supplied) vs Python,561.3306927862267,<=1e-3,FAIL,supplementary
+B,PF converged,pandapower 3.4.0 (translation-corrected) vs Python,True,True,PASS,
+B,Ybus max abs error (pu),pandapower 3.4.0 (translation-corrected) vs Python,1.139086659085919e-13,<=1e-9,PASS,"supplementary; branches 35, 37, 38 reoriented HV->LV (tap 1/t, z*t^2)"
+B,Vm max abs error (pu),pandapower 3.4.0 (translation-corrected) vs Python,2.864375403532904e-14,<=1e-5,PASS,pack
+B,Va gauge-aligned max error (rad),pandapower 3.4.0 (translation-corrected) vs Python,3.223810107755298e-14,<=1e-5,PASS,pack
+B,generator P max error incl. slack (pu),pandapower 3.4.0 (translation-corrected) vs Python,1.311839525897085e-12,<=1e-8,PASS,supplementary
+B,generator Q max error incl. slack (pu),pandapower 3.4.0 (translation-corrected) vs Python,1.963762485956977e-12,<=1e-5,PASS,supplementary
+B,"branch terminal P/Q max error (MVA), pack formula",pandapower 3.4.0 (translation-corrected) vs Python,2.0727952687593643e-10,<=1e-3,PASS,pack
+B,"branch terminal P/Q max error (MVA), pandapower native",pandapower 3.4.0 (translation-corrected) vs Python,2.027604750765022e-10,<=1e-3,PASS,supplementary
+C,case file SHA256 == canonical source,ANDES 2.0.0 live,9c2048dc94201ee48ffe816de65d53831fa1f4b0e7fdf32f24c50f1017edcfe5,9c2048dc94201ee48ffe816de65d53831fa1f4b0e7fdf32f24c50f1017edcfe5,PASS,
+C,"live PF == frozen ANDES reference (Vm, Va, P, Q)",ANDES live vs frozen,0.0,==0 (bit-identical),PASS,
+C,live Ybus (Line+Shunt) vs Python (pu),ANDES live vs Python,1.139086659085919e-13,<=1e-9,PASS,stale npy not used for any verdict
+C,shunts and line order/taps identical to canonical,ANDES live vs canonical JSON,True,True,PASS,
+C,Vm max abs error (pu),ANDES live vs Python,1.724304485861694e-07,<=1e-5,PASS,
+C,Va gauge-aligned max error (rad),ANDES live vs Python,1.711858622910345e-07,<=1e-5,PASS,
+C,PV generator P max error (pu),ANDES live vs Python,1.1359801987964602e-12,<=1e-8,PASS,
+C,slack generator P error (pu),ANDES live vs Python,5.689183169899081e-06,<=1e-8,FAIL (literal); EXPLAINED,unchanged at ANDES tol 1e-12 -> not convergence; ANDES +1e-8 impedance regularization
+C,generator Q max error (pu),ANDES live vs Python,3.5742095099156046e-06,<=1e-5,PASS,
+C,DIAGNOSTIC all static errors with ANDES regularization mirrored,ANDES (tol 1e-12) vs Python(+1e-8),1.8909318555415666e-12,<=1e-8 (diagnostic),PASS,attribution test only; frozen model unchanged
+D,R3 critical-band alpha max error (1/s),ANDES fresh vs internal (pack),1.495307029697468e-06,<=1e-4,PASS,
+D,R3 critical-band frequency max error (Hz),ANDES fresh vs internal (pack),1.3178154312232238e-07,<=1e-3,PASS,
+D,"R3 RHP count agrees, every subset",ANDES fresh vs internal (pack),True,True,PASS,
+D,"R2 band (0.3-1.5 Hz) nearest-mode mismatch, both directions",ANDES fresh vs internal live,1.6179098924004197e-06,<=1e-4,PASS,6 subsets
+D,"R2 RHP count agrees, every subset (live)",ANDES fresh vs internal live,True,True,PASS,
+D,R2 whole dynamic spectrum worst match (1/s),ANDES fresh vs internal live,0.13278768509286665,informative,INFO,"only unmatched internal eigenvalues: 12 zero-gain PSS filter states (-1/4.2, -1/0.75), column coupling exactly 0"
+D,R2 repeatability: fresh vs frozen ANDES spectra,ANDES,0.0,==0,PASS,
+D,"R3 band (0.3-1.5 Hz) nearest-mode mismatch, both directions",ANDES fresh vs internal live,1.6120264039187817e-06,<=1e-4,PASS,6 subsets
+D,"R3 RHP count agrees, every subset (live)",ANDES fresh vs internal live,True,True,PASS,
+D,R3 whole dynamic spectrum worst match (1/s),ANDES fresh vs internal live,0.42191196874597525,informative,INFO,"only unmatched internal eigenvalues: 12 zero-gain PSS filter states (-1/4.2, -1/0.75), column coupling exactly 0"
+D,R3 repeatability: fresh vs frozen ANDES spectra,ANDES,0.0,==0,PASS,
+E,12-line branch-sensitivity holdout,"E1a internal DAE vs ANDES (equation-equivalent R3, same cases)",signs 12/12; rho 1.0000; top5 5/5; median rel 7.00e-06; max rel 2.56e-04 (L3); strong opposite 0,"rho>=0.90, signs>=11/12, top5>=4/5, median rel<=10%, no strong opposite",PASS,preferred 12/12 & rho>=0.95: yes
+E,12-line branch-sensitivity holdout,"E1b internal port vs ANDES (equation-equivalent R3, same cases)",signs 11/12; rho 1.0000; top5 5/5; median rel 3.04e-03; max rel 6.56e-02 (L3); strong opposite 0,"rho>=0.90, signs>=11/12, top5>=4/5, median rel<=10%, no strong opposite",PASS,preferred 12/12 & rho>=0.95: no; sign mismatch on lines [3]
+E,12-line branch-sensitivity holdout,E1c internal port vs internal DAE (R3),signs 11/12; rho 1.0000; top5 5/5; median rel 3.05e-03; max rel 6.53e-02 (L3); strong opposite 0,"rho>=0.90, signs>=11/12, top5>=4/5, median rel<=10%, no strong opposite",PASS,preferred 12/12 & rho>=0.95: no; sign mismatch on lines [3]
+E,12-line branch-sensitivity holdout,E2a frozen F2c GFL port vs ANDES R3 (CROSS-MODEL),signs 7/12; rho 0.5105; top5 4/5; median rel 1.02e+00; max rel 7.43e+00 (L3); strong opposite 1,"rho>=0.90, signs>=11/12, top5>=4/5, median rel<=10%, no strong opposite",FAIL,"preferred 12/12 & rho>=0.95: no; sign mismatch on lines [3, 17, 31, 39, 44]"
+E,12-line branch-sensitivity holdout,E2b frozen F2c GFL DAE vs ANDES R3 (CROSS-MODEL),signs 7/12; rho 0.5105; top5 4/5; median rel 1.02e+00; max rel 7.44e+00 (L3); strong opposite 1,"rho>=0.90, signs>=11/12, top5>=4/5, median rel<=10%, no strong opposite",FAIL,"preferred 12/12 & rho>=0.95: no; sign mismatch on lines [3, 17, 31, 39, 44]"
+E,12-line branch-sensitivity holdout,"E2c frozen F2c GFL DAE vs internal R3 DAE (same tool, converter model changed)",signs 7/12; rho 0.5105; top5 4/5; median rel 1.02e+00; max rel 7.44e+00 (L3); strong opposite 1,"rho>=0.90, signs>=11/12, top5>=4/5, median rel<=10%, no strong opposite",FAIL,"preferred 12/12 & rho>=0.95: no; sign mismatch on lines [3, 17, 31, 39, 44]"
+E,12-line branch-sensitivity holdout,E0 frozen F2c GFL port vs frozen F2c GFL DAE (frozen record),signs 12/12; rho 1.0000; top5 5/5; median rel 4.19e-03; max rel 1.34e-02 (L42); strong opposite 0,"rho>=0.90, signs>=11/12, top5>=4/5, median rel<=10%, no strong opposite",PASS,preferred 12/12 & rho>=0.95: yes
+E,port characteristic zero |mu(lambda0)+1| (R3 static),internal,3.5758119571474567e-07,<=1e-8,FAIL (literal); EXPLAINED,base/flagship equilibria differ by 2.5e-7 in this static-injection mode (tol-independent); residual off the port rows
+E,det identity det(T_S)/det(T_0)=det(I+M) (R3 static),internal,1.1829089773988288e-07,<=1e-8,FAIL (literal); EXPLAINED,same cause; frozen GFL boundaries: <=1.4e-13 over 160 checks (FC18)
+E,gamma=1 critical mode alpha,internal vs ANDES,1.4955262249150003e-06,<=1e-4,PASS,"internal +0.328731, ANDES +0.328732 at 0.5825 Hz"

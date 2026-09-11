@@ -1,0 +1,11 @@
+check,measured,gate,verdict
+Python PF mismatch,2.7532731382577167e-12,1e-10,PASS
+Python vs ANDES Ybus,1.139086659085919e-13,1e-09,PASS
+Python vs ANDES Vm,1.724304485861694e-07,1e-05,PASS
+Python vs ANDES Va,1.711858622910345e-07,1e-05,PASS
+pandapower vs Python Vm,2.864375403532904e-14,1e-05,PASS
+pandapower vs Python Va,3.223810107755298e-14,1e-05,PASS
+pandapower branch terminal flows,2.0727952687593643e-10,0.001,PASS
+ANDES dynamic alpha,1.495307029697468e-06,0.0001,PASS
+ANDES dynamic frequency,1.3178154312232238e-07,0.001,PASS
+ANDES dynamic RHP count,True,True,PASS

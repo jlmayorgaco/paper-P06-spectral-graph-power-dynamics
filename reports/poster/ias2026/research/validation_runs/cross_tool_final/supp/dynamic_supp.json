@@ -1,0 +1,22 @@
+{
+  "R2 manual excitation": {
+    "n_subsets": 6,
+    "max_alpha_error": 1.0190430971279696e-07,
+    "max_freq_error_hz": 1.5776999529037994e-07,
+    "rhp_agree_all": true,
+    "max_band_mismatch": 1.6179098924004197e-06,
+    "max_whole_spectrum_match": 0.13278768509286665,
+    "max_fresh_vs_frozen_andes": 0.0,
+    "max_internal_live_vs_frozen_alpha": 5.551115123125783e-17
+  },
+  "R3 first-order AVR": {
+    "n_subsets": 6,
+    "max_alpha_error": 1.495307029697468e-06,
+    "max_freq_error_hz": 1.3178154312232238e-07,
+    "rhp_agree_all": true,
+    "max_band_mismatch": 1.6120264039187817e-06,
+    "max_whole_spectrum_match": 0.42191196874597525,
+    "max_fresh_vs_frozen_andes": 0.0,
+    "max_internal_live_vs_frozen_alpha": 8.326672684688674e-17
+  }
+}

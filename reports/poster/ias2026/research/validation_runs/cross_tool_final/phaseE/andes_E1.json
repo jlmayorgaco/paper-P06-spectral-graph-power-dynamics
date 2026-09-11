@@ -1,0 +1,24 @@
+{
+  "andes_version": "2.0.0",
+  "case_file": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\vendor\\andes\\andes\\cases\\ieee39\\ieee39_full.xlsx",
+  "lambda0_real": 0.32873213066116974,
+  "lambda0_imag": 3.659826129409447,
+  "lambda0_freq_hz": 0.5824794193523921,
+  "alpha_band_gamma1": 0.32873213066116974,
+  "holdout_seed": 20260911,
+  "holdout_lines": [
+    3,
+    9,
+    15,
+    17,
+    22,
+    26,
+    31,
+    32,
+    35,
+    39,
+    42,
+    44
+  ],
+  "eps": 0.002
+}

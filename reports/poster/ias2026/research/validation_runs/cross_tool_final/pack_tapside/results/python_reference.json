@@ -1,0 +1,13 @@
+{
+  "tool": "pure_python_vs_frozen_ANDES_andes 2.0.0",
+  "pf_converged": true,
+  "pf_max_mismatch": 2.7532731382577167e-12,
+  "ybus_max_abs_error": 1.139086659085919e-13,
+  "vm_max_abs_error_pu": 1.724304485861694e-07,
+  "va_max_gauge_aligned_error_rad": 1.711858622910345e-07,
+  "pytest_returncode": 0,
+  "pytest_stdout": ".........                                                                [100%]\n9 passed in 3.83s",
+  "R3_max_alpha_error": 1.495307029697468e-06,
+  "R3_max_frequency_error_hz": 1.317815431223224e-07,
+  "R3_RHP_counts_all_agree": true
+}

@@ -1,0 +1,115 @@
+{
+  "E1a internal DAE vs ANDES (equation-equivalent R3, same cases)": {
+    "sign_agreement": 12,
+    "n": 12,
+    "spearman_re": 1.0,
+    "top5_stabilizing_overlap": 5,
+    "median_relative_complex_error": 6.9974452533751355e-06,
+    "max_relative_complex_error": 0.00025630000420166316,
+    "worst_line": 3,
+    "strong_branches_opposite_sign": 0,
+    "sign_mismatch_lines": [],
+    "PASS_frozen_strong": true,
+    "PREFERRED_12_12_and_rho_0p95": true
+  },
+  "E1b internal port vs ANDES (equation-equivalent R3, same cases)": {
+    "sign_agreement": 11,
+    "n": 12,
+    "spearman_re": 1.0,
+    "top5_stabilizing_overlap": 5,
+    "median_relative_complex_error": 0.003042280408723448,
+    "max_relative_complex_error": 0.06558104429456636,
+    "worst_line": 3,
+    "strong_branches_opposite_sign": 0,
+    "sign_mismatch_lines": [
+      3
+    ],
+    "PASS_frozen_strong": true,
+    "PREFERRED_12_12_and_rho_0p95": false
+  },
+  "E1c internal port vs internal DAE (R3)": {
+    "sign_agreement": 11,
+    "n": 12,
+    "spearman_re": 1.0,
+    "top5_stabilizing_overlap": 5,
+    "median_relative_complex_error": 0.0030513614535788917,
+    "max_relative_complex_error": 0.0653272605235102,
+    "worst_line": 3,
+    "strong_branches_opposite_sign": 0,
+    "sign_mismatch_lines": [
+      3
+    ],
+    "PASS_frozen_strong": true,
+    "PREFERRED_12_12_and_rho_0p95": false
+  },
+  "E2a frozen F2c GFL port vs ANDES R3 (CROSS-MODEL)": {
+    "sign_agreement": 7,
+    "n": 12,
+    "spearman_re": 0.5104895104895105,
+    "top5_stabilizing_overlap": 4,
+    "median_relative_complex_error": 1.021290993975014,
+    "max_relative_complex_error": 7.431711131204416,
+    "worst_line": 3,
+    "strong_branches_opposite_sign": 1,
+    "sign_mismatch_lines": [
+      3,
+      17,
+      31,
+      39,
+      44
+    ],
+    "PASS_frozen_strong": false,
+    "PREFERRED_12_12_and_rho_0p95": false
+  },
+  "E2b frozen F2c GFL DAE vs ANDES R3 (CROSS-MODEL)": {
+    "sign_agreement": 7,
+    "n": 12,
+    "spearman_re": 0.5104895104895105,
+    "top5_stabilizing_overlap": 4,
+    "median_relative_complex_error": 1.021807434006256,
+    "max_relative_complex_error": 7.439997320012848,
+    "worst_line": 3,
+    "strong_branches_opposite_sign": 1,
+    "sign_mismatch_lines": [
+      3,
+      17,
+      31,
+      39,
+      44
+    ],
+    "PASS_frozen_strong": false,
+    "PREFERRED_12_12_and_rho_0p95": false
+  },
+  "E2c frozen F2c GFL DAE vs internal R3 DAE (same tool, converter model changed)": {
+    "sign_agreement": 7,
+    "n": 12,
+    "spearman_re": 0.5104895104895105,
+    "top5_stabilizing_overlap": 4,
+    "median_relative_complex_error": 1.0218122221391142,
+    "max_relative_complex_error": 7.440264508506014,
+    "worst_line": 3,
+    "strong_branches_opposite_sign": 1,
+    "sign_mismatch_lines": [
+      3,
+      17,
+      31,
+      39,
+      44
+    ],
+    "PASS_frozen_strong": false,
+    "PREFERRED_12_12_and_rho_0p95": false
+  },
+  "E0 frozen F2c GFL port vs frozen F2c GFL DAE (frozen record)": {
+    "sign_agreement": 12,
+    "n": 12,
+    "spearman_re": 1.0,
+    "top5_stabilizing_overlap": 5,
+    "median_relative_complex_error": 0.004190901803420027,
+    "max_relative_complex_error": 0.01339279545246802,
+    "worst_line": 42,
+    "strong_branches_opposite_sign": 0,
+    "sign_mismatch_lines": [],
+    "PASS_frozen_strong": true,
+    "PREFERRED_12_12_and_rho_0p95": true
+  }
+}
