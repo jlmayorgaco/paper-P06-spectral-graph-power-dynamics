@@ -89,28 +89,61 @@ def physical_matrices(case):
 
 
 def physical_report(case, *, safety: float = SAFETY) -> PhysicalReport:
+    """Direct path: Jacobians of this solved case."""
+
     dae = case.dae
     a_full, d_mat, jac = physical_matrices(case)
     r_x, r_z = rotation_generator(dae, case.equilibrium.z)
     partner = frequency_partner(dae)
     ident = dae_identities(jac, a_full, r_x, r_z, partner.w)
+    return classify_physical(
+        a_full, d_mat, dae.labels, r_x, partner, safety=safety, identities=asdict(ident)
+    )
+
+
+def classify_physical(
+    a_full,
+    d_mat,
+    labels,
+    r_x,
+    partner,
+    *,
+    safety: float = SAFETY,
+    identities: dict | None = None,
+) -> PhysicalReport:
+    """Matrix path: any exact assembly of A with its error matrix.
+
+    ``r_x`` and ``partner`` come from the device structure (labels, damping), which
+    does not change with the continuous parameters, so an anchor case supplies
+    them. The rotation and Jordan identities are re-checked on this matrix.
+    """
+
+    from ..models.ieee39_devices import OMEGA_B
+
+    a_full = np.asarray(a_full, dtype=np.float64)
+    norm = float(np.linalg.norm(a_full, 2))
+    d_a = float(np.linalg.norm(d_mat, 2))
+    a_rot = float(np.linalg.norm(a_full @ r_x) / (norm * np.linalg.norm(r_x)))
+    a_jordan = None
+    if partner.w is not None:
+        a_jordan = float(
+            np.linalg.norm(a_full @ partner.w - OMEGA_B * r_x)
+            / (norm * np.linalg.norm(partner.w))
+        )
+    ident = dict(identities or {})
+    ident.update(a_rot=a_rot, a_jordan=a_jordan)
 
     dead = np.flatnonzero(~np.any(a_full != 0.0, axis=1))
     keep = np.setdiff1d(np.arange(a_full.shape[0]), dead)
     a = a_full[np.ix_(keep, keep)]
-    d_a = float(np.linalg.norm(d_mat, 2))
     rx = r_x[keep]
     w = None if partner.w is None else partner.w[keep]
 
     q = quotient(a, rx)
     d_k = d_mat[np.ix_(keep, keep)]
-    norm = float(np.linalg.norm(a_full, 2))
     tol = safety * (d_a / norm + 1e-12)
     verified = (
-        w is not None
-        and ident.a_jordan is not None
-        and ident.a_jordan <= tol
-        and ident.a_rot <= tol
+        w is not None and a_jordan is not None and a_jordan <= tol and a_rot <= tol
     )
     rep_q = classify_spectrum(q.a_q, q.z.T @ d_k @ q.z, safety, known_zero=verified)
     neutral_value = None
@@ -125,10 +158,10 @@ def physical_report(case, *, safety: float = SAFETY) -> PhysicalReport:
     return PhysicalReport(
         n_states=int(a_full.shape[0]),
         n_dead=int(dead.size),
-        dead_labels=[dae.labels[k] for k in dead],
+        dead_labels=[labels[k] for k in dead],
         matrix_error=d_a,
         a_norm=norm,
-        identities=asdict(ident),
+        identities=ident,
         partner=partner.reason,
         neutral_verified=bool(verified),
         neutral_value=neutral_value,

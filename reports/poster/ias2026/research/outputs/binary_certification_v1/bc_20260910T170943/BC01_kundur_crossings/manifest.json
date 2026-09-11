@@ -1,0 +1,47 @@
+{
+  "experiment": "BC01_kundur_crossings",
+  "question": "Can the aperiodic Kundur crossings be analysed at s = 0?",
+  "verdict": "COMPUTED",
+  "seed": null,
+  "config": {
+    "rho": 1e-05,
+    "n_circle": 64,
+    "iterations": 40,
+    "crossings": 194
+  },
+  "workers": 1,
+  "git_commit": "7a77da3061ebc6c934c881b09be593fa0649b68e",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 10.42,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-11T01:08:20Z",
+  "elapsed_s": 62.22,
+  "notes": [],
+  "results": {
+    "elapsed_s": 62.149025201797485,
+    "crossings": 194,
+    "results": {
+      "PORT_EVALUABLE_AT_ZERO": 194
+    },
+    "g0_below_domain_or_at_zero": 0,
+    "g0_minus_gstar_range": [
+      -2.031724278446544e-05,
+      -3.586618928710586e-06
+    ],
+    "descriptor_vs_A_maxdist": 2.4401407377426374e-07,
+    "original_port": {
+      "NOT_EVALUABLE_AT_ZERO": 170,
+      "EVALUABLE_AT_ZERO": 24
+    },
+    "reasons": {}
+  }
+}

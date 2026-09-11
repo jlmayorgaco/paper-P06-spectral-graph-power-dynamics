@@ -1,0 +1,87 @@
+{
+  "experiment": "BC00_units_audit",
+  "question": "Are MW and MVA kept apart in every reported quantity?",
+  "verdict": "COMPUTED",
+  "seed": null,
+  "config": {
+    "networks": {
+      "IEEE-39": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\poster\\ias2026\\research\\configs\\ias2026\\ieee39_network.json",
+      "Kundur": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\poster\\ias2026\\research\\configs\\kundur\\kundur_network.json",
+      "IEEE-68": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\poster\\ias2026\\research\\configs\\ieee68\\ieee68_network.json"
+    },
+    "sha256": {
+      "IEEE-39": "705f53299b57cbd536ababfe5236f3b2ec621e8b305a5737135cfba8363d995e",
+      "Kundur": "d63986ccdcbac3c5e73dfce81cb5cfffa35ec674efbc7672e8aaceb7f78db170",
+      "IEEE-68": "0cee6c94248f8faf1809e7726315d8509e979ce9e3f559278e900c52af510448"
+    }
+  },
+  "workers": 1,
+  "git_commit": "9a216145ee9d07a085ca375cc1073b8824f054aa",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 8.56,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-10T22:09:43Z",
+  "elapsed_s": 0.4,
+  "notes": [],
+  "results": {
+    "replaced_mw_is_mva": true,
+    "flagship_reported_MW": 4270.7,
+    "flagship_displaced_active_MW": 2096.6077190001433,
+    "flagship_active_nameplate_MW": 2983.0,
+    "flagship_ratio_reported_to_active": 2.0369571099531507,
+    "E39_ranker": [
+      {
+        "size": 4,
+        "n": 126,
+        "unstable": 10,
+        "predictor": "old column (MVA rating, labelled MW)",
+        "roc_auc_higher_is_more_unstable": 0.8129310344827586
+      },
+      {
+        "size": 4,
+        "n": 126,
+        "unstable": 10,
+        "predictor": "displaced active power (MW)",
+        "roc_auc_higher_is_more_unstable": 0.571551724137931
+      },
+      {
+        "size": 5,
+        "n": 126,
+        "unstable": 51,
+        "predictor": "old column (MVA rating, labelled MW)",
+        "roc_auc_higher_is_more_unstable": 0.7733333333333333
+      },
+      {
+        "size": 5,
+        "n": 126,
+        "unstable": 51,
+        "predictor": "displaced active power (MW)",
+        "roc_auc_higher_is_more_unstable": 0.636078431372549
+      },
+      {
+        "size": 6,
+        "n": 84,
+        "unstable": 78,
+        "predictor": "old column (MVA rating, labelled MW)",
+        "roc_auc_higher_is_more_unstable": 0.8611111111111112
+      },
+      {
+        "size": 6,
+        "n": 84,
+        "unstable": 78,
+        "predictor": "displaced active power (MW)",
+        "roc_auc_higher_is_more_unstable": 0.7264957264957265
+      }
+    ],
+    "config_dir": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\poster\\ias2026\\research\\configs\\binary_certification_v1"
+  }
+}

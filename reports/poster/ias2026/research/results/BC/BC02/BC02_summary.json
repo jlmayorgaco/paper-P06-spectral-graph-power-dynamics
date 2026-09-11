@@ -1,0 +1,235 @@
+{
+ "IEEE-68 twelve g=0": {
+  "vertices": 77,
+  "build_s": 2.8,
+  "elapsed_s": 1719.9,
+  "C1_affinity_max": 0.0,
+  "C2_affinity_max": 6.707847112902968e-23,
+  "equilibrium_residual_max": 9.956480084838404e-13,
+  "C1_vertex_equiv_max": 1.858183000049966e-05,
+  "C2_vertex_equiv_max": 1.8582075762681047e-05,
+  "ghost_max_re": 7.27681578999012e-14,
+  "device_rhp_blocks_max": 0.0,
+  "reduced_nonaffinity_max": 2.218051219240636e-06,
+  "port_locality_max": 1.2818900709428934e-10,
+  "port_increment_support": [
+   2
+  ]
+ },
+ "IEEE-39 P_inf": {
+  "vertices": 16,
+  "build_s": 0.3,
+  "elapsed_s": 167.5,
+  "C1_affinity_max": 0.0,
+  "C2_affinity_max": 1.8679557939734326e-19,
+  "equilibrium_residual_max": 6.73683331342545e-13,
+  "C1_vertex_equiv_max": 8.009611751185719e-05,
+  "C2_vertex_equiv_max": 8.009616647145516e-05,
+  "ghost_max_re": -0.05000000000000316,
+  "device_rhp_blocks_max": 0.0,
+  "reduced_nonaffinity_max": 0.37354170317372487,
+  "port_locality_max": 3.074537951828623e-08,
+  "port_increment_support": [
+   4,
+   6
+  ]
+ },
+ "IEEE-39 P4": {
+  "vertices": 16,
+  "build_s": 0.3,
+  "elapsed_s": 172.2,
+  "C1_affinity_max": 0.0,
+  "C2_affinity_max": 1.8698152041888742e-19,
+  "equilibrium_residual_max": 8.5087492607272e-13,
+  "C1_vertex_equiv_max": 6.801569325792094e-05,
+  "C2_vertex_equiv_max": 6.80165401196585e-05,
+  "ghost_max_re": -0.05000000000000317,
+  "device_rhp_blocks_max": 0.0,
+  "reduced_nonaffinity_max": 0.36288800353284884,
+  "port_locality_max": 4.8899899151478573e-08,
+  "port_increment_support": [
+   52,
+   54
+  ]
+ },
+ "IEEE-39 P3": {
+  "vertices": 16,
+  "build_s": 0.3,
+  "elapsed_s": 173.0,
+  "C1_affinity_max": 0.0,
+  "C2_affinity_max": 1.869512999930318e-19,
+  "equilibrium_residual_max": 1.5329959524024162e-12,
+  "C1_vertex_equiv_max": 5.717520199628598e-05,
+  "C2_vertex_equiv_max": 5.7174958017060395e-05,
+  "ghost_max_re": -0.05000000000000317,
+  "device_rhp_blocks_max": 0.0,
+  "reduced_nonaffinity_max": 0.3630302941245397,
+  "port_locality_max": 2.5824963998443256e-08,
+  "port_increment_support": [
+   12,
+   34,
+   48,
+   54
+  ]
+ },
+ "IEEE-39 P2": {
+  "vertices": 16,
+  "build_s": 0.3,
+  "elapsed_s": 172.8,
+  "C1_affinity_max": 0.0,
+  "C2_affinity_max": 1.8691119595577676e-19,
+  "equilibrium_residual_max": 7.105427357601002e-13,
+  "C1_vertex_equiv_max": 6.33953122112723e-05,
+  "C2_vertex_equiv_max": 6.339551042786374e-05,
+  "ghost_max_re": -0.05000000000000317,
+  "device_rhp_blocks_max": 0.0,
+  "reduced_nonaffinity_max": 0.3630078661854642,
+  "port_locality_max": 8.034402551514295e-08,
+  "port_increment_support": [
+   30,
+   52,
+   54
+  ]
+ },
+ "IEEE-39 P1": {
+  "vertices": 16,
+  "build_s": 0.4,
+  "elapsed_s": 172.7,
+  "C1_affinity_max": 0.0,
+  "C2_affinity_max": 1.8684575154072024e-19,
+  "equilibrium_residual_max": 7.105427357601002e-13,
+  "C1_vertex_equiv_max": 4.393895461208992e-05,
+  "C2_vertex_equiv_max": 4.393481788892387e-05,
+  "ghost_max_re": -0.05000000000000317,
+  "device_rhp_blocks_max": 0.0,
+  "reduced_nonaffinity_max": 0.363173452076691,
+  "port_locality_max": 4.77327159601561e-08,
+  "port_increment_support": [
+   8,
+   16,
+   54
+  ]
+ },
+ "IEEE-39 P_fold": {
+  "vertices": 16,
+  "build_s": 0.4,
+  "elapsed_s": 172.6,
+  "C1_affinity_max": 0.0,
+  "C2_affinity_max": 1.8699207757755953e-19,
+  "equilibrium_residual_max": 5.400124791776761e-13,
+  "C1_vertex_equiv_max": 6.037881834239082e-05,
+  "C2_vertex_equiv_max": 6.037867632516293e-05,
+  "ghost_max_re": -0.05000000000000316,
+  "device_rhp_blocks_max": 0.0,
+  "reduced_nonaffinity_max": 0.36280079856048475,
+  "port_locality_max": 3.264461376024969e-08,
+  "port_increment_support": [
+   10,
+   32,
+   34,
+   54
+  ]
+ },
+ "Kundur K12A g=0.0 k=0.75": {
+  "vertices": 8,
+  "build_s": 0.1,
+  "elapsed_s": 1.1,
+  "C1_affinity_max": 1.1877445237047428e-19,
+  "C2_affinity_max": 2.1601763040115015e-19,
+  "equilibrium_residual_max": 9.909850717804147e-13,
+  "C1_vertex_equiv_max": 5.222439435839598e-05,
+  "C2_vertex_equiv_max": 5.2224568646827515e-05,
+  "ghost_max_re": -0.04999999999980263,
+  "device_rhp_blocks_max": 0.0,
+  "reduced_nonaffinity_max": 4.124924151317119,
+  "port_locality_max": 5.78409837899237e-08,
+  "port_increment_support": [
+   12
+  ]
+ },
+ "Kundur K12A g=0.08 k=1.25": {
+  "vertices": 8,
+  "build_s": 0.1,
+  "elapsed_s": 1.2,
+  "C1_affinity_max": 1.187718683068919e-19,
+  "C2_affinity_max": 2.023077804805123e-19,
+  "equilibrium_residual_max": 6.15341111398493e-13,
+  "C1_vertex_equiv_max": 5.356856877880532e-05,
+  "C2_vertex_equiv_max": 5.356880479114998e-05,
+  "ghost_max_re": -0.04999999999980263,
+  "device_rhp_blocks_max": 0.0,
+  "reduced_nonaffinity_max": 4.127402123486637,
+  "port_locality_max": 2.7924714559166707e-08,
+  "port_increment_support": [
+   12
+  ]
+ },
+ "Kundur K12A g=0.11 k=1.25": {
+  "vertices": 8,
+  "build_s": 0.1,
+  "elapsed_s": 1.2,
+  "C1_affinity_max": 1.187707092463462e-19,
+  "C2_affinity_max": 2.0230587219485612e-19,
+  "equilibrium_residual_max": 7.492895193195181e-13,
+  "C1_vertex_equiv_max": 6.731309539439438e-05,
+  "C2_vertex_equiv_max": 6.7317183942093e-05,
+  "ghost_max_re": -0.04999999999980263,
+  "device_rhp_blocks_max": 0.0,
+  "reduced_nonaffinity_max": 4.128994976786056,
+  "port_locality_max": 4.0411631751296204e-08,
+  "port_increment_support": [
+   12
+  ]
+ },
+ "IEEE-68 cand g=0.0": {
+  "vertices": 16,
+  "build_s": 1.8,
+  "elapsed_s": 1419.3,
+  "C1_affinity_max": 0.0,
+  "C2_affinity_max": 1.6667039054166785e-23,
+  "equilibrium_residual_max": 8.908429549592256e-13,
+  "C1_vertex_equiv_max": 1.525683182870569e-05,
+  "C2_vertex_equiv_max": 1.5231024183983477e-05,
+  "ghost_max_re": 1.9512058556332966e-14,
+  "device_rhp_blocks_max": 0.0,
+  "reduced_nonaffinity_max": 5.176592182822019e-07,
+  "port_locality_max": 4.125388375596461e-11,
+  "port_increment_support": [
+   2
+  ]
+ },
+ "IEEE-68 cand g=0.25": {
+  "vertices": 16,
+  "build_s": 2.0,
+  "elapsed_s": 1437.2,
+  "C1_affinity_max": 0.0,
+  "C2_affinity_max": 1.6810911546620162e-23,
+  "equilibrium_residual_max": 8.704148513061227e-13,
+  "C1_vertex_equiv_max": 1.3893615660441453e-05,
+  "C2_vertex_equiv_max": 1.3893860101649203e-05,
+  "ghost_max_re": 2.52474871647371e-14,
+  "device_rhp_blocks_max": 0.0,
+  "reduced_nonaffinity_max": 5.1794745466054e-07,
+  "port_locality_max": 2.3657831734129483e-11,
+  "port_increment_support": [
+   2
+  ]
+ },
+ "IEEE-68 cand g=1.0": {
+  "vertices": 16,
+  "build_s": 2.6,
+  "elapsed_s": 1458.9,
+  "C1_affinity_max": 0.0,
+  "C2_affinity_max": 1.6813946375264677e-23,
+  "equilibrium_residual_max": 8.610889778992714e-13,
+  "C1_vertex_equiv_max": 2.1026349958684453e-05,
+  "C2_vertex_equiv_max": 2.1026880990820384e-05,
+  "ghost_max_re": 3.494386598978914e-15,
+  "device_rhp_blocks_max": 0.0,
+  "reduced_nonaffinity_max": 5.222519102542235e-07,
+  "port_locality_max": 2.5235695246097197e-11,
+  "port_increment_support": [
+   2
+  ]
+ }
+}
