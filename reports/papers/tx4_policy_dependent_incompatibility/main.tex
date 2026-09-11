@@ -1,0 +1,1272 @@
+\documentclass[journal]{IEEEtran}
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{balance}
+
+\graphicspath{{figures/}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\Hy}{\mathcal{H}}
+\newcommand{\aperp}{\alpha_{\perp}}
+\newcommand{\Aperp}{A_{\perp}}
+\DeclareMathOperator{\spanop}{span}
+\DeclareMathOperator{\blkdiag}{blkdiag}
+
+% ---- Monte Carlo P2 (random IEEE-39 policy segments), filled from MC02 ----
+\input{p2_numbers.tex}
+
+\title{Policy-Dependent Minimal Incompatibility of\\ Synchronous-to-Inverter
+Replacement Portfolios:\\ A Transverse Spectral Hypergraph and Its\\
+Network-Closure Anatomy}
+
+\author{Jorge L.~Mayorga Taborda%
+\thanks{J. L. Mayorga Taborda is with the Department of Electrical and
+Electronic Engineering, Universidad de los Andes, Bogot\'a, Colombia
+(e-mail: jl.mayorga@uniandes.edu.co).}%
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Replacing synchronous generators (SGs) by grid-following inverters is planned
+unit by unit, yet small-signal stability is not additive: every subset of a
+portfolio can be stable while the portfolio is not. We formulate this as a minimal
+incompatibility hypergraph over binary replacement decisions and study it on
+a nonlinear phasor differential--algebraic model. Because frozen benchmark
+models lack primary frequency control, stability is posed exactly in transverse
+coordinates, as a quotient by the rotation and common-frequency-drift center
+subspace, without discarding small eigenvalues. We prove that the hypergraph
+changes only where a transverse eigenvalue crosses the imaginary axis, that it
+characterizes the portfolios that are safe in every implementation order, and
+that all non-additivity of the characteristic function is the principal-minor
+expansion of a network-closure operator between the replaced buses. A
+symmetry-deflated port extends the determinant test to zero-frequency
+crossings. Seven preregistered synthetic Monte Carlo suites and four suites on
+the IEEE 39-bus system test every statement: exact nonlinear symmetries, 80/80
+time-domain verdicts, and a zero-frequency port holdout. One IEEE-39 rule failed
+as implemented and is reported with its post-hoc correction. On IEEE-39, the converter reactive policy changes which coalitions
+fail: 30, 36, and 16 distinct hypergraphs appear on three policy planes. A
+2096.6-MW (4270.7-MVA) four-unit portfolio is unstable although every proper
+subset is stable, and each of ten frozen boundaries is closed only by the
+full-order network interaction of the changing coalition. With the source's
+documented turbine governors the structure persists in a smaller region,
+while the four-unit coalition is stabilized.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Differential--algebraic equations, eigenvalue analysis, grid-following
+inverters, hypergraphs, low-inertia power systems, Monte Carlo validation,
+small-signal stability, synchronous generator retirement.
+\end{IEEEkeywords}
+
+% =========================================================================
+\section{Introduction}
+
+\IEEEPARstart{G}{eneration} portfolios are decarbonized by replacing
+synchronous generators (SGs) with inverter-based resources, typically plant by
+plant. Small-signal stability of the resulting system is, however, a property
+of the \emph{portfolio}. Low-inertia and converter-driven instabilities are now
+part of the stability taxonomy \cite{hatziargyriou2021definition,
+milano2018lowinertia, markovic2021lowinertia}, and screening indices such as
+short-circuit ratios, single-port impedance criteria, or generalized short-circuit
+ratios \cite{sun2011impedance, harnefors2007admittance, wang2019harmonic,
+xin2016gscr, nerc2017lowstrength} evaluate a configuration, not the
+combinatorial structure of a replacement plan. A planner needs a different
+answer: \emph{which minimal groups of replacements are mutually incompatible,
+and how does that set depend on the converter control policy?}
+
+This paper studies that object. For a candidate set of $m$ SGs and a converter
+policy $\theta$, the minimal incompatibility hypergraph $\Hy(\theta)$ collects
+the inclusion-minimal replacement portfolios that are unstable. Its minimum
+edge size $\kappa(\theta)$ is the smallest incompatible coalition. Two
+technical obstacles appear immediately. First, frozen benchmark models
+(IEEE-39, Kundur, IEEE-68) have no rotor damping and no governors; their
+linearizations carry an exact double zero eigenvalue, so ``stable'' is
+undefined unless the neutral directions are handled exactly rather than by a
+magnitude cutoff. Second, a label per portfolio says nothing about \emph{why}
+a coalition fails when its subsets do not.
+
+\emph{Contributions.}
+\begin{enumerate}
+\item A transverse stability notion (Theorem~\ref{thm:transverse}): the
+rotation and common-frequency drift span an exactly invariant Jordan center
+subspace; the quotient is exact for the linearization and for the nonlinear
+reduced field, so no eigenvalue is discarded by magnitude.
+\item Structural properties of $\Hy(\theta)$ (Propositions~\ref{prop:structure}
+and~\ref{prop:hierarchy}, Theorem~\ref{thm:localization}): antichain,
+boundary localization at imaginary-axis crossings, and the equivalence between
+``hyperedge-free'' and ``safe in every implementation order''; a monotone
+tractable class (Theorem~\ref{thm:monotone}); and the credited NP-hardness of
+minimum-cardinality destabilization (Proposition~\ref{prop:complexity}).
+\item A network-closure factorization of the characteristic function
+(Theorem~\ref{thm:factorization}): on an exact descriptor realization that is
+affine in the replacement indicators, all non-additivity is a principal-minor
+expansion of an interaction operator $Q$ generated by the network between the
+replaced buses; boundaries are zeros of $\det(I+Q_{SS})$, and their motion
+follows an eigenvalue-derivative formula (Proposition~\ref{prop:gradient}).
+A symmetry-deflated port (Theorem~\ref{thm:port}) extends the determinant test
+to crossings through $s=0$.
+\item Preregistered Monte Carlo validation: seven synthetic suites built to
+satisfy each theorem's hypotheses, and four suites over random policies and
+portfolios of the IEEE 39-bus system, including nonlinear time-domain
+simulation (TDS).
+\item IEEE-39 evidence: policy-dependent witness structure, the anatomy of ten
+frozen boundaries, robustness to documented governors, and planning
+consequences, with every result stated under its model scope.
+\end{enumerate}
+
+\emph{What is not claimed.} The eigenvalue test (generalized Nyquist
+\cite{macfarlane1970return, macfarlane1977gnc}), Schur complements and
+Sylvester's determinant identity \cite{horn2012matrix}, M\"obius inversion
+\cite{rota1964mobius}, clutters and minimal non-faces
+\cite{stanley1996combinatorics}, minimal failure sets in $N\!-\!k$ analysis
+\cite{bienstock2010nk}, and positive-systems monotonicity
+\cite{farina2000positive} are classical. The complexity statement is a corollary
+of the sparse-PCA reduction \cite{magdon2017sparsepca}. The contribution is
+the object $\Hy(\theta)$, its exact transverse definition, its
+network-closure anatomy, and the measured policy dependence.
+
+% =========================================================================
+\section{Model and Problem Formulation}\label{sec:model}
+
+\subsection{Phasor DAE}
+The system is the index-one DAE
+\begin{equation}\label{eq:dae}
+\dot x = f(x,z;\delta,\theta),\qquad 0 = g(x,z;\delta,\theta),
+\end{equation}
+where $x\in\RR^{n}$ collects device states, $z\in\RR^{2N}$ the rectangular bus
+voltages, and $g$ is Kirchhoff's current law with the bus admittance matrix,
+device injections, and constant-power loads. Index one means that $g_z$ is
+nonsingular along the trajectories of interest. At an equilibrium the reduced
+Jacobian is $A=f_x-f_z g_z^{-1} g_x$.
+
+\emph{Synchronous generators.} Each SG uses a two-axis model on its own base
+\cite{sauer1998}. With $(v_d,v_q)$ the terminal voltage in the rotor frame and
+$(i_d,i_q)$ obtained from the stator equations with transient reactances
+$x'_d,x'_q$,
+\begin{align}
+\dot\delta&=\omega_B(\omega-1),\qquad
+M\dot\omega=P_m-P_e-D(\omega-1),\label{eq:swing}\\
+T'_{d0}\dot e'_q&=e_{fd}-e'_q-(x_d-x'_d)i_d,\nonumber\\
+T'_{q0}\dot e'_d&=-e'_d+(x_q-x'_q)i_q,\nonumber
+\end{align}
+with air-gap power $P_e=v_di_d+v_qi_q+r_a(i_d^2+i_q^2)$. The excitation is a
+first-order AVR $T_E\dot e_{fd}=K_A(v_{\rm ref}+v_s-|V|)-e_{fd}$, and the
+stabilizer is the power-input washout-and-lag
+$v_s=K_S x_6$, $T_4\dot x_6=T_5(P_e-x_5)/T_6-x_6$, $T_6\dot x_5=P_e-x_5$. As in
+the source data, $D=0$ and $P_m$ is constant (no governor).
+
+\emph{Grid-following inverters.} Each GFL has a synchronous-reference-frame
+PLL, filtered power measurements, PI outer loops, and PI inner current loops
+behind a filter reactance $x_f$:
+\begin{align}
+\dot\vartheta&=k_{p,\rm pll}v_q+x_{\rm pll},\qquad \dot x_{\rm pll}=k_{i,\rm pll}v_q,
+\label{eq:pll}\\
+\tau\dot p_f&=P-p_f,\qquad \tau\dot q_f=Q-q_f,\nonumber\\
+i_d^{\rm ref}&=k_p(p_{\rm ref}-p_f)+x_p,\quad
+i_q^{\rm ref}=-k_q(q_{\rm cmd}-q_f)-x_q,\nonumber\\
+\dot i_{dq}&=\tfrac{\omega_B}{x_f}\big(k_i(i_{dq}^{\rm ref}-i_{dq})+x_{i,dq}-r_fi_{dq}\big),
+\nonumber
+\end{align}
+with PI states $\dot x_p=k_{ip}(p_{\rm ref}-p_f)$,
+$\dot x_q=k_{iq}(q_{\rm cmd}-q_f)$, and $\dot x_{i,dq}=k_{ii}(i^{\rm ref}_{dq}-i_{dq})$.
+The injection is $\gamma(i_d+ji_q)e^{j\vartheta}$, with $\gamma$ the rating
+weight. The reactive command comes from a leaky Q/V regulator
+\begin{align}
+q_{\rm cmd}&=k_{p,v}\,g\,e+x_v,\qquad e=v_{\rm ref}-|V|,\label{eq:qv}\\
+\dot x_v&= k_{i,v}\,g\,e-w\,(x_v-q_{\rm ref}),\nonumber
+\end{align}
+with leak $w=0.05$~rad/s; $g=0$ is exact fixed-$Q$ operation. The parameters
+are listed in Table~\ref{tab:param}. Converter limits, DC links, and modulation
+delay are not modeled, so nonlinear results are bounded by declared
+model-scope guards (Section~\ref{sec:nonlinear}).
+
+\begin{table}[!t]
+\centering
+\caption{Device and benchmark data}\label{tab:param}
+\setlength{\tabcolsep}{3pt}
+\footnotesize
+\begin{tabular}{@{}lp{0.72\columnwidth}@{}}
+\toprule
+Item & Value (per unit on the device rating) \\
+\midrule
+SG model & two-axis, power-form swing, $D=0$, constant $P_m$ \\
+AVR & $K_A=10.1$, $T_E=0.25$~s (harmonized IEEEX1) \\
+PSS & power input: $K_S=-2$, $T_5=1$, $T_6=4.2$, $T_4=0.75$~s \\
+PLL & $k_{p,\rm pll}=53$, $k_{i,\rm pll}=1400$ \\
+Outer loops & $\tau=0.03$~s; $k_p/k_{ip}=k_q/k_{iq}=0.2/8$ \\
+Inner loops & $k_i/k_{ii}=0.25/6$; $x_f=0.15$, $r_f=0.01$ \\
+Q/V regulator & $k_{p,v}/k_{i,v}=2/20$; leak $w=0.05$~rad/s; $g\in[0,1]$ \\
+Loads & constant power \\
+Network & IEEE 39-bus, 46 branches, 10 SGs (bus 39: interconnection) \\
+Core & SGs 30, 33, 35, 37 (2096.6~MW; 4270.7~MVA) \\
+Census & SGs 30--38 ($2^9=512$ portfolios) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Replacement portfolios and policy}
+Let $V=\{1,\dots,m\}$ be the candidate SGs. A portfolio $S\subseteq V$ has
+indicator $\delta_S\in\{0,1\}^m$. Replacing unit $i$ installs a GFL with the
+same active and reactive dispatch (\emph{matched dispatch}) and rating equal to
+the SG rating, so the AC power flow is identical for every portfolio. The
+policy $\theta=(g,k,t,h)$ collects the Q/V gain $g$, a common scale $k$ of every
+surviving SG's AVR gain, a scale $t$ of every AVR time constant, and a
+heterogeneity exponent $h$ ($T_{E,i}\!\mapsto\! G\,(T_{E,i}/G)^h$, with $G$ the
+geometric mean). Active dispatch (MW) and converter rating (MVA) are always
+reported separately.
+
+\begin{table}[!t]
+\centering
+\caption{Notation}\label{tab:notation}
+\setlength{\tabcolsep}{3pt}
+\footnotesize
+\begin{tabular}{@{}lp{0.78\columnwidth}@{}}
+\toprule
+Symbol & Meaning \\
+\midrule
+$V$, $m$ & candidate SGs, $|V|=m$ \\
+$S$, $\delta_S$ & replacement portfolio and its indicator \\
+$\theta=(g,k,t,h)$ & policy: Q/V gain, AVR gain and time scales, heterogeneity \\
+$R_x$, $w$ & rotation generator and uniform frequency shift \\
+$C$, $\Aperp$ & center subspace and transverse operator \\
+$\aperp(S,\theta)$ & transverse spectral abscissa \\
+$\Hy(\theta)$, $\kappa(\theta)$ & minimal incompatibility hypergraph, minimum edge size \\
+A, B, C & final stable, safe one-at-a-time path, safe in every order \\
+$T_S(s)$ & port (network variables kept, device states eliminated) \\
+$\Delta Y_i$, $K$ & local replacement increment, base network closure \\
+$M=DK$, $Q$ & port matrix and interaction operator \eqref{eq:Q} \\
+$\mu_T$ & M\"obius (interaction) coefficient of order $|T|$ \\
+$r_S$, $R_k$ & tolerated severity of $S$, minimum over $|S|\le k$ \\
+$\rho_{\rm scope}$ & largest severity decidable inside the model's guards \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% =========================================================================
+\section{Transverse Stability}\label{sec:transverse}
+
+\begin{assumption}\label{ass:sym}
+(i) Every device angle state (rotor angle, PLL angle) enters \eqref{eq:dae}
+only through $V e^{-j\,\cdot}$, the other device states are written in their
+own rotating frames, and loads and network are rotation-covariant.
+(ii) Every SG has $D=0$ and constant $P_m$, and the network is
+frequency-independent.
+\end{assumption}
+
+Let $R_x$ equal $1$ on every rotor and PLL angle and $0$ elsewhere, and let $w$
+be the uniform frequency shift (speed $+1$, PLL integrator $+\omega_B$).
+
+\begin{theorem}[Exact transverse quotient]\label{thm:transverse}
+Under Assumption~\ref{ass:sym}(i), $A R_x=0$. Under Assumption~\ref{ass:sym}(i)--(ii),
+$A w=\omega_B R_x$, so $C=\spanop\{R_x,w\}$ is $A$-invariant with
+$A[R_x\ w]=[R_x\ w]J$, $J=\left[\begin{smallmatrix}0&\omega_B\\0&0
+\end{smallmatrix}\right]$ (a Jordan chain). For any orthonormal $Z$ with
+$\mathrm{range}\,Z=C^\perp$ and $\Aperp=Z^\top A Z$,
+\begin{equation}\label{eq:detid}
+\det(sI-A)=s^2\det(sI-\Aperp),
+\end{equation}
+and $\sigma(\Aperp)$ does not depend on $Z$. Moreover, the reduced field
+$r(x)=f(x,\psi(x))$, with $\psi$ the local algebraic solution, satisfies
+$r(x+\phi R_x)=r(x)$ and $r(x+c\,w)=r(x)+c\,\omega_B R_x$ for all $\phi,c$. Hence
+$\dot y = Z^\top r(x^*+Zy)$ is an exact reduced system whose linearization is
+$\Aperp$. If some SG has $D\neq 0$ or a governor, only $C=\spanop\{R_x\}$ remains.
+\end{theorem}
+
+\begin{proof}
+Rotation covariance gives $f(x+\phi R_x,e^{j\phi}z)=f(x,z)$ and a covariant
+$g$. Differentiating at $\phi=0$ gives $f_xR_x+f_zR_z=0$ and $g_xR_x+g_zR_z=0$
+with $R_z=jV$, so $AR_x=0$. Under (ii), $x_0+c\,w+c\,\omega_B tR_x$ with
+$z(t)=e^{jc\omega_B t}z_0$ solves \eqref{eq:dae} exactly (electrical power is
+rotation invariant and the swing equation has $\dot\omega=0$ at speed $1+c$).
+Differentiating in $c$ gives $Aw=\omega_BR_x$. In the basis $[U\ Z]$ with $U$
+an orthonormal basis of $C$, invariance gives $Z^\top AU=0$, so $A$ is block
+upper triangular with diagonal blocks $U^\top AU$ (spectrum $\{0,0\}$) and
+$\Aperp$; this yields \eqref{eq:detid}. A different complement $ZO$ gives
+$O^\top\Aperp O$. The nonlinear identities follow from the same invariances
+applied to $f(x,\psi(x))$ with $\psi$ rotating covariantly and unaffected by
+the uniform speed shift. Hence $Z^\top r(x+v)=Z^\top r(x)$ for $v\in C$.
+\end{proof}
+
+\begin{definition}\label{def:stable}
+A portfolio is \emph{transversely stable} at $\theta$ if
+$\aperp(S,\theta)=\max\mathrm{Re}\,\sigma(\Aperp(S,\theta))<0$.
+\end{definition}
+
+\begin{remark}
+The rotation is a gauge. The drift is a physical consequence of absent primary
+frequency control, and transverse stability is stability modulo absolute
+frequency restoration. A rule of the form ``ignore $|\lambda|\le\varepsilon$''
+coincides with Definition~\ref{def:stable} only when $\Aperp$ has no physical
+eigenvalue in that disc. Suite S1 (Section~\ref{sec:mc}) shows that it
+miscounts every draw with a planted \emph{positive} physical mode of size
+$10^{-5}$--$5\!\times\!10^{-4}$ (235 of 235) and none of the others.
+\end{remark}
+
+\subsection{Numerical classification of transverse labels}\label{sec:classify}
+Every label in this paper is produced by the procedure below. It has three
+outcomes and no magnitude cutoff.
+\begin{enumerate}
+\item Solve the AC equilibrium (Newton, residual $<10^{-12}$) and form the
+DAE Jacobians by central differences at two step scales, $h$ and $2h$. Their
+difference gives the Jacobian error $E$.
+\item Build $R_x$ and $w$ from the device frames, verify $\|AR_x\|$ and
+$\|Aw-\omega_BR_x\|$, delete identically zero rows (switched-off services),
+and form $\Aperp=Z^\top AZ$ and $E_\perp=Z^\top EZ$.
+\item If $\min|\mathrm{Re}\,\sigma(\Aperp)|>2\times10^{-3}$~s$^{-1}$, the label
+is the sign of $\aperp$.
+\item Otherwise, compute the distance to the imaginary axis,
+$d=\min_\omega\sigma_{\min}(\Aperp-j\omega I)$, after balancing. The label is
+exact if $d>10\varepsilon$ with $\varepsilon=\|E_\perp\|+$ backward error.
+If not, the point is \textsc{boundary-or-unresolved} and is reported, never
+assigned.
+\end{enumerate}
+The criterion in step 4 is numerical, not an interval certificate. Because
+$\Hy(\theta)$ is a function of $2^m$ labels, a map with one unresolved subset is
+flagged as unresolved. The frozen IEEE-39 maps carry 1.5\% such points
+(Section~\ref{sec:ieee39}).
+
+% =========================================================================
+\section{Minimal Incompatibility Hypergraph}\label{sec:hypergraph}
+
+\begin{definition}\label{def:hyper}
+For fixed $\theta$ with a transversely stable base, let
+$\mathcal{U}(\theta)=\{S\subseteq V:\aperp(S,\theta)\ge 0\}$. The \emph{minimal
+incompatibility hypergraph} $\Hy(\theta)$ is the family of inclusion-minimal
+elements of $\mathcal{U}(\theta)$, and $\kappa(\theta)=\min_{e\in\Hy}|e|$
+($\kappa=\infty$ if $\Hy=\emptyset$).
+\end{definition}
+
+\begin{proposition}[Structure]\label{prop:structure}
+$\Hy(\theta)$ is an antichain. A portfolio containing no hyperedge is
+transversely stable. The converse is false: $\mathcal{U}$ need not be upward
+closed.
+\end{proposition}
+\begin{proof}
+Minimal elements of a family form an antichain. If $S$ is unstable, a minimal
+unstable subset of $S$ is a hyperedge contained in $S$. Suite S2 and the IEEE-39
+census give stable supersets of unstable sets.
+\end{proof}
+
+For a target $T$, consider three planning predicates. \textbf{A}: $T$ is
+transversely stable. \textbf{B}: some one-at-a-time chain
+$\emptyset=S_0\subset\dots\subset S_{|T|}=T$ has every $S_j$ stable.
+\textbf{C}: every $R\subseteq T$ is stable, so every implementation order
+passes only through stable stationary states.
+
+\begin{proposition}[Planning hierarchy]\label{prop:hierarchy}
+C $\Rightarrow$ B $\Rightarrow$ A, and neither converse holds in general. With a
+stable base, $T$ satisfies C if and only if $T$ contains no hyperedge of
+$\Hy(\theta)$.
+\end{proposition}
+\begin{proof}
+C gives any chain; B ends at $T$. $T$ violates C iff some $R\subseteq T$ is
+unstable, iff (Proposition~\ref{prop:structure}) some hyperedge lies in $T$.
+Suite S2 exhibits both converse failures.
+\end{proof}
+
+\begin{remark}[Examples]
+For A without B, take $m=2$ and diagonal vertices $A_\emptyset=-I$,
+$A_{\{1\}}=\mathrm{diag}(2,-3)$, $A_{\{2\}}=\mathrm{diag}(-3,2)$, and
+$A_{\{1,2\}}=-2I$. The target $\{1,2\}$ is stable, but both one-at-a-time
+chains pass through an unstable singleton. For B without C, it suffices that
+one proper subset is unstable while another chain avoids it. On the IEEE-39
+census, each order-dependent target has exactly one unstable subset
+(Section~\ref{sec:planning}).
+\end{remark}
+
+\begin{theorem}[Boundary localization]\label{thm:localization}
+Let $\theta(\tau)$, $\tau\in[0,1]$, be continuous with $g_z$ nonsingular along
+the path for every portfolio, and let Assumption~\ref{ass:sym} hold. Then
+$\Hy(\theta(\tau))$ is constant on every interval on which no $\Aperp(S,\theta(\tau))$
+has an eigenvalue on the imaginary axis. Every change of $\Hy$ is bracketed by
+such a crossing, at finite frequency or at $s=0$.
+\end{theorem}
+\begin{proof}
+$\Aperp(S,\theta(\tau))$ is continuous in $\tau$ because $g_z^{-1}$ is. Its
+eigenvalues are continuous, so the sign of $\aperp(S,\cdot)$ can change only
+through $\mathrm{Re}\,\lambda=0$. $\Hy$ is a function of the $2^m$ labels.
+\end{proof}
+
+\begin{theorem}[Monotone class]\label{thm:monotone}
+If there is an invertible $T$ such that every $B(S)=T^{-1}A(S)T$ is Metzler and
+$S\subseteq S'$ implies $B(S)\le B(S')$ entrywise, then $\aperp$ is monotone on the
+lattice. Stability is then hereditary, $\Hy$ consists of the minimal non-faces
+of the stable family, and A $=$ B $=$ C.
+\end{theorem}
+\begin{proof}
+For Metzler $B$ and $c\ge\max|B_{ii}|$, $\alpha(B)=\rho(B+cI)-c$; the spectral
+radius is monotone on nonnegative matrices \cite{farina2000positive}, and
+$\alpha$ is similarity invariant.
+\end{proof}
+A single robust pair $S\subset S'$ with $\aperp(S)>0>\aperp(S')$ excludes every
+such realization. IEEE-39 contains three such pairs (Section~\ref{sec:planning}).
+
+\begin{proposition}[Complexity, credited]\label{prop:complexity}
+Deciding whether some $|S|\le k$ has $\alpha(A(\delta_S))\ge 0$ is NP-complete,
+already for $A_G(\delta)=D_\delta W D_\delta-(k-1)I$ with $W$ a graph adjacency
+matrix and $D_\delta=\mathrm{diag}(\delta)$.
+\end{proposition}
+\begin{proof}
+$\alpha(A_G(\delta_S))\ge 0$ with $|S|\le k$ iff $\lambda_{\max}(W[S])\ge k-1$,
+iff $G[S]=K_k$ \cite{karp1972}. Membership follows from exact $LDL^\top$. This
+is the clique reduction behind the NP-hardness of sparse PCA
+\cite{magdon2017sparsepca}; robust stability of interval and affine families is
+NP-hard as well \cite{poljak1993robust, nemirovskii1993robust}. Structured
+radii under continuous perturbations are treated in \cite{katewa2020sparse}.
+\end{proof}
+
+% =========================================================================
+\section{Network-Closure Factorization and Ports}\label{sec:port}
+
+\subsection{Descriptor realization affine in the indicators}
+Under matched dispatch, every candidate bus can carry \emph{both} devices: the
+SG with weight $(1-\delta_i)$ and the GFL with weight $\delta_i$. An absent
+device is replaced by a stable filler $\dot x=-(x-x_0)$ of the same dimension,
+at its intensive equilibrium, which is common to all vertices.
+
+\begin{lemma}\label{lem:affine}
+On this common realization the descriptor Jacobian is exactly affine,
+$J(\delta)=J_0+\sum_i\delta_iJ_i$. Each $J_i$ is supported on the states of the
+devices at bus $i$ and on the two voltage channels of bus $i$.
+\end{lemma}
+The weights multiply injections only, so the proof is immediate. The spectrum
+of each vertex equals that of the actual portfolio plus the fillers' $-1$
+eigenvalues. The reduced $A(\delta)$ is \emph{not} affine, because $g_z$
+depends on $\delta$.
+
+\subsection{Factorization}
+Keep the network variables and eliminate only the device states:
+$T_S(s)=g_z+g_x(sI-f_x)^{-1}f_z$ evaluated at $\delta_S$. Let $E$ select the
+$2m$ voltage channels of the candidate buses, let
+$\Delta Y_i(s)=E_i^\top(T_{\{i\}}-T_0)E_i$ ($2\times 2$),
+$D=\blkdiag(\Delta Y_i)$, and $K=E^\top T_0^{-1}E$. Split
+$K=K_d+K_o$ into its $2\times2$ diagonal blocks and the off-diagonal blocks,
+which carry the network coupling between candidate buses. Set
+\begin{equation}\label{eq:Q}
+M=DK,\qquad Q=(I+DK_d)^{-1}DK_o .
+\end{equation}
+
+\begin{theorem}[Network-closure factorization]\label{thm:factorization}
+Let $s$ be neither a device pole nor a zero of $\det T_0$. Then, for every
+portfolio $S$,
+\begin{align}
+\det P_S(s)&=h_S(s)\,\det T_0(s)\,\det\!\big(I+M_{SS}(s)\big),\label{eq:fact1}\\
+\det\!\big(I+M_{SS}\big)&=\prod_{i\in S}\det(I+M_{ii})\;\det\!\big(I+Q_{SS}\big),
+\label{eq:fact2}
+\end{align}
+where $P_S$ is the descriptor pencil and $h_S(s)=\det(sI-f_x)$ is a product of
+per-device factors. Moreover
+$\det(I+Q_{SS})=\sum_{T\subseteq S}\mu_T$ with $\mu_\emptyset=1$, $\mu_{\{i\}}=0$,
+and, for $|T|\ge2$,
+\begin{equation}\label{eq:mu}
+\mu_T=\sum_{U:\ \mathrm{blocks}(U)=T}\det Q_{UU},
+\end{equation}
+the sum of principal minors of $Q$ that touch exactly the blocks of $T$.
+$\mu_T$ is the M\"obius coefficient of $S\mapsto\det(I+Q_{SS})$ and is
+invariant under block-diagonal changes of port basis.
+\end{theorem}
+\begin{proof}
+The Schur complement of the pencil gives $\det P_S=h_S\det T_S$. By
+Lemma~\ref{lem:affine}, device blocks couple only through their own bus, so
+$T_S=T_0+\sum_{i\in S}E_i\Delta Y_iE_i^\top$ exactly. Sylvester's identity then
+gives \eqref{eq:fact1}. Since $I+DK_d$ is block diagonal,
+$I+M_{SS}=(I+DK_d)_{SS}(I+Q_{SS})$, which gives \eqref{eq:fact2}. The
+expansion $\det(I+X)=\sum_U\det X_{UU}$ follows from multilinearity; grouping
+minors by the blocks they touch gives \eqref{eq:mu}. $Q_{ii}=0$ gives
+$\mu_{\{i\}}=0$. Möbius inversion is unique \cite{rota1964mobius}. A change
+$Q\mapsto S_b^{-1}QS_b$ with $S_b$ block diagonal leaves every
+$\det(I+Q_{SS})$, and hence every $\mu_T$, unchanged.
+\end{proof}
+
+\begin{corollary}[Boundaries are network-closure zeros]\label{cor:closure}
+Suppose no member of $S$ alone and no device has an eigenvalue at $s^*$. Then
+$s^*\in\sigma(\Aperp(S))$ iff $-1\in\sigma(M_{SS}(s^*))$, iff
+$\det(I+Q_{SS}(s^*))=0$. If the network coupling is removed ($K_o=0$), no
+such $s^*$ exists.
+\end{corollary}
+
+Thus every non-additive effect of a replacement portfolio is an interaction
+term $\mu_T$ generated by network closure between the replaced buses. The
+algebraic degree of $S\mapsto\det(I+Q_{SS})$ and $\kappa$ are different
+quantities: an affine family can have $\kappa=m$, and a full-degree family can
+have $\kappa=1$.
+
+\begin{proposition}[Boundary sensitivity]\label{prop:gradient}
+Let $-1$ be a simple eigenvalue of $M_{SS}(s^*,\theta^*)$ with right and left
+eigenvectors $q,p$. Then the crossing eigenvalue moves as
+\begin{equation}\label{eq:grad}
+\frac{\partial s^*}{\partial\theta}=
+-\frac{p^{H}\,\partial_\theta M_{SS}\,q}{p^{H}\,\partial_s M_{SS}\,q},
+\end{equation}
+and $\nabla_\theta\,\mathrm{Re}\,s^*$ is the normal of the boundary.
+\end{proposition}
+\begin{proof}
+Simple-eigenvalue perturbation gives
+$d\lambda=p^{H}dM\,q/p^{H}q$. The implicit function theorem applied to
+$\lambda(s,\theta)=-1$ then yields \eqref{eq:grad}.
+\end{proof}
+
+\subsection{Symmetry-deflated zero-frequency port}
+By \eqref{eq:detid}, $\det T_S(0)$ vanishes structurally for every $S$, so the
+port test is blind to aperiodic crossings. Let $U=R_x/\|R_x\|$ and
+$\beta,\beta_2>0$. Relocate
+$f_x^{\#}=f_x-\beta UU^\top$. The vector $x_0=w+aR_x$ with
+$a=\omega_B/\beta-U^\top w/\|R_x\|$ is then a null vector of the relocated
+reduced matrix. Set $f_x^{\#\#}=f_x^{\#}-\beta_2x_0x_0^\top/\|x_0\|^2$ and
+$T^{\#\#}(0)=g_z-g_x(f_x^{\#\#})^{-1}f_z$.
+
+\begin{theorem}[Zero-frequency port closure]\label{thm:port}
+$\sigma(A^{\#\#})=\sigma(\Aperp)\cup\{-\beta,-\beta_2\}$ and
+$\det T^{\#\#}(0)=\det g_z\det A^{\#\#}/\det f_x^{\#\#}$. Along a path on which
+$\mathrm{sign}\det g_z$ and $\mathrm{sign}\det f_x^{\#\#}$ are constant,
+$\mathrm{sign}\det T^{\#\#}(0)$ changes iff the number of positive real
+eigenvalues of $\Aperp$ changes parity.
+\end{theorem}
+\begin{proof}
+Brauer's rank-one theorem \cite{brauer1952} moves one zero to $-\beta$. The
+Jordan partner becomes the exact null vector $x_0$, which a second rank-one
+update moves to $-\beta_2$. The determinant identity is the Schur formula.
+Complex pairs contribute $|\lambda|^2>0$, so
+$\mathrm{sign}\det\Aperp=(-1)^{\dim\Aperp}(-1)^{\#\{\lambda>0\}}$.
+\end{proof}
+The test does not see complex crossings; those are the domain of
+\eqref{eq:fact1}. It also does not see coalescences of two positive real
+eigenvalues, where nothing crosses $s=0$.
+
+% =========================================================================
+\section{Monte Carlo Validation}\label{sec:mc}
+
+All pass rules were frozen in a configuration file committed before any draw.
+One amendment was recorded before the IEEE-39 run: a one-draw smoke test showed
+that the numerical split of the Jordan pair
+($\mathcal{O}(\sqrt{\epsilon\|A\|\omega_B})\approx 10^{-5}$) had to be excluded
+from the spectral-identity check. Checks that are logical identities validate
+the implementation. The informative outputs are the physical checks and the
+frequencies. Expected-failure controls are declared.
+
+\subsection{Synthetic suites}
+Each suite draws random systems that satisfy exactly one theorem's
+hypotheses (Table~\ref{tab:mc}).
+\begin{itemize}
+\item \textbf{S1} plants the Jordan center in random
+$A=P\left[\begin{smallmatrix}J&X\\0&B\end{smallmatrix}\right]P^{-1}$
+($n\in[8,40]$).
+\item \textbf{S2}--\textbf{S3} use random affine portfolio families.
+\item \textbf{S4} uses Metzler families under random similarities.
+\item \textbf{S5} uses random graphs.
+\item \textbf{S6} uses random block matrices.
+\item \textbf{S7} uses random descriptor systems with a planted center and five
+classes of spectral events.
+\end{itemize}
+
+\begin{table*}[!t]
+\centering
+\caption{Preregistered Monte Carlo validation of every statement}\label{tab:mc}
+\setlength{\tabcolsep}{3.5pt}
+\footnotesize
+\begin{tabular}{@{}L{2.7cm}L{1.75cm}rL{1.45cm}L{6.35cm}L{3.0cm}@{}}
+\toprule
+Statement & Suite & Draws & $N$ & Measured & Frozen rule / result \\
+\midrule
+Thm~\ref{thm:transverse} (linear) & S1 synthetic & 1000 & 1000 & exact RHP count 1000/1000; \eqref{eq:detid} $\le 5.5\!\times\!10^{-9}$; basis $1.5\!\times\!10^{-16}$ & $\le 10^{-8}$: pass\\
+\quad control: magnitude cutoff & S1 & 1000 & 1000 & wrong in 235/235 positive planted modes, 0/765 otherwise & expected failure: confirmed\\
+Props~\ref{prop:structure},\ref{prop:hierarchy} & S2 synthetic & 2000 & 30881 targets & 0 violations; A$\setminus$B in 86 families, B$\setminus$C in 1276, non-hereditary 1296 & 0 violations: pass\\
+Thm~\ref{thm:localization} & S3 synthetic & 300 & 1044 crossings & every $\Hy$ change bracketed (698 real, 346 complex) & 0 exceptions: pass\\
+Thm~\ref{thm:monotone} & S4 synthetic & 1000 & 80\,000 edges &0 non-monotone edges, A$=$B$=$C & pass\\
+\quad control: signs removed & S4 & 1000 & 80\,000 &37\,166 non-monotone edges in 997/1000 families & expected failure: confirmed\\
+Prop~\ref{prop:complexity} & S5 synthetic & 500 & exhaustive & 0 mismatches with $k$-cliques (310 graphs contain one) & pass\\
+Thm~\ref{thm:factorization} (algebra) & S6 synthetic & 500 & 500 & minors $3.4\!\times\!10^{-15}$, M\"obius $1.3\!\times\!10^{-15}$, invariance $8.2\!\times\!10^{-12}$ & $\le 10^{-10}$: pass\\
+Thm~\ref{thm:port} & S7 synthetic & 1000 & 817 decided & flip $\Leftrightarrow$ parity change in 817/817; 183 undecided by the device-flip rule & pass$^{a}$\\
+\midrule
+Thm~\ref{thm:transverse} (physical) & P1 IEEE-39 & 300 & 300 & $\dim C=2$ in 300/300; spectrum $4.5\!\times\!10^{-9}$; Jordan entry $3.9\!\times\!10^{-12}$ & pass\\
+Thm~\ref{thm:transverse} (nonlinear) & P1 IEEE-39 & 300 & 300 & $r(x\!+\!\phi R_x)$: $2.4\!\times\!10^{-14}$; $r(x\!+\!cw)$: $9.4\!\times\!10^{-15}$ & $\le 10^{-8}$: pass\\
+Thm~\ref{thm:localization}, Prop~\ref{prop:hierarchy} & P2 IEEE-39 & \PtwoSegments{} paths & \PtwoCrossings{} & \PtwoResult & \PtwoPass\\
+Thm~\ref{thm:factorization} (physical) & P3 IEEE-39 & 40 & 120 & ratio $3.2\!\times\!10^{-13}$; M\"obius $8.1\!\times\!10^{-13}$ & $\le 10^{-8}$: pass\\
+Def.~\ref{def:stable} in TDS & P4 IEEE-39 & 80 & 80 & TDS verdict $=$ sign of $\aperp$ in 80/80; rate vs.\ $\aperp$: $r=0.969$ & 80/80: pass\\
+Thm~\ref{thm:port} (physical) & Kundur holdout & 474 & 29$+$445 & 28/29 detected; 0/445 false positives & miss $=$ coalescence$^{b}$\\
+\bottomrule
+\end{tabular}\\[2pt]
+\footnotesize $^{a}$Three draws of the ``coalescence'' class contained a genuine
+zero crossing through a generator defect; the port flipped in exactly those.
+$^{b}$Two positive real eigenvalues merge into a complex pair; no eigenvalue
+passes through $s=0$ (Theorem~\ref{thm:port}).
+$^{c}$The bisection used the three-state label and stopped at the classifier's
+resolution band ($|\mathrm{Re}\,\lambda|\le7\times10^{-5}>10^{-6}$); re-bisection
+on the sign of $\aperp$ (post hoc, threshold unchanged) gives
+$\le2\times10^{-9}$.
+\end{table*}
+
+S2 quantifies how often the converses of Proposition~\ref{prop:hierarchy} fail.
+In 65\% of random families some stable target is not safe in every order, and
+in 4\% some stable target cannot be reached by any safe one-at-a-time path.
+S4 shows that the monotone class is narrow: removing sign structure produces
+violations in 99.7\% of families.
+
+\subsection{IEEE-39 suites}
+Policies are drawn uniformly from $g=u^2$ ($u\sim U(0,1)$), $k\in[0.5,2.3]$,
+$t\in[0.5,3]$, $h\in[0,2]$; portfolios are drawn uniformly from the 16 subsets
+of the core $\{30,33,35,37\}$.
+\begin{itemize}
+\item \textbf{P1} checks Theorem~\ref{thm:transverse} at random equilibria. It
+also checks the nonlinear symmetries at random off-equilibrium states
+($10^{-2}$ perturbation, $\phi\sim U(-\pi,\pi)$).
+\item \textbf{P2} follows random policy segments. Every change of $\Hy$ is
+re-bracketed by 40-step bisection, and the crossing eigenvalue is recorded.
+\item \textbf{P3} checks \eqref{eq:fact1} and \eqref{eq:mu} at random $\theta$
+and random $s$.
+\item \textbf{P4} is stratified: 40 draws with $\aperp\le-0.1$ and 40 with
+$\aperp\ge0.1$, each simulated in nonlinear TDS with a 5-MW load pulse.
+\end{itemize}
+Fig.~\ref{fig:mc} summarizes the residuals, the TDS rates, and the crossing
+frequencies. All preregistered IEEE-39 rules pass. The TDS envelope rate tracks
+$\aperp$, which confirms that Definition~\ref{def:stable} is the stability
+notion the nonlinear model obeys. \PtwoText
+
+\subsection{Deviations from the preregistration}
+Every deviation is listed here and in Table~\ref{tab:mc}.
+\begin{enumerate}
+\item The P1 spectral-identity rule matched the numerically split Jordan pair.
+It was amended after a one-draw smoke test and before the run, with the
+threshold unchanged.
+\item The P2 rule failed as implemented, because the bisection stopped at the
+classifier's resolution band. The post-hoc re-bisection is reported beside
+the failure, not instead of it.
+\item In S7, three draws of the ``coalescence'' class contained a genuine zero
+crossing, because the generator allowed $a-d<0$. The port flipped in exactly
+those draws. 183 of 1000 S7 draws were left undecided by the frozen device-flip
+rule, because synthetic device blocks are not block diagonal; in the Kundur
+holdout no bracket was undecided.
+\item Two P1 draws needed a redrawn off-equilibrium state because the first one
+left the algebraic chart.
+\end{enumerate}
+In the second-order audit, the first run used a first-order-hold coefficient
+that was $1/\Delta t$ too large. The error was found before any interpretation
+and corrected; only the corrected run is reported.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{fig_mc.pdf}
+\caption{Monte Carlo validation. (a)~Residuals of the exact identities (S1,
+S6 synthetic; P1, P3 IEEE-39) against their frozen thresholds (bars).
+(b)~Nonlinear TDS envelope growth rate versus the transverse abscissa for 80
+random IEEE-39 policies and portfolios (dashed: identity). (c)~Frequencies of
+the transverse eigenvalues that close the 120 changes of $\Hy$ on 120 random
+policy paths (post-hoc re-bisection; see Table~\ref{tab:mc}, note c).}
+\label{fig:mc}
+\end{figure*}
+
+% =========================================================================
+\section{IEEE 39-Bus Results}\label{sec:ieee39}
+
+\subsection{Benchmark}
+The IEEE 39-bus system \cite{athay1979} is taken from the ANDES dynamic case
+\cite{cui2021andes, andes_ieee39_dynamic_case}, with ten two-axis SGs; bus~39
+represents the interconnection and is never replaced. The documented IEEEX1
+exciter is harmonized into a first-order AVR (gain of the regulator, time
+constant of the exciter), a declared model change. The core
+candidates are SGs 30, 33, 35, 37. Replacing all four displaces
+2096.6~MW of active dispatch on 4270.7~MVA of converter rating. Every result in
+this section is conditional on this model.
+
+\subsection{Policy dependence of the witness structure}
+Three policy planes were mapped: F7A ($g\times k$), F7B ($g\times t$), and F7C
+($g\times h$). All 345\,229 points were re-audited in transverse coordinates on
+the direct path. No resolved label changed relative to the frozen maps; 1.5\%
+of points remain within the classifier's numerical resolution. The planes carry
+30, 36, and 16 distinct hypergraphs, with up to 15 hypergraphs behind a single
+value of $\kappa$ (Fig.~\ref{fig:map}).
+
+At the reference point P4 ($g=0.03625$, $k=1.425$, $t=1.5$, $h=1$),
+$\Hy=\{\{30,33,35,37\}\}$ and $\aperp=+0.127$~s$^{-1}$: every proper subset
+is stable and the four-unit portfolio is not. At full voltage-support gain
+(P$_\infty$: $g=1$, $k=0.5$), $\Hy=\emptyset$. On the pure-policy line
+$t=0.852$ the minimal witness contracts $4\to3\to2$ and re-expands $3\to4\to\emptyset$
+as $g$ increases.
+
+The failing mode is the 0.64--0.71~Hz inter-area family, not the amount of
+dispatch removed (Fig.~\ref{fig:dispatch}). Among the 512-portfolio census,
+consider the 25 stable four-unit portfolios whose displaced active dispatch
+matches that of the 10 unstable ones. In all 25 the family stays damped
+($\max\mathrm{Re}\le-0.114$~s$^{-1}$, $\zeta\ge3.9\%$). It is unstable in 8 of
+the 10 failing portfolios; the other two fail through a different mode. Total
+displaced dispatch predicts the minimal coalition poorly (AUC 0.57).
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{fig_dispatch.pdf}
+\caption{Inter-area family abscissa versus displaced active dispatch for the
+unstable four-unit census portfolios and 25 stable portfolios matched on
+dispatch. Instability is not a matter of how much dispatch is displaced.}
+\label{fig:dispatch}
+\end{figure}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{fig_policy_map.pdf}
+\caption{Transverse minimum incompatible order $\kappa$ over the F7A policy plane
+of IEEE-39 ($t=1.5$, $h=1$, core 30/33/35/37, matched dispatch, no governor).
+Black dots: points within classifier resolution.}
+\label{fig:map}
+\end{figure}
+
+\subsection{Network-closure anatomy of the boundaries}
+Ten frozen boundaries were re-located and analyzed with
+Theorem~\ref{thm:factorization}: the nine witness changes of the F7B line
+$t=0.852$ and the flagship boundary on the P4 line ($g^*=0.2077$, 0.706~Hz).
+\begin{itemize}
+\item The descriptor blocks $f_x,f_z,g_x,g_z$ are affine in $\delta$ to
+$4.5\times10^{-16}$ (order-$\ge2$ M\"obius coefficients). Each replacement
+touches only its own devices and bus (a $2\times2$ $g_z$ block).
+\item \eqref{eq:fact1} holds to $1.4\times10^{-13}$ for all 16 subsets at all
+ten points, and the critical eigenvalue of $M_{SS}$ equals $-1$ to
+$8.5\times10^{-14}$.
+\item The local factor $\prod_i\det(I+M_{ii})$ stays between 0.08 and 0.31.
+The zero is carried entirely by $\det(I+Q_{SS})$ (Fig.~\ref{fig:closure}).
+\item No truncation of \eqref{eq:mu} below order $|S|$ vanishes: the residual
+is 0.29--0.40 for triples at order 2, and 0.59--0.60 (order 2) and 0.13--0.16
+(order 3) for the four-unit portfolio.
+\end{itemize}
+Every observed boundary is therefore closed only by the full-order network
+interaction of the coalition whose label changes, which is the mechanism behind
+$\kappa$. Table~\ref{tab:anatomy} lists the ten events and Fig.~\ref{fig:path}
+places them on the F7B line.
+
+Table~\ref{tab:orders} gives the build-up at the flagship boundary, order by
+order. The interaction coefficients of orders 2, 3, and 4 have comparable
+magnitude (0.51, 0.45, 0.16). The fourth-order term, a sum of principal minors
+of $Q$ touching all four replaced buses, is exactly what closes the
+determinant. On 120 random $(\theta,s)$ draws (suite P3), the full-order
+coefficient of $\det(I+M_{SS})$ ranges from $7.8\times10^{-4}$ to 469 and never
+vanishes. No lower-degree representation of the portfolio family is exact on
+this benchmark.
+
+\begin{table}[!t]
+\centering
+\caption{Order-by-order expansion at the flagship boundary (P4 line, 0.706~Hz)}\label{tab:orders}
+\setlength{\tabcolsep}{4pt}
+\footnotesize
+\begin{tabular}{@{}crrrr@{}}
+\toprule
+& \multicolumn{2}{c}{$\det(I+M_{SS})$} & \multicolumn{2}{c}{$\det(I+Q_{SS})$}\\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Order $k$ & $|\sum_{|T|=k}\mu_T|$ & $|$trunc.\ $\le k|$ & $|\sum_{|T|=k}\tilde\mu_T|$ & $|$trunc.\ $\le k|$\\
+\midrule
+0 & 1 & 1 & 1 & 1\\
+1 & 2.509 & 1.712 & 0 & 1\\
+2 & 2.393 & 0.889 & 0.509 & 0.605\\
+3 & 0.989 & 0.146 & 0.445 & 0.161\\
+4 & 0.146 & $7\times10^{-15}$ & 0.161 & $8\times10^{-14}$\\
+\bottomrule
+\end{tabular}\\[2pt]
+\footnotesize The left pair includes the local terms; in the right pair they
+are factored out ($\tilde\mu_{\{i\}}=0$, Theorem~\ref{thm:factorization}).
+\end{table}
+
+\begin{table}[!t]
+\centering
+\caption{Network-closure anatomy of ten frozen IEEE-39 boundaries}\label{tab:anatomy}
+\setlength{\tabcolsep}{2.4pt}
+\footnotesize
+\begin{tabular}{@{}llrrrrrrr@{}}
+\toprule
+Ev. & $S$ changing & $g^*$ & Hz & local & trunc.$^{a}$ & $\sigma_1(Q)$ & rank$^{b}$ & angle$^{c}$\\
+\midrule
+E1 & 30+33+35 & 0.0102 & 0.628 & 0.315 & 0.336 & 6.13 & 7 & 2.3e-4\\
+E2 & 30+33+37 & 0.0188 & 0.633 & 0.198 & 0.396 & 6.88 & 7 & 7.1e-5\\
+E3 & 33+35+37 & 0.0609 & 0.671 & 0.080 & 0.385 & 4.00 & 8 & 2.7e-4\\
+E4 & 30+33 & 0.1034 & 0.656 & 0.081 & 1 & 8.93 & 7 & 1.8e-4\\
+E5 & 33+35+37 & 0.1870 & 0.695 & 0.135 & 0.296 & 2.37 & 8 & 3.3e-4\\
+E6 & 30+33 & 0.2491 & 0.672 & 0.104 & 1 & 6.06 & 7 & 8.4e-5\\
+E7 & 30+33+35 & 0.2778 & 0.706 & 0.130 & 0.372 & 2.01 & 8 & 3.5e-4\\
+E8 & 30+33+37 & 0.2931 & 0.685 & 0.132 & 0.293 & 3.46 & 8 & 2.0e-4\\
+E9 & 30+33+35+37 & 0.2973 & 0.718 & 0.134 & 0.132 & 1.67 & 8 & 2.9e-4\\
+F & 30+33+35+37 & 0.2077 & 0.706 & 0.089 & 0.161 & 1.84 & 8 & 4.3e-4\\
+\bottomrule
+\end{tabular}\\[2pt]
+\footnotesize E1--E9: F7B line $t=0.852$ ($k=h=1$); F: P4 line ($k=1.425$,
+$t=1.5$). $^{a}|\det(I+Q_{SS})|$ truncated at order $|S|-1$ (the full order
+gives $\le4\times10^{-13}$). $^{b}$Effective rank of $Q$ at $10^{-2}$.
+$^{c}$Boundary-normal error of \eqref{eq:grad} versus direct finite
+differences [deg].
+\end{table}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{fig_path.pdf}
+\caption{F7B policy line $t=0.852$. Top: the transverse minimum incompatible
+order contracts $4\to3\to2$ and re-expands. Bottom: largest and smallest singular
+values of the interaction operator $Q$ at the nine boundary events (labels:
+effective rank). The dimension stays full while $\kappa$ changes.}
+\label{fig:path}
+\end{figure}
+
+Two negative checks bound this statement. (i)~The effective rank of $Q$
+(threshold $10^{-2}$) stays at 7--8 of 8 throughout
+$\kappa=4\to3\to2\to3\to4$, so interaction dimension does not explain the
+contraction. What varies is the magnitude: $\sigma_1(Q)$ is 6.1--8.9 at the
+contracting events and 1.7--1.8 at the four-unit boundaries (descriptive
+only). (ii)~A path (walk) expansion of $T_0^{-1}$ with bus-diagonal splitting
+diverges: $\rho(D_g^{-1}N)=1.003$--$1.556$ over 0.3--1.5~Hz, both at the
+flagship boundary and for a matched stable control. No path interpretation is
+offered.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{fig_closure.pdf}
+\caption{Anatomy of ten frozen IEEE-39 boundaries (E1--E9: F7B line $t=0.852$;
+F: flagship on the P4 line). Local factor and truncations of the interaction
+expansion \eqref{eq:mu}. Only the full-order term (order $|S|$) reaches zero.
+For pairs, order $\le2$ is the full order.}
+\label{fig:closure}
+\end{figure}
+
+\subsection{Boundary motion and retuning}
+Formula \eqref{eq:grad} was compared with direct finite differences of the
+tracked transverse eigenvalue in all four policy coordinates. At all ten
+boundaries, the boundary normal agrees to $4.3\times10^{-4}$ degrees, its
+magnitude to $4.3\times10^{-6}$ (relative), and the frequency drift to
+$9\times10^{-6}$.
+
+Consider making the P4 portfolio stable by a pure Q/V-gain change.
+\begin{itemize}
+\item A single linear step predicts $\Delta g=0.052$, whereas continuation
+gives $0.171$: $\partial\,\mathrm{Re}\,s/\partial g$ drifts from $-2.45$ at P4
+to $-0.46$ at the boundary.
+\item Newton iteration with \eqref{eq:grad} reaches the continuation boundary
+$g^*=0.20768$ to $2\times10^{-10}$ in five steps.
+\end{itemize}
+The port derivative is thus an exact local tool, and an iterative one for
+retuning (Fig.~\ref{fig:retune}).
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{fig_retune.pdf}
+\caption{Q/V retuning of the P4 four-unit portfolio. The single linear step
+built from the port derivative \eqref{eq:grad} undershoots, because the slope
+changes by a factor of five along the path. Newton iteration with the same
+derivative reaches the continuation boundary (dotted) to $2\times10^{-10}$.}
+\label{fig:retune}
+\end{figure}
+
+\subsection{Robustness to documented primary frequency control}
+The same source workbook documents TGOV1N turbine governors ($R=0.05$,
+$T_1=0.05$, $T_2=1$, $T_3=2.1$~s), which were added untuned as a separately
+versioned model. With governors, $C=\spanop\{R_x\}$
+(Theorem~\ref{thm:transverse}). Results (Fig.~\ref{fig:gov}):
+\begin{itemize}
+\item The P4 four-unit portfolio becomes stable ($\aperp=-0.0745$), although it
+remains the least-damped portfolio of the lattice.
+\item On a 399-point plane the number of distinct hypergraphs falls from 26 to
+10. Non-empty structure remains at 74 points ($\kappa=2,3,4$ at 18, 32, and 24
+points); no singleton ever fails, and the base is always stable.
+\item Of the six reference points, one (P3) keeps its structure
+($\{30,33,35\},\{30,33,37\}$); P1, P2, P4, and P$_{\rm fold}$ become empty.
+\item Independently, in ANDES the governors move the base inter-area pair from
+$-0.222$ to $-0.770$~s$^{-1}$, consistent with the damping direction.
+\end{itemize}
+Policy-dependent incompatibility therefore survives governors in a smaller
+region, while the specific four-unit coalition at P4 is conditional on the
+absence of primary frequency control. Table~\ref{tab:gov} compares the two
+models on the P4 line and on the tongue line $k=1.30$. With governors the
+tongue disappears, and the four-unit window on the P4 line shrinks from
+$g\in[0.016,0.20]$ to $g\in[0.016,0.023]$.
+
+\begin{table}[!t]
+\centering
+\caption{Frozen versus governed IEEE-39 (documented TGOV1N)}\label{tab:gov}
+\setlength{\tabcolsep}{3pt}
+\footnotesize
+\begin{tabular}{@{}L{0.34\columnwidth}L{0.29\columnwidth}L{0.29\columnwidth}@{}}
+\toprule
+Quantity & Frozen & Governed \\
+\midrule
+P4 four-unit $\aperp$ & $+0.127$ & $-0.0745$ \\
+P4 line, $\kappa=4$ window & $g\in[0.016,0.20]$ & $g\in[0.016,0.023]$ \\
+tongue line $k=1.30$ & U--S--U--S (re-entry) & no re-entry \\
+plane: distinct $\Hy$ & 26 & 10 \\
+plane: non-empty points & 148 (+21 base unstable) & 74 (base always stable) \\
+plane: $\kappa=1$ points & 48 & 0 \\
+reference points kept & 5 of 6 non-empty & P3 only \\
+damped condenser, P4 & threshold 2.48--3\% & not needed \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{fig_governed.pdf}
+\caption{Minimum incompatible order on a coarse IEEE-39 policy plane ($t=1.5$,
+$h=1$), frozen model versus the model with the source's documented TGOV1N
+governors.}
+\label{fig:gov}
+\end{figure}
+
+\subsection{Nonlinear confirmation and model scope}\label{sec:nonlinear}
+In earlier preregistered runs, all 32 declared small-disturbance TDS verdicts
+agree with the eigenvalues (frequency within $2.5\times10^{-4}$~Hz, damping
+within $6\times10^{-4}$~s$^{-1}$), and P4 extends this to 80 random cases.
+
+For finite disturbances we used three frozen families: a bus-16 load pulse
+(D1), an SG36 mechanical-power dip (D2), and a GFL output dip (D3). We also
+declared model-scope guards: GFL terminal voltage in $[0.9,1.1]$~pu, GFL
+current $\le1.2$~pu, PLL and COI frequency bands, and the documented exciter and
+stabilizer limits. Findings:
+\begin{itemize}
+\item Inside these guards, the finite-disturbance hypergraph equals
+$\Hy(\theta)$ for all six (point, family) combinations.
+\item No transversely stable portfolio fails inside the guards: 84 of 96
+thresholds are guard activations (GFL voltage band, stabilizer limit).
+\item Normal-form analysis on the exact transverse system shows that the three
+examined oscillatory boundaries are subcritical Hopf points
+\cite{kuznetsov2004bifurcation} (Table~\ref{tab:hopf}).
+\end{itemize}
+
+\begin{table}[!t]
+\centering
+\caption{First Lyapunov coefficient at three IEEE-39 boundaries}\label{tab:hopf}
+\setlength{\tabcolsep}{3pt}
+\footnotesize
+\begin{tabular}{@{}p{0.34\columnwidth}rrrrl@{}}
+\toprule
+Boundary & $p^*$ & Hz & $\partial\aperp/\partial p$ & $\ell_1$ & type\\
+\midrule
+four-unit, P4 line ($p=g$) & 0.2077 & 0.706 & $-0.461$ & $+0.0095$ & subcrit.\\
+tongue, $k=1.30$ ($p=g$) & 0.0509 & 0.639 & $+1.102$ & $+0.0250$ & subcrit.\\
+damped condenser ($p$: rating) & 2.48\% & 0.621 & $-5.570$ & $+0.026$ & subcrit.\\
+\bottomrule
+\end{tabular}\\[2pt]
+\footnotesize $\ell_1$ from polarized central differences of the exact
+transverse field at two step sizes (spread $\le0.2\%$); transversality holds at
+all three points.
+\end{table}
+Nonlinear composability is therefore not stricter than transverse spectral
+composability within the model's validity. Beyond the guards the model does not
+decide.
+
+Fig.~\ref{fig:nonlinear} shows the resilience radii
+$R_k=\min_{|S|\le k}r_S$, where $r_S$ is the largest tolerated severity. At P4
+the model-scope radius is $\rho_{\rm scope}=130.5$~MW (D1), 97.7~MW (D2), and
+0.091 (D3). At P$_\infty$ it is 88.3~MW, 360.8~MW, and 0.308. The reactive
+policy that repairs small-signal composability therefore widens two envelopes
+and narrows one.
+
+The order in which portfolios first reach the envelope is itself structured.
+At P4, D1, the four-unit portfolio is first, then 30+33+35, then pairs, then
+singletons, and finally the unreplaced base at 681~MW. This first-event
+structure records where omitted limiters would act; it says nothing about
+stability beyond that point.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{fig_nonlinear.pdf}
+\caption{Finite-disturbance resilience radii $R_k$ of the IEEE-39 core at P4
+and P$_\infty$ for three frozen disturbance families (TDS, phasor DAE).
+Dotted: model-scope radius $\rho_{\rm scope}$. Below it, the nonlinear
+hypergraph equals $\Hy(\theta)$; above it, every threshold is a guard
+activation.}
+\label{fig:nonlinear}
+\end{figure*}
+
+A second-order audit on the same DAE (Fig.~\ref{fig:curvature}) confirms that
+the algebraic curvature $f_zD^2\psi$ must be retained
+\cite{sanchezgasca2005higher}. At 2~MW, the full second-order response is
+170--450 times more accurate than the linear one in frequency and 750--3400
+times in bus voltage (cubic remainder, slope 3.0--3.2). Dropping $f_zD^2\psi$
+breaks the rotation/drift symmetry at second order and makes the frequency
+prediction 570--1700 times worse than linear. With the center-subspace
+component removed, the device curvature alone is still no better than linear.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{fig_curvature.pdf}
+\caption{Second-order reduced response of the critical triple 30+33+35 at P4
+against the full DAE (bus-16 load pulse). The complete second-order model
+requires the algebraic curvature $f_zD^2\psi$.}
+\label{fig:curvature}
+\end{figure}
+
+\subsection{Planning consequences}\label{sec:planning}
+Proposition~\ref{prop:hierarchy} turns $\Hy$ into constraints. On the 512
+portfolios of nine candidates (30--38) at one reference policy, 327 are
+transversely stable, 324 are safe in every order, and three are final-stable
+but order-dependent. In each of the three, the only unstable subset is the
+four-set without unit 34, so exactly the orders that convert 34 last are
+unsafe. These three pairs also exclude the monotone class
+(Theorem~\ref{thm:monotone}).
+
+The MW-optimal plan (31+32+34+35+37+38, 3652.3~MW / 6499.9~MVA) is safe in any
+order. At P4 the optimal any-order-safe core plan is 30+33+35 (1775.1~MW); at
+P$_\infty$ it is the full core (2096.6~MW).
+
+A condenser with a damped swing mode restores P4 above 2.48\% of the retired
+rating (106.0~MVA; TDS threshold 2.47\%), while an undamped low-inertia
+condenser is itself unstable. Keeping a 200-MW disturbance inside the declared
+converter voltage band requires 684--792~MVA. That is an envelope requirement
+of this model, not a stability requirement. Table~\ref{tab:planning}
+summarizes the three planning problems, preregistered before any threshold was
+computed:
+\begin{itemize}
+\item P1 maximizes displaced active dispatch subject to containing no
+hyperedge.
+\item P2 adds the nonlinear hyperedges at preregistered severities (200~MW for
+D1 and D2, 0.35 for D3).
+\item P3 minimizes the damped-condenser rating.
+\end{itemize}
+
+\begin{table}[!t]
+\centering
+\caption{Planning results on IEEE-39 (MW and MVA on separate axes)}\label{tab:planning}
+\setlength{\tabcolsep}{3pt}
+\footnotesize
+\begin{tabular}{@{}L{0.23\columnwidth}L{0.22\columnwidth}L{0.49\columnwidth}@{}}
+\toprule
+Problem & Setting & Result \\
+\midrule
+P1 any-order safe & core, P4 & 30+33+35: 1775.1~MW / 3300.5~MVA\\
+P1 any-order safe & core, P$_\infty$ & 30+33+35+37: 2096.6~MW / 4270.7~MVA\\
+P1 any-order safe & 9-unit census & 31+32+34+35+37+38: 3652.3~MW / 6499.9~MVA\\
+Order dependence & 9-unit census & 3 of 327 stable targets (34 must not be last)\\
+P2 nonlinear safe & core, P4 & out of model scope ($\rho^*\ge\rho_{\rm scope}$, 3 families)\\
+P2 nonlinear safe & core, P$_\infty$, D2 & identical to P1\\
+P3 support & P4, small signal & 2.48\% $=$ 106.0~MVA (damped condenser)\\
+P3 support & P4, envelope D1/D2 & 792.4 / 684.0~MVA; D3 not reached at 1067.7~MVA\\
+Governors & P4 & stable without support ($\aperp=-0.0745$)\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% =========================================================================
+\section{Discussion}\label{sec:discussion}
+
+\subsection{Relation to existing methods}
+Table~\ref{tab:methods} places the object among established method families.
+The hypergraph does not replace any of them. Its per-portfolio labels
+\emph{are} generalized Nyquist tests. What it adds is the organization of those
+labels over binary replacement decisions and their dependence on the converter
+policy, which none of the configuration-level criteria resolves.
+Flagship-only Nyquist, single-port impedance, and short-circuit-ratio screens
+miss the coalition changes on IEEE-39. Modal-sensitivity, additive, and pairwise
+predictors of the four-unit instability were correct in 22, 30, and 38 of 52
+cases, respectively.
+
+\begin{table}[!t]
+\centering
+\caption{Relation to established method families}\label{tab:methods}
+\setlength{\tabcolsep}{2.5pt}
+\footnotesize
+\begin{tabular}{@{}L{0.30\columnwidth}L{0.64\columnwidth}@{}}
+\toprule
+Family & Relation to this work \\
+\midrule
+Generalized Nyquist \cite{macfarlane1977gnc} & per-portfolio test; our labels are GN tests \\
+Impedance / SCR \cite{sun2011impedance, xin2016gscr} & configuration screens; miss coalition changes \\
+Small gain, passivity & our sampled small-gain screen fails ($\rho=2.9$--$12.3$) \\
+$\mu$ / robust stability \cite{poljak1993robust} & NP-hard in general; Prop.~\ref{prop:complexity} adds no priority \\
+Sparse stability radius \cite{katewa2020sparse} & continuous structured perturbations, not binary replacement \\
+$N\!-\!k$ minimal sets \cite{bienstock2010nk} & static analogue; ours is dynamic, transverse, policy dependent \\
+Selective modal analysis \cite{perezarriaga1982sma} & explains modes; does not enumerate coalitions \\
+Continuation / Hopf \cite{kuznetsov2004bifurcation} & boundaries are subcritical Hopf points \\
+Energy / Lyapunov & local bound $\le10^{-11}$ of the measured threshold \\
+Higher-order modal \cite{sanchezgasca2005higher} & requires $f_zD^2\psi$ (Fig.~\ref{fig:curvature}) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Use in retirement planning}
+Three uses follow directly.
+\begin{enumerate}
+\item The any-order-safe portfolios are exactly those avoiding every hyperedge
+(Proposition~\ref{prop:hierarchy}). This is a set-packing constraint that a
+unit-commitment or capacity-expansion model can carry.
+\item Order dependence is real but rare on IEEE-39 (three of 327 stable
+targets at one policy, 131 of 30\,755 on random paths). Where it occurs, the
+unsafe orders are identified exactly.
+\item The policy is a planning variable. At fixed network and dispatch, it
+moves $\kappa$ between 1 and $\infty$, and the boundary normals given by
+\eqref{eq:grad} are exact local directions for retuning.
+\end{enumerate}
+Evaluating $2^m$ labels is exponential in general
+(Proposition~\ref{prop:complexity}); with $m=4$ it takes 16 evaluations. The
+factorization in \eqref{eq:fact1} evaluates all portfolios from one base
+network and $m$ local increments at a common operating point.
+
+% =========================================================================
+\section{Corroboration and Limitations}\label{sec:limits}
+
+\emph{Kundur two-area system.} Policy dependence recurs: 61/61 and 36/36
+policy lines change $\Hy$, which is never empty. All 194 aperiodic
+(Q/V-integrator) crossings are real transverse crossings. They motivated
+Theorem~\ref{thm:port}; its preregistered holdout (Fig.~\ref{fig:port}) is the
+physical validation, whereas the 194 design crossings are not counted.
+
+\emph{IEEE 68-bus system} \cite{canizares2015benchmark}. The documented model is
+reproduced (15/15 modes to $5\times10^{-4}$~Hz), but the preregistered
+four-candidate policy map is empty. Policy dependence appears only at $\ge 6$
+of 12 replaced plants ($\kappa=6\to9\to11$). The structure is therefore
+system dependent, not universal.
+
+\emph{Independent implementation.} ANDES reproduces the power flow, the base
+inter-area mode (within 4.1\%), and the governor damping direction. ANDES does
+not implement the converter model used here, so no portfolio result is claimed
+as independently reproduced.
+
+\emph{Model scope.} The model is a phasor DAE, not an electromagnetic
+transient model. It has no converter current limits, ride-through logic, or DC
+link. The frozen models have no primary frequency restoration, so all stability
+statements are transverse. No certificate is claimed: sampled small-gain and
+principal-minor screens give $\rho=2.9$--$12.3>1$, and a local Lyapunov bound
+reaches at most $10^{-11}$ of the measured threshold.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{fig_port.pdf}
+\caption{Symmetry-deflated zero-frequency port on a Kundur holdout line.
+Top: the physical real transverse eigenvalue crosses zero. Bottom: the
+relocated port changes sign exactly at the crossings, whereas the plain port
+(dotted) is structurally singular and its sign is numerical noise.}
+\label{fig:port}
+\end{figure}
+
+% =========================================================================
+\section{Conclusion}
+The minimal incompatibility hypergraph is a planning object for SG retirement:
+it is exactly defined in transverse coordinates, it changes only at
+imaginary-axis crossings, and it characterizes the portfolios that are safe in
+every implementation order. Its non-additivity is a principal-minor expansion
+of the network closure between replaced buses. On IEEE-39 every observed
+boundary is closed only by the full-order interaction of the changing
+coalition, and the converter reactive policy changes which coalitions fail.
+Every statement was tested by preregistered Monte Carlo suites, synthetic and
+physical. All passed except one IEEE-39 localization rule, which failed as
+implemented; that failure is reported together with its post-hoc correction. The four-unit coalition is conditional on the absence of primary
+frequency control. Nonlinear composability adds no stricter structure within
+model scope, and the structure is system dependent. Extending the analysis to
+limiter-equipped, governed, and mixed grid-forming benchmarks requires new,
+separately versioned models.
+
+\appendices
+\section{Proof Details}\label{app:proofs}
+\emph{Nonlinear drift in Theorem~\ref{thm:transverse}.} Fix $x$ in the chart
+domain and let $z=\psi(x)$. Consider $x_c=x+c\,w$. Speeds enter the reduced
+equations only through $\dot\delta=\omega_B(\omega-1)$ and, for a GFL, through
+$\dot\vartheta=k_{p,\rm pll}v_q+x_{\rm pll}$. In both cases the shift adds the
+constant $c\,\omega_B$ to the angle derivatives, and nothing else. The power-form
+swing equation with $D=0$ does not contain $\omega$ on its right-hand side,
+the stabilizer uses electrical power, and the network is frequency
+independent. Hence $\psi(x_c)=\psi(x)$ and $r(x_c)=r(x)+c\,\omega_BR_x$. The
+rotation identity follows from $\psi(x+\phi R_x)=e^{j\phi}\psi(x)$ and the
+invariance of $f$ under a common rotation of angles and voltages. Both
+identities hold for every $x$, so they are properties of the vector field, not
+only of the linearization.
+
+\emph{Locality in Theorem~\ref{thm:factorization}.} Order the device states by
+bus. On the common realization, $f_x$ is block diagonal by device; $f_z$ and
+$g_x$ couple a device only to the two channels of its own bus; and the device
+contribution to $g_z$ is a $2\times2$ block on that bus. Therefore
+$g_x(sI-f_x)^{-1}f_z=\sum_{\rm devices}E_b\,G_b(s)\,E_b^\top$, where $G_b$ is the
+device's $2\times2$ admittance. With the network and load terms common to all
+vertices, $T_S-T_0=\sum_{i\in S}E_i\Delta Y_iE_i^\top$. The increment
+$\Delta Y_i$ does not depend on $S$ because every device stays at its common
+intensive equilibrium (matched dispatch). The residual of this locality on the
+direct (non-common) path is bounded by the power-flow tolerance and was measured
+below $8\times10^{-8}$.
+
+\emph{Corollary~\ref{cor:closure}.} If member $i$ alone has no eigenvalue at
+$s^*$, then $\det(I+M_{ii})=\det T_{\{i\}}(s^*)/\det T_0(s^*)\neq0$. The zero of
+\eqref{eq:fact2} must then be a zero of $\det(I+Q_{SS})$. With $K_o=0$, $Q=0$
+and $\det(I+Q_{SS})=1$.
+
+\section{Monte Carlo Constructions}\label{app:mc}
+\emph{S1.} $n\sim U\{8,\dots,40\}$. The transverse spectrum mixes real
+eigenvalues and complex pairs with real parts in $[-2,1]$ ($|\mathrm{Re}|\ge0.01$)
+and imaginary parts in $[0.5,10]$. In odd draws one real eigenvalue is planted at
+$\pm u$, with $u$ log-uniform in $[10^{-5},5\times10^{-4}]$. $P=Q(I+0.3G)$ with
+$Q$ Haar orthogonal. The identity \eqref{eq:detid} is evaluated at three random
+$s$ with $|s|\in[0.1,10]$.
+
+\emph{S2.} $A(\delta)=A_0+\sum\delta_iA_i$ with $m\sim U\{4,5,6\}$, $n=10$,
+$\alpha(A_0)\in[-1,-0.2]$, and rank-2 actions scaled by $U(0.3,1.5)$.
+Classes A, B, and C are computed by exhaustive lattice search.
+
+\emph{S3.} The same families with actions $A_i+pB_i$, $p\in[0,1]$ on a
+401-point grid; each change of $\Hy$ is bisected in 50 steps.
+
+\emph{S4.} $B(S)=B_0+\sum_{i\in S}N_i$ with $B_0$ Metzler,
+$\alpha(B_0)\in[-2,-0.5]$, and $N_i\ge0$ at density 0.3, under random similarity
+($\mathrm{cond}\le10^3$). The control uses random signs.
+
+\emph{S5.} $G(n,p)$ graphs with $n\in[7,10]$, $p\in[0.3,0.8]$, $k\in\{3,4,5\}$;
+all $|S|\le k$ are enumerated.
+
+\emph{S6.} Complex Gaussian $M$ with $m\in\{3,4,5\}$ blocks of size 2 and
+random block basis changes.
+
+\emph{S7.} Random descriptors with $n_x\in[10,30]$, $n_z\in[6,20]$, and
+$f_x=A+f_zg_z^{-1}g_x$, where $A$ is planted as in S1 at both ends of a
+bracket. Five event classes: single real crossing, double real crossing, real
+coalescence, complex crossing, and none. Relocation uses
+$\beta=\beta_2=1$ with the consistency pair $(2,0.5)$. The frozen rule leaves a
+bracket undecided when $\mathrm{sign}\det f_x^{\#\#}$ flips.
+
+\emph{P1--P4.} Policies are sampled as in Section~\ref{sec:mc}. Each case is
+solved on the direct path (full AC equilibrium and central-difference
+Jacobians); P3 uses the common realization of Lemma~\ref{lem:affine}. The random
+seed and every pass rule are fixed in the preregistration file.
+
+\section{Nonlinear Simulation Definitions}\label{app:tds}
+The TDS integrates the full DAE (BDF, relative tolerance $10^{-7}$, maximum
+step 0.05~s). The network equations are solved by Newton at every step.
+\begin{itemize}
+\item \emph{Pulse.} Each disturbance is applied for 0.5~s and followed by 30~s of
+free response.
+\item \emph{Deviation measure.} $D(t)$ is the larger of the transverse state and
+voltage deviations, normalized by $10^{-3}$ and $10^{-2}$.
+\item \emph{Recovers.} $D$ decays below 10\% of its early peak with a negative
+fitted envelope rate.
+\item \emph{Fails.} $D$ exceeds twice the early peak with positive growth over
+the last 10~s, or the relative rotor angle exceeds $\pi$.
+\item \emph{Outside model scope.} A guard trips: bus voltage outside
+$[0.8,1.2]$, GFL terminal voltage outside $[0.9,1.1]$, GFL current or apparent
+power above 1.2, reactive power above 1.0, PLL or speed frequency outside
+$[-3,1.8]$~Hz, COI frequency beyond $\pm0.5$~Hz, field voltage outside the
+documented exciter limits, or stabilizer output beyond 0.1 (all per unit on
+the device base).
+\end{itemize}
+Thresholds $r_S$ are obtained by continuation on a frozen amplitude grid
+followed by bisection. A threshold whose first event is a guard is
+scope-censored, and the minimum of the censored thresholds defines
+$\rho_{\rm scope}$.
+
+\section*{Reproducibility}
+Code, frozen configurations, the preregistration and its amendment, the Monte
+Carlo draws, and the source data of every figure are available from the author
+and in the project repository.
+
+\balance
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

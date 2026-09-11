@@ -136,20 +136,31 @@ def p1_task(task):
     spec_id = float(c[r, cc].max())
     # nonlinear symmetries at a random off-equilibrium state
     ch = chart(dae, xs, zs)
-    x = xs + 1e-2 * rng.standard_normal(xs.size)
-    zx = psi(dae, x, zs, ch.lu)
-    fx = dae.f(x, zx, {})
-    phi = rng.uniform(-np.pi, np.pi)
-    xr = x + phi * r_x
-    zr = psi(dae, xr, rotate_z(zx, phi), ch.lu)
-    rot_res = float(np.linalg.norm(dae.f(xr, zr, {}) - fx) / (1 + np.linalg.norm(fx)))
-    cshift = rng.uniform(-0.02, 0.02)
-    xc = x + cshift * w
-    zc = psi(dae, xc, zx, ch.lu)
-    drift_res = float(
-        np.linalg.norm(dae.f(xc, zc, {}) - fx - cshift * OMEGA_B * r_x)
-        / (1 + np.linalg.norm(fx))
-    )
+    # a random state may leave the algebraic chart (psi has no solution nearby);
+    # such draws are redrawn (at most 5 times) and counted, never forced
+    redraws, rot_res, drift_res, phi, cshift = 0, np.nan, np.nan, np.nan, np.nan
+    for _ in range(5):
+        try:
+            x = xs + 1e-2 * rng.standard_normal(xs.size)
+            zx = psi(dae, x, zs, ch.lu)
+            fx = dae.f(x, zx, {})
+            phi = rng.uniform(-np.pi, np.pi)
+            xr = x + phi * r_x
+            zr = psi(dae, xr, rotate_z(zx, phi), ch.lu)
+            cshift = rng.uniform(-0.02, 0.02)
+            xc = x + cshift * w
+            zc = psi(dae, xc, zx, ch.lu)
+        except RuntimeError:
+            redraws += 1
+            continue
+        rot_res = float(
+            np.linalg.norm(dae.f(xr, zr, {}) - fx) / (1 + np.linalg.norm(fx))
+        )
+        drift_res = float(
+            np.linalg.norm(dae.f(xc, zc, {}) - fx - cshift * OMEGA_B * r_x)
+            / (1 + np.linalg.norm(fx))
+        )
+        break
     return {
         "draw": d,
         "g": v[0],
@@ -166,6 +177,7 @@ def p1_task(task):
         "nonlinear_drift": drift_res,
         "phi": phi,
         "c": cshift,
+        "chart_redraws": redraws,
         "alpha_perp": float(np.linalg.eigvals(tr.a_perp).real.max()),
     }
 
@@ -175,8 +187,9 @@ def run_p1():
     seeds = np.random.SeedSequence(SEED + 1).spawn(spec["draws"])
     tasks = [(d, int(s.generate_state(1)[0])) for d, s in enumerate(seeds)]
     with Pool(WORKERS, initializer=_init) as pool:
-        rows = pool.map(p1_task, tasks, chunksize=1)
-    df = pd.DataFrame(rows)
+        rows = pool.map(p1_safe, tasks, chunksize=1)
+    failed = [r for r in rows if r.get("failed")]
+    df = pd.DataFrame([r for r in rows if not r.get("failed")])
     res = {
         "draws": len(df),
         "dim_C_2": int((df.dim_C == 2).sum()),
@@ -186,6 +199,9 @@ def run_p1():
         "jordan_split_max": float(df.jordan_split.max()),
         "nonlinear_rotation_max": float(df.nonlinear_rotation.max()),
         "nonlinear_drift_max": float(df.nonlinear_drift.max()),
+        "draws_failed": len(failed),
+        "chart_redraws_total": int(df.chart_redraws.sum()),
+        "nonlinear_not_evaluated": int(df.nonlinear_rotation.isna().sum()),
         "unstable_draws": int((df.alpha_perp > 0).sum()),
     }
     res["PASS"] = bool(
@@ -329,12 +345,47 @@ def p2_task(task):
     }
 
 
+def safe(fn):
+    """Run one Monte Carlo task; a solver failure is recorded, never fatal."""
+
+    def wrapped(task):
+        try:
+            return fn(task)
+        except (RuntimeError, ValueError, np.linalg.LinAlgError) as err:
+            return {"failed": True, "task": str(task)[:120], "error": repr(err)[:200]}
+
+    return wrapped
+
+
+def p1_safe(task):
+    return safe(p1_task)(task)
+
+
+def p2_safe(task):
+    return safe(p2_task)(task)
+
+
+def p3_safe(task):
+    out = safe(p3_task)(task)
+    return [out] if isinstance(out, dict) else out
+
+
+def p4_safe(row):
+    return safe(p4_task)(row)
+
+
+def p4_sample_safe(task):
+    return safe(p4_sample)(task)
+
+
 def run_p2():
     spec = IEEE["P2_segments"]
     seeds = np.random.SeedSequence(SEED + 2).spawn(spec["segments"])
     tasks = [(d, int(s.generate_state(1)[0])) for d, s in enumerate(seeds)]
     with Pool(WORKERS, initializer=_init) as pool:
-        segs = pool.map(p2_task, tasks, chunksize=1)
+        segs = pool.map(p2_safe, tasks, chunksize=1)
+    failed = [s for s in segs if s.get("failed")]
+    segs = [s for s in segs if not s.get("failed")]
     ev = pd.DataFrame([e for s in segs for e in s["events"]])
     write_json(OUT / "P2_segments.json", segs)
     abc = (
@@ -344,6 +395,8 @@ def run_p2():
     )
     decided = ev[~ev.unresolved_endpoint] if len(ev) else ev
     res = {
+        "segments_failed": len(failed),
+        "failures": failed[:5],
         "segments": len(segs),
         "points": int(sum(len(s["H_sequence"]) for s in segs)),
         "H_changes": int(len(ev.drop_duplicates(["segment", "j"]))) if len(ev) else 0,
@@ -467,9 +520,11 @@ def run_p3():
     seeds = np.random.SeedSequence(SEED + 3).spawn(spec["draws"])
     tasks = [(d, int(s.generate_state(1)[0])) for d, s in enumerate(seeds)]
     with Pool(WORKERS, initializer=_init) as pool:
-        rows = [r for out in pool.map(p3_task, tasks, chunksize=1) for r in out]
-    df = pd.DataFrame(rows)
+        rows = [r for out in pool.map(p3_safe, tasks, chunksize=1) for r in out]
+    failed = [r for r in rows if r.get("failed")]
+    df = pd.DataFrame([r for r in rows if not r.get("failed")])
     res = {
+        "draws_failed": len(failed),
         "draws": spec["draws"],
         "evaluations": len(df),
         "vertex_identity_rel_max": float(df.vertex_identity_rel.max()),
@@ -532,7 +587,9 @@ def run_p4():
     tasks = [(d, int(s.generate_state(1)[0])) for d, s in enumerate(seeds)]
     with Pool(WORKERS, initializer=_init) as pool:
         cands = []
-        for out in pool.imap(p4_sample, tasks, chunksize=4):
+        for out in pool.imap(p4_sample_safe, tasks, chunksize=4):
+            if out.get("failed"):
+                continue
             cands.append(out)
             stab = [
                 c for c in cands if c["status"] == "STABLE" and c["alpha_perp"] <= -0.10
@@ -547,10 +604,16 @@ def run_p4():
         pool.terminate()
     chosen = stab[: spec["draws"] // 2] + unst[: spec["draws"] // 2]
     with Pool(WORKERS, initializer=_init) as pool:
-        rows = pool.map(p4_task, chosen, chunksize=1)
+        rows = pool.map(p4_safe, chosen, chunksize=1)
+    rows = [
+        r
+        if not r.get("failed")
+        else {**c, "label": "SOLVER_FAILED", "envelope_rate": np.nan}
+        for r, c in zip(rows, chosen, strict=True)
+    ]
     df = pd.DataFrame(rows)
     df["expected"] = np.where(df.alpha_perp < 0, "RECOVERS", "not RECOVERS")
-    decided = df[df.label != "NUMERICAL_FAILURE"]
+    decided = df[~df.label.isin(["NUMERICAL_FAILURE", "SOLVER_FAILED"])]
     agree = np.where(
         decided.alpha_perp < 0, decided.label == "RECOVERS", decided.label != "RECOVERS"
     )
@@ -558,6 +621,7 @@ def run_p4():
         "candidates_sampled": len(cands),
         "runs": len(df),
         "numerical_failures": int((df.label == "NUMERICAL_FAILURE").sum()),
+        "solver_failures": int((df.label == "SOLVER_FAILED").sum()),
         "agreement": f"{int(agree.sum())}/{len(decided)}",
         "labels_stable": df[df.alpha_perp < 0].label.value_counts().to_dict(),
         "labels_unstable": df[df.alpha_perp > 0].label.value_counts().to_dict(),

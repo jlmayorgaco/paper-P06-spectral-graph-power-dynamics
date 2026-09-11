@@ -1,0 +1,107 @@
+{
+  "experiment": "MC02_ieee39",
+  "question": "Do the theorems hold on the frozen IEEE-39 model at random policies and portfolios?",
+  "verdict": "COMPUTED",
+  "seed": null,
+  "config": {
+    "blocks": [
+      "P1",
+      "P3",
+      "P4",
+      "P2"
+    ],
+    "seed": 20260930,
+    "margin": 0.002
+  },
+  "workers": 16,
+  "git_commit": "f294625702276124651ea9c25c337f76a3e02afa",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 7.82,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-11T14:26:38Z",
+  "elapsed_s": 1376.26,
+  "notes": [],
+  "results": {
+    "P1": {
+      "draws": 300,
+      "dim_C_2": 300,
+      "jordan_rel_max": 3.9475089863572066e-12,
+      "invariance_max": 2.777972729987107e-11,
+      "spectral_identity_max": 4.530967609771433e-09,
+      "jordan_split_max": 7.139206169434325e-05,
+      "nonlinear_rotation_max": 2.4326571234723017e-14,
+      "nonlinear_drift_max": 9.407068822877656e-15,
+      "draws_failed": 0,
+      "chart_redraws_total": 2,
+      "nonlinear_not_evaluated": 0,
+      "unstable_draws": 70,
+      "PASS": true,
+      "elapsed_s": 10.7
+    },
+    "P3": {
+      "draws_failed": 0,
+      "draws": 40,
+      "evaluations": 120,
+      "vertex_identity_rel_max": 3.2061182680962316e-13,
+      "moebius_minor_rel_max": 8.058314759443307e-13,
+      "full_order_coeff_abs_range": [
+        0.0007844586857138119,
+        469.0195290774619
+      ],
+      "PASS": true,
+      "elapsed_s": 9.2
+    },
+    "P4": {
+      "candidates_sampled": 296,
+      "runs": 80,
+      "numerical_failures": 0,
+      "solver_failures": 0,
+      "agreement": "80/80",
+      "labels_stable": {
+        "RECOVERS": 40
+      },
+      "labels_unstable": {
+        "FAILS_DECLARED_SECURITY": 40
+      },
+      "rate_vs_alpha_corr": 0.9690776354823024,
+      "PASS": true,
+      "elapsed_s": 37.2
+    },
+    "P2": {
+      "segments_failed": 0,
+      "failures": [],
+      "segments": 120,
+      "points": 2520,
+      "H_changes": 101,
+      "located_crossings": 120,
+      "exceptions_decided": 107,
+      "exceptions_at_unresolved_endpoints": 6,
+      "crossing_freq_hz_quantiles": [
+        0.4118,
+        0.6396,
+        0.6549,
+        0.6717,
+        0.724
+      ],
+      "real_crossings": 0,
+      "segments_with_H_change": 28,
+      "distinct_H_total": 28,
+      "points_classified": 2064,
+      "targets_A": 30755,
+      "targets_A_not_B": 1,
+      "targets_B_not_C": 131,
+      "gz_condition_max": 2793.5943091004287,
+      "PASS": false,
+      "elapsed_s": 1319.1
+    }
+  }
+}
