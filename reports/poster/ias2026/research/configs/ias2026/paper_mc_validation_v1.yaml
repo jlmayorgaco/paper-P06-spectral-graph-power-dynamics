@@ -1,0 +1,156 @@
+# Monte Carlo validation of the TX4 paper's theorems -- FROZEN before any MC draw.
+#
+# Every theorem of the paper gets (a) a synthetic Monte Carlo on random systems
+# built to satisfy exactly its hypotheses and (b), where the benchmark allows it,
+# a Monte Carlo on the frozen IEEE-39 model over random policy points and
+# portfolios. Pass rules are declared here; results never change them. Checks
+# that are logical identities are labelled IMPLEMENTATION (they validate code,
+# not physics); the informative outputs are the frequencies and the physical
+# checks. Expected-failure controls are declared as such.
+
+version: paper_mc_validation_v1
+date: "2026-09-11"
+seed: 20260930
+omega_b: 376.99111843077515
+
+synthetic:
+  S1_transverse_quotient:        # Theorem 1 (linear part)
+    draws: 1000
+    n_states: [8, 40]            # uniform integer
+    construction: >
+      A = P [[J, X], [0, B]] P^-1 with J = [[0, omega_b], [0, 0]], X random,
+      B = V diag-block(planted eigenvalues) V^-1 (real pairs / complex pairs,
+      real parts in [-2, 1]); P = Q (I + 0.3 G), Q Haar orthogonal, G Gaussian;
+      R_x = P e1, w = P e2. In half of the draws one real eigenvalue of B is
+      planted at +-u, u log-uniform in [1e-5, 5e-4] (a physical near-zero mode).
+    pass:
+      transverse_rhp_count_exact: "1000/1000 equal to the planted count"
+      determinant_identity_rel: "<= 1e-8 at three random s (|s| in [0.1, 10])"
+      basis_independence_rel: "spectrum of O^T A_perp O equals that of A_perp to <= 1e-8 ||A||"
+    expected_failure_control: >
+      the magnitude cutoff 'ignore abs(lambda) <= 1e-3' applied to A: its RHP
+      count must be WRONG in every planted draw with a positive planted mode
+      and right otherwise (reported, not a pass rule of the theorem).
+
+  S2_hypergraph_and_order_safety:   # Propositions 2-3 (antichain, any-order safety, hierarchy)
+    draws: 2000
+    candidates: [4, 6]           # uniform integer m
+    n_states: 10
+    construction: >
+      A(delta) = A0 + sum_i delta_i A_i, A0 random with spectral abscissa in
+      [-1, -0.2], A_i = U_i V_i^T random rank-2 with scale s ~ U(0.3, 1.5).
+    pass: >
+      IMPLEMENTATION: 0 violations of (a) H is an antichain, (b) hyperedge-free
+      => stable, (c) C <=> hyperedge-free, (d) C => B => A.
+    report: [frequency of A-not-B, B-not-C, non-hereditary families, kappa distribution]
+
+  S3_boundary_localization:     # Theorem 2 (H changes only at imaginary-axis crossings)
+    draws: 300
+    candidates: 4
+    grid: 401
+    construction: "A_S(p) = A0 + sum_{i in S} (A_i + p B_i), p in [0, 1]"
+    pass: >
+      0 label changes between consecutive grid points without a transverse
+      eigenvalue crossing Re = 0 in the bracket (bisection, 50 steps; crossing
+      eigenvalue finite, abs(Re) <= 1e-9 (1 + abs(lambda)) at the located point).
+
+  S4_monotone_class:            # Theorem 4
+    draws: 1000
+    candidates: 5
+    n_states: 8
+    construction: >
+      B(S) = B0 + sum_{i in S} N_i, B0 Metzler, N_i >= 0 entrywise (density 0.3);
+      A(S) = T B(S) T^-1 with T random invertible (cond <= 1e3).
+    pass: "0 pairs S subset S' with alpha(S) > alpha(S') + 1e-9 (1 + |alpha|); A = B = C for every target"
+    expected_failure_control: >
+      the same with N_i of random sign (Metzler order-preservation removed):
+      the frequency of non-monotone pairs is reported (expected > 0).
+
+  S5_complexity_reduction:      # Proposition 5 (credited reduction)
+    draws: 500
+    vertices: [7, 10]
+    edge_probability: [0.3, 0.8]
+    k: [3, 5]
+    pass: "0 mismatches between {S : |S| <= k, alpha(A_G(delta_S)) >= -1e-9} and the k-cliques of G (exhaustive)"
+
+  S6_principal_minors:          # Theorem 6 (algebraic part)
+    draws: 500
+    blocks: [3, 5]
+    block_size: 2
+    construction: "M complex Gaussian / sqrt(2m); block basis change S_b = blkdiag of random invertible 2x2"
+    pass:
+      vertex_identity_rel: "<= 1e-10 (det(I + M_SS) = sum of principal minors)"
+      moebius_equals_block_touching_sums_rel: "<= 1e-10"
+      invariance_rel: "r(S) and mu_T invariant under S_b to <= 1e-10"
+    expected_variation_control: "individual block-splitting minors change under S_b (median relative change reported, expected > 1e-2)"
+
+  S7_zero_frequency_port:       # Theorem 7 (parity)
+    draws_per_class: 200
+    classes:
+      single_real_crossing: "one real transverse eigenvalue passes through 0"
+      double_real_crossing: "two real eigenvalues pass through 0 in the same bracket"
+      real_pair_coalescence: "two positive real eigenvalues merge into a complex pair (no zero crossing)"
+      complex_pair_crossing: "a complex pair crosses the imaginary axis away from 0"
+      no_crossing: "no eigenvalue crosses Re = 0"
+    construction: >
+      random descriptor (f_x, f_z, g_x, g_z), n_x in [10, 30], n_z in [6, 20],
+      with the reduced matrix A planted as in S1 (exact rotation R_x and Jordan
+      partner w) and the transverse block moving along the declared event;
+      evaluation at the two bracket end points, relocation of
+      configs/port_relocation_v1.yaml (beta = beta2 = 1, pair 2 / 0.5).
+    pass: >
+      sign det T##(0) flips iff the parity of positive real transverse
+      eigenvalues changes: flips in 200/200 single_real_crossing draws and in
+      0/200 of every other class. Draws with a device flip (sign det(-f_x##)
+      changes) are excluded by the frozen rule and counted.
+
+ieee39:
+  model: "frozen IEEE-39, core 30/33/35/37, matched dispatch, solve_config(R_none), direct path"
+  policy_box:
+    g: "u^2, u ~ U(0, 1)"
+    k: [0.5, 2.3]
+    t: [0.5, 3.0]
+    h: [0.0, 2.0]
+
+  P1_structure:                 # Theorem 1 on the physical model (linear and nonlinear)
+    draws: 300
+    portfolio: "uniform over the 16 subsets"
+    pass:
+      dim_C: "2 in 300/300"
+      jordan_entry_rel: "abs(J_12 / omega_b - 1) <= 1e-6"
+      invariance_rel: "||A Z_c - Z_c J|| / ||A|| <= 1e-9"
+      spectral_identity: "max matched distance sigma(A) vs {0,0} U sigma(A_perp) <= 1e-6 (1 + |lambda|)"
+      nonlinear_rotation: >
+        at x = x* + 1e-2 v (v random, unit per-state scale) and phi ~ U(-pi, pi):
+        ||r(x + phi R_x) - r(x)|| <= 1e-8 (1 + ||r(x)||)
+      nonlinear_drift: >
+        c ~ U(-0.02, 0.02): ||r(x + c w) - r(x) - c omega_b R_x|| <= 1e-8 (1 + ||r(x)||)
+
+  P2_segments:                  # Theorem 2 and Proposition 3 on the physical model
+    segments: 120
+    points_per_segment: 21
+    segment: "theta_b = clip(theta_a + d), d uniform in +-15 % of each range"
+    pass: >
+      every change of H_perp between consecutive points is bracketed by a
+      transverse eigenvalue of some subset crossing Re = 0 (bisection 40 steps,
+      abs(Re) <= 1e-6 at the located point, abs(lambda) finite, cond(g_z) finite
+      along the segment); 0 exceptions.
+    report: [crossing frequencies, kappa changes, A/B/C class counts per point]
+
+  P3_ports:                     # Theorem 6 on the physical model
+    draws: 40
+    s_per_draw: 3
+    s_distribution: "sigma ~ U(0.02, 1), omega ~ U(0.5, 10) rad/s"
+    pass:
+      vertex_identity_rel: "det T_S / det T_0 = det(I + M_SS) to <= 1e-8 for all 16 S"
+      moebius_minor_sums_rel: "<= 1e-8"
+
+  P4_tds:                       # nonlinear consequence of Theorem 1 (transverse recovery)
+    draws: 80
+    stratification: "40 with alpha_perp <= -0.10 and 40 with alpha_perp >= +0.10 (rejection sampling from the policy box and the 16 subsets)"
+    disturbance: "D1, bus-16 load pulse, 5 MW, 0.5 s (final_nonlinear_composability_v1 rules and guards)"
+    pass: >
+      alpha_perp <= -0.10 -> RECOVERS; alpha_perp >= +0.10 -> not RECOVERS
+      (FAILS_DECLARED_SECURITY or OUTSIDE_MODEL_SCOPE). NUMERICAL_FAILURE is
+      reported and excluded. Pass = agreement in every decided run.
+    report: "fitted envelope growth rate of D(t) over the post-window vs alpha_perp (descriptive)"
