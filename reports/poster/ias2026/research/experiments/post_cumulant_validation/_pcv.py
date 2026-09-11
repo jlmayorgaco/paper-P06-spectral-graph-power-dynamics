@@ -30,6 +30,8 @@ import numpy as np  # noqa: E402
 from _cc import (  # noqa: E402
     BAND,
     CORE,
+    FC18_SUMMARY,
+    HOLDOUT,
     ROOT,
     SCALE,
     Realization,
@@ -317,6 +319,9 @@ def _chi_top(q, cols, n) -> float:
 __all__ = [
     "BAND",
     "CORE",
+    "FC18_SUMMARY",
+    "HOLDOUT",
+    "ROOT",
     "SCALE",
     "H4",
     "POINTS",
