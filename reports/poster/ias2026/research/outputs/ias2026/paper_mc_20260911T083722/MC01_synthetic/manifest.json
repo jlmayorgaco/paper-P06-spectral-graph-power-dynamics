@@ -1,0 +1,156 @@
+{
+  "experiment": "MC01_synthetic",
+  "question": "Do random systems satisfying each theorem's hypotheses obey its conclusion?",
+  "verdict": "COMPUTED",
+  "seed": null,
+  "config": {
+    "blocks": [
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5",
+      "S6",
+      "S7"
+    ],
+    "seed": 20260930
+  },
+  "workers": 1,
+  "git_commit": "7a7728083742941cbce460a33c5cd7ee3a35a3ff",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 6.41,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-11T13:37:30Z",
+  "elapsed_s": 113.73,
+  "notes": [],
+  "results": {
+    "S1": {
+      "draws": 1000,
+      "count_exact": 1000,
+      "det_identity_rel_max": 5.528884321982974e-09,
+      "basis_rel_max": 1.4534457817319452e-16,
+      "PASS": true,
+      "control_cutoff_wrong_in_positive_planted": "235/235",
+      "control_cutoff_wrong_elsewhere": "0/765",
+      "elapsed_s": 2.0
+    },
+    "S2": {
+      "draws": 2000,
+      "violations": {
+        "antichain": 0,
+        "free_implies_stable": 0,
+        "C_iff_free": 0,
+        "hierarchy": 0
+      },
+      "PASS": true,
+      "families_non_hereditary": 1296,
+      "families_with_A_not_B": 86,
+      "families_with_B_not_C": 1276,
+      "targets_A_total": 30881,
+      "targets_A_not_B_total": 128,
+      "targets_B_not_C_total": 5554,
+      "kappa_counts": {
+        "-1": 105,
+        "1": 1464,
+        "2": 354,
+        "3": 63,
+        "4": 11,
+        "5": 3
+      },
+      "elapsed_s": 3.2
+    },
+    "S3": {
+      "draws": 300,
+      "located_crossings": 1044,
+      "exceptions": 0,
+      "PASS": true,
+      "crossing_kinds": {
+        "real": 698,
+        "complex": 346
+      },
+      "elapsed_s": 76.7
+    },
+    "S4": {
+      "metzler": {
+        "draws": 1000,
+        "non_monotone_edges": 0,
+        "families_with_violation": 0,
+        "A_B_C_disagreements": 0
+      },
+      "control_signed": {
+        "draws": 1000,
+        "non_monotone_edges": 37166,
+        "families_with_violation": 997
+      },
+      "PASS": true,
+      "elapsed_s": 3.2
+    },
+    "S5": {
+      "draws": 500,
+      "mismatches": "0",
+      "PASS": "True",
+      "graphs_with_k_clique": 310,
+      "elapsed_s": 3.0
+    },
+    "S6": {
+      "draws": 500,
+      "vertex_identity_rel_max": 3.409261438694722e-15,
+      "moebius_touch_rel_max": 1.2863601139625308e-15,
+      "invariance_rel_max": 8.172436130413672e-12,
+      "PASS": true,
+      "control_split_minor_change_median": 1.498857580413753,
+      "elapsed_s": 23.4
+    },
+    "S7": {
+      "per_class": {
+        "single_real_crossing": {
+          "kept": 136,
+          "device_flip_excluded": 64,
+          "flips": 136,
+          "beta_inconsistent": 0,
+          "flip_equals_parity": 136
+        },
+        "double_real_crossing": {
+          "kept": 106,
+          "device_flip_excluded": 94,
+          "flips": 0,
+          "beta_inconsistent": 0,
+          "flip_equals_parity": 106
+        },
+        "real_pair_coalescence": {
+          "kept": 185,
+          "device_flip_excluded": 15,
+          "flips": 3,
+          "beta_inconsistent": 0,
+          "flip_equals_parity": 185
+        },
+        "complex_pair_crossing": {
+          "kept": 197,
+          "device_flip_excluded": 3,
+          "flips": 0,
+          "beta_inconsistent": 0,
+          "flip_equals_parity": 197
+        },
+        "no_crossing": {
+          "kept": 193,
+          "device_flip_excluded": 7,
+          "flips": 0,
+          "beta_inconsistent": 0,
+          "flip_equals_parity": 193
+        }
+      },
+      "identity_residual_max": 8.052201216912636e-08,
+      "PASS": true,
+      "elapsed_s": 2.0
+    }
+  }
+}
