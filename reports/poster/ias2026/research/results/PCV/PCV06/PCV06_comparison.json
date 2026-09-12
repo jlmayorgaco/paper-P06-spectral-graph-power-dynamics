@@ -1,0 +1,46 @@
+{
+ "tolerances": {
+  "voltage": 1e-06,
+  "residual": 1e-06,
+  "alpha": 0.001,
+  "freq": 0.001,
+  "band_nearest": 0.0001
+ },
+ "n_cases": 32,
+ "primary": {
+  "pass_alpha": true,
+  "pass_freq": true,
+  "pass_rhp": true,
+  "pass_verdict": true,
+  "pass_equilibrium": true,
+  "pass_H_kappa": true
+ },
+ "gate5_pass": true,
+ "stop_rule_triggered": false,
+ "max_abs_delta_alpha": 1.261644061251177e-06,
+ "max_abs_delta_freq_hz": 1.670208038540011e-07,
+ "max_voltage_diff": 5.112515522612994e-07,
+ "max_init_residual": 2.220446049250313e-13,
+ "structural_pair_ok_all": true,
+ "dimension_ok_all": true,
+ "secondary_band_nearest_ok": true,
+ "max_band_nearest": 2.8594117099651655e-05,
+ "hypergraphs": {
+  "P4": {
+   "internal_H": "30+33+35+37",
+   "internal_kappa": 4.0,
+   "andes_H": "30+33+35+37",
+   "andes_kappa": 4.0,
+   "andes_script_H": "30+33+35+37",
+   "equal": true
+  },
+  "G_S": {
+   "internal_H": "EMPTY",
+   "internal_kappa": Infinity,
+   "andes_H": "EMPTY",
+   "andes_kappa": Infinity,
+   "andes_script_H": "EMPTY",
+   "equal": true
+  }
+ }
+}
