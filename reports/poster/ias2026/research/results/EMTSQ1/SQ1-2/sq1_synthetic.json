@@ -1,0 +1,30 @@
+{
+ "seed": 20260913,
+ "estimator_sha256": "849472d8804c694eee69701dd251aaa69d506878007a3a4fc88fde1fb3b0817f",
+ "gates": {
+  "GA_wrong_sign_count": 0,
+  "GB_resolved_fraction_abs_alpha_ge_0.01": 0.7844311377245509,
+  "reported_correct_conclusive_fraction_abs_alpha_ge_0.01": 0.7844311377245509,
+  "GC_p95_err_alpha": 0.00660897642758055,
+  "GD_p95_err_f": 0.001658181741470376,
+  "n_domain": 210,
+  "n_domain_abs_alpha_ge_0.01": 167,
+  "n_domain_resolved": 170,
+  "pass": false,
+  "stress_reported": {
+   "ST1": {
+    "n": 20,
+    "resolved": 1.0,
+    "wrong_sign": 0
+   },
+   "ST2": {
+    "n": 15,
+    "resolved": 0.0,
+    "wrong_sign": 0
+   }
+  },
+  "no_crash": true
+ },
+ "crashed": [],
+ "wall_s": 1657.7
+}
