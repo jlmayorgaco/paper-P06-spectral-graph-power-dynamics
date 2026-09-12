@@ -1,0 +1,21 @@
+{
+ "E0_synthetic.csv": "byte-identical",
+ "E0_synthetic.json (wall_s excluded)": "identical",
+ "criteria_run2": {
+  "A1_no_crash": true,
+  "A2_wrong_sign_count": 0,
+  "A3_S1S4_correct_fraction": 0.9827586206896551,
+  "A3b_S2_correct_fraction": 1.0,
+  "A4_p95_err_alpha": 0.003668257914703839,
+  "A4_p95_err_f": 0.0008564232104442902,
+  "A5_S6_resolved_fraction": 0.9333333333333333,
+  "A6_dv2_2_pass": true,
+  "reported_ci_coverage": 0.9925925925925926,
+  "reported_S3_resolved": 1.0,
+  "reported_S5_resolved": 0.85,
+  "reported_sentinel_flags": 0,
+  "n_cases": 140,
+  "n_resolved": 135,
+  "pass": false
+ }
+}
