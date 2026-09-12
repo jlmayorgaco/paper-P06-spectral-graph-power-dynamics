@@ -1,0 +1,21 @@
+{
+ "stock_determinism": {
+  "bit_identical_states": true,
+  "stock_drift_2s": {
+   "max_speed_drift_pu": 0.0002547606051703788,
+   "max_voltage_magnitude_drift_pu": 0.6218781474172657,
+   "max_relative_angle_drift_rad": 0.03108793512948066,
+   "initial_voltage_step_first_1ms_pu": 0.6218781474172657,
+   "tlen_s": 2.0
+  }
+ },
+ "stock_with_documented_tap": {
+  "max_speed_drift_pu": 1.902549699006606e-05,
+  "max_voltage_magnitude_drift_pu": 0.00045128106960956593,
+  "max_relative_angle_drift_rad": 0.001811296344356117,
+  "initial_voltage_step_first_1ms_pu": 0.00022368884972290282,
+  "tlen_s": 10.0
+ },
+ "interpretation_rule": "the stock start-up transient is attributed to the unused transformer ratio iff the tap-applied run removes the initial jump (< 1e-2 pu) and the drift",
+ "attributed_to_tap": true
+}

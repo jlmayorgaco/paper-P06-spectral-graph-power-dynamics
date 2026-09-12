@@ -1,0 +1,24 @@
+os: Windows-10-10.0.26200-SP0
+cpu: Intel(R) Core(TM) Ultra 9 185H
+logical_cpus: 22
+python: 3.11.10 (C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics\.venv\xtool-paremt\Scripts\python.exe)
+packages (pip freeze):
+  contourpy==1.3.3
+  cycler==0.12.1
+  fonttools==4.65.0
+  kiwisolver==1.5.1
+  llvmlite==0.43.0
+  matplotlib==3.9.2
+  numba==0.60.0
+  numpy==2.0.1
+  packaging==26.3
+  pandas==2.2.2
+  pillow==12.3.0
+  pyparsing==3.3.2
+  python-dateutil==2.9.0.post0
+  pytz==2026.3.post1
+  scipy==1.14.0
+  six==1.17.0
+  tzdata==2026.3
+  xlrd==1.2.0
+requirements_upstream: '# ParaEMT requirements\n# python 3.11.10\nsetuptools==72.1.0\nxlrd==1.2.0\nmatplotlib==3.9.2\nnumba==0.60.0\nnumpy==2.0.1\npandas==2.2.2\nscipy==1.14.0'
