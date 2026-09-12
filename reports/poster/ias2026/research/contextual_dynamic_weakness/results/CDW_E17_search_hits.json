@@ -1,0 +1,2802 @@
+[
+ {
+  "path": "configs\\research\\arxiv_topics.json",
+  "name_hit": false,
+  "lines": [
+   [
+    25,
+    "\"slug\": \"dynamic_hosting_capacity\","
+   ],
+   [
+    26,
+    "\"label\": \"Dynamic hosting capacity and converter hosting limits\","
+   ],
+   [
+    27,
+    "\"review_question\": \"How is hosting capacity extended from voltage and thermal constraints to dynamic, spectral, damping, protection, and controller-aware constr"
+   ],
+   [
+    28,
+    "\"query\": \"(cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"DE"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\manifest.json",
+  "name_hit": false,
+  "lines": [
+   [
+    154,
+    "\"dynamic_hosting_capacity\": 826,"
+   ],
+   [
+    194,
+    "\"dynamic_hosting_capacity\","
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\analysis\\screening_report.md",
+  "name_hit": false,
+  "lines": [
+   [
+    16,
+    "| `dynamic_hosting_capacity` | 826 |"
+   ],
+   [
+    62,
+    "### dynamic_hosting_capacity"
+   ],
+   [
+    76,
+    "| 50 | 2024 | ANOCA: AC Network-aware Optimal Curtailment Approach for Dynamic Hosting Capacity | [2403.18085](https://arxiv.org/abs/2403.18085v3) | hosting cap"
+   ],
+   [
+    78,
+    "| 49 | 2025 | Fairness-aware Dynamic Hosting Capacity and the Impacts of Strategic Solar PV Curtailment | [2504.18905](https://arxiv.org/abs/2504.18905v1) | hos"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\runs\\20260623T125110Z\\manifest.json",
+  "name_hit": false,
+  "lines": [
+   [
+    154,
+    "\"dynamic_hosting_capacity\": 826,"
+   ],
+   [
+    194,
+    "\"dynamic_hosting_capacity\","
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\blackbox_converter_modal_identification\\2023\\abstracts\\2305.07818.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "An Active Learning-based Approach for Hosting Capacity Analysis in Distribution Systems"
+   ],
+   [
+    6,
+    "With the increasing amount of distributed energy resources (DERs) integration, there is a significant need to model and analyze hosting capacity (HC) for future"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\blackbox_converter_modal_identification\\2023\\abstracts\\2312.06582.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Implementing hosting capacity analysis in distribution networks: Practical considerations, advancements and future directions"
+   ],
+   [
+    6,
+    "Hosting capacity analysis is essential for effective integration of distributed energy resources into distribution systems. This paper discusses hosting capacit"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\braess_reinforcement_power_networks\\2023\\abstracts\\2310.09042.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "Cascade failures in power grids occur when the failure of one component or subsystem causes a chain reaction of failures in other components or subsystems, ulti"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\braess_reinforcement_power_networks\\2025\\abstracts\\2501.05623.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "We introduce a quadratically-constrained approximation (QCAC) of the AC optimal power flow (AC-OPF) problem. Unlike existing approximations like the DC-OPF, our"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\braess_reinforcement_power_networks\\2025\\abstracts\\2507.17587.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "The widespread adoption of electric vehicles (EVs) has significantly increased demand on both transportation and power systems, posing challenges to their stabl"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\braess_reinforcement_power_networks\\2025\\abstracts\\2510.17071.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "The power flow equations relate bus voltage phasors to power injections via the network admittance matrix. These equations are central to the key operational an"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\braess_reinforcement_power_networks\\2026\\abstracts\\2602.02529.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "The rapid expansion of hyperscale data centers, primarily driven by cloud computing and generative AI is placing growing pressure on electricity systems, land, "
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\braess_reinforcement_power_networks\\2026\\abstracts\\2602.21567.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "While the rapid proliferation of electric vehicles (EVs) accelerates net-zero goals, uncoordinated charging activities impose severe operational challenges on d"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\braess_reinforcement_power_networks\\2026\\abstracts\\2604.11999.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "Rapid growth in electric-vehicle (EV) charging demand is placing increasing stress on distribution power networks (DPNs), whose hosting capacity is often limite"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2010\\query.json",
+  "name_hit": false,
+  "lines": [
+   [
+    2,
+    "\"query\": \"((cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"D"
+   ],
+   [
+    6,
+    "\"label\": \"Dynamic hosting capacity and converter hosting limits\","
+   ],
+   [
+    7,
+    "\"query\": \"(cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"DE"
+   ],
+   [
+    8,
+    "\"review_question\": \"How is hosting capacity extended from voltage and thermal constraints to dynamic, spectral, damping, protection, and controller-aware constr"
+   ],
+   [
+    9,
+    "\"slug\": \"dynamic_hosting_capacity\""
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2011\\query.json",
+  "name_hit": false,
+  "lines": [
+   [
+    2,
+    "\"query\": \"((cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"D"
+   ],
+   [
+    6,
+    "\"label\": \"Dynamic hosting capacity and converter hosting limits\","
+   ],
+   [
+    7,
+    "\"query\": \"(cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"DE"
+   ],
+   [
+    8,
+    "\"review_question\": \"How is hosting capacity extended from voltage and thermal constraints to dynamic, spectral, damping, protection, and controller-aware constr"
+   ],
+   [
+    9,
+    "\"slug\": \"dynamic_hosting_capacity\""
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2012\\query.json",
+  "name_hit": false,
+  "lines": [
+   [
+    2,
+    "\"query\": \"((cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"D"
+   ],
+   [
+    6,
+    "\"label\": \"Dynamic hosting capacity and converter hosting limits\","
+   ],
+   [
+    7,
+    "\"query\": \"(cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"DE"
+   ],
+   [
+    8,
+    "\"review_question\": \"How is hosting capacity extended from voltage and thermal constraints to dynamic, spectral, damping, protection, and controller-aware constr"
+   ],
+   [
+    9,
+    "\"slug\": \"dynamic_hosting_capacity\""
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2013\\query.json",
+  "name_hit": false,
+  "lines": [
+   [
+    2,
+    "\"query\": \"((cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"D"
+   ],
+   [
+    6,
+    "\"label\": \"Dynamic hosting capacity and converter hosting limits\","
+   ],
+   [
+    7,
+    "\"query\": \"(cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"DE"
+   ],
+   [
+    8,
+    "\"review_question\": \"How is hosting capacity extended from voltage and thermal constraints to dynamic, spectral, damping, protection, and controller-aware constr"
+   ],
+   [
+    9,
+    "\"slug\": \"dynamic_hosting_capacity\""
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2014\\query.json",
+  "name_hit": false,
+  "lines": [
+   [
+    2,
+    "\"query\": \"((cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"D"
+   ],
+   [
+    6,
+    "\"label\": \"Dynamic hosting capacity and converter hosting limits\","
+   ],
+   [
+    7,
+    "\"query\": \"(cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"DE"
+   ],
+   [
+    8,
+    "\"review_question\": \"How is hosting capacity extended from voltage and thermal constraints to dynamic, spectral, damping, protection, and controller-aware constr"
+   ],
+   [
+    9,
+    "\"slug\": \"dynamic_hosting_capacity\""
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2014\\abstracts\\1408.1602.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "Increased distributed Photo-Voltaic (PV) generation leads to an increase in voltages and unwarranted backflows into the grid. This paper investigates Demand Res"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2015\\query.json",
+  "name_hit": false,
+  "lines": [
+   [
+    2,
+    "\"query\": \"((cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"D"
+   ],
+   [
+    6,
+    "\"label\": \"Dynamic hosting capacity and converter hosting limits\","
+   ],
+   [
+    7,
+    "\"query\": \"(cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"DE"
+   ],
+   [
+    8,
+    "\"review_question\": \"How is hosting capacity extended from voltage and thermal constraints to dynamic, spectral, damping, protection, and controller-aware constr"
+   ],
+   [
+    9,
+    "\"slug\": \"dynamic_hosting_capacity\""
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2016\\query.json",
+  "name_hit": false,
+  "lines": [
+   [
+    2,
+    "\"query\": \"((cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"D"
+   ],
+   [
+    6,
+    "\"label\": \"Dynamic hosting capacity and converter hosting limits\","
+   ],
+   [
+    7,
+    "\"query\": \"(cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"DE"
+   ],
+   [
+    8,
+    "\"review_question\": \"How is hosting capacity extended from voltage and thermal constraints to dynamic, spectral, damping, protection, and controller-aware constr"
+   ],
+   [
+    9,
+    "\"slug\": \"dynamic_hosting_capacity\""
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2017\\query.json",
+  "name_hit": false,
+  "lines": [
+   [
+    2,
+    "\"query\": \"((cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"D"
+   ],
+   [
+    6,
+    "\"label\": \"Dynamic hosting capacity and converter hosting limits\","
+   ],
+   [
+    7,
+    "\"query\": \"(cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"DE"
+   ],
+   [
+    8,
+    "\"review_question\": \"How is hosting capacity extended from voltage and thermal constraints to dynamic, spectral, damping, protection, and controller-aware constr"
+   ],
+   [
+    9,
+    "\"slug\": \"dynamic_hosting_capacity\""
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2017\\abstracts\\1706.09646.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "In electrical distribution grids, the constantly increasing number of power generation devices based on renewables demands a transition from a centralized to a "
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2017\\abstracts\\1709.03746.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "To settle a large-scale integration of renewable distributed generations (DGs), it requires to assess the maximal DG hosting capacity of active distribution net"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2018\\query.json",
+  "name_hit": false,
+  "lines": [
+   [
+    2,
+    "\"query\": \"((cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"D"
+   ],
+   [
+    6,
+    "\"label\": \"Dynamic hosting capacity and converter hosting limits\","
+   ],
+   [
+    7,
+    "\"query\": \"(cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"DE"
+   ],
+   [
+    8,
+    "\"review_question\": \"How is hosting capacity extended from voltage and thermal constraints to dynamic, spectral, damping, protection, and controller-aware constr"
+   ],
+   [
+    9,
+    "\"slug\": \"dynamic_hosting_capacity\""
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2018\\abstracts\\1807.05744.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Impact of Digital Time Delay on the Stable Grid Hosting Capacity of Large-scale Centralized Photovoltaic Plant"
+   ],
+   [
+    6,
+    "In view of the trend towards extensive application of digital controllers in the PV inverter of large-scale centralized photovoltaic (LSCPV) plant and the incre"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2018\\abstracts\\1809.07493.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "Energy storage systems (EES) are expected to be an indispensable resource for mitigating the effects on networks of high penetrations of distributed generation "
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2019\\query.json",
+  "name_hit": false,
+  "lines": [
+   [
+    2,
+    "\"query\": \"((cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"D"
+   ],
+   [
+    6,
+    "\"label\": \"Dynamic hosting capacity and converter hosting limits\","
+   ],
+   [
+    7,
+    "\"query\": \"(cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"DE"
+   ],
+   [
+    8,
+    "\"review_question\": \"How is hosting capacity extended from voltage and thermal constraints to dynamic, spectral, damping, protection, and controller-aware constr"
+   ],
+   [
+    9,
+    "\"slug\": \"dynamic_hosting_capacity\""
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2019\\abstracts\\1902.08780.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Stochastic Hosting Capacity in LV Distribution Networks"
+   ],
+   [
+    6,
+    "Hosting capacity is defined as the level of penetration that a particular technology can connect to a distribution network without causing power quality problem"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2019\\abstracts\\1905.05743.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Convex inner approximation of the feeder hosting capacity limits on dispatchable demand"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2019\\abstracts\\1906.01572.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "This two-part paper considers the day-ahead operational planning problem of a radial distribution network hosting Distributed Energy Resources (DERs), such as S"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2019\\abstracts\\1907.06709.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "Dispatching a large fleet of distributed energy resources (DERs) in response to wholesale energy market or regional grid signals requires solving a challenging "
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2019\\abstracts\\1909.00864.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Quantifying Hosting Capacity for Rooftop PV System in LV Distribution Grids"
+   ],
+   [
+    6,
+    "Power systems face increasing challenges on reliable operations due to the widespread distributed generators (DGs), e.g., rooftop PV system in the low voltage ("
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2019\\abstracts\\1912.03346.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "The distribution optimal power flow (D-OPF) models have gained attention in recent years to optimally operate acentrally-managed distribution grid. On account o"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2020\\query.json",
+  "name_hit": false,
+  "lines": [
+   [
+    2,
+    "\"query\": \"((cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"D"
+   ],
+   [
+    6,
+    "\"label\": \"Dynamic hosting capacity and converter hosting limits\","
+   ],
+   [
+    7,
+    "\"query\": \"(cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"DE"
+   ],
+   [
+    8,
+    "\"review_question\": \"How is hosting capacity extended from voltage and thermal constraints to dynamic, spectral, damping, protection, and controller-aware constr"
+   ],
+   [
+    9,
+    "\"slug\": \"dynamic_hosting_capacity\""
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2020\\abstracts\\2002.01980.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Fast Probabilistic Hosting Capacity Analysis for Active Distribution Systems"
+   ],
+   [
+    6,
+    "Interconnection studies for distributed energy resources (DERs) can currently take months since they entail simulating a large number of power flow scenarios. I"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2020\\abstracts\\2002.05835.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "Coordinated photovoltaic inverter control with centralized coordination of curtailment can increase the amount of energy sent from low-voltage (LV) distribution"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2020\\abstracts\\2004.10323.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "This paper presents a new method for assessing the amount of photovoltaics that can be accommodated on a distribution feeder before disrupting the normal operat"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2020\\abstracts\\2009.08490.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Spatio-Temporal Probabilistic Voltage Sensitivity Analysis - A Novel Framework for Hosting Capacity Analysis"
+   ],
+   [
+    6,
+    "Smart grids are envisioned to accommodate high penetration of distributed photovoltaic (PV) generation, which may cause adverse grid impacts in terms of voltage"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2020\\abstracts\\2011.05193.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Probabilistic Hosting Capacity Analysis via Bayesian Optimization"
+   ],
+   [
+    6,
+    "This paper studies the probabilistic hosting capacity analysis (PHCA) problem in distribution networks considering uncertainties from distributed energy resourc"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2020\\abstracts\\2011.05598.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "The present distribution grids generally have limited sensing capabilities and are therefore characterized by low observability. Improved observability is a pre"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2021\\query.json",
+  "name_hit": false,
+  "lines": [
+   [
+    2,
+    "\"query\": \"((cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"D"
+   ],
+   [
+    6,
+    "\"label\": \"Dynamic hosting capacity and converter hosting limits\","
+   ],
+   [
+    7,
+    "\"query\": \"(cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"DE"
+   ],
+   [
+    8,
+    "\"review_question\": \"How is hosting capacity extended from voltage and thermal constraints to dynamic, spectral, damping, protection, and controller-aware constr"
+   ],
+   [
+    9,
+    "\"slug\": \"dynamic_hosting_capacity\""
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2021\\abstracts\\2110.10551.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Hosting Capacity Approach Implications"
+   ],
+   [
+    6,
+    "This paper revisits the generation hosting capacity (HC) calculation approach to account for grid operational flexibility--the ability to reconfigure the system"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2022\\query.json",
+  "name_hit": false,
+  "lines": [
+   [
+    2,
+    "\"query\": \"((cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"D"
+   ],
+   [
+    6,
+    "\"label\": \"Dynamic hosting capacity and converter hosting limits\","
+   ],
+   [
+    7,
+    "\"query\": \"(cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"DE"
+   ],
+   [
+    8,
+    "\"review_question\": \"How is hosting capacity extended from voltage and thermal constraints to dynamic, spectral, damping, protection, and controller-aware constr"
+   ],
+   [
+    9,
+    "\"slug\": \"dynamic_hosting_capacity\""
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2022\\abstracts\\2203.04417.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "This paper presents an analysis of the value that can be realized by medium-voltage back-to-back (MVB2B) converters in terms of increased utilization rate of di"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2022\\abstracts\\2204.09096.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Conditional Value at Risk-Sensitive Solar Hosting Capacity Analysis in Distribution Networks"
+   ],
+   [
+    6,
+    "Solar hosting capacity analysis (HCA) assesses the ability of a distribution network to host distributed solar generation without seriously violating distributi"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2022\\abstracts\\2207.04528.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "This paper presents a market-based optimization framework wherein Aggregators can compete for nodal capacity across a distribution feeder and guarantee that all"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2022\\abstracts\\2207.12357.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Hosting Capacity Approach"
+   ],
+   [
+    6,
+    "This chapter proposes an evolved concept of \"hosting capacity\" using the term of \"feasible region\". Through converting the grid model into a more compact one, \""
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2022\\abstracts\\2208.11543.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "Electrical Distribution Systems are extensively penetrated with Distributed Energy Resources (DERs) to cater the energy demands with the general perception that"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2022\\abstracts\\2211.11032.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "Challenges in the planning and operation of distribution networks caused by the integration of distributed energy resources (DERs) create the need for the devel"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2023\\query.json",
+  "name_hit": false,
+  "lines": [
+   [
+    2,
+    "\"query\": \"((cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"D"
+   ],
+   [
+    6,
+    "\"label\": \"Dynamic hosting capacity and converter hosting limits\","
+   ],
+   [
+    7,
+    "\"query\": \"(cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"DE"
+   ],
+   [
+    8,
+    "\"review_question\": \"How is hosting capacity extended from voltage and thermal constraints to dynamic, spectral, damping, protection, and controller-aware constr"
+   ],
+   [
+    9,
+    "\"slug\": \"dynamic_hosting_capacity\""
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2023\\abstracts\\2301.04765.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "The role of hosting capacity study in power system advancements: a review"
+   ],
+   [
+    6,
+    "The fast depletion of conventional energy sources due to increased energy demands and environmental concern has motivated power utilities to integrate more rene"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2023\\abstracts\\2302.13472.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "Dynamic operating envelopes (DOEs), as a key enabler to facilitate DER integration, have attracted increasing attention in the past years. However, uncertaintie"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2023\\abstracts\\2305.07818.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "An Active Learning-based Approach for Hosting Capacity Analysis in Distribution Systems"
+   ],
+   [
+    6,
+    "With the increasing amount of distributed energy resources (DERs) integration, there is a significant need to model and analyze hosting capacity (HC) for future"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2023\\abstracts\\2307.09971.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Solving scalability issues in calculating PV hosting capacity in low voltage distribution networks"
+   ],
+   [
+    6,
+    "The share of end-users with installed rooftop photovoltaic (PV) systems is continuously growing. Since most end-users are located at the low voltage (LV) level "
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2023\\abstracts\\2310.20185.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Decomposed Phase Analysis using Convex Inner Approximations: a Methodology for DER Hosting Capacity in Distribution Systems"
+   ],
+   [
+    6,
+    "This paper uses convex inner approximations (CIA) of the AC power flow to tackle the optimization problem of quantifying a three-phase distribution feeder's cap"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2023\\abstracts\\2311.02793.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Improving Photovoltaic Hosting Capacity of Distribution Networks with Coordinated Inverter Control -- A Case Study of the EPRI J1 Feeder"
+   ],
+   [
+    6,
+    "Adding photovoltaic (PV) systems in distribution networks, while desirable for reducing the carbon footprint, can lead to voltage violations under high solar-lo"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2023\\abstracts\\2312.06582.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Implementing hosting capacity analysis in distribution networks: Practical considerations, advancements and future directions"
+   ],
+   [
+    6,
+    "Hosting capacity analysis is essential for effective integration of distributed energy resources into distribution systems. This paper discusses hosting capacit"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2024\\query.json",
+  "name_hit": false,
+  "lines": [
+   [
+    2,
+    "\"query\": \"((cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"D"
+   ],
+   [
+    6,
+    "\"label\": \"Dynamic hosting capacity and converter hosting limits\","
+   ],
+   [
+    7,
+    "\"query\": \"(cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"DE"
+   ],
+   [
+    8,
+    "\"review_question\": \"How is hosting capacity extended from voltage and thermal constraints to dynamic, spectral, damping, protection, and controller-aware constr"
+   ],
+   [
+    9,
+    "\"slug\": \"dynamic_hosting_capacity\""
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2024\\abstracts\\2403.18085.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "ANOCA: AC Network-aware Optimal Curtailment Approach for Dynamic Hosting Capacity"
+   ],
+   [
+    6,
+    "With exponential growth in distributed energy resources (DERs) coupled with at-capacity distribution grid infrastructure, prosumers cannot always export all ext"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2024\\abstracts\\2404.05125.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "The DistFlow model accurately represents power flows in distribution systems, but the model's nonlinearities result in computational challenges for many applica"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2024\\abstracts\\2404.14371.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "In order to achieve greenhouse gas neutrality by 2045, the Climate Protection Act sets emission reduction targets for the years 2030 and 2040, as well as decrea"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2024\\abstracts\\2404.18013.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Impact of Dynamic Operating Envelopes on Distribution Network Hosting Capacity for Electric Vehicles"
+   ],
+   [
+    6,
+    "The examination of the maximum number of electric vehicles (EVs) that can be integrated into the distribution network (DN) without causing any operational incid"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2024\\abstracts\\2405.20682.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Impact of Phase Selection on Accuracy and Scalability in Calculating Distributed Energy Resources Hosting Capacity"
+   ],
+   [
+    6,
+    "Hosting capacity (HC) and dynamic operating envelopes (DOEs), defined as dynamic, time-varying HC, are calculated using three-phase optimal power flow (OPF) for"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2024\\abstracts\\2406.11332.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "Network reconfiguration can significantly increase the hosting capacity (HC) for distributed generation (DG) in radially operated systems, thereby reducing the "
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2024\\abstracts\\2408.11269.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Real-time Hosting Capacity Assessment for Electric Vehicles: A Sequential Forecast-then-Optimize Method"
+   ],
+   [
+    6,
+    "Hosting capacity (HC) assessment for electric vehicles (EVs) is crucial for EV secure integration and reliable power system operation. Existing methods primaril"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2024\\abstracts\\2409.14532.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "The proliferation of distributed energy resources has heightened the interactions between transmission and distribution (T&D) systems, necessitating novel analy"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2024\\abstracts\\2411.09990.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Exploring the Influence of Residential Electric Vehicle Charging on Distribution System Hosting Capacity -- A Case-Study in Arizona"
+   ],
+   [
+    6,
+    "The installation of high-capacity fast chargers for electric vehicles (EVs) is posing a significant risk to the distribution grid as the increased demand from w"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2025\\query.json",
+  "name_hit": false,
+  "lines": [
+   [
+    2,
+    "\"query\": \"((cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"D"
+   ],
+   [
+    6,
+    "\"label\": \"Dynamic hosting capacity and converter hosting limits\","
+   ],
+   [
+    7,
+    "\"query\": \"(cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"DE"
+   ],
+   [
+    8,
+    "\"review_question\": \"How is hosting capacity extended from voltage and thermal constraints to dynamic, spectral, damping, protection, and controller-aware constr"
+   ],
+   [
+    9,
+    "\"slug\": \"dynamic_hosting_capacity\""
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2025\\abstracts\\2501.05623.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "We introduce a quadratically-constrained approximation (QCAC) of the AC optimal power flow (AC-OPF) problem. Unlike existing approximations like the DC-OPF, our"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2025\\abstracts\\2501.15339.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "DER Hosting capacity for distribution networks: definitions, attributes, use-cases and challenges"
+   ],
+   [
+    6,
+    "The rapid adoption of distributed energy resources (DERs) has outpaced grid modernization, leading to capacity limitations that challenge their further integrat"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2025\\abstracts\\2504.18905.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Fairness-aware Dynamic Hosting Capacity and the Impacts of Strategic Solar PV Curtailment"
+   ],
+   [
+    6,
+    "Rapid deployment of distributed energy resources (DERs), such as solar photovoltaics (PV), poses a risk to the distribution grid under high penetration. Therefo"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2025\\abstracts\\2505.19839.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Chance-constrained Solar PV Hosting Capacity Assessment for Distribution Grids Using Gaussian Process and Logit Learning"
+   ],
+   [
+    6,
+    "Growing penetration of distributed generation such as solar PV can increase the risk of over-voltage in distribution grids, affecting network security. Therefor"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2025\\abstracts\\2507.08684.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Large-Scale Processing and Validation of Grid Data for Assessing the Fair Spatial Distribution of PV Hosting Capacity"
+   ],
+   [
+    6,
+    "The integration of PV systems and increased electrification levels present significant challenges to the traditional design and operation of distribution grids."
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2025\\abstracts\\2507.17587.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "The widespread adoption of electric vehicles (EVs) has significantly increased demand on both transportation and power systems, posing challenges to their stabl"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2025\\abstracts\\2508.16834.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Fairness for distribution network hosting capacity"
+   ],
+   [
+    6,
+    "The integration of distributed generation (DG) is essential to the energy transition but poses challenges for lowvoltage (LV) distribution networks (DNs) with l"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2025\\abstracts\\2510.11476.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "This paper investigates the role of flexible connection in accelerating the interconnection of large loads amid rising electricity demand from data centers and "
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2025\\abstracts\\2510.17071.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "The power flow equations relate bus voltage phasors to power injections via the network admittance matrix. These equations are central to the key operational an"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2026\\query.json",
+  "name_hit": false,
+  "lines": [
+   [
+    2,
+    "\"query\": \"((cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"D"
+   ],
+   [
+    6,
+    "\"label\": \"Dynamic hosting capacity and converter hosting limits\","
+   ],
+   [
+    7,
+    "\"query\": \"(cat:eess.SY OR cat:cs.SY OR cat:math.OC) AND (all:\\\"hosting capacity\\\" OR all:\\\"dynamic hosting\\\" OR all:\\\"distributed energy resources\\\" OR all:\\\"DE"
+   ],
+   [
+    8,
+    "\"review_question\": \"How is hosting capacity extended from voltage and thermal constraints to dynamic, spectral, damping, protection, and controller-aware constr"
+   ],
+   [
+    9,
+    "\"slug\": \"dynamic_hosting_capacity\""
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2026\\abstracts\\2602.12573.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Dynamic Network Prices for Prosumer-aware Hosting Capacity Management"
+   ],
+   [
+    6,
+    "The fast uptake of distributed energy resources (DERs) presents increasing challenges for managing hosting capacity in distribution networks. Existing solutions"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2026\\abstracts\\2602.21567.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "While the rapid proliferation of electric vehicles (EVs) accelerates net-zero goals, uncoordinated charging activities impose severe operational challenges on d"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2026\\abstracts\\2603.04393.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "In this work, we present bayesgrid, an open-source python toolbox for generating synthetic power transmission-distribution systems for any geographical location"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2026\\abstracts\\2603.06943.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Impact of Work Schedule Flexibility on EV Hosting Capacity: Insights from Analyzing Field Data"
+   ],
+   [
+    6,
+    "Uncoordinated electric vehicle (EV) charging is altering residential load patterns and pushing distribution transformers to operate beyond their limits. These o"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2026\\abstracts\\2604.02170.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Dynamic resource coordination can increase grid hosting capacity to support more renewables, storage, and electrified load growth"
+   ],
+   [
+    6,
+    "We show that dynamic coordination of distributed energy resources (DERs) can increase the capacity of low- and medium-voltage grids, improve reliability and pow"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2026\\abstracts\\2604.11999.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "Rapid growth in electric-vehicle (EV) charging demand is placing increasing stress on distribution power networks (DPNs), whose hosting capacity is often limite"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2026\\abstracts\\2604.13404.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "Peer-to-peer (P2P) energy management facilitates decentralized resource allocation among prosumers, improving local hosting capacity for renewables and minimizi"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2026\\abstracts\\2604.13926.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "The increasing penetration of Distributed Energy Resources (DERs), particularly electric vehicles, heat pumps, and photovoltaic systems, is fundamentally changi"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2026\\abstracts\\2604.20185.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Risk-Aware Hosting Capacity Analysis for Flexible Load Interconnection in Distribution Networks"
+   ],
+   [
+    6,
+    "The increasing penetration of flexible loads, such as electric vehicles and AI data-centers necessitates new methodologies for quantifying electrical load hosti"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2026\\abstracts\\2605.02340.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "Hosting capacity (HC) assessment plays a critical role in distribution system planning under increasing penetration of distributed energy resources (DERs) and a"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2026\\abstracts\\2605.23505.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "Modern low-voltage (LV) distribution grids face rising shares of photovoltaic generation and high-power loads such as heat pumps and electric vehicle charging s"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\dynamic_hosting_capacity\\2026\\abstracts\\2606.01407.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Hosting Capacity Assessment and Enhancement for Edge Data Centers in Active Distribution Networks"
+   ],
+   [
+    6,
+    "With the increasing demand for edge computing and AI-driven workloads, integrating small and medium-sized edge data centers into distribution networks has becom"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\networked_control_resolvent_passivity\\2020\\abstracts\\2011.05598.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "The present distribution grids generally have limited sensing capabilities and are therefore characterized by low observability. Improved observability is a pre"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\networked_control_resolvent_passivity\\2023\\abstracts\\2307.09971.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Solving scalability issues in calculating PV hosting capacity in low voltage distribution networks"
+   ],
+   [
+    6,
+    "The share of end-users with installed rooftop photovoltaic (PV) systems is continuously growing. Since most end-users are located at the low voltage (LV) level "
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\networked_control_resolvent_passivity\\2026\\abstracts\\2602.21567.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "While the rapid proliferation of electric vehicles (EVs) accelerates net-zero goals, uncoordinated charging activities impose severe operational challenges on d"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\networked_control_resolvent_passivity\\2026\\abstracts\\2604.13404.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "Peer-to-peer (P2P) energy management facilitates decentralized resource allocation among prosumers, improving local hosting capacity for renewables and minimizi"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\schur_nep_self_energy\\2023\\abstracts\\2307.09971.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Solving scalability issues in calculating PV hosting capacity in low voltage distribution networks"
+   ],
+   [
+    6,
+    "The share of end-users with installed rooftop photovoltaic (PV) systems is continuously growing. Since most end-users are located at the low voltage (LV) level "
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\schur_nep_self_energy\\2026\\abstracts\\2602.21567.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "While the rapid proliferation of electric vehicles (EVs) accelerates net-zero goals, uncoordinated charging activities impose severe operational challenges on d"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\schur_nep_self_energy\\2026\\abstracts\\2604.13404.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "Peer-to-peer (P2P) energy management facilitates decentralized resource allocation among prosumers, improving local hosting capacity for renewables and minimizi"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\spectral_graph_power_networks\\2023\\abstracts\\2310.09042.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "Cascade failures in power grids occur when the failure of one component or subsystem causes a chain reaction of failures in other components or subsystems, ulti"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\spectral_graph_power_networks\\2025\\abstracts\\2501.05623.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "We introduce a quadratically-constrained approximation (QCAC) of the AC optimal power flow (AC-OPF) problem. Unlike existing approximations like the DC-OPF, our"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\spectral_graph_power_networks\\2025\\abstracts\\2507.17587.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "The widespread adoption of electric vehicles (EVs) has significantly increased demand on both transportation and power systems, posing challenges to their stabl"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\spectral_graph_power_networks\\2026\\abstracts\\2604.11999.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "Rapid growth in electric-vehicle (EV) charging demand is placing increasing stress on distribution power networks (DPNs), whose hosting capacity is often limite"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\spectral_graph_power_networks\\2026\\abstracts\\2604.13404.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "Peer-to-peer (P2P) energy management facilitates decentralized resource allocation among prosumers, improving local hosting capacity for renewables and minimizi"
+   ]
+  ]
+ },
+ {
+  "path": "data\\arxiv_literature\\topics\\spectral_graph_power_networks\\2026\\abstracts\\2606.01407.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "Hosting Capacity Assessment and Enhancement for Edge Data Centers in Active Distribution Networks"
+   ],
+   [
+    6,
+    "With the increasing demand for edge computing and AI-driven workloads, integrating small and medium-sized edge data centers into distribution networks has becom"
+   ]
+  ]
+ },
+ {
+  "path": "docs\\literature\\arxiv_corpus_screening_memo.md",
+  "name_hit": false,
+  "lines": [
+   [
+    8,
+    "graph theory, dynamic hosting capacity, rational self-energy, and"
+   ],
+   [
+    45,
+    "| `dynamic_hosting_capacity` | 826 |"
+   ],
+   [
+    61,
+    "hosting capacity, DER hosting, curtailment, protection exposure, and dynamic"
+   ]
+  ]
+ },
+ {
+  "path": "outputs\\pdf\\references.bib",
+  "name_hit": false,
+  "lines": [
+   [
+    305,
+    "title = {Hosting Capacity of the Power Grid for Renewable Electricity Production and New Large Consumption Equipment},"
+   ],
+   [
+    317,
+    "title = {The Concept of Dynamic Hosting Capacity for Distributed Energy Resources: Analytics and Practical Considerations},"
+   ],
+   [
+    329,
+    "title = {Dynamic Hosting Capacity Analysis for Distributed Photovoltaic Resources--Framework and Case Study},"
+   ]
+  ]
+ },
+ {
+  "path": "outputs\\pdf\\chapters\\08_dynamic_hosting_capacity.aux",
+  "name_hit": true,
+  "lines": []
+ },
+ {
+  "path": "reports\\poster\\main.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    64,
+    "network-family or control-family, to define weak-node and weak-link screening"
+   ],
+   [
+    74,
+    "weak-node identification, dynamic hosting capacity"
+   ],
+   [
+    489,
+    "\\section{Weak Nodes and Weak Links}"
+   ],
+   [
+    678,
+    "The poster distills this theory into one planning message: weak nodes and weak"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\poster\\poster.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    201,
+    "\\item Oscillations concentrate on weak nodes and weak links."
+   ],
+   [
+    462,
+    "{\\blocktitlefont\\color{teal}Typed weak nodes}"
+   ],
+   [
+    656,
+    "{\\smallbodyfont\\color{ink}\\bfseries Icon guide: \\quad \\(\\circ\\) weak node \\quad -- weak link \\quad \\(\\sim\\) hidden margin \\quad \\(\\Sigma(s)\\) dynamic support}"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\poster\\ias2026\\main.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    24,
+    "/Author (Jorge L. Mayorga Taborda; Yessica Africano; Payman Dehghanian)"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\poster\\ias2026\\README.md",
+  "name_hit": false,
+  "lines": [
+   [
+    122,
+    "- IEEE 39-bus weak-node map,"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\poster\\ias2026\\bibliography\\references.bib",
+  "name_hit": false,
+  "lines": [
+   [
+    8,
+    "author = {Mayorga Taborda, Jorge L. and Africano, Yessica and Dehghanian, Payman},"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\poster\\ias2026\\research\\contextual_dynamic_weakness\\docs\\CDW_AFRICANO_PV_BENCHMARK_PLAN.md",
+  "name_hit": true,
+  "lines": [
+   [
+    1,
+    "# CDW Africano / PV hosting benchmark plan (not run)"
+   ],
+   [
+    3,
+    "**Status: NOT RUN.** This plan does not assume that the Africano material is"
+   ],
+   [
+    8,
+    "- the weak-node metric definition (PVR or other);"
+   ],
+   [
+    11,
+    "- the hosting-capacity method;"
+   ],
+   [
+    14,
+    "If any of these is missing, the result is `docs/CDW_AFRICANO_MISSING_INPUTS.md`,"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\poster\\ias2026\\research\\contextual_dynamic_weakness\\docs\\CDW_CLAIM_LEDGER_V1.md",
+  "name_hit": false,
+  "lines": [
+   [
+    71,
+    "| C-AF | Africano / PV | gated |"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\poster\\ias2026\\research\\contextual_dynamic_weakness\\docs\\CDW_EXPERIMENT_PLAN_V1.md",
+  "name_hit": false,
+  "lines": [
+   [
+    29,
+    "| E17 | repository search | `docs/CDW_AFRICANO_MISSING_INPUTS.md` or a provenance file | \u2014 | presence of every required input | \u2014 | 0 | gate |"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\poster\\ias2026\\research\\contextual_dynamic_weakness\\docs\\CDW_OPEN_QUESTIONS_V1.md",
+  "name_hit": false,
+  "lines": [
+   [
+    20,
+    "18. Is the exact Africano material available? If so, does static PV weak-node ranking capture coalition and dynamic hosting behaviour?"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\poster\\ias2026\\research\\contextual_dynamic_weakness\\docs\\CDW_PREREG_V1.md",
+  "name_hit": false,
+  "lines": [
+   [
+    485,
+    "### E17 \u2014 Africano / PV material gate"
+   ],
+   [
+    487,
+    "- **Search:** the repository and local project files, for the Africano source"
+   ],
+   [
+    488,
+    "(thesis or paper), the feeder data, the weak-node definition (PVR or other),"
+   ],
+   [
+    489,
+    "the hosting-capacity method and the reported results."
+   ],
+   [
+    491,
+    "- write `docs/CDW_AFRICANO_MISSING_INPUTS.md`;"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\poster\\ias2026\\research\\contextual_dynamic_weakness\\docs\\report_parts\\00_exec_summary_placeholder.md",
+  "name_hit": false,
+  "lines": [
+   [
+    25,
+    "## Pending (E2, E6, E7, E8, E9, E11-E14, E16, E23; E17 Africano gate)"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\poster\\ias2026\\research\\contextual_dynamic_weakness\\docs\\report_parts\\28_limitations_repro.md",
+  "name_hit": false,
+  "lines": [
+   [
+    31,
+    "- **Africano/PV.** Blocked at the material gate (E17); see"
+   ],
+   [
+    32,
+    "`docs/CDW_AFRICANO_MISSING_INPUTS.md`. GOLD-E and GOLD-F are not evaluated."
+   ],
+   [
+    45,
+    "`docs/CDW_AFRICANO_PV_BENCHMARK_PLAN.md`), before any CDW numerical result."
+   ]
+  ]
+ },
+ {
+  "path": "reports\\poster\\ias2026\\research\\contextual_dynamic_weakness\\experiments\\cdw\\CDW00_claim_matrix.py",
+  "name_hit": false,
+  "lines": [
+   [
+    53,
+    "(\"C-AF\", \"Africano replication and PV hosting (GOLD-E/F)\", \"NOT_YET_TESTED\", \"E17 gate\", \"\", \"any replication without exact material\"),"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\poster\\ias2026\\research\\contextual_dynamic_weakness\\experiments\\cdw\\CDW_MASTER_RUN.py",
+  "name_hit": false,
+  "lines": [
+   [
+    45,
+    "(\"E17\", \"E17_africano_gate\", None, None, \"run\", [], None),"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\poster\\ias2026\\research\\contextual_dynamic_weakness\\experiments\\cdw\\CDW_MASTER_TABLES.py",
+  "name_hit": false,
+  "lines": [
+   [
+    41,
+    "(\"GOLD-A\", \"Contextual sign reversal invalidates a single intrinsic weak-node ranking\","
+   ],
+   [
+    85,
+    "(\"GOLD-E\", \"Static PV weak-node ranking fails to capture coalition/dynamic hosting (Africano)\", \"BLOCKED\", \"E17 gate failed\", code + \"E17_africano_gate.py\","
+   ],
+   [
+    86,
+    "\"docs/CDW_AFRICANO_MISSING_INPUTS.md\", \"\"),"
+   ],
+   [
+    87,
+    "(\"GOLD-F\", \"No-storage control/topology co-design increases PV hosting\", \"BLOCKED\", \"E17 gate failed\", code + \"E17_africano_gate.py\","
+   ],
+   [
+    88,
+    "\"docs/CDW_AFRICANO_MISSING_INPUTS.md\", \"\"),"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\poster\\ias2026\\research\\contextual_dynamic_weakness\\experiments\\cdw\\E17_africano_gate.py",
+  "name_hit": true,
+  "lines": [
+   [
+    2,
+    "\"\"\"E17 Africano / PV material gate (prereg E17): search, do not fabricate.\"\"\""
+   ],
+   [
+    12,
+    "PATTERNS = [r\"africano\", r\"hosting[ _-]?capacity\", r\"\\bPVR\\b\", r\"weak[ _-]?node\", r\"nodos[ _]?d[e\u00e9]biles\"]"
+   ],
+   [
+    44,
+    "REQUIRED = [\"source document (thesis/paper) with methodology\", \"feeder data (network, loads)\", \"weak-node metric definition (PVR or other)\","
+   ],
+   [
+    45,
+    "\"PV placement rule\", \"voltage limits\", \"hosting-capacity method\", \"reported results to reproduce\"]"
+   ],
+   [
+    51,
+    "pdfs = [h for h in hits if h[\"path\"].lower().endswith((\".pdf\", \".docx\")) and \"africano\" in h[\"path\"].lower()]"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\poster\\ias2026\\research\\contextual_dynamic_weakness\\theory\\CDW_GRAPH_DAE_V1.md",
+  "name_hit": false,
+  "lines": [
+   [
+    123,
+    "- distribution feeders (for Africano, if it ever becomes available)."
+   ]
+  ]
+ },
+ {
+  "path": "reports\\poster\\ias2026\\research\\docs\\dossier\\IAS2026_RESEARCH_DOSSIER.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    519,
+    "The last instruction defines one final campaign, \\emph{before} any new ``weak-node'' theory. Status:"
+   ],
+   [
+    570,
+    "A separate preregistered study of weak nodes, weak corridors and intervention locations."
+   ]
+  ]
+ },
+ {
+  "path": "reports\\poster\\ias2026\\sections\\00_header.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    31,
+    "{{\\color{white}\\AuthorFont Jorge L. Mayorga Taborda \\enspace $\\cdot$ \\enspace Yessica Africano \\enspace $\\cdot$ \\enspace Payman Dehghanian}\\\\[0.04in]"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\poster\\ias2026\\sections\\01_problem.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "\\GreenBullet Weak nodes and links can concentrate oscillatory stress.\\par"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\poster\\ias2026\\sections\\06_contributions.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    4,
+    "\\MiniPanel{6.55in}{1.62in}{\\TargetIcon\\quad Typed weak nodes}{Distinguishes exposed locations from locations that are actually repairable.}\\\\[0.15in]"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\poster\\ias2026\\tikz\\network_icons.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    28,
+    "% ----- Weak node (red circle with pulse) -----"
+   ],
+   [
+    29,
+    "% Usage: \\WeakNode{x}{y}{label}"
+   ],
+   [
+    30,
+    "\\newcommand{\\WeakNode}[3]{%"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\poster\\ias2026\\tikz\\network_maps.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    22,
+    "\\tikz[baseline=-0.5ex]{\\fill[PosterGreen] (0,0) circle (0.055in);}\\,weak node\\quad"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\thesis\\main.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    432,
+    "pseudospectrum, dynamic hosting capacity, virtual inertia, Braess-like"
+   ],
+   [
+    433,
+    "reversal, weak nodes, weak links, hidden damping margin, risk vector, ANDES,"
+   ],
+   [
+    547,
+    "\\include{chapters/08_dynamic_hosting_capacity}"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\thesis\\references.bib",
+  "name_hit": false,
+  "lines": [
+   [
+    315,
+    "title = {Hosting Capacity of the Power Grid for Renewable Electricity Production and New Large Consumption Equipment},"
+   ],
+   [
+    327,
+    "title = {The Concept of Dynamic Hosting Capacity for Distributed Energy Resources: Analytics and Practical Considerations},"
+   ],
+   [
+    339,
+    "title = {Dynamic Hosting Capacity Analysis for Distributed Photovoltaic Resources--Framework and Case Study},"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\thesis\\appendices\\B_notation.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    108,
+    "\\item[\\(h_{\\rm dyn}(\\alpha)\\)] Directional dynamic hosting capacity in"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\thesis\\chapters\\01_introduction.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    93,
+    "weak nodes, completed sheaf-grid theory, or empirical benchmark closure remain"
+   ],
+   [
+    308,
+    "\\item How can dynamic hosting capacity, virtual-inertia placement, and"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\thesis\\chapters\\02_literature_review.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    131,
+    "weak node, weak link, or hidden margin that the scalar \\(L\\), the fixed-\\(D\\)"
+   ],
+   [
+    309,
+    "\\section{Hosting Capacity, Network Reinforcement, and Braess Effects}"
+   ],
+   [
+    311,
+    "Hosting capacity is usually introduced as a planning quantity: how much"
+   ],
+   [
+    314,
+    "hosting capacity as a distribution-planning tool under uncertainty"
+   ],
+   [
+    315,
+    "\\cite{bollen2017hosting}. Later dynamic hosting-capacity studies emphasize"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\thesis\\chapters\\04_fixed_damping_theory.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    399,
+    "placement even if graph centrality ranks it poorly. This is a weak-node"
+   ],
+   [
+    517,
+    "\\section{Weak Nodes, Weak Links, and Hidden Margins}"
+   ],
+   [
+    521,
+    "\\begin{definition}[Weak node for damping]"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\thesis\\chapters\\07_theoretical_implications.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    262,
+    "\\section{Weak Nodes Are Relative Objects}"
+   ],
+   [
+    277,
+    "Without those items, a weak-node list is not reproducible. A bus may be weak"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\thesis\\chapters\\08_conclusion.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    95,
+    "The ninth conclusion is that hosting capacity in converter-rich systems is"
+   ],
+   [
+    167,
+    "line restriction maps reveal weak nodes or weak links that scalar Laplacian"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\thesis\\chapters\\08_dynamic_hosting_capacity.tex",
+  "name_hit": true,
+  "lines": [
+   [
+    1,
+    "\\chapter{Dynamic Hosting Capacity and Spectral Planning Levers}"
+   ],
+   [
+    53,
+    "quality, or operational limits. This is the classical hosting-capacity"
+   ],
+   [
+    82,
+    "This definition deliberately extends time-varying hosting-capacity ideas"
+   ],
+   [
+    594,
+    "Weak nodes and weak links &"
+   ]
+  ]
+ },
+ {
+  "path": "reports\\thesis\\chapters\\09_integrated_research_program.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    110,
+    "\\(T(s)=s^2M+sD_0+L+\\Pi(s)\\), self-energy contribution, weak nodes and weak"
+   ],
+   [
+    145,
+    "Hosting-capacity draft PDF &"
+   ],
+   [
+    148,
+    "Dynamic hosting capacity should be a set constrained by damping, resolvent,"
+   ],
+   [
+    153,
+    "Kirchhoff-consistent AC power flow, weak nodes, hidden dynamic margins &"
+   ],
+   [
+    867,
+    "Candidate weak-node or weak-link certificate that is richer than scalar"
+   ]
+  ]
+ },
+ {
+  "path": "scripts\\arxiv_literature_rank.py",
+  "name_hit": false,
+  "lines": [
+   [
+    53,
+    "\"hosting capacity\": 6,"
+   ],
+   [
+    94,
+    "\"dynamic_hosting_capacity\": ["
+   ],
+   [
+    95,
+    "\"hosting capacity\","
+   ]
+  ]
+ },
+ {
+  "path": "src\\spectral_ibr\\application\\use_cases\\rank_weak_nodes.py",
+  "name_hit": true,
+  "lines": [
+   [
+    1,
+    "from spectral_ibr.domain.certificates.weak_node import WeakNodeCertificate"
+   ],
+   [
+    4,
+    "def rank_weak_nodes(certificates: list[WeakNodeCertificate]) -> list[WeakNodeCertificate]:"
+   ]
+  ]
+ },
+ {
+  "path": "src\\spectral_ibr\\domain\\certificates\\weak_node.py",
+  "name_hit": true,
+  "lines": [
+   [
+    5,
+    "class WeakNodeCertificate:"
+   ]
+  ]
+ },
+ {
+  "path": "src\\spectral_ibr\\domain\\certificates\\__init__.py",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "from spectral_ibr.domain.certificates.weak_node import WeakNodeCertificate"
+   ],
+   [
+    12,
+    "\"WeakNodeCertificate\","
+   ]
+  ]
+ },
+ {
+  "path": "src\\spectral_ibr.egg-info\\SOURCES.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    32,
+    "src/spectral_ibr/application/use_cases/rank_weak_nodes.py"
+   ],
+   [
+    41,
+    "src/spectral_ibr/domain/certificates/weak_node.py"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\Paper_Final_RationalGraphFilter_extracted.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    19,
+    "rational pair-filter is not. (iii) The framework yields sensitivity-based definitions of weak nodes and weak"
+   ],
+   [
+    26,
+    "graph filter, quadratic eigenvalue problem, weak nodes, Braess paradox, spectral perturbation."
+   ],
+   [
+    48,
+    "and we derive sensitivity-based weak-node, weak-link, and Braess-like diagnostics from the same object."
+   ],
+   [
+    54,
+    "(Sec. IV). (C3) Sensitivity-based weak-node, weak-link, and damping-aware Braess-like diagnostics (Sec. V)."
+   ],
+   [
+    149,
+    "5 C3: Weak Nodes, Weak Links, and Braess-Like Reversals"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\complete_master_compendium\\cover_reports.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    84,
+    "sections, NEP bridge, Braess mechanism, hidden margin, weak nodes/links,"
+   ],
+   [
+    270,
+    "This direction is promising because it converts weak nodes and weak links from"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\complete_master_compendium\\main.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    65,
+    "retrofitting, weak nodes, weak links, and open gates."
+   ],
+   [
+    94,
+    "sections, NEP bridge, Braess mechanism, hidden margin, weak nodes/links,"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\docs\\hidden_control_resonance_margin.md",
+  "name_hit": false,
+  "lines": [
+   [
+    119,
+    "## 6. Resolvent-Aware Weak Nodes And Links"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\docs\\instability_flow_weak_nodes_links.md",
+  "name_hit": true,
+  "lines": [
+   [
+    1,
+    "# Instability-Flow Weak Nodes and Weak Links"
+   ],
+   [
+    3,
+    "This note records the mathematical object added to the paper: weak nodes and"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\docs\\mode_resolved_substitutability_framework.md",
+  "name_hit": false,
+  "lines": [
+   [
+    71,
+    "one mode and equipment-requiring for another. A scalar weak-node score collapses"
+   ],
+   [
+    112,
+    "## 5. Damping-aware hosting capacity"
+   ],
+   [
+    115,
+    "composite hidden margin `m_H`. A damping-aware hosting capacity can be written"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\docs\\paper_24page_refinement_strategy.md",
+  "name_hit": false,
+  "lines": [
+   [
+    20,
+    "4. Weak nodes, weak links, and Braess-like topology reversals should be"
+   ],
+   [
+    37,
+    "The strongest paper is not \"weak nodes\" and not \"Braess.\" Those are"
+   ],
+   [
+    122,
+    "### Fourth Contribution: weak nodes, weak links, and Braess-like diagnostics"
+   ],
+   [
+    124,
+    "Weak nodes:"
+   ],
+   [
+    174,
+    "- using the same margin object to define weak nodes, weak links, and"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\docs\\unified_spectral_attribution_framework.md",
+  "name_hit": false,
+  "lines": [
+   [
+    148,
+    "### 2. Resolvent-Weighted Weak Nodes And Weak Links"
+   ],
+   [
+    154,
+    "weak node for damping:   W_i^D     = - d zeta_c / d D_i"
+   ],
+   [
+    155,
+    "weak node for inertia:   W_i^M     = - d zeta_c / d M_i"
+   ],
+   [
+    156,
+    "weak node for control:   W_i^kappa = - d zeta_c / d kappa_i"
+   ],
+   [
+    290,
+    "2. compute weak node/link sensitivities;"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\internal_unified_theory\\main.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    159,
+    "\\item \\textbf{Thesis material.} The weak-node/weak-link maps, substitutability"
+   ],
+   [
+    764,
+    "\\section{Weak Nodes, Weak Links, and Substitutability}"
+   ],
+   [
+    770,
+    "\\begin{definition}[Local weak node]"
+   ],
+   [
+    776,
+    "\\label{eq:weak-node}"
+   ],
+   [
+    829,
+    "\\item \\textbf{Planning validation.} Compare weak-node, weak-link, conversion,"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\outputs\\ieee39_rational_filter\\surrogate_summary.json",
+  "name_hit": false,
+  "lines": [
+   [
+    142,
+    "\"weak_node_best\": ["
+   ]
+  ]
+ },
+ {
+  "path": "temp\\outputs\\ieee39_rational_filter\\weak_node_table.csv",
+  "name_hit": true,
+  "lines": []
+ },
+ {
+  "path": "temp\\outputs\\ieee39_result_map\\ieee39_result_map_summary.json",
+  "name_hit": false,
+  "lines": [
+   [
+    2,
+    "\"top_weak_nodes\": ["
+   ]
+  ]
+ },
+ {
+  "path": "temp\\paper_ieee_conference_weak_elements\\main.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    26,
+    "\\title{Weak Nodes and Weak Links Are Not Graph-Centrality Objects in IBR Grids}"
+   ],
+   [
+    38,
+    "Weak nodes and weak links in inverter-based-resource (IBR) grids are often discussed as if they were graph objects: highly central buses, heavily loaded branche"
+   ],
+   [
+    42,
+    "Inverter-based resources, damping margin, weak nodes, weak links, Braess paradox, nonlinear eigenvalue problem, Schur complement, phase-locked loop."
+   ],
+   [
+    61,
+    "\\item It defines controller-aware weak-node and weak-link certificates from Schur-NEP pole sensitivities rather than graph centrality."
+   ],
+   [
+    166,
+    "\\caption{Controller-aware robustness workflow. The certificate turns weak-node"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\paper_ieee_conference_weak_elements\\README.md",
+  "name_hit": false,
+  "lines": [
+   [
+    1,
+    "# IEEE Conference Paper: Weak Nodes and Weak Links"
+   ],
+   [
+    5,
+    "**Weak Nodes and Weak Links Are Not Graph-Centrality Objects in IBR Grids**"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\paper_ieee_transactions\\main.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    100,
+    "Planning-oriented damping metrics also have nearby prior art. Grid-forming inverter placement by composite frequency and damping indices has been studied on mod"
+   ],
+   [
+    529,
+    "\\caption{IEEE 39-bus evidence map for the current draft. The topology overlay combines the Mix60 SG/GFL/GFM replacement map with IEEE39-derived surrogate result"
+   ],
+   [
+    775,
+    "This definition also gives controller-aware weak elements. A weak node is not defined by graph centrality alone, but by local pole movement through the rational"
+   ],
+   [
+    783,
+    "\\label{eq:resolventweaknode}"
+   ],
+   [
+    790,
+    "\\label{eq:weaknode}"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\Paper_Nodos_Debiles\\ieee13_andes.py",
+  "name_hit": false,
+  "lines": [
+   [
+    48,
+    "AFRICANO_SET = [634, 675, 611, 684]"
+   ],
+   [
+    105,
+    "pvr = v / 1.05; pvr[0] = 999"
+   ],
+   [
+    106,
+    "weak_pvr = np.argmin(pvr) + 1"
+   ],
+   [
+    107,
+    "except: pvr = np.zeros(13); weak_pvr=1"
+   ],
+   [
+    127,
+    "\"pvr_vals\": pvr, \"pi_vals\": pi, \"eigenvals\": vals,"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\Paper_Nodos_Debiles\\ieee34_andes.py",
+  "name_hit": false,
+  "lines": [
+   [
+    104,
+    "# 1. PVR Calculation (Mockup if dynamic run)"
+   ],
+   [
+    107,
+    "pvr = v / 1.05; pvr[NODE_MAP[800]-1] = 999"
+   ],
+   [
+    108,
+    "weak_pvr = np.argmin(pvr) + 1"
+   ],
+   [
+    110,
+    "pvr = np.zeros(N_BUSES); weak_pvr = 1"
+   ],
+   [
+    133,
+    "\"pvr_vals\": pvr, \"pi_vals\": pi, \"vals\": vals,"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\Paper_Nodos_Debiles\\nonlinear_andes.py",
+  "name_hit": false,
+  "lines": [
+   [
+    141,
+    "# Predicci\u00f3n de Capacidad (Hosting Capacity Proxy)"
+   ],
+   [
+    258,
+    "\"title\": \"Spectral Fragility & Hosting Capacity Validation\","
+   ]
+  ]
+ },
+ {
+  "path": "temp\\Paper_Nodos_Debiles\\results_journal_ready\\complete_forensic_report.json",
+  "name_hit": false,
+  "lines": [
+   [
+    3,
+    "\"title\": \"Spectral Fragility & Hosting Capacity Validation\","
+   ]
+  ]
+ },
+ {
+  "path": "temp\\Paper_Nodos_Debiles\\results_paper_production_v14\\ultimate_forensic_report.json",
+  "name_hit": false,
+  "lines": [
+   [
+    5,
+    "\"africano_match\": true"
+   ],
+   [
+    18,
+    "\"is_africano\": false"
+   ],
+   [
+    25,
+    "\"is_africano\": false"
+   ],
+   [
+    32,
+    "\"is_africano\": false"
+   ],
+   [
+    39,
+    "\"is_africano\": true"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\Paper_Nodos_Debiles\\results_ultimate_suite\\ultimate_forensic_report.json",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "\"metric\": \"PVR\""
+   ],
+   [
+    65,
+    "\"is_africano_reference\": false"
+   ],
+   [
+    72,
+    "\"is_africano_reference\": false"
+   ],
+   [
+    79,
+    "\"is_africano_reference\": false"
+   ],
+   [
+    86,
+    "\"is_africano_reference\": true"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\Paper_Nodos_Debiles\\results_ultimate_suite_v12\\final.json",
+  "name_hit": false,
+  "lines": [
+   [
+    5,
+    "\"africano_match\": true"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\poster\\docs\\proposal\\ias2026_student_poster_abstract2.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    16,
+    "A Validated Spectral Bridge for Weak-Node and Weak-Link Analysis in Inverter-Dominated Grids}"
+   ],
+   [
+    27,
+    "As industrial grids and microgrids replace synchronous machines with inverter-based resources, damping is no longer supplied mainly by machine inertia but by co"
+   ],
+   [
+    31,
+    "The bridge classifies weak nodes and weak links by family: network weaknesses call for reinforcement, control weaknesses call for retuning, and a minority of li"
+   ],
+   [
+    35,
+    "inverter-based resources, small-signal stability, damping margin, phase-locked loop, weak node identification, power system planning"
+   ],
+   [
+    39,
+    "Not every weak node is weak for the same reason: some need copper, some need control."
+   ]
+  ]
+ },
+ {
+  "path": "temp\\poster\\docs\\proposal\\ias2026_student_poster_abstract_final.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    20,
+    "The split was checked on 40 random networks with 4 to 11 buses and densities from 0.33 to 1.0, with residuals near 1e-14. Linearized formulas matched finite-dif"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\poster\\docs\\proposal\\poster.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    94,
+    "{\\fontsize{31}{37}\\selectfont\\color{iasdark}Weak-node and weak-link analysis as an application of the controller-aware bridge}\\par"
+   ],
+   [
+    113,
+    "Not every weak node is weak for the same reason. Some need copper; some need control.}"
+   ],
+   [
+    146,
+    "Classical weak-node or weak-link screens based on graph participation can identify a stressed place, but they may not identify the reason. The critical mode can"
+   ],
+   [
+    273,
+    "\\blocktitle{7. Utility: weak nodes and weak links}"
+   ],
+   [
+    275,
+    "\\leverbox{topogreen}{topopale}{Network weak node}{reinforce topology; copper can move the mode}"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\poster\\docs\\proposal\\abstract_submission\\ias_poster_abstract.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    23,
+    "Industrial grids and microgrids are replacing synchronous machines with inverter-based resources, so damping is no longer supplied mainly by rotating-machine in"
+   ],
+   [
+    29,
+    "inverter-based resources, small-signal stability, damping margin, phase-locked loop, weak-node identification, weak-link analysis, power-system planning"
+   ],
+   [
+    48,
+    "\\section{Weak Nodes, Weak Links, and Scope}"
+   ],
+   [
+    50,
+    "The poster uses the bridge as a classifier before using it as a ranking tool. Network-family weak nodes are candidates for topology reinforcement. Control-famil"
+   ],
+   [
+    56,
+    "Not every weak node is weak for the same reason. Some need copper. Some need control. The poster centers this point with the Mix60 complex-plane view: the mode "
+   ]
+  ]
+ },
+ {
+  "path": "temp\\poster\\docs\\proposal\\abstract_submission\\Mayorga_IAS2026_poster_abstract_submit_ready.tex",
+  "name_hit": false,
+  "lines": [
+   [
+    30,
+    "The proposed reduced object keeps the condensed controller block as a Schur self-energy, \\(\\Sigma(s)\\), rather than replacing it with a scalar damping term. The"
+   ],
+   [
+    34,
+    "inverter-based resources, small-signal stability, damping margin, phase-locked loop, nonlinear eigenvalue problem, weak-node identification, power-system planni"
+   ],
+   [
+    86,
+    "\\section{Weak Nodes and Weak Links}"
+   ],
+   [
+    88,
+    "With the controller self-energy retained, weak-node and weak-link analysis becomes a family classification. A compact local line score is the predicted damping "
+   ],
+   [
+    92,
+    "A network-family weak node points to topology reinforcement. A control-family weak node points to tuning."
+   ]
+  ]
+ },
+ {
+  "path": "temp\\poster\\docs\\proposal\\abstract_submission\\build\\Mayorga_IAS2026_poster_abstract_submit_ready.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    25,
+    "or control-family. That label gives weak-node and weak-link screening a           in damping. In the 60% inverter case, the full eigensolve sets the"
+   ],
+   [
+    31,
+    "margin, phase-locked loop, nonlinear eigenvalue problem, weak-node                This validates the hypothesis: the reduced object must retain controller"
+   ],
+   [
+    37,
+    "The damping problem is less tidy. In a synchronous-generator model,                  With the controller self-energy retained, weak-node and weak-link"
+   ],
+   [
+    43,
+    "A network-family weak node points to topology reinforcement. A"
+   ],
+   [
+    44,
+    "That distinction matters for screening. A scalar bridge reduces the            control-family weak node points to tuning."
+   ]
+  ]
+ },
+ {
+  "path": "temp\\poster\\python\\modal_substitutability_assets\\MASTER_PACKAGE.md",
+  "name_hit": false,
+  "lines": [
+   [
+    42,
+    "3. A modal-substitutability classifier ranks weak nodes into topology-cheap vs"
+   ],
+   [
+    49,
+    "line reinforcement is one-time capital. The classifier says, per weak node, whether the"
+   ],
+   [
+    68,
+    "HOOK BAND (5%, colored): \"Virtual inertia is expensive. For some weak nodes a line does the"
+   ],
+   [
+    85,
+    "[I] Workflow: 1 find weak nodes \u2192 2 compute s_i \u2192 3 high s: reinforce / low s: inertia/SynCon"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\review_downloaded_abstract\\Mayorga_IAS2026_poster_abstract.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    27,
+    "then classifies weak nodes and weak links by family, so a planner can         phase-locked loops, with control participation \u03c0c = 0.853, recovered by"
+   ],
+   [
+    31,
+    "margin, phase-locked loop, nonlinear eigenvalue problem, weak node            model cannot see."
+   ],
+   [
+    32,
+    "identification, power system planning.                                                      IV. USE FOR WEAK NODES AND LINKS"
+   ],
+   [
+    34,
+    "Power systems are moving from synchronous-machine dynamics                 weak-node and weak-link analysis a discriminator that classical graph"
+   ],
+   [
+    36,
+    "inertia is the effect quoted most often, but the harder small-signal effect   weakness has a family. A network-family weak node responds to"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\validation\\ieee39_rational_filter\\ieee39_result_map.py",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "- top damping weak nodes from the IEEE39-derived surrogate,"
+   ],
+   [
+    49,
+    "weak_nodes = pd.read_csv(ROOT / \"outputs\" / \"ieee39_rational_filter\" / \"weak_node_table.csv\")"
+   ],
+   [
+    68,
+    "top_nodes = weak_nodes.sort_values(\"delta_zeta\", ascending=False).head(3)"
+   ],
+   [
+    111,
+    "# Highlight top weak nodes with rings without hiding their device class."
+   ],
+   [
+    137,
+    "\"Weak nodes:\","
+   ]
+  ]
+ },
+ {
+  "path": "temp\\validation\\ieee39_rational_filter\\README.md",
+  "name_hit": false,
+  "lines": [
+   [
+    113,
+    "outputs/ieee39_rational_filter/weak_node_table.csv"
+   ],
+   [
+    132,
+    "- best weak-node damping intervention: bus 30, `Delta zeta=0.0112`,"
+   ],
+   [
+    410,
+    "- top weak-node damping-placement buses from the surrogate,"
+   ],
+   [
+    485,
+    "### D. Weak Node Ranking"
+   ],
+   [
+    536,
+    "weak_node_table.csv"
+   ]
+  ]
+ },
+ {
+  "path": "temp\\validation\\ieee39_rational_filter\\run_ieee39_surrogate_experiments.py",
+  "name_hit": false,
+  "lines": [
+   [
+    15,
+    "- compute weak-node and weak-link/Braess-like diagnostic tables."
+   ],
+   [
+    389,
+    "# Weak-node and line/Braess diagnostics on one representative 60% scenario."
+   ],
+   [
+    440,
+    "write_csv(out / \"weak_node_table.csv\", node_rows)"
+   ],
+   [
+    476,
+    "\"weak_node_best\": sorted(node_rows, key=lambda r: r[\"delta_zeta\"], reverse=True)[:5],"
+   ]
+  ]
+ },
+ {
+  "path": "tmp\\pdfs\\ias2026_poster_final_text.txt",
+  "name_hit": false,
+  "lines": [
+   [
+    6,
+    "Jorge L. Mayorga Taborda \u00b7 Yessica Africano \u00b7 Payman Dehghanian"
+   ],
+   [
+    17,
+    "Weak nodes and links can concentrate oscillatory stress."
+   ],
+   [
+    102,
+    "weak node       exposed    hurts   helps"
+   ],
+   [
+    119,
+    "Hidden modes & margin                                                                               Typed weak nodes"
+   ],
+   [
+    143,
+    "weak node            exposed    hurts       helps"
+   ]
+  ]
+ }
+]

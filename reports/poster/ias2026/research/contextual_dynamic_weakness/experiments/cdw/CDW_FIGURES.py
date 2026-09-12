@@ -183,8 +183,9 @@ def f7():
             gg = g[g.action.str.startswith(kind)]
             axs[0].scatter(np.full(len(gg), k + off), gg.d_alpha_H4, s=4, c=col, alpha=0.6, label=kind if k == 0 else None)
     axs[0].axhline(0, color="k", lw=0.5)
+    axs[0].set_yscale("symlog", linthresh=1.0)
     axs[0].set_xticks(range(len(pids)), pids, rotation=90, fontsize=6)
-    axs[0].set_ylabel("Δα(H4) after single action")
+    axs[0].set_ylabel("Δα(H4) after single action (symlog)")
     axs[0].legend(frameon=False, title="outage / doubling", fontsize=6)
     g = t[t.pid == "D01"]
     axs[1].scatter(g.d_fiedler, g.d_alpha_H4, s=6, c=np.where(g.action.str.startswith("out"), BLUE, RED))
