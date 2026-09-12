@@ -1,0 +1,21 @@
+{
+ "DEV_P4_BASE": {
+  "members": [],
+  "point": {
+   "g": 0.03625,
+   "k": 1.425
+  },
+  "condenser": null,
+  "pred_case_id": "EMT05_P4_BASE",
+  "g2_critical_re": -0.14413177952147038,
+  "g2_critical_hz": 0.6372036865377821,
+  "rhp": 0,
+  "run_status": "COMPLETED",
+  "t_end_after_pulse_start_s": 89.0,
+  "record_end_s": 89.995,
+  "n_channels": 28,
+  "file": "external/paremt_runs/v3_tds/DEV_P4_BASE.npz",
+  "sha256": "991f25cafbad24c262dce3254da079f67232dc1fcece92b7fc595195b3de9807",
+  "wall_s": 21.1
+ }
+}
