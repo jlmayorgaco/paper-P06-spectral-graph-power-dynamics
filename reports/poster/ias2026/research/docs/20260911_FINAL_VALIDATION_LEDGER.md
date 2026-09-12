@@ -12,6 +12,8 @@ Date: 2026-09-11. Branch `ias2026/final-closure-campaign`. Not pushed.
   - `docs/FINAL_CROSS_TOOL_VALIDATION.md`.
 
   Old claim ids are cross-referenced in the `old_ids` column.
+- The `emt_validation` column was added on 2026-09-12 at the ParaEMT closure
+  (§6). It is the only change made after the ledger was frozen.
 
 **Thesis.** Local device changes lead, through exact network-mediated
 collective closure, to:
@@ -116,6 +118,16 @@ These are surfaced here but not resolved: see
 3. **C2 clarification.** Recommendation: **ADD** the composite clarification
    (memo diffs C).
 
+**Resolution (2026-09-12, ParaEMT closure).** Items 1 and 2 are settled:
+- the author chose memo B, accept-fix version, which also accepts the
+  pandapower fix;
+- the Limitations bullet was replaced accordingly, and the EMT-corroboration
+  sentence was added;
+- the condition attached to V19 (accepting the pandapower translation) is
+  therefore met, although the §2 status text is left as frozen.
+
+Item 3 (memo C) remains an open author choice and was not applied.
+
 ## 5. Scientific decision (Phase 13)
 
 The final report in the session gives the answers to Q1–Q15, followed by Q16
@@ -183,3 +195,52 @@ once Q1–Q15 are closed. They are persisted here verbatim in short form.
       control boundary.
 15. **Blocking issues for TPWRS.** None scientifically. The three author
     decisions (memo) and the wording discipline in V03, V16 and V21 remain.
+
+## 6. EMT evidence (ParaEMT closure, 2026-09-12)
+
+This section was added at the archival closure of the ParaEMT line
+(`docs/20260912_PAREMT_EMT_CLOSURE.md`).
+- **Matrix change.** The matrix gained one column, `emt_validation`, written by
+  `experiments/paremt_emt/closure/EMT_closure_ledger.py`.
+- **Checked unchanged.** Every other column is asserted unchanged: the
+  mathematical, synthetic, IEEE-39 phasor-TDS, nonlinear and ANDES /
+  independent-tool columns, the status and the wording.
+- **Statuses.** No status in §2 changed.
+
+| EMT category | claims | `emt_validation` |
+|---|---|---|
+| EMT network / equilibrium | V19 (I01) | **EMT REPRODUCED** (ParaEMT V1 gate G1 PASS) — the only EMT-reproduced claim |
+| device models | V20 (I02, I03), V21 (I04) | **EMT UNRESOLVED** (V1 G3/G4 FAIL; V2 G3a FAIL; GFL voltage interface never run in a network) |
+| portfolio claims | V03, V04, V06, V07, V10, V11, V13–V18, V29, V30 | **NEVER EVALUATED** (EMT unresolved: no portfolio-level EMT experiment was run) |
+| mathematical / diagnostic / refuted | V01, V02, V05, V08, V09, V12, V22–V28 | NOT APPLICABLE |
+
+**Campaign outcomes** (all permanent):
+- V1: G3 FAIL and G4 FAIL.
+- V2: G3a FAIL.
+- V3: E0 FAIL.
+- SQ1: SQ1-2 FAIL, after which the line was stopped permanently.
+
+The EMT evidence therefore does not support, and does not weaken, any claim
+other than V19. The manuscript Limitations states that no EMT validation of the
+portfolio claims is asserted.
+
+## 7. Methodological observation (outside the claims)
+
+> Dominant observed modal energy need not correspond to the stability-limiting
+> eigenmode.
+
+**Source and scope.** This comes from the ParaEMT SQ1 modal-library and
+estimator-qualification work, using linear residues of the frozen phasor models
+and synthetic signals built from them.
+- It is **not** an IEEE-39 EMT result.
+- It is not a TX4 claim.
+
+**Evidence.** In 10 of 26 frozen models:
+- the rightmost (stability-limiting) in-band transverse mode, the 0.91-Hz
+  family, carries a minority of the channel energy under the preregistered
+  pulse;
+- a 0.64-Hz family, which decays 0.003–0.07 s⁻¹ faster, carries 85–92 % of the
+  median channel energy.
+
+**Effect on the estimator.** The frozen single-mode estimator resolved 40.7 % of
+such templates, against 96.5 % of the others (post hoc).

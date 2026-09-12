@@ -1,6 +1,6 @@
 # TX4: Policy-Dependent Minimal Incompatibility of Synchronous-to-Inverter Replacement Portfolios: Network-Closure Interactions and Transverse Stability
 
-`main.pdf` is the hardened final draft: 11 pages, IEEEtran journal format. It is
+`main.pdf` is the hardened final draft: 12 pages (the last page holds one reference), IEEEtran journal format. It is
 not the IAS poster and not the TX3 paper; neither of those was modified.
 
 ## Evidence state
@@ -13,6 +13,16 @@ not the IAS poster and not the TX3 paper; neither of those was modified.
   - `7a772808` and `f2946257`: Monte Carlo preregistration and its amendment;
   - `cfe9fe4b`: Monte Carlo results (Table VI, Fig. 9).
 - No new experiments were run during manuscript hardening.
+- Final reconciliation (2026-09-12, ParaEMT closure):
+  - the Limitations now carries the memo B independent-implementation text
+    (accept-fix: ANDES, pandapower after the tap-convention translation, and
+    the Phase 8 custom-model reproduction scoped to the computation);
+  - it also carries the EMT-corroboration statement (no EMT validation of
+    the portfolio claims is asserted), with the modal-energy observation
+    labelled as outside the claims;
+  - the F10 additive count is corrected to 31/52 (FINAL ledger V05).
+- Records: `reports/poster/ias2026/research/docs/20260912_PAREMT_EMT_CLOSURE.md`
+  and `docs/20260911_FINAL_VALIDATION_LEDGER.md` section 6.
 
 ## Story: three contributions only
 
@@ -78,4 +88,4 @@ objections, each with an evidence-backed response and an explicit concession.
 - Confirm the affiliation and e-mail line.
 - Add funding and acknowledgments, if any.
 - Choose the repository or DOI to cite in the Reproducibility statement.
-- Check the target journal's page policy (the draft has 11 pages).
+- Check the target journal's page policy (the draft has 12 pages).

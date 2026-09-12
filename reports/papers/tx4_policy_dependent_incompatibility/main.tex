@@ -956,10 +956,35 @@ model. It has no converter current limits, ride-through logic, or DC link, and
 the IEEEX1 exciter is harmonized. The frozen models have no primary frequency
 restoration, so all stability statements are transverse. The documented
 governors change the P4 conclusion (Table~\ref{tab:gov}).
-\item \emph{Independent implementation.} ANDES reproduces the power flow, the
-base inter-area mode (within 4.1\%), and the governor damping direction. It
-does not implement the converter model, so no portfolio result is claimed as
-independently reproduced.
+\item \emph{Independent implementation.} The network and operating point were
+reproduced in ANDES~2.0.0 and, after a tap-convention translation of the three
+transformers whose off-nominal tap is on the low-voltage from-bus, in
+pandapower~3.4.0 \cite{thurner2018pandapower} (bus-admittance matrices
+identical to $10^{-13}$~p.u.; bus voltages within $2\times10^{-7}$~p.u., the
+residual being ANDES's internal $10^{-8}$~p.u. branch-impedance
+regularization). On an equation-equivalent synchronous configuration ANDES
+reproduces the electromechanical eigenvalues within $2\times10^{-6}$~s$^{-1}$
+and the branch sensitivities of the critical mode on a preregistered 12-branch
+holdout (12/12 signs, Spearman 1.00). With the two-axis machine and the
+grid-following converter of this paper transcribed into ANDES as custom
+models, ANDES reproduces all 32 transverse verdicts of the 16 subsets of
+$\{30,33,35,37\}$ at P4 and at $g=0.25$
+($|\Delta\alpha_\perp|\le1.3\times10^{-6}$~s$^{-1}$), including
+$\Hy=\{\{30,33,35,37\}\}$ and $\kappa=4$ at P4. This independently reproduces
+the computation, not the adequacy of the converter model: no conclusion is
+claimed for other converter models, and with a library converter model the
+branch ranking changes (7/12 signs). ANDES also confirms the governor damping
+direction.
+\item \emph{EMT corroboration.} EMT corroboration was preregistered in ParaEMT
+\cite{xiong2024paraemt}. Although the IEEE-39 network and operating point were
+independently reproduced, the campaigns terminated at pre-specified
+device-interface and modal-identification qualification gates before any
+portfolio-level experiment; therefore, no EMT validation of the portfolio
+claims is asserted. A methodological observation from the modal-identification
+qualification (linear modal residues of the phasor models; not an EMT result)
+is kept outside the claims: the dominant observed modal energy need not
+correspond to the stability-limiting eigenmode (in 10 of 26 qualification
+models the rightmost in-band mode carried a minority of the channel energy).
 \item \emph{System dependence.} On the documented IEEE 68-bus system
 \cite{canizares2015benchmark}, which is reproduced to 15/15 modes within
 $5\times10^{-4}$~Hz, the preregistered four-candidate policy map is empty.
@@ -987,7 +1012,8 @@ labels over binary replacement decisions, their network-closure anatomy, and
 their movement with the converter policy. Flagship-only Nyquist, single-port
 impedance, and short-circuit-ratio screens miss the coalition changes on
 IEEE-39. Modal-sensitivity, additive, and pairwise predictors of the four-unit
-instability were correct in 22, 30, and 38 of 52 cases, respectively.
+instability were correct in 22, 31, and 38 of 52 cases, respectively (third
+order: 50).
 
 \begin{table}[!t]
 \centering
@@ -1131,7 +1157,9 @@ $\rho_{\rm scope}$.
 The final scientific evidence state is frozen at commit \texttt{b9f274e2}.
 The post-freeze evidence addenda cited here are \texttt{f775db89} (boundary
 anatomy), \texttt{7a772808}/\texttt{f2946257} (Monte Carlo preregistration and
-amendment), and \texttt{cfe9fe4b} (Monte Carlo results). Code, frozen
+amendment), \texttt{cfe9fe4b} (Monte Carlo results), and \texttt{0a4e18c2},
+\texttt{7773ea8c} (ANDES and pandapower reproductions); the ParaEMT EMT record
+is archived in the repository. Code, frozen
 configurations, and the source data of every figure are available from the
 author and in the project repository.
 
