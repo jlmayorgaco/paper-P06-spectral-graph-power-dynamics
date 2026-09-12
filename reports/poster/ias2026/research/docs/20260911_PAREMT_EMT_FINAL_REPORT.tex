@@ -1,0 +1,987 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,longtable,array,tabularx}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\setlist{nosep,leftmargin=1.3em}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\us}{\,\textmu s}
+\newcommand{\sinv}{\,s$^{-1}$}
+\newcommand{\blocked}{\textsf{UNRESOLVED (BLOCKED)}}
+\newcommand{\f}[1]{\nolinkurl{#1}}
+\renewcommand{\arraystretch}{1.15}
+
+\title{\textbf{ParaEMT EMT-validation campaign (IAS2026 / TX4)}\\[3pt]\large Final report}
+\author{Branch \texttt{research/paremt-emt-validation} (from \texttt{a70dac94}; not pushed)}
+\date{2026-09-11}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.92\linewidth}{\textbf{Status: BLOCKED at the device gates.}
+The network and operating point were reproduced (gate G1 PASS). The
+preregistered unit tests of the custom synchronous machine (G3) and the custom
+grid-following converter (G4) both FAILED. Under the preregistered stopping
+rules, EMT04--EMT18 were not run. No portfolio, policy, design, remediation or
+nonlinear claim receives EMT evidence from this campaign.}}
+\end{center}
+
+\medskip
+\noindent\begin{tabularx}{\linewidth}{@{}L{3.2cm}Y@{}}
+\toprule
+preregistration & \f{docs/20260911_PAREMT_EMT_PREREG_V1.md}, commit \texttt{c2947bd8}, before any TX4 EMT result; amendment A1 (\texttt{9d06436a}), before the unit-test results\\
+simulator & NatLabRockies/ParaEMT\_public, commit \texttt{d79d735a4a587d56c5b88187d1a499195b6b2b84} (2026-01-15), serial LU\\
+environment & \f{.venv/xtool-paremt}, CPython 3.11.10, exact upstream requirements\\
+\bottomrule
+\end{tabularx}
+
+\tableofcontents
+
+%======================================================================
+\section{Executive summary}
+
+\paragraph{Question.} Do the principal observable predictions of the frozen
+phasor-domain theory survive an independent electromagnetic-transient (EMT)
+realization of the \emph{same} IEEE-39 network and the \emph{same} custom
+device and control equations?
+
+\paragraph{Answer.} This campaign cannot say. Each stage stopped at a
+preregistered gate:
+\begin{enumerate}
+\item \textbf{EMT00 (tool).} The official ParaEMT IEEE-39 case installs, runs
+  deterministically, serializes and resumes.
+  \begin{itemize}
+  \item Its no-event run is \emph{not} stationary: a 0.62\,pu start-up jump.
+  \item Cause: upstream never applies the one transformer ratio its case
+    carries. With that tap applied, the jump falls to $2.2\times10^{-4}$\,pu.
+  \item The tool gate was recorded as ``PASS (tool)''. The stationarity check
+    as first written failed; this is disclosed in Section~\ref{sec:prov}.
+  \end{itemize}
+\item \textbf{EMT01 (network, G1): PASS.}
+  \begin{itemize}
+  \item The frozen TX4 network is built from ParaEMT's own companion elements.
+  \item Its 60-Hz admittance matches the canonical Ybus to
+    $1.7\times10^{-16}$.
+  \item The EMT equilibrium matches the canonical power flow to
+    $1.5\times10^{-6}$\,pu in $|V|$ and $5.9\times10^{-6}$\,rad in angle
+    (tolerances $10^{-4}$ and $10^{-3}$).
+  \item The official ParaEMT IEEE-39 differs from TX4 in 24 of 195 network
+    rows, so it is not used.
+  \end{itemize}
+\item \textbf{EMT02 (two-axis machine, G3): FAIL.}
+  \begin{itemize}
+  \item Six of seven states track the phasor reference within 0.87\,\% of
+    their excursion, and the ringdown agrees
+    ($\Delta\alpha=-3.1\times10^{-4}$\sinv, $\Delta f=1.2\times10^{-4}$\,Hz).
+  \item The AVR state $e_{fd}$ misses the 2\,\% trajectory limit: 2.26\,\%.
+  \item Diagnostics (not gates) attribute the excess to the electromagnetic
+    dynamics of the EMT line, a physical effect of relative size
+    $f/f_0\approx2\,\%$. The machine transcription itself agrees to
+    $2\times10^{-4}$.
+  \end{itemize}
+\item \textbf{EMT03 (11-state GFL, G4): FAIL.}
+  \begin{itemize}
+  \item With the preregistered EMT line, an undamped step-to-step (Nyquist)
+    mode of the trapezoidal line inductance is amplified by the
+    ideal-current-source converter.
+  \item At $g=0$ the three runs go non-finite at 0.76\,s. At $g>0$ they stay
+    finite but saturate at a 0.11\,pu alternation, giving state errors
+    3--1100$\times$ the excursion.
+  \item With the line realized algebraically (diagnostic only), all nine cases
+    agree within 0.78\,\%.
+  \end{itemize}
+\item \textbf{EMT04--EMT18: BLOCKED.}
+\end{enumerate}
+
+\paragraph{What changes in the claim ledger.} Nothing is weakened or
+strengthened, except that I01 (network and operating point) gains an EMT
+reproduction. I04 (the custom-GFL portfolio results in a second simulator)
+remains NOT YET TESTED.
+
+\paragraph{Next step.} A preregistration v2 is proposed for the author's
+decision (Appendix~A). It is not executed here.
+
+%======================================================================
+\section{Scientific questions}
+
+\paragraph{Q-EMT.} Does an EMT realization of the same network and the same
+device equations reproduce the following observable consequences of the
+frozen phasor theory?
+\begin{itemize}
+\item the P4 portfolio trap (15 proper subsets of $\{30,33,35,37\}$ stable,
+  the full set unstable);
+\item the controller-only policy boundary ($g^*\approx0.20768$) and the $k$
+  boundary ($k^*\approx1.3046$);
+\item port-guided design (the Newton direction; line reinforcement);
+\item the model-dependent remediations (condenser, governors);
+\item the near-Hopf finite-disturbance behaviour and the robustness holdout.
+\end{itemize}
+
+\paragraph{Precondition (gate A, MODEL).} The network, the equilibrium and each
+custom device must first be shown to be realized equation-equivalently in EMT
+(EMT01--EMT04). This precondition failed at EMT02 and EMT03.
+
+%======================================================================
+\section{Evidence taxonomy}
+
+Every claim receives exactly one label:
+\begin{itemize}
+\item THEOREM (no EMT validation required);
+\item EMT CORROBORATED;
+\item EMT QUANTITATIVELY REPRODUCED;
+\item EMT REFUTED;
+\item EMT UNRESOLVED;
+\item NOT APPLICABLE TO EMT.
+\end{itemize}
+
+\paragraph{Wording.} EMT can corroborate the \emph{observable consequence} of a
+theorem. It never proves one.
+\begin{itemize}
+\item T01--T06 and C01--C06 are not EMT targets.
+\item Connected cumulants remain secondary and get no EMT figure.
+\end{itemize}
+
+In this report, ``BLOCKED'' means ``not run because a preregistered stopping
+gate failed''. Its taxonomy label is EMT UNRESOLVED.
+
+%======================================================================
+\section{ParaEMT provenance and environment}\label{sec:prov}
+
+\paragraph{Upstream.}
+\begin{itemize}
+\item \url{https://github.com/NatLabRockies/ParaEMT_public.git}, commit
+  \texttt{d79d735a} (``Update README.md'', 2026-01-15), cloned 2026-09-11.
+\item \f{external/ParaEMT_upstream} is pristine (empty diff).
+\item License: \f{LICENSE.md} (Alliance for Sustainable Energy, LLC).
+\end{itemize}
+
+\paragraph{Working copy.} \f{external/ParaEMT_tx4}, same commit, changed only
+by \f{experiments/paremt_emt/tx4_patch_paremt.py}:
+\begin{itemize}
+\item \textbf{\f{lib_numba.py} and \f{Lib_BW.py}, $+86/-54$ lines:}
+  \begin{itemize}
+  \item exact from-side transformer taps in \texttt{numba\_InitNet},
+    \texttt{numba\_updateIhis} and \texttt{Re\_Init};
+  \item a switch for the numerical-damping resistors;
+  \item stock behaviour stays the default.
+  \end{itemize}
+\item \textbf{Untracked overlay files:} \f{tx4_emt.py} and \f{tx4_case.py}, the
+  custom device kernel and case builder. They are copied from
+  \f{experiments/paremt_emt/overlay/}.
+\item \textbf{Diff hashes.}
+  \begin{itemize}
+  \item Patch only: sha256 \texttt{190b8611\ldots}
+  \item Patch plus overlay, as recorded in every run manifest:
+    \texttt{a61698cb\ldots}
+  \end{itemize}
+\end{itemize}
+
+\paragraph{Environment.}
+\begin{itemize}
+\item \f{.venv/xtool-paremt}: CPython 3.11.10, with setuptools 72.1.0, xlrd
+  1.2.0, matplotlib 3.9.2, numba 0.60.0, numpy 2.0.1, pandas 2.2.2 and scipy
+  1.14.0. Only their dependencies were added; nothing was upgraded.
+\item \textbf{Files:} \f{results/EMT00/environment_manifest.txt},
+  \f{pip_freeze.txt}, \f{upstream_provenance.json}.
+\item \textbf{Platform:} Windows 11 Pro 10.0.26200, Intel Core Ultra 9 185H,
+  22 logical CPUs.
+\item \textbf{Solver.} Serial LU; the nxmetis/BBD path was not used or
+  repaired.
+\item \textbf{Reproducibility.} BLAS and numba threads are pinned to 1, which
+  is needed for bit-reproducibility.
+\item \textbf{Phasor references.} Computed in the frozen
+  \f{.venv/tx3-analysis} with the canonical device classes, read-only.
+\end{itemize}
+
+\paragraph{EMT00, stock smoke test} (\f{results/EMT00/}).
+\begin{itemize}
+\item \textbf{Run.} IEEE-39 (systemN $=3$):
+  \begin{itemize}
+  \item network dimension 117;
+  \item 39 buses, 34 lines, 12 transformers, 10 generators, 19 loads,
+    2 shunts;
+  \item $\Delta t=50$\us, 261\us{} per step.
+  \end{itemize}
+\item \textbf{Checks passed:}
+  \begin{itemize}
+  \item initialization;
+  \item determinism (bit-identical);
+  \item serialization and reload (identical);
+  \item snapshot and resume;
+  \item a governor-reference step gives a sensible response (+0.0070\,pu
+    $P_e$).
+  \end{itemize}
+  The exciter step is a no-op in the stock case.
+\item \textbf{Check failed:} stationarity of the no-event run. There is a
+  0.62\,pu voltage jump in the first millisecond.
+\item \textbf{Diagnosis} (\f{tap_diagnostic.json}, rule written before the
+  rerun).
+  \begin{itemize}
+  \item The stock case carries one off-nominal ratio (6--31, $k=0.9714$),
+    which upstream never applies.
+  \item With only that tap applied, the jump is $2.2\times10^{-4}$\,pu and the
+    10-s drift is at the level of the stock power-flow residual.
+  \end{itemize}
+\item \textbf{Gate record.} ``PASS (tool)'', with the first-written verdict
+  (FAIL) kept in \f{EMT00_gate.json}.
+\item \textbf{Disclosure.} This reclassification is a judgment: the defect is
+  in the upstream case and code, not in the installation. It is recorded, not
+  hidden. EMT00 has no TX4 scientific meaning.
+\end{itemize}
+
+%======================================================================
+\section{Official IEEE-39 versus frozen TX4 IEEE-39}
+
+The two cases are compared in \f{results/EMT01/network_diff.csv} and
+\f{operating_point_diff.csv}; details are in
+\f{docs/20260911_PAREMT_NETWORK_EQUIVALENCE.md}.
+
+\medskip
+\noindent\begin{tabularx}{\linewidth}{@{}L{4.4cm}YY@{}}
+\toprule
+ & official ParaEMT & frozen TX4\\
+\midrule
+base, frequency, numbering & 100 MVA, 60 Hz, 1--39 & identical\\
+34 lines (R, X, B); 12 transformer endpoints, R, X; shunts at buses 4, 5 & --- & identical\\
+off-nominal taps & one (6--31, 0.9714, to-bus side; not applied upstream) & 11 taps on bus1 (e.g.\ 31$\to$6 0.9; 19$\to$33 1.07)\\
+loads & differ at 8 buses (bus 39: 11.04\,pu; load 7 Q: 8.4\,pu) & ANDES \texttt{ieee39\_full} (bus 39: 4.0\,pu; load 7 Q: 0.84\,pu)\\
+generator ratings / dispatch & 1000 MVA each (2000 at bus 39) & $S_n$ 836--1684 MVA, frozen dispatch\\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\noindent\textbf{Totals.} 171 of 195 network rows are identical. The official
+case is therefore \emph{not} used. A TX4-specific ParaEMT case is built from
+the frozen data, which is never modified.
+
+%======================================================================
+\section{Equation-equivalent network construction (EMT01)}
+
+\paragraph{Construction.} ParaEMT's own \texttt{numba\_InitNet} trapezoidal
+companion models:
+\begin{itemize}
+\item lines as series R--L with $C=b/(2\omega_0)$ at each end;
+\item transformers as series R--L with an exact ideal tap on bus1;
+\item shunts as capacitors ($\texttt{shnt\_gb}=100(g+jb)$).
+\end{itemize}
+The numerical damping resistors are switched off: they change the 60-Hz
+admittance by about $1.4\times10^{-3}$.
+
+\medskip
+\noindent\begin{tabularx}{\linewidth}{@{}L{4.2cm}L{2.4cm}YL{1.9cm}l@{}}
+\toprule
+quantity & frozen prediction & EMT measurement & rule & verdict\\
+\midrule
+60-Hz Ybus from stored R/L/C/tap & canonical Ybus & $\max|\Delta Y|/\max|Y|=1.7\times10^{-16}$ (25/50/100\us) & $\le10^{-8}$ & PASS\\
+trapezoidal warp at 60 Hz & $(\omega_0\Delta t)^2/12$ & $7.4\times10^{-6}$ / $3.0\times10^{-5}$ / $1.2\times10^{-4}$ & reported & ---\\
+equilibrium $|\Delta V|$ (P4 base, 2 s no-event, last 0.5 s) & canonical PF & $1.48\times10^{-6}$\,pu & $\le10^{-4}$ & PASS\\
+equilibrium $|\Delta\theta|$ (rel.\ bus 39) & canonical PF & $5.85\times10^{-6}$\,rad & $\le10^{-3}$ & PASS\\
+device $P$ / $Q$ residual; speed & 0 & $1.7\times10^{-5}$ / $5.8\times10^{-5}$\,pu; $8.3\times10^{-8}$\,pu & reported & ---\\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\noindent\textbf{Gate G1: PASS.} Figure~\ref{fig:f1} shows the per-bus
+residuals. Two EMT01 CSV reruns were byte-identical.
+
+\paragraph{Interpretation.} The frozen network and its operating point are
+reproduced by an independent EMT network realization. The only changes are
+documented convention translations:
+\begin{itemize}
+\item the tap patch fixes an upstream omission;
+\item damping off;
+\item the shunt scaling.
+\end{itemize}
+This is the only claim-level EMT result of the campaign (I01).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{../figures/20260911_EMT_F1_network_equivalence.pdf}
+\caption{F1 --- EMT01 network/model equivalence. Per-bus residuals of the
+ParaEMT equilibrium against the canonical power flow: base portfolio at P4,
+50\us, positive-sequence phasors averaged over the last 0.5\,s of a 2-s
+no-event run. Dashed: preregistered tolerances. Bus 39 is the angle reference.
+Ybus residual $1.7\times10^{-16}$ (tolerance $10^{-8}$). Gate G1: PASS.}
+\label{fig:f1}
+\end{figure}
+
+%======================================================================
+\section{Constant-power-load treatment}
+
+\textbf{Outcome A} (declared in prereg \S3.3): an EMT-compatible
+fundamental-frequency constant-power load.
+\begin{itemize}
+\item A constant-impedance Norton element $Y_0=\overline{S_0}/|V_0|^2$.
+\item A compensating injection
+  $I_{\rm comp}=-(\overline{S(t)/V_f}-Y_0V_f)$, where $V_f$ is a 1-ms
+  first-order filter of the extracted phasor.
+\item The incremental admittance is $Y_0+(Y_{\rm cp}-Y_0)/(1+s\tau_m)$: exact
+  constant power as $s\tau_m\to0$, with a relative deviation of
+  $4.4\times10^{-3}$ at 0.7\,Hz.
+\end{itemize}
+There is no silent substitution; the stock RLC load is not used.
+
+\begin{itemize}
+\item \textbf{Equilibrium with the CP load.} Reproduced in EMT01: PASS.
+\item \textbf{Low-frequency equivalence} ($\tau_m$ 0.5\,ms vs 1\,ms holdout,
+  EMT04 acceptance; gate G2). Not run: \blocked.
+\end{itemize}
+
+%======================================================================
+\section{SG equation mapping and unit test (EMT02, gate G3)}
+
+\paragraph{Mapping} (prereg \S3.1). The two-axis machine is
+\texttt{SynchronousMachine} (7 states: $\delta,\omega,e'_q,e'_d,e_{fd}$,
+pss$_w$, pss$_l$), with a first-order AVR, a washout-lag PSS, $D=0$ and no
+governor.
+\begin{itemize}
+\item Because $x'_d=x'_q$ for all ten machines, the stator
+  $I=(E'-V)/(r_a+jx')$ is realized \emph{exactly} as a synchronous-frame
+  algebraic Norton element:
+  \begin{itemize}
+  \item a constant real $3\times3$ conductance
+    $G_{km}=\tfrac23\,\mathrm{Re}(a^{m-k}Y)$, with $Y=w/(r_a+jx')$;
+  \item an EMF current source driven by the predicted states.
+  \end{itemize}
+\item The terminal phasor is
+  $V=\tfrac23(v_a+av_b+a^2v_c)e^{-j\omega_0t}$.
+\end{itemize}
+
+\paragraph{Test system} (prereg \S7 and amendment A1).
+\begin{itemize}
+\item \textbf{Line.} The device at T, then an EMT R--L line ($R=0$,
+  $X=0.05$\,pu), then INF.
+\item \textbf{Infinite bus.} Thevenin $1.0\angle0$ behind $j10^{-4}$\,pu,
+  solidly grounded through a zero-sequence-only conductance.
+\item \textbf{Operating point.} $S=4+j1$\,pu, bus-30 data, P4 settings.
+\item \textbf{Disturbance.} $P_m$ +2\,\% for 0.2\,s at 1\,s; 10-s run at
+  50\us.
+\item \textbf{Reference.} The canonical class integrated by Radau
+  (rtol $10^{-10}$) with a quasi-static network.
+\end{itemize}
+
+\medskip
+\noindent\begin{tabularx}{\linewidth}{@{}L{4.9cm}L{2.5cm}YL{2.1cm}l@{}}
+\toprule
+quantity & reference & EMT & rule & verdict\\
+\midrule
+equilibrium $\Delta P$, $\Delta Q$ & 0 & $-8.3\times10^{-5}$, $+2.3\times10^{-5}$\,pu & $\le10^{-4}$ & pass\\
+$\delta,\omega,e'_q,e'_d$, pss$_w$, pss$_l$: error/excursion & 0 & 0.0032, 0.0026, 0.0087, 0.0018, 0.0013, 0.0016 & $\le0.02$ & pass\\
+\textbf{$e_{fd}$: error/excursion} & 0 & \textbf{0.0226} & $\le0.02$ & \textbf{fail}\\
+ringdown $\alpha$, $f$ (matrix pencil on $\omega$) & $-0.11837$\sinv, 1.17711\,Hz & $-0.11868$\sinv, 1.17723\,Hz & $|\Delta\alpha|,|\Delta f|\le0.005$ & pass\\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\noindent\textbf{Gate G3: FAIL.} No threshold was changed.
+
+\paragraph{Diagnostics (post hoc; they do not lift G3).} Source:
+\f{results/EMT02/EMT02_diagnostics.json}; see Figure~\ref{fig:fd1}.
+\begin{itemize}
+\item \textbf{D1.} The T--INF line realized as an algebraic synchronous-frame
+  Norton element, so the EMT network is algebraic. Worst state ratio
+  $1.9\times10^{-4}$: the machine transcription is exact to integration
+  accuracy.
+\item \textbf{D2.} The preregistered EMT line at 25\us. $e_{fd}$ ratio 0.0228:
+  the excess does not shrink with $\Delta t$, so it is not a discretization
+  error.
+\item \textbf{D3.} The preregistered EMT line against a phasor reference that
+  adds the line's $(X/\omega_0)\,dI/dt$. Worst ratio $1.4\times10^{-3}$: the
+  excess is the electromagnetic dynamics of the line.
+\end{itemize}
+
+\paragraph{Interpretation.}
+\begin{itemize}
+\item The error oscillates at the 1.18-Hz electromechanical frequency, with
+  relative size $f/f_0=1.96\,\%$. This is the known first-order
+  dynamic-phasor correction that the quasi-static phasor model omits.
+\item The preregistered 2\,\% rule was therefore marginal for a comparison
+  that deliberately crosses modelling domains.
+\item Because the failure is attributed post hoc, the gate stays FAILED.
+\end{itemize}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{../figures/20260911_EMT_FD1_sg_unit_test.pdf}
+\caption{FD1 --- EMT02 SG unit test (diagnostic figure, not an F-series
+result). (a) $e_{fd}$ error after the $P_m$ pulse; grey band: $\pm2\,\%$ of
+the $e_{fd}$ excursion. (b) Maximum error over maximum excursion for all seven
+states. Orange: the preregistered test (G3 FAIL on $e_{fd}$). Yellow: 25\us.
+Aqua: against a reference that includes the line's $dI/dt$. Blue: the line
+realized algebraically.}
+\label{fig:fd1}
+\end{figure}
+
+%======================================================================
+\section{GFL equation mapping and unit test (EMT03, gate G4)}
+
+\paragraph{Mapping.} The equation-by-equation map is in
+\f{docs/20260911_PAREMT_GFL_EQUATION_MAP.md}:
+\begin{itemize}
+\item all 11 states ($\theta,x_{pll},p_f,q_f,x_p,x_q,i_d,i_q,x_{id},x_{iq},x_v$);
+\item the algebraic quantities, parameters and initialization, identical to
+  \texttt{GridFollowingConverter} (GFL spec \S4.2);
+\item the average-value interface: $dq$ voltages from the extracted phasor,
+  output $I=w(i_d+ji_q)e^{j\theta}$ injected as an ideal three-phase current
+  source.
+\end{itemize}
+No stock converter is used, and no limits, DC link, PWM or protection are
+added.
+
+\paragraph{Test.} The same system as the SG test, with
+$g\in\{0,0.03625,0.25\}$ and three disturbances at 1\,s:
+\begin{itemize}
+\item (a) $p_{\rm ref}$ +1\,\%;
+\item (b) $|E|$ $-1$\,\%;
+\item (c) $E$ phase $+0.02$\,rad.
+\end{itemize}
+Each run is 5\,s at 50\us.
+
+\medskip
+\noindent\begin{tabularx}{\linewidth}{@{}L{3.6cm}L{3.2cm}Yl@{}}
+\toprule
+quantity & rule & EMT measurement & verdict\\
+\midrule
+every state, 9 cases & error $\le0.02\times$ excursion & 3/99 state checks pass; $g=0$ non-finite at $t=0.76$\,s (before the disturbance); $g>0$ worst-state ratios 3.2--1103 & fail\\
+equilibrium $P/Q$ & $\le10^{-4}$ & $g=0$: non-finite; $g=0.03625$: $\Delta P=2.5\times10^{-3}$, $\Delta Q=-0.31$; $g=0.25$: $\Delta P=-0.34$, $\Delta Q=0.35$\,pu & fail\\
+PLL steady state & $|\theta-\angle V_T|\le10^{-3}$ & 0.19--0.33\,rad ($g>0$); non-finite ($g=0$) & fail\\
+$g=0$: $q_f\to q_{\rm ref}$ & $\le10^{-3}$ & non-finite & fail\\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\noindent\textbf{Gate G4: FAIL.}
+
+\paragraph{Diagnostics.} See Figure~\ref{fig:fd2}.
+\begin{itemize}
+\item \textbf{D4, mechanism.} With no disturbance, the step-to-step
+  alternation of $|V_T|$ grows:
+  \begin{itemize}
+  \item at $g=0$: exponentially at 26.6\sinv{} (factor 1.0013 per step) until
+    the run fails;
+  \item at $g=0.25$: at 445\sinv, saturating at about 0.11\,pu by 0.1\,s.
+  \item Reading: an ideal current source feeding a lossless trapezoidal
+    inductor has an undamped Nyquist mode, and the explicitly coupled
+    converter loop amplifies it.
+  \end{itemize}
+\item \textbf{D1, transcription.} With the line algebraic, all nine cases are
+  finite and every state is within 0.78\,\% of its excursion. The
+  transcription is correct; the failure is in the EMT interface.
+\item \textbf{D5, IEEE-39.} No-event 30-s runs of the preregistered
+  realization: P4 base, P4 H4, and H4 at $G_S$.
+  \begin{itemize}
+  \item The start-up alternation at the four GFL buses ($5\times10^{-6}$\,pu)
+    decays to $2\times10^{-8}$ (P4 H4) and $7\times10^{-9}$\,pu ($G_S$ H4)
+    over 1--10\,s. No step-to-step instability develops.
+  \item In P4 H4 over 10--30\,s, the consecutive-sample difference rises to
+    $2.4\times10^{-7}$\,pu, together with a slow $|V|$ drift of
+    $6.8\times10^{-5}$\,pu. This smooth growth was \emph{not analysed}.
+  \item No estimator was applied and no phasor prediction was compared.
+    \textbf{D5 does not lift G4.}
+  \end{itemize}
+\end{itemize}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{../figures/20260911_EMT_FD2_gfl_unit_test.pdf}
+\caption{FD2 --- EMT03 GFL unit test (diagnostic figure). (a) Step-to-step
+alternation of the terminal $|V_T|$ (1-ms maxima) with no disturbance: the
+Nyquist mode grows with the preregistered EMT line and is absent with the line
+realized algebraically. (b) Worst-state error over excursion for the nine
+preregistered cases: preregistered EMT line (orange; $\times$ = non-finite)
+versus the algebraic-line diagnostic D1 (blue). Gate G4: FAIL.}
+\label{fig:fd2}
+\end{figure}
+
+%======================================================================
+\section{EMT initialization}
+
+\paragraph{Procedure} (prereg \S4).
+\begin{itemize}
+\item The network phasors come from the canonical power flow.
+\item The device states come from the phasor \texttt{initialize} formulas.
+\item ParaEMT sets the branch histories from the phasor steady state.
+\item The load filter starts at $V_f=V_0$.
+\end{itemize}
+
+\paragraph{Verified.}
+\begin{itemize}
+\item In EMT01, the P4 base drifts by at most $1.5\times10^{-6}$\,pu.
+\item In the unit tests, the equilibrium $P/Q$ residual is
+  $8.3\times10^{-5}$\,pu (SG).
+\item The GFL equilibrium was destroyed by the chatter of Section~9.
+\end{itemize}
+
+%======================================================================
+\section{Numerical convergence (EMT04, gate G5)}
+
+\paragraph{Frozen rule.} The verdicts of base, 30+33+35, H4 (P4) and H4
+($G_S$) must be invariant between 50 and 25\us, with $|\Delta f|\le0.01$\,Hz
+and $|\Delta\alpha|\le0.01$\sinv.
+
+\paragraph{Measurement.} Not run: \blocked{} by G3/G4.
+
+\paragraph{Interpretation.}
+\begin{itemize}
+\item The only $\Delta t$ evidence is the SG unit test: the $e_{fd}$ ratio is
+  0.0226 at 50\us{} and 0.0228 at 25\us{} (D2). That is consistent with
+  convergence but is not an EMT04 result.
+\item The 60-Hz warp is $3.0\times10^{-5}$ at 50\us.
+\end{itemize}
+
+%======================================================================
+\section{Common disturbance and modal estimator}
+
+\paragraph{Frozen (prereg \S5), not exercised on any TX4 portfolio case.}
+\begin{itemize}
+\item \textbf{Disturbance.} +2\,\% of the bus-20 active load (0.136\,pu) on
+  $[1.0,1.2)$\,s.
+\item \textbf{Signals.} Relative machine speeds, GFL frequency deviations, and
+  bus-angle differences and $|V|$ at the ten generator buses.
+\item \textbf{Estimator A.} Multi-channel matrix pencil at 10\,Hz.
+\item \textbf{Estimator B.} Hilbert envelope of the dominant band-passed
+  channel at 50\,Hz.
+\item \textbf{Band and window.} 0.2--1.2\,Hz, window $[2.2\,{\rm s},T]$.
+\item \textbf{Classification.} STABLE / UNSTABLE if both estimators are
+  resolved and beyond $\pm\varepsilon=0.002$\sinv; UNRESOLVED otherwise.
+\item \textbf{Implementation.} \f{experiments/paremt_emt/emt_estimator.py},
+  used here only for the SG ringdown.
+\end{itemize}
+
+%======================================================================
+\section{EMT05: P4 portfolio trap}\label{sec:core}
+
+All experiments in Sections~\ref{sec:core}--\ref{sec:kundur} were
+preregistered with frozen phasor predictions
+(\f{results/EMT_PRED/phasor_predictions.csv}, commit \texttt{c2947bd8}). None
+was run, because gate A (MODEL) failed at G3 and G4.
+
+\textbf{For each experiment:}
+\begin{itemize}
+\item EMT measurement: none;
+\item verdict: \blocked;
+\item interpretation: no EMT evidence either way.
+\end{itemize}
+
+\paragraph{Prediction.}
+\begin{itemize}
+\item The 15 proper subsets of $\{30,33,35,37\}$ (including $\emptyset$) are
+  stable, with in-band $\alpha$ from $-0.214$ to $-0.144$\sinv{} at
+  0.64--0.92\,Hz.
+\item H4 is unstable: $\alpha=+0.1270$\sinv{} at 0.622\,Hz.
+\end{itemize}
+
+\paragraph{Rule.}
+\begin{itemize}
+\item All 15 proper subsets STABLE and H4 UNSTABLE ($\kappa_{\rm EMT}=4$).
+\item Secondary: MAE$(\alpha)\le0.03$\sinv{} and $|\Delta f|\le0.05$\,Hz.
+\item Amplitude checks at 1\,\% and 4\,\%.
+\end{itemize}
+
+\section{EMT06: contextual intervention sign reversal}
+
+\paragraph{Prediction.} Each of 30, 33, 35 and 37 is stabilizing alone and
+destabilizing when added last (the signs of 8 effects).
+
+\paragraph{Rule.} All 8 EMT signs equal the phasor signs.
+
+\section{EMT07--08 (and EMT09, EMT10): g-only controller boundary}
+
+\paragraph{Prediction.} At H4, $k=1.425$, $\alpha(g)=+0.0138, +0.0036,
++0.0012, -0.0011, -0.0076, -0.0174$\sinv{} at $g=0.18, 0.20, 0.205, 0.21,
+0.225, 0.25$; $g^*=0.20768$.
+
+\paragraph{Rule.} A resolved UNSTABLE point below and a STABLE point above
+$g^*_{\rm EMT}$. Target: $|g^*_{\rm EMT}-0.20768|\le0.02$.
+
+\paragraph{Also blocked.}
+\begin{itemize}
+\item \textbf{EMT09} (P$_\infty$ H4): prediction $\alpha=-0.155$\sinv; rule
+  STABLE.
+\item \textbf{EMT10} (Newton design):
+  \begin{itemize}
+  \item prediction: the first iterate $g=0.08806$ has $\alpha=+0.0739$;
+    $g^*$ has $\alpha=0$; $g=0.25$ has $\alpha=-0.0174$;
+  \item rule: $\alpha_{\rm EMT}$ monotone along the sequence, $g=0.25$ STABLE,
+    and $|g^*_{\rm EMT}-g^*|\le0.02$.
+  \end{itemize}
+\end{itemize}
+
+\section{EMT11: k boundary}
+
+\paragraph{Prediction.} At $g=0.03625$, $\alpha(k)=-0.0809, -0.0337, -0.0061,
++0.0069, +0.0313, +0.0539$ at $k=1.25$--$1.35$; $k^*=1.3046267$.
+
+\paragraph{Rule.} $|k^*_{\rm EMT}-1.3046267|\le0.02$, with a clear STABLE
+$\to$ UNSTABLE change.
+
+\section{EMT12: line reinforcement}
+
+\paragraph{Prediction.} Exact phasor finite changes $\Delta\alpha$ for 12
+frozen holdout lines $\times1.5$ at P4 H4:
+\begin{itemize}
+\item from $-0.0371$ (L42), $-0.0340$ (L35) and $-0.0242$ (L26);
+\item to $+0.0013$ (L17) and $+0.0042$ (L31).
+\end{itemize}
+
+\paragraph{Rule.} Sign agreement $\ge10/12$ and Spearman $\ge0.80$.
+
+\paragraph{Not claimed.} Transfer across converter models.
+
+\section{EMT13: condenser}
+
+\paragraph{Prediction.} At P4 H4, the damped condenser at
+2.0/2.5/3.0/5.0\,\% gives in-band $\alpha=+0.0264/-0.0010/-0.0295/-0.1569$\sinv.
+
+\paragraph{Rule.} 2\,\% UNSTABLE and 5\,\% STABLE, in band.
+
+\section{EMT14: governors}
+
+\paragraph{Prediction.}
+\begin{itemize}
+\item Governed H4 at P4: $\alpha=-0.0745$\sinv{} (stable).
+\item Governed H4 at $g=0.020$: $\alpha=+0.0691$\sinv{} (unstable,
+  descriptive).
+\end{itemize}
+
+\paragraph{Rule.} The governed P4 H4 is STABLE.
+
+\section{EMT15: nonlinear recovery near the subcritical Hopf}
+
+\paragraph{Prediction.} H4 at $g=0.22$ ($\alpha=-0.0055$) and $g=0.30$
+($-0.0334$).
+
+\paragraph{Protocol.} Pulse amplitudes of 2--80\,\% with RETURNS / LEAVES /
+FAILS / NUMERICAL labels.
+
+\paragraph{Rule.} Characterize the outcome, whether positive or negative.
+
+\section{EMT16: robustness holdout}
+
+\paragraph{Prediction.} From the frozen PCV05 draws (seed 20260921; 74 cases):
+\begin{itemize}
+\item A: the witness is H4;
+\item B: the witness is $\{30,33,35\}$;
+\item C: H4 is stable.
+\end{itemize}
+
+\paragraph{Rule.} Each set passes in $\ge80\,\%$ of its draws.
+
+\section{EMT17: optional Kundur zero-frequency check}\label{sec:kundur}
+
+Not run: it is optional, and the campaign is blocked. T08 rests on its proof
+and on the existing phasor holdout (28/29).
+
+%======================================================================
+\section{Claim-to-EMT matrix}
+
+File: \f{results/20260911_EMT_CLAIM_MATRIX.csv}, 44 claims, with the columns
+required by the campaign. It is generated by
+\f{experiments/paremt_emt/EMT_claim_matrix.py} from the frozen ledger
+\f{results/20260911_CLAIM_MATRIX.csv}, which is read only.
+
+\medskip
+\noindent\begin{tabularx}{\linewidth}{@{}L{5.0cm}Y@{}}
+\toprule
+EMT label & claims\\
+\midrule
+THEOREM & T01--T08, C01--C06 (14)\\
+NOT APPLICABLE TO EMT & T09; C07--C11; N01, N02, N05--N09 (13)\\
+EMT QUANTITATIVELY REPRODUCED & I01 (1)\\
+EMT UNRESOLVED & T10, B01--B10, I02 (G3 FAIL), I03, I04 (G4 FAIL), N03, N04 (16; all but B06 BLOCKED, and B06 was not an EMT target)\\
+EMT CORROBORATED / REFUTED & none\\
+\bottomrule
+\end{tabularx}
+
+%======================================================================
+\section{Negative and unresolved results}
+
+\paragraph{Negative (preregistered gates failed).}
+\begin{enumerate}
+\item \textbf{G3.} The SG $e_{fd}$ trajectory error is 2.26\,\% against a
+  2\,\% limit.
+\item \textbf{G4.} The GFL unit test is numerically unstable with the
+  preregistered EMT line: 3/9 runs non-finite, 6/9 grossly wrong.
+\item \textbf{EMT00.} The stock no-event stationarity check failed as first
+  written (upstream never applies the transformer tap).
+\end{enumerate}
+
+\paragraph{Unresolved.} EMT04--EMT18 are BLOCKED. Every portfolio, policy,
+design, remediation, nonlinear and robustness question remains unanswered by
+EMT.
+
+\paragraph{Not done.}
+\begin{itemize}
+\item No retuning.
+\item No threshold change.
+\item No stock GFL or machine substitution.
+\item No constant-power-load substitution.
+\item No IEEE-39 portfolio comparison.
+\end{itemize}
+
+%======================================================================
+\section{Limitations}
+\begin{itemize}
+\item \textbf{Diagnostics are post hoc.} D1--D5 were designed after the gate
+  failures. They explain the failures; they do not replace the gates.
+\item \textbf{The unit-test system is part of the preregistration.} A lossless
+  line to a stiff source is a demanding topology for an ideal current source.
+  D5 shows the IEEE-39 GFL buses behave differently, but the test was chosen
+  in advance and failed.
+\item \textbf{The GFL interface is a design choice.} It is an average-value
+  ideal current source with explicit predictor--corrector coupling. Other
+  interfaces were not preregistered and were not tried as a gate:
+  \begin{itemize}
+  \item a converter voltage behind an EMT filter branch;
+  \item Norton-compensated injection;
+  \item ParaEMT's standard numerical damping.
+  \end{itemize}
+\item \textbf{A domain-crossing comparison.} The 2\,\% trajectory rule
+  compares a quasi-static phasor reference with an EMT network. The network's
+  own electromagnetic dynamics contribute about $f/f_0$ of the excursion.
+\item \textbf{Scope of EMT01.} It covers the base portfolio at P4 only; the
+  GFL equilibrium in IEEE-39 was not gated.
+\end{itemize}
+
+%======================================================================
+\section{Manuscript implications}
+
+\paragraph{No wording changes.}
+\begin{itemize}
+\item The manuscript already states ``nonlinear phasor-domain simulation (not
+  EMT)'' (\f{docs/FINAL_IAS_SAFE_CLAIMS.md}). That wording remains correct and
+  required.
+\item The manuscript must \emph{not} cite this campaign as EMT validation of
+  any portfolio, policy or design result.
+\item I04 remains NOT YET TESTED. The custom-GFL results are
+  single-implementation, phasor-domain results.
+\end{itemize}
+
+\paragraph{Optional sentences} (limitations / reproducibility):
+\begin{itemize}
+\item \emph{``The IEEE-39 network and operating point were independently
+  realized in the ParaEMT EMT solver (60-Hz admittance residual
+  $2\times10^{-16}$, equilibrium residual $2\times10^{-6}$\,pu).''}
+\item \emph{``An equation-equivalent EMT realization of the converter did not
+  pass its preregistered unit test; EMT corroboration of the portfolio results
+  is not claimed.''}
+\end{itemize}
+
+%======================================================================
+\section{Reproducibility instructions}
+
+Paths are relative to \f{reports/poster/ias2026/research/}. EMT runs use
+\f{.venv/xtool-paremt}; phasor references use \f{.venv/tx3-analysis}
+(read-only).
+\begin{enumerate}
+\item \textbf{Clone and patch.} Clone ParaEMT\_public at \texttt{d79d735a}
+  into \f{external/ParaEMT_upstream} and \f{external/ParaEMT_tx4}; run
+  \f{tx4_patch_paremt.py} and \f{EMT_setup_tx4.py}.
+\item \textbf{EMT00.} \f{EMT00_provenance.py}, \f{EMT00_stock_smoke.py},
+  \f{EMT00_tap_diagnostic.py}, \f{EMT00_gate.py}.
+\item \textbf{Frozen predictions} (already committed):
+  \f{EMT_phasor_predictions.py}, \f{EMT_export_operating_points.py}.
+\item \textbf{EMT01.} \f{EMT01_network_equivalence.py}.
+\item \textbf{Unit-test references} (tx3-analysis): \f{EMT02_03_phasor_refs.py},
+  \f{EMT02_03_dynphasor_ref.py}.
+\item \textbf{Unit tests and diagnostics}: \f{EMT02_03_unit_tests.py},
+  \f{EMT02_03_diagnostics.py}, \f{EMT03_D5_ieee39_chatter.py}. Then
+  \f{EMT02_03_manifest.py} re-executes all three and writes the manifest.
+\item \textbf{Claim matrix and figures.} \f{EMT_claim_matrix.py},
+  \f{EMT_figures.py}.
+\item \textbf{Report.} Build this file with pdflatex, twice.
+\end{enumerate}
+
+\paragraph{Determinism.}
+\begin{itemize}
+\item Every summary CSV/JSON of EMT01--EMT03 and the diagnostics was
+  regenerated twice and is byte-identical. Wall-clock fields sit only in the
+  manifests.
+\item The phasor references are bit-identical after pinning BLAS to one
+  thread. Before pinning they differed by up to $7\times10^{-12}$.
+\item The claim matrix and the figure sources are byte-identical on rerun.
+\end{itemize}
+
+\paragraph{Manifests.}
+\begin{itemize}
+\item EMT01: \f{results/EMT01/EMT01_summary.json}.
+\item Unit tests and diagnostics: \f{results/EMT02/EMT02_03_manifest.json}.
+\item Raw EMT01 series: \f{external/paremt_runs/raw/}. Unit-test trajectories:
+  \f{results/EMT02/emt_traj.npz}, \f{results/EMT03/emt_traj.npz}.
+\end{itemize}
+
+\paragraph{Figures.}
+\begin{itemize}
+\item F1 is Figure~\ref{fig:f1}; FD1 and FD2 are diagnostic figures.
+\item F2--F8 need EMT04--EMT16 and are \textbf{not produced (BLOCKED)}.
+\item No cumulant figure.
+\end{itemize}
+
+%======================================================================
+\section*{Answers to the final questions}
+\addcontentsline{toc}{section}{Answers to the final questions}
+\begin{enumerate}[leftmargin=1.8em]
+\item \textbf{Is the frozen TX4 IEEE-39 faithfully reproduced in ParaEMT?}
+  Yes, for the network and the operating point:
+  \begin{itemize}
+  \item Ybus residual $1.7\times10^{-16}$;
+  \item equilibrium $|\Delta V|$ $1.5\times10^{-6}$\,pu and $|\Delta\theta|$
+    $5.9\times10^{-6}$\,rad.
+  \end{itemize}
+  This required a documented tap patch. The official ParaEMT IEEE-39 is a
+  different case.
+\item \textbf{Is the custom GFL equation-equivalent in EMT at fundamental
+  frequency?} Not established.
+  \begin{itemize}
+  \item The equations are transcribed identically, and match within 0.78\,\%
+    with an algebraic line (diagnostic).
+  \item But the preregistered unit test failed (G4): the ideal-current-source
+    interface is unstable with the preregistered EMT line.
+  \end{itemize}
+\item \textbf{Is the two-axis SG equation-equivalent?} Not established by the
+  gate.
+  \begin{itemize}
+  \item G3 failed on $e_{fd}$ (2.26\,\% against 2\,\%); the other states
+    pass and the ringdown agrees to $3\times10^{-4}$\sinv.
+  \item The diagnostics suggest equivalence, but that is a post hoc reading.
+  \end{itemize}
+\item \textbf{Proper subsets stable and H4 unstable?} Not tested (BLOCKED).
+\item \textbf{$\kappa_{\rm EMT}$ at P4?} Unknown (BLOCKED).
+\item \textbf{$\alpha_{\rm EMT}$, $f_{\rm EMT}$ for the 16 subsets?} Not
+  measured (BLOCKED); predictions in Section~\ref{sec:core}.
+\item \textbf{Contextual sign reversal?} Not tested (BLOCKED).
+\item \textbf{g-only transition?} Not tested (BLOCKED).
+\item \textbf{$g^*_{\rm EMT}$ vs 0.20768?} Not measured (BLOCKED).
+\item \textbf{$k$ boundary?} Not tested (BLOCKED).
+\item \textbf{Port-guided retuning?} Not tested (BLOCKED).
+\item \textbf{Line sensitivities vs finite EMT reinforcement?} Not tested
+  (BLOCKED).
+\item \textbf{Condenser remediation?} Not tested (BLOCKED).
+\item \textbf{Governor stabilizes the flagship?} Not tested (BLOCKED).
+\item \textbf{Finite recovery threshold near the subcritical Hopf?} Not tested
+  (BLOCKED); no EMT evidence either way.
+\item \textbf{Robustness holdout?} Not tested (BLOCKED).
+\item \textbf{Which claims are not EMT-testable?}
+  \begin{itemize}
+  \item T01--T07 and C01--C06, which remain proofs.
+  \item T08, whose optional EMT17 was not run.
+  \item The identities behind T09 and T10: only the observable consequences of
+    T10 are EMT-testable.
+  \item C07--C11, phasor-port constructions with no EMT observable.
+  \end{itemize}
+\item \textbf{Did any manuscript statement become too strong?}
+  \begin{itemize}
+  \item None because of EMT: no portfolio-level EMT result exists.
+  \item The ``phasor-domain, not EMT'' wording must stay, and the campaign must
+    not be cited as EMT validation.
+  \item The omitted line $dI/dt$ is now measured: deviations of about $f/f_0$
+    (2\,\% at 1.2\,Hz), within the declared ``no claim above a few Hz''
+    scope.
+  \end{itemize}
+\item \textbf{New model-fidelity limitations?} Yes, three:
+  \begin{itemize}
+  \item (i) The average-value GFL, as an ideal current source with explicit
+    coupling, is numerically fragile in EMT (Nyquist chatter) when its
+    terminal sees only lossless inductance to a stiff source.
+  \item (ii) The quasi-static network omits the line's $dI/dt$ (about $f/f_0$
+    on machine trajectories).
+  \item (iii) Upstream ParaEMT ignores transformer ratios, and its IEEE-39
+    case is not TX4.
+  \end{itemize}
+\item \textbf{Strongest defensible statement:}
+  \begin{itemize}
+  \item \textbf{Mathematical proof:} the theorems stand.
+  \item \textbf{Python phasor model:} the frozen phasor results stand.
+  \item \textbf{ANDES:} it independently reproduces the network, the
+    equation-equivalent synchronous dynamics and the branch sensitivities
+    (I01--I03).
+  \item \textbf{Nonlinear phasor TDS:} it confirms the small-signal verdicts
+    (B09).
+  \item \textbf{ParaEMT:} it independently reproduces the network and
+    operating point (I01), but provides \emph{no} corroboration of the
+    portfolio, policy, design, remediation or nonlinear claims. Those claims
+    remain phasor-domain results of a single custom-GFL implementation (I04
+    NOT YET TESTED).
+  \end{itemize}
+\end{enumerate}
+
+%======================================================================
+\section*{Appendix A. Proposed preregistration v2 (for the author's decision; not executed)}\label{app:v2}
+\addcontentsline{toc}{section}{Appendix A. Proposed preregistration v2}
+
+Any v2 is designed \emph{after} seeing the v1 failures and diagnostics. It must
+say so, and it must add blind elements so that it is not a forced match.
+
+\begin{enumerate}[label=V2-\arabic*.,leftmargin=3em]
+\item \textbf{Device gates on an algebraic-network unit test.}
+  \begin{itemize}
+  \item The line is realized as a synchronous-frame algebraic Norton element,
+    so the test isolates the device transcription. The 2\,\% rule and the
+    equilibrium, ringdown and PLL rules are unchanged.
+  \item Blind holdout, fixed in v2 before any run: a second operating point and
+    device (e.g.\ bus-35 data, $S=2+j0.5$) and a second disturbance set.
+  \item \textbf{Caveat.} v1's D1 already passed on the v1 operating point, so
+    only the holdout is blind.
+  \end{itemize}
+\item \textbf{Network electromagnetic effect as a reported quantity, not a
+  gate.} The EMT-line unit test is compared against the dynamic-phasor
+  reference.
+\item \textbf{One preregistered GFL EMT interface, chosen before any IEEE-39
+  run.} Candidates:
+  \begin{itemize}
+  \item (a) the converter voltage behind the filter reactor realized as an EMT
+    R--L branch; the $\theta'$ cross-coupling difference must be bounded;
+  \item (b) the ideal current source with ParaEMT's standard numerical damping
+    on; the $1.4\times10^{-3}$ admittance change is declared and checked by a
+    holdout;
+  \item (c) Norton-compensated injection.
+  \end{itemize}
+  Acceptance: the preregistered EMT-line GFL unit test must be finite and
+  stable in all nine cases, and V2-1 must pass.
+\item \textbf{Unchanged.} EMT04--EMT16 as in v1, with unchanged thresholds,
+  disturbance, estimator and frozen predictions.
+\item \textbf{Declared history.} v1 failed G3 and G4; that record stays in the
+  ledger regardless of v2.
+\end{enumerate}
+
+%======================================================================
+\section*{What EMT did and did not validate}
+\addcontentsline{toc}{section}{What EMT did and did not validate}
+
+The table separates \textbf{theorem validity} (mathematical status) from
+\textbf{model-fidelity corroboration} (phasor, independent and EMT columns).
+
+{\footnotesize
+\begin{longtable}{@{}L{3.0cm}L{1.5cm}L{2.0cm}L{2.0cm}L{3.1cm}L{3.0cm}@{}}
+\toprule
+Theory / claim & Mathem\-atical status & Phasor evidence & Independent phasor evidence & EMT evidence & Final status\\
+\midrule\endhead
+T01--T07 (quotient, antichain, planning, Metzler, NP, complex, minors) & proved & yes & Kundur / IEEE-68 where applicable & not applicable (THEOREM) & PROVED (unchanged)\\
+T08 zero-frequency port & proved & Kundur holdout 28/29 & --- & EMT17 not run & PROVED (unchanged)\\
+T09 Sylvester / descriptor anatomy & identity classical & FC18 & --- & not applicable & BENCHMARK-SPECIFIC (unchanged)\\
+T10 port derivative & proved (IFT) & FC18, F2c & ANDES E1 11/12, $\rho$ 1.00 & BLOCKED (EMT08/11/12) & NUMERICALLY VALIDATED (unchanged)\\
+C01--C06 cumulant theorems & proved & CC02 & --- & not applicable & PROVED (unchanged)\\
+C07--C09 cumulant benchmark results & --- & CC03, CC04 & --- & not applicable (secondary) & BENCHMARK-SPECIFIC (unchanged)\\
+C10--C11 & --- & refuted & --- & not applicable (not reinterpreted) & REFUTED (unchanged)\\
+B01 policy-dependent incompatibility & --- & F7A/B/C & Kundur 61/61 & BLOCKED (EMT08/10/11/16) & CONDITIONAL (unchanged)\\
+B02 flagship $\kappa=4$ at P4 & --- & C.2, G2 TDS & ANDES variant only & BLOCKED (EMT05/06/09) & CONDITIONAL (unchanged)\\
+B03 governors; B05 condenser & --- & FC03; G1, FC12 & ANDES direction (B03) & BLOCKED (EMT14; EMT13) & BENCHMARK-SPECIFIC (unchanged)\\
+B04, B06 & --- & FC04; FC10 & --- & BLOCKED / not targeted & BENCHMARK-SPECIFIC (unchanged)\\
+B07--B10 nonlinear scope & normal form (B08) & FC05--07, FC13, G2 & --- & BLOCKED (EMT15, EMT05) & NUMERICALLY VALIDATED (unchanged)\\
+I01 network and operating point & --- & Python reference & ANDES, pandapower & \textbf{EMT QUANTITATIVELY REPRODUCED} (Ybus $2\times10^{-16}$, $V$ $1.5\times10^{-6}$) & CONDITIONAL (label unchanged; EMT adds a third realization)\\
+I02 SG dynamics & --- & internal & ANDES R2/R3 & G3 FAIL ($e_{fd}$ 2.26\,\%) $\to$ EMT UNRESOLVED & NUMERICALLY VALIDATED (by ANDES; unchanged)\\
+I03 branch sensitivities & --- & internal & ANDES E1 & BLOCKED (EMT12) & NUMERICALLY VALIDATED (unchanged)\\
+I04 custom-GFL portfolio results in a second simulator & --- & project DAE only & none & G4 FAIL $\to$ EMT UNRESOLVED & NOT YET TESTED (unchanged)\\
+N01--N09 negatives & --- & refuted & --- & not applicable / BLOCKED (N03, N04) & REFUTED (unchanged)\\
+\bottomrule
+\end{longtable}}
+
+\end{document}
