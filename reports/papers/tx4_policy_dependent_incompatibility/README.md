@@ -20,9 +20,14 @@ not the IAS poster and not the TX3 paper; neither of those was modified.
   - it also carries the EMT-corroboration statement (no EMT validation of
     the portfolio claims is asserted), with the modal-energy observation
     labelled as outside the claims;
-  - the F10 additive count is corrected to 31/52 (FINAL ledger V05).
-- Records: `reports/poster/ias2026/research/docs/20260912_PAREMT_EMT_CLOSURE.md`
-  and `docs/20260911_FINAL_VALIDATION_LEDGER.md` section 6.
+  - the F10 additive count is corrected to 31/52 (FINAL ledger V05);
+  - the memo C clarification separates kappa = 4 (the minimum failing-set
+    cardinality) from the irreducible connected interaction order.
+- Records, under `reports/poster/ias2026/research/docs/`:
+  - `20260912_PAREMT_EMT_CLOSURE.md`;
+  - `20260911_FINAL_VALIDATION_LEDGER.md` section 6;
+  - `20260912_TX4_FINAL_AUTHOR_DECISIONS.md` (memo A, B and C all
+    ACCEPTED).
 
 ## Story: three contributions only
 
@@ -33,7 +38,10 @@ not the IAS poster and not the TX3 paper; neither of those was modified.
 - **C2: network-closure anatomy.** Local descriptor-affine actions, exact
   network closure, a principal-minor hierarchy, and a coalition-specific zero
   (Fig. 1). At all ten frozen boundaries, no truncation below the cardinality
-  of the changing minimal coalition reaches the zero.
+  of the changing minimal coalition reaches the zero. That cardinality is a
+  closure order, not an irreducible interaction order: kappa = 4 is not
+  evidence of an irreducible four-device interaction (memo C,
+  connected-cumulant clarification).
 - **C3: actionable boundary motion.** Exact boundary normals, iterative Q/V
   retuning, and a symmetry-deflated zero-frequency port (Kundur: 28/28 zero
   crossings, one coalescence correctly not flagged, 0/445 false positives).

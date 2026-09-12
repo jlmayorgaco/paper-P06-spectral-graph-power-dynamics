@@ -126,7 +126,14 @@ These are surfaced here but not resolved: see
 - the condition attached to V19 (accepting the pandapower translation) is
   therefore met, although the §2 status text is left as frozen.
 
-Item 3 (memo C) remains an open author choice and was not applied.
+**Item 3 (memo C) — ACCEPTED later on 2026-09-12**, in the final
+manuscript-closure commit:
+- the manuscript now distinguishes κ = 4, the minimum failing-set cardinality,
+  from the irreducible connected interaction order, consistent with V09;
+- the V09 and V22–V25 statuses are unchanged, and the cumulant layer stays
+  secondary.
+
+All three decisions are recorded in `docs/20260912_TX4_FINAL_AUTHOR_DECISIONS.md`.
 
 ## 5. Scientific decision (Phase 13)
 

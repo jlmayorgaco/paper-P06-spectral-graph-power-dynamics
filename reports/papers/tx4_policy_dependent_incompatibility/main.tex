@@ -124,7 +124,8 @@ network closure converts them into principal-minor interactions of all orders,
 and every boundary is a zero of the interaction factor
 (Theorem~\ref{thm:factorization}, Corollary~\ref{cor:closure}). At all ten
 frozen IEEE-39 boundaries, only the full-order interaction term of the changing
-coalition closes the determinant.
+coalition closes the determinant at the boundary zero; this full-order term is
+a closure order, not an irreducible $|S|$-device interaction.
 \item[\textbf{C3}] \textbf{Actionable boundary motion.} The port derivative
 gives the exact local boundary normal and supports iterative Q/V retuning
 (Proposition~\ref{prop:gradient}). Symmetry deflation extends the port test to
@@ -654,6 +655,34 @@ $(\theta,s)$ draws (suite P3), the full-order coefficient never vanishes
 ($7.8\times10^{-4}$ to 469), so no lower-degree representation is exact on this
 benchmark.
 
+\emph{Failing-set cardinality is not interaction order.} At the flagship
+operating point, $\kappa=4$ denotes the cardinality of the minimum failing
+replacement portfolio: all proper subsets remain stable while the complete
+four-unit portfolio is unstable. This should not be interpreted as evidence of
+an irreducible four-device interaction. The exact full-support Boolean closure
+contribution is required at the observed boundary, but the connected-cumulant
+decomposition shows that this contribution is composite, containing the
+connected four-way term together with products of lower-order connected terms.
+Let $\chi_T$ be the connected (partition-lattice) cumulants of
+$S\mapsto\det(I+Q_{SS})$ \cite{rota1964mobius, stanley1996combinatorics}.
+Because $Q$ has zero diagonal blocks, $\det(I+Q_{ii})=1$ and $\mu_T$ is the sum
+of $\prod_{B\in\pi}\chi_B$ over the set partitions $\pi$ of $T$ without
+singleton blocks; for four units
+\[
+\mu_{1234}=\chi_{1234}+\chi_{12}\chi_{34}+\chi_{13}\chi_{24}+\chi_{14}\chi_{23},
+\]
+an identity checked numerically to about $3\times10^{-14}$. At the four-unit
+boundary on the P4 line, deleting $\chi_{\{30,33,35,37\}}$ moves the
+characteristic zero by only $0.024$~s$^{-1}$, and the connected cluster with
+the largest effect on the zero is $\{33,35\}$. The closure statement above therefore concerns the
+order of the determinant expansion at the boundary zero, not an irreducible
+interaction order. Nor does it mean that no lower-order computation can flag the
+portfolio: at P4 itself the order-$\le3$ truncation of $\det(I+Q_{SS})$ has its
+zero at $+0.1267$~s$^{-1}$ (exact $+0.1270$~s$^{-1}$), whereas additive,
+pairwise, and third-order truncations of the spectral abscissa all predict
+stability ($-0.18$ to $-0.21$~s$^{-1}$). The cumulant decomposition is used
+only for this interpretation; it is not a contribution of the paper.
+
 \begin{table}[!t]
 \centering
 \caption{Network-closure anatomy of ten frozen IEEE-39 boundaries}\label{tab:anatomy}
@@ -688,7 +717,10 @@ $^{b}$Effective rank of $Q$ at $10^{-2}$. $^{c}$Boundary-normal error of
 \caption{Anatomy of the ten frozen IEEE-39 boundaries (E1--E9: F7B line
 $t=0.852$; F: P4 line). Shown are the local factor and the truncations of the
 interaction expansion \eqref{eq:mu}. Only the full-order term (order $|S|$)
-reaches the characteristic zero. For pairs, order $\le2$ is the full order.}
+reaches the characteristic zero. At the four-unit boundary this term contains
+products of pair interactions besides the connected four-device term, so the
+full order is a closure order, not an irreducible interaction order. For pairs,
+order $\le2$ is the full order.}
 \label{fig:closure}
 \end{figure}
 
@@ -736,8 +768,8 @@ dimension stays full while $\kappa$ changes (negative control).}
 $T_0^{-1}$ ($T_0=D_g-N$) does not converge in the inter-area band
 ($\rho(D_g^{-1}N)\ge1.003$ over 0.3--1.5~Hz), both at the four-unit boundary
 and for a Pg-matched stable control. No n-hop attribution is claimed. The
-closure result concerns the order of the interaction, not a dominant path or
-cycle; the simple-cycle explanation was tested separately and falsified.
+closure result concerns the closure order of the interaction expansion, not a
+dominant path or cycle; the simple-cycle explanation was tested separately and falsified.
 
 \subsection{C3: boundary motion, retuning, and zero-frequency crossings}
 Formula \eqref{eq:grad} was compared with direct finite differences of the
@@ -1046,7 +1078,8 @@ characterizes the portfolios that are safe in every implementation order (C1).
 Its non-additivity is the principal-minor hierarchy produced by network
 closure of local, affine replacement actions. At each of ten frozen IEEE-39
 boundaries, no truncation below the cardinality of the changing minimal
-coalition reaches the characteristic zero (C2). The port derivative gives
+coalition (a closure order, not an irreducible interaction order) reaches the
+characteristic zero (C2). The port derivative gives
 exact boundary normals and iterative retuning, and symmetry deflation extends
 the test to zero-frequency crossings (C3).
 

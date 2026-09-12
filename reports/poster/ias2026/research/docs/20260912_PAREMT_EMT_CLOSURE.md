@@ -218,8 +218,11 @@ output-routine boxes that the pre-reconciliation build already had).
    ParaEMT (Xiong et al., IEEE Trans. Power Del. 39(2), 2024, as given in the
    ParaEMT upstream README).
 
-**Not applied** (it is still an open author choice): memo C, the C2
-closure-order clarification.
+**Memo C** (the C2 closure-order clarification) was open at ab9edc5d. The
+author **ACCEPTED** it afterwards, and it is applied in the final
+manuscript-closure commit (`docs/20260912_TX4_FINAL_AUTHOR_DECISIONS.md`). The
+stale-claim search was rerun there, with the same result and no EMT portfolio
+claim.
 
 **Stale-claim search** (case-insensitive, over `main.tex` and `README.md` after
 reconciliation):
