@@ -22,7 +22,11 @@ not the IAS poster and not the TX3 paper; neither of those was modified.
     labelled as outside the claims;
   - the F10 additive count is corrected to 31/52 (FINAL ledger V05);
   - the memo C clarification separates kappa = 4 (the minimum failing-set
-    cardinality) from the irreducible connected interaction order.
+    cardinality) from the irreducible connected interaction order;
+  - a new "Witness identity" Limitations bullet says {30,33,35,37} is the
+    witness of the nominal frozen model, not a robust weak-bus set (retained
+    in 34/69/62 % of the fleet-wide/per-unit/combined envelope draws).
+- TX4 is frozen after this edit (local tag `TX4_FINAL_MANUSCRIPT_FREEZE`).
 - Records, under `reports/poster/ias2026/research/docs/`:
   - `20260912_PAREMT_EMT_CLOSURE.md`;
   - `20260911_FINAL_VALIDATION_LEDGER.md` section 6;

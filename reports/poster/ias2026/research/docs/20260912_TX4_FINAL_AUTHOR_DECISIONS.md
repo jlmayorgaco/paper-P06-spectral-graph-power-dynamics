@@ -13,7 +13,7 @@ Date: 2026-09-12. Branch `research/paremt-emt-validation`, not pushed.
 |---|---|---|
 | **A. pandapower fix** (equation-preserving tap-convention translation; Ybus identity 1e-13) | **ACCEPTED** | ab9edc5d (through diff B, accept-fix version) |
 | **B. Limitations replacement** (stale "within 4.1 %" bullet → memo diff B, accept-fix) | **ACCEPTED** | ab9edc5d |
-| **C. C2 clarification** (κ = 4 is the minimum failing-set cardinality, not an irreducible four-device interaction) | **ACCEPTED** | the final manuscript-closure commit |
+| **C. C2 clarification** (κ = 4 is the minimum failing-set cardinality, not an irreducible four-device interaction) | **ACCEPTED** | 3cb08823 |
 
 ## A. pandapower fix — ACCEPTED
 
@@ -128,3 +128,31 @@ V09 and V22–V25) and is not promoted to a contribution.
 | EMT validation of portfolio claims | none; the Limitations states that none is asserted |
 | single-implementation custom GFL | none; the Limitations reports the ANDES custom-model reproduction, scoped to the computation |
 | old additive count 30/52 | none; the Discussion gives 22, 31 and 38 of 52 (third order 50) |
+
+## D. Witness-identity sentence — final micro-edit (author request, after 3cb08823)
+
+**Where.** Limitations, a new bullet "Witness identity", immediately after
+"Model".
+
+**What it says:**
+- non-composability persisted under the preregistered uncertainty envelopes;
+- the identity of the nominal minimum failing set was parameter-sensitive;
+- {30,33,35,37} is reported as the witness of the nominal frozen model, not
+  as a robust weak-bus set.
+
+**Numbers** (`results/20260911_ROBUSTNESS.csv`; prereg 5d0b1986, results
+1f025cc3):
+
+| quantity | fleet-wide (EM-f) | per unit (EM-u) | combined (EMC) | converter stress (EC) |
+|---|---|---|---|---|
+| non-composable (R1) | 62 % | 88 % | 84 % | 100 % |
+| nominal witness H = {H4} retained (R2) | 34 % | 69 % | 62 % | 100 % |
+
+**Wording choice.** The author's suggested wording said the non-composability
+phenomenon "remained robust". The fleet-wide machine envelope is only PARTIAL,
+at 62 %. The sentence therefore gives each fraction and states that these are
+coverage fractions of deterministic envelopes, not probabilities.
+
+**Reproducibility.** The statement now also lists 5d0b1986/1f025cc3.
+
+**Scope.** No other TX4 content changed. After this edit TX4 is frozen.

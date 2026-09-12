@@ -988,6 +988,15 @@ model. It has no converter current limits, ride-through logic, or DC link, and
 the IEEEX1 exciter is harmonized. The frozen models have no primary frequency
 restoration, so all stability statements are transverse. The documented
 governors change the P4 conclusion (Table~\ref{tab:gov}).
+\item \emph{Witness identity.} Under the preregistered parameter-uncertainty
+envelopes, portfolio non-composability persisted, but the identity of the
+nominal minimum failing set was parameter-sensitive. Non-composability held in
+88\%, 84\%, and 100\% of the per-unit machine, combined, and converter-stress
+draws (62\% fleet-wide), whereas the nominal witness $\{30,33,35,37\}$ was
+retained in 34\% of the fleet-wide, 69\% of the per-unit, and 62\% of the
+combined draws (coverage fractions of deterministic envelopes, not
+probabilities). Accordingly, $\{30,33,35,37\}$ is reported as the witness of
+the nominal frozen model, not as a robust weak-bus set.
 \item \emph{Independent implementation.} The network and operating point were
 reproduced in ANDES~2.0.0 and, after a tap-convention translation of the three
 transformers whose off-nominal tap is on the low-voltage from-bus, in
@@ -1190,7 +1199,8 @@ $\rho_{\rm scope}$.
 The final scientific evidence state is frozen at commit \texttt{b9f274e2}.
 The post-freeze evidence addenda cited here are \texttt{f775db89} (boundary
 anatomy), \texttt{7a772808}/\texttt{f2946257} (Monte Carlo preregistration and
-amendment), \texttt{cfe9fe4b} (Monte Carlo results), and \texttt{0a4e18c2},
+amendment), \texttt{cfe9fe4b} (Monte Carlo results), \texttt{5d0b1986}/\texttt{1f025cc3}
+(uncertainty-envelope preregistration and results), and \texttt{0a4e18c2},
 \texttt{7773ea8c} (ANDES and pandapower reproductions); the ParaEMT EMT record
 is archived in the repository. Code, frozen
 configurations, and the source data of every figure are available from the
