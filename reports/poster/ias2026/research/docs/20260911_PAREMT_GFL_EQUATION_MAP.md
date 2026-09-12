@@ -115,9 +115,11 @@ realization in the preregistered test topology. It is not an equation
 mismatch.
 
 **IEEE-39 (diagnostic D5,** `EMT03_D5_ieee39_chatter.csv`**; no-event runs
-only, with no estimator and no prediction comparison).** The same alternation
-does not develop: it decays below 1e-8 pu at the four GFL buses by 1–10 s in
-P4 H4 and G_S H4.
+only, with no estimator and no prediction comparison).** No step-to-step
+instability develops. The start-up alternation at the four GFL buses decays
+to 2e-8 (P4 H4) and 7e-9 pu (G_S H4) over 1–10 s. In P4 H4 over 10–30 s, the
+consecutive-sample difference rises to 2.4e-7 pu, together with a slow |V|
+drift of 6.8e-5 pu; this smooth growth was not analysed.
 
 This does **not** lift G4. The preregistered unit test failed, and EMT04–EMT18
 stay BLOCKED under preregistration v1.

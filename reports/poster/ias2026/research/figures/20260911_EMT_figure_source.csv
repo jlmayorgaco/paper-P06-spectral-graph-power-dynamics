@@ -1,0 +1,129 @@
+figure,series,quantity,value
+F1,network,ybus_rel_residual,1.740490e-16
+F1,bus 1,abs_dVm_pu,8.998252e-07
+F1,bus 1,abs_dAngle_rad,4.502360e-07
+F1,bus 2,abs_dVm_pu,3.964585e-07
+F1,bus 2,abs_dAngle_rad,1.116539e-06
+F1,bus 3,abs_dVm_pu,1.631872e-07
+F1,bus 3,abs_dAngle_rad,3.137550e-06
+F1,bus 4,abs_dVm_pu,1.024003e-06
+F1,bus 4,abs_dAngle_rad,2.796931e-06
+F1,bus 5,abs_dVm_pu,1.476064e-06
+F1,bus 5,abs_dAngle_rad,1.967731e-06
+F1,bus 6,abs_dVm_pu,1.295173e-06
+F1,bus 6,abs_dAngle_rad,1.648342e-06
+F1,bus 7,abs_dVm_pu,1.125852e-06
+F1,bus 7,abs_dAngle_rad,2.448977e-06
+F1,bus 8,abs_dVm_pu,1.130695e-06
+F1,bus 8,abs_dAngle_rad,2.593461e-06
+F1,bus 9,abs_dVm_pu,1.193453e-06
+F1,bus 9,abs_dAngle_rad,1.109863e-06
+F1,bus 10,abs_dVm_pu,7.363523e-07
+F1,bus 10,abs_dAngle_rad,6.798989e-07
+F1,bus 11,abs_dVm_pu,9.204099e-07
+F1,bus 11,abs_dAngle_rad,1.061498e-06
+F1,bus 12,abs_dVm_pu,6.442120e-07
+F1,bus 12,abs_dAngle_rad,1.733789e-06
+F1,bus 13,abs_dVm_pu,7.478744e-07
+F1,bus 13,abs_dAngle_rad,1.107442e-06
+F1,bus 14,abs_dVm_pu,7.643124e-07
+F1,bus 14,abs_dAngle_rad,1.974319e-06
+F1,bus 15,abs_dVm_pu,3.290606e-10
+F1,bus 15,abs_dAngle_rad,2.444395e-06
+F1,bus 16,abs_dVm_pu,6.201056e-08
+F1,bus 16,abs_dAngle_rad,1.824962e-06
+F1,bus 17,abs_dVm_pu,2.378082e-07
+F1,bus 17,abs_dAngle_rad,2.501893e-06
+F1,bus 18,abs_dVm_pu,2.146886e-07
+F1,bus 18,abs_dAngle_rad,2.961864e-06
+F1,bus 19,abs_dVm_pu,4.930086e-07
+F1,bus 19,abs_dAngle_rad,6.647037e-07
+F1,bus 20,abs_dVm_pu,7.597097e-07
+F1,bus 20,abs_dAngle_rad,7.550770e-08
+F1,bus 21,abs_dVm_pu,4.750177e-07
+F1,bus 21,abs_dAngle_rad,5.691935e-07
+F1,bus 22,abs_dVm_pu,3.957548e-07
+F1,bus 22,abs_dAngle_rad,1.798938e-06
+F1,bus 23,abs_dVm_pu,5.158939e-07
+F1,bus 23,abs_dAngle_rad,1.679584e-06
+F1,bus 24,abs_dVm_pu,9.808484e-09
+F1,bus 24,abs_dAngle_rad,1.750396e-06
+F1,bus 25,abs_dVm_pu,3.732706e-07
+F1,bus 25,abs_dAngle_rad,1.168539e-06
+F1,bus 26,abs_dVm_pu,1.001829e-06
+F1,bus 26,abs_dAngle_rad,2.037091e-06
+F1,bus 27,abs_dVm_pu,6.101159e-07
+F1,bus 27,abs_dAngle_rad,2.828878e-06
+F1,bus 28,abs_dVm_pu,5.620908e-07
+F1,bus 28,abs_dAngle_rad,7.879678e-07
+F1,bus 29,abs_dVm_pu,1.185883e-07
+F1,bus 29,abs_dAngle_rad,4.452841e-07
+F1,bus 30,abs_dVm_pu,1.504202e-07
+F1,bus 30,abs_dAngle_rad,1.033967e-06
+F1,bus 31,abs_dVm_pu,1.356354e-06
+F1,bus 31,abs_dAngle_rad,1.561869e-06
+F1,bus 32,abs_dVm_pu,2.861179e-07
+F1,bus 32,abs_dAngle_rad,3.539336e-06
+F1,bus 33,abs_dVm_pu,1.971372e-07
+F1,bus 33,abs_dAngle_rad,3.416573e-06
+F1,bus 34,abs_dVm_pu,2.957016e-07
+F1,bus 34,abs_dAngle_rad,2.689702e-06
+F1,bus 35,abs_dVm_pu,1.356224e-07
+F1,bus 35,abs_dAngle_rad,4.357359e-06
+F1,bus 36,abs_dVm_pu,1.020636e-07
+F1,bus 36,abs_dAngle_rad,5.854513e-06
+F1,bus 37,abs_dVm_pu,9.844376e-08
+F1,bus 37,abs_dAngle_rad,9.742343e-07
+F1,bus 38,abs_dVm_pu,1.675264e-07
+F1,bus 38,abs_dAngle_rad,3.670051e-06
+F1,bus 39,abs_dVm_pu,6.506394e-08
+F1,bus 39,abs_dAngle_rad,0.000000e+00
+FD1,"EMT line, 50 µs vs quasi-static phasor (preregistered)",ratio_delta,3.151820e-03
+FD1,"EMT line, 50 µs vs quasi-static phasor (preregistered)",ratio_omega,2.613508e-03
+FD1,"EMT line, 50 µs vs quasi-static phasor (preregistered)",ratio_eq1,8.656815e-03
+FD1,"EMT line, 50 µs vs quasi-static phasor (preregistered)",ratio_ed1,1.829717e-03
+FD1,"EMT line, 50 µs vs quasi-static phasor (preregistered)",ratio_efd,2.255555e-02
+FD1,"EMT line, 50 µs vs quasi-static phasor (preregistered)",ratio_pss_w,1.277259e-03
+FD1,"EMT line, 50 µs vs quasi-static phasor (preregistered)",ratio_pss_l,1.626893e-03
+FD1,"EMT line, 25 µs vs quasi-static phasor (D2)",ratio_delta,2.776339e-03
+FD1,"EMT line, 25 µs vs quasi-static phasor (D2)",ratio_omega,2.759205e-03
+FD1,"EMT line, 25 µs vs quasi-static phasor (D2)",ratio_eq1,8.446981e-03
+FD1,"EMT line, 25 µs vs quasi-static phasor (D2)",ratio_ed1,1.847645e-03
+FD1,"EMT line, 25 µs vs quasi-static phasor (D2)",ratio_efd,2.284832e-02
+FD1,"EMT line, 25 µs vs quasi-static phasor (D2)",ratio_pss_w,1.348845e-03
+FD1,"EMT line, 25 µs vs quasi-static phasor (D2)",ratio_pss_l,1.717514e-03
+FD1,"EMT line, 50 µs vs dynamic-phasor line (D3)",ratio_delta,1.352422e-03
+FD1,"EMT line, 50 µs vs dynamic-phasor line (D3)",ratio_omega,7.745008e-04
+FD1,"EMT line, 50 µs vs dynamic-phasor line (D3)",ratio_eq1,4.196922e-04
+FD1,"EMT line, 50 µs vs dynamic-phasor line (D3)",ratio_ed1,3.912452e-04
+FD1,"EMT line, 50 µs vs dynamic-phasor line (D3)",ratio_efd,4.078501e-04
+FD1,"EMT line, 50 µs vs dynamic-phasor line (D3)",ratio_pss_w,3.349892e-04
+FD1,"EMT line, 50 µs vs dynamic-phasor line (D3)",ratio_pss_l,4.182644e-04
+FD1,"algebraic line, 50 µs vs quasi-static phasor (D1)",ratio_delta,1.743545e-04
+FD1,"algebraic line, 50 µs vs quasi-static phasor (D1)",ratio_omega,1.895908e-04
+FD1,"algebraic line, 50 µs vs quasi-static phasor (D1)",ratio_eq1,4.323985e-05
+FD1,"algebraic line, 50 µs vs quasi-static phasor (D1)",ratio_ed1,1.032756e-04
+FD1,"algebraic line, 50 µs vs quasi-static phasor (D1)",ratio_efd,1.093359e-04
+FD1,"algebraic line, 50 µs vs quasi-static phasor (D1)",ratio_pss_w,9.129523e-05
+FD1,"algebraic line, 50 µs vs quasi-static phasor (D1)",ratio_pss_l,1.252912e-04
+FD2,"g = 0, EMT line",max_alternation_pu,1.941888e+13
+FD2,"g = 0.25, EMT line",max_alternation_pu,5.159473e-01
+FD2,"g = 0.25, algebraic line (D1)",max_alternation_pu,1.000000e-13
+FD2,g0_a,worst_ratio_preregistered,inf
+FD2,g0_a,worst_ratio_D1_algebraic_line,inf
+FD2,g0_b,worst_ratio_preregistered,inf
+FD2,g0_b,worst_ratio_D1_algebraic_line,inf
+FD2,g0_c,worst_ratio_preregistered,inf
+FD2,g0_c,worst_ratio_D1_algebraic_line,inf
+FD2,g0.03625_a,worst_ratio_preregistered,6.185610e+01
+FD2,g0.03625_a,worst_ratio_D1_algebraic_line,3.141259e-03
+FD2,g0.03625_b,worst_ratio_preregistered,3.155425e+00
+FD2,g0.03625_b,worst_ratio_D1_algebraic_line,1.748180e-03
+FD2,g0.03625_c,worst_ratio_preregistered,1.103198e+03
+FD2,g0.03625_c,worst_ratio_D1_algebraic_line,3.561824e-03
+FD2,g0.25_a,worst_ratio_preregistered,4.175709e+01
+FD2,g0.25_a,worst_ratio_D1_algebraic_line,3.200973e-03
+FD2,g0.25_b,worst_ratio_preregistered,4.472742e+00
+FD2,g0.25_b,worst_ratio_D1_algebraic_line,1.762966e-03
+FD2,g0.25_c,worst_ratio_preregistered,1.590565e+02
+FD2,g0.25_c,worst_ratio_D1_algebraic_line,7.811924e-03
