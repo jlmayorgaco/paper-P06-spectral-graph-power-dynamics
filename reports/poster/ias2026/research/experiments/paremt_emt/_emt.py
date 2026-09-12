@@ -1,4 +1,4 @@
-# ruff: noqa: E501  -- parameter tables and kernel argument lists kept on one line
+# ruff: noqa: E501, E402  -- long argument lists; BLAS threads must be pinned before numpy is imported
 """Shared helpers for the TX4 ParaEMT campaign scripts (run with .venv/xtool-paremt).
 
 Puts the working copy external/ParaEMT_tx4 on sys.path (after EMT_setup_tx4.py has refreshed

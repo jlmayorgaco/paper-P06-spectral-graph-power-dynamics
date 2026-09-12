@@ -1,0 +1,18 @@
+{
+ "D1_quasi_static_line_all_9_cases": {
+  "max_ratio": 0.00781192399173028,
+  "all_pass_2pct": true,
+  "all_finite": true
+ },
+ "D4_chatter_preregistered_line": {
+  "alternating_amplitude_pu": {
+   "t=0.01": 0.00015002960549392874,
+   "t=0.1": 0.12662995156623824,
+   "t=0.3": 0.10641357804056162,
+   "t=0.5": 0.10808179470474022,
+   "t=0.69": 0.10831719844998688
+  },
+  "finite_0_to_0p7s": true,
+  "note": "step-to-step alternation of |V_T| (Nyquist mode) at the GFL terminal"
+ }
+}

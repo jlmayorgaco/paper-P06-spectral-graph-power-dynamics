@@ -1,0 +1,55 @@
+{
+ "n_state_checks": 99,
+ "n_pass": 3,
+ "max_ratio": Infinity,
+ "n_cases_nonfinite": 3,
+ "earliest_nonfinite_t_s": 0.76,
+ "worst": [
+  {
+   "test": "EMT03_g0_c",
+   "state": "x_id",
+   "max_abs_err": Infinity,
+   "max_excursion": NaN,
+   "ratio": Infinity,
+   "pass": false,
+   "emt_nonfinite_at_s": 0.76
+  },
+  {
+   "test": "EMT03_g0_c",
+   "state": "x_iq",
+   "max_abs_err": Infinity,
+   "max_excursion": NaN,
+   "ratio": Infinity,
+   "pass": false,
+   "emt_nonfinite_at_s": 0.76
+  },
+  {
+   "test": "EMT03_g0_a",
+   "state": "theta",
+   "max_abs_err": Infinity,
+   "max_excursion": NaN,
+   "ratio": Infinity,
+   "pass": false,
+   "emt_nonfinite_at_s": 0.76
+  },
+  {
+   "test": "EMT03_g0_a",
+   "state": "x_pll",
+   "max_abs_err": Infinity,
+   "max_excursion": NaN,
+   "ratio": Infinity,
+   "pass": false,
+   "emt_nonfinite_at_s": 0.76
+  },
+  {
+   "test": "EMT03_g0_a",
+   "state": "p_f",
+   "max_abs_err": Infinity,
+   "max_excursion": NaN,
+   "ratio": Infinity,
+   "pass": false,
+   "emt_nonfinite_at_s": 0.76
+  }
+ ],
+ "GATE_G4": "FAIL"
+}
