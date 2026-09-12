@@ -1,0 +1,237 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,longtable,array,tabularx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\setlist{nosep,leftmargin=1.3em}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\sinv}{\,s$^{-1}$}
+\newcommand{\f}[1]{\nolinkurl{#1}}
+\renewcommand{\arraystretch}{1.15}
+
+\title{\textbf{ParaEMT EMT-validation line (IAS2026 / TX4)}\\[3pt]\large EMT Scientific Qualification Campaign (EMT-SQ1) --- report}
+\author{Branch \texttt{research/paremt-emt-validation} (not pushed)}
+\date{2026-09-12}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.94\linewidth}{\textbf{Status: SQ1 STOPPED at SQ1-2 (blind synthetic qualification).
+By the preregistered rule, the ParaEMT EMT line is STOPPED PERMANENTLY.}
+\begin{itemize}
+\item \textbf{SQ1-2} was run with the frozen V3 estimator (seed 20260913, 210 domain cases).
+\begin{itemize}
+\item \textbf{Gate GB FAILS:} 78.4\,\% of the cases with $|\alpha|\ge0.01$ were resolved, against $\ge95\,\%$ required.
+\item \textbf{Gate GC FAILS:} the p95 of $|\hat\alpha-\alpha|$ was $0.0066$\sinv{}, against $\le0.005$ required.
+\item \textbf{GA, GD and GE pass:} zero wrong-sign verdicts; p95 $|\hat f-f|$ of $0.0017$\,Hz; no crash.
+\end{itemize}
+\item \textbf{Not run:}
+\begin{itemize}
+\item the phasor-TDS holdout T1--T9;
+\item every device gate (the blind SG38, GFL35 and GFL37 were never simulated);
+\item EMT04--EMT10.
+\end{itemize}
+\end{itemize}}}
+\end{center}
+
+\section{History (binding; nothing rewritten)}
+\begin{tabularx}{\linewidth}{@{}lL{3.2cm}Y@{}}
+\toprule
+campaign & preregistration & permanent outcome\\
+\midrule
+V1 & c2947bd8 (+A1) & G1 PASS; \textbf{G3 FAIL, G4 FAIL} (interface / device gates)\\
+V2 & 0ab8efd4 & SW PASS; \textbf{G3a FAIL} (caused by the frozen v1 estimator)\\
+V3 & 6d339006 (+AM1) & \textbf{E0 FAIL} (criterion A5: single-channel ringdowns, 14/15)\\
+SQ1 & 0555f587 & \textbf{SQ1-2 FAIL} (GB 78.4\,\%, GC 0.0066) $\Rightarrow$ ParaEMT line stopped permanently\\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\noindent\textbf{Statement.} Four preregistered campaigns attempted an EMT corroboration of the IEEE-39 results.
+\begin{itemize}
+\item The first three stopped at infrastructure or measurement gates.
+\item The final, task-specific qualification campaign froze the estimator and the model interfaces in advance.
+It tested the estimator on a fresh blind synthetic set derived from the frozen phasor models of the actual scientific domain.
+\item The estimator made no wrong-sign call. It did not reach the preregistered resolution and accuracy targets.
+The failures concentrate where the target mode is a minority mode beside a dominant, similarly damped neighbouring mode family.
+\item By the preregistered rule, the ParaEMT line stopped before any blind device or portfolio holdout was simulated.
+\end{itemize}
+No EMT evidence for or against the portfolio, policy or design claims exists.
+None of the four failures is described as invalid.
+
+\section{SQ1-0 --- frozen instrument}
+\begin{itemize}
+\item \textbf{Estimator:} \f{experiments/paremt_emt/v3/emtv3_estimator.py},\\
+commit f8e0d44f, sha256 \texttt{849472d8\ldots3b0817f}.
+It was unchanged throughout SQ1, and every SQ1 script asserts the hash.
+\item \textbf{Interfaces:} the v1 SG kernel and the V2 GFL voltage interface, frozen; no damping.
+\end{itemize}
+
+\section{SQ1-1 --- scientific measurement domain (frozen predictions only)}
+\begin{itemize}
+\item \textbf{Target modes:} taken from the frozen \texttt{band\_re}/\texttt{band\_hz} of all 126 EMT04--EMT16 cases.
+\begin{itemize}
+\item Hull: $\alpha\in[-0.229,+0.199]$\sinv{} and $f\in[0.557,1.047]$\,Hz.
+\item Domain: $\alpha\in[-0.23,+0.20]$\sinv{} and $f\in[0.55,1.05]$\,Hz.
+\end{itemize}
+\item \textbf{Linear modal library:} 26 frozen non-holdout phasor models (\f{results/EMTSQ1/domain/}).
+\begin{itemize}
+\item It gives the channel residues of every transverse mode for the preregistered pulse, through the v1 \S5 channel map.
+\item Validation against the development TDS trace P4 BASE: 0.30\,\% median and 0.83\,\% maximum relative error.
+\item 28--32 channels.
+\item Per-channel target energy share: median 0.94, with 30\,\% of the channels below 0.1.
+\item 16 nuisance modes of at least 1\,\% share.
+\end{itemize}
+\item \textbf{Minority target.} In 9--10 of the 26 models, the preregistered target (the rightmost in-band mode, the 0.91-Hz family) is a \emph{minority} mode.
+\begin{itemize}
+\item A 0.64-Hz family lies 0.26\,Hz away, decays only 0.003--0.07\sinv{} faster, and carries 85--92\,\% of the median channel's energy.
+\item These models are the P4 subsets that contain 30, 35 or 37 without the full H4.
+\end{itemize}
+\item \textbf{V3 S6} remains a stress test that documents a limitation of the estimator. It is not relabelled.
+\end{itemize}
+
+\section{SQ1-2 --- blind synthetic qualification (seed 20260913)}
+\textbf{Generator.} Each case takes a random library template.
+\begin{itemize}
+\item The template keeps its residues, perturbed by $\times U(0.8,1.25)$ and $e^{jU(-0.2,0.2)}$, and all of its nuisance modes.
+\item The target is redrawn from the domain.
+\item Affine trends and noise are added, with $\sigma=\nu\cdot$rms and $\nu\sim\log U[10^{-4},3\cdot10^{-3}]$.
+\item $f_\text{pred}=f+U(\pm0.03)$.
+\item Records are 90\,s long; the frozen tracker, sentinel and adaptive rule are used.
+\end{itemize}
+
+\medskip
+\noindent\begin{tabularx}{\linewidth}{@{}Yrrrrrr@{}}
+\toprule
+stratum & $n$ & resolved & correct concl. & wrong sign & p95 $|\Delta\alpha|$ & p95 $|\Delta f|$\\
+\midrule
+SD1 domain & 130 & 82.3\,\% & 80.8\,\% & 0 & 0.0080 & 0.0022\\
+SD2 near boundary ($|\alpha|\le0.01$) & 40 & 90.0\,\% & 60.0\,\%$^\dagger$ & 0 & 0.0014 & 0.0003\\
+SD3 low observability & 40 & 67.5\,\% & 67.5\,\% & 0 & 0.0052 & 0.0014\\
+\textbf{ST1 stress} (V3-S6-like; reported only) & 20 & 100\,\% & 100\,\% & 0 & 0.0044 & 0.0010\\
+\textbf{ST2 stress} ($\alpha\in[-0.6,-0.3]$; reported only) & 15 & 0\,\% & 0\,\% & 0 & --- & ---\\
+\bottomrule
+\end{tabularx}\\
+{\small $^\dagger$ The rest are UNRESOLVED, which the prereg allows near the boundary.}
+
+\medskip
+\noindent\begin{tabularx}{\linewidth}{@{}lYrl@{}}
+\toprule
+gate (SD1--SD3) & rule & result & verdict\\
+\midrule
+GA & 0 wrong-sign verdicts for $|\alpha|\ge0.005$ & 0 & pass\\
+\textbf{GB} & $\ge95\,\%$ resolved for $|\alpha|\ge0.01$ & \textbf{131/167 = 78.4\,\%} & \textbf{FAIL}\\
+\textbf{GC} & p95 $|\Delta\alpha|\le0.005$ & \textbf{0.0066} & \textbf{FAIL}\\
+GD & p95 $|\Delta f|\le0.005$ & 0.0017 & pass\\
+GE & no crash & none & pass\\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\begin{itemize}
+\item \textbf{Calibration:} CI coverage of $\alpha_\text{true}$ among resolved cases is 94.7\,\%; 16 resolved cases have $|\Delta\alpha|>0.005$.
+\item \textbf{Determinism rerun:} identical code and seed; the CSV is byte-identical (sha256 \texttt{30f71465\ldots4ab62f}, 245 rows) and the JSON is identical except \texttt{wall\_s} (\f{results/EMTSQ1/SQ1-2/sq1_rerun_identity.json}).
+\end{itemize}
+\textbf{SQ1-2: FAIL $\Rightarrow$ STOP the ParaEMT line permanently} (prereg SQ1 \S3).
+
+\section{Post hoc diagnosis (not a gate)}
+Source: \f{sq1_posthoc_breakdown.json}. Domain cases with $|\alpha|\ge0.01$:
+
+\medskip
+\noindent\begin{tabularx}{\linewidth}{@{}Yrrrr@{}}
+\toprule
+template class & $n$ & resolved & p95 $|\Delta\alpha|$ & p95 $|\Delta f|$\\
+\midrule
+\textbf{dominant-nuisance} (9 P4 subsets; the 0.64-Hz family carries $>50\,\%$ of the median share) & 54 & \textbf{40.7\,\%} & \textbf{0.059} & \textbf{0.127}\\
+all other templates & 113 & 96.5\,\% & 0.0056 & 0.0015\\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\noindent\textbf{Why the 36 cases are unresolved:}
+\begin{itemize}
+\item 13: estimate at the bound and CI too wide;
+\item 11: CI too wide only;
+\item 12: residual rule R3.
+\end{itemize}
+
+\noindent\textbf{Reading.}
+\begin{itemize}
+\item The frozen estimator is a single-mode targeted tracker, as the V3 preregistration specified.
+\item \textbf{Isolated or dominant target:} resolution $\approx96.5\,\%$, with no wrong sign.
+Accuracy is marginal: p95 0.0056\sinv{}, against the 0.005 target.
+\item \textbf{Minority target} beside a dominant, similarly damped mode 0.26\,Hz away:
+\begin{itemize}
+\item the estimator cannot isolate the target within the effective record length;
+\item the jackknife guard withholds most of these cases (UNRESOLVED);
+\item the remaining cases are biased.
+\end{itemize}
+\item This is exactly the structure of about half the EMT05 P4 subsets.
+The failure is therefore \emph{task-relevant, not an artefact}: an EMT05 run with this instrument could not have established $H_\text{EMT}(P4)=\{\{30,33,35,37\}\}$.
+\item \textbf{Stress strata:} ST1 20/20. ST2 0/15, with no wrong sign: the CI is too wide for strongly damped multichannel modes.
+\end{itemize}
+
+\section{What was not run (and now never will be, in this line)}
+\begin{tabularx}{\linewidth}{@{}L{6.2cm}Y@{}}
+\toprule
+item & status\\
+\midrule
+SQ1-3 phasor-TDS holdout T1--T9 & NOT RUN; traces never generated\\
+G3a/G3b (SG30, SG36, \textbf{SG38 blind}) & NOT RUN; SG38 never simulated\\
+G4a/G4b (GFL30, \textbf{GFL35, GFL37 blind}) & NOT RUN; the V2 voltage interface was never run in a network\\
+EMT04, EMT05, EMT06, EMT07/08, EMT10; the decision gate; EMT09, EMT11--EMT16 & NOT RUN\\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\noindent\textbf{Prepared but never executed:} \f{sq1/EMTSQ1_refs.py}, \f{sq1/EMTSQ1_tds.py}, \f{sq1/EMTSQ1_gates.py} and \f{sq1/EMTSQ1_science.py}.
+They are committed with ``never executed'' banners and guarded by assertions on the preceding gates.
+
+\section{Final state of the EMT evidence}
+\begin{itemize}
+\item \textbf{Network and operating point (V19/I01):} EMT QUANTITATIVELY REPRODUCED (V1 G1). This is the only EMT result.
+\item \textbf{SG and GFL device equivalence in EMT:} not established by any gate.
+The post hoc diagnostics (V1 D1, V2 DV2-1) indicate exact transcription, but they are not gate evidence.
+\item \textbf{Portfolio, policy, design, remediation and nonlinear claims:} no EMT evidence either way.
+They keep their phasor status and their independent ANDES reproduction.
+\item \textbf{Manuscript:} the wording ``nonlinear phasor-domain simulation (not EMT)'' remains correct and required.
+Suggested limitations sentence: \emph{``An electromagnetic-transient corroboration in ParaEMT was preregistered four times; the network and operating point were reproduced, but the campaigns stopped at device-interface and modal-measurement qualification gates before any portfolio result, so no EMT evidence is claimed.''}
+\end{itemize}
+
+\section{Reproducibility}
+Preregistration: commit 0555f587. Frozen estimator: commit f8e0d44f.
+\begin{itemize}
+\item \texttt{.venv/tx3-analysis} \f{EMTSQ1_modal_library.py} --- SQ1-1 domain.
+\item \texttt{.venv/xtool-paremt} \f{EMTSQ1_synth.py}~\texttt{check} --- generator self-check; runs no estimator.
+\item \texttt{.venv/xtool-paremt} \f{EMTSQ1_synth.py}~\texttt{blind} --- SQ1-2.
+\end{itemize}
+
+\clearpage
+\section*{What EMT did and did not validate (final)}
+The table separates theorem validity from model-fidelity corroboration.
+
+{\small
+\begin{longtable}{@{}L{2.8cm}L{1.6cm}L{2.0cm}L{2.3cm}L{3.2cm}L{2.9cm}@{}}
+\toprule
+claim & math & phasor & indep.\ phasor & EMT (V1+V2+V3+SQ1) & final\\
+\midrule\endhead
+V01, V02, V08, V22, V26, T04, T06, T08 & proved & yes & where applicable & not applicable & PROVED\\
+V03 P4 trap, $\kappa=4$ [B02] & --- & PCV02; G2 TDS & ANDES Phase 8, 32/32 & none (stopped before EMT05) & VALIDATED (model-specific witness)\\
+V06, V07 policy dependence [B01] & structure proved & clean $g$-only counterfactual & ANDES Phase 8 & none & VALIDATED\\
+V10, V11 & proved (V10) & PCV04 & ANDES R3 11/12 & none & PROVED + VALIDATED; VALIDATED (local)\\
+V13, V14 & --- & PCV04; FC03; G2 & partial ANDES & none & VALIDATED (model-specific); BENCHMARK-SPECIFIC\\
+V15--V18; V30, B07, B10 & --- / normal form & PCV05; G2 TDS & --- & none & as in the ledger\\
+V19 network and operating point [I01] & --- & reference & ANDES; pandapower after the tap fix & \textbf{EMT QUANTITATIVELY REPRODUCED} (V1 G1) & CONDITIONAL (pandapower translation)\\
+V20 SG dynamics [I02, I03] & --- & internal & ANDES R2/R3, E1 & V1 G3 FAIL; V2 G3a FAIL; V3 and SQ1 did not reach this gate $\Rightarrow$ UNRESOLVED & VALIDATED (by ANDES)\\
+V21 custom GFL [I04] & --- & project DAE & \textbf{ANDES Phase 8, GATE 5 PASS} & V1 G4 FAIL; later campaigns did not reach this gate $\Rightarrow$ UNRESOLVED & VALIDATED as a reproduction of computation; EMT reproduction not achieved\\
+cumulants, closure, V05, V12, B04, B06, negatives & as in the ledger & as in the ledger & --- & n/a / none & unchanged\\
+\bottomrule
+\end{longtable}}
+\end{document}
