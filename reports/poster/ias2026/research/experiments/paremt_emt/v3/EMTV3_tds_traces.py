@@ -25,10 +25,10 @@ for _v in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS"):
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parents[1]))
 
-import G2_tds as G2  # noqa: E402
 import numpy as np  # noqa: E402
 from scipy.linalg import lu_factor, lu_solve  # noqa: E402
 
+import G2_tds as G2  # noqa: E402
 from ibr_cycles.dynamics.linearize import central_difference_jacobians  # noqa: E402
 
 RESEARCH = HERE.parents[2]
