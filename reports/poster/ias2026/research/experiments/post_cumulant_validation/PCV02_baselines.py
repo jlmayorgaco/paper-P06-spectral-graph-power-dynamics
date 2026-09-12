@@ -428,7 +428,9 @@ def main(argv) -> int:
                     "kappa_exact": int(h[f"{mname}_kappa_exact"].sum()),
                     "mean_false_units": float(h[f"{mname}_false_units"].mean()),
                     "mean_missed_units": float(h[f"{mname}_missed_units"].mean()),
-                    "n_unresolved_excluded": int((~hyper[sel].exact.astype(bool)).sum()),
+                    "n_unresolved_excluded": int(
+                        (~hyper[sel].exact.astype(bool)).sum()
+                    ),
                 }
             )
     for mname, v in cen_b.items():
