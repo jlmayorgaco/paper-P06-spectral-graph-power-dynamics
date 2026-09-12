@@ -90,20 +90,39 @@ def qp_step(active, alphas, grads, vals, plist):
     al = np.array([alphas[s] for s in active])
     cons.append(al + G @ d <= -EPS)
     prob = cp.Problem(cp.Minimize(0.5 * cp.sum_squares(cp.multiply(d, 1 / rng))), cons)
-    try:
-        prob.solve(solver=cp.CLARABEL)
-    except Exception:  # noqa: BLE001
-        prob = None
-    if prob is not None and prob.status in ("optimal", "optimal_inaccurate"):
+    status = None
+    for solver in (cp.CLARABEL, cp.SCS, cp.OSQP):
+        try:
+            prob.solve(solver=solver)
+            status = prob.status
+            if status in ("optimal", "optimal_inaccurate"):
+                break
+        except Exception:  # noqa: BLE001 - solver-specific failure, try the next solver
+            continue
+    if status in ("optimal", "optimal_inaccurate"):
         return np.asarray(d.value).ravel(), "feasible", None
-    # infeasible: Gordan witness on the active gradients, then the least-violation step
+    # infeasible: Gordan witness on the active gradients, then the least-violation step.
+    # gordan() and the fallback below are numerically robust (multi-solver, then projected
+    # gradient); see docs/CDW_PREREG_V1_DEVIATIONS.md. The objective/constraints are unchanged.
     gv, lam = AN.gordan(G) if len(active) > 1 else (float(np.sum(G**2)), np.ones(1))
     t = cp.Variable()
     d2 = cp.Variable(n)
     prob2 = cp.Problem(cp.Minimize(t + 1e-3 * cp.sum_squares(cp.multiply(d2, 1 / rng))),
                        [d2 >= lo, d2 <= hi, al + G @ d2 <= t])
-    prob2.solve(solver=cp.CLARABEL)
-    return np.asarray(d2.value).ravel(), "infeasible", {"gordan_value": gv, "lambda": lam.tolist()}
+    step2_status = None
+    for solver in (cp.CLARABEL, cp.SCS, cp.OSQP):
+        try:
+            prob2.solve(solver=solver)
+            step2_status = prob2.status
+            if step2_status in ("optimal", "optimal_inaccurate") and d2.value is not None:
+                break
+        except Exception:  # noqa: BLE001
+            continue
+    if step2_status in ("optimal", "optimal_inaccurate") and d2.value is not None:
+        return np.asarray(d2.value).ravel(), "infeasible", {"gordan_value": gv, "lambda": lam.tolist()}
+    # Every solver failed on the least-violation step too: take no step this iteration
+    # (reported as SOLVER_FAILED) rather than crash the task.
+    return np.zeros(n), "solver_failed", {"gordan_value": gv, "lambda": lam.tolist()}
 
 
 def run_task(task):
@@ -167,6 +186,7 @@ def aggregate():
         row["unstable_subsets_final"] = "|".join(r.get("unstable_subsets_final", []))
         row["n_iters"] = len(r.get("history", []))
         row["any_infeasible_qp"] = any(h.get("qp") == "infeasible" for h in r.get("history", []))
+        row["any_solver_failed"] = any(h.get("qp") == "solver_failed" for h in r.get("history", []))
         row["min_gordan"] = min((h["conflict"]["gordan_value"] for h in r.get("history", []) if h.get("conflict")), default=np.nan)
         rows.append(row)
     df = pd.DataFrame(rows)

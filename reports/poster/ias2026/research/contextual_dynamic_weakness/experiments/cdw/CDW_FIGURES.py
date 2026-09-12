@@ -149,9 +149,13 @@ def f6():
     ax = axs[0]
     nx.draw_networkx_edges(G, pos, ax=ax, edge_color=GREY, width=0.6)
     colors = [RED, ORANGE, GREEN]
-    for (name, fr), col in zip(top[:3], colors, strict=False):
+    styles = ["solid", "dashed", "dotted"]
+    widths = [3.2, 2.4, 1.8]
+    # draw the largest-cardinality corridor first so a smaller, overlapping one stays visible on top
+    ordered = sorted(zip(top[:3], colors, styles, widths, strict=False), key=lambda x: -len(cor[x[0][0]]))
+    for (name, fr), col, ls, lw in ordered:
         es = [(b["f"], b["t"]) for b in C.branches() if b["e"] in cor[name]]
-        nx.draw_networkx_edges(G, pos, edgelist=es, ax=ax, edge_color=col, width=2.2, label=f"{name} ({fr:.2f})")
+        nx.draw_networkx_edges(G, pos, edgelist=es, ax=ax, edge_color=col, width=lw, style=ls, label=f"{name} ({fr:.2f}, {len(cor[name])} branches)")
     nx.draw_networkx_nodes(G, pos, ax=ax, node_size=[40 if n in C.SG_BUSES else 8 for n in G.nodes], node_color=[BLUE if n in C.V4 else "k" for n in G.nodes])
     ax.legend(fontsize=6, frameon=False, loc="lower left")
     ax.set_title("most frequent top-3 corridors (holdout)")

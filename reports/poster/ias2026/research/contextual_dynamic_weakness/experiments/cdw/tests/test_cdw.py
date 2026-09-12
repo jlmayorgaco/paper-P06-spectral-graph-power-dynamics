@@ -77,6 +77,24 @@ def test_gordan_conflict_witness():
     assert val2 > 1e-3
 
 
+def test_gordan_projected_gradient_fallback_matches_solver():
+    """The FISTA fallback (used only when every cvxpy solver fails) solves the same problem."""
+
+    rng = np.random.default_rng(7)
+    for _ in range(5):
+        m, k = rng.integers(2, 6), rng.integers(1, 4)
+        G = rng.normal(size=(m, k))
+        v_solver, lam_solver = AN.gordan(G)
+        v_fb, lam_fb = AN._gordan_projected_gradient(G, iters=20000)
+        assert lam_fb.min() >= -1e-9
+        assert abs(lam_fb.sum() - 1.0) < 1e-8
+        assert v_fb <= v_solver + 1e-4 or abs(v_fb - v_solver) < 1e-4
+    # NaN/Inf in G must not raise (nan_to_num guard in gordan()).
+    G = np.array([[1.0, np.nan], [np.inf, -1.0]])
+    v, lam = AN.gordan(G)
+    assert np.isfinite(v) and np.all(np.isfinite(lam))
+
+
 @pytest.mark.slow
 def test_engine_consistency_and_structural_remarks():
     import _sens as S

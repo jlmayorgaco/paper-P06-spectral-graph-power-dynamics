@@ -1,0 +1,21 @@
+{
+ "Q1_rel_range_mu_H4": 0.36602109144340444,
+ "Q1_material": true,
+ "mu_mix_H4_min": 0.07313284241259552,
+ "mu_mix_H4_max": 0.10367103274349893,
+ "mu_mix_gz_H4_rel_range": 1.943492932530956e-11,
+ "Q2_spearman": 0.6572211024080202,
+ "Q2_perm_p": 0.0037,
+ "Q2_correlates": true,
+ "Q4_top3_dynamic": [
+  0,
+  1,
+  6
+ ],
+ "Q4_jaccard_vs_low3": 0.2,
+ "Q3_events_with_support_change": 3,
+ "Q3_n_events": 9,
+ "Q3_controls_with_support_change": 1,
+ "Q3_n_controls": 9,
+ "Q3_reproducible": false
+}

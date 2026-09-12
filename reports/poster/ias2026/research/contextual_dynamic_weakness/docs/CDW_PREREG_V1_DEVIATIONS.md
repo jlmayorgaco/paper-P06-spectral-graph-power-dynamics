@@ -48,3 +48,26 @@ table. No gate value had been computed.
    `−p^H ∂_a T q / p^H ∂_s T q`, with ∂_a T from re-solved Jacobians at fixed s*.
 9. **E2 TX4 draws.** They are used only if the regenerated factors match the frozen
    PCV05 `factors` column exactly (checked in code).
+
+## Robustness fix applied AFTER a task crash (2026-09-12, during the campaign)
+
+10. **E09 Gordan-LP solver robustness.** Task (T2, topology, plan) crashed with
+    `cvxpy.error.SolverError: Solver 'CLARABEL' failed` inside the Gordan
+    conflict-witness LP (`_analysis.gordan`) and the least-violation QP
+    (`E09_design.qp_step`), both triggered only when the primary SQP step is
+    infeasible. This is an ill-conditioning/numerical-robustness bug in the
+    orchestration code, not a change to any hypothesis, threshold, definition,
+    baseline or the design problem itself (objective, constraints and stopping
+    rule in E09 are unchanged).
+    - Fix: both solves now try CLARABEL, then SCS, then OSQP in order; if every
+      solver fails, a dependency-free FISTA (accelerated projected gradient)
+      solve of the identical convex problem is used, and a NaN/Inf guard was
+      added to `gordan()`. If even the least-violation QP fails on every
+      solver, the SQP step records `qp: "solver_failed"` and takes no step for
+      that iteration (rather than crashing the task); `any_solver_failed` is
+      reported per case.
+    - Added `test_gordan_projected_gradient_fallback_matches_solver` (8 tests
+      now pass).
+    - The single failed checkpoint (`raw/E09/911586952a5fc2f1.json`, task
+      T2/topology/plan) was deleted and recomputed with the fixed code; every
+      other completed E09 checkpoint was left untouched.

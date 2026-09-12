@@ -121,7 +121,7 @@ def aggregate():
         m = lattice_metrics(alpha, status)
         rec = {**{k: t[k] for k in ("pid", "source", "env", "draw")}, "feasible": True, "H": m["H"], "kappa": m["kappa"],
                "rev_stable": m["rev_stable"], "alpha_H4": alpha["30+33+35+37"]}
-        rec["_marg"] = m["marg"]
+        rec["marg_data"] = m["marg"]
         rows.append(rec)
         if t["source"] == "NOMINAL":
             nominal[t["pid"]] = m
@@ -130,10 +130,10 @@ def aggregate():
     for r in df.itertuples():
         d = r._asdict()
         if not d.get("feasible") or r.pid not in nominal:
-            out.append({k: v for k, v in d.items() if k != "_marg"})
+            out.append({k: v for k, v in d.items() if k != "marg_data"})
             continue
         nm = nominal[r.pid]
-        marg = d["_marg"]
+        marg = d["marg_data"]
         keys = [k for k in nm["marg"] if k in marg]
         same_sign = [AN.sign_class(marg[k][0], C.TAU_MAT) == AN.sign_class(nm["marg"][k][0], C.TAU_MAT) for k in keys]
         # per-context ranking persistence (Kendall over available interventions, contexts with >= 3)
@@ -147,7 +147,7 @@ def aggregate():
                 top1.append(int(np.argmin(a) == np.argmin(b)))
         d.update(sign_persistence=float(np.mean(same_sign)), kendall_ctx=float(np.nanmean(taus)) if taus else np.nan,
                  top1_ctx=float(np.mean(top1)) if top1 else np.nan, witness_changed=r.H != nm["H"])
-        out.append({k: v for k, v in d.items() if k != "_marg"})
+        out.append({k: v for k, v in d.items() if k != "marg_data"})
     res = pd.DataFrame(out).drop(columns=["Index"], errors="ignore")
     res.to_parquet(I.RESULTS / "CDW_E2_robust_contextuality.parquet", index=False)
     summ = (res[res.source != "NOMINAL"].groupby(["pid", "source", "env"])

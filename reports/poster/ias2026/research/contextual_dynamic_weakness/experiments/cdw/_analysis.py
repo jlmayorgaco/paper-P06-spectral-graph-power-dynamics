@@ -101,16 +101,63 @@ def is_submodular(values, players, tol=0.0) -> bool:
     return True
 
 
+def _project_simplex(v: np.ndarray) -> np.ndarray:
+    """Euclidean projection of v onto the probability simplex {lam >= 0, sum lam = 1}."""
+
+    u = np.sort(v)[::-1]
+    css = np.cumsum(u) - 1.0
+    idx = np.arange(1, v.size + 1)
+    rho = np.nonzero(u - css / idx > 0)[0][-1]
+    theta = css[rho] / (rho + 1.0)
+    return np.maximum(v - theta, 0.0)
+
+
+def _gordan_projected_gradient(G: np.ndarray, iters: int = 20000):
+    """Dependency-free fallback: FISTA (accelerated projected gradient) for min ||G^T lam||^2 on
+    the simplex.
+
+    Used only when every QP solver fails (numerical robustness, not a scientific choice: the
+    objective, constraints and stopping rule are unchanged; see docs/CDW_PREREG_V1_DEVIATIONS.md).
+    """
+
+    m = G.shape[0]
+    GGt = G @ G.T
+    lip = max(2.0 * np.linalg.eigvalsh(GGt).max(), 1e-12)
+    step = 1.0 / lip
+    lam = np.full(m, 1.0 / m)
+    y, t = lam.copy(), 1.0
+    for _ in range(iters):
+        grad = 2.0 * (GGt @ y)
+        lam_new = _project_simplex(y - step * grad)
+        t_new = 0.5 * (1.0 + np.sqrt(1.0 + 4.0 * t * t))
+        y = lam_new + ((t - 1.0) / t_new) * (lam_new - lam)
+        lam, t = lam_new, t_new
+    return float(lam @ GGt @ lam), lam
+
+
 def gordan(G: np.ndarray):
-    """min || G^T lam ||^2 over the simplex (rows of G are gradients). Returns (value, lam)."""
+    """min || G^T lam ||^2 over the simplex (rows of G are gradients). Returns (value, lam).
+
+    Tries CLARABEL, then SCS, then OSQP; falls back to a projected-gradient solve of the same
+    convex problem if every cvxpy solver fails (ill-conditioned G). The problem, constraints and
+    tolerance are unchanged across fallbacks.
+    """
 
     import cvxpy as cp
 
     m = G.shape[0]
+    if not np.all(np.isfinite(G)):
+        return _gordan_projected_gradient(np.nan_to_num(G, nan=0.0, posinf=1e6, neginf=-1e6))
     lam = cp.Variable(m, nonneg=True)
     prob = cp.Problem(cp.Minimize(cp.sum_squares(G.T @ lam)), [cp.sum(lam) == 1])
-    prob.solve(solver=cp.CLARABEL)
-    return float(prob.value), np.asarray(lam.value).ravel()
+    for solver in (cp.CLARABEL, cp.SCS, cp.OSQP):
+        try:
+            prob.solve(solver=solver)
+            if prob.status in ("optimal", "optimal_inaccurate") and lam.value is not None:
+                return float(prob.value), np.asarray(lam.value).ravel()
+        except Exception:  # noqa: BLE001 - solver-specific failures, try the next one
+            continue
+    return _gordan_projected_gradient(G)
 
 
 def sign_class(d, tau):
