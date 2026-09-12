@@ -1,0 +1,30 @@
+{
+ "GATE_SW": "PASS",
+ "provenance": {
+  "git_head": "f8b8fb15cc7aaa6ff1c572e337db9c6719ba8c4e",
+  "paremt_upstream_sha": "d79d735a4a587d56c5b88187d1a499195b6b2b84",
+  "paremt_working_copy_diff_sha": "4b478a105afc1b2a3abe043339573f0646422b27384f16109daaf7245e6a681a",
+  "environment_hash": "e3d193e7e476d7a66e07571af1adb0bb6fe331465d2499c4035711c9b29dc275"
+ },
+ "GATE_G3a": "FAIL",
+ "G3a_failed_checks": [
+  {
+   "case": "B-SG36",
+   "finite": true,
+   "dP": 2.255973186038318e-13,
+   "dQ": -1.7785772854495008e-13,
+   "alpha_emt": 6.313365372777597,
+   "f_emt": 1.1051160511955778,
+   "alpha_ref": 6.297606338173656,
+   "f_ref": 1.1096802195465332,
+   "d_alpha": 0.015759034603941124,
+   "d_f": -0.004564168350955411,
+   "pass_states": true,
+   "pass": false
+  }
+ ],
+ "G3a_wall_s": 17.6,
+ "GATE_G3b": "NOT RUN (stopped at G3a)",
+ "GATE_G4a": "NOT RUN (stopped at G3a)",
+ "GATE_G4b": "NOT RUN (stopped at G3a)"
+}
