@@ -1,4 +1,4 @@
-## 28. Limitations
+## 25. Limitations
 
 - **Model scope.** The frozen TX4 IEEE-39 phasor DAE: no converter current
   limits, no ride-through logic, no DC link, a harmonized first-order AVR, and
@@ -34,7 +34,7 @@
   exactly one alternative converter model (the TX4 static-injection negative
   control, E23); this bounds, but does not eliminate, model-specificity.
 
-## 29. Reproducibility
+## 26. Reproducibility
 
 - **Branch:** `research/contextual-dynamic-weakness`, from tag
   `TX4_FINAL_MANUSCRIPT_FREEZE` (commit `69f200df`). Not pushed.
