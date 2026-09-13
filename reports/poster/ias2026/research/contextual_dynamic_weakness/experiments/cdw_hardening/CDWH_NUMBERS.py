@@ -75,12 +75,35 @@ def build():
     N["transDiagReg"], N["transOffReg"] = f2(h4.get("transfer_new_median_diag_regret")), f2(h4.get("transfer_new_median_offdiag_regret_by_test"))
     N["transN"], N["distRho"] = str(h4.get("transfer_n_policies")), f2(h4.get("distance_vs_degradation_spearman"))
     N["nOrders"] = str(h4.get("n_distinct_optimal_orders_full"))
+    ra = h4.get("regret_anatomy_new", {})
+    N["regretFastShare"] = pct(ra.get("share_out_of_band"))
+    N["regretNbad"], N["regretNfast"] = str(ra.get("material")), str(ra.get("choice_out_of_EM_band"))
     # GOLD-B
     for k, v in h7.items():
         if k.startswith("GB_") and isinstance(v, (int, float)) and not isinstance(v, bool):
-            N[re.sub("[^A-Za-z]", "", k.replace("GB_", "gb").replace("1.10", "OneTen").replace("1.25", "OneTwentyFive"))] = f2(v, 3) if abs(v) < 10 else str(v)
+            kk = (k.replace("GB_", "gb").replace("1.10", "OneTen").replace("1.25", "OneTwentyFive").replace("top5", "topfive")
+                  .replace("top3", "topthree").replace("ndcg5", "ndcg").replace("_S1", "_Sone").replace("V9", "Vnine").replace("T2", "Ttwo"))
+            name = re.sub("[^A-Za-z]", "", kk)
+            assert name not in N, ("macro collision", name, k)
+            N[name] = f2(v, 3) if abs(v) < 10 else str(v)
     if "GB_primary_diff_ci95" in h7:
         N["gbPrimaryCiLo"], N["gbPrimaryCiHi"] = f2(h7["GB_primary_diff_ci95"][0], 3), f2(h7["GB_primary_diff_ci95"][1], 3)
+    if "GB_prereg_diff_ci95" in h7:
+        N["gbPreregCiLo"], N["gbPreregCiHi"] = f2(h7["GB_prereg_diff_ci95"][0], 3), f2(h7["GB_prereg_diff_ci95"][1], 3)
+    N["nElig"] = str(h7.get("GB_prereg_n"))
+    N["nEligClusters"] = str(h7.get("GB_prereg_n_clusters"))
+    m_, e_ = f"{h7.get('R0_max_all', float('nan')):.1e}".split("e")
+    N["rZeroMax"] = "$" + m_ + "\\times10^{" + str(int(e_)) + "}$"
+    N["ivN"] = str(h7.get("IV_n"))
+    rat = h7.get("node_opoint_median_ratio_indirect_over_frozen", {})
+    dom = h7.get("node_opoint_frac_indirect_dominates", {})
+    N["nodeLoadRatio"], N["nodeLoadDom"] = f2(rat.get("load")), pct(dom.get("load"))
+    N["nodeVsetDom"] = pct(dom.get("vset"))
+    fh = h19.get("F_conf_holm_p", {})
+    fr = h19.get("F_conf_raw_p", {})
+    N["tOneP"], N["tOnePholm"] = f"{fr.get('T1_goldA_sign', float('nan')):.1e}", f"{fh.get('T1_goldA_sign', float('nan')):.1e}"
+    N["tTwoP"], N["tTwoPholm"] = f2(fr.get("T2_goldB_signflip"), 3), f2(fh.get("T2_goldB_signflip"), 3)
+    N["tThreeP"], N["tThreePholm"] = f2(fr.get("T3_mixing"), 3), f2(fh.get("T3_mixing"), 3)
     N["ivLinks"] = pct(h7.get("IV_frac_ok_links"))
     N["heightMaterial"] = pct(h7.get("H8_frac_material_H4"))
     N["heightKendall"] = f2(h7.get("H8_median_kendall_frozen_total_H4"))

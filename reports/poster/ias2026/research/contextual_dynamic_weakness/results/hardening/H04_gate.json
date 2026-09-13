@@ -74,5 +74,12 @@
  "L6_pass": true,
  "distance_vs_degradation_spearman": 0.30604217879644,
  "distance_vs_degradation_mantel_p_descriptive": 0.0,
- "n_distinct_optimal_orders_full": 24
+ "n_distinct_optimal_orders_full": 24,
+ "regret_anatomy_new": {
+  "decisions": 6149,
+  "material": 2265,
+  "choice_out_of_EM_band": 2089,
+  "choice_out_of_band_and_delta_ge_1": 2032,
+  "share_out_of_band": 0.9222958057395143
+ }
 }

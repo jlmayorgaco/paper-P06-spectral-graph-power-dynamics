@@ -131,6 +131,24 @@ def run():
     gate["distance_vs_degradation_spearman"] = rho
     gate["distance_vs_degradation_mantel_p_descriptive"] = mantel_p
     gate["n_distinct_optimal_orders_full"] = int(full[full.base_stable].order.nunique())
+    # anatomy of material regret (new holdout, FULL): is the ranked choice a jump out of the EM band?
+    tot = bad = fast = fastbig = 0
+    for pid in [p for p in P if HI.split_of(p) == "new"]:
+        pos = {V9[u]: r for r, u in enumerate(orders[pid])}
+        g = mg[(mg.pid == pid) & mg.lvA]
+        for _, gg in g.groupby("mask"):
+            if len(gg) < 2:
+                continue
+            tot += 1
+            d, hz = dict(zip(gg.i, gg.delta, strict=True)), dict(zip(gg.i, gg.hz_Si, strict=True))
+            ch = min(d, key=lambda u: pos[u])
+            if d[ch] - min(d.values()) >= C.TAU_MAT:
+                bad += 1
+                out = not (HI.EM_BAND[0] <= hz[ch] <= HI.EM_BAND[1])
+                fast += out
+                fastbig += out and d[ch] >= 1.0
+    gate["regret_anatomy_new"] = {"decisions": tot, "material": bad, "choice_out_of_EM_band": fast, "choice_out_of_band_and_delta_ge_1": fastbig,
+                                  "share_out_of_band": fast / bad if bad else float("nan")}
     HI.write_json("H04_gate.json", gate)
     return gate
 

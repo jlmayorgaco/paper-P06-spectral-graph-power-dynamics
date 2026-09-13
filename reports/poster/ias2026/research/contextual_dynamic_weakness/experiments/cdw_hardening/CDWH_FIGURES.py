@@ -219,16 +219,21 @@ def fig6():
     ax = axs[0]
     for k in range(len(piv)):
         ax.plot(range(4), [piv.iloc[k][c] for c, _, _ in cols], color=GRID, lw=0.5, zorder=1)
+    raw0 = pd.read_parquet(R / "H06_links_raw.parquet")
+    r0 = raw0[raw0.family == "link"].groupby("cond").R0.max()
+    elig = piv.index.isin(r0[r0 <= 1e-8].index)
     for j, (c, col, lab) in enumerate(cols):
         v = piv[c].to_numpy(float)
-        ax.scatter(j + (np.random.default_rng(3).random(v.size) - 0.5) * 0.18, v, s=6, color=col, lw=0, zorder=2)
+        xx = j + (np.random.default_rng(3).random(v.size) - 0.5) * 0.18
+        ax.scatter(xx, v, s=6, color=col, lw=0, zorder=2)
+        ax.scatter(xx[elig], v[elig], s=16, facecolor="none", edgecolor=INK, lw=0.6, zorder=4)
         ax.plot([j - 0.25, j + 0.25], [np.nanmedian(v)] * 2, color=INK, lw=1.5, zorder=3)
         ax.text(j, 1.06, f"{np.nanmedian(v):.2f}", ha="center", fontsize=6, color=INK)
     ax.set_xticks(range(4))
     ax.set_xticklabels([lab for _, _, lab in cols], fontsize=5.5, rotation=12)
     ax.set_ylabel("Spearman vs finite x1.5 reinforcement")
     ax.set_ylim(-1.0, 1.12)
-    ax.set_title(f"new holdout, H4 target, {len(piv)} conditions (24 policies + 40 draws)", fontsize=7)
+    ax.set_title(f"{len(piv)} solved new-holdout conditions ({int(elig.sum())} prereg-eligible, ringed)", fontsize=6.5)
     ax = axs[1]
     raw = pd.read_parquet(R / "H06_links_raw.parquet")
     lk = raw[(raw.family == "link") & (raw.target == "H4")]
@@ -255,7 +260,12 @@ def fig7():
     ax = axs[0]
     pos = 0
     ticks, tl = [], []
-    for lab, e in (("agree", ex["agree"]), ("differ", ex["differ"]), ("flip", ex["flip"])):
+    sel = [("agree", ex["agree"]), ("differ", ex["differ"])]
+    if ex["flip"] >= 0 and ex["flip"] != ex["differ"]:
+        sel.append(("flip", ex["flip"]))
+    elif ex["flip"] == ex["differ"]:
+        sel[1] = ("differ = flip", ex["differ"])
+    for lab, e in sel:
         if e < 0:
             continue
         g = dec[dec.idx == e]
@@ -290,6 +300,7 @@ def fig7():
     ax.set_xticklabels([lab for _, lab in kinds], fontsize=6, rotation=20)
     ax.axhline(0, color=INK2, lw=0.6, ls="--")
     ax.set_ylabel(r"$\log_{10}$ |re-equilibration| / |frozen|")
+    ax.annotate("frozen ≡ 0", (4, 5.6), fontsize=6, ha="center", va="top", color=INK2)
     ax.set_title("controller coordinates: frozen = total (SPR)", fontsize=7)
     fig.tight_layout()
     save(fig, "CDWH_F7_why_total")
@@ -359,7 +370,181 @@ def figS3():
     save(fig, "CDWH_S3_mixing")
 
 
-FIGS = {"F2": fig2, "F3": fig3, "F4": fig4, "F5": fig5, "F6": fig6, "F7": fig7, "F8": fig8, "S3": figS3}
+# ----------------------------------------------------------------------- Fig 1 --
+def fig1():
+    import networkx as nx
+
+    r = strongest_new_C(1)[0]
+    G = nx.Graph()
+    for b in C.branches():
+        G.add_edge(b["f"], b["t"])
+    pos = nx.kamada_kawai_layout(G)
+    S1 = set() if r.S1 == "BASE" else {int(u) for u in r.S1.split("+")}
+    S2 = set() if r.S2 == "BASE" else {int(u) for u in r.S2.split("+")}
+    fig, axs = plt.subplots(1, 2, figsize=(COL2, 2.9))
+    for ax, S, d, name in ((axs[0], S1, r.d1, "S_1"), (axs[1], S2, r.d2, "S_2")):
+        ax.set_axis_off()
+        nx.draw_networkx_edges(G, pos, ax=ax, edge_color="#c3c2b7", width=0.8)
+        load = [n for n in G.nodes if n not in C.SG_BUSES]
+        nx.draw_networkx_nodes(G, pos, nodelist=load, ax=ax, node_size=10, node_color="#c3c2b7")
+        sg = [n for n in C.SG_BUSES if n not in S and n != r.i]
+        nx.draw_networkx_nodes(G, pos, nodelist=sg, ax=ax, node_size=55, node_color="white", edgecolors=INK2, linewidths=0.8)
+        nx.draw_networkx_nodes(G, pos, nodelist=sorted(S), ax=ax, node_size=55, node_color=AQUA, edgecolors=INK2, linewidths=0.8)
+        col = BLUE if d < 0 else ORANGE
+        nx.draw_networkx_nodes(G, pos, nodelist=[r.i], ax=ax, node_size=120, node_color=col, edgecolors=INK, linewidths=1.2)
+        nx.draw_networkx_labels(G, pos, labels={n: str(n) for n in C.SG_BUSES}, ax=ax, font_size=5.5)
+        verb = "stabilizes" if d < 0 else "destabilizes"
+        ax.set_title(rf"${name}=\{{{','.join(map(str, sorted(S))) or ''}\}}$: replacing {r.i} {verb}" + "\n"
+                     + rf"$\Delta_{{{r.i}}}\alpha({name})={d:+.3f}\ \mathrm{{s}}^{{-1}}$ (same tracked EM mode)", fontsize=7)
+    fig.text(0.5, 0.01, rf"nested contexts $S_1\subset S_2$ at policy {r.pid.replace('HARDENING_H', 'N')}; aqua: already replaced; white: synchronous; bus 39: interconnection",
+             ha="center", fontsize=6, color=INK2)
+    save(fig, "CDWH_F1_concept")
+
+
+# --------------------------------------------------------------------- Fig S4 --
+def figS4():
+    d = pd.read_csv(R / "H18_crossmodel.csv")
+    gt = jload("H18_gate.json")
+    fig, axs = plt.subplots(1, 3, figsize=(COL2, 2.3))
+    ax = axs[0]
+    x = np.arange(len(d))
+    ax.bar(x - 0.2, d.gfl_rev_A.astype(float), 0.38, color=BLUE, label="custom GFL")
+    ax.bar(x + 0.2, d.alt_rev_A.astype(float) + 0.02, 0.38, color=ORANGE, label="ALT-WECC")
+    ax.set_xticks(x)
+    ax.set_xticklabels([p.replace("HARDENING_H", "N") for p in d.pid], fontsize=5.5, rotation=45)
+    ax.set_yticks([0, 1])
+    ax.set_yticklabels(["no", "yes"])
+    ax.set_title(f"A reversal: {gt['A_verdict']}", fontsize=6.5)
+    ax.legend(fontsize=5.5, loc="center right")
+    ax = axs[1]
+    ax.scatter(x, d.C_kendall, color=GRAY2, s=14, label="custom vs ALT finite ranking (C)")
+    ax.scatter(x, d.C2_rho_altFD, color=BLUE, s=14, marker="s", label="ALT total vs ALT finite (C2)")
+    ax.scatter(x, d.C2_rho_S1, color=GRAY1, s=14, marker="^", label="|P| vs ALT finite (C2)")
+    ax.axhline(0, color=INK2, lw=0.6)
+    ax.set_xticks(x)
+    ax.set_xticklabels([p.replace("HARDENING_H", "N") for p in d.pid], fontsize=5.5, rotation=45)
+    ax.set_ylabel("rank correlation (12 lines)")
+    ax.legend(fontsize=5, loc="lower left")
+    ax.set_title(f"C: {gt['C_verdict']} / C2: {gt['C2_verdict']}", fontsize=6.5)
+    ax = axs[2]
+    for a in ("dbl45", "dbl41", "out2", "out33", "out26", "out20"):
+        ax.scatter(d[f"E_{a}_gfl"], d[f"E_{a}_alt"], s=10, color=BLUE if a.startswith("dbl") else ORANGE, lw=0)
+    ax.axhline(0, color=INK2, lw=0.6)
+    ax.axvline(0, color=INK2, lw=0.6)
+    ax.set_xlabel(r"custom GFL $\Delta\alpha$(H4)")
+    ax.set_ylabel(r"ALT-WECC $\Delta\alpha$(H4)")
+    ax.set_title(f"E topology: {gt['E_pooled_sign_agree']:.2f} agree ({gt['E_verdict']})", fontsize=6.5)
+    fig.tight_layout()
+    save(fig, "CDWH_S4_crossmodel")
+
+
+# --------------------------------------------------------------------- Fig S5 --
+def figS5():
+    l7 = pd.read_csv(R / "H05_L7_fresh_draws.csv")
+    m = pd.read_csv(R / "H06_metrics.csv")
+    fig, axs = plt.subplots(1, 2, figsize=(COL2, 2.2))
+    ax = axs[0]
+    cov = l7.groupby("env")[["rev_A", "rev_C"]].mean().reindex(list(HI.ENVS))
+    x = np.arange(len(cov))
+    ax.bar(x - 0.2, cov.rev_A, 0.38, color=BLUE, label="stable-context reversal (global)")
+    ax.bar(x + 0.2, cov.rev_C, 0.38, color=AQUA, label="EM same-mode reversal")
+    ax.axhline(0.5, color=INK2, ls="--", lw=0.7)
+    ax.set_xticks(x)
+    ax.set_xticklabels(cov.index)
+    ax.set_ylabel("coverage over 10 fresh draws")
+    ax.legend(fontsize=5.5, loc="lower right")
+    ax.set_title("P4 core lattice, fresh envelope draws", fontsize=7)
+    ax = axs[1]
+    q = m[(m.target == "H4") & (m.gamma == 1.5) & (m.truth == "FULL") & m.cond.str.startswith("D01|")]
+    q = q.assign(env=q.cond.str.split("|").str[1])
+    for k, (pr, col) in enumerate((("S1_absP", GRAY1), ("Dfrozen", ORANGE), ("Dtotal", BLUE))):
+        for j, e in enumerate(HI.ENVS):
+            v = q[(q.predictor == pr) & (q.env == e)].spearman
+            ax.scatter(np.full(len(v), j + (k - 1) * 0.25), v, s=6, color=col, lw=0, label=pr if j == 0 else None)
+    ax.set_xticks(range(4))
+    ax.set_xticklabels(HI.ENVS)
+    ax.set_ylabel("Spearman vs finite x1.5")
+    ax.legend(fontsize=5.5, loc="lower right")
+    ax.set_title("GOLD-B per fresh draw", fontsize=7)
+    fig.tight_layout()
+    save(fig, "CDWH_S5_uncertainty")
+
+
+# --------------------------------------------------------------------- Fig S6 --
+def figS6():
+    g = jload("H03_gate.json")
+    h7 = jload("H07_goldb_gate.json")
+    fig, axs = plt.subplots(1, 2, figsize=(COL2, 2.2))
+    ax = axs[0]
+    lv = ["A", "B", "C", "D"]
+    for k, (s, col) in enumerate((("discovery", GRAY1), ("old", ORANGE), ("new", BLUE))):
+        ax.bar(np.arange(4) + (k - 1) * 0.27, [g[f"{s}_frac_{x}"] for x in lv], 0.25, color=col, label=s)
+    ax.axhline(0.75, color=INK2, ls="--", lw=0.7)
+    ax.set_xticks(range(4))
+    ax.set_xticklabels(["A global", "B tracked", "C EM same-mode", "D same family"], fontsize=6)
+    ax.set_ylabel("fraction of base-stable policies")
+    ax.set_ylim(0, 1.05)
+    ax.legend(fontsize=6, loc="lower left")
+    ax.set_title("nested reversal by stratum", fontsize=7)
+    ax = axs[1]
+    labs = [("GB_prereg", "prereg-eligible"), ("GB_primary", "all solved"), ("GB_EM", "EM conditions"), ("GB_SAME", "tracked truth")]
+    for k, (key, lab) in enumerate(labs):
+        ax.bar(k - 0.2, h7[f"{key}_median_rho_Dtotal"], 0.38, color=BLUE, label="total" if k == 0 else None)
+        ax.bar(k + 0.2, h7[f"{key}_median_rho_S1"], 0.38, color=GRAY1, label="|P|" if k == 0 else None)
+    ax.set_xticks(range(4))
+    ax.set_xticklabels([lab for _, lab in labs], fontsize=6)
+    ax.set_ylabel("median Spearman")
+    ax.legend(fontsize=6)
+    ax.set_title("GOLD-B by stratum", fontsize=7)
+    fig.tight_layout()
+    save(fig, "CDWH_S6_stratification")
+
+
+# --------------------------------------------------------------------- Fig S1 --
+def figS1():
+    h9 = pd.read_csv(R / "H09_corridors.csv")
+    h9 = h9[h9.budget == "L1_0.50"]
+    uniq = ["TXother", "TXall", "TXcore", "K2_01", "K3_01", "K3_02", "K3_12", "K4_13"]
+    sets = [("old", ORANGE), ("old_draws", "#f4a582"), ("new", BLUE), ("fresh_draws", "#86b6ef")]
+    fig, ax = plt.subplots(figsize=(COL2, 2.4))
+    for k, c in enumerate(uniq):
+        for s_i, (st, col) in enumerate(sets):
+            v = h9[(h9.corridor == c) & (h9.set == st)].eff.to_numpy(float)
+            x = k + (s_i - 1.5) * 0.18
+            ax.scatter(np.full(v.size, x) + (np.random.default_rng(k * 7 + s_i).random(v.size) - 0.5) * 0.1, v, s=4, color=col, lw=0,
+                       label=st.replace("_", " ") if k == 0 else None)
+    ax.axhspan(-C.TAU_MAT, C.TAU_MAT, color="#f0efec", zorder=0)
+    ax.set_xticks(range(len(uniq)))
+    ax.set_xticklabels(uniq)
+    ax.set_yscale("symlog", linthresh=0.01)
+    ax.set_ylabel(r"$-\Delta\alpha(V_4)$ at $\sum|\Delta\gamma_e|=0.5$ (s$^{-1}$)")
+    ax.legend(fontsize=6, ncol=4, loc="upper right")
+    ax.set_title("equal-budget corridor effects (identical cutsets K3_01=K4_03, K3_02=K4_02, K3_12=K4_23 shown once)", fontsize=7)
+    save(fig, "CDWH_S1_corridors")
+
+
+# --------------------------------------------------------------------- Fig S2 --
+def figS2():
+    nl = pd.read_csv(R / "H10_null_percentiles.csv")
+    order = [c for c in ("TXother", "TXall", "TXcore", "K2_01", "K3_01=K4_03", "K3_02=K4_02", "K3_12=K4_23", "K4_13") if c in set(nl.corridor_set)]
+    fig, axs = plt.subplots(1, 2, figsize=(COL2, 2.3), sharey=True)
+    for ax, fam in zip(axs, ("A", "B"), strict=True):
+        for k, c in enumerate(order):
+            for s_i, (sts, col) in enumerate(((("old", "old_draws"), ORANGE), (("new", "fresh_draws"), BLUE))):
+                v = nl[(nl.corridor_set == c) & (nl.family == fam) & nl.set.isin(sts)].percentile.to_numpy(float)
+                x = k + (s_i - 0.5) * 0.3
+                ax.scatter(np.full(v.size, x) + (np.random.default_rng(k + 3 * s_i).random(v.size) - 0.5) * 0.15, v, s=4, color=col, lw=0,
+                           label=("old holdout" if s_i == 0 else "new holdout") if k == 0 else None)
+        ax.axhline(0.95, color=INK2, ls="--", lw=0.7)
+        ax.set_xticks(range(len(order)))
+        ax.set_xticklabels([o.split("=")[0] for o in order], rotation=30, fontsize=6)
+        ax.set_title(f"null family {fam} ({'arbitrary' if fam == 'A' else 'connected'} size-matched groups)", fontsize=7)
+    axs[0].set_ylabel("percentile of corridor effect in null")
+    axs[0].legend(fontsize=6, loc="lower left")
+    save(fig, "CDWH_S2_null")
+
+
+FIGS = {"S1": figS1, "S2": figS2, "F1": fig1, "S4": figS4, "S5": figS5, "S6": figS6, "F2": fig2, "F3": fig3, "F4": fig4, "F5": fig5, "F6": fig6, "F7": fig7, "F8": fig8, "S3": figS3}
 
 if __name__ == "__main__":
     for k in (sys.argv[1:] or FIGS):

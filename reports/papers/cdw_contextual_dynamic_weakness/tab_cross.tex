@@ -1,0 +1,18 @@
+\begin{table}[!t]
+\centering
+\caption{Cross-model holdout: frozen TX3 WECC library GFL chain (ALT-WECC, ANDES) vs the custom GFL, 8 preregistered policies.}\label{tab:cross}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}cL{0.37\columnwidth}L{0.28\columnwidth}L{0.20\columnwidth}@{}}
+\toprule
+& test & value & verdict \\
+\midrule
+A & stable-context reversal, core lattice & 0.00 of 7 (custom 0.71) & model-specific \\
+B & same-mode reversal & 0.00 & model-specific \\
+C & 12-line finite ranking, Kendall custom vs ALT & median 0.02 & model-specific \\
+C2 & ALT total vs ALT finite, minus $|P|$ & 0.99 vs 0.79 & transfers \\
+D & corridor top-1 agreement & 0.75 & transfers \\
+E & topology sign agreement & 0.94 (35 pairs) & transfers \\
+\bottomrule
+\end{tabular}
+\end{table}
