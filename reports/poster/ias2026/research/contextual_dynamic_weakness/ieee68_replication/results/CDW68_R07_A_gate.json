@@ -1,0 +1,364 @@
+{
+ "A_REAL": {
+  "tag": "A-REAL",
+  "n_conditions": 16,
+  "n_eligible_base_stable": 16,
+  "n_base_unstable": 0,
+  "cov_A": 0.0,
+  "k_A": 0,
+  "cov_A_both_dirs": 0.0,
+  "cov_A_boot": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cov_A_clopper": [
+   0.0,
+   0.20590721420782268
+  ],
+  "cov_B": 0.0,
+  "k_B": 0,
+  "cov_B_both_dirs": 0.0,
+  "cov_B_boot": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cov_B_clopper": [
+   0.0,
+   0.20590721420782268
+  ],
+  "cov_C": 0.0,
+  "k_C": 0,
+  "cov_C_both_dirs": 0.0,
+  "cov_C_boot": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cov_C_clopper": [
+   0.0,
+   0.20590721420782268
+  ],
+  "cov_D": 0.0,
+  "k_D": 0,
+  "cov_D_both_dirs": 0.0,
+  "cov_D_boot": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cov_D_clopper": [
+   0.0,
+   0.20590721420782268
+  ],
+  "cov_T": 0.0,
+  "k_T": 0,
+  "cov_T_both_dirs": 0.0,
+  "cov_T_boot": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cov_T_clopper": [
+   0.0,
+   0.20590721420782268
+  ],
+  "primary_gate_pass": false,
+  "frac_stable_crit_em_median": 0.0,
+  "base_crit_hz_median": 0.0,
+  "kappa_values": {
+   "NaN": 16
+  },
+  "tau_curve": [
+   {
+    "tau": 0.01,
+    "n": 16,
+    "C": 0,
+    "D": 0,
+    "T": 0,
+    "D_both": 0,
+    "T_both": 0
+   },
+   {
+    "tau": 0.0125,
+    "n": 16,
+    "C": 0,
+    "D": 0,
+    "T": 0,
+    "D_both": 0,
+    "T_both": 0
+   },
+   {
+    "tau": 0.015,
+    "n": 16,
+    "C": 0,
+    "D": 0,
+    "T": 0,
+    "D_both": 0,
+    "T_both": 0
+   },
+   {
+    "tau": 0.02,
+    "n": 16,
+    "C": 0,
+    "D": 0,
+    "T": 0,
+    "D_both": 0,
+    "T_both": 0
+   },
+   {
+    "tau": 0.025,
+    "n": 16,
+    "C": 0,
+    "D": 0,
+    "T": 0,
+    "D_both": 0,
+    "T_both": 0
+   },
+   {
+    "tau": 0.03,
+    "n": 16,
+    "C": 0,
+    "D": 0,
+    "T": 0,
+    "D_both": 0,
+    "T_both": 0
+   },
+   {
+    "tau": 0.04,
+    "n": 16,
+    "C": 0,
+    "D": 0,
+    "T": 0,
+    "D_both": 0,
+    "T_both": 0
+   },
+   {
+    "tau": 0.05,
+    "n": 16,
+    "C": 0,
+    "D": 0,
+    "T": 0,
+    "D_both": 0,
+    "T_both": 0
+   }
+  ]
+ },
+ "ablation_REAL": {
+  "tag": "A-REAL-ablation",
+  "n_conditions": 6,
+  "n_eligible_base_stable": 6,
+  "n_base_unstable": 0,
+  "cov_A": 0.0,
+  "k_A": 0,
+  "cov_A_both_dirs": 0.0,
+  "cov_A_boot": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cov_A_clopper": [
+   0.0,
+   0.45925812643990044
+  ],
+  "cov_B": 0.0,
+  "k_B": 0,
+  "cov_B_both_dirs": 0.0,
+  "cov_B_boot": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cov_B_clopper": [
+   0.0,
+   0.45925812643990044
+  ],
+  "cov_C": 0.0,
+  "k_C": 0,
+  "cov_C_both_dirs": 0.0,
+  "cov_C_boot": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cov_C_clopper": [
+   0.0,
+   0.45925812643990044
+  ],
+  "cov_D": 0.0,
+  "k_D": 0,
+  "cov_D_both_dirs": 0.0,
+  "cov_D_boot": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cov_D_clopper": [
+   0.0,
+   0.45925812643990044
+  ],
+  "cov_T": 0.0,
+  "k_T": 0,
+  "cov_T_both_dirs": 0.0,
+  "cov_T_boot": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cov_T_clopper": [
+   0.0,
+   0.45925812643990044
+  ],
+  "primary_gate_pass": false,
+  "frac_stable_crit_em_median": 0.0,
+  "base_crit_hz_median": 0.0,
+  "kappa_values": {
+   "NaN": 6
+  }
+ },
+ "ablation_NOGOV": {
+  "tag": "A-NOGOV-ablation",
+  "n_conditions": 6,
+  "n_eligible_base_stable": 6,
+  "n_base_unstable": 0,
+  "cov_A": 0.0,
+  "k_A": 0,
+  "cov_A_both_dirs": 0.0,
+  "cov_A_boot": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cov_A_clopper": [
+   0.0,
+   0.45925812643990044
+  ],
+  "cov_B": 0.0,
+  "k_B": 0,
+  "cov_B_both_dirs": 0.0,
+  "cov_B_boot": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cov_B_clopper": [
+   0.0,
+   0.45925812643990044
+  ],
+  "cov_C": 0.0,
+  "k_C": 0,
+  "cov_C_both_dirs": 0.0,
+  "cov_C_boot": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cov_C_clopper": [
+   0.0,
+   0.45925812643990044
+  ],
+  "cov_D": 0.0,
+  "k_D": 0,
+  "cov_D_both_dirs": 0.0,
+  "cov_D_boot": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cov_D_clopper": [
+   0.0,
+   0.45925812643990044
+  ],
+  "cov_T": 0.0,
+  "k_T": 0,
+  "cov_T_both_dirs": 0.0,
+  "cov_T_boot": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cov_T_clopper": [
+   0.0,
+   0.45925812643990044
+  ],
+  "primary_gate_pass": false,
+  "frac_stable_crit_em_median": 0.0,
+  "base_crit_hz_median": 0.001723835421112238,
+  "kappa_values": {
+   "NaN": 6
+  }
+ },
+ "ablation_SP33": {
+  "tag": "A-SP33-ablation",
+  "n_conditions": 6,
+  "n_eligible_base_stable": 6,
+  "n_base_unstable": 0,
+  "cov_A": 0.0,
+  "k_A": 0,
+  "cov_A_both_dirs": 0.0,
+  "cov_A_boot": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cov_A_clopper": [
+   0.0,
+   0.45925812643990044
+  ],
+  "cov_B": 0.0,
+  "k_B": 0,
+  "cov_B_both_dirs": 0.0,
+  "cov_B_boot": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cov_B_clopper": [
+   0.0,
+   0.45925812643990044
+  ],
+  "cov_C": 0.0,
+  "k_C": 0,
+  "cov_C_both_dirs": 0.0,
+  "cov_C_boot": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cov_C_clopper": [
+   0.0,
+   0.45925812643990044
+  ],
+  "cov_D": 0.0,
+  "k_D": 0,
+  "cov_D_both_dirs": 0.0,
+  "cov_D_boot": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cov_D_clopper": [
+   0.0,
+   0.45925812643990044
+  ],
+  "cov_T": 0.0,
+  "k_T": 0,
+  "cov_T_both_dirs": 0.0,
+  "cov_T_boot": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "cov_T_clopper": [
+   0.0,
+   0.45925812643990044
+  ],
+  "primary_gate_pass": false,
+  "frac_stable_crit_em_median": 0.0,
+  "base_crit_hz_median": 0.0,
+  "kappa_values": {
+   "NaN": 6
+  }
+ }
+}
