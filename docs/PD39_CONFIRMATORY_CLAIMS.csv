@@ -1,0 +1,11 @@
+claim_id,claim,primary_estimand,required_evidence,status,allowed_language
+PD39-CF1,V8 is a minimal blocker of the frozen 0.05 robustness requirement,H_0.05,exact all-portfolio blocker table and all nine scenarios,pending,"only if every proper subset passes"
+PD39-CF2,V8 is a minimal true-stability blocker under the frozen nine-condition screen,H_0,exact all-portfolio stability table,pending,"only if alpha>=0 occurs and every proper subset is stable"
+PD39-CF3,The 7/8-to-8/8 change has a physically interpretable modal mechanism,mode tracking and pathology audit,modal table plus common-coordinate MAC,pending,"physical only after diagnostics pass"
+PD39-CF4,Nominal margin does not determine structured dynamic radius,matched-pair radius ratio,matched-alpha pairs and radius records,pending,"supported only with preregistered ratio evidence"
+PD39-CF5,Classical static metrics miss the dynamic weak-node/link structure,rank agreement and top-k overlap,static and dynamic baseline tables,pending,"contextual benchmark claim only"
+PD39-CF6,Complete SG-to-GFL transition is remediable within frozen bounds,100% repair feasibility,discovery plus holdout plus equilibrium/voltage records,pending,"controller/network/topology/joint/impossible"
+PD39-CF7,Joint co-design dominates single-family repair,non-dominated intervention front,Pareto table and common holdout evaluation,pending,"do not force a positive result"
+PD39-CF8,Robust dynamic planning generalizes beyond discovery scenarios,paired 24-condition holdout differences,P0-P3 holdout table,pending,"deterministic test coverage, not population probability"
+PD39-CF9,Linear alpha ordering is consistent with nonlinear TDS,TDS sign and relative damping,TDS preregistration and traces,pending,"weaken claim if contradicted"
+PD39-CF10,The campaign establishes a universal weakness index or causal law,none,requires evidence beyond this benchmark,prohibited,"never claim"
