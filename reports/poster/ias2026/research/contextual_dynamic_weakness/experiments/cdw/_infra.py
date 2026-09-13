@@ -71,7 +71,7 @@ def task_key(task: dict) -> str:
 
 
 # ------------------------------------------------------------------ resources --
-def resources(max_workers: int | None = None, mem_per_worker_gb: float = 0.35) -> dict:
+def resources(max_workers: int | None = None, mem_per_worker_gb: float = 0.20) -> dict:  # measured ~0.114 GB/worker
     import psutil
 
     ncpu = os.cpu_count() or 2
