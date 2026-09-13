@@ -1,0 +1,205 @@
+{
+ "PD1": {
+  "n_records": 240,
+  "n_ok": 240,
+  "reproduction_failures": 0,
+  "reproduction_gate": "PASS",
+  "max_repro_err": 0.0,
+  "flagship_status_perp": {
+   "UNSTABLE": 240
+  },
+  "rates": {
+   "rc_S0": {
+    "all": [
+     117,
+     240
+    ],
+    "mild": [
+     80,
+     80
+    ],
+    "medium": [
+     37,
+     80
+    ],
+    "severe": [
+     0,
+     80
+    ]
+   },
+   "rc_S1": {
+    "all": [
+     104,
+     240
+    ],
+    "mild": [
+     80,
+     80
+    ],
+    "medium": [
+     24,
+     80
+    ],
+    "severe": [
+     0,
+     80
+    ]
+   },
+   "rc_SB": {
+    "all": [
+     117,
+     240
+    ],
+    "mild": [
+     80,
+     80
+    ],
+    "medium": [
+     37,
+     80
+    ],
+    "severe": [
+     0,
+     80
+    ]
+   },
+   "sc_S0": {
+    "all": [
+     240,
+     240
+    ],
+    "mild": [
+     80,
+     80
+    ],
+    "medium": [
+     80,
+     80
+    ],
+    "severe": [
+     80,
+     80
+    ]
+   },
+   "sc_S1": {
+    "all": [
+     240,
+     240
+    ],
+    "mild": [
+     80,
+     80
+    ],
+    "medium": [
+     80,
+     80
+    ],
+    "severe": [
+     80,
+     80
+    ]
+   },
+   "sc_SB": {
+    "all": [
+     240,
+     240
+    ],
+    "mild": [
+     80,
+     80
+    ],
+    "medium": [
+     80,
+     80
+    ],
+    "severe": [
+     80,
+     80
+    ]
+   },
+   "ad_S0": {
+    "all": [
+     240,
+     240
+    ],
+    "mild": [
+     80,
+     80
+    ],
+    "medium": [
+     80,
+     80
+    ],
+    "severe": [
+     80,
+     80
+    ]
+   },
+   "ad_S1": {
+    "all": [
+     234,
+     240
+    ],
+    "mild": [
+     78,
+     80
+    ],
+    "medium": [
+     77,
+     80
+    ],
+    "severe": [
+     79,
+     80
+    ]
+   },
+   "ad_SB": {
+    "all": [
+     240,
+     240
+    ],
+    "mild": [
+     80,
+     80
+    ],
+    "medium": [
+     80,
+     80
+    ],
+    "severe": [
+     80,
+     80
+    ]
+   }
+  },
+  "H_PD1a": {
+   "adaptive_S0_rate": 1.0,
+   "verdict": "SUPPORTED"
+  },
+  "H_PD1b": {
+   "adaptive_S0_severe_rate": 1.0,
+   "verdict": "SUPPORTED"
+  },
+  "H_PD1c": {
+   "adaptive_only": 123,
+   "rc_only": 0,
+   "mcnemar_p_one_sided": 9.4039548065783e-38,
+   "verdict": "SUPPORTED"
+  },
+  "descriptive": {
+   "spearman_change_norm_vs_alpha_IA_successes": 0.9277192312366533,
+   "bound_active_fraction": 0.0,
+   "bound_active_fraction_failures": NaN,
+   "slsqp_success_fraction": 0.9458333333333333,
+   "median_change_norm_by_tercile": {
+    "mild": 0.5400730713547219,
+    "medium": 1.0350568586873663,
+    "severe": 1.5142841828839717
+   },
+   "adaptive_status_counts": {
+    "STABLE": 240
+   },
+   "median_wall_s": 84.00657403469086
+  }
+ }
+}
