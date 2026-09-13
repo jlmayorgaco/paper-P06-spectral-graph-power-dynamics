@@ -1,0 +1,37 @@
+portfolio,replaced_buses,intervention_count,scenario,equilibrium_status,error_type,error_message,powerflow_finite,equilibrium_finite,fixed_point,dynamic_margin,max_real,stable,robust_feasible_for_scenario
+38,[38],1,nominal,ok,,,true,true,true,0.09857955236646727,-0.09857955236646727,true,true
+38,[38],1,pll0.8_xf0.8_cc0.8,ok,,,true,true,true,0.09848695603782204,-0.09848695603782204,true,true
+38,[38],1,pll0.8_xf0.8_cc1.2,ok,,,true,true,true,0.0984871158785719,-0.0984871158785719,true,true
+38,[38],1,pll0.8_xf1.2_cc0.8,ok,,,true,true,true,0.09848688540914431,-0.09848688540914431,true,true
+38,[38],1,pll0.8_xf1.2_cc1.2,ok,,,true,true,true,0.09848704016789886,-0.09848704016789886,true,true
+38,[38],1,pll1.2_xf0.8_cc0.8,ok,,,true,true,true,0.09863042580336584,-0.09863042580336584,true,true
+38,[38],1,pll1.2_xf0.8_cc1.2,ok,,,true,true,true,0.09863057759186791,-0.09863057759186791,true,true
+38,[38],1,pll1.2_xf1.2_cc0.8,ok,,,true,true,true,0.09863034729056322,-0.09863034729056322,true,true
+38,[38],1,pll1.2_xf1.2_cc1.2,ok,,,true,true,true,0.09863049711133084,-0.09863049711133084,true,true
+30;38,"[30, 38]",2,nominal,ok,,,true,true,true,0.11257957921488496,-0.11257957921488496,true,true
+30;38,"[30, 38]",2,pll0.8_xf0.8_cc0.8,ok,,,true,true,true,0.11230263865102759,-0.11230263865102759,true,true
+30;38,"[30, 38]",2,pll0.8_xf0.8_cc1.2,ok,,,true,true,true,0.1123029039029805,-0.1123029039029805,true,true
+30;38,"[30, 38]",2,pll0.8_xf1.2_cc0.8,ok,,,true,true,true,0.11230250452051807,-0.11230250452051807,true,true
+30;38,"[30, 38]",2,pll0.8_xf1.2_cc1.2,ok,,,true,true,true,0.11230279200231044,-0.11230279200231044,true,true
+30;38,"[30, 38]",2,pll1.2_xf0.8_cc0.8,ok,,,true,true,true,0.11272883344627788,-0.11272883344627788,true,true
+30;38,"[30, 38]",2,pll1.2_xf0.8_cc1.2,ok,,,true,true,true,0.11272912375253125,-0.11272912375253125,true,true
+30;38,"[30, 38]",2,pll1.2_xf1.2_cc0.8,ok,,,true,true,true,0.11272872037618906,-0.11272872037618906,true,true
+30;38,"[30, 38]",2,pll1.2_xf1.2_cc1.2,ok,,,true,true,true,0.11272902214949396,-0.11272902214949396,true,true
+32;38,"[32, 38]",2,nominal,ok,,,true,true,true,0.09850632149922282,-0.09850632149922282,true,true
+32;38,"[32, 38]",2,pll0.8_xf0.8_cc0.8,ok,,,true,true,true,0.09839824486488205,-0.09839824486488205,true,true
+32;38,"[32, 38]",2,pll0.8_xf0.8_cc1.2,ok,,,true,true,true,0.09839841331991228,-0.09839841331991228,true,true
+32;38,"[32, 38]",2,pll0.8_xf1.2_cc0.8,ok,,,true,true,true,0.09839817447642828,-0.09839817447642828,true,true
+32;38,"[32, 38]",2,pll0.8_xf1.2_cc1.2,ok,,,true,true,true,0.09839833561642217,-0.09839833561642217,true,true
+32;38,"[32, 38]",2,pll1.2_xf0.8_cc0.8,ok,,,true,true,true,0.098566000600786,-0.098566000600786,true,true
+32;38,"[32, 38]",2,pll1.2_xf0.8_cc1.2,ok,,,true,true,true,0.09856615738457122,-0.09856615738457122,true,true
+32;38,"[32, 38]",2,pll1.2_xf1.2_cc0.8,ok,,,true,true,true,0.0985659192388132,-0.0985659192388132,true,true
+32;38,"[32, 38]",2,pll1.2_xf1.2_cc1.2,ok,,,true,true,true,0.09856607317648648,-0.09856607317648648,true,true
+30;32;38,"[30, 32, 38]",3,nominal,ok,,,true,true,true,0.11357588241364064,-0.11357588241364064,true,true
+30;32;38,"[30, 32, 38]",3,pll0.8_xf0.8_cc0.8,ok,,,true,true,true,0.11326580606409144,-0.11326580606409144,true,true
+30;32;38,"[30, 32, 38]",3,pll0.8_xf0.8_cc1.2,ok,,,true,true,true,0.11326601808856959,-0.11326601808856959,true,true
+30;32;38,"[30, 32, 38]",3,pll0.8_xf1.2_cc0.8,ok,,,true,true,true,0.11326567898199927,-0.11326567898199927,true,true
+30;32;38,"[30, 32, 38]",3,pll0.8_xf1.2_cc1.2,ok,,,true,true,true,0.11326592063465946,-0.11326592063465946,true,true
+30;32;38,"[30, 32, 38]",3,pll1.2_xf0.8_cc0.8,ok,,,true,true,true,0.11374247762327801,-0.11374247762327801,true,true
+30;32;38,"[30, 32, 38]",3,pll1.2_xf0.8_cc1.2,ok,,,true,true,true,0.11374272503443525,-0.11374272503443525,true,true
+30;32;38,"[30, 32, 38]",3,pll1.2_xf1.2_cc0.8,ok,,,true,true,true,0.11374238022795093,-0.11374238022795093,true,true
+30;32;38,"[30, 32, 38]",3,pll1.2_xf1.2_cc1.2,ok,,,true,true,true,0.11374264265447653,-0.11374264265447653,true,true

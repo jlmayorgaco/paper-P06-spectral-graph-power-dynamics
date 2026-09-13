@@ -1,0 +1,37 @@
+portfolio,replaced_buses,intervention_count,scenario,equilibrium_status,error_type,error_message,powerflow_finite,equilibrium_finite,fixed_point,dynamic_margin,max_real,stable,robust_feasible_for_scenario
+36,[36],1,nominal,ok,,,true,true,true,0.09797977971296713,-0.09797977971296713,true,true
+36,[36],1,pll0.8_xf0.8_cc0.8,ok,,,true,true,true,0.09798329778967403,-0.09798329778967403,true,true
+36,[36],1,pll0.8_xf0.8_cc1.2,ok,,,true,true,true,0.09798329577633887,-0.09798329577633887,true,true
+36,[36],1,pll0.8_xf1.2_cc0.8,ok,,,true,true,true,0.09798329624171209,-0.09798329624171209,true,true
+36,[36],1,pll0.8_xf1.2_cc1.2,ok,,,true,true,true,0.09798329511963977,-0.09798329511963977,true,true
+36,[36],1,pll1.2_xf0.8_cc0.8,ok,,,true,true,true,0.09797784491526655,-0.09797784491526655,true,true
+36,[36],1,pll1.2_xf0.8_cc1.2,ok,,,true,true,true,0.097977844461008,-0.097977844461008,true,true
+36,[36],1,pll1.2_xf1.2_cc0.8,ok,,,true,true,true,0.09797784427888503,-0.09797784427888503,true,true
+36,[36],1,pll1.2_xf1.2_cc1.2,ok,,,true,true,true,0.09797784420229985,-0.09797784420229985,true,true
+30;36,"[30, 36]",2,nominal,ok,,,true,true,true,0.10550082020620984,-0.10550082020620984,true,true
+30;36,"[30, 36]",2,pll0.8_xf0.8_cc0.8,ok,,,true,true,true,0.10548892837295226,-0.10548892837295226,true,true
+30;36,"[30, 36]",2,pll0.8_xf0.8_cc1.2,ok,,,true,true,true,0.10548905071534316,-0.10548905071534316,true,true
+30;36,"[30, 36]",2,pll0.8_xf1.2_cc0.8,ok,,,true,true,true,0.10548891333754631,-0.10548891333754631,true,true
+30;36,"[30, 36]",2,pll0.8_xf1.2_cc1.2,ok,,,true,true,true,0.10548903195413586,-0.10548903195413586,true,true
+30;36,"[30, 36]",2,pll1.2_xf0.8_cc0.8,ok,,,true,true,true,0.10550714069293665,-0.10550714069293665,true,true
+30;36,"[30, 36]",2,pll1.2_xf0.8_cc1.2,ok,,,true,true,true,0.10550725592130553,-0.10550725592130553,true,true
+30;36,"[30, 36]",2,pll1.2_xf1.2_cc0.8,ok,,,true,true,true,0.10550712135302519,-0.10550712135302519,true,true
+30;36,"[30, 36]",2,pll1.2_xf1.2_cc1.2,ok,,,true,true,true,0.1055072351497161,-0.1055072351497161,true,true
+32;36,"[32, 36]",2,nominal,ok,,,true,true,true,0.09790363892371115,-0.09790363892371115,true,true
+32;36,"[32, 36]",2,pll0.8_xf0.8_cc0.8,ok,,,true,true,true,0.09789446731338348,-0.09789446731338348,true,true
+32;36,"[32, 36]",2,pll0.8_xf0.8_cc1.2,ok,,,true,true,true,0.09789446488183215,-0.09789446488183215,true,true
+32;36,"[32, 36]",2,pll0.8_xf1.2_cc0.8,ok,,,true,true,true,0.09789446312052938,-0.09789446312052938,true,true
+32;36,"[32, 36]",2,pll0.8_xf1.2_cc1.2,ok,,,true,true,true,0.0978944623709729,-0.0978944623709729,true,true
+32;36,"[32, 36]",2,pll1.2_xf0.8_cc0.8,ok,,,true,true,true,0.09790856363308031,-0.09790856363308031,true,true
+32;36,"[32, 36]",2,pll1.2_xf0.8_cc1.2,ok,,,true,true,true,0.09790856396515592,-0.09790856396515592,true,true
+32;36,"[32, 36]",2,pll1.2_xf1.2_cc0.8,ok,,,true,true,true,0.09790856117122035,-0.09790856117122035,true,true
+32;36,"[32, 36]",2,pll1.2_xf1.2_cc1.2,ok,,,true,true,true,0.09790856226382041,-0.09790856226382041,true,true
+30;32;36,"[30, 32, 36]",3,nominal,ok,,,true,true,true,0.10573892699726603,-0.10573892699726603,true,true
+30;32;36,"[30, 32, 36]",3,pll0.8_xf0.8_cc0.8,ok,,,true,true,true,0.10569415202485559,-0.10569415202485559,true,true
+30;32;36,"[30, 32, 36]",3,pll0.8_xf0.8_cc1.2,ok,,,true,true,true,0.1056942803872675,-0.1056942803872675,true,true
+30;32;36,"[30, 32, 36]",3,pll0.8_xf1.2_cc0.8,ok,,,true,true,true,0.10569414187171547,-0.10569414187171547,true,true
+30;32;36,"[30, 32, 36]",3,pll0.8_xf1.2_cc1.2,ok,,,true,true,true,0.10569426717445331,-0.10569426717445331,true,true
+30;32;36,"[30, 32, 36]",3,pll1.2_xf0.8_cc0.8,ok,,,true,true,true,0.10576296242749879,-0.10576296242749879,true,true
+30;32;36,"[30, 32, 36]",3,pll1.2_xf0.8_cc1.2,ok,,,true,true,true,0.10576308416853655,-0.10576308416853655,true,true
+30;32;36,"[30, 32, 36]",3,pll1.2_xf1.2_cc0.8,ok,,,true,true,true,0.10576294852319185,-0.10576294852319185,true,true
+30;32;36,"[30, 32, 36]",3,pll1.2_xf1.2_cc1.2,ok,,,true,true,true,0.10576306925662886,-0.10576306925662886,true,true

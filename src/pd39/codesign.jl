@@ -22,28 +22,50 @@ end
 "Evaluate one SG→IBR portfolio under one fixed controller scenario."
 function evaluate_portfolio(base_nw, portfolio; pfs = nothing, scenario = first(uncertainty_scenarios()),
                             margin_target = ROBUST_MARGIN_TARGET)
-    template = simple_gfldc_template(
-        pll_scale = scenario.pll_scale,
-        filter_scale = scenario.filter_scale,
-        current_control_scale = scenario.current_control_scale,
-    )
-    nw = replace_buses(base_nw, portfolio; template = template)
-    eq = initialize_equilibrium(nw; pfs = pfs, sparse = false)
-    stab = stability_audit(eq.state)
-    return (
-        portfolio = join(portfolio, ";"),
-        replaced_buses = copy(portfolio),
-        intervention_count = length(portfolio),
-        scenario = scenario.id,
-        powerflow_finite = eq.powerflow_finite,
-        equilibrium_finite = eq.state_finite,
-        fixed_point = eq.fixed_point,
-        dynamic_margin = stab.dynamic_margin,
-        max_real = stab.max_real,
-        stable = stab.stable,
-        robust_feasible_for_scenario = eq.state_finite && eq.fixed_point &&
-            stab.stable && stab.dynamic_margin >= margin_target,
-    )
+    try
+        template = simple_gfldc_template(
+            pll_scale = scenario.pll_scale,
+            filter_scale = scenario.filter_scale,
+            current_control_scale = scenario.current_control_scale,
+        )
+        nw = replace_buses(base_nw, portfolio; template = template)
+        eq = initialize_equilibrium(nw; pfs = pfs, sparse = false)
+        stab = stability_audit(eq.state)
+        return (
+            portfolio = isempty(portfolio) ? "none" : join(portfolio, ";"),
+            replaced_buses = copy(portfolio),
+            intervention_count = length(portfolio),
+            scenario = scenario.id,
+            equilibrium_status = "ok",
+            error_type = "",
+            error_message = "",
+            powerflow_finite = eq.powerflow_finite,
+            equilibrium_finite = eq.state_finite,
+            fixed_point = eq.fixed_point,
+            dynamic_margin = stab.dynamic_margin,
+            max_real = stab.max_real,
+            stable = stab.stable,
+            robust_feasible_for_scenario = eq.state_finite && eq.fixed_point &&
+                stab.stable && stab.dynamic_margin >= margin_target,
+        )
+    catch err
+        return (
+            portfolio = isempty(portfolio) ? "none" : join(portfolio, ";"),
+            replaced_buses = copy(portfolio),
+            intervention_count = length(portfolio),
+            scenario = scenario.id,
+            equilibrium_status = "failed",
+            error_type = string(nameof(typeof(err))),
+            error_message = sprint(showerror, err),
+            powerflow_finite = false,
+            equilibrium_finite = false,
+            fixed_point = false,
+            dynamic_margin = NaN,
+            max_real = NaN,
+            stable = false,
+            robust_feasible_for_scenario = false,
+        )
+    end
 end
 
 "Evaluate the full preregistered portfolio × uncertainty grid."
