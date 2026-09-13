@@ -571,8 +571,7 @@ def figS1():
     ax.set_xticklabels(uniq)
     ax.set_yscale("symlog", linthresh=0.01)
     ax.set_ylabel(r"$-\Delta\alpha(V_4)$ at $\sum|\Delta\gamma_e|=0.5$ (s$^{-1}$)")
-    ax.legend(fontsize=6, ncol=4, loc="upper right")
-    ax.set_title("equal-budget corridor effects (identical cutsets K3_01=K4_03, K3_02=K4_02, K3_12=K4_23 shown once)", fontsize=7)
+    ax.legend(fontsize=6, ncol=4, loc="lower center", bbox_to_anchor=(0.5, 1.0), markerscale=2)  # title in the caption
     save(fig, "CDWH_S1_corridors")
 
 
@@ -593,7 +592,8 @@ def figS2():
         ax.set_xticklabels([o.split("=")[0] for o in order], rotation=30, fontsize=6)
         ax.set_title(f"null family {fam} ({'arbitrary' if fam == 'A' else 'connected'} size-matched groups)", fontsize=7)
     axs[0].set_ylabel("percentile of corridor effect in null")
-    axs[0].legend(fontsize=6, loc="lower left")
+    h, lab = axs[0].get_legend_handles_labels()
+    fig.legend(h, lab, fontsize=6, loc="upper center", ncol=2, bbox_to_anchor=(0.5, 1.06), markerscale=2)
     save(fig, "CDWH_S2_null")
 
 

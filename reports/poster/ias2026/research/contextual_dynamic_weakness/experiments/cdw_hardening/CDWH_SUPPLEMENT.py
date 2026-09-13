@@ -76,7 +76,7 @@ def sec_census():
     df = pd.DataFrame(rows)
     txt = (r"\section{Per-policy census summary}" + "\nColumns rev./A/B/C: number of units (of nine) with a stable-context reversal "
            "(any pair) or a nested reversal at levels A/B/C. The full marginal table (2304 marginals per policy, 63 policies) is "
-           "\\path{results/hardening/H03_marginals.parquet}; all nested pairs with their curvature witnesses are in "
+           "\\path{results/hardening/H03_marginals.parquet}; all nested pairs with their located interaction terms are in "
            "\\path{H03_nested_pairs.parquet}.\n\n")
     return txt + longtable(df, "lllrrrrrrrrr", "Per-policy reversal counts and oracle fixed-ranking results (FULL stratum).", "tab:s-census", r"\tiny")
 
@@ -95,24 +95,29 @@ def sec_witness():
                          "$S_1$": r.S1.replace("+", ","), "$S_2$": r.S2.replace("+", ","), r"$\Delta(S_1)$": f(r.d1), r"$\Delta(S_2)$": f(r.d2),
                          "$j$": r.wit_j, "$d_{ij}$": f(r.wit_d), "EM-clean": "y" if r.em_clean else "n"})
     df = pd.DataFrame(rows)
-    txt = (r"\section{Minimal curvature witnesses}" + "\nFor each new-holdout policy and direction, the level-C nested reversal with the "
-           "smallest chain length (or, if none has $m=1$, the largest magnitude), and the certifying second difference "
-           "$d_{ij}$ on the canonical chain (Proposition~2 of the paper). s$\\to$d needs $d>0$ (a submodularity violation), "
-           "d$\\to$s needs $d<0$ (a supermodularity violation).\n\n")
-    return txt + longtable(df, "llcllrrcrc", "Minimal nested EM same-mode reversals and certifying curvature terms (s$^{-1}$).", "tab:s-wit", r"\tiny")
+    txt = (r"\section{Located interaction terms}" + "\nFor each new-holdout policy and direction, the level-C nested reversal with the "
+           "smallest chain length (or, if none has $m=1$, the largest magnitude), and the second difference "
+           "$d_{ij}$ located on the canonical chain by the chain identity (Proposition~1 of the paper). The bound holds for every "
+           "nested pair by construction; the table shows where the interaction sits. An s$\\to$d reversal locates $d>0$, "
+           "a d$\\to$s reversal $d<0$.\n\n")
+    return txt + longtable(df, "llcllrrcrc", "Minimal level-C nested reversals and located interaction terms (s$^{-1}$).", "tab:s-wit", r"\tiny")
 
 
 def sec_stats():
     return r"""\section{Statistical methodology}
 Policies and envelope draws are designed points (maximin Latin hypercube; declared bounds), not samples of a physical
 population. Every fraction is a coverage over the tested conditions. Intervals are percentile bootstraps ($10^4$
-resamples, seed 20260932) with clusters: one per policy; for the 40 fresh draws, one per envelope. Three secondary
-inferential summaries form the Holm family F$_{\rm conf}$: T1, an exact one-sided sign test of $p^\star<0.90$ over new
+resamples, seed 20260932) with clusters: one per policy; for the 40 fresh draws, one per envelope. Three inferential
+summaries form the Holm family F$_{\rm conf}$ (called confirmatory in the plan; all three are reported in the paper): T1, an exact one-sided sign test of $p^\star<0.90$ over new
 base-stable policies; T2, a one-sided cluster sign-flip test of the median paired Spearman advantage minus 0.20;
 T3, a two-sided permutation test of Spearman($\mu(\theta,\omega_{\rm ref})$, reversal count). All gates are
-effect-size thresholds frozen in \path{docs/CDW_HARDENING_PREREG_V1.md}. Deviations (execution fixes, the ALT-WECC
-structural-zero and limiter refinements recorded before the cross-model matrix, and the literal application of the
-GOLD-B eligibility rule) are in \path{docs/CDW_HARDENING_DEVIATIONS.md}.
+effect-size thresholds frozen in \path{docs/CDW_HARDENING_PREREG_V1.md}. Deviations are in
+\path{docs/CDW_HARDENING_DEVIATIONS.md}:
+execution fixes, including a condition-key collision in the corridor analysis that was found by its built-in consistency check;
+the ALT-WECC structural-zero and limiter refinements;
+the literal application of the GOLD-B eligibility rule;
+a correction of hand-written clock times;
+the list of post-hoc analyses.
 """
 
 
@@ -277,9 +282,9 @@ def sec_repro():
 
 
 def sec_figs():
-    figs = [("CDWH_S1_corridors", "Equal-budget corridor effects by set."), ("CDWH_S2_null", "Size-matched null percentiles of the frozen corridors."),
+    figs = [("CDWH_S1_corridors", r"Equal-budget corridor effects on $V_4$ by condition set (identical cutsets K3\_01=K4\_03, K3\_02=K4\_02, K3\_12=K4\_23 shown once; band: $\pm\tau_{\rm mat}$)."), ("CDWH_S2_null", "Size-matched null percentiles of the frozen corridors (dashed: 0.95)."),
             ("CDWH_S3_mixing", "Two-factor modal-mixing decomposition and fixed-frequency correlation."), ("CDWH_S4_crossmodel", "Cross-model holdout (ALT-WECC)."),
-            ("CDWH_S5_uncertainty", "Fresh envelope draws: reversal coverage and branch ranking."), ("CDWH_S6_stratification", "FULL / EM / same-mode stratification."),
+            ("CDWH_S5_uncertainty", "Fresh envelope draws: reversal coverage and branch ranking."), ("CDWH_S6_stratification", "FULL / EM / tracked-mode stratification."),
             ("CDWH_S7_singularity", "Fractional-replacement sweeps: $\\aperp$ and the minimum singular value of $g_z$ against the replaced fraction.")]
     out = [r"\section{Supplementary figures}"]
     for name, cap in figs:

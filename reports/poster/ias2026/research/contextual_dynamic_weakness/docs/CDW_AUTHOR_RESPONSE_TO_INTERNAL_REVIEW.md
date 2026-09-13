@@ -80,4 +80,4 @@ Each item below is marked:
 
 ## 5. Expected effect on the scores
 
-The rewording and post-hoc analyses address correctness, statistics, writing and figures. They do not address the two lowest scores, novelty (3/5) and model adequacy (3/3), which need items 1–4 of Section 4. The paper is accordingly framed as an empirical, preregistered case study on one benchmark.
+The rewording and post-hoc analyses address correctness, statistics, writing and figures. They do not address the two lowest scores, novelty (R1 3, R2 5 of 10) and model adequacy (3 and 3 of 10), which need items 1–4 of Section 4. The paper is accordingly framed as an empirical, preregistered case study on one benchmark.

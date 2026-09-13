@@ -99,7 +99,8 @@ def run():
         lk = lk[(lk.family == "link") & (lk.target == "H4")]
         rows_c = []
         for r in lk.to_dict("records"):
-            key = f"{r['pid']}|{r['env'] if isinstance(r['env'], str) else '-'}|{int(r['draw']) if pd.notna(r['draw']) else -1}"
+            fresh = isinstance(r["env"], str)
+            key = f"{r['pid']}|{'FRESH' if fresh else '-'}|{r['env'] if fresh else '-'}|{int(r['draw']) if pd.notna(r['draw']) else -1}"
             if key in eff and (int(r["idx"]),) in eff[key] and r.get("g1.50_ok"):
                 rows_c.append({"cond": key, "e": int(r["idx"]), "h10": eff[key][(int(r["idx"]),)], "h06": -(r["g1.50_alpha"] - r["alpha0"])})
         cc = pd.DataFrame(rows_c)

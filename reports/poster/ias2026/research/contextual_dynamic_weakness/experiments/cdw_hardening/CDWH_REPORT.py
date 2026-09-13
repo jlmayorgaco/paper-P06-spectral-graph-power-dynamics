@@ -36,7 +36,17 @@ def corridor_text(h10):
     if not h10:
         return "PENDING"
     rob = h10.get("H10_robust_weak_corridors", [])
-    return ("robust weak corridor(s): " + ", ".join(rob)) if rob else "no corridor meets the preregistered rule (family-A percentile >= 0.95 in >= 75% of new conditions)"
+    if not rob:
+        return "no corridor meets the preregistered rule (family-A percentile >= 0.95 in >= 75% of new conditions)"
+    nl = pd.read_csv(R / "H10_null_percentiles.csv")
+    out = []
+    for r in rob:
+        q = nl[(nl.corridor_set == r) & (nl.family == "A")]
+        qp, qd = q[q.set == "new"], q[q.set == "fresh_draws"]
+        out.append(f"{r} (the other eight transformers) meets the preregistered rule: top 5% of size-matched arbitrary groups in {h10[r + '|A|new_frac_ge95']:.2f} "
+                   f"of the 64 new conditions, but {int((qp.percentile >= 0.95).sum())}/{len(qp)} new policies against {int((qd.percentile >= 0.95).sum())}/{len(qd)} "
+                   f"draws at P4, so the pass rests on the draws; old holdout {h10[r + '|A|old_frac_ge95']:.2f}; all 12 transformers {h10.get('TXall|A|new_frac_ge95', float('nan')):.2f} (fails); spectral cutsets <= 0.03")
+    return "; ".join(out)
 
 
 def build(extra: dict):
@@ -93,7 +103,7 @@ def build(extra: dict):
             ("H5 GOLD-A statistics", "COMPLETE", "results/hardening/H05_stats.json"),
             ("H6/H7 GOLD-B new holdout", "PASS (literal-eligible set and full set)", "results/hardening/H07_goldb_gate.json"),
             ("H8 frozen vs total", "COMPLETE", "results/hardening/H08_*"),
-            ("H9-H11 corridors", "PASS" if h10.get("H10_pass") else ("NEGATIVE" if h10 else "PENDING"), "results/hardening/H10_gate.json, H11_corridor_table.csv"),
+            ("H9-H11 corridors", "PASS (TXother; carried by the P4 draws, 16/24 policies)" if h10.get("H10_pass") else ("NEGATIVE" if h10 else "PENDING"), "results/hardening/H10_gate.json, H11_corridor_table.csv"),
             ("H12/H13 mixing", "NEGATIVE (primary fails)", "results/hardening/H13_mixing.json"),
             ("H14-H16 topology EM", "SUPPORTED (supporting observation)", "results/hardening/H15_topology_gate.json"),
             ("H17 ALT-WECC qualification", "PASS Q1-Q4 (with logged refinements)", "results/hardening/alt/H17_qualification_andes.json"),
@@ -113,14 +123,14 @@ def build(extra: dict):
     q = [
         ("Does nested contextual sign reversal survive the new holdout?", f"Yes. Base-stable new policies with a nested reversal: level A {f(h3['new_frac_A'])}, B {f(h3['new_frac_B'])}, C {f(h3['new_frac_C'],3)} (old holdout C {f(h3['old_frac_C'],3)}). The level-C gate passes on the point estimate; its bootstrap interval ({f(h5['new_cov_C'][1])}-{f(h5['new_cov_C'][2])}) and the exact binomial interval (0.67-0.99) reach below 0.75."),
         ("Does same-mode electromechanical reversal survive?", f"Yes at level D in {ld['policies']}/19 ({ld['pairs']} pairs: s->d {ld['s2d']}, d->s {ld['d2s']}); both directions in {ld['policies_both_dirs']}/19. Magnitudes: quartiles {ld['mag_quartiles']} s^-1, max {ld['max_mag']:.3f}. Coverage vs threshold: level D {int(tn.loc[0.02,'D'])}/19 at 0.02, {int(tn.loc[0.03,'D'])}/19 at 0.03, 0 at 0.05. Gap-robust coverage {rv['gap2_sensitivity']['coverage_D_gap_ge_tau']}; continuation ends on the matched mode in {ex['continuation_match_frac']:.0%} of {ex['continuation_n']} marginals (post hoc)."),
-        ("Is the optimal fixed node ranking still materially insufficient?", f"Over all transitions yes (p* {f(h4['new_FULL_median_pstar'])}, regret {f(h4['new_FULL_median_frac_regret'])}; regret-optimal order {rv['min_regret_ranking_median']['new|FULL']}). In the EM stratum no (p* {f(h4['new_EM_median_pstar'])}, regret {f(h4['new_EM_median_frac_regret'])}). With a stability screen {f(sc['regret_screened_on_feasible'],3)} on contexts with a stable option ({f(sc['frac_no_stable_option'])} have none). A portfolio-conditioned gSCR screen errs in {rv['static_sequencing_median_regret']['new|FULL|gscr']} (post hoc)."),
+        ("Is the optimal fixed node ranking still materially insufficient?", f"Over all transitions yes (p* {f(h4['new_FULL_median_pstar'])}, regret {f(h4['new_FULL_median_frac_regret'])}; regret-optimal order {f(rv['min_regret_ranking_median']['new|FULL'], 3)}). In the EM stratum no (p* {f(h4['new_EM_median_pstar'])}, regret {f(h4['new_EM_median_frac_regret'])}). With a stability screen {f(sc['regret_screened_on_feasible'],3)} on contexts with a stable option ({f(sc['frac_no_stable_option'])} have none). A portfolio-conditioned gSCR screen errs in {f(rv['static_sequencing_median_regret']['new|FULL|gscr'])} (post hoc)."),
         ("How large is the old-to-new holdout shift?", f"Negligible: p* shift {h5['shift_pstar_new_minus_old'][0]:.3f} (interval {h5['shift_pstar_new_minus_old'][1]:.3f} to {h5['shift_pstar_new_minus_old'][2]:.3f}); regret shift {h5['shift_regret_new_minus_old'][0]:.3f}; level-C coverage {f(h3['old_frac_C'],3)} old vs {f(h3['new_frac_C'],3)} new."),
         ("Does GOLD-A remain strong enough for a headline claim?", "For the existence of nested same-mode reversals, yes, stated with its magnitude (about 0.01 s^-1) and its model boundary. The fixed-ranking half is a diagnostic about singularity crossings, not an EM result."),
         ("Does total dynamic line sensitivity still beat every static baseline on the new holdout?", f"Yes: Dtotal exceeds the per-condition best static index in {f(h7['GB_primary_frac_cond_Dtotal_beats_every_static'])} of conditions (oracle static median {f(h7['GB_primary_median_rho_oracle_static'],3)}). Static indices do not change across conditions; against a learned fixed list the margin is smaller ({f(lo['new']['rho_fixed_list'],3)} new policies, {f(lo['fresh_draws']['rho_fixed_list'],3)} draws), and Dtotal still wins in every condition (post hoc)."),
         ("Is the improvement statistically and practically material?", f"Practically yes: median paired advantage {f(h7['GB_prereg_median_diff'],3)} (CI {h7['GB_prereg_diff_ci95'][0]:.3f}-{h7['GB_prereg_diff_ci95'][1]:.3f}); top-5 precision {f(h7['GB_prereg_median_top5_Dtotal'])} vs {f(h7['GB_prereg_median_top5_S1'])}. Statistically: T2 sign-flip p {f(h7['GB_prereg_T2_signflip_p'],3)} on the literal 8-condition set (6 clusters, not significant), < 1e-3 on all 64."),
         ("When does re-equilibration materially change the line ranking?", f"In {f(h7['H8_frac_material_H4'])} of V4 conditions by the H2 rule; every condition has at least one frozen/total sign flip; the frozen derivative drops to {f(h7['GB_new_policies_median_rho_Dfrozen'],3)} on the new policies while Dtotal stays {f(h7['GB_new_policies_median_rho_Dtotal'],3)}. For controller coordinates frozen = total ({h7['node_R1_max_rel_frozen_minus_total_controller']:.1e}), as the affinity argument predicts; for loads the operating-point term dominates in {h7['node_opoint_frac_indirect_dominates']['load']:.0%} of cases."),
         ("Does TXother remain a strong corridor under equal intervention budget?", f"Family-A null percentile >= 0.95 in {f(h10.get('TXother|A|new_frac_ge95'))} of new conditions (median percentile {f(h10.get('TXother|A|new_median_pct'))}); {corridor_text(h10)}." if h10 else "PENDING"),
-        ("Does it beat size-matched random connected corridors?", f"Family B: >= 0.95 in {f(h10.get('TXother|B|new_frac_ge95'))} of new conditions." if h10 else "PENDING"),
+        ("Does it beat size-matched random connected corridors?", f"Family B: >= 0.95 in {f(h10.get('TXother|B|new_frac_ge95'))} of new conditions (old holdout {f(h10.get('TXother|B|old_frac_ge95'))})." if h10 else "PENDING"),
         ("How much of old modal-mixing variation was controller- vs frequency-induced?", f"Variance terms of the mixing change: controller {mv['var_C_over_var_total']:.0%}, frequency {mv['var_F_over_var_total']:.0%}, 2cov {mv['2cov_over_var_total']:.0%} (not additive shares)."),
         ("Does fixed-frequency modal mixing still correlate with contextuality?", f"Not at the preregistered bar: new rho {f(h13['T3_primary']['rho'])} (p {f(h13['T3_primary']['p'],3)}, Holm {f(h19['F_conf_holm_p']['T3_mixing'],3)}); old holdout at fixed frequency rho {f(h13['tests']['old|mu10|n_rev']['rho'])}. Not confirmed (low power at n = 19)."),
         ("After filtering to EM modes, can topology still both remove and create incompatibility?", f"Yes: removal at P4 by {h15['em_removal_H4_P4']} (lines 1-2, 1-39, 8-9, transformer 23-36); {h15['n_em_creation']} EM creations of hyperedges of size <= 3, all outages, {rv['topology_creation_by_split']['discovery']} at discovery, {rv['topology_creation_by_split']['old']} old, {rv['topology_creation_by_split']['new']} new; {h15['n_fast_creation']} fast-only. Expected N-1 behavior; a supporting observation."),
@@ -130,7 +140,7 @@ def build(extra: dict):
         ("Which findings are model-specific?", f"The reversals; the specific branch ranking; the singularity crossings behind the fixed-ranking failure (idealized custom GFL, not tested in ALT). Carried over: the ranking method (marginal), corridor top-1 agreement PARTIAL ({f(ut['D_frac_top1_agree'])}), topology direction ({f(ut['E_pooled_sign_agree'])} on {ut['E_n_pairs']} pairs)."),
         ("What exact novelty remains after the literature review?", "An empirical, preregistered case study (docs/CDW_NOVELTY_BOUNDARY.md): nested reversals of SG->GFL replacements graded to the same tracked EM mode on a held-out policy design; the anatomy of fixed-ranking failure as singularity crossings, with stability-screened and static-screen baselines; held-out evaluation of the portfolio-conditioned re-equilibrated sensitivity as a reinforcement ranking against frozen, learned-list and static baselines; a frozen library-GFL boundary. No single ingredient is new; displacement effects on modes (Gautam 2009, Quintero 2014), feasible sensitivities (Smed 1993, Nam 2000) and non-submodular spectral set functions (Olshevsky 2018) are prior work."),
         ("What are the 3 strongest defensible paper contributions?", "(1) Portfolio-conditioned re-equilibrated reinforcement ranking (STRONGLY_SUPPORTED on the preregistered gate; beats frozen, learned list and static indices; also doublings and outages). (2) Nested same-mode EM reversal on the holdout (SUPPORTED; small). (3) Why fixed unit rankings fail here: singularity crossings at high share, removable by a stability screen, not by a gSCR screen (SUPPORTED, FULL only; exploratory mechanism)."),
-        ("What claims must be dropped or weakened?", "Dropped: modal-mixing mechanism; model-independent reversal; converter-independent branch ranking; 'certificate' as a contribution; 'rankings do not transfer'; 'fast converter-control modes'; any computational-cost claim; the Laplacian story (the contextual weakness lives in the controlled operator, not the static network spectrum); weak corridors unless H10 passes. Weakened: 'weakness is contextual' to SUPPORTED; topology to a supporting observation."),
+        ("What claims must be dropped or weakened?", "Dropped: modal-mixing mechanism; model-independent reversal; converter-independent branch ranking; 'certificate' as a contribution; 'rankings do not transfer'; 'fast converter-control modes'; any computational-cost claim; the Laplacian story (the contextual weakness lives in the controlled operator, not the static network spectrum); 'weak corridor' without the equal-budget, size-null and policy/draw qualifiers. Weakened: 'weakness is contextual' to SUPPORTED; topology to a supporting observation."),
         ("Is the paper ready for TPWRS?", extra.get("ready", "see reviews")),
         ("If not, what single missing experiment blocks submission?", extra.get("blocker", "see reviews")),
     ]
@@ -157,7 +167,8 @@ def build(extra: dict):
     A("- literal H6 eligibility, applied after the 64-condition result had been read;")
     A("- hand-written clock times, corrected against commits in a system-clock entry;")
     A("- post-hoc analyses (regret anatomy, H31 revision analyses, QFLAG=1 variant);")
-    A("- the H18 tested-policy defect (fixed; D becomes PARTIAL) and the pinned ALT pole.")
+    A("- the H18 tested-policy defect (fixed; D becomes PARTIAL) and the pinned ALT pole;")
+    A("- a condition-key collision in H11 (old and fresh draws shared keys), found by the built-in k = 1 consistency check after the first (invalid) corridor gate had been seen; fixed without recomputation, superseded outputs kept in results/hardening/superseded/.")
     A("")
     A("No gate threshold changed.\n")
     A("## 7. Run facts\n")

@@ -184,6 +184,9 @@ COR_LABEL = {"TXother": "other 8 transformers", "TXall": "all 12 transformers", 
              "K3_01=K4_03": "cutset 17--18, 17--27", "K3_02=K4_02": "cutset 3--4, 9--39", "K3_12=K4_23": "line 14--15", "K4_13": "line 16--19"}
 
 
+COR_SENT = {"TXother": "the group of the other eight transformers (the five generator step-up transformers outside $V_4$ and three network transformers)"}
+
+
 def sec_corridors():
     g = j("H10_gate.json")
     if not g:
@@ -202,8 +205,17 @@ def sec_corridors():
              "its stabilizing effect on $V_4$ with 500 arbitrary branch groups of the same size (family A; connected groups, family B, as a secondary null). A "
              "corridor is called robust if it lies in the top 5" + BS + ",\\% of family A in at least 75" + BS + ",\\% of the 64 new-holdout conditions.")
     if rob:
-        s.append(f"The rule is met by {', '.join(COR_LABEL.get(r, r) for r in rob)} (Table~" + BS + "ref{tab:corridors}); old-holdout replication: " +
-                 ", ".join(f"{COR_LABEL.get(r, r)} {f(fr_old.get(r))}" for r in rob) + ".")
+        nl = pd.read_csv(R / "H10_null_percentiles.csv")
+        parts = []
+        for r in rob:
+            q = nl[(nl.corridor_set == r) & (nl.family == "A")]
+            qp, qd = q[q.set == "new"], q[q.set == "fresh_draws"]
+            parts.append(f"{COR_SENT.get(r, 'the ' + COR_LABEL.get(r, r) + ' group')}, which is in the top 5" + BS + f",\\% in {f(fr[r])} of the 64 conditions "
+                         f"({int((qp.percentile >= 0.95).sum())}/{len(qp)} new policies and {int((qd.percentile >= 0.95).sum())}/{len(qd)} draws at P4; "
+                         f"old holdout {f(fr_old.get(r))}; connected null {f(g.get(r + '|B|new_frac_ge95'))})")
+        s.append("Table~" + BS + "ref{tab:corridors} reports the test. The rule is met only by " + "; ".join(parts) + ". The pass rests on the parameter draws at one "
+                 "policy: across controller policies alone the group would miss the 75" + BS + ",\\% bar. " +
+                 f"The group of all 12 transformers reaches {f(fr.get('TXall'))}, and no spectral cutset exceeds {f(max(v for k, v in fr.items() if k.startswith('K') and v is not None))}.")
     else:
         s.append(f"No corridor meets the rule (Table~" + BS + f"ref{{tab:corridors}}). The closest is the {COR_LABEL.get(lead, lead)} group, in the top 5" + BS + ",\\% "
                  f"in {f(fr[lead])} of conditions (old holdout {f(fr_old.get(lead))}). The {COR_LABEL.get(top, top)} group is most often among the three "

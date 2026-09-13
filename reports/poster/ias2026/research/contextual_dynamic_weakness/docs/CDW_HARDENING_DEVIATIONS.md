@@ -185,3 +185,21 @@ The literal R0 <= 1e-8 filter was applied **after** the 64-condition GOLD-B resu
    - The isolated anti-windup tracking state of REPCA1's disabled plant active-power integrator (s5_xi, eigenvalue −0.100 s⁻¹) was therefore kept.
    - It pins the global α⊥ of most stable ALT portfolios at three policies (13/15 portfolios at H02 and H07), which makes the preregistered global-α reversal test A uninformative there.
    - Test A is reported as computed (0/7), together with this defect and the exploratory EM-tracked result: stabilizing EM marginals at 3/7 policies and nested reversals at 1/7.
+
+## 2026-09-13T00:56:13-0500 — execution fix: H10/H11 condition-key collision (system clock; no definition changed)
+
+- **What happened.** H10 completed at 00:52:24 with 7968/7968 tasks and 0 errors. The first `H11_corridors.py` run (about 00:53) printed a gate with TXother passing at 0.754. That value was seen.
+- **Defect.** `H09_corridors.cond_key` built the key from `pid|env|draw` without the draw source:
+  - the old draws (source CDW, draws 0–4 per envelope) and the fresh draws (source FRESH, draws 0–9) shared 20 keys;
+  - H11 therefore merged the two populations into 76 conditions instead of the preregistered 96;
+  - the merged effects and set labels were mixed across old and fresh draws.
+- **How it was found.** Two built-in checks failed:
+  - the new-holdout denominator was 57, not 64;
+  - the k = 1 null (Δγ = 0.5, i.e. ×1.5) disagreed with the H06 single-branch ×1.5 results by up to 0.10 s⁻¹, only at draws with index < 5.
+- **Fix.** The key now includes the draw source. The raw records were correct, because each carries its own task and source, so nothing was recomputed.
+- **After the fix:**
+  - all 96 conditions are present;
+  - the k = 1 check agrees exactly (max abs diff 0.0);
+  - the gate is TXother 0.828 (53/64 new conditions) → PASS. The pass comes from 37/40 fresh draws at P4, against only 16/24 new policies.
+- **What is kept.** The superseded outputs are in `results/hardening/superseded/KEYCOLLISION_*`.
+- **Other tests.** H18 test D uses H09 rows filtered by policy, whose keys never collided, so it is unaffected.

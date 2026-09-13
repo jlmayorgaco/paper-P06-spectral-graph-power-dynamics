@@ -44,7 +44,9 @@ def cond_list(sets=("discovery", "old", "new")):
 
 
 def cond_key(c) -> str:
-    return f"{c['pid']}|{c['env'] or '-'}|{c['draw'] if c['draw'] is not None else -1}"
+    # the draw source is part of the key: old draws (CDW, k < 5) and fresh draws (FRESH, k < 10)
+    # share pid, envelope and draw index (execution fix, deviation log 2026-09-13)
+    return f"{c['pid']}|{c.get('source') or '-'}|{c['env'] or '-'}|{c['draw'] if c['draw'] is not None else -1}"
 
 
 def tasks9():

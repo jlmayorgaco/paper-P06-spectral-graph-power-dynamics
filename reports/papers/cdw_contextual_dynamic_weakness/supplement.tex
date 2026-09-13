@@ -56,7 +56,7 @@ N24 & 0.0579 & 1.456 & 1.164 & 0.961 & -0.084 & stable \\
 
 
 \section{Per-policy census summary}
-Columns rev./A/B/C: number of units (of nine) with a stable-context reversal (any pair) or a nested reversal at levels A/B/C. The full marginal table (2304 marginals per policy, 63 policies) is \path{results/hardening/H03_marginals.parquet}; all nested pairs with their curvature witnesses are in \path{H03_nested_pairs.parquet}.
+Columns rev./A/B/C: number of units (of nine) with a stable-context reversal (any pair) or a nested reversal at levels A/B/C. The full marginal table (2304 marginals per policy, 63 policies) is \path{results/hardening/H03_marginals.parquet}; all nested pairs with their located interaction terms are in \path{H03_nested_pairs.parquet}.
 
 {\tiny
 \begin{longtable}{lllrrrrrrrrr}
@@ -136,12 +136,12 @@ N24 & new & y & 8 & 8 & 7 & 7 & 118 & 78/40 & 0.042 & 0.832 & 0.325 \\
 \end{longtable}}
 
 
-\section{Minimal curvature witnesses}
-For each new-holdout policy and direction, the level-C nested reversal with the smallest chain length (or, if none has $m=1$, the largest magnitude), and the certifying second difference $d_{ij}$ on the canonical chain (Proposition~2 of the paper). s$\to$d needs $d>0$ (a submodularity violation), d$\to$s needs $d<0$ (a supermodularity violation).
+\section{Located interaction terms}
+For each new-holdout policy and direction, the level-C nested reversal with the smallest chain length (or, if none has $m=1$, the largest magnitude), and the second difference $d_{ij}$ located on the canonical chain by the chain identity (Proposition~1 of the paper). The bound holds for every nested pair by construction; the table shows where the interaction sits. An s$\to$d reversal locates $d>0$, a d$\to$s reversal $d<0$.
 
 {\tiny
 \begin{longtable}{llcllrrcrc}
-\caption{Minimal nested EM same-mode reversals and certifying curvature terms (s$^{-1}$).}\label{tab:s-wit}\\
+\caption{Minimal level-C nested reversals and located interaction terms (s$^{-1}$).}\label{tab:s-wit}\\
 \toprule
 policy & dir & $i$ & $S_1$ & $S_2$ & $\Delta(S_1)$ & $\Delta(S_2)$ & $j$ & $d_{ij}$ & EM-clean \\
 \midrule
@@ -185,13 +185,17 @@ N24 & d$\to$s & 30 & 32,38 & 32,34,38 & 0.010 & -0.026 & 34 & -0.037 & y \\
 \section{Statistical methodology}
 Policies and envelope draws are designed points (maximin Latin hypercube; declared bounds), not samples of a physical
 population. Every fraction is a coverage over the tested conditions. Intervals are percentile bootstraps ($10^4$
-resamples, seed 20260932) with clusters: one per policy; for the 40 fresh draws, one per envelope. Three secondary
-inferential summaries form the Holm family F$_{\rm conf}$: T1, an exact one-sided sign test of $p^\star<0.90$ over new
+resamples, seed 20260932) with clusters: one per policy; for the 40 fresh draws, one per envelope. Three inferential
+summaries form the Holm family F$_{\rm conf}$ (called confirmatory in the plan; all three are reported in the paper): T1, an exact one-sided sign test of $p^\star<0.90$ over new
 base-stable policies; T2, a one-sided cluster sign-flip test of the median paired Spearman advantage minus 0.20;
 T3, a two-sided permutation test of Spearman($\mu(\theta,\omega_{\rm ref})$, reversal count). All gates are
-effect-size thresholds frozen in \path{docs/CDW_HARDENING_PREREG_V1.md}. Deviations (execution fixes, the ALT-WECC
-structural-zero and limiter refinements recorded before the cross-model matrix, and the literal application of the
-GOLD-B eligibility rule) are in \path{docs/CDW_HARDENING_DEVIATIONS.md}.
+effect-size thresholds frozen in \path{docs/CDW_HARDENING_PREREG_V1.md}. Deviations are in
+\path{docs/CDW_HARDENING_DEVIATIONS.md}:
+execution fixes, including a condition-key collision in the corridor analysis that was found by its built-in consistency check;
+the ALT-WECC structural-zero and limiter refinements;
+the literal application of the GOLD-B eligibility rule;
+a correction of hand-written clock times;
+the list of post-hoc analyses.
 
 
 \section{All branch-ranking baselines}
@@ -377,8 +381,62 @@ N04 & 14 & 0.86 & 13 & 2 & 9 & 4 & 0 & 0 \\
 \end{longtable}}
 
 
-\section{Equal-budget corridors}
-Pending.
+\section{Equal-budget corridors and size-matched nulls}
+Primary budget $\sum_{e\in C}|\Delta\gamma_e|=0.5$, uniform. Null family A: 500 arbitrary branch groups per size ($k\ge2$), all 46 branches for $k=1$; family B: connected groups (complete for $k\le4$). Robust weak corridors (family-A percentile $\ge0.95$ in $\ge75\%$ of new-holdout conditions): TXother.
+
+{\tiny
+\begin{longtable}{llrrrrrr}
+\caption{Equal-budget corridor cross-validation (H11), primary budget.}\label{tab:s-cor}\\
+\toprule
+set & corridor & size & $n$ & stab. frac. & top-3 frac. & median effect & median rank \\
+\midrule
+\endfirsthead
+\toprule
+set & corridor & size & $n$ & stab. frac. & top-3 frac. & median effect & median rank \\
+\midrule
+\endhead
+discovery & K2\_01 & 3 & 5 & 0.200 & 0.200 & 0.002 & 4.000 \\
+discovery & K3\_01=K4\_03 & 2 & 5 & 0.000 & 0.000 & 0.000 & 7.000 \\
+discovery & K3\_02=K4\_02 & 2 & 5 & 0.200 & 0.000 & 0.002 & 5.000 \\
+discovery & K3\_12=K4\_23 & 1 & 5 & 0.000 & 0.000 & -0.002 & 8.000 \\
+discovery & K4\_13 & 1 & 5 & 0.200 & 0.800 & 0.009 & 2.000 \\
+discovery & TXall & 12 & 5 & 0.200 & 1.000 & 0.008 & 3.000 \\
+discovery & TXcore & 4 & 5 & 0.200 & 0.000 & 0.001 & 6.000 \\
+discovery & TXother & 8 & 5 & 0.800 & 1.000 & 0.011 & 1.000 \\
+fresh\_draws & K2\_01 & 3 & 40 & 0.925 & 0.150 & 0.042 & 4.000 \\
+fresh\_draws & K3\_01=K4\_03 & 2 & 40 & 0.000 & 0.025 & -0.001 & 7.000 \\
+fresh\_draws & K3\_02=K4\_02 & 2 & 40 & 0.925 & 0.075 & 0.034 & 5.000 \\
+fresh\_draws & K3\_12=K4\_23 & 1 & 40 & 0.000 & 0.025 & -0.003 & 8.000 \\
+fresh\_draws & K4\_13 & 1 & 40 & 0.900 & 0.800 & 0.051 & 2.000 \\
+fresh\_draws & TXall & 12 & 40 & 0.925 & 0.950 & 0.049 & 3.000 \\
+fresh\_draws & TXcore & 4 & 40 & 0.900 & 0.000 & 0.024 & 6.000 \\
+fresh\_draws & TXother & 8 & 40 & 0.925 & 0.975 & 0.060 & 1.000 \\
+new & K2\_01 & 3 & 24 & 0.208 & 0.292 & 0.003 & 4.000 \\
+new & K3\_01=K4\_03 & 2 & 24 & 0.000 & 0.000 & 0.000 & 6.000 \\
+new & K3\_02=K4\_02 & 2 & 24 & 0.125 & 0.125 & 0.002 & 5.000 \\
+new & K3\_12=K4\_23 & 1 & 24 & 0.000 & 0.000 & -0.000 & 8.000 \\
+new & K4\_13 & 1 & 24 & 0.417 & 0.792 & 0.006 & 2.000 \\
+new & TXall & 12 & 24 & 0.375 & 0.750 & 0.006 & 3.000 \\
+new & TXcore & 4 & 24 & 0.125 & 0.042 & 0.001 & 6.000 \\
+new & TXother & 8 & 24 & 0.417 & 1.000 & 0.009 & 1.000 \\
+old & K2\_01 & 3 & 12 & 0.083 & 0.250 & 0.003 & 4.500 \\
+old & K3\_01=K4\_03 & 2 & 12 & 0.000 & 0.083 & 0.001 & 6.000 \\
+old & K3\_02=K4\_02 & 2 & 12 & 0.083 & 0.333 & 0.002 & 5.000 \\
+old & K3\_12=K4\_23 & 1 & 12 & 0.000 & 0.083 & -0.000 & 7.000 \\
+old & K4\_13 & 1 & 12 & 0.167 & 0.667 & 0.003 & 2.500 \\
+old & TXall & 12 & 12 & 0.083 & 0.583 & 0.003 & 3.000 \\
+old & TXcore & 4 & 12 & 0.083 & 0.000 & -0.000 & 8.000 \\
+old & TXother & 8 & 12 & 0.250 & 1.000 & 0.005 & 1.500 \\
+old\_draws & K2\_01 & 3 & 20 & 1.000 & 0.100 & 0.042 & 4.000 \\
+old\_draws & K3\_01=K4\_03 & 2 & 20 & 0.000 & 0.000 & -0.001 & 7.000 \\
+old\_draws & K3\_02=K4\_02 & 2 & 20 & 1.000 & 0.000 & 0.034 & 5.000 \\
+old\_draws & K3\_12=K4\_23 & 1 & 20 & 0.000 & 0.000 & -0.004 & 8.000 \\
+old\_draws & K4\_13 & 1 & 20 & 1.000 & 0.900 & 0.052 & 2.000 \\
+old\_draws & TXall & 12 & 20 & 1.000 & 1.000 & 0.050 & 3.000 \\
+old\_draws & TXcore & 4 & 20 & 1.000 & 0.000 & 0.025 & 6.000 \\
+old\_draws & TXother & 8 & 20 & 1.000 & 1.000 & 0.061 & 1.000 \\
+\bottomrule
+\end{longtable}}
 
 
 \section{Modal-mixing decomposition}
@@ -585,17 +643,18 @@ H12 & COMPLETE & 63 & 0 & 63 & 5 \\
 H12b & COMPLETE & 1 & 0 & 1 & 1 \\
 H14 & COMPLETE & 1312 & 0 & 1312 & 648 \\
 H18c & COMPLETE & 56 & 0 & 56 & 5 \\
-H10 & RUNNING & -- & -- & 1965 & -- \\
+H10 & COMPLETE & 7968 & 0 & 7968 & 11948 \\
 H17/H18 ALT-WECC & COMPLETE & 488 & 0 & 488 & -- \\
 \bottomrule
 \end{longtable}}
 
 
 \section{Supplementary figures}
-\begin{figure}[!h]\centering\includegraphics[width=\textwidth]{CDWH_S1_corridors.pdf}\caption{Equal-budget corridor effects by set.}\end{figure}
+\begin{figure}[!h]\centering\includegraphics[width=\textwidth]{CDWH_S1_corridors.pdf}\caption{Equal-budget corridor effects on $V_4$ by condition set (identical cutsets K3\_01=K4\_03, K3\_02=K4\_02, K3\_12=K4\_23 shown once; band: $\pm\tau_{\rm mat}$).}\end{figure}
+\begin{figure}[!h]\centering\includegraphics[width=\textwidth]{CDWH_S2_null.pdf}\caption{Size-matched null percentiles of the frozen corridors (dashed: 0.95).}\end{figure}
 \begin{figure}[!h]\centering\includegraphics[width=\textwidth]{CDWH_S3_mixing.pdf}\caption{Two-factor modal-mixing decomposition and fixed-frequency correlation.}\end{figure}
 \begin{figure}[!h]\centering\includegraphics[width=\textwidth]{CDWH_S4_crossmodel.pdf}\caption{Cross-model holdout (ALT-WECC).}\end{figure}
 \begin{figure}[!h]\centering\includegraphics[width=\textwidth]{CDWH_S5_uncertainty.pdf}\caption{Fresh envelope draws: reversal coverage and branch ranking.}\end{figure}
-\begin{figure}[!h]\centering\includegraphics[width=\textwidth]{CDWH_S6_stratification.pdf}\caption{FULL / EM / same-mode stratification.}\end{figure}
+\begin{figure}[!h]\centering\includegraphics[width=\textwidth]{CDWH_S6_stratification.pdf}\caption{FULL / EM / tracked-mode stratification.}\end{figure}
 \begin{figure}[!h]\centering\includegraphics[width=\textwidth]{CDWH_S7_singularity.pdf}\caption{Fractional-replacement sweeps: $\aperp$ and the minimum singular value of $g_z$ against the replaced fraction.}\end{figure}
 \end{document}

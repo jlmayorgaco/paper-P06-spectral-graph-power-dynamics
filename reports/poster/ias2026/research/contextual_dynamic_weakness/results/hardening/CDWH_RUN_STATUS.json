@@ -163,7 +163,7 @@
    "n_errors": 0
   },
   "H10": {
-   "state": "RUNNING",
+   "state": "COMPLETE",
    "started": "2026-09-12T21:33:16",
    "resources": {
     "cpu": 22,
@@ -171,7 +171,14 @@
     "total_gb": 31.54,
     "workers": 18
    },
-   "updated": "2026-09-12T21:33:16"
+   "updated": "2026-09-13T00:52:24",
+   "wall_s": 11948.4,
+   "tasks": {
+    "n_tasks": 7968,
+    "new_ok": 7968,
+    "new_err": 0
+   },
+   "n_errors": 0
   }
  },
  "environment": {
