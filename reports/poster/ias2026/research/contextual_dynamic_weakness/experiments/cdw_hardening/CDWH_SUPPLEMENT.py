@@ -146,10 +146,92 @@ def sec_cross():
     txt = (r"\section{Cross-model holdout detail}" + "\nALT-WECC: TX3 WECC library GFL chain (PLL2, REGCP1, REECB1, REPCA1, BusFreq; frozen "
            "parameter set TX3-GFL-0.1, sha256 \\texttt{f07a6a40\\ldots}) in ANDES 2.0.0 with the TX4 machine transcription. Qualification: "
            f"all-SG base $\\aperp$ reproduced within {q1:.1e}~s$^{{-1}}$ at all eight policies; descriptor vs ANDES EIG spectra "
-           f"{q.get('Q3_P4', {}).get('eig_cross_rel_err', float('nan')):.1e}; 488/488 cases initialized. Structural treatment: four "
-           "decoupled states per converter (REPCA1 s2 integrator, REECB1 Q-PI and V-PI integrators unused under QFLAG=0) are removed "
-           "exactly before the structural pair (deviation log).\n\n")
-    return txt + longtable(df, "llrrccrrrllr", "Per-policy cross-model results.", "tab:s-cross", r"\tiny")
+           f"{q.get('Q3_P4', {}).get('eig_cross_rel_err', float('nan')):.1e}; 488/488 cases initialized. Structural treatment: three "
+           "decoupled states per converter (REPCA1 s2 integrator with $K_p=K_i=0$; REECB1 Q-PI and V-PI integrators, unused under QFLAG=0; "
+           "the V-PI state is isolated with diagonal $1.2\\times10^{-6}$~s$^{-1}$) are removed exactly before the structural pair "
+           "(deviation log, refinements 1 and 1b). The isolated anti-windup tracking state of the disabled REPCA1 plant active-power "
+           "integrator (s5\\_xi, $-0.100$~s$^{-1}$) exceeds the $10^{-3}$ removal bound and is kept; it sets the global $\\aperp$ of most "
+           "stable ALT portfolios at H02, H07 and N04, which makes the preregistered global-$\\aperp$ reversal test uninformative. "
+           "Exploratory EM-tracked analysis (critical EM mode of $S$ followed by MAC into $S\\cup\\{i\\}$) and a post-hoc QFLAG=1 "
+           "variant (library voltage control on, gains unchanged, outside the validated freeze) are in Table~\\ref{tab:s-altem}.\n\n")
+    rv = j("H31_revision.json")
+    em, q1f = rv.get("alt_em_tracked", {}), rv.get("alt_qflag1", {}).get("em_tracked", {})
+    rows = []
+    for p, v in em.items():
+        w = q1f.get(p, {})
+        rows.append({"policy": p.replace("HARDENING_H", "N"), "stable": v["n_stable_portfolios"], "pinned": f(v["frac_stable_alpha_pinned_at_minus_0.1"], 2),
+                     "EM marg.": v["n_em_tracked_marginals"], "stab.": v["n_stabilizing"], "destab.": v["n_destabilizing"], "nested rev.": v["n_nested_reversals"],
+                     "Q1 stab.": w.get("n_stabilizing", "--"), "Q1 rev.": w.get("n_nested_reversals", "--")})
+    t2 = longtable(pd.DataFrame(rows), "lrrrrrrrr", "ALT-WECC on the $V_4$ lattice, exploratory EM-tracked analysis (post hoc). stable: stable portfolios; "
+                   "pinned: fraction of them whose $\\aperp$ is the isolated $-0.100$~s$^{-1}$ pole; EM marg.: EM-tracked marginals; Q1: the QFLAG=1 variant.",
+                   "tab:s-altem")
+    return txt + longtable(df, "llrrccrrrllr", "Per-policy cross-model results.", "tab:s-cross", r"\tiny") + "\n" + t2
+
+
+def sec_revision():
+    rv, ex = j("H31_revision.json"), j("H31_explore.json")
+    if not rv:
+        return ""
+    lc, ld = rv["levelC_base_stable"], rv["levelD_base_stable"]
+    out = [r"\section{Analyses requested by internal review (post hoc)}",
+           "These analyses were added after the preregistered results had been computed and read (deviation log). None changes a preregistered verdict.\n",
+           r"\subsection{Reversal magnitudes and levels}",
+           f"Base-stable new-holdout policies. Level C: {lc['pairs']} nested pairs (s$\\to$d {lc['s2d']}, d$\\to$s {lc['d2s']}), "
+           f"{lc['distinct_policy_unit']} distinct policy--unit combinations, {lc['em_clean']:.0%} with every critical mode in the EM band, "
+           f"{lc['m1_pairs']} one-step pairs; largest magnitude {lc['max_mag']:.3f}~s$^{{-1}}$. Level D: {ld['pairs']} pairs (s$\\to$d {ld['s2d']}, "
+           f"d$\\to$s {ld['d2s']}) in {ld['policies']} policies, both directions in {ld['policies_both_dirs']}; magnitude quartiles "
+           f"{', '.join(f'{x:.4f}' for x in ld['mag_quartiles'])}~s$^{{-1}}$. Pairs whose rightmost eigenvalue lies within $\\tau_{{\\rm mat}}$ of the next at one "
+           f"of the four portfolios: {rv['gap2_sensitivity']['frac_pairs_gap_below_tau']:.0%}; coverage without them: level C "
+           f"{rv['gap2_sensitivity']['coverage_C_gap_ge_tau']}, level D {rv['gap2_sensitivity']['coverage_D_gap_ge_tau']}. Continuation of the tracked "
+           f"mode under fractional replacement ends on the MAC-matched mode in {ex.get('continuation_match_frac', float('nan')):.0%} of "
+           f"{ex.get('continuation_n', 0)} endpoint marginals.\n"]
+    tc = pd.read_csv(R / "H31_tau_curve.csv")
+    out.append(longtable(tc.astype({c: int for c in ["n", "C", "C_both", "D", "D_both"]}).map(lambda v: f(v, 4) if isinstance(v, float) else v),
+                         "rlrrrrr", "Number of base-stable policies with a nested reversal against the materiality threshold.", "tab:s-tau"))
+    out.append(r"\subsection{Singularity-type events behind fixed-ranking regret}")
+    fm = rv["fast_modes_new"]
+    out.append(f"On the new holdout, {fm['n_fast']} of {fm['n_portfolios']} portfolios have $\\aperp\\ge1$~s$^{{-1}}$; {fm['frac_fast_real']:.1%} of these "
+               f"critical eigenvalues are real, with 5/50/95\\,\\% quantiles {', '.join(f'{x:.0f}' for x in fm['fast_alpha_quantiles'])}~s$^{{-1}}$. "
+               "Converted-unit counts: " + ", ".join(f"{k}: {v}" for k, v in fm["fast_size_counts"].items()) + ". Mean participation of the leading "
+               "state groups: " + ", ".join(f"{k.replace('_', chr(92) + '_')} {v:.2f}" for k, v in list(ex["fast_participation_mean_top"].items())[:5]) + ".\n")
+    sw = pd.DataFrame(ex["sweeps_recomputed"])
+    sw["pid"] = sw.pid.str.replace("HARDENING_H", "N")
+    sw = sw[["pid", "i", "rho_onset_alpha_ge_1", "alpha_at_onset", "rho_at_min_sigma_gz", "min_sigma_gz"]]
+    sw.columns = ["policy", "unit", r"$\rho$ at onset", r"$\aperp$ at onset", r"$\rho$ at min $\sigma(g_z)$", r"min $\sigma(g_z)$"]
+    sw = sw.map(lambda v: (f"{v:.0f}" if abs(v) > 100 else f(v, 4)) if isinstance(v, float) else v)
+    out.append(longtable(sw, "lrrrrr", "Fractional-replacement sweeps (replaced fraction $\\rho$ of the added unit, step 0.025): onset of "
+                         "$\\aperp\\ge1$~s$^{-1}$ and the minimum singular value of the network Jacobian $g_z$ along the sweep.", "tab:s-sweep"))
+    sc, mr, ss = rv["screened_ranking_median"], rv["min_regret_ranking_median"], rv["static_sequencing_median_regret"]
+    rows = []
+    for sp in ("discovery", "old", "new"):
+        rows.append({"split": sp, "no stable option": f(sc[sp]["frac_no_stable_option"], 3), "plain (feasible)": f(sc[sp]["regret_plain_on_feasible"], 3),
+                     "screened (feasible)": f(sc[sp]["regret_screened_on_feasible"], 3), "regret-opt. FULL": f(mr[f"{sp}|FULL"], 3),
+                     "regret-opt. EM": f(mr[f"{sp}|EM"], 3), "gSCR FULL": f(ss[f"{sp}|FULL|gscr"], 3), "min-SCR FULL": f(ss[f"{sp}|FULL|minscr"], 3)})
+    out.append(longtable(pd.DataFrame(rows), "lrrrrrrr", "Median material-regret rates of alternative fixed and static sequencing rules.", "tab:s-seq", r"\tiny"))
+    out.append(r"\subsection{Branch ranking against a learned fixed list and large actions}")
+    lo = rv["loco_fixed_branch_list"]
+    rows = [{"set": k.replace("_", " "), r"$\rho$ list": f(v["rho_fixed_list"]), r"$\rho$ $D^{\rm tot}$": f(v["rho_Dtotal"]), r"$\rho$ $D^{\rm fro}$": f(v["rho_Dfrozen"]),
+             "top-5 list": f(v["top5_fixed_list"], 2), "top-5 $D^{\\rm tot}$": f(v["top5_Dtotal"], 2), "$D^{\\rm tot}$ beats list": f(v["frac_Dtotal_beats_fixed_list"], 2)}
+            for k, v in lo.items()]
+    out.append(longtable(pd.DataFrame(rows), "lrrrrrr", "Leave-one-cluster-out fixed branch list (mean finite-effect rank over the other clusters), medians.", "tab:s-loco"))
+    dt = rv["dtot_vs_topology_median"]
+    tm = ex.get("timing", {})
+    out.append(f"$D^{{\\rm tot}}$ against finite branch actions at six new-holdout policies: doubling, median Spearman {dt['dbl']['rho_full']:.3f} "
+               f"(top-5 {dt['dbl']['top5']:.2f}); outage, {dt['out']['rho_full']:.3f} (EM-tracked {dt['out']['rho_em']:.3f}, top-5 {dt['out']['top5']:.2f}). "
+               f"Timing of this implementation: {tm.get('sec_per_branch_total_derivative_fd_impl', float('nan')):.2f}~s per branch for the total derivative "
+               f"(finite-difference Jacobians) and {tm.get('sec_per_branch_finite_resolve_eig', float('nan')):.2f}~s for a finite re-solve with eigenanalysis.\n")
+    tw = rv["topology_within_type"]
+    rows = [{"action": k.split("|")[0], "score": k.split("|")[1].replace("_", r"\_"), r"median $\rho$": f(v["median_rho"]), r"frac. $|\rho|\ge0.6$": f(v["frac_abs_ge_0.6"], 2)}
+            for k, v in tw.items()]
+    out.append(r"\subsection{Topology provenance and within-type static scores}")
+    cs = rv["topology_creation_by_split"]
+    out.append(f"EM-incompatibility creations by policy set: discovery {cs['discovery']}, old holdout {cs['old']}, new holdout {cs['new']}; all are outages.\n")
+    out.append(longtable(pd.DataFrame(rows), "llrr", "Static topology scores against the tracked EM effect, within action type (16 policies).", "tab:s-topo"))
+    mv = rv["mixing_variance_terms"]
+    out.append(r"\subsection{Mixing variance terms}" + f"\nWith $\\Delta\\mu=C+F$ (controller and frequency terms), "
+               f"${{\\rm var}}(C)/{{\\rm var}}(\\Delta\\mu)={mv['var_C_over_var_total']:.2f}$, ${{\\rm var}}(F)/{{\\rm var}}(\\Delta\\mu)={mv['var_F_over_var_total']:.2f}$ "
+               f"and $2\\,{{\\rm cov}}(C,F)/{{\\rm var}}(\\Delta\\mu)={mv['2cov_over_var_total']:.2f}$.\n")
+    return "\n".join(out)
 
 
 def sec_mixing():
@@ -197,7 +279,8 @@ def sec_repro():
 def sec_figs():
     figs = [("CDWH_S1_corridors", "Equal-budget corridor effects by set."), ("CDWH_S2_null", "Size-matched null percentiles of the frozen corridors."),
             ("CDWH_S3_mixing", "Two-factor modal-mixing decomposition and fixed-frequency correlation."), ("CDWH_S4_crossmodel", "Cross-model holdout (ALT-WECC)."),
-            ("CDWH_S5_uncertainty", "Fresh envelope draws: reversal coverage and branch ranking."), ("CDWH_S6_stratification", "FULL / EM / same-mode stratification.")]
+            ("CDWH_S5_uncertainty", "Fresh envelope draws: reversal coverage and branch ranking."), ("CDWH_S6_stratification", "FULL / EM / same-mode stratification."),
+            ("CDWH_S7_singularity", "Fractional-replacement sweeps: $\\aperp$ and the minimum singular value of $g_z$ against the replaced fraction.")]
     out = [r"\section{Supplementary figures}"]
     for name, cap in figs:
         if (HI.FIGS / f"{name}.pdf").exists():
@@ -206,7 +289,7 @@ def sec_figs():
 
 
 def main():
-    body = "\n\n".join([sec_policies(), sec_census(), sec_witness(), sec_stats(), sec_baselines(), sec_cross(), sec_corridors(), sec_mixing(), sec_repro(), sec_figs()])
+    body = "\n\n".join([sec_policies(), sec_census(), sec_witness(), sec_stats(), sec_baselines(), sec_cross(), sec_corridors(), sec_mixing(), sec_revision(), sec_repro(), sec_figs()])
     tex = r"""\documentclass[10pt,a4paper]{article}
 \usepackage[margin=2cm]{geometry}
 \usepackage[T1]{fontenc}

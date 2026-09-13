@@ -34,7 +34,7 @@ def label_of(mask: int) -> str:
     return C.label(tuple(V9[b] for b in range(9) if mask >> b & 1))
 
 
-def load_census(store: str, device="gfl") -> dict:
+def load_census(store: str, device="gfl", pids=None, modes=True) -> dict:
     """{pid: {'alpha','status','hz','modes'}} arrays of length 512 (bitmask index)."""
 
     out = {}
@@ -42,7 +42,7 @@ def load_census(store: str, device="gfl") -> dict:
         if not rec.get("ok"):
             raise RuntimeError(f"failed task in {store}: {rec.get('error')}")
         t = rec["task"]
-        if t.get("device", "gfl") != device:
+        if t.get("device", "gfl") != device or (pids is not None and t["pid"] not in pids):
             continue
         d = out.setdefault(t["pid"], {"alpha": np.full(512, np.nan), "status": np.array(["MISSING"] * 512, dtype=object),
                                       "hz": np.full(512, np.nan), "modes": [None] * 512})
@@ -51,7 +51,7 @@ def load_census(store: str, device="gfl") -> dict:
             d["alpha"][m] = r.get("alpha", np.nan) if r.get("alpha") is not None else np.nan
             d["status"][m] = r.get("status")
             d["hz"][m] = r.get("lam_hz", np.nan) if r.get("lam_hz") is not None else np.nan
-            d["modes"][m] = [E1.compact(x) for x in r.get("modes", [])]
+            d["modes"][m] = [E1.compact(x) for x in r.get("modes", [])] if modes else None
     return out
 
 

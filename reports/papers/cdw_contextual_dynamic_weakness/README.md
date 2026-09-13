@@ -33,6 +33,7 @@ Run with `.venv/tx3-analysis`:
 
 ```
 python CDWH_NUMBERS.py; python CDWH_TABLES.py; python CDWH_FIGURES.py; python CDWH_SUPPLEMENT.py
+python CDWH_BIB.py   # optional: refetch Crossref metadata (sends DOIs only)
 ```
 
 ## Provenance
@@ -42,4 +43,9 @@ python CDWH_NUMBERS.py; python CDWH_TABLES.py; python CDWH_FIGURES.py; python CD
 - **Claims:** `results/CDW_HARDENED_CLAIM_MATRIX.csv`.
 - **Novelty wording:** `docs/CDW_NOVELTY_BOUNDARY.md`.
 
-No number in the text is typed by hand.
+- **Review:** `docs/CDW_REVIEWER1_FINAL.md`, `docs/CDW_REVIEWER2_FINAL.md`, and the response in
+  `docs/CDW_AUTHOR_RESPONSE_TO_INTERNAL_REVIEW.md`.
+
+Every result number in the text is a macro generated from the result files. Model
+constants, preregistered thresholds and the P4 definition are written directly.
+Analyses added after the preregistered results are labelled post hoc.

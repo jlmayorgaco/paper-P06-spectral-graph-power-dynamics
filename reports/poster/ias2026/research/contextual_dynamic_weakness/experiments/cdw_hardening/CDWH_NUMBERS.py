@@ -139,6 +139,71 @@ def build():
         if isinstance(v, (float, int, str)) and not isinstance(v, bool):
             N["alt" + re.sub("[^A-Za-z]", "", k.title())] = f2(v) if isinstance(v, float) else str(v)
     N["layersPos"] = str(h19.get("n_positive"))
+    # ---- H31 revision analyses (post hoc) ----
+    rv, ex = j("H31_revision.json"), j("H31_explore.json")
+    if rv:
+        lc, ld = rv["levelC_base_stable"], rv["levelD_base_stable"]
+        N["revCpairs"], N["revCsd"], N["revCds"] = str(lc["pairs"]), str(lc["s2d"]), str(lc["d2s"])
+        N["revCemClean"], N["revCdistinct"], N["revCmax"] = pct(lc["em_clean"]), str(lc["distinct_policy_unit"]), f2(lc["max_mag"], 3)
+        N["revDpairs"], N["revDsd"], N["revDds"] = str(ld["pairs"]), str(ld["s2d"]), str(ld["d2s"])
+        N["revDboth"], N["revDmed"] = str(ld["policies_both_dirs"]), f2(ld["mag_quartiles"][1], 3)
+        zq = rv["levelC_damping_ratio_quartiles_pct"]
+        N["revZetaQone"], N["revZetaMed"], N["revZetaQthree"] = (f2(v, 2) for v in zq)
+        dcn = rv["direction_counts_new"]
+        for lv in "CD":
+            N[f"dir{lv}sd"], N[f"dir{lv}ds"], N[f"dir{lv}both"] = (str(dcn[lv][k]) for k in ("s2d_policies", "d2s_policies", "both_policies"))
+        tc = pd.DataFrame(rv["tau_curve"])
+        tn = tc[tc.split == "new"].set_index("tau")
+        N["tauCtwo"], N["tauDtwo"] = str(int(tn.loc[0.02, "C"])), str(int(tn.loc[0.02, "D"]))
+        N["tauCthree"], N["tauDthree"] = str(int(tn.loc[0.03, "C"])), str(int(tn.loc[0.03, "D"]))
+        g2 = rv["gap2_sensitivity"]
+        N["gapBelowMag"], N["gapCov"] = pct(g2["frac_pairs_gap_below_mag"]), g2["coverage_C_gap_ge_tau"]
+        sq = rv["em_clean_squares"]
+        N["emSqNew"], N["emSqOld"] = f"{sq['new']['both_signs']}/{sq['new']['policies']}", f"{sq['old']['both_signs']}/{sq['old']['policies']}"
+        mrr = rv["min_regret_ranking_median"]
+        N["minRegFull"], N["minRegEM"] = f2(mrr["new|FULL"]), f2(mrr["new|EM"])
+        sr = rv["screened_ranking_median"]["new"]
+        N["noStable"], N["regPlainFeas"], N["regScreened"] = pct(sr["frac_no_stable_option"]), f2(sr["regret_plain_on_feasible"]), f2(sr["regret_screened_on_feasible"], 3)
+        ssq = rv["static_sequencing_median_regret"]
+        N["gscrSeqFull"], N["gscrSeqEM"] = f2(ssq["new|FULL|gscr"]), f2(ssq["new|EM|gscr"])
+        lo = rv["loco_fixed_branch_list"]
+        N["locoAll"], N["locoNew"], N["locoDraws"] = f2(lo["all"]["rho_fixed_list"], 3), f2(lo["new"]["rho_fixed_list"], 3), f2(lo["fresh_draws"]["rho_fixed_list"], 3)
+        N["locoTopfive"] = f2(lo["all"]["top5_fixed_list"])
+        dt = rv["dtot_vs_topology_median"]
+        N["dtotDbl"], N["dtotOut"], N["dtotOutTop"] = f2(dt["dbl"]["rho_full"], 3), f2(dt["out"]["rho_full"], 3), f2(dt["out"]["top5"])
+        od = rv["optimal_order_distance"]
+        N["orderKendall"] = f2(od["median_pairwise_kendall"])
+        mv = rv["mixing_variance_terms"]
+        N["mixVarCtrl"], N["mixVarFreq"], N["mixCov"] = pct(mv["var_C_over_var_total"]), pct(mv["var_F_over_var_total"]), pct(mv["2cov_over_var_total"])
+        tw = rv["topology_within_type"]
+        N["withinDblFiedler"], N["withinOutLosses"] = f2(tw["dbl|fiedler"]["median_rho"]), f2(tw["out|losses"]["median_rho"])
+        fm = rv["fast_modes_new"]
+        N["fastQlo"], N["fastQmed"], N["fastQhi"] = (f"{v:.0f}" for v in fm["fast_alpha_quantiles"])
+        N["fastRealShare"] = pct(fm["frac_fast_real"])
+        cr = rv["topology_creation_by_split"]
+        N["creDisc"], N["creOld"], N["creNew"] = str(cr.get("discovery", 0)), str(cr.get("old", 0)), str(cr.get("new", 0))
+    if ex:
+        pt = ex["fast_participation_mean_top"]
+        N["partTheta"], N["partIq"] = f2(pt.get("gfl:theta")), f2(pt.get("gfl:i_q"))
+        sw = ex["sweeps_recomputed"]
+        N["sweepN"] = str(len(sw))
+        N["sweepSigLo"], N["sweepSigHi"] = f"{min(s['min_sigma_gz'] for s in sw):.3f}", f"{max(s['min_sigma_gz'] for s in sw):.3f}"
+        N["sweepJumpLo"], N["sweepJumpHi"] = f"{min(s['alpha_at_onset'] for s in sw):.0f}", f"{max(s['alpha_at_onset'] for s in sw):.0f}"
+        N["contN"], N["contMatch"] = str(ex["continuation_n"]), pct(ex["continuation_match_frac"])
+        N["timeDer"], N["timeFin"] = f2(ex["timing"]["sec_per_branch_total_derivative_fd_impl"]), f2(ex["timing"]["sec_per_branch_finite_resolve_eig"])
+        e0 = rv["levelD_examples"][0]
+        N["exDone"], N["exDtwo"] = f"{e0['d1']:+.3f}".replace("-", "$-$"), f"{abs(e0['d2']):.3f}"
+        N["exDoneAbs"] = f"{abs(e0['d1']):.3f}"
+        N["exHzOne"], N["exHzTwo"], N["exMac"] = f2(e0["hz1"]), f2(e0["hz2"]), f2(e0["mac12"])
+        em = rv["alt_em_tracked"]
+        N["altEmStab"] = str(sum(v["n_stabilizing"] > 0 for v in em.values()))
+        N["altEmRev"] = str(sum(v["n_nested_reversals"] > 0 for v in em.values()))
+        N["altEmN"] = str(len(em))
+        N["altEmPol"] = ", ".join(p.replace("HARDENING_H", "N") for p, v in em.items() if v["n_nested_reversals"] > 0)
+        lcsv = pd.read_csv(R / "H31_loco_branch_list.csv")
+        mg = (lcsv.rho_Dtotal - lcsv.rho_fixed_list).groupby(lcsv["set"]).median()
+        N["locoMarginDraws"], N["locoMarginNew"] = f2(mg.get("fresh_draws")), f2(mg.get("new"))
+        N["dtotTopoNpol"] = str(pd.read_csv(R / "H31_dtot_vs_topology.csv").pid.nunique())
     PAPER.mkdir(parents=True, exist_ok=True)
     lines = ["% generated by experiments/cdw_hardening/CDWH_NUMBERS.py - do not edit"]
     for k, v in sorted(N.items()):

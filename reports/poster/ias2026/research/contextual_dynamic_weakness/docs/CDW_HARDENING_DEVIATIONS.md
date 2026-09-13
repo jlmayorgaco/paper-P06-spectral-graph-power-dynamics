@@ -132,3 +132,56 @@ No model or parameter is changed.
   derivative against the small-step finite difference) passes for 100 % of the 4048
   link pairs, so a residual of order 1e-7 does not measurably affect the derivatives.
 - **Holm family.** F_conf uses the T2 p-value of the literal (8-condition) set.
+
+## 2026-09-12T23:08:13-0500 — CORRECTION of earlier timestamps, plus post-hoc disclosures (system clock; anchored to commits)
+
+### Earlier timestamps
+
+The clock times in the five earlier entries were written by hand and **not** taken from the system clock. Internal reviewer 2 found that they contradict the git and file times, and it is correct. The times reconstructed from evidence are:
+
+| entry as labelled | true time | evidence |
+|---|---|---|
+| "21:40" execution fix (relaunch, import order, bound tolerance) | about 21:12–21:20 | H03 run output; the entry is in commit `4de412d2` (21:32:13) |
+| "21:50" H17 refinements 1 and 2 | before 21:32:13 | the entry is in commit `4de412d2`, and the ALT matrix case files are dated 21:36:01–21:46:09 |
+| "22:05" H17 refinement 1b | about 21:33–21:35 | every ALT matrix case file (21:36–21:46) already contains the `isolated_eigs` field that 1b introduced, so 1b was implemented before the matrix ran; the log text was committed in `eb57d907` (22:06:09) |
+| "22:10" H06 worker-pool crash | about 21:36 | `logs/hardening/master_run_H06b.out` starts at 21:36:53 |
+| "22:20" H6 literal eligibility | about 22:01 | written after the H07 gate had been computed |
+
+**What the evidence supports.** The ordering claims about the ALT matrix ("recorded before any H18 matrix case was run") are supported by the commit time of `4de412d2` (refinements 1 and 2) and by the `isolated_eigs` field (refinement 1b). The clock times in those entries are wrong.
+
+### H6 eligibility ordering
+
+The literal R0 <= 1e-8 filter was applied **after** the 64-condition GOLD-B result had been computed and read.
+- The H07 code committed before the results computed the gate on all 64 conditions.
+- The change goes in the conservative direction (a smaller primary set).
+- Both sets pass.
+
+### Post-hoc analyses (exploratory, reviewer-requested; no preregistered verdict changes)
+
+- **`regret_anatomy_new`** (H04). The share of material regrets whose ranked choice leaves the EM band. It was added after results commit `eb57d907`.
+- **`H31_revision.py` / `H31_revision2.py`.** These cover:
+  - the level-D statistics;
+  - the tau curve;
+  - the regret-optimal and stability-screened rankings;
+  - portfolio-conditioned gSCR/SCR sequencing screens;
+  - EM-clean one-step squares;
+  - the leave-one-cluster-out fixed branch list;
+  - gap2 sensitivity;
+  - direction counts;
+  - the mixing variance terms;
+  - within-type topology correlations;
+  - the distance between optimal orders;
+  - D_tot against doublings and outages;
+  - the ALT EM-tracked reversals.
+- **`H31_explore.py`.** Participation factors of the fast real modes; fractional-replacement sweeps; eigenvalue continuation of tracked modes; timing.
+- **ALT-WECC variant with REECB1 QFLAG = 1.** Library voltage control switched on, every gain unchanged. It lies outside the TX3 validated freeze; results are in `results/hardening/alt/cases_qflag1`.
+
+### Implementation defect found by reviewers (disclosed; the preregistered verdicts are reported as computed)
+
+1. **H18 "tested policies" rule.** `H18_compare.py` applied the rule (ALT base STABLE) only to tests A and B, although the prereg defines it for all tests.
+   - Recomputed on the 7 tested policies: C = 0.06 (MODEL-SPECIFIC), C2 = 0.203 (TRANSFERS; 3 of 7 below 0.20), D = 0.71 (PARTIAL, not TRANSFERS), E = 1.00 on 29 pairs.
+   - The corrected values are the ones reported in the paper.
+2. **H17 refinement 1b and the pinned pole.** Refinement 1b removed isolated states only when abs(a_kk) <= 1e-3.
+   - The isolated anti-windup tracking state of REPCA1's disabled plant active-power integrator (s5_xi, eigenvalue −0.100 s⁻¹) was therefore kept.
+   - It pins the global α⊥ of most stable ALT portfolios at three policies (13/15 portfolios at H02 and H07), which makes the preregistered global-α reversal test A uninformative there.
+   - Test A is reported as computed (0/7), together with this defect and the exploratory EM-tracked result: stabilizing EM marginals at 3/7 policies and nested reversals at 1/7.

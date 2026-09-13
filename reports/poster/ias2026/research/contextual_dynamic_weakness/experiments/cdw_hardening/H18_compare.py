@@ -202,6 +202,9 @@ def run():
     gate["B_frac"] = fb
     gate["B_verdict"] = ("TRANSFERS" if fb >= 0.5 else ("PARTIAL" if fb > 0 else "MODEL-SPECIFIC")) if gate["B_meaningful"] else "NOT_MEANINGFUL"
     gate["B_EM_frac"] = float(tested.alt_rev_C.mean()) if len(tested) else np.nan
+    # prereg H18: "tested policies" (ALT base STABLE) applies to every test (reviewer-found defect, fixed)
+    df_all, df = df, tested
+    gate["n_policies_evaluated"] = int(len(df_all))
     mk = float(df.C_kendall.median())
     gate["C_median_kendall"] = mk
     gate["C_median_spearman"] = float(df.C_spearman.median())
@@ -211,6 +214,7 @@ def run():
     gate["C2_median_rho_altFD"] = float(df.C2_rho_altFD.median())
     gate["C2_median_rho_S1"] = float(df.C2_rho_S1.median())
     gate["C2_verdict"] = "TRANSFERS" if md >= 0.2 else ("PARTIAL" if md >= 0 else "MODEL-SPECIFIC")
+    gate["C2_n_below_0.20"] = int((df.C2_diff < 0.20).sum())
     if "D_top_agree" in df:
         fd_ = float(df.D_top_agree.mean())
         gate["D_frac_top1_agree"] = fd_

@@ -331,7 +331,7 @@ Dtotal & 0.994 & 0.953 & 0.978 & 1.000 & 1.000 & 1.000 & 0.977 \\
 
 
 \section{Cross-model holdout detail}
-ALT-WECC: TX3 WECC library GFL chain (PLL2, REGCP1, REECB1, REPCA1, BusFreq; frozen parameter set TX3-GFL-0.1, sha256 \texttt{f07a6a40\ldots}) in ANDES 2.0.0 with the TX4 machine transcription. Qualification: all-SG base $\aperp$ reproduced within 1.6e-07~s$^{-1}$ at all eight policies; descriptor vs ANDES EIG spectra 3.5e-14; 488/488 cases initialized. Structural treatment: four decoupled states per converter (REPCA1 s2 integrator, REECB1 Q-PI and V-PI integrators unused under QFLAG=0) are removed exactly before the structural pair (deviation log).
+ALT-WECC: TX3 WECC library GFL chain (PLL2, REGCP1, REECB1, REPCA1, BusFreq; frozen parameter set TX3-GFL-0.1, sha256 \texttt{f07a6a40\ldots}) in ANDES 2.0.0 with the TX4 machine transcription. Qualification: all-SG base $\aperp$ reproduced within 1.6e-07~s$^{-1}$ at all eight policies; descriptor vs ANDES EIG spectra 3.5e-14; 488/488 cases initialized. Structural treatment: three decoupled states per converter (REPCA1 s2 integrator with $K_p=K_i=0$; REECB1 Q-PI and V-PI integrators, unused under QFLAG=0; the V-PI state is isolated with diagonal $1.2\times10^{-6}$~s$^{-1}$) are removed exactly before the structural pair (deviation log, refinements 1 and 1b). The isolated anti-windup tracking state of the disabled REPCA1 plant active-power integrator (s5\_xi, $-0.100$~s$^{-1}$) exceeds the $10^{-3}$ removal bound and is kept; it sets the global $\aperp$ of most stable ALT portfolios at H02, H07 and N04, which makes the preregistered global-$\aperp$ reversal test uninformative. Exploratory EM-tracked analysis (critical EM mode of $S$ followed by MAC into $S\cup\{i\}$) and a post-hoc QFLAG=1 variant (library voltage control on, gains unchanged, outside the validated freeze) are in Table~\ref{tab:s-altem}.
 
 {\tiny
 \begin{longtable}{llrrccrrrllr}
@@ -352,6 +352,27 @@ N01 & STABLE & 0.565 & 0.417 & False & True & -0.121 & 0.993 & 0.797 & K2\_01 & 
 N02 & UNSTABLE & 0.440 & 0.815 & False & False & -0.061 & 0.937 & 0.371 & TXother & TXother & 0.667 \\
 N03 & STABLE & 0.594 & 0.436 & False & True & -0.030 & 0.993 & 0.783 & TXother & TXother & 1.000 \\
 N04 & STABLE & 0.371 & 0.419 & False & True & 0.061 & 0.993 & 0.797 & TXother & TXother & 1.000 \\
+\bottomrule
+\end{longtable}}
+
+{\scriptsize
+\begin{longtable}{lrrrrrrrr}
+\caption{ALT-WECC on the $V_4$ lattice, exploratory EM-tracked analysis (post hoc). stable: stable portfolios; pinned: fraction of them whose $\aperp$ is the isolated $-0.100$~s$^{-1}$ pole; EM marg.: EM-tracked marginals; Q1: the QFLAG=1 variant.}\label{tab:s-altem}\\
+\toprule
+policy & stable & pinned & EM marg. & stab. & destab. & nested rev. & Q1 stab. & Q1 rev. \\
+\midrule
+\endfirsthead
+\toprule
+policy & stable & pinned & EM marg. & stab. & destab. & nested rev. & Q1 stab. & Q1 rev. \\
+\midrule
+\endhead
+H02 & 15 & 0.87 & 11 & 5 & 1 & 0 & 0 & 0 \\
+H04 & 7 & 0.14 & 20 & 0 & 20 & 0 & 0 & 0 \\
+H05 & 9 & 0.33 & 24 & 0 & 24 & 0 & 0 & 0 \\
+H07 & 15 & 0.87 & 14 & 7 & 1 & 0 & 0 & 0 \\
+N01 & 8 & 0.12 & 22 & 0 & 22 & 0 & 0 & 0 \\
+N03 & 8 & 0.25 & 22 & 0 & 22 & 0 & 0 & 0 \\
+N04 & 14 & 0.86 & 13 & 2 & 9 & 4 & 0 & 0 \\
 \bottomrule
 \end{longtable}}
 
@@ -414,6 +435,133 @@ old / mu11 / regret & 0.520 & 0.029 & None & 18 \\
 \end{longtable}}
 
 
+\section{Analyses requested by internal review (post hoc)}
+These analyses were added after the preregistered results had been computed and read (deviation log). None changes a preregistered verdict.
+
+\subsection{Reversal magnitudes and levels}
+Base-stable new-holdout policies. Level C: 3067 nested pairs (s$\to$d 1077, d$\to$s 1990), 87 distinct policy--unit combinations, 96% with every critical mode in the EM band, 262 one-step pairs; largest magnitude 0.042~s$^{-1}$. Level D: 2543 pairs (s$\to$d 743, d$\to$s 1800) in 17 policies, both directions in 3; magnitude quartiles 0.0111, 0.0127, 0.0152~s$^{-1}$. Pairs whose rightmost eigenvalue lies within $\tau_{\rm mat}$ of the next at one of the four portfolios: 28%; coverage without them: level C 16/19, level D 16/19. Continuation of the tracked mode under fractional replacement ends on the MAC-matched mode in 100% of 60 endpoint marginals.
+
+{\scriptsize
+\begin{longtable}{rlrrrrr}
+\caption{Number of base-stable policies with a nested reversal against the materiality threshold.}\label{tab:s-tau}\\
+\toprule
+tau & split & n & C & C\_both & D & D\_both \\
+\midrule
+\endfirsthead
+\toprule
+tau & split & n & C & C\_both & D & D\_both \\
+\midrule
+\endhead
+0.0100 & new & 19 & 17 & 7 & 17 & 3 \\
+0.0100 & old & 18 & 16 & 5 & 16 & 3 \\
+0.0125 & new & 19 & 17 & 5 & 15 & 2 \\
+0.0125 & old & 18 & 16 & 3 & 13 & 2 \\
+0.0150 & new & 19 & 17 & 4 & 14 & 2 \\
+0.0150 & old & 18 & 16 & 3 & 13 & 2 \\
+0.0200 & new & 19 & 15 & 3 & 11 & 1 \\
+0.0200 & old & 18 & 11 & 3 & 8 & 2 \\
+0.0250 & new & 19 & 12 & 3 & 6 & 1 \\
+0.0250 & old & 18 & 9 & 3 & 7 & 1 \\
+0.0300 & new & 19 & 10 & 1 & 5 & 0 \\
+0.0300 & old & 18 & 7 & 1 & 5 & 0 \\
+0.0400 & new & 19 & 2 & 1 & 1 & 0 \\
+0.0400 & old & 18 & 2 & 0 & 2 & 0 \\
+0.0500 & new & 19 & 0 & 0 & 0 & 0 \\
+0.0500 & old & 18 & 0 & 0 & 0 & 0 \\
+\bottomrule
+\end{longtable}}
+
+\subsection{Singularity-type events behind fixed-ranking regret}
+On the new holdout, 3229 of 9728 portfolios have $\aperp\ge1$~s$^{-1}$; 99.3% of these critical eigenvalues are real, with 5/50/95\,\% quantiles 20, 176, 3456~s$^{-1}$. Converted-unit counts: 4: 19, 5: 855, 6: 1482, 7: 684, 8: 170, 9: 19. Mean participation of the leading state groups: gfl:theta 0.39, gfl:i\_q 0.36, gfl:x\_q 0.07, gfl:q\_f 0.04, gfl:p\_f 0.03.
+
+{\scriptsize
+\begin{longtable}{lrrrrr}
+\caption{Fractional-replacement sweeps (replaced fraction $\rho$ of the added unit, step 0.025): onset of $\aperp\ge1$~s$^{-1}$ and the minimum singular value of the network Jacobian $g_z$ along the sweep.}\label{tab:s-sweep}\\
+\toprule
+policy & unit & $\rho$ at onset & $\aperp$ at onset & $\rho$ at min $\sigma(g_z)$ & min $\sigma(g_z)$ \\
+\midrule
+\endfirsthead
+\toprule
+policy & unit & $\rho$ at onset & $\aperp$ at onset & $\rho$ at min $\sigma(g_z)$ & min $\sigma(g_z)$ \\
+\midrule
+\endhead
+N10 & 37 & 0.2750 & 26291 & 0.2500 & 0.0021 \\
+N06 & 32 & 0.8500 & 98773 & 0.8500 & 0.0029 \\
+N19 & 33 & 0.5750 & 16627 & 0.5500 & 0.0019 \\
+N01 & 31 & 0.8000 & 109804 & 0.7750 & 0.0031 \\
+N11 & 32 & 0.9750 & 3773 & 0.9750 & 0.0050 \\
+N18 & 35 & 0.8000 & 7945 & 0.8000 & 0.0067 \\
+\bottomrule
+\end{longtable}}
+
+{\tiny
+\begin{longtable}{lrrrrrrr}
+\caption{Median material-regret rates of alternative fixed and static sequencing rules.}\label{tab:s-seq}\\
+\toprule
+split & no stable option & plain (feasible) & screened (feasible) & regret-opt. FULL & regret-opt. EM & gSCR FULL & min-SCR FULL \\
+\midrule
+\endfirsthead
+\toprule
+split & no stable option & plain (feasible) & screened (feasible) & regret-opt. FULL & regret-opt. EM & gSCR FULL & min-SCR FULL \\
+\midrule
+\endhead
+discovery & 0.213 & 0.252 & 0.065 & 0.329 & 0.017 & 0.835 & 0.902 \\
+old & 0.212 & 0.257 & 0.069 & 0.340 & 0.019 & 0.773 & 0.861 \\
+new & 0.218 & 0.267 & 0.065 & 0.344 & 0.030 & 0.764 & 0.864 \\
+\bottomrule
+\end{longtable}}
+
+\subsection{Branch ranking against a learned fixed list and large actions}
+{\scriptsize
+\begin{longtable}{lrrrrrr}
+\caption{Leave-one-cluster-out fixed branch list (mean finite-effect rank over the other clusters), medians.}\label{tab:s-loco}\\
+\toprule
+set & $\rho$ list & $\rho$ $D^{\rm tot}$ & $\rho$ $D^{\rm fro}$ & top-5 list & top-5 $D^{\rm tot}$ & $D^{\rm tot}$ beats list \\
+\midrule
+\endfirsthead
+\toprule
+set & $\rho$ list & $\rho$ $D^{\rm tot}$ & $\rho$ $D^{\rm fro}$ & top-5 list & top-5 $D^{\rm tot}$ & $D^{\rm tot}$ beats list \\
+\midrule
+\endhead
+all & 0.943 & 0.987 & 0.895 & 0.80 & 1.00 & 1.00 \\
+new & 0.818 & 0.996 & 0.712 & 0.60 & 1.00 & 1.00 \\
+fresh draws & 0.959 & 0.986 & 0.901 & 0.80 & 0.80 & 1.00 \\
+\bottomrule
+\end{longtable}}
+
+$D^{\rm tot}$ against finite branch actions at six new-holdout policies: doubling, median Spearman 0.992 (top-5 1.00); outage, 0.885 (EM-tracked 0.888, top-5 0.80). Timing of this implementation: 1.46~s per branch for the total derivative (finite-difference Jacobians) and 0.61~s for a finite re-solve with eigenanalysis.
+
+\subsection{Topology provenance and within-type static scores}
+EM-incompatibility creations by policy set: discovery 34, old holdout 8, new holdout 3; all are outages.
+
+{\scriptsize
+\begin{longtable}{llrr}
+\caption{Static topology scores against the tracked EM effect, within action type (16 policies).}\label{tab:s-topo}\\
+\toprule
+action & score & median $\rho$ & frac. $|\rho|\ge0.6$ \\
+\midrule
+\endfirsthead
+\toprule
+action & score & median $\rho$ & frac. $|\rho|\ge0.6$ \\
+\midrule
+\endhead
+dbl & fiedler & 0.004 & 0.00 \\
+dbl & kirchhoff & 0.031 & 0.00 \\
+dbl & gscr\_H4 & -0.156 & 0.00 \\
+dbl & min\_scr\_core & -0.117 & 0.00 \\
+dbl & losses & 0.180 & 0.00 \\
+out & fiedler & -0.187 & 0.00 \\
+out & kirchhoff & 0.213 & 0.00 \\
+out & gscr\_H4 & -0.136 & 0.00 \\
+out & min\_scr\_core & -0.104 & 0.00 \\
+out & losses & 0.445 & 0.19 \\
+\bottomrule
+\end{longtable}}
+
+\subsection{Mixing variance terms}
+With $\Delta\mu=C+F$ (controller and frequency terms), ${\rm var}(C)/{\rm var}(\Delta\mu)=0.24$, ${\rm var}(F)/{\rm var}(\Delta\mu)=1.06$ and $2\,{\rm cov}(C,F)/{\rm var}(\Delta\mu)=-0.30$.
+
+
 \section{Reproducibility}
 Environment: Python 3.13.14, numpy 2.5.2, scipy 1.18.1, pandas 3.0.5 (\texttt{.venv/tx3-analysis}); ANDES 2.0.0 (\texttt{.venv/xtool-andes-gfl}). Preregistration commit \texttt{05b507e3}. Determinism reruns: identical on every summary field except wall-clock. Orchestrator: \path{experiments/cdw_hardening/CDWH_MASTER_RUN.py}; analyses: \texttt{H03}--\texttt{H19}; figures, tables and numbers: \path{CDWH_FIGURES.py}, \path{CDWH_TABLES.py}, \path{CDWH_NUMBERS.py}.
 
@@ -444,8 +592,10 @@ H17/H18 ALT-WECC & COMPLETE & 488 & 0 & 488 & -- \\
 
 
 \section{Supplementary figures}
+\begin{figure}[!h]\centering\includegraphics[width=\textwidth]{CDWH_S1_corridors.pdf}\caption{Equal-budget corridor effects by set.}\end{figure}
 \begin{figure}[!h]\centering\includegraphics[width=\textwidth]{CDWH_S3_mixing.pdf}\caption{Two-factor modal-mixing decomposition and fixed-frequency correlation.}\end{figure}
 \begin{figure}[!h]\centering\includegraphics[width=\textwidth]{CDWH_S4_crossmodel.pdf}\caption{Cross-model holdout (ALT-WECC).}\end{figure}
 \begin{figure}[!h]\centering\includegraphics[width=\textwidth]{CDWH_S5_uncertainty.pdf}\caption{Fresh envelope draws: reversal coverage and branch ranking.}\end{figure}
 \begin{figure}[!h]\centering\includegraphics[width=\textwidth]{CDWH_S6_stratification.pdf}\caption{FULL / EM / same-mode stratification.}\end{figure}
+\begin{figure}[!h]\centering\includegraphics[width=\textwidth]{CDWH_S7_singularity.pdf}\caption{Fractional-replacement sweeps: $\aperp$ and the minimum singular value of $g_z$ against the replaced fraction.}\end{figure}
 \end{document}

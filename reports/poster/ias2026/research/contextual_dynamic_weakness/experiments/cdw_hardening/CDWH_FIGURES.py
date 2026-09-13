@@ -62,7 +62,7 @@ def fig2():
     for r, p in enumerate(order):
         for c, u in enumerate(frac.columns):
             if (p, u) in cset:
-                ax.plot(c, r, marker="x", ms=3.2, mew=0.8, color="#f28a3a" if frac.iloc[r, c] > 0.55 else INK)
+                ax.plot(c, r, marker="x", ms=3.2, mew=0.8, color="white" if frac.iloc[r, c] > 0.55 else INK)  # contrast only
     unst = set(pol[~pol.base_stable].pid)
     ax.set_yticks(range(len(order)))
     ax.set_yticklabels([(p.replace("HARDENING_H", "N") + (" u" if p in unst else "")) for p in order], fontsize=5)
@@ -73,10 +73,10 @@ def fig2():
     for y in (len(HI.DISC) - 0.5, len(HI.DISC) + len(HI.OLD_HOLD) - 0.5):
         ax.axhline(y, color=INK, lw=0.8)
     g = jload("H03_gate.json")
-    ax.set_title(f"Nested EM same-mode reversal coverage: new {g['new_frac_C']:.2f}, old {g['old_frac_C']:.2f}", fontsize=7)
+    ax.set_title(f"Level-C nested reversal coverage: new {g['new_frac_C']:.2f}, old {g['old_frac_C']:.2f}", fontsize=7)
     cb = fig.colorbar(im, ax=ax, fraction=0.04, pad=0.02)
     cb.set_label("fraction of stable contexts where replacing i destabilizes", fontsize=6)
-    ax.text(1.02, 1.0, "D: discovery\nH: old holdout\nN: new holdout\nu: unstable base\nx: nested EM\n   same-mode reversal",
+    ax.text(1.02, 1.0, "D: discovery\nH: old holdout\nN: new holdout\nu: unstable base\nx: level-C nested\n   reversal of unit i",
             transform=ax.transAxes, fontsize=5, va="top", color=INK2)
     save(fig, "CDWH_F2_contextual_reversal")
 
@@ -86,7 +86,8 @@ def strongest_new_C(k=3):
     p = pd.read_parquet(R / "H03_nested_pairs.parquet")
     pol = pd.read_csv(R / "H03_policy_summary.csv")
     ok = set(pol[pol.base_stable].pid)
-    p = p[(p.level == "C") & p.pid.str.startswith("HARDENING") & p.pid.isin(ok)].sort_values("mag", ascending=False)
+    p = p[(p.level == "C") & p.lvD.fillna(False).astype(bool) & p.pid.str.startswith("HARDENING") & p.pid.isin(ok)]
+    p = p.sort_values(["mag", "pid", "i", "S1", "S2"], ascending=[False, True, True, True, True])  # deterministic tie-break
     out, seen = [], set()
     for r in p.itertuples():
         if r.i in seen:
@@ -103,7 +104,7 @@ def fig3():
     ex = strongest_new_C(3)
     fig, axs = plt.subplots(1, 3, figsize=(COL2, 2.2), sharey=False)
     for ax, r in zip(axs, ex, strict=False):
-        g = mg[(mg.pid == r.pid) & (mg.i == r.i) & mg.lvC]
+        g = mg[(mg.pid == r.pid) & (mg.i == r.i) & mg.lvC]  # level-C contexts of this unit; the marked pair is level D
         size = g["mask"].map(lambda m: bin(m).count("1"))
         jit = (np.random.default_rng(1).random(len(g)) - 0.5) * 0.3
         ax.axhspan(-C.TAU_MAT, C.TAU_MAT, color="#f0efec", zorder=0)
@@ -153,11 +154,20 @@ def fig4():
         ax.set_title(lab, fontsize=7)
     ax = fig.add_subplot(gs[0, 2])
     im = ax.imshow(reg.to_numpy(float), cmap=SEQ, vmin=0, vmax=0.6)
-    ax.set_title("regret of ranking fitted at row policy, used at column policy", fontsize=6)
-    ax.set_xlabel("test policy")
-    ax.set_ylabel("train policy")
-    ax.set_xticks([])
-    ax.set_yticks([])
+    ax.set_title("ranking fitted at row policy, used at column policy", fontsize=6)
+    ax.set_xlabel("policy of use")
+    ax.set_ylabel("policy of fit")
+    grp = [("D", sum(p.startswith("D") for p in reg.index)), ("H", sum(p.startswith("H") and not p.startswith("HARD") for p in reg.index)),
+           ("N", sum(p.startswith("HARD") for p in reg.index))]
+    edges = np.cumsum([0] + [n for _, n in grp])
+    centers = [(edges[k] + edges[k + 1] - 1) / 2 for k in range(len(grp))]
+    for e in edges[1:-1]:
+        ax.axhline(e - 0.5, color="white", lw=1.2)
+        ax.axvline(e - 0.5, color="white", lw=1.2)
+    ax.set_xticks(centers)
+    ax.set_xticklabels([f"{g} ({n})" for g, n in grp], fontsize=5.5)
+    ax.set_yticks(centers)
+    ax.set_yticklabels([f"{g} ({n})" for g, n in grp], fontsize=5.5)
     ax.grid(False)
     fig.colorbar(im, ax=ax, fraction=0.046, pad=0.02).set_label("material regret rate", fontsize=6)
     fig.tight_layout()
@@ -168,42 +178,78 @@ def fig4():
 def fig5():
     import _hdata as HD
 
-    cen = HD.load_census("H_H01")
-    import _analysis as AN
-
-    ds = []
+    cen = HD.load_census("H_H01", modes=False)
+    pol = pd.read_csv(R / "H03_policy_summary.csv")
+    ok = set(pol[pol.base_stable].pid)
+    ds, dem = [], []
     for pid, d in cen.items():
-        v = {tuple(C.V9[b] for b in range(9) if m >> b & 1): d["alpha"][m] for m in range(512)}
-        ds += [x[3] for x in AN.second_differences(v, C.V9)]
-    ds = np.array(ds)
-    p = pd.read_parquet(R / "H03_nested_pairs.parquet")
-    pc = p[(p.level == "C") & p.pid.str.startswith("HARDENING")]
+        if pid not in ok:
+            continue
+        a, st, hz = d["alpha"], d["status"], d["hz"]
+        for S in range(512):
+            for bi in range(9):
+                for bj in range(bi + 1, 9):
+                    if (S >> bi & 1) or (S >> bj & 1):
+                        continue
+                    four = (S, S | 1 << bi, S | 1 << bj, S | 1 << bi | 1 << bj)
+                    dd = a[four[3]] - a[four[1]] - a[four[2]] + a[four[0]]
+                    ds.append(dd)
+                    if all(st[x] == "STABLE" and HD.in_em(hz[x]) for x in four):
+                        dem.append(dd)
+    ds, dem = np.array(ds), np.array(dem)
+    tc = pd.read_csv(R / "H31_tau_curve.csv")
     fig, axs = plt.subplots(1, 2, figsize=(COL2, 2.3))
     ax = axs[0]
-    x = np.sign(ds) * np.log10(1 + np.abs(ds) / C.TAU_RES)
-    ax.hist(x, bins=120, color=GRAY1)
-    ax.axvline(np.log10(2), color=INK2, lw=0.6, ls="--")
-    ax.axvline(-np.log10(2), color=INK2, lw=0.6, ls="--")
-    ax.set_xlabel(r"sign$(d)\,\log_{10}(1+|d_{ij}(S)|/\tau_{res})$")
+    bins = np.linspace(-0.12, 0.12, 97)
+    ax.hist(np.clip(dem, -0.12, 0.12), bins=bins, color=BLUE, alpha=0.9, label=f"EM-clean squares (n={dem.size})")
+    ax.axvline(C.TAU_RES, color=INK2, lw=0.6, ls="--")
+    ax.axvline(-C.TAU_RES, color=INK2, lw=0.6, ls="--")
+    ax.set_yscale("log")
     ax.set_ylabel("one-step squares (new holdout)")
-    ax.set_yscale("log")
-    frac_pos = float((ds > C.TAU_RES).mean())
-    frac_neg = float((ds < -C.TAU_RES).mean())
-    ax.set_title(f"discrete curvature: {frac_pos:.0%} > +τ_res, {frac_neg:.0%} < −τ_res", fontsize=7)
+    ax.set_title(f"{np.mean(dem > C.TAU_RES):.0%} above +1e-3, {np.mean(dem < -C.TAU_RES):.0%} below -1e-3\n"
+                 f"(with fast modes, |d| reaches {np.abs(ds).max():.0e})", fontsize=6)
+    ax.set_xlabel(r"second difference $d_{ij}(S)$ (s$^{-1}$), EM-clean squares")
     ax = axs[1]
-    for d_, col, lab in (("s2d", ORANGE, "stab→destab (needs d>0)"), ("d2s", BLUE, "destab→stab (needs d<0)")):
-        q = pc[pc.dir == d_]
-        ax.scatter(q.D.abs() / q.m, q.wit_d.abs(), s=4, color=col, alpha=0.5, lw=0, label=f"{lab}, n={len(q)}")
-    lim = [1e-3, max(1.0, float(pc.wit_d.abs().max()) * 1.2)]
-    ax.plot(lim, lim, color=INK2, lw=0.6)
-    ax.set_xscale("log")
-    ax.set_yscale("log")
-    ax.set_xlabel(r"bound $|\Delta_i\alpha(S_2)-\Delta_i\alpha(S_1)|/m$ (s$^{-1}$)")
-    ax.set_ylabel(r"largest certifying $|d_{ij_r}(S_{r-1})|$ (s$^{-1}$)")
-    ax.set_title("every nested EM reversal has a curvature witness above the bound", fontsize=7)
-    ax.legend(fontsize=5.5, loc="upper left")
+    for split, col in (("new", BLUE), ("old", ORANGE)):
+        q = tc[tc.split == split]
+        n = q.n.iloc[0]
+        ax.plot(q.tau, q.C / n, "-o", color=col, ms=3, lw=1.2, label=f"C, {split}")
+        ax.plot(q.tau, q.D / n, "--s", color=col, ms=3, lw=1.0, label=f"D, {split}")
+        ax.plot(q.tau, q.D_both / n, ":", color=col, lw=1.0, label=f"D both dirs, {split}")
+    ax.axhline(0.75, color=INK2, lw=0.6, ls="--")
+    ax.set_ylim(-0.03, 1.22)
+    ax.set_yticks([0, 0.25, 0.5, 0.75, 1.0])
+    ax.set_xlabel(r"materiality threshold $\tau$ (s$^{-1}$)")
+    ax.set_ylabel("fraction of base-stable policies")
+    ax.set_title("nested-reversal coverage vs threshold", fontsize=7)
+    ax.legend(fontsize=5, loc="upper center", ncol=3)
     fig.tight_layout()
     save(fig, "CDWH_F5_curvature")
+
+
+# --------------------------------------------------------------------- Fig S7 --
+def figS7():
+    import _infra as I
+
+    fig, axs = plt.subplots(1, 2, figsize=(COL2, 2.3))
+    for k, r in enumerate(r for r in I.Store("H_H31x").all() if r["task"]["kind"] == "sweep"):
+        rows = [x for x in r["rows"] if "alpha" in x]
+        rho = [x["rho"] for x in rows]
+        col = [BLUE, ORANGE, AQUA, GRAY2, "#e87ba4", "#4a3aa7"][k % 6]
+        lab = f"{r['task']['pid'].replace('HARDENING_H', 'N')}, unit {r['task']['i']}"
+        axs[0].plot(rho, [max(x["alpha"], 1e-3) for x in rows], color=col, lw=1, label=lab)
+        axs[1].plot(rho, [x["sigma_min_gz"] for x in rows], color=col, lw=1)
+    axs[0].set_yscale("log")
+    axs[0].set_ylabel(r"$\alpha$ (s$^{-1}$, clipped at $10^{-3}$)")
+    axs[1].set_yscale("log")
+    axs[1].set_ylabel(r"$\sigma_{\min}(g_z)$")
+    for ax in axs:
+        ax.set_xlabel(r"replaced fraction $\rho_i$ of the added unit")
+    axs[0].legend(fontsize=5)
+    axs[0].set_title("fast real instability appears in one step", fontsize=7)
+    axs[1].set_title("at the minimum of the algebraic Jacobian's singular value", fontsize=7)
+    fig.tight_layout()
+    save(fig, "CDWH_S7_singularity")
 
 
 # ----------------------------------------------------------------------- Fig 6 --
@@ -281,7 +327,7 @@ def fig7():
     ax.axhline(0, color=INK2, lw=0.6)
     ax.set_xticks(ticks)
     ax.set_xticklabels(tl, fontsize=6)
-    ax.set_ylabel(r"$-d\alpha/d\gamma_e$ (s$^{-1}$), new H4 conditions")
+    ax.set_ylabel(r"$-d\alpha/d\gamma_e$ (s$^{-1}$), $V_4$, new policies")
     for c, col, lab in (("d_frozen", ORANGE, "frozen"), ("indirect", AQUA, "re-equilibration"), ("d_total", BLUE, "total")):
         ax.plot([], [], color=col, lw=2, label=lab)
     ax.legend(fontsize=6, loc="best")
@@ -290,19 +336,26 @@ def fig7():
     kinds = [("g", "Q/V gain g"), ("pll", "PLL scale"), ("ka", "AVR K_A"), ("vset", "V_set"), ("load", "load scale"), ("line", "branch γ")]
     vals = []
     for k, _ in kinds:
+        if k == "vset":
+            vals.append([])  # frozen term identically zero: no ratio is plotted
+            continue
         if k == "line":
             r = (dec.indirect.abs() / dec.d_frozen.abs().clip(lower=1e-12)).to_numpy(float)
         else:
             r = nd[nd.kind == k].ratio.to_numpy(float)
         vals.append(np.log10(np.clip(r, 1e-12, 1e6)))
-    ax.boxplot(vals, showfliers=False, patch_artist=True, boxprops={"facecolor": "white", "edgecolor": INK2}, medianprops={"color": BLUE, "lw": 1.5})
+    for k, v in enumerate(vals, start=1):
+        if len(v):
+            ax.boxplot([v], positions=[k], widths=0.5, showfliers=False, patch_artist=True,
+                       boxprops={"facecolor": "white", "edgecolor": INK2}, medianprops={"color": BLUE, "lw": 1.5})
+    ax.set_xlim(0.4, len(kinds) + 0.6)
     ax.set_xticks(range(1, len(kinds) + 1))
     ax.set_xticklabels([lab for _, lab in kinds], fontsize=6, rotation=20)
     ax.axhline(0, color=INK2, lw=0.6, ls="--")
     ax.set_ylabel(r"$\log_{10}$ |re-equilibration| / |frozen|")
-    ax.annotate("frozen ≡ 0", (4, 5.6), fontsize=6, ha="center", va="top", color=INK2)
-    ax.set_title("controller coordinates: frozen = total (SPR)", fontsize=7)
-    fig.tight_layout()
+    ax.annotate("frozen\nterm\n≡ 0", (4, -6), fontsize=6, ha="center", va="center", color=INK2)
+    ax.set_title("re-equilibration relative to frozen term (SPR)", fontsize=7)
+    fig.tight_layout(w_pad=2.0)
     save(fig, "CDWH_F7_why_total")
 
 
@@ -381,7 +434,8 @@ def fig1():
     pos = nx.kamada_kawai_layout(G)
     S1 = set() if r.S1 == "BASE" else {int(u) for u in r.S1.split("+")}
     S2 = set() if r.S2 == "BASE" else {int(u) for u in r.S2.split("+")}
-    fig, axs = plt.subplots(1, 2, figsize=(COL2, 2.9))
+    fig, axs = plt.subplots(1, 2, figsize=(COL1, 2.3))
+    fig.subplots_adjust(wspace=0.02, left=0.0, right=1.0, top=0.80, bottom=0.08)
     for ax, S, d, name in ((axs[0], S1, r.d1, "S_1"), (axs[1], S2, r.d2, "S_2")):
         ax.set_axis_off()
         nx.draw_networkx_edges(G, pos, ax=ax, edge_color="#c3c2b7", width=0.8)
@@ -392,12 +446,11 @@ def fig1():
         nx.draw_networkx_nodes(G, pos, nodelist=sorted(S), ax=ax, node_size=55, node_color=AQUA, edgecolors=INK2, linewidths=0.8)
         col = BLUE if d < 0 else ORANGE
         nx.draw_networkx_nodes(G, pos, nodelist=[r.i], ax=ax, node_size=120, node_color=col, edgecolors=INK, linewidths=1.2)
-        nx.draw_networkx_labels(G, pos, labels={n: str(n) for n in C.SG_BUSES}, ax=ax, font_size=5.5)
-        verb = "stabilizes" if d < 0 else "destabilizes"
-        ax.set_title(rf"${name}=\{{{','.join(map(str, sorted(S))) or ''}\}}$: replacing {r.i} {verb}" + "\n"
-                     + rf"$\Delta_{{{r.i}}}\alpha({name})={d:+.3f}\ \mathrm{{s}}^{{-1}}$ (same tracked EM mode)", fontsize=7)
-    fig.text(0.5, 0.01, rf"nested contexts $S_1\subset S_2$ at policy {r.pid.replace('HARDENING_H', 'N')}; aqua: already replaced; white: synchronous; bus 39: interconnection",
-             ha="center", fontsize=6, color=INK2)
+        nx.draw_networkx_labels(G, pos, labels={n: str(n) for n in C.SG_BUSES}, ax=ax, font_size=6.5)
+        ax.set_title(rf"${name}=\{{{','.join(map(str, sorted(S))) or ''}\}}$" + "\n"
+                     + rf"$\Delta_{{{r.i}}}\alpha({name})={d:+.3f}\ \mathrm{{s}}^{{-1}}$", fontsize=8)
+    fig.text(0.5, 0.0, rf"policy {r.pid.replace('HARDENING_H', 'N')}; aqua: replaced; white: synchronous",
+             ha="center", fontsize=6.5, color=INK2)
     save(fig, "CDWH_F1_concept")
 
 
@@ -544,7 +597,7 @@ def figS2():
     save(fig, "CDWH_S2_null")
 
 
-FIGS = {"S1": figS1, "S2": figS2, "F1": fig1, "S4": figS4, "S5": figS5, "S6": figS6, "F2": fig2, "F3": fig3, "F4": fig4, "F5": fig5, "F6": fig6, "F7": fig7, "F8": fig8, "S3": figS3}
+FIGS = {"S7": figS7, "S1": figS1, "S2": figS2, "F1": fig1, "S4": figS4, "S5": figS5, "S6": figS6, "F2": fig2, "F3": fig3, "F4": fig4, "F5": fig5, "F6": fig6, "F7": fig7, "F8": fig8, "S3": figS3}
 
 if __name__ == "__main__":
     for k in (sys.argv[1:] or FIGS):

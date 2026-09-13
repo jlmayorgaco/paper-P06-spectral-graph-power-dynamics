@@ -50,7 +50,8 @@ HOME = VENV / "home"
 PYCODE = HOME / "pycode"
 WORK = VENV / "work" / "cdw_h17"
 OUT = PROJECT / "results" / "hardening" / "alt"
-CASES = OUT / "cases"
+QFLAG_VARIANT = os.environ.get("ALT_QFLAG") == "1"  # H31 exploratory: library voltage control on, gains unchanged
+CASES = OUT / ("cases_qflag1" if QFLAG_VARIANT else "cases")
 KEEP = ("Bus", "PQ", "PV", "Slack", "Shunt", "Line", "Area")
 EM = (0.1, 2.0)
 INPUTS: dict = {}
@@ -93,7 +94,9 @@ def _incident_line(ss, bus):
 def add_wecc(ss, bus, gen_idx, rating, cfg):
     """TX3 _add_gfl, verbatim parameter mapping (build_andes_gfl_cases.py)."""
 
-    regca, reecb, repca = cfg["regca"], cfg["reecb"], cfg["repca"]
+    regca, reecb, repca = cfg["regca"], dict(cfg["reecb"]), cfg["repca"]
+    if QFLAG_VARIANT:
+        reecb["QFLAG"] = 1
     pll_idx, reg_idx, ree_idx, freq_idx = f"PLL2_{bus}", f"REGCP1_{bus}", f"REECB1_{bus}", f"BusFreq_{bus}"
     ss.add("PLL2", {"idx": pll_idx, "bus": bus, "Kp": cfg["pll"]["andes"]["Kp"], "Ki": cfg["pll"]["andes"]["Ki"]})
     ss.add("BusFreq", {"idx": freq_idx, "bus": bus, "Tf": 0.02, "Tw": 0.1})
@@ -352,6 +355,19 @@ def main(mode):
     qt = q_targets_nominal()
     (OUT / "H17_q_targets.json").write_text(json.dumps({str(k): v for k, v in qt.items()}, indent=1))
     pols = list(INPUTS["policies"])
+    if mode == "pole":
+        ss, ok = build(pols[0], (30, 33, 35, 37), "NOMINAL", qt)
+        dae = ss.dae
+        fx, fy, gx, gy = _dense(dae.fx), _dense(dae.fy), _dense(dae.gx), _dense(dae.gy)
+        As = (fx - fy @ np.linalg.solve(gy, gx)) / np.asarray(dae.Tf, float)[:, None]
+        vals, vl, vr = __import__("scipy").linalg.eig(As, left=True, right=True)
+        j = int(np.argmin(np.abs(vals + 0.1)))
+        pf = np.abs(vl[:, j].conj() * vr[:, j])
+        pf /= pf.sum()
+        names = list(dae.x_name)
+        top = sorted(zip(pf, names), reverse=True)[:6]
+        print("pole", vals[j], [(n, round(float(w), 3)) for w, n in top])
+        return
     if mode == "qual":
         out = {"andes_version": andes.__version__, "wecc_config_sha256": INPUTS["wecc_config_sha256"], "Q1": {}}
         for p in pols:
@@ -369,7 +385,7 @@ def main(mode):
         for lab in INPUTS["subsets"]:
             mem = () if lab == "BASE" else tuple(int(b) for b in lab.split("+"))
             jobs.append((p, mem, "NOMINAL"))
-        for net in INPUTS["networks"]:
+        for net in ([] if os.environ.get("ALT_CORE_ONLY") == "1" else INPUTS["networks"]):
             if net != "NOMINAL":
                 jobs.append((p, (30, 33, 35, 37), net))
     n_new = 0

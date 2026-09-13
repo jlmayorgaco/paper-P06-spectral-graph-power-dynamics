@@ -1,18 +1,19 @@
 \begin{table}[!t]
 \centering
-\caption{Cross-model holdout: frozen TX3 WECC library GFL chain (ALT-WECC, ANDES) vs the custom GFL, 8 preregistered policies.}\label{tab:cross}
+\caption{Cross-model holdout: frozen WECC library GFL chain (ALT-WECC) vs the custom GFL on the 7 of 8 preregistered policies with a stable ALT base. In ALT the global $\aperp$ of most stable portfolios is pinned at $-0.100$\,s$^{-1}$ by a decoupled integrator, which makes test A uninformative.}\label{tab:cross}
 \footnotesize
 \setlength{\tabcolsep}{2.5pt}
-\begin{tabular}{@{}cL{0.37\columnwidth}L{0.28\columnwidth}L{0.20\columnwidth}@{}}
+\begin{tabular}{@{}cL{0.34\columnwidth}L{0.34\columnwidth}L{0.17\columnwidth}@{}}
 \toprule
 & test & value & verdict \\
 \midrule
-A & stable-context reversal, core lattice & 0.00 of 7 (custom 0.71) & model-specific \\
-B & same-mode reversal & 0.00 & model-specific \\
-C & 12-line finite ranking, Kendall custom vs ALT & median 0.02 & model-specific \\
-C2 & ALT total vs ALT finite, minus $|P|$ & 0.99 vs 0.79 & transfers \\
-D & corridor top-1 agreement & 0.75 & transfers \\
-E & topology sign agreement & 0.94 (35 pairs) & transfers \\
+A & stable-context reversal, global $\aperp$ & 0.00 of 7 (custom 0.71) & model-specific \\
+A$'$ & same, tracked EM mode (post hoc) & stabilizing at 3/7, nested reversal at 1/7 & partial \\
+A$''$ & voltage control on (post hoc) & 0/7 global, 0/7 tracked & none \\
+C & 12-line finite ranking, Kendall & median 0.06 & model-specific \\
+C2 & ALT total vs $|P|$ on ALT outcomes & 0.99 vs 0.79 (3 of 7 below bar) & transfers \\
+D & corridor top-1 agreement & 0.71 & partial \\
+E & topology sign agreement & 1.00 (29 pairs) & transfers \\
 \bottomrule
 \end{tabular}
 \end{table}

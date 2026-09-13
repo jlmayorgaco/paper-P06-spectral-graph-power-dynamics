@@ -25,6 +25,8 @@ DOIS = {
     "bach2013": "10.1561/2200000039", "pourbeik2017generic": "10.1109/TEC.2016.2639050", "cui2021andes": "10.1109/TPWRS.2020.3017019",
     "athay1979": "10.1109/TPAS.1979.319407", "yang2021gfm": "10.1109/TPWRS.2020.3042741", "xin2025howmany": "10.1109/TPWRS.2024.3393877",
     "khaji2017switching": "10.1016/j.ijepes.2016.10.011", "huang2022gridstructure": "10.1016/j.ifacol.2022.07.270",
+    "venkatasubramanian1995sib": "10.1109/9.478226", "quintero2014converter": "10.1109/TPWRS.2014.2303293",
+    "gautam2009dfig": "10.1109/TPWRS.2009.2021234", "summers2019greedy": "10.23919/ECC.2019.8795800",
 }
 MANUAL = r"""
 @book{sauer1998,
@@ -42,6 +44,11 @@ MANUAL = r"""
   author = {Joswig-Jones, T. and Dong, W. and Tan, B. and others},
   title = {Sensitivity-Based System Strength Assessment: Mapping Power Flow and Network Topology Perturbations to System Eigenvalues},
   howpublished = {arXiv:2607.28764 (preprint, not peer reviewed)}, year = {2026}
+}
+@misc{desai2026dispatch,
+  author = {Desai, A. and Stanojev, O. and Muntwiler, S. and others},
+  title = {Effect of Dispatch Decisions on Small-Signal Stability of Converter-Dominated Power Systems},
+  howpublished = {arXiv:2601.05070 (preprint, not peer reviewed)}, year = {2026}
 }
 @article{xin2016gscr,
   author = {Xin, Huanhai and Dong, Wei and Yuan, Xiaoming and Gan, Deqiang and Wang, Kang and Xie, Huan},

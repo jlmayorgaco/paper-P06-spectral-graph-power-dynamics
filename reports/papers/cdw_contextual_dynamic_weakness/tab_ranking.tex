@@ -1,15 +1,20 @@
 \begin{table}[!t]
 \centering
-\caption{Oracle-optimal fixed node ranking (medians over base-stable policies). A3 bar: $p^\star\le0.90$ and regret rate $\ge0.10$.}\label{tab:ranking}
+\caption{Fixed and screened next-replacement rules (medians over base-stable policies). Rows 1--3: agreement-optimal fixed order; preregistered insufficiency bar $p^\star\le0.90$ and regret rate $\ge0.10$. Rows 4--6 are post hoc. $^\dagger$First ranked unit whose next portfolio is stable, on contexts with at least one stable option.}\label{tab:ranking}
 \footnotesize
+\setlength{\tabcolsep}{3pt}
 \begin{tabular}{@{}lcccc@{}}
 \toprule
 & \multicolumn{2}{c}{old holdout} & \multicolumn{2}{c}{new holdout}\\
-stratum & $p^\star$ & regret & $p^\star$ & regret \\
+rule & $p^\star$ & regret & $p^\star$ & regret \\
 \midrule
 all transitions & 0.75 & 0.37 & 0.75 & 0.38 \\
 EM $\to$ EM transitions & 0.97 & 0.03 & 0.97 & 0.03 \\
-EM same-mode (level C) & 0.98 & 0.02 & 0.98 & 0.02 \\
+tracked EM mode (level C) & 0.98 & 0.02 & 0.98 & 0.02 \\
+\midrule
+regret-optimal order, all & -- & 0.34 & -- & 0.34 \\
+stability-screened order$^\dagger$ & -- & 0.07 & -- & 0.06 \\
+max gSCR of $S\cup\{i\}$ (static) & -- & 0.77 & -- & 0.76 \\
 \bottomrule
 \end{tabular}
 \end{table}
