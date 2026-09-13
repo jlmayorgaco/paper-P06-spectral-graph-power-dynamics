@@ -1,0 +1,23 @@
+component,value,source,sha256
+network,"IEEE 68-bus NETS-NYPS, 68 buses, 83 branch rows","Singh & Pal (2013), Report on the 68-bus, 16-machine, 5-area system, IEEE PES TF on Benchmark Systems for Stability Controls v3.3, Appendix B",0cee6c94248f8faf1809e7726315d8509e979ce9e3f559278e900c52af510448
+buses,68,ieee68_network.json,
+branches,83,ieee68_network.json (header says 86),
+transformer_rows,16,ieee68_network.json tap column,
+base_mva,100,Singh & Pal v3.3,
+frequency_hz,60.0,Singh & Pal v3.3,
+machines,16,"sub-transient (4 rotor coils + dummy coil), eqs (1)-(6)",3cb4259cc4317b1802c0a7e57a7eb4ca3018ed002bb6c720547d2a332793b5b5
+machine_ratings,"PST mac_con col 3: 300,800,800,800,700,900,800,800,1000,1200,1600,1900,12000,10000,10000,11000 MVA",PST data16m.m (GridSTAGE),c16e78f4e6db3dae5a5b59efda51811c2ed3797bc0ef3d3919795745b39c5f82
+damping_REAL,"PST d_o: 0 on G1-G12; 4.0782, 3, 3, 4.45 pu (rating base) on G13-G16",PST data16m.m,
+damping_SP33,D = 0 all machines,Singh & Pal v3.3,
+governors_REAL,"PST tg model 1 on every surviving machine: 1/R=25 (rating base), Ts 0.1, Tc 0.5, T3 0, T4 1.25, T5 5.0 s",PST data16m.m tg_con (commented) + pstess/tg.m,c15840219e6d2998199e054e15fc146f7a14a37292ccc08dc7477ef93cb52e24
+governors_SP33,none (report ignores governors),Singh & Pal v3.3,
+avr,"DC4B on G1-G8, G10-G12; ST1A on G9; manual on G13-G16",Singh & Pal v3.3 eqs (7)-(8),
+pss,speed washout + 3 lead-lags on G1-G12,Singh & Pal v3.3 eq (9),
+loads,constant impedance from the power-flow P/Q at the solved voltage,Gate 3 convention,
+slack,G16 (bus 16),Singh & Pal v3.3,
+equilibrium_residual_REAL_base,7.323031070427533e-13,code/R01_audit.py,
+structural_zeros_REAL_base,1,code/R01_audit.py,
+power_flow_reproduction,"{""max_dV_pu"": 4.952192114437981e-05, ""max_dangle_deg"": 4.966981827791983e-05, ""converged"": true, ""verdict"": ""REPRODUCED""}",frozen G3 eligibility(),
+converter_A,"TX4 GFL, ConverterParameters defaults, leaky Q/V (leak 0.05), rating |S|/0.8",TX4 freeze 69f200df,bcf0c76be65b171b580684065cde4eb88d0433c6b4d7beefec966f8711036d90
+converter_B,"WECC library chain TX3-GFL-0.1 (PLL2, BusFreq, REGCP1, REECB1, REPCA1), constant Q",H17_andes_alt.py / TX3 freeze,
+primary_frequency_inputs,variants REAL / NOGOV / SP33,inputs/pst_primary_frequency_v1.json,a79471775d8af104491d25bc07afa952a7c2f6651343a96996ff3f01a30b7f05

@@ -1,0 +1,196 @@
+{
+ "ybus_rebuild_max_abs_err": 0.0,
+ "gate3_power_flow": {
+  "max_dV_pu": 4.952192114437981e-05,
+  "max_dangle_deg": 4.966981827791983e-05,
+  "converged": true,
+  "verdict": "REPRODUCED"
+ },
+ "gate3_interarea_verdict": "REPRODUCED",
+ "gate3_max_abs_df_all15": 0.0004975921836454233,
+ "gate3_max_abs_dzeta_all15": 0.00045226858900448974,
+ "variants": [
+  {
+   "variant": "REAL",
+   "n_x": 274,
+   "n_dead": 0,
+   "eq_residual": 7.323031070427533e-13,
+   "n_zero_full_A": 1,
+   "status": "STABLE",
+   "alpha_perp": -0.06688486647438441,
+   "lam_hz": 0.0,
+   "em_top_re": -0.36702280877898164,
+   "em_top_hz": 0.555337824384213,
+   "gz_cond": 345.2079462207185,
+   "wall_s": 5.438480377197266
+  },
+  {
+   "variant": "NOGOV",
+   "n_x": 226,
+   "n_dead": 0,
+   "eq_residual": 7.343015084870785e-13,
+   "n_zero_full_A": 1,
+   "status": "STABLE",
+   "alpha_perp": -0.04607087109455847,
+   "lam_hz": 0.0017236456273685998,
+   "em_top_re": -0.371419578690634,
+   "em_top_hz": 0.5184663714734573,
+   "gz_cond": 345.20794622537284,
+   "wall_s": 2.9104108810424805
+  },
+  {
+   "variant": "SP33",
+   "n_x": 226,
+   "n_dead": 0,
+   "eq_residual": 7.325251516476783e-13,
+   "n_zero_full_A": 0,
+   "status": "STABLE",
+   "alpha_perp": -0.05561837466504302,
+   "lam_hz": 0.0,
+   "em_top_re": -0.11837115593708114,
+   "em_top_hz": 0.5200015772875829,
+   "gz_cond": 345.2079462274013,
+   "wall_s": 2.9408440589904785
+  }
+ ],
+ "equilibrium_z_diff_vs_SP33": {
+  "REAL": 1.1102230246251565e-16,
+  "NOGOV": 1.1102230246251565e-16,
+  "SP33": 0.0
+ },
+ "min_limit_margin": {
+  "REAL": 2.9952836755975145,
+  "NOGOV": 2.9952836755975145,
+  "SP33": 2.9952836755975145
+ },
+ "governors": [
+  {
+   "bus": 1,
+   "kg_device_base": 75.0,
+   "pref": 2.500000000000051,
+   "damping_device_base": 0.0,
+   "rating_mva": 300.0,
+   "sn_sp_mva": 100.0
+  },
+  {
+   "bus": 2,
+   "kg_device_base": 200.0,
+   "pref": 5.450000000000273,
+   "damping_device_base": 0.0,
+   "rating_mva": 800.0,
+   "sn_sp_mva": 100.0
+  },
+  {
+   "bus": 3,
+   "kg_device_base": 200.0,
+   "pref": 6.500000000000231,
+   "damping_device_base": 0.0,
+   "rating_mva": 800.0,
+   "sn_sp_mva": 100.0
+  },
+  {
+   "bus": 4,
+   "kg_device_base": 200.0,
+   "pref": 6.319999999999963,
+   "damping_device_base": 0.0,
+   "rating_mva": 800.0,
+   "sn_sp_mva": 100.0
+  },
+  {
+   "bus": 5,
+   "kg_device_base": 175.0,
+   "pref": 5.050000000000011,
+   "damping_device_base": 0.0,
+   "rating_mva": 700.0,
+   "sn_sp_mva": 100.0
+  },
+  {
+   "bus": 6,
+   "kg_device_base": 225.0,
+   "pref": 7.000000000000258,
+   "damping_device_base": 0.0,
+   "rating_mva": 900.0,
+   "sn_sp_mva": 100.0
+  },
+  {
+   "bus": 7,
+   "kg_device_base": 200.0,
+   "pref": 5.6000000000002235,
+   "damping_device_base": 0.0,
+   "rating_mva": 800.0,
+   "sn_sp_mva": 100.0
+  },
+  {
+   "bus": 8,
+   "kg_device_base": 200.0,
+   "pref": 5.400000000000102,
+   "damping_device_base": 0.0,
+   "rating_mva": 800.0,
+   "sn_sp_mva": 100.0
+  },
+  {
+   "bus": 9,
+   "kg_device_base": 250.0,
+   "pref": 8.000000000000156,
+   "damping_device_base": 0.0,
+   "rating_mva": 1000.0,
+   "sn_sp_mva": 100.0
+  },
+  {
+   "bus": 10,
+   "kg_device_base": 300.0,
+   "pref": 5.000000000000062,
+   "damping_device_base": 0.0,
+   "rating_mva": 1200.0,
+   "sn_sp_mva": 100.0
+  },
+  {
+   "bus": 11,
+   "kg_device_base": 400.0,
+   "pref": 9.999999999999961,
+   "damping_device_base": 0.0,
+   "rating_mva": 1600.0,
+   "sn_sp_mva": 100.0
+  },
+  {
+   "bus": 12,
+   "kg_device_base": 475.0,
+   "pref": 13.49999999999962,
+   "damping_device_base": 0.0,
+   "rating_mva": 1900.0,
+   "sn_sp_mva": 100.0
+  },
+  {
+   "bus": 13,
+   "kg_device_base": 1500.0,
+   "pref": 17.954999999999615,
+   "damping_device_base": 244.692,
+   "rating_mva": 12000.0,
+   "sn_sp_mva": 200.0
+  },
+  {
+   "bus": 14,
+   "kg_device_base": 2500.0,
+   "pref": 17.850000000000083,
+   "damping_device_base": 300.0,
+   "rating_mva": 10000.0,
+   "sn_sp_mva": 100.0
+  },
+  {
+   "bus": 15,
+   "kg_device_base": 2500.0,
+   "pref": 9.999999999999993,
+   "damping_device_base": 300.0,
+   "rating_mva": 10000.0,
+   "sn_sp_mva": 100.0
+  },
+  {
+   "bus": 16,
+   "kg_device_base": 1375.0,
+   "pref": 16.897658383836788,
+   "damping_device_base": 244.75,
+   "rating_mva": 11000.0,
+   "sn_sp_mva": 200.0
+  }
+ ]
+}
