@@ -57,6 +57,8 @@ def ranking_subset():
                 rows.append({"draw": t["draw"], "e": it["e"], "P_tot": -it["d_total"], "T": -(f["alpha"] - d["lam"][0]),
                              "P_em": -it.get("em_d_total", np.nan), "Tem": -(f.get("em_tracked_re", np.nan) - (d["lam_em"] or [np.nan])[0])})
     df = pd.DataFrame(rows)
+    if df.empty:
+        return df
     out = []
     for draw, g in df.groupby("draw"):
         out.append({"draw": draw, "rho_tot": float(spearmanr(g.P_tot, g["T"]).statistic), "rho_em_posthoc": float(spearmanr(g.P_em, g.Tem, nan_policy="omit").statistic),
