@@ -1,0 +1,32 @@
+{
+ "alt_cases": 488,
+ "alt_status": {
+  "UNSTABLE": 411,
+  "STABLE": 76,
+  "BOUNDARY_OR_UNRESOLVED": 1
+ },
+ "alt_init_residual_max": 2.4868995751603507e-13,
+ "alt_frac_init_ok_core": 1.0,
+ "n_tested_policies": 7,
+ "A_frac": 0.0,
+ "A_verdict": "MODEL-SPECIFIC",
+ "A_gfl_frac_same_policies": 0.7142857142857143,
+ "B_meaningful": true,
+ "B_alt_mean_frac_stable_ctx_EM": 0.5083333333333333,
+ "B_frac": 0.0,
+ "B_verdict": "MODEL-SPECIFIC",
+ "B_EM_frac": 0.0,
+ "C_median_kendall": 0.01515151515151515,
+ "C_median_spearman": 0.052447552447552455,
+ "C_verdict": "MODEL-SPECIFIC",
+ "C2_median_diff": 0.20629370629370636,
+ "C2_median_rho_altFD": 0.9930069930069931,
+ "C2_median_rho_S1": 0.7867132867132868,
+ "C2_verdict": "TRANSFERS",
+ "D_frac_top1_agree": 0.75,
+ "D_verdict": "TRANSFERS",
+ "E_pooled_sign_agree": 0.9428571428571428,
+ "E_n_pairs": 35,
+ "E_verdict": "TRANSFERS",
+ "L8_pass": false
+}

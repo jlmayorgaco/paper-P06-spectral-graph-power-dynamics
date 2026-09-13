@@ -1,0 +1,78 @@
+{
+ "new_FULL_n": 19,
+ "new_FULL_median_pstar": 0.7494231656668204,
+ "new_FULL_median_frac_regret": 0.3761467889908257,
+ "new_FULL_range_pstar": [
+  0.6220760233918129,
+  0.8321631561350719
+ ],
+ "new_EM_n": 19,
+ "new_EM_median_pstar": 0.9728997289972899,
+ "new_EM_median_frac_regret": 0.034334763948497854,
+ "new_EM_range_pstar": [
+  0.8048780487804879,
+  0.994535519125683
+ ],
+ "new_SAME_n": 19,
+ "new_SAME_median_pstar": 0.9780412823891085,
+ "new_SAME_median_frac_regret": 0.02262443438914027,
+ "new_SAME_range_pstar": [
+  0.7913043478260869,
+  0.994535519125683
+ ],
+ "old_FULL_n": 18,
+ "old_FULL_median_pstar": 0.7516759185322726,
+ "old_FULL_median_frac_regret": 0.36922190047190045,
+ "old_FULL_range_pstar": [
+  0.6383777694329703,
+  0.8412784398699892
+ ],
+ "old_EM_n": 18,
+ "old_EM_median_pstar": 0.9722925062802207,
+ "old_EM_median_frac_regret": 0.028925619834710745,
+ "old_EM_range_pstar": [
+  0.7723214285714286,
+  1.0
+ ],
+ "old_SAME_n": 18,
+ "old_SAME_median_pstar": 0.9779600254887368,
+ "old_SAME_median_frac_regret": 0.021692076039902128,
+ "old_SAME_range_pstar": [
+  0.7962085308056872,
+  1.0
+ ],
+ "discovery_FULL_n": 15,
+ "discovery_FULL_median_pstar": 0.7861213543412672,
+ "discovery_FULL_median_frac_regret": 0.3597560975609756,
+ "discovery_FULL_range_pstar": [
+  0.6665581243894497,
+  0.8274155995343423
+ ],
+ "discovery_EM_n": 15,
+ "discovery_EM_median_pstar": 0.9763676148796498,
+ "discovery_EM_median_frac_regret": 0.029045643153526972,
+ "discovery_EM_range_pstar": [
+  0.7622504537205081,
+  1.0
+ ],
+ "discovery_SAME_n": 15,
+ "discovery_SAME_median_pstar": 0.981810115350488,
+ "discovery_SAME_median_frac_regret": 0.016736401673640166,
+ "discovery_SAME_range_pstar": [
+  0.8072445019404916,
+  1.0
+ ],
+ "H4_new_pass": true,
+ "L5_pass": true,
+ "transfer_n_policies": 52,
+ "transfer_median_diag_acc": 0.7625660471756824,
+ "transfer_median_offdiag_acc": 0.7252331209386425,
+ "transfer_median_diag_regret": 0.3736861861861862,
+ "transfer_median_offdiag_regret_by_test": 0.3960071053444547,
+ "transfer_new_median_offdiag_regret_by_test": 0.40186915887850466,
+ "transfer_new_median_diag_regret": 0.3761467889908257,
+ "L6_pass": true,
+ "distance_vs_degradation_spearman": 0.30604217879644,
+ "distance_vs_degradation_mantel_p_descriptive": 0.0,
+ "n_distinct_optimal_orders_full": 24
+}

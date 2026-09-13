@@ -64,7 +64,9 @@ def networks():
 def main():
     pols = {p: list(HI.theta_of(p)) for p in H14.H18_POLICIES}
     cfg_bytes = CFG.read_bytes()
-    handoff = {"prereg_commit": HI.PREREG_COMMIT, "policies": pols, "sg": {p: sg_params(tuple(t)) for p, t in pols.items()},
+    qual = {"D01": list(C.policy("D01"))}  # Q3 at P4 (prereg H17)
+    sg = {p: sg_params(tuple(t)) for p, t in {**pols, **qual}.items()}
+    handoff = {"prereg_commit": HI.PREREG_COMMIT, "policies": pols, "qual_policies": qual, "sg": sg,
                "wecc_config": yaml.safe_load(cfg_bytes.decode("utf-8")), "wecc_config_sha256": hashlib.sha256(cfg_bytes).hexdigest(),
                "subsets": [C.label(s) for s in C.subsets(C.V4)], "networks": networks(), "lines12": list(LINES12),
                "corridors": list(CORRIDORS), "actions": list(H14.H18_ACTIONS)}

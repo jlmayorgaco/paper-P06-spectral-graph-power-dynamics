@@ -186,25 +186,51 @@ def _dense(v):
     return np.array(matrix(v))
 
 
+def decoupled_states(As, tol=1e-12):
+    """Iterative structural decoupling (deviation log 2026-09-12T21:50, refinement 1): states whose
+    row or column of As is zero (diagonal included) contribute one exact zero eigenvalue each."""
+
+    keep = list(range(As.shape[0]))
+    thr = tol * max(np.abs(As).max(), 1.0)
+    removed, isolated_eigs = [], []
+    changed = True
+    while changed:
+        changed = False
+        sub = As[np.ix_(keep, keep)]
+        for pos in range(len(keep)):
+            row, col = sub[pos].copy(), sub[:, pos].copy()
+            d = row[pos]
+            row[pos] = col[pos] = 0.0
+            zero_row, zero_col = np.abs(row).max() <= thr, np.abs(col).max() <= thr
+            dead = (abs(d) <= thr) and (zero_row or zero_col)
+            isolated = zero_row and zero_col and abs(d) <= 1e-3  # refinement 1b
+            if dead or isolated:
+                removed.append(keep[pos])
+                if isolated and not dead:
+                    isolated_eigs.append(float(d))
+                keep.pop(pos)
+                changed = True
+                break
+    return keep, removed, isolated_eigs
+
+
 def spectrum(ss, want_modes=True, cross_check=False):
     dae = ss.dae
     fx, fy, gx, gy = _dense(dae.fx), _dense(dae.fy), _dense(dae.gx), _dense(dae.gy)
-    J = np.block([[fx, fy], [gx, gy]])
-    E = np.zeros_like(J)
     Tf = np.asarray(dae.Tf, float)
-    E[: dae.n, : dae.n] = np.diag(Tf)
-    vals, vecs = eig(J, E, right=True)
-    fin = np.where(np.isfinite(vals) & (np.abs(vals) < 1e8))[0]
-    ev, V = vals[fin], vecs[:, fin]
-    dead_rows = [i for i in range(dae.n) if not np.any(fx[i]) and not np.any(fy[i])]
-    n_dead = len(dead_rows)
+    assert np.all(Tf > 0), "zero time constants not expected in this composition"
+    gyinv_gx = np.linalg.solve(gy, gx)
+    As = (fx - fy @ gyinv_gx) / Tf[:, None]
+    keep, removed, isolated_eigs = decoupled_states(As)
+    n_dead = len(removed)
+    ev = np.linalg.eigvals(As[np.ix_(keep, keep)])
     order = np.argsort(np.abs(ev), kind="stable")
-    drop = list(order[: n_dead + 2])
-    small = np.abs(ev[order[n_dead: n_dead + 2]])
-    rest_idx = np.array([k for k in range(ev.size) if k not in drop])
-    rest = ev[rest_idx]
-    dead_ok = bool(n_dead == 0 or np.abs(ev[order[:n_dead]]).max() < 1e-8)
+    small = np.abs(ev[order[:2]])
+    rest = ev[order[2:]]
+    dead_ok = True
     pair_ok = bool(small.size == 2 and small.max() < 1e-3 and np.abs(rest).min() >= 1e-2)
+    names = list(dae.x_name)
+    removed_names = [names[i] for i in removed]
     ic = int(np.argmax(rest.real))
     lam = complex(rest[ic])
     if lam.imag < 0:
@@ -214,28 +240,35 @@ def spectrum(ss, want_modes=True, cross_check=False):
     rhp = int((rest.real > 0).sum())
     status = ("UNSTABLE" if rhp else "STABLE") if resolved else "BOUNDARY_OR_UNRESOLVED"
     out = {"status": status, "alpha": float(rest.real.max()), "lam_re": lam.real, "lam_hz": abs(lam.imag) / (2 * np.pi), "rhp": rhp,
-           "n_dead": n_dead, "dead_ok": dead_ok, "pair": small.tolist(), "pair_ok": pair_ok, "min_abs_re": min_abs_re,
-           "n_x": int(dae.n), "n_y": int(dae.m)}
+           "n_dead": n_dead, "removed_states": removed_names, "isolated_eigs": isolated_eigs, "dead_ok": dead_ok, "pair": small.tolist(), "pair_ok": pair_ok,
+           "min_abs_re": min_abs_re, "n_x": int(dae.n), "n_y": int(dae.m)}
     if cross_check:
         ss.EIG.run()
         mu = np.asarray(ss.EIG.mu, complex)
         crit = rest[np.argsort(-rest.real)[:12]]
         out["eig_cross_rel_err"] = float(max(np.min(np.abs(mu - z)) / max(1.0, abs(z)) for z in crit))
+        J = np.block([[fx, fy], [gx, gy]])
+        E = np.zeros_like(J)
+        E[: dae.n, : dae.n] = np.diag(Tf)
+        dv_ = eig(J, E, right=False)
+        dv_ = dv_[np.isfinite(dv_) & (np.abs(dv_) < 1e8)]
+        out["descriptor_cross_rel_err"] = float(max(np.min(np.abs(dv_ - z)) / max(1.0, abs(z)) for z in rest))
     if want_modes:
-        a_idx = np.asarray(ss.Bus.a.a) + dae.n
-        v_idx = np.asarray(ss.Bus.v.a) + dae.n
+        a_idx = np.asarray(ss.Bus.a.a)
+        v_idx = np.asarray(ss.Bus.v.a)
         a0, v0 = np.asarray(ss.Bus.a.v, float), np.asarray(ss.Bus.v.v, float)
+        vals_f, vecs_f = np.linalg.eig(As)
         modes = []
-        for k in rest_idx:
-            z = ev[k]
+        for z in rest:
             if z.imag < -1e-12:
                 continue
             hz = abs(z.imag) / (2 * np.pi)
             crit = abs(z - lam) < 1e-9 or abs(z - lam.conjugate()) < 1e-9
             if not ((EM[0] <= hz <= EM[1] and z.real >= -1.0) or crit):
                 continue
-            x = vecs[:, fin[k]]
-            dv = np.exp(1j * a0) * (x[v_idx] + 1j * v0 * x[a_idx])
+            x = vecs_f[:, int(np.argmin(np.abs(vals_f - z)))]
+            y = -gyinv_gx @ x
+            dv = np.exp(1j * a0) * (y[v_idx] + 1j * v0 * y[a_idx])
             n = np.linalg.norm(dv)
             dv = dv / n if n > 0 else dv
             j = int(np.argmax(np.abs(dv)))
@@ -246,10 +279,16 @@ def spectrum(ss, want_modes=True, cross_check=False):
     return out
 
 
-def limits_active(ss) -> list:
-    """Report limiter flags that are active at the initial point (never adjusted)."""
+# Structurally inactive under TX3-GFL-0.1 (deviation log 2026-09-12T21:50, refinement 2):
+# REGCP1.HVG (Khv = 0); REPCA1 Q path (dbd, eHL, s2: Kp = Ki = 0) and P path (fdbd, feHL, s5:
+# Fflag = PLflag = 0); REECB1 PIQ/PIV (outputs unused with QFLAG = 0).
+EXEMPT = {"REGCP1": ("HVG",), "REPCA1": ("dbd", "eHL", "s2", "fdbd", "feHL", "s5"), "REECB1": ("PIQ", "PIV")}
 
-    act = []
+
+def limits_active(ss):
+    """(counted, all) limiter flags active at the initial point (never adjusted)."""
+
+    act, allf = [], []
     for mname in ("REGCP1", "REECB1", "REPCA1"):
         mdl = getattr(ss, mname, None)
         if mdl is None or mdl.n == 0:
@@ -258,10 +297,11 @@ def limits_active(ss) -> list:
             for flag in ("zl", "zu"):
                 arr = getattr(disc, flag, None)
                 if arr is not None and np.any(np.asarray(arr) > 0.5):
-                    if dname.lower().startswith(("dbd", "db")):
-                        continue
-                    act.append(f"{mname}.{dname}.{flag}")
-    return act
+                    tag = f"{mname}.{dname}.{flag}"
+                    allf.append(tag)
+                    if not dname.startswith(EXEMPT.get(mname, ())):
+                        act.append(tag)
+    return act, allf
 
 
 def q_targets_nominal():
@@ -285,7 +325,8 @@ def run_case(pid, members, net, qt, cross=False):
             rec.update(status="PF_FAIL")
             return rec
         res = residual(ss)
-        lim = limits_active(ss) if members else []
+        lim, lim_all = limits_active(ss) if members else ([], [])
+        rec["limit_flags_all"] = lim_all
         sp = spectrum(ss, want_modes=True, cross_check=cross)
         pq_err = 0.0
         for b in members:
@@ -316,8 +357,10 @@ def main(mode):
         for p in pols:
             out["Q1"][p] = run_case(p, (), "NOMINAL", qt)
             out["Q1"][p].pop("modes", None)
-        out["Q3_P4like"] = run_case(pols[0], (30, 33, 35, 37), "NOMINAL", qt, cross=True)
-        out["Q3_P4like"].pop("modes", None)
+        out["Q3_P4"] = run_case("D01", (30, 33, 35, 37), "NOMINAL", qt, cross=True)
+        out["Q3_P4"].pop("modes", None)
+        out["Q3_H02_first_run_case"] = run_case("H02", (30, 33, 35, 37), "NOMINAL", qt, cross=True)
+        out["Q3_H02_first_run_case"].pop("modes", None)
         (OUT / "H17_qualification_andes.json").write_text(json.dumps(out, indent=1))
         print(json.dumps(out, indent=1)[:4000])
         return

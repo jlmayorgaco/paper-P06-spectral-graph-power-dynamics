@@ -225,9 +225,15 @@ def run():
             "n_conditions": int(lk.cond.nunique()), "n_conditions_failed_R0": int((lk.groupby("cond").R0.max() > 1e-8).sum()),
             "frac_steps_converged_g1.50": float(lk["g1.50_ok"].fillna(False).astype(bool).mean()),
             "frac_steps_admissible_g1.50": float(lk["g1.50_admissible"].fillna(False).astype(bool).mean())}
-    prim = m[(m.target == "H4") & (m.gamma == "1.50") & (m.truth == "FULL")]
+    r0 = lk.groupby("cond").R0.max()
+    elig = set(r0[r0 <= 1e-8].index)  # prereg H6 eligibility (R0 <= 1e-8), applied literally
+    gate["n_conditions_R0_eligible"] = int(len(elig))
+    gate["R0_max_all"] = float(r0.max())
+    allh4 = m[(m.target == "H4") & (m.gamma == "1.50") & (m.truth == "FULL")]
+    gate.update(gate_on(allh4[allh4.cond.isin(elig)], "GB_prereg"))
+    gate["GB_hardened_pass"] = gate.get("GB_prereg_pass", False)
+    prim = allh4  # sensitivity analysis: every solved condition (R0 <= 2.2e-7; IV check 100 %)
     gate.update(gate_on(prim, "GB_primary"))
-    gate["GB_hardened_pass"] = gate.get("GB_primary_pass", False)
     gate.update(gate_on(prim[prim.em_cond], "GB_EM"))
     gate.update(gate_on(m[(m.target == "H4") & (m.gamma == "1.50") & (m.truth == "SAME")], "GB_SAME"))
     gate.update(gate_on(prim[~prim.near_tie], "GB_no_near_tie"))

@@ -76,3 +76,59 @@ zero-row dead states already covered by the prereg.
 
 **Q3.** Q3 is now also run at P4 (D01) on H4, as the prereg specifies. The H02 run is
 kept and reported.
+
+## 2026-09-12T22:05 — H17 refinement 1b, recorded BEFORE any H18 matrix case was run
+
+After refinement 1, the REECB1 V-PI integrators (PIV_xi, one per converter) remain. In A_s
+their off-diagonal row **and** column are exactly zero, and their diagonal is +1.2e-6 s⁻¹.
+This is the anti-windup tracking term of a PI whose input is multiplied by SWQ_s1 = 0 under
+QFLAG = 0.
+
+- **What such a state is.** A fully isolated state is its own 1×1 diagonal block. Its
+  eigenvalue is its diagonal, and it neither influences nor is influenced by any physical
+  variable.
+- **Refinement 1b.** A state whose off-diagonal row and column of A_s are both zero, and whose
+  diagonal satisfies abs(a_kk) ≤ 1e-3 s⁻¹, is removed as structurally decoupled. Its
+  eigenvalue is recorded in the case output (`isolated_eigs`).
+- **What is not removed.** Isolated states with abs(a_kk) > 1e-3 are kept in the spectrum.
+
+Everything else is unchanged:
+- the Q1–Q3 results;
+- the structural-pair rule;
+- the verdict band.
+
+No model or parameter is changed.
+
+**Q3 (for the record).**
+- Descriptor QZ vs reduced-A_s spectrum: 1.0e-13 relative at P4.
+- ANDES EIG.mu: 3.6e-15.
+- Initialization residual: 9.4e-14.
+
+## 2026-09-12T22:10 — execution fix: H06 worker-pool crash (no definition changed)
+
+- **What failed.** 260 of the 440 H06 tasks failed with "A process in the process pool was
+  terminated abruptly" (BrokenProcessPool). The failure coincided with a memory-heavy
+  analysis running in parallel, so the workers were probably killed for lack of memory.
+- **Fix.** The failed-task checkpoints (records with ok = false and no results) were deleted,
+  and the 260 tasks were rerun. The code and inputs are unchanged, and each task is
+  deterministic.
+- **Prevention.** Memory-heavy analyses are no longer run while a large pool is active.
+
+## 2026-09-12T22:20 — H6 eligibility applied literally (interpretation note, no rule changed)
+
+- **The rule.** The prereg declares a GOLD-B condition eligible if "the target solves
+  and the derivative engine returns (R0 ≤ 1e-8)", where R0 = max abs(SPR residual) at
+  the TX4 solve_case equilibrium.
+- **What the data show.** R0 lies between 1.2e-12 and 2.2e-7, with a median of
+  4.8e-8. That is the ordinary tolerance of the frozen equilibrium solver; the old E34
+  never aggregated R0. The threshold was therefore stricter than the solver the
+  campaign uses.
+- **Literal application.** Applied as written, only 8 of the 64 H4 primary conditions
+  are eligible: 6 draws and 2 policies, in 6 clusters.
+- **Primary result.** GOLD-B hardening is decided on these 8 conditions (`GB_prereg_*`).
+- **Sensitivity analysis.** The result over all 64 solved conditions (`GB_primary_*` in
+  the JSON) is reported as a labelled sensitivity analysis.
+- **Why the analysis is still valid.** The implementation-validity check (IFT
+  derivative against the small-step finite difference) passes for 100 % of the 4048
+  link pairs, so a residual of order 1e-7 does not measurably affect the derivatives.
+- **Holm family.** F_conf uses the T2 p-value of the literal (8-condition) set.
