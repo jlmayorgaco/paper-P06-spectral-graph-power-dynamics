@@ -1,0 +1,8 @@
+claim_id,claim,primary_estimand,required_evidence,status,allowed_language
+PD39-C1,The stock PowerDynamics IEEE-39 baseline can be initialized reproducibly,baseline qualification,model audit plus qualification.toml,qualified,"qualified implementation checkpoint"
+PD39-C2,An SG→GFL replacement changes dynamic margin relative to the baseline,single-replacement margin loss,all candidate rows plus raw spectra,not_run,"changes margin in this benchmark"
+PD39-C3,Static node weakness and dynamic node weakness are not equivalent,Spearman rank association,static and dynamic node tables plus fixed ranking rule,not_run,"context-dependent association"
+PD39-C4,Static link proxy and dynamic link response are not equivalent,link rank association,qualified declared link perturbation and raw results,not_run,"only if link perturbation is qualified"
+PD39-C5,A minimum robust SG→GFL portfolio exists,minimum feasible cardinality,all 256 portfolios times 9 scenarios,not_run,"exists only if every robust constraint passes"
+PD39-C6,The minimum portfolio is robust to the preregistered controller box,worst-case dynamic margin,full scenario vector for selected portfolio,not_run,"robust over the fixed nine-scenario box"
+PD39-C7,The result establishes a universal weakness index or universal causal law,none,requires evidence beyond this benchmark,prohibited,"do not claim"
