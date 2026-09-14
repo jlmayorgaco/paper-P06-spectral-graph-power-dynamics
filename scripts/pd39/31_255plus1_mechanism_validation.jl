@@ -297,8 +297,12 @@ function composition_mechanism(audit)
                     eachrow(audit.rows))
         rb = filter(r -> r.portfolio == pair.b && r.scenario == s.id && r.audit_layer == "independent",
                     eachrow(audit.rows))
+        ma = filter(r -> r.portfolio == pair.a && r.scenario == s.id, eachrow(audit.modal))
+        mb = filter(r -> r.portfolio == pair.b && r.scenario == s.id, eachrow(audit.modal))
         sa, sb = static_row(pair.a), static_row(pair.b)
-        ok = !isempty(ra) && !isempty(rb) && first(ra).status == "ok" && first(rb).status == "ok"
+        ok = !isempty(ra) && !isempty(rb) && !isempty(ma) && !isempty(mb) &&
+            first(ra).status == "ok" && first(rb).status == "ok" &&
+            first(ma).status == "ok" && first(mb).status == "ok"
         push!(rows, (pair_id = pair.pair_id, cardinality = pair.cardinality, scenario = s.id,
             portfolio_a = pair.a, portfolio_b = pair.b,
             delta_converted_mw = abs(Float64(sa.converted_mw) - Float64(sb.converted_mw)),
@@ -309,8 +313,8 @@ function composition_mechanism(audit)
             alpha_a = ok ? first(ra).independent_fd_alpha : NaN,
             alpha_b = ok ? first(rb).independent_fd_alpha : NaN,
             delta_alpha_a_minus_b = ok ? first(ra).independent_fd_alpha - first(rb).independent_fd_alpha : NaN,
-            mode_mac_a_to_v8 = ok ? first(ra).mac_to_v8 : NaN,
-            mode_mac_b_to_v8 = ok ? first(rb).mac_to_v8 : NaN,
+            mode_mac_a_to_v8 = ok ? first(ma).mac_to_v8 : NaN,
+            mode_mac_b_to_v8 = ok ? first(mb).mac_to_v8 : NaN,
             status = ok ? "ok" : "missing_mode_audit"))
     end
     out = DataFrame(rows)

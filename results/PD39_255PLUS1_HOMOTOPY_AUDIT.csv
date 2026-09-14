@@ -1,0 +1,2 @@
+item,status,documented_continuous_path,reason,action
+SG_to_GFL_physical_homotopy,BLOCKED,false,Only discrete compile_bus/replace_buses semantics were found; no physically documented continuous SG-to-GFL interpolation.,No artificial blend constructed; no homotopy numerics run.
