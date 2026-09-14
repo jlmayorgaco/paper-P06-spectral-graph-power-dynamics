@@ -1,0 +1,3 @@
+item,status,detail,nearest_return_eigenvalue,det_I_plus_Q_R
+PD_contextual_return,BLOCKED,Installed PowerDynamics model/API does not expose exact K,D,Q port objects and dimensions needed for the requested closure identity,,
+TX4_contextual_return,NOT_RUN_STOP,Conditional continuation was not authorized after physical-blocker STOP; no proxy or fabricated validation was used,,

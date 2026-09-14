@@ -1,0 +1,9 @@
+claim_id,gate,claim,primary_threshold,allowed_result,evidence_file
+H1,A,Selected low-order C12 blockers are physical dynamic instabilities,"delta_H >= 0.02; independent sign agreement; no DAE/UNRESOLVED","PASS or FAIL; no artifact relabeling",results/PD39_BLOCKER_NUMERICAL_AUDIT.csv
+H2,A,Selected blockers are minimal under true-stability H0,"alpha(H) >= 0 and every proper subset alpha < 0","PASS or FAIL with delta_H",results/PD39_BLOCKER_NUMERICAL_AUDIT.csv
+H3,B,Common nonlinear TDS confirms blocker growth and predecessor decay,"same disturbance; frequency error <= 0.10 Hz when oscillatory","PASS or FAIL",results/PD39_BLOCKER_TDS_VALIDATION.csv
+H4,C,Composition matters beyond aggregate IBR,"aggregate distance <= 0.05; |delta alpha| >= 0.05; blocker >= +0.02; control <= -0.02","COMPOSITION_STRONG TRUE or FALSE",results/PD39_SELECTED_BLOCKERS.csv
+H5,Atlas,Compatibility regions are coherent and boundaries are mode-trackable,"11x11 plus frozen adaptive rule; boundary uncertainty <= 0.01 if refined","GO only; otherwise not run",results/PD39_COMPATIBILITY_ATLAS.parquet
+H6,Closure,Contextual-return identity is numerically testable,"exact PD objects or frozen TX4 validation; det(I+Q_R) nonzero","PASS or BLOCKED; no proxy",results/TX4_CONTEXTUAL_RETURN_VALIDATION.csv
+H7,Diagnostics,Minimal blocker membership adds information beyond classical diagnostics,"frozen rank/overlap comparison","PASS, EQUIVALENT, or FAIL",results/PD39_BLOCKER_DIAGNOSTICS.csv
+H8,Remediation,One local first-order action improves all confirmed blockers,"frozen derivative matrix and one exact validation","PROMISING or FAIL",results/PD39_BLOCKER_REMEDIATION_POC.csv

@@ -1,0 +1,272 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.78in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\hypersetup{colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black}
+\definecolor{stopred}{HTML}{9A2D2D}
+\definecolor{auditblue}{HTML}{2C6E9E}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{PD39 physical blocker validation}
+\rhead{CASE C - STOP}
+\cfoot{\thepage}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\fail}{\textcolor{stopred}{FAIL}}
+\title{PD39 Physical Blocker Validation\\\large First Compatibility Atlas - STOP Report}
+\author{PD39 research branch: \code{research/pd39-physical-blockers-atlas-v1}}
+\date{14 September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+{\Large \textcolor{stopred}{FINAL CASE: C - STOP}}\\[4pt]
+No physically confirmed blocker; no compatibility atlas was run.
+\end{center}
+
+\section*{Executive verdict}
+
+The prior fresh-holdout census supplied three low-order C12 portfolios that
+looked like H0 candidates on the default PowerDynamics initialization path:
+\code{35;36}, \code{37;38}, and \code{30;32;33}. This campaign tested those
+cases, their immediate predecessors, cheap proper subsets, and aggregate-matched
+controls. The default-path positive alphas were not reproducible under the
+frozen Gate A tolerance/path audit. All three selected C12 blocker TDS runs
+returned \code{MaxIters}; predecessors and controls completed and decayed.
+
+Thus the candidates are not physically validated dynamic instabilities. The
+correct result is a model/equilibrium-path warning. The conditional atlas,
+composition claim, contextual-return validation, remediation, and excluded
+campaigns were not run.
+
+\section{Scope, provenance, and frozen decision}
+
+The final branch is \code{research/pd39-physical-blockers-atlas-v1}, created
+from parent commit \code{e81d18ab945b}. Preregistration was committed before
+new numerical results at \code{1b9ad5fe}. Gate A, default-path audit, and Gate
+B commits were \code{02381549}, \code{d24f0ad3}, and \code{c95bab91}.
+PowerDynamics was version 5.0.0 under Julia 1.11.9. No push was performed.
+
+Only the following gates were allowed: numerical/DAE physicality, common
+nonlinear TDS, conditional aggregate composition, and exact network-closure
+feasibility. Weak-node/link ranking, structured-radius search, repair
+optimization, planners, co-design, IEEE-68, EMT, and new controller search
+were explicitly out of scope.
+
+The frozen minimality separation was
+\[
+ \delta_H = \min\left(\alpha(H), -\max_{G\subset H}\alpha(G)\right),
+\]
+with primary threshold \code{0.02 s-1}. A positive alpha alone was not
+accepted as physicality evidence.
+
+\section{Discovery audit and frozen selection}
+
+The authoritative prior file contained 256 portfolios x 24 holdout conditions,
+or 6144 portfolio-condition evaluations. Its frozen summary reported 42
+minimal H0 cases and 47 minimal H0.05 cases. This narrow campaign did not
+rerun the census.
+
+\begin{table}[h]
+\centering
+\caption{Frozen candidate selection.}
+\begin{tabular}{llllr}
+\toprule
+ID & Candidate & Condition & Matched control & Distance\\
+\midrule
+H1 & 35;36 & C12 & 32;36 & 0.0013860\\
+H2 & 37;38 & C12 & 36;38 & 0.0148840\\
+H3 & 30;32;33 & C12 & 30;33;35 & 0.0014786\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The controls were frozen by same cardinality, then MW, MVA, remaining
+inertia, and lexicographic order. No selection was changed after observing
+results.
+
+\section{Gate A - numerical and DAE physicality}
+
+The audit covered 17 unique portfolios at C12 and nominal with tolerances
+\code{1e-8}, \code{1e-10}, and \code{1e-12}. It used the native reduction,
+an independent dense spectrum, a descriptor/generalized check where exposed,
+central finite-difference diagnostics, conditioning, singular values, and
+participation. Within each fixed solved path, dense and descriptor spectra
+agreed with the native result. The equilibrium path did not.
+
+\begin{table}[h]
+\centering
+\caption{Default census initialization path at C12.}
+\begin{tabular}{lrrll}
+\toprule
+ID & alpha & frequency (Hz) & mode label & residual\\
+\midrule
+H1 & +10.1875267 & 0.000000 & electromechanical/control & 3.54e-12\\
+H2 & +22.5280341 & 0.549890 & converter-control oscillatory & 7.04e-13\\
+H3 & +21.1535104 & 0.000000 & converter-control oscillatory & 7.04e-13\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Strict Gate A path at tolerance 1e-10.}
+\begin{tabular}{lrrl}
+\toprule
+ID & alpha & frequency (Hz) & interpretation\\
+\midrule
+H1 & -0.0979116 & 0.067999 & stable on this path\\
+H2 & +11.8934740 & 0.000000 & positive but path-sensitive\\
+H3 & -0.1088351 & 0.074147 & stable on this path\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At the default path, the immediate-predecessor separations for H1, H2, and H3
+were 0.0971024, 0.0975787, and 0.0978716 s$^{-1}$. Those values are not
+physical minimality evidence once the candidate branch is shown to be
+path-sensitive. Large reduced-Jacobian conditioning, near-zero singular
+values, and PowerDynamics vertex-batch warnings are consistent with a
+numerical/DAE branch concern, but do not select a physical mechanism.
+
+\textbf{Gate A: \fail\_UNRESOLVED.}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.98\linewidth]{../figures/PD39_blocker_atlas/F1_path_dependence_selected_cases.pdf}
+\caption{Default versus strict audit path for candidates and controls.}
+\end{figure}
+
+\section{Gate B - common nonlinear TDS}
+
+The preregistered disturbance was bus 39 with a +1\% P/Q constant-power-factor
+pulse from 1.0 to 1.1 s, restoration, and integration to 20 s with common
+Rodas5P settings. The run contained 26 rows. A \code{maxiters=100000} guard
+was added only to prevent unbounded runtime; it did not change the disturbance,
+tolerances, observables, or acceptance rule. A max-iteration return is a TDS
+failure.
+
+All three selected C12 candidates returned \code{MaxIters}. Immediate
+predecessors and controls completed with negative estimated rates, roughly
+-0.207 to -0.258 s$^{-1}$. The failed candidate integrations showed large
+state/Jacobian excursions before the solver stopped. This pattern is not
+nonlinear physical confirmation.
+
+\textbf{Gate B: \fail.}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.98\linewidth]{../figures/PD39_blocker_atlas/F2_tds_stop_summary.pdf}
+\caption{C12 TDS completion pattern. Red candidate bars are absent because
+the solver returned MaxIters; blue neighbors completed and decayed.}
+\end{figure}
+
+\section{Gate C - composition}
+
+The composition gate was conditional on physical blocker confirmation. Because
+Gates A and B did not confirm a blocker, the gate was not entered. Raw
+default-path candidate/control comparisons are retained in
+\code{results/PD39\_BLOCKER\_COMPOSITION\_TEST.csv}; they do not constitute a
+composition claim. In particular, a large H2 default-path contrast cannot be
+promoted while the equilibrium branch is unresolved.
+
+\textbf{Gate C: NOT APPLICABLE; composition strong = false.}
+
+\section{Penetration, composition, and mode mechanism}
+
+The prior holdout results show H0/H0.05 cases across multiple conditions rather
+than a universal V8 identity. In the selected C12 cases, the default labels
+are heterogeneous: H1 is electromechanical/control and H2/H3 are labeled
+converter-control by the default path. The tolerance/path changes and failed
+TDS integrations prevent a physical 7/8 -> 8/8 mechanism claim. No physical
+SG-to-GFL homotopy was run.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.98\linewidth]{../figures/PD39_blocker_atlas/F3_gate_a_tolerance_sweep.pdf}
+\caption{Frozen tolerance sweep for selected C12 candidates.}
+\end{figure}
+
+\section{Exact network closure}
+
+The installed model/API does not expose the exact device-port objects, local
+admittance partition, and dimensioned K, D, and Q objects required for the
+requested contextual-return identity. PD contextual return is therefore
+\code{BLOCKED}. TX4 contextual-return validation was not run after the
+physicality STOP. No proxy, determinant identity, or Q -> -1 boundary was
+constructed.
+
+\textbf{Closure: BLOCKED.}
+
+\section{Compatibility atlas and conditional theory}
+
+The PLL/filter two-coordinate atlas, 11 x 11 grid, adaptive boundaries,
+\code{kappa\_0}, \code{kappa\_0.05}, mode-MAC continuation, contextual-return
+theorem validation, and local remediation were not run. A compatibility atlas
+on path-sensitive equilibria and failed TDS cases would overstate the evidence.
+
+\section{Negative results and forbidden claims}
+
+This branch does not support a physical minimal H0/H0.05 blocker, a physical
+7/8 -> 8/8 mode transition, an aggregate composition mechanism, compatibility
+boundaries, contextual-return closure, or any controller/line/topology repair.
+It also does not revive hidden-radius, generic weak-node/link, graph
+Laplacian/Fiedler, cycle/holonomy, Shapley, or broad co-design novelty.
+
+The strongest defensible positive statement is narrower: the stock PD39
+workflow produces low-order C12 instability candidates whose default-path
+signs are not reproducible under the frozen audit and whose common-disturbance
+trajectories can terminate in solver iteration failure while neighbors decay.
+This is a validation warning requiring model/equilibrium-path repair.
+
+\section{Practical interpretation and final decision}
+
+For SG-to-IBR planning, the immediate lesson is a quality-control rule: do not
+promote a portfolio to a physical blocker from one initialization and one
+rightmost eigenvalue. Require branch reproducibility, independent spectrum
+agreement, conditioning diagnostics, and a common nonlinear disturbance that
+completes.
+
+The campaign does not justify redesigning the IAS poster around a physical
+blocker or atlas. It is not Transactions-ready as a new mechanism result.
+
+\begin{table}[h]
+\centering
+\caption{Final status matrix.}
+\begin{tabular}{ll}
+\toprule
+Item & Status\\
+\midrule
+Numerical audit & FAIL\_UNRESOLVED\\
+Selected-blocker TDS & FAIL: 3 C12 MaxIters\\
+Prior H0 count over 24 holdouts & 42\\
+Prior H0.05 count over 24 holdouts & 47\\
+Penetration/composition/mixed verdict & no physical blocker\\
+Mode mechanism & unresolved, path-dependent labels\\
+Closure & BLOCKED\\
+Atlas & NOT RUN\_STOP\\
+IAS poster redesign & NO\\
+Transactions-ready & NO\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{FINAL CASE: C.}
+
+\section*{Reproducibility files}
+
+The final repository retains the preregistration, deviations, selection table,
+Gate A tables, default-path audit, Gate B raw traces, STOP figures, final
+machine-readable claims, and two ZIP bundles. The compact bundle is
+\code{deliverables/PD39\_BLOCKER\_ATLAS\_CHATGPT\_UPLOAD.zip}.
+
+\end{document}
