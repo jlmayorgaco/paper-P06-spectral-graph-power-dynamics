@@ -55,7 +55,7 @@ The four 7/8 matched pairs are disjoint and cover all eight predecessors:
 4. `30;32;33;34;35;37;38` versus `30;32;33;34;35;36;38`.
 
 The pair list is a prespecified descriptive comparison set.  The first and
-fourth 7/8 pairs have the largest static mismatch within the disjoint cover;
+third 7/8 pairs have the largest static mismatch within the disjoint cover;
 their exact differences are retained rather than silently discarded.
 
 All selected portfolios are evaluated under all nine frozen discovery
