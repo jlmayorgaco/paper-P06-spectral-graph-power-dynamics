@@ -197,8 +197,8 @@ function pair_summaries(pairwise)
         sub = filter(r -> r.pair_id == pair_id && isfinite(r.abs_delta_alpha), eachrow(pairwise))
         isempty(sub) && continue
         vals = Float64[r.abs_delta_alpha for r in sub]
-        nominal = only(filter(r -> r.scenario == "nominal", eachrow(pairwise)))
-        high = only(filter(r -> r.scenario == HIGH_PLL_SCENARIO, eachrow(pairwise)))
+        nominal = only(filter(r -> r.pair_id == pair_id && r.scenario == "nominal", eachrow(pairwise)))
+        high = only(filter(r -> r.pair_id == pair_id && r.scenario == HIGH_PLL_SCENARIO, eachrow(pairwise)))
         push!(rows, (
             pair_id = pair_id, cardinality = only(sub).cardinality,
             max_abs_delta_alpha = maximum(vals), median_abs_delta_alpha = median(vals),
