@@ -52,7 +52,7 @@ R_i|R = Q_iR G_R Q_Ri.
 The contextual-return identity is
 
 ```
-det(I+Q_H4) = det(I+Q_RR) * det(I+R_i|R).
+det(I+Q_H4) = det(I+Q_RR) * det(I-R_i|R).
 ```
 
 The theorem is a standard finite-dimensional Schur-complement consequence
@@ -60,6 +60,8 @@ under exact full-order realization, compatible block partition, finite local
 factors, invertible `I+Q_RR`, and a simple tracked root. It is not presented
 as a new theorem. Return eigenvalues are tracked in the fixed port basis;
 singular values are reported in that basis and are not claimed basis-invariant.
+The unity event is `det(I-R_i|R)=0`, equivalently `1` is an eigenvalue of the
+return operator.
 
 ## Numerical truth audit
 
