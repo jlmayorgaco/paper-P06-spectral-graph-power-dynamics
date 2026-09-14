@@ -344,9 +344,9 @@ end
 "Attach the preregistered exact temporary constant-power-factor load pulse." 
 function build_tds_network(portfolio; pulse = 0.01, load_bus = TDS_LOAD_BUS,
                             controller_delta = (0.0, 0.0, 0.0),
-                            branch_delta = zeros(Float64, 46))
+                            branch_delta = zeros(Float64, 46), bounds = :primary)
     nw = build_confirmatory_network(portfolio; controller_delta = controller_delta,
-        branch_delta = branch_delta)
+        branch_delta = branch_delta, bounds = bounds)
     vertices, edges = copy_network_components(nw)
     defaults = get_defaults_dict(vertices[load_bus])
     ps = only([s for s in keys(defaults) if occursin("Pset", string(s))])
@@ -413,9 +413,9 @@ end
 "Run the preregistered nonlinear TDS and return the frozen observables." 
 function simulate_tds_case(portfolio; pulse = 0.01, controller_delta = (0.0, 0.0, 0.0),
                            branch_delta = zeros(Float64, 46),
-                           tspan = (0.0, 20.0), saveat = 0.01)
+                           tspan = (0.0, 20.0), saveat = 0.01, bounds = :primary)
     nw = build_tds_network(portfolio; pulse = pulse, controller_delta = controller_delta,
-        branch_delta = branch_delta)
+        branch_delta = branch_delta, bounds = bounds)
     eq = initialize_equilibrium(nw; sparse = false)
     eq.powerflow_finite && eq.state_finite && eq.fixed_point ||
         throw(ArgumentError("TDS initial equilibrium is not qualified"))
