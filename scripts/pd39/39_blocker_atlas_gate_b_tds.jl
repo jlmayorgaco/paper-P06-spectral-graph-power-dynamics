@@ -20,6 +20,7 @@ const SELECTED = [
 ]
 const LOAD_BUS = 39
 const PULSE = 0.01
+const MAX_ITERS = 100_000
 
 parse_portfolio(p::AbstractString) = p == "none" ? Int[] : parse.(Int, split(p, ";"))
 function condition_row(id)
@@ -122,7 +123,10 @@ function one(case,cid)
         prob=SciMLBase.ODEProblem(nw,eq.state,(0.0,20.0))
         sol=SciMLBase.solve(prob,OrdinaryDiffEqRosenbrock.Rodas5P();
             callback=get_callbacks(nw),initializealg=SciMLBase.NoInit(),saveat=0.02,
-            abstol=1e-8,reltol=1e-8)
+            abstol=1e-8,reltol=1e-8,maxiters=MAX_ITERS)
+        retcode=string(sol.retcode)
+        occursin("Success",retcode) || return merge(base,(status="failed",
+            error_type="tds_solver_retcode",error_message=retcode))
         t=Float64.(sol.t); states=[NetworkDynamics.NWState(sol,ti) for ti in t]
         v=[voltage(s) for s in states]
         spread=Float64[]
