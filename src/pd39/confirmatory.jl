@@ -353,7 +353,7 @@ function build_tds_network(portfolio; pulse = 0.01, load_bus = TDS_LOAD_BUS,
     qs = only([s for s in keys(defaults) if occursin("Qset", string(s))])
     p0, q0 = defaults[ps], defaults[qs]
     affect = (u, p, ctx) -> begin
-        factor = ctx.t < 1.05 ? 1 + pulse : 1.0
+        factor = ctx.t < 1.1 ? 1 + pulse : 1.0
         p[ps] = p0 * factor
         p[qs] = q0 * factor
     end
