@@ -58,9 +58,12 @@ The pair list is a prespecified descriptive comparison set.  The first and
 fourth 7/8 pairs have the largest static mismatch within the disjoint cover;
 their exact differences are retained rather than silently discarded.
 
-All selected portfolios are re-evaluated under all nine frozen discovery
-scenarios.  The existing discovery rows are retained as an independent
-comparison, not replaced.
+All selected portfolios are evaluated under all nine frozen discovery
+scenarios by joining to the existing discovery rows; those rows are retained
+as the frozen numerical record and are not replaced.  A blanket rerun is not
+part of this short campaign because it would only rebuild the same compiled
+model and add no independent scenario.  The genuinely new numerical checks
+below are rerun from fresh network constructions.
 
 ## Primary composition analysis
 

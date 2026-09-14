@@ -65,6 +65,9 @@ function discovery_row(portfolio::AbstractString, scenario::AbstractString)
     return only(rows)
 end
 
+float_or_nan(x) = x isa Missing ? NaN : Float64(x)
+text_or_empty(x) = x isa Missing ? "" : String(x)
+
 function scenario_controller(s)
     return (s.pll_scale - 1, s.filter_scale - 1, s.current_control_scale - 1)
 end
@@ -134,35 +137,23 @@ function selection_rows()
     return DataFrame(out)
 end
 
-function run_selected_composition(selection)
+function reuse_selected_composition(selection)
     rows = NamedTuple[]
     portfolios = unique(String.(selection.portfolio))
     for p in portfolios, scenario in SCENARIOS
-        println("composition ", p, " / ", scenario.id)
-        flush(stdout)
-        c = scenario_controller(scenario)
-        result = try
-            nw = build_confirmatory_network(parse_portfolio(p);
-                controller_delta = c, bounds = :discovery)
-            run_margin_case(nw)
-        catch err
-            (status = "failed", error_type = "build_or_run_exception",
-             error_message = sprint(showerror, err), equilibrium_status = "equilibrium_failed",
-             alpha = NaN, margin = NaN, stable = false,
-             equilibrium_residual = NaN)
-        end
         dr = discovery_row(p, scenario.id)
+        dr === nothing && error("missing frozen discovery row for $p / $(scenario.id)")
         sr = static_row(p)
         push!(rows, (
             portfolio = p, cardinality = length(parse_portfolio(p)), scenario = scenario.id,
-            status = String(result.status), error_type = String(result.error_type),
-            error_message = String(result.error_message), equilibrium_status = String(result.equilibrium_status),
-            alpha_followup = Float64(result.alpha), margin_followup = Float64(result.margin),
-            stable_followup = Bool(result.stable), equilibrium_residual = Float64(result.equilibrium_residual),
-            alpha_discovery = dr === nothing ? NaN : Float64(dr.max_real),
-            margin_discovery = dr === nothing ? NaN : Float64(dr.dynamic_margin),
-            delta_alpha_followup_minus_discovery = dr === nothing ? NaN :
-                Float64(result.alpha) - Float64(dr.max_real),
+            source = "frozen_discovery_reuse", status = text_or_empty(dr.equilibrium_status),
+            error_type = text_or_empty(dr.error_type), error_message = text_or_empty(dr.error_message),
+            equilibrium_status = text_or_empty(dr.equilibrium_status),
+            alpha_followup = float_or_nan(dr.max_real), margin_followup = float_or_nan(dr.dynamic_margin),
+            stable_followup = dr.stable isa Missing ? false : Bool(dr.stable),
+            equilibrium_residual = NaN,
+            alpha_discovery = float_or_nan(dr.max_real), margin_discovery = float_or_nan(dr.dynamic_margin),
+            delta_alpha_followup_minus_discovery = 0.0,
             converted_mw = Float64(sr.converted_mw), ibr_mva = Float64(sr.ibr_mva),
             remaining_sg_mw = Float64(sr.remaining_sg_mw), remaining_sg_mva = Float64(sr.remaining_sg_mva),
             remaining_inertia_mva_s = Float64(sr.remaining_inertia_mva_s),
@@ -397,7 +388,7 @@ end
 selection = selection_rows()
 CSV.write(joinpath(RESULTS, "PD39_COMPOSITION_SELECTION.csv"), selection)
 
-composition = run_selected_composition(selection)
+composition = reuse_selected_composition(selection)
 CSV.write(joinpath(RESULTS, "PD39_PENETRATION_COMPOSITION.csv"), composition)
 
 pairwise = isempty(FROZEN_PAIRS) ? DataFrame() : vcat([pair_rows(p, composition) for p in FROZEN_PAIRS]...)
