@@ -9,6 +9,7 @@ mkpath(RESULTS)
 const AUDIT = CSV.read(joinpath(RESULTS, "PD39_255PLUS1_NUMERICAL_TRUTH_AUDIT.csv"), DataFrame)
 const MODAL = CSV.read(joinpath(RESULTS, "PD39_255PLUS1_MODE_TRACKING.csv"), DataFrame)
 const STATIC = CSV.read(joinpath(RESULTS, "PD39_CLASSICAL_BASELINES.csv"), DataFrame)
+const DISCOVERY = CSV.read(joinpath(RESULTS, "pd39", "portfolio_campaign", "portfolio_scenario_results.csv"), DataFrame)
 
 const COMPOSITION_PAIRS = [
     (pair_id = "k6_p1", cardinality = 6, a = "30;32;33;34;36;37", b = "30;33;34;35;36;37"),
@@ -27,17 +28,21 @@ rowvalue(r, name) = getproperty(r, name)
 static_row(p) = only(filter(r -> String(r.portfolio) == p, eachrow(STATIC)))
 audit_row(p, s) = filter(r -> String(r.portfolio) == p && String(r.scenario) == s && String(r.audit_layer) == "independent", eachrow(AUDIT))
 modal_row(p, s) = filter(r -> String(r.portfolio) == p && String(r.scenario) == s, eachrow(MODAL))
+discovery_row(p, s) = filter(r -> String(r.portfolio) == p && String(r.scenario) == s, eachrow(DISCOVERY))
 
 function composition_mechanism()
     rows = NamedTuple[]
     scenarios = unique(String.(AUDIT.scenario))
     for pair in COMPOSITION_PAIRS, sid in scenarios
         ra, rb = audit_row(pair.a, sid), audit_row(pair.b, sid)
+        da, db = discovery_row(pair.a, sid), discovery_row(pair.b, sid)
         ma, mb = modal_row(pair.a, sid), modal_row(pair.b, sid)
         sa, sb = static_row(pair.a), static_row(pair.b)
-        ok = !isempty(ra) && !isempty(rb) && !isempty(ma) && !isempty(mb) &&
+        mode_ok = !isempty(ra) && !isempty(rb) && !isempty(ma) && !isempty(mb) &&
             first(ra).status == "ok" && first(rb).status == "ok" &&
             first(ma).status == "ok" && first(mb).status == "ok"
+        alpha_ok = mode_ok || (!isempty(da) && !isempty(db) &&
+            String(first(da).equilibrium_status) == "ok" && String(first(db).equilibrium_status) == "ok")
         push!(rows, (
             pair_id = pair.pair_id, cardinality = pair.cardinality, scenario = sid,
             portfolio_a = pair.a, portfolio_b = pair.b,
@@ -46,14 +51,15 @@ function composition_mechanism()
             delta_remaining_sg_mw = abs(Float64(sa.remaining_sg_mw) - Float64(sb.remaining_sg_mw)),
             delta_remaining_sg_mva = abs(Float64(sa.remaining_sg_mva) - Float64(sb.remaining_sg_mva)),
             delta_remaining_inertia_mva_s = abs(Float64(sa.remaining_inertia_mva_s) - Float64(sb.remaining_inertia_mva_s)),
-            alpha_a = ok ? Float64(first(ra).independent_fd_alpha) : NaN,
-            alpha_b = ok ? Float64(first(rb).independent_fd_alpha) : NaN,
-            delta_alpha_a_minus_b = ok ? Float64(first(ra).independent_fd_alpha - first(rb).independent_fd_alpha) : NaN,
-            mode_family_a = ok ? String(first(ma).critical_mode_family) : "",
-            mode_family_b = ok ? String(first(mb).critical_mode_family) : "",
-            mode_mac_a_to_v8 = ok ? Float64(first(ma).mac_to_v8) : NaN,
-            mode_mac_b_to_v8 = ok ? Float64(first(mb).mac_to_v8) : NaN,
-            status = ok ? "ok" : "missing_mode_audit"))
+            alpha_a = alpha_ok ? (mode_ok ? Float64(first(ra).independent_fd_alpha) : Float64(first(da).max_real)) : NaN,
+            alpha_b = alpha_ok ? (mode_ok ? Float64(first(rb).independent_fd_alpha) : Float64(first(db).max_real)) : NaN,
+            delta_alpha_a_minus_b = alpha_ok ? ((mode_ok ? Float64(first(ra).independent_fd_alpha) - Float64(first(rb).independent_fd_alpha) : Float64(first(da).max_real) - Float64(first(db).max_real))) : NaN,
+            mode_family_a = mode_ok ? String(first(ma).critical_mode_family) : "not_audited_6of8",
+            mode_family_b = mode_ok ? String(first(mb).critical_mode_family) : "not_audited_6of8",
+            mode_mac_a_to_v8 = mode_ok ? Float64(first(ma).mac_to_v8) : NaN,
+            mode_mac_b_to_v8 = mode_ok ? Float64(first(mb).mac_to_v8) : NaN,
+            alpha_source = mode_ok ? "independent_A" : "frozen_discovery",
+            status = alpha_ok ? (mode_ok ? "ok" : "ok_discovery_alpha_only") : "missing_alpha"))
     end
     out = DataFrame(rows)
     CSV.write(joinpath(RESULTS, "PD39_255PLUS1_PENETRATION_COMPOSITION.csv"), out)
