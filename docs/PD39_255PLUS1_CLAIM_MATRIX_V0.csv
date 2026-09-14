@@ -1,0 +1,13 @@
+claim_id,gate,claim,primary_evidence,pass_rule,pre_numeric_status
+H1,A,V8 is the only minimal 0.05 robustness blocker in the frozen discovery set,exact 9-portfolio x 9-scenario audit,H0.05 identities unchanged and V8 only,preregistered
+H2,A,V8 true-instability cases are numerical-truth reproducible,tolerance independent Jacobian eigensolver descriptor,sign and class unchanged under tight audit,preregistered
+H3,B,high-PLL nonlinear TDS preserves linear fragile/robust ordering,12 common-disturbance traces,sign and relative ordering consistent,preregistered
+H4,C,255+1 structure generalizes across all 24 frozen holdout conditions,6144-case census,H0 and H0.05 counts and identities reported per condition,preregistered
+H5,D,aggregate-matched portfolios retain composition-sensitive alpha differences,paired static-matched comparisons,nonzero effect sizes reported without aggregate-only explanation,preregistered
+H6,D,7/8 to 8/8 is a physically trackable mode mechanism,common-observable modal tracking and permitted homotopy,clean mode tracking or explicit blocked/failed result,preregistered
+H7,E,exact network-closure identity is testable in the installed model,K D Q semantic/API audit,constructible objects identity and boundary test or BLOCKED,preregistered
+K1,A,loose numerical settings can be distinguished from converged results,residual and tolerance sweep,all cases labeled by convergence quality,preregistered
+K2,B,TDS API faithfully implements the preregistered event,callback trace and 20-second integration,event/restoration verified or TDS blocked,preregistered
+K3,C,holdout evaluation has exactly 6144 attempts,row-count and portfolio-condition key uniqueness,6144 unique keys,preregistered
+K4,D,remaining inertia/MW/MVA alone are not treated as mechanism proof,matched aggregate metadata and alpha,matched effects and limitations disclosed,preregistered
+K5,E,no proxy closure construction is acceptable,semantic source audit,blocked if exact semantics absent,preregistered
