@@ -45,7 +45,8 @@ end
          stable = false, equilibrium_residual = NaN)
     end
     p = portfolio_string(portfolio)
-    return (portfolio = p, cardinality = length(portfolio), converted_mw = sum(candidate_table()[findall(in(portfolio), candidate_table().bus), :P]),
+    meta = candidate_table()
+    return (portfolio = p, cardinality = length(portfolio), converted_mw = sum(meta[findall(in(portfolio), meta.bus), :dispatch_p_mw]),
         condition = String(c.condition), seed = Int(c.seed), status = result.status,
         error_type = result.error_type, error_message = result.error_message,
         equilibrium_status = result.equilibrium_status, alpha = Float64(result.alpha),
@@ -135,8 +136,8 @@ function condition_summary(df)
         sort!(h0); sort!(h005)
         push!(rows, (condition = cond, attempts = nrow(d), ok = count(String.(d.status) .== "ok"),
             failed = count(String.(d.status) .!= "ok"), h0_count = length(h0),
-            h0_portfolios = join(h0, ";"), h005_count = length(h005),
-            h005_portfolios = join(h005, ";")))
+            h0_portfolios = join(h0, "|"), h005_count = length(h005),
+            h005_portfolios = join(h005, "|")))
     end
     out = DataFrame(rows)
     CSV.write(joinpath(RESULTS, "PD39_255PLUS1_HOLDOUT_CONDITION_SUMMARY.csv"), out)
