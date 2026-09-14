@@ -200,16 +200,16 @@ function pair_summaries(pairwise)
         nominal = only(filter(r -> r.pair_id == pair_id && r.scenario == "nominal", eachrow(pairwise)))
         high = only(filter(r -> r.pair_id == pair_id && r.scenario == HIGH_PLL_SCENARIO, eachrow(pairwise)))
         push!(rows, (
-            pair_id = pair_id, cardinality = only(sub).cardinality,
+            pair_id = pair_id, cardinality = first(sub).cardinality,
             max_abs_delta_alpha = maximum(vals), median_abs_delta_alpha = median(vals),
             nominal_delta_alpha_a_minus_b = nominal.delta_alpha_a_minus_b,
             high_pll_delta_alpha_a_minus_b = high.delta_alpha_a_minus_b,
             n_scenarios = length(vals), n_true_classification_changes = count(!, Bool[r.same_true_stability for r in sub]),
             n_robustness_classification_changes = count(!, Bool[r.same_robustness for r in sub]),
-            delta_converted_mw = only(sub).delta_converted_mw,
-            delta_ibr_mva = only(sub).delta_ibr_mva,
-            delta_remaining_inertia_mva_s = only(sub).delta_remaining_inertia_mva_s,
-            normalized_euclidean = only(sub).normalized_euclidean,
+            delta_converted_mw = first(sub).delta_converted_mw,
+            delta_ibr_mva = first(sub).delta_ibr_mva,
+            delta_remaining_inertia_mva_s = first(sub).delta_remaining_inertia_mva_s,
+            normalized_euclidean = first(sub).normalized_euclidean,
         ))
     end
     return DataFrame(rows)
