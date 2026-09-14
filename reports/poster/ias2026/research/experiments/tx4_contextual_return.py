@@ -225,6 +225,28 @@ def contextual_return(q: np.ndarray, i: int) -> dict:
     }
 
 
+def return_matrix_at(case, base, omega: float, i: int) -> np.ndarray:
+    space = build_action_space(base, case, CORE)
+    q, *_ = q_parts(space, 1j * omega)
+    return contextual_return(q, i)["return_operator"]
+
+
+def return_operator_and_derivative(q: np.ndarray, dq: np.ndarray, i: int):
+    """Return R and the preregistered block derivative dR/da."""
+
+    n = q.shape[0] // 2
+    ridx = sum(([2 * k, 2 * k + 1] for k in range(n) if k != i), [])
+    ir = np.ix_([2 * i, 2 * i + 1], ridx)
+    ri = np.ix_(ridx, [2 * i, 2 * i + 1])
+    rr = np.ix_(ridx, ridx)
+    qir, qri, qrr = q[ir], q[ri], q[rr]
+    dqir, dqri, dqrr = dq[ir], dq[ri], dq[rr]
+    g = np.linalg.inv(np.eye(qrr.shape[0], dtype=complex) + qrr)
+    ret = qir @ g @ qri
+    dret = dqir @ g @ qri + qir @ g @ dqri - qir @ g @ dqrr @ g @ qri
+    return ret, dret
+
+
 def csv_write(path: Path, rows: list[dict]):
     path.parent.mkdir(parents=True, exist_ok=True)
     if not rows:
@@ -240,16 +262,14 @@ def audit_cases() -> dict:
     cases = {
         "BASE": (),
         "30": (30,),
+        "30+33+35+37": CORE,
+        "33": (33,),
         "30+33": (30, 33),
         "30+33+35": (30, 33, 35),
-        "30+33+35+37": CORE,
         "33+35+37": (33, 35, 37),
         "30+35+37": (30, 35, 37),
         "30+33+37": (30, 33, 37),
-        "30+33+35?control": (30, 33, 35),
     }
-    # The ninth row is intentionally a repeated named control in the frozen
-    # nine-case audit: it checks repeatability at identical P4 inputs.
     rows = []
     tol_summary = []
     for name, members in cases.items():
@@ -416,6 +436,45 @@ def sweep_and_tables() -> dict:
             )
     csv_write(OUT / "TX4_PROPER_SUBSET_CLOSURE.csv", proper_rows)
 
+    # Analytic block derivative at fixed root frequency, compared with the
+    # prescribed central finite difference after full equilibrium re-solving.
+    derivative_rows = []
+    h_g = 1e-5
+    for i, bus in enumerate(CORE):
+        cp = tx4_case(CORE, Theta(g=root + h_g, k=1.425, t=1.5, h=1.0))
+        cm = tx4_case(CORE, Theta(g=root - h_g, k=1.425, t=1.5, h=1.0))
+        q0, *_ = q_parts(root_space, 1j * root_mode.eig.imag)
+        sp = build_action_space(base, cp, CORE)
+        sm = build_action_space(base, cm, CORE)
+        qp, *_ = q_parts(sp, 1j * root_mode.eig.imag)
+        qm, *_ = q_parts(sm, 1j * root_mode.eig.imag)
+        r0, dr_formula = return_operator_and_derivative(q0, (qp - qm) / (2.0 * h_g), i)
+        rp, _ = return_operator_and_derivative(qp, np.zeros_like(qp), i)
+        rm, _ = return_operator_and_derivative(qm, np.zeros_like(qm), i)
+        ev, vr = np.linalg.eig(r0)
+        j = int(np.argmin(abs(ev - 1.0)))
+        ew, vl = np.linalg.eig(r0.conj().T)
+        jj = int(np.argmin(abs(ew - np.conj(ev[j]))))
+        xvec, yvec = vr[:, j], vl[:, jj]
+        dmu = np.vdot(yvec, dr_formula @ xvec) / np.vdot(yvec, xvec)
+        mu_fd = np.linalg.eigvals(rp)[np.argmin(abs(np.linalg.eigvals(rp) - ev[j]))]
+        fd_mu = (mu_fd - np.linalg.eigvals(rm)[np.argmin(abs(np.linalg.eigvals(rm) - ev[j]))]) / (2.0 * h_g)
+        derivative_rows.append(
+            {
+                "device_bus": bus,
+                "g": root,
+                "frequency_hz": root_mode.frequency_hz,
+                "mu_real": ev[j].real,
+                "mu_imag": ev[j].imag,
+                "dmu_dg_block_formula_real": dmu.real,
+                "dmu_dg_block_formula_imag": dmu.imag,
+                "dmu_dg_fd_real": fd_mu.real,
+                "dmu_dg_fd_imag": fd_mu.imag,
+                "absolute_error": abs(dmu - fd_mu),
+            }
+        )
+    csv_write(OUT / "TX4_CONTEXTUAL_RETURN_DERIVATIVE.csv", derivative_rows)
+
     # Fixed g-only remediation table, including the previously archived point.
     after = tx4_case(CORE, Theta(g=0.25, k=1.425, t=1.5, h=1.0))
     after_mode = mode_of(after)
@@ -472,6 +531,7 @@ def sweep_and_tables() -> dict:
         "local_sigma_min_root": min(local_smin),
         "collective_sigma_min_root": float(np.linalg.svd(cmat, compute_uv=False)[-1]),
         "max_boundary_schur_residual": max(r["schur_identity_residual"] for r in boundary_rows),
+        "max_return_derivative_error": max(r["absolute_error"] for r in derivative_rows),
         "minimality_all_proper_stable": all(r["stable"] for r in proper_rows[:-1]),
         "newton_or_bisection_iterations": root_iterations,
     }

@@ -65,8 +65,8 @@ return operator.
 
 ## Numerical truth audit
 
-For H4, its four one-device removals, and four fixed proper-subset controls
-(BASE, singleton 30, pair 30+33, and triple 30+33+35), record equilibrium
+For H4, its four one-device removals, and four distinct fixed proper-subset
+controls (BASE, singleton 30, singleton 33, and pair 30+33), record equilibrium
 residual, dimensions, reduced-Jacobian condition estimate, smallest tested
 singular values, and the critical eigenvalue. Use tolerance factors
 `{0.5,1,2}` for the frozen finite-difference step and solve tolerances

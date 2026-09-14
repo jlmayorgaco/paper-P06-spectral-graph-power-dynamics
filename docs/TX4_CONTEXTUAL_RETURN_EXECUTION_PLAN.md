@@ -8,7 +8,8 @@ committed before new numerics.
 1. Verify the parent/tag/worktree and perform read-only archaeology against
    FC01, PCV04/FC13, E31, G2, and the exact port implementation.
 2. Run the numerical truth audit on H4, its four one-device removals, and the
-   four fixed controls BASE, singleton 30, pair 30+33, and triple 30+33+35.
+   four distinct fixed controls BASE, singleton 30, singleton 33, and pair
+   30+33.
    Use tolerance factors 0.5, 1, and 2 and independent Jacobian/eigensolver
    paths; run a descriptor check only if a valid pair is exposed.
 3. Recompute the full H4 g-only boundary and frozen sweep. Save alpha,

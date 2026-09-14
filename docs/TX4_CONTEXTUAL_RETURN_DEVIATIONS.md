@@ -17,3 +17,8 @@ partition requires `I-R`. The exploratory output was invalidated and is not
 used as a result. The preregistration and implementation were corrected to
 the exact identity in the TX4 plan; the valid campaign is rerun from the
 corrected code. This changes no model, data, grid, threshold, or claim.
+
+The initial implementation list duplicated triple 30+33+35 as both a
+predecessor and a control. Before accepting the valid run, the list was made
+nine-case and unique by replacing that duplicate control with singleton 33.
+No numerical outcome or threshold was used to choose it.
