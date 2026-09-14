@@ -13,5 +13,6 @@ include("structured_radius.jl")
 include("weak_components.jl")
 include("codesign.jl")
 include("tds.jl")
+include("confirmatory.jl")
 
 end
