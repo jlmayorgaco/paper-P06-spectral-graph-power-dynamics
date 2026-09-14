@@ -1,6 +1,5 @@
 using CSV
 using DataFrames
-using FFTW
 using NetworkDynamics
 using OrdinaryDiffEqRosenbrock
 using PowerDynamics
@@ -80,10 +79,16 @@ function dominant_frequency(t,y)
     idx=findall(i->t[i]>=1.1 && isfinite(y[i]),eachindex(t))
     length(idx)<8 && return NaN
     z=Float64.(y[idx]); z .-= mean(z)
-    n=length(z); dt=median(diff(Float64.(t[idx])))
-    a=abs.(fft(z)); f=(0:n-1)./(n*dt)
-    keep=findall(i->f[i]>=0.05 && f[i]<=5.0,1:n)
-    isempty(keep) ? NaN : f[keep[argmax(a[keep])]]
+    tt=Float64.(t[idx])
+    # Deterministic standard-library periodogram; avoids adding an unpinned
+    # FFT dependency to the frozen PowerDynamics environment.
+    grid=collect(0.05:0.01:5.0); powers=Float64[]
+    for f in grid
+        c=sum(z[i]*cos(2*pi*f*tt[i]) for i in eachindex(z))
+        s=sum(z[i]*sin(2*pi*f*tt[i]) for i in eachindex(z))
+        push!(powers,c*c+s*s)
+    end
+    grid[argmax(powers)]
 end
 function logfit(t,y)
     idx=findall(i->t[i]>=1.1 && isfinite(y[i]) && y[i]>1e-10,eachindex(t))
