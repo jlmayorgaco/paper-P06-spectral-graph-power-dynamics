@@ -51,14 +51,14 @@ function composition_mechanism()
             delta_remaining_sg_mw = abs(Float64(sa.remaining_sg_mw) - Float64(sb.remaining_sg_mw)),
             delta_remaining_sg_mva = abs(Float64(sa.remaining_sg_mva) - Float64(sb.remaining_sg_mva)),
             delta_remaining_inertia_mva_s = abs(Float64(sa.remaining_inertia_mva_s) - Float64(sb.remaining_inertia_mva_s)),
-            alpha_a = alpha_ok ? (mode_ok ? Float64(first(ra).independent_fd_alpha) : Float64(first(da).max_real)) : NaN,
-            alpha_b = alpha_ok ? (mode_ok ? Float64(first(rb).independent_fd_alpha) : Float64(first(db).max_real)) : NaN,
-            delta_alpha_a_minus_b = alpha_ok ? ((mode_ok ? Float64(first(ra).independent_fd_alpha) - Float64(first(rb).independent_fd_alpha) : Float64(first(da).max_real) - Float64(first(db).max_real))) : NaN,
+            alpha_a = alpha_ok ? (mode_ok ? Float64(first(ra).reference_alpha) : Float64(first(da).max_real)) : NaN,
+            alpha_b = alpha_ok ? (mode_ok ? Float64(first(rb).reference_alpha) : Float64(first(db).max_real)) : NaN,
+            delta_alpha_a_minus_b = alpha_ok ? ((mode_ok ? Float64(first(ra).reference_alpha) - Float64(first(rb).reference_alpha) : Float64(first(da).max_real) - Float64(first(db).max_real))) : NaN,
             mode_family_a = mode_ok ? String(first(ma).critical_mode_family) : "not_audited_6of8",
             mode_family_b = mode_ok ? String(first(mb).critical_mode_family) : "not_audited_6of8",
             mode_mac_a_to_v8 = mode_ok ? Float64(first(ma).mac_to_v8) : NaN,
             mode_mac_b_to_v8 = mode_ok ? Float64(first(mb).mac_to_v8) : NaN,
-            alpha_source = mode_ok ? "independent_A" : "frozen_discovery",
+            alpha_source = mode_ok ? "AD_reference_A" : "frozen_discovery",
             status = alpha_ok ? (mode_ok ? "ok" : "ok_discovery_alpha_only") : "missing_alpha"))
     end
     out = DataFrame(rows)
