@@ -234,7 +234,8 @@ end
 function initialize_with_tolerance(nw, tol)
     pf = solve_powerflow(nw; verbose = false, sparse = false,
                          tol = tol, abstol = tol, reltol = tol)
-    state = initialize_from_pf!(nw; pfs = pf, verbose = false, sparsepf = false, check = :none)
+    state = initialize_from_pf!(nw; pfs = pf, verbose = false, sparsepf = false,
+                                check = :none, tol = tol)
     return (state = state, pf_finite = all(isfinite, uflat(pf)),
             state_finite = all(isfinite, uflat(state)),
             fixed_point = isfixpoint(state; tol = tol), residual = eq_residual(state))
@@ -288,20 +289,26 @@ function spectrum_rows(portfolio, scenario; precision = false)
                   smallest_singular_value = cond.smallest_singular_value,
                   reference_alpha = ref.alpha)
 
-        values = Tuple{String,String,Any}[("eigen", "Float64", eigen(red.A).values),
-                                          ("eigvals", "Float64", eigvals(red.A)),
-                                          ("complex_eigen", "ComplexF64", eigen(ComplexF64.(red.A)).values)]
+        values = Tuple{String,String,Function}[("eigen", "Float64", () -> eigen(red.A).values),
+                                                ("eigvals", "Float64", () -> eigvals(red.A)),
+                                                ("complex_eigen", "ComplexF64", () -> eigen(ComplexF64.(red.A)).values)]
         if precision
-            push!(values, ("eigen", "Float32", eigen(Float32.(red.A)).values))
-            push!(values, ("eigen", "BigFloat_matrix", eigen(BigFloat.(red.A)).values))
+            push!(values, ("eigen", "Float32", () -> eigen(Float32.(red.A)).values))
+            push!(values, ("eigen", "BigFloat_matrix", () -> eigen(BigFloat.(red.A)).values))
         end
-        for (method, arithmetic, vals) in values
-            λ = ComplexF64.(vals)
-            keep = findall(abs.(λ) .> 1e-8)
-            k = keep[argmax(real.(λ[keep]))]
-            push!(rows, merge(base, common, (status = "ok", eig_method = method,
-                arithmetic = arithmetic, alpha = real(λ[k]), critical_real = real(λ[k]),
-                critical_imag = imag(λ[k]), alpha_difference = real(λ[k]) - ref.alpha)))
+        for (method, arithmetic, producer) in values
+            try
+                λ = ComplexF64.(producer())
+                keep = findall(abs.(λ) .> 1e-8)
+                k = keep[argmax(real.(λ[keep]))]
+                push!(rows, merge(base, common, (status = "ok", eig_method = method,
+                    arithmetic = arithmetic, alpha = real(λ[k]), critical_real = real(λ[k]),
+                    critical_imag = imag(λ[k]), alpha_difference = real(λ[k]) - ref.alpha)))
+            catch err
+                push!(rows, merge(base, common, (status = "unavailable",
+                    error_type = "eigensolver_api_failure", error_message = sprint(showerror, err),
+                    eig_method = method, arithmetic = arithmetic)))
+            end
         end
 
         descriptor_status = "ok"
@@ -367,7 +374,7 @@ function finite_perturbation_rows()
             result = try
                 run_margin_case(build_confirmatory_network(CANDIDATE_SG_BUSES;
                     controller_delta = cd, load_delta = ld, ibr_delta = idelta,
-                    branch_delta = bd, bounds = :discovery))
+                    branch_delta = bd, bounds = :secondary))
             catch err
                 (status = "failed", alpha = NaN, margin = NaN, stable = false,
                  error_type = "exception", error_message = sprint(showerror, err),
