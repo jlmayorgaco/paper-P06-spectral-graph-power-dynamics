@@ -50,23 +50,34 @@ det(I + Q_H) = det(I + Q_RR) det(I - R_i|R)
 R_i|R = Q_iR (I + Q_RR)^(-1) Q_Ri.
 ```
 
-At the controller boundary, the nearest return eigenvalue in the archived
-sign convention is `-0.9999999649 - 5.1e-9 j`; the maximum Schur residual is
-`3.44e-16`. The local factor remains regular (`sigma_min=0.4892355`) while
-the collective factor approaches singularity (`sigma_min=1.38e-8`). This is
-standard Schur/block algebra applied to this model, not a new theorem.
+At the controller boundary, the corrected sign audit finds a nearest `Q_H`
+eigenvalue at `-1` within `3.51e-8`; the contextual-return eigenvalues reach
+`+1` within at most `2.28e-7`. The maximum Schur residual is `3.63e-16`.
+The fresh physical local factors `I+M_ii` remain regular (minimum singular
+value `0.2973` over the sweep), while the collective factor approaches
+singularity (`1.26e-8`). This is standard Schur/block algebra applied to this
+model, not a new theorem.
 
 The full-order g boundary is `0.20768140519`; the reduced reproduction is
 `0.20768138607` at `0.706424783 Hz`, absolute difference `1.91e-8`.
 Important: the reduced boundary search was executed after reveal, so it is
 reported as a reduced reproduction, not as a strictly blind boundary claim.
 
-### V9 transfer benchmark
+### V9 transfer benchmark and modal-scope correction
 
 - Candidates: `{30,31,32,33,34,35,36,37,38}`; all 512 subsets.
-- Full-order truth: 327 stable and 185 unstable.
-- Correct classifications: `395/512 = 0.771484375`.
-- False-safe: `116`; false-unstable: `1`.
+- The archived FC10 table reported 327 stable and 185 unstable, with 395/512
+  correct, 116 false-safe, and 1 false-unstable. That table is retained as a
+  historical frozen artifact, but it is not on the same P4 policy as the
+  blind predictor.
+- Same-policy P4 recomputation for this audit gives 332 stable and 180
+  unstable. The global comparison is 402/512 correct, 110 false-safe, and 0
+  false-unstable.
+- The targeted `0.3--1.5 Hz` comparison is 511/512 correct, with 1
+  false-safe and 0 false-unstable. It is not a global safety classifier.
+- All 110 same-policy global false-safe cases have an aperiodic real global
+  critical mode; there are no slow false-safe cases and no target-band global
+  false-safe cases.
 - Exact blocker-family recovery: no.
 - Minimum blocker cardinality recovery: yes (`kappa=4`).
 
@@ -137,8 +148,11 @@ generalization, and assess whether the finite blind prediction plus
 contextual-return mechanism is sufficiently distinct from classical return
 ratio, impedance, Schur-complement, and eigenvalue-sensitivity methods.
 
-The recommended outcome is `CASE B`: a strong IAS poster with a limited
-predictive claim, not a fully generalized journal result.
+The modal-scope audit supports `CASE A` for the corrected, targeted claim:
+the V4 mechanism and the `0.3--1.5 Hz` transfer task are clean, while the
+global V9 result remains explicitly limited by a modal-scope correction and a
+policy-confounded legacy table. This is still not a fully generalized journal
+result.
 
 The optional IEEEtran note in
 `reports/papers/ias_minimal_dynamic_incompatibility/main.pdf` is a verified

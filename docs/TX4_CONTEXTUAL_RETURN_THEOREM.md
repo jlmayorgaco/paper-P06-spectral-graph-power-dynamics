@@ -37,16 +37,18 @@ det(I + Q_H)
 
 Therefore, provided the proper-subset factor is regular, a zero of the full
 collective closure is equivalent to a unit eigenvalue of the contextual
-return (with the sign convention used by the frozen TX4 port model, the
-reported eigenvalue approaches `-1`).
+return. The signs are different because the closure uses `I + Q_H`, whereas
+the contextual return uses `I - R_i|R`: the closure eigenvalue approaches
+`-1` and the return eigenvalue approaches `+1`.
 
 ## TX4 numerical check
 
-At the reduced/full H4 controller boundary, the nearest return eigenvalue in
-the archived convention was `-0.9999999649 - 5.1e-9 j`. The maximum recorded
-Schur residual was `3.44e-16`. The local factor remained regular: the reduced
-boundary run reported local minimum singular value `0.4892355`, while the
-collective factor approached singularity at `1.38e-8`.
+At the reduced/full H4 controller boundary, the fresh sign audit found a
+nearest `Q_H` eigenvalue at `-1` within `3.51e-8` and contextual-return
+eigenvalues at `+1` within at most `2.28e-7`. The maximum Schur residual was
+`3.63e-16`. The physical local factors `I+M_ii` remained regular, with a
+minimum singular value of `0.2973` over the frozen sweep, while the
+collective factor approached singularity at `1.26e-8`.
 
 These values support a collective closure interpretation for this frozen
 model and operating policy. They do not establish universal local regularity,

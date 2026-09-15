@@ -1,0 +1,12 @@
+claim_id,claim,scope,evidence,decision,allowed_wording,forbidden_wording
+M01,Q_H reaches -1 at the collective boundary,H4 sign convention,TX4_Q_VS_RETURN_SIGN_AUDIT.csv,PASS,"Q_H has an eigenvalue at -1 within the recorded tolerance","Q_H and return have the same sign"
+M02,contextual return reaches +1 at the same boundary,H4 sign convention,TX4_Q_VS_RETURN_SIGN_AUDIT.csv,PASS,"the contextual return has an eigenvalue at +1 within the recorded tolerance","the contextual return reaches -1"
+M03,physical local factors remain regular,H4 physical factors,TX4_TRUE_LOCAL_VS_COLLECTIVE.csv,PASS,"the physical factors I+M_ii remain regular over the frozen sweep","normalized I+Q blocks prove physical local regularity"
+M04,the H4 closure is collective,Frozen V4 H4,TX4_TRUE_LOCAL_VS_COLLECTIVE.csv and TX4_TRUE_COLLECTIVE_SUBSET_FACTORS.csv,PASS,"the frozen H4 boundary is collective rather than a local-factor singularity","all local factors are universally regular"
+M05,V4 has one full-order true blocker,Frozen V4,TX4_V4_BLIND_VS_FULL.csv,PASS,"H4 is the sole true blocker in the finite V4 census at P4","H4 is minimal for all models"
+M06,global V9 transfer is limited,Same-policy P4 V9,TX4_V9_GLOBAL_VS_EM_TRUTH.csv and deviations,PASS WITH DEVIATION,"the same-policy global comparison has 110 false-safe cases, all aperiodic","the legacy 395/512 table is same-policy evidence"
+M07,targeted EM-band transfer is nearly exact,0.3-1.5 Hz V9 task,TX4_V9_EM_BAND_CONFUSION.csv,PASS,"the targeted EM-band task is 511/512 correct with one false-safe","the targeted task is a global safety classifier"
+M08,false-safe cases are aperiodic,Global false-safe taxonomy,TX4_V9_FALSE_SAFE_TAXONOMY.csv,PASS,"all same-policy global false-safe cases are aperiodic real-mode misses","global false-safe cases validate the EM mechanism"
+M09,there are no eligible slow false-safe TDS cases,Deterministic slow audit,TX4_V9_SLOW_FALSE_SAFE_AUDIT.csv,PASS,"the preregistered slow false-safe set is empty","slow-mode TDS was performed"
+M10,P7 is out of main modal scope,Aggregate pair,TX4_P7_SCOPE_DECISION.md,PASS,"P7 is supplement-only because one member is aperiodic","P7 validates the 0.62 Hz collective mechanism"
+M11,poster wording must be corrected,Final audit,figures/final_audit and final report,PASS,"use the corrected signs and global/EM scope labels","present a universal V9 guarantee"
