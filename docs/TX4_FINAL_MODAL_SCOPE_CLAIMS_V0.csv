@@ -1,0 +1,11 @@
+claim_id,claim,scope,primary_evidence,gate,allowed_wording,forbidden_wording,status
+M01,Q_H approaches -1 at the collective boundary,H4 sign convention,sign audit CSV,all four devices finite Q distance,collective Q closure approaches -1,Q and return both approach -1,PRE_REGISTERED
+M02,R_i|R approaches +1 at the same boundary,H4 sign convention,sign audit CSV,all four devices finite return distance,contextual return approaches +1,Q and return have the same sign,PRE_REGISTERED
+M03,physical local factors remain regular,H4 physical audit,true local-vs-collective CSV,all four L_i nonsingular in sweep,physical local factors remain regular,normalized I+Q proves physical local regularity,PRE_REGISTERED
+M04,V4 mechanism is physically collective,frozen V4,H4 plus proper subsets,physical gate passes,collective mechanism in frozen H4,universal mechanism,PRE_REGISTERED
+M05,V9 global task remains limited,all V9,global-vs-EM truth and frozen comparison,retain 116 false-safe benchmark,global predictor is exact or safe,PRE_REGISTERED
+M06,V9 targeted EM-band transfer,0.3-1.5 Hz,EM confusion CSV,metrics reported without global wording,targeted collective-mode predictor,full-system safety classifier,PRE_REGISTERED
+M07,false-safe taxonomy is modal,global false-safe set,taxonomy CSV,counts sum to global false-safe set,global misses partition by mode class,alpha alone identifies mode class,PRE_REGISTERED
+M08,slow false-safe cases are characterized,deterministic slow subset,slow audit CSV,no unresolved numerical case promoted,slow misses are physical/mode-switch/pathology as supported,all slow misses are collective H4 copies,PRE_REGISTERED
+M09,P7 poster status is scope-dependent,aggregate pair,P7 decision document,decision follows global critical mode,keep only if physically in scope,near-MW pair proves EM composition generally,PRE_REGISTERED
+M10,poster should show corrected signs and scope,IAS poster,corrected figures/report,all limitations visible,IAS poster with scoped claim,universal V9 safety screen,PRE_REGISTERED
