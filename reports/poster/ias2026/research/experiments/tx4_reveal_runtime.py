@@ -87,7 +87,7 @@ def compare(label: str, pred_path: Path, truth_path: Path, truth_col: str = "mem
     else:
         truth["frequency_truth_hz"] = np.nan
     truth["truth_verdict"] = truth["status"].map({"STABLE": "STABLE_PREDICTED", "UNSTABLE": "UNSTABLE_PREDICTED"})
-    keep = ["portfolio", "status", "alpha_truth", "frequency_truth_hz"]
+    keep = ["portfolio", "status", "truth_verdict", "alpha_truth", "frequency_truth_hz"]
     joined = pred.merge(truth[keep], on="portfolio", how="left")
     joined["verdict_correct"] = joined.predicted_verdict == joined.truth_verdict
     joined["false_safe"] = (joined.predicted_verdict == "STABLE_PREDICTED") & (joined.status == "UNSTABLE")
