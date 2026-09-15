@@ -36,7 +36,7 @@ def local_vs_collective(local: pd.DataFrame) -> None:
     colors = {30: "#277da1", 33: "#f9844a", 35: "#90be6d", 37: "#f9c74f"}
     for bus, frame in local.groupby("device_i"):
         frame = frame.sort_values("g")
-        ax.semilogy(frame.g, frame.local_sigma_min_I_plus_Mii, "o-", color=colors[int(bus)], label=f"local I+M_{{{int(bus)}{int(bus)}}}")
+        ax.semilogy(frame.g, frame.local_sigma_min_I_plus_Mii, "o-", color=colors[int(bus)], label=f"local factor at bus {int(bus)}")
     unique = local.drop_duplicates("g").sort_values("g")
     ax.semilogy(unique.g, unique.collective_sigma_min_I_plus_QH, "k--", lw=2.2, label="collective I+Q_H")
     g_star = 0.20768140519037842
