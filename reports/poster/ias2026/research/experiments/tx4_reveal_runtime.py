@@ -87,6 +87,30 @@ def compare(label: str, pred_path: Path, truth_path: Path, truth_col: str = "mem
     else:
         truth["frequency_truth_hz"] = np.nan
     truth["truth_verdict"] = truth["status"].map({"STABLE": "STABLE_PREDICTED", "UNSTABLE": "UNSTABLE_PREDICTED"})
+    # PCV02 is a core-portfolio table and intentionally omits the all-SG BASE
+    # row.  Add that frozen reference row from FC01 rather than treating the
+    # absent historical row as a prediction miss.
+    if label == "V4" and "BASE" not in set(truth["portfolio"].astype(str)):
+        base_path = ROOT / "reports/poster/ias2026/research/results/FINAL_CLOSURE/FC01_structure.csv"
+        base = pd.read_csv(base_path)
+        base = base[base.subset.astype(str) == "BASE"].iloc[0]
+        truth = pd.concat(
+            [
+                truth,
+                pd.DataFrame(
+                    [
+                        {
+                            "portfolio": "BASE",
+                            "status": "STABLE",
+                            "alpha_truth": float(base.alpha_perp),
+                            "frequency_truth_hz": np.nan,
+                            "truth_verdict": "STABLE_PREDICTED",
+                        }
+                    ]
+                ),
+            ],
+            ignore_index=True,
+        )
     keep = ["portfolio", "status", "truth_verdict", "alpha_truth", "frequency_truth_hz"]
     joined = pred.merge(truth[keep], on="portfolio", how="left")
     joined["verdict_correct"] = joined.predicted_verdict == joined.truth_verdict
