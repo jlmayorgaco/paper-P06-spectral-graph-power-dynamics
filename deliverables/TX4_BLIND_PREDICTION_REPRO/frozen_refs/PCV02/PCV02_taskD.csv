@@ -1,0 +1,16 @@
+method,subsets_with_both_classes,mean_within_portfolio_auc
+pg_mw,15,0.5
+sn_mva,15,0.5
+penetration,15,0.5
+gscr,15,0.5
+min_scr,15,0.5
+max_miif,11,0.5
+compactness_score,11,0.5
+B3_alpha,15,0.7661180508551501
+B4_alpha,15,0.9094190906740051
+B5_alpha,15,0.9642059119341995
+B5b_alpha,15,0.9963018490754624
+closure_nonoracle,11,0.5923785633128344
+closure_oracle,11,0.4060483864125624
+abs_chi_nonoracle,11,0.7583954325294073
+abs_chi_oracle,11,0.9741926106417779
