@@ -1,0 +1,2 @@
+portfolio_A,portfolio_B,cardinality,MW_A,MW_B,MVA_A,MVA_B,alpha_A,alpha_B,frequency_A_hz,frequency_B_hz,status_A,status_B,normalized_distance,mismatch_percent,exact_aggregate_match_available,valid,selection_rule,alpha_viewed_after_selection
+30+31+32+34+36+38,31+32+34+35+37+38,6,3659.869758000179,3652.304711000192,6509.2,6499.9,324.24864654774285,-0.1663889806482349,,,UNSTABLE,STABLE,0.002512750619718081,0.2512750619718081,False,True,same cardinality; exact MW/MVA if available; otherwise nearest normalized MW/MVA distance; opposite verdict; mismatch <=5%,True

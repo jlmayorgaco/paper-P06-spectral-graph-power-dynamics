@@ -1,0 +1,12 @@
+screen,quantity,value,status
+singleton screening,all proper subsets,PASS,safe screen; not composability proof
+pair screening,all proper subsets,PASS,safe screen; not composability proof
+triple screening,all proper subsets,PASS,safe screen; not composability proof
+aggregate MW/MVA,H4,2096.607719 MW / 4270.7 MVA,same aggregate for all portfolios of this support; cannot encode collective compatibility
+B3 first-order modal approximation,alpha H4,-0.2032491385593977,predicts stable; misses H4
+B4 additive approximation,alpha H4,-0.212867216480235,predicts stable; misses H4
+B5 pairwise approximation,alpha H4,-0.2103891551662844,predicts stable; misses H4
+B5b third-order alpha approximation,alpha H4,-0.1836729322356837,predicts stable; misses H4
+determinant truncation,non-oracle |chi|,0.0277408857804478,not equivalent to third-order alpha approximation
+exact reduced closure,H4 verdict,UNSTABLE_PREDICTED,correct flagship prediction
+full DAE,H4 verdict,UNSTABLE,ground truth
