@@ -207,7 +207,12 @@ def run_set(label: str, candidates: tuple[int, ...]):
     started = time.perf_counter()
     kernel = make_kernel(candidates)
     setup = time.perf_counter() - started
-    rows = [predict_one(kernel, s) for s in all_subsets(candidates)]
+    subsets = all_subsets(candidates)
+    rows = []
+    for index, subset in enumerate(subsets, start=1):
+        rows.append(predict_one(kernel, subset))
+        if index == 1 or index == len(subsets) or index % 32 == 0:
+            print(f"{label} blind prediction {index}/{len(subsets)}", flush=True)
     path = OUT / f"TX4_{label}_BLIND_PREDICTIONS.csv"
     pd.DataFrame(rows).to_csv(path, index=False)
     return {
