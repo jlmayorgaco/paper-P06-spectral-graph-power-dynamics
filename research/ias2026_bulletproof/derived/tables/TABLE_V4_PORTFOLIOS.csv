@@ -1,0 +1,4 @@
+metric,expected,observed,status,label,source
+P4 H4 alpha [s^-1],0.1270065,0.1270064666836382,PASS,IEEE39_VALIDATED,derived/tables/gate0_v4.csv
+P4 governed H4 alpha [s^-1],-0.0745,-0.07454098428813066,PASS,IEEE39_VALIDATED,derived/tables/gate0_v4.csv
+P4 proper subsets stable,15,15,PASS,IEEE39_VALIDATED,derived/tables/gate0_v4.csv

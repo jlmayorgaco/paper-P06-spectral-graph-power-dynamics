@@ -1,0 +1,7 @@
+metric,expected,observed,error,threshold,status,label,source_file
+V9 portfolios,512,512,0,0,PASS,RETROSPECTIVE,C:\w\tx4blind\deliverables\TX4_BLIND_PREDICTION_REPRO\results\TX4_REVEAL_SUMMARY.json
+V9 correct classifications,511,395,116,0,FAIL,REFUTED,C:\w\tx4blind\deliverables\TX4_BLIND_PREDICTION_REPRO\results\TX4_REVEAL_SUMMARY.json
+V9 false-safe,0,116,116,0,FAIL,REFUTED,C:\w\tx4blind\deliverables\TX4_BLIND_PREDICTION_REPRO\results\TX4_REVEAL_SUMMARY.json
+V9 false-unstable,0,1,1,0,FAIL,REFUTED,C:\w\tx4blind\deliverables\TX4_BLIND_PREDICTION_REPRO\results\TX4_REVEAL_SUMMARY.json
+V9 blocker antichain exact,True,False,1,0,FAIL,REFUTED,C:\w\tx4blind\deliverables\TX4_BLIND_PREDICTION_REPRO\results\TX4_REVEAL_SUMMARY.json
+V9 kappa exact,True,True,0,0,PASS,RETROSPECTIVE,C:\w\tx4blind\deliverables\TX4_BLIND_PREDICTION_REPRO\results\TX4_REVEAL_SUMMARY.json

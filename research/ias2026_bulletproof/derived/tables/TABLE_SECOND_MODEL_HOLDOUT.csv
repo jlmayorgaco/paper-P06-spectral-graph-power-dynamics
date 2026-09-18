@@ -1,0 +1,3 @@
+gate,status,label,evidence
+independent second converter model,not run,NOT_TESTED,docs/SECOND_MODEL_SPEC.md
+historical V9 reveal,395/512 correct; 116 false-safe; 1 false-unstable,REFUTED,derived/tables/gate0_v9.csv

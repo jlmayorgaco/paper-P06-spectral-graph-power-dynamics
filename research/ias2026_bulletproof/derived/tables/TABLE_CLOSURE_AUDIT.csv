@@ -1,0 +1,8 @@
+metric,expected,observed,status,label,source
+P4 H4 alpha [s^-1],0.1270065,0.1270064666836382,PASS,IEEE39_VALIDATED,C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics-ias2026-bulletproof\reports\poster\ias2026\research\results\FINAL_CLOSURE\FC03_points.csv
+P4 governed H4 alpha [s^-1],-0.0745,-0.07454098428813066,PASS,IEEE39_VALIDATED,C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics-ias2026-bulletproof\reports\poster\ias2026\research\results\FINAL_CLOSURE\FC03_points.csv
+P4 proper subsets stable,15,15,PASS,IEEE39_VALIDATED,C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics-ias2026-bulletproof\reports\poster\ias2026\research\results\FINAL_CLOSURE\FC01_structure.csv
+H4 boundary g*,0.20768,0.20768140441926236,PASS,RETROSPECTIVE,C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics-ias2026-bulletproof\reports\poster\ias2026\research\results\F7\F7A_events.csv
+H4 boundary frequency [Hz],0.706,0.7064247878829905,PASS,RETROSPECTIVE,C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics-ias2026-bulletproof\reports\poster\ias2026\research\results\F7\F7A_events.csv
+boundary Q sign,-1,-1,PASS,RETROSPECTIVE,C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics-ias2026-bulletproof\reports\poster\ias2026\research\results\F7\F7A_events.csv
+contextual return sign,1,1,PASS,RETROSPECTIVE,C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics-ias2026-bulletproof\reports\poster\ias2026\research\results\F7\F7A_events.csv

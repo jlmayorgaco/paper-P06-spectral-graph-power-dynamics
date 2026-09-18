@@ -1,0 +1,29 @@
+{
+  "campaign": "IAS2026_BULLETPROOF_CLOSURE",
+  "branch": "research/ias2026-bulletproof-closure-v1",
+  "starting_head": "b9f274e241a793bd2694d488f6e53c9aca6e6ac5",
+  "status": "closure complete with negative evidence preserved",
+  "executed": [
+    "gate0",
+    "theory-tests",
+    "powerdynamics-ieee39-equilibrium"
+  ],
+  "not_tested": [
+    "same-model PowerDynamics parity",
+    "second converter model",
+    "new blind holdout",
+    "physical robust radius",
+    "new Julia TDS",
+    "EMT/current-limit/DC-link"
+  ],
+  "labels": [
+    "IEEE39_VALIDATED",
+    "THEOREM_VALIDATED",
+    "NONLINEAR_TDS_VALIDATED",
+    "POWERDYNAMICS_VALIDATED",
+    "RETROSPECTIVE",
+    "REFUTED",
+    "NOT_TESTED",
+    "STOPPED_BY_GATE"
+  ]
+}

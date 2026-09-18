@@ -1,0 +1,4 @@
+metric,expected,observed,error,threshold,status,label,source_file
+P4 H4 alpha [s^-1],0.1270065,0.1270064666836382,3.331636180825548e-08,1e-06,PASS,IEEE39_VALIDATED,C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics-ias2026-bulletproof\reports\poster\ias2026\research\results\FINAL_CLOSURE\FC03_points.csv
+P4 governed H4 alpha [s^-1],-0.0745,-0.07454098428813066,4.0984288130666013e-05,0.0001,PASS,IEEE39_VALIDATED,C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics-ias2026-bulletproof\reports\poster\ias2026\research\results\FINAL_CLOSURE\FC03_points.csv
+P4 proper subsets stable,15,15,0,0,PASS,IEEE39_VALIDATED,C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics-ias2026-bulletproof\reports\poster\ias2026\research\results\FINAL_CLOSURE\FC01_structure.csv

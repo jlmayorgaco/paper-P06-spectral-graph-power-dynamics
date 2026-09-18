@@ -1,0 +1,156 @@
+{
+ "model": "ieee39_governed_documented_v1",
+ "f8": [
+  {
+   "tag": "F8 P1",
+   "H_frozen": "30|33|35|37",
+   "H_governed": "EMPTY",
+   "alpha_flag_frozen": 0.2258624209920128,
+   "alpha_flag_governed": -0.2389657273918436
+  },
+  {
+   "tag": "F8 P2",
+   "H_frozen": "30+33|33+35|33+37|30+35+37",
+   "H_governed": "EMPTY",
+   "alpha_flag_frozen": 0.1888412968216686,
+   "alpha_flag_governed": -0.238968553320044
+  },
+  {
+   "tag": "F8 P3",
+   "H_frozen": "30+33+35|30+33+37",
+   "H_governed": "30+33+35|30+33+37",
+   "alpha_flag_frozen": 0.4246616875126461,
+   "alpha_flag_governed": 0.2920057705226252
+  },
+  {
+   "tag": "F8 P4",
+   "H_frozen": "30+33+35+37",
+   "H_governed": "EMPTY",
+   "alpha_flag_frozen": 0.1270064666836382,
+   "alpha_flag_governed": -0.0745409842881048
+  },
+  {
+   "tag": "F8 P_fold",
+   "H_frozen": "30+33+35+37",
+   "H_governed": "EMPTY",
+   "alpha_flag_frozen": 0.0035914246372156,
+   "alpha_flag_governed": -0.2389769176656627
+  },
+  {
+   "tag": "F8 P_inf",
+   "H_frozen": "EMPTY",
+   "H_governed": "EMPTY",
+   "alpha_flag_frozen": -0.1553534288836783,
+   "alpha_flag_governed": -0.2390249693151829
+  }
+ ],
+ "path_distinct_H_frozen": [
+  "30+33+35",
+  "30+33+35+37",
+  "EMPTY"
+ ],
+ "path_distinct_H_governed": [
+  "30+33+35",
+  "30+33+35+37",
+  "EMPTY"
+ ],
+ "tongue_distinct_H_frozen": [
+  "30+33+35",
+  "30+33+35+37",
+  "EMPTY"
+ ],
+ "tongue_distinct_H_governed": [
+  "30+33+35",
+  "30+33+35+37",
+  "EMPTY"
+ ],
+ "plane_points": 399,
+ "plane_distinct_H_frozen": 26,
+ "plane_distinct_H_governed": 10,
+ "plane_H_governed_counts": {
+  "EMPTY": 325,
+  "30+33+35+37": 24,
+  "30+33+35": 16,
+  "30+33+35|30+33+37": 15,
+  "30+33|33+35|30+35+37": 7,
+  "30+33|30+35+37|33+35+37": 6,
+  "30+33|30+35|33+35": 2,
+  "30+33|30+35+37": 2,
+  "30+33+35|30+33+37|30+35+37|33+35+37": 1,
+  "30+33": 1
+ },
+ "plane_H_frozen_counts": {
+  "EMPTY": 230,
+  "30+33+35+37": 32,
+  "BASE_UNSTABLE": 21,
+  "30+33+35|30+33+37": 15,
+  "30|33|35|37": 13,
+  "30+33+35": 12,
+  "33|30+35|30+37": 8,
+  "30+33": 8,
+  "30+33|33+35|33+37|30+35+37": 7,
+  "30+33|33+35|30+35+37": 6,
+  "33|30+35|30+37|35+37": 5,
+  "30|33|35+37": 5,
+  "30|33|35": 5,
+  "30": 5,
+  "30+33+35|30+33+37|33+35+37": 4,
+  "30+33|33+35+37": 4,
+  "30|33|37": 3,
+  "30+33|30+37|33+35|33+37": 3,
+  "30+33+35|30+33+37|30+35+37|33+35+37": 2,
+  "33|30+35": 2,
+  "30+33+37": 2,
+  "30+33|30+35|33+37": 2,
+  "30|33": 2,
+  "30+33|30+35|30+37|33+35|33+37": 1,
+  "30+33|30+35+37|33+35+37": 1,
+  "30+33|30+35|33+35|33+37": 1
+ },
+ "plane_same_H": 261,
+ "condenser": [
+  {
+   "condenser": 0.01,
+   "H_frozen": "30+33+35+37",
+   "H_governed": "EMPTY",
+   "alpha_flag_frozen": 0.07814889615085455,
+   "alpha_flag_governed": -0.10407889057201669
+  },
+  {
+   "condenser": 0.02,
+   "H_frozen": "30+33+35+37",
+   "H_governed": "EMPTY",
+   "alpha_flag_frozen": 0.026364023113067403,
+   "alpha_flag_governed": -0.13196960642202035
+  },
+  {
+   "condenser": 0.0248,
+   "H_frozen": "30+33+35+37",
+   "H_governed": "EMPTY",
+   "alpha_flag_frozen": 0.00014927968164257788,
+   "alpha_flag_governed": -0.1447496334271688
+  },
+  {
+   "condenser": 0.03,
+   "H_frozen": "EMPTY",
+   "H_governed": "EMPTY",
+   "alpha_flag_frozen": -0.001660725322071146,
+   "alpha_flag_governed": -0.1581400547303516
+  },
+  {
+   "condenser": 0.05,
+   "H_frozen": "EMPTY",
+   "H_governed": "EMPTY",
+   "alpha_flag_frozen": -0.002767382170492019,
+   "alpha_flag_governed": -0.20517151990471974
+  },
+  {
+   "condenser": NaN,
+   "H_frozen": "30+33+35+37",
+   "H_governed": "EMPTY",
+   "alpha_flag_frozen": 0.1270064666836382,
+   "alpha_flag_governed": -0.07454098428813066
+  }
+ ],
+ "elapsed_s": 17.7
+}

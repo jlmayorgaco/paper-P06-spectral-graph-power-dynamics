@@ -1,0 +1,5 @@
+scale_check,observed,expected,status,label
+V9 portfolios,512,512,PASS,RETROSPECTIVE
+V9 correct,395,511,FAIL,REFUTED
+V9 false-safe,116,0,FAIL,REFUTED
+new asymptotic sweep,not run,n/a,NOT_TESTED,NOT_TESTED

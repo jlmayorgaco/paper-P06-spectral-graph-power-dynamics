@@ -1,0 +1,100 @@
+9968de79 (research/tx4-final-modal-scope-audit) Package TX4 final modal-scope audit
+3548db3f Record final TX4 modal audit handoff
+1380413d Correct TX4 modal scope and physical closure interpretation
+00220857 Preregister TX4 modal-scope correction audit
+2cbb860e (research/tx4-blind-portfolio-prediction-final) Package TX4 ChatGPT upload and reproducibility bundles
+c4c99572 Add ChatGPT handoff for TX4 campaign
+96052a3e Complete TX4 blind prediction and contextual return campaign
+4f42ca0e Fix V4 BASE reference in blind reveal
+13edf644 Fix reveal truth-label merge
+02d2d899 Add post-reveal V4 V9 comparison and runtime benchmark
+7c2a8fd6 Freeze blind TX4 V4 and V9 predictions
+034e2d49 Add progress logging to blind benchmark
+9b86b0ef Add firewall-separated TX4 blind predictor
+ae1ed9ac Preregister blind TX4 portfolio prediction campaign
+b9f66bf1 (research/tx4-contextual-return-final) Make TX4 numerical truth audit cases unique
+0593ea7d Correct contextual-return Schur sign before valid run
+f2c6ed25 TX4 preregister contextual-return closure campaign
+890ef979 (research/pd39-physical-blockers-atlas-v1) correct blocker audit table values
+52c0e106 stop physical blocker atlas after validation gates
+c95bab91 bound blocker TDS solver and record retcodes
+d7c51594 use deterministic standard library TDS frequency estimator
+a3201661 add physical blocker TDS validation
+d24f0ad3 audit PD39 blocker default initialization path
+02381549 add blocker physicality audit
+1b9ad5fe preregister PD39 physical blocker atlas
+e81d18ab (research/pd39-255plus1-mechanism-validation) Package complete PD39 results for ChatGPT analysis
+84aa9069 research: package 255plus1 ChatGPT upload
+5c456660 research: finalize 255plus1 report and handoff
+60b4bc1d research: record exact 100ms high PLL TDS results
+f0f321fc research: correct preregistered 100ms TDS pulse window
+fe81fc7d research: use reference spectrum for composition mechanism
+a02e1756 research: complete exact 255plus1 holdout census
+8f00f69b research: complete 255plus1 composition closure audit
+688ba98e research: complete 255plus1 gates A B D E
+3fde86ae research: add 255plus1 mechanism validation gates
+285fd2ad research: allow preregistered high PLL TDS cases
+5f28df82 docs: preregister PD39 255plus1 mechanism validation
+ffb00b4c (research/pd39-robust-transition-confirmatory) results: complete penetration composition numerical followup
+d02f1faa fix: isolate unsupported precision and boundary perturbations
+f459a558 fix: use first row for pair metadata
+576944a6 fix: isolate paired scenario summaries
+932c9f55 research: bound follow-up to frozen composition data
+f525d9d6 research: add composition and numerical audit
+98ba1498 docs: preregister penetration composition audit
+902403cf research: execute PD39 confirmatory campaign
+beacf6fb docs: preregister PD39 confirmatory campaign
+21e97f31 docs: audit frozen PD39 discovery campaign
+61554336 (research/pd39-robust-ibr-transition-codesign) results(pd39): execute robust transition campaign
+804e3700 research(pd39): scaffold robust SG to IBR codesign
+20384c42 (research/series-planning-design) docs(pd39): repository archaeology audit
+6ccf7d2b (research/cdw68-em-reinforcement-confirmation, research/cdw-ieee68-replication) paper(cdw): CASE B pivot after the IEEE-68 replication decision
+3e184c89 results(cdw68): R15 uncertainty, R18 cross-benchmark matrix, R20 novelty, R22 final report, raw manifest
+49309c1e results(cdw68): R8-R14 checkpoint - fixed ranking, branch engine, R11/R12 gates, post-hoc TDS, figures
+d86037e6 results(cdw68): R6 census (A and B), Model B qualification, R7 reversal verdict
+7727df7e results(planning-design): PD1 adaptive per-point retune at the 240 unstable E35 samples
+6f188531 prereg(cdw68): IEEE-68 confirmatory replication preregistration, before any converter portfolio
+70318091 prereg(planning-design): PD1 adaptive retune and PD2 census-scale design, before any campaign numerics
+e03a5312 (research/contextual-dynamic-weakness-hardening) chore(cdw-hardening): untrack __pycache__ files added by mistake in 303b2773
+303b2773 results(cdw-hardening): H10/H11 corridors, final report, bundles manifest
+fba411da paper(cdw-hardening): H31 revision after two internal reviews
+049fea45 paper(cdw-hardening): IEEE manuscript, supplement, claim matrix, reviewer attack (corridors pending)
+eb57d907 results(cdw-hardening): GOLD-A/B hardening, mixing, topology EM, ALT-WECC cross-model, literature
+4de412d2 code(cdw-hardening): hardening modules, curvature theory note, deviation log (before H18 matrix)
+05b507e3 prereg(cdw-hardening): H0 hardening preregistration, before any new numerics
+e73dd355 (research/contextual-dynamic-weakness) docs(cdw): final campaign report, master tables, determinism check, review bundle manifest
+cdafc3f4 results(cdw): E5 static-vs-dynamic table + E11 spectral baselines + E23 cross-model
+7c1c15aa results(cdw): E7 topology + E16 modal energy + E17 Africano gate
+d73b09a2 results(cdw): E9 plan-level design + E13 reduced models + E14 certificate
+66294b44 results(cdw): E2 robustness + E6 corridors + E8 exchange rate + E12 modal mixing; fix E02 bug and E09 solver robustness
+0b53b136 results(cdw): E1 contextual census + E1b submodularity + E10 Shapley + E3/E4 sensitivity
+3ddf2bc2 code(cdw): orchestrator, model library, sensitivity engine, experiment modules (before the campaign)
+b8ae3082 prereg(cdw): Contextual Dynamic Weakness V1 - theory, preregistration, plan, ledger (before any CDW numerics)
+69f200df (tag: TX4_FINAL_MANUSCRIPT_FREEZE, research/paremt-emt-validation) TX4 final micro-edit: nominal witness is not a robust weak-bus set; freeze
+3cb08823 TX4 final manuscript closure: memo C (C2 clarification) accepted
+ab9edc5d ParaEMT closure / final manuscript reconciliation
+8f06220e docs(emt-sq1): SQ1 report - stopped at SQ1-2, ParaEMT line closed
+651a5ff3 results(emt-sq1): SQ1-2 blind synthetic qualification FAIL -> ParaEMT line stopped
+fc080445 chore(emt-sq1): record prepared but never executed SQ1 scripts
+0555f587 prereg(emt): EMT-SQ1 scientific qualification campaign, before any SQ1 qualification run
+b9ab930f docs(emt): V3 report - instrument qualification E0 FAIL (A5, 14/15); V3 stopped before any ParaEMT run
+00c75f52 code(emt): V3 device-gate and science scripts - PREPARED, NEVER EXECUTED (V3 stopped at E0)
+229613de results(emt): V3 gate E0 (blind synthetic) - FAIL on criterion A5; V3 stopped
+70d5be8e ï»¿style(emt): import order in v3/EMTV3_tds_traces.py (ruff I001; no behaviour change)
+f8e0d44f code(emt): V3 instrument implementation + amendment V3-AM1, before any blind E0 data
+6d339006 prereg(emt): preregistration V3 - instrument qualification first, before any V3 computation
+4e35164e docs(emt): V3-0 audit of the frozen v1 modal estimator (file not modified)
+e8ab281e docs(emt): V2 report - V1 FAIL kept, V2 stopped at G3a, estimator defect surfaced
+632374dc results(emt): V2 gates - SW PASS, G3a FAIL (preregistered ringdown sub-check); stopped
+f8b8fb15 code(emt): V2 implementation - GFL voltage-interface kernel, references, rules, gates
+0ab8efd4 prereg(emt): preregistration V2 and GFL voltage-interface derivation, before any V2 computation
+cf8a0b38 docs(emt): V2-0 ledger reconciliation against the final validation state
+ede6f3eb docs(emt): ParaEMT EMT-validation final report - campaign BLOCKED at G3/G4
+17832edf results(emt): claim-to-EMT matrix, F1 and unit-test diagnostic figures, run manifests
+dd1e2ea3 test(emt): EMT02/EMT03 unit tests - G3 FAIL, G4 FAIL (preregistered); diagnostics D1-D5
+9d06436a prereg(emt): amendment A1 - zero-sequence reference of the unit-test infinite bus
+ff1c4d8d adapter(emt): TX4 network/equilibrium adapter on ParaEMT; EMT01 equivalence PASS
+4e53db55 env(emt): ParaEMT provenance, isolated environment, EMT00 stock smoke test, TX4 network patch
+c2947bd8 prereg(emt): ParaEMT EMT-validation campaign v1, before any TX4 EMT result
+a70dac94 (ias2026/final-closure-campaign) docs(pcv): final validation ledger, validation matrix, author decision memo
+38b91d7e results(pcv): Phases 2-7, 9-10 deliverable tables, decision benchmark, 4-panel figure

@@ -1,0 +1,5 @@
+metric,expected,observed,error,threshold,status,label,source_file
+H4 boundary g*,0.20768,0.20768140441926236,1.4044192623574592e-06,1e-05,PASS,RETROSPECTIVE,C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics-ias2026-bulletproof\reports\poster\ias2026\research\results\F7\F7A_events.csv
+H4 boundary frequency [Hz],0.706,0.7064247878829905,0.0004247878829904961,0.002,PASS,RETROSPECTIVE,C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics-ias2026-bulletproof\reports\poster\ias2026\research\results\F7\F7A_events.csv
+boundary Q sign,-1,-1,0,0,PASS,RETROSPECTIVE,C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics-ias2026-bulletproof\reports\poster\ias2026\research\results\F7\F7A_events.csv
+contextual return sign,1,1,0,0,PASS,RETROSPECTIVE,C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics-ias2026-bulletproof\reports\poster\ias2026\research\results\F7\F7A_events.csv
