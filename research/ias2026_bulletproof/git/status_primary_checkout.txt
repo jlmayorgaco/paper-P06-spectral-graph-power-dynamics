@@ -1,55 +1,7 @@
 Primary checkout status was intentionally preserved before campaign work.
 ## research/ias2026-bulletproof-closure-v1
- M ias2026_bulletproof/README.md
  M ias2026_bulletproof/derived/manifests/gate0_manifest.json
- M ias2026_bulletproof/derived/manifests/reproducibility_manifest.json
- M ias2026_bulletproof/derived/tables/TABLE_CLAIM_LEDGER.csv
- M ias2026_bulletproof/derived/tables/TABLE_CLOSURE_AUDIT.csv
- M ias2026_bulletproof/derived/tables/TABLE_POWERDYNAMICS_RECONCILIATION.csv
- M ias2026_bulletproof/derived/tables/TABLE_SCALING.csv
- M ias2026_bulletproof/derived/tables/TABLE_SECOND_MODEL_HOLDOUT.csv
- M ias2026_bulletproof/derived/tables/TABLE_TDS.csv
- M ias2026_bulletproof/derived/tables/TABLE_V4_PORTFOLIOS.csv
- M ias2026_bulletproof/derived/tables/TABLE_V9_BLOCKERS.csv
- M ias2026_bulletproof/derived/tables/gate0_boundary.csv
- M ias2026_bulletproof/derived/tables/gate0_tds.csv
- M ias2026_bulletproof/derived/tables/gate0_topology.csv
- M ias2026_bulletproof/derived/tables/gate0_v4.csv
- M ias2026_bulletproof/derived/tables/gate0_v9.csv
- M ias2026_bulletproof/docs/CLAIM_LEDGER.md
- M ias2026_bulletproof/docs/POWERDYNAMICS_RECONCILIATION.md
- M ias2026_bulletproof/figures/pdf/F1_p4_policy_dependence.pdf
- M ias2026_bulletproof/figures/pdf/F2_v9_transfer_refutation.pdf
- M ias2026_bulletproof/figures/pdf/F3_frozen_tds_audit.pdf
- M ias2026_bulletproof/figures/png/F1_p4_policy_dependence.png
- M ias2026_bulletproof/figures/png/F2_v9_transfer_refutation.png
- M ias2026_bulletproof/figures/svg/F1_p4_policy_dependence.svg
- M ias2026_bulletproof/figures/svg/F2_v9_transfer_refutation.svg
- M ias2026_bulletproof/figures/svg/F3_frozen_tds_audit.svg
- M ias2026_bulletproof/git/log_all_before_campaign.txt
- M ias2026_bulletproof/git/status_primary_checkout.txt
- M ias2026_bulletproof/logs/julia_gate-pd39.md
- M ias2026_bulletproof/logs/theory_tests.log
- M ias2026_bulletproof/raw/powerdynamics/pd39_equilibrium_gate.md
- M ias2026_bulletproof/reports/FINAL_BULLETPROOF_AUDIT.md
- M ias2026_bulletproof/reports/GATE0_REPORT.md
- M ias2026_bulletproof/reports/GATE_DASHBOARD.csv
- M ias2026_bulletproof/reports/GATE_DASHBOARD.md
- M ias2026_bulletproof/reports/HOLDOUT_REPORT.md
- M ias2026_bulletproof/reports/SCALING_REPORT.md
- M ias2026_bulletproof/src/julia/run_all_julia.jl
- M ias2026_bulletproof/src/julia/run_pd39_gate.jl
- M ias2026_bulletproof/src/python/assemble_tables.py
- M ias2026_bulletproof/src/python/build_pdfs.py
- M ias2026_bulletproof/src/python/generate_figures.py
- M ias2026_bulletproof/src/python/package_bundle.py
- M ias2026_bulletproof/src/python/run_all_python.py
- M ias2026_bulletproof/src/python/run_gate0.py
 ?? ias2026_bulletproof/bundle/
-?? ias2026_bulletproof/docs/TOPOLOGY_RETROSPECTIVE.md
-?? ias2026_bulletproof/raw/modal_scope/
-?? ias2026_bulletproof/raw/powerdynamics/gate_a_paths.csv
-?? ias2026_bulletproof/src/python/stage_modal_scope.py
 ?? ../tmp/pdfs/executive/
 ?? ../tmp/pdfs/paper/
 ?? ../tmp/pdfs/poster/
