@@ -46,6 +46,7 @@ for relative in (
     "reports/P4_JULIA_TDS_STATUS.md",
     "reports/P5_SECOND_GFL_STATUS.md",
     "reports/P6_BLIND_HOLDOUT_STATUS.md",
+    "reports/P1_P6_EXECUTION_SUMMARY.md",
     "reports/OPEN_LIMITATIONS.md",
     "docs/CLAIM_LEDGER.md",
     "docs/POWERDYNAMICS_RECONCILIATION.md",
