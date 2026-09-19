@@ -1,38 +1,8 @@
 Primary checkout status was intentionally preserved before campaign work.
 ## research/ias2026-bulletproof-closure-v1
- M ias2026_bulletproof/derived/manifests/gate0_manifest.json
  M ias2026_bulletproof/derived/tables/TABLE_CLAIM_LEDGER.csv
- M ias2026_bulletproof/derived/tables/TABLE_CLOSURE_AUDIT.csv
- M ias2026_bulletproof/derived/tables/TABLE_POLICY_HYPERGRAPHS.csv
- M ias2026_bulletproof/derived/tables/TABLE_REPAIR_ACTIONS.csv
- M ias2026_bulletproof/derived/tables/TABLE_TDS.csv
- M ias2026_bulletproof/derived/tables/TABLE_V4_PORTFOLIOS.csv
- M ias2026_bulletproof/derived/tables/gate0_tds.csv
- M ias2026_bulletproof/derived/tables/gate0_v4.csv
- M ias2026_bulletproof/docs/CLAIM_LEDGER.md
- M ias2026_bulletproof/docs/OPEN_LIMITATIONS.md
- M ias2026_bulletproof/env/julia/Project.toml
- M ias2026_bulletproof/reports/GATE0_REPORT.md
- M ias2026_bulletproof/reports/GATE_DASHBOARD.csv
- M ias2026_bulletproof/reports/GATE_DASHBOARD.md
- M ias2026_bulletproof/reports/TDS_REPORT.md
  M ias2026_bulletproof/src/python/assemble_tables.py
- M ias2026_bulletproof/src/python/run_gate0.py
-?? ../reports/P2_POWERDYNAMICS_V4_STATUS.md
 ?? ias2026_bulletproof/bundle/
-?? ias2026_bulletproof/figures/P1_GFL_TRANSFER_CONDITIONING.png
-?? ias2026_bulletproof/raw/gfl11/
-?? ias2026_bulletproof/raw/p1_p6_gate_matrix.csv
-?? ias2026_bulletproof/reports/P1_GFL_PARITY.md
-?? ias2026_bulletproof/reports/P1_P6_GATE_STATUS.md
-?? ias2026_bulletproof/reports/P3_COLLECTIVE_MECHANISM_STATUS.md
-?? ias2026_bulletproof/reports/P4_JULIA_TDS_STATUS.md
-?? ias2026_bulletproof/reports/P5_SECOND_GFL_STATUS.md
-?? ias2026_bulletproof/reports/P6_BLIND_HOLDOUT_STATUS.md
-?? ias2026_bulletproof/src/julia/frozen_gfl11.jl
-?? ias2026_bulletproof/src/julia/run_p1_gfl11.jl
-?? ias2026_bulletproof/src/python/plot_p1_transfer.py
-?? ias2026_bulletproof/src/python/run_p1_gfl11.py
 ?? ../tmp/pdfs/executive/
 ?? ../tmp/pdfs/paper/
 ?? ../tmp/pdfs/poster/
