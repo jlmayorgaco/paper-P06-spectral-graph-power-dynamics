@@ -9,8 +9,9 @@ from pathlib import Path
 
 import numpy as np
 
+from campaign_root import campaign_root_from_argv
 
-CAMPAIGN = Path(__file__).resolve().parents[2]
+CAMPAIGN = campaign_root_from_argv()
 RAW = CAMPAIGN / "raw" / "gfl11"
 SOURCE = RAW / "canonical_source" / "ieee39_devices.py"
 

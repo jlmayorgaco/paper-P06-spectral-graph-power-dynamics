@@ -6,8 +6,9 @@ import csv
 import json
 from pathlib import Path
 
+from campaign_root import campaign_root_from_argv
 
-CAMPAIGN = Path(__file__).resolve().parents[2]
+CAMPAIGN = campaign_root_from_argv()
 RAW = CAMPAIGN / "raw"
 P2 = RAW / "p2" / "p2_powerdynamics_portfolios.csv"
 OUT = RAW / "p3"

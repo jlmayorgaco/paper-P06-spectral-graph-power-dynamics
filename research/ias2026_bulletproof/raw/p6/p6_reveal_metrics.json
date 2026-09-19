@@ -1,5 +1,6 @@
 {
-  "status": "PASS",
+  "status": "POSTHOC_OR_PROCEDURAL_SINGLE_CLASS_HOLDOUT",
+  "evidence_class": "POSTHOC_OR_PROCEDURAL_SINGLE_CLASS_HOLDOUT",
   "prediction_sha256": "e9e31ab0f8447982881e65e0228e5a38dcd3b1cc9f7ceb566819bf603d3559c9",
   "holdout_portfolios": [
     "35",
@@ -8,15 +9,21 @@
     "none"
   ],
   "holdout_count": 4,
-  "precision": 1.0,
-  "recall": 1.0,
-  "cohen_kappa": 1.0,
+  "accuracy": 1.0,
+  "precision": null,
+  "recall": null,
+  "precision_recall_status": "NOT_MEANINGFUL_SINGLE_CLASS",
+  "cohen_kappa": null,
+  "cohen_kappa_status": "UNDEFINED_SINGLE_CLASS_HOLDOUT",
   "root_alpha_mae": 0.013927595628304732,
   "root_alpha_max_abs_error": 0.02757248693168718,
   "root_frequency_mae_hz": 0.03415730182095358,
   "actual_antichain": [],
   "predicted_antichain": [],
-  "antichain_exact": true,
+  "antichain_exact": null,
+  "blocker_discrimination_status": "NOT_TESTED_SINGLE_CLASS_HOLDOUT",
+  "repair_ranking_status": "NOT_TESTED_SINGLE_CLASS_HOLDOUT",
+  "chronology_status": "NOT_INDEPENDENTLY_PROVABLE_FROM_BUNDLE",
   "known_branch_repairs_excluded": [
     0,
     1,

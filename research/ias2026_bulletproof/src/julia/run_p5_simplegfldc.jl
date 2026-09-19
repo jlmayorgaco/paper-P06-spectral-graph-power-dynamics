@@ -5,8 +5,9 @@ using PowerDynamics
 using PowerDynamics.Library
 using NetworkDynamics
 using ModelingToolkitBase
+include(joinpath(@__DIR__, "campaign_root.jl"))
 
-const CAMPAIGN = normpath(joinpath(@__DIR__, "..", ".."))
+const CAMPAIGN = campaign_root_from_args()
 const RAW = joinpath(CAMPAIGN, "raw", "p5")
 const REPORTS = joinpath(CAMPAIGN, "reports")
 mkpath(RAW)
@@ -92,4 +93,6 @@ function main()
     return length(uflat(state)) > 0 && isfinite(r) && r <= 1e-8 ? 0 : 1
 end
 
-exit(main())
+if abspath(PROGRAM_FILE) == abspath(@__FILE__)
+    exit(main())
+end

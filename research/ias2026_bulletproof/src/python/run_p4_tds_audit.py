@@ -5,8 +5,9 @@ from __future__ import annotations
 import csv
 from pathlib import Path
 
+from campaign_root import campaign_root_from_argv
 
-CAMPAIGN = Path(__file__).resolve().parents[2]
+CAMPAIGN = campaign_root_from_argv()
 OUT = CAMPAIGN / "raw" / "p4"
 OUT.mkdir(parents=True, exist_ok=True)
 

@@ -9,12 +9,13 @@ using PowerDynamics.Library
 using ModelingToolkitBase
 
 include(joinpath(@__DIR__, "frozen_gfl11.jl"))
+include(joinpath(@__DIR__, "campaign_root.jl"))
 example_dir = joinpath(pkgdir(PowerDynamics), "docs", "examples")
 include(joinpath(example_dir, "ieee39_part1.jl"))
 set_Sbase!(100.0)
 set_fbase!(60.0)
 
-const CAMPAIGN = normpath(joinpath(@__DIR__, "..", ".."))
+const CAMPAIGN = campaign_root_from_args()
 const RAW = joinpath(CAMPAIGN, "raw", "p2")
 const REPORTS = joinpath(CAMPAIGN, "reports")
 mkpath(RAW)
@@ -25,7 +26,26 @@ const GFL_G = 0.03625
 const INIT_TOL = 1e-8
 const NETWORK_TOL = 1e-8
 
-function build_portfolio(replaced::Set{Int}, vrefs::Dict{Int,Float64})
+function simplegfldc(; name=:simplegfldc)
+    V_dc=2.5; C_dc=1.25; f_v_dc=5.0
+    xwLf=0.03; Rf=0.01
+    f_pll=5.0; f_tau_pll=300.0; f_i_dq=600.0
+    @named gfl = ComposableInverter.SimpleGFLDC(
+        Xf=xwLf, Rf=Rf,
+        PLL_Kp=f_pll*2π,
+        PLL_Ki=(f_pll*2π)^2/4,
+        PLL_τ_lpf=1/(f_tau_pll*2π),
+        CC1_KP=(xwLf/(2π*60.0))*(f_i_dq*2π),
+        CC1_KI=(xwLf/(2π*60.0))*(f_i_dq*2π)^2/4,
+        CC1_F=0, CC1_Fcoupl=0,
+        C_dc=C_dc, V_dc=V_dc,
+        kp_v_dc=V_dc*C_dc*(f_v_dc*2π),
+        ki_v_dc=V_dc*C_dc*(f_v_dc*2π)*(f_v_dc*2π)/4,
+    )
+    return gfl
+end
+
+function build_portfolio(replaced::Set{Int}, vrefs::Dict{Int,Float64}; model::Symbol=:gfl11, gfl_gain::Float64=GFL_G)
     buses = Any[]
     for row in eachrow(bus_df)
         i = Int(row.bus)
@@ -33,9 +53,15 @@ function build_portfolio(replaced::Set{Int}, vrefs::Dict{Int,Float64})
             machine_row = machine_df[findfirst(machine_df.bus .== i), :]
             weight = Float64(machine_row.Sn) / 100.0
             vref = get(vrefs, i, 1.0)
-            gfl = GFL11Injector(name=Symbol("gfl$(i)"), g=GFL_G,
-                                 w=weight, p_ref=Float64(row.P) / weight,
-                                 q_ref=Float64(row.Q) / weight, v_ref=vref)
+            gfl = if model == :gfl11
+                GFL11Injector(name=Symbol("gfl$(i)"), g=gfl_gain,
+                              w=weight, p_ref=Float64(row.P) / weight,
+                              q_ref=Float64(row.Q) / weight, v_ref=vref)
+            elseif model == :simplegfldc
+                simplegfldc(name=Symbol("simplegfldc$(i)"))
+            else
+                error("unknown converter model: $model")
+            end
             gfl_bus = compile_bus(MTKBus(gfl); name=Symbol("gfl$i"), current_source=true)
             grid_bus = compile_bus(MTKBus(); name=Symbol("bus$i"))
             set_default!(gfl_bus, :busbar₊Vbase, row.base_kv)
@@ -133,7 +159,7 @@ function main()
                stable=false, gauge_modes_removed=0, spectrum_count=0,
                blocker="")
         try
-            pf_net = build_portfolio(replaced, Dict{Int,Float64}())
+            pf_net = build_portfolio(replaced, Dict{Int,Float64}(); model=:gfl11)
             pf_model = powerflow_model(pf_net)
             pf_state = solve_powerflow(pf_net; pfnw=pf_model, verbose=false)
             row = merge(row, (powerflow_status="PASS",))
@@ -145,7 +171,7 @@ function main()
                 ui = interface[VIndex(grid_index, :busbar₊u_i)]
                 vrefs[bus] = hypot(ur, ui)
             end
-            net = build_portfolio(replaced, vrefs)
+            net = build_portfolio(replaced, vrefs; model=:gfl11)
             state = initialize_from_pf(net; verbose=false, subverbose=false,
                                        check=:none, tol=INIT_TOL, nwtol=NETWORK_TOL)
             residual = state_residual(net, state)
@@ -216,21 +242,26 @@ function main()
     open(report, "w") do io
         println(io, "# P2 — PowerDynamics V4 portfolio census")
         println(io)
-        println(io, "status: ", pass_count == 16 ? "PASS" : "STOPPED_BY_GATE")
-        println(io, "evidence_class: FRESH_POWERDYNAMICS_PORTFOLIO_CENSUS")
+        println(io, "status: ", pass_count == 16 ? "NEGATIVE_HOLDOUT" : "STOPPED_BY_GATE")
+        println(io, "result_label: ", pass_count == 16 ? "FRESH_ALTERNATIVE_DYNAMIC_MODEL_V4_NEGATIVE_HOLDOUT" : "STOPPED_BY_GATE")
+        println(io, "evidence_class: ", pass_count == 16 ? "FRESH_ALTERNATIVE_DYNAMIC_MODEL_V4_NEGATIVE_HOLDOUT" : "STOPPED_BY_GATE")
         println(io, "portfolios: 16 of 16 attempted")
         println(io, "initialized: ", pass_count)
         println(io, "target_buses: {30,33,35,37}")
         println(io, "matched_dispatch_and_rating: true")
+        println(io, "dynamic_model: official PowerDynamics IEEE-39 machines with official AVR/governor devices; GFL11 replacement harness")
+        println(io, "same_model_cross_code_gate: NOT_TESTED")
         println(io, "network_tolerance: ", NETWORK_TOL)
         println(io, "census_csv: raw/p2/p2_powerdynamics_portfolios.csv")
         println(io, "hasse_csv: raw/p2/p2_hasse_edges.csv")
         println(io, "mode_shapes_csv: raw/p2/p2_mode_shapes.csv")
         println(io)
-        println(io, pass_count == 16 ? "All requested portfolios initialized." : "At least one portfolio remains blocked; no universal P2 promotion is made.")
+        println(io, pass_count == 16 ? "All requested portfolios initialized and had stable gauge-aware transverse spectra. This is a fresh alternative dynamic-model negative holdout; it is not TRUE_SAME_MODEL_CROSS_CODE_PASS." : "At least one portfolio remains blocked; no universal P2 promotion is made.")
     end
     println("P2_", pass_count == 16 ? "PASS" : "STOPPED", " initialized=", pass_count, "/16")
     return pass_count == 16 ? 0 : 1
 end
 
-exit(main())
+if abspath(PROGRAM_FILE) == abspath(@__FILE__)
+    exit(main())
+end

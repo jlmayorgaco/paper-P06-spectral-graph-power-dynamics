@@ -23,18 +23,21 @@ refuted, or not tested. Labels are intentionally conservative.
 | C16 | Full IEEE-39 conclusion is universal | `REFUTED` | The result is benchmark- and policy-conditioned, not universal. | Scope and corrected global/targeted V9 evidence. |
 | C17 | Frozen GFL11 device equations agree across canonical Python and Julia implementations | `NUMERICALLY_VERIFIED` | Canonical `GridFollowingConverter` and Julia match on 64 cases: maximum derivative relative error 2.79e-13, current 0, system-base P/Q 2.22e-16, and initialization 1.11e-16; 602-point full 2x2 transfer parity has median relative Frobenius error 1.41e-16 and 99th percentile 1.52e-15. | P1 canonical source manifest, response CSV, and transfer comparison; this does not establish IEEE-39 portfolio parity. |
 | C18 | PowerDynamics one-device/infinite-bus dynamic network parity is established | `NUMERICALLY_VERIFIED` | The documented current-source topology passes at all three weak-shunt magnitudes with 15 states, residuals 4.22e-9–7.85e-9, repeat delta 0, and reproducible 15-mode spectra. | P1 network sensitivity CSV and preregistered tolerance; no IEEE-39 portfolio promotion. |
-| C19 | Fresh PowerDynamics V4 census reproduces all 16 portfolios | `NUMERICALLY_VERIFIED` | All 16 matched-dispatch/matched-rating portfolios initialized with 1.5–2.6e-13 residual; one |λ|<1e-8 gauge mode was removed and all 16 transverse spectra were stable. | P2 fresh census, raw/p2/p2_powerdynamics_portfolios.csv and Hasse edges. |
-| C20 | Fresh Julia collective mechanism and common TDS validate a blocker | `NO_BLOCKER_FOUND` | No Julia blocker survived the corrected transverse P2 spectrum, so blocker-specific operator/Q-continuation and TDS comparisons are not applicable. | P3/P4 fresh negative dependency audits. |
-| C21 | A materially different second GFL model confirms the result | `NUMERICALLY_VERIFIED` | Official PowerDynamics `ComposableInverter.SimpleGFLDC` initializes at the matched P/Q/base operating point with 13 states and residual 6.31e-9, without retuning. | P5 fresh second-model execution. |
-| C22 | A genuinely blind holdout confirms transfer and repair ranking | `NUMERICALLY_VERIFIED` | Frozen, committed predictions yield holdout precision 1.0, recall 1.0, kappa 1.0, exact empty antichain, alpha-root MAE 0.01393, and frequency-root MAE 0.03416 Hz. | P6 prereg hash/commit/reveal; historical repairs 0,1,13,43 excluded. |
+| C19 | Fresh official PowerDynamics V4 alternative-model census | `FRESH_ALTERNATIVE_DYNAMIC_MODEL_V4_NEGATIVE_HOLDOUT` | All 16 matched-dispatch/matched-rating portfolios initialized; one |λ|<1e-8 gauge mode was removed and all 16 transverse spectra were stable. This is not the frozen custom no-governor model. | P2 fresh census, raw/p2/p2_powerdynamics_portfolios.csv and Hasse edges. |
+| C20 | Fresh official-model Julia TDS | `FRESH_OFFICIAL_POWERDYNAMICS_TDS` | Base/one/full common-disturbance trajectories solved; selected-trace decay was recorded, but no reliable oscillation-frequency match was estimable. | P3/P4; blocker-specific diagnostics are not promoted. |
+| C21 | The official SimpleGFLDC second-model component initializes in the documented harness | `COMPONENT_EXECUTION_PASS` | Official PowerDynamics `ComposableInverter.SimpleGFLDC` initializes at the declared operating point with 13 states and residual 6.31e-9, without retuning. | P5 component execution. |
+| C22 | A four-portfolio procedural holdout gives 4/4 stable-label accuracy | `POSTHOC_OR_PROCEDURAL_SINGLE_CLASS_HOLDOUT` | The historical holdout is all-stable; precision/recall discrimination and Cohen kappa are not meaningful, and chronology is not independently provable from the bundle. | P6 v1 reveal metrics. |
+| C23 | A genuine alternative-model holdout freezes unseen inputs and predictions before reveal | `FRESH_ALTERNATIVE_DYNAMIC_MODEL_BLIND_HOLDOUT` | The v2 holdout has independently represented input/prediction/reveal chronology and 4/4 accuracy, but all four labels are stable; balanced accuracy, unstable precision/recall, MCC, kappa, blocker discrimination, and repair ranking are not promoted. | P6 genuine protocol, prediction hash, and reveal metrics. |
+| C24 | Official SimpleGFLDC IEEE-39 V4 census | `FRESH_ALTERNATIVE_DYNAMIC_MODEL_V4_NEGATIVE_HOLDOUT` | All 16 matched IEEE-39 portfolios initialize and remain transversely stable after gauge-aware filtering, without retuning. | P5 full census. |
 
 ## Safe poster claim
 
-The strongest defensible claim is: *in the frozen IEEE-39 benchmark and stated
-policy, a spectral/collective closure audit reproduces a P4 minimal
-incompatibility and its nonlinear verdicts, while the historical V9 transfer
-test and stronger robustness/generalization expectations fail or remain
-untested; the documented governor changes the P4 H4 sign.*
+The strongest defensible claim is: *the canonical frozen GFL11 device/port and
+documented PowerDynamics harness parity pass; in the official PowerDynamics
+IEEE-39 alternative model, all 16 V4 portfolios and all 16 official
+SimpleGFLDC portfolios are transversely stable after gauge-aware filtering.
+The frozen custom no-governor model still requires a true same-model
+Julia/Python reconciliation, and the blind holdouts are single-class.*
 
 The corrected V9 wording is narrower: complete-spectrum transfer agreement is
 incomplete because 110 aperiodic unstable portfolios lie outside the targeted
@@ -45,6 +48,6 @@ P1–P6 execution gates were closed.
 ## Forbidden promotion
 
 Do not write that the mechanism is universal, robust over a physical
-uncertainty set, reproduced by PowerDynamics, confirmed by a second converter
-model, certified through EMT/current limits, or validated by a new blind
-holdout.
+uncertainty set, reproduced by the official PowerDynamics models, confirmed
+in the frozen custom model by a second converter, certified through
+EMT/current limits, or discriminated by the single-class blind holdouts.

@@ -9,8 +9,9 @@ using PowerDynamics
 using NetworkDynamics
 
 include(joinpath(@__DIR__, "frozen_gfl11.jl"))
+include(joinpath(@__DIR__, "campaign_root.jl"))
 
-const CAMPAIGN = normpath(joinpath(@__DIR__, "..", ".."))
+const CAMPAIGN = campaign_root_from_args()
 const RAW = joinpath(CAMPAIGN, "raw", "gfl11")
 const REPORTS = joinpath(CAMPAIGN, "reports")
 mkpath(RAW); mkpath(REPORTS)
