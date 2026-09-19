@@ -1,0 +1,40 @@
+{
+  "protocol": "P6 genuine holdout v2",
+  "model_scope": "official PowerDynamics GFL11 alternative-model harness",
+  "input_sha256": "9b04e0150b995483fb9f89d928cf1226e64b3ce89ac0343bb395b48d1d12e908",
+  "discovery_case_ids": [
+    "disc_01",
+    "disc_02",
+    "disc_03",
+    "disc_04"
+  ],
+  "holdout_case_ids": [
+    "hold_01",
+    "hold_02",
+    "hold_03",
+    "hold_04"
+  ],
+  "prediction_rule": "majority stable label on discovery phase only",
+  "predictions": {
+    "hold_01": {
+      "predicted_stable": true,
+      "portfolio": "30+33+35+37",
+      "gfl_gain": 0.02265625
+    },
+    "hold_02": {
+      "predicted_stable": true,
+      "portfolio": "30+33+35+37",
+      "gfl_gain": 0.03171875
+    },
+    "hold_03": {
+      "predicted_stable": true,
+      "portfolio": "30+33+35+37",
+      "gfl_gain": 0.04078125
+    },
+    "hold_04": {
+      "predicted_stable": true,
+      "portfolio": "30+33+35+37",
+      "gfl_gain": 0.054375
+    }
+  }
+}
