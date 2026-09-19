@@ -16,4 +16,7 @@ mutating_componentwise_status: PASS
 mutating_componentwise_residual: 7.966960424710123e-13
 mutating_componentwise_spectrum_delta: 7.138278946393519e-9
 paths_csv: raw/powerdynamics/gate_a_paths.csv
+spectra_csv: raw/powerdynamics/gate_a_spectra.csv
+modal_assignment: independent Hungarian audit in raw/powerdynamics/gate_a_assignment.csv
+conditioning_interpretation: recorded diagnostic; unreduced tutorial Jacobians are extremely ill-conditioned and this is not a conditioning-pass claim
 source: PowerDynamics official docs/examples/ieee39_part1.jl

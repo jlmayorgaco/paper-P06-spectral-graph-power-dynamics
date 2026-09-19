@@ -2,14 +2,16 @@
 
 status: PASS
 
-Gate 0 uses the corrected same-policy modal-scope source staged under `raw/modal_scope`. The stale FC10/default-policy V9 reveal is not used for current P4 scope conclusions.
+Gate 0 is a corrected frozen-artifact reproduction/audit. It uses the corrected same-policy modal-scope source staged under `raw/modal_scope`; it is not a fresh IEEE-39 runtime solve. The stale FC10/default-policy V9 reveal is not used for current P4 scope conclusions.
+evidence_class: RETROSPECTIVE_ARTIFACT_REPRODUCED
+frozen_source: FROZEN_IEEE39_EVIDENCE
 
 ## V4 and modal closure
 
-- `P4 H4 alpha [s^-1]`: expected `0.1270065`, observed `0.1270064671440848`, status `PASS`, label `IEEE39_VALIDATED`
-- `P4 H4 frequency [Hz]`: expected `0.6222797`, observed `0.6222796695779256`, status `PASS`, label `IEEE39_VALIDATED`
-- `P4 governed H4 alpha [s^-1]`: expected `-0.0745`, observed `-0.07454098428813066`, status `PASS`, label `IEEE39_VALIDATED`
-- `P4 proper subsets stable`: expected `15`, observed `15`, status `PASS`, label `IEEE39_VALIDATED`
+- `P4 H4 alpha [s^-1]`: expected `0.1270065`, observed `0.1270064671440848`, status `PASS`, label `RETROSPECTIVE`
+- `P4 H4 frequency [Hz]`: expected `0.6222797`, observed `0.6222796695779256`, status `PASS`, label `RETROSPECTIVE`
+- `P4 governed H4 alpha [s^-1]`: expected `-0.0745`, observed `-0.07454098428813066`, status `PASS`, label `RETROSPECTIVE`
+- `P4 proper subsets stable`: expected `15`, observed `15`, status `PASS`, label `RETROSPECTIVE`
 - `target-family minimal blocker antichain exact`: expected `True`, observed `True`, status `PASS`, label `NUMERICALLY_VERIFIED`
 - `target-family minimal blockers`: expected `14`, observed `14`, status `PASS`, label `NUMERICALLY_VERIFIED`
 - `target-family blocker orders`: expected `5x4, 6x5, 3x6`, observed `5x4, 6x5, 3x6`, status `PASS`, label `NUMERICALLY_VERIFIED`

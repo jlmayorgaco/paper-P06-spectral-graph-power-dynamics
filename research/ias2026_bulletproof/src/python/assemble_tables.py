@@ -52,9 +52,9 @@ write_csv("TABLE_V9_BLOCKERS.csv", ["metric", "expected", "observed", "status", 
 ])
 
 write_csv("TABLE_POLICY_HYPERGRAPHS.csv", ["metric", "observed", "label", "interpretation"], [
-    {"metric": "P4 H4 nominal alpha", "observed": "0.1270064666836382 s^-1", "label": "IEEE39_VALIDATED", "interpretation": "nominal blocker"},
-    {"metric": "P4 H4 governed alpha", "observed": "-0.07454098428813066 s^-1", "label": "IEEE39_VALIDATED", "interpretation": "documented governor changes sign"},
-    {"metric": "P4 proper stable subsets", "observed": "15", "label": "IEEE39_VALIDATED", "interpretation": "minimality in frozen policy"},
+    {"metric": "P4 H4 nominal alpha", "observed": "0.1270064666836382 s^-1", "label": "RETROSPECTIVE", "interpretation": "nominal blocker; frozen artifact"},
+    {"metric": "P4 H4 governed alpha", "observed": "-0.07454098428813066 s^-1", "label": "RETROSPECTIVE", "interpretation": "documented governor changes sign; frozen artifact"},
+    {"metric": "P4 proper stable subsets", "observed": "15", "label": "RETROSPECTIVE", "interpretation": "minimality in frozen policy; frozen artifact"},
 ])
 
 def compact(rows: list[dict[str, str]]) -> list[dict[str, str]]:
@@ -81,7 +81,7 @@ write_csv("TABLE_V4_ROBUST_RADII.csv", ["model", "radius", "status", "label", "n
     {"model": "IEEE-39 P4", "radius": "not computed", "status": "NOT_TESTED", "label": "NOT_TESTED", "note": "no physical LFT radius"},
 ])
 write_csv("TABLE_REPAIR_ACTIONS.csv", ["action", "observed", "status", "label", "limitation"], [
-    {"action": "documented governor at P4", "observed": "H4 alpha changes 0.1270065 -> -0.074541 s^-1", "status": "observed", "label": "IEEE39_VALIDATED", "limitation": "policy-dependent; no EMT/current-limit certification"},
+    {"action": "documented governor at P4", "observed": "H4 alpha changes 0.1270065 -> -0.074541 s^-1", "status": "observed", "label": "RETROSPECTIVE", "limitation": "frozen artifact; policy-dependent; no EMT/current-limit certification"},
     {"action": "full switching-path repair", "observed": "not run", "status": "not tested", "label": "NOT_TESTED", "limitation": "future work"},
 ])
 write_csv("TABLE_ABLATIONS.csv", ["ablation", "status", "label", "scope"], [
@@ -99,12 +99,12 @@ write_csv("TABLE_SCALING.csv", ["scale_check", "observed", "expected", "status",
 ])
 
 ledger_rows = [
-    ("C01", "P4 H4 nominal alpha", "IEEE39_VALIDATED", "0.1270064666836382 s^-1", "frozen FC03"),
-    ("C02", "P4 minimal incompatibility", "IEEE39_VALIDATED", "15 proper stable subsets", "frozen FC01/FC03"),
+    ("C01", "P4 H4 nominal alpha", "RETROSPECTIVE", "0.1270064666836382 s^-1", "corrected frozen-artifact reproduction; FROZEN_IEEE39_EVIDENCE"),
+    ("C02", "P4 minimal incompatibility", "RETROSPECTIVE", "15 proper stable subsets", "corrected frozen-artifact reproduction"),
     ("C03", "algebraic port identities", "NUMERICALLY_VERIFIED", "4 property-test modules pass", "logs/theory_tests.log"),
     ("C04", "H4 boundary witness", "RETROSPECTIVE", "g*=0.2076814044; f=0.7064247879 Hz", "frozen F7A"),
-    ("C05", "frozen nonlinear TDS agreement", "NONLINEAR_TDS_VALIDATED", "32/32 declared agreements", "frozen G2"),
-    ("C06", "governor changes P4 H4 sign", "IEEE39_VALIDATED", "0.1270065 -> -0.074541 s^-1", "frozen FC03"),
+    ("C05", "frozen nonlinear TDS agreement", "RETROSPECTIVE", "32/32 declared agreements", "frozen G2; no new Julia TDS"),
+    ("C06", "governor changes P4 H4 sign", "RETROSPECTIVE", "0.1270065 -> -0.074541 s^-1", "frozen FC03; policy-dependent"),
     ("C07", "corrected global V9 scope", "NUMERICALLY_VERIFIED", "402/512; 110 false-safe; 0 false-unstable", "corrected modal scope"),
     ("C08", "corrected targeted V9 scope", "NUMERICALLY_VERIFIED", "511/512; 1 false-safe; 0 false-unstable", "corrected modal scope"),
     ("C09", "exact target-family blocker antichain", "NUMERICALLY_VERIFIED", "14 exact blockers; kappa=4", "corrected modal scope"),
@@ -112,6 +112,12 @@ ledger_rows = [
     ("C11", "second converter model", "NOT_TESTED", "not run", "scope limitation"),
     ("C12", "physical robust radius", "NOT_TESTED", "not computed", "scope limitation"),
     ("C13", "new blind topology/model holdout", "NOT_TESTED", "not run", "historical V9 is retrospective"),
+    ("C17", "fresh GFL11 Julia/Python device parity", "NUMERICALLY_VERIFIED", "64 cases; maximum relative error 5.14e-16", "reports/P1_GFL_PARITY.md"),
+    ("C18", "PowerDynamics one-device/infinite-bus dynamic parity", "STOPPED_BY_GATE", "network state count 0 in minimal loopback harness", "raw/gfl11/P1_FAILURE_MODES.md"),
+    ("C19", "fresh PowerDynamics V4 census", "STOPPED_BY_GATE", "not run", "reports/P2_POWERDYNAMICS_V4_STATUS.md"),
+    ("C20", "fresh Julia mechanism/TDS", "STOPPED_BY_GATE", "not run", "reports/P3_COLLECTIVE_MECHANISM_STATUS.md; reports/P4_JULIA_TDS_STATUS.md"),
+    ("C21", "second GFL model", "STOPPED_BY_GATE", "not run", "reports/P5_SECOND_GFL_STATUS.md"),
+    ("C22", "blind holdout", "STOPPED_BY_GATE", "not run", "reports/P6_BLIND_HOLDOUT_STATUS.md"),
 ]
 write_csv("TABLE_CLAIM_LEDGER.csv", ["id", "claim", "label", "observed", "evidence"], [dict(zip(["id", "claim", "label", "observed", "evidence"], row)) for row in ledger_rows])
 
@@ -143,8 +149,8 @@ manifest = {
     "branch": "research/ias2026-bulletproof-closure-v1",
     "starting_head": "b9f274e241a793bd2694d488f6e53c9aca6e6ac5",
     "status": "corrective audit in progress; final bundle not authorized",
-    "executed": ["gate0", "theory-tests", "powerdynamics-ieee39-gate-a"],
-    "not_tested": ["same-model PowerDynamics parity", "second converter model", "new blind holdout", "physical robust radius", "new Julia TDS", "EMT/current-limit/DC-link"],
+    "executed": ["gate0", "theory-tests", "powerdynamics-ieee39-gate-a", "p1-gfl11-device-parity"],
+    "not_tested": ["p2 V4 census", "p3 collective mechanism", "p4 Julia TDS", "p5 second converter model", "p6 blind holdout", "physical robust radius", "EMT/current-limit/DC-link"],
     "labels": ["PROVED", "NUMERICALLY_VERIFIED", "IEEE39_VALIDATED", "POWERDYNAMICS_VALIDATED", "SECOND_MODEL_VALIDATED", "NONLINEAR_TDS_VALIDATED", "SYNTHETIC_PILOT", "CONSTRUCTED_COUNTEREXAMPLE", "RETROSPECTIVE", "BLIND_HOLDOUT", "NOT_TESTED", "REFUTED", "UNRESOLVED", "STOPPED_BY_GATE"],
 }
 (CAMPAIGN / "derived" / "manifests" / "reproducibility_manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")

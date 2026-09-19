@@ -1,4 +1,6 @@
-1ef53557 (HEAD -> research/ias2026-bulletproof-closure-v1) research: correct modal-scope audit and Gate A provenance
+c61107a2 (HEAD -> research/ias2026-bulletproof-closure-v1) research: record committed Python replay
+f072b230 research: record corrected gate replay provenance
+1ef53557 research: correct modal-scope audit and Gate A provenance
 c1e062fc research: add closure bundle assembler
 f6db1e76 research: execute IAS2026 bulletproof closure campaign
 9968de79 (research/tx4-final-modal-scope-audit) Package TX4 final modal-scope audit
@@ -96,5 +98,3 @@ ede6f3eb docs(emt): ParaEMT EMT-validation final report - campaign BLOCKED at G3
 17832edf results(emt): claim-to-EMT matrix, F1 and unit-test diagnostic figures, run manifests
 dd1e2ea3 test(emt): EMT02/EMT03 unit tests - G3 FAIL, G4 FAIL (preregistered); diagnostics D1-D5
 9d06436a prereg(emt): amendment A1 - zero-sequence reference of the unit-test infinite bus
-ff1c4d8d adapter(emt): TX4 network/equilibrium adapter on ParaEMT; EMT01 equivalence PASS
-4e53db55 env(emt): ParaEMT provenance, isolated environment, EMT00 stock smoke test, TX4 network patch

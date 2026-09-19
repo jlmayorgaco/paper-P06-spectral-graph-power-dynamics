@@ -74,6 +74,7 @@ function run_gate()
 
 pfnw = powerflow_model(nw)
 rows = NamedTuple[]
+spectrum_rows = NamedTuple[]
 reference_spectrum = nothing
 reference_pfs = nothing
 high_accuracy_pfs = nothing
@@ -107,6 +108,10 @@ for tol in TOLS
             dyn_resid = state_residual(nw, s0)
             sys = linearize_network(s0)
             spectrum = sorted_spectrum(s0)
+            for (idx, eigenvalue) in enumerate(spectrum)
+                push!(spectrum_rows, (path=path_name, tolerance=tol, idx=idx,
+                                      real=real(eigenvalue), imag=imag(eigenvalue)))
+            end
             reference_spectrum = isnothing(reference_spectrum) ? spectrum : reference_spectrum
             spectral_delta = spectrum_delta(spectrum, reference_spectrum)
             jac_matrix = Matrix(sys.A)
@@ -151,6 +156,10 @@ try
                                          nwtol=minimum(TOLS))
     mutating_resid = state_residual(nw, mutating_state)
     mutating_spectrum = sorted_spectrum(mutating_state)
+    for (idx, eigenvalue) in enumerate(mutating_spectrum)
+        push!(spectrum_rows, (path="mutating_componentwise", tolerance=missing,
+                              idx=idx, real=real(eigenvalue), imag=imag(eigenvalue)))
+    end
     mutating_delta = spectrum_delta(mutating_spectrum, reference_spectrum)
     mutating_ok = isfinite(mutating_resid) && mutating_resid <= RESIDUAL_LIMIT &&
                    isfinite(mutating_delta) && mutating_delta <= SPECTRUM_LIMIT
@@ -159,6 +168,15 @@ catch err
     mutating_message = sprint(showerror, err)
 end
 all_pass &= mutating_ok
+
+spectra_path = joinpath(raw_dir, "gate_a_spectra.csv")
+open(spectra_path, "w") do io
+    println(io, "path,tolerance,idx,real,imag")
+    for row in spectrum_rows
+        println(io, join((csvquote(row.path), csvquote(row.tolerance), row.idx,
+                          row.real, row.imag), ','))
+    end
+end
 
 csv_path = joinpath(raw_dir, "gate_a_paths.csv")
 open(csv_path, "w") do io
@@ -197,6 +215,9 @@ open(report_path, "w") do io
     println(io, "mutating_componentwise_residual: ", mutating_resid)
     println(io, "mutating_componentwise_spectrum_delta: ", mutating_delta)
     println(io, "paths_csv: raw/powerdynamics/gate_a_paths.csv")
+    println(io, "spectra_csv: raw/powerdynamics/gate_a_spectra.csv")
+    println(io, "modal_assignment: independent Hungarian audit in raw/powerdynamics/gate_a_assignment.csv")
+    println(io, "conditioning_interpretation: recorded diagnostic; unreduced tutorial Jacobians are extremely ill-conditioned and this is not a conditioning-pass claim")
     println(io, "source: PowerDynamics official docs/examples/ieee39_part1.jl")
     if !isempty(mutating_message) && mutating_message != "ok"
         println(io, "mutating_componentwise_message: ", mutating_message)

@@ -6,14 +6,16 @@
   "executed": [
     "gate0",
     "theory-tests",
-    "powerdynamics-ieee39-gate-a"
+    "powerdynamics-ieee39-gate-a",
+    "p1-gfl11-device-parity"
   ],
   "not_tested": [
-    "same-model PowerDynamics parity",
-    "second converter model",
-    "new blind holdout",
+    "p2 V4 census",
+    "p3 collective mechanism",
+    "p4 Julia TDS",
+    "p5 second converter model",
+    "p6 blind holdout",
     "physical robust radius",
-    "new Julia TDS",
     "EMT/current-limit/DC-link"
   ],
   "labels": [

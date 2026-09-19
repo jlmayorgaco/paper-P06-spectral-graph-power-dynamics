@@ -8,6 +8,9 @@ within their declared scopes, but the campaign is not a final paper/poster
 release because the dependent same-model, robustness, second-model, holdout,
 and new-TDS gates remain incomplete.
 
+The ordered P1–P6 execution was started: P1 device parity passed, its
+minimal dynamic network integration stopped, and P2–P6 were dependency-stopped.
+
 ## What survived
 
 1. The frozen IEEE-39 P4 nominal H4 alpha reproduces as
@@ -26,6 +29,10 @@ and new-TDS gates remain incomplete.
    tolerances, three deterministic initial guesses, two initialization paths,
    residual checks, eigenvalue consistency, and Jacobian conditioning. This is
    package-level evidence only.
+8. Fresh P1 GFL11 device-level parity between the independent Python oracle and
+   the Julia transcription passes with maximum relative error `5.14e-16`; the
+   PowerDynamics injector compiles, while the minimal dynamic infinite-bus
+   harness retains zero states and is stopped.
 
 ## What was weakened or refuted
 
@@ -45,6 +52,9 @@ and new-TDS gates remain incomplete.
 
 - PowerDynamics same-model GFL parity or independent reproduction of the
   spectral/contextual-return mechanism.
+- A complete P1 PowerDynamics dynamic network parity result; consequently P2
+  through P6 were stopped in order and no fresh V4 census, Julia mechanism/TDS,
+  second-model result, or blind holdout exists.
 - A second converter model, a new blind topology/model holdout, a physical
   common uncertainty envelope, a robust LFT radius, or a new Julia TDS run.
 - EMT, current-limit, DC-link, protection, switching-path, or hardware
@@ -56,7 +66,7 @@ and new-TDS gates remain incomplete.
 |---|---|
 | Strongest survived result | Benchmark- and policy-conditioned P4 minimal incompatibility with exact frozen nominal value, theorem identities, and retrospective nonlinear agreement. |
 | Strongest weakened result | Transfer/generalization beyond the frozen case; V9 is negative evidence. |
-| PowerDynamics role | Gate A validates the official IEEE-39 tutorial only; no same-mechanism claim. |
+| PowerDynamics role | Gate A validates the official IEEE-39 tutorial only; P1 device parity is fresh, but full GFL network/mechanism parity is stopped. |
 | Second model | Not executed; no `SECOND_MODEL_VALIDATED` label. |
 | Robust radius | Not computed; no physical robustness claim. |
 | Collective closure vs. robustness | Frozen nominal closure survives; common-envelope robustness remains untested. |
@@ -71,5 +81,6 @@ In the frozen IEEE-39 benchmark and stated policy, the spectral/collective
 closure audit reproduces a P4 minimal incompatibility and the declared frozen
 nonlinear verdicts. The corrected same-policy V9 transfer is scope-dependent
 (402/512 globally; 511/512 in the declared 0.3–1.5 Hz band), the documented
-governor changes the P4 H4 sign, and robustness, second-model, same-mechanism
-parity, and new blind-holdout claims remain untested or stopped by scope.
+governor changes the P4 H4 sign, fresh P1 device equations agree across Julia
+and Python, and robustness, full same-model network parity, P2–P6, and new
+blind-holdout claims remain untested or stopped by scope.

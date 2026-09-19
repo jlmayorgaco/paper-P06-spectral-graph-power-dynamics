@@ -17,7 +17,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve()
 CAMPAIGN = HERE.parents[2]
 ROOT = CAMPAIGN.parents[1]
-bundle_name = f"IAS2026_BULLETPROOF_CORRECTIVE_AUDIT_{datetime.now().strftime('%Y%m%d_%H%M')}"
+bundle_name = f"IAS2026_BULLETPROOF_CORRECTIVE_AUDIT_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
 bundle_root = CAMPAIGN / "bundle" / bundle_name
 bundle_root.mkdir(parents=True, exist_ok=False)
 
@@ -40,16 +40,21 @@ shutil.copy2(CAMPAIGN / "docs" / "CLAIM_LEDGER.md", bundle_root / "paper_source"
     "This is an interim corrective-audit bundle, not a final paper/poster release.\n"
     "The historical FINAL_PAPER.pdf and FINAL_POSTER_DRAFT.pdf are intentionally\n"
     "excluded and must not be used for Vancouver.\n\n"
-    "Gate 0 and PowerDynamics Gate A pass in their declared scopes. Same-model\n"
-    "GFL parity, robustness, second-model, new blind-holdout, and new Julia-TDS\n"
-    "requirements remain incomplete. See FINAL_EXECUTIVE_REPORT.md,\n"
+    "Gate 0 is a corrected frozen-artifact audit and PowerDynamics Gate A passes\n"
+    "only in the official tutorial scope. P1 device-level GFL parity passes, but\n"
+    "the minimal PowerDynamics current-source/infinite-bus harness is stopped\n"
+    "with zero retained network states. P2–P6 therefore remain stopped; robustness,\n"
+    "second-model, blind-holdout, and new Julia-TDS requirements are incomplete.\n"
+    "See FINAL_EXECUTIVE_REPORT.md, reports/P1_P6_GATE_STATUS.md,\n"
     "CLAIM_LEDGER.csv, and OPEN_LIMITATIONS.md.\n",
     encoding="utf-8",
 )
 (bundle_root / "FINAL_EXECUTIVE_REPORT.md").write_text(
     "# Executive report — corrective audit (not final)\n\n"
     "Release status: NOT_FINAL / STOPPED_BY_GATE for dependent final-release gates.\n\n"
-    + (CAMPAIGN / "reports" / "FINAL_BULLETPROOF_AUDIT.md").read_text(encoding="utf-8"),
+    + (CAMPAIGN / "reports" / "FINAL_BULLETPROOF_AUDIT.md").read_text(encoding="utf-8")
+    + "\n\n---\n\n"
+    + (CAMPAIGN / "reports" / "P1_P6_GATE_STATUS.md").read_text(encoding="utf-8"),
     encoding="utf-8",
 )
 shutil.copy2(CAMPAIGN / "derived" / "tables" / "TABLE_CLAIM_LEDGER.csv", bundle_root / "CLAIM_LEDGER.csv")
@@ -89,6 +94,9 @@ manifest = {
         "limitations": "OPEN_LIMITATIONS.md",
         "dashboard": "reports/GATE_DASHBOARD.md",
         "gate0": "reports/GATE0_REPORT.md",
+        "p1_gfl_parity": "reports/P1_GFL_PARITY.md",
+        "p1_p6_status": "reports/P1_P6_GATE_STATUS.md",
+        "p1_p6_gate_matrix": "raw/p1_p6_gate_matrix.csv",
         "powerdynamics_gate_a": "raw/powerdynamics/pd39_equilibrium_gate.md",
         "reproduction": "src/python/run_all_python.py",
     },

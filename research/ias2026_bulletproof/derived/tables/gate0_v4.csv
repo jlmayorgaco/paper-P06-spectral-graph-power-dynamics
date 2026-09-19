@@ -1,8 +1,8 @@
 metric,expected,observed,error,threshold,status,label,source_file
-P4 H4 alpha [s^-1],0.1270065,0.1270064671440848,3.285591518298325e-08,1e-06,PASS,IEEE39_VALIDATED,raw/modal_scope/TX4_MODAL_MECHANISM.csv
-P4 H4 frequency [Hz],0.6222797,0.6222796695779256,3.042207441517064e-08,1e-06,PASS,IEEE39_VALIDATED,raw/modal_scope/TX4_MODAL_MECHANISM.csv
-P4 governed H4 alpha [s^-1],-0.0745,-0.07454098428813066,4.0984288130666013e-05,0.0001,PASS,IEEE39_VALIDATED,raw/gate0/FC03_points.csv
-P4 proper subsets stable,15,15,0,0,PASS,IEEE39_VALIDATED,raw/modal_scope/TX4_15_PROPER_SUBSETS.csv
+P4 H4 alpha [s^-1],0.1270065,0.1270064671440848,3.285591518298325e-08,1e-06,PASS,RETROSPECTIVE,raw/modal_scope/TX4_MODAL_MECHANISM.csv
+P4 H4 frequency [Hz],0.6222797,0.6222796695779256,3.042207441517064e-08,1e-06,PASS,RETROSPECTIVE,raw/modal_scope/TX4_MODAL_MECHANISM.csv
+P4 governed H4 alpha [s^-1],-0.0745,-0.07454098428813066,4.0984288130666013e-05,0.0001,PASS,RETROSPECTIVE,raw/gate0/FC03_points.csv
+P4 proper subsets stable,15,15,0,0,PASS,RETROSPECTIVE,raw/modal_scope/TX4_15_PROPER_SUBSETS.csv
 target-family minimal blocker antichain exact,True,True,0,0,PASS,NUMERICALLY_VERIFIED,raw/modal_scope/TX4_V9_GLOBAL_VS_EM_TRUTH.csv
 target-family minimal blockers,14,14,0,0,PASS,NUMERICALLY_VERIFIED,raw/modal_scope/TX4_V9_GLOBAL_VS_EM_TRUTH.csv
 target-family blocker orders,"5x4, 6x5, 3x6","5x4, 6x5, 3x6",,,PASS,NUMERICALLY_VERIFIED,raw/modal_scope/TX4_V9_GLOBAL_VS_EM_TRUTH.csv

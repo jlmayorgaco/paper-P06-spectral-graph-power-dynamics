@@ -143,10 +143,10 @@ def main(argv=None) -> int:
     kappa = min(map(len, pred_antichain))
 
     gate0_v4 = [
-        row("P4 H4 alpha [s^-1]", 0.1270065, p4_alpha, 1e-6, "PASS" if abs(p4_alpha - 0.1270065) <= 1e-6 else "FAIL", "IEEE39_VALIDATED", "raw/modal_scope/TX4_MODAL_MECHANISM.csv"),
-        row("P4 H4 frequency [Hz]", 0.6222797, p4_frequency, 1e-6, "PASS" if abs(p4_frequency - 0.6222797) <= 1e-6 else "FAIL", "IEEE39_VALIDATED", "raw/modal_scope/TX4_MODAL_MECHANISM.csv"),
-        row("P4 governed H4 alpha [s^-1]", -0.0745, governed_alpha, 1e-4, "PASS" if abs(governed_alpha + 0.0745) <= 1e-4 else "FAIL", "IEEE39_VALIDATED", "raw/gate0/FC03_points.csv"),
-        row("P4 proper subsets stable", 15, proper_stable, 0, "PASS" if proper_stable == 15 else "FAIL", "IEEE39_VALIDATED", "raw/modal_scope/TX4_15_PROPER_SUBSETS.csv"),
+        row("P4 H4 alpha [s^-1]", 0.1270065, p4_alpha, 1e-6, "PASS" if abs(p4_alpha - 0.1270065) <= 1e-6 else "FAIL", "RETROSPECTIVE", "raw/modal_scope/TX4_MODAL_MECHANISM.csv"),
+        row("P4 H4 frequency [Hz]", 0.6222797, p4_frequency, 1e-6, "PASS" if abs(p4_frequency - 0.6222797) <= 1e-6 else "FAIL", "RETROSPECTIVE", "raw/modal_scope/TX4_MODAL_MECHANISM.csv"),
+        row("P4 governed H4 alpha [s^-1]", -0.0745, governed_alpha, 1e-4, "PASS" if abs(governed_alpha + 0.0745) <= 1e-4 else "FAIL", "RETROSPECTIVE", "raw/gate0/FC03_points.csv"),
+        row("P4 proper subsets stable", 15, proper_stable, 0, "PASS" if proper_stable == 15 else "FAIL", "RETROSPECTIVE", "raw/modal_scope/TX4_15_PROPER_SUBSETS.csv"),
         row("target-family minimal blocker antichain exact", True, antichain_exact, 0, "PASS" if antichain_exact else "FAIL", "NUMERICALLY_VERIFIED", "raw/modal_scope/TX4_V9_GLOBAL_VS_EM_TRUTH.csv"),
         row("target-family minimal blockers", 14, len(pred_antichain), 0, "PASS" if len(pred_antichain) == 14 else "FAIL", "NUMERICALLY_VERIFIED", "raw/modal_scope/TX4_V9_GLOBAL_VS_EM_TRUTH.csv"),
         row("target-family blocker orders", "5x4, 6x5, 3x6", orders, None, "PASS" if orders == "5x4, 6x5, 3x6" else "FAIL", "NUMERICALLY_VERIFIED", "raw/modal_scope/TX4_V9_GLOBAL_VS_EM_TRUTH.csv"),
@@ -177,8 +177,8 @@ def main(argv=None) -> int:
     ]
     tds = read_csv(RAW_GATE0 / "G2_tds_summary.csv")
     gate0_tds = [
-        row("declared TDS verdict agreement", 32, sum(1 for r in tds if r.get("verdict_agrees", "").lower() == "true"), 0, "PASS", "NONLINEAR_TDS_VALIDATED", "raw/gate0/G2_tds_summary.csv"),
-        row("P4 H4 TDS unstable rows", 2, sum(1 for r in tds if r.get("case") == "K4 P4 flagship" and r.get("outcome") == "UNSTABLE"), 0, "PASS", "NONLINEAR_TDS_VALIDATED", "raw/gate0/G2_tds_summary.csv"),
+        row("declared TDS verdict agreement", 32, sum(1 for r in tds if r.get("verdict_agrees", "").lower() == "true"), 0, "PASS", "RETROSPECTIVE", "raw/gate0/G2_tds_summary.csv"),
+        row("P4 H4 TDS unstable rows", 2, sum(1 for r in tds if r.get("case") == "K4 P4 flagship" and r.get("outcome") == "UNSTABLE"), 0, "PASS", "RETROSPECTIVE", "raw/gate0/G2_tds_summary.csv"),
     ]
     f7_rows = read_csv(RAW_GATE0 / "F7A_events.csv")
     gate0_topology = [
@@ -212,7 +212,7 @@ def main(argv=None) -> int:
     (CAMPAIGN / "derived" / "manifests" / "gate0_manifest.json").write_text(json.dumps(inventory, indent=2) + "\n", encoding="utf-8")
 
     failed = [r for values in tables.values() for r in values if r["status"] == "FAIL"]
-    report = ["# Gate 0 Report", "", f"status: {'FAIL (negative evidence preserved)' if failed else 'PASS'}", "", "Gate 0 uses the corrected same-policy modal-scope source staged under `raw/modal_scope`. The stale FC10/default-policy V9 reveal is not used for current P4 scope conclusions.", "", "## V4 and modal closure", ""]
+    report = ["# Gate 0 Report", "", f"status: {'FAIL (negative evidence preserved)' if failed else 'PASS'}", "", "Gate 0 is a corrected frozen-artifact reproduction/audit. It uses the corrected same-policy modal-scope source staged under `raw/modal_scope`; it is not a fresh IEEE-39 runtime solve. The stale FC10/default-policy V9 reveal is not used for current P4 scope conclusions.", "evidence_class: RETROSPECTIVE_ARTIFACT_REPRODUCED", "frozen_source: FROZEN_IEEE39_EVIDENCE", "", "## V4 and modal closure", ""]
     for value in gate0_v4 + gate0_boundary:
         report.append(f"- `{value['metric']}`: expected `{value['expected']}`, observed `{value['observed']}`, status `{value['status']}`, label `{value['label']}`")
     report.extend(["", "## Same-policy V9", "", "The global spectrum and targeted 0.3-1.5 Hz task are reported separately; the targeted result is not a global safety certificate."])

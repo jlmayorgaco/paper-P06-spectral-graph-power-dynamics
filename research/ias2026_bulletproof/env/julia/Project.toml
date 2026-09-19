@@ -12,6 +12,7 @@ OrdinaryDiffEqRosenbrock = "43230ef6-c299-4910-a778-202eb28ce4ce"
 PowerDynamics = "cc46b21f-1b17-51c2-b642-af74c3d3a8be"
 RobustAndOptimalControl = "21fd56a4-db03-40ee-82ee-a87907bee541"
 SciMLBase = "0bca4576-84f4-4d90-8ffe-ffa030f20462"
+SciCompDSL = "91a8cdf1-4ca6-467b-a780-87fda3fff15e"
 
 [compat]
 julia = "1.11"
