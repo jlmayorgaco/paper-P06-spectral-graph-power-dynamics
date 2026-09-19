@@ -1,0 +1,11 @@
+reference_path,reference_tolerance,path,tolerance,eigenvalue_count,max_hungarian_delta,mean_hungarian_delta,status
+nonmutating/default,1.0e-12,nonmutating/default,1.0e-8,114,7.138285834460981e-09,3.6582912911172504e-10,PASS
+nonmutating/default,1.0e-12,nonmutating/guess,1.0e-8,114,7.138285834460981e-09,3.6582912911172504e-10,PASS
+nonmutating/default,1.0e-12,nonmutating/perturbed,1.0e-8,114,6.9244058450054884e-09,3.5000768090281994e-10,PASS
+nonmutating/default,1.0e-12,nonmutating/default,1.0e-10,114,6.13007372754621e-11,3.444781424747825e-12,PASS
+nonmutating/default,1.0e-12,nonmutating/guess,1.0e-10,114,6.13007372754621e-11,3.444781424747825e-12,PASS
+nonmutating/default,1.0e-12,nonmutating/perturbed,1.0e-10,114,6.029928303800901e-11,3.323601040627055e-12,PASS
+nonmutating/default,1.0e-12,nonmutating/default,1.0e-12,114,0.0,0.0,PASS
+nonmutating/default,1.0e-12,nonmutating/guess,1.0e-12,114,0.0,0.0,PASS
+nonmutating/default,1.0e-12,nonmutating/perturbed,1.0e-12,114,7.531752999057062e-13,5.894236416634782e-14,PASS
+nonmutating/default,1.0e-12,mutating_componentwise,missing,114,7.531752999057062e-13,5.894236416634782e-14,PASS

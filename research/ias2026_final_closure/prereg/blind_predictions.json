@@ -1,0 +1,7 @@
+{
+  "status": "PENDING_FREEZE",
+  "created_before_reveal": true,
+  "prediction_rule": "select the lowest-cardinality blocker with minimality separation >= 0.02 s^-1; tie-break by largest separation then lexicographic order",
+  "holdout": "governed or independently instantiated converter policy selected from documented candidates before reveal",
+  "predictions": []
+}

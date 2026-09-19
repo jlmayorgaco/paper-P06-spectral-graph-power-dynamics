@@ -1,0 +1,25 @@
+{
+  "bundle": "IAS2026_VANCOUVER_FINAL_SCIENTIFIC_CLOSURE_20260919_174104",
+  "created_at_local": "2026-09-19T17:41:06",
+  "release_status": "CLOSURE_PACKAGE_WITH_STOPPED_GATES",
+  "git_commit_at_packaging": "ef59780d39ef87cb53ecd0a872ac92e469d79748",
+  "branch": "research/ias2026-final-award-closure",
+  "statuses": {
+    "G0": "FROZEN_ARTIFACT_REPRODUCED",
+    "G1": "NUMERICALLY_VERIFIED",
+    "G2_G4": "STOPPED_BY_GATE",
+    "G5": "NOT_TESTED",
+    "G6": "NUMERICALLY_VERIFIED",
+    "G7": "SECOND_MODEL_VALIDATED",
+    "G8": "BLIND_HOLDOUT",
+    "G9_G12": "NOT_TESTED",
+    "G13_G15": "RETROSPECTIVE",
+    "G16": "NOT_TESTED"
+  },
+  "excluded": [
+    "FINAL_PAPER.pdf",
+    "FINAL_POSTER_DRAFT.pdf",
+    "paper/poster rewrite"
+  ],
+  "fresh_extraction_commands": "REPRODUCE.md"
+}

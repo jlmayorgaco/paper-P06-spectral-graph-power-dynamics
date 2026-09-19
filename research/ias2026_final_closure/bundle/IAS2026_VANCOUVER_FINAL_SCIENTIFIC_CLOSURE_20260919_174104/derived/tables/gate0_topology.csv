@@ -1,0 +1,10 @@
+metric,expected,observed,error,threshold,status,label,source_file
+F7A boundary records,,12195,,,PASS,RETROSPECTIVE,raw/gate0/F7A_events.csv
+F7A distinct witness records,,16,,,INFO,RETROSPECTIVE,raw/gate0/F7A_events.csv
+admissible outages count,not isolated,not isolated,,,INFO,RETROSPECTIVE,docs/TOPOLOGY_RETROSPECTIVE.md
+admissible reinforcements count,not isolated,not isolated,,,INFO,RETROSPECTIVE,docs/TOPOLOGY_RETROSPECTIVE.md
+P4 repairs,"0,1,13,43","0,1,13,43",,,INFO,RETROSPECTIVE,docs/TOPOLOGY_RETROSPECTIVE.md
+policy/action pairs creating blockers <= 3,not isolated,not isolated,,,INFO,RETROSPECTIVE,docs/TOPOLOGY_RETROSPECTIVE.md
+H changes on clean g path,1,1,0,0,INFO,RETROSPECTIVE,docs/TOPOLOGY_RETROSPECTIVE.md
+static-score Spearman baselines,dgSCR=-0.03; 1/x=-0.30; x-betweenness=-0.55,dgSCR=-0.03; 1/x=-0.30; x-betweenness=-0.55,,,INFO,RETROSPECTIVE,docs/TOPOLOGY_RETROSPECTIVE.md
+V9 topology churn,not isolated,not isolated,,,INFO,RETROSPECTIVE,docs/TOPOLOGY_RETROSPECTIVE.md

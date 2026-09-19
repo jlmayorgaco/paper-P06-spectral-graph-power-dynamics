@@ -1,0 +1,17 @@
+{
+  "status": "NO_BLOCKER_FOUND",
+  "source": "raw/p2/p2_powerdynamics_portfolios.csv",
+  "blocker_portfolios": [],
+  "actual_transverse_spectrum_used": true,
+  "requested_diagnostics": {
+    "exact_terminal_operator": "NOT_APPLICABLE_NO_JULIA_BLOCKER",
+    "local_factors": "NOT_APPLICABLE_NO_JULIA_BLOCKER",
+    "Q_continuation": "NOT_APPLICABLE_NO_JULIA_BLOCKER",
+    "boundary_and_local_regularity": "NOT_APPLICABLE_NO_JULIA_BLOCKER",
+    "sigma_min_I_plus_Q_H_to_zero": "NOT_APPLICABLE_NO_JULIA_BLOCKER",
+    "Q_H_to_minus_one": "NOT_APPLICABLE_NO_JULIA_BLOCKER",
+    "contextual_returns_to_plus_one": "NOT_APPLICABLE_NO_JULIA_BLOCKER",
+    "reduced_vs_full_DAE": "NOT_APPLICABLE_NO_JULIA_BLOCKER"
+  },
+  "negative_result": "The fresh PowerDynamics census has no transverse instability/blocker after removal of one |lambda|<1e-8 gauge mode per portfolio."
+}

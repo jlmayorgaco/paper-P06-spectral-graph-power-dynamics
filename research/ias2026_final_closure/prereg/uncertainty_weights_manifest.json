@@ -1,0 +1,7 @@
+{
+  "status": "SPECIFICATION_ONLY_UNTIL_CALIBRATED",
+  "physical_normalization": "single global terminal uncertainty envelope",
+  "blocks": [30,31,32,33,34,35,36,37,38],
+  "weights": null,
+  "forbidden": ["portfolio-specific refitting", "closure-space radius called physical radius"]
+}
