@@ -36,6 +36,12 @@ incompatibility and its nonlinear verdicts, while the historical V9 transfer
 test and stronger robustness/generalization expectations fail or remain
 untested; the documented governor changes the P4 H4 sign.*
 
+The corrected V9 wording is narrower: complete-spectrum transfer agreement is
+incomplete because 110 aperiodic unstable portfolios lie outside the targeted
+representation; within the targeted 0.3–1.5 Hz band, 511/512 cases agree and
+the 14-blocker antichain is exact. No robustness atlas was started before the
+P1–P6 execution gates were closed.
+
 ## Forbidden promotion
 
 Do not write that the mechanism is universal, robust over a physical
