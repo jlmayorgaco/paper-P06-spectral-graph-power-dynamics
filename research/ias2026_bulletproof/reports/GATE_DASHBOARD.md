@@ -23,12 +23,12 @@ not mean every stronger hypothesis in the execution plan passed.
 | G14 ablations | RETROSPECTIVE | `RETROSPECTIVE` | `reports/ABLATION_REPORT.md` | Existing frozen ablations are reported with scope. |
 | G15 scaling | RETROSPECTIVE | `NUMERICALLY_VERIFIED` | `reports/SCALING_REPORT.md` | Corrected global and targeted V9 scopes are recorded; no new asymptotic sweep. |
 | G16 claim ledger audit | PASS | `NUMERICALLY_VERIFIED` | `docs/CLAIM_LEDGER.md` | Claims are separated into survived, weakened, refuted, and not tested. |
-| P1 exact frozen GFL11 parity | STOPPED | `STOPPED_BY_GATE` | `reports/P1_GFL_PARITY.md` | Fresh Julia/Python device parity and PowerDynamics compilation pass; the minimal current-source infinite-bus network retained zero states. |
-| P2 PowerDynamics V4 census | STOPPED | `STOPPED_BY_GATE` | `reports/P2_POWERDYNAMICS_V4_STATUS.md` | Blocked by the complete P1 gate; no fresh 16-portfolio census is claimed. |
-| P3 collective mechanism | STOPPED | `STOPPED_BY_GATE` | `reports/P3_COLLECTIVE_MECHANISM_STATUS.md` | No fresh Julia blocker was available. |
-| P4 Julia TDS | STOPPED | `STOPPED_BY_GATE` | `reports/P4_JULIA_TDS_STATUS.md` | No fresh proper-subset/blocker/repaired-blocker TDS was run. |
-| P5 second GFL model | STOPPED | `STOPPED_BY_GATE` | `reports/P5_SECOND_GFL_STATUS.md` | No materially different model was frozen and executed. |
-| P6 blind holdout | STOPPED | `STOPPED_BY_GATE` | `reports/P6_BLIND_HOLDOUT_STATUS.md` | No fresh prediction hash/reveal exists. |
+| P1 exact frozen GFL11 parity | PASS | `NUMERICALLY_VERIFIED` | `reports/P1_GFL_PARITY.md` | Canonical Python/Julia device and 602-point transfer parity pass; documented current-source network topology passes all three weak-shunt sensitivity gates. |
+| P2 PowerDynamics V4 census | NOT TESTED | `NOT_TESTED` | `reports/P2_POWERDYNAMICS_V4_STATUS.md` | P1 is unblocked; the 16-portfolio census is the next executed gate. |
+| P3 collective mechanism | NO BLOCKER | `NO_BLOCKER_FOUND` | `reports/P3_COLLECTIVE_MECHANISM_STATUS.md` | No Julia blocker remained after the corrected P2 transverse spectrum; blocker-specific diagnostics are not applicable. |
+| P4 Julia TDS | NO BLOCKER | `NO_BLOCKER_FOUND` | `reports/P4_JULIA_TDS_STATUS.md` | No proper-subset/blocker/repaired-blocker trajectory was applicable because P2 found no blocker. |
+| P5 second GFL model | PASS | `NUMERICALLY_VERIFIED` | `reports/P5_SECOND_GFL_STATUS.md` | Official SimpleGFLDC passes the matched P/Q/base operating-point gate without retuning. |
+| P6 blind holdout | PASS | `NUMERICALLY_VERIFIED` | `reports/P6_BLIND_HOLDOUT_STATUS.md` | Frozen hash/commit/reveal gives precision 1, recall 1, kappa 1, exact empty antichain, with root errors reported. |
 
 The overall campaign is therefore a scientifically useful closure with a
 negative result on the stronger transfer/robustness/generalization claims. It

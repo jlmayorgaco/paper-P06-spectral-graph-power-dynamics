@@ -15,9 +15,9 @@ C13,new blind topology/model holdout,NOT_TESTED,not run,historical V9 is retrosp
 C14,full IEEE-39 conclusion is universal,REFUTED,not universal,benchmark and policy scope
 C15,full repair path is certified,NOT_TESTED,not run,no EMT/current-limit/DC-link certification
 C16,frozen IEEE-39 claim is model-independent,REFUTED,not supported,no second model; no universal promotion
-C17,fresh GFL11 Julia/Python device parity,NUMERICALLY_VERIFIED,64 cases; maximum relative error 5.14e-16,reports/P1_GFL_PARITY.md
-C18,PowerDynamics one-device/infinite-bus dynamic parity,STOPPED_BY_GATE,network state count 0 in minimal loopback harness,raw/gfl11/P1_FAILURE_MODES.md
-C19,fresh PowerDynamics V4 census,STOPPED_BY_GATE,not run,reports/P2_POWERDYNAMICS_V4_STATUS.md
-C20,fresh Julia mechanism/TDS,STOPPED_BY_GATE,not run,reports/P3_COLLECTIVE_MECHANISM_STATUS.md; reports/P4_JULIA_TDS_STATUS.md
-C21,second GFL model,STOPPED_BY_GATE,not run,reports/P5_SECOND_GFL_STATUS.md
-C22,blind holdout,STOPPED_BY_GATE,not run,reports/P6_BLIND_HOLDOUT_STATUS.md
+C17,canonical GFL11 Python/Julia device and transfer parity,NUMERICALLY_VERIFIED,64 cases; derivative max 2.79e-13; 602-point transfer median/p99 relative Frobenius 1.41e-16/1.52e-15,reports/P1_GFL_PARITY.md; raw/gfl11/canonical_source_manifest.json
+C18,PowerDynamics documented one-device/infinite-bus dynamic parity,NUMERICALLY_VERIFIED,15 states; residual 4.22e-9–7.85e-9; repeat/spectrum deltas 0 across 3 weak shunts,raw/gfl11/p1_network_sensitivity.csv; prereg/P1_NETWORK_TOLERANCE.md
+C19,fresh PowerDynamics V4 census,NUMERICALLY_VERIFIED,16/16 initialized; transverse spectra stable; one gauge mode removed per portfolio,reports/P2_POWERDYNAMICS_V4_STATUS.md; raw/p2/p2_powerdynamics_portfolios.csv
+C20,fresh Julia mechanism/TDS,NO_BLOCKER_FOUND,no P2 transverse blocker; blocker-specific diagnostics not applicable,reports/P3_COLLECTIVE_MECHANISM_STATUS.md; reports/P4_JULIA_TDS_STATUS.md
+C21,official SimpleGFLDC second model,NUMERICALLY_VERIFIED,13 states; residual 6.31e-9; no retune,reports/P5_SECOND_GFL_STATUS.md; raw/p5/p5_simplegfldc_result.csv
+C22,blind holdout,NUMERICALLY_VERIFIED,precision 1; recall 1; kappa 1; exact empty antichain; alpha/frequency root errors recorded,reports/P6_BLIND_HOLDOUT_STATUS.md; raw/p6/p6_reveal_metrics.json

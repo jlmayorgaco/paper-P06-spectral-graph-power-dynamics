@@ -102,11 +102,14 @@ def main() -> int:
             "w": w,
             "v": v,
             "a": a,
+            "p0": p0,
+            "q0": q0,
             "p_ref": p_ref,
             "q_ref": q_ref,
             "v_ref": v_ref,
         }
         row.update({f"x{i}": float(value) for i, value in enumerate(x)})
+        row.update({f"x_eq{i}": float(value) for i, value in enumerate(x_eq)})
         row.update({f"f{i}": float(value) for i, value in enumerate(f)})
         row.update({"i_r": ir, "i_i": ii, "P_system": power, "Q_system": reactive})
         rows.append(row)

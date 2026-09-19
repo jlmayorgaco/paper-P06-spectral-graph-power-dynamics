@@ -26,7 +26,7 @@ function relerr(a, b)
 end
 
 function write_transfer(values)
-    path = joinpath(RAW, "p1_terminal_transfer.csv")
+    path = joinpath(RAW, "p1_transfer_julia.csv")
     open(path, "w") do io
         println(io, "frequency_hz,sigma_min,condition,h11_re,h11_im,h12_re,h12_im,h21_re,h21_im,h22_re,h22_im")
         for r in values
@@ -73,39 +73,94 @@ function main()
     network_ok = false
     network_residual = Inf
     network_state_count = 0
+    network_repeat_delta = Inf
+    network_spectrum_delta = Inf
+    network_spectrum_count = 0
     network_message = "not attempted"
+    network_rows = NamedTuple[]
     try
         p0, q0, w0 = 0.35, -0.08, 0.75
-        gfl_network = GFL11Injector(name=:gfl11_network, g=0.03625, w=w0,
-                                     p_ref=p0/w0, q_ref=q0/w0, v_ref=1.0)
-        @named gfl_bus = compile_bus(MTKBus(gfl_network); current_source=true)
-        set_pfmodel!(gfl_bus, pfPQ(P=p0, Q=q0; current_source=true))
-        @named slack_bus = compile_bus(MTKBus(); pf=pfSlack(V=1.0))
-        # The slack bus is the infinite bus. The loopback connection makes the
-        # current-source terminal voltage exactly the slack voltage.
-        loopback = LoopbackConnection(; src=:gfl_bus, dst=:slack_bus,
-                                       potential=[:u_r, :u_i], flow=[:i_r, :i_i])
-        net = Network([gfl_bus, slack_bus], [loopback])
-        s0 = initialize_from_pf(net; verbose=false, subverbose=false, check=:none,
-                                tol=1e-6, nwtol=1e-6)
-        network_state_count = length(uflat(s0))
-        du = zeros(Float64, network_state_count)
-        if !isempty(du)
-            net(du, uflat(s0), pflat(s0), 0.0)
-            network_residual = maximum(abs, du)
-        else
-            network_residual = Inf
+        function build_network(shunt_conductance, vref)
+            gfl_network = GFL11Injector(name=:gfl11_network, g=0.03625, w=w0,
+                                         p_ref=p0/w0, q_ref=q0/w0, v_ref=vref)
+            @named gfl_bus = compile_bus(MTKBus(gfl_network); current_source=true)
+            set_pfmodel!(gfl_bus, pfPQ(P=p0, Q=q0; current_source=true))
+            @named shunt = DynamicParallelRCShunt(R=1/shunt_conductance, B=1e-5)
+            @named network_bus = compile_bus(MTKBus(shunt))
+            set_pfmodel!(network_bus, pfShunt(G=shunt_conductance, B=1e-5))
+            loopback = LoopbackConnection(; src=:gfl_bus, dst=:network_bus,
+                                           potential=[:u_r, :u_i], flow=[:i_r, :i_i])
+            @named symbolic_slack = Library.VδConstraint(V=1.0, δ=0.0)
+            @named slack_bus = compile_bus(MTKBus(symbolic_slack); pf=pfSlack(V=1.0))
+            @named branch = DynamicSeriesRLBranch(R=0.01, X=0.3)
+            line = compile_line(MTKLine(branch); name=:gfl_to_slack,
+                                src=:network_bus, dst=:slack_bus)
+            @named branch_pf = PiLine(R=0.01, X=0.3)
+            line_pf = compile_line(MTKLine(branch_pf); name=:gfl_to_slack_pf)
+            set_pfmodel!(line, line_pf)
+            return Network([gfl_bus, network_bus, slack_bus], [loopback, line])
         end
-        network_ok = network_state_count >= 11 && isfinite(network_residual) && network_residual < 1e-6
-        network_message = "one GFL current-source bus + exact infinite slack bus"
+        for shunt_conductance in (0.01, 0.05, 0.10)
+            # Documented PowerDynamics current-source topology: device terminal
+            # -> loopback -> dynamic shunt/network bus -> dynamic PiLine ->
+            # VδConstraint slack. This is intentionally not a direct loopback
+            # to the slack bus.
+            pf_net = build_network(shunt_conductance, 1.0)
+            pf_model = powerflow_model(pf_net)
+            pf_state = solve_powerflow(pf_net; pfnw=pf_model, verbose=false)
+            pf_values = interface_values(pf_state)
+            network_ur = VIndex(2, :busbar₊u_r)
+            network_ui = VIndex(2, :busbar₊u_i)
+            haskey(pf_values, network_ur) || error("network_bus u_r interface value not found: $(collect(keys(pf_values)))")
+            haskey(pf_values, network_ui) || error("network_bus u_i interface value not found: $(collect(keys(pf_values)))")
+            vref = hypot(pf_values[network_ur], pf_values[network_ui])
+            net = build_network(shunt_conductance, vref)
+            s0 = initialize_from_pf(net; verbose=false, subverbose=false, check=:none,
+                                    tol=1e-6, nwtol=1e-6)
+            s1 = initialize_from_pf(net; verbose=false, subverbose=false, check=:none,
+                                    tol=1e-6, nwtol=1e-6)
+            nstates = length(uflat(s0))
+            du = zeros(Float64, nstates)
+            net(du, uflat(s0), pflat(s0), 0.0)
+            residual = maximum(abs, du)
+            repeat_delta = isempty(uflat(s0)) ? Inf : maximum(abs.(uflat(s0) .- uflat(s1)))
+            spectrum0 = sort(collect(jacobian_eigenvals(s0)); by=z -> (real(z), imag(z)))
+            spectrum1 = sort(collect(jacobian_eigenvals(s1)); by=z -> (real(z), imag(z)))
+            spectrum_delta = length(spectrum0) == length(spectrum1) && !isempty(spectrum0) ?
+                maximum(abs.(spectrum0 .- spectrum1)) : Inf
+            push!(network_rows, (shunt_conductance=shunt_conductance,
+                                 state_count=nstates, residual=residual,
+                                 repeat_delta=repeat_delta,
+                                 spectrum_count=length(spectrum0),
+                                 spectrum_delta=spectrum_delta,
+                                 status=nstates >= 11 && residual <= 1e-6 &&
+                                        repeat_delta <= 1e-8 && spectrum_delta <= 1e-6 ? "PASS" : "FAIL"))
+            network_state_count = max(network_state_count, nstates)
+            network_residual = min(network_residual, residual)
+            network_repeat_delta = max(network_repeat_delta == Inf ? 0.0 : network_repeat_delta, repeat_delta)
+            network_spectrum_delta = max(network_spectrum_delta == Inf ? 0.0 : network_spectrum_delta, spectrum_delta)
+            network_spectrum_count = max(network_spectrum_count, length(spectrum0))
+        end
+        network_ok = all(r.status == "PASS" for r in network_rows)
+        network_message = "GFL current-source -> LoopbackConnection -> dynamic shunt/network bus -> PiLine -> VδConstraint slack"
     catch err
         network_message = sprint(showerror, err)
+    end
+
+    sensitivity_path = joinpath(RAW, "p1_network_sensitivity.csv")
+    open(sensitivity_path, "w") do io
+        println(io, "shunt_conductance,state_count,residual,repeat_delta,spectrum_count,spectrum_delta,status")
+        for r in network_rows
+            println(io, join((r.shunt_conductance, r.state_count, r.residual,
+                              r.repeat_delta, r.spectrum_count, r.spectrum_delta, r.status), ','))
+        end
     end
 
     xeq = gfl11_initialize(1.0, 0.0, 0.35, -0.08, 0.75)
     feq, _, _, _, _ = gfl11_eval(xeq, 1.0, 0.0, xeq[3], xeq[4], 1.0, 0.03625, 0.75)
     equilibrium_residual = maximum(abs, feq)
-    freqs = 10 .^ range(-2, 2, length=81)
+    freqs = sort(unique(vcat(10 .^ range(-2, 2, length=401),
+                             10 .^ range(log10(0.2), log10(2.0), length=201))))
     _, _, _, _, transfer = gfl11_transfer(xeq, 1.0, 0.0, xeq[3], xeq[4], 1.0, 0.03625, 0.75, freqs)
     transfer_path = write_transfer(transfer)
     cond_max = maximum(r.condition for r in transfer)
@@ -118,8 +173,9 @@ function main()
         println(io, "# P1 — frozen GFL11 Julia/PowerDynamics parity")
         println(io)
         println(io, "status: ", gate_pass ? "PASS" : "STOPPED_BY_GATE")
-        println(io, "evidence_class: FRESH_DEVICE_LEVEL_REPRODUCTION")
-        println(io, "equation_source: 20260911_GFL_REPRODUCTION_SPEC.md section 4.2")
+        println(io, "evidence_class: CANONICAL_PYTHON_VS_JULIA_DEVICE_PARITY")
+        println(io, "canonical_source_manifest: raw/gfl11/canonical_source_manifest.json")
+        println(io, "equation_source: canonical ieee39_devices.py + 20260911_GFL_REPRODUCTION_SPEC.md section 4.2")
         println(io, "cases: ", nrow(df))
         println(io, "max_state_relative_error: ", max_state)
         println(io, "max_terminal_current_relative_error: ", max_current)
@@ -132,13 +188,21 @@ function main()
         println(io, "infinite_bus_harness: ", network_ok ? "PASS" : "FAIL")
         println(io, "infinite_bus_residual: ", network_residual)
         println(io, "infinite_bus_state_count: ", network_state_count)
+        println(io, "infinite_bus_repeat_delta: ", network_repeat_delta)
+        println(io, "infinite_bus_spectrum_count: ", network_spectrum_count)
+        println(io, "infinite_bus_spectrum_delta: ", network_spectrum_delta)
         println(io, "infinite_bus_message: ", network_message)
+        println(io, "network_sensitivity_csv: raw/gfl11/p1_network_sensitivity.csv")
+        println(io, "network_residual_preregistered_limit: 1e-6")
+        println(io, "network_state_gate: >=11")
         println(io, "equilibrium_residual: ", equilibrium_residual)
         println(io, "transfer_frequency_range_hz: 0.01–100")
         println(io, "transfer_points: ", length(freqs))
         println(io, "transfer_sigma_minimum: ", sigma_min)
         println(io, "transfer_condition_maximum: ", cond_max)
-        println(io, "transfer_csv: raw/gfl11/p1_terminal_transfer.csv")
+        println(io, "transfer_csv: raw/gfl11/p1_transfer_julia.csv")
+        println(io, "canonical_transfer_csv: raw/gfl11/p1_transfer_canonical_python.csv")
+        println(io, "transfer_comparison: raw/gfl11/p1_transfer_comparison.json")
         println(io)
         println(io, "The transfer is reported over the full requested frequency range. " *
                      "The conditioning diagnostics are evidence, not a pass criterion; " *

@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "prediction_sha256": "e9e31ab0f8447982881e65e0228e5a38dcd3b1cc9f7ceb566819bf603d3559c9",
+  "holdout_portfolios": [
+    "35",
+    "35+37",
+    "37",
+    "none"
+  ],
+  "holdout_count": 4,
+  "precision": 1.0,
+  "recall": 1.0,
+  "cohen_kappa": 1.0,
+  "root_alpha_mae": 0.013927595628304732,
+  "root_alpha_max_abs_error": 0.02757248693168718,
+  "root_frequency_mae_hz": 0.03415730182095358,
+  "actual_antichain": [],
+  "predicted_antichain": [],
+  "antichain_exact": true,
+  "known_branch_repairs_excluded": [
+    0,
+    1,
+    13,
+    43
+  ]
+}
