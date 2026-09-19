@@ -2,10 +2,11 @@
 
 ## Executive disposition
 
-The campaign closes the strongest claims that can be supported by the frozen
-evidence, and explicitly refuses to promote the rest. It is a successful audit
-with a negative result on the stronger V9 transfer expectation, not a blanket
-confirmation of the plan's predicted numbers.
+The corrective campaign closes the claims supported by the frozen evidence and
+explicitly refuses to promote the rest. Gate 0 and PowerDynamics Gate A pass
+within their declared scopes, but the campaign is not a final paper/poster
+release because the dependent same-model, robustness, second-model, holdout,
+and new-TDS gates remain incomplete.
 
 ## What survived
 
@@ -21,15 +22,20 @@ confirmation of the plan's predicted numbers.
 6. The documented governor configuration changes P4 H4 alpha from positive to
    negative (`-0.07454098428813066 s^-1`). This is a policy-conditioned
    stabilization/repair observation, not a universal repair certificate.
-7. The official PowerDynamics 5.0.0 IEEE-39 tutorial reaches its declared
-   equilibrium with 39 buses and 46 branches. This is package-level evidence.
+7. The official PowerDynamics 5.0.0 IEEE-39 tutorial passes Gate A with three
+   tolerances, three deterministic initial guesses, two initialization paths,
+   residual checks, eigenvalue consistency, and Jacobian conditioning. This is
+   package-level evidence only.
 
 ## What was weakened or refuted
 
-- The stronger V9 expectation of 511/512 correct, zero false-safe, and zero
-  false-unstable cases is refuted by the preserved 395/512 reveal with 116
-  false-safe and 1 false-unstable case.
-- Exact V9 blocker-antichain recovery is not supported.
+- The corrected same-policy global V9 scope contains 402/512 correct, 110
+  false-safe, and 0 false-unstable cases; all false-safe cases are
+  `APERIODIC_REAL`.
+- The corrected targeted 0.3–1.5 Hz scope contains 511/512 correct, 1
+  false-safe, and 0 false-unstable cases. It is not a global certificate.
+- The corrected target-family blocker antichain is exact: 14 blockers, orders
+  5x4, 6x5, 3x6, and kappa=4.
 - The P4 blocker does not survive the documented governor policy; the sign
   changes in the frozen evidence.
 - No universal IEEE-39, all-policy, all-model, or all-uncertainty claim is
@@ -50,7 +56,7 @@ confirmation of the plan's predicted numbers.
 |---|---|
 | Strongest survived result | Benchmark- and policy-conditioned P4 minimal incompatibility with exact frozen nominal value, theorem identities, and retrospective nonlinear agreement. |
 | Strongest weakened result | Transfer/generalization beyond the frozen case; V9 is negative evidence. |
-| PowerDynamics role | Independent official IEEE-39 equilibrium gate only; no same-mechanism claim. |
+| PowerDynamics role | Gate A validates the official IEEE-39 tutorial only; no same-mechanism claim. |
 | Second model | Not executed; no `SECOND_MODEL_VALIDATED` label. |
 | Robust radius | Not computed; no physical robustness claim. |
 | Collective closure vs. robustness | Frozen nominal closure survives; common-envelope robustness remains untested. |
@@ -63,7 +69,7 @@ confirmation of the plan's predicted numbers.
 
 In the frozen IEEE-39 benchmark and stated policy, the spectral/collective
 closure audit reproduces a P4 minimal incompatibility and the declared frozen
-nonlinear verdicts. The historical V9 transfer expectation is refuted, the
-documented governor changes the P4 H4 sign, and robustness, second-model,
-same-mechanism PowerDynamics, and new blind-holdout claims remain untested or
-stopped by scope.
+nonlinear verdicts. The corrected same-policy V9 transfer is scope-dependent
+(402/512 globally; 511/512 in the declared 0.3–1.5 Hz band), the documented
+governor changes the P4 H4 sign, and robustness, second-model, same-mechanism
+parity, and new blind-holdout claims remain untested or stopped by scope.

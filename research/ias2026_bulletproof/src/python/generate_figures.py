@@ -42,17 +42,21 @@ ax.text(1, values[1], f" {values[1]:.6f}", va="top", ha="center", fontsize=9)
 save(fig, "F1_p4_policy_dependence")
 
 v9 = read("TABLE_V9_BLOCKERS.csv")
-observed = [float(row["observed"]) for row in v9 if row["metric"] in {"V9 correct classifications", "V9 false-safe", "V9 false-unstable"}]
-expected = [float(row["expected"]) for row in v9 if row["metric"] in {"V9 correct classifications", "V9 false-safe", "V9 false-unstable"}]
+lookup = {
+    row["metric"]: float(row["observed"])
+    for row in v9
+    if row["metric"] != "V9 same-policy global false-safe class"
+}
 fig, ax = plt.subplots(figsize=(7.0, 4.0))
-x = [0, 1, 2]
-width = 0.36
-ax.bar([i - width / 2 for i in x], expected, width, label="plan expectation", color="#9aa4b2")
-ax.bar([i + width / 2 for i in x], observed, width, label="historical reveal", color="#d97706")
-ax.set_xticks(x, ["correct", "false-safe", "false-unstable"])
+x = [0, 1, 2, 3]
+values = [lookup["V9 same-policy global correct"], lookup["V9 target 0.3-1.5 Hz correct"],
+          lookup["V9 same-policy global false-safe"], lookup["V9 target 0.3-1.5 Hz false-safe"]]
+bars = ax.bar(x, values, color=["#d97706", "#1f7a5c", "#b42318", "#2563eb"])
+ax.set_xticks(x, ["global\ncorrect", "targeted\ncorrect", "global\nfalse-safe", "targeted\nfalse-safe"])
 ax.set_ylabel("count")
-ax.set_title("V9 transfer: expected versus revealed")
-ax.legend(frameon=False)
+ax.set_title("Corrected same-policy V9 scope split")
+for bar, value in zip(bars, values):
+    ax.text(bar.get_x() + bar.get_width() / 2, value, f" {value:.0f}", ha="center", va="bottom", fontsize=9)
 save(fig, "F2_v9_transfer_refutation")
 
 tds = read("TABLE_TDS.csv")

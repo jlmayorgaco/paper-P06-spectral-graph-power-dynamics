@@ -1,3 +1,5 @@
+c1e062fc (HEAD -> research/ias2026-bulletproof-closure-v1) research: add closure bundle assembler
+f6db1e76 research: execute IAS2026 bulletproof closure campaign
 9968de79 (research/tx4-final-modal-scope-audit) Package TX4 final modal-scope audit
 3548db3f Record final TX4 modal audit handoff
 1380413d Correct TX4 modal scope and physical closure interpretation
@@ -96,5 +98,3 @@ dd1e2ea3 test(emt): EMT02/EMT03 unit tests - G3 FAIL, G4 FAIL (preregistered); d
 ff1c4d8d adapter(emt): TX4 network/equilibrium adapter on ParaEMT; EMT01 equivalence PASS
 4e53db55 env(emt): ParaEMT provenance, isolated environment, EMT00 stock smoke test, TX4 network patch
 c2947bd8 prereg(emt): ParaEMT EMT-validation campaign v1, before any TX4 EMT result
-a70dac94 (ias2026/final-closure-campaign) docs(pcv): final validation ledger, validation matrix, author decision memo
-38b91d7e results(pcv): Phases 2-7, 9-10 deliverable tables, decision benchmark, 4-panel figure

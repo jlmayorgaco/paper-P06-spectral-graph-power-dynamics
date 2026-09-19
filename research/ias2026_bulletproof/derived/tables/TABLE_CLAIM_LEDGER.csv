@@ -1,13 +1,14 @@
 id,claim,label,observed,evidence
 C01,P4 H4 nominal alpha,IEEE39_VALIDATED,0.1270064666836382 s^-1,frozen FC03
 C02,P4 minimal incompatibility,IEEE39_VALIDATED,15 proper stable subsets,frozen FC01/FC03
-C03,algebraic port identities,THEOREM_VALIDATED,4 property-test modules pass,logs/theory_tests.log
+C03,algebraic port identities,NUMERICALLY_VERIFIED,4 property-test modules pass,logs/theory_tests.log
 C04,H4 boundary witness,RETROSPECTIVE,g*=0.2076814044; f=0.7064247879 Hz,frozen F7A
 C05,frozen nonlinear TDS agreement,NONLINEAR_TDS_VALIDATED,32/32 declared agreements,frozen G2
 C06,governor changes P4 H4 sign,IEEE39_VALIDATED,0.1270065 -> -0.074541 s^-1,frozen FC03
-C07,near-perfect V9 transfer,REFUTED,395/512; 116 false-safe; 1 false-unstable,historical reveal
-C08,exact V9 blocker antichain,REFUTED,not exact,historical reveal
-C09,PowerDynamics same-model mechanism,STOPPED_BY_GATE,tutorial equilibrium only,reconciliation report
-C10,second converter model,NOT_TESTED,not run,scope limitation
-C11,physical robust radius,NOT_TESTED,not computed,scope limitation
-C12,new blind topology/model holdout,NOT_TESTED,not run,historical V9 is retrospective
+C07,corrected global V9 scope,NUMERICALLY_VERIFIED,402/512; 110 false-safe; 0 false-unstable,corrected modal scope
+C08,corrected targeted V9 scope,NUMERICALLY_VERIFIED,511/512; 1 false-safe; 0 false-unstable,corrected modal scope
+C09,exact target-family blocker antichain,NUMERICALLY_VERIFIED,14 exact blockers; kappa=4,corrected modal scope
+C10,PowerDynamics same-model mechanism,STOPPED_BY_GATE,Gate A tutorial equilibrium only,reconciliation report
+C11,second converter model,NOT_TESTED,not run,scope limitation
+C12,physical robust radius,NOT_TESTED,not computed,scope limitation
+C13,new blind topology/model holdout,NOT_TESTED,not run,historical V9 is retrospective

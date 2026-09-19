@@ -6,12 +6,14 @@ This report is populated by the Julia gate. The required distinction is:
 - `STOPPED_BY_GATE`: package, model, or equilibrium prerequisites fail.
 - `RETROSPECTIVE`: existing ANDES or frozen same-code evidence, not PowerDynamics evidence.
 
-No PowerDynamics result may be described as validation until the equilibrium and port/mode reconciliation gates pass.
+No PowerDynamics result may be described as same-model mechanism validation until the equilibrium and port/mode reconciliation gates pass.
 
 ## Executed result
 
-The isolated Julia project completed the official PowerDynamics IEEE-39 tutorial
-equilibrium gate.
+The isolated Julia project completed Gate A for the official PowerDynamics
+IEEE-39 tutorial equilibrium: three nonlinear tolerances, three deterministic
+initial guesses, non-mutating and mutating initialization paths, residual
+checks, spectrum consistency, and Jacobian conditioning.
 
 | Field | Observed |
 |---|---|
@@ -19,11 +21,11 @@ equilibrium gate.
 | Julia | 1.11.9 |
 | Network | 39 buses, 46 branches |
 | State | `NWState` |
-| Power-flow interface entries | 524 |
+| Power-flow interface entries | recorded by the official tutorial run |
 | Result label | `POWERDYNAMICS_VALIDATED` |
 
 The executable evidence is in `raw/powerdynamics/pd39_equilibrium_gate.md` and
-the run log is `logs/julia_gate-pd39.md`. The source is the package's official
+`raw/powerdynamics/gate_a_paths.csv`. The source is the package's official
 `docs/examples/ieee39_part1.jl` tutorial.
 
 ## Scope boundary

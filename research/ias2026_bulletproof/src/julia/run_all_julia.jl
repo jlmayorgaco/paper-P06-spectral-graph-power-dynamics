@@ -22,7 +22,10 @@ elseif phase == "gate-pd39"
     try
         import PowerDynamics
         include(joinpath(@__DIR__, "run_pd39_gate.jl"))
-        write_status(phase, "POWERDYNAMICS_VALIDATED", "PowerDynamics IEEE-39 tutorial equilibrium gate completed.")
+        report = joinpath(root, "raw", "powerdynamics", "pd39_equilibrium_gate.md")
+        passed = isfile(report) && occursin("status: POWERDYNAMICS_VALIDATED", read(report, String))
+        write_status(phase, passed ? "POWERDYNAMICS_VALIDATED" : "STOPPED_BY_GATE",
+            passed ? "PowerDynamics IEEE-39 Gate A completed." : "PowerDynamics Gate A stopped; inspect raw/powerdynamics/pd39_equilibrium_gate.md.")
     catch err
         write_status(phase, "STOPPED_BY_GATE", "PowerDynamics could not be loaded: " * sprint(showerror, err))
         println("PowerDynamics gate failed: ", sprint(showerror, err))

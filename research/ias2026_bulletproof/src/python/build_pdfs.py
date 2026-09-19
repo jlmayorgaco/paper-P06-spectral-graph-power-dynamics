@@ -72,7 +72,7 @@ def build_executive():
     doc = SimpleDocTemplate(str(path), pagesize=A4, rightMargin=0.62 * inch, leftMargin=0.62 * inch, topMargin=0.58 * inch, bottomMargin=0.62 * inch, title="IAS2026 Bulletproof Closure Executive Report")
     s = []
     title(s, "IAS2026 Bulletproof Closure", "Final executive report | branch research/ias2026-bulletproof-closure-v1")
-    s.append(p("<b>Disposition:</b> the frozen IEEE-39 nominal closure survives, the stronger historical V9 transfer expectation is refuted, and robustness, second-model, same-mechanism PowerDynamics, and new blind-holdout claims are explicitly untested or stopped by scope.", "BoxC"))
+    s.append(p("<b>Disposition:</b> the frozen IEEE-39 nominal closure and corrected same-policy modal scope survive with explicit global/targeted separation; robustness, second-model, same-mechanism GFL parity, and new blind-holdout claims remain untested or stopped by scope.", "BoxC"))
     s.append(p("This report distinguishes document-specified expectations from measured results. No expected value was retuned after observation, and the user's pre-existing dirty checkout was preserved in a separate linked worktree.", "BodyC"))
     s.append(p("1. Results that survived", "H1C"))
     for text in [
@@ -91,14 +91,15 @@ def build_executive():
         s.append(p("Figure 1. Frozen P4 H4 policy dependence. The governor result is policy-conditioned.", "SmallC"))
     s.append(p("2. Negative and stopped results", "H1C"))
     for text in [
-        "V9: 395/512 correct, 116 false-safe, and 1 false-unstable. The plan's 511/512 and zero-error expectation is REFUTED.",
-        "The exact V9 blocker antichain is not supported.",
+        "V9 global spectrum: 402/512 correct, 110 false-safe, and 0 false-unstable; all global false-safe cases are APERIODIC_REAL.",
+        "V9 targeted 0.3-1.5 Hz band: 511/512 correct, 1 false-safe, and 0 false-unstable. This is not a global certificate.",
+        "The target-family blocker antichain is exact for the corrected target scope: 14 blockers, orders 5x4, 6x5, 3x6, kappa=4.",
         "PowerDynamics does not reproduce the frozen GFL mechanism because the available tutorial is a different synchronous-machine/governor model.",
         "No second converter model, new blind topology/model holdout, physical robust radius, common uncertainty envelope, new Julia TDS, EMT, current-limit, DC-link, or hardware certification is claimed.",
     ]:
         s.append(bullet(text))
     s.append(p("3. Safe claim", "H1C"))
-    s.append(p("In the frozen IEEE-39 benchmark and stated policy, the spectral/collective closure audit reproduces a P4 minimal incompatibility and the declared frozen nonlinear verdicts. The historical V9 transfer expectation is refuted, the documented governor changes the P4 H4 sign, and robustness, second-model, same-mechanism PowerDynamics, and new blind-holdout claims remain untested or stopped by scope.", "BoxC"))
+    s.append(p("In the frozen IEEE-39 benchmark and stated policy, the spectral/collective closure audit reproduces a P4 minimal incompatibility and the declared frozen nonlinear verdicts. The corrected V9 result is scope-dependent (402/512 globally; 511/512 in the declared 0.3-1.5 Hz band), the documented governor changes the P4 H4 sign, and robustness, second-model, same-mechanism parity, and new blind-holdout claims remain untested or stopped by scope.", "BoxC"))
     s.append(p("4. Reproducibility", "H1C"))
     s.append(summary_table([
         ("Gate 0", "reports/GATE0_REPORT.md"),
@@ -117,7 +118,7 @@ def build_paper():
     s = []
     title(s, "Spectral Graph Power Dynamics: A Scoped Closure Audit", "IAS2026 final paper draft | negative evidence retained")
     s.append(p("Abstract", "H1C"))
-    s.append(p("We audit a frozen IEEE-39 SG-to-GFL benchmark using spectral and collective closure identities, transverse structure checks, and archived nonlinear evidence. The nominal P4 H4 value is reproduced at 0.1270064667 s^-1, the frozen P4 structure has 15 stable proper subsets, and four randomized algebraic test modules pass. The archived nonlinear table reports 32/32 declared TDS agreements. However, the historical V9 transfer result is 395/512 rather than the stronger expected 511/512, with 116 false-safe and 1 false-unstable cases. An isolated PowerDynamics 5.0.0 run validates only its official IEEE-39 tutorial equilibrium, not parity with the frozen GFL model. The conclusion is therefore benchmark- and policy-conditioned, with robustness and second-model generalization left untested.", "BodyC"))
+    s.append(p("We audit a frozen IEEE-39 SG-to-GFL benchmark using spectral and collective closure identities, transverse structure checks, and archived nonlinear evidence. The nominal P4 H4 value is reproduced at 0.1270064667 s^-1, the frozen P4 structure has 15 stable proper subsets, and four randomized algebraic property-test modules pass. The archived nonlinear table reports 32/32 declared TDS agreements. The corrected same-policy V9 result is 402/512 globally (110 false-safe, 0 false-unstable) and 511/512 in the declared 0.3-1.5 Hz band (1 false-safe, 0 false-unstable). An isolated PowerDynamics 5.0.0 Gate A run validates only its official IEEE-39 tutorial equilibrium, not parity with the frozen GFL model. The conclusion is benchmark- and policy-conditioned, with robustness and second-model generalization left untested.", "BodyC"))
     s.append(p("1. Scope and protocol", "H1C"))
     s.append(p("The execution layer was created from the IAS2026_FINAL_SCIENTIFIC_EVIDENCE_FREEZE tag in a linked worktree. Historical source tables were copied read-only into raw/gate0. Expectations were treated as hypotheses: a mismatch is reported as REFUTED, and an unavailable dependent experiment is reported as NOT_TESTED or STOPPED_BY_GATE.", "BodyC"))
     s.append(summary_table([
@@ -125,14 +126,14 @@ def build_paper():
         ("Nominal gate", "P4 H4 alpha absolute error <= 1e-6 s^-1"),
         ("Theory tests", "local/collective factorization, bridge, contextual return, transverse construction"),
         ("Independent software", "PowerDynamics 5.0.0 official IEEE-39 tutorial equilibrium"),
-        ("Labels", "IEEE39_VALIDATED, THEOREM_VALIDATED, POWERDYNAMICS_VALIDATED, RETROSPECTIVE, REFUTED, NOT_TESTED, STOPPED_BY_GATE"),
+        ("Labels", "PROVED, NUMERICALLY_VERIFIED, IEEE39_VALIDATED, POWERDYNAMICS_VALIDATED, SECOND_MODEL_VALIDATED, NONLINEAR_TDS_VALIDATED, SYNTHETIC_PILOT, CONSTRUCTED_COUNTEREXAMPLE, RETROSPECTIVE, BLIND_HOLDOUT, NOT_TESTED, REFUTED, UNRESOLVED, STOPPED_BY_GATE"),
     ]))
     s.append(p("2. Frozen IEEE-39 closure", "H1C"))
     s.append(p("Gate 0 reproduces the nominal and governed P4 values from the immutable final-closure tables. The nominal H4 alpha is 0.1270064666836382 s^-1; the documented governor value is -0.07454098428813066 s^-1. The sign change is evidence of policy dependence and a local repair effect, not a universal certificate. The F7A boundary witness is g*=0.2076814044 at f=0.7064247879 Hz, with boundary Q sign -1 and contextual-return sign +1.", "BodyC"))
     s.append(p("3. Algebra and nonlinear evidence", "H1C"))
     s.append(p("The property suite uses randomized block and transverse constructions. It tests the port identities, determinant factorization, the bridge without inversion of the disturbance matrix, the contextual Schur identity under Q_ii=0, and the transverse rotation/drift residuals. All four modules pass. The frozen G2 table reports 32 declared TDS verdict agreements and two P4 H4 unstable rows.", "BodyC"))
     s.append(p("4. Transfer and independent software", "H1C"))
-    s.append(p("The archived V9 reveal contains 512 portfolios: 395 correct, 116 false-safe, and 1 false-unstable. This refutes the stronger near-perfect transfer expectation and exact antichain claim. PowerDynamics reaches its official IEEE-39 tutorial equilibrium, but that tutorial uses a different model class. Same-model parity and same-mechanism reproduction are stopped by gate.", "BodyC"))
+    s.append(p("The corrected same-policy V9 scope contains 512 portfolios: 402 correct, 110 false-safe, and 0 false-unstable globally; the declared 0.3-1.5 Hz band contains 511 correct, 1 false-safe, and 0 false-unstable. PowerDynamics reaches its official IEEE-39 tutorial equilibrium under Gate A, but that tutorial uses a different model class. Same-model parity and same-mechanism reproduction are stopped by gate.", "BodyC"))
     fig2 = CAMPAIGN / "figures" / "png" / "F2_v9_transfer_refutation.png"
     if fig2.exists():
         s.append(Image(str(fig2), width=5.8 * inch, height=3.3 * inch))
@@ -149,9 +150,9 @@ def build_poster():
     s = []
     title(s, "Spectral Graph Power Dynamics", "IAS2026 closure poster draft | scoped claim with negative transfer evidence")
     columns = [
-        [p("QUESTION", "H2C"), p("Does the frozen IEEE-39 benchmark admit a compact spectral/collective closure explanation of the P4 blocker, and does it transfer to the archived V9 portfolio set?", "BodyC"), p("METHOD", "H2C"), bullet("Frozen-artifact Gate 0 reproduction"), bullet("Randomized theorem/property tests"), bullet("Retrospective F7A and G2 nonlinear audit"), bullet("Independent PowerDynamics tutorial equilibrium gate"), p("LABELS", "H2C"), p("IEEE39_VALIDATED<br/>THEOREM_VALIDATED<br/>NONLINEAR_TDS_VALIDATED<br/>POWERDYNAMICS_VALIDATED", "BodyC")],
+        [p("QUESTION", "H2C"), p("Does the frozen IEEE-39 benchmark admit a compact spectral/collective closure explanation of the P4 blocker, and what survives under corrected global versus targeted V9 scopes?", "BodyC"), p("METHOD", "H2C"), bullet("Corrected frozen-artifact Gate 0 reproduction"), bullet("Randomized algebraic property tests"), bullet("Retrospective F7A and G2 nonlinear audit"), bullet("PowerDynamics Gate A tutorial equilibrium"), p("LABELS", "H2C"), p("IEEE39_VALIDATED<br/>NUMERICALLY_VERIFIED<br/>NONLINEAR_TDS_VALIDATED<br/>POWERDYNAMICS_VALIDATED", "BodyC")],
         [p("SURVIVED", "H2C"), p("P4 H4 nominal alpha", "BodyC"), p("<b>0.1270064667 s^-1</b>", "BoxC"), p("P4 proper stable subsets: <b>15</b>", "BodyC"), p("Boundary witness: g*=<b>0.2076814</b>, f=<b>0.7064248 Hz</b>", "BodyC"), p("Frozen TDS agreement: <b>32/32</b>", "BodyC"), p("Governor policy: 0.1270065 -> <b>-0.074541 s^-1</b>", "BodyC"), p("THEOREM CHECK", "H2C"), p("Four randomized test modules pass, with the contextual-return assumption Q_ii=0 explicit.", "BodyC")],
-        [p("TRANSFER RESULT", "H2C"), p("Historical V9 reveal", "BodyC"), p("<b>395/512 correct</b>", "BoxC"), p("116 false-safe; 1 false-unstable", "BodyC"), p("The stronger 511/512, zero-error expectation is <b>REFUTED</b>.", "BodyC"), p("DO NOT OVERCLAIM", "H2C"), bullet("No universal IEEE-39 claim"), bullet("No physical robust radius"), bullet("No second converter model"), bullet("No new blind holdout"), bullet("No same-mechanism PowerDynamics parity"), bullet("No EMT/current-limit/DC-link certification")],
+        [p("TRANSFER RESULT", "H2C"), p("Corrected same-policy scopes", "BodyC"), p("<b>402/512 global</b>", "BoxC"), p("110 false-safe; 0 false-unstable", "BodyC"), p("<b>511/512 targeted</b> (0.3-1.5 Hz); 1 false-safe; 0 false-unstable.", "BodyC"), p("DO NOT OVERCLAIM", "H2C"), bullet("No universal IEEE-39 claim"), bullet("No physical robust radius"), bullet("No second converter model"), bullet("No new blind holdout"), bullet("No same-mechanism GFL parity"), bullet("No EMT/current-limit/DC-link certification")],
     ]
     table = Table([[columns[0], columns[1], columns[2]]], colWidths=[3.35 * inch, 3.35 * inch, 3.35 * inch], hAlign="CENTER")
     table.setStyle(TableStyle([
@@ -164,7 +165,7 @@ def build_poster():
     ]))
     s.append(table)
     s.append(Spacer(1, 8))
-    s.append(p("SAFE POSTER CLAIM: In the frozen IEEE-39 benchmark and stated policy, the spectral/collective closure audit reproduces a P4 minimal incompatibility and the declared frozen nonlinear verdicts. The historical V9 transfer expectation is refuted, the documented governor changes the P4 H4 sign, and robustness, second-model, same-mechanism PowerDynamics, and new blind-holdout claims remain untested or stopped by scope.", "BoxC"))
+    s.append(p("SAFE POSTER CLAIM: In the frozen IEEE-39 benchmark and stated policy, the spectral/collective closure audit reproduces a P4 minimal incompatibility and the declared frozen nonlinear verdicts. The corrected same-policy V9 transfer is scope-dependent (402/512 globally; 511/512 in the declared 0.3-1.5 Hz band), the documented governor changes the P4 H4 sign, and robustness, second-model, same-mechanism parity, and new blind-holdout claims remain untested or stopped by scope.", "BoxC"))
     doc.build(s, onFirstPage=header_footer, onLaterPages=header_footer)
 
 

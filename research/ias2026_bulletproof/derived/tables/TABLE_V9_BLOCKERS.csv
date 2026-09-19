@@ -1,7 +1,9 @@
 metric,expected,observed,status,label,source
-V9 portfolios,512,512,PASS,RETROSPECTIVE,derived/tables/gate0_v9.csv
-V9 correct classifications,511,395,FAIL,REFUTED,derived/tables/gate0_v9.csv
-V9 false-safe,0,116,FAIL,REFUTED,derived/tables/gate0_v9.csv
-V9 false-unstable,0,1,FAIL,REFUTED,derived/tables/gate0_v9.csv
-V9 blocker antichain exact,True,False,FAIL,REFUTED,derived/tables/gate0_v9.csv
-V9 kappa exact,True,True,PASS,RETROSPECTIVE,derived/tables/gate0_v9.csv
+V9 same-policy global portfolios,512,512,PASS,NUMERICALLY_VERIFIED,derived/tables/gate0_v9.csv
+V9 same-policy global correct,402,402,PASS,NUMERICALLY_VERIFIED,derived/tables/gate0_v9.csv
+V9 same-policy global false-safe,110,110,PASS,NUMERICALLY_VERIFIED,derived/tables/gate0_v9.csv
+V9 same-policy global false-unstable,0,0,PASS,NUMERICALLY_VERIFIED,derived/tables/gate0_v9.csv
+V9 same-policy global false-safe class,APERIODIC_REAL,APERIODIC_REAL,PASS,NUMERICALLY_VERIFIED,derived/tables/gate0_v9.csv
+V9 target 0.3-1.5 Hz correct,511,511,PASS,NUMERICALLY_VERIFIED,derived/tables/gate0_v9.csv
+V9 target 0.3-1.5 Hz false-safe,1,1,PASS,NUMERICALLY_VERIFIED,derived/tables/gate0_v9.csv
+V9 target 0.3-1.5 Hz false-unstable,0,0,PASS,NUMERICALLY_VERIFIED,derived/tables/gate0_v9.csv

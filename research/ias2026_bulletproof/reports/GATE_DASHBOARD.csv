@@ -1,6 +1,6 @@
 gate,status,label,metric,observed,threshold,evidence,notes
-G0,FAIL,IEEE39_VALIDATED+REFUTED,frozen reproduction + V9 expectation,"P4 nominal PASS; V9 395/512",nominal tolerance,GATE0_REPORT.md,"negative evidence preserved"
-G1,PASS,THEOREM_VALIDATED,property tests,"4 modules passed",all pass,../logs/theory_tests.log,"randomized algebraic tests"
+G0,PASS,IEEE39_VALIDATED+NUMERICALLY_VERIFIED,corrected reproduction + scoped V9,"P4 nominal PASS; global 402/512; targeted 511/512",nominal tolerance,GATE0_REPORT.md,"global and targeted scopes separated"
+G1,PASS,NUMERICALLY_VERIFIED,property tests,"4 modules passed",all pass,../logs/theory_tests.log,"property evidence; no theorem promotion"
 G2,PASS,POWERDYNAMICS_VALIDATED,PowerDynamics equilibrium,"39 buses; 46 branches",network constructs,../raw/powerdynamics/pd39_equilibrium_gate.md,"official tutorial only"
 G3,STOPPED,STOPPED_BY_GATE,same-model parity,not established,n/a,../docs/POWERDYNAMICS_RECONCILIATION.md,"different model class"
 G4,STOPPED,STOPPED_BY_GATE,same-mechanism parity,not established,n/a,../docs/POWERDYNAMICS_RECONCILIATION.md,"no converter-port parity"
@@ -14,5 +14,5 @@ G11,RETROSPECTIVE,RETROSPECTIVE,topology calibration,"12195 rows; 16 witnesses",
 G12,NOT_TESTED,NOT_TESTED,new blind topology/model holdout,not run,n/a,../reports/HOLDOUT_REPORT.md,"V9 is historical"
 G13,PASS/NEGATIVE,IEEE39_VALIDATED+REFUTED,governed P4 blocker,"alpha 0.1270065 -> -0.074541",sign change,../derived/tables/gate0_v4.csv,"policy-dependent"
 G14,RETROSPECTIVE,RETROSPECTIVE,ablations,freeze evidence,n/a,../reports/ABLATION_REPORT.md,"not newly randomized"
-G15,RETROSPECTIVE,REFUTED,scaling/transfer,"395/512 correct",511/512 expected,../reports/SCALING_REPORT.md,"stronger expectation refuted"
-G16,PASS,CLAIM_AUDITED,final claim audit,ledger complete,all claims scoped,../docs/CLAIM_LEDGER.md,"safe wording recorded"
+G15,RETROSPECTIVE,NUMERICALLY_VERIFIED,scaling/transfer,"global 402/512; targeted 511/512",scope-separated,../reports/SCALING_REPORT.md,"no new asymptotic sweep"
+G16,PASS,NUMERICALLY_VERIFIED,claim ledger audit,ledger complete,all claims scoped,../docs/CLAIM_LEDGER.md,"safe wording recorded"

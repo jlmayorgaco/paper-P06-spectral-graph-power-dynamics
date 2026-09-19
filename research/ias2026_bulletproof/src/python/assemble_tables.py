@@ -63,14 +63,15 @@ def compact(rows: list[dict[str, str]]) -> list[dict[str, str]]:
 write_csv("TABLE_CLOSURE_AUDIT.csv", ["metric", "expected", "observed", "status", "label", "source"], compact(v4 + boundary))
 write_csv("TABLE_TDS.csv", ["metric", "expected", "observed", "status", "label", "source"], compact(tds))
 write_csv("TABLE_POWERDYNAMICS_RECONCILIATION.csv", ["field", "observed", "label", "scope"], [
-    {"field": "package", "observed": "PowerDynamics 5.0.0", "label": "POWERDYNAMICS_VALIDATED", "scope": "official tutorial equilibrium"},
-    {"field": "network", "observed": "39 buses / 46 branches", "label": "POWERDYNAMICS_VALIDATED", "scope": "official tutorial equilibrium"},
-    {"field": "state", "observed": "NWState", "label": "POWERDYNAMICS_VALIDATED", "scope": "official tutorial equilibrium"},
+    {"field": "package", "observed": "PowerDynamics 5.0.0", "label": "POWERDYNAMICS_VALIDATED", "scope": "Gate A official tutorial equilibrium"},
+    {"field": "network", "observed": "39 buses / 46 branches", "label": "POWERDYNAMICS_VALIDATED", "scope": "Gate A official tutorial equilibrium"},
+    {"field": "state", "observed": "NWState", "label": "POWERDYNAMICS_VALIDATED", "scope": "Gate A official tutorial equilibrium"},
     {"field": "same-model GFL parity", "observed": "not established", "label": "STOPPED_BY_GATE", "scope": "different model class"},
 ])
 write_csv("TABLE_SECOND_MODEL_HOLDOUT.csv", ["gate", "status", "label", "evidence"], [
     {"gate": "independent second converter model", "status": "not run", "label": "NOT_TESTED", "evidence": "docs/SECOND_MODEL_SPEC.md"},
-    {"gate": "historical V9 reveal", "status": "395/512 correct; 116 false-safe; 1 false-unstable", "label": "REFUTED", "evidence": "derived/tables/gate0_v9.csv"},
+    {"gate": "corrected global V9 scope", "status": "402/512 correct; 110 false-safe; 0 false-unstable", "label": "NUMERICALLY_VERIFIED", "evidence": "derived/tables/gate0_v9.csv"},
+    {"gate": "corrected targeted 0.3-1.5 Hz scope", "status": "511/512 correct; 1 false-safe; 0 false-unstable", "label": "NUMERICALLY_VERIFIED", "evidence": "derived/tables/gate0_v9.csv"},
 ])
 write_csv("TABLE_UNCERTAINTY_WEIGHTS.csv", ["field", "value", "status", "note"], [
     {"field": "physical uncertainty weights", "value": "declared in prereg manifest", "status": "NOT_TESTED", "note": "no completed robust campaign"},
@@ -90,24 +91,27 @@ write_csv("TABLE_ABLATIONS.csv", ["ablation", "status", "label", "scope"], [
 ])
 write_csv("TABLE_SCALING.csv", ["scale_check", "observed", "expected", "status", "label"], [
     {"scale_check": "V9 portfolios", "observed": "512", "expected": "512", "status": "PASS", "label": "RETROSPECTIVE"},
-    {"scale_check": "V9 correct", "observed": "395", "expected": "511", "status": "FAIL", "label": "REFUTED"},
-    {"scale_check": "V9 false-safe", "observed": "116", "expected": "0", "status": "FAIL", "label": "REFUTED"},
+    {"scale_check": "V9 global correct", "observed": "402", "expected": "402", "status": "PASS", "label": "RETROSPECTIVE"},
+    {"scale_check": "V9 global false-safe", "observed": "110", "expected": "110", "status": "PASS", "label": "RETROSPECTIVE"},
+    {"scale_check": "V9 targeted correct", "observed": "511", "expected": "511", "status": "PASS", "label": "RETROSPECTIVE"},
+    {"scale_check": "V9 targeted false-safe", "observed": "1", "expected": "1", "status": "PASS", "label": "RETROSPECTIVE"},
     {"scale_check": "new asymptotic sweep", "observed": "not run", "expected": "n/a", "status": "NOT_TESTED", "label": "NOT_TESTED"},
 ])
 
 ledger_rows = [
     ("C01", "P4 H4 nominal alpha", "IEEE39_VALIDATED", "0.1270064666836382 s^-1", "frozen FC03"),
     ("C02", "P4 minimal incompatibility", "IEEE39_VALIDATED", "15 proper stable subsets", "frozen FC01/FC03"),
-    ("C03", "algebraic port identities", "THEOREM_VALIDATED", "4 property-test modules pass", "logs/theory_tests.log"),
+    ("C03", "algebraic port identities", "NUMERICALLY_VERIFIED", "4 property-test modules pass", "logs/theory_tests.log"),
     ("C04", "H4 boundary witness", "RETROSPECTIVE", "g*=0.2076814044; f=0.7064247879 Hz", "frozen F7A"),
     ("C05", "frozen nonlinear TDS agreement", "NONLINEAR_TDS_VALIDATED", "32/32 declared agreements", "frozen G2"),
     ("C06", "governor changes P4 H4 sign", "IEEE39_VALIDATED", "0.1270065 -> -0.074541 s^-1", "frozen FC03"),
-    ("C07", "near-perfect V9 transfer", "REFUTED", "395/512; 116 false-safe; 1 false-unstable", "historical reveal"),
-    ("C08", "exact V9 blocker antichain", "REFUTED", "not exact", "historical reveal"),
-    ("C09", "PowerDynamics same-model mechanism", "STOPPED_BY_GATE", "tutorial equilibrium only", "reconciliation report"),
-    ("C10", "second converter model", "NOT_TESTED", "not run", "scope limitation"),
-    ("C11", "physical robust radius", "NOT_TESTED", "not computed", "scope limitation"),
-    ("C12", "new blind topology/model holdout", "NOT_TESTED", "not run", "historical V9 is retrospective"),
+    ("C07", "corrected global V9 scope", "NUMERICALLY_VERIFIED", "402/512; 110 false-safe; 0 false-unstable", "corrected modal scope"),
+    ("C08", "corrected targeted V9 scope", "NUMERICALLY_VERIFIED", "511/512; 1 false-safe; 0 false-unstable", "corrected modal scope"),
+    ("C09", "exact target-family blocker antichain", "NUMERICALLY_VERIFIED", "14 exact blockers; kappa=4", "corrected modal scope"),
+    ("C10", "PowerDynamics same-model mechanism", "STOPPED_BY_GATE", "Gate A tutorial equilibrium only", "reconciliation report"),
+    ("C11", "second converter model", "NOT_TESTED", "not run", "scope limitation"),
+    ("C12", "physical robust radius", "NOT_TESTED", "not computed", "scope limitation"),
+    ("C13", "new blind topology/model holdout", "NOT_TESTED", "not run", "historical V9 is retrospective"),
 ]
 write_csv("TABLE_CLAIM_LEDGER.csv", ["id", "claim", "label", "observed", "evidence"], [dict(zip(["id", "claim", "label", "observed", "evidence"], row)) for row in ledger_rows])
 
@@ -138,10 +142,10 @@ manifest = {
     "campaign": "IAS2026_BULLETPROOF_CLOSURE",
     "branch": "research/ias2026-bulletproof-closure-v1",
     "starting_head": "b9f274e241a793bd2694d488f6e53c9aca6e6ac5",
-    "status": "closure complete with negative evidence preserved",
-    "executed": ["gate0", "theory-tests", "powerdynamics-ieee39-equilibrium"],
+    "status": "corrective audit in progress; final bundle not authorized",
+    "executed": ["gate0", "theory-tests", "powerdynamics-ieee39-gate-a"],
     "not_tested": ["same-model PowerDynamics parity", "second converter model", "new blind holdout", "physical robust radius", "new Julia TDS", "EMT/current-limit/DC-link"],
-    "labels": ["IEEE39_VALIDATED", "THEOREM_VALIDATED", "NONLINEAR_TDS_VALIDATED", "POWERDYNAMICS_VALIDATED", "RETROSPECTIVE", "REFUTED", "NOT_TESTED", "STOPPED_BY_GATE"],
+    "labels": ["PROVED", "NUMERICALLY_VERIFIED", "IEEE39_VALIDATED", "POWERDYNAMICS_VALIDATED", "SECOND_MODEL_VALIDATED", "NONLINEAR_TDS_VALIDATED", "SYNTHETIC_PILOT", "CONSTRUCTED_COUNTEREXAMPLE", "RETROSPECTIVE", "BLIND_HOLDOUT", "NOT_TESTED", "REFUTED", "UNRESOLVED", "STOPPED_BY_GATE"],
 }
 (CAMPAIGN / "derived" / "manifests" / "reproducibility_manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
 print(f"assembled {len(list(DERIVED.glob('TABLE_*.csv')))} tables")

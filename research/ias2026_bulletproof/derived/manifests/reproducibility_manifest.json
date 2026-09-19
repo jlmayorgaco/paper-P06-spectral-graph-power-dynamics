@@ -2,11 +2,11 @@
   "campaign": "IAS2026_BULLETPROOF_CLOSURE",
   "branch": "research/ias2026-bulletproof-closure-v1",
   "starting_head": "b9f274e241a793bd2694d488f6e53c9aca6e6ac5",
-  "status": "closure complete with negative evidence preserved",
+  "status": "corrective audit in progress; final bundle not authorized",
   "executed": [
     "gate0",
     "theory-tests",
-    "powerdynamics-ieee39-equilibrium"
+    "powerdynamics-ieee39-gate-a"
   ],
   "not_tested": [
     "same-model PowerDynamics parity",
@@ -17,13 +17,19 @@
     "EMT/current-limit/DC-link"
   ],
   "labels": [
+    "PROVED",
+    "NUMERICALLY_VERIFIED",
     "IEEE39_VALIDATED",
-    "THEOREM_VALIDATED",
-    "NONLINEAR_TDS_VALIDATED",
     "POWERDYNAMICS_VALIDATED",
+    "SECOND_MODEL_VALIDATED",
+    "NONLINEAR_TDS_VALIDATED",
+    "SYNTHETIC_PILOT",
+    "CONSTRUCTED_COUNTEREXAMPLE",
     "RETROSPECTIVE",
-    "REFUTED",
+    "BLIND_HOLDOUT",
     "NOT_TESTED",
+    "REFUTED",
+    "UNRESOLVED",
     "STOPPED_BY_GATE"
   ]
 }

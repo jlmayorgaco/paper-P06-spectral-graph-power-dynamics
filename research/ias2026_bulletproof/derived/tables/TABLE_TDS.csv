@@ -1,3 +1,3 @@
 metric,expected,observed,status,label,source
-declared TDS verdict agreement,32,32,PASS,NONLINEAR_TDS_VALIDATED,C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics-ias2026-bulletproof\reports\poster\ias2026\research\results\G2\G2_tds_summary.csv
-P4 H4 TDS unstable rows,2,2,PASS,NONLINEAR_TDS_VALIDATED,C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics-ias2026-bulletproof\reports\poster\ias2026\research\results\G2\G2_tds_summary.csv
+declared TDS verdict agreement,32,32,PASS,NONLINEAR_TDS_VALIDATED,raw/gate0/G2_tds_summary.csv
+P4 H4 TDS unstable rows,2,2,PASS,NONLINEAR_TDS_VALIDATED,raw/gate0/G2_tds_summary.csv

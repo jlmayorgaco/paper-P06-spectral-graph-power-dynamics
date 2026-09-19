@@ -16,12 +16,15 @@ This campaign audits and falsifies claims. A missing package, failed gate, unsup
 
 ## Status
 
-Executed closure status: Gate 0 reproduces the nominal frozen IEEE-39 P4
-result, theorem tests pass, the official PowerDynamics IEEE-39 equilibrium gate
-passes, and the stronger V9 transfer expectation is refuted. The dashboard,
-claim ledger, and final audit are in `reports/` and `docs/`.
+Corrective-audit status: corrected Gate 0 reproduces the nominal frozen
+IEEE-39 P4 result and separates the global V9 census (402/512) from the
+targeted 0.3–1.5 Hz census (511/512); property tests pass; and the official
+PowerDynamics Gate A passes. Same-model GFL parity, robustness, a second model,
+new blind holdout, and new Julia TDS remain incomplete. No final paper/poster
+bundle is authorized yet. The dashboard, claim ledger, and audit report are in
+`reports/` and `docs/`.
 
-To reproduce the core gates, run `python research/ias2026_bulletproof/src/python/run_all_python.py --phase gate0` and `python research/ias2026_bulletproof/src/python/run_all_python.py --phase theory-tests`. Julia phases use the isolated project in `research/ias2026_bulletproof/env/julia`.
+To reproduce the core gates, run `python research/ias2026_bulletproof/src/python/run_all_python.py --phase gate0` and `python research/ias2026_bulletproof/src/python/run_all_python.py --phase theory-tests`. Run Gate A with `julia --project=research/ias2026_bulletproof/env/julia research/ias2026_bulletproof/src/julia/run_pd39_gate.jl`.
 
 The current status dashboard is written to `reports/GATE_DASHBOARD.md` after each orchestrated phase.
 

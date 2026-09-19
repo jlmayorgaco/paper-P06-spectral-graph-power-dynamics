@@ -20,10 +20,13 @@ def write_phase(name: str, status: str, notes: str, evidence: str = "") -> None:
     (CAMPAIGN / "logs" / f"python_{name}.json").write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
 
-def run_gate0() -> int:
+def run_gate0(source_mode: str = "bundled", source_root: str | None = None) -> int:
     from run_gate0 import main
 
-    return main()
+    argv = ["--source-mode", source_mode]
+    if source_root:
+        argv += ["--source-root", source_root]
+    return main(argv)
 
 
 def run_theory_tests() -> int:
@@ -42,14 +45,16 @@ def run_theory_tests() -> int:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--phase", default="inventory")
+    parser.add_argument("--source-mode", choices=("bundled", "external"), default="bundled")
+    parser.add_argument("--source-root", default=None)
     args = parser.parse_args()
     phase = args.phase
     if phase == "gate0":
-        return run_gate0()
+        return run_gate0(args.source_mode, args.source_root)
     if phase == "theory-tests":
         return run_theory_tests()
     if phase == "all":
-        code = run_gate0()
+        code = run_gate0(args.source_mode, args.source_root)
         theory_code = run_theory_tests()
         return max(code, theory_code)
     if phase in {"robust-v4", "topology", "figures", "holdout", "scaling"}:
