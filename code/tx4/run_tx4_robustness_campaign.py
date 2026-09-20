@@ -93,10 +93,10 @@ def fit_models(rows: list[dict[str, Any]]) -> dict[str, dict[str, ExtraTreesRegr
             xx = np.asarray([[float(row[name]) for name in exact.PARAM_NAMES] for row in usable], dtype=float)
             yy = np.asarray([float(row[metric]) if row.get(metric) is not None and np.isfinite(float(row[metric])) else 0.0 for row in usable], dtype=float)
             model = ExtraTreesRegressor(
-                n_estimators=96,
+                n_estimators=32,
                 min_samples_leaf=2,
                 random_state=20260925,
-                n_jobs=-1,
+                n_jobs=1,
             )
             model.fit(xx, yy)
             models[portfolio][metric] = model

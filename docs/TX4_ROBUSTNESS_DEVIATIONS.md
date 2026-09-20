@@ -25,3 +25,9 @@
    evaluations; proper-subset rows outside the calibration skeleton are
    explicitly labeled `SURROGATE_CALIBRATED` and are not promoted to exact
    census evidence.
+7. The reduced model retains a small numerical neutral/gauge eigenvalue in
+   some proper-subset portfolios. The raw `alpha_all` values are preserved,
+   while the blocker flags and minimality endpoints are normalized from the
+   already-recorded transverse `alpha_EM` mode family. This removes the gauge
+   artifact without changing any computed eigenvalue and is reported as a
+   transverse endpoint, not a new full-spectrum claim.

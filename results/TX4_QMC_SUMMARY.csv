@@ -1,0 +1,5 @@
+campaign,endpoint,n_conditions,success,proportion,ci95_low,ci95_high,interpretation
+QMC,H4_PRESENT,4096,2367,0.577880859375,0.5626894705956492,0.5929263029429496,bounded-box engineering probability; proper subsets outside calibration are surrogate-tier
+QMC,EXACT_H4,4096,301,0.073486328125,0.06588878523471378,0.08188313836424471,bounded-box engineering probability; proper subsets outside calibration are surrogate-tier
+QMC,NONCOMPOSABLE,4096,0,0.0,0.0,0.0009369774073651883,bounded-box engineering probability; proper subsets outside calibration are surrogate-tier
+QMC,delta_H4_mean,4096,,0.02832483280416774,-0.09599163436299869,0.2253072562702347,empirical 2.5/97.5 percentiles

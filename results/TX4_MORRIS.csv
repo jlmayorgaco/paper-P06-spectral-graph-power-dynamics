@@ -1,0 +1,15 @@
+endpoint,parameter,mu_star,sigma,trajectories,status,deviation
+H4_PRESENT,g,0.116796875,0.0895134850869961,40,APPROX_SCREENING_FROM_MC,not a full Morris trajectory simulation
+H4_PRESENT,k,0.37734375,0.0825698701314568,40,APPROX_SCREENING_FROM_MC,not a full Morris trajectory simulation
+H4_PRESENT,t,0.3234375,0.08078019995721851,40,APPROX_SCREENING_FROM_MC,not a full Morris trajectory simulation
+H4_PRESENT,h,0.072265625,0.04937098074764137,40,APPROX_SCREENING_FROM_MC,not a full Morris trajectory simulation
+H4_PRESENT,epsilon,0.4234375,0.07092636236411064,40,APPROX_SCREENING_FROM_MC,not a full Morris trajectory simulation
+H4_PRESENT,damping,0.07109375,0.05053177749554209,40,APPROX_SCREENING_FROM_MC,not a full Morris trajectory simulation
+H4_PRESENT,inertia,0.13359375,0.08852634671384559,40,APPROX_SCREENING_FROM_MC,not a full Morris trajectory simulation
+EXACT_H4,g,0.053125,0.041233728336934346,40,APPROX_SCREENING_FROM_MC,not a full Morris trajectory simulation
+EXACT_H4,k,0.036328125,0.027267808922711644,40,APPROX_SCREENING_FROM_MC,not a full Morris trajectory simulation
+EXACT_H4,t,0.09296875,0.04759726672488124,40,APPROX_SCREENING_FROM_MC,not a full Morris trajectory simulation
+EXACT_H4,h,0.037109375,0.029958801672902106,40,APPROX_SCREENING_FROM_MC,not a full Morris trajectory simulation
+EXACT_H4,epsilon,0.042578125,0.03676964728057397,40,APPROX_SCREENING_FROM_MC,not a full Morris trajectory simulation
+EXACT_H4,damping,0.0375,0.026900889438159895,40,APPROX_SCREENING_FROM_MC,not a full Morris trajectory simulation
+EXACT_H4,inertia,0.075,0.03663533043248601,40,APPROX_SCREENING_FROM_MC,not a full Morris trajectory simulation

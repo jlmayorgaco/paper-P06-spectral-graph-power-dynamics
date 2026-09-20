@@ -1,0 +1,15 @@
+endpoint,status,parameter,coefficient,odds_ratio,n,deviation
+H4_PRESENT,FIT,g,-1.2702468990471716,0.28076229327746965,5000,predictive logistic fit; no causal interpretation
+H4_PRESENT,FIT,k,5.262715346687046,193.00485551303373,5000,predictive logistic fit; no causal interpretation
+H4_PRESENT,FIT,t,-4.610626762398356,0.009945582836621367,5000,predictive logistic fit; no causal interpretation
+H4_PRESENT,FIT,h,-0.33434202444592137,0.7158089162065618,5000,predictive logistic fit; no causal interpretation
+H4_PRESENT,FIT,epsilon,-5.730459186206982,0.003245586562805837,5000,predictive logistic fit; no causal interpretation
+H4_PRESENT,FIT,damping,-0.23576851829195877,0.7899635148735329,5000,predictive logistic fit; no causal interpretation
+H4_PRESENT,FIT,inertia,1.9017799472383032,6.697805579080168,5000,predictive logistic fit; no causal interpretation
+EXACT_H4,FIT,g,-0.37629376607643733,0.686400662192328,5000,predictive logistic fit; no causal interpretation
+EXACT_H4,FIT,k,-0.17649932361377724,0.8381993461014823,5000,predictive logistic fit; no causal interpretation
+EXACT_H4,FIT,t,0.7804598740599692,2.1824756987144154,5000,predictive logistic fit; no causal interpretation
+EXACT_H4,FIT,h,-0.1975576231075239,0.8207328460880702,5000,predictive logistic fit; no causal interpretation
+EXACT_H4,FIT,epsilon,-0.4556091157680853,0.6340616333601108,5000,predictive logistic fit; no causal interpretation
+EXACT_H4,FIT,damping,-0.019447933001950714,0.9807399580447922,5000,predictive logistic fit; no causal interpretation
+EXACT_H4,FIT,inertia,0.6174344381812235,1.8541649596418428,5000,predictive logistic fit; no causal interpretation

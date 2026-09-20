@@ -43,6 +43,7 @@ temp/**/.DS_Store
 
 # TX4 PDF scratch files and optional binary Python snapshots are not deliverables.
 tmp/pdfs/tx4/
+tmp/pdfs/qa/
 raw/reconciliation/*.npz
 deliverables/TX4_EXACT_P4_JULIA_FINAL_REPORT.aux
 deliverables/TX4_EXACT_P4_JULIA_FINAL_REPORT.log
