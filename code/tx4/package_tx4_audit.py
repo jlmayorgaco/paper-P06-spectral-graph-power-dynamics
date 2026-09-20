@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 DELIVERABLES = ROOT / "deliverables"
-REPORT_PDF = ROOT / "output" / "pdf" / "TX4_ROBUSTNESS_STATISTICS_AUDIT_FINAL_REPORT.pdf"
+REPORT_PDF = ROOT / "output" / "pdf" / "TX4_ROBUSTNESS_AUDIT_FINAL_REPORT.pdf"
 FIGURES = ROOT / "results" / "TX4_AUDIT_FIGURES"
 
 
@@ -42,15 +42,15 @@ def write_bundle(path: Path, entries: list[tuple[Path, str]], bundle_kind: str) 
 
 def main() -> None:
     base_docs = [
-        ROOT / "docs" / "TX4_ROBUSTNESS_STATISTICS_AUDIT_FINAL_REPORT.md",
-        ROOT / "docs" / "TX4_ROBUSTNESS_STATISTICS_AUDIT_HANDOFF.md",
+        ROOT / "docs" / "TX4_ROBUSTNESS_AUDIT_FINAL_REPORT.md",
+        ROOT / "docs" / "TX4_ROBUSTNESS_AUDIT_CHATGPT_HANDOFF.md",
         ROOT / "docs" / "TX4_ROBUSTNESS_AUDIT_CURRENT_STATE.md",
         ROOT / "docs" / "TX4_ROBUSTNESS_STATISTICS_AUDIT_PREREG.md",
         ROOT / "docs" / "TX4_ROBUSTNESS_STATISTICS_AUDIT_DEVIATIONS.md",
         ROOT / "docs" / "TX4_ROBUSTNESS_STATISTICS_AUDIT_EXECUTION_PLAN.md",
     ]
     result_names = [
-        "TX4_ROBUSTNESS_HEADLINE_CORRECTED.json", "TX4_ROBUSTNESS_INVARIANT_CHECKS.csv",
+        "TX4_ROBUSTNESS_AUDIT_HEADLINE.json", "TX4_ROBUSTNESS_INVARIANT_CHECKS.csv",
         "TX4_QMC_SUMMARY.csv", "TX4_MC_SUMMARY.csv",
         "TX4_QMC_EXACT_BLOCKER_SUMMARY.csv", "TX4_MC_EXACT_BLOCKER_SUMMARY.csv",
         "TX4_QMC_DELTA_H4_TRUE_MINIMALITY.csv", "TX4_MC_DELTA_H4_TRUE_MINIMALITY.csv",
@@ -61,12 +61,24 @@ def main() -> None:
         "TX4_SURROGATE_MINIMALITY_VALIDATION.csv", "TX4_SURROGATE_BLOCKER_ERRORS.csv",
         "TX4_SURROGATE_ALPHA_VALIDATION.csv", "TX4_ROBUSTNESS_DATA_PROVENANCE.csv",
     ]
-    upload_entries: list[tuple[Path, str]] = [(REPORT_PDF, "report/TX4_ROBUSTNESS_STATISTICS_AUDIT_FINAL_REPORT.pdf")]
-    upload_entries += [(path, f"docs/{path.name}") for path in base_docs]
-    upload_entries += [(ROOT / "results" / name, f"results/{name}") for name in result_names]
+    upload_entries: list[tuple[Path, str]] = [
+        (REPORT_PDF, "report/TX4_ROBUSTNESS_AUDIT_FINAL_REPORT.pdf"),
+        (ROOT / "docs" / "TX4_ROBUSTNESS_AUDIT_CHATGPT_HANDOFF.md", "handoff/TX4_ROBUSTNESS_AUDIT_CHATGPT_HANDOFF.md"),
+        (ROOT / "results" / "TX4_ROBUSTNESS_AUDIT_HEADLINE.json", "headline/TX4_ROBUSTNESS_AUDIT_HEADLINE.json"),
+        (ROOT / "docs" / "TX4_ROBUSTNESS_CORRECTED_CLAIM_MATRIX.csv", "claims/TX4_ROBUSTNESS_CORRECTED_CLAIM_MATRIX.csv"),
+        (ROOT / "results" / "TX4_QMC_EXACT_BLOCKER_SUMMARY.csv", "results/TX4_QMC_EXACT_BLOCKER_SUMMARY.csv"),
+        (ROOT / "results" / "TX4_MC_EXACT_BLOCKER_SUMMARY.csv", "results/TX4_MC_EXACT_BLOCKER_SUMMARY.csv"),
+        (ROOT / "results" / "TX4_SURROGATE_MINIMALITY_VALIDATION.csv", "results/TX4_SURROGATE_MINIMALITY_VALIDATION.csv"),
+        (ROOT / "results" / "TX4_SURROGATE_GATE.json", "results/TX4_SURROGATE_GATE.json"),
+        (ROOT / "results" / "TX4_ROBUSTNESS_INVARIANT_CHECKS.csv", "results/TX4_ROBUSTNESS_INVARIANT_CHECKS.csv"),
+        (ROOT / "results" / "TX4_QMC_SUMMARY.csv", "results/TX4_QMC_SUMMARY.csv"),
+        (ROOT / "results" / "TX4_MC_SUMMARY.csv", "results/TX4_MC_SUMMARY.csv"),
+    ]
     upload_entries += [(path, f"figures/{path.name}") for path in sorted(FIGURES.glob("F*.png"))]
 
     repro_entries = list(upload_entries)
+    repro_entries += [(path, f"docs/{path.name}") for path in base_docs if path.name != "TX4_ROBUSTNESS_AUDIT_CHATGPT_HANDOFF.md"]
+    repro_entries += [(ROOT / "results" / name, f"results/{name}") for name in result_names if name not in {"TX4_ROBUSTNESS_AUDIT_HEADLINE.json", "TX4_ROBUSTNESS_INVARIANT_CHECKS.csv", "TX4_QMC_SUMMARY.csv", "TX4_MC_SUMMARY.csv", "TX4_QMC_EXACT_BLOCKER_SUMMARY.csv", "TX4_MC_EXACT_BLOCKER_SUMMARY.csv", "TX4_SURROGATE_MINIMALITY_VALIDATION.csv", "TX4_SURROGATE_GATE.json"}]
     repro_entries += [
         (ROOT / "results" / "TX4_QMC_ALL16_EXACT.parquet", "results/TX4_QMC_ALL16_EXACT.parquet"),
         (ROOT / "results" / "TX4_MC_ALL16_EXACT.parquet", "results/TX4_MC_ALL16_EXACT.parquet"),
@@ -77,15 +89,17 @@ def main() -> None:
         "tx4_audit_blockers.py", "audit_existing_robustness.py", "run_tx4_audit_exact_all16.py",
         "analyze_tx4_audit_exact.py", "run_tx4_eta_local_collective.py", "build_tx4_audit_outputs.py",
         "check_tx4_audit_invariants.py", "build_tx4_audit_pdf.py", "package_tx4_audit.py",
+        "finalize_tx4_audit_contract.py",
     ]
     repro_entries += [(ROOT / "code" / "tx4" / name, f"code/tx4/{name}") for name in scripts]
     repro_entries.append((ROOT / "code" / "tx4" / "tests" / "test_tx4_audit_blockers.py", "code/tx4/tests/test_tx4_audit_blockers.py"))
+    repro_entries.append((ROOT / "docs" / "TX4_ROBUSTNESS_AUDIT_FINAL_REPORT.tex", "docs/TX4_ROBUSTNESS_AUDIT_FINAL_REPORT.tex"))
 
-    upload = DELIVERABLES / "TX4_ROBUSTNESS_STATISTICS_AUDIT_CHATGPT_UPLOAD.zip"
-    repro = DELIVERABLES / "TX4_ROBUSTNESS_STATISTICS_AUDIT_REPRO.zip"
+    upload = DELIVERABLES / "TX4_ROBUSTNESS_AUDIT_CHATGPT_UPLOAD.zip"
+    repro = DELIVERABLES / "TX4_ROBUSTNESS_AUDIT_REPRO.zip"
     upload_sha = write_bundle(upload, upload_entries, "ChatGPT upload")
     repro_sha = write_bundle(repro, repro_entries, "reproducibility")
-    (DELIVERABLES / "TX4_ROBUSTNESS_STATISTICS_AUDIT_SHA256SUMS.txt").write_text(
+    (DELIVERABLES / "TX4_ROBUSTNESS_AUDIT_SHA256SUMS.txt").write_text(
         f"{upload_sha}  {upload.name}\n{repro_sha}  {repro.name}\n", encoding="utf-8"
     )
     print(json.dumps({"upload": str(upload), "upload_sha256": upload_sha, "repro": str(repro), "repro_sha256": repro_sha, "upload_entries": len(upload_entries), "repro_entries": len(repro_entries)}, indent=2))
@@ -93,4 +107,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
