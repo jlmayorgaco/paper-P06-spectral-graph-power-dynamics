@@ -40,7 +40,7 @@ def digest(path: Path) -> str:
 files = [
     {"path": path.relative_to(ROOT).as_posix(), "bytes": path.stat().st_size, "sha256": digest(path)}
     for path in sorted(paths)
-    if path.is_file()
+    if path.is_file() and path.name != "TX4_EXACT_P4_REPRO_MANIFEST.json"
 ]
 git_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
 git_branch = subprocess.check_output(["git", "branch", "--show-current"], cwd=ROOT, text=True).strip()
