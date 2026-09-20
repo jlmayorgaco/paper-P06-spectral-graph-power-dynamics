@@ -1,5 +1,11 @@
-campaign,endpoint,n_conditions,success,proportion,ci95_low,ci95_high,interpretation
-QMC,H4_PRESENT,4096,2367,0.577880859375,0.5626894705956492,0.5929263029429496,bounded-box engineering probability; proper subsets outside calibration are surrogate-tier
-QMC,EXACT_H4,4096,301,0.073486328125,0.06588878523471378,0.08188313836424471,bounded-box engineering probability; proper subsets outside calibration are surrogate-tier
-QMC,NONCOMPOSABLE,4096,0,0.0,0.0,0.0009369774073651883,bounded-box engineering probability; proper subsets outside calibration are surrogate-tier
-QMC,delta_H4_mean,4096,,0.02832483280416774,-0.09599163436299869,0.2253072562702347,empirical 2.5/97.5 percentiles
+campaign,endpoint,n_conditions,success,coverage_fraction,interpretation,ci_method,ci95_low,ci95_high,kappa
+QMC,H4_UNSTABLE,4096,2367,0.577880859375,fixed-design QMC coverage fraction,none,,,
+QMC,H4_PRESENT,4096,466,0.11376953125,fixed-design QMC coverage fraction,none,,,
+QMC,EXACT_H4,4096,466,0.11376953125,fixed-design QMC coverage fraction,none,,,
+QMC,NONCOMPOSABLE,4096,1750,0.42724609375,fixed-design QMC coverage fraction,none,,,
+QMC,KAPPA_PMF,4096,457,0.111572265625,fixed-design QMC PMF,none,,,0.0
+QMC,KAPPA_PMF,4096,431,0.105224609375,fixed-design QMC PMF,none,,,1.0
+QMC,KAPPA_PMF,4096,509,0.124267578125,fixed-design QMC PMF,none,,,2.0
+QMC,KAPPA_PMF,4096,505,0.123291015625,fixed-design QMC PMF,none,,,3.0
+QMC,KAPPA_PMF,4096,466,0.11376953125,fixed-design QMC PMF,none,,,4.0
+QMC,KAPPA_PMF,4096,1728,0.421875,fixed-design QMC PMF,none,,,

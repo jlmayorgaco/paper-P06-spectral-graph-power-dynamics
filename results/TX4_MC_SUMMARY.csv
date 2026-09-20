@@ -1,5 +1,11 @@
-campaign,endpoint,n_conditions,success,proportion,ci95_low,ci95_high,interpretation
-MC,H4_PRESENT,5000,2907,0.5814,0.5676684699951621,0.5950065481281827,bounded-box engineering probability; proper subsets outside calibration are surrogate-tier
-MC,EXACT_H4,5000,356,0.0712,0.06439638427486137,0.07866199691321961,bounded-box engineering probability; proper subsets outside calibration are surrogate-tier
-MC,NONCOMPOSABLE,5000,0,0.0,0.0,0.0007677019450571244,bounded-box engineering probability; proper subsets outside calibration are surrogate-tier
-MC,delta_H4_mean,5000,,0.02984609762472235,-0.0920347989759867,0.2182053723660935,empirical 2.5/97.5 percentiles
+campaign,endpoint,n_conditions,success,coverage_fraction,interpretation,ci_method,ci95_low,ci95_high,kappa
+MC,H4_UNSTABLE,5000,2907,0.5814,assumed independent-uniform bounded-box probability,Wilson 95%,0.5676684699951621,0.5950065481281827,
+MC,H4_PRESENT,5000,577,0.1154,assumed independent-uniform bounded-box probability,Wilson 95%,0.1068376979954951,0.1245528183406428,
+MC,EXACT_H4,5000,577,0.1154,assumed independent-uniform bounded-box probability,Wilson 95%,0.1068376979954951,0.1245528183406428,
+MC,NONCOMPOSABLE,5000,2183,0.4366,assumed independent-uniform bounded-box probability,Wilson 95%,0.4229066916881681,0.4503906529184652,
+MC,KAPPA_PMF,5000,538,0.1076,assumed independent-uniform bounded-box PMF,Wilson 95%,0.0993101339918606,0.1164923584946202,0.0
+MC,KAPPA_PMF,5000,534,0.1068,assumed independent-uniform bounded-box PMF,Wilson 95%,0.098538853059109,0.1156648677504838,1.0
+MC,KAPPA_PMF,5000,638,0.1276,assumed independent-uniform bounded-box PMF,Wilson 95%,0.1186370564007996,0.137134728007879,2.0
+MC,KAPPA_PMF,5000,623,0.1246,assumed independent-uniform bounded-box PMF,Wilson 95%,0.1157328677157297,0.1340435229046191,3.0
+MC,KAPPA_PMF,5000,577,0.1154,assumed independent-uniform bounded-box PMF,Wilson 95%,0.1068376979954951,0.1245528183406428,4.0
+MC,KAPPA_PMF,5000,2090,0.418,assumed independent-uniform bounded-box PMF,Wilson 95%,0.4043966637941737,0.4317292393248156,

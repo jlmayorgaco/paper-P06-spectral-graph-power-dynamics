@@ -1,0 +1,16 @@
+{
+  "status": "COMPLETE",
+  "campaigns": {
+    "QMC": {
+      "conditions": 4096,
+      "rows": 65536
+    },
+    "MC": {
+      "conditions": 5000,
+      "rows": 80000
+    }
+  },
+  "total_rows": 145536,
+  "chunk_size": 250,
+  "coordinates": "read from retained TX4_ROBUSTNESS_MASTER_CONDITIONS.parquet; no samples regenerated"
+}

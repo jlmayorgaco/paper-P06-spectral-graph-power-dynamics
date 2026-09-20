@@ -1,0 +1,33 @@
+check,status,observed,expected,note
+QMC_row_count,PASS,65536,65536,exact all-16 output row count
+QMC_condition_count,PASS,4096,4096,unique exact conditions
+QMC_16_portfolios_each,PASS,4096,4096,every condition has all 16 portfolios
+QMC_portfolio_catalog,PASS,"['30', '30+33', '30+33+35', '30+33+35+37', '30+33+37', '30+35', '30+35+37', '30+37', '33', '33+35', '33+35+37', '33+37', '35', '35+37', '37', 'BASE']","['30', '30+33', '30+33+35', '30+33+35+37', '30+33+37', '30+35', '30+35+37', '30+37', '33', '33+35', '33+35+37', '33+37', '35', '35+37', '37', 'BASE']",portfolio catalog exact
+QMC_exact_source,PASS,['EXACT_DAE'],['EXACT_DAE'],fallback rows are exact DAE
+QMC_truth_condition_count,PASS,4096,4096,condition-level truth table
+QMC_implication_exact_present,PASS,4096,4096,EXACT_H4 implies H4_PRESENT
+QMC_implication_present_unstable,PASS,4096,4096,H4_PRESENT implies H4_UNSTABLE
+QMC_implication_exact_noncomposable,PASS,4096,4096,EXACT_H4 implies NONCOMPOSABLE
+QMC_delta_formula,PASS,allclose,allclose,true minimality delta formula
+QMC_h0_antichain,PASS,4096,4096,every H0 is an antichain
+MC_row_count,PASS,80000,80000,exact all-16 output row count
+MC_condition_count,PASS,5000,5000,unique exact conditions
+MC_16_portfolios_each,PASS,5000,5000,every condition has all 16 portfolios
+MC_portfolio_catalog,PASS,"['30', '30+33', '30+33+35', '30+33+35+37', '30+33+37', '30+35', '30+35+37', '30+37', '33', '33+35', '33+35+37', '33+37', '35', '35+37', '37', 'BASE']","['30', '30+33', '30+33+35', '30+33+35+37', '30+33+37', '30+35', '30+35+37', '30+37', '33', '33+35', '33+35+37', '33+37', '35', '35+37', '37', 'BASE']",portfolio catalog exact
+MC_exact_source,PASS,['EXACT_DAE'],['EXACT_DAE'],fallback rows are exact DAE
+MC_truth_condition_count,PASS,5000,5000,condition-level truth table
+MC_implication_exact_present,PASS,5000,5000,EXACT_H4 implies H4_PRESENT
+MC_implication_present_unstable,PASS,5000,5000,H4_PRESENT implies H4_UNSTABLE
+MC_implication_exact_noncomposable,PASS,5000,5000,EXACT_H4 implies NONCOMPOSABLE
+MC_delta_formula,PASS,allclose,allclose,true minimality delta formula
+MC_h0_antichain,PASS,5000,5000,every H0 is an antichain
+master_evaluation_source_values,PASS,"['EXACT_DAE', 'SURROGATE_EXTRATREES']","['DERIVED_FROM_EXACT', 'EXACT_DAE', 'SURROGATE_EXTRATREES', 'UNKNOWN']",registered provenance vocabulary
+master_evaluation_source_row_count,PASS,329440,329440,every legacy master row carries provenance
+QMC_coordinates_unchanged,PASS,4096,4096,exact fallback reuses retained coordinates bit-for-bit
+MC_coordinates_unchanged,PASS,5000,5000,exact fallback reuses retained coordinates bit-for-bit
+eta_stratum_complete,PASS,128,128,128 exact stratified local/collective rows
+eta_nonnegative,PASS,0.0852192573217864,>=0,singular-value eta is nonnegative
+surrogate_gate_recorded_failure,PASS,False,False,exact fallback was required
+exact_fallback_complete,PASS,COMPLETE,COMPLETE,checkpoint manifest
+required_audit_outputs,PASS,8,8,required audit files present
+corrected_figure_count,PASS,10,10,F1-F10 corrected PNG set

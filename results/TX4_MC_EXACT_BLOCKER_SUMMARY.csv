@@ -1,0 +1,11 @@
+campaign,endpoint,n_conditions,success,coverage_fraction,interpretation,ci_method,ci95_low,ci95_high,kappa
+MC,H4_UNSTABLE,5000,2907,0.5814,assumed independent-uniform bounded-box probability,Wilson 95%,0.5676684699951621,0.5950065481281827,
+MC,H4_PRESENT,5000,577,0.1154,assumed independent-uniform bounded-box probability,Wilson 95%,0.10683769799549511,0.12455281834064283,
+MC,EXACT_H4,5000,577,0.1154,assumed independent-uniform bounded-box probability,Wilson 95%,0.10683769799549511,0.12455281834064283,
+MC,NONCOMPOSABLE,5000,2183,0.4366,assumed independent-uniform bounded-box probability,Wilson 95%,0.42290669168816813,0.4503906529184652,
+MC,KAPPA_PMF,5000,538,0.1076,assumed independent-uniform bounded-box PMF,Wilson 95%,0.0993101339918606,0.11649235849462024,0.0
+MC,KAPPA_PMF,5000,534,0.1068,assumed independent-uniform bounded-box PMF,Wilson 95%,0.09853885305910906,0.11566486775048387,1.0
+MC,KAPPA_PMF,5000,638,0.1276,assumed independent-uniform bounded-box PMF,Wilson 95%,0.1186370564007996,0.137134728007879,2.0
+MC,KAPPA_PMF,5000,623,0.1246,assumed independent-uniform bounded-box PMF,Wilson 95%,0.11573286771572971,0.13404352290461918,3.0
+MC,KAPPA_PMF,5000,577,0.1154,assumed independent-uniform bounded-box PMF,Wilson 95%,0.10683769799549511,0.12455281834064283,4.0
+MC,KAPPA_PMF,5000,2090,0.418,assumed independent-uniform bounded-box PMF,Wilson 95%,0.40439666379417377,0.4317292393248156,NULL
