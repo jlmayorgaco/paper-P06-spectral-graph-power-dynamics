@@ -18,3 +18,10 @@
    Parquet runtime is unavailable, the complete CSV remains the authoritative
    result and the limitation is recorded in the execution log rather than
    silently omitting rows.
+6. Because the exact 16-portfolio solve is materially slower than the
+   preregistered wall-clock budget, the retained all-portfolio exact
+   calibration is a declared 21-point-per-coordinate/5x5-pair skeleton plus
+   64 QMC and 64 MC points. The complete declared design retains exact H4
+   evaluations; proper-subset rows outside the calibration skeleton are
+   explicitly labeled `SURROGATE_CALIBRATED` and are not promoted to exact
+   census evidence.

@@ -46,14 +46,18 @@ def calibration_id(condition_id: str) -> bool:
     if condition_id == "nominal":
         return True
     if condition_id.startswith("1d_"):
-        return True
+        # Exact all-portfolio calibration uses a 21-point deterministic
+        # skeleton. The full 201-point 1-D design is still retained, with H4
+        # evaluated exactly and proper-subset rows explicitly surrogate-tier.
+        index = int(condition_id.rsplit("_", 1)[-1])
+        return index % 10 == 0 or index == 200
     if condition_id.startswith("qmc_"):
-        return int(condition_id.split("_")[1]) < 256
+        return int(condition_id.split("_")[1]) < 64
     if condition_id.startswith("mc_"):
-        return int(condition_id.split("_")[1]) < 256
+        return int(condition_id.split("_")[1]) < 64
     if condition_id.startswith("2d_"):
         parts = condition_id.rsplit("_", 2)
-        return int(parts[-2]) % 5 == 0 and int(parts[-1]) % 5 == 0
+        return int(parts[-2]) % 10 == 0 and int(parts[-1]) % 10 == 0
     return False
 
 
@@ -180,7 +184,7 @@ def run() -> None:
         "parent": "f64db0004026ceafdb08dd13b5e2ff59d6060742",
         "runtime_s": time.perf_counter() - start,
         "surrogate": "ExtraTreesRegressor, 96 trees, min_samples_leaf=2, seed=20260925",
-        "calibration_rule": "nominal + full 1D + 9x9 subgrid for each preregistered 2D pair + first 256 QMC + first 256 MC",
+        "calibration_rule": "nominal + 21-point 1D skeleton + 5x5 subgrid for each preregistered 2D pair + first 64 QMC + first 64 MC",
         "exact_h4": True,
     }
     (results / "TX4_ROBUSTNESS_MASTER_METADATA.json").write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
