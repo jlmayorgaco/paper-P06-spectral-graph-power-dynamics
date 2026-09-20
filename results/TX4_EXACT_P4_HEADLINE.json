@@ -1,0 +1,73 @@
+{
+  "branch": "research/tx4-exact-p4-julia-reproduction",
+  "h4": {
+    "portfolio": "30+33+35+37",
+    "replaced_count": 4,
+    "python_states": 86,
+    "julia_states": 86,
+    "state_count_match": true,
+    "python_alpha": 0.1270064680506376,
+    "julia_alpha": 0.12700646832229723,
+    "alpha_diff": 2.716596392282611e-10,
+    "python_frequency_hz": 0.6222796695029233,
+    "julia_frequency_hz": 0.6222796695187043,
+    "frequency_diff_hz": 1.57809321166269e-11,
+    "python_stable": false,
+    "julia_stable": false,
+    "verdict_identical": true,
+    "critical_voltage_mac": 0.9999999999999988,
+    "mean_transverse_voltage_mac": 0.9999999999999597,
+    "state_max_abs_diff": 2.304624498183916e-08,
+    "algebraic_max_abs_diff": 2.442697167280572e-08,
+    "voltage_magnitude_max_diff": 2.2870594307278225e-14,
+    "voltage_angle_max_diff": 2.3046222652478573e-08,
+    "max_eigenvalue_pair_diff": 2.957475021842078e-07
+  },
+  "proper_subsets_stable_python": 15,
+  "proper_subsets_stable_julia": 15,
+  "all_16_verdicts_identical": true,
+  "device_parity_max_abs_diff": 0.0,
+  "all_sg_parity_pass": true,
+  "gates": [
+    {
+      "claim_id": "C1",
+      "status": "PASS",
+      "evidence": "TX4_GFL11_DEVICE_PARITY.csv"
+    },
+    {
+      "claim_id": "C2",
+      "status": "PASS",
+      "evidence": "TX4_P4_SG_POLICY_AUDIT.md"
+    },
+    {
+      "claim_id": "C3",
+      "status": "PASS",
+      "evidence": "TX4_EXACT_P4_V4_CROSSCODE.csv"
+    },
+    {
+      "claim_id": "C4",
+      "status": "PASS",
+      "evidence": "TX4_EXACT_P4_STATE_COUNTS.csv"
+    },
+    {
+      "claim_id": "C5",
+      "status": "PASS",
+      "evidence": "TX4_EXACT_P4_V4_CROSSCODE.csv"
+    },
+    {
+      "claim_id": "C6",
+      "status": "PASS",
+      "evidence": "TX4_EXACT_P4_MODE_MATCH.csv"
+    },
+    {
+      "claim_id": "C7",
+      "status": "PASS",
+      "evidence": "TX4_EXACT_P4_V4_CROSSCODE.csv"
+    },
+    {
+      "claim_id": "C8",
+      "status": "PASS",
+      "evidence": "TX4_EXACT_P4_JULIA_DEVIATIONS.md"
+    }
+  ]
+}
