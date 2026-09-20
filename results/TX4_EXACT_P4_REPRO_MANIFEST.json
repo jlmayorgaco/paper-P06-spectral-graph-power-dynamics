@@ -1,7 +1,7 @@
 {
   "bundle": "TX4_EXACT_P4_JULIA_REPRO",
   "git_branch": "research/tx4-exact-p4-julia-reproduction",
-  "git_commit_at_manifest": "e2bb6d0127f944f4d1775410add01457dd829efe",
+  "git_commit_at_manifest": "02fad7f88cbb63f1383e70f10fc33ee636f4026a",
   "python_version": "3.13.14",
   "julia_version": "julia version 1.11.9",
   "policy": {
@@ -70,8 +70,8 @@
     },
     {
       "path": "code/tx4/write_tx4_manifest.py",
-      "bytes": 2106,
-      "sha256": "2626dcd8f2c78afe50cdfea00aecf0a2bed914d8bf40cab4938221a6a61e7490"
+      "bytes": 2158,
+      "sha256": "44becd1707c391355687ff023794c3fa3e0df9a969750dc2aa1ca4766d150253"
     },
     {
       "path": "deliverables/TX4_EXACT_P4_JULIA_FINAL_REPORT.pdf",
