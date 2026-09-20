@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "points": 602,
+  "frequency_min_hz": 0.01,
+  "frequency_max_hz": 100.0,
+  "dense_0p2_2_hz_points": 301,
+  "frobenius_abs_median": 6.257193160718183e-17,
+  "frobenius_abs_p99": 9.50298325599266e-16,
+  "frobenius_relative_median": 1.4124212689462466e-16,
+  "frobenius_relative_p99": 1.5195687985554819e-15,
+  "largest_singular_relative_median": 0.0,
+  "largest_singular_relative_p99": 8.427672386190471e-16,
+  "smallest_singular_relative_median": 1.8363050890242984e-16,
+  "smallest_singular_relative_p99": 1.1886535391005939e-15,
+  "phase_error_rad_median": 4.336808689942018e-17,
+  "phase_error_rad_p99": 1.9984014443252818e-15,
+  "near_singular_points": 49,
+  "near_singular_abs_frobenius_p99": 2.434579671139393e-15,
+  "backward_error_median": 6.060123359274537e-17,
+  "backward_error_p99": 5.14269244788463e-16,
+  "target_median_relative_lt_1e-6": true,
+  "target_p99_relative_lt_1e-4": true
+}

@@ -1,0 +1,5 @@
+case_id,phase,portfolio,gfl_gain,stable,alpha_transverse,critical_frequency_hz,residual,status,message
+disc_01,discovery,30+33+35+37,0.018125,true,-0.12064406186986443,0.0,2.615901373506474e-13,PASS,""
+disc_02,discovery,30+33+35+37,0.0271875,true,-0.13791049600999852,0.0,2.615901373506474e-13,PASS,""
+disc_03,discovery,30+33+35+37,0.03625,true,-0.13791524992024481,0.0,2.615901373506474e-13,PASS,""
+disc_04,discovery,30+33+35+37,0.0453125,true,-0.13791619288426366,0.0,2.615901373506474e-13,PASS,""
