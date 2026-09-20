@@ -1,0 +1,9 @@
+claim_id,claim,source,acceptance,pre_registered_status
+C1,Exact GFL11 equations are implemented in Julia and Python with the same 11-state ordering,source audit and device parity,all equations/state labels match,pre-registered
+C2,Exact P4 policy is g=0.03625 k=1.425 t=1.5 h=1.0,policy audit and source manifests,all four values match,pre-registered
+C3,The 16-case P4 V4 verdict census agrees across Python and Julia,cross-code census,16/16 verdicts identical,pre-registered
+C4,H4 has nx=86 with four 11-state GFLs and six 7-state SGs,state-count table,86 exactly,pre-registered
+C5,H4 alpha and critical frequency agree within tolerance,cross-code census,alpha <=1e-4 and frequency <=1e-4 Hz,pre-registered
+C6,H4 critical voltage-mode matching has MAC >=0.95,mode-match table,MAC >=0.95 after declared mapping,pre-registered
+C7,All 15 proper subsets are stable in both codes,cross-code census,15/15 proper subsets stable,pre-registered
+C8,The result does not establish EMT or TPWRS equivalence,scope limitation,explicit limitation retained,pre-registered
