@@ -98,7 +98,8 @@ def make_f1(repo: Path, run_root: Path) -> dict:
                     "portfolio": portfolio_id(members),
                     "members": "+".join(map(str, members)) or "BASE",
                     "cardinality": len(members),
-                    "state_dim": int(case.dae.n_x),
+                    "dae_state_dim": int(case.dae.n_x),
+                    "transverse_dim": int(values.size),
                     "eigenvalue_rank_real_desc": rank,
                     "eigenvalue_real_s-1": float(value.real),
                     "eigenvalue_imag_rad_s-1": float(value.imag),
@@ -118,7 +119,8 @@ def make_f1(repo: Path, run_root: Path) -> dict:
                 "portfolio": portfolio_id(members),
                 "members": "+".join(map(str, members)) or "BASE",
                 "cardinality": len(members),
-                "state_dim": int(case.dae.n_x),
+                "dae_state_dim": int(case.dae.n_x),
+                "transverse_dim": int(values.size),
                 "alpha": mode.alpha,
                 "dominant_lambda_real_s-1": mode.eig.real,
                 "dominant_lambda_imag_rad_s-1": mode.eig.imag,
@@ -143,7 +145,8 @@ def make_f1(repo: Path, run_root: Path) -> dict:
     np.savez_compressed(
         run_root / "raw" / "F1_FULL_SPECTRA.npz",
         portfolio_ids=np.asarray([row["portfolio"] for row in portfolio_rows]),
-        state_dims=np.asarray(state_dims, dtype=int),
+        dae_state_dims=np.asarray([row["dae_state_dim"] for row in portfolio_rows], dtype=int),
+        transverse_dims=np.asarray(state_dims, dtype=int),
         eigenvalues=eigenvalue_array,
         eigenvectors=eigenvector_array,
     )
@@ -246,7 +249,7 @@ def make_f1(repo: Path, run_root: Path) -> dict:
     figure.text(
         0.99,
         0.01,
-        f"H4: α={h4['alpha']:.6f} s⁻¹, f={h4['dominant_frequency_hz']:.4f} Hz · full spectra retained",
+        f"H4: α={h4['alpha']:.6f} s⁻¹, f={h4['dominant_frequency_hz']:.4f} Hz · full transverse spectra retained",
         ha="right",
         va="bottom",
         fontsize=7.2,
