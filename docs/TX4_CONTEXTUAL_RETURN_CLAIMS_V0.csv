@@ -1,0 +1,16 @@
+claim_id,level,claim,primary_test,pass_rule,allowed_language,status_before_new_numerics
+A1,A,Exact determinant closure identity for declared TX4 port realization,Symbolic/block derivation plus residual audit,Identity follows under finite-block assumptions and residual is reported,proved conditional on realization,PROVEN_IN_PARENT
+A2,A,Contextual-return Schur identity for i versus H4 minus i,Block determinant derivation and determinant check,Four residuals within declared tolerance,exact identity under assumptions,PREREGISTERED
+A3,A,Minimality is distinct from contextual-return identity,Proper-subset logical and numerical audit,No irreducible four-device interaction claim,bounded,PREREGISTERED
+B1,B,H4 is unstable at P4 and all 15 proper subsets are stable,Full-order direct re-evaluation,alpha H4 greater than 0 and every proper alpha less than 0,TX4-specific numerical result,FROZEN_ANCHOR_REAUDIT_REQUIRED
+B2,B,Clean g-only H4 boundary is recovered,Full-order bracket search,root agrees with archived g star within 1e-4 or solver floor,boundary localization,PREREGISTERED
+B3,B,Contextual return reaches unity at the same boundary,g sweep and return tracking,absolute g eig star minus g return star <=1e-4 or solver floor,same-boundary numerical evidence,PREREGISTERED
+B4,B,H4 event is collective rather than a local-factor singularity,Local and collective factors across sweep,locals stay regular while collective factor vanishes,collective interpretation,PREREGISTERED
+B5,B,g-only increase to g_after=0.25 removes the P4 blocker,Fixed-coordinate remediation,stable-side alpha is negative and boundary report is complete,targeted remediation not optimality,PREREGISTERED
+B6,B,Return derivative predicts g-direction motion,Analytic block derivative versus FD,absolute error <=1e-4 or numerical floor,supporting sensitivity,PREREGISTERED
+B7,B,Nonlinear phasor TDS is directionally consistent,Frozen G2 D2 before and after,identical disturbance shows no systematic contradiction,phasor TDS consistency; no EMT claim,PREREGISTERED
+C1,C,Existing ANDES result supports only its declared phasor scope,Read-only E31 audit,scope and limitations reproduced,conditional independent phasor evidence,EXISTING
+C2,C,Lower-order and aggregate screens do not establish composability,Small conventional comparison,screen limitations reported exactly,negative methodological result,PREREGISTERED
+D1,D,Contextual return generalizes universally across models and networks,No new cross-model campaign,Must not be asserted,not validated,NOT_ALLOWED
+D2,D,EMT validates the TX4 portfolio result,No EMT run,Must not be asserted,not validated,NOT_ALLOWED
+D3,D,Contextual return is a new Schur-complement theorem,Literature and theory audit,Must not be asserted; cite as standard identity,not claimed,NOT_ALLOWED
