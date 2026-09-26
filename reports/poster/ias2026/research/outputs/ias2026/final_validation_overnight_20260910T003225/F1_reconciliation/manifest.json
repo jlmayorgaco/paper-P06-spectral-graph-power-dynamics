@@ -1,0 +1,50 @@
+{
+  "experiment": "F1_reconciliation",
+  "question": "Are ANDES and the internal simulator solving the same dynamic model?",
+  "verdict": "HARMONIZED_AGREE",
+  "seed": null,
+  "config": {
+    "stages": [
+      "R2 manual excitation",
+      "R3 first-order AVR"
+    ],
+    "andes_avr": "SEXS with TA/TB = 1, K = case KA, TE = case TE, limits opened",
+    "andes_machine": "GENROU with xd2 = xd1, xq2 = xq1, subtransient constants 1e-4",
+    "loads": "constant power on both sides, pq2z disabled",
+    "governor": "removed on both sides",
+    "comparison": "whole dynamic spectrum, nearest-neighbour matching"
+  },
+  "workers": 1,
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 11.83,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-10T13:41:51Z",
+  "elapsed_s": 1.44,
+  "notes": [],
+  "results": {
+    "checks": {
+      "R3_max_alpha_band_error": 1.495307029697468e-06,
+      "R3_max_freq_band_error_hz": 1.3178154312232238e-07,
+      "R3_rhp_agrees_everywhere": true,
+      "R3_worst_spectrum_match": 0.42191196874597525,
+      "R2_max_alpha_band_error": 1.0190430971279696e-07,
+      "R2_rhp_agrees_everywhere": true,
+      "R2_worst_spectrum_match": 0.13278768509286665,
+      "internal_flagship_R3": 0.3287306353541607,
+      "andes_flagship_R3": 0.3287321306611904,
+      "internal_flagship_R2": -0.2541670267334688,
+      "andes_flagship_R2": -0.2541669456561849
+    },
+    "elapsed_s": 1.3598251342773438
+  }
+}

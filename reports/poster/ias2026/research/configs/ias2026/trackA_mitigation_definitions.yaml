@@ -1,0 +1,58 @@
+# Frozen definitions for every Track-A mitigation figure and table.
+# Written 2026-09-09 after reconciling a reporting inconsistency between the
+# spectral abscissa and the tracked inter-area branch.
+
+reported_quantities:
+  # Both are always reported side by side. Neither is ever quoted alone.
+  tracked_inter_area_branch: >
+    Real part of the mode followed by MAC from the unrepaired flagship critical
+    mode, on the machine states common to both configurations. This is the
+    branch the whole Track-A argument is about.
+  spectral_abscissa: >
+    Largest real part over all non-reference modes. This is the binding
+    stability constraint and it may belong to a DIFFERENT mode than the tracked
+    branch; after repair it usually does.
+  rule: >
+    A mitigation number without its rating and without both quantities is not a
+    result. The earlier inconsistency was exactly this: -0.188 is the spectral
+    abscissa at condenser rating 1.00, -0.415 is the tracked branch at rating
+    0.25.
+
+synchronous_condenser:
+  definition: >
+    A SynchronousMachine retained at the retired bus with zero active-power
+    output, carrying the whole reactive injection of that bus, while the
+    converter carries every displaced megawatt. The bus injection is unchanged,
+    so the AC power flow is identical to base.
+  rating_fraction: >
+    Fraction of the retired machine's Sn at which the condenser is rated. It
+    scales the injected current, hence the system-base inertia contribution and
+    the inverse of the system-base reactances.
+  variants:
+    sc25:
+      rating_fraction: 0.25
+      services: full          # own M, case KA and TE, case PSS KS/T4/T5/T6
+    sc50:
+      rating_fraction: 0.50
+      services: full
+    sc100:
+      rating_fraction: 1.00
+      services: full
+    minimal:
+      rating_fraction: 1.00
+      inertia_scale: 0.10
+      excitation: manual      # field voltage frozen, not gain set to zero
+      pss_scale: 0.00
+      note: >
+        Rating is 1.00 here, not 0.25. The minimal variant isolates SERVICES at
+        full rating; sc25 isolates RATING at full services. They are different
+        experiments and must not be quoted as one.
+
+known_caveats:
+  zero_inertia_untested: >
+    A condenser with H = 0 is a singular machine, not a service ablation. The
+    inertia sweep stops at 0.10.
+  branch_merging: >
+    At inertia scale 0.10 with AVR and PSS active the MAC-best match lands on a
+    real mode; the branch has merged there and only the spectral abscissa is
+    meaningful in those rows.

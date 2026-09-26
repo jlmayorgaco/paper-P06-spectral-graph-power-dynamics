@@ -1,0 +1,71 @@
+# Preregistration: finite-amplitude connected cumulants on the frozen IEEE-39 (CC03-CC06)
+# Written and committed BEFORE any IEEE-39 cumulant is computed. Theory:
+# theory/FINITE_AMPLITUDE_CONNECTED_CUMULANTS.md. Toy calibration (CC02) is synthetic only.
+version: 1
+date: 2026-09-11
+rules:
+  - no new parameter search; only frozen points, frozen boundaries, frozen controls, frozen holdout lines
+  - no retuning; no threshold is changed after results are seen
+  - nonzero chi is called an "irreducible connected characteristic interaction", never a cause
+  - negative results are reported and stop the promotion of chi as a diagnostic
+
+objects:
+  F: "F_s(B) = det(I + Q_BB(s)), Q = (I + D K_d)^-1 D K_o on the FC18 C2 common realization (copied in experiments/connected_cumulants/_cc.py)"
+  chi: "partition-lattice cumulant; recursion of Lemma 1.2 (checked against the partition definition)"
+  mu: "Boolean Moebius term of F"
+  nu: "connected share |chi_H| / sum_pi |prod chi_B| at a zero (<= 1/2; = 1/2 forced when |H| = 2)"
+  delta_B: "first-order deletion displacement |chi_B F(H minus B)| / |dF(H)/ds| at a zero, in s^-1"
+  C_H: "composite part F(H) - chi_H"
+
+CC03_boundaries:
+  data: "the ten FC18 boundaries: theta and s* read verbatim from FC18_summary.json (s_star_realization); H = the changing subset"
+  compute: "F(B), mu_B, chi_B for every B subseteq H; reconstruction residual |F(H) - sum_pi prod chi_B|; |F(H)(s*)|; nu_H; delta_B for all B subseteq H, |B| >= 2; connectivity of the cumulant support (Thm 2.3 check, tol 1e-8 relative to max |chi|); the naive single-cycle part and the remainder R_H = chi_H - naive_H"
+  classification:
+    primary_rule: "GENUINELY CONNECTED iff nu_H >= 0.10; COMPOSITE iff nu_H < 0.10"
+    sensitivity: "also reported at 0.05 and 0.20 (not used for the primary label)"
+    pairs: "|H| = 2 boundaries (E4, E6) have nu = 1/2 by necessity; they are labelled CONNECTED (FORCED) and are not counted as evidence"
+  flagship_material_necessity:
+    question: "Is chi_{30,33,35,37}(s*) materially necessary at the FLAG P4-line boundary (and at E9)?"
+    rule: "MATERIALLY NECESSARY iff nu_H >= 0.10 AND the zero of C_H(s) nearest s* (Newton from s*, complex-step derivative h = 1e-5) is at distance >= 0.05 s^-1 from s*, or no zero of C_H is found within 0.5 s^-1"
+    scale_note: "0.05 s^-1 is 40 % of alpha_perp(P4) = +0.127 s^-1, fixed before running"
+  cross_check: "at FLAG, F(B) from the C2 realization vs the PortActionSpace (port_admittance) Q of the frozen F2c script; report max |difference|; not a gate"
+
+CC04_diagnostics:
+  data:
+    - "FC04 Pg-matched set at the E12 census policy (solve_case defaults): 10 failing and 25 stable size-4 portfolios (FC04_n6_pg.csv)"
+    - "the ten CC03 boundaries (descriptive group only; no binary label)"
+  evaluation_point: "lambda_P = rightmost transverse-band eigenvalue (0.3-1.5 Hz) of portfolio P from its C2 vertex spectrum; axis point s = j Im(lambda_P)"
+  diagnostics:
+    abs_chi_axis: "|chi_P(j omega_P)|, orientation: higher = unstable"
+    abs_mu_axis: "|mu_P(j omega_P)| (full-order Boolean Moebius term), higher = unstable"
+    cycle_score_axis: "max over simple directed cycles of the spectral radius of the M-holonomy (E18 definition, M = D K) at j omega_P, higher = unstable"
+    closure_distance_axis: "min over eigenvalues of Q_PP(j omega_P) of |lambda + 1|, lower = unstable (existing near-definitional test; reported, not a competitor)"
+    nu_at_mode: "nu_P at lambda_P, higher = unstable (descriptive)"
+    pg_mw: "replaced Pg (FC04), higher = unstable"
+    sn_mva: "replaced rating (E12 census replaced_mw is MVA), higher = unstable"
+    gscr: "E13 frozen gscr, lower = unstable"
+    min_scr: "E13 frozen min_scr, lower = unstable"
+  metric: "ROC AUC failing vs stable with the stated orientation; permutation p (10000 label permutations, seed 20260913)"
+  decision:
+    PROMOTE: "AUC(abs_chi_axis) >= 0.80 AND exceeds every one of {abs_mu_axis, cycle_score_axis, pg_mw, sn_mva, gscr, min_scr} by >= 0.05 AND permutation p <= 0.01"
+    CLARIFY: "reported if the boundary remainder share |R_H| / (|R_H| + |naive_H|) >= 0.25 at a majority of |H| >= 3 boundaries (the naive single-cycle score then misses a material part of the connected interaction), OR nu separates failing from stable (AUC >= 0.80); descriptive only"
+    NEGATIVE: "otherwise; chi is then not promoted as a diagnostic"
+
+CC05_policy_track:
+  data: "all frozen F7B points on the line t = 0.8515625, k = h = 1 (results/F7/F7B_points.csv.gz), with their frozen labels and kappa; points labelled BASE_UNSTABLE or unresolved are excluded"
+  evaluation_point: "lambda_V(g) = rightmost transverse-band eigenvalue of the full core V = 30+33+35+37 (label-independent)"
+  dominant_support: "D(g) = argmax over B subseteq V, |B| >= 2 of delta_B(g) at lambda_V(g), with H = V"
+  hypothesis_H5: "witness contraction corresponds to a change in the dominant connected support"
+  test: "(a) |D(g)| = kappa(g) at >= 80 % of points with non-empty H; (b) D(g) is a hyperedge of H(g) at >= 80 % of those points. H5 SUPPORTED iff (a) and (b); otherwise REJECTED"
+  secondary: "raw |chi_B(j Im lambda_V)| tracks for V, 30+33+35, 30+33 (descriptive)"
+
+CC06_design:
+  parameters:
+    policy: "g, k, t, h at each of the ten boundaries; box-normalized (SCALE = 1, 1.8, 2.5, 2); ds*/da taken from the FROZEN FC18 grad_port; d chi_H/da at fixed s* by central differences of Q (FC18 steps 1e-4) and the adjugate formula"
+    lines: "the 12 frozen holdout lines (seed 20260911) at the FLAG boundary; gamma_e scales the full branch two-port (series and charging, tap unchanged), gamma = 1 -/+ 0.002; the C2 realization is re-solved with the scaled network (re-equilibrated); ds*/dgamma = -dF(H)/dgamma / dF(H)/ds at s*"
+  quantities: "stability sensitivity Re(ds*/da) (negative = stabilizing); connected-mechanism sensitivity d|chi_H|/da (negative = suppression); connected share of boundary motion sigma_a = (d chi_H/da) / (dF(H)/da)"
+  hypothesis_H6: "the intervention that most moves the critical eigenvalue to the left is the one that most suppresses |chi_H|"
+  test:
+    lines: "SUPPORTED iff argmin Re(ds*/dgamma) == argmin d|chi_H|/dgamma AND Spearman(Re ds*/dgamma, d|chi_H|/dgamma) >= 0.8 over the 12 lines"
+    policy: "SUPPORTED iff the two argmins coincide at >= 8 of the 10 boundaries"
+  consistency_check: "line ds*/dgamma from this computation vs the frozen F2c port_reeq_ds (reported, not a gate)"

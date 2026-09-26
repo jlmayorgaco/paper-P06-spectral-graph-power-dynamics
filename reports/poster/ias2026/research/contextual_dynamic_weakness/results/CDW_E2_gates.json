@@ -1,0 +1,16 @@
+{
+ "A4_cov_by_env": {
+  "EC": 1.0,
+  "EM-f": 0.8,
+  "EM-u": 0.975,
+  "EMC": 0.975
+ },
+ "A4_envs_ge_0.5": 4,
+ "A4_pass": true,
+ "census_cov_by_env": {
+  "EC": 1.0,
+  "EM-f": 1.0,
+  "EM-u": 1.0,
+  "EMC": 1.0
+ }
+}

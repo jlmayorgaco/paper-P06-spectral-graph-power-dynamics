@@ -1,0 +1,20 @@
+\begin{table}[!t]
+\centering
+\caption{Preregistered evidence layers for ``a context-independent node ranking does not suffice'' (new holdout). Frozen rule for a strong claim: $\ge5$ of 8 including L2 and L5. L1--L4 are nested, L6 is positive whenever L5 is, L5 fails in the EM stratum, and L7 uses the global $\aperp$, so the layers are not independent.}\label{tab:layers}
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{@{}cL{0.44\columnwidth}L{0.36\columnwidth}c@{}}
+\toprule
+& layer & value & pos. \\
+\midrule
+L1 & arbitrary-context reversal & 1.00 & yes \\
+L2 & nested-context reversal (level A) & 1.00 & yes \\
+L3 & tracked-mode nested reversal (level B) & 0.95 & yes \\
+L4 & EM-band tracked nested reversal (level C) & 0.89 & yes \\
+L5 & optimal fixed ranking failure (FULL) & p*=0.749; regret=0.376 & yes \\
+L6 & ranking transfer failure & offdiag regret=0.402; diag=0.376 & yes \\
+L7 & envelope robustness (fresh draws) & EC: 1.0, EM-f: 0.9, EM-u: 0.8, EMC: 1.0; EM mode: EC: 0.0, EM-f: 0.5, EM-u: 0.6, EMC: 0.7 & yes \\
+L8 & dynamic-converter holdout (ALT-WECC reversal) & 0.0 (MODEL-SPECIFIC) & no \\
+\bottomrule
+\end{tabular}
+\end{table}

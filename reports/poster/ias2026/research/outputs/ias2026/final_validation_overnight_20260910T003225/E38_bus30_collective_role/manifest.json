@@ -1,0 +1,104 @@
+{
+  "experiment": "E38_bus30_collective_role",
+  "question": "Is bus 30 individually ordinary but collectively enabling?",
+  "verdict": "NOT SUPPORTED AFTER ADJUSTMENT",
+  "seed": null,
+  "config": {
+    "census": "results/tables/E12_compatibility_census_portfolios.csv",
+    "predictors": "results/tables/E13_baseline_challenge_predictors.csv",
+    "permutations": 20000,
+    "rule": "no claim if bus 30 loses significance after controlling MW and inertia"
+  },
+  "workers": 1,
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 8.26,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-10T06:19:51Z",
+  "elapsed_s": 2.21,
+  "notes": [
+    "512 portfolios, 9 candidate buses"
+  ],
+  "results": {
+    "summary": {
+      "minimal_cores": 42,
+      "inter_area_cores": 12,
+      "pll_cores": 153,
+      "bus30_share_of_minimal_cores": 0.5238095238095238,
+      "bus30_rank_by_minimal_share": 6,
+      "bus30_individual_abscissa": -0.1389678004955603,
+      "bus30_individual_abscissa_rank": 5,
+      "bus30_participation": 0.026463637689832675,
+      "bus30_participation_rank": 7,
+      "fisher_contingency": [
+        [
+          9,
+          47
+        ],
+        [
+          1,
+          69
+        ]
+      ],
+      "fisher_odds_ratio": 13.212765957446809,
+      "fisher_p": 0.0049965875990895196,
+      "matched_pairs_wins": 41,
+      "matched_pairs_losses": 0,
+      "matched_pairs_ties": 239,
+      "matched_pairs_p_mcnemar_exact": 9.094947017729282e-13,
+      "permutation_difference": 0.14642857142857144,
+      "permutation_p": 0.00255,
+      "adjusted_odds_ratio": 4.094787518926671,
+      "adjusted_p": 0.4180424226297125,
+      "survives_adjustment": false
+    },
+    "fits": [
+      {
+        "population": "all order-4 portfolios",
+        "n": 126,
+        "unstable": 10,
+        "bus30_coefficient": 1.4097148280288125,
+        "bus30_odds_ratio": 4.094787518926671,
+        "odds_ratio_ci_low": 0.1350383740885223,
+        "odds_ratio_ci_high": 124.16681508743666,
+        "standard_error": 1.7407709777842029,
+        "bus30_p_value": 0.4180424226297125,
+        "converged": true,
+        "pseudo_r2": 0.5557464932460967,
+        "coef_bus30": 1.4097148280288125,
+        "coef_replaced_mw": 10.21405198115362,
+        "coef_inertia": 156.1539614734376,
+        "coef_min_scr": 6.113116922779309,
+        "coef_gscr": -0.8716613219045816
+      },
+      {
+        "population": "order-4, inter-area family only",
+        "n": 125,
+        "unstable": 9,
+        "bus30_coefficient": 21.392936545306156,
+        "bus30_odds_ratio": 1953593912.563444,
+        "odds_ratio_ci_low": 1.9287498479639178e-22,
+        "odds_ratio_ci_high": 5.184705528587072e+21,
+        "standard_error": 3348.177526743963,
+        "bus30_p_value": 0.9949020093756161,
+        "converged": false,
+        "pseudo_r2": 0.5948305297985705,
+        "coef_bus30": 21.392936545306156,
+        "coef_replaced_mw": 9.654744556195961,
+        "coef_inertia": 143.2661842800117,
+        "coef_min_scr": 5.688431141370278,
+        "coef_gscr": -0.7661745716750167
+      }
+    ],
+    "elapsed_s": 2.0817995071411133
+  }
+}

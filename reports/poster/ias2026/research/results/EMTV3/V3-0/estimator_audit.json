@@ -1,0 +1,210 @@
+{
+ "estimator_file": "experiments/paremt_emt/emt_estimator.py",
+ "estimator_sha256": "38e4f1eba020deada2933bf62c31c2f3e50c6fa55d825e870a1e8e17cd5bd7e6",
+ "G3a": {
+  "R-SG30_emt": {
+   "n_samples": 79,
+   "order": 10,
+   "max_abs_z": 16.712954803472883,
+   "n_modes_abs_z_gt_1": 4,
+   "log10_max_abs_z_power_n": 95.39815262065544,
+   "vandermonde_finite": true,
+   "log10_column_norm_range": 95.29760255975462,
+   "lstsq_rank_kept": 1,
+   "lstsq_rank_full": 10,
+   "resid": 0.9988720710296547,
+   "in_band_modes": [
+    {
+     "alpha": -0.11836766237508814,
+     "f": 1.177112387994365,
+     "abs_residue": 0.0,
+     "log10_energy_weight_exp2alphaT": -0.8122214771635494,
+     "energy": 0.0
+    }
+   ],
+   "frozen_output": {
+    "resolved": false,
+    "alpha": -0.11836766237508814,
+    "freq": 1.177112387994365,
+    "order": 10,
+    "resid": 0.9988720710296547
+   }
+  },
+  "R-SG30_ref": {
+   "n_samples": 79,
+   "order": 10,
+   "max_abs_z": 16.711375630806018,
+   "n_modes_abs_z_gt_1": 4,
+   "log10_max_abs_z_power_n": 95.39495169334234,
+   "vandermonde_finite": true,
+   "log10_column_norm_range": 95.29411894559284,
+   "lstsq_rank_kept": 1,
+   "lstsq_rank_full": 10,
+   "resid": 0.9988721492673756,
+   "in_band_modes": [
+    {
+     "alpha": -0.11836746916565062,
+     "f": 1.1771123349786559,
+     "abs_residue": 0.0,
+     "log10_energy_weight_exp2alphaT": -0.8122201513888269,
+     "energy": 0.0
+    }
+   ],
+   "frozen_output": {
+    "resolved": false,
+    "alpha": -0.11836746916565062,
+    "freq": 1.1771123349786559,
+    "order": 10,
+    "resid": 0.9988721492673756
+   }
+  },
+  "B-SG36_emt": {
+   "n_samples": 79,
+   "order": 16,
+   "max_abs_z": 2.1700586019524444,
+   "n_modes_abs_z_gt_1": 6,
+   "log10_max_abs_z_power_n": 26.244774038596596,
+   "vandermonde_finite": true,
+   "log10_column_norm_range": 26.294001546668785,
+   "lstsq_rank_kept": 3,
+   "lstsq_rank_full": 16,
+   "resid": 0.9987462362415802,
+   "in_band_modes": [
+    {
+     "alpha": 6.313365372777597,
+     "f": 1.1051160511955778,
+     "abs_residue": 1.1903151685122188e-22,
+     "log10_energy_weight_exp2alphaT": 43.321383949454756,
+     "energy": 0.023518897847363225
+    },
+    {
+     "alpha": -0.6918748045082289,
+     "f": 0.27260217175420215,
+     "abs_residue": 2.8486370937783096e-46,
+     "log10_energy_weight_exp2alphaT": -4.747543074299876,
+     "energy": 5.8642026836864656e-92
+    }
+   ],
+   "frozen_output": {
+    "resolved": false,
+    "alpha": 6.313365372777597,
+    "freq": 1.1051160511955778,
+    "order": 16,
+    "resid": 0.9987462362415802
+   }
+  },
+  "B-SG36_ref": {
+   "n_samples": 79,
+   "order": 16,
+   "max_abs_z": 2.172050004825845,
+   "n_modes_abs_z_gt_1": 6,
+   "log10_max_abs_z_power_n": 26.275845908332517,
+   "vandermonde_finite": true,
+   "log10_column_norm_range": 26.324971081739534,
+   "lstsq_rank_kept": 3,
+   "lstsq_rank_full": 16,
+   "resid": 0.998739140164445,
+   "in_band_modes": [
+    {
+     "alpha": 6.297606338173656,
+     "f": 1.1096802195465332,
+     "abs_residue": 1.3536397964585245e-22,
+     "log10_energy_weight_exp2alphaT": 43.21324777351065,
+     "energy": 0.023771057155442712
+    },
+    {
+     "alpha": -0.6918812259127893,
+     "f": 0.2726284575251373,
+     "abs_residue": 3.615219736557295e-46,
+     "log10_energy_weight_exp2alphaT": -4.747587137032829,
+     "energy": 9.444959294623454e-92
+    }
+   ],
+   "frozen_output": {
+    "resolved": false,
+    "alpha": 6.297606338173656,
+    "freq": 1.1096802195465332,
+    "order": 16,
+    "resid": 0.998739140164445
+   }
+  }
+ },
+ "DV2-2": [
+  {
+   "alpha_true": 0.127,
+   "f_true": 0.622,
+   "n_samples": 279,
+   "order": 9,
+   "max_abs_z": 18.93324288516709,
+   "n_modes_abs_z_gt_1": 5,
+   "log10_max_abs_z_power_n": 355.06855174537543,
+   "vandermonde_finite": false,
+   "frozen_output": {
+    "error": "LinAlgError: SVD did not converge in Linear Least Squares"
+   }
+  },
+  {
+   "alpha_true": -0.144,
+   "f_true": 0.637,
+   "n_samples": 279,
+   "order": 10,
+   "max_abs_z": 4.00444790147826,
+   "n_modes_abs_z_gt_1": 2,
+   "log10_max_abs_z_power_n": 167.50685608662957,
+   "vandermonde_finite": true,
+   "log10_column_norm_range": Infinity,
+   "lstsq_rank_kept": 1,
+   "lstsq_rank_full": 10,
+   "resid": 0.9999998865545489,
+   "in_band_modes": [
+    {
+     "alpha": -0.14398643306274245,
+     "f": 0.6369945820833413,
+     "abs_residue": 0.0,
+     "log10_energy_weight_exp2alphaT": -3.4893142448229186,
+     "energy": 0.0
+    },
+    {
+     "alpha": -0.6004911760799415,
+     "f": 0.9499583099036659,
+     "abs_residue": 0.0,
+     "log10_energy_weight_exp2alphaT": -14.552082234533682,
+     "energy": 0.0
+    }
+   ],
+   "frozen_output": {
+    "resolved": false,
+    "alpha": -0.14398643306274245,
+    "freq": 0.6369945820833413,
+    "order": 10,
+    "resid": 0.9999998865545489
+   }
+  },
+  {
+   "alpha_true": -0.0174,
+   "f_true": 0.71,
+   "n_samples": 279,
+   "order": 10,
+   "max_abs_z": 18.680217806772628,
+   "n_modes_abs_z_gt_1": 3,
+   "log10_max_abs_z_power_n": 353.44417812211947,
+   "vandermonde_finite": false,
+   "frozen_output": {
+    "error": "LinAlgError: SVD did not converge in Linear Least Squares"
+   }
+  },
+  {
+   "alpha_true": 0.0036,
+   "f_true": 0.705,
+   "n_samples": 279,
+   "order": 10,
+   "max_abs_z": 18.7016356860631,
+   "n_modes_abs_z_gt_1": 5,
+   "log10_max_abs_z_power_n": 353.5825267276025,
+   "vandermonde_finite": false,
+   "frozen_output": {
+    "error": "LinAlgError: SVD did not converge in Linear Least Squares"
+   }
+  }
+ ]
+}

@@ -1,0 +1,17 @@
+test,quantity,value,gate,pass,n
+C1,"max rel |F - moments(cumulants(F))|, n<=6, 120 draws",1.9393508826492777e-13,1e-10,True,120
+C1,max rel |recursion - partition definition|,1.6175983177756298e-15,1e-10,True,120
+C2,max |mixed chi| / max |chi| under exact factorization,5.3435206019790765e-15,1e-12,True,60
+T4/C3,"scalar Q_ii = 0: max rel |chi_S - (-1)^(|S|-1) sum spanning cycles|, n<=6",1.6070432225951248e-14,1e-10,True,50
+T4/C3,scalar Q_ii != 0 (|S|>=2): same,6.242682636377471e-14,1e-10,True,50
+T5,2x2 blocks: max |F - moments(cumulants(F))|,7.944109290391274e-15,1e-10,True,30
+T5,2x2 blocks: max |mixed chi| after decoupling block 0,0.0,1e-12,True,30
+T5/C3,2x2 blocks: max rel |chi_S - block-connected permutation sum|,5.267655802524573e-15,1e-10,True,30
+T5/C3,2x2 blocks: max rel |chi_ab - (-tr(Q_ab Q_ba) + det Q_ab det Q_ba)|,7.800592753366672e-16,1e-12,True,30
+T5/C3,2x2 blocks: MIN relative gap |chi_S - naive holonomy formula| / |chi_S| (refutation if >> 0),0.044854225419993676,report,,30
+T5,2x2 blocks: max rel gauge drift of chi under block similarity,7.710330963090948e-15,1e-09,True,30
+T1,two independent pairs: MIN |mu_1234| over probes (must be > 0),0.0050567901234568335,report,,4
+T1,two independent pairs: MAX |chi_1234| over probes,5.551115123125783e-17,1e-12,True,4
+T2,4-ring: max rel |chi_1234 - (-q12 q23 q34 q41)|,2.618455766672135e-16,1e-12,True,4
+Thm 2.3,minimal coalitions whose cumulant support is NOT connected (random toys),0.0,0.0,True,184
+Thm 2.3,minimal coalitions (|H|>=2) with chi_H = 0 at the zero (composite),5.0,report,,184

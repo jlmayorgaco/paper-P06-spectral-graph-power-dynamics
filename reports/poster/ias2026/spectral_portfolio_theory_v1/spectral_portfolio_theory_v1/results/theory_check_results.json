@@ -1,0 +1,280 @@
+{
+  "symmetry_quotient": [
+    {
+      "physical_pole": -0.0001,
+      "quotient_alpha": -0.0001,
+      "threshold_1e-3_would_hide": true
+    },
+    {
+      "physical_pole": 0.0,
+      "quotient_alpha": 0.0,
+      "threshold_1e-3_would_hide": true
+    },
+    {
+      "physical_pole": 1e-07,
+      "quotient_alpha": 1e-07,
+      "threshold_1e-3_would_hide": true
+    },
+    {
+      "physical_pole": 0.0001,
+      "quotient_alpha": 0.0001,
+      "threshold_1e-3_would_hide": true
+    }
+  ],
+  "port_identity": {
+    "max_absolute_error": 1.6109146952324853e-15,
+    "gauge_error": 1.9867050940907968e-15
+  },
+  "closure_not_robustness_radius": [
+    {
+      "L": 1.0,
+      "eigen_distance_minus1": 1.0,
+      "singular_min": 0.6180339887498948
+    },
+    {
+      "L": 10.0,
+      "eigen_distance_minus1": 1.0,
+      "singular_min": 0.09901951359278482
+    },
+    {
+      "L": 100.0,
+      "eigen_distance_minus1": 1.0,
+      "singular_min": 0.009999000199950014
+    },
+    {
+      "L": 1000.0,
+      "eigen_distance_minus1": 1.0,
+      "singular_min": 0.000999999000002
+    }
+  ],
+  "cardinality_certificate": {
+    "top_row_bounds": {
+      "1": 0.0,
+      "2": 0.3,
+      "3": 0.6,
+      "4": 0.8999999999999999,
+      "5": 1.2,
+      "6": 1.5
+    },
+    "true_kappa": 5,
+    "number_minimal_witnesses": 6,
+    "global_perron_bound": 1.4999999999999996,
+    "unstable_port_naive_smallgain_counterexample_pole": 0.9
+  },
+  "boolean_vs_box": {
+    "alpha_vertex0": -1.0,
+    "alpha_vertex1": -1.0,
+    "alpha_midpoint": 1.0000000000000004,
+    "polynomial_residual": "32*d*(d-1)*[[0,1],[1,0]]"
+  },
+  "threshold_not_interaction_degree": [
+    {
+      "actions": 2,
+      "minimum_bad_order": 2,
+      "scalar_interaction_degree": 1
+    },
+    {
+      "actions": 3,
+      "minimum_bad_order": 3,
+      "scalar_interaction_degree": 1
+    },
+    {
+      "actions": 4,
+      "minimum_bad_order": 4,
+      "scalar_interaction_degree": 1
+    },
+    {
+      "actions": 5,
+      "minimum_bad_order": 5,
+      "scalar_interaction_degree": 1
+    },
+    {
+      "actions": 6,
+      "minimum_bad_order": 6,
+      "scalar_interaction_degree": 1
+    },
+    {
+      "actions": 7,
+      "minimum_bad_order": 7,
+      "scalar_interaction_degree": 1
+    },
+    {
+      "actions": 8,
+      "minimum_bad_order": 8,
+      "scalar_interaction_degree": 1
+    }
+  ],
+  "safe_subcube_search": [
+    {
+      "seed": 0,
+      "portfolios": 512,
+      "hyperedges": 6,
+      "restabilizing_edges": 64,
+      "nodes": 355,
+      "leaf_queries": 48,
+      "eigen_queries": 291,
+      "lyapunov_solves": 237,
+      "certified_safe_subcubes": 60,
+      "minimality_exclusions": 64
+    },
+    {
+      "seed": 1,
+      "portfolios": 512,
+      "hyperedges": 16,
+      "restabilizing_edges": 160,
+      "nodes": 233,
+      "leaf_queries": 20,
+      "eigen_queries": 195,
+      "lyapunov_solves": 159,
+      "certified_safe_subcubes": 43,
+      "minimality_exclusions": 38
+    },
+    {
+      "seed": 2,
+      "portfolios": 512,
+      "hyperedges": 12,
+      "restabilizing_edges": 68,
+      "nodes": 263,
+      "leaf_queries": 5,
+      "eigen_queries": 213,
+      "lyapunov_solves": 196,
+      "certified_safe_subcubes": 65,
+      "minimality_exclusions": 50
+    },
+    {
+      "seed": 3,
+      "portfolios": 512,
+      "hyperedges": 5,
+      "restabilizing_edges": 64,
+      "nodes": 71,
+      "leaf_queries": 2,
+      "eigen_queries": 66,
+      "lyapunov_solves": 59,
+      "certified_safe_subcubes": 24,
+      "minimality_exclusions": 5
+    },
+    {
+      "seed": 4,
+      "portfolios": 512,
+      "hyperedges": 29,
+      "restabilizing_edges": 82,
+      "nodes": 375,
+      "leaf_queries": 50,
+      "eigen_queries": 319,
+      "lyapunov_solves": 240,
+      "certified_safe_subcubes": 53,
+      "minimality_exclusions": 56
+    }
+  ],
+  "nonmonotone_greedy_trap": {
+    "unsafe_masks": [
+      1,
+      7
+    ],
+    "true_minimal_masks": [
+      1
+    ],
+    "mask7_all_immediate_deletions_stable": true
+  },
+  "hereditary_core_equivalence": [
+    {
+      "seed": 0,
+      "minimal_hyperedges": 4
+    },
+    {
+      "seed": 1,
+      "minimal_hyperedges": 3
+    },
+    {
+      "seed": 2,
+      "minimal_hyperedges": 4
+    },
+    {
+      "seed": 3,
+      "minimal_hyperedges": 3
+    },
+    {
+      "seed": 4,
+      "minimal_hyperedges": 4
+    },
+    {
+      "seed": 5,
+      "minimal_hyperedges": 3
+    },
+    {
+      "seed": 6,
+      "minimal_hyperedges": 4
+    },
+    {
+      "seed": 7,
+      "minimal_hyperedges": 5
+    }
+  ],
+  "stable_endpoint_no_safe_path": {
+    "alphas_empty_1_2_12": [
+      -1.0,
+      1.0,
+      1.0,
+      -2.0
+    ]
+  },
+  "local_closure_law": [
+    {
+      "alpha": 0.01,
+      "local_min": 0.0056234517121773004,
+      "linear_prediction": 0.005623471882640586,
+      "relative_error": 3.5868345582557026e-06,
+      "omega_error": 3.449597119198344e-05
+    },
+    {
+      "alpha": 0.005,
+      "local_min": 0.0028117334200433693,
+      "linear_prediction": 0.002811735941320293,
+      "relative_error": 8.966976189350717e-07,
+      "omega_error": 8.629528370551753e-06
+    },
+    {
+      "alpha": 0.001,
+      "local_min": 0.0005623471680939108,
+      "linear_prediction": 0.0005623471882640586,
+      "relative_error": 3.58677845202493e-08,
+      "omega_error": 3.4480203980891133e-07
+    },
+    {
+      "alpha": -0.01,
+      "local_min": 0.0056234517121773,
+      "linear_prediction": 0.005623471882640586,
+      "relative_error": 3.586834558366725e-06,
+      "omega_error": 3.449597164451035e-05
+    },
+    {
+      "alpha": -0.001,
+      "local_min": 0.0005623471680939107,
+      "linear_prediction": 0.0005623471882640586,
+      "relative_error": 3.5867784742293907e-08,
+      "omega_error": 3.4480203980891133e-07
+    }
+  ],
+  "switching_trap": {
+    "mode_alphas": [
+      -1.0,
+      -1.0
+    ],
+    "period": 0.1,
+    "monodromy_spectral_radius": 1.1048042365686301
+  },
+  "local_nonlinear_certificate": {
+    "system": "xdot=-x+x^2",
+    "V": "x^2",
+    "certified_radius": 0.8,
+    "inequality": "Vdot <= -0.4*x^2"
+  },
+  "meta": {
+    "checks_passed": 404,
+    "seed": 20260910,
+    "scope": "synthetic theory checks, not IEEE/ANDES validation",
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "numpy": "2.3.5",
+    "wall_seconds": 0.48059916496276855
+  }
+}

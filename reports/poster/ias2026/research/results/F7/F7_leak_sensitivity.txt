@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics\reports\poster\ias2026\research\experiments\F7_leak_sensitivity.py", line 18, in <module>
+    import _f7_common
+  File "C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics\reports\poster\ias2026\research\experiments\_f7_common.py", line 38, in <module>
+    from _v2c_common import BAND_HZ, CORE
+  File "C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics\reports\poster\ias2026\research\experiments\_v2c_common.py", line 17, in <module>
+    from ibr_cycles.dynamics.modal_family import (
+    ...<3 lines>...
+    )
+ModuleNotFoundError: No module named 'ibr_cycles'

@@ -1,0 +1,37 @@
+{
+  "complex_forest_theorem": {
+    "n_checks": 600,
+    "max_tree_error": 1.024051974213257e-15,
+    "max_rooted_forest_error": 6.073321995375943e-16
+  },
+  "ieee39_ten_boundaries": {
+    "max_jacobi_error": 1.960144619656457e-13,
+    "max_factor_error": 5.3177199902985775e-15,
+    "offdiag_complex_linear_max": 0.0,
+    "diag_complex_linear_median": 0.0148188177648749
+  },
+  "line_diagnosis": {
+    "static_betweenness_rho": -0.08494632718570795,
+    "weighted_betweenness_rho": -0.05875112924269388,
+    "forest_leverage_rho": 0.3826703669441875,
+    "fixed_port_vs_dae_rho": 0.6151711378353377,
+    "fixed_sign_agreement": 0.8043478260869565
+  },
+  "holdout": {
+    "n": 24,
+    "spearman": 0.9999999999999999,
+    "sign_agreement": 1.0,
+    "median_relative_complex_error": 0.0033479706419107056,
+    "max_relative_complex_error": 0.01339279545246802
+  },
+  "census": {
+    "n": 125,
+    "unstable": 10,
+    "auc_best": {
+      "local_logabs": 0.6617391304347826,
+      "network_logabs": 0.5008695652173913,
+      "fullorder_logabs": 0.8078260869565217,
+      "replaced_pg_mw": 0.571304347826087
+    }
+  }
+}

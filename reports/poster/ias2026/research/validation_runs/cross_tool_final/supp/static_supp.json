@@ -1,0 +1,56 @@
+{
+  "A_supp": {
+    "pv_p": 1.1359801987964602e-12,
+    "pv_q": 2.0454726453733585e-06,
+    "slack_p": 5.689183169899081e-06,
+    "slack_q": 3.5742095099156046e-06
+  },
+  "B_as_supplied": {
+    "converged": true,
+    "ybus_max_abs_error": 9.382716049382793,
+    "gen_P_max_abs_error_pu": 1.1359801987964602e-12,
+    "gen_Q_max_abs_error_pu": 5.430267467009678,
+    "slack_P_abs_error_pu": 0.03013624562481798,
+    "slack_Q_abs_error_pu": 1.608234381984876,
+    "vm_max_abs_error_pu": 0.09262033060114405,
+    "va_max_gauge_aligned_error_rad": 0.017522414090965138,
+    "native_branch_terminal_flow_max_error_MVA": 561.3306927862267
+  },
+  "B_corrected": {
+    "converged": true,
+    "ybus_max_abs_error": 1.139086659085919e-13,
+    "gen_P_max_abs_error_pu": 1.1359801987964602e-12,
+    "gen_Q_max_abs_error_pu": 1.963762485956977e-12,
+    "slack_P_abs_error_pu": 1.311839525897085e-12,
+    "slack_Q_abs_error_pu": 1.0547118733938987e-12,
+    "vm_max_abs_error_pu": 2.864375403532904e-14,
+    "va_max_gauge_aligned_error_rad": 3.223810107755298e-14,
+    "native_branch_terminal_flow_max_error_MVA": 2.027604750765022e-10
+  },
+  "B_corrected_reoriented_branches": [
+    {
+      "branch": 35,
+      "from": 31,
+      "to": 6,
+      "tap": 0.9,
+      "new_tap": 1.1111111111111112,
+      "two_port_err": 1.4210854715202004e-14
+    },
+    {
+      "branch": 37,
+      "from": 12,
+      "to": 11,
+      "tap": 1.006,
+      "new_tap": 0.9940357852882704,
+      "two_port_err": 1.1102230246251565e-16
+    },
+    {
+      "branch": 38,
+      "from": 12,
+      "to": 13,
+      "tap": 1.006,
+      "new_tap": 0.9940357852882704,
+      "two_port_err": 1.1102230246251565e-16
+    }
+  ]
+}

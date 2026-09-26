@@ -1,0 +1,650 @@
+{
+ "P4|D1": {
+  "rho_scope": 130.46875,
+  "critical_radii": [
+   0.0
+  ],
+  "intervals": [
+   {
+    "rho_lo": 0.0,
+    "rho_hi": 130.46875,
+    "rho_rep": 65.234375,
+    "faces": 15,
+    "H_NL": "30+33+35+37",
+    "kappa_NL": 4,
+    "local": [
+     {
+      "H": "30+33+35+37",
+      "boundary_of_simplex": true,
+      "reduced_betti": {
+       "2": 1
+      }
+     }
+    ],
+    "global_reduced_betti": {
+     "2": 1
+    }
+   }
+  ],
+  "R_k": {
+   "1": 375.78125,
+   "2": 192.1875,
+   "3": 130.46875,
+   "4": 0.0
+  },
+  "first_event_intervals": [
+   {
+    "rho_lo": 0.0,
+    "rho_hi": 130.46875,
+    "H_first_event": "30+33+35+37",
+    "kappa_first_event": 4
+   },
+   {
+    "rho_lo": 130.46875,
+    "rho_hi": 154.6875,
+    "H_first_event": "30+33+35",
+    "kappa_first_event": 3
+   },
+   {
+    "rho_lo": 154.6875,
+    "rho_hi": 192.1875,
+    "H_first_event": "30+33+35|33+35+37",
+    "kappa_first_event": 3
+   },
+   {
+    "rho_lo": 192.1875,
+    "rho_hi": 210.546875,
+    "H_first_event": "33+35",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 210.546875,
+    "rho_hi": 286.71875,
+    "H_first_event": "33+35|30+35+37",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 286.71875,
+    "rho_hi": 314.84375,
+    "H_first_event": "30+35|33+35",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 314.84375,
+    "rho_hi": 319.53125,
+    "H_first_event": "30+35|33+35|30+33+37",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 319.53125,
+    "rho_hi": 375.78125,
+    "H_first_event": "30+35|33+35|35+37|30+33+37",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 375.78125,
+    "rho_hi": 450.78125,
+    "H_first_event": "35|30+33+37",
+    "kappa_first_event": 1
+   },
+   {
+    "rho_lo": 450.78125,
+    "rho_hi": 515.625,
+    "H_first_event": "35|30+33",
+    "kappa_first_event": 1
+   },
+   {
+    "rho_lo": 515.625,
+    "rho_hi": 596.875,
+    "H_first_event": "35|30+33|33+37",
+    "kappa_first_event": 1
+   },
+   {
+    "rho_lo": 596.875,
+    "rho_hi": 681.25,
+    "H_first_event": "33|35",
+    "kappa_first_event": 1
+   },
+   {
+    "rho_lo": 681.25,
+    "rho_hi": 1022.875,
+    "H_first_event": "BASE",
+    "kappa_first_event": 0
+   }
+  ],
+  "checks": {
+   "down_closed": true,
+   "nonfaces_eq_minimal_unsafe": true,
+   "local_sphere": true,
+   "filtration": true,
+   "R_k_monotone": true
+  },
+  "H_NL_0plus": "30+33+35+37",
+  "H_RHP_perp": "30+33+35+37",
+  "H_NL_0plus_equals_H_RHP_perp": true,
+  "n_finite_thresholds": 16
+ },
+ "P4|D2": {
+  "rho_scope": 97.65625,
+  "critical_radii": [
+   0.0
+  ],
+  "intervals": [
+   {
+    "rho_lo": 0.0,
+    "rho_hi": 97.65625,
+    "rho_rep": 48.828125,
+    "faces": 15,
+    "H_NL": "30+33+35+37",
+    "kappa_NL": 4,
+    "local": [
+     {
+      "H": "30+33+35+37",
+      "boundary_of_simplex": true,
+      "reduced_betti": {
+       "2": 1
+      }
+     }
+    ],
+    "global_reduced_betti": {
+     "2": 1
+    }
+   }
+  ],
+  "R_k": {
+   "1": 272.65625,
+   "2": 170.3125,
+   "3": 97.65625,
+   "4": 0.0
+  },
+  "first_event_intervals": [
+   {
+    "rho_lo": 0.0,
+    "rho_hi": 97.65625,
+    "H_first_event": "30+33+35+37",
+    "kappa_first_event": 4
+   },
+   {
+    "rho_lo": 97.65625,
+    "rho_hi": 144.53125,
+    "H_first_event": "30+33+35",
+    "kappa_first_event": 3
+   },
+   {
+    "rho_lo": 144.53125,
+    "rho_hi": 170.3125,
+    "H_first_event": "30+33+35|33+35+37",
+    "kappa_first_event": 3
+   },
+   {
+    "rho_lo": 170.3125,
+    "rho_hi": 198.4375,
+    "H_first_event": "33+35",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 198.4375,
+    "rho_hi": 239.84375,
+    "H_first_event": "33+35|30+35+37",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 239.84375,
+    "rho_hi": 253.90625,
+    "H_first_event": "30+35|33+35",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 253.90625,
+    "rho_hi": 258.59375,
+    "H_first_event": "30+35|33+35|30+33+37",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 258.59375,
+    "rho_hi": 272.65625,
+    "H_first_event": "30+35|33+35|35+37|30+33+37",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 272.65625,
+    "rho_hi": 338.28125,
+    "H_first_event": "35|30+33+37",
+    "kappa_first_event": 1
+   },
+   {
+    "rho_lo": 338.28125,
+    "rho_hi": 389.53125,
+    "H_first_event": "35|30+33",
+    "kappa_first_event": 1
+   },
+   {
+    "rho_lo": 389.53125,
+    "rho_hi": 585.296875,
+    "H_first_event": "BASE",
+    "kappa_first_event": 0
+   }
+  ],
+  "checks": {
+   "down_closed": true,
+   "nonfaces_eq_minimal_unsafe": true,
+   "local_sphere": true,
+   "filtration": true,
+   "R_k_monotone": true
+  },
+  "H_NL_0plus": "30+33+35+37",
+  "H_RHP_perp": "30+33+35+37",
+  "H_NL_0plus_equals_H_RHP_perp": true,
+  "n_finite_thresholds": 16
+ },
+ "P4|D3": {
+  "rho_scope": 0.090625,
+  "critical_radii": [
+   0.0
+  ],
+  "intervals": [
+   {
+    "rho_lo": 0.0,
+    "rho_hi": 0.090625,
+    "rho_rep": 0.0453125,
+    "faces": 15,
+    "H_NL": "30+33+35+37",
+    "kappa_NL": 4,
+    "local": [
+     {
+      "H": "30+33+35+37",
+      "boundary_of_simplex": true,
+      "reduced_betti": {
+       "2": 1
+      }
+     }
+    ],
+    "global_reduced_betti": {
+     "2": 1
+    }
+   }
+  ],
+  "R_k": {
+   "1": 0.69140625,
+   "2": 0.2046875,
+   "3": 0.090625,
+   "4": 0.0
+  },
+  "first_event_intervals": [
+   {
+    "rho_lo": 0.0,
+    "rho_hi": 0.090625,
+    "H_first_event": "30+33+35+37",
+    "kappa_first_event": 4
+   },
+   {
+    "rho_lo": 0.090625,
+    "rho_hi": 0.159375,
+    "H_first_event": "30+33+35",
+    "kappa_first_event": 3
+   },
+   {
+    "rho_lo": 0.159375,
+    "rho_hi": 0.2046875,
+    "H_first_event": "30+33+35|33+35+37",
+    "kappa_first_event": 3
+   },
+   {
+    "rho_lo": 0.2046875,
+    "rho_hi": 0.2328125,
+    "H_first_event": "33+35",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 0.2328125,
+    "rho_hi": 0.3359375,
+    "H_first_event": "33+35|30+35+37",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 0.3359375,
+    "rho_hi": 0.3640624999999999,
+    "H_first_event": "30+35|33+35",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 0.3640624999999999,
+    "rho_hi": 0.4578125,
+    "H_first_event": "30+35|33+35|30+33+37",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 0.4578125,
+    "rho_hi": 0.65234375,
+    "H_first_event": "30+35|33+35|35+37|30+33+37",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 0.65234375,
+    "rho_hi": 0.69140625,
+    "H_first_event": "30+33|30+35|33+35|35+37",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 0.69140625,
+    "rho_hi": 0.71484375,
+    "H_first_event": "35|30+33",
+    "kappa_first_event": 1
+   },
+   {
+    "rho_lo": 0.71484375,
+    "rho_hi": 2.072265625,
+    "H_first_event": "35|30+33|33+37",
+    "kappa_first_event": 1
+   }
+  ],
+  "checks": {
+   "down_closed": true,
+   "nonfaces_eq_minimal_unsafe": true,
+   "local_sphere": true,
+   "filtration": true,
+   "R_k_monotone": true
+  },
+  "H_NL_0plus": "30+33+35+37",
+  "H_RHP_perp": "30+33+35+37",
+  "H_NL_0plus_equals_H_RHP_perp": true,
+  "n_finite_thresholds": 11
+ },
+ "P_inf|D1": {
+  "rho_scope": 88.28125,
+  "critical_radii": [
+   0.0
+  ],
+  "intervals": [
+   {
+    "rho_lo": 0.0,
+    "rho_hi": 88.28125,
+    "rho_rep": 44.140625,
+    "faces": 16,
+    "H_NL": "EMPTY",
+    "kappa_NL": -1,
+    "local": [],
+    "global_reduced_betti": {}
+   }
+  ],
+  "R_k": {
+   "1": 310.15625,
+   "2": 192.1875,
+   "3": 138.28125,
+   "4": 88.28125
+  },
+  "first_event_intervals": [
+   {
+    "rho_lo": 0.0,
+    "rho_hi": 88.28125,
+    "H_first_event": "EMPTY",
+    "kappa_first_event": -1
+   },
+   {
+    "rho_lo": 88.28125,
+    "rho_hi": 138.28125,
+    "H_first_event": "30+33+35+37",
+    "kappa_first_event": 4
+   },
+   {
+    "rho_lo": 138.28125,
+    "rho_hi": 160.9375,
+    "H_first_event": "30+33+35",
+    "kappa_first_event": 3
+   },
+   {
+    "rho_lo": 160.9375,
+    "rho_hi": 192.1875,
+    "H_first_event": "30+33+35|33+35+37",
+    "kappa_first_event": 3
+   },
+   {
+    "rho_lo": 192.1875,
+    "rho_hi": 201.171875,
+    "H_first_event": "33+35",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 201.171875,
+    "rho_hi": 253.90625,
+    "H_first_event": "33+35|30+35+37",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 253.90625,
+    "rho_hi": 277.34375,
+    "H_first_event": "30+35|33+35",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 277.34375,
+    "rho_hi": 310.15625,
+    "H_first_event": "30+35|33+35|35+37",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 310.15625,
+    "rho_hi": 314.84375,
+    "H_first_event": "35",
+    "kappa_first_event": 1
+   },
+   {
+    "rho_lo": 314.84375,
+    "rho_hi": 450.78125,
+    "H_first_event": "35|30+33+37",
+    "kappa_first_event": 1
+   },
+   {
+    "rho_lo": 450.78125,
+    "rho_hi": 515.625,
+    "H_first_event": "35|30+33",
+    "kappa_first_event": 1
+   },
+   {
+    "rho_lo": 515.625,
+    "rho_hi": 540.625,
+    "H_first_event": "35|30+33|33+37",
+    "kappa_first_event": 1
+   },
+   {
+    "rho_lo": 540.625,
+    "rho_hi": 571.875,
+    "H_first_event": "35|30+33|30+37|33+37",
+    "kappa_first_event": 1
+   },
+   {
+    "rho_lo": 571.875,
+    "rho_hi": 656.25,
+    "H_first_event": "33|35|30+37",
+    "kappa_first_event": 1
+   },
+   {
+    "rho_lo": 656.25,
+    "rho_hi": 668.75,
+    "H_first_event": "30|33|35|37",
+    "kappa_first_event": 1
+   },
+   {
+    "rho_lo": 668.75,
+    "rho_hi": 1004.125,
+    "H_first_event": "BASE",
+    "kappa_first_event": 0
+   }
+  ],
+  "checks": {
+   "down_closed": true,
+   "nonfaces_eq_minimal_unsafe": true,
+   "local_sphere": true,
+   "filtration": true,
+   "R_k_monotone": true
+  },
+  "H_NL_0plus": "EMPTY",
+  "H_RHP_perp": "EMPTY",
+  "H_NL_0plus_equals_H_RHP_perp": true,
+  "n_finite_thresholds": 16
+ },
+ "P_inf|D2": {
+  "rho_scope": 360.78125,
+  "critical_radii": [
+   0.0
+  ],
+  "intervals": [
+   {
+    "rho_lo": 0.0,
+    "rho_hi": 360.78125,
+    "rho_rep": 180.390625,
+    "faces": 16,
+    "H_NL": "EMPTY",
+    "kappa_NL": -1,
+    "local": [],
+    "global_reduced_betti": {}
+   }
+  ],
+  "R_k": {
+   "1": 367.96875,
+   "2": 360.78125,
+   "3": 360.78125,
+   "4": 360.78125
+  },
+  "first_event_intervals": [
+   {
+    "rho_lo": 0.0,
+    "rho_hi": 360.78125,
+    "H_first_event": "EMPTY",
+    "kappa_first_event": -1
+   },
+   {
+    "rho_lo": 360.78125,
+    "rho_hi": 367.96875,
+    "H_first_event": "33+35",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 367.96875,
+    "rho_hi": 389.53125,
+    "H_first_event": "35",
+    "kappa_first_event": 1
+   },
+   {
+    "rho_lo": 389.53125,
+    "rho_hi": 585.296875,
+    "H_first_event": "BASE",
+    "kappa_first_event": 0
+   }
+  ],
+  "checks": {
+   "down_closed": true,
+   "nonfaces_eq_minimal_unsafe": true,
+   "local_sphere": true,
+   "filtration": true,
+   "R_k_monotone": true
+  },
+  "H_NL_0plus": "EMPTY",
+  "H_RHP_perp": "EMPTY",
+  "H_NL_0plus_equals_H_RHP_perp": true,
+  "n_finite_thresholds": 16
+ },
+ "P_inf|D3": {
+  "rho_scope": 0.3078125,
+  "critical_radii": [
+   0.0
+  ],
+  "intervals": [
+   {
+    "rho_lo": 0.0,
+    "rho_hi": 0.3078125,
+    "rho_rep": 0.15390625,
+    "faces": 16,
+    "H_NL": "EMPTY",
+    "kappa_NL": -1,
+    "local": [],
+    "global_reduced_betti": {}
+   }
+  ],
+  "R_k": {
+   "1": 0.94921875,
+   "2": 0.4765625,
+   "3": 0.3640624999999999,
+   "4": 0.3078125
+  },
+  "first_event_intervals": [
+   {
+    "rho_lo": 0.0,
+    "rho_hi": 0.3078125,
+    "H_first_event": "EMPTY",
+    "kappa_first_event": -1
+   },
+   {
+    "rho_lo": 0.3078125,
+    "rho_hi": 0.3640624999999999,
+    "H_first_event": "30+33+35+37",
+    "kappa_first_event": 4
+   },
+   {
+    "rho_lo": 0.3640624999999999,
+    "rho_hi": 0.3828124999999999,
+    "H_first_event": "30+33+35",
+    "kappa_first_event": 3
+   },
+   {
+    "rho_lo": 0.3828124999999999,
+    "rho_hi": 0.4765625,
+    "H_first_event": "30+33+35|33+35+37",
+    "kappa_first_event": 3
+   },
+   {
+    "rho_lo": 0.4765625,
+    "rho_hi": 0.4953125,
+    "H_first_event": "33+35|30+35+37",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 0.4953125,
+    "rho_hi": 0.60546875,
+    "H_first_event": "33+35|30+33+37|30+35+37",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 0.60546875,
+    "rho_hi": 0.63671875,
+    "H_first_event": "30+35|33+35|30+33+37",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 0.63671875,
+    "rho_hi": 0.66015625,
+    "H_first_event": "30+33|30+35|33+35",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 0.66015625,
+    "rho_hi": 0.69921875,
+    "H_first_event": "30+33|30+35|33+35|35+37",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 0.69921875,
+    "rho_hi": 0.94921875,
+    "H_first_event": "30+33|30+35|33+35|33+37|35+37",
+    "kappa_first_event": 2
+   },
+   {
+    "rho_lo": 0.94921875,
+    "rho_hi": 2.423828125,
+    "H_first_event": "35|30+33|33+37",
+    "kappa_first_event": 1
+   }
+  ],
+  "checks": {
+   "down_closed": true,
+   "nonfaces_eq_minimal_unsafe": true,
+   "local_sphere": true,
+   "filtration": true,
+   "R_k_monotone": true
+  },
+  "H_NL_0plus": "EMPTY",
+  "H_RHP_perp": "EMPTY",
+  "H_NL_0plus_equals_H_RHP_perp": true,
+  "n_finite_thresholds": 11
+ }
+}

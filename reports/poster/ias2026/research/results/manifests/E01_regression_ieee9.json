@@ -1,0 +1,223 @@
+{
+  "experiment": "E01_regression_ieee9",
+  "seed": 20260909,
+  "config": {
+    "model": "ieee9_gfl",
+    "parameters": {
+      "h_sg": 6.4,
+      "d_sg": 2.0,
+      "xdp_sg": 0.1198,
+      "kp_pll": 53.0,
+      "ki_pll": 1400.0,
+      "tau_p": 0.03,
+      "kp_p": 0.2,
+      "ki_p": 8.0,
+      "kp_q": 0.2,
+      "ki_q": 8.0,
+      "kp_i": 0.25,
+      "ki_i": 6.0,
+      "xf": 0.15,
+      "rf": 0.01,
+      "p_ref": 0.8499999999997633,
+      "q_ref": -0.1085970907095782,
+      "pm_sg": 1.6299999999999175,
+      "e_sg": 1.0502010147841447
+    },
+    "actions": {
+      "A": {
+        "d_sg": 0.0
+      },
+      "B": {
+        "kp_p": 2.0
+      },
+      "C": {
+        "ki_pll": 144.0,
+        "kp_pll": 3.5999999999999996
+      }
+    },
+    "loads": {
+      "5": "(0.9+0.3j)",
+      "7": "(1+0.35j)",
+      "9": "(1.25+0.5j)"
+    },
+    "retained_states": [
+      "delta_sg",
+      "dw_sg",
+      "i_d",
+      "i_q"
+    ],
+    "probe_points": [
+      "(0.5+8.5j)",
+      "(-2+3j)",
+      "(1-12j)",
+      "(-15+20j)"
+    ]
+  },
+  "python": "3.13.14",
+  "platform_name": "Windows-11-10.0.26200-SP0",
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "dependencies": {
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1",
+    "networkx": "3.6.1",
+    "pyarrow": "25.0.1"
+  },
+  "started_utc": "2026-09-09T21:30:56.210091+00:00",
+  "results": {
+    "max_deviation_from_frozen": 4.5548202917558914e-07,
+    "max_deviation_from_specification": 0.0005271926230861895,
+    "specification_within_tolerance": true,
+    "minimum_destabilizing_order": 3,
+    "identities": {
+      "self_energy_pole_expansion_status": "DEFECTIVE_HIDDEN_BLOCK",
+      "self_energy_hidden_eigenvalue_condition": 1.1975847894155246e+19,
+      "schur_determinant_max_relative_error": 1.7817674466293888e-14,
+      "determinant_lemma_max_absolute_error": 6.804363002006077e-15,
+      "individual_collective_factorization_error": 8.891081171074842e-16,
+      "reduced_matrix_additivity_residual": 2.261727773473362e-17,
+      "operating_point_drift": 9.103828801926284e-14,
+      "max_action_reconstruction_error": 5.485186924354926e-16,
+      "max_action_numerical_rank": 1,
+      "abs_full_at_created_mode": 1.0718490456912725e-13,
+      "abs_individual_at_created_mode": 0.048940026477477465,
+      "abs_collective_at_created_mode": 2.190095617962217e-12,
+      "min_singular_value_of_I_plus_Q": 2.3706614380962036e-16,
+      "spectral_radius_of_Q": 1.0000000000008686
+    },
+    "provenance": [
+      {
+        "region": "circle_r0.005",
+        "verdict": "COLLECTIVE",
+        "winding_full": 0.9999999999999964,
+        "winding_individual": 2.415570195699729e-17,
+        "winding_collective": 1.0000000000000007,
+        "integer_full": 1,
+        "integer_individual": 0,
+        "integer_collective": 1,
+        "residual_full": 3.552713678800501e-15,
+        "min_magnitude_full": 0.005171206171420543,
+        "admissible": 1,
+        "clearance": 0.03235261456835486,
+        "admissibility_reason": "admissible"
+      },
+      {
+        "region": "circle_r0.01",
+        "verdict": "COLLECTIVE",
+        "winding_full": 1.0000000000000009,
+        "winding_individual": -1.009863210933705e-16,
+        "winding_collective": 1.0000000000000033,
+        "integer_full": 1,
+        "integer_individual": 0,
+        "integer_collective": 1,
+        "residual_full": 8.881784197001252e-16,
+        "min_magnitude_full": 0.009946401618808247,
+        "admissible": 1,
+        "clearance": 0.02735261465186176,
+        "admissibility_reason": "admissible"
+      },
+      {
+        "region": "circle_r0.02",
+        "verdict": "COLLECTIVE",
+        "winding_full": 1.000000000000004,
+        "winding_individual": -2.237837376585828e-16,
+        "winding_collective": 1.0000000000000002,
+        "integer_full": 1,
+        "integer_individual": 0,
+        "integer_collective": 1,
+        "residual_full": 3.9968028886505635e-15,
+        "min_magnitude_full": 0.01847946974668611,
+        "admissible": 1,
+        "clearance": 0.017352614963243758,
+        "admissibility_reason": "admissible"
+      },
+      {
+        "region": "circle_r0.05",
+        "verdict": "INADMISSIBLE_REGION",
+        "winding_full": 0.9999999999999993,
+        "winding_individual": -5.747844858916544e-17,
+        "winding_collective": 1.0000000000000002,
+        "integer_full": 1,
+        "integer_individual": 0,
+        "integer_collective": 1,
+        "residual_full": 6.661338147750939e-16,
+        "min_magnitude_full": 0.03810456468327553,
+        "admissible": 0,
+        "clearance": 0.005684198040440786,
+        "admissibility_reason": "Omega also encloses base or lower-order modes, so the individual/collective split is not interpretable"
+      }
+    ],
+    "right_half_plane": {
+      "boundary": -0.002,
+      "clearance": 0.005217455482026451,
+      "max_segment": 0.0013043638705066128,
+      "resolved": true,
+      "counts": {
+        "A": 0,
+        "B": 0,
+        "C": 0,
+        "AB": 0,
+        "AC": 0,
+        "BC": 0,
+        "ABC": 2
+      }
+    },
+    "mobius_terms": {
+      "BASE": -0.10588993402619022,
+      "A": 0.07835712512690522,
+      "B": 0.01976585040709823,
+      "C": -0.006166258596895971,
+      "AB": -0.0002468472038976051,
+      "AC": -0.000709611457438579,
+      "BC": 0.018912996484317532,
+      "ABC": -0.00080586525186943
+    },
+    "mobius_truncations": {
+      "order_1": -0.013933217089082739,
+      "order_2": 0.004023320733898609,
+      "exact": 0.003217455482029179,
+      "irreducible_third_order": -0.00080586525186943
+    },
+    "mechanism_verdict": "PAIRWISE_ACCUMULATION",
+    "action_graph_feedback_cores": [
+      [
+        "A",
+        "B",
+        "C"
+      ]
+    ],
+    "strongest_cycles": [
+      {
+        "members": [
+          "A",
+          "B"
+        ],
+        "magnitude": 0.0016279045239550576
+      },
+      {
+        "members": [
+          "A",
+          "C"
+        ],
+        "magnitude": 3.507973663300811e-05
+      },
+      {
+        "members": [
+          "A",
+          "B",
+          "C"
+        ],
+        "magnitude": 5.892208946778899e-08
+      }
+    ],
+    "power_flow": {
+      "max_mismatch": 4.780246526433317e-13,
+      "min_voltage": 0.995630858048319,
+      "max_voltage": 1.04
+    }
+  },
+  "status": "SUCCESS",
+  "config_sha256": "4ae0e111fa483b38b7eb4379a3f59e4340d076bc1eba68542cc16f9bd35ce2df",
+  "finished_utc": "2026-09-09T21:31:58.831643+00:00"
+}

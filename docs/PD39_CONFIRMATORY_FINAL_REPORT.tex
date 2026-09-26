@@ -1,0 +1,69 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=1.8cm]{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\title{PD39 Confirmatory Campaign: From the 255/256 Result to Hidden Dynamic Margin and Robust SG--GFL Transition Design}
+\author{Confirmatory computational report}
+\date{13 September 2026}
+\begin{document}
+\maketitle
+
+\section*{Executive verdict}
+The frozen discovery audit contains 256 portfolios and nine scenarios. All 255 proper portfolios pass the frozen $0.05\,\mathrm{s}^{-1}$ requirement in all nine scenarios. V8 is nominally stable with $\alpha=-0.0014447780\,\mathrm{s}^{-1}$, but is truly unstable in the four high-PLL scenarios and fails all nine robustness tests. Therefore, for this finite benchmark, $H_0=H_{0.05}=\{\mathrm{V8}\}$. This does not establish universal incompatibility.
+
+The structured-radius search used seed 39025 but 16 rather than 128 directions because of runtime. It completed eight selections; the missing-38 predecessor stalled before its first direction. The smallest V8 boundary found was $\rho_0=0.00190598$; $\rho_{0.05}(\mathrm{V8})=0$ because the nominal point already violates the engineering target. These are protocol-limited finds, not global radii.
+
+No controller-only repair passed the nine discovery conditions within $\pm10\%$. Four minimum single-line repairs passed discovery, but none passed all 24 holdout conditions. The corrected nonlinear TDS supports the relative ordering of best 7/8, worst 7/8, V8, and the line repair. P3 did not generalize better than P1/P2 on the holdout. The defensible status is a bounded, auditable PD39 warning case and a narrow continuation recommendation.
+
+\section{Discovery audit and definitions}
+The eight replaceable SG buses are 30, 32, 33, 34, 35, 36, 37, and 38. The nine conditions are nominal plus the eight corners of PLL, filter/reactance, and current-control scales at 0.8 and 1.2. Discovery robust margin is
+\[
+m_9(S)=\min_c[-\alpha(S,c)],\qquad \alpha=\max\Re(\lambda),
+\]
+and the criterion is $m_9\ge0.05$, equivalently $\alpha\le-0.05\,\mathrm{s}^{-1}$. It is not a structured radius. The nine failures are exactly V8 crossed with the nine scenarios. Four are true instability ($\alpha\ge0$); five are stable but below the engineering margin.
+
+\section{Exact V8 and 7/8 results}
+\begin{longtable}{lrrrr}
+\toprule
+Scenario & $\alpha$ & $m_\alpha$ & $f$ (Hz) & $\zeta$\\
+\midrule
+nominal & -0.001445 & 0.001445 & 0.344642 & 0.000667\\
+pll0.8\_xf0.8\_cc0.8 & -0.046447 & 0.046447 & 0.369479 & 0.020003\\
+pll0.8\_xf0.8\_cc1.2 & -0.044675 & 0.044675 & 0.369624 & 0.019233\\
+pll0.8\_xf1.2\_cc0.8 & -0.047001 & 0.047001 & 0.369414 & 0.020245\\
+pll0.8\_xf1.2\_cc1.2 & -0.045400 & 0.045400 & 0.369548 & 0.019549\\
+pll1.2\_xf0.8\_cc0.8 & 0.111414 & -0.111414 & 0.318614 & 0.055568\\
+pll1.2\_xf0.8\_cc1.2 & 0.114095 & -0.114095 & 0.319047 & 0.056824\\
+pll1.2\_xf1.2\_cc0.8 & 0.110443 & -0.110443 & 0.318453 & 0.055113\\
+pll1.2\_xf1.2\_cc1.2 & 0.112907 & -0.112907 & 0.318849 & 0.056269\\
+\bottomrule
+\end{longtable}
+
+The 7/8 worst-case margins for missing buses 30, 32, 33, 34, 35, 36, 37, and 38 are respectively 0.126229, 0.138022, 0.138296, 0.085835, 0.136356, 0.138058, 0.138325, and 0.138020 $\mathrm{s}^{-1}$. V8's critical mode is a complex electromechanical/control mode dominated by machine states at bus 39 and AVR/machine states at bus 31, with a smaller bus-38 GFL PLL contribution in low-PLL cases. It is not a clean converter-only pole.
+
+\section{Outages and numerical audit}
+All 11 outage failures are graph disconnections: lines 5, 14, 20, 27, 32, 33, 34, 37, 39, 41, and 46. The remaining 35 outages have finite PF/state, fixed point, voltage in 0.90--1.10 pu, and stable spectrum. The modal rerun completed 81/81 cases. The reduced Jacobian condition numbers are approximately $10^{18}$--$10^{22}$, eigenvector condition numbers about $4.1\times10^4$--$7.8\times10^4$, and smallest singular values can be below $5\times10^{-16}$. The physical interpretation is therefore plausible but numerically qualified.
+
+\section{Classical baselines and structured radius}
+SCR/gSCR were not fabricated: the frozen model does not provide the required fault-current assumptions. Static/dynamic discovery rank correlations were Spearman 0.1190 for buses and -0.0506 for links. V8 has 4620 MW converted candidate dispatch, 0.9189255 IBR MW penetration, about 407.6 MW remaining SG dispatch, 10700 MVA remaining SG rating, and about 53030.3 model inertia units.
+
+The clean smallest boundary finds were V8 $\rho_0=0.001906$, missing-32 $\rho_0=0.790983$, missing-34 $0.200128$, missing-36 $0.783359$, and missing-37 $0.711267$. Missing-30 and missing-35 produced jump crossings only; missing-33 had no boundary in tested directions; missing-38 was not estimable. No matched-alpha radius pairs were completed, so the $\ge3\times$ hidden-fragility hypothesis remains untested.
+
+\section{Holdout, planning, and repairs}
+The 24 fresh maximin-LHS conditions used seed 39024 and were not stability-screened. V8 achieved 12/24 robust cases. The 25\%, 50\%, and 75\% P2 static selections achieved 23/24, 24/24, and 24/24 for portfolios 33;35, 33;34;35;38, and 30;32;33;34;35;38. P1 nominal achieved 23/24; P3 robust-dynamic achieved 19/24. Thus the executed data do not demonstrate P3 superiority.
+
+Controller-only repair failed; the best grid point was \texttt{delta=(-0.1,+0.1,-0.1)} and worst discovery $\alpha=+0.0347404$. Minimum discovery-passing line reinforcements were line 1 $\gamma=1.091553$, line 2 $1.137451$, line 27 $1.193604$, and line 46 $1.211426$. Their holdout coverage was 13/24, 13/24, 13/24, and 12/24. No accepted topology-only or joint repair was found.
+
+\section{TDS}
+The common disturbance was +1\% or +5\% P/Q at the deterministic largest active-load bus from 1.0 to 1.1 s, restored, and simulated to 20 s. All ten traces have finite observables. Estimated 1\% rates were best 7/8 -0.3260, worst 7/8 -0.0975, V8 -0.00554, all-SG -0.1970, and minimum line-1 repair -0.0923 $\mathrm{s}^{-1}$. The sign and relative ordering are consistent with linear analysis; exact equality is not expected.
+
+\section{Negative results and recommendation}
+Dynamic weak-node/link campaigns, completed matched-alpha radii, joint Pareto optimization, and cross-model validation were not completed. The result should be narrowed rather than advertised as a validated universal planner. A narrow poster on the exact 255+1 audit, true instability versus insufficient damping, numerical qualification, TDS ordering, and holdout failure is justified. A strong “hidden margin/co-design validated” IAS poster is not yet justified.
+
+\section*{Reviewer scores}
+Reviewer 1: novelty 5, correctness 6, model adequacy 5, evidence 5, usefulness 5, IAS impact 4, TPWRS readiness 4. Reviewer 2: novelty 5, correctness 6, model adequacy 4, evidence 5, usefulness 4, IAS impact 4, TPWRS readiness 3.
+
+\end{document}

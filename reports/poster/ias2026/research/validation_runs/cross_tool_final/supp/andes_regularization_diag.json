@@ -1,0 +1,23 @@
+{
+  "andes_tol": 1e-12,
+  "andes_final_mismatch": 1.5409895581797173e-13,
+  "python_canonical_vs_andes": {
+    "python_pf_mismatch": 2.7532731382577167e-12,
+    "vm_max_abs_error_pu": 1.724445375383965e-07,
+    "va_max_gauge_aligned_error_rad": 1.7120290846106556e-07,
+    "pv_p_max_abs_error_pu": 1.1359801987964602e-12,
+    "pv_q_max_abs_error_pu": 2.0457282030039714e-06,
+    "slack_p_abs_error_pu": 5.6894391082806806e-06,
+    "slack_q_abs_error_pu": 3.5754402171184196e-06
+  },
+  "python_with_andes_1e-8_regularization_vs_andes": {
+    "python_pf_mismatch": 2.6635941717859384e-12,
+    "vm_max_abs_error_pu": 2.864375403532904e-14,
+    "va_max_gauge_aligned_error_rad": 3.1155633628543455e-14,
+    "pv_p_max_abs_error_pu": 1.1315393066979595e-12,
+    "pv_q_max_abs_error_pu": 1.8909318555415666e-12,
+    "slack_p_abs_error_pu": 1.4717116414431075e-12,
+    "slack_q_abs_error_pu": 9.264811140496931e-13
+  },
+  "source": "andes/models/line/line.py:200 yhk = u/((r+1e-8) + 1j*(x+1e-8))"
+}

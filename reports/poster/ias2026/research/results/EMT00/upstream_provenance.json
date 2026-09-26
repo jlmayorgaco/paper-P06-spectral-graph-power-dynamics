@@ -1,0 +1,16 @@
+{
+ "upstream_repository": "https://github.com/NatLabRockies/ParaEMT_public.git",
+ "upstream_commit": "d79d735a4a587d56c5b88187d1a499195b6b2b84",
+ "upstream_commit_date": "2026-01-15T15:05:30-05:00",
+ "upstream_commit_subject": "Update README.md",
+ "clone_date": "2026-09-11",
+ "upstream_local_diff_sha256": "98eb43ea8a13a5bef4faee00d48c91c5fd405c5eb2668708d3188c0e5b1019db",
+ "upstream_is_pristine": true,
+ "working_copy": "external/ParaEMT_tx4",
+ "working_copy_base_commit": "d79d735a4a587d56c5b88187d1a499195b6b2b84",
+ "working_copy_diff_sha256": "190b861115a78223edb18c5f2b5bf2aa617cf4ec0f4172da64d1bdc0822cb835",
+ "working_copy_diff_stat": "Lib_BW.py    |  21 +++++++++--\n lib_numba.py | 119 ++++++++++++++++++++++++++++++++++-------------------------\n 2 files changed, 86 insertions(+), 54 deletions(-)",
+ "license_file": "LICENSE.md",
+ "license_first_line": "Copyright (c) Year, Alliance for Sustainable Energy, LLC",
+ "note": "vendor/paraemt (same upstream commit, locally modified by earlier TX3 work) is NOT used and not touched."
+}

@@ -1,0 +1,687 @@
+\documentclass[journal]{IEEEtran}
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{balance}
+
+\graphicspath{{figures/}}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\newcommand{\aperp}{\alpha_{\perp}}
+\newcommand{\Dtot}{D^{\rm tot}}
+\newcommand{\Dfro}{D^{\rm fro}}
+
+\input{cdw_numbers.tex}
+
+\title{Portfolio-Conditioned Dynamic Weakness and\\ Reinforcement Ranking in
+Inverter-Rich Power Networks}
+
+\author{Jorge L.~Mayorga Taborda%
+\thanks{J. L. Mayorga Taborda is with the Department of Electrical and
+Electronic Engineering, Universidad de los Andes, Bogot\'a, Colombia
+(e-mail: jl.mayorga@uniandes.edu.co).}%
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+When synchronous generators (SGs) are replaced by grid-following converters
+(GFLs) unit by unit, a planner needs the small-signal effect of the next
+replacement and of the next reinforcement in the portfolio at hand. We study
+these marginal effects on the IEEE 39-bus system with a documented GFL model:
+all $2^9$ replacement portfolios at 63 controller policies, 24 of them a
+preregistered maximin holdout. In \cntDNew{} base-stable holdout policies the
+same replacement moves the same tracked electromechanical mode in opposite
+directions in two nested stable portfolios. The effects are small (median
+\revDmed~s$^{-1}$, about 0.3\,\% damping ratio) and vanish above
+0.05~s$^{-1}$; by the classical chain identity each reversal locates an
+interaction term of the matching sign. A fixed ranking of units makes a
+materially worse next choice in \regretFULLNew{} of decisions, but nearly all of
+these errors are replacements that cross a singularity-type aperiodic
+instability of the phasor model at high converter share; screened for stability,
+a fixed ranking errs in \regScreened. For branch reinforcement, the
+re-equilibrated eigenvalue sensitivity of the current portfolio ranks finite
+reinforcements with median Spearman \gbnewpoliciesmedianrhoDtotal{} across the
+new policies, against \gbnewpoliciesmedianrhoDfrozen{} for the frozen-operating-point
+derivative, \locoNew{} for a fixed list learned from other conditions and at
+most \gbnewpoliciesmedianrhooraclestatic{} for static strength indices; it also
+ranks branch doublings and outages. With a frozen WECC library GFL the ranking
+method carries over, while the reversals and the branch ranking do not.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Grid-following converters, small-signal stability, eigenvalue sensitivity,
+grid strength, replacement planning, set functions.
+\end{IEEEkeywords}
+
+% =========================================================================
+\section{Introduction}
+
+\IEEEPARstart{G}{rid-strength} indices summarize how well a network supports
+converter-interfaced resources. Single-infeed short-circuit ratios yield
+context-free lists of weak buses; multi-infeed generalizations---the
+site-dependent SCR~\cite{wu2018sdscr}, the generalized
+SCR~\cite{xin2016gscr,dong2019gscr,zhou2023heterogeneous}, the generalized
+operational SCR~\cite{liu2024goscr}, small-signal strength of all-inverter
+systems~\cite{ma2024strength} and impedance
+metrics~\cite{henderson2024gsim,lamrani2025fagim}---are defined for a given set
+of converter buses and are thus portfolio-conditioned static screens. Modal
+participation~\cite{ebrahimzadeh2018busPF,zhu2022greybox} and impedance-based
+eigenvalue sensitivities~\cite{zhu2023rootcause} rank dynamic criticality.
+
+Retirement poses a sequential question. Units are replaced one at a time, and
+the planner must decide which unit to replace next \emph{given} those already
+replaced, and which branch to reinforce \emph{given} the resulting portfolio. The
+object is the contextual marginal
+\begin{equation}\label{eq:marg}
+\Delta_i\aperp(S)=\aperp(S\cup\{i\})-\aperp(S),
+\end{equation}
+the change of the rightmost transverse eigenvalue's real part when unit $i$ is
+replaced in portfolio $S$. It has long been known that displacing SGs by
+converters improves some electromechanical modes and degrades
+others~\cite{gautam2009dfig}, that rising converter penetration changes the
+participation in inter-area modes and adds converter-dominated
+modes~\cite{quintero2014converter}, that the small-signal effect of converters
+depends on the mix and dispatch in which they
+operate~\cite{li2023intrinsic,markovic2021lowinertia,stanojev2023vim,desai2026dispatch},
+and that a branch reinforcement can reduce linear stability
+(Braess-type behavior~\cite{coletta2016braess,schafer2022braess};
+operating-point-dependent edge weights~\cite{song2018network}). Eigenvalue
+sensitivities with a re-solved operating point are
+classical~\cite{smed1993feasible,nam2000eigsens,mendozaarmenta2016redispatch,li2019opsens},
+and a recent preprint chains them to line admittances~\cite{joswigjones2026sens};
+topology switching changes small-signal margins~\cite{saric2015rapid,li2018switching};
+and natural dynamic set functions are known to violate
+sub- or supermodularity~\cite{summers2016submodularity,olshevsky2018nonsupermodularity,summers2019greedy}.
+
+This paper is an empirical, preregistered study on one benchmark. It
+contributes four findings, each stated with its limits:
+\begin{itemize}
+\item[C1)] \emph{Nested same-mode reversal.} The same replacement moves the same
+tracked electromechanical (EM) mode in opposite directions in two nested stable
+portfolios in \cntDNew{} base-stable policies of a new holdout. The effects are
+about one hundredth of s$^{-1}$ and disappear above 0.05~s$^{-1}$.
+\item[C2)] \emph{Why fixed unit rankings fail here.} An oracle fixed ranking
+errs materially in about a third of next-replacement decisions, but the errors
+are almost all replacements that cross an aperiodic, singularity-type instability
+of the phasor model at high converter share; with a stability screen a fixed
+ranking is nearly adequate, and a portfolio-conditioned gSCR screen is not.
+\item[C3)] \emph{Portfolio-conditioned reinforcement ranking.} The re-equilibrated
+sensitivity of the current portfolio ranks finite reinforcements, doublings and
+outages better than the frozen derivative, a fixed list learned from other
+conditions, and static indices; the operating-point term vanishes for controller
+coordinates and matters for network coordinates.
+\item[C4)] \emph{Boundaries.} Single branch actions remove and create EM
+incompatibilities; under an equal budget one transformer group passes a
+size-matched null, but only through parameter draws at one policy; with a frozen
+WECC library GFL the ranking method carries over but the reversals and the
+ranking do not.
+\end{itemize}
+The study is phasor-domain small-signal analysis; no electromagnetic-transient
+claim is made.
+
+% =========================================================================
+\section{Problem Formulation}\label{sec:model}
+
+\subsection{Model}
+The network is the IEEE 39-bus system~\cite{athay1979} (46 branches, ten SGs,
+bus 39 an interconnection equivalent) in phasor form with constant-power loads.
+The system is the index-one DAE $\dot x=f(x,z;p)$, $0=g(x,z;p)$ with device
+states $x$, rectangular bus voltages $z$ and parameters $p$; at an equilibrium
+the reduced Jacobian is $A=f_x-f_zg_z^{-1}g_x$. Each SG is a two-axis
+machine~\cite{sauer1998} with $D=0$, constant mechanical power, a first-order AVR
+$T_E\dot e_{fd}=K_A(v_{\rm ref}+v_s-|V|)-e_{fd}$ and a power-input stabilizer.
+Machine, AVR and PSS data, ratings and the power flow are taken from the IEEE
+39-bus dynamic case distributed with ANDES~\cite{cui2021andes} (GENROU records
+used in two-axis form, IEEEX1 gain $K_A$ and time constant $T_E$, IEEEST
+stabilizer); Table~\ref{tab:param} lists the controller values. Each
+GFL has a synchronous-reference-frame PLL, filtered power measurements, PI outer
+and inner loops behind a filter reactance, and a leaky Q/V regulator
+$q_{\rm cmd}=k_{p,v}\,g\,e+x_v$, $\dot x_v=k_{i,v}\,g\,e-w(x_v-q_{\rm ref})$,
+$e=v_{\rm ref}-|V|$, $w=0.05$~rad/s. Converter current limits, DC links and
+delays are not modeled.
+
+\begin{table}[!t]
+\centering
+\caption{Device and benchmark data (per unit on device rating)}\label{tab:param}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lL{0.70\columnwidth}@{}}
+\toprule
+SG & two-axis, $D=0$, constant $P_m$, $M$ 4.9--8.4~s (bus 39: 100~s); AVR $K_A\in\{10.1,40\}$, $T_E$ 0.25--0.95~s by unit; PSS $K_S=-2$, $T_5=1$, $T_6=4.2$, $T_4=0.75$~s\\
+PLL & $k_{p,\rm pll}=53$, $k_{i,\rm pll}=1400$\\
+GFL loops & $\tau=0.03$~s; outer $0.2/8$; inner $0.25/6$; $x_f=0.15$, $r_f=0.01$\\
+Q/V & $k_{p,v}/k_{i,v}=2/20$, leak $w=0.05$~rad/s, gain $g\in[0,1]$\\
+Candidates & $V_9=\{30,\dots,38\}$ ($2^9$ portfolios); core $V_4=\{30,33,35,37\}$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A \emph{policy} $\theta=(g,k,t,h)$ sets the Q/V gain $g$ of every GFL, a common
+scale $k$ of the surviving SGs' AVR gains, a scale $t$ of their AVR time
+constants, and a heterogeneity exponent $h$ with $T_{E,i}\mapsto G(T_{E,i}/G)^h$,
+$G$ the geometric mean. Replacing unit $i$ installs a GFL with the SG's active
+and reactive dispatch and rating (matched dispatch), so the base power flow is
+the same for every portfolio. The flagship policy P4 $=(0.03625,1.425,1.5,1)$
+makes $V_4$ unstable with a 0.62~Hz critical mode while all its subsets are
+stable.
+
+\subsection{Transverse stability}
+With $D=0$ and no governors the model has an exact rotation symmetry and a
+neutral frequency mode (two structural zero eigenvalues). Stability is evaluated
+on the transverse quotient that removes them; $\aperp$ is the largest real part
+of the transverse spectrum. A portfolio is STABLE if all transverse eigenvalues
+satisfy ${\rm Re}\,\lambda\le-2\times10^{-3}$, UNSTABLE if one has
+${\rm Re}\,\lambda\ge2\times10^{-3}$, and unresolved otherwise.
+
+\subsection{Contextual marginals and modal levels}
+For a policy $\theta$, $f(S)=\aperp(S;\theta)$ on $S\subseteq V_9$. A marginal
+\eqref{eq:marg} is \emph{material} if $|\Delta_if(S)|\ge\tau_{\rm mat}=0.01$~s$^{-1}$
+(about 0.2\,\% damping ratio at 0.7~Hz); its sign class is $-1$ (stabilizing),
+$0$ or $+1$. Because a change of $\aperp$ can be a jump between modes, each
+marginal $(S,i)$ is graded: (A) $S$ is STABLE; (B) the critical mode of $S$ has a
+match in $S\cup\{i\}$ that is the critical mode of $S\cup\{i\}$; (C) B, with both
+critical frequencies in 0.1--2.0~Hz; (D) for a pair of contexts, C at both, and
+their critical modes match each other. Matching uses the modal assurance
+criterion (MAC $\ge0.8$) on the 78 rectangular bus-voltage components of the mode
+shape (unit norm, phase fixed at the largest entry), among eigenvalues in
+0.1--2.0~Hz with ${\rm Re}\ge-1$~s$^{-1}$ plus the critical one, with
+$|\Delta f|\le0.15$~Hz. Level D is the ``same mode'' statement.
+
+% =========================================================================
+\section{Marginals and Second Differences}\label{sec:theory}
+
+For $S\subseteq V$ and distinct $i,j\notin S$ let
+$d_{ij}(S)=f(S\cup\{i,j\})-f(S\cup\{i\})-f(S\cup\{j\})+f(S)=\Delta_if(S\cup\{j\})-\Delta_if(S)$,
+the one-step second difference (interaction term). $f$ is submodular if
+$\Delta_if(S)\ge\Delta_if(T)$ for $S\subseteq T$, $i\notin T$, equivalently
+$d_{ij}(S)\le0$ everywhere, and supermodular with the inequalities
+reversed~\cite{topkis1978,lovasz1983,fujishige2005,bach2013}. The following
+algebra is classical; we use it to locate interactions, not as a new result.
+
+\begin{lemma}[chain identity]\label{lem:chain}
+Let $S_0\subseteq V$, $j_1,\dots,j_m\in V\setminus S_0$ distinct,
+$S_r=S_{r-1}\cup\{j_r\}$, and $i\notin S_m$. Then
+$\Delta_if(S_m)=\Delta_if(S_0)+\sum_{r=1}^m d_{ij_r}(S_{r-1})$.
+\end{lemma}
+\begin{IEEEproof}
+$d_{ij_r}(S_{r-1})=\Delta_if(S_r)-\Delta_if(S_{r-1})$; sum over $r$.
+\end{IEEEproof}
+
+A \emph{nested reversal} of $i$ is a pair $S_1\subsetneq S_2$, $i\notin S_2$,
+with $\Delta_if(S_1)$, $\Delta_if(S_2)$ in opposite sign classes; its direction is
+s$\to$d (stabilizing at $S_1$, destabilizing at $S_2$) or d$\to$s.
+
+\begin{proposition}\label{prop:abc}
+A nested s$\to$d reversal is incompatible with submodularity and a nested d$\to$s
+reversal with supermodularity; along the chain from $S_1$ to $S_2$ some term
+satisfies $d_{ij_r}\ge D/m$ if $D=\Delta_if(S_2)-\Delta_if(S_1)>0$ ($\le D/m$ if
+$D<0$), $m=|S_2\setminus S_1|$.
+\end{proposition}
+\begin{IEEEproof}
+Under submodularity all terms of Lemma~\ref{lem:chain} are nonpositive, so the
+marginal cannot increase along a growing chain; supermodularity is symmetric. The
+$m$ terms sum to $D$, so the largest is at least $D/m$.
+\end{IEEEproof}
+
+The bound holds for every nested pair by construction; its use is to point at an
+interaction $d_{ij_r}$ between $i$ and a unit $j_r$ added on the way from $S_1$ to
+$S_2$. A reversal between \emph{incomparable} contexts does not contradict
+submodularity: on $V=\{i,a,b\}$ with $f(\emptyset)=f(a)=f(b)=f(ab)=0$, $f(i)=2$,
+$f(ai)=-1$, $f(bi)=1$, $f(abi)=-2$, all six second differences are nonpositive,
+yet $\Delta_if(\{a\})<0<\Delta_if(\{b\})$. That submodular example also contains the
+nested d$\to$s reversal $\emptyset\subset\{a\}$, as Proposition~\ref{prop:abc}
+allows.
+
+\begin{proposition}[preference drift]\label{prop:drift}
+For a chain as in Lemma~\ref{lem:chain} and $i,j\notin S_m$,
+$\big(\Delta_if-\Delta_jf\big)(S_m)-\big(\Delta_if-\Delta_jf\big)(S_0)=
+\sum_{r=1}^m\big(d_{ik_r}-d_{jk_r}\big)(S_{r-1})$, with $k_r$ the added units.
+If the preference between $i$ and $j$ reverses materially, every fixed ranking
+errs in one of the two contexts, and some $d_{ik_r}-d_{jk_r}\ge2\tau/m$.
+\end{proposition}
+\begin{IEEEproof}
+Apply Lemma~\ref{lem:chain} to $i$ and $j$ and subtract.
+\end{IEEEproof}
+
+\begin{remark}\label{rem:heter}
+If $f(S)=h(|S|)+\sum_{k\in S}w_k$ then $d_{ik}=d_{jk}$ and the ranking by $w$ is
+exact in every context, whether $h$ is concave or convex. Heterogeneity of
+interactions across units is thus necessary for a fixed ranking to fail; the sign
+of the interactions is not what matters. Sub- and supermodularity refer to $f$ on
+all of $2^V$; the stable portfolios do not form a lattice, so no greedy guarantee
+is at stake.
+\end{remark}
+
+% =========================================================================
+\section{Dynamic Intervention Sensitivity}\label{sec:sens}
+
+Let $w=(x,z,r)$ collect states, bus voltages and freed references $r$. Under
+\emph{scheduled-power-and-voltage} (SPR) semantics the references of every unit
+are re-solved so that it keeps its scheduled active power and terminal voltage;
+the slack machine at bus 39 absorbs the loss change and fixes the angle
+reference, and the frequency is the nominal one, which pins the symmetry
+directions. The equilibrium solves $R(w;a)=0$. For a simple critical eigenvalue
+$\lambda$ with right and left eigenvectors $u$, $v$ of $A$,
+\begin{equation}\label{eq:tot}
+\frac{d\lambda}{da}=\frac{v^{H}\big(\partial_aA+\partial_wA[\dot w]\big)u}{v^Hu},\qquad
+\dot w=-R_w^{-1}R_a
+\end{equation}
+(implicit function theorem). The first term alone is the \emph{frozen}
+derivative $\Dfro$; the full expression is the \emph{total} derivative $\Dtot$.
+This is the feasible-sensitivity construction of~\cite{smed1993feasible,nam2000eigsens}
+applied to portfolio-specific operating points; no novelty is claimed for it.
+
+\begin{remark}
+If $a$ is a controller gain of a unit whose scheduled output is fixed (the GFL
+gain $g_i$, a PLL scale, an AVR gain), the SPR states $(x^\star,z^\star)$ do not
+move; only the freed references move, and they enter $f$ and $g$ affinely, so
+$\partial_wA[\dot w]=0$ and $\Dtot=\Dfro$. Voltage setpoints enter only through
+references, so their frozen derivative is zero. Branch admittances and loads move
+$(x^\star,z^\star)$.
+\end{remark}
+
+A branch intervention scales the complete two-port admittance of branch $e$ by
+$\gamma_e$ (tap unchanged). The score is $-d\aperp/d\gamma_e$ at $\gamma_e=1$; the
+truth is the fully re-solved change $-[\aperp(\gamma_e)-\aperp(1)]$ at
+$\gamma_e\in\{1.10,1.25,1.50\}$. $\Dtot$ has no fitted parameters, so ``held
+out'' qualifies only the comparison baselines. The static baselines are branch
+flows $|P_e|$, $|S_e|$; impedance $|z_e|$; endpoint electrical distance on the
+subtransient bus impedance matrix; effective resistance and Fiedler edge score on
+the coupling Laplacian $L_B$; weighted edge betweenness; endpoint $dV/dQ$; and
+the change of the generalized SCR of the target portfolio at $\gamma_e=1.5$. The
+static indices are computed on the base network and power flow and therefore do
+not change across conditions; we add, post hoc, a data-driven fixed list (the
+mean finite-effect rank over the conditions of the other clusters).
+
+% =========================================================================
+\section{Experimental Design}\label{sec:design}
+
+\emph{Policies and holdouts.} Policies lie in $u\in[0,1]$ ($g=u^2$),
+$k\in[0.5,2.3]$, $t\in[0.5,3.0]$, $h\in[0,2]$. Fifteen \emph{discovery}
+policies lie on axis-aligned lines through P4; an \emph{old holdout} of 24
+Latin-hypercube points was used in a first campaign; the \emph{new holdout}
+N01--N24 is a maximin Latin hypercube (best of 2000 designs, seed 20260929) fixed
+before any computation and never screened for stability. Policies whose all-SG
+base is unstable (\nNewUnstable{} new, \nOldUnstable{} old) are kept and excluded
+from tests that need a stable base.
+
+\emph{Envelopes.} Four envelopes perturb machine groups fleet-wide (EM-f) or
+per unit (EM-u), converter groups (EC), or both (EMC). Ten fresh
+Latin-hypercube draws per envelope are evaluated at P4; they are held out in
+parameters, not in policy.
+
+\emph{Computations.} All 512 portfolios of $V_9$ are solved with mode shapes at
+every policy (32\,256 portfolio evaluations). Branch sensitivities are computed
+at 88 new-holdout conditions for all 46 branches; the implicit-function
+derivatives match small-step finite differences within 5\,\% (or $10^{-4}$) in
+\ivLinks{} of \ivN{} cases. Topology is evaluated at 16 policies for 35
+admissible outages and 46 doublings. Reruns of selected tasks were identical in
+every summary field.
+
+\emph{Cross-model holdout.} No validated grid-forming model exists in our code
+base. The one validated alternative dynamic converter is a WECC library GFL chain
+(PLL, REGC, REEC-B and REPC-A blocks~\cite{pourbeik2017generic} in
+ANDES~\cite{cui2021andes}) whose parameters were frozen and validated against an
+EMT implementation in earlier work on a different IEEE 39-bus configuration. We
+attach it unchanged (constant-$Q$ mode) to a transcription of our machine models
+that reproduces the internal $\aperp$ of the all-SG base within
+$2\times10^{-7}$~s$^{-1}$ at every tested policy (ALT-WECC); the composition itself
+is validated only at that base and by initialization residuals. Three integrators per
+converter that belong to disabled or unused control paths and are structurally
+decoupled in the reduced state matrix are removed before the stability verdict;
+these rules were fixed after one matrix case had been seen (disclosed in the
+deviation log).
+
+\emph{Statistics and preregistration.} Policies and draws are designed points,
+so fractions are coverages of the tested conditions and intervals are percentile
+bootstraps over policy (or envelope) clusters. Three secondary tests form a Holm
+family: T1 (sign test of $p^\star<0.90$, raw $p=\tOneP$, Holm \tOnePholm), T2
+(paired advantage of $\Dtot$ over $|P_e|$ minus 0.20, sign-flip, raw and Holm
+$p=\tTwoP$ on \nEligClusters{} clusters) and T3 (mixing, below). All gates are
+effect-size thresholds frozen in the preregistration. Post-hoc analyses requested
+by internal reviewers are labelled as such.
+
+% =========================================================================
+\section{Results}\label{sec:results}
+
+\subsection{Nested reversals}
+
+Fig.~\ref{fig:concept} shows the strongest level-D nested reversal on the new
+holdout. At N24, replacing unit~33 in $S_1=\{31\}$ moves the tracked \exHzOne~Hz mode
+right by \exDoneAbs~s$^{-1}$; in $S_2=\{31,34,38\}$ the same replacement moves the same
+family, now at \exHzTwo~Hz (MAC \exMac{} between contexts), left by \exDtwo~s$^{-1}$.
+Table~\ref{tab:nested} gives coverage by level. At the preregistered primary level
+C, \cntCNew{} base-stable new-holdout policies have a nested reversal (coverage
+\covCNew; the gate $\ge0.75$ passes on the point estimate, and the bootstrap
+interval \covCNewLo--\covCNewHi{} reaches below it); the same policies have one at
+level D. Excluding pairs whose rightmost eigenvalue is within $\tau_{\rm mat}$ of
+the next at any of the four portfolios leaves \gapCov. Following the critical mode
+of $S$ continuously while the added unit is replaced fractionally ends on the
+MAC-matched mode in \contMatch{} of \contN{} tested endpoint marginals.
+Fig.~\ref{fig:examples} shows the three strongest level-D pairs for distinct units.
+
+\input{tab_nested.tex}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{CDWH_F1_concept.pdf}
+\caption{The same replacement (unit 33) in two nested stable portfolios at
+new-holdout policy N24 moves the same tracked EM mode in opposite directions
+(orange: destabilizing; blue: stabilizing). Aqua: replaced units; white:
+synchronous.}\label{fig:concept}
+\end{figure}
+
+The effects are small. Over the \revCpairs{} level-C pairs of base-stable new
+policies (\revCdistinct{} distinct unit--policy combinations), reversal magnitudes
+$\min(|\Delta_if(S_1)|,|\Delta_if(S_2)|)$ have quartiles
+\newCmagQone--\newCmagQthree~s$^{-1}$, or \revZetaQone--\revZetaQthree\,\% of damping
+ratio, and the largest is \revCmax~s$^{-1}$. Coverage falls with the threshold
+(Fig.~\ref{fig:curv}, right): at 0.02~s$^{-1}$ level C holds in \tauCtwo/19 and
+level D in \tauDtwo/19 policies, at 0.03~s$^{-1}$ in \tauCthree/19 and \tauDthree/19,
+and at 0.05~s$^{-1}$ in none. Destabilizing$\to$stabilizing reversals dominate: at
+level D, s$\to$d occurs in \dirDsd{} and d$\to$s in \dirDds{} policies, and both
+directions on one tracked mode in \dirDboth. Converter-parameter draws alone (EC)
+remove every EM same-mode reversal from the four-unit lattice at P4 (below).
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{CDWH_F3_same_mode_examples.pdf}
+\caption{Strongest level-D nested reversals on base-stable new-holdout policies
+(distinct units). Gray: the unit's level-C contexts; triangles: the nested pair;
+band: $\pm\tau_{\rm mat}$.}\label{fig:examples}
+\end{figure*}
+
+By Proposition~\ref{prop:abc}, s$\to$d reversals exclude submodularity and d$\to$s
+reversals supermodularity; both directions occur at level A in 17 and at level C in
+\dirCboth{} of 19 policies. The same conclusion follows directly from one-step
+squares whose four portfolios are stable with EM critical modes: second
+differences of both signs beyond $10^{-3}$~s$^{-1}$ occur in \emSqNew{} new and
+\emSqOld{} old base-stable policies (Fig.~\ref{fig:curv}, left). Fig.~\ref{fig:heat}
+maps how often each replacement destabilizes; no unit is uniformly stabilizing or
+destabilizing.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{CDWH_F5_curvature.pdf}
+\caption{Left: second differences over one-step squares whose four portfolios are
+stable with EM critical modes (new holdout). Right: nested-reversal coverage
+against the materiality threshold (level C, level D, and level D in both
+directions).}\label{fig:curv}
+\end{figure*}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.80\columnwidth]{CDWH_F2_contextual_reversal.pdf}
+\caption{Fraction of stable contexts in which replacing unit $i$ destabilizes,
+by policy (D: discovery; H: old holdout; N: new holdout; u: unstable base).
+Crosses: level-C nested reversal of unit $i$ (white on dark cells for
+contrast).}\label{fig:heat}
+\end{figure}
+
+\subsection{Fixed rankings and their anatomy}
+The fixed ranking of the nine units that maximizes pairwise agreement with a
+policy's own resolved preferences is found exactly by dynamic programming.
+Table~\ref{tab:ranking} and Fig.~\ref{fig:ranking} report it. Over all transitions
+it orders \pstarFULLNew{} of resolved pairs on the new holdout and its next choice
+is at least $\tau_{\rm mat}$ worse than the context-aware choice in \regretFULLNew{}
+of stable contexts (\tOneK/\tOneN{} policies have $p^\star<0.90$); the
+regret-optimal fixed order, found by a dynamic program over placed prefixes,
+reaches \minRegFull. The old-to-new shift is \shiftPstar{} in $p^\star$. A ranking
+fitted at one policy errs in \transOffReg{} of decisions at another, against
+\transDiagReg{} in sample: the failure is present in sample and transfer adds
+little (median Kendall between the policies' optimal orders \orderKendall).
+
+\input{tab_ranking.tex}
+
+The errors have one source. In \regretNfast{} of the \regretNbad{} materially
+wrong decisions (\regretFastShare) the ranked unit pushes the rightmost eigenvalue
+out of the EM band; in \noStable{} of the contexts no candidate replacement keeps
+the portfolio stable. These out-of-band critical eigenvalues are real in
+\fastRealShare{} of cases, with rates of \fastQlo--\fastQhi~s$^{-1}$ (5th--95th
+percentile), and appear when five to seven of the nine units are converted.
+Their participation concentrates on the converters' PLL angle (\partTheta) and
+q-axis current (\partIq). Replacing the added unit fractionally, $\aperp$ jumps
+within one 0.025 step of the replaced fraction from about zero to
+\sweepJumpLo--\sweepJumpHi~s$^{-1}$, exactly where the smallest singular value of
+$g_z$ reaches \sweepSigLo--\sweepSigHi{} (six sweeps, supplement): the signature of a
+singularity-induced bifurcation of the DAE~\cite{venkatasubramanian1995sib}. These
+events mark a loss of the index-one property of the phasor model at high
+converter share; their physical course would require network dynamics or an EMT
+model, which were not used. Restricted to transitions that stay in the EM band, the
+oracle ranking orders \pstarEMNew{} of pairs and errs in \regretEMNew{}, failing the
+preregistered insufficiency bar; screening the ranking for stability (first ranked
+unit whose next portfolio is stable) lowers its regret from \regPlainFeas{} to
+\regScreened{} on contexts with a stable option. A portfolio-conditioned static
+screen, choosing the unit that maximizes the generalized SCR of $S\cup\{i\}$, errs
+in \gscrSeqFull{} of decisions.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{CDWH_F4_fixed_ranking.pdf}
+\caption{Agreement-optimal fixed ranking: agreement $p^\star$ and material regret
+rate by stratum (old and new holdout), and regret of rankings transferred
+between base-stable policies (rows: policy of fit; columns: policy of use,
+ordered discovery, old, new).}\label{fig:ranking}
+\end{figure*}
+
+\input{tab_layers.tex}
+
+The preregistered evidence layers (Table~\ref{tab:layers}) meet the frozen rule
+for the claim that a context-independent node ranking does not suffice (7 of 8
+positive), but the layers are nested and the ranking layers do not survive the EM
+restriction; we read the result as: in this model a fixed list fails because it
+cannot anticipate which replacement crosses the singularity, and within stable EM
+dynamics it is a reasonable approximation.
+
+\subsection{Portfolio-conditioned reinforcement ranking}
+Table~\ref{tab:goldb} and Fig.~\ref{fig:goldb} report branch ranking for the core
+portfolio $V_4$. On the \nElig{} preregistration-eligible conditions (equilibrium
+residual $\le10^{-8}$, a threshold below the solver's residual of order
+$10^{-7}$ in most conditions; six of the eight are draws at P4), the median Spearman
+correlation with the finite $\times1.5$ outcome is \gbpreregmedianrhoDtotal{} for
+$\Dtot$, \gbpreregmedianrhoDfrozen{} for $\Dfro$ and \gbpreregmedianrhoSone{} for
+$|P_e|$, with paired advantage \gbpreregmediandiff{} (interval
+\gbPreregCiLo--\gbPreregCiHi) and top-5 precision \gbpreregmediantopfiveDtotal{};
+the preregistered gate passes, while the secondary test T2 does not reach
+$p<0.05$ with six clusters. Over all 64 solved conditions (residual
+$\le$\rZeroMax) the medians are \gbprimarymedianrhoDtotal, \gbprimarymedianrhoDfrozen{}
+and \gbprimarymedianrhoSone.
+
+\input{tab_goldb.tex}
+
+The informative comparisons are with $\Dfro$ and with a fixed list. Across the 24
+new policies, $\Dtot$ has median Spearman \gbnewpoliciesmedianrhoDtotal, $\Dfro$
+\gbnewpoliciesmedianrhoDfrozen{} and the learned fixed list \locoNew; across the
+40 draws at P4 the list reaches \locoDraws{} against \gbfreshdrawsmedianrhoDtotal.
+$\Dtot$ exceeds the list in every condition, but the median paired margin is \locoMarginDraws{} on
+the draws and \locoMarginNew{} on the new policies, not the 0.5 gap to static indices, which do
+not respond to conditions at all. The
+branch ranking thus changes mostly across controller policies. $\Dtot$ also ranks
+large actions: at \dtotTopoNpol{} new-holdout policies, Spearman with the finite effect of
+doubling a branch is \dtotDbl{} and of removing it \dtotOut{} (top-5 \dtotOutTop).
+The first-order prediction overstates the largest reinforcements, whose effect
+saturates at $\gamma_e=1.5$ (Fig.~\ref{fig:goldb}, right). The port form in
+Table~\ref{tab:goldb} re-derives $\Dtot$ from re-solved Jacobians and is a
+verification, not an independent method.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{CDWH_F6_goldb.pdf}
+\caption{Left: Spearman correlation with the finite reinforcement outcome per
+new-holdout condition (lines join the same condition; ringed: the
+preregistration-eligible subset). Right: first-order prediction vs finite
+effect, all branches and conditions.}\label{fig:goldb}
+\end{figure*}
+
+\subsection{When re-equilibration matters}
+Splitting \eqref{eq:tot} into frozen and re-equilibration parts
+(Fig.~\ref{fig:why}): for $g_i$, PLL scales and AVR gains the two derivatives agree
+to \nodeRone{} relative, as the remark predicts. For loads the re-equilibration
+term exceeds the frozen term in \nodeLoadDom{} of cases. For branches it exceeds
+the frozen term for about half of the branches and changes the ranking materially
+(sign disagreement $\ge10$\,\% or Kendall $\le0.6$) in \heightMaterial{} of the $V_4$
+conditions; every condition has a branch whose frozen and total signs differ.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{CDWH_F7_why_total.pdf}
+\caption{Left: frozen, re-equilibration and total branch sensitivities for the
+branches selected by the preregistered rule. Right: ratio of the
+re-equilibration term to the frozen term by coordinate class (the frozen term of
+voltage setpoints is identically zero).}\label{fig:why}
+\end{figure*}
+
+\subsection{Robustness to parameter draws}
+Under the fresh envelope draws at P4 the coverage of a stable-context reversal on
+the four-unit lattice is \lSevenEC{} (EC), \lSevenEMf{} (EM-f), \lSevenEMu{} (EM-u)
+and \lSevenEMC{} (EMC); for EM same-mode reversals it is \lSevenEMEC, \lSevenEMEMf,
+\lSevenEMEMu{} and \lSevenEMEMC. The EM reversals are therefore sensitive to the
+converter parameters. Branch ranking on the draws gives median $\rho$
+\gbfreshdrawsmedianrhoDtotal{} for $\Dtot$ and \gbfreshdrawsmedianrhoSone{} for $|P_e|$.
+
+\subsection{Cross-model holdout}\label{sec:cross}
+Table~\ref{tab:cross} summarizes ALT-WECC on the seven preregistered policies
+with a stable ALT base. Its converted portfolios are less stable than with the
+custom GFL; $V_4$ is unstable at all policies. The preregistered test on the
+global $\aperp$ finds no stable-context reversal, but it is uninformative: in
+most stable ALT portfolios $\aperp$ is set at $-0.100$~s$^{-1}$ by the anti-windup
+tracking state of the plant-level active-power integrator, a state decoupled
+from the rest of the model that our structural rule kept. On the tracked EM mode,
+stabilizing replacements occur at \altEmStab{} of \altEmN{} policies and a nested reversal at \altEmRev{} of
+\altEmN{} (\altEmPol), the same policy at which the custom GFL has a level-C reversal on this
+lattice.
+Switching on the library's voltage control (all gains unchanged, post hoc) gives
+no stabilizing replacement and no reversal, so the data do not support the
+reading that converter voltage control is what enables reversals. The 12-branch
+finite ranking is model-specific (median Kendall \altCMedianKendall), as a previous
+cross-tool check had indicated, while within ALT-WECC a finite-difference total
+sensitivity ranks the model's own outcomes at \altCMedianRhoAltfd{} against
+\altCMedianRhoS{} for $|P_e|$, a margin at the preregistered bar. Top-1 agreement
+of the equal-budget corridors (Section~\ref{sec:corr}) is partial (\altDFracTopAgree) and the
+topology directions agree (\altEPooledSignAgree{} on \altENPairs{} pairs).
+
+\input{tab_cross.tex}
+
+\subsection{Topology and electromechanical modes}
+Topology effects were re-evaluated by tracking the pre-action EM-band rightmost
+mode of each portfolio through every admissible action (Fig.~\ref{fig:topo});
+events in which the full $\aperp$ is set by a non-EM mode and differs from the
+tracked change (\topoFastHfour{} of 1296 $V_4$ policy--action cases) are excluded. At
+P4, doubling any one of lines 1--2, 1--39, 8--9 or the 23--36 transformer makes
+$V_4$ stable; across the 16 policies, \topoNcreate{} (policy, action) pairs create an
+EM-failing hyperedge of at most three units, all by outages and all but three at
+discovery or old-holdout policies (\creDisc{} and \creOld). No static topology score
+meets the prediction rule ($|\rho|\ge0.6$ in $\ge75$\,\% of policies); their median
+correlations of about $\pm0.5$ come from separating outages from doublings, and
+within doublings they are near zero (Fiedler value \withinDblFiedler). This is
+expected N$-$1 small-signal behavior and we report it as a supporting observation.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{CDWH_F8_topology_em.pdf}
+\caption{Left: tracked EM-mode change of $V_4$ for every admissible action, by
+policy (fast-mode-dominated events removed; band: $\pm\tau_{\rm mat}$). Right: at
+P4, EM effect against the change of the Fiedler value.}\label{fig:topo}
+\end{figure*}
+
+\input{sec_corridors.tex}
+
+\subsection{Modal mixing is not confirmed}
+A first campaign reported that controller-weighted modal mixing of the network
+port operator correlates with the number of reversing units ($\rho=\mixOldOrigRho$ on
+the old holdout), evaluated at each policy's own critical frequency. At a fixed
+reference frequency the old-holdout correlation falls to \mixOldFixedRho; on the new
+holdout the preregistered test gives $\rho=\mixNewRho$ ($p=\mixNewP$, Holm
+\tThreePholm), which misses the bar $p\le0.01$ (with 19 policies the test has
+little power at this effect size). In an exact two-factor decomposition of the
+mixing change, the controller term carries \mixVarCtrl{} and the frequency term
+\mixVarFreq{} of the variance, with a covariance term of \mixCov.
+
+% =========================================================================
+\section{Discussion}\label{sec:discussion}
+
+\emph{What a planner needs.} On this benchmark, choosing the next unit in context
+is cheap: nine eigenanalyses per step. The practical content of C2 is therefore
+diagnostic: a fixed weak-bus list is unreliable because it cannot anticipate which
+replacement crosses the high-share singularity, and a stability check per
+candidate---which is exactly an in-context evaluation---removes most of that
+failure, while a portfolio-conditioned gSCR screen does not. For reinforcement,
+the result is that the re-equilibrated sensitivity of the planned portfolio ranks
+reinforcements, doublings and outages reliably, that the frozen derivative
+degrades across controller policies, and that a list learned from other
+conditions is good but not adequate across policies. We do not claim a
+computational saving: our implementation evaluates the total derivative with
+finite-difference Jacobians at \timeDer~s per branch, against \timeFin~s for a
+finite re-solve and eigenanalysis; a saving would require analytic second
+derivatives and large systems, which we did not test.
+
+\emph{Relation to strength metrics and placement.} Static indices are
+computed from the base network and do not respond to the policy or the draw; they
+carry some information (effective resistance places three of the five strongest
+branches in its top five) but do not order reinforcements within a portfolio.
+Placement methods built on grid-strength or Kron-reduced-Laplacian surrogates
+treat converters as homogeneous and, for grid-forming conversions, can show that
+each conversion helps~\cite{yang2021gfm,xin2025howmany,huang2022gridstructure};
+the reversals here arise with heterogeneous machines and a converter with its own
+Q/V control, and they were not reproduced by the library converter. Offline
+priority lists of switching actions~\cite{khaji2017switching} are fixed rankings
+of the kind examined in Section~\ref{sec:results}-B.
+
+\emph{Literature scope.} The gap statements rest on a focused search of
+2020--2026 journal and conference records, extended to the earlier displacement
+literature, with arXiv only where no peer-reviewed version exists and without
+full-text database access; they state the absence of such results within that
+search.
+
+\emph{Limitations.} All results are phasor-domain small-signal results on one
+network with one custom GFL and one parameter box; the holdout tests robustness to
+controller coordinates, not generality. The machines have $D=0$ and no governors,
+loads are constant power, and dispatch is matched; realistic damping, governors,
+voltage-dependent loads or unmatched reactive dispatch could remove the small
+stabilizing side of many reversals, and they were not tested. The fast events
+behind the fixed-ranking failure are singularity crossings of an idealized phasor
+converter without current limits. The EM reversals are sensitive to converter
+parameters and are not reproduced by the library converter. The primary GOLD-B set
+has eight conditions because the preregistered residual threshold was stricter than
+the solver tolerance. The deviation log records execution fixes, post-hoc
+analyses, a defect in the cross-model tests found by internal review, and hand-written
+clock times that were later corrected against the commit history.
+
+% =========================================================================
+\section{Conclusion}
+On the IEEE 39-bus benchmark, the small-signal effect of replacing an SG by a GFL
+depends on the portfolio in which it occurs: nested reversals on the same
+electromechanical mode recur on a preregistered holdout, at magnitudes of about
+one hundredth of s$^{-1}$. A fixed ranking of units fails mainly because it cannot
+anticipate aperiodic singularity crossings at high converter share; with a
+stability screen it is nearly adequate. The re-equilibrated eigenvalue
+sensitivity of the planned portfolio ranks branch reinforcements, doublings and
+outages better than frozen derivatives, fixed lists and static indices, and this
+method, unlike the specific ranking, carries over to a library converter model.
+Reinforcement rankings should be recomputed for the portfolio and controller
+settings in which they are applied.
+
+\section*{Data and code availability}
+Preregistration, deviation log, code, result tables and figure sources are in the
+project repository, branch \texttt{research/}\allowbreak
+\texttt{contextual-dynamic-weakness-hardening}; software: Python 3.13, NumPy 2.5,
+SciPy 1.18, ANDES 2.0.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

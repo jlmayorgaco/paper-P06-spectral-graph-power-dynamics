@@ -1,0 +1,173 @@
+# Track A, protocol v2B. NEW preregistered follow-up.
+#
+# Written 2026-09-09 before any v2B sample was evaluated. Fresh seed.
+#
+# v1 stays frozen and refuted. v2A stays frozen: its preregistered global PASS
+# criterion is NOT satisfied and nothing is passed retroactively. v2B is
+# justified because H1, H2 and H4 reproduced on fresh v2A data, not as an attempt
+# to make the v2A criterion pass.
+
+lineage:
+  v1: frozen, refuted
+  v2A: frozen, global criterion not satisfied; H1, H2, H4 pass; H2b refuted;
+       H5 invalid by construction
+  v2B_seed: 20260911
+  reuses_earlier_samples: false
+
+# ------------------------------------------------------- H5, corrected -------
+closure_margin:
+  # Why not the two probes already rejected:
+  #   at lambda_Q the closure is zero identically, because lambda_Q IS an
+  #     eigenvalue of the replaced system: an identity, not a measurement;
+  #   at lambda_base the operator is singular, because Q_4 is built on the
+  #     resolvent of the base system and det T_0(lambda_base) = 0.
+  # The imaginary axis sits away from both spectra and is where an oscillatory
+  # stability boundary actually lives.
+  definition: >
+    m_4(theta) = min over omega in Omega_IA of
+                 min over mu in spectrum(Q_4(j omega; theta)) of abs(mu + 1)
+  band_Omega_IA_hz: [0.3, 1.5]     # the same band used for branch tracking
+  band_samples: 61
+  also_stored:
+    omega_port: the frequency attaining the minimum
+    d4_jwQ: >
+      min over mu of abs(mu + 1) at j*Im(lambda_Q), descriptive only, never
+      primary while the band minimum is available
+    worst_condition_T0: cond(T_0(j omega)) over the band, reported per sample
+  interpretation: >
+    Near an oscillatory stability boundary m_4 tends to zero. Monotonicity of
+    m_4 against alpha_Q over the whole domain is NOT predicted and NOT
+    preregistered: a strongly stable mode and a strongly unstable one are both
+    far from the imaginary axis.
+
+# --------------------------------------------------------- three boundaries --
+boundaries:
+  dispatchability: >
+    F_dispatch(load, availability), the region the fleet can actually serve
+    within its active limits. Non-dispatchable samples are NEVER counted as
+    dynamically unstable and every curve is drawn only over feasible support.
+  effect_sign: delta_alpha_Q(load, availability) = 0
+  dynamic_stability: alpha_Q(load, availability) = 0
+
+# --------------------------------------------------------------- design ------
+design:
+  kind: boundary-oriented stratified, finer strata across the v2A transition
+  load_strata: [0.90, 0.95, 0.98, 1.00, 1.02, 1.05]
+  availability_strata: [0.75, 0.85, 0.92, 0.96, 1.00]
+  per_cell_draws: 20
+  total_draws: 400
+  both_sides_required: true
+  nuisance_variables:
+    global_reactive_load: [0.90, 1.10]
+    per_bus_load_scatter: 0.05
+    dispatch_jitter: 0.10
+
+stored_per_sample:
+  - load
+  - pv_availability
+  - aggregate_active_headroom
+  - binding_generators
+  - dispatchability_flag
+  - alpha_base, alpha_q, alpha_v
+  - lambda_base, lambda_q, lambda_v
+  - delta_alpha_q
+  - mac
+  - m_4
+  - omega_port
+  - d4_jwQ
+  - worst_condition_T0
+diagnostics_not_hypotheses:
+  - aggregate_active_headroom
+  - binding_generators
+  - worst_condition_T0
+
+# ----------------------------------------------------------- hypotheses ------
+hypotheses:
+  H4B_response_surface:
+    primary_model: >
+      delta_alpha_Q = b0 + b1*L + b2*A + b3*L*A + b4*L^2 + b5*A^2 + error,
+      ordinary least squares over the dispatchable support, with an analogous
+      logistic model for the indicator of alpha_Q > 0.
+    secondary_model: a smooth two-dimensional surface, descriptive only
+    forbidden_assumption: >
+      that higher availability is worse. v2A already shows the marginal effect
+      of availability changes sign with load, so no monotone prior is imposed.
+    deliverables:
+      - coefficients with 95 percent confidence intervals
+      - the curve delta_alpha_Q = 0 with a bootstrap confidence band
+      - the curve alpha_Q = 0 with a bootstrap confidence band
+    pass: >
+      the interaction coefficient b3 differs from zero at the 5 percent level
+      AND both zero-level curves exist inside the dispatchable region
+    partial: one of the two conditions holds
+
+  H2B_conditional_repair:
+    statement: among samples with alpha_Q > 0, alpha_V < 0
+    pass: lower bootstrap confidence bound above 0.90
+    partial: point estimate above 0.90 with a lower bound above 0.80
+
+  H5B_port_margin:
+    primary: >
+      samples near the dynamic boundary, abs(alpha_Q) <= 0.05, have a smaller
+      m_4 than samples far from it, abs(alpha_Q) >= 0.20. One-sided
+      Mann-Whitney on the medians with p below 0.01.
+    secondary: >
+      among the near-boundary samples the median of
+      abs(omega_port/(2 pi) - Im(lambda_Q)/(2 pi)) is below 0.05 Hz.
+    pass: primary and secondary
+    partial: primary only
+
+reporting:
+  rule: >
+    H4B, H2B and H5B are reported INDEPENDENTLY as PASS, PARTIAL or FAIL. There
+    is no combined criterion and H5B is not required to rescue anything. If H5B
+    does not reproduce, H1, H2 and H4 stand and the report says that the
+    port-closure coordinate demonstrated in E23 does not generalize as an
+    operating-condition margin.
+  claim_language:
+    permitted: >
+      voltage regulation restores stability and the damping rate, not the
+      synchronous modal location; the repaired branch sits at a higher
+      oscillation frequency
+    forbidden:
+      - voltage control restores the original mode
+      - higher photovoltaic availability is worse
+      - a non-dispatchable operating point is an unstable operating point
+
+feasibility:
+  power_flow_mismatch_max: 1.0e-9
+  equilibrium_residual_max: 1.0e-9
+  gz_condition_max: 1.0e8
+  min_voltage: 0.85
+  max_voltage: 1.15
+  device_loading_max: 1.0
+  mac_floor: 0.80
+
+# ------------------------------------------------------ outcome, frozen ------
+# Appended after the run. No threshold, hypothesis or definition above was
+# touched. See docs/V2B_RESULTS.md.
+outcome:
+  status: FROZEN
+  drawn: 400
+  accepted: 293
+  rejected: 107      # every one for non-dispatchability, never for instability
+  H4B: PASS          # b3 = -49.13, p = 5.9e-09; both curves inside feasible support
+  H2B: PASS          # 96 of 96 unstable samples repaired
+  H5B: FAIL          # NON-EXECUTABLE: the near-boundary stratum held 0 of 293
+  defect_found: >
+    The preregistered observable alpha_Q, the argmax-MAC single branch, chatters
+    between the two branches the replacement splits the inter-area mode into. It
+    disagrees in sign with the band envelope in 43 of 293 samples. This emptied
+    the H5B stratum and biases both zero-level curves optimistic. Recorded as
+    CLAIMS.md N11 and N11b, FAILED_EXPERIMENTS.md F7 and F8.
+  proposed_successor: >
+    v2C, NOT AUTHORIZED AND NOT RUN. One change: the band envelope, the worst
+    real part among band modes above the MAC floor, replaces the single-branch
+    observable. Fresh seed, no reuse of any v2B sample, everything else frozen
+    as above.
+
+prohibited:
+  - reusing any v1 or v2A sample
+  - moving any threshold after seeing v2B results
+  - editing the poster before v2B is frozen
+  - evaluating the closure at an eigenvalue of either system

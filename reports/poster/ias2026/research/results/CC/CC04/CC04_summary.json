@@ -1,0 +1,22 @@
+{
+ "n_failing": 10,
+ "n_stable": 25,
+ "best_old_auc": 0.812,
+ "auc_abs_chi": 0.952,
+ "auc_closure_distance": 0.944,
+ "auc_nu": 0.6,
+ "remainder_share_majority_ge_0.25": true,
+ "remainder_shares": {
+  "E1 kappa 4->3": 0.5120783497433898,
+  "E2": 0.4212321640470093,
+  "E3": 0.6452449929735087,
+  "E5": 0.3913404019593037,
+  "E7": 0.4076952720754891,
+  "E8 kappa 3->4": 0.40796179977244773,
+  "E9 -> EMPTY": 0.5440170266023086,
+  "FLAG P4-line": 0.6073013246385958
+ },
+ "verdict": "PROMOTE",
+ "pg_check_max_abs_diff": 2.7057467377744615e-10,
+ "elapsed_s": 6.8
+}

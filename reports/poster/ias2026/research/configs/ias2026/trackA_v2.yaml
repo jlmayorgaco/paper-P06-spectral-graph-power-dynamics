@@ -1,0 +1,149 @@
+# Track A, protocol v2. NEW campaign, not a rescue of v1.
+#
+# v1 stays frozen and REFUTED. Its unconditional claim is withdrawn and remains
+# withdrawn (CLAIMS.md N9c, docs/GATE5_HOLDOUT.md). Nothing from the v1 sample
+# set is reused: new seed, new dispatch model, new sampling design.
+#
+# Written 2026-09-09 before any v2A sample was evaluated.
+
+notation:
+  lambda: eigenvalue of the SYSTEM, i.e. a mode of the reduced dynamic matrix
+  mu: eigenvalue of the port interaction operator Q, never written as lambda
+  d_4: >
+    d_4 = min over mu in spectrum(Q_4) of abs(mu + 1), the closure distance of
+    the four-port interaction operator. Q_4 is evaluated AT THE TRACKED
+    INTER-AREA BRANCH of that sample, not at a generic critical mode.
+  alpha: real part of the tracked branch, alpha = Re(lambda)
+  D: >
+    D_Q = abs(lambda_Q - lambda_base) and D_V = abs(lambda_V - lambda_base),
+    the distance of the COMPLEX branch to its reference position. Damping and
+    frequency both move under voltage control, so a real-part-only measure
+    would hide part of what the controller does.
+
+lineage:
+  v1_status: frozen and refuted, retained as the record of a failed gate
+  reuses_v1_samples: false
+  v1_seed: 20260909
+  v2_seed: 20260910
+  what_changed_and_why:
+    dispatch: >
+      v1 scaled every generator by the load multiplier. Buses 31, 32, 35 and 36
+      sit within 0.04 to 0.25 pu of their active limits, so that scaling pushed
+      them past the limits and rejected 29 percent of samples for a reason
+      belonging to the sampler. v2 uses iterative saturation: the load change and
+      the photovoltaic shortfall are shared in proportion to headroom, a unit
+      that reaches a limit leaves the pool and its share is redistributed, and
+      the slack takes only the final residual instead of acting as a default
+      balancing generator.
+    reactive_audit: >
+      Correcting the active dispatch and then building high-load points whose
+      real infeasibility is reactive would be an easy way to fool ourselves.
+      Every generator reaching qmax or qmin in the solved power flow is recorded,
+      and the slack active output is audited against its own limit.
+    availability_semantics: >
+      Availability caps the RESOURCE, not the schedule: a plant produces
+      min(schedule, pmax * availability).
+    design: >
+      v1 sampled the whole envelope and reported marginals. The effect changes
+      sign inside that envelope, so marginals could not see it. v2A stratifies.
+    sampling_domain: >
+      Load strata stop at 1.05. The dispatchable region, mapped from the case
+      generation limits alone and BEFORE any dynamic evaluation, is empty above
+      1.05 at every availability and is itself strongly interacting: high load is
+      only reachable at high availability. That frontier is a declared RESULT of
+      v2A, not a nuisance.
+    h2b_formulation: >
+      v1 asked whether voltage control always lowers alpha. That is not the
+      mitigation claim and it fails whenever the setpoint case is already stable.
+      v2 states the primary mitigation hypothesis strictly conditionally and adds
+      a global restoration measure on the COMPLEX branch position.
+
+# --------------------------------------------------------------- v2A ---------
+v2A:
+  purpose: >
+    Map the load by photovoltaic-availability interaction, establish whether the
+    sign of delta_alpha_Q genuinely changes across the operating range, and test
+    whether the port closure descriptor travels outside the discovery point.
+  design: stratified, latin-hypercube fill inside every cell
+  load_strata: [0.85, 0.95, 1.00, 1.05]
+  availability_strata: [0.70, 0.80, 0.90, 0.95, 1.00]
+  per_cell_draws: 30
+  total_draws: 360
+  nuisance_variables:
+    global_reactive_load: [0.90, 1.10]
+    per_bus_load_scatter: 0.05
+    dispatch_jitter: 0.10
+  configurations: [base, q_setpoint, unity_pf, voltage_control]
+
+  measured_per_sample:
+    lambda_base: tracked branch in the reference case
+    lambda_q: same branch under reactive-setpoint replacement
+    lambda_v: same branch under voltage-regulating replacement
+    lambda_pf: same branch under unity power factor
+    delta_alpha_q: Re(lambda_q) - Re(lambda_base)
+    D_Q: abs(lambda_q - lambda_base)
+    D_V: abs(lambda_v - lambda_base)
+    damping_distance_q: abs(Re(lambda_q) - Re(lambda_base))
+    damping_distance_v: abs(Re(lambda_v) - Re(lambda_base))
+    d_4: min over mu in spectrum(Q_4) of abs(mu + 1), at lambda_q
+    dispatch_saturated: units that reached an active limit
+    reactive_binding: units that reached qmax or qmin in the solved power flow
+
+  tracked_branch: inherited from trackA_final_v1.yaml v1.1, unchanged
+  mac_floor: 0.80
+
+  # Declared before the run. None of these thresholds may be moved afterwards.
+  hypotheses:
+    H1_operating_dependence: >
+      delta_alpha_Q depends on the operating condition: the fraction of samples
+      with delta_alpha_Q > 0 is higher in the highest feasible
+      (load, availability) cell than in the lowest, with non-overlapping
+      95 percent bootstrap confidence intervals.
+    H2_conditional_mitigation: >
+      PRIMARY mitigation hypothesis, strictly conditional. Among samples with
+      alpha_Q > 0, the fraction with alpha_V < 0 has a lower confidence bound
+      above 0.90.
+    H2b_modal_restoration: >
+      SECONDARY, global. Over all accepted samples the fraction with D_V < D_Q
+      has a lower confidence bound above 0.80. The damping-only version,
+      damping_distance_v < damping_distance_q, is reported alongside as an
+      auxiliary metric and is not the definition of restoration.
+    H4_frontier: >
+      There is a frontier in (load, availability): at least one cell has a
+      fraction of delta_alpha_Q > 0 with a lower bound above 0.5 and at least one
+      has an upper bound below 0.5. The dispatchable frontier is reported with it.
+    H5_closure_tracks: >
+      Spearman correlation between d_4 and alpha_Q is negative with p below 0.01.
+      If the closure descriptor does not tighten as the branch approaches
+      instability, it does not travel outside the discovery point.
+
+  success: H1 and H2 and H4 and H5. H2b is reported either way.
+
+# --------------------------------------------------------------- v2B ---------
+v2B:
+  status: NOT AUTHORIZED UNTIL v2A CLOSES AND THIS FILE IS FROZEN
+  purpose: densify the frontier located by v2A
+  rule: >
+    v2B may only refine resolution inside the region v2A identifies. It may not
+    move a threshold, restate a hypothesis, or reweight the v2A statistics.
+
+feasibility:
+  power_flow_mismatch_max: 1.0e-9
+  equilibrium_residual_max: 1.0e-9
+  gz_condition_max: 1.0e8
+  min_voltage: 0.85
+  max_voltage: 1.15
+  device_loading_max: 1.0
+  dispatchable: >
+    unserved active power below 1e-6 pu and the slack estimate inside
+    [0, slack pmax]
+  loss_allowance_for_prescreen: 0.03
+  exclusion: recorded with its reason; the rejection rate is reported per cell
+
+prohibited:
+  - reusing any v1 sample
+  - moving any threshold after seeing v2 results
+  - editing the poster before v2 closes
+  - promoting the v1 post-hoc observations P1 or P2 without v2 confirming them
+  - writing lambda for an eigenvalue of Q, or evaluating Q_4 anywhere other than
+    the tracked inter-area branch of that sample

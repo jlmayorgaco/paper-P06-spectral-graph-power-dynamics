@@ -1,0 +1,49 @@
+{
+  "K12A": {
+    "nodes": 3721,
+    "distinct_H_full": 4,
+    "H_full_counts": {
+      "2|3+4": 2180,
+      "2+3|2+4|3+4": 956,
+      "2|3|4": 518,
+      "2|4": 67
+    },
+    "policy_lines_with_2plus_H_full": 61,
+    "policy_lines": 61,
+    "EMPTY_full": 0,
+    "same_as_band_label": 0.08223595807578608
+  },
+  "K12B": {
+    "nodes": 2196,
+    "distinct_H_full": 5,
+    "H_full_counts": {
+      "2|3+4": 1307,
+      "2+3|2+4|3+4": 633,
+      "2|3|4": 228,
+      "2|4": 22,
+      "2": 6
+    },
+    "policy_lines_with_2plus_H_full": 36,
+    "policy_lines": 36,
+    "EMPTY_full": 0,
+    "same_as_band_label": 0.00273224043715847
+  },
+  "F7A": {
+    "points": 120390,
+    "same_as_band_label": 1.0,
+    "distinct_H_full": 30,
+    "distinct_H_band": 30
+  },
+  "F7B": {
+    "points": 79028,
+    "same_as_band_label": 0.9645695196639166,
+    "distinct_H_full": 36,
+    "distinct_H_band": 33
+  },
+  "F7C": {
+    "points": 145811,
+    "same_as_band_label": 1.0,
+    "distinct_H_full": 16,
+    "distinct_H_band": 16
+  }
+}

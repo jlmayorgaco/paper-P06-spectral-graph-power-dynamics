@@ -1,0 +1,40 @@
+{
+  "experiment": "MC04_p2_rebisect",
+  "question": "Post hoc: are the P2 hypergraph changes bracketed by axis crossings?",
+  "verdict": "COMPUTED",
+  "seed": null,
+  "config": {
+    "post_hoc": true,
+    "bisection": "sign of alpha_perp, 50 steps"
+  },
+  "workers": 16,
+  "git_commit": "f294625702276124651ea9c25c337f76a3e02afa",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 7.89,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-11T14:50:43Z",
+  "elapsed_s": 113.04,
+  "notes": [],
+  "results": {
+    "events_with_subset": 120,
+    "events_without_changed_subset": 1,
+    "sign_change_confirmed": 120,
+    "located_abs_re_le_1e-6": 120,
+    "abs_re_max": 2.0165187436527177e-09,
+    "freq_hz_range": [
+      0.41178344379843823,
+      0.724016312986927
+    ],
+    "real_crossings": 0,
+    "elapsed_s": 112.9
+  }
+}

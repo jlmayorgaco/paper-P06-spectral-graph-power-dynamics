@@ -1,0 +1,90 @@
+{
+ "E1": {
+  "portfolio_status_counts": {
+   "STABLE": 11237,
+   "UNSTABLE": 8438,
+   "BOUNDARY_OR_UNRESOLVED": 293
+  },
+  "frac_unstable_alpha_gt_1": 0.7850201469542546,
+  "alpha_max": 26770.742639530985,
+  "n_stable_context_marginals_holdout": 31120,
+  "frac_same_mode_holdout": 0.6092866323907455,
+  "em_only_reversal_policy_frac": 0.8888888888888888,
+  "em_only_reversal_pairs": 104,
+  "em_only_strength_median": 0.02153197464220294,
+  "tracked_reversal_pairs_holdout": 90,
+  "tracked_strength_quantiles": {
+   "0.25": 0.0138,
+   "0.5": 0.0186,
+   "0.75": 0.0283,
+   "1.0": 0.0684
+  },
+  "tracked_reversal_per_unit": {
+   "30": 7,
+   "31": 12,
+   "32": 12,
+   "33": 16,
+   "34": 15,
+   "35": 14,
+   "36": 8,
+   "37": 1,
+   "38": 5
+  },
+  "per_unit_median_fracs": {
+   "frac_stab": {
+    "30": 0.215,
+    "31": 0.285,
+    "32": 0.283,
+    "33": 0.195,
+    "34": 0.453,
+    "35": 0.293,
+    "36": 0.414,
+    "37": 0.254,
+    "38": 0.662
+   },
+   "frac_neutral": {
+    "30": 0.324,
+    "31": 0.545,
+    "32": 0.49,
+    "33": 0.215,
+    "34": 0.379,
+    "35": 0.361,
+    "36": 0.326,
+    "37": 0.439,
+    "38": 0.002
+   },
+   "frac_destab": {
+    "30": 0.438,
+    "31": 0.15,
+    "32": 0.207,
+    "33": 0.578,
+    "34": 0.174,
+    "35": 0.338,
+    "36": 0.262,
+    "37": 0.305,
+    "38": 0.336
+   }
+  },
+  "node_only_pstar_holdout": {
+   "count": 18.0,
+   "mean": 0.752,
+   "std": 0.053,
+   "min": 0.638,
+   "25%": 0.733,
+   "50%": 0.752,
+   "75%": 0.784,
+   "max": 0.841
+  },
+  "node_only_regret_holdout": {
+   "count": 18.0,
+   "mean": 0.356,
+   "std": 0.069,
+   "min": 0.152,
+   "25%": 0.351,
+   "50%": 0.369,
+   "75%": 0.395,
+   "max": 0.442
+  },
+  "tau_res_rev_stable_policy_frac_holdout": 1.0
+ }
+}

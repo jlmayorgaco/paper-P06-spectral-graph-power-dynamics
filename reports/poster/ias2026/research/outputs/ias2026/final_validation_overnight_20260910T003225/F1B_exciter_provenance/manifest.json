@@ -1,0 +1,123 @@
+{
+  "experiment": "F1B_exciter_provenance",
+  "question": "Does the order-4 phenomenon occupy a physically credible excitation region?",
+  "verdict": "REPORTED",
+  "seed": null,
+  "config": {
+    "K_grid": [
+      5.0,
+      8.0,
+      10.1,
+      15.0,
+      20.0,
+      25.0,
+      30.0,
+      40.0,
+      50.0,
+      60.0,
+      80.0,
+      100.0
+    ],
+    "T_grid": [
+      0.02,
+      0.05,
+      0.1,
+      0.25,
+      0.4,
+      0.5,
+      1.0
+    ],
+    "stabilizer_settings": [
+      "pss on",
+      "pss off"
+    ],
+    "documented_K_range": [
+      20.0,
+      100.0
+    ],
+    "documented_T_range": [
+      0.0,
+      0.5
+    ],
+    "documented_design_product": [
+      5.0,
+      15.0
+    ],
+    "provenance_source": "ANDES SEXS model card vrange metadata",
+    "inherited_point": {
+      "K": 10.1,
+      "T": 0.25
+    },
+    "kappa_definition": "min |S| with a change in the right-half-plane count inside the frozen band",
+    "model": "configs/ieee39_harmonized_dynamic_model.yaml"
+  },
+  "workers": 16,
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 11.26,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-10T13:58:52Z",
+  "elapsed_s": 49.99,
+  "notes": [
+    "312 excitation points on 16 workers"
+  ],
+  "results": {
+    "checks": {
+      "points": 312,
+      "pss on": {
+        "evaluated": 72,
+        "base_unstable_rejected": 34,
+        "admissible": 38,
+        "kappa_distribution": {
+          "3": 12,
+          "-1": 9,
+          "2": 8,
+          "4": 7,
+          "1": 2
+        },
+        "kappa4_points": 7,
+        "kappa4_inside_documented_K": 0,
+        "kappa4_K_range": [
+          0.5,
+          1.0
+        ],
+        "kappa4_T_range": [
+          0.25,
+          1.5
+        ]
+      },
+      "pss off": {
+        "evaluated": 72,
+        "base_unstable_rejected": 34,
+        "admissible": 38,
+        "kappa_distribution": {
+          "3": 11,
+          "-1": 8,
+          "2": 8,
+          "4": 6,
+          "1": 5
+        },
+        "kappa4_points": 6,
+        "kappa4_inside_documented_K": 0,
+        "kappa4_K_range": [
+          0.5,
+          1.0
+        ],
+        "kappa4_T_range": [
+          0.75,
+          1.5
+        ]
+      }
+    },
+    "elapsed_s": 49.87539219856262
+  }
+}

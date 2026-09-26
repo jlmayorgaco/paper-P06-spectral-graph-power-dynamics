@@ -1,0 +1,48 @@
+{
+  "experiment": "F10_baselines",
+  "question": "Can conventional methods recover H and its policy dependence?",
+  "verdict": "COMPUTED",
+  "seed": null,
+  "config": {
+    "points": 52,
+    "line": "F7B t=0.852, g 0-0.35"
+  },
+  "workers": 16,
+  "git_commit": "f12ae3a0364b03db32b3081eaaae42625ac127c9",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 15.43,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-10T18:25:45Z",
+  "elapsed_s": 29.17,
+  "notes": [],
+  "results": {
+    "points": 52,
+    "B1_flagship_status_correct": 1.0,
+    "B2_H_exact": 1.0,
+    "B3_singletons_exact": 1.0,
+    "B3_recovers_H": 0.5961538461538461,
+    "B5_sensitivity_H_exact": 0.4230769230769231,
+    "B5_sensitivity_kappa_exact": 0.4807692307692308,
+    "B5b_additive_H_exact": 0.5769230769230769,
+    "B5b_additive_kappa_exact": 0.6538461538461539,
+    "B5b_pairwise_H_exact": 0.7307692307692307,
+    "B5b_pairwise_kappa_exact": 0.7884615384615384,
+    "B7_certifies_safe_when_safe": 0.0,
+    "B7_false_certification": 0,
+    "B6_scr": "static: identical at every policy point by construction",
+    "line_B2_kappa_exact": 1.0,
+    "line_B5_kappa_exact": 0.08333333333333333,
+    "line_B5b_add_kappa_exact": 0.1388888888888889,
+    "line_B5b_pair_kappa_exact": 0.75,
+    "elapsed_s": 29.093584537506104
+  }
+}

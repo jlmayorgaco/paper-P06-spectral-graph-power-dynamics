@@ -1,0 +1,47 @@
+{
+ "rows": [
+  {
+   "boundary": "flagship boundary, P4 line k = 1.425",
+   "parameter": 0.20768140450381395,
+   "d_alpha_d_parameter": -0.46100603930620704,
+   "omega": 4.438597848177732,
+   "freq_hz": 0.7064247879345361,
+   "alpha_at_point": 5.391891100270385e-11,
+   "min_abs_re_other": 0.1531106507368012,
+   "l1_h0.002": 0.009485018546423663,
+   "l1_h0.001": 0.009483959699398288,
+   "l1_step_spread": 0.00011164609076125945,
+   "type": "subcritical",
+   "status": "COMPUTED"
+  },
+  {
+   "boundary": "tongue boundary, k = 1.30",
+   "parameter": 0.05093685983442811,
+   "d_alpha_d_parameter": 1.1017680890922175,
+   "omega": 4.0171084182394186,
+   "freq_hz": 0.6393426616988683,
+   "alpha_at_point": -1.5024926719453546e-09,
+   "min_abs_re_other": 0.18836565463943455,
+   "l1_h0.002": 0.024994350715116256,
+   "l1_h0.001": 0.024995695513779972,
+   "l1_step_spread": 5.380121001129932e-05,
+   "type": "subcritical",
+   "status": "COMPUTED"
+  },
+  {
+   "boundary": "policy-repaired boundary: damped condenser rating",
+   "parameter": 0.024826803429755278,
+   "d_alpha_d_parameter": -5.569876433209833,
+   "omega": 3.9016269112665607,
+   "freq_hz": 0.6209632090284368,
+   "alpha_at_point": -9.992174865303127e-10,
+   "min_abs_re_other": 0.0013744134174911505,
+   "l1_h0.002": 0.0262887195247785,
+   "l1_h0.001": 0.026345633709897315,
+   "l1_step_spread": 0.0021602890917531144,
+   "type": "subcritical",
+   "status": "COMPUTED"
+  }
+ ],
+ "elapsed_s": 29.7
+}

@@ -1,0 +1,102 @@
+{
+  "experiment": "FC10_monotone_and_paths",
+  "question": "Is IEEE-39 in an order-preserving class; which targets are A / B / C?",
+  "verdict": "COMPUTED",
+  "seed": null,
+  "config": {
+    "robust": 0.01
+  },
+  "workers": 2,
+  "git_commit": "d79fb29526e75769aa62db07c1a7c50281eb0508",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 7.27,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-11T05:47:21Z",
+  "elapsed_s": 149.37,
+  "notes": [],
+  "results": {
+    "census_status": {
+      "STABLE": 327,
+      "UNSTABLE": 185
+    },
+    "unresolved": 0,
+    "monotone_counterexamples_robust": 3,
+    "monotone_counterexamples_any": 3,
+    "examples": [
+      {
+        "S": "30+32+33+35",
+        "alpha_S": 0.04011816091307874,
+        "added": 34,
+        "T": "30+32+33+34+35",
+        "alpha_T": -0.23745194553721263
+      },
+      {
+        "S": "30+33+35+37",
+        "alpha_S": 0.14467022050763484,
+        "added": 34,
+        "T": "30+33+34+35+37",
+        "alpha_T": -0.23738963106231048
+      },
+      {
+        "S": "30+35+37+38",
+        "alpha_S": 0.027206763561389263,
+        "added": 34,
+        "T": "30+34+35+37+38",
+        "alpha_T": -0.19744446305364088
+      }
+    ],
+    "f8_lattice_counterexamples_robust": [],
+    "A": 327,
+    "B": 327,
+    "C": 324,
+    "A_not_C": 3,
+    "A_not_B": 0,
+    "B_not_C": 3,
+    "examples_A_not_B": [],
+    "examples_A_not_C_high_mw": [
+      {
+        "members": "30+32+33+34+35",
+        "replaced_pg_mw": 3008.0863770001815,
+        "replaced_sn_mva": 5224.4,
+        "B_safe_path": true
+      },
+      {
+        "members": "30+34+35+37+38",
+        "replaced_pg_mw": 2717.391100000149,
+        "replaced_sn_mva": 5860.199999999999,
+        "B_safe_path": true
+      },
+      {
+        "members": "30+33+34+35+37",
+        "replaced_pg_mw": 2604.6077170001586,
+        "replaced_sn_mva": 5350.9,
+        "B_safe_path": true
+      }
+    ],
+    "P1_best_C": {
+      "members": "31+32+34+35+37+38",
+      "replaced_pg_mw": 3652.3047110001917,
+      "replaced_sn_mva": 6499.9
+    },
+    "P1_best_B": {
+      "members": "31+32+34+35+37+38",
+      "replaced_pg_mw": 3652.3047110001917,
+      "replaced_sn_mva": 6499.9
+    },
+    "P1_best_A": {
+      "members": "31+32+34+35+37+38",
+      "replaced_pg_mw": 3652.3047110001917,
+      "replaced_sn_mva": 6499.9
+    },
+    "elapsed_s": 148.5
+  }
+}

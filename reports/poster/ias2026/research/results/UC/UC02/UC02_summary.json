@@ -1,0 +1,164 @@
+{
+ "frozen_E39_reproduction_max_abs_error": 1.1102230246251565e-16,
+ "auc_old_sn_vs_pg": {
+  "4": {
+   "sn_mva_old_column": 0.8129310344827586,
+   "pg_mw": 0.571551724137931,
+   "pmax_mw": 0.8741379310344828,
+   "q_mvar": 0.3612068965517241,
+   "inertia_fraction": 0.8689655172413793,
+   "min_scr_raw": 0.39525862068965517
+  },
+  "5": {
+   "sn_mva_old_column": 0.7733333333333333,
+   "pg_mw": 0.636078431372549,
+   "pmax_mw": 0.7227450980392157,
+   "q_mvar": 0.4300653594771242,
+   "inertia_fraction": 0.7845751633986928,
+   "min_scr_raw": 0.34705882352941175
+  },
+  "6": {
+   "sn_mva_old_column": 0.8611111111111112,
+   "pg_mw": 0.7264957264957265,
+   "pmax_mw": 0.7884615384615384,
+   "q_mvar": 0.4358974358974359,
+   "inertia_fraction": 0.8461538461538461,
+   "min_scr_raw": 0.3215811965811966
+  }
+ },
+ "spearman_with_inertia_fraction": {
+  "4": {
+   "replaced_sn_mva": 0.8399820022497188,
+   "replaced_pg_mw": 0.44257367829021377,
+   "replaced_pmax_mw": 0.7270373920016242
+  },
+  "5": {
+   "replaced_sn_mva": 0.8399820022497188,
+   "replaced_pg_mw": 0.44257367829021377,
+   "replaced_pmax_mw": 0.7270373920016242
+  },
+  "6": {
+   "replaced_sn_mva": 0.8063379568694947,
+   "replaced_pg_mw": 0.43430191353649894,
+   "replaced_pmax_mw": 0.7635758002315124
+  }
+ },
+ "e14_matched": {
+  "replaced_sn_mva": {
+   "failing_min_scr_range": [
+    0.907257223575048,
+    2.950685477150536
+   ],
+   "stable_in_window_and_failing_min_scr_range": 93,
+   "joint_worst_abscissa": -0.0677130022280329,
+   "match_on": "replaced_sn_mva",
+   "failing_range": [
+    4144.2,
+    4984.599999999999
+   ],
+   "stable_in_window": 93,
+   "selected": 25,
+   "selected_range": [
+    4665.099999999999,
+    5024.799999999999
+   ],
+   "selected_min_scr_range": [
+    0.907257223575048,
+    0.907257223575048
+   ],
+   "selected_gscr_range": [
+    0.8328611494969503,
+    0.8970659656899748
+   ],
+   "selected_worst_abscissa": -0.0677130022280329,
+   "all_selected_stable": true
+  },
+  "replaced_pg_mw": {
+   "failing_min_scr_range": [
+    0.907257223575048,
+    2.950685477150536
+   ],
+   "stable_in_window_and_failing_min_scr_range": 106,
+   "joint_worst_abscissa": -0.0677130022280329,
+   "match_on": "replaced_pg_mw",
+   "failing_range": [
+    2096.607719000153,
+    2683.7833750002314
+   ],
+   "stable_in_window": 107,
+   "selected": 25,
+   "selected_range": [
+    2533.869762000153,
+    2787.78337500007
+   ],
+   "selected_min_scr_range": [
+    0.907257223575048,
+    2.950685477150536
+   ],
+   "selected_gscr_range": [
+    0.8627031912915424,
+    2.102453990958288
+   ],
+   "selected_worst_abscissa": -0.1144629184447578,
+   "all_selected_stable": true
+  },
+  "overlap_pg_with_frozen": 9
+ },
+ "nearest_pairs_within_5pct": {
+  "replaced_sn_mva": 10,
+  "replaced_pg_mw": 10
+ },
+ "nearest_pairs_median_gap": {
+  "replaced_sn_mva": 0.001262134385924015,
+  "replaced_pg_mw": 6.659079627788552e-05
+ },
+ "e18_pg_matched": {
+  "controls": 12,
+  "controls_pg_range": [
+   2055.5213320001253,
+   2162.5213320001585
+  ],
+  "flagship_pg": 2096.607719000153,
+  "flagship_closure_distance": 1.5778742362790312e-07,
+  "controls_closure_distance_range": [
+   0.15575917183358307,
+   0.8632216032224782
+  ],
+  "closure_separation_ratio": 987145.6688518908,
+  "cycle_separation_ratio_len4": 0.7164981612600905,
+  "overlap_with_frozen_sn_matched": [
+   "33+34+36+37"
+  ]
+ },
+ "e38": [
+  {
+   "adjusted_for": "replaced_mw",
+   "n": 126,
+   "bus30_odds_ratio": 4.094787518926671,
+   "odds_ratio_ci": [
+    0.1350383740885223,
+    124.16681508743666
+   ],
+   "bus30_p_value": 0.4180424226297125,
+   "converged": true,
+   "pseudo_r2": 0.5557464932460967,
+   "coef_replaced_mw_per_1000": 10.21405198115362,
+   "p_replaced_mw": 0.02052053651783347
+  },
+  {
+   "adjusted_for": "replaced_pg_mw",
+   "n": 126,
+   "bus30_odds_ratio": 0.052866423718111795,
+   "odds_ratio_ci": [
+    0.0007456317992690555,
+    3.7483095000545013
+   ],
+   "bus30_p_value": 0.1762921710199259,
+   "converged": true,
+   "pseudo_r2": 0.5004762274418334,
+   "coef_replaced_pg_mw_per_1000": -6.777673955668154,
+   "p_replaced_pg_mw": 0.08553803233615548
+  }
+ ],
+ "elapsed_s": 17.6
+}

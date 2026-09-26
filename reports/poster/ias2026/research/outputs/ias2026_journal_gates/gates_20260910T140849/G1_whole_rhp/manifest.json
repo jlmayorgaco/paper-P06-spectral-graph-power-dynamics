@@ -1,0 +1,31 @@
+{
+  "experiment": "G1_whole_rhp",
+  "question": "Is whole-RHP composability what the claims say?",
+  "verdict": "COMPUTED",
+  "seed": null,
+  "config": {
+    "F_REAL_hz": 0.001,
+    "BAND_EDGE_hz": 0.05,
+    "zero_floor": 0.001
+  },
+  "workers": 16,
+  "git_commit": "529fdb22240cd5e8563658160703e917a1732df8",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 15.72,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-10T19:08:49Z",
+  "elapsed_s": 445.55,
+  "notes": [],
+  "results": {
+    "elapsed_s": 445.48069429397583
+  }
+}

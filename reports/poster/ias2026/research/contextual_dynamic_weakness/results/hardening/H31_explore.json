@@ -1,0 +1,188 @@
+{
+ "label": "POST-HOC exploratory (H31)",
+ "fast_participation_mean_top": {
+  "gfl:theta": 0.38503650948002616,
+  "gfl:i_q": 0.36402163711209673,
+  "gfl:x_q": 0.06648132618514907,
+  "gfl:q_f": 0.04499018656837421,
+  "gfl:p_f": 0.03459468644889172,
+  "gfl:x_pll": 0.034073686246519276,
+  "gfl:x_v": 0.015121542647701129,
+  "gfl:x_iq": 0.010005056075159736,
+  "gfl:i_d": 0.005492843713892619,
+  "sg:ed1": 0.005012903635384775
+ },
+ "fast_lambda_quantiles": [
+  129.6,
+  423.8,
+  5219.2
+ ],
+ "fast_imag_max": 0.0,
+ "fast_sigma_min_gz_quantiles": [
+  0.029849647842822888,
+  0.13959506399479574,
+  0.30357758882096303
+ ],
+ "sweeps": [
+  {
+   "pid": "HARDENING_H10",
+   "i": 37,
+   "rho_first_unstable": 0.0,
+   "alpha_end": 174.79293280009279,
+   "sigma_min_gz_min_over_sweep": 0.0020506897194450826,
+   "sigma_min_gz_at_crossing": 0.05278451405540065,
+   "max_alpha_step_jump": 26290.925177962326,
+   "n_errors": 0
+  },
+  {
+   "pid": "HARDENING_H06",
+   "i": 32,
+   "rho_first_unstable": 0.0,
+   "alpha_end": 4552.459105785683,
+   "sigma_min_gz_min_over_sweep": 0.002946268348553094,
+   "sigma_min_gz_at_crossing": 0.2033311155732181,
+   "max_alpha_step_jump": 98772.8777815096,
+   "n_errors": 0
+  },
+  {
+   "pid": "HARDENING_H19",
+   "i": 33,
+   "rho_first_unstable": 0.0,
+   "alpha_end": 294.2230701469216,
+   "sigma_min_gz_min_over_sweep": 0.001931199339809497,
+   "sigma_min_gz_at_crossing": 0.2509529603303329,
+   "max_alpha_step_jump": 16626.51687190225,
+   "n_errors": 0
+  },
+  {
+   "pid": "HARDENING_H01",
+   "i": 31,
+   "rho_first_unstable": 0.0,
+   "alpha_end": 5764.637935507366,
+   "sigma_min_gz_min_over_sweep": 0.003074690324166821,
+   "sigma_min_gz_at_crossing": 0.16067920376773076,
+   "max_alpha_step_jump": 109803.79970389056,
+   "n_errors": 0
+  },
+  {
+   "pid": "HARDENING_H11",
+   "i": 32,
+   "rho_first_unstable": 0.0,
+   "alpha_end": 1245.8640260648028,
+   "sigma_min_gz_min_over_sweep": 0.005015306495246975,
+   "sigma_min_gz_at_crossing": 0.2868038257658041,
+   "max_alpha_step_jump": 3773.3470549720823,
+   "n_errors": 0
+  },
+  {
+   "pid": "HARDENING_H18",
+   "i": 35,
+   "rho_first_unstable": 0.0,
+   "alpha_end": 248.68783931281342,
+   "sigma_min_gz_min_over_sweep": 0.0066680875734699534,
+   "sigma_min_gz_at_crossing": 0.28483303740598365,
+   "max_alpha_step_jump": 7945.404224819459,
+   "n_errors": 0
+  }
+ ],
+ "continuation_n": 60,
+ "continuation_match_frac": 1.0,
+ "continuation_examples": [
+  {
+   "pid": "HARDENING_H17",
+   "S": "BASE",
+   "i": 32,
+   "match": true
+  },
+  {
+   "pid": "HARDENING_H18",
+   "S": "30+35+38",
+   "i": 36,
+   "match": true
+  },
+  {
+   "pid": "HARDENING_H18",
+   "S": "33+36",
+   "i": 35,
+   "match": true
+  },
+  {
+   "pid": "HARDENING_H13",
+   "S": "31+33+36+37",
+   "i": 38,
+   "match": true
+  },
+  {
+   "pid": "HARDENING_H16",
+   "S": "34+35+37+38",
+   "i": 36,
+   "match": true
+  },
+  {
+   "pid": "HARDENING_H20",
+   "S": "30+32+33+37",
+   "i": 34,
+   "match": true
+  }
+ ],
+ "timing": {
+  "sec_per_branch_total_derivative_fd_impl": 1.4596172499999132,
+  "sec_per_branch_finite_resolve_eig": 0.6112139250000533
+ },
+ "sweeps_recomputed": [
+  {
+   "pid": "HARDENING_H10",
+   "i": 37,
+   "rho_onset_alpha_ge_1": 0.275,
+   "alpha_before_onset": -5.4951770208841923e-11,
+   "alpha_at_onset": 26290.925177962272,
+   "rho_at_min_sigma_gz": 0.25,
+   "min_sigma_gz": 0.0020506897194450826
+  },
+  {
+   "pid": "HARDENING_H06",
+   "i": 32,
+   "rho_onset_alpha_ge_1": 0.8500000000000001,
+   "alpha_before_onset": 6.093378240992498e-05,
+   "alpha_at_onset": 98772.87784244338,
+   "rho_at_min_sigma_gz": 0.8500000000000001,
+   "min_sigma_gz": 0.002946268348553094
+  },
+  {
+   "pid": "HARDENING_H19",
+   "i": 33,
+   "rho_onset_alpha_ge_1": 0.5750000000000001,
+   "alpha_before_onset": -3.89505804758554e-11,
+   "alpha_at_onset": 16626.51687190221,
+   "rho_at_min_sigma_gz": 0.55,
+   "min_sigma_gz": 0.001931199339809497
+  },
+  {
+   "pid": "HARDENING_H01",
+   "i": 31,
+   "rho_onset_alpha_ge_1": 0.8,
+   "alpha_before_onset": -1.0998636944414354e-11,
+   "alpha_at_onset": 109803.79970389055,
+   "rho_at_min_sigma_gz": 0.775,
+   "min_sigma_gz": 0.003074690324166821
+  },
+  {
+   "pid": "HARDENING_H11",
+   "i": 32,
+   "rho_onset_alpha_ge_1": 0.9750000000000001,
+   "alpha_before_onset": 4.472204827747324e-05,
+   "alpha_at_onset": 3773.3470996941305,
+   "rho_at_min_sigma_gz": 0.9750000000000001,
+   "min_sigma_gz": 0.005015306495246975
+  },
+  {
+   "pid": "HARDENING_H18",
+   "i": 35,
+   "rho_onset_alpha_ge_1": 0.8,
+   "alpha_before_onset": -2.200811617409795e-11,
+   "alpha_at_onset": 7945.404224819437,
+   "rho_at_min_sigma_gz": 0.8,
+   "min_sigma_gz": 0.0066680875734699534
+  }
+ ]
+}

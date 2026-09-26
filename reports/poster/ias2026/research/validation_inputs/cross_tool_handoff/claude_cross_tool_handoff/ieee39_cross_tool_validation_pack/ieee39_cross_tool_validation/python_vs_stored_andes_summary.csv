@@ -1,0 +1,13 @@
+check,measured,gate,verdict
+PF converged,True,True,PASS
+PF max mismatch,2.692781249002946e-12,1e-10,PASS
+Ybus max |Δ| [pu],1.139086659085919e-13,1e-09,PASS
+Vm max |Δ| [pu],1.724304481420802e-07,1e-05,PASS
+Va max gauge-aligned |Δ| [rad],1.711858633179908e-07,1e-05,PASS
+PV P max |Δ| [pu],1.1333156635373598e-12,1e-08,PASS
+PV Q max |Δ| [pu],2.045472635270329e-06,1e-05,PASS
+Slack P |Δ| [pu],5.689183205426218e-06,1e-05,PASS
+Slack Q |Δ| [pu],3.574209532120065e-06,1e-05,PASS
+R3 ANDES/Python max α-band error [1/s],1.495307029697468e-06,2e-06,PASS
+R3 ANDES/Python max f-band error [Hz],1.317815431223224e-07,2e-06,PASS
+R3 RHP-count agreement,True,True,PASS

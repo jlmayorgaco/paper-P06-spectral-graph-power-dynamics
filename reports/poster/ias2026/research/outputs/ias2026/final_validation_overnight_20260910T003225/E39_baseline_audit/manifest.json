@@ -1,0 +1,96 @@
+{
+  "experiment": "E39_baseline_audit",
+  "question": "Do the conventional and lower-order baselines rank instability?",
+  "verdict": "REPORTED",
+  "seed": null,
+  "config": {
+    "predictors": [
+      "additive_prediction",
+      "pairwise_prediction",
+      "replaced_mw",
+      "replaced_inertia_fraction",
+      "min_scr",
+      "mean_scr",
+      "gscr",
+      "max_miif"
+    ],
+    "expectation": {
+      "additive_prediction": "higher is more unstable",
+      "pairwise_prediction": "higher is more unstable",
+      "replaced_mw": "higher is more unstable",
+      "replaced_inertia_fraction": "higher is more unstable",
+      "min_scr": "LOWER is more unstable",
+      "mean_scr": "LOWER is more unstable",
+      "gscr": "LOWER is more unstable",
+      "max_miif": "higher is more unstable"
+    },
+    "sizes": [
+      4,
+      5,
+      6
+    ],
+    "permutations": 5000,
+    "threshold_rule": "lower-order reconstruction predicts unstable iff alpha > 0",
+    "wording_rule": "an AUC below one half with a complement above one half is reported as 'inversely ordered on this benchmark', never as 'universally anti-predictive'"
+  },
+  "workers": 1,
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 6.53,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-10T06:22:39Z",
+  "elapsed_s": 26.19,
+  "notes": [],
+  "results": {
+    "checks": {
+      "rows": 24,
+      "lower_order_auc_range": [
+        0.08974358974358974,
+        0.15258620689655172
+      ],
+      "lower_order_flipped_auc_range": [
+        0.8474137931034482,
+        0.9102564102564102
+      ],
+      "conventional_auc_range": [
+        0.2799145299145299,
+        0.75
+      ],
+      "predictors_significantly_inverted": 9,
+      "inverted_list": [
+        "additive_prediction@4",
+        "additive_prediction@5",
+        "additive_prediction@6",
+        "gscr@5",
+        "mean_scr@5",
+        "min_scr@5",
+        "pairwise_prediction@4",
+        "pairwise_prediction@5",
+        "pairwise_prediction@6"
+      ],
+      "permutation_null_mean_overall": 0.5000205799801206,
+      "any_predictor_above_0_8": [
+        "additive_prediction@4",
+        "additive_prediction@5",
+        "additive_prediction@6",
+        "pairwise_prediction@4",
+        "pairwise_prediction@5",
+        "pairwise_prediction@6",
+        "replaced_inertia_fraction@4",
+        "replaced_inertia_fraction@6",
+        "replaced_mw@4",
+        "replaced_mw@6"
+      ]
+    },
+    "elapsed_s": 25.75318431854248
+  }
+}

@@ -1,0 +1,16 @@
+{
+ "mode": "dev",
+ "criteria": {
+  "B1_no_crash": true,
+  "B2_correct_conclusive_all": true,
+  "B2_detail": {
+   "DEV_P4_BASE": true
+  },
+  "B3_near_boundary_not_wrong_sign": true,
+  "B4_max_abs_dalpha": 0.0005619901535463823,
+  "B4_max_abs_df": 0.00017746745255808882,
+  "B4_all_within": true,
+  "B5_no_sentinel_flag": true,
+  "pass": true
+ }
+}

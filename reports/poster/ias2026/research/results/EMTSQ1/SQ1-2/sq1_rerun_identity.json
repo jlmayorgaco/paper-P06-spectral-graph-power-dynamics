@@ -1,0 +1,17 @@
+{
+ "check": "SQ1-2 determinism rerun (identical code, seed 20260913); wall_s and provenance excluded",
+ "csv_identical_excluding_wall_s": true,
+ "json_identical_excluding_wall_s_provenance": true,
+ "csv_bytes_identical": true,
+ "sha256_run1_csv": "30f714657d03057c68dc45c2eeb31d678fda1ab6a19529f19f56bda4cb4ab62f",
+ "sha256_run2_csv": "30f714657d03057c68dc45c2eeb31d678fda1ab6a19529f19f56bda4cb4ab62f",
+ "n_rows": [
+  245,
+  245
+ ],
+ "wall_s_run1_run2": [
+  1664.7,
+  1657.7
+ ],
+ "pass": true
+}

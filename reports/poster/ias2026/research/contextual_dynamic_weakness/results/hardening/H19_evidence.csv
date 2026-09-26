@@ -1,0 +1,9 @@
+layer,question,value_new_holdout,rule,positive
+L1,arbitrary-context reversal,1.0,>=0.75,True
+L2,nested-context reversal (level A),1.0,>=0.75,True
+L3,same-mode nested reversal (level B),0.9473684210526315,>=0.50,True
+L4,EM same-mode nested reversal (level C),0.8947368421052632,>=0.75,True
+L5,optimal fixed ranking failure (FULL),p*=0.749; regret=0.376,p*<=0.90 & regret>=0.10,True
+L6,ranking transfer failure,offdiag regret=0.402; diag=0.376,>=0.10 and > diagonal,True
+L7,envelope robustness (fresh draws),"{""EC"": 1.0, ""EM-f"": 0.9, ""EM-u"": 0.8, ""EMC"": 1.0}",>=0.50 in >=3/4 envelopes,True
+L8,dynamic-converter holdout (ALT-WECC reversal),0.0 (MODEL-SPECIFIC),TRANSFERS,False

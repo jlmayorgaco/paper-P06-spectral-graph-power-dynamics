@@ -1,0 +1,110 @@
+{
+ "plans": [
+  {
+   "point": "P4",
+   "constraint": "P1 spectral (H_RHP_perp)",
+   "portfolio": "30+33+35",
+   "replaced_pg_mw": 1775.0863810001342,
+   "final_stable_best": {
+    "portfolio": "30+33+35",
+    "replaced_pg_mw": 1775.0863810001342
+   },
+   "status": NaN
+  },
+  {
+   "point": "P4",
+   "constraint": "P2 nonlinear D1 rho*=200.0",
+   "portfolio": NaN,
+   "replaced_pg_mw": NaN,
+   "final_stable_best": NaN,
+   "status": "OUT_OF_MODEL_SCOPE (rho_scope=130.46875)"
+  },
+  {
+   "point": "P4",
+   "constraint": "P2 nonlinear D2 rho*=200.0",
+   "portfolio": NaN,
+   "replaced_pg_mw": NaN,
+   "final_stable_best": NaN,
+   "status": "OUT_OF_MODEL_SCOPE (rho_scope=97.65625)"
+  },
+  {
+   "point": "P4",
+   "constraint": "P2 nonlinear D3 rho*=0.35",
+   "portfolio": NaN,
+   "replaced_pg_mw": NaN,
+   "final_stable_best": NaN,
+   "status": "OUT_OF_MODEL_SCOPE (rho_scope=0.090625)"
+  },
+  {
+   "point": "P_inf",
+   "constraint": "P1 spectral (H_RHP_perp)",
+   "portfolio": "30+33+35+37",
+   "replaced_pg_mw": 2096.607719000146,
+   "final_stable_best": {
+    "portfolio": "30+33+35+37",
+    "replaced_pg_mw": 2096.607719000146
+   },
+   "status": NaN
+  },
+  {
+   "point": "P_inf",
+   "constraint": "P2 nonlinear D1 rho*=200.0",
+   "portfolio": NaN,
+   "replaced_pg_mw": NaN,
+   "final_stable_best": NaN,
+   "status": "OUT_OF_MODEL_SCOPE (rho_scope=88.28125)"
+  },
+  {
+   "point": "P_inf",
+   "constraint": "P2 nonlinear D2 rho*=200.0",
+   "portfolio": "30+33+35+37",
+   "replaced_pg_mw": 2096.607719000146,
+   "final_stable_best": NaN,
+   "status": "EVALUATED"
+  },
+  {
+   "point": "P_inf",
+   "constraint": "P2 nonlinear D3 rho*=0.35",
+   "portfolio": NaN,
+   "replaced_pg_mw": NaN,
+   "final_stable_best": NaN,
+   "status": "OUT_OF_MODEL_SCOPE (rho_scope=0.3078125)"
+  }
+ ],
+ "P3": [
+  {
+   "requirement": "transversely stable",
+   "family": "",
+   "fraction": 0.024826803477481008,
+   "condenser_mva": 106.02782961127814,
+   "status": "BISECTED",
+   "trail": NaN
+  },
+  {
+   "requirement": "tolerates rho*=200.0",
+   "family": "D1",
+   "fraction": 0.185546875,
+   "condenser_mva": 792.4150390625,
+   "status": "BISECTED",
+   "trail": "[[0.125, \"OUTSIDE_MODEL_SCOPE\", 200.0], [0.1875, \"RECOVERS\", 200.0], [0.15625, \"OUTSIDE_MODEL_SCOPE\", 200.0], [0.171875, \"OUTSIDE_MODEL_SCOPE\", 200.0], [0.1796875, \"OUTSIDE_MODEL_SCOPE\", 200.0], [0.18359375, \"OUTSIDE_MODEL_SCOPE\", 200.0], [0.185546875, \"RECOVERS\", 200.0]]"
+  },
+  {
+   "requirement": "tolerates rho*=200.0",
+   "family": "D2",
+   "fraction": 0.16015625,
+   "condenser_mva": 683.9792968749999,
+   "status": "BISECTED",
+   "trail": "[[0.125, \"OUTSIDE_MODEL_SCOPE\", 200.0], [0.1875, \"RECOVERS\", 200.0], [0.15625, \"OUTSIDE_MODEL_SCOPE\", 200.0], [0.171875, \"RECOVERS\", 200.0], [0.1640625, \"RECOVERS\", 200.0], [0.16015625, \"RECOVERS\", 200.0], [0.158203125, \"OUTSIDE_MODEL_SCOPE\", 200.0]]"
+  },
+  {
+   "requirement": "tolerates rho*=0.35",
+   "family": "D3",
+   "fraction": NaN,
+   "condenser_mva": NaN,
+   "status": "NOT_REACHED at 25% (OUTSIDE_MODEL_SCOPE)",
+   "trail": NaN
+  }
+ ],
+ "elapsed_s": 658.9,
+ "p3_spectral_rerun": "dead-state deletion before the quotient (alpha_c fix)"
+}

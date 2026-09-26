@@ -1,0 +1,50 @@
+{
+  "experiment": "BC01_physical_H_ieee68",
+  "question": "Does removing the disc around zero change H or kappa?",
+  "verdict": "COMPUTED",
+  "seed": null,
+  "config": {
+    "benchmarks": "ieee68",
+    "seed": 20260911,
+    "workers": 12
+  },
+  "workers": 1,
+  "git_commit": "7a77da3061ebc6c934c881b09be593fa0649b68e",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 11.14,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-10T22:21:09Z",
+  "elapsed_s": 2633.21,
+  "notes": [],
+  "results": {
+    "elapsed_s": 2633.144942045212,
+    "ieee68": {
+      "benchmark": "ieee68",
+      "points": 121,
+      "subset_cases": 1936,
+      "status_rest_counts": {
+        "STABLE": 1936
+      },
+      "status_physical_counts": {
+        "BOUNDARY_OR_UNRESOLVED": 1936
+      },
+      "neutral_verified_fraction": 1.0,
+      "max_rotation_residual": 5.629874969723687e-16,
+      "max_jordan_residual": 3.736822825483596e-15,
+      "points_exact": 121,
+      "points_with_unresolved": 0,
+      "compared_with_G1": 121,
+      "H_phys_equals_G1": 121,
+      "points_with_small_positive_real_mode": 0
+    }
+  }
+}

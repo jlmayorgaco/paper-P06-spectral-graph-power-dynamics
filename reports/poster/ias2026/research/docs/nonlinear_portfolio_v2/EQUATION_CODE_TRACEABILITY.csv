@@ -1,0 +1,34 @@
+equation_id,description,code_location,units,dimensions,tests,status
+NET-1,"Branch pi model, complex tap on from side (Yff,Yft,Ytf,Ytt)",src/ibr_cycles/nonlinear/network.py:load_branch_network,pu admittance (100 MVA),n_branch,tests/test_nl01_model.py::test_synthetic_branches_with_phase_shifters,V
+NET-2,"Ybus = Cf^T Yf + Ct^T Yt + diag(ysh) (L1) vs _build_ybus (L0)",src/ibr_cycles/nonlinear/network.py:BranchNetwork.ybus; src/ibr_cycles/models/ieee39_network.py:_build_ybus,pu,n_bus x n_bus,tests/test_nl01_model.py::test_l1_branch_ybus_equals_l0,V
+NET-3,"Branch loss Re(Sf+St) = r|y(Vf/t - Vt)|^2",src/ibr_cycles/nonlinear/network.py:BranchNetwork.branch_flows,pu power,n_branch,tests/test_nl01_model.py::test_branch_losses_with_taps,V
+NET-4,"Realification stacked vs interleaved (explicit permutation)",src/ibr_cycles/nonlinear/network.py:realify/interleave_permutation,-,2n x 2n,tests/test_nl01_model.py::test_realification_orders_are_one_permutation,V
+KCL-1,"g = realify(Ybus V - sum gamma_k I_k + I_load)",src/ibr_cycles/models/ieee39_case.py:Ieee39Dae.g,pu current (system base),2 n_bus,tests/test_nl01_model.py::test_l1_kcl_equals_l0_residual,V
+LOAD-PQ,"I_load = conj(S)/conj(V) (IEEE-39, Kundur)",src/ibr_cycles/models/ieee39_case.py:Ieee39Dae.g,pu,per load bus,tests/test_nl01_model.py::test_l1_kcl_equals_l0_residual,V
+LOAD-Z,"I_load = conj(S) V/|V0|^2 (IEEE-68)",src/ibr_cycles/models/ieee39_case.py:Ieee39Dae.g,pu,per load bus,tests/test_ieee68_model.py,V
+SG2-ROT,"vd = vx sin(delta) - vy cos(delta), vq = vx cos(delta) + vy sin(delta)",src/ibr_cycles/models/ieee39_devices.py:_rotate_to_dq,pu,2,experiments/nonlinear_portfolio_v2/NL00_audit.py (finite rotation),V
+SG2-STATOR,"id,iq from 2x2 stator solve (ra, x'd, x'q)",src/ibr_cycles/models/ieee39_devices.py:SynchronousMachine._currents,pu machine base,2,NL00 base conversion; equilibrium tests,V
+SG2-MECH,"delta' = wB (w-1); w' = (Pm - P - D(w-1))/M (power form)",src/ibr_cycles/models/ieee39_devices.py:SynchronousMachine.derivatives,rad/s; pu/s,2,NL00 base conversion,V
+SG2-FLUX,"e'q' = (efd - e'q - (xd-x'd) id)/T'd0; e'd' = (-e'd + (xq-x'q) iq)/T'q0",src/ibr_cycles/models/ieee39_devices.py:SynchronousMachine.derivatives,pu/s,2,tests/test_ieee39_baseline.py,V
+AVR-39,"efd' = (KA(vref+vs-|V|) - efd)/TE (harmonized IEEEX1: KA regulator + TE exciter)",src/ibr_cycles/models/ieee39_devices.py:SynchronousMachine.derivatives,pu/s,1,F1 reconciliation (band only),MODEL_CHANGED (declared)
+AVR-SEXS,"lead-lag (TATB,TB) + lag KA/(1+sTE) (Kundur)",src/ibr_cycles/models/ieee39_devices.py:SynchronousMachine.derivatives (avr_tb>0),pu/s,2,F12 import checks,V (limits ABSENT)
+PSS-39,"IEEEST mode 3: washout (T5/T6) + lag T4, gain KS on air-gap power",src/ibr_cycles/models/ieee39_devices.py:SynchronousMachine.derivatives,pu,2,tests/test_ieee39_baseline.py,V (limits ABSENT)
+SG68,"Sub-transient model eqs. 1-6 + dummy coil; torque form",src/ibr_cycles/models/ieee68_devices.py:Ieee68Machine,pu machine base,7,tests/test_ieee68_model.py (Table 4 to 5e-4 Hz),V
+EXC68,"DC4B (PID, rate feedback, saturation) and ST1A; manual G13-G16",src/ibr_cycles/models/ieee68_devices.py:Ieee68Machine.derivatives,pu,6 / 1 / 0,tests/test_ieee68_model.py,V (limits ABSENT)
+PSS68,"slip input, washout + three lead-lags",src/ibr_cycles/models/ieee68_devices.py:Ieee68Machine._vss,pu,3-4,tests/test_ieee68_model.py,V
+GFL-PLL,"theta' = kp vq + x_pll; x_pll' = ki vq (SRF, unnormalized)",src/ibr_cycles/models/ieee39_devices.py:GridFollowingConverter.derivatives,rad; rad/s,2,NL00 finite rotation; frequency partner,V
+GFL-PQ,"P = vd id + vq iq; Q = vq id - vd iq",src/ibr_cycles/models/ieee39_devices.py:GridFollowingConverter.derivatives,pu converter base,2,tests/test_nl01_model.py::test_equilibrium_and_device_power,V
+GFL-OUTER,"PI on filtered P and Q; iq sign inversion",src/ibr_cycles/models/ieee39_devices.py:GridFollowingConverter.derivatives,pu,4,equilibrium tests,V
+GFL-QV,"leaky Q/V: q = q_ref + g kp_v e + x_v; x_v' = g ki_v e - w (x_v - q_ref)",src/ibr_cycles/models/ieee39_devices.py:GridFollowingConverter.derivatives,pu Q,1,tests/test_reactive_policy_coordinate.py,V
+GFL-INNER,"inner PI + filter L with feedforward and decoupling (N.34 cancellation)",src/ibr_cycles/models/ieee39_devices.py:GridFollowingConverter.derivatives,pu,4,N.34 symbolic check pending (NL07),T
+GFL-LIM,"current/voltage limits, anti-windup, modulation delay",-,-,-,-,ABSENT (L2)
+DC-LINK,"2 Hdc vdc vdc' = pPV - pAC - ploss",-,-,-,-,ABSENT (L2)
+GOV,"governor",-,-,-,-,ABSENT (all benchmarks)
+MASS,"M = I (normalized derivatives)",src/ibr_cycles/nonlinear/model.py:PhasorModel.mass,-,n_x,declared,V
+SYM-R,"R_x = 1 on delta/theta_pll; R_z = jV",src/ibr_cycles/certification/symmetry.py:rotation_generator,-,n_x + 2n_bus,tests/test_bc_adapter.py; NL00 finite rotation,V
+SYM-W,"A w = omega_B R_x (uniform frequency shift, D = 0)",src/ibr_cycles/certification/symmetry.py:frequency_partner,-,n_x,tests/test_bc_adapter.py; BC01 audit,V
+QUOT,"A_q = Z^T A Z; A_qq deflated by Z^T w",src/ibr_cycles/certification/symmetry.py:quotient/deflate_eigenvector,-,n-1 / n-2,tests/test_bc_quotient.py,T+V
+MAN-J,"J_psi = -Gz^-1 Gx (LU solve)",src/ibr_cycles/nonlinear/manifold.py:Chart.j_psi,-,n_z x n_x,experiments/nonlinear_portfolio_v2/NL02_manifold_derivatives.py,V
+MAN-H,"H_psi, H_r by Hessian-vector products",src/ibr_cycles/nonlinear/manifold.py:hessian_reduced,-,n_x,NL02 (11 points; convergence curves),V (SAMPLED_CURVATURE)
+MAN-BCD,"B = fu - fz Gz^-1 Gu; C = hx + hz Jpsi; D = hu - hz Gz^-1 Gu",src/ibr_cycles/nonlinear/manifold.py:input_output,-,-,NL02,V
+PORT-0,"T##(0) after two exact relocations (rotation, neutral mode)",src/ibr_cycles/certification/port_origin.py:relocated_port,-,2 n_bus,BC01 Kundur crossings,V

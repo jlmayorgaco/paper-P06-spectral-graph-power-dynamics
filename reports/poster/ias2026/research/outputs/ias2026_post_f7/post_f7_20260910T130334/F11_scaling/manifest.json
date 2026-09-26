@@ -1,0 +1,299 @@
+{
+  "experiment": "F11_scaling",
+  "question": "What does each method cost, and how accurate is it?",
+  "verdict": "COMPUTED",
+  "seed": null,
+  "config": {
+    "points": {
+      "P_inf": {
+        "g": 1.0,
+        "k": 0.5,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "P4": {
+        "g": 0.03625,
+        "k": 1.4249999999999998,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "P3": {
+        "g": 0.0,
+        "k": 1.63125,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "P2": {
+        "g": 0.11,
+        "k": 1.85,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "P1": {
+        "g": 0.1325,
+        "k": 2.178125,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "P_fold": {
+        "g": 0.10257,
+        "k": 1.25954,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "R00": {
+        "g": 0.1252660095309058,
+        "k": 0.5814524973826509,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "R01": {
+        "g": 0.047570586419758,
+        "k": 0.6405066128981096,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "R02": {
+        "g": 0.0641223014235259,
+        "k": 0.6766359432541948,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "R03": {
+        "g": 0.0001824200764825,
+        "k": 1.5966775807545763,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "R04": {
+        "g": 0.2988381495162037,
+        "k": 1.4271572527411318,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "R05": {
+        "g": 0.9796860767143432,
+        "k": 1.448740901605882,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "R06": {
+        "g": 0.9806186668156082,
+        "k": 0.7374195198004683,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "R07": {
+        "g": 0.923496768478681,
+        "k": 0.688710139831808,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "R08": {
+        "g": 0.2225557797190647,
+        "k": 2.1913095170854384,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "R09": {
+        "g": 0.5132263916305893,
+        "k": 1.1109211562014651,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "R10": {
+        "g": 0.0202886345594937,
+        "k": 0.5024133341522921,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "R11": {
+        "g": 0.0092419485315579,
+        "k": 1.0559872735481757,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "R12": {
+        "g": 0.3632240629490521,
+        "k": 0.7173667240063353,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "R13": {
+        "g": 0.599530534319484,
+        "k": 1.1172844956991852,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "R14": {
+        "g": 0.1717208248296677,
+        "k": 1.6944385226429195,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "R15": {
+        "g": 0.4826589916545825,
+        "k": 0.5487210323538814,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "R16": {
+        "g": 0.6096057189732197,
+        "k": 0.8629112341196703,
+        "t": 1.5,
+        "h": 1.0
+      },
+      "R17": {
+        "g": 0.3267316870634612,
+        "k": 1.7284686224163952,
+        "t": 1.5,
+        "h": 1.0
+      }
+    },
+    "candidates": [
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38
+    ],
+    "seed": 20260913
+  },
+  "workers": 16,
+  "git_commit": "f12ae3a0364b03db32b3081eaaae42625ac127c9",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 15.55,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-10T18:28:23Z",
+  "elapsed_s": 102.56,
+  "notes": [
+    "core16 P_inf: M1 2.6s M2 0.03s M3 0.16s errors M2 0 M3 0",
+    "core16 P4: M1 3.0s M2 0.02s M3 0.11s errors M2 0 M3 0",
+    "core16 P3: M1 3.1s M2 0.03s M3 0.14s errors M2 0 M3 0",
+    "core16 P2: M1 3.1s M2 0.03s M3 0.19s errors M2 0 M3 0",
+    "core16 P1: M1 2.8s M2 0.02s M3 0.11s errors M2 0 M3 0",
+    "core16 P_fold: M1 2.3s M2 0.00s M3 0.12s errors M2 0 M3 0",
+    "core16 R00: M1 3.2s M2 0.02s M3 0.14s errors M2 0 M3 0",
+    "core16 R01: M1 3.0s M2 0.02s M3 0.20s errors M2 0 M3 0",
+    "core16 R02: M1 2.9s M2 0.02s M3 0.12s errors M2 0 M3 0",
+    "core16 R03: M1 2.9s M2 0.02s M3 0.17s errors M2 0 M3 0",
+    "core16 R04: M1 3.1s M2 0.02s M3 0.20s errors M2 0 M3 0",
+    "core16 R05: M1 3.3s M2 0.02s M3 0.11s errors M2 0 M3 0",
+    "core16 R06: M1 2.2s M2 0.02s M3 0.08s errors M2 0 M3 0",
+    "core16 R07: M1 2.4s M2 0.03s M3 0.11s errors M2 0 M3 0",
+    "core16 R08: M1 2.5s M2 0.02s M3 0.11s errors M2 0 M3 0",
+    "core16 R09: M1 3.1s M2 0.02s M3 0.11s errors M2 0 M3 0",
+    "core16 R10: M1 2.7s M2 0.02s M3 0.11s errors M2 0 M3 0",
+    "core16 R11: M1 2.9s M2 0.02s M3 0.12s errors M2 0 M3 0",
+    "core16 R12: M1 3.6s M2 0.02s M3 0.12s errors M2 0 M3 0",
+    "core16 R13: M1 3.0s M2 0.02s M3 0.11s errors M2 0 M3 0",
+    "core16 R14: M1 3.2s M2 0.02s M3 0.12s errors M2 0 M3 0",
+    "core16 R15: M1 3.0s M2 0.02s M3 0.11s errors M2 0 M3 0",
+    "core16 R16: M1 2.9s M2 0.02s M3 0.11s errors M2 0 M3 0",
+    "core16 R17: M1 3.0s M2 0.02s M3 0.14s errors M2 0 M3 0",
+    "lattice512 P_inf: M1 121.5s M2 0.73s M3 0.78s errors M2 0 M3 0",
+    "lattice512 P4: M1 116.0s M2 0.73s M3 0.97s errors M2 0 M3 0",
+    "lattice512 P3: M1 116.0s M2 0.61s M3 1.08s errors M2 0 M3 0",
+    "lattice512 P2: M1 117.9s M2 0.64s M3 1.08s errors M2 0 M3 0",
+    "lattice512 P1: M1 117.2s M2 0.66s M3 1.28s errors M2 0 M3 0",
+    "lattice512 P_fold: M1 117.2s M2 0.70s M3 0.77s errors M2 0 M3 0"
+  ],
+  "results": {
+    "summary": {
+      "core16": {
+        "subsets": 16,
+        "m2_init_cpu_s": 7.828125,
+        "m2_init_wall_s": 3.0069987773895264,
+        "m2_reference_MB": 1.640625,
+        "points": 24,
+        "m1_cpu_per_point_s": 2.900390625,
+        "m2_cpu_per_point_s": 0.017578125,
+        "m3_cpu_per_point_s": 0.130859375,
+        "speedup_m1_over_m2": 165.0,
+        "speedup_m1_over_m3": 22.16417910447761,
+        "m2_count_errors": 0,
+        "m3_count_errors": 0,
+        "H_errors_m2": 0,
+        "H_errors_m3": 0,
+        "m2_band_eig_max_err": 2.034902374210118e-08,
+        "m3_peak_MB": 20.250208854675293
+      },
+      "lattice512": {
+        "subsets": 512,
+        "m2_init_cpu_s": 337.515625,
+        "m2_init_wall_s": 23.268643140792847,
+        "m2_reference_MB": 64.4921875,
+        "points": 6,
+        "m1_cpu_per_point_s": 117.63541666666667,
+        "m2_cpu_per_point_s": 0.6796875,
+        "m3_cpu_per_point_s": 0.9921875,
+        "speedup_m1_over_m2": 173.07279693486592,
+        "speedup_m1_over_m3": 118.56167979002625,
+        "m2_count_errors": 0,
+        "m3_count_errors": 0,
+        "H_errors_m2": 0,
+        "H_errors_m3": 0,
+        "m2_band_eig_max_err": 4.256713534627438e-07,
+        "m3_peak_MB": 22.578585624694824
+      },
+      "reequilibrated": [
+        {
+          "point": "P_inf",
+          "H_m1_unity": "30+33+35",
+          "H_m3_naive": "30+33+35",
+          "m3_naive_count_errors": 0,
+          "m1_cpu_s": 3.484375
+        },
+        {
+          "point": "P4",
+          "H_m1_unity": "30+33+35|30+33+37|30+35+37|33+35+37",
+          "H_m3_naive": "33+35|30+33+37|30+35+37",
+          "m3_naive_count_errors": 1,
+          "m1_cpu_s": 3.140625
+        },
+        {
+          "point": "P3",
+          "H_m1_unity": "33+35|30+33+37|30+35+37",
+          "H_m3_naive": "30+33|33+35|30+35+37",
+          "m3_naive_count_errors": 1,
+          "m1_cpu_s": 3.125
+        },
+        {
+          "point": "P2",
+          "H_m1_unity": "30+33|30+35|33+35",
+          "H_m3_naive": "30+33|30+35|33+35",
+          "m3_naive_count_errors": 0,
+          "m1_cpu_s": 3.15625
+        },
+        {
+          "point": "P1",
+          "H_m1_unity": "30|33|35|37",
+          "H_m3_naive": "30|33|37",
+          "m3_naive_count_errors": 1,
+          "m1_cpu_s": 3.09375
+        },
+        {
+          "point": "P_fold",
+          "H_m1_unity": "30+33+35",
+          "H_m3_naive": "33+35|30+33+37|30+35+37",
+          "m3_naive_count_errors": 4,
+          "m1_cpu_s": 3.125
+        }
+      ]
+    },
+    "elapsed_s": 102.48455572128296
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "experiment": "E30_rebalanced_policy_lattice",
+  "question": "Does the Track-A order-4 mechanism survive realistic Q dispatch?",
+  "verdict": "G1_QUALIFIED",
+  "seed": null,
+  "config": {
+    "policies": [
+      "matched",
+      "unity_pf",
+      "vreg_pf095",
+      "vreg_scap"
+    ],
+    "core": [
+      30,
+      33,
+      35,
+      37
+    ],
+    "capability_config": "configs/ias2026/overnight_policies.yaml",
+    "observable": "frozen v2C inter-area modal family envelope",
+    "family_threshold": 0.8,
+    "band_hz": [
+      0.3,
+      1.5
+    ]
+  },
+  "workers": 1,
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 17.91,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-10T05:33:50Z",
+  "elapsed_s": 7.12,
+  "notes": [
+    "base anchor -0.126478 at 0.6385 Hz; pinned basis 12 machine states",
+    "matched: 16 of 16 subsets tracked",
+    "unity_pf: 16 of 16 subsets tracked",
+    "vreg_pf095: 16 of 16 subsets tracked",
+    "vreg_scap: 16 of 16 subsets tracked"
+  ],
+  "results": {
+    "classifications": {
+      "matched": "A",
+      "unity_pf": "B",
+      "vreg_pf095": "D",
+      "vreg_scap": "D"
+    },
+    "survives_order4": [
+      "matched"
+    ],
+    "summary": {
+      "matched": {
+        "policy": "matched",
+        "classification": "A",
+        "tracked_subsets": 16,
+        "alpha_base": -0.12647823618208578,
+        "alpha_exact": 0.14467022043327096,
+        "alpha_le_1": -0.20782092787359382,
+        "alpha_le_2": -0.33522495696984866,
+        "alpha_le_3": -0.28838414709425164,
+        "alpha_le_4": 0.14467022043327094,
+        "mu4": 0.4330543675275226,
+        "effective_order": 4,
+        "kappa": 4,
+        "reconstruction_residual": 2.7755575615628914e-17,
+        "proper_subsets_stable": true,
+        "proper_subsets_band_rhp_zero": true,
+        "flagship_band_rhp": 1,
+        "worst_proper_subset_alpha": -0.12647823618208578,
+        "unstable_proper_subsets": "",
+        "family_size_set": [
+          2
+        ],
+        "overlap_min": 0.9405192684012874,
+        "worst_drift": 0.0,
+        "min_voltage": 1.0018571199790343,
+        "max_voltage": 1.0729899261193876,
+        "worst_loading": 0.8772896911706275,
+        "any_saturated": false,
+        "flagship_freq_hz": 0.5746810861612759
+      },
+      "unity_pf": {
+        "policy": "unity_pf",
+        "classification": "B",
+        "tracked_subsets": 16,
+        "alpha_base": -0.12647823618208578,
+        "alpha_exact": 0.44359044877408144,
+        "alpha_le_1": -0.22446152951951845,
+        "alpha_le_2": -0.45135939903018363,
+        "alpha_le_3": 0.23091666344783965,
+        "alpha_le_4": 0.4435904487740815,
+        "mu4": 0.21267378532624182,
+        "effective_order": 3,
+        "kappa": NaN,
+        "reconstruction_residual": 5.551115123125783e-17,
+        "proper_subsets_stable": false,
+        "proper_subsets_band_rhp_zero": false,
+        "flagship_band_rhp": 1,
+        "worst_proper_subset_alpha": 0.14067634435396695,
+        "unstable_proper_subsets": "30+33+35",
+        "family_size_set": [
+          2
+        ],
+        "overlap_min": 0.9405192684012874,
+        "worst_drift": 0.09023252866418308,
+        "min_voltage": 0.9540347754137215,
+        "max_voltage": 1.073460241853403,
+        "worst_loading": 0.8955223534689699,
+        "any_saturated": false,
+        "flagship_freq_hz": 0.581084093168688
+      },
+      "vreg_pf095": {
+        "policy": "vreg_pf095",
+        "classification": "D",
+        "tracked_subsets": 16,
+        "alpha_base": -0.12647823618208578,
+        "alpha_exact": -0.09532307025228803,
+        "alpha_le_1": -0.04730883050850043,
+        "alpha_le_2": -0.12216010483862288,
+        "alpha_le_3": -0.09005517814223132,
+        "alpha_le_4": -0.0953230702522881,
+        "mu4": -0.005267892110056779,
+        "effective_order": -1,
+        "kappa": NaN,
+        "reconstruction_residual": 6.938893903907228e-17,
+        "proper_subsets_stable": true,
+        "proper_subsets_band_rhp_zero": true,
+        "flagship_band_rhp": 0,
+        "worst_proper_subset_alpha": -0.08960506910245913,
+        "unstable_proper_subsets": "",
+        "family_size_set": [
+          1,
+          2
+        ],
+        "overlap_min": 0.8732496481923904,
+        "worst_drift": 0.0,
+        "min_voltage": 1.0018571199790343,
+        "max_voltage": 1.0729899261193876,
+        "worst_loading": 0.8772896911706275,
+        "any_saturated": false,
+        "flagship_freq_hz": 0.7250706144054127
+      },
+      "vreg_scap": {
+        "policy": "vreg_scap",
+        "classification": "D",
+        "tracked_subsets": 16,
+        "alpha_base": -0.12647823618208578,
+        "alpha_exact": -0.09532307025228803,
+        "alpha_le_1": -0.04730883050850043,
+        "alpha_le_2": -0.12216010483862288,
+        "alpha_le_3": -0.09005517814223132,
+        "alpha_le_4": -0.0953230702522881,
+        "mu4": -0.005267892110056779,
+        "effective_order": -1,
+        "kappa": NaN,
+        "reconstruction_residual": 6.938893903907228e-17,
+        "proper_subsets_stable": true,
+        "proper_subsets_band_rhp_zero": true,
+        "flagship_band_rhp": 0,
+        "worst_proper_subset_alpha": -0.08960506910245913,
+        "unstable_proper_subsets": "",
+        "family_size_set": [
+          1,
+          2
+        ],
+        "overlap_min": 0.8732496481923904,
+        "worst_drift": 0.0,
+        "min_voltage": 1.0018571199790343,
+        "max_voltage": 1.0729899261193876,
+        "worst_loading": 0.8772896911706275,
+        "any_saturated": false,
+        "flagship_freq_hz": 0.7250706144054127
+      }
+    },
+    "elapsed_s": 7.06330418586731
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "experiment": "E34_mitigation_frontier",
+  "question": "What does each mitigation cost, on separate axes, at four declared margins?",
+  "verdict": "MIXED",
+  "seed": null,
+  "config": {
+    "targets": [
+      -0.02,
+      -0.05,
+      -0.1,
+      -0.126478
+    ],
+    "constrained_quantity": "spectral abscissa (frozen definition)",
+    "controller_coordinates": [
+      "pll_wn",
+      "pll_zeta",
+      "p_bandwidth",
+      "q_bandwidth",
+      "filter_bandwidth"
+    ],
+    "cost_axes": [
+      "pv_mw_forgone",
+      "synchronous_mva_added",
+      "controller_change_norm"
+    ],
+    "closure_metric": "frozen imaginary-axis m4 over the inter-area band"
+  },
+  "workers": 1,
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 7.1,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-10T06:36:44Z",
+  "elapsed_s": 917.1,
+  "notes": [
+    "unrepaired flagship abscissa +0.1447, closure m4 0.0898; base closure m4 1.0000",
+    "M3 feasible condenser ratings: [0.25]"
+  ],
+  "results": {
+    "checks": {
+      "candidates": 198,
+      "meeting_target": 198,
+      "pareto_points": 10,
+      "closure_m4_unrepaired": 0.08983084372431055,
+      "closure_m4_base": 1.0,
+      "closure_m4_after_min": 0.01687772312187243,
+      "closure_m4_after_median": 0.07967743008042683,
+      "repairs_that_increase_closure": 76,
+      "repairs_total": 198,
+      "strategies_keeping_all_pv": [
+        "M1 converter only",
+        "M2 condenser only",
+        "M3 converter + condenser"
+      ],
+      "strategies_zero_sync": [
+        "M1 converter only"
+      ],
+      "total_pv_mw": 4270.7
+    },
+    "elapsed_s": 917.0014078617096
+  }
+}

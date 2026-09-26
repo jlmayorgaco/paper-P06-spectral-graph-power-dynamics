@@ -1,0 +1,108 @@
+{
+  "experiment": "E23_closure_and_frontier",
+  "seed": 20260909,
+  "config": {
+    "core": [
+      30,
+      33,
+      35,
+      37
+    ],
+    "targets": [
+      -0.02,
+      -0.05,
+      -0.1,
+      -0.126
+    ],
+    "tuned": [
+      "kp_p",
+      "ki_p",
+      "kp_q",
+      "ki_q",
+      "tau_p",
+      "kp_i",
+      "ki_i"
+    ]
+  },
+  "python": "3.13.14",
+  "platform_name": "Windows-11-10.0.26200-SP0",
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "dependencies": {
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1",
+    "networkx": "3.6.1",
+    "pyarrow": "25.0.1"
+  },
+  "started_utc": "2026-09-10T02:29:53.305836+00:00",
+  "results": {
+    "closure_full_portfolio": 1.5778742362790312e-07,
+    "closure_proper_subset_min": 0.21229703900893487,
+    "closure_repairs_min": 0.10234809182715532,
+    "frontier": [
+      {
+        "target_abscissa": -0.02,
+        "retune_change_norm": 0.6931787484768024,
+        "retune_abscissa": -0.019999999880703563,
+        "retune_pv_retained": 4270.7,
+        "condenser_rating": 0.25,
+        "condenser_mva": 1067.675,
+        "restore_bus": 37,
+        "restore_mva": 970.2,
+        "restore_pv_retained": 3300.5
+      },
+      {
+        "target_abscissa": -0.05,
+        "retune_change_norm": 0.8476982331819223,
+        "retune_abscissa": -0.04999999998984504,
+        "retune_pv_retained": 4270.7,
+        "condenser_rating": 0.25,
+        "condenser_mva": 1067.675,
+        "restore_bus": 37,
+        "restore_mva": 970.2,
+        "restore_pv_retained": 3300.5
+      },
+      {
+        "target_abscissa": -0.1,
+        "retune_change_norm": 1.0803047927395513,
+        "retune_abscissa": -0.1000000014627629,
+        "retune_pv_retained": 4270.7,
+        "condenser_rating": 0.25,
+        "condenser_mva": 1067.675,
+        "restore_bus": 37,
+        "restore_mva": 970.2,
+        "restore_pv_retained": 3300.5
+      },
+      {
+        "target_abscissa": -0.126,
+        "retune_change_norm": 1.132359088806379,
+        "retune_abscissa": -0.12599999992511174,
+        "retune_pv_retained": 4270.7,
+        "condenser_rating": 0.25,
+        "condenser_mva": 1067.675,
+        "restore_bus": 37,
+        "restore_mva": 970.2,
+        "restore_pv_retained": 3300.5
+      }
+    ],
+    "feasible_condenser_ratings": [
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8
+    ],
+    "elapsed_s": 297.78090715408325
+  },
+  "status": "SUCCESS",
+  "config_sha256": "0ad54a462de96864976f6c01cde33df4ff56a9cb096d3fd73d2a3dac11538cf4",
+  "finished_utc": "2026-09-10T02:29:53.307725+00:00"
+}

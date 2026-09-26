@@ -1,0 +1,200 @@
+{
+ "phases": {
+  "H01": {
+   "state": "COMPLETE",
+   "started": "2026-09-12T21:12:33",
+   "resources": {
+    "cpu": 22,
+    "free_gb": 13.69,
+    "total_gb": 31.54,
+    "workers": 18
+   },
+   "updated": "2026-09-12T21:13:39",
+   "wall_s": 65.3,
+   "tasks": {
+    "n_tasks": 384,
+    "new_ok": 59,
+    "new_err": 0
+   },
+   "n_errors": 0
+  },
+  "H01e": {
+   "state": "COMPLETE",
+   "started": "2026-09-12T21:13:39",
+   "resources": {
+    "cpu": 22,
+    "free_gb": 13.75,
+    "total_gb": 31.54,
+    "workers": 18
+   },
+   "updated": "2026-09-12T21:14:02",
+   "wall_s": 23.2,
+   "tasks": {
+    "n_tasks": 40,
+    "new_ok": 40,
+    "new_err": 0
+   },
+   "n_errors": 0
+  },
+  "H06": {
+   "state": "COMPLETE",
+   "started": "2026-09-12T21:36:52",
+   "resources": {
+    "cpu": 22,
+    "free_gb": 13.97,
+    "total_gb": 31.54,
+    "workers": 8
+   },
+   "updated": "2026-09-12T21:58:18",
+   "wall_s": 1286.3,
+   "tasks": {
+    "n_tasks": 440,
+    "new_ok": 260,
+    "new_err": 0
+   },
+   "n_errors": 0
+  },
+  "H08n": {
+   "state": "COMPLETE",
+   "started": "2026-09-12T21:19:50",
+   "resources": {
+    "cpu": 22,
+    "free_gb": 14.94,
+    "total_gb": 31.54,
+    "workers": 18
+   },
+   "updated": "2026-09-12T21:21:12",
+   "wall_s": 81.5,
+   "tasks": {
+    "n_tasks": 96,
+    "new_ok": 96,
+    "new_err": 0
+   },
+   "n_errors": 0
+  },
+  "H09": {
+   "state": "COMPLETE",
+   "started": "2026-09-12T21:21:12",
+   "resources": {
+    "cpu": 22,
+    "free_gb": 14.77,
+    "total_gb": 31.54,
+    "workers": 18
+   },
+   "updated": "2026-09-12T21:22:17",
+   "wall_s": 64.9,
+   "tasks": {
+    "n_tasks": 101,
+    "new_ok": 101,
+    "new_err": 0
+   },
+   "n_errors": 0
+  },
+  "H12": {
+   "state": "COMPLETE",
+   "started": "2026-09-12T21:22:17",
+   "resources": {
+    "cpu": 22,
+    "free_gb": 14.95,
+    "total_gb": 31.54,
+    "workers": 18
+   },
+   "updated": "2026-09-12T21:22:22",
+   "wall_s": 5.4,
+   "tasks": {
+    "n_tasks": 63,
+    "new_ok": 63,
+    "new_err": 0
+   },
+   "n_errors": 0
+  },
+  "H12b": {
+   "state": "COMPLETE",
+   "started": "2026-09-12T21:22:22",
+   "resources": {
+    "cpu": 22,
+    "free_gb": 14.9,
+    "total_gb": 31.54,
+    "workers": 18
+   },
+   "updated": "2026-09-12T21:22:23",
+   "wall_s": 1.3,
+   "tasks": {
+    "n_tasks": 1,
+    "new_ok": 1,
+    "new_err": 0
+   },
+   "n_errors": 0
+  },
+  "H14": {
+   "state": "COMPLETE",
+   "started": "2026-09-12T21:22:23",
+   "resources": {
+    "cpu": 22,
+    "free_gb": 14.89,
+    "total_gb": 31.54,
+    "workers": 18
+   },
+   "updated": "2026-09-12T21:33:11",
+   "wall_s": 647.5,
+   "tasks": {
+    "n_tasks": 1312,
+    "new_ok": 1312,
+    "new_err": 0
+   },
+   "n_errors": 0
+  },
+  "H18c": {
+   "state": "COMPLETE",
+   "started": "2026-09-12T21:33:11",
+   "resources": {
+    "cpu": 22,
+    "free_gb": 15.09,
+    "total_gb": 31.54,
+    "workers": 18
+   },
+   "updated": "2026-09-12T21:33:16",
+   "wall_s": 4.7,
+   "tasks": {
+    "n_tasks": 56,
+    "new_ok": 56,
+    "new_err": 0
+   },
+   "n_errors": 0
+  },
+  "H10": {
+   "state": "COMPLETE",
+   "started": "2026-09-12T21:33:16",
+   "resources": {
+    "cpu": 22,
+    "free_gb": 15.18,
+    "total_gb": 31.54,
+    "workers": 18
+   },
+   "updated": "2026-09-13T00:52:24",
+   "wall_s": 11948.4,
+   "tasks": {
+    "n_tasks": 7968,
+    "new_ok": 7968,
+    "new_err": 0
+   },
+   "n_errors": 0
+  }
+ },
+ "environment": {
+  "python": "3.13.14 (tags/v3.13.14:fd17997, Jun 10 2026, 13:03:48) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 170 Stepping 4, GenuineIntel",
+  "numpy": "2.5.2",
+  "scipy": "1.18.1",
+  "pandas": "3.0.5",
+  "git_head": "4de412d21418ee1ae2493edb8b164eaa901256e1",
+  "prereg_commit": "b8ae3082",
+  "blas_threads": {
+   "OPENBLAS_NUM_THREADS": "1",
+   "OMP_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  }
+ },
+ "prereg_commit": "05b507e3"
+}

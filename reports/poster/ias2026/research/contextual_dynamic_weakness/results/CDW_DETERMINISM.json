@@ -1,0 +1,45 @@
+{
+ "environment": {
+  "python": "3.13.14 (tags/v3.13.14:fd17997, Jun 10 2026, 13:03:48) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 170 Stepping 4, GenuineIntel",
+  "numpy": "2.5.2",
+  "scipy": "1.18.1",
+  "pandas": "3.0.5",
+  "git_head": "7c1c15aa91a224a2de77ef678fe483fdc5443c82",
+  "prereg_commit": "b8ae3082",
+  "blas_threads": {
+   "OPENBLAS_NUM_THREADS": "1",
+   "OMP_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1"
+  }
+ },
+ "workers": 12,
+ "comparisons": [
+  {
+   "phase": "E01",
+   "n": 48,
+   "identical": 48,
+   "different": 0,
+   "missing": 0,
+   "examples": []
+  },
+  {
+   "phase": "E34",
+   "n": 4,
+   "identical": 4,
+   "different": 0,
+   "missing": 0,
+   "examples": []
+  },
+  {
+   "phase": "E09",
+   "n": 6,
+   "identical": 6,
+   "different": 0,
+   "missing": 0,
+   "examples": []
+  }
+ ],
+ "all_identical": true
+}

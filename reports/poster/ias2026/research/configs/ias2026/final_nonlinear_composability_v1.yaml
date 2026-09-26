@@ -1,0 +1,102 @@
+# Final nonlinear composability campaign, v1 — FROZEN before the full run.
+# Model: the frozen IEEE-39 L0 phasor DAE (no new physics), F7A slice t = 1.5, h = 1,
+# leaky Q/V regulator, R_none. TDS = nonlinear phasor-domain DAE, NOT EMT.
+
+policy_points:
+  P4:    {g: 0.03625, k: 1.425, t: 1.5, h: 1.0, kappa_RHP_perp: 4, H_RHP_perp: "30+33+35+37"}
+  P_inf: {g: 1.0,     k: 0.5,   t: 1.5, h: 1.0, kappa_RHP_perp: -1, H_RHP_perp: "EMPTY"}
+  why: "P4 tests kappa_NL < kappa_RHP where kappa_RHP = 4; P_inf tests whether finite disturbances create incompatibilities where the transverse spectrum says every portfolio is safe (the planning question)"
+subsets: "all 16 subsets of {30, 33, 35, 37}"
+
+disturbances:
+  D1:
+    name: "active-load pulse"
+    bus: 16                     # 329 MW load, electrically central; present in every portfolio
+    direction: "+ (load increase), constant power, reactive load unchanged"
+    duration_s: 0.5
+    amplitude_unit: "MW (system), also % of the 329 MW bus-16 load"
+    range: [0.0, 1000.0]
+    continuation_grid: [10, 25, 50, 100, 200, 350, 500, 700, 1000]
+  D2:
+    name: "synchronous mechanical-power dip"
+    machine_bus: 36             # present in every portfolio; dispatch 580 MW
+    direction: "- (turbine runback)"
+    duration_s: 0.5
+    amplitude_unit: "MW (system base); pu on the machine base = MW / 1025.2"
+    range: [0.0, 580.0]
+    continuation_grid: [10, 25, 50, 100, 200, 350, 580]
+  D3:
+    name: "PV-GFL active-power-reference dip"
+    direction: "- (every present converter's p_ref scaled by 1 - a); downward only, so it never exceeds available headroom (no upward PV reserve is modelled)"
+    duration_s: 0.5
+    amplitude_unit: "a = fraction of the portfolio's own converter dispatch; MW = a * replaced_pg_mw(S)"
+    range: [0.0, 1.0]
+    continuation_grid: [0.05, 0.1, 0.2, 0.35, 0.5, 0.75, 1.0]
+    empty_portfolio: "vacuous: no converter, the disturbance does not act; counted as tolerating every amplitude"
+  nesting: "D_rho = {amplitude a in [0, rho]} along the declared direction; rho1 <= rho2 implies D_rho1 subset D_rho2"
+
+simulation:
+  integrator: "scipy BDF, rtol 1e-7, atol 1e-9, fixed-step central-difference Jacobian (the G2 integrator); network solved by Newton at every right-hand side (residual < 1e-10)"
+  max_step_s: 0.05
+  pulse: "two segments; the solver never steps across a switch"
+  horizon_after_pulse_s: 30.0
+
+recovery_criterion:
+  observables:
+    s1: "max_i |omega_i - omega_COI| over machines (pu speed), omega_COI inertia-weighted"
+    s2: "max_b | |V_b(t)| - |V_b*| | over all buses (pu)"
+  deviation: "D(t) = max(s1 / 1e-3, s2 / 1e-2)"
+  RECOVERS: "every guard satisfied throughout, D(T_end) <= 0.1 * max D on [t_pulse_end, t_pulse_end + 5 s], and the fitted envelope growth of D over the last 15 s is negative"
+  note: "the post-disturbance equilibrium is the relative equilibrium x* + c w (up to rotation); no absolute frequency restoration is required (transverse definition)"
+
+failure_criterion:
+  FAILS_DECLARED_SECURITY: "all guards satisfied up to the failure time, and either (i) growth: after the 5 s window, D(t) > 2 * max D on [t_pulse_end, t_pulse_end + 5 s] AND the fitted envelope growth of D over the last 10 s is positive, or (ii) a relative rotor angle deviates by more than pi from its equilibrium value (loss of synchronism), or (iii) the RECOVERS test fails at T_end"
+  pre_registration_smoke_tests: >
+    Four single runs were made to debug the code before this file was committed
+    (P4: BASE D1 100 MW -> RECOVERS; flagship D1 10 MW -> hit the GFL-terminal
+    voltage guard at 27.5 s before the first-written x20 growth rule fired; 30+33+35
+    D3 0.5 -> OUTSIDE (GFL terminal voltage) at the pulse end; 30 D2 200 MW ->
+    RECOVERS). The growth rule was changed from x20 to (x2 AND positive fitted
+    growth) because x20 cannot fire inside the voltage guards for a growing
+    oscillation; nothing else was changed after these runs. A fifth run verified
+    the corrected rule on the same flagship case (FAILS_DECLARED_SECURITY, growth,
+    t = 15.6 s, all guards satisfied).
+
+model_scope_guards:   # first violation in time -> OUTSIDE_MODEL_SCOPE (unless a failure was declared earlier)
+  bus_voltage_pu: [0.80, 1.20]
+  gfl_terminal_voltage_pu: [0.90, 1.10]          # continuous-operation band; ride-through current priority is not modelled
+  gfl_current_pu_of_rating: 1.20                 # no current limiter in the model
+  gfl_apparent_power_pu_of_rating: 1.20
+  gfl_reactive_pu_of_rating: 1.00
+  pll_frequency_hz_deviation: [-3.0, 1.8]        # frequency ride-through band (60 Hz system)
+  machine_speed_hz_deviation: [-3.0, 1.8]
+  coi_frequency_hz_deviation: [-0.5, 0.5]        # no governor / UFLS in the model
+  exciter_field_voltage: "efd within the documented IEEEX1 [VRMIN, VRMAX] of each machine (ieee39_full.xlsx), applied to the harmonized first-order field voltage"
+  pss_output: "|K_s * pss_l| <= 0.1 pu (documented IEEEST LSMAX/LSMIN)"
+  algebraic_residual: "network Newton residual < 1e-6 at every accepted step, otherwise NUMERICAL_FAILURE"
+labels: [RECOVERS, FAILS_DECLARED_SECURITY, OUTSIDE_MODEL_SCOPE, NUMERICAL_FAILURE]
+label_rule: "exactly one label per run; OUTSIDE_MODEL_SCOPE and NUMERICAL_FAILURE are never counted as stable or unstable"
+
+threshold:
+  definition: "r_S^d = inf{a : label(a) != RECOVERS}, found by continuation on the grid, then bisection between the last RECOVERS and the first non-RECOVERS grid point"
+  bisection_tolerance: "max(2 MW, 2 %) for D1 and D2; 0.01 for D3"
+  type: "label of the first non-RECOVERS amplitude: FAILS (valid threshold), OUTSIDE (scope-censored: the true nonlinear threshold is not observable in this model), NUMERICAL"
+  no_threshold: "if every grid point recovers: r_S^d > range max (censored)"
+  small_signal_unstable: "a portfolio with alpha_perp > 0 has r_S^d = 0 by definition, checked by a TDS at the smallest grid amplitude"
+  saved_at_threshold: [just_below_trace, just_above_trace, guards, equilibrium, transverse_eigenvalues]
+
+complex:
+  K_NL: "{S : every R subset S tolerates rho}; built only for rho < rho_scope(d) = min over S of the first OUTSIDE amplitude"
+  H_NL: "minimal non-faces of K_NL(rho)"
+  kappa_NL: "min |H|, H in H_NL"
+  R_k: "min_{|S| <= k} r_S^d, k = 1..4"
+planning:   # declared before any FC05 threshold was computed
+  rho_star: {D1: 200.0, D2: 200.0, D3: 0.35}
+  rho_star_meaning: "D1: a 200 MW load block for 0.5 s (61 % of the bus-16 load); D2: a 200 MW turbine runback at SG36 for 0.5 s; D3: a 35 % dip of the portfolio's PV output for 0.5 s"
+  objective_mw: "replaced_pg_mw (measured active dispatch), never Sn"
+  P1: "maximize replaced_pg_mw subject to: no spectral hyperedge of H_RHP_perp contained (any-order safe)"
+  P2: "the same, additionally no H_NL(rho_star) hyperedge contained, for each family separately and for all three jointly"
+  P3: "minimum damped-condenser rating (G1 R_0010000, D = 2, common rating fraction at the four core buses; MVA = fraction x 4270.7) making the P4 flagship (a) transversely stable, (b) tolerant of rho_star for each family"
+  axes: "MW replaced, synchronous MVA added, controller-change norm: reported separately; no weighted scalar"
+workers: 16
+seed: "none needed (deterministic)"

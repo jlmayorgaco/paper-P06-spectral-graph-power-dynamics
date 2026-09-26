@@ -1,0 +1,292 @@
+{
+ "git_head": "dd1e2ea36d6f847c6124c5dabfbe524731e819a7",
+ "paremt_upstream_sha": "d79d735a4a587d56c5b88187d1a499195b6b2b84",
+ "paremt_working_copy_diff_sha": "a61698cb2b7f9355193aa821e3388f71851c962f92cdbf3ce2badde98ccc99e5",
+ "environment_hash": "e3d193e7e476d7a66e07571af1adb0bb6fe331465d2499c4035711c9b29dc275",
+ "script_wall_s": {
+  "EMT02_03_unit_tests.py": 18.2,
+  "EMT02_03_diagnostics.py": 18.0,
+  "EMT03_D5_ieee39_chatter.py": 32.5
+ },
+ "runs": [
+  {
+   "run_id": "EMT02_SG_dt50us",
+   "script": "EMT02_03_unit_tests.py",
+   "system": "unit-test system: T -- EMT R-L line (R 0, X 0.05) -- INF; source 1.0 behind j1e-4; amendment A1",
+   "dt_s": 5e-05,
+   "duration_s": 10.0,
+   "disturbance": "SG Pm x1.02 on [1.0, 1.2) s",
+   "role": "PREREGISTERED G3",
+   "seed": null
+  },
+  {
+   "run_id": "EMT03_GFL_g0_a_dt50us",
+   "script": "EMT02_03_unit_tests.py",
+   "system": "unit-test system: T -- EMT R-L line (R 0, X 0.05) -- INF; source 1.0 behind j1e-4; amendment A1",
+   "dt_s": 5e-05,
+   "duration_s": 5.0,
+   "disturbance": "p_ref x1.01 for t >= 1 s",
+   "role": "PREREGISTERED G4",
+   "seed": null
+  },
+  {
+   "run_id": "EMT03_GFL_g0_b_dt50us",
+   "script": "EMT02_03_unit_tests.py",
+   "system": "unit-test system: T -- EMT R-L line (R 0, X 0.05) -- INF; source 1.0 behind j1e-4; amendment A1",
+   "dt_s": 5e-05,
+   "duration_s": 5.0,
+   "disturbance": "|E| x0.99 for t >= 1 s",
+   "role": "PREREGISTERED G4",
+   "seed": null
+  },
+  {
+   "run_id": "EMT03_GFL_g0_c_dt50us",
+   "script": "EMT02_03_unit_tests.py",
+   "system": "unit-test system: T -- EMT R-L line (R 0, X 0.05) -- INF; source 1.0 behind j1e-4; amendment A1",
+   "dt_s": 5e-05,
+   "duration_s": 5.0,
+   "disturbance": "E phase +0.02 rad for t >= 1 s",
+   "role": "PREREGISTERED G4",
+   "seed": null
+  },
+  {
+   "run_id": "EMT03_GFL_g0.03625_a_dt50us",
+   "script": "EMT02_03_unit_tests.py",
+   "system": "unit-test system: T -- EMT R-L line (R 0, X 0.05) -- INF; source 1.0 behind j1e-4; amendment A1",
+   "dt_s": 5e-05,
+   "duration_s": 5.0,
+   "disturbance": "p_ref x1.01 for t >= 1 s",
+   "role": "PREREGISTERED G4",
+   "seed": null
+  },
+  {
+   "run_id": "EMT03_GFL_g0.03625_b_dt50us",
+   "script": "EMT02_03_unit_tests.py",
+   "system": "unit-test system: T -- EMT R-L line (R 0, X 0.05) -- INF; source 1.0 behind j1e-4; amendment A1",
+   "dt_s": 5e-05,
+   "duration_s": 5.0,
+   "disturbance": "|E| x0.99 for t >= 1 s",
+   "role": "PREREGISTERED G4",
+   "seed": null
+  },
+  {
+   "run_id": "EMT03_GFL_g0.03625_c_dt50us",
+   "script": "EMT02_03_unit_tests.py",
+   "system": "unit-test system: T -- EMT R-L line (R 0, X 0.05) -- INF; source 1.0 behind j1e-4; amendment A1",
+   "dt_s": 5e-05,
+   "duration_s": 5.0,
+   "disturbance": "E phase +0.02 rad for t >= 1 s",
+   "role": "PREREGISTERED G4",
+   "seed": null
+  },
+  {
+   "run_id": "EMT03_GFL_g0.25_a_dt50us",
+   "script": "EMT02_03_unit_tests.py",
+   "system": "unit-test system: T -- EMT R-L line (R 0, X 0.05) -- INF; source 1.0 behind j1e-4; amendment A1",
+   "dt_s": 5e-05,
+   "duration_s": 5.0,
+   "disturbance": "p_ref x1.01 for t >= 1 s",
+   "role": "PREREGISTERED G4",
+   "seed": null
+  },
+  {
+   "run_id": "EMT03_GFL_g0.25_b_dt50us",
+   "script": "EMT02_03_unit_tests.py",
+   "system": "unit-test system: T -- EMT R-L line (R 0, X 0.05) -- INF; source 1.0 behind j1e-4; amendment A1",
+   "dt_s": 5e-05,
+   "duration_s": 5.0,
+   "disturbance": "|E| x0.99 for t >= 1 s",
+   "role": "PREREGISTERED G4",
+   "seed": null
+  },
+  {
+   "run_id": "EMT03_GFL_g0.25_c_dt50us",
+   "script": "EMT02_03_unit_tests.py",
+   "system": "unit-test system: T -- EMT R-L line (R 0, X 0.05) -- INF; source 1.0 behind j1e-4; amendment A1",
+   "dt_s": 5e-05,
+   "duration_s": 5.0,
+   "disturbance": "E phase +0.02 rad for t >= 1 s",
+   "role": "PREREGISTERED G4",
+   "seed": null
+  },
+  {
+   "run_id": "D1_SG_quasi_static_line_dt50us",
+   "script": "EMT02_03_diagnostics.py",
+   "system": "unit-test system with the T--INF line as a synchronous-frame algebraic Norton (diagnostic)",
+   "dt_s": 5e-05,
+   "duration_s": 10.0,
+   "disturbance": "SG Pm x1.02 on [1.0, 1.2) s",
+   "role": "diagnostic",
+   "seed": null
+  },
+  {
+   "run_id": "D2_SG_emt_line_dt25us",
+   "script": "EMT02_03_diagnostics.py",
+   "system": "unit-test system: T -- EMT R-L line (R 0, X 0.05) -- INF; source 1.0 behind j1e-4; amendment A1",
+   "dt_s": 2.5e-05,
+   "duration_s": 10.0,
+   "disturbance": "SG Pm x1.02 on [1.0, 1.2) s",
+   "role": "diagnostic",
+   "seed": null
+  },
+  {
+   "run_id": "D3_SG_emt_line_dt50us_vs_dynphasor",
+   "script": "EMT02_03_diagnostics.py",
+   "system": "unit-test system: T -- EMT R-L line (R 0, X 0.05) -- INF; source 1.0 behind j1e-4; amendment A1",
+   "dt_s": 5e-05,
+   "duration_s": 10.0,
+   "disturbance": "SG Pm x1.02 on [1.0, 1.2) s",
+   "role": "diagnostic",
+   "seed": null
+  },
+  {
+   "run_id": "D1_GFL_quasi_static_line_g0_a_dt50us",
+   "script": "EMT02_03_diagnostics.py",
+   "system": "unit-test system with the T--INF line as a synchronous-frame algebraic Norton (diagnostic)",
+   "dt_s": 5e-05,
+   "duration_s": 5.0,
+   "disturbance": "p_ref x1.01 for t >= 1 s",
+   "role": "diagnostic",
+   "seed": null
+  },
+  {
+   "run_id": "D1_GFL_quasi_static_line_g0_b_dt50us",
+   "script": "EMT02_03_diagnostics.py",
+   "system": "unit-test system with the T--INF line as a synchronous-frame algebraic Norton (diagnostic)",
+   "dt_s": 5e-05,
+   "duration_s": 5.0,
+   "disturbance": "|E| x0.99 for t >= 1 s",
+   "role": "diagnostic",
+   "seed": null
+  },
+  {
+   "run_id": "D1_GFL_quasi_static_line_g0_c_dt50us",
+   "script": "EMT02_03_diagnostics.py",
+   "system": "unit-test system with the T--INF line as a synchronous-frame algebraic Norton (diagnostic)",
+   "dt_s": 5e-05,
+   "duration_s": 5.0,
+   "disturbance": "E phase +0.02 rad for t >= 1 s",
+   "role": "diagnostic",
+   "seed": null
+  },
+  {
+   "run_id": "D1_GFL_quasi_static_line_g0.03625_a_dt50us",
+   "script": "EMT02_03_diagnostics.py",
+   "system": "unit-test system with the T--INF line as a synchronous-frame algebraic Norton (diagnostic)",
+   "dt_s": 5e-05,
+   "duration_s": 5.0,
+   "disturbance": "p_ref x1.01 for t >= 1 s",
+   "role": "diagnostic",
+   "seed": null
+  },
+  {
+   "run_id": "D1_GFL_quasi_static_line_g0.03625_b_dt50us",
+   "script": "EMT02_03_diagnostics.py",
+   "system": "unit-test system with the T--INF line as a synchronous-frame algebraic Norton (diagnostic)",
+   "dt_s": 5e-05,
+   "duration_s": 5.0,
+   "disturbance": "|E| x0.99 for t >= 1 s",
+   "role": "diagnostic",
+   "seed": null
+  },
+  {
+   "run_id": "D1_GFL_quasi_static_line_g0.03625_c_dt50us",
+   "script": "EMT02_03_diagnostics.py",
+   "system": "unit-test system with the T--INF line as a synchronous-frame algebraic Norton (diagnostic)",
+   "dt_s": 5e-05,
+   "duration_s": 5.0,
+   "disturbance": "E phase +0.02 rad for t >= 1 s",
+   "role": "diagnostic",
+   "seed": null
+  },
+  {
+   "run_id": "D1_GFL_quasi_static_line_g0.25_a_dt50us",
+   "script": "EMT02_03_diagnostics.py",
+   "system": "unit-test system with the T--INF line as a synchronous-frame algebraic Norton (diagnostic)",
+   "dt_s": 5e-05,
+   "duration_s": 5.0,
+   "disturbance": "p_ref x1.01 for t >= 1 s",
+   "role": "diagnostic",
+   "seed": null
+  },
+  {
+   "run_id": "D1_GFL_quasi_static_line_g0.25_b_dt50us",
+   "script": "EMT02_03_diagnostics.py",
+   "system": "unit-test system with the T--INF line as a synchronous-frame algebraic Norton (diagnostic)",
+   "dt_s": 5e-05,
+   "duration_s": 5.0,
+   "disturbance": "|E| x0.99 for t >= 1 s",
+   "role": "diagnostic",
+   "seed": null
+  },
+  {
+   "run_id": "D1_GFL_quasi_static_line_g0.25_c_dt50us",
+   "script": "EMT02_03_diagnostics.py",
+   "system": "unit-test system with the T--INF line as a synchronous-frame algebraic Norton (diagnostic)",
+   "dt_s": 5e-05,
+   "duration_s": 5.0,
+   "disturbance": "E phase +0.02 rad for t >= 1 s",
+   "role": "diagnostic",
+   "seed": null
+  },
+  {
+   "run_id": "D4_GFL_g0.25_no_event_every_step",
+   "script": "EMT02_03_diagnostics.py",
+   "system": "unit-test system: T -- EMT R-L line (R 0, X 0.05) -- INF; source 1.0 behind j1e-4; amendment A1",
+   "dt_s": 5e-05,
+   "duration_s": 0.7,
+   "disturbance": "none",
+   "role": "diagnostic",
+   "seed": null
+  },
+  {
+   "run_id": "D5_IEEE39_P4_BASE_no_event_dt50us",
+   "script": "EMT03_D5_ieee39_chatter.py",
+   "system": "IEEE-39 preregistered realization",
+   "dt_s": 5e-05,
+   "duration_s": 30.0,
+   "disturbance": "none",
+   "role": "diagnostic (no estimator, no prediction comparison)",
+   "seed": null
+  },
+  {
+   "run_id": "D5_IEEE39_P4_H4_no_event_dt50us",
+   "script": "EMT03_D5_ieee39_chatter.py",
+   "system": "IEEE-39 preregistered realization",
+   "dt_s": 5e-05,
+   "duration_s": 30.0,
+   "disturbance": "none",
+   "role": "diagnostic (no estimator, no prediction comparison)",
+   "seed": null
+  },
+  {
+   "run_id": "D5_IEEE39_GS_H4_no_event_dt50us",
+   "script": "EMT03_D5_ieee39_chatter.py",
+   "system": "IEEE-39 preregistered realization",
+   "dt_s": 5e-05,
+   "duration_s": 30.0,
+   "disturbance": "none",
+   "role": "diagnostic (no estimator, no prediction comparison)",
+   "seed": null
+  }
+ ],
+ "outputs": {
+  "results/EMT02/dynphasor_ref.npz": "c7762d4a0e1dc43d8775c33dd78875d902ab2136096ff80990bbf12b8a8e5bfc",
+  "results/EMT02/EMT02_diagnostics.json": "5becc4c0d98c1ca6356e3d89c4eb8dceb1b1411cbf2ae7db21b3a70d44a3546c",
+  "results/EMT02/EMT02_summary.json": "eb629f212ce096bcc236e544f2342aeebd090f0f8f08a051fef8adae7c70d869",
+  "results/EMT02/EMT02_trajectory_comparison.csv": "df8daace51b6db0064213877723df43083c81c5a653c258665677353b1b59caf",
+  "results/EMT02/emt_traj.npz": "1b4dff5db2810a42b4f8c3b416dcdeefe0585d1a765b24277c977a641dae1f08",
+  "results/EMT02/op.json": "5fcb31a2c021cf52b49985e99812b0a49fb580b1a3680446cf7d640e693776e0",
+  "results/EMT02/phasor_ref.npz": "394f3ba8c60bca44a15e396f75166ffce732eefe6b6e389fcf0face77716a2d9",
+  "results/EMT03/EMT03_checks.csv": "364c44afe50e5ad0f919213769d60f50cac4437a67574b56b52bc5c49c918cf0",
+  "results/EMT03/EMT03_D1_quasi_static_line.csv": "23795d4110ea3bb443fe0c8c79aa80c66f07a248070b362a322f6f3652ba0508",
+  "results/EMT03/EMT03_D5_ieee39_chatter.csv": "9a621f761b1f8b286d0683a691d15e7d166671ad479a59a57750ab06be656c95",
+  "results/EMT03/EMT03_diagnostics.json": "9fb5dfd4fd6182edc5c04473bd37525bb34f2ffcb35521c0ec1e4d6bd3dab047",
+  "results/EMT03/EMT03_summary.json": "6f5af4f605660f7c119c9fd85a78b2cc35c3723b28b103ed25eeb51fd6c104ad",
+  "results/EMT03/EMT03_trajectory_comparison.csv": "7e59164d4f77ddbf6596e34c39c16cf556f9987cad3f0fad43524d29e73f403d",
+  "results/EMT03/emt_traj.npz": "2ed571133d79fd73af9055f80d5edfe3e3dba9a9a6b936caaa272d9259c6f29e",
+  "results/EMT03/op.json": "567829669ce79f0d87cefafa9f61a3efa29df07f174b815f207eff473853b561",
+  "results/EMT03/phasor_ref.npz": "d953053885551d1a2bd1e8f8a507f0a3355a4e92017d45ac6158cfb830a5d14b"
+ },
+ "note": "phasor_ref.npz / dynphasor_ref.npz / op.json are produced by the tx3-analysis scripts EMT02_03_phasor_refs.py and EMT02_03_dynphasor_ref.py (single-thread BLAS, bit-reproducible)"
+}

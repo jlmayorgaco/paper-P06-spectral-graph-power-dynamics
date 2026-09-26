@@ -1,0 +1,244 @@
+{
+  "campaign": "PD39 255+1 - final mechanism and generalization validation",
+  "base_commit": "902403cf",
+  "branch": "research/pd39-255plus1-mechanism-validation",
+  "campaign_head_at_artifact_generation": "60b4bc1ddb17444b5bcecb37d7fe685a97a26b43",
+  "prereg_commit": "5f28df82",
+  "final_case": "C",
+  "gate_status": {
+    "A": "FAIL",
+    "B": "PASS",
+    "C": "FAIL_GENERALIZATION",
+    "D": "PARTIAL",
+    "E": "BLOCKED"
+  },
+  "numerical_truth": {
+    "status": "FAIL",
+    "audit_rows": 324,
+    "tolerance_rows": 243,
+    "independent_rows": 81,
+    "tolerance_max_alpha_difference_1e10_vs_1e12": 7.306479865576421e-10,
+    "independent_alpha_failures_over_1e-4": 72,
+    "independent_max_fd_alpha_difference": 0.13832540001732124,
+    "descriptor_max_difference": 4.45388462222418e-10,
+    "fd_descriptor_max_difference": 3.373401423202501e-09,
+    "sign_changes": 0,
+    "robust_classification_changes": 67,
+    "interpretation": "Tolerance and descriptor checks pass, but the frozen central-FD alpha check fails because the rightmost eigenvalue is highly conditioned/non-normal."
+  },
+  "high_pll_tds": {
+    "status": "PASS",
+    "rows": 12,
+    "ok_rows": 12,
+    "sign_consistent_rows": 12,
+    "load_bus": 39,
+    "pulse_start_s": 1.0,
+    "pulse_end_s": 1.1,
+    "groups": {
+      "V8": {
+        "mean_linear_alpha": 0.11221491601610777,
+        "mean_estimated_rate": 0.11196060964598062,
+        "min_estimated_rate": 0.11015710561535039,
+        "max_estimated_rate": 0.11387794941105578
+      },
+      "best_7of8": {
+        "mean_linear_alpha": -0.1383254207967876,
+        "mean_estimated_rate": -0.2850800407553975,
+        "min_estimated_rate": -0.2851966382020467,
+        "max_estimated_rate": -0.2849795243975708
+      },
+      "worst_7of8": {
+        "mean_linear_alpha": -0.1163587055659982,
+        "mean_estimated_rate": -0.11400691623761663,
+        "min_estimated_rate": -0.11479761873513233,
+        "max_estimated_rate": -0.11323268028936131
+      }
+    },
+    "interpretation": "All 12 integrations completed; TDS preserves the V8 positive-growth versus 7/8 negative-decay ordering."
+  },
+  "holdout_census": {
+    "status": "FAIL_GENERALIZATION",
+    "rows": 6144,
+    "unique_portfolio_condition_keys": 6144,
+    "portfolios": 256,
+    "conditions": 24,
+    "failed_equilibrium_or_spectrum_rows": 17,
+    "h0_counts_by_condition": [
+      4,
+      2,
+      2,
+      0,
+      3,
+      0,
+      2,
+      2,
+      0,
+      0,
+      0,
+      19,
+      0,
+      0,
+      0,
+      1,
+      1,
+      2,
+      0,
+      3,
+      0,
+      0,
+      0,
+      1
+    ],
+    "h005_counts_by_condition": [
+      4,
+      2,
+      2,
+      0,
+      5,
+      0,
+      2,
+      3,
+      0,
+      0,
+      0,
+      19,
+      0,
+      0,
+      0,
+      2,
+      1,
+      2,
+      0,
+      4,
+      0,
+      0,
+      0,
+      1
+    ],
+    "h0_total": 42,
+    "h005_total": 47,
+    "conditions_with_nonzero_h0": 12,
+    "conditions_with_nonzero_h005": 12,
+    "v8_h0_conditions": [
+      "C24"
+    ],
+    "v8_h005_conditions": [],
+    "interpretation": "The exact discovery 255+1 structure does not generalize as a universal holdout identity; blockers appear in 12 of 24 conditions and V8 is not an H0.05 blocker in the holdout census."
+  },
+  "penetration_composition_mode": {
+    "status": "PARTIAL",
+    "composition_rows": 90,
+    "composition_finite_effects": 90,
+    "composition_max_abs_delta_alpha": 0.052185014874279484,
+    "composition_pair_summary": [
+      {
+        "pair_id": "k6_p1",
+        "cardinality": 6,
+        "alpha_source": "frozen_discovery",
+        "min_delta_alpha": -8.235472097742336e-05,
+        "max_delta_alpha": -8.23537173557376e-05,
+        "max_abs_delta_alpha": 8.235472097742336e-05
+      },
+      {
+        "pair_id": "k6_p2",
+        "cardinality": 6,
+        "alpha_source": "frozen_discovery",
+        "min_delta_alpha": 0.027923444887626353,
+        "max_delta_alpha": 0.02832066394057413,
+        "max_abs_delta_alpha": 0.02832066394057413
+      },
+      {
+        "pair_id": "k6_p3",
+        "cardinality": 6,
+        "alpha_source": "frozen_discovery",
+        "min_delta_alpha": -5.773048278601145e-05,
+        "max_delta_alpha": -5.7729690741720185e-05,
+        "max_abs_delta_alpha": 5.773048278601145e-05
+      },
+      {
+        "pair_id": "k6_p4",
+        "cardinality": 6,
+        "alpha_source": "frozen_discovery",
+        "min_delta_alpha": -8.617821348255728e-05,
+        "max_delta_alpha": -8.61769964778103e-05,
+        "max_abs_delta_alpha": 8.617821348255728e-05
+      },
+      {
+        "pair_id": "k6_p5",
+        "cardinality": 6,
+        "alpha_source": "frozen_discovery",
+        "min_delta_alpha": 0.007062605691661866,
+        "max_delta_alpha": 0.007063904150082123,
+        "max_abs_delta_alpha": 0.007063904150082123
+      },
+      {
+        "pair_id": "k6_p6",
+        "cardinality": 6,
+        "alpha_source": "frozen_discovery",
+        "min_delta_alpha": -0.00011983389953879042,
+        "max_delta_alpha": -0.00011983182256228297,
+        "max_abs_delta_alpha": 0.00011983389953879042
+      },
+      {
+        "pair_id": "k7_p1",
+        "cardinality": 7,
+        "alpha_source": "AD_reference_A",
+        "min_delta_alpha": 0.005112016968023131,
+        "max_delta_alpha": 0.0120665888668611,
+        "max_abs_delta_alpha": 0.0120665888668611
+      },
+      {
+        "pair_id": "k7_p2",
+        "cardinality": 7,
+        "alpha_source": "AD_reference_A",
+        "min_delta_alpha": -0.0002296284094636114,
+        "max_delta_alpha": 0.0016661396712354115,
+        "max_abs_delta_alpha": 0.0016661396712354115
+      },
+      {
+        "pair_id": "k7_p3",
+        "cardinality": 7,
+        "alpha_source": "AD_reference_A",
+        "min_delta_alpha": 0.0208845136641434,
+        "max_delta_alpha": 0.052185014874279484,
+        "max_abs_delta_alpha": 0.052185014874279484
+      },
+      {
+        "pair_id": "k7_p4",
+        "cardinality": 7,
+        "alpha_source": "AD_reference_A",
+        "min_delta_alpha": 0.00026775972597800624,
+        "max_delta_alpha": 0.0002677669886083922,
+        "max_abs_delta_alpha": 0.0002677669886083922
+      }
+    ],
+    "modal_rows": 81,
+    "mode_families": [
+      "electromechanical/control"
+    ],
+    "mac_min": 0.0021916149579194436,
+    "mac_max": 0.9077931457319286,
+    "homotopy_status": "BLOCKED",
+    "interpretation": "Aggregate-matched composition effects are present, while common-observable mode tracking is modal rather than a continuous homotopy; physical SG-to-GFL homotopy is blocked by discrete model semantics."
+  },
+  "network_closure": {
+    "status": "BLOCKED",
+    "items": 5,
+    "all_statuses": [
+      "BLOCKED"
+    ],
+    "interpretation": "Exact K,D,Q objects, dimensions, units, determinant identity, and Q->-1 boundary are not defined by the installed model/API. No proxy was used."
+  },
+  "excluded_campaigns": [
+    "weak nodes",
+    "weak links",
+    "structured-radius 128-direction",
+    "repair optimization",
+    "planners",
+    "co-design",
+    "IEEE-68",
+    "EMT",
+    "new controller search"
+  ],
+  "ias_poster_redesign": "NO"
+}

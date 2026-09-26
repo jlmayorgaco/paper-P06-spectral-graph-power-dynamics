@@ -1,0 +1,70 @@
+# Harmonized IEEE-39 dynamic model. FROZEN 2026-09-10 by the F1 reconciliation.
+#
+# This is the ONLY IEEE-39 dynamic model eligible for journal claims. It is the
+# configuration in which the internal simulator and ANDES 2.0.0 were shown to
+# solve the same equations, agreeing across the whole electromechanical band to
+# 1.6e-6 with identical band mode counts in all twelve reconciliation cases.
+
+status: FROZEN
+established_by: F1 reconciliation, docs/F1_ANDES_MODEL_RECONCILIATION.md
+gate: HARMONIZED_AGREE
+
+network:
+  source: configs/ias2026/ieee39_network.json, hash-verified
+  base_mva: 100.0
+  shunts: {bus_4: +1.0, bus_5: +2.0}       # capacitive, present on BOTH sides
+  loads: constant power
+  slack: bus 39, fixed magnitude and angle
+
+synchronous_machine:
+  order: 4
+  states: [delta, omega, Eq1, Ed1]
+  damping_D: 0.0                            # zero throughout the source case
+  saturation: none                          # S10 = S12 = 0 in the case data
+  andes_equivalent: >
+    GENROU with xd2 = xd1, xq2 = xq1 and subtransient constants 1e-4, which
+    makes the damper windings fast enough to leave the electromechanical band
+    unchanged; the residual damper modes sit near 1e4 rad/s
+
+excitation:
+  model: first-order AVR
+  equation: efd' = (K * (vref + vs - abs(V)) - efd) / T
+  gain_K: case KA
+  time_constant_T: case TE
+  limits: none
+  andes_equivalent: SEXS with TA/TB = 1, K = case KA, TE = case TE, EMIN/EMAX = +-99
+  IMPORTANT: >
+    This is a SUBSTITUTION, not a reduction of the benchmark's documented IEEEX1.
+    The distributed IEEE-39 exciter data has KE = -0.05, which gives the base case
+    six unstable real modes with a spectral abscissa of +1.03 before any
+    replacement, so it cannot be used as a stability benchmark as distributed.
+    Every claim on this benchmark is conditional on this substitution and must
+    say so. Under the documented IEEEX1, ANDES finds the flagship STABLE.
+
+stabilizer:
+  model: washout plus lag on electrical power, KS = case KS = -2.0
+  andes_equivalent: NONE
+  note: >
+    ANDES's IEEEST is a structurally different stabilizer, so the PSS
+    configuration is NOT an equivalence point. The reconciliation is exact with
+    the stabilizer removed on both sides. Results quoted with the stabilizer
+    active are internal-model results and are not independently reproduced.
+
+governor:
+  model: none
+  andes_equivalent: TGOV1N removed
+
+converter:
+  model: ten-state grid-following, PLL plus dual loop
+  andes_equivalent: NONE
+  note: >
+    ANDES ships REGCA1 and REECA1, which are structurally different devices.
+    The reconciliation therefore uses the static-injection configuration, which
+    is where the original disagreement arose and where it is now resolved.
+
+eligible_claims:
+  - the inter-area band spectrum, including right-half-plane counts, in the
+    static-injection configuration with the stabilizer removed
+not_eligible:
+  - anything relying on ANDES's IEEEX1 or IEEEST
+  - converter-dependent results, which ANDES cannot express

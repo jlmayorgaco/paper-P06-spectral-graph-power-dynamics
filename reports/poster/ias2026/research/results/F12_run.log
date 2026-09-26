@@ -1,0 +1,68 @@
+  -> COMPUTED   manifest C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics\reports\poster\ias2026\research\outputs\ias2026_post_f7\post_f7_20260910T130334\F12_kundur\manifest.json
+{
+ "preregistration_sha256": "a545fc7ed4573f82aab0b13f77ae5d7db7a1be4800fed5095305bd81510f8b0b",
+ "K12A": {
+  "nodes": 3721,
+  "base_unstable": 0,
+  "kappa_values": [
+   -1,
+   1,
+   2
+  ],
+  "distinct_H": 9,
+  "H_counts": {
+   "2": 2168,
+   "EMPTY": 556,
+   "2+3|2+4": 471,
+   "2|3|4": 254,
+   "2+4": 149,
+   "2|4": 52,
+   "2|3": 41,
+   "3": 28,
+   "3|2+4": 2
+  },
+  "policy_lines_with_2plus_H": 61,
+  "policy_lines": 61,
+  "events": 554,
+  "boundary_types": {
+   "IMAGINARY_AXIS": 442,
+   "LOWER_BAND_EDGE": 112
+  },
+  "pure_policy_imaginary_axis_H_changes": 327,
+  "port_visible": 442,
+  "closure_max": 1.089352732840137e-06,
+  "spot_mismatch": 9,
+  "decision": "REPRODUCED"
+ },
+ "K12B": {
+  "nodes": 3721,
+  "base_unstable": 1525,
+  "kappa_values": [
+   -1,
+   1,
+   2
+  ],
+  "distinct_H": 7,
+  "H_counts": {
+   "2": 1313,
+   "EMPTY": 374,
+   "2+3|2+4": 320,
+   "2+4": 138,
+   "2|3": 25,
+   "3": 24,
+   "3|2+4": 2
+  },
+  "policy_lines_with_2plus_H": 36,
+  "policy_lines": 36,
+  "events": 327,
+  "boundary_types": {
+   "IMAGINARY_AXIS": 245,
+   "LOWER_BAND_EDGE": 82
+  },
+  "pure_policy_imaginary_axis_H_changes": 182,
+  "port_visible": 245,
+  "closure_max": 1.1856166435904123e-06,
+  "spot_mismatch": 2,
+  "decision": "REPRODUCED"
+ }
+}

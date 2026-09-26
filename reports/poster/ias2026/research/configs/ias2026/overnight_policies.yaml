@@ -1,0 +1,57 @@
+# Reactive-policy capability constants for the overnight Track-A validation.
+# FROZEN before any policy case was solved. No value here may be changed after
+# seeing a result.
+
+purpose: >
+  E30 asks whether the Track-A order-4 mechanism survives when the operating
+  point is no longer artificially reactive-matched. That requires stating what
+  reactive power the replacing plant is actually allowed to produce, in advance.
+
+policies:
+  P1_matched:
+    id: matched
+    description: frozen mechanism-isolation reference; bus injection unchanged
+    converter_mode: fixed reactive command
+    operating_point: identical to base by construction
+
+  P2_unity_pf:
+    id: unity_pf
+    description: battery-free PV at unity power factor, Q = 0
+    converter_mode: fixed reactive command at zero
+    operating_point: moves; the bus becomes PQ
+
+  P3_vreg_pf095:
+    id: vreg_pf095
+    description: >
+      local voltage regulation to the pre-replacement magnitude, with the
+      reactive capability of a plant rated to 0.95 power factor
+    capability: abs(Q) <= 0.3287 * S_rating
+    saturation_handling: >
+      a plant asking for more is switched onto its limit and runs from there on
+      a fixed reactive command; the power flow is re-solved until the set of
+      limited plants stops changing
+    converter_mode: voltage regulating while inside capability, fixed at the limit
+
+  P4_vreg_scap:
+    id: vreg_scap
+    description: >
+      the same regulation with capability set by apparent-power saturation, so a
+      plant carrying its full megawatts has no reactive headroom
+    capability: abs(Q) <= sqrt(max(S_rating^2 - P^2, 0))
+    saturation_handling: identical to P3
+    converter_mode: voltage regulating while inside capability, fixed at the limit
+
+unlimited_reactive_power: forbidden in P3 and P4
+max_clamp_passes: 12
+
+classification:
+  A: SAME MECHANISM
+  B: SAME FAMILY, DIFFERENT SEVERITY
+  C: DIFFERENT MODE OR FAMILY
+  D: MECHANISM DISAPPEARS
+  E: INFEASIBLE OPERATING POINT
+
+order4_pattern_required_for_A: >
+  truncations at orders 1, 2 and 3 stable, exact order 4 unstable, mu4 > 0,
+  the tracked family retained at the frozen overlap threshold, and the band
+  right-half-plane count 0 for every proper subset and 1 for the portfolio

@@ -1,0 +1,7 @@
+intervention_set,method,spearman,kendall,top1_agrees,finite_step_sign_agreement
+"12 frozen lines at P4, gamma = 1.5",port derivative (framework),0.9370629370629372,0.8484848484848484,True,0.75
+"12 frozen lines at P4, gamma = 1.5",conventional full-DAE eigen-sensitivity (B3-type),0.9370629370629372,0.8484848484848484,True,0.75
+"12 frozen lines at P4, gamma = 1.5",static: delta gSCR(H4) at 1.5x,-0.027972027972027972,-0.0303030303030303,False,
+"12 frozen lines at P4, gamma = 1.5",static: 1/x,-0.30069930069930073,-0.2424242424242424,False,
+"12 frozen lines at P4, gamma = 1.5",static: x-weighted betweenness (frozen F2),-0.549309395859119,-0.38770175433269616,False,
+"policy coordinates g,k,t,h at P4 (n = 4)",port derivative (framework),0.19999999999999998,0.0,False,

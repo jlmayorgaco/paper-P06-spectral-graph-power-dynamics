@@ -1,0 +1,135 @@
+{
+  "experiment": "E10_ieee39_baseline",
+  "seed": 20260909,
+  "config": {
+    "network_sha256": "9c2048dc94201ee48ffe816de65d53831fa1f4b0e7fdf32f24c50f1017edcfe5",
+    "fidelity": "two_axis_4th_order + first_order_avr + ieeest_2_state_pss",
+    "governor": "not_retained",
+    "candidates": [
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38
+    ]
+  },
+  "python": "3.13.14",
+  "platform_name": "Windows-11-10.0.26200-SP0",
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "dependencies": {
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1",
+    "networkx": "3.6.1",
+    "pyarrow": "25.0.1"
+  },
+  "started_utc": "2026-09-09T22:05:17.296516+00:00",
+  "results": {
+    "validation": {
+      "ybus_max_deviation": 1.139086659085919e-13,
+      "voltage_max_deviation": 1.724304485861694e-07,
+      "angle_max_deviation": 2.4416658661596813e-07,
+      "power_flow_mismatch": 2.7532731382577167e-12,
+      "min_voltage": 1.0018571199790343,
+      "max_voltage": 1.0729899261193876,
+      "reference_tool": "andes 2.0.0"
+    },
+    "n_differential_states": 70,
+    "n_algebraic_variables": 78,
+    "gz_condition": 502.4131439854654,
+    "equilibrium": {
+      "norm_f": 7.854827899222983e-14,
+      "norm_g": 2.3026025530725747e-13
+    },
+    "base_assessment": {
+      "spectral_abscissa": -0.12647823618208578,
+      "critical_real": -0.12647823618208578,
+      "critical_imag": 4.0121031910893326,
+      "critical_frequency_hz": 0.6385460550566344,
+      "critical_condition": 177.0024999745282,
+      "zeta_min": 0.026123769254454057,
+      "zeta_min_frequency_hz": 0.9100867637695176,
+      "zeta_min_real": -0.149433080215501,
+      "rhp_modes": 0,
+      "n_modes": 70,
+      "reference_modes": 2,
+      "reference_max_abs": 1.7994274689957833e-05,
+      "reference_participation": 0.9999988820762177,
+      "oscillatory_modes": 30
+    },
+    "max_device_loading": 0.8772896911706275,
+    "nodal_metrics": [
+      {
+        "bus": 30,
+        "thevenin_magnitude_pu": 0.031542452825160446,
+        "short_circuit_mva": 3399.6426057920085,
+        "scr": 3.268887120953854,
+        "rating_mva": 1040.0
+      },
+      {
+        "bus": 31,
+        "thevenin_magnitude_pu": 0.03327061354523348,
+        "short_circuit_mva": 3085.808607407199,
+        "scr": 3.6911586213004774,
+        "rating_mva": 836.0
+      },
+      {
+        "bus": 32,
+        "thevenin_magnitude_pu": 0.03925924742714322,
+        "short_circuit_mva": 2652.820588873387,
+        "scr": 3.1442699879973763,
+        "rating_mva": 843.7000000000002
+      },
+      {
+        "bus": 33,
+        "thevenin_magnitude_pu": 0.029627885365755533,
+        "short_circuit_mva": 3466.4652985564494,
+        "scr": 2.950685477150536,
+        "rating_mva": 1174.8
+      },
+      {
+        "bus": 34,
+        "thevenin_magnitude_pu": 0.04151975498291698,
+        "short_circuit_mva": 2501.4192745316486,
+        "scr": 2.3157001245432776,
+        "rating_mva": 1080.2
+      },
+      {
+        "bus": 35,
+        "thevenin_magnitude_pu": 0.03227291161199896,
+        "short_circuit_mva": 3481.5575784065586,
+        "scr": 3.2067399635318763,
+        "rating_mva": 1085.7
+      },
+      {
+        "bus": 36,
+        "thevenin_magnitude_pu": 0.05182265899336653,
+        "short_circuit_mva": 2168.1635443365126,
+        "scr": 2.114868849333313,
+        "rating_mva": 1025.2
+      },
+      {
+        "bus": 37,
+        "thevenin_magnitude_pu": 0.03839689706815812,
+        "short_circuit_mva": 2677.789005165884,
+        "scr": 2.760038141791264,
+        "rating_mva": 970.2
+      },
+      {
+        "bus": 38,
+        "thevenin_magnitude_pu": 0.0725430676926939,
+        "short_circuit_mva": 1527.911890222738,
+        "scr": 0.907257223575048,
+        "rating_mva": 1684.0999999999997
+      }
+    ]
+  },
+  "status": "SUCCESS",
+  "config_sha256": "3c4f3236db9dbeee355c3a0f347c5114fcad58a5fdd701d416da287cc7b6b999",
+  "finished_utc": "2026-09-09T22:05:17.296868+00:00"
+}

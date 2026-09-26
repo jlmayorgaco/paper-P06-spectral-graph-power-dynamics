@@ -1,0 +1,18 @@
+{
+ "EMTV2_gates.json": "identical (provenance excluded)",
+ "G3a/G3a_checks.csv": "byte-identical",
+ "G3a/G3a_diagnostics.json": "identical (provenance excluded)",
+ "G3a/G3a_trajectories.csv": "byte-identical",
+ "refs/B-SG36_dyn.npz": "identical arrays",
+ "refs/B-SG36_qs.npz": "identical arrays",
+ "refs/B1-GFL35_dyn_1ms.npz": "identical arrays",
+ "refs/B1-GFL35_qs.npz": "identical arrays",
+ "refs/B2-GFL37_dyn_1ms.npz": "identical arrays",
+ "refs/B2-GFL37_qs.npz": "identical arrays",
+ "refs/R-GFL30_dyn_1ms.npz": "identical arrays",
+ "refs/R-GFL30_qs.npz": "identical arrays",
+ "refs/R-SG30_dyn.npz": "identical arrays",
+ "refs/R-SG30_qs.npz": "identical arrays",
+ "refs/refs_manifest.json": "identical (provenance excluded)",
+ "SW/sw_tests.json": "identical (provenance excluded)"
+}

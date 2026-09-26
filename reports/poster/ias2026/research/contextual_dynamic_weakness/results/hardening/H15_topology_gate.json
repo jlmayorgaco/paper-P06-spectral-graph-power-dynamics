@@ -1,0 +1,360 @@
+{
+ "n_actions": 81,
+ "n_policies": 16,
+ "label_counts_all": {
+  "EM-NEUTRAL": 14316,
+  "EM-DESTABILIZING": 3863,
+  "EM-STABILIZING": 1812,
+  "MODE-SWITCH": 386,
+  "FAST-MODE DOMINATED": 343,
+  "UNRESOLVED": 16
+ },
+ "label_counts_H4": {
+  "EM-NEUTRAL": 806,
+  "EM-DESTABILIZING": 276,
+  "EM-STABILIZING": 136,
+  "FAST-MODE DOMINATED": 50,
+  "UNRESOLVED": 15,
+  "MODE-SWITCH": 13
+ },
+ "em_removal_H4_P4": [
+  "dbl13",
+  "dbl43",
+  "dbl1",
+  "dbl0"
+ ],
+ "em_removal_H4_any_policy": [
+  {
+   "pid": "D01",
+   "action": "dbl13"
+  },
+  {
+   "pid": "D01",
+   "action": "dbl43"
+  },
+  {
+   "pid": "H06",
+   "action": "dbl45"
+  },
+  {
+   "pid": "D01",
+   "action": "dbl1"
+  },
+  {
+   "pid": "D01",
+   "action": "dbl0"
+  }
+ ],
+ "em_creation": [
+  {
+   "pid": "H02",
+   "action": "out14",
+   "H_EM": "30+33+35"
+  },
+  {
+   "pid": "D03",
+   "action": "out28",
+   "H_EM": "30+33+35|30+33+37"
+  },
+  {
+   "pid": "D01",
+   "action": "out26",
+   "H_EM": "33|30+35|30+37"
+  },
+  {
+   "pid": "H01",
+   "action": "out13",
+   "H_EM": "33"
+  },
+  {
+   "pid": "D01",
+   "action": "out0",
+   "H_EM": "30|33|35|37"
+  },
+  {
+   "pid": "D01",
+   "action": "out28",
+   "H_EM": "30+33+35|30+33+37"
+  },
+  {
+   "pid": "D01",
+   "action": "out19",
+   "H_EM": "30+33+35|30+33+37|33+35+37"
+  },
+  {
+   "pid": "D01",
+   "action": "out18",
+   "H_EM": "30+33+35"
+  },
+  {
+   "pid": "D03",
+   "action": "out0",
+   "H_EM": "30|33|35|37"
+  },
+  {
+   "pid": "D03",
+   "action": "out26",
+   "H_EM": "33|30+35|30+37"
+  },
+  {
+   "pid": "D01",
+   "action": "out24",
+   "H_EM": "30+33+35|30+33+37"
+  },
+  {
+   "pid": "D01",
+   "action": "out2",
+   "H_EM": "33+35"
+  },
+  {
+   "pid": "D01",
+   "action": "out14",
+   "H_EM": "30|33|35+37"
+  },
+  {
+   "pid": "D03",
+   "action": "out1",
+   "H_EM": "30|33|35|37"
+  },
+  {
+   "pid": "D01",
+   "action": "out30",
+   "H_EM": "30+33+35"
+  },
+  {
+   "pid": "D01",
+   "action": "out3",
+   "H_EM": "30+33+35|30+33+37|33+35+37"
+  },
+  {
+   "pid": "D01",
+   "action": "out22",
+   "H_EM": "30+33+35|30+33+37"
+  },
+  {
+   "pid": "D03",
+   "action": "out22",
+   "H_EM": "30+33"
+  },
+  {
+   "pid": "H02",
+   "action": "out26",
+   "H_EM": "30+33+35"
+  },
+  {
+   "pid": "D03",
+   "action": "out33",
+   "H_EM": "33|30+35|30+37|35+37"
+  },
+  {
+   "pid": "H02",
+   "action": "out13",
+   "H_EM": "30+33+35"
+  },
+  {
+   "pid": "D01",
+   "action": "out29",
+   "H_EM": "30+33+35"
+  },
+  {
+   "pid": "D01",
+   "action": "out5",
+   "H_EM": "30+33+35"
+  },
+  {
+   "pid": "H01",
+   "action": "out0",
+   "H_EM": "30+33|30+35|30+37|33+35"
+  },
+  {
+   "pid": "D01",
+   "action": "out32",
+   "H_EM": "30+33+35"
+  },
+  {
+   "pid": "D03",
+   "action": "out11",
+   "H_EM": "30+33+35|30+33+37"
+  },
+  {
+   "pid": "D01",
+   "action": "out33",
+   "H_EM": "30+33|33+35|30+35+37"
+  },
+  {
+   "pid": "H02",
+   "action": "out1",
+   "H_EM": "30+33+35"
+  },
+  {
+   "pid": "D03",
+   "action": "out13",
+   "H_EM": "30"
+  },
+  {
+   "pid": "D03",
+   "action": "out14",
+   "H_EM": "30|33"
+  },
+  {
+   "pid": "HARDENING_H04",
+   "action": "out26",
+   "H_EM": "30+33+37"
+  },
+  {
+   "pid": "D03",
+   "action": "out24",
+   "H_EM": "30+33"
+  },
+  {
+   "pid": "D03",
+   "action": "out32",
+   "H_EM": "30+33+35|30+33+37"
+  },
+  {
+   "pid": "D01",
+   "action": "out11",
+   "H_EM": "30+33+35"
+  },
+  {
+   "pid": "HARDENING_H06",
+   "action": "out26",
+   "H_EM": "30+33"
+  },
+  {
+   "pid": "D03",
+   "action": "out19",
+   "H_EM": "30+33|30+35+37|33+35+37"
+  },
+  {
+   "pid": "D01",
+   "action": "out20",
+   "H_EM": "30+33|33+35|33+37|30+35+37"
+  },
+  {
+   "pid": "D01",
+   "action": "out13",
+   "H_EM": "30|33|35+37"
+  },
+  {
+   "pid": "D03",
+   "action": "out20",
+   "H_EM": "33|30+35+37"
+  },
+  {
+   "pid": "H01",
+   "action": "out14",
+   "H_EM": "33"
+  },
+  {
+   "pid": "D01",
+   "action": "out1",
+   "H_EM": "30|33|35|37"
+  },
+  {
+   "pid": "D03",
+   "action": "out31",
+   "H_EM": "30+33+35|30+33+37"
+  },
+  {
+   "pid": "D01",
+   "action": "out15",
+   "H_EM": "30+33+35"
+  },
+  {
+   "pid": "H01",
+   "action": "out1",
+   "H_EM": "30+33|30+35|30+37|33+35"
+  },
+  {
+   "pid": "HARDENING_H06",
+   "action": "out33",
+   "H_EM": "30+33|30+35|33+35|33+37|35+37"
+  }
+ ],
+ "n_em_creation": 45,
+ "n_fast_creation": 0,
+ "Q13_yes": true,
+ "n_H_changes": 187,
+ "n_HEM_changes": 168,
+ "census_P4_nominal": {
+  "action": "NOMINAL",
+  "kappa_V9": 4,
+  "n_edges_V9": 52,
+  "kappa_EM_V9": 4,
+  "n_edges_EM_V9": 6
+ },
+ "census_P4_kappa_EM_counts": {
+  "4": 59,
+  "3": 12,
+  "1": 5,
+  "2": 3,
+  "5": 2
+ },
+ "census_P4_kappa_counts": {
+  "4": 59,
+  "3": 13,
+  "1": 5,
+  "2": 3,
+  "5": 1
+ },
+ "H16": {
+  "fiedler": {
+   "n_pol_em": 16,
+   "median_rho_em": -0.49762080025237915,
+   "frac_abs_ge_0.6_em": 0.25,
+   "predicts_em": false,
+   "median_rho_full": -0.5157633242999096,
+   "predicts_full": false
+  },
+  "gscr_H4": {
+   "n_pol_em": 16,
+   "median_rho_em": -0.537150442356467,
+   "frac_abs_ge_0.6_em": 0.3125,
+   "predicts_em": false,
+   "median_rho_full": -0.5766518555413471,
+   "predicts_full": false
+  },
+  "kirchhoff": {
+   "n_pol_em": 16,
+   "median_rho_em": 0.5613596929386402,
+   "frac_abs_ge_0.6_em": 0.375,
+   "predicts_em": false,
+   "median_rho_full": 0.5539972899728998,
+   "predicts_full": false
+  },
+  "losses": {
+   "n_pol_em": 16,
+   "median_rho_em": 0.5464535464535464,
+   "frac_abs_ge_0.6_em": 0.375,
+   "predicts_em": false,
+   "median_rho_full": 0.5315943992773261,
+   "predicts_full": false
+  },
+  "max_flow": {
+   "n_pol_em": 16,
+   "median_rho_em": 0.38957095536042896,
+   "frac_abs_ge_0.6_em": 0.0,
+   "predicts_em": false,
+   "median_rho_full": 0.3747515808491418,
+   "predicts_full": false
+  },
+  "mean_reff_core": {
+   "n_pol_em": 16,
+   "median_rho_em": 0.41165413533834583,
+   "frac_abs_ge_0.6_em": 0.0625,
+   "predicts_em": false,
+   "median_rho_full": 0.4616644083107498,
+   "predicts_full": false
+  },
+  "min_scr_core": {
+   "n_pol_em": 16,
+   "median_rho_em": -0.5370680758263622,
+   "frac_abs_ge_0.6_em": 0.25,
+   "predicts_em": false,
+   "median_rho_full": -0.5520130533796956,
+   "predicts_full": false
+  }
+ },
+ "H16_any_static_predicts_em": false
+}

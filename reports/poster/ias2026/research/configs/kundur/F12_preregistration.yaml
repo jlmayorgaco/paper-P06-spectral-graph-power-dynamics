@@ -1,0 +1,59 @@
+# F12 preregistration - second documented benchmark (Kundur two-area)
+# Frozen and committed BEFORE any F12 composability quantity was computed.
+# Only the base-case eigenanalysis and the network/power-flow cross-check below
+# were run beforehand (they are needed to verify eligibility, not outcomes).
+
+benchmark:
+  preferred: "IEEE 68-bus / NETS-NYPS"
+  used: "Kundur two-area (alternative allowed by the brief)"
+  reason: >
+    No IEEE 68-bus case with documented dynamic data is available offline in
+    this environment; ANDES 2.0.0 ships the documented Kundur case.
+  source_file: "vendor/andes/andes/cases/kundur/kundur_sexs.xlsx"
+  source_sha256: "7ad5a5759cd3464610c6ac508e9c31cd271a2912f2ea37a54e6274fa3c76b640"
+  frozen_network: "configs/kundur/kundur_network.json"
+  documented_models: "GENROU machines (Kundur Example 12.6 data), SEXS exciters K=20 TE=0.83 TA/TB=0.4 TB=5, TGOV1 governors, no PSS"
+
+model_reductions_declared:
+  - "GENROU -> two-axis transient model (subtransient Td20=0.03 s, Tq20=0.05 s dropped), as in the IEEE-39 study"
+  - "TGOV1 not represented, as in the IEEE-39 study"
+  - "SEXS represented exactly (lead-lag + first-order); no PSS because the case has none"
+  - "loads constant power, as in the IEEE-39 study"
+  - "no parameter changed or added"
+
+eligibility_checks_done_before_freeze:
+  ybus_vs_andes_max_abs: 1.8e-15
+  power_flow_vs_andes_max_abs_voltage: 2.3e-7
+  base_abscissa: -0.1217
+  interarea_mode: {ours: "-0.1453 +- j 2pi 0.657 Hz, zeta 0.035", andes_full_model: "-0.1541 +- j 2pi 0.650 Hz, zeta 0.038"}
+
+replacement_candidates: [2, 3, 4]      # every non-slack machine; same rule as IEEE-39
+tested_family: "power set of the candidates (8 subsets)"
+replacement_model: "full replacement (rho = 1) by the F7 grid-following converter, ConverterParameters defaults, on the machine rating"
+dispatch: "matched: converter carries the machine's P and Q; operating point identical for every subset"
+
+reactive_policy:
+  coordinate: "g, leaky Q/V regulator identical to F7: q = q_ref + g*2*e + x_v, x_v' = g*20*e - 0.05*(x_v - q_ref)"
+  range: [0.0, 1.0]
+
+excitation_coordinates:
+  k: {meaning: "scale on every SEXS gain K", range: [0.5, 2.0]}
+  t: {meaning: "scale on every SEXS time constant TE", range: [0.5, 2.0]}
+  justification: "factor-of-two window around the documented values; not tuned"
+
+protected_region: "Re s > 0 and 0.3 <= |Im s|/2pi <= 1.5 Hz, one representative per conjugate pair (identical to IEEE-39)"
+
+maps:
+  K12A: "g x k at t = 1"
+  K12B: "g x t at k = 1"
+  grid: "61 x 61 nodes; g on a square-root spacing over [0, 1]; the other axis uniform"
+  boundary_localisation: "bisection on every grid edge whose unsafe-family indicators differ; Safeguard B classification; port closure at imaginary-axis crossings"
+  resolution_check: "200 random off-grid points per map on the direct path against the nearest-node label"
+
+decision_rule: >
+  Policy-dependent composability is REPRODUCED if, on at least one pure-policy
+  line (fixed k or t) of a base-stable slice, two points carry different
+  nonempty-or-empty H_Gamma separated by an imaginary-axis crossing. It is NOT
+  reproduced if H_Gamma is constant along every pure-policy line, or if every
+  change is a band-edge reclassification. Any outcome is reported.
+forbidden: "tuning any parameter toward a particular kappa; changing the candidates, band or ranges after seeing results"

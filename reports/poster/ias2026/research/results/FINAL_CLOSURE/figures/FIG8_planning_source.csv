@@ -1,0 +1,9 @@
+point,constraint,portfolio,replaced_pg_mw,final_stable_best,status
+P4,P1 spectral (H_RHP_perp),30+33+35,1775.0863810001342,"{'portfolio': '30+33+35', 'replaced_pg_mw': 1775.0863810001342}",
+P4,P2 nonlinear D1 rho*=200.0,,,,OUT_OF_MODEL_SCOPE (rho_scope=130.46875)
+P4,P2 nonlinear D2 rho*=200.0,,,,OUT_OF_MODEL_SCOPE (rho_scope=97.65625)
+P4,P2 nonlinear D3 rho*=0.35,,,,OUT_OF_MODEL_SCOPE (rho_scope=0.090625)
+P_inf,P1 spectral (H_RHP_perp),30+33+35+37,2096.607719000146,"{'portfolio': '30+33+35+37', 'replaced_pg_mw': 2096.607719000146}",
+P_inf,P2 nonlinear D1 rho*=200.0,,,,OUT_OF_MODEL_SCOPE (rho_scope=88.28125)
+P_inf,P2 nonlinear D2 rho*=200.0,30+33+35+37,2096.607719000146,,EVALUATED
+P_inf,P2 nonlinear D3 rho*=0.35,,,,OUT_OF_MODEL_SCOPE (rho_scope=0.3078125)

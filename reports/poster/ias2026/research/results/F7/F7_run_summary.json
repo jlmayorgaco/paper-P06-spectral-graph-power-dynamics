@@ -1,0 +1,50 @@
+{
+  "F7A": {
+    "points": 128005,
+    "leaves": 31164,
+    "islands": 0,
+    "boundary_edges": 11926,
+    "events": 12195,
+    "spot_checks": 400,
+    "spot_scored": 376,
+    "spot_errors": 0,
+    "spot_boundary_cells": 24,
+    "spot_nearest_node_errors_all": 1,
+    "spot_error_upper95": 0.007935717677052178,
+    "fast_direct_disagreements": 0,
+    "elapsed_s": 1061.9,
+    "spot_check_pass": true
+  },
+  "F7B": {
+    "points": 88163,
+    "leaves": 21482,
+    "islands": 1,
+    "boundary_edges": 11093,
+    "events": 11537,
+    "spot_checks": 400,
+    "spot_scored": 386,
+    "spot_errors": 0,
+    "spot_boundary_cells": 14,
+    "spot_nearest_node_errors_all": 0,
+    "spot_error_upper95": 0.007730925914285606,
+    "fast_direct_disagreements": 0,
+    "elapsed_s": 910.2,
+    "spot_check_pass": true
+  },
+  "F7C": {
+    "points": 145811,
+    "leaves": 35864,
+    "islands": 0,
+    "boundary_edges": 7335,
+    "events": 7465,
+    "spot_checks": 400,
+    "spot_scored": 391,
+    "spot_errors": 0,
+    "spot_boundary_cells": 9,
+    "spot_nearest_node_errors_all": 1,
+    "spot_error_upper95": 0.0076324432141295796,
+    "fast_direct_disagreements": 0,
+    "elapsed_s": 1195.8,
+    "spot_check_pass": true
+  }
+}

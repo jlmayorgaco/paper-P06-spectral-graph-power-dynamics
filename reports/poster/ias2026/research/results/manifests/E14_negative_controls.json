@@ -1,0 +1,99 @@
+{
+  "experiment": "E14_negative_controls",
+  "seed": 20260909,
+  "config": {
+    "rho_grid": [
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "damping_grid": [
+      0.0,
+      1.0,
+      2.0,
+      5.0
+    ],
+    "ablations": [
+      "nominal",
+      "measurement_fast",
+      "measurement_slow",
+      "outer_p_weak",
+      "outer_p_strong",
+      "outer_q_weak",
+      "outer_q_strong",
+      "pll_slow",
+      "pll_slow_damped",
+      "pll_fast",
+      "current_slow",
+      "current_fast"
+    ],
+    "devices": [
+      "gfl",
+      "static_power",
+      "static_impedance"
+    ],
+    "genuine_cores": [
+      "30+32+33+35",
+      "30+32+33+38",
+      "30+33+35+36",
+      "30+33+35+37",
+      "30+33+35+38",
+      "30+33+36+38",
+      "30+33+37+38",
+      "30+35+36+38",
+      "30+35+37+38"
+    ]
+  },
+  "python": "3.13.14",
+  "platform_name": "Windows-11-10.0.26200-SP0",
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "dependencies": {
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1",
+    "networkx": "3.6.1",
+    "pyarrow": "25.0.1"
+  },
+  "started_utc": "2026-09-09T23:45:41.116908+00:00",
+  "results": {
+    "cases": 394,
+    "failures": 0,
+    "order4_flag_rate": 0.07936507936507936,
+    "n5_controller_mediated_strict": 0,
+    "n5_controller_mediated_pq": 23,
+    "n5_by_family": {
+      "genuine": 0,
+      "switching": 23
+    },
+    "n1_smallest_unstable_rho": {
+      "30+32+33+35": 1.0,
+      "30+32+33+38": 1.0,
+      "30+33+35+36": 1.0,
+      "30+33+35+37": 1.0,
+      "30+33+35+38": 1.0,
+      "30+33+36+38": 1.0,
+      "30+33+37+38": 1.0,
+      "30+35+36+38": 1.0,
+      "30+35+37+38": 1.0
+    },
+    "n2_damping_effect": {
+      "30+32+33+35": 0.010045583388169549,
+      "30+32+33+38": 0.02911170734889896,
+      "30+33+35+36": -0.025593585095902094,
+      "30+33+35+37": -0.02610712850909451,
+      "30+33+35+38": -0.016892793913966087,
+      "30+33+36+38": 0.01598451300396017,
+      "30+33+37+38": -0.003102734773337029,
+      "30+35+36+38": 0.022428324838318456,
+      "30+35+37+38": 0.028672228522766983
+    },
+    "n4_matched_stable_cases": 25,
+    "n4_any_unstable": 0,
+    "elapsed_s": 41.092116594314575
+  },
+  "status": "SUCCESS",
+  "config_sha256": "5e2d4255d885bc67896427c24a6bd4522c823c155a3a22927ae24a719a45eb72",
+  "finished_utc": "2026-09-09T23:45:41.119586+00:00"
+}

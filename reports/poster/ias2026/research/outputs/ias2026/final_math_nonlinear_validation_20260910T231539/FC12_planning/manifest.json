@@ -1,0 +1,148 @@
+{
+  "experiment": "FC12_planning",
+  "question": "Does nonlinear composability change the planning decision?",
+  "verdict": "COMPUTED",
+  "seed": null,
+  "config": {
+    "planning": {
+      "rho_star": {
+        "D1": 200.0,
+        "D2": 200.0,
+        "D3": 0.35
+      },
+      "rho_star_meaning": "D1: a 200 MW load block for 0.5 s (61 % of the bus-16 load); D2: a 200 MW turbine runback at SG36 for 0.5 s; D3: a 35 % dip of the portfolio's PV output for 0.5 s",
+      "objective_mw": "replaced_pg_mw (measured active dispatch), never Sn",
+      "P1": "maximize replaced_pg_mw subject to: no spectral hyperedge of H_RHP_perp contained (any-order safe)",
+      "P2": "the same, additionally no H_NL(rho_star) hyperedge contained, for each family separately and for all three jointly",
+      "P3": "minimum damped-condenser rating (G1 R_0010000, D = 2, common rating fraction at the four core buses; MVA = fraction x 4270.7) making the P4 flagship (a) transversely stable, (b) tolerant of rho_star for each family",
+      "axes": "MW replaced, synchronous MVA added, controller-change norm: reported separately; no weighted scalar"
+    }
+  },
+  "workers": 16,
+  "git_commit": "d79fb29526e75769aa62db07c1a7c50281eb0508",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 7.34,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-11T06:17:12Z",
+  "elapsed_s": 6.09,
+  "notes": [],
+  "results": {
+    "plans": [
+      {
+        "point": "P4",
+        "constraint": "P1 spectral (H_RHP_perp)",
+        "portfolio": "30+33+35",
+        "replaced_pg_mw": 1775.0863810001342,
+        "final_stable_best": {
+          "portfolio": "30+33+35",
+          "replaced_pg_mw": 1775.0863810001342
+        },
+        "status": NaN
+      },
+      {
+        "point": "P4",
+        "constraint": "P2 nonlinear D1 rho*=200.0",
+        "portfolio": NaN,
+        "replaced_pg_mw": NaN,
+        "final_stable_best": NaN,
+        "status": "OUT_OF_MODEL_SCOPE (rho_scope=130.46875)"
+      },
+      {
+        "point": "P4",
+        "constraint": "P2 nonlinear D2 rho*=200.0",
+        "portfolio": NaN,
+        "replaced_pg_mw": NaN,
+        "final_stable_best": NaN,
+        "status": "OUT_OF_MODEL_SCOPE (rho_scope=97.65625)"
+      },
+      {
+        "point": "P4",
+        "constraint": "P2 nonlinear D3 rho*=0.35",
+        "portfolio": NaN,
+        "replaced_pg_mw": NaN,
+        "final_stable_best": NaN,
+        "status": "OUT_OF_MODEL_SCOPE (rho_scope=0.090625)"
+      },
+      {
+        "point": "P_inf",
+        "constraint": "P1 spectral (H_RHP_perp)",
+        "portfolio": "30+33+35+37",
+        "replaced_pg_mw": 2096.607719000146,
+        "final_stable_best": {
+          "portfolio": "30+33+35+37",
+          "replaced_pg_mw": 2096.607719000146
+        },
+        "status": NaN
+      },
+      {
+        "point": "P_inf",
+        "constraint": "P2 nonlinear D1 rho*=200.0",
+        "portfolio": NaN,
+        "replaced_pg_mw": NaN,
+        "final_stable_best": NaN,
+        "status": "OUT_OF_MODEL_SCOPE (rho_scope=88.28125)"
+      },
+      {
+        "point": "P_inf",
+        "constraint": "P2 nonlinear D2 rho*=200.0",
+        "portfolio": "30+33+35+37",
+        "replaced_pg_mw": 2096.607719000146,
+        "final_stable_best": NaN,
+        "status": "EVALUATED"
+      },
+      {
+        "point": "P_inf",
+        "constraint": "P2 nonlinear D3 rho*=0.35",
+        "portfolio": NaN,
+        "replaced_pg_mw": NaN,
+        "final_stable_best": NaN,
+        "status": "OUT_OF_MODEL_SCOPE (rho_scope=0.3078125)"
+      }
+    ],
+    "P3": [
+      {
+        "requirement": "transversely stable",
+        "family": "",
+        "fraction": 0.024826803477481008,
+        "condenser_mva": 106.02782961127814,
+        "status": "BISECTED",
+        "trail": NaN
+      },
+      {
+        "requirement": "tolerates rho*=200.0",
+        "family": "D1",
+        "fraction": 0.185546875,
+        "condenser_mva": 792.4150390625,
+        "status": "BISECTED",
+        "trail": "[[0.125, \"OUTSIDE_MODEL_SCOPE\", 200.0], [0.1875, \"RECOVERS\", 200.0], [0.15625, \"OUTSIDE_MODEL_SCOPE\", 200.0], [0.171875, \"OUTSIDE_MODEL_SCOPE\", 200.0], [0.1796875, \"OUTSIDE_MODEL_SCOPE\", 200.0], [0.18359375, \"OUTSIDE_MODEL_SCOPE\", 200.0], [0.185546875, \"RECOVERS\", 200.0]]"
+      },
+      {
+        "requirement": "tolerates rho*=200.0",
+        "family": "D2",
+        "fraction": 0.16015625,
+        "condenser_mva": 683.9792968749999,
+        "status": "BISECTED",
+        "trail": "[[0.125, \"OUTSIDE_MODEL_SCOPE\", 200.0], [0.1875, \"RECOVERS\", 200.0], [0.15625, \"OUTSIDE_MODEL_SCOPE\", 200.0], [0.171875, \"RECOVERS\", 200.0], [0.1640625, \"RECOVERS\", 200.0], [0.16015625, \"RECOVERS\", 200.0], [0.158203125, \"OUTSIDE_MODEL_SCOPE\", 200.0]]"
+      },
+      {
+        "requirement": "tolerates rho*=0.35",
+        "family": "D3",
+        "fraction": NaN,
+        "condenser_mva": NaN,
+        "status": "NOT_REACHED at 25% (OUTSIDE_MODEL_SCOPE)",
+        "trail": NaN
+      }
+    ],
+    "elapsed_s": 658.9,
+    "p3_spectral_rerun": "dead-state deletion before the quotient (alpha_c fix)"
+  }
+}

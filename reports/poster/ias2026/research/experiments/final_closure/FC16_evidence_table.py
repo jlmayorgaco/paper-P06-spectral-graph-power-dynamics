@@ -1,0 +1,733 @@
+# ruff: noqa: E501
+# (this module is a data table of verbatim claim wording; wrapping would split the
+# sentences that are copied into the papers)
+"""FC16 (step 20): results/FINAL_EVIDENCE_TABLE.csv, one row per claim.
+
+The rows are the claim ledger of docs/FINAL_TRANSACTION_THEORY_AND_EVIDENCE.md
+(sections A-H) with, for every claim: status, mathematical status, benchmarks,
+independent validation, nonlinear validation, full RHP, model scope, and the
+exact wording allowed in a paper. Values are transcribed from the run outputs
+named in `evidence`; nothing is computed here.
+"""
+
+from __future__ import annotations
+
+import csv
+import sys
+
+from _fc import RESULTS
+
+COLS = [
+    "id",
+    "section",
+    "claim",
+    "status",
+    "mathematical_status",
+    "benchmarks",
+    "independent_validation",
+    "nonlinear_validation",
+    "full_rhp",
+    "model_scope",
+    "allowed_wording",
+    "evidence",
+]
+TRANSVERSE = "transverse (relative) stability; D = 0, no governor"
+IEEE39 = (
+    "IEEE-39 frozen: harmonized first-order AVR, matched dispatch, core 30/33/35/37, leaky Q/V, "
+    "D = 0, no governor"
+)
+
+ROWS = [
+    # ---------------------------------------------------------------- A --
+    [
+        "A1",
+        "A",
+        "Exact center subspace C = span{R_x, w} (Jordan chain); det(sI-A) = s^2 det(sI-A_perp); "
+        "exact nonlinear transverse system",
+        "PROVED",
+        "proved (classical symmetry reduction)",
+        "IEEE-39; Kundur; IEEE-68",
+        "same code only",
+        "exact nonlinear symmetry proved; TDS uses it",
+        "yes (transverse whole-RHP)",
+        "D = 0 and no governor; otherwise C = span{R_x}",
+        "Stability is stated modulo the exact rotation (a gauge) and the common-frequency drift (a physical "
+        "consequence of absent primary frequency control).",
+        "theory/TRANSVERSE_STABILITY_QUOTIENT.md; FC01_structure.csv",
+    ],
+    [
+        "A2",
+        "A",
+        "H is an antichain; hyperedge-free portfolios are stable; H changes only at transverse "
+        "imaginary-axis crossings; H_RHP = min(union H_m); band-limited emptiness does not certify",
+        "PROVED",
+        "proved (elementary)",
+        "all",
+        "n/a",
+        "n/a",
+        "yes",
+        "any spectral region",
+        "Portfolios containing no hyperedge of H_RHP_perp are transversely stable; H_RHP_perp changes only "
+        "where a transverse eigenvalue crosses the imaginary axis.",
+        "theory/F2C_incompatibility_hypergraph.md; theory/F2E_whole_rhp_and_mechanism_projections.md",
+    ],
+    [
+        "A3",
+        "A",
+        "Equal kappa can carry different H; non-monotone, disconnected regions (constructions)",
+        "PROVED",
+        "proved (constructions)",
+        "synthetic",
+        "n/a",
+        "n/a",
+        "yes",
+        "general",
+        "The scalar order hides which coalitions fail; the hypergraph does not.",
+        "theory/F2D_topology_of_composability_regions.md",
+    ],
+    [
+        "A4",
+        "A",
+        "C (any order safe) => B (safe path) => A (final stable); C iff hyperedge-free",
+        "PROVED",
+        "proved (elementary)",
+        "general",
+        "n/a",
+        "n/a",
+        "yes",
+        "base stable",
+        "A target is safe in every implementation order iff it contains no minimal incompatible coalition.",
+        "theory/FINAL_COMBINATORIAL_THEOREMS.md s3",
+    ],
+    [
+        "A5",
+        "A",
+        "Common order-preserving Metzler realization => monotone alpha, heredity, A = B = C",
+        "PROVED",
+        "proved (classical Perron-Frobenius)",
+        "general",
+        "n/a",
+        "n/a",
+        "yes",
+        "positive realization",
+        "Classical Perron-Frobenius monotonicity; IEEE-39 is outside this class (three robust counterexamples).",
+        "theory/FINAL_COMBINATORIAL_THEOREMS.md s2; FC10_summary.json",
+    ],
+    [
+        "A6",
+        "A",
+        "Minimum-cardinality Boolean spectral destabilization is NP-complete",
+        "PROVED",
+        "proved; direct corollary of the sparse-PCA clique reduction (not new)",
+        "general",
+        "n/a",
+        "n/a",
+        "n/a",
+        "general",
+        "Exact minimal-witness search is combinatorial in general (a known consequence of the sparse-PCA "
+        "reduction); on IEEE-39 m = 4 and exhaustive search takes 16 evaluations.",
+        "theory/FINAL_COMBINATORIAL_THEOREMS.md s1",
+    ],
+    [
+        "A7",
+        "A",
+        "Resilience complex K(rho): simplicial; minimal non-faces = H_NL; local spheres; filtration; "
+        "H_NL(0+) = H_RHP_perp",
+        "PROVED",
+        "proved (Stanley-Reisner; standard)",
+        "general",
+        "n/a",
+        "checked on TDS thresholds (6/6)",
+        "n/a",
+        "general",
+        "The tolerated portfolios form a simplicial complex whose minimal non-faces are the minimal "
+        "non-tolerating coalitions (a direct consequence of the definition).",
+        "theory/FINAL_COMBINATORIAL_THEOREMS.md s4; FC06_summary.json",
+    ],
+    [
+        "A8",
+        "A",
+        "det(I+M_SS) principal-minor expansion; Moebius = block-touching minor sums; invariants; "
+        "d* and kappa independent",
+        "PROVED",
+        "proved (classical identities)",
+        "IEEE-39; Kundur; IEEE-68",
+        "n/a",
+        "n/a",
+        "n/a",
+        "common operating point",
+        "All Boolean interaction of the characteristic function lives in det(I + M_SS); its order-k "
+        "coefficient is the sum of principal minors spanning k actions.",
+        "theory/PRINCIPAL_MINOR_PORTFOLIO_STRUCTURE.md; results/BC/BC02b",
+    ],
+    [
+        "A9",
+        "A",
+        "Symmetry-deflated zero-frequency port: sign det T##(0) flips iff the parity of positive real "
+        "transverse eigenvalues changes",
+        "PROVED",
+        "proved (Brauer + Schur; classical ingredients)",
+        "general",
+        "n/a",
+        "n/a",
+        "real axis only",
+        "partner w verified (D = 0, no governor)",
+        "Relocating exactly the two structural center eigenvalues restores the zero-frequency determinant "
+        "test.",
+        "theory/SYMMETRY_DEFLECTED_PORT_CLOSURE.md",
+    ],
+    # ---------------------------------------------------------------- B --
+    [
+        "B1",
+        "B",
+        "Transverse structure verified (dim C = 2, Jordan, identities <= 3.1e-8; 106/106)",
+        "NUMERICALLY VALIDATED",
+        "numerical check of A1",
+        "IEEE-39; Kundur; IEEE-68",
+        "no",
+        "n/a",
+        "yes",
+        TRANSVERSE,
+        "The exact center subspace was verified in every audited case.",
+        "FC01_summary.json",
+    ],
+    [
+        "B2",
+        "B",
+        "Transverse re-audit of 345 229 F7 points: 0 resolved label changes; 5 128 unresolved "
+        "(1.5 %)",
+        "NUMERICALLY VALIDATED",
+        "n/a",
+        "IEEE-39",
+        "no",
+        "n/a",
+        "yes",
+        IEEE39,
+        "Re-auditing all 345 229 map points in transverse coordinates changed no resolved label; 1.5 % "
+        "remain numerically unresolved.",
+        "results/TSQ_ieee39_reaudit.csv",
+    ],
+    [
+        "B3",
+        "B",
+        "Zero-frequency port closure holdout: Kundur 28/29 (28/28 zero crossings; miss = "
+        "coalescence), 0/445 false positives; synthetic 200/200, 0/200",
+        "NUMERICALLY VALIDATED",
+        "validates A9",
+        "Kundur holdout; synthetic",
+        "no",
+        "n/a",
+        "real axis only",
+        "aperiodic crossings; partner verified",
+        "On a preregistered Kundur holdout the port detected 28 of 29 real-count changes (the miss is a "
+        "real-pair coalescence) with 0 false positives on 445 negative controls.",
+        "results/zero_frequency_port_validation.csv; configs/port_relocation_v1.yaml",
+    ],
+    [
+        "B4",
+        "B",
+        "Principal-minor identities to 1.3e-13; full-order coefficients non-zero on all three "
+        "benchmarks",
+        "NUMERICALLY VALIDATED",
+        "validates A8",
+        "IEEE-39; Kundur; IEEE-68",
+        "no",
+        "n/a",
+        "n/a",
+        "common operating point",
+        "No exact low-degree Boolean representation exists on these benchmarks.",
+        "results/BC/BC02b",
+    ],
+    [
+        "B5",
+        "B",
+        "Oscillatory boundaries are return-difference zeros (29 851/29 851; 601/601 RHP)",
+        "NUMERICALLY VALIDATED",
+        "classical (generalized Nyquist)",
+        "IEEE-39; Kundur",
+        "no",
+        "n/a",
+        "yes",
+        IEEE39,
+        "The classical return difference localizes the hypergraph's oscillatory boundaries at reduced "
+        "port order.",
+        "docs/F7_POLICY_HYPERGRAPH.md; docs/G1_WHOLE_RHP_COMPOSABILITY.md",
+    ],
+    [
+        "B6",
+        "B",
+        "Second-order DAE curvature: full second order 170-3400x more accurate than linear; dropping the KCL curvature makes the frequency prediction ~10^3x worse than linear (broken rotation/drift symmetry); with that removed, device curvature alone is no better than linear",
+        "NUMERICALLY VALIDATED",
+        "Taylor consistency (not new)",
+        "IEEE-39 (5 cases)",
+        "no",
+        "full DAE reference (BDF 1e-10)",
+        "n/a",
+        "small amplitudes (2-64 MW); 128 MW flagship points outside the valid region",
+        "A second-order reduced SG-IBR response is consistent only if the algebraic-manifold (KCL) curvature is retained; dropping it breaks the exact rotation / frequency-drift symmetry at second order.",
+        "FC07_errors.csv; FC07_diagnostics.csv; FIG7",
+    ],
+    [
+        "B7",
+        "B",
+        "All three established oscillatory boundaries are subcritical Hopf (l1 = +0.0095, +0.025, "
+        "+0.026)",
+        "NUMERICALLY VALIDATED",
+        "normal form on the exact transverse system",
+        "IEEE-39",
+        "no",
+        "l1 at two step sizes (spread <= 0.2 %)",
+        "n/a",
+        IEEE39,
+        "The oscillatory incompatibility boundaries examined are subcritical: the loss of stability is hard, "
+        "with no small stable limit cycle.",
+        "FC13_hopf.csv",
+    ],
+    [
+        "B8",
+        "B",
+        "Resilience-complex checks pass in 6/6 (point, family)",
+        "NUMERICALLY VALIDATED",
+        "tautology of A7",
+        "IEEE-39",
+        "no",
+        "TDS thresholds",
+        "n/a",
+        "within rho_scope",
+        "(organizing statement only; do not present as a finding)",
+        "FC06_summary.json",
+    ],
+    [
+        "B9",
+        "B",
+        "TDS confirms the small-signal verdicts (32/32)",
+        "NUMERICALLY VALIDATED",
+        "n/a",
+        "IEEE-39; Kundur",
+        "no",
+        "yes (32/32)",
+        "n/a",
+        "small disturbances, phasor DAE",
+        "Small-signal predictions are confirmed in nonlinear phasor-domain simulation.",
+        "docs/G2_TDS_VALIDATION.md",
+    ],
+    [
+        "B10",
+        "B",
+        "Nonlinear / energy / principal-minor certificates",
+        "FAILED",
+        "sampled bounds; screening only",
+        "IEEE-39",
+        "no",
+        "compared with TDS: ratio <= 1e-11",
+        "n/a",
+        IEEE39,
+        "(not claimable) No certificate provided a useful all-subset guarantee or a useful fraction of the "
+        "measured threshold.",
+        "FC08_summary.json; FC09_summary.json",
+    ],
+    # ---------------------------------------------------------------- C --
+    [
+        "C1",
+        "C",
+        "Policy-dependent minimal incompatibility: 30/36/16 distinct H on F7A/B/C; witness "
+        "contraction 4 -> 3 -> 2; tongue",
+        "BENCHMARK-SPECIFIC",
+        "empirical",
+        "IEEE-39 (Kundur corroborates)",
+        "no (ANDES lacks the L0 GFL)",
+        "tongue sides and kappa = 4/2 confirmed in TDS",
+        "yes (transverse)",
+        IEEE39,
+        "On the frozen IEEE-39 benchmark, at fixed network and dispatch, the converter reactive policy "
+        "changes which minimal SG->IBR replacement coalitions are transversely unstable.",
+        "docs/F7_POLICY_HYPERGRAPH.md; FC01; FIG1",
+    ],
+    [
+        "C2",
+        "C",
+        "Flagship 30+33+35+37: 2096.6 MW on 4270.7 MVA; kappa_perp = 4 at P4 (alpha +0.127); "
+        "EMPTY at P_inf",
+        "BENCHMARK-SPECIFIC",
+        "empirical",
+        "IEEE-39",
+        "no",
+        "yes (G2)",
+        "yes",
+        IEEE39,
+        "Replacing 2096.6 MW of active dispatch (4270.7 MVA of converter rating) at four buses is "
+        "transversely unstable under one reactive policy although every proper subset is stable.",
+        "FC03_points.csv; docs/FINAL_UNIT_AUDIT.md",
+    ],
+    [
+        "C3",
+        "C",
+        "E14 N6 with Pg-matched controls: 25/25 controls keep the inter-area family stable; 8/10 "
+        "failing portfolios have it unstable",
+        "BENCHMARK-SPECIFIC",
+        "empirical",
+        "IEEE-39",
+        "no",
+        "no",
+        "yes",
+        IEEE39,
+        "Portfolios matched on active dispatch do not destabilize the 0.64-0.71 Hz inter-area family; the "
+        "failing coalitions do.",
+        "FC04_summary.json",
+    ],
+    [
+        "C4",
+        "C",
+        "Damped condenser empties H above a point-dependent rating (P4: 2.48 % = 106.0 MVA); "
+        "undamped condenser unstable; inertia alone does not restore",
+        "BENCHMARK-SPECIFIC",
+        "empirical",
+        "IEEE-39",
+        "no",
+        "yes (TDS threshold 2.47 %)",
+        "yes",
+        IEEE39,
+        "A condenser with a damped swing mode restores composability above a point-dependent rating; an "
+        "undamped low-inertia condenser is itself unstable.",
+        "docs/G1_WHOLE_RHP_COMPOSABILITY.md; FC12",
+    ],
+    [
+        "C5",
+        "C",
+        "With documented TGOV1N governors: policy-dependent incompatibility survives (10 distinct H, "
+        "kappa 2-4 at 74/399 plane points) but the P4 kappa = 4 coalition does not (alpha -0.0745)",
+        "BENCHMARK-SPECIFIC",
+        "empirical",
+        "IEEE-39 governed_documented_v1",
+        "ANDES: governor damping direction",
+        "no",
+        "yes (quotient by span{R_x})",
+        "documented TGOV1N, untuned, D = 0",
+        "With the source's documented governors, policy-dependent minimal incompatibility persists in a "
+        "smaller region, while the specific four-bus coalition at P4 is stabilized.",
+        "FC03_summary.json; FC03_points.csv",
+    ],
+    [
+        "C6",
+        "C",
+        "IEEE-39 is not in the monotone class (3 robust re-stabilizing pairs, all by adding 34)",
+        "NUMERICALLY VALIDATED",
+        "diagnostic of A5",
+        "IEEE-39 E12 census",
+        "no",
+        "no",
+        "yes",
+        IEEE39,
+        "Converting a further unit can re-stabilize an unstable portfolio, so stability is not hereditary "
+        "on this benchmark.",
+        "FC10_summary.json",
+    ],
+    [
+        "C7",
+        "C",
+        "Within model scope kappa_NL = kappa_RHP_perp and H_NL = H_RHP_perp for all 6 (point, family); "
+        "no stable portfolio fails in scope",
+        "NUMERICALLY VALIDATED",
+        "negative result",
+        "IEEE-39",
+        "no",
+        "yes (TDS, 96 thresholds)",
+        "n/a",
+        IEEE39
+        + "; finite disturbances censored at rho_scope (GFL voltage band, PSS limit)",
+        "Within the declared model validity, finite-disturbance composability coincides with transverse "
+        "spectral composability for three disturbance families; every finite threshold of a stable "
+        "portfolio is a model-scope (limiter-envelope) event.",
+        "FC05_thresholds.csv; FC06_kappa_NL.csv; FIG2-5",
+    ],
+    [
+        "C8",
+        "C",
+        "First-event (limiter-activation) complex: structured order in which coalitions leave the "
+        "declared envelope",
+        "OUT OF MODEL SCOPE",
+        "diagnostic",
+        "IEEE-39",
+        "no",
+        "TDS",
+        "n/a",
+        "beyond rho_scope the model is not valid",
+        "(scope diagnostic only) The order in which portfolios first reach the declared envelope is itself "
+        "structured; beyond that point the model does not decide stability.",
+        "FC06_first_event_complex.csv",
+    ],
+    # ---------------------------------------------------------------- D --
+    [
+        "D1",
+        "D",
+        "Kundur: policy dependence 61/61, 36/36; H never empty; 194 aperiodic crossings; TDS "
+        "aperiodic pair",
+        "BENCHMARK-SPECIFIC",
+        "empirical",
+        "Kundur",
+        "no (same code)",
+        "yes",
+        "yes",
+        "Kundur frozen, D = 0",
+        "On the Kundur system the policy dependence recurs, and no reactive policy makes the fleet "
+        "composable.",
+        "docs/F12_SECOND_BENCHMARK.md; BC01",
+    ],
+    [
+        "D2",
+        "D",
+        "IEEE-68: documented model reproduced; preregistered policy map EMPTY; kappa 6 -> 9 -> 11 "
+        "at >= 6/12 plants",
+        "BENCHMARK-SPECIFIC",
+        "empirical",
+        "IEEE-68",
+        "reproduces the PES report (15/15 modes)",
+        "no",
+        "yes",
+        "IEEE-68 frozen, D = 0",
+        "On the documented 68-bus system, policy dependence appears only at high penetration and was not "
+        "reproduced on the preregistered candidates.",
+        "docs/G3_IEEE68.md",
+    ],
+    [
+        "D3",
+        "D",
+        "ANDES: IEEE-39 power flow, base inter-area mode (4.1 %), governor damping direction "
+        "(-0.222 -> -0.770)",
+        "INDEPENDENTLY REPRODUCED",
+        "n/a",
+        "IEEE-39",
+        "yes (ANDES)",
+        "no",
+        "n/a",
+        "SG/exciter/network only; not the L0 GFL",
+        "An independent tool (ANDES) reproduces the network, the base inter-area mode and the damping effect "
+        "of the documented governors; it does not implement the converter model.",
+        "FC14_andes.json; docs/F1_ANDES_MODEL_RECONCILIATION.md",
+    ],
+    # ---------------------------------------------------------------- E --
+    [
+        "E1",
+        "E",
+        "P1 any-order-safe optimum: P4 30+33+35 (1775.1 MW); P_inf flagship (2096.6 MW); census "
+        "31+32+34+35+37+38 (3652.3 MW / 6499.9 MVA)",
+        "BENCHMARK-SPECIFIC",
+        "uses A4",
+        "IEEE-39",
+        "no",
+        "no",
+        "yes",
+        IEEE39,
+        "The hypergraph converts directly into any-order-safe retirement constraints; the MW-optimal "
+        "portfolio changes with the reactive policy.",
+        "FC12_plans.csv; FC10_summary.json",
+    ],
+    [
+        "E2",
+        "E",
+        "3/327 stable census targets are order-dependent (safe path exists, 34 must not be last); "
+        "0 without a safe path",
+        "BENCHMARK-SPECIFIC",
+        "realizes A4",
+        "IEEE-39 E12 census",
+        "no",
+        "no",
+        "yes",
+        IEEE39,
+        "Three of 327 stable targets are final-stable but not any-order safe: converting bus 34 last passes "
+        "through an unstable state.",
+        "FC10_census_lattice.csv",
+    ],
+    [
+        "E3",
+        "E",
+        "P2 nonlinear-safe planning: unchanged wherever decidable (P_inf D2); out of scope at P4",
+        "OUT OF MODEL SCOPE",
+        "n/a",
+        "IEEE-39",
+        "no",
+        "yes (TDS)",
+        "n/a",
+        "rho* >= rho_scope at P4",
+        "(not claimable as a planning change) Where the preregistered severity lies inside model scope, the "
+        "nonlinear constraint does not change the spectral plan.",
+        "FC12_plans.csv",
+    ],
+    [
+        "E4",
+        "E",
+        "P3 support: 106.0 MVA for transverse stability vs 684-792 MVA to keep a 200 MW disturbance "
+        "inside the declared converter envelope",
+        "BENCHMARK-SPECIFIC",
+        "n/a",
+        "IEEE-39",
+        "no",
+        "yes (TDS bisection)",
+        "n/a",
+        IEEE39 + "; envelope requirement (guards), not stability",
+        "The damped-condenser rating that restores small-signal composability (106 MVA) is far below the "
+        "rating that keeps a 200 MW disturbance within the declared converter voltage envelope (684-792 MVA "
+        "in this model).",
+        "FC12_P3_support.csv; FIG8",
+    ],
+    # ---------------------------------------------------------------- F --
+    [
+        "F1",
+        "F",
+        "Simple-cycle magnitude / holonomy explains the failure",
+        "FAILED",
+        "n/a",
+        "IEEE-39",
+        "n/a",
+        "n/a",
+        "n/a",
+        IEEE39,
+        "(rejected)",
+        "E18; UC02",
+    ],
+    [
+        "F2",
+        "F",
+        "Replaced MW / MVA / inertia identify the minimum failing coalition",
+        "FAILED",
+        "n/a",
+        "IEEE-39",
+        "n/a",
+        "n/a",
+        "n/a",
+        IEEE39,
+        "(rejected; true-dispatch AUC 0.57)",
+        "UC02",
+    ],
+    [
+        "F3",
+        "F",
+        "Nonlinear composability is stricter than spectral inside model scope",
+        "FAILED",
+        "n/a",
+        "IEEE-39",
+        "n/a",
+        "yes",
+        "n/a",
+        IEEE39,
+        "(rejected)",
+        "FC05; FC06",
+    ],
+    [
+        "F4",
+        "F",
+        "kappa = 4 coalition robust to primary frequency control",
+        "FAILED",
+        "n/a",
+        "IEEE-39 governed",
+        "n/a",
+        "n/a",
+        "yes",
+        "documented TGOV1N",
+        "(rejected)",
+        "FC03",
+    ],
+    [
+        "F5",
+        "F",
+        "IEEE-39 in the monotone Metzler class",
+        "FAILED",
+        "n/a",
+        "IEEE-39",
+        "n/a",
+        "n/a",
+        "yes",
+        IEEE39,
+        "(rejected)",
+        "FC10",
+    ],
+    [
+        "F6",
+        "F",
+        "Low-order principal-minor or small-gain certificate of all subsets",
+        "FAILED",
+        "n/a",
+        "IEEE-39",
+        "n/a",
+        "n/a",
+        "n/a",
+        IEEE39,
+        "(rejected; screening only)",
+        "FC09",
+    ],
+    [
+        "F7",
+        "F",
+        "Policy dependence on the preregistered IEEE-68 candidates",
+        "FAILED",
+        "n/a",
+        "IEEE-68",
+        "n/a",
+        "n/a",
+        "yes",
+        "IEEE-68",
+        "(rejected)",
+        "G3",
+    ],
+    [
+        "F8",
+        "F",
+        "Plain port detects zero-frequency crossings",
+        "FAILED",
+        "n/a",
+        "Kundur",
+        "n/a",
+        "n/a",
+        "n/a",
+        "Kundur",
+        "(rejected; 24/194)",
+        "BC01",
+    ],
+    # ---------------------------------------------------------------- G --
+    [
+        "G1",
+        "G",
+        "No converter limits, ride-through, DC link; phasor DAE, not EMT",
+        "OUT OF MODEL SCOPE",
+        "n/a",
+        "all",
+        "n/a",
+        "guards only",
+        "n/a",
+        "L0",
+        "The TDS is a nonlinear phasor-domain DAE without "
+        "converter limits; results beyond the declared guards are outside model scope.",
+        "docs/FINAL_NONLINEAR_MODEL_TRACEABILITY.md",
+    ],
+    [
+        "G2",
+        "G",
+        "No primary frequency restoration in the frozen models",
+        "OUT OF MODEL SCOPE",
+        "n/a",
+        "all",
+        "n/a",
+        "n/a",
+        "transverse only",
+        "D = 0, no governor",
+        "The frozen IEEE-39 model has no primary frequency restoration and is analysed in relative / "
+        "transverse coordinates. Absolute common-frequency restoration is outside this benchmark.",
+        "theory/TRANSVERSE_STABILITY_QUOTIENT.md",
+    ],
+]
+
+
+def main(argv) -> int:
+    path = RESULTS / "FINAL_EVIDENCE_TABLE.csv"
+    with path.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.writer(fh)
+        w.writerow(COLS)
+        for r in ROWS:
+            assert len(r) == len(COLS), r[0]
+            w.writerow(r)
+    print(path, len(ROWS), "rows")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main(sys.argv[1:]))

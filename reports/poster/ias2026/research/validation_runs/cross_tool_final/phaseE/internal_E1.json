@@ -1,0 +1,27 @@
+{
+  "configuration": "F1 R3: first-order AVR, pss gain 0, no governor, constant-power loads, flagship 30+33+35+37 as static_power (q matched)",
+  "holdout_seed": 20260911,
+  "holdout_lines": [
+    3,
+    9,
+    15,
+    17,
+    22,
+    26,
+    31,
+    32,
+    35,
+    39,
+    42,
+    44
+  ],
+  "eps": 0.002,
+  "lambda0_real": 0.3287306351349448,
+  "lambda0_imag": 3.659826020200166,
+  "lambda0_freq_hz": 0.5824794019711952,
+  "band_critical_alpha": 0.3287306353541607,
+  "port_mu_at_lambda0_plus_1_abs": 3.5758119571474567e-07,
+  "det_identity_rel_error_at_j2pi0p7": 1.1829089773988288e-07,
+  "mu_s_real": 0.5887021871986419,
+  "mu_s_imag": -0.10436354552917358
+}

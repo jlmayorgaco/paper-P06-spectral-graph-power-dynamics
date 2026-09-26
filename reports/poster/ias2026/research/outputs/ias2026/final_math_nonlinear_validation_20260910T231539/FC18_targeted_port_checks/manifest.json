@@ -1,0 +1,46 @@
+{
+  "experiment": "FC18_targeted_port_checks",
+  "question": "Do descriptor closure, interaction rank, port gradients and network walks explain the portfolio structure?",
+  "verdict": "COMPUTED",
+  "seed": null,
+  "config": {
+    "path_t": 0.8515625,
+    "events": [
+      "E1 kappa 4->3",
+      "E2",
+      "E3",
+      "E4 kappa 3->2",
+      "E5",
+      "E6 kappa 2->3",
+      "E7",
+      "E8 kappa 3->4",
+      "E9 -> EMPTY"
+    ],
+    "steps": {
+      "g": 0.0001,
+      "k": 0.0001,
+      "t": 0.0001,
+      "h": 0.0001
+    }
+  },
+  "workers": 16,
+  "git_commit": "7a7728083742941cbce460a33c5cd7ee3a35a3ff",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 7.71,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-11T13:48:51Z",
+  "elapsed_s": 39.37,
+  "notes": [],
+  "results": {
+    "elapsed_s": 39.2
+  }
+}

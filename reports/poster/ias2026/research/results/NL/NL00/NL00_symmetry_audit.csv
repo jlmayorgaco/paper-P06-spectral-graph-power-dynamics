@@ -1,0 +1,4 @@
+benchmark,subset_cases,max_A_R_residual,max_Jordan_residual,neutral_mode_verified_fraction,dead_state_cases,full_A_eigs_within_1e-3_(max),rest_eigs_within_1e-3_(max),status_rest_counts,status_physical_counts
+ieee39,220288,2.4874222541981825e-10,3.947318092153463e-12,1.0,0,2,0,"{""STABLE"": 162779, ""UNSTABLE"": 57076, ""BOUNDARY_OR_UNRESOLVED"": 433}","{""BOUNDARY_OR_UNRESOLVED"": 163027, ""UNSTABLE"": 57261}"
+kundur,47336,2.398825951219428e-10,3.947318092153462e-12,1.0,0,3,1,"{""UNSTABLE"": 29270, ""STABLE"": 18065, ""BOUNDARY_OR_UNRESOLVED"": 1}","{""UNSTABLE"": 29269, ""BOUNDARY_OR_UNRESOLVED"": 18067}"
+ieee68,1936,5.629874969723688e-16,3.736822825483596e-15,1.0,0,2,0,"{""STABLE"": 1936}","{""BOUNDARY_OR_UNRESOLVED"": 1936}"

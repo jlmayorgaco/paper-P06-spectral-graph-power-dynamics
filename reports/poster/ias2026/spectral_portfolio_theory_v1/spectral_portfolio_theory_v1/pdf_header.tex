@@ -1,0 +1,26 @@
+\usepackage{mathtools}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\definecolor{ink}{HTML}{253443}
+\definecolor{accent}{HTML}{A34E28}
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{ink}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries\color{accent}}{}{0pt}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{ink}}{}{0pt}{}
+\setlength{\emergencystretch}{3em}
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+\setlist{nosep,leftmargin=*}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small SG--IBR | Certificaci\'on de portfolios}
+\fancyhead[R]{\small Nota t\'ecnica v1}
+\fancyfoot[L]{\small 10 septiembre 2026}
+\fancyfoot[R]{\small\thepage}
+\setlength{\headheight}{14pt}
+\renewcommand{\headrulewidth}{0.3pt}
+\AtBeginEnvironment{longtable}{\small}
+\usepackage{xurl}
+\urlstyle{tt}

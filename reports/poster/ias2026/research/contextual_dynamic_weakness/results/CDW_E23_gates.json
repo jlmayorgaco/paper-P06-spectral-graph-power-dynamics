@@ -1,0 +1,11 @@
+{
+ "static_frac_policies_with_reversal": 1.0,
+ "n_static_base_stable": 7,
+ "median_link_kendall_finite": 0.5681159420289855,
+ "median_link_kendall_dtotal": 0.5681159420289856,
+ "median_corridor_top3_overlap": 0.6666666666666666,
+ "reversal_transfers": true,
+ "links_transfer": true,
+ "corridors_transfer": true,
+ "H9_transfers": true
+}

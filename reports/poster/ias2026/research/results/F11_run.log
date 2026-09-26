@@ -1,0 +1,113 @@
+    core16 P_inf: M1 2.6s M2 0.03s M3 0.16s errors M2 0 M3 0
+    core16 P4: M1 3.0s M2 0.02s M3 0.11s errors M2 0 M3 0
+    core16 P3: M1 3.1s M2 0.03s M3 0.14s errors M2 0 M3 0
+    core16 P2: M1 3.1s M2 0.03s M3 0.19s errors M2 0 M3 0
+    core16 P1: M1 2.8s M2 0.02s M3 0.11s errors M2 0 M3 0
+    core16 P_fold: M1 2.3s M2 0.00s M3 0.12s errors M2 0 M3 0
+    core16 R00: M1 3.2s M2 0.02s M3 0.14s errors M2 0 M3 0
+    core16 R01: M1 3.0s M2 0.02s M3 0.20s errors M2 0 M3 0
+    core16 R02: M1 2.9s M2 0.02s M3 0.12s errors M2 0 M3 0
+    core16 R03: M1 2.9s M2 0.02s M3 0.17s errors M2 0 M3 0
+    core16 R04: M1 3.1s M2 0.02s M3 0.20s errors M2 0 M3 0
+    core16 R05: M1 3.3s M2 0.02s M3 0.11s errors M2 0 M3 0
+    core16 R06: M1 2.2s M2 0.02s M3 0.08s errors M2 0 M3 0
+    core16 R07: M1 2.4s M2 0.03s M3 0.11s errors M2 0 M3 0
+    core16 R08: M1 2.5s M2 0.02s M3 0.11s errors M2 0 M3 0
+    core16 R09: M1 3.1s M2 0.02s M3 0.11s errors M2 0 M3 0
+    core16 R10: M1 2.7s M2 0.02s M3 0.11s errors M2 0 M3 0
+    core16 R11: M1 2.9s M2 0.02s M3 0.12s errors M2 0 M3 0
+    core16 R12: M1 3.6s M2 0.02s M3 0.12s errors M2 0 M3 0
+    core16 R13: M1 3.0s M2 0.02s M3 0.11s errors M2 0 M3 0
+    core16 R14: M1 3.2s M2 0.02s M3 0.12s errors M2 0 M3 0
+    core16 R15: M1 3.0s M2 0.02s M3 0.11s errors M2 0 M3 0
+    core16 R16: M1 2.9s M2 0.02s M3 0.11s errors M2 0 M3 0
+    core16 R17: M1 3.0s M2 0.02s M3 0.14s errors M2 0 M3 0
+    lattice512 P_inf: M1 121.5s M2 0.73s M3 0.78s errors M2 0 M3 0
+    lattice512 P4: M1 116.0s M2 0.73s M3 0.97s errors M2 0 M3 0
+    lattice512 P3: M1 116.0s M2 0.61s M3 1.08s errors M2 0 M3 0
+    lattice512 P2: M1 117.9s M2 0.64s M3 1.08s errors M2 0 M3 0
+    lattice512 P1: M1 117.2s M2 0.66s M3 1.28s errors M2 0 M3 0
+    lattice512 P_fold: M1 117.2s M2 0.70s M3 0.77s errors M2 0 M3 0
+  -> COMPUTED   manifest C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics\reports\poster\ias2026\research\outputs\ias2026_post_f7\post_f7_20260910T130334\F11_scaling\manifest.json
+{
+ "core16": {
+  "subsets": 16,
+  "m2_init_cpu_s": 7.828125,
+  "m2_init_wall_s": 3.0069987773895264,
+  "m2_reference_MB": 1.640625,
+  "points": 24,
+  "m1_cpu_per_point_s": 2.900390625,
+  "m2_cpu_per_point_s": 0.017578125,
+  "m3_cpu_per_point_s": 0.130859375,
+  "speedup_m1_over_m2": 165.0,
+  "speedup_m1_over_m3": 22.16417910447761,
+  "m2_count_errors": 0,
+  "m3_count_errors": 0,
+  "H_errors_m2": 0,
+  "H_errors_m3": 0,
+  "m2_band_eig_max_err": 2.034902374210118e-08,
+  "m3_peak_MB": 20.250208854675293
+ },
+ "lattice512": {
+  "subsets": 512,
+  "m2_init_cpu_s": 337.515625,
+  "m2_init_wall_s": 23.268643140792847,
+  "m2_reference_MB": 64.4921875,
+  "points": 6,
+  "m1_cpu_per_point_s": 117.63541666666667,
+  "m2_cpu_per_point_s": 0.6796875,
+  "m3_cpu_per_point_s": 0.9921875,
+  "speedup_m1_over_m2": 173.07279693486592,
+  "speedup_m1_over_m3": 118.56167979002625,
+  "m2_count_errors": 0,
+  "m3_count_errors": 0,
+  "H_errors_m2": 0,
+  "H_errors_m3": 0,
+  "m2_band_eig_max_err": 4.256713534627438e-07,
+  "m3_peak_MB": 22.578585624694824
+ },
+ "reequilibrated": [
+  {
+   "point": "P_inf",
+   "H_m1_unity": "30+33+35",
+   "H_m3_naive": "30+33+35",
+   "m3_naive_count_errors": 0,
+   "m1_cpu_s": 3.484375
+  },
+  {
+   "point": "P4",
+   "H_m1_unity": "30+33+35|30+33+37|30+35+37|33+35+37",
+   "H_m3_naive": "33+35|30+33+37|30+35+37",
+   "m3_naive_count_errors": 1,
+   "m1_cpu_s": 3.140625
+  },
+  {
+   "point": "P3",
+   "H_m1_unity": "33+35|30+33+37|30+35+37",
+   "H_m3_naive": "30+33|33+35|30+35+37",
+   "m3_naive_count_errors": 1,
+   "m1_cpu_s": 3.125
+  },
+  {
+   "point": "P2",
+   "H_m1_unity": "30+33|30+35|33+35",
+   "H_m3_naive": "30+33|30+35|33+35",
+   "m3_naive_count_errors": 0,
+   "m1_cpu_s": 3.15625
+  },
+  {
+   "point": "P1",
+   "H_m1_unity": "30|33|35|37",
+   "H_m3_naive": "30|33|37",
+   "m3_naive_count_errors": 1,
+   "m1_cpu_s": 3.09375
+  },
+  {
+   "point": "P_fold",
+   "H_m1_unity": "30+33+35",
+   "H_m3_naive": "33+35|30+33+37|30+35+37",
+   "m3_naive_count_errors": 4,
+   "m1_cpu_s": 3.125
+  }
+ ]
+}

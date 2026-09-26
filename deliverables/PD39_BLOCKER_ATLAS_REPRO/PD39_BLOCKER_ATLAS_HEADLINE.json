@@ -1,0 +1,62 @@
+{
+  "campaign": "PD39 physical blocker validation + first compatibility atlas",
+  "branch": "research/pd39-physical-blockers-atlas-v1",
+  "parent_commit": "e81d18ab945b",
+  "prereg_commit": "1b9ad5fe",
+  "gate_a_commit": "02381549",
+  "default_path_audit_commit": "d24f0ad3",
+  "gate_b_commit": "c95bab91",
+  "case": "C",
+  "decision": "STOP",
+  "physical_blockers_confirmed": 0,
+  "physical_blockers_failed_or_unresolved": 3,
+  "selected_candidates": ["35;36@C12", "37;38@C12", "30;32;33@C12"],
+  "gate_a": {
+    "status": "FAIL_UNRESOLVED",
+    "audit_rows": 102,
+    "default_path_rows": 34,
+    "tolerances": ["1e-8", "1e-10", "1e-12"],
+    "independent_dense_and_descriptor_agreement_within_path": true,
+    "path_sensitivity": true,
+    "interpretation": "Default census candidates are unstable on the default initialization path, but strict tolerance/alternate equilibrium paths change H1/H3 to stable and H2 to a different positive alpha; physicality is unresolved."
+  },
+  "gate_b": {
+    "status": "FAIL",
+    "rows": 26,
+    "c12_blocker_tds_failures": 3,
+    "c12_blocker_error": "MaxIters",
+    "predecessor_and_control_c12_runs_ok": true,
+    "nominal_blocker_runs_ok": true,
+    "interpretation": "All three selected C12 blocker integrations hit the explicit max-iteration guard; matched controls and predecessors decay."
+  },
+  "gate_c": {
+    "status": "NOT_APPLICABLE",
+    "composition_strong": false,
+    "reason": "Conditional gate not entered because no physical blocker passed A+B"
+  },
+  "holdout_context": {
+    "source": "PD39_255PLUS1_HOLDOUT_CENSUS.csv",
+    "portfolio_condition_evaluations": 6144,
+    "conditions": 24,
+    "frozen_prior_minimal_H0_count": 42,
+    "frozen_prior_minimal_H005_count": 47,
+    "note": "These are the previously frozen census counts, not a new census in this narrow campaign."
+  },
+  "atlas": {
+    "status": "NOT_RUN_STOP",
+    "grid": null,
+    "kappa0": null,
+    "kappa005": null
+  },
+  "contextual_return": {
+    "pd_status": "BLOCKED",
+    "tx4_status": "NOT_RUN_STOP",
+    "proxy_used": false
+  },
+  "excluded_campaigns": ["weak nodes", "weak links", "structured-radius", "repair optimization", "planners", "co-design", "IEEE-68", "EMT", "new controller search"],
+  "penetration_composition_mode_verdict": "NO_PHYSICAL_BLOCKER; composition and physical homotopy not promoted",
+  "mode_mechanism": "UNRESOLVED; default-path labels are electromechanical/control for H1 and converter-control oscillatory/aperiodic for H2/H3, but path sensitivity and TDS divergence prevent a physical claim",
+  "poster_redesign": "NO",
+  "transactions_ready": "NO",
+  "no_push": true
+}

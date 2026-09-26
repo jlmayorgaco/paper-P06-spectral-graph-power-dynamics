@@ -1,0 +1,82 @@
+{
+  "andes_version": "2.0.0",
+  "case_file": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\vendor\\andes\\andes\\cases\\ieee39\\ieee39_full.xlsx",
+  "case_sha256": "9c2048dc94201ee48ffe816de65d53831fa1f4b0e7fdf32f24c50f1017edcfe5",
+  "canonical_source_sha256": "9c2048dc94201ee48ffe816de65d53831fa1f4b0e7fdf32f24c50f1017edcfe5",
+  "case_hash_matches_canonical_source": true,
+  "pflow_tol": 1e-06,
+  "pflow_converged": true,
+  "pflow_iterations": 4,
+  "pflow_final_mismatch": 4.215686466579882e-09,
+  "vs_frozen_reference": {
+    "vm_max_abs_error_pu": 0.0,
+    "va_max_abs_error_rad": 0.0,
+    "pv_p_max_abs_error_pu": 0.0,
+    "pv_q_max_abs_error_pu": 0.0,
+    "slack_p_abs_error_pu": 0.0,
+    "slack_q_abs_error_pu": 0.0
+  },
+  "vs_frozen_F1_live_powerflow": {
+    "vm_max_abs_error_pu": 0.0,
+    "va_max_abs_error_rad": 0.0
+  },
+  "vs_python_pf": {
+    "vm_max_abs_error_pu": 1.724304485861694e-07,
+    "va_max_gauge_aligned_error_rad": 1.711858622910345e-07,
+    "pv_p_max_abs_error_pu": 1.1359801987964602e-12,
+    "pv_q_max_abs_error_pu": 2.0454726453733585e-06,
+    "slack_p_abs_error_pu": 5.689183169899081e-06,
+    "slack_q_abs_error_pu": 3.5742095099156046e-06
+  },
+  "ybus_live_andes_vs_python_max_abs_error": 1.139086659085919e-13,
+  "ybus_contributing_models": [
+    "Line",
+    "Shunt"
+  ],
+  "stale_npy_vs_live_max_abs_diff": 2.0,
+  "stale_npy_differs_at_buses": [
+    4,
+    5
+  ],
+  "stale_npy_used_for_any_verdict": false,
+  "andes_shunts": [
+    {
+      "bus": 4,
+      "g": 0.0,
+      "b": 1.0
+    },
+    {
+      "bus": 5,
+      "g": 0.0,
+      "b": 2.0
+    }
+  ],
+  "canonical_shunts": [
+    {
+      "bus": 4.0,
+      "g": 0.0,
+      "b": 1.0
+    },
+    {
+      "bus": 5.0,
+      "g": 0.0,
+      "b": 2.0
+    }
+  ],
+  "line_b1_b2_g1_g2_all_zero": true,
+  "line_order_bus1_bus2_tap_identical_to_canonical": true,
+  "bus_balance_live_ybus_vs_andes_devices_max_abs_pu": 2.410908558469263e-05,
+  "operating_point_sha256_8dp": "98373aaf56105e599e38dccc7e55ee83a94687cdbc7ddc21be519fd475807a51",
+  "voltage_hash_live_equals_frozen_reference_8dp": true,
+  "DIAGNOSTIC_tol_1e-12": {
+    "converged": true,
+    "iterations": 5,
+    "final_mismatch": 1.5409895581797173e-13,
+    "vm_max_abs_error_pu": 1.724445375383965e-07,
+    "va_max_gauge_aligned_error_rad": 1.7120290846106556e-07,
+    "pv_p_max_abs_error_pu": 1.1359801987964602e-12,
+    "pv_q_max_abs_error_pu": 2.0457282030039714e-06,
+    "slack_p_abs_error_pu": 5.6894391082806806e-06,
+    "slack_q_abs_error_pu": 3.5754402171184196e-06
+  }
+}

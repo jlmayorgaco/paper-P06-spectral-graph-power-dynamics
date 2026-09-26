@@ -1,0 +1,53 @@
+# Planning/design campaign (PD), frozen before any campaign computation.
+# Document: docs/20260913_PLANNING_DESIGN_PREREG.md
+# Code:     experiments/planning_design/ (pd1_adaptive_retune.py, pd2_census_design.py, PD3_verdicts.py)
+campaign: planning_design_v1
+date: 2026-09-13
+branch: research/series-planning-design
+
+PD1:
+  question: "Does a converter-only retune re-optimized per operating point restore stability where the frozen RC retune fails (Gap 3)?"
+  samples: "the 240 E35 samples with status ACCEPTED and portfolio_unstable (seed 20260913, outputs/.../E35_MC_operating)"
+  regeneration: "E35 rule: default_rng(20260913 + 100003*sample), stored load/reactive/availability, load_scatter 0.05, dispatch_jitter 0.10"
+  reproduction_gate: {quantity: alpha_IA flagship, tol: 1.0e-6, max_fail_fraction: 0.05, on_fail: STOP}
+  optimizer: {source: "E34 M1 verbatim", coordinates: [pll_wn, pll_zeta, p_bandwidth, q_bandwidth, filter_bandwidth],
+              objective: "||v||^2 (log-deviations)", bounds: "+-ln 8", start: -0.15, method: SLSQP, maxiter: 90, ftol: 1.0e-7,
+              constraint: "transverse spectral abscissa <= target (exact quotient replaces the E34 disc rule |lambda| > 1e-3)",
+              target: -0.02}
+  repairs_compared: {rc: "frozen RC retune (E21/E32 multipliers)", sc: "25 % condenser at 30/33/35/37", ad: "adaptive M1 at the point"}
+  labels:
+    primary: "S0 = transverse whole-RHP status STABLE (certification.physical.physical_report status_rest; BOUNDARY_OR_UNRESOLVED and INFEASIBLE count as failure)"
+    margin: "S1 = S0 and alpha_perp <= -0.02"
+    comparability: "SB = no inter-area-band (0.3-1.5 Hz) RHP eigenvalue (the E35 criterion behind 117/240)"
+  severity: {metric: alpha_IA_exact (E35), tercile_edges: [0.12215459, 0.24183127]}
+  hypotheses:
+    H_PD1a: {statement: "adaptive S0 rate over the 240 samples", SUPPORTED: ">= 0.95", PARTIAL: "[0.80, 0.95)", NOT_SUPPORTED: "< 0.80"}
+    H_PD1b: {statement: "adaptive S0 rate in the severe tercile (alpha_IA > 0.24183127)", SUPPORTED: ">= 0.80"}
+    H_PD1c: {statement: "adaptive S0 beats frozen RC S0, paired", test: "exact one-sided McNemar (binomial on discordant pairs)", SUPPORTED: "p <= 0.01 and more adaptive-only than RC-only successes"}
+  descriptive: [per-tercile S0/S1/SB rates for rc, sc, ad; Spearman(change_norm, alpha_IA) among adaptive successes; bound-active fraction; SLSQP success fraction]
+  scope_notes:
+    - "E35 predates the MW/MVA unit correction; the solvers never used that quantity, so labels are unaffected."
+    - "E35 predates the transverse re-audit; every label here is recomputed on the transverse quotient (S0), and the E35 band criterion (SB) is kept only for comparability."
+
+PD2:
+  question: "At census scale (512 subsets), does plan-level design reach a safe lattice where single-boundary tuning leaves an unsafe subset (GOLD-D)?"
+  unchanged_from_E9: [targets T1-T4 and policies, families control/topology/joint, parameter bounds and ranges, EPS 0.02, SPR total gradients, QP step and Gordan fallback, stopping rules, GOLD-D criterion]
+  targets: {T2: [V9, D01], T4: [V9, D03], T1: [H4, D01], T3: [H4, D11]}
+  roles: {T2: primary, T4: primary, T1: control, T3: control}
+  budget: {iterations: 30, max_lattice_evaluations: 40, max_wall_s_per_task: 21600}
+  step_rule: "accept a step only if the merit decreases (single: alpha_T; plan: Phi = max over the lattice); else halve the trust radius (start 0.25 x range, floor 0.25/16 x range) and re-solve the QP with the same gradients; after an accepted step the radius doubles up to 0.25"
+  active_set_plan: "all subsets with alpha >= -EPS, ranked by alpha, cap 60, previously active subsets kept while alpha >= -EPS; non-finite alpha skipped"
+  start: "nominal policy (not the E9 final designs)"
+  hypotheses:
+    H_PD2: {statement: "GOLD-D at census scale (T2 or T4, any family)",
+            SUPPORTED: "single-boundary leaves an unsafe subset (alpha_T STABLE, Phi >= 0) while plan-level is safe (Phi < 0, no unresolved, no unstable subset)",
+            NOT_SUPPORTED: "a census plan-level safe design exists but single-boundary tuning did not leave an unsafe subset",
+            INCONCLUSIVE: "no census plan-level design reached a safe lattice within the budget"}
+  controls: "T1/T3 at H4 scale; E9 found single-boundary tuning sufficient; reported, not gated"
+
+execution:
+  environment: ".venv/tx3-analysis; OMP/OPENBLAS/MKL_NUM_THREADS=1 set in the shell before any pool"
+  workers: {PD1: 16, PD2: 18}
+  checkpoints: {PD1: results/PLANNING_DESIGN/PD1/PD1_records.jsonl, PD2: results/PLANNING_DESIGN/PD2/tasks/*.json}
+  pre_run_checks: "PD0 timing and E35 reproduction on one campaign sample (alpha_IA reproduced exactly); code smoke tests on non-campaign inputs only (a stable E35 sample; H4 at policy D04, 2 iterations)"
+  deviations_log: docs/20260913_PLANNING_DESIGN_DEVIATIONS.md

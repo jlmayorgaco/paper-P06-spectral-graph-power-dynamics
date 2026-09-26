@@ -1,0 +1,15 @@
+{
+  "andes_reference_tool": "andes 2.0.0",
+  "pf_converged": true,
+  "pf_max_mismatch": 2.692781249002946e-12,
+  "ybus_max_abs_error": 1.139086659085919e-13,
+  "vm_max_abs_error_pu": 1.724304481420802e-07,
+  "va_max_gauge_aligned_error_rad": 1.711858633179908e-07,
+  "pv_p_max_abs_error_pu": 1.1333156635373598e-12,
+  "pv_q_max_abs_error_pu": 2.045472635270329e-06,
+  "slack_p_abs_error_pu": 5.689183205426218e-06,
+  "slack_q_abs_error_pu": 3.574209532120065e-06,
+  "r3_max_alpha_band_error": 1.495307029697468e-06,
+  "r3_max_freq_band_error_hz": 1.317815431223224e-07,
+  "r3_all_rhp_counts_agree": true
+}

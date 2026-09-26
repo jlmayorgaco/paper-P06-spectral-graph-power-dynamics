@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-10",
+  "evidence": [
+    {
+      "name": "docs.zip",
+      "sha256": "15057c713c4363ab8f242281b730a4439a40b48a2fdee3379f55ca1b94d10779"
+    },
+    {
+      "name": "TPWRS_FINAL_EVIDENCE_TABLE.md",
+      "sha256": "eb43d13183ed4bd5fb6309ba0774690d89a3300cd32d9ccc37147aef1ccea69d"
+    },
+    {
+      "name": "G5_NOVELTY_STATEMENT.md",
+      "sha256": "d3da08329ac5d50eb25a275ef14e2e8b00599ac7afca8d65d9ba3c95036116a2"
+    }
+  ],
+  "literature": [
+    "1810.10578",
+    "2309.08037",
+    "2609.07315",
+    "2609.07331",
+    "2102.04226",
+    "2305.19655",
+    "2608.07785",
+    "Boyd_et_al_1994_LMI",
+    "Parrilo_2003_SDPrelaxations",
+    "ANDES_Exciter_docs_consulted_1.9.3"
+  ],
+  "status": "Derived theory and synthetic checks; physical validation delegated to experiments, not claimed completed."
+}

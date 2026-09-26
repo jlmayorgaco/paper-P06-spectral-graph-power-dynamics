@@ -1,0 +1,47 @@
+{
+  "experiment": "E41_port_vs_full",
+  "question": "Does the reduced port representation reproduce the full-state conclusion?",
+  "verdict": "PASS",
+  "seed": null,
+  "config": {
+    "cases": "base, 15 proper subsets, flagship, RC repair, condenser 25%",
+    "visible_tolerance": 1e-06,
+    "band_hz": [
+      0.3,
+      1.5
+    ],
+    "no_explicit_inverse": true
+  },
+  "workers": 1,
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 17.71,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-10T06:06:59Z",
+  "elapsed_s": 4.2,
+  "notes": [],
+  "results": {
+    "checks": {
+      "cases": 18,
+      "max_eigenvalue_error": 7.300166816028321e-10,
+      "median_eigenvalue_error": 1.2521465208052505e-10,
+      "max_alpha_error": 6.412156361434995e-10,
+      "max_freq_error_hz": 5.553729090987166e-11,
+      "max_sigma_min_at_full_mode": 2.679940552427457e-13,
+      "all_family_modes_visible": true,
+      "invisible_band_modes_total": 0,
+      "rhp_count_agrees_everywhere": true,
+      "state_reduction": "110 -> 78"
+    },
+    "elapsed_s": 4.138294696807861
+  }
+}

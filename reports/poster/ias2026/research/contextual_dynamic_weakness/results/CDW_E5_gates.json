@@ -1,0 +1,25 @@
+{
+ "node_kendall_SCR_vs_NG": 0.4444444444444444,
+ "node_kendall_SCR_vs_fracdestab": 0.0,
+ "node_categories": {
+  "30": "CONTEXT-DEPENDENT",
+  "31": "CONTEXT-DEPENDENT",
+  "32": "CONTEXT-DEPENDENT",
+  "33": "DYNAMIC ONLY;CONTEXT-DEPENDENT",
+  "34": "STATIC ONLY;CONTEXT-DEPENDENT",
+  "35": "DYNAMIC ONLY;CONTEXT-DEPENDENT",
+  "36": "STATIC ONLY;CONTEXT-DEPENDENT",
+  "37": "-",
+  "38": "STATIC+DYNAMIC;CONTEXT-DEPENDENT"
+ },
+ "branch_kendall_S4_vs_Dtotal": 0.17874396135265702,
+ "branch_kendall_S1_vs_Dtotal": 0.40096618357487923,
+ "branch_categories": {
+  "0": "DYNAMIC ONLY",
+  "31": "STATIC ONLY",
+  "37": "STATIC ONLY",
+  "38": "STATIC ONLY",
+  "41": "DYNAMIC ONLY",
+  "43": "DYNAMIC ONLY"
+ }
+}

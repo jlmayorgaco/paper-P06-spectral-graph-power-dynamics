@@ -1,0 +1,201 @@
+{
+  "experiment": "E37_MC_machine",
+  "question": "Is the result robust to reasonable synchronous-machine uncertainty?",
+  "verdict": "MIXED",
+  "seed": 20260915,
+  "config": {
+    "n_draw": 1000,
+    "ranges": {
+      "inertia": [
+        0.8,
+        1.2
+      ],
+      "transient_reactance": [
+        0.9,
+        1.1
+      ],
+      "avr_gain": [
+        0.85,
+        1.15
+      ],
+      "avr_time_constant": [
+        0.85,
+        1.15
+      ],
+      "pss_gain": [
+        0.8,
+        1.2
+      ],
+      "pss_time_constants": [
+        0.8,
+        1.2
+      ]
+    },
+    "damping": "machine damping D is zero in the source case; not sampled",
+    "coordinates": "physical machine parameters"
+  },
+  "workers": 7,
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 7.15,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-10T06:33:39Z",
+  "elapsed_s": 1020.67,
+  "notes": [
+    "1000 machine-parameter draws on 7 workers"
+  ],
+  "results": {
+    "summary": [
+      {
+        "question": "all proper subsets stable",
+        "successes": 721,
+        "trials": 1000,
+        "estimate": 0.721,
+        "ci_low": 0.6920786126480215,
+        "ci_high": 0.7486137690267801
+      },
+      {
+        "question": "full portfolio unstable",
+        "successes": 710,
+        "trials": 1000,
+        "estimate": 0.71,
+        "ci_low": 0.6807865098815258,
+        "ci_high": 0.7379712849550528
+      },
+      {
+        "question": "genuine order-4 crossing",
+        "successes": 418,
+        "trials": 1000,
+        "estimate": 0.418,
+        "ci_low": 0.3872097969681707,
+        "ci_high": 0.4492743785730606
+      },
+      {
+        "question": "inter-area family retained",
+        "successes": 1000,
+        "trials": 1000,
+        "estimate": 1.0,
+        "ci_low": 0.9963179161031344,
+        "ci_high": 1.0
+      },
+      {
+        "question": "condenser repair succeeds (unstable draws)",
+        "successes": 686,
+        "trials": 710,
+        "estimate": 0.9661971830985916,
+        "ci_low": 0.9501199114636729,
+        "ci_high": 0.9782241679731039
+      }
+    ],
+    "checks": {
+      "drawn": 1000,
+      "accepted": 1000,
+      "rejected": 0,
+      "damping": "machine damping D is zero in the source case; not sampled",
+      "alpha_exact_min": -0.266225765804242,
+      "alpha_exact_max": 0.5750704657295964,
+      "alpha_base_range": [
+        -0.16836681562669284,
+        0.02427012585227125
+      ],
+      "m4_median": 0.09628986742791723,
+      "overlap_min": 0.8864476028165007,
+      "family_sizes": [
+        2
+      ]
+    },
+    "elapsed_s": 1020.463287115097,
+    "conditional": [
+      {
+        "population": "all draws",
+        "n": 1000,
+        "question": "all proper subsets stable",
+        "estimate": 0.721,
+        "ci_low": 0.6920786126480214,
+        "ci_high": 0.7486137690267801
+      },
+      {
+        "population": "all draws",
+        "n": 1000,
+        "question": "portfolio unstable",
+        "estimate": 0.71,
+        "ci_low": 0.6807865098815258,
+        "ci_high": 0.7379712849550528
+      },
+      {
+        "population": "all draws",
+        "n": 1000,
+        "question": "genuine order-4 crossing",
+        "estimate": 0.418,
+        "ci_low": 0.3872097969681707,
+        "ci_high": 0.4492743785730606
+      },
+      {
+        "population": "all draws",
+        "n": 710,
+        "question": "order-4 GIVEN unstable",
+        "estimate": 0.5887323943661972,
+        "ci_low": 0.55152710039524,
+        "ci_high": 0.6251972904314709
+      },
+      {
+        "population": "all draws",
+        "n": 710,
+        "question": "condenser succeeds GIVEN unstable",
+        "estimate": 0.9661971830985916,
+        "ci_low": 0.9501199114636729,
+        "ci_high": 0.9782241679731039
+      },
+      {
+        "population": "draws whose BASE case is stable",
+        "n": 998,
+        "question": "all proper subsets stable",
+        "estimate": 0.7224448897795591,
+        "ci_low": 0.6935333562642723,
+        "ci_high": 0.750037543840803
+      },
+      {
+        "population": "draws whose BASE case is stable",
+        "n": 998,
+        "question": "portfolio unstable",
+        "estimate": 0.7094188376753507,
+        "ci_low": 0.680160134735011,
+        "ci_high": 0.7374362827939556
+      },
+      {
+        "population": "draws whose BASE case is stable",
+        "n": 998,
+        "question": "genuine order-4 crossing",
+        "estimate": 0.4188376753507014,
+        "ci_low": 0.3880054064272899,
+        "ci_high": 0.45015013989469094
+      },
+      {
+        "population": "draws whose BASE case is stable",
+        "n": 708,
+        "question": "order-4 GIVEN unstable",
+        "estimate": 0.5903954802259888,
+        "ci_low": 0.5531515882671134,
+        "ci_high": 0.6268829331433338
+      },
+      {
+        "population": "draws whose BASE case is stable",
+        "n": 708,
+        "question": "condenser succeeds GIVEN unstable",
+        "estimate": 0.9689265536723164,
+        "ci_low": 0.9533309067573,
+        "ci_high": 0.9804260844154893
+      }
+    ],
+    "base_instability_note": "The BASE case itself is unstable in 2 of 1000 machine draws (alpha_base up to +0.0243). In those draws the whole lattice is contaminated and 'all proper subsets stable' cannot hold. Conditioning on a stable base is reported alongside."
+  }
+}

@@ -1,0 +1,240 @@
+# Track A, protocol v2C. Independent replication with a corrected observable.
+#
+# Written and frozen 2026-09-09, BEFORE the v2C seed was used and BEFORE any v2C
+# sample was evaluated. The only evidence consulted while writing it is E29, a
+# DETERMINISTIC continuation that draws no random sample.
+#
+# v2C exists for a methodological reason, not to obtain a different result.
+
+lineage:
+  v1: frozen, refuted
+  v2A: frozen, global criterion not satisfied, nothing passed retroactively
+  v2B: frozen and untouched. H4B PASS, H2B PASS, H5B NON-EXECUTABLE
+  v2C_seed: 20260912
+  reuses_earlier_samples: false
+  carried_forward_unchanged:
+    - H4B and H2B keep their v2B wording and status; v2C does not restate them
+    - H5B remains NON-EXECUTABLE, not falsified
+    - the v2B alpha_Q = 0 and delta_alpha_Q = 0 curves remain INVALID as physical
+      boundaries and are not rehabilitated by anything measured here
+
+the_single_change: >
+  The stability endpoint is the ENVELOPE of the inter-area modal family, not one
+  selected descendant. Everything else - distributions, sample count,
+  dispatchability filters, rejection logic, voltage and reactive constraints,
+  regression specification, interaction terms, the repair, the port-frequency
+  search and every numerical tolerance - is inherited from v2B unchanged.
+
+# ------------------------------------------------- the frozen observable -----
+observable:
+  name: alpha_IA
+  family:
+    definition: >
+      C_IA(theta) is the set of post-replacement modes that lie in the frozen
+      inter-area band AND whose shape overlaps the frozen base inter-area
+      reference by at least the threshold. It is the operational stand-in for the
+      descendant invariant subspace of the frozen base inter-area mode.
+    band_hz: [0.3, 1.5]            # unchanged since trackA_final_v1
+    overlap_threshold: 0.80        # the same MAC floor v2B used
+    anchor_rule: >
+      the base-case band mode of highest shape overlap with the frozen nominal
+      flagship inter-area shape. Inherited verbatim from v2B: the anchor was
+      never the defective part.
+    conjugate_handling: one representative per conjugate pair, Im(lambda) >= 0
+    zero_mode_cut: 1.0e-3          # excludes the reference double zeros
+  envelope: alpha_IA(theta) = max over lambda in C_IA(theta) of Re(lambda)
+  frequency: f_IA_worst = abs(Im(lambda_worst)) / (2 pi), lambda_worst attaining the max
+  also_stored_per_sample:
+    - both descendant eigenvalues individually, as DIAGNOSTICS only
+    - family size
+    - per-member overlap to the reference
+    - member independence, the smallest singular value of the stacked members
+    - the v2B argmax-MAC value, for contrast only, never as an endpoint
+  empty_family: >
+    classify TRACKING_FAILURE and reject. There is no fallback to the nearest
+    frequency, and a tracking failure is never counted as an instability.
+  forbidden:
+    - using either descendant alone as the stability endpoint
+    - defining the family as "all modes in 0.3-1.5 Hz" with no shape criterion
+
+# --------------------------------- pre-registration evidence, deterministic --
+# E29, results/tables/E29_family_continuation_continuation.csv. No random sample.
+subspace_check:
+  points: 175 dispatchable, load 0.900 to 1.050 step 0.0025, availability
+    0.75 / 0.85 / 0.92 / 1.00
+  family_size: 2 at every one of the 175 points
+  subspace_similarity_between_consecutive_steps:
+    metric: smallest principal-angle cosine between the family spans
+    min: 0.999952
+    median: 0.999989
+  member_independence_min: 0.0565
+  per_member_overlap: 0.9549 to 0.9893
+  argmax_selector_sign_disagreements: 19 of 175
+  near_boundary_population:
+    envelope: 16 of 175 points have abs(alpha_IA) <= 0.05
+    argmax: 1 of 175
+  wording: >
+    The base inter-area modal family develops two closely related descendants.
+    This is NOT called a mode splitting: the continuation shows a continuous
+    family subspace, and the members are nearly collinear in the machine
+    coordinates, about 4.6 degrees apart, which is exactly why single-vector
+    assurance cannot separate them.
+
+# --------------------------------------------------------------- sampling ----
+design:
+  inherited_from: trackA_v2B.yaml, unchanged
+  load_strata: [0.90, 0.95, 0.98, 1.00, 1.02, 1.05]
+  availability_strata: [0.75, 0.85, 0.92, 0.96, 1.00]
+  per_cell_draws: 20
+  total_draws: 400
+  nuisance_variables:
+    global_reactive_load: [0.90, 1.10]
+    per_bus_load_scatter: 0.05
+    dispatch_jitter: 0.10
+  feasibility:
+    power_flow_mismatch_max: 1.0e-9
+    equilibrium_residual_max: 1.0e-9
+    gz_condition_max: 1.0e8
+    min_voltage: 0.85
+    max_voltage: 1.15
+    device_loading_max: 1.0
+  rule: no intermediate result may be inspected and used to alter this protocol
+
+# ------------------------------------------------------------- hypotheses ----
+hypotheses:
+  H4C_response_surface:
+    statement: >
+      Does the load-by-availability interaction survive when the physically
+      correct modal-family envelope is used? v2C is an INDEPENDENT replication.
+      H4B is NOT assumed to transfer.
+    response: delta_alpha_IA = alpha_IA(replaced) - alpha_IA(base)
+    model: b0 + b1*L + b2*A + b3*L*A + b4*L^2 + b5*A^2
+    logistic: the same design on the indicator of alpha_IA > 0
+    report:
+      - coefficients, standard errors, 95 percent intervals, p-values, R squared
+      - residual diagnostics
+      - the interaction coefficient corresponding to the previous b3
+    pass: b3 differs from zero at the 5 percent level in the CONTINUOUS model
+    partial: >
+      the continuous interaction is significant only after dropping a term, or
+      the sign is unstable across the two models
+    note: >
+      A significant continuous interaction with a non-significant logistic
+      interaction is an ACCEPTABLE outcome and is reported as such. Binary
+      significance is not forced.
+
+  H2C_repair:
+    statement: >
+      the frozen voltage-control policy, unchanged, evaluated on alpha_IA and,
+      independently, on the worst real part over the whole frozen band
+    report:
+      - repair success probability with an exact Clopper-Pearson interval
+      - minimum repaired alpha_IA
+      - worst full-band alpha over all accepted samples
+    pass: exact lower bound above 0.90 on the alpha_IA criterion
+    partial: point estimate above 0.90 with a lower bound above 0.80
+    forbidden: changing the repair
+
+  H5C_port_margin:
+    metric: >
+      m4(theta) = min over omega in B_IA of min over mu in spectrum(Q4(j omega))
+                  of abs(mu + 1)
+    band_B_IA_hz: [0.3, 1.5]
+    band_samples: 61
+    rules:
+      - stay on the imaginary axis; never evaluate at an eigenvalue of T0
+      - form K and Q by linear solves, never by an explicit inverse
+    stored_per_sample:
+      - alpha_IA
+      - f_IA_worst
+      - m4
+      - omega_port / (2 pi)
+      - cond(T0(j omega_port))
+      - backward residual of the T0 solve
+    near_boundary_stratum:
+      primary: >
+        OPTION B. The k accepted samples with the smallest abs(alpha_IA),
+        k = 50, fixed here before execution. Chosen because a fixed count cannot
+        produce another empty stratum.
+      far_group: the 50 accepted samples with the largest abs(alpha_IA)
+      robustness_check: >
+        OPTION A, abs(alpha_IA) <= 0.05, reported alongside. E29 shows this
+        region is populated under the frozen sampling domain, 16 of 175
+        deterministic points, so it is admissible. It is a robustness check and
+        NOT part of the verdict.
+    primary_1: >
+      one-sided Mann-Whitney, m4 smaller in the near group than in the far group,
+      p below 0.01
+    primary_2: >
+      Spearman correlation between m4 and abs(alpha_IA) over all accepted
+      samples, positive with p below 0.01, reported together with an ordinary
+      least squares fit of log(m4) on abs(alpha_IA). The linear-in-log form is a
+      preregistered convenience, NOT a claimed power law, and no functional form
+      may be introduced after seeing the data.
+    secondary: >
+      Delta_f = omega_port/(2 pi) - f_IA_worst. Report median and 95th percentile
+      of abs(Delta_f). The threshold is a median below 0.05 Hz in the near group.
+    pass: primary_1 and primary_2 and secondary
+    partial: primary_1 and primary_2, secondary failing
+    fail: otherwise
+
+# ------------------------------------------------- numerical validation ------
+numerical_validation:
+  motivation: >
+    cond(T0(j omega)) of order 9e+03 is not catastrophic but is high enough that
+    "m4 becomes small near closure" must be shown not to be a linear-solve
+    artifact.
+  cohorts:
+    - 10 generic accepted samples
+    - the 10 accepted samples nearest the boundary
+    - the deterministic nominal boundary point
+  checks:
+    - backward residual of every T0 solve
+    - the margin under a doubled frequency grid
+    - the margin under golden-section local minimisation around omega_port
+    - a perturbation ensemble: relative complex perturbation of T0 at 1e-13,
+      reporting the induced spread of m4
+    - three independent solve algorithms, LU, QR and SVD, compared
+  extended_precision: >
+    mpmath is NOT available in the pinned environment and the interpreter has no
+    pip, so an extended-precision spot check cannot be run. The perturbation
+    ensemble and the three-algorithm comparison are declared here, in advance, as
+    the substitute, and the limitation is reported rather than hidden.
+
+# --------------------------------------------- order-4 audit, item 10 --------
+order4_audit:
+  purpose: >
+    The tracking defect potentially affects any earlier result that selected a
+    single descendant. Re-audit the frozen flagship 30+33+35+37 over all 16
+    subsets under the family definition.
+  stored: all descendant eigenvalues, family overlap, family size, alpha_IA per subset
+  previous_statement: >
+    reconstruction through orders 1, 2 and 3 stable, exact order 4 unstable
+  survives_if: >
+    the same pattern holds with alpha_IA in place of the single-branch real part,
+    at family size and overlap recorded for every subset
+  if_it_fails: >
+    downgrade the scalar Moebius order claim immediately. Do not protect it.
+  if_scalar_moebius_is_ill_defined: >
+    switch the wording to "irreducible fourth-order destabilization of the
+    tracked inter-area modal family" and rely on determinant and contour counting
+    as the branch-independent result.
+
+# ------------------------------------------------------------- reporting -----
+reporting:
+  categories:
+    VALIDATED: statements supported by v2C
+    SURVIVES_CORRECTION: old claims that remain true under alpha_IA
+    INVALIDATED_OBSERVABLE: all old alpha_Q physical-boundary claims
+    NON_EXECUTABLE: H5B only
+    FAILED: genuine falsifications
+  stop_rule: >
+    After v2C, do not launch another Monte Carlo. Report and stop.
+
+prohibited:
+  - reusing any v1, v2A or v2B sample
+  - moving any threshold after seeing v2C results
+  - rehabilitating any v2B boundary
+  - editing poster figures
+  - inventing a functional form for m4 after seeing the data
+  - using an argmax-MAC single-branch observable anywhere in v2C

@@ -1,0 +1,68 @@
+# Gate 3 preregistration - IEEE 68-bus / NETS-NYPS replication
+# Frozen and committed BEFORE any code for this benchmark was written or run:
+# no power flow, no eigenvalue, and no composability quantity of the 68-bus
+# system has been computed in this project when this file is committed.
+
+source:
+  document: "Singh, A. K.; Pal, B. C. (2013). Report on the 68-bus, 16-machine, 5-area system. IEEE PES Task Force on Benchmark Systems for Stability Controls, ver. 3.3. University of Lincoln repository, hdl 10779/lincoln.24366133.v1"
+  file_sha256: "0b042a2c90ea17649794266055cb686004531edb91882a02b8fd101f76c5b685"
+  licence_note: "All Rights Reserved. The PDF is NOT added to the repository; only the numerical benchmark data (Appendix B, data16m_benchmark.m v3.3) are transcribed into configs/ieee68/ieee68_network.json, with this citation."
+  data_used: "bus, line, mac_con, exc_con, pss_con of Appendix B; model equations (1)-(11) of Section II.A"
+
+model:
+  machines: "sub-transient model with four rotor coils plus the dummy coil E'dc (Tc = 0.01 s), equations (1)-(6) and the stator equation of the report, exactly as printed; base conversion as in Init_MultiMachine.m (x/BM, H*BM, BM = MVA/100)"
+  excitation:
+    DC4B: "G1-G8, G10-G12: equation (7), PID + rate feedback + exponential saturation, Aex/Bex from (E1, S(E1), E2, S(E2)) as in Init_MultiMachine.m"
+    ST1A: "G9: equation (8), KA = 200, TR = 0.01"
+    manual: "G13-G16: Efd held at its initial value"
+  pss: "speed-input (slip) washout + three lead-lags, equation (9), on G1-G12 (the report's full case); the G9 third stage 1/1 is an identity and adds no state"
+  loads: "constant impedance, converted from the power-flow P/Q at the solved voltage"
+  governors: "not represented (the report ignores them; mechanical torque constant)"
+  limits: "controller limits are not represented in the small-signal model; the equilibrium is checked to lie strictly inside every documented limit"
+  damping: "D = 0 as documented"
+  no_parameter_changed_or_added: true
+
+eligibility_checks_to_run_after_this_freeze:
+  power_flow: "our Newton power flow against the report's Table 1: REPRODUCED if max |dV| < 1e-3 pu and max |d angle| < 0.05 deg; a failure may be corrected ONLY by fixing a transcription error against the PDF, never by changing data"
+  base_modes: "rightmost 15 electromechanical modes against Table 4 (PSS on G1-G12): the four inter-area modes REPRODUCED if |df| <= 0.02 Hz and |d zeta| <= 1 percentage point each. The study proceeds whatever the outcome; the outcome is reported."
+  base_stability: "the base case must be small-signal stable (all non-reference eigenvalues in Re s < 0) for any map point to count; base-unstable points are labelled BASE_UNSTABLE as on the other benchmarks"
+
+replacement:
+  candidates: [9, 6, 3, 4]
+  candidate_rule: "the four physical New England (NETS, G1-G9) plants with the largest scheduled active power in the documented dispatch: G9 8.00, G6 7.00, G3 6.50, G4 6.32 pu. Area equivalents G13-G16 are excluded because the report states they are not physical generators. Four candidates give 16 portfolios, as on IEEE-39."
+  tested_family: "power set of the candidates (16 subsets)"
+  device: "full replacement (rho = 1) by the F7 grid-following converter, ConverterParameters defaults"
+  converter_rating: "|S_gen| / 0.8 at the documented operating point, i.e. loading 0.8, close to Kundur's 700/900. The mac_con MVA column is a per-unit base, not a rating: G9 dispatches 8 pu on a 100 MVA base."
+  dispatch: "matched: the converter carries the machine's P and Q; the operating point is identical for every subset"
+  secondary_family_check: "at three points (k = 1; g = 0, 0.25, 1) the FULL family of the 12 physical plants G1-G12 (4 096 subsets) is evaluated on the direct path, to test whether restricting to four candidates hides lower-order incompatibilities"
+
+reactive_policy:
+  coordinate: "g, leaky Q/V regulator identical to F7 and F12: q = q_ref + g*2*e + x_v, x_v' = g*20*e - 0.05*(x_v - q_ref)"
+  range: [0.0, 1.0]
+
+excitation_coordinate:
+  k: {meaning: "scale on every regulator gain: DC4B Ka (documented 1) and ST1A KA (documented 200)", range: [0.5, 2.0]}
+  justification: "the same factor-of-two window as Kundur; not tuned"
+
+protected_regions:
+  primary: "Gamma_RHP = { Re s > 0, |s| > 1e-3 } - planning safety"
+  secondary: "Gamma_IA = { Re s > 0, 0.3 <= f <= 1.5 Hz } - the declared inter-area mechanism, identical to IEEE-39 and Kundur"
+  reference_zero: "the angle reference's double zero is excluded by |s| > 1e-3 on both"
+
+map:
+  G68A: "g x k"
+  grid: "31 x 31 nodes; g on a square-root spacing over [0, 1] (g = (i/30)^2), k uniform on [0.5, 2.0]"
+  outputs_per_node: "H_RHP, kappa_RHP, H_IA, kappa_IA, discrepancy class (APERIODIC / BAND_EDGE_ARTIFACT / OSCILLATORY, thresholds of G1)"
+  boundaries: "bisection on every pure-policy edge (fixed k) whose H_RHP differs; each RHP boundary classified as an oscillatory imaginary-axis crossing or an aperiodic crossing through the origin"
+  resolution_check: "60 random off-grid points on the direct path against the nearest-node H_RHP"
+
+decision_rule: >
+  Policy-dependent composability is REPRODUCED on the 68-bus system if, on at
+  least one pure-policy line (fixed k) of base-stable points, two points carry
+  different H_RHP separated by an RHP boundary. It is NOT REPRODUCED if H_RHP is
+  constant along every pure-policy line. In addition, and whatever that
+  verdict, report: the kappa_RHP values observed; whether H_RHP = EMPTY occurs;
+  agreement of H_RHP with H_IA; and whether the full 12-plant family at the
+  three secondary points contains hyperedges outside the four candidates.
+  Every outcome is acceptable and is reported.
+forbidden: "tuning any parameter toward a particular kappa; changing the candidates, the converter rating rule, the bands, the grid or the ranges after seeing any result"

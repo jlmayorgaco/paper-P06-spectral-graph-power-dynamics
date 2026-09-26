@@ -1,0 +1,60 @@
+{
+  "experiment": "F8C_service_closure",
+  "question": "Does port closure mark service-induced boundaries?",
+  "verdict": "COMPUTED",
+  "seed": null,
+  "config": {
+    "transitions": 296,
+    "bisection": 26
+  },
+  "workers": 16,
+  "git_commit": "f12ae3a0364b03db32b3081eaaae42625ac127c9",
+  "git_dirty": true,
+  "environment": {
+    "python": "3.13.14",
+    "executable": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\.venv\\tx3-analysis\\Scripts\\python.exe",
+    "platform": "Windows 11 AMD64",
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "cpu_count": 22,
+    "available_ram_gb": 15.56,
+    "longdouble_mantissa_bits": 53
+  },
+  "started_utc": "2026-09-10T18:10:38Z",
+  "elapsed_s": 804.28,
+  "notes": [
+    "296 single-service paths"
+  ],
+  "results": {
+    "paths": 296,
+    "located": 1531,
+    "boundary_types": {
+      "IMAGINARY_AXIS": 1511,
+      "UPPER_BAND_EDGE": 20
+    },
+    "port_visible": 1511,
+    "imaginary_axis": 1511,
+    "multi_port": 1193,
+    "multi_closure_lt_1e-4": 1193,
+    "closure_max": 9.721821687567628e-06,
+    "single_port": 318,
+    "single_individual_max": 2.6597399544991053e-06,
+    "port_errors": 0,
+    "by_factor": {
+      "A1_inertia": 145,
+      "A2_damping": 24,
+      "A3_flux": 83,
+      "A5_pss": 11,
+      "EM_presence": 14,
+      "EM_rating": 740,
+      "S1_inertia": 212,
+      "S2_damping": 24,
+      "S3_flux": 218,
+      "S4_avr": 22,
+      "S6_qshare": 32,
+      "virtual_h": 6
+    },
+    "elapsed_s": 804.223119020462
+  }
+}

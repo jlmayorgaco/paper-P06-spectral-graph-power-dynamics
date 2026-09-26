@@ -1,0 +1,20 @@
+{
+ "benchmark": "ieee68",
+ "points": 121,
+ "subset_cases": 1936,
+ "status_rest_counts": {
+  "STABLE": 1936
+ },
+ "status_physical_counts": {
+  "BOUNDARY_OR_UNRESOLVED": 1936
+ },
+ "neutral_verified_fraction": 1.0,
+ "max_rotation_residual": 5.629874969723687e-16,
+ "max_jordan_residual": 3.736822825483596e-15,
+ "points_exact": 121,
+ "points_with_unresolved": 0,
+ "compared_with_G1": 121,
+ "H_phys_equals_G1": 121,
+ "label_changes": [],
+ "points_with_small_positive_real_mode": 0
+}

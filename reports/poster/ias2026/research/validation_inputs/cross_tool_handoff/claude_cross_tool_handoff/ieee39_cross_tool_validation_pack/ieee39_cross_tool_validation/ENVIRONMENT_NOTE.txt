@@ -1,0 +1,6 @@
+This ChatGPT runtime does not have native `andes` or `pandapower`.
+A direct pip install was attempted and failed because outbound DNS/package access is blocked.
+Therefore only `run_python_reference.py` was executed here.  The stored ANDES 2.0.0
+reference was produced previously by the project and is used only as a frozen independent
+reference.  Run the other two scripts in the repository's ANDES/pandapower environment
+(or with Claude Code) to complete the three-stack gate.
