@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "campaign": "IAS2026_H4_POSTER",
+  "plan_version": "1.0",
+  "active_ticket": "IAS26-010",
+  "completed": ["IAS26-000"],
+  "blocked": [
+    {
+      "ticket": "IAS26-040",
+      "reason": "M1 strict fails at base+deltaY/action-space; safe_to_run_m2=false"
+    }
+  ],
+  "queued_core": ["IAS26-020", "IAS26-030", "IAS26-050", "IAS26-060", "IAS26-080", "IAS26-110", "IAS26-120"],
+  "optional_after_core_review": ["IAS26-070", "IAS26-090", "IAS26-100"],
+  "next_after_active_ticket": "IAS26-020",
+  "existing_evidence": {
+    "baseline_run": "20260925T204017_549c3c07_h4_crossmode_v3",
+    "m1a_latest_run": "20260926T083325_h4_m1a_reconciliation_v3",
+    "f1_f2_asset_run": "20260926T083621_h4_f1_f2_assets_v1"
+  },
+  "last_update": "2026-09-26",
+  "note": "Plan only. No scientific ticket was executed by this update; F1/F2 assets exist but tickets 020/030 are not yet closed."
+}
