@@ -116,7 +116,8 @@ alpha_at_g, equilibrium_hash, model_hash, run_id
 g, eta, feedback_lambda_real, feedback_lambda_imag,
 full_network_lambda_real, full_network_lambda_imag,
 root_id, root_tracking_method, boundary_residual,
-reduction_residual, m1_status, equilibrium_hash, model_hash, run_id
+reduction_residual, m1_status, MAC_to_H4, eigenvalue_gap, mode_family_id,
+equilibrium_hash, model_hash, run_id
 ```
 
 **Acceptance criteria**
@@ -144,7 +145,8 @@ reduction_residual, m1_status, equilibrium_hash, model_hash, run_id
 ```text
 assignment_id, row_assignment_30_33, column_assignment_35_37,
 technology_by_bus, alpha, dominant_lambda, boundary_g_star,
-status, solver_backend, equilibrium_hash, model_hash, run_id
+status, MAC_to_H4, eigenvalue_gap, mode_family_id, solver_backend,
+equilibrium_hash, model_hash, run_id
 ```
 
 **Acceptance criteria**
@@ -194,6 +196,16 @@ solver_backend, precision, tolerance_profile, timestamp_utc
 
 For modal or reduced-order work, retain the complete eigenvalue/eigenvector set, modal ordering/tracking metadata, Schur complement residuals, complement condition number, and root-solver diagnostics. A CSV containing only `alpha` is not sufficient for a claim-bearing run.
 
+### Optional mode-identity row for F3/F4
+
+F3 and F4 should additionally emit the following row whenever a parameter sweep or technology substitution can change the dominant mode:
+
+```text
+MAC_to_H4, eigenvalue_gap, mode_family_id
+```
+
+These fields are interpretive diagnostics, not new gates. They distinguish “the H4 mode moved left” from “the H4 mode lost dominance and another mode took over.” `MAC_to_H4` must use the frozen H4 reference eigenvector, `eigenvalue_gap` must report the separation from the next competing tracked mode, and `mode_family_id` must remain stable under continuation unless the run explicitly records a mode-family transition.
+
 No run may write temporary files, archives, copied source trees, or ad-hoc outputs at repository root. Temporary material belongs in a run-local `tmp/` directory or an OS temporary directory and must be removed before the run is marked complete. Poster assets belong only in the run's `figures/` directory until explicitly promoted.
 
 ## 5. Readiness matrix
@@ -217,4 +229,3 @@ Before execution, the run must declare:
 - the claim status expected if a gate fails.
 
 If a gate fails, preserve the diagnostics in the run directory, mark the affected figure `BLOCKED`, and stop downstream experiments. Do not create a provisional figure from a failed reduction, and do not package the repository into a zip as part of the run.
-
