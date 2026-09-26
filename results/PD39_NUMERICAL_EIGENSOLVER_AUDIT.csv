@@ -1,0 +1,119 @@
+portfolio,scenario,audit_type,tolerance,status,error_type,error_message,eig_method,arithmetic,alpha,critical_real,critical_imag,equilibrium_residual,fixed_point,jacobian_condition,smallest_singular_value,generalized_alpha,descriptor_alpha_difference,finite_generalized_count,reference_alpha,alpha_difference
+30;32;33;34;35;36;37;38,nominal,eigensolver_crosscheck,NaN,ok,,,eigen,Float64,-0.001444777971589005,-0.001444777971589005,-2.1654471920692973,2.829203538112779e-11,true,3.061350575879403e18,1.1669139327792604e-12,NaN,NaN,0,-0.001444777971589005,0.0
+30;32;33;34;35;36;37;38,nominal,eigensolver_crosscheck,NaN,ok,,,eigvals,Float64,-0.001444777971589005,-0.001444777971589005,-2.1654471920692973,2.829203538112779e-11,true,3.061350575879403e18,1.1669139327792604e-12,NaN,NaN,0,-0.001444777971589005,0.0
+30;32;33;34;35;36;37;38,nominal,eigensolver_crosscheck,NaN,ok,,,complex_eigen,ComplexF64,-0.001444777972022758,-0.001444777972022758,2.1654471920704057,2.829203538112779e-11,true,3.061350575879403e18,1.1669139327792604e-12,NaN,NaN,0,-0.001444777971589005,-4.337530768588893e-13
+30;32;33;34;35;36;37;38,nominal,eigensolver_crosscheck,NaN,ok,,,eigen,Float32,-0.0011652909452095628,-0.0011652909452095628,0.0,2.829203538112779e-11,true,3.061350575879403e18,1.1669139327792604e-12,NaN,NaN,0,-0.001444777971589005,0.00027948702637944217
+30;32;33;34;35;36;37;38,nominal,eigensolver_crosscheck,NaN,unavailable,eigensolver_api_failure,"MethodError: no method matching eigen!(::Matrix{BigFloat}; permute::Bool, scale::Bool, sortby::typeof(LinearAlgebra.eigsortby))
+The function `eigen!` exists, but no method is defined for this combination of argument types.
+
+Closest candidates are:
+  eigen!(::AbstractMatrix, !Matched::Cholesky; sortby) got unsupported keyword arguments ""permute"", ""scale""
+   @ LinearAlgebra C:\Users\walla\.julia\juliaup\julia-1.11.9+0.x64.w64.mingw32\share\julia\stdlib\v1.11\LinearAlgebra\src\symmetriceigen.jl:180
+  eigen!(::StridedMatrix{T}, !Matched::LU{T, <:StridedMatrix{T} where T}; sortby) where T got unsupported keyword arguments ""permute"", ""scale""
+   @ LinearAlgebra C:\Users\walla\.julia\juliaup\julia-1.11.9+0.x64.w64.mingw32\share\julia\stdlib\v1.11\LinearAlgebra\src\symmetriceigen.jl:215
+  eigen!(!Matched::Hermitian{T, <:BandedMatrices.BandedMatrix{T}}, !Matched::Hermitian{T, <:BandedMatrices.BandedMatrix{T}}) where T<:Union{ComplexF64, ComplexF32} got unsupported keyword arguments ""permute"", ""scale"", ""sortby""
+   @ BandedMatrices C:\Users\walla\.julia\packages\BandedMatrices\Kml90\src\symbanded\bandedeigen.jl:178
+  ...
+",eigen,BigFloat_matrix,NaN,NaN,NaN,2.829203538112779e-11,true,3.061350575879403e18,1.1669139327792604e-12,NaN,NaN,0,-0.001444777971589005,NaN
+30;32;33;34;35;36;37;38,nominal,descriptor_crosscheck,NaN,ok,,,generalized_eigvals_A_M,Float64,-0.0014447778729086125,-0.0014447778729086125,NaN,2.829203538112779e-11,true,3.061350575879403e18,1.1669139327792604e-12,-0.0014447778729086125,9.868039241647808e-11,89,-0.001444777971589005,9.868039241647808e-11
+30;32;33;34;35;36;37;38,pll1.2_xf0.8_cc1.2,eigensolver_crosscheck,NaN,ok,,,eigen,Float64,0.11409501199677728,0.11409501199677728,-2.004630568007065,2.829203538112779e-11,true,1.7275754054833385e18,2.972777788127841e-12,NaN,NaN,0,0.11409501199677728,0.0
+30;32;33;34;35;36;37;38,pll1.2_xf0.8_cc1.2,eigensolver_crosscheck,NaN,ok,,,eigvals,Float64,0.11409501199677728,0.11409501199677728,-2.004630568007065,2.829203538112779e-11,true,1.7275754054833385e18,2.972777788127841e-12,NaN,NaN,0,0.11409501199677728,0.0
+30;32;33;34;35;36;37;38,pll1.2_xf0.8_cc1.2,eigensolver_crosscheck,NaN,ok,,,complex_eigen,ComplexF64,0.11409501199466777,0.11409501199466777,2.004630568009325,2.829203538112779e-11,true,1.7275754054833385e18,2.972777788127841e-12,NaN,NaN,0,0.11409501199677728,-2.1095070135146443e-12
+30;32;33;34;35;36;37;38,pll1.2_xf0.8_cc1.2,eigensolver_crosscheck,NaN,ok,,,eigen,Float32,0.11417705565690994,0.11417705565690994,-2.0048913955688477,2.829203538112779e-11,true,1.7275754054833385e18,2.972777788127841e-12,NaN,NaN,0,0.11409501199677728,8.204366013266073e-5
+30;32;33;34;35;36;37;38,pll1.2_xf0.8_cc1.2,eigensolver_crosscheck,NaN,unavailable,eigensolver_api_failure,"MethodError: no method matching eigen!(::Matrix{BigFloat}; permute::Bool, scale::Bool, sortby::typeof(LinearAlgebra.eigsortby))
+The function `eigen!` exists, but no method is defined for this combination of argument types.
+
+Closest candidates are:
+  eigen!(::AbstractMatrix, !Matched::Cholesky; sortby) got unsupported keyword arguments ""permute"", ""scale""
+   @ LinearAlgebra C:\Users\walla\.julia\juliaup\julia-1.11.9+0.x64.w64.mingw32\share\julia\stdlib\v1.11\LinearAlgebra\src\symmetriceigen.jl:180
+  eigen!(::StridedMatrix{T}, !Matched::LU{T, <:StridedMatrix{T} where T}; sortby) where T got unsupported keyword arguments ""permute"", ""scale""
+   @ LinearAlgebra C:\Users\walla\.julia\juliaup\julia-1.11.9+0.x64.w64.mingw32\share\julia\stdlib\v1.11\LinearAlgebra\src\symmetriceigen.jl:215
+  eigen!(!Matched::Hermitian{T, <:BandedMatrices.BandedMatrix{T}}, !Matched::Hermitian{T, <:BandedMatrices.BandedMatrix{T}}) where T<:Union{ComplexF64, ComplexF32} got unsupported keyword arguments ""permute"", ""scale"", ""sortby""
+   @ BandedMatrices C:\Users\walla\.julia\packages\BandedMatrices\Kml90\src\symbanded\bandedeigen.jl:178
+  ...
+",eigen,BigFloat_matrix,NaN,NaN,NaN,2.829203538112779e-11,true,1.7275754054833385e18,2.972777788127841e-12,NaN,NaN,0,0.11409501199677728,NaN
+30;32;33;34;35;36;37;38,pll1.2_xf0.8_cc1.2,descriptor_crosscheck,NaN,ok,,,generalized_eigvals_A_M,Float64,0.1140950118571984,0.1140950118571984,NaN,2.829203538112779e-11,true,1.7275754054833385e18,2.972777788127841e-12,0.1140950118571984,-1.39578876234836e-10,89,0.11409501199677728,-1.39578876234836e-10
+30;32;33;34;36;37;38,nominal,eigensolver_crosscheck,NaN,ok,,,eigen,Float64,-0.13825194715772451,-0.13825194715772451,0.0,2.829203538112779e-11,true,1.3974618088010473e19,2.5562984577149745e-13,NaN,NaN,0,-0.13825194715772451,0.0
+30;32;33;34;36;37;38,nominal,eigensolver_crosscheck,NaN,ok,,,eigvals,Float64,-0.13825194715772451,-0.13825194715772451,0.0,2.829203538112779e-11,true,1.3974618088010473e19,2.5562984577149745e-13,NaN,NaN,0,-0.13825194715772451,0.0
+30;32;33;34;36;37;38,nominal,eigensolver_crosscheck,NaN,ok,,,complex_eigen,ComplexF64,-0.1382519471577262,-0.1382519471577262,-1.6781299248875779e-18,2.829203538112779e-11,true,1.3974618088010473e19,2.5562984577149745e-13,NaN,NaN,0,-0.13825194715772451,-1.6930901125533637e-15
+30;32;33;34;36;37;38,nominal,eigensolver_crosscheck,NaN,ok,,,eigen,Float32,0.005872574169188738,0.005872574169188738,0.0,2.829203538112779e-11,true,1.3974618088010473e19,2.5562984577149745e-13,NaN,NaN,0,-0.13825194715772451,0.14412452132691325
+30;32;33;34;36;37;38,nominal,eigensolver_crosscheck,NaN,unavailable,eigensolver_api_failure,"MethodError: no method matching eigen!(::Matrix{BigFloat}; permute::Bool, scale::Bool, sortby::typeof(LinearAlgebra.eigsortby))
+The function `eigen!` exists, but no method is defined for this combination of argument types.
+
+Closest candidates are:
+  eigen!(::AbstractMatrix, !Matched::Cholesky; sortby) got unsupported keyword arguments ""permute"", ""scale""
+   @ LinearAlgebra C:\Users\walla\.julia\juliaup\julia-1.11.9+0.x64.w64.mingw32\share\julia\stdlib\v1.11\LinearAlgebra\src\symmetriceigen.jl:180
+  eigen!(::StridedMatrix{T}, !Matched::LU{T, <:StridedMatrix{T} where T}; sortby) where T got unsupported keyword arguments ""permute"", ""scale""
+   @ LinearAlgebra C:\Users\walla\.julia\juliaup\julia-1.11.9+0.x64.w64.mingw32\share\julia\stdlib\v1.11\LinearAlgebra\src\symmetriceigen.jl:215
+  eigen!(!Matched::Hermitian{T, <:BandedMatrices.BandedMatrix{T}}, !Matched::Hermitian{T, <:BandedMatrices.BandedMatrix{T}}) where T<:Union{ComplexF64, ComplexF32} got unsupported keyword arguments ""permute"", ""scale"", ""sortby""
+   @ BandedMatrices C:\Users\walla\.julia\packages\BandedMatrices\Kml90\src\symbanded\bandedeigen.jl:178
+  ...
+",eigen,BigFloat_matrix,NaN,NaN,NaN,2.829203538112779e-11,true,1.3974618088010473e19,2.5562984577149745e-13,NaN,NaN,0,-0.13825194715772451,NaN
+30;32;33;34;36;37;38,nominal,descriptor_crosscheck,NaN,ok,,,generalized_eigvals_A_M,Float64,-0.13825194715772476,-0.13825194715772476,NaN,2.829203538112779e-11,true,1.3974618088010473e19,2.5562984577149745e-13,-0.13825194715772476,-2.498001805406602e-16,92,-0.13825194715772451,-2.498001805406602e-16
+30;32;33;34;36;37;38,pll1.2_xf0.8_cc1.2,eigensolver_crosscheck,NaN,ok,,,eigen,Float64,-0.13825194439378066,-0.13825194439378066,0.0,2.829203538112779e-11,true,8.433518480113405e19,6.089622437439844e-14,NaN,NaN,0,-0.13825194439378066,0.0
+30;32;33;34;36;37;38,pll1.2_xf0.8_cc1.2,eigensolver_crosscheck,NaN,ok,,,eigvals,Float64,-0.13825194439378066,-0.13825194439378066,0.0,2.829203538112779e-11,true,8.433518480113405e19,6.089622437439844e-14,NaN,NaN,0,-0.13825194439378066,0.0
+30;32;33;34;36;37;38,pll1.2_xf0.8_cc1.2,eigensolver_crosscheck,NaN,ok,,,complex_eigen,ComplexF64,-0.13825194439377148,-0.13825194439377148,-1.7206026156434182e-18,2.829203538112779e-11,true,8.433518480113405e19,6.089622437439844e-14,NaN,NaN,0,-0.13825194439378066,9.18709552877317e-15
+30;32;33;34;36;37;38,pll1.2_xf0.8_cc1.2,eigensolver_crosscheck,NaN,ok,,,eigen,Float32,-0.002601895947009325,-0.002601895947009325,0.0,2.829203538112779e-11,true,8.433518480113405e19,6.089622437439844e-14,NaN,NaN,0,-0.13825194439378066,0.13565004844677134
+30;32;33;34;36;37;38,pll1.2_xf0.8_cc1.2,eigensolver_crosscheck,NaN,unavailable,eigensolver_api_failure,"MethodError: no method matching eigen!(::Matrix{BigFloat}; permute::Bool, scale::Bool, sortby::typeof(LinearAlgebra.eigsortby))
+The function `eigen!` exists, but no method is defined for this combination of argument types.
+
+Closest candidates are:
+  eigen!(::AbstractMatrix, !Matched::Cholesky; sortby) got unsupported keyword arguments ""permute"", ""scale""
+   @ LinearAlgebra C:\Users\walla\.julia\juliaup\julia-1.11.9+0.x64.w64.mingw32\share\julia\stdlib\v1.11\LinearAlgebra\src\symmetriceigen.jl:180
+  eigen!(::StridedMatrix{T}, !Matched::LU{T, <:StridedMatrix{T} where T}; sortby) where T got unsupported keyword arguments ""permute"", ""scale""
+   @ LinearAlgebra C:\Users\walla\.julia\juliaup\julia-1.11.9+0.x64.w64.mingw32\share\julia\stdlib\v1.11\LinearAlgebra\src\symmetriceigen.jl:215
+  eigen!(!Matched::Hermitian{T, <:BandedMatrices.BandedMatrix{T}}, !Matched::Hermitian{T, <:BandedMatrices.BandedMatrix{T}}) where T<:Union{ComplexF64, ComplexF32} got unsupported keyword arguments ""permute"", ""scale"", ""sortby""
+   @ BandedMatrices C:\Users\walla\.julia\packages\BandedMatrices\Kml90\src\symbanded\bandedeigen.jl:178
+  ...
+",eigen,BigFloat_matrix,NaN,NaN,NaN,2.829203538112779e-11,true,8.433518480113405e19,6.089622437439844e-14,NaN,NaN,0,-0.13825194439378066,NaN
+30;32;33;34;36;37;38,pll1.2_xf0.8_cc1.2,descriptor_crosscheck,NaN,ok,,,generalized_eigvals_A_M,Float64,-0.13825194439377947,-0.13825194439377947,NaN,2.829203538112779e-11,true,8.433518480113405e19,6.089622437439844e-14,-0.13825194439377947,1.1934897514720433e-15,92,-0.13825194439378066,1.1934897514720433e-15
+30;33;34;35;36;37;38,nominal,eigensolver_crosscheck,NaN,ok,,,eigen,Float64,-0.1380223187482609,-0.1380223187482609,0.0,2.829203538112779e-11,true,1.391651576382579e19,2.566967153297581e-13,NaN,NaN,0,-0.1380223187482609,0.0
+30;33;34;35;36;37;38,nominal,eigensolver_crosscheck,NaN,ok,,,eigvals,Float64,-0.1380223187482609,-0.1380223187482609,0.0,2.829203538112779e-11,true,1.391651576382579e19,2.566967153297581e-13,NaN,NaN,0,-0.1380223187482609,0.0
+30;33;34;35;36;37;38,nominal,eigensolver_crosscheck,NaN,ok,,,complex_eigen,ComplexF64,-0.13802231874825963,-0.13802231874825963,-1.0358192852626733e-18,2.829203538112779e-11,true,1.391651576382579e19,2.566967153297581e-13,NaN,NaN,0,-0.1380223187482609,1.27675647831893e-15
+30;33;34;35;36;37;38,nominal,eigensolver_crosscheck,NaN,ok,,,eigen,Float32,4.415483635966666e-5,4.415483635966666e-5,0.0,2.829203538112779e-11,true,1.391651576382579e19,2.566967153297581e-13,NaN,NaN,0,-0.1380223187482609,0.13806647358462057
+30;33;34;35;36;37;38,nominal,eigensolver_crosscheck,NaN,unavailable,eigensolver_api_failure,"MethodError: no method matching eigen!(::Matrix{BigFloat}; permute::Bool, scale::Bool, sortby::typeof(LinearAlgebra.eigsortby))
+The function `eigen!` exists, but no method is defined for this combination of argument types.
+
+Closest candidates are:
+  eigen!(::AbstractMatrix, !Matched::Cholesky; sortby) got unsupported keyword arguments ""permute"", ""scale""
+   @ LinearAlgebra C:\Users\walla\.julia\juliaup\julia-1.11.9+0.x64.w64.mingw32\share\julia\stdlib\v1.11\LinearAlgebra\src\symmetriceigen.jl:180
+  eigen!(::StridedMatrix{T}, !Matched::LU{T, <:StridedMatrix{T} where T}; sortby) where T got unsupported keyword arguments ""permute"", ""scale""
+   @ LinearAlgebra C:\Users\walla\.julia\juliaup\julia-1.11.9+0.x64.w64.mingw32\share\julia\stdlib\v1.11\LinearAlgebra\src\symmetriceigen.jl:215
+  eigen!(!Matched::Hermitian{T, <:BandedMatrices.BandedMatrix{T}}, !Matched::Hermitian{T, <:BandedMatrices.BandedMatrix{T}}) where T<:Union{ComplexF64, ComplexF32} got unsupported keyword arguments ""permute"", ""scale"", ""sortby""
+   @ BandedMatrices C:\Users\walla\.julia\packages\BandedMatrices\Kml90\src\symbanded\bandedeigen.jl:178
+  ...
+",eigen,BigFloat_matrix,NaN,NaN,NaN,2.829203538112779e-11,true,1.391651576382579e19,2.566967153297581e-13,NaN,NaN,0,-0.1380223187482609,NaN
+30;33;34;35;36;37;38,nominal,descriptor_crosscheck,NaN,ok,,,generalized_eigvals_A_M,Float64,-0.13802231874827517,-0.13802231874827517,NaN,2.829203538112779e-11,true,1.391651576382579e19,2.566967153297581e-13,-0.13802231874827517,-1.426636586643326e-14,92,-0.1380223187482609,-1.426636586643326e-14
+30;33;34;35;36;37;38,pll1.2_xf0.8_cc1.2,eigensolver_crosscheck,NaN,ok,,,eigen,Float64,-0.13802231991107342,-0.13802231991107342,0.0,2.829203538112779e-11,true,3.3302864966976783e18,1.5421160456378603e-12,NaN,NaN,0,-0.13802231991107342,0.0
+30;33;34;35;36;37;38,pll1.2_xf0.8_cc1.2,eigensolver_crosscheck,NaN,ok,,,eigvals,Float64,-0.13802231991107342,-0.13802231991107342,0.0,2.829203538112779e-11,true,3.3302864966976783e18,1.5421160456378603e-12,NaN,NaN,0,-0.13802231991107342,0.0
+30;33;34;35;36;37;38,pll1.2_xf0.8_cc1.2,eigensolver_crosscheck,NaN,ok,,,complex_eigen,ComplexF64,-0.13802231991107178,-0.13802231991107178,-9.213527175673483e-19,2.829203538112779e-11,true,3.3302864966976783e18,1.5421160456378603e-12,NaN,NaN,0,-0.13802231991107342,1.6375789613221059e-15
+30;33;34;35;36;37;38,pll1.2_xf0.8_cc1.2,eigensolver_crosscheck,NaN,ok,,,eigen,Float32,0.0007133589242585003,0.0007133589242585003,0.0,2.829203538112779e-11,true,3.3302864966976783e18,1.5421160456378603e-12,NaN,NaN,0,-0.13802231991107342,0.13873567883533192
+30;33;34;35;36;37;38,pll1.2_xf0.8_cc1.2,eigensolver_crosscheck,NaN,unavailable,eigensolver_api_failure,"MethodError: no method matching eigen!(::Matrix{BigFloat}; permute::Bool, scale::Bool, sortby::typeof(LinearAlgebra.eigsortby))
+The function `eigen!` exists, but no method is defined for this combination of argument types.
+
+Closest candidates are:
+  eigen!(::AbstractMatrix, !Matched::Cholesky; sortby) got unsupported keyword arguments ""permute"", ""scale""
+   @ LinearAlgebra C:\Users\walla\.julia\juliaup\julia-1.11.9+0.x64.w64.mingw32\share\julia\stdlib\v1.11\LinearAlgebra\src\symmetriceigen.jl:180
+  eigen!(::StridedMatrix{T}, !Matched::LU{T, <:StridedMatrix{T} where T}; sortby) where T got unsupported keyword arguments ""permute"", ""scale""
+   @ LinearAlgebra C:\Users\walla\.julia\juliaup\julia-1.11.9+0.x64.w64.mingw32\share\julia\stdlib\v1.11\LinearAlgebra\src\symmetriceigen.jl:215
+  eigen!(!Matched::Hermitian{T, <:BandedMatrices.BandedMatrix{T}}, !Matched::Hermitian{T, <:BandedMatrices.BandedMatrix{T}}) where T<:Union{ComplexF64, ComplexF32} got unsupported keyword arguments ""permute"", ""scale"", ""sortby""
+   @ BandedMatrices C:\Users\walla\.julia\packages\BandedMatrices\Kml90\src\symbanded\bandedeigen.jl:178
+  ...
+",eigen,BigFloat_matrix,NaN,NaN,NaN,2.829203538112779e-11,true,3.3302864966976783e18,1.5421160456378603e-12,NaN,NaN,0,-0.13802231991107342,NaN
+30;33;34;35;36;37;38,pll1.2_xf0.8_cc1.2,descriptor_crosscheck,NaN,ok,,,generalized_eigvals_A_M,Float64,-0.1380223199110663,-0.1380223199110663,NaN,2.829203538112779e-11,true,3.3302864966976783e18,1.5421160456378603e-12,-0.1380223199110663,7.105427357601002e-15,92,-0.13802231991107342,7.105427357601002e-15
+30;32;33;34;35;37;38,nominal,eigensolver_crosscheck,NaN,ok,,,eigen,Float64,-0.13805765951049284,-0.13805765951049284,0.0,2.829203538112779e-11,true,1.6458600893478042e19,2.1704933149293072e-13,NaN,NaN,0,-0.13805765951049284,0.0
+30;32;33;34;35;37;38,nominal,eigensolver_crosscheck,NaN,ok,,,eigvals,Float64,-0.13805765951049284,-0.13805765951049284,0.0,2.829203538112779e-11,true,1.6458600893478042e19,2.1704933149293072e-13,NaN,NaN,0,-0.13805765951049284,0.0
+30;32;33;34;35;37;38,nominal,eigensolver_crosscheck,NaN,ok,,,complex_eigen,ComplexF64,-0.1380576595104893,-0.1380576595104893,-2.4799302100880887e-18,2.829203538112779e-11,true,1.6458600893478042e19,2.1704933149293072e-13,NaN,NaN,0,-0.13805765951049284,3.552713678800501e-15
+30;32;33;34;35;37;38,nominal,descriptor_crosscheck,NaN,ok,,,generalized_eigvals_A_M,Float64,-0.13805765951048327,-0.13805765951048327,NaN,2.829203538112779e-11,true,1.6458600893478042e19,2.1704933149293072e-13,-0.13805765951048327,9.575673587391975e-15,92,-0.13805765951049284,9.575673587391975e-15
+30;32;33;34;35;37;38,pll1.2_xf0.8_cc1.2,eigensolver_crosscheck,NaN,ok,,,eigen,Float64,-0.13805765977230997,-0.13805765977230997,0.0,2.829203538112779e-11,true,3.724283524464181e19,1.3789747951951088e-13,NaN,NaN,0,-0.13805765977230997,0.0
+30;32;33;34;35;37;38,pll1.2_xf0.8_cc1.2,eigensolver_crosscheck,NaN,ok,,,eigvals,Float64,-0.13805765977230997,-0.13805765977230997,0.0,2.829203538112779e-11,true,3.724283524464181e19,1.3789747951951088e-13,NaN,NaN,0,-0.13805765977230997,0.0
+30;32;33;34;35;37;38,pll1.2_xf0.8_cc1.2,eigensolver_crosscheck,NaN,ok,,,complex_eigen,ComplexF64,-0.13805765977231105,-0.13805765977231105,1.0599485062142387e-18,2.829203538112779e-11,true,3.724283524464181e19,1.3789747951951088e-13,NaN,NaN,0,-0.13805765977230997,-1.0824674490095276e-15
+30;32;33;34;35;37;38,pll1.2_xf0.8_cc1.2,descriptor_crosscheck,NaN,ok,,,generalized_eigvals_A_M,Float64,-0.13805765977226975,-0.13805765977226975,NaN,2.829203538112779e-11,true,3.724283524464181e19,1.3789747951951088e-13,-0.13805765977226975,4.0217829067046296e-14,92,-0.13805765977230997,4.0217829067046296e-14
+30;32;33;34;35;36;38,nominal,eigensolver_crosscheck,NaN,ok,,,eigen,Float64,-0.13832542203297177,-0.13832542203297177,0.0,2.829203538112779e-11,true,4.883053890425691e18,7.315752699188209e-13,NaN,NaN,0,-0.13832542203297177,0.0
+30;32;33;34;35;36;38,nominal,eigensolver_crosscheck,NaN,ok,,,eigvals,Float64,-0.13832542203297177,-0.13832542203297177,0.0,2.829203538112779e-11,true,4.883053890425691e18,7.315752699188209e-13,NaN,NaN,0,-0.13832542203297177,0.0
+30;32;33;34;35;36;38,nominal,eigensolver_crosscheck,NaN,ok,,,complex_eigen,ComplexF64,-0.13832542203297474,-0.13832542203297474,6.0149253932687074e-18,2.829203538112779e-11,true,4.883053890425691e18,7.315752699188209e-13,NaN,NaN,0,-0.13832542203297177,-2.9698465908722937e-15
+30;32;33;34;35;36;38,nominal,descriptor_crosscheck,NaN,ok,,,generalized_eigvals_A_M,Float64,-0.13832542203291118,-0.13832542203291118,NaN,2.829203538112779e-11,true,4.883053890425691e18,7.315752699188209e-13,-0.13832542203291118,6.059042156891792e-14,92,-0.13832542203297177,6.059042156891792e-14
+30;32;33;34;35;36;38,pll1.2_xf0.8_cc1.2,eigensolver_crosscheck,NaN,ok,,,eigen,Float64,-0.13832541949828797,-0.13832541949828797,0.0,2.829203538112779e-11,true,1.0759982165005517e19,4.772950028067961e-13,NaN,NaN,0,-0.13832541949828797,0.0
+30;32;33;34;35;36;38,pll1.2_xf0.8_cc1.2,eigensolver_crosscheck,NaN,ok,,,eigvals,Float64,-0.13832541949828797,-0.13832541949828797,0.0,2.829203538112779e-11,true,1.0759982165005517e19,4.772950028067961e-13,NaN,NaN,0,-0.13832541949828797,0.0
+30;32;33;34;35;36;38,pll1.2_xf0.8_cc1.2,eigensolver_crosscheck,NaN,ok,,,complex_eigen,ComplexF64,-0.13832541949828095,-0.13832541949828095,4.8248031618316375e-19,2.829203538112779e-11,true,1.0759982165005517e19,4.772950028067961e-13,NaN,NaN,0,-0.13832541949828797,7.022160630754115e-15
+30;32;33;34;35;36;38,pll1.2_xf0.8_cc1.2,descriptor_crosscheck,NaN,ok,,,generalized_eigvals_A_M,Float64,-0.13832541949830326,-0.13832541949830326,NaN,2.829203538112779e-11,true,1.0759982165005517e19,4.772950028067961e-13,-0.13832541949830326,-1.529332216421153e-14,92,-0.13832541949828797,-1.529332216421153e-14
