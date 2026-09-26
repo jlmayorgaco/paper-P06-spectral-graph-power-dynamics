@@ -155,6 +155,7 @@ def main() -> int:
         identity_rows.append({
             "offset_real": offset.real,
             "offset_imag": offset.imag,
+            "is_root": bool(offset == 0.0j),
             "pencil_vs_Ared_ratio_residual": multiplicative_residual(lhs, right_a),
             "pencil_vs_raw_schur_ratio_residual": multiplicative_residual(lhs, right_b),
             "raw_schur_sigma_min": float(np.linalg.svd(t, compute_uv=False)[-1]),
@@ -221,6 +222,19 @@ def main() -> int:
                     "bus_j": bus_j,
                     "absolute_block_residual": float(np.linalg.norm(block)),
                 })
+
+    load_rows = []
+    all_load_buses = sorted(set(action_space.t0.load_blocks) | set(action_space.ts.load_blocks))
+    for bus in all_load_buses:
+        zero = np.zeros((2, 2), dtype=complex)
+        load_base = action_space.t0.load_blocks.get(bus, zero)
+        load_flagship = action_space.ts.load_blocks.get(bus, zero)
+        difference = load_flagship - load_base
+        load_rows.append({
+            "bus": int(bus),
+            "absolute_residual": float(np.linalg.norm(difference)),
+            "relative_residual": float(np.linalg.norm(difference) / max(np.linalg.norm(load_flagship), 1e-300)),
+        })
 
     t0 = action_space.t0.evaluate(lambda_c)
     th = action_space.ts.evaluate(lambda_c)
@@ -294,9 +308,11 @@ def main() -> int:
     write_csv(run_root / "tables" / "M1A_CANDIDATE_PORT_BLOCKS.csv", block_rows)
     write_csv(run_root / "tables" / "M1A_BASE_DELTAY_STENCIL.csv", delta_rows)
     write_csv(run_root / "tables" / "M1A_BASE_DELTAY_BLOCKS.csv", delta_block_rows)
+    write_csv(run_root / "tables" / "M1A_LOAD_BLOCK_MISMATCH.csv", load_rows)
     write_csv(run_root / "tables" / "M1A_SCALAR_SCHUR_STENCIL.csv", schur_rows)
-    write_json(run_root / "claims" / "M1A_RAW_DIAGNOSTICS.json", {"lambda_c": complex_pair(lambda_c), "fx_distance_to_lambda": fx_distance, "r_A_abs": r_a_abs, "r_A_relative": r_a_rel, "r_descriptor_abs": r_desc_abs, "r_descriptor_relative": r_desc_rel, "raw_sigma_min": raw_smin, "raw_sigma_max": raw_smax, "raw_relative_sigma": raw_smin / max(raw_smax, 1e-300), "raw_backward_error": raw_backward, "identity_stencil_max_Ared": max(row["pencil_vs_Ared_ratio_residual"] for row in identity_rows), "identity_stencil_max_raw": max(row["pencil_vs_raw_schur_ratio_residual"] for row in identity_rows)})
-    write_json(run_root / "claims" / "M1A_PORT_DIAGNOSTICS.json", {"candidate_port_max_relative_residual": max(row["relative_frobenius_residual"] for row in port_rows), "base_delta_max_relative_residual": delta_max, "base_delta_high_precision_relative_residual": precision.get("base_delta_relative"), "action_space_relative_backward_error": action_rel, "action_space_lifted_relative_backward_error": lifted_rel, "action_space_det_identity_residual": determinant_ratio_residual, "modal_roundtrip_relative_error": modal_roundtrip_rel, "modal_orthogonality_error": modal_orth_error, "scalar_h_abs": abs(h_value), "scalar_h_relative": abs(h_value) / h_scale, "scalar_schur_root": complex_pair(schur_root), "scalar_schur_root_residual": root_residual})
+    nonroot_identity = [row for row in identity_rows if not row["is_root"]]
+    write_json(run_root / "claims" / "M1A_RAW_DIAGNOSTICS.json", {"lambda_c": complex_pair(lambda_c), "fx_distance_to_lambda": fx_distance, "r_A_abs": r_a_abs, "r_A_relative": r_a_rel, "r_descriptor_abs": r_desc_abs, "r_descriptor_relative": r_desc_rel, "raw_sigma_min": raw_smin, "raw_sigma_max": raw_smax, "raw_relative_sigma": raw_smin / max(raw_smax, 1e-300), "raw_backward_error": raw_backward, "identity_stencil_max_Ared_nonroot": max(row["pencil_vs_Ared_ratio_residual"] for row in nonroot_identity), "identity_stencil_max_raw_nonroot": max(row["pencil_vs_raw_schur_ratio_residual"] for row in nonroot_identity), "identity_root_row_is_conditioned_by_zero": True})
+    write_json(run_root / "claims" / "M1A_PORT_DIAGNOSTICS.json", {"candidate_port_max_relative_residual": max(row["relative_frobenius_residual"] for row in port_rows), "base_delta_max_relative_residual": delta_max, "base_delta_high_precision_relative_residual": precision.get("base_delta_relative"), "largest_load_block_mismatch": max(load_rows, key=lambda row: row["absolute_residual"]) if load_rows else None, "action_space_relative_backward_error": action_rel, "action_space_lifted_relative_backward_error": lifted_rel, "action_space_det_identity_residual": determinant_ratio_residual, "modal_roundtrip_relative_error": modal_roundtrip_rel, "modal_orthogonality_error": modal_orth_error, "scalar_h_abs": abs(h_value), "scalar_h_relative": abs(h_value) / h_scale, "scalar_schur_root": complex_pair(schur_root), "scalar_schur_root_residual": root_residual})
     write_json(run_root / "claims" / "M1A_PRECISION_AUDIT.json", precision)
 
     first_fail = next((row["stage"] for row in ladder if row["status"] == "FAIL"), "none")
