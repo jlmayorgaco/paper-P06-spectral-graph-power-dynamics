@@ -1,0 +1,88 @@
+{
+  "campaign": "TX4_BLIND_PORTFOLIO_PREDICTION_CONTEXTUAL_RETURN",
+  "status": "LEGACY FROZEN OUTPUT; MODAL-SCOPE CORRECTION IS AUTHORITATIVE",
+  "branch": "research/tx4-blind-portfolio-prediction-final",
+  "parent_freeze": "69f200dfe1dfb74cc4f678ad25a0c3b1751d62a6",
+  "no_push": true,
+  "final_case": "B",
+  "v4": {
+    "n": 16,
+    "accuracy": 1.0,
+    "false_safe": 0,
+    "false_unstable": 0,
+    "H_true": ["30+33+35+37"],
+    "H_pred": ["30+33+35+37"],
+    "H_exact": true,
+    "kappa_true": 4,
+    "kappa_pred": 4,
+    "kappa_exact": true,
+    "alpha_full_H4_s-1": 0.1270064671440848,
+    "frequency_full_H4_hz": 0.6222796695779256
+  },
+  "v9_legacy_fc10_default_policy": {
+    "n": 512,
+    "accuracy": 0.771484375,
+    "false_safe": 116,
+    "false_unstable": 1,
+    "H_exact": false,
+    "kappa_exact": true,
+    "truth_stable": 327,
+    "truth_unstable": 185
+  },
+  "boundary": {
+    "g_reduced": 0.20768138607024417,
+    "g_full": 0.20768140519037842,
+    "absolute_difference": 1.912013425004049e-08,
+    "frequency_reduced_hz": 0.7064247829142537,
+    "collective_sigma_min": 1.379249916648212e-08,
+    "local_sigma_min": 0.48923551281149746,
+    "protocol_status": "REDUCED_REPRODUCTION_AFTER_REVEAL"
+  },
+  "contextual_return_legacy_archived_fields": {
+    "nearest_archived_return_eigenvalue_real": -0.9999999648847322,
+    "nearest_archived_return_eigenvalue_imag": -5.144880410590247e-09,
+    "eta_H": 0.12083126371951886,
+    "max_schur_residual": 3.4380890018936824e-16,
+    "max_derivative_error": 7.203396658595853e-06,
+    "legacy_field_note": "The archived field used the wrong return sign label; see the corrected sign audit.",
+    "corrected_return_target_real": 1.0,
+    "corrected_sign_audit": "results/TX4_Q_VS_RETURN_SIGN_AUDIT.csv"
+  },
+  "v9_same_policy_modal_scope_correction": {
+    "n": 512,
+    "global_stable": 332,
+    "global_unstable": 180,
+    "global_accuracy": 0.78515625,
+    "global_false_safe": 110,
+    "global_false_unstable": 0,
+    "em_accuracy": 0.998046875,
+    "em_false_safe": 1,
+    "em_false_unstable": 0,
+    "policy": "frozen TX4 P4",
+    "source": "results/TX4_FINAL_MODAL_SCOPE_HEADLINE.json"
+  },
+  "tds": {
+    "runs": 3,
+    "outcomes": {
+      "proper_30+33+35": "STABLE",
+      "H4_original": "UNSTABLE",
+      "H4_g_0.25": "STABLE"
+    },
+    "growth_sign_agreement": 1.0,
+    "scope": "nonlinear phasor-domain DAE; NOT EMT"
+  },
+  "runtime": {
+    "v4_full_over_reduced": 0.5496771948741614,
+    "v9_full_over_reduced": 0.2341035752048605,
+    "reduced_faster": false
+  },
+  "aggregate_pair": {
+    "valid": true,
+    "normalized_mismatch_percent": 0.2512750619718081,
+    "one_stable_one_unstable": true
+  },
+  "andes": "LIMITED_SUPPORTED_SCOPE",
+  "emt": "UNRESOLVED",
+  "ias_poster_competitive": true,
+  "tpwrs_ready": false
+}

@@ -1,0 +1,24 @@
+{
+  "g_return_reduced": 0.20768138607024417,
+  "frequency_return_hz": 0.7064247829142537,
+  "collective_sigma_min": 1.379249916648212e-08,
+  "local_sigma_min": 0.48923551281149746,
+  "violating_side_checks": [
+    {
+      "g": 0.20758138607024418,
+      "frequency_hz": 0.7064129288861293,
+      "collective_sigma_min": 6.023942606440488e-05,
+      "local_sigma_min": 0.48920936629652434,
+      "local_det_min_abs": 0.4327803315743777
+    },
+    {
+      "g": 0.20778138607024416,
+      "frequency_hz": 0.7064366143984009,
+      "collective_sigma_min": 6.026951332145029e-05,
+      "local_sigma_min": 0.4892616583451341,
+      "local_det_min_abs": 0.4329077901324277
+    }
+  ],
+  "protocol_status": "REDUCED_REPRODUCTION_AFTER_REVEAL",
+  "answer_key_loaded_by_this_script": false
+}

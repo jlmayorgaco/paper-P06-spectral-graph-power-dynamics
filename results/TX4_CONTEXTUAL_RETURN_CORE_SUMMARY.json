@@ -1,0 +1,22 @@
+{
+  "g_eigen_boundary": 0.20768140519037842,
+  "g_return_minimum": 0.20768142152090113,
+  "g_return_grid_minimum": 0.2076814045,
+  "g_boundary_difference": 1.6330522711882622e-08,
+  "root_iterations": 26,
+  "alpha_P4": 0.1270064671440848,
+  "alpha_after": -0.017384676318734055,
+  "frequency_root_hz": 0.7064247880117632,
+  "local_sigma_min_root": 0.9999999999999997,
+  "collective_sigma_min_root": 2.241535610721767e-08,
+  "eta_H": 0.12083126371951886,
+  "tau_H": 1.3069395941553126,
+  "nearest_Q_eigenvalue_to_minus_one": [
+    -0.9999999648847322,
+    -5.144880410590247e-09
+  ],
+  "max_boundary_schur_residual": 3.4380890018936824e-16,
+  "max_return_derivative_error": 7.203396658595853e-06,
+  "minimality_all_proper_stable": true,
+  "newton_or_bisection_iterations": 26
+}

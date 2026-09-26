@@ -1,0 +1,16 @@
+claim_id,claim,mathematical_status,experiment,evidence,final_status,allowed_wording,forbidden_wording,poster_use,journal_use
+C01,H4 is a minimal dynamically incompatible portfolio,TX4-specific definition and numerical test,V4 full-order reveal,all proper subsets stable and H4 unstable,PREREGISTERED,minimal TX4 witness,universal minimality,yes,yes with scope
+C02,All 15 proper H4 subsets are stable,Numerical finite-benchmark claim,V4 reveal,15 labels,PREREGISTERED,all 15 proper subsets in this TX4 case,all networks,yes,yes with scope
+C03,Exact reduced closure predicts H4 before full-order reveal,Exact port identity plus blind protocol,V4 blind then reveal,blind artifact committed before answer key,PREREGISTERED,blind reduced prediction in TX4 V4,post-hoc explanation,yes,yes with firewall
+C04,Reduced closure predicts critical H4 frequency,Reduced root comparison,V4 reveal,frequency error recorded,PREREGISTERED,material agreement for this witness,exact alpha equivalence,yes,yes with scope
+C05,Reduced closure predicts clean g-only boundary,Reduced versus full boundary,V4/g blind then reveal,g error recorded,PREREGISTERED,TX4 boundary prediction,controller-universal boundary,yes,yes with scope
+C06,Local factors remain regular at collective boundary,Exact block factors and sweep,V4 contextual return,local singular values and determinants,PREREGISTERED,local regularity in TX4 sweep,nothing fails locally universally,yes,yes with scope
+C07,Contextual-return eigenvalue reaches unity,Schur characterization,V4 boundary,mu and sigma_min(I-R),PREREGISTERED,return reaches unity at declared root,new theorem,yes,yes with caveat
+C08,Return and full stability crossings coincide,Empirical cross-model comparison,g sweep,absolute boundary difference,PREREGISTERED,numerical coincidence in TX4,identity implies all spectral boundaries,yes,yes with scope
+C09,Controller-only g change removes H4,Fixed-coordinate remediation, P4 to g_after,alpha and TDS,PREREGISTERED,g-only remediation,optimal/economic repair,yes,yes with scope
+C10,Nonlinear TDS confirms original/retuned behavior,Frozen phasor TDS,TDS D2,trajectory labels and rates,PREREGISTERED,phasor-TDS consistency,EMT validation,yes,yes with caveat
+C11,ANDES independently reproduces supported claims,Independent phasor tool result,read-only E31 audit,E31 scope and verdicts,EXISTING,independent phasor support,custom-GFL EMT reproduction,small badge,yes with scope
+C12,V9 blind prediction accuracy,Finite 512-case benchmark,V9 blind/reveal,accuracy and false-safe count,PREREGISTERED,V9 benchmark result,population probability,yes if positive,yes with scope
+C13,V9 H recovery,Finite benchmark summary,V9 reveal,exact H comparison when defined,PREREGISTERED,exact recovery in this census,universal hypergraph recovery,yes if positive,yes with scope
+C14,Runtime advantage if any,Measured engineering quantity,runtime benchmark,setup/per-case/total times,PREREGISTERED,measured speedup if positive,assumed speedup,yes if positive,yes
+C15,Matched-penetration counterexample if any,Finite pair comparison,V9 frozen census,<=5% aggregate mismatch and opposite verdict,PREREGISTERED,matched finite pair or NONE,manufactured counterexample,yes if found,yes with scope
