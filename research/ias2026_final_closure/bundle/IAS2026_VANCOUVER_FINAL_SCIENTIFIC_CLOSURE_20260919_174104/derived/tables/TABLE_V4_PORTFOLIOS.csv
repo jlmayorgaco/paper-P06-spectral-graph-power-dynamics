@@ -1,0 +1,9 @@
+metric,expected,observed,status,label,source
+P4 H4 alpha [s^-1],0.1270065,0.1270064671440848,PASS,RETROSPECTIVE,derived/tables/gate0_v4.csv
+P4 H4 frequency [Hz],0.6222797,0.6222796695779256,PASS,RETROSPECTIVE,derived/tables/gate0_v4.csv
+P4 governed H4 alpha [s^-1],-0.0745,-0.07454098428813066,PASS,RETROSPECTIVE,derived/tables/gate0_v4.csv
+P4 proper subsets stable,15,15,PASS,RETROSPECTIVE,derived/tables/gate0_v4.csv
+target-family minimal blocker antichain exact,True,True,PASS,NUMERICALLY_VERIFIED,derived/tables/gate0_v4.csv
+target-family minimal blockers,14,14,PASS,NUMERICALLY_VERIFIED,derived/tables/gate0_v4.csv
+target-family blocker orders,"5x4, 6x5, 3x6","5x4, 6x5, 3x6",PASS,NUMERICALLY_VERIFIED,derived/tables/gate0_v4.csv
+target-family kappa,4,4,PASS,NUMERICALLY_VERIFIED,derived/tables/gate0_v4.csv

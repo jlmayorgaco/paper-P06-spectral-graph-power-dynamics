@@ -1,0 +1,18 @@
+gate,status,question,observed,evidence,decision
+G0,FROZEN_ARTIFACT_REPRODUCED,frozen baseline and scope,"nominal P4 reproduced; global 402/512 and targeted 511/512 retained",reports/GATE0_REPORT.md,retrospective frozen evidence only
+G1,NUMERICALLY_VERIFIED,canonical GFL11 Python/Julia parity,"64 cases; 602 transfer points; max state relative error 5.14e-16",reports/P1_GFL_PARITY.md,device and documented harness parity
+G2,STOPPED_BY_GATE,SG/AVR/PSS component parity,"exact custom component port not completed",docs/MODEL_RECONCILIATION.md,no same-model promotion
+G3,STOPPED_BY_GATE,true frozen IEEE-39 base cross-code parity,"not established",docs/MODEL_RECONCILIATION.md,no same-model promotion
+G4,STOPPED_BY_GATE,true frozen IEEE-39 V4 census,"not established",docs/MODEL_RECONCILIATION.md,no same-model promotion
+G5,NOT_TESTED,collective mechanism,"dependent on stopped same-model gate",reports/P3_COLLECTIVE_MECHANISM_STATUS.md,no mechanism claim
+G6,NUMERICALLY_VERIFIED,common-disturbance TDS,"official-model base/one/full solves; no reliable modal crossing",reports/P4_JULIA_TDS_STATUS.md,decay diagnostic only
+G7,SECOND_MODEL_VALIDATED,SimpleGFLDC second-model census,"16/16 initialized and stable",reports/P5_SECOND_GFL_STATUS.md,alternative-model negative result
+G8,BLIND_HOLDOUT,genuine alternative-model holdout,"4/4 stable; single class",docs/BLIND_HOLDOUT_PROTOCOL.md,no discrimination claim
+G9,NOT_TESTED,three-model comparison,"not run after same-model gate",docs/NEGATIVE_RESULTS.md,no comparison claim
+G10,NOT_TESTED,common physical uncertainty envelope,"not computed",raw/robust/STATUS.md,no robustness claim
+G11,NOT_TESTED,robust V4 census,"not run",raw/robust/STATUS.md,no robustness claim
+G12,NOT_TESTED,g-by-epsilon atlas,"not run",raw/robust/STATUS.md,no robustness claim
+G13,RETROSPECTIVE,topology calibration,"12195 rows; 16 witnesses retained",derived/tables/gate0_topology.csv,retrospective only
+G14,RETROSPECTIVE,governed P4 blocker,"alpha 0.1270065 to -0.074541 retained",derived/tables/gate0_v4.csv,policy-dependent retrospective result
+G15,RETROSPECTIVE,legacy transfer/scaling check,"global and targeted V9 counts retained",raw/scaling/STATUS.md,no new scaling claim
+G16,NOT_TESTED,new asymptotic scaling,"no new sweep",raw/scaling/STATUS.md,no scaling claim

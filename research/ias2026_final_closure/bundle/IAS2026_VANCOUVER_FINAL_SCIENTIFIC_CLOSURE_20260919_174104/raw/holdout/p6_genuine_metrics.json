@@ -1,0 +1,18 @@
+{
+  "status": "SINGLE_CLASS_HOLDOUT_REVEALED",
+  "evidence_class": "FRESH_ALTERNATIVE_DYNAMIC_MODEL_BLIND_HOLDOUT",
+  "prediction_sha256": "90f82935784a388ad195610b53846c1229781d0518c044d5e7531bcf8151e3ca",
+  "holdout_case_ids": [
+    "hold_01",
+    "hold_02",
+    "hold_03",
+    "hold_04"
+  ],
+  "accuracy": 1.0,
+  "balanced_accuracy": null,
+  "unstable_precision": null,
+  "unstable_recall": null,
+  "mcc": null,
+  "cohen_kappa": null,
+  "single_class_status": "SECOND_PREREGISTERED_HOLDOUT_REQUIRED"
+}

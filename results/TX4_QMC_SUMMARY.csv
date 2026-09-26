@@ -1,0 +1,11 @@
+campaign,endpoint,n_conditions,success,coverage_fraction,interpretation,ci_method,ci95_low,ci95_high,kappa
+QMC,H4_UNSTABLE,4096,2367,0.577880859375,fixed-design QMC coverage fraction,none,,,
+QMC,H4_PRESENT,4096,466,0.11376953125,fixed-design QMC coverage fraction,none,,,
+QMC,EXACT_H4,4096,466,0.11376953125,fixed-design QMC coverage fraction,none,,,
+QMC,NONCOMPOSABLE,4096,1750,0.42724609375,fixed-design QMC coverage fraction,none,,,
+QMC,KAPPA_PMF,4096,457,0.111572265625,fixed-design QMC PMF,none,,,0.0
+QMC,KAPPA_PMF,4096,431,0.105224609375,fixed-design QMC PMF,none,,,1.0
+QMC,KAPPA_PMF,4096,509,0.124267578125,fixed-design QMC PMF,none,,,2.0
+QMC,KAPPA_PMF,4096,505,0.123291015625,fixed-design QMC PMF,none,,,3.0
+QMC,KAPPA_PMF,4096,466,0.11376953125,fixed-design QMC PMF,none,,,4.0
+QMC,KAPPA_PMF,4096,1728,0.421875,fixed-design QMC PMF,none,,,

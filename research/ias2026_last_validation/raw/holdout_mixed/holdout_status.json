@@ -1,0 +1,10 @@
+{
+  "status": "STOPPED_NO_SECOND_MODEL_MIXED_REGION",
+  "source": "raw/second_model_search/simplegfldc_policy_discovery.csv",
+  "policy_search_rows": 20,
+  "initialized_rows": 20,
+  "classes_observed": [
+    "stable"
+  ],
+  "prediction_rule": "same-model-V4 topology prior: proper three-target stable; four-target unstable, independent of second-model bandwidth coordinate"
+}

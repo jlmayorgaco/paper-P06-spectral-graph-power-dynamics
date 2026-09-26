@@ -1,0 +1,7 @@
+gate,status,evidence_class,blocking_condition,required_next_action
+P1,STOPPED_BY_GATE,FRESH_DEVICE_LEVEL_REPRODUCTION,"Device parity passes; minimal PowerDynamics current-source network retains zero states","Resolve a supported PowerDynamics current-source/infinite-bus topology and rerun P1 before P2"
+P2,STOPPED_BY_GATE,NOT_EXECUTED,"P1 full network gate did not pass; no 16-portfolio census was substituted","Rerun exact frozen GFL on all 16 portfolios after P1 passes"
+P3,STOPPED_BY_GATE,NOT_EXECUTED,"No reproduced P2 blocker exists in the fresh Julia model","Run collective mechanism at each P2 blocker after P2 passes"
+P4,STOPPED_BY_GATE,NOT_EXECUTED,"No fresh Julia IEEE-39 blocker or repaired blocker exists","Run common Julia TDS on proper subset, blocker, and repaired blocker after P3"
+P5,STOPPED_BY_GATE,NOT_EXECUTED,"No independent second GFL model was frozen before holdout","Freeze discovery/holdout split and implement materially different model"
+P6,STOPPED_BY_GATE,NOT_EXECUTED,"No predictions were generated from a fresh P5 model","Hash/commit predictions before revealing the blind holdout"

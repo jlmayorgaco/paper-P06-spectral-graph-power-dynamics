@@ -1,0 +1,25 @@
+id,claim,label,observed,evidence
+C01,P4 H4 nominal alpha,RETROSPECTIVE,0.1270064666836382 s^-1,corrected frozen-artifact reproduction; FROZEN_IEEE39_EVIDENCE
+C02,P4 minimal incompatibility,RETROSPECTIVE,15 proper stable subsets,corrected frozen-artifact reproduction
+C03,algebraic port identities,NUMERICALLY_VERIFIED,4 property-test modules pass,logs/theory_tests.log
+C04,H4 boundary witness,RETROSPECTIVE,g*=0.2076814044; f=0.7064247879 Hz,frozen F7A
+C05,frozen nonlinear TDS agreement,RETROSPECTIVE,32/32 declared agreements,frozen G2; no new Julia TDS
+C06,governor changes P4 H4 sign,RETROSPECTIVE,0.1270065 -> -0.074541 s^-1,frozen FC03; policy-dependent
+C07,corrected global V9 scope,NUMERICALLY_VERIFIED,402/512; 110 false-safe; 0 false-unstable,corrected modal scope
+C08,corrected targeted V9 scope,NUMERICALLY_VERIFIED,511/512; 1 false-safe; 0 false-unstable,corrected modal scope
+C09,exact target-family blocker antichain,NUMERICALLY_VERIFIED,14 exact blockers; kappa=4,corrected modal scope
+C10,PowerDynamics same-model mechanism,STOPPED_BY_GATE,Gate A tutorial equilibrium only,reconciliation report
+C11,second converter model,NOT_TESTED,not run,scope limitation
+C12,physical robust radius,NOT_TESTED,not computed,scope limitation
+C13,new blind topology/model holdout,NOT_TESTED,not run,historical V9 is retrospective
+C14,full IEEE-39 conclusion is universal,REFUTED,not universal,benchmark and policy scope
+C15,full repair path is certified,NOT_TESTED,not run,no EMT/current-limit/DC-link certification
+C16,frozen IEEE-39 claim is model-independent,REFUTED,not supported,no second model; no universal promotion
+C17,canonical GFL11 Python/Julia device and transfer parity,NUMERICALLY_VERIFIED,64 cases; derivative max 2.79e-13; 602-point transfer median/p99 relative Frobenius 1.41e-16/1.52e-15,reports/P1_GFL_PARITY.md; raw/gfl11/canonical_source_manifest.json
+C18,PowerDynamics documented one-device/infinite-bus dynamic parity,NUMERICALLY_VERIFIED,15 states; residual 4.22e-9–7.85e-9; repeat/spectrum deltas 0 across 3 weak shunts,raw/gfl11/p1_network_sensitivity.csv; prereg/P1_NETWORK_TOLERANCE.md
+C19,"fresh official PowerDynamics alternative-model V4 census",FRESH_ALTERNATIVE_DYNAMIC_MODEL_V4_NEGATIVE_HOLDOUT,"16/16 initialized; transverse spectra stable; one gauge mode removed per portfolio","reports/P2_POWERDYNAMICS_V4_STATUS.md; raw/p2/p2_powerdynamics_portfolios.csv"
+C20,"fresh official-model Julia TDS",FRESH_OFFICIAL_POWERDYNAMICS_TDS,"base/one/full solves completed; selected-trace decay recorded; critical-frequency match not estimable","reports/P4_JULIA_TDS_STATUS.md; raw/p4/p4_pd_tds.csv"
+C21,"The official SimpleGFLDC second-model component initializes in the documented harness at the declared operating point.",COMPONENT_EXECUTION_PASS,"13 states; residual 6.31e-9; no retune","reports/P5_SECOND_GFL_STATUS.md; raw/p5/p5_simplegfldc_result.csv"
+C22,"A four-portfolio procedural holdout produced 4/4 stable-label accuracy; the holdout is single-class and does not test blocker discrimination or repair ranking.",POSTHOC_OR_PROCEDURAL_SINGLE_CLASS_HOLDOUT,"accuracy 4/4; precision/recall not meaningful; Cohen kappa undefined","reports/P6_BLIND_HOLDOUT_STATUS.md; raw/p6/p6_reveal_metrics.json"
+C23,"A genuine alternative-model holdout froze unseen inputs and predictions before reveal; all four revealed holdout cases were stable.",FRESH_ALTERNATIVE_DYNAMIC_MODEL_BLIND_HOLDOUT,"accuracy 4/4; single-class; balanced accuracy, unstable precision/recall, MCC, and kappa not meaningful","reports/P6_GENUINE_HOLDOUT_STATUS.md; raw/p6/p6_genuine_metrics.json"
+C24,"The official SimpleGFLDC alternative dynamic model initialized all 16 matched IEEE-39 V4 portfolios and all 16 were stable after gauge-aware transverse filtering.",FRESH_ALTERNATIVE_DYNAMIC_MODEL_V4_NEGATIVE_HOLDOUT,"16/16 initialized; 16/16 stable transverse; no retune","reports/P5_SECOND_GFL_STATUS.md; raw/p5/p5_simplegfldc_ieee39_portfolios.csv"

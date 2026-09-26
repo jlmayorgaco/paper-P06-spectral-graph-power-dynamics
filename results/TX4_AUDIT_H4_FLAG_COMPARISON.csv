@@ -1,0 +1,5 @@
+scope,n_conditions,h4_rows_exact_dae,alpha_H4_ge0_n,alpha_H4_ge0_fraction,legacy_H4_PRESENT_n,legacy_EXACT_H4_n,legacy_NONCOMPOSABLE_n,corrected_exact_truth_available,corrected_H4_PRESENT_n,corrected_EXACT_H4_n,corrected_NONCOMPOSABLE_n
+1D,1407,1407,1118,0.7945984363894811,1118,827,0,False,,,
+QMC,4096,4096,2367,0.577880859375,2367,301,0,False,,,
+MC,5000,5000,2907,0.5814,2907,356,0,False,,,
+EXACT_CALIBRATION,426,426,290,0.6807511737089202,290,134,0,True,134.0,134.0,258.0

@@ -1,0 +1,8 @@
+claim_id,claim,status,endpoint,evidence,allowed_language
+R1,H4 nominal blocker is reproduced at the frozen P4 point,,FROZEN_REPRODUCTION,alpha_all,results/TX4_ROBUSTNESS_MASTER_CONDITIONS.csv,benchmark- and policy-conditioned
+R2,H4 presence probability over the declared bounded box,PREREGISTERED, H4_PRESENT,results/TX4_QMC_SUMMARY.csv;results/TX4_MC_SUMMARY.csv,engineering bounded-box probability
+R3,Exact H4 minimality probability over the declared bounded box,PREREGISTERED,EXACT_H4,results/TX4_QMC_SUMMARY.csv;results/TX4_MC_SUMMARY.csv,engineering bounded-box probability
+R4,Common physical robust radius,NOT_CLAIMED,none,docs/TX4_ROBUSTNESS_DEVIATIONS.md,do not claim
+R5,PowerDynamics same-model network parity,NOT_CLAIMED,none,research/ias2026_last_validation/reports/P1_GFL_PARITY.md,do not claim
+R6,EMT current-limit DC-link protection hardware certification,NOT_CLAIMED,none,docs/TX4_ROBUSTNESS_DEVIATIONS.md,do not claim
+R7,Julia cross-code agreement in the declared spot-check,SECONDARY,paired_verdict,results/TX4_JULIA_CROSSCODE_RANDOM.csv,spot-check only

@@ -1,0 +1,6 @@
+{
+  "status": "PENDING_FREEZE",
+  "historical_actions_excluded": [0, 1, 13, 43],
+  "prediction_fields": ["action", "sign_of_effect", "blocker_change", "delta_margin"],
+  "reveal_requires": ["prediction_sha256", "full_order_reveal", "tds_where_applicable"]
+}

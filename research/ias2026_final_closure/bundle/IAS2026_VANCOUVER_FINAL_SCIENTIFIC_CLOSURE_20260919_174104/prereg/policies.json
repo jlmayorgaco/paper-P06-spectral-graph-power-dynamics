@@ -1,0 +1,7 @@
+{
+  "primary": {"name": "P4", "g": 0.03625, "k": 1.425, "t": 1.5, "h": 1.0},
+  "flagship": [30, 33, 35, 37],
+  "frequency_band_hz": [0.3, 1.5],
+  "status": "FROZEN_BEFORE_NEW_AUDIT",
+  "historical_only": ["F7A", "F7B", "F7C", "branch_doublings_0_1_13_43"]
+}

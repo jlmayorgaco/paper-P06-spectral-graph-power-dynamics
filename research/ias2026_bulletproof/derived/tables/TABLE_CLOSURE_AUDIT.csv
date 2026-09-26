@@ -1,0 +1,19 @@
+metric,expected,observed,status,label,source
+P4 H4 alpha [s^-1],0.1270065,0.1270064671440848,PASS,RETROSPECTIVE,raw/modal_scope/TX4_MODAL_MECHANISM.csv
+P4 H4 frequency [Hz],0.6222797,0.6222796695779256,PASS,RETROSPECTIVE,raw/modal_scope/TX4_MODAL_MECHANISM.csv
+P4 governed H4 alpha [s^-1],-0.0745,-0.07454098428813066,PASS,RETROSPECTIVE,raw/gate0/FC03_points.csv
+P4 proper subsets stable,15,15,PASS,RETROSPECTIVE,raw/modal_scope/TX4_15_PROPER_SUBSETS.csv
+target-family minimal blocker antichain exact,True,True,PASS,NUMERICALLY_VERIFIED,raw/modal_scope/TX4_V9_GLOBAL_VS_EM_TRUTH.csv
+target-family minimal blockers,14,14,PASS,NUMERICALLY_VERIFIED,raw/modal_scope/TX4_V9_GLOBAL_VS_EM_TRUTH.csv
+target-family blocker orders,"5x4, 6x5, 3x6","5x4, 6x5, 3x6",PASS,NUMERICALLY_VERIFIED,raw/modal_scope/TX4_V9_GLOBAL_VS_EM_TRUTH.csv
+target-family kappa,4,4,PASS,NUMERICALLY_VERIFIED,raw/modal_scope/TX4_V9_GLOBAL_VS_EM_TRUTH.csv
+H4 boundary g*,0.2076814,0.2076814051903784,PASS,RETROSPECTIVE,raw/modal_scope/TX4_MINIMALITY_SEPARATION.csv
+H4 boundary frequency [Hz],0.7064248,0.7064247880117632,PASS,RETROSPECTIVE,raw/modal_scope/TX4_MINIMALITY_SEPARATION.csv
+Q_H eigenvalue sign near -1,-1,-1,PASS,NUMERICALLY_VERIFIED,raw/modal_scope/TX4_Q_VS_RETURN_SIGN_AUDIT.csv
+contextual return eigenvalue sign near +1,1,1,PASS,NUMERICALLY_VERIFIED,raw/modal_scope/TX4_Q_VS_RETURN_SIGN_AUDIT.csv
+distance of Q_H to -1,0.0,3.5098754538943794e-08,PASS,NUMERICALLY_VERIFIED,raw/modal_scope/TX4_Q_VS_RETURN_SIGN_AUDIT.csv
+max distance of contextual return to +1,0.0,2.2805379282384656e-07,PASS,NUMERICALLY_VERIFIED,raw/modal_scope/TX4_Q_VS_RETURN_SIGN_AUDIT.csv
+maximum Schur residual,0.0,3.6258911332571516e-16,PASS,NUMERICALLY_VERIFIED,raw/modal_scope/TX4_Q_VS_RETURN_SIGN_AUDIT.csv
+minimum physical local sigma_min(I+M_ii),0.2973,0.2973268809593455,PASS,NUMERICALLY_VERIFIED,raw/modal_scope/TX4_TRUE_LOCAL_VS_COLLECTIVE.csv
+collective sigma_min(I+Q_H),1.26e-08,1.261484530209848e-08,PASS,NUMERICALLY_VERIFIED,raw/modal_scope/TX4_TRUE_LOCAL_VS_COLLECTIVE.csv
+proper-subset collective minimum,0.2945,0.2945460505423897,PASS,NUMERICALLY_VERIFIED,raw/modal_scope/TX4_PROPER_SUBSET_CLOSURE.csv

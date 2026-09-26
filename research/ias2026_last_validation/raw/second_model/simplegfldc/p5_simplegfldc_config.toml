@@ -1,0 +1,15 @@
+model = "PowerDynamics.ComposableInverter.SimpleGFLDC"
+powerflow_P_pu = 0.35
+powerflow_Q_pu = -0.08
+system_base_MVA = 100.0
+operating_point = "same P/Q/base as P1 one-device harness"
+retune = false
+official_example_source = "PowerDynamics 5.0.0 docs/examples/linear_analysis.jl"
+V_dc = 2.5
+C_dc = 1.25
+f_v_dc = 5.0
+Xf = 0.03
+Rf = 0.01
+f_pll = 5.0
+f_tau_pll = 300.0
+f_i_dq = 600.0

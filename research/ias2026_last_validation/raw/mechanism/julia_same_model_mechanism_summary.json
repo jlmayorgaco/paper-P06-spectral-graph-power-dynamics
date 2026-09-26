@@ -1,0 +1,15 @@
+{
+  "status": "JULIA_COLLECTIVE_MECHANISM_VALIDATED",
+  "case": "same_model_v4",
+  "frequency_grid_hz": [0.3, 1.5, 0.005],
+  "best_frequency_hz": 0.575,
+  "closure_margin": 0.0880932499410246,
+  "q_closest_real": -1.0829168901378603,
+  "q_closest_imag": 0.029752479141036896,
+  "sigma_min_i_plus_q": 0.050142455052803486,
+  "minimum_local_sigma": 0.29424879369829876,
+  "minimum_local_factor_abs": 0.2803411878653075,
+  "maximum_factorization_residual": 7.216449660063518e-16,
+  "maximum_solve_residual": 1.9092140494856664e-17,
+  "maximum_operator_condition": 8547.107436756312
+}

@@ -1,0 +1,4 @@
+gate,status,label,evidence
+independent second converter model,not run,NOT_TESTED,docs/SECOND_MODEL_SPEC.md
+corrected global V9 scope,402/512 correct; 110 false-safe; 0 false-unstable,NUMERICALLY_VERIFIED,derived/tables/gate0_v9.csv
+corrected targeted 0.3-1.5 Hz scope,511/512 correct; 1 false-safe; 0 false-unstable,NUMERICALLY_VERIFIED,derived/tables/gate0_v9.csv

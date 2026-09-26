@@ -1,0 +1,14 @@
+{
+  "status": "COMPLETE_WITH_EXPLICIT_SURROGATE_TIER",
+  "conditions": 20590,
+  "rows": 329440,
+  "exact_all_portfolio_conditions": 426,
+  "exact_all_portfolio_rows": 6816,
+  "exact_h4_conditions": 20590,
+  "surrogate_proper_subset_rows": 302460,
+  "parent": "f64db0004026ceafdb08dd13b5e2ff59d6060742",
+  "assembly_runtime_s": "not timed in buffered assembly",
+  "h4_checkpoint_source": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics-ias2026-tx4-robustness\\results\\TX4_ROBUSTNESS_H4_CHECKPOINTS.csv",
+  "calibration_source": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics-ias2026-tx4-robustness\\results\\TX4_ROBUSTNESS_EXACT_CALIBRATION.csv",
+  "surrogate": "ExtraTreesRegressor, 32 trees, min_samples_leaf=2, n_jobs=1, seed=20260925"
+}

@@ -1,0 +1,5 @@
+case_id,phase,portfolio,gfl_gain,stable,alpha_transverse,critical_frequency_hz,residual,status,message
+hold_01,holdout,30+33+35+37,0.02265625,true,-0.13776023412275468,0.0,2.615901373506474e-13,PASS,""
+hold_02,holdout,30+33+35+37,0.03171875,true,-0.13791408897381835,0.0,2.615901373506474e-13,PASS,""
+hold_03,holdout,30+33+35+37,0.04078125,true,-0.13791583665144366,0.0,2.615901373506474e-13,PASS,""
+hold_04,holdout,30+33+35+37,0.054375,true,-0.13791660534165706,0.0,2.615901373506474e-13,PASS,""

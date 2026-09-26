@@ -1,0 +1,9 @@
+claim_id,claim,status,evidence,observed,allowed_wording,forbidden_wording
+C1,H4 unstable in the frozen EM band,SUPPORTED,Exact QMC/MC,QMC coverage 0.577881; MC 0.581400 with Wilson CI,The frozen reduced DAE has H4 instability over the sampled engineering box.,Do not call this a physical probability or robust radius.
+C2,H4_PRESENT equals H4 instability,INVALIDATED,Exact H0 truth,Legacy-positive/corrected-negative exact calibration rows: 156/426,"H4_PRESENT is membership in H0, not merely H4 instability.",Do not reuse 57.8%/58.1% as minimal-blocker coverage.
+C3,EXACT_H4 minimality percentage,CORRECTED,Exact all-16 QMC/MC,"QMC 0.113770; MC 0.115400 [0.106838, 0.124553]",Exact H4 minimality is about 11.4% in the fixed designs.,Do not report the legacy tiered surrogate endpoint as exact.
+C4,No NONCOMPOSABLE outcomes,INVALIDATED,Exact H0 truth,QMC 0.427246; MC 0.436600,Composite minimal blockers are retained as a primary endpoint.,Do not set NONCOMPOSABLE to zero by failure-only semantics.
+C5,KAPPA blocker-cardinality PMF,SUPPORTED,Exact QMC/MC summaries,"Reported for KAPPA=0,1,2,3,4,NULL",KAPPA is the minimum exact blocker size or NULL.,Do not infer KAPPA from proper-stability counts.
+C6,eta_H4 is a proper alpha margin,INVALIDATED,Exact eta stratum,128 exact rows; median eta 0.111537; minimum local sigma 0.294663,Corrected eta is min_i sigma_min(I+Q_(H4\i)(s_H)) on the exact stratum.,Do not call eta a physical robust radius.
+C7,Morris/Sobol are exact sensitivities,NOT_SUPPORTED,Provenance audit,Morris approximate; Sobol surrogate-based,Use only as sensitivity-screen provenance.,Do not promote either to exact causal sensitivity evidence.
+C8,g-star is a physical robustness radius,INVALIDATED,g-star provenance,Local exact-H4 phase boundary only,Use g-star as a local phase-boundary diagnostic.,Do not call g-star a physical uncertainty radius.

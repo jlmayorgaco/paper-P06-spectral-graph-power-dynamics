@@ -1,0 +1,17 @@
+endpoint,truth,legacy,n_conditions,interpretation
+H4_UNSTABLE,False,False,136,alpha_EM sign comparison
+H4_UNSTABLE,False,True,0,alpha_EM sign comparison
+H4_UNSTABLE,True,False,0,alpha_EM sign comparison
+H4_UNSTABLE,True,True,290,alpha_EM sign comparison
+H4_PRESENT,False,False,136,legacy flag is non-minimal or semantically mismatched
+H4_PRESENT,False,True,156,legacy flag is non-minimal or semantically mismatched
+H4_PRESENT,True,False,0,legacy flag is non-minimal or semantically mismatched
+H4_PRESENT,True,True,134,legacy flag is non-minimal or semantically mismatched
+EXACT_H4,False,False,292,legacy flag is non-minimal or semantically mismatched
+EXACT_H4,False,True,0,legacy flag is non-minimal or semantically mismatched
+EXACT_H4,True,False,0,legacy flag is non-minimal or semantically mismatched
+EXACT_H4,True,True,134,legacy flag is non-minimal or semantically mismatched
+NONCOMPOSABLE,False,False,168,legacy flag is non-minimal or semantically mismatched
+NONCOMPOSABLE,False,True,0,legacy flag is non-minimal or semantically mismatched
+NONCOMPOSABLE,True,False,258,legacy flag is non-minimal or semantically mismatched
+NONCOMPOSABLE,True,True,0,legacy flag is non-minimal or semantically mismatched

@@ -1,0 +1,8 @@
+claim_id,status,evidence,scope
+R1,PASS,TX4_ROBUSTNESS_MASTER_CONDITIONS.csv; frozen exact P4 closure,nominal exact H4
+R2,BOUNDED_BOX_WITH_SURROGATE_PROPER,TX4_QMC_SUMMARY.csv; TX4_MC_SUMMARY.csv,engineering box only
+R3,BOUNDED_BOX_WITH_SURROGATE_PROPER,TX4_QMC_SUMMARY.csv; TX4_MC_SUMMARY.csv,engineering box only
+R4,NOT_CLAIMED,TX4_ROBUSTNESS_DEVIATIONS.md,no physical robust radius
+R5,NOT_CLAIMED,TX4_JULIA_CROSSCODE_RANDOM.csv,random Julia spot-check not executed
+R6,NOT_CLAIMED,TX4_ROBUSTNESS_DEVIATIONS.md,no EMT/current-limit/hardware claim
+R7,NOMINAL_ONLY,TX4_JULIA_CROSSCODE_RANDOM.csv,16 nominal cross-code rows; 16 random slots not executed

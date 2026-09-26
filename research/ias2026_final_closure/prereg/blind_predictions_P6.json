@@ -1,0 +1,130 @@
+{
+  "protocol": "P6 blind holdout v1",
+  "seed": 20260919,
+  "ordering": "lexicographic portfolio key",
+  "discovery_portfolios": [
+    "30",
+    "30+33",
+    "30+33+35",
+    "30+33+35+37",
+    "30+33+37",
+    "30+35",
+    "30+35+37",
+    "30+37",
+    "33",
+    "33+35",
+    "33+35+37",
+    "33+37"
+  ],
+  "holdout_portfolios": [
+    "35",
+    "35+37",
+    "37",
+    "none"
+  ],
+  "prediction_rule": "majority stable label on discovery split; linear count-only roots fitted on discovery split",
+  "known_branch_repairs_excluded": [
+    0,
+    1,
+    13,
+    43
+  ],
+  "predictions": {
+    "30": {
+      "split": "discovery",
+      "predicted_stable": true,
+      "predicted_alpha_transverse": -0.11033110731291601,
+      "predicted_critical_frequency_hz": 0.06829526503445234
+    },
+    "30+33": {
+      "split": "discovery",
+      "predicted_stable": true,
+      "predicted_alpha_transverse": -0.12191666029720888,
+      "predicted_critical_frequency_hz": 0.04395732130796769
+    },
+    "30+33+35": {
+      "split": "discovery",
+      "predicted_stable": true,
+      "predicted_alpha_transverse": -0.13350221328150175,
+      "predicted_critical_frequency_hz": 0.019619377581483036
+    },
+    "30+33+35+37": {
+      "split": "discovery",
+      "predicted_stable": true,
+      "predicted_alpha_transverse": -0.14508776626579464,
+      "predicted_critical_frequency_hz": -0.004718566145001615
+    },
+    "30+33+37": {
+      "split": "discovery",
+      "predicted_stable": true,
+      "predicted_alpha_transverse": -0.13350221328150175,
+      "predicted_critical_frequency_hz": 0.019619377581483036
+    },
+    "30+35": {
+      "split": "discovery",
+      "predicted_stable": true,
+      "predicted_alpha_transverse": -0.12191666029720888,
+      "predicted_critical_frequency_hz": 0.04395732130796769
+    },
+    "30+35+37": {
+      "split": "discovery",
+      "predicted_stable": true,
+      "predicted_alpha_transverse": -0.13350221328150175,
+      "predicted_critical_frequency_hz": 0.019619377581483036
+    },
+    "30+37": {
+      "split": "discovery",
+      "predicted_stable": true,
+      "predicted_alpha_transverse": -0.12191666029720888,
+      "predicted_critical_frequency_hz": 0.04395732130796769
+    },
+    "33": {
+      "split": "discovery",
+      "predicted_stable": true,
+      "predicted_alpha_transverse": -0.11033110731291601,
+      "predicted_critical_frequency_hz": 0.06829526503445234
+    },
+    "33+35": {
+      "split": "discovery",
+      "predicted_stable": true,
+      "predicted_alpha_transverse": -0.12191666029720888,
+      "predicted_critical_frequency_hz": 0.04395732130796769
+    },
+    "33+35+37": {
+      "split": "discovery",
+      "predicted_stable": true,
+      "predicted_alpha_transverse": -0.13350221328150175,
+      "predicted_critical_frequency_hz": 0.019619377581483036
+    },
+    "33+37": {
+      "split": "discovery",
+      "predicted_stable": true,
+      "predicted_alpha_transverse": -0.12191666029720888,
+      "predicted_critical_frequency_hz": 0.04395732130796769
+    },
+    "35": {
+      "split": "holdout",
+      "predicted_stable": true,
+      "predicted_alpha_transverse": -0.11033110731291601,
+      "predicted_critical_frequency_hz": 0.06829526503445234
+    },
+    "35+37": {
+      "split": "holdout",
+      "predicted_stable": true,
+      "predicted_alpha_transverse": -0.12191666029720888,
+      "predicted_critical_frequency_hz": 0.04395732130796769
+    },
+    "37": {
+      "split": "holdout",
+      "predicted_stable": true,
+      "predicted_alpha_transverse": -0.11033110731291601,
+      "predicted_critical_frequency_hz": 0.06829526503445234
+    },
+    "none": {
+      "split": "holdout",
+      "predicted_stable": true,
+      "predicted_alpha_transverse": -0.09874555432862313,
+      "predicted_critical_frequency_hz": 0.09263320876093699
+    }
+  }
+}

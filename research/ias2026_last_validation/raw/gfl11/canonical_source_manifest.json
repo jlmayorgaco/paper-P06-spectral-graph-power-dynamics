@@ -1,0 +1,39 @@
+{
+  "canonical_root": "C:/w/tx4modalaudit",
+  "canonical_commit": "9968de794d94a2007fdac829250d8125fb3da71d",
+  "source": {
+    "path": "reports/poster/ias2026/research/src/ibr_cycles/models/ieee39_devices.py",
+    "snapshot": "raw/gfl11/canonical_source/ieee39_devices.py",
+    "sha256": "bcf0c76be65b171b580684065cde4eb88d0433c6b4d7beefec966f8711036d90",
+    "class": "GridFollowingConverter",
+    "functions": [
+      "derivatives",
+      "injection",
+      "initialize"
+    ]
+  },
+  "specification": {
+    "path": "reports/poster/ias2026/research/docs/20260911_GFL_REPRODUCTION_SPEC.md",
+    "snapshot": "raw/gfl11/canonical_source/20260911_GFL_REPRODUCTION_SPEC.md",
+    "sha256": "fcb5aa3309db7069f8ddb3248061b24b8f97c0ca0405e657f1dee4bfdfff3a85",
+    "section": "4.2"
+  },
+  "snapshot_policy": "byte-for-byte copy of the canonical worktree source and written specification; no generated final paper/poster PDFs included",
+  "canonical_evaluation": {
+    "runner": "src/python/run_p1_canonical.py",
+    "oracle_input": "raw/gfl11/p1_python_oracle.csv",
+    "cases": 64,
+    "class": "GridFollowingConverter",
+    "function_set": [
+      "derivatives",
+      "injection",
+      "initialize"
+    ],
+    "n_states": 11,
+    "max_derivative_relative_error": 2.790545572395331e-13,
+    "max_terminal_current_relative_error": 0.0,
+    "max_system_base_power_relative_error": 2.220446049250313e-16,
+    "max_initialization_relative_error": 1.1102230246251565e-16,
+    "status": "PASS"
+  }
+}

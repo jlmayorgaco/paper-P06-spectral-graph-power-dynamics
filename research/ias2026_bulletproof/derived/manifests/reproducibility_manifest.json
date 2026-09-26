@@ -1,0 +1,37 @@
+{
+  "campaign": "IAS2026_BULLETPROOF_CLOSURE",
+  "branch": "research/ias2026-bulletproof-closure-v1",
+  "starting_head": "b9f274e241a793bd2694d488f6e53c9aca6e6ac5",
+  "status": "corrective audit in progress; final bundle not authorized",
+  "executed": [
+    "gate0",
+    "theory-tests",
+    "powerdynamics-ieee39-gate-a",
+    "p1-gfl11-device-parity"
+  ],
+  "not_tested": [
+    "p2 V4 census",
+    "p3 collective mechanism",
+    "p4 Julia TDS",
+    "p5 second converter model",
+    "p6 blind holdout",
+    "physical robust radius",
+    "EMT/current-limit/DC-link"
+  ],
+  "labels": [
+    "PROVED",
+    "NUMERICALLY_VERIFIED",
+    "IEEE39_VALIDATED",
+    "POWERDYNAMICS_VALIDATED",
+    "SECOND_MODEL_VALIDATED",
+    "NONLINEAR_TDS_VALIDATED",
+    "SYNTHETIC_PILOT",
+    "CONSTRUCTED_COUNTEREXAMPLE",
+    "RETROSPECTIVE",
+    "BLIND_HOLDOUT",
+    "NOT_TESTED",
+    "REFUTED",
+    "UNRESOLVED",
+    "STOPPED_BY_GATE"
+  ]
+}

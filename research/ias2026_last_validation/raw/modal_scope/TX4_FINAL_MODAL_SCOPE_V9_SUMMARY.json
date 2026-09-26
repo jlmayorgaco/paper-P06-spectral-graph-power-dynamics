@@ -1,0 +1,12 @@
+{
+  "global_n": 512,
+  "global_false_safe": 110,
+  "em_n": 512,
+  "em_false_safe": 1,
+  "em_false_unstable": 0,
+  "taxonomy_counts": {
+    "APERIODIC_REAL": 110
+  },
+  "slow_false_safe_count": 0,
+  "slow_selection_rule": "all global false-safe cases with 0 < f_global < 0.3 Hz"
+}

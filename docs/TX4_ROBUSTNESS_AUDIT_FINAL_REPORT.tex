@@ -1,0 +1,23 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{booktabs}
+\title{TX4 Robustness Statistics Audit - Final Report}
+\author{IAS2026 Vancouver corrected bundle}
+\date{2026-09-20}
+\begin{document}
+\maketitle
+\section{Executive verdict}
+Case B. The exact reduced-DAE instability benchmark remains strong, while corrected minimality is smaller and composite blockers are common. The surrogate strict gate failed, so exact all-16 QMC/MC recomputation was completed.
+\section{Definitions}
+For each condition, $U_0={S: alpha_{EM}(S,c)\geq 0}$ and $H_0$ is its inclusion-minimal antichain. H4\_UNSTABLE, H4\_PRESENT, EXACT\_H4, NONCOMPOSABLE, and KAPPA are computed from $U_0$ and $H_0$.
+\section{Exact results}
+QMC H4 instability coverage is 0.577881; H4_PRESENT and EXACT_H4 coverage are 0.113770; NONCOMPOSABLE coverage is 0.427246. MC values are 0.581400, 0.115400, 0.115400, and 0.436600, respectively, with Wilson intervals in the machine-readable tables.
+\section{Surrogate validation}
+The reconstructed surrogate has 18 false-minimal and 14 missed-minimal conditions, exact-H4 agreement 0.924883, and H0-antichain exact match 0.701878. It is not used for primary minimality.
+\section{Continuous diagnostics}
+The QMC and MC true-minimality medians are -0.085269 and -0.084810 s$^{-1}$; the MC BCa 95 percent interval is [-0.088820,-0.081605]. The exact 128-row eta stratum has median eta 0.111537 and minimum local sigma 0.294663.
+\section{Scope and limitations}
+QMC values are fixed-design coverage fractions. MC values are assumed bounded-box probabilities with independent uniform coordinates. g-star is a local phase boundary, not a physical robust radius. No U005/H005 threshold was invented. No EMT, hardware, universal IEEE-39, or physical uncertainty claim is established.
+\section{Final gate}
+All 32 invariant checks PASS. No push was performed. The original robustness branch and frozen exact worktree are unchanged.
+\end{document}

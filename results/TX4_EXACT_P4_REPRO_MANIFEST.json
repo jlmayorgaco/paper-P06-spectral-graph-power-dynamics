@@ -1,0 +1,187 @@
+{
+  "bundle": "TX4_EXACT_P4_JULIA_REPRO",
+  "git_branch": "research/tx4-exact-p4-julia-reproduction",
+  "git_commit_at_manifest": "02fad7f88cbb63f1383e70f10fc33ee636f4026a",
+  "python_version": "3.13.14",
+  "julia_version": "julia version 1.11.9",
+  "policy": {
+    "g": 0.03625,
+    "k": 1.425,
+    "t": 1.5,
+    "h": 1.0
+  },
+  "gfl_states": 11,
+  "target_buses": [
+    30,
+    33,
+    35,
+    37
+  ],
+  "files": [
+    {
+      "path": "code/tx4/campaign_root.jl",
+      "bytes": 1098,
+      "sha256": "9fe1b6aeb219b43f97461a8fe2e590424cae031c3f312095f033c09f4a4eaf0f"
+    },
+    {
+      "path": "code/tx4/campaign_root.py",
+      "bytes": 1173,
+      "sha256": "5824b14d3aa365b85a234413220eeddda4ed1adb47f4962e628b1161fbd0158e"
+    },
+    {
+      "path": "code/tx4/compare_tx4_exact.py",
+      "bytes": 9945,
+      "sha256": "6f71d48fa206dfd4433dd7a78d338a649f5546d462f27e5c04ec46dca4379b6a"
+    },
+    {
+      "path": "code/tx4/frozen_ieee39_data.jl",
+      "bytes": 5811,
+      "sha256": "1552cda3f08b4bb9a408baf22150d0295e6b75fa98faff289caee2a66771b8b2"
+    },
+    {
+      "path": "code/tx4/make_tx4_figures.py",
+      "bytes": 4641,
+      "sha256": "296637d1d170843c159414bb92608e92303922108966c524eb5be9da6d2177ae"
+    },
+    {
+      "path": "code/tx4/package_tx4_bundles.py",
+      "bytes": 2921,
+      "sha256": "ce623b14d429f89e5edc48bdaa1ea2499c9cfaa663fe85c7c62bd7bd93d1ef66"
+    },
+    {
+      "path": "code/tx4/run_tx4_device_parity.jl",
+      "bytes": 1057,
+      "sha256": "8989290799b9eba7452806d5bc2cc935d6179bfd125e65ae4f9b995930a2835d"
+    },
+    {
+      "path": "code/tx4/run_tx4_device_parity.py",
+      "bytes": 1438,
+      "sha256": "4713b668270434d187474e2aa5ee2f68e0c7fc2d5e5eba544a0ef7a18b1c612f"
+    },
+    {
+      "path": "code/tx4/run_tx4_exact_p4_ieee39.jl",
+      "bytes": 17340,
+      "sha256": "f027ec66c43a40f65d77dc0b4c1f0707166c2bbde0d7c75e0ddcc4436b02d420"
+    },
+    {
+      "path": "code/tx4/run_tx4_exact_p4_python.py",
+      "bytes": 5135,
+      "sha256": "b206a1deb62645cbd6796e54dcda0b3021371dbfbae76d9b1bee26c090ca7c39"
+    },
+    {
+      "path": "code/tx4/write_tx4_manifest.py",
+      "bytes": 2158,
+      "sha256": "44becd1707c391355687ff023794c3fa3e0df9a969750dc2aa1ca4766d150253"
+    },
+    {
+      "path": "deliverables/TX4_EXACT_P4_JULIA_FINAL_REPORT.pdf",
+      "bytes": 481097,
+      "sha256": "fbe6c3621547f80da3a33f79ca58ea5787f4e22732d5e662ab2f0ced588c6b51"
+    },
+    {
+      "path": "deliverables/TX4_EXACT_P4_JULIA_FINAL_REPORT.tex",
+      "bytes": 4422,
+      "sha256": "e1c715e553a0c162b68fad9fcfe6eef5f3995587bf55afaf961ac6f660a822e1"
+    },
+    {
+      "path": "docs/TX4_EXACT_P4_JULIA_CLAIMS_V0.csv",
+      "bytes": 1055,
+      "sha256": "78125c28ed0abb19d58909b1497a824007f5a632dec17de1271254fba31135c3"
+    },
+    {
+      "path": "docs/TX4_EXACT_P4_JULIA_CURRENT_STATE.md",
+      "bytes": 1925,
+      "sha256": "eb312d95592a06cf728f797d92fe20890c4277d46f4a575eb1886e8f735543aa"
+    },
+    {
+      "path": "docs/TX4_EXACT_P4_JULIA_DEVIATIONS.md",
+      "bytes": 617,
+      "sha256": "020dd85226531775bf7c4431d2a724401839ab45a12f671710fb665a5c94dd0c"
+    },
+    {
+      "path": "docs/TX4_EXACT_P4_JULIA_EXECUTION_PLAN.md",
+      "bytes": 1340,
+      "sha256": "4979522932534188269380a1998e0d793ce088f8368b6ff42e3b89dc925cff70"
+    },
+    {
+      "path": "docs/TX4_EXACT_P4_JULIA_PREREG.md",
+      "bytes": 2201,
+      "sha256": "d96eb35ee58991051376204ce1acbfaa31607d9e03f7fa89415353874ac9d244"
+    },
+    {
+      "path": "docs/TX4_GFL11_PYTHON_VS_JULIA_EQUATION_AUDIT.md",
+      "bytes": 2283,
+      "sha256": "433a36d9a706debcb7bafbb3c95a91795436a63b488ed61a98ce295a5729a939"
+    },
+    {
+      "path": "docs/TX4_P4_SG_POLICY_AUDIT.md",
+      "bytes": 1500,
+      "sha256": "2331a0cf3d846c78aec7c07d094fb2b67eba9b81304722b7049a2193a49b672b"
+    },
+    {
+      "path": "figures/TX4_F1_ALPHA_CROSSCODE.png",
+      "bytes": 74070,
+      "sha256": "b396372ae08cc31076f0e54b014375520b6cc0bc236a99f9d5ca4014135d9c42"
+    },
+    {
+      "path": "figures/TX4_F2_FREQUENCY_CROSSCODE.png",
+      "bytes": 72696,
+      "sha256": "6a258fe208eeb6d71f75c6846b0c6d2ca1fe108c8b51dc077931a6cfd9ddd4a3"
+    },
+    {
+      "path": "figures/TX4_F3_H4_VOLTAGE_MODE.png",
+      "bytes": 144069,
+      "sha256": "3af5791d06a074872d82c06e036e96b5bc770f81e60b178427f7f8024111dc37"
+    },
+    {
+      "path": "figures/TX4_F4_STATE_COUNTS.png",
+      "bytes": 37620,
+      "sha256": "6b0a6e9986195f30900ba24fb7a26ec55fb835654cea04867ef98e5336220515"
+    },
+    {
+      "path": "reports/TX4_EXACT_P4_JULIA_FINAL_REPORT.md",
+      "bytes": 3084,
+      "sha256": "d735e3eeb1690f692f14ea49992fd3c57745d249eca2ae3073ac8b75d6272510"
+    },
+    {
+      "path": "reports/TX4_EXACT_P4_JULIA_HANDOFF.md",
+      "bytes": 1269,
+      "sha256": "ed6c1384d5417e2b390eb15f1e7feb67c9ddb48b62c2ede4e1fd3672e54d2e99"
+    },
+    {
+      "path": "results/TX4_EXACT_P4_ALLSG_PARITY.csv",
+      "bytes": 340,
+      "sha256": "75505dff22d1a931f3d4044c6f9118f9da1f4a2fab93bc5b92c76181635880ce"
+    },
+    {
+      "path": "results/TX4_EXACT_P4_CLAIMS.csv",
+      "bytes": 333,
+      "sha256": "238d3942d11d983d6affa136904b78ce0ac1d984264c534b89dabe6e0f669657"
+    },
+    {
+      "path": "results/TX4_EXACT_P4_HEADLINE.json",
+      "bytes": 2081,
+      "sha256": "0579c0f46ab7bfa2b06d68bacdf6cf9da503d44e738259f414c170d978446653"
+    },
+    {
+      "path": "results/TX4_EXACT_P4_MODE_MATCH.csv",
+      "bytes": 197,
+      "sha256": "dccf6a70fdffdc079dad1785e092f1ee90ca050f498f33db19e639d53ad788d5"
+    },
+    {
+      "path": "results/TX4_EXACT_P4_STATE_COUNTS.csv",
+      "bytes": 115,
+      "sha256": "a51d230528f1ae57a6953141e4d0ccde3d5903063918d9f0d678da3cfa411756"
+    },
+    {
+      "path": "results/TX4_EXACT_P4_V4_CROSSCODE.csv",
+      "bytes": 5313,
+      "sha256": "0e95de4775aa2395b288f93366a1f1a8038e151128a47f4186f9c8467aff713d"
+    },
+    {
+      "path": "results/TX4_GFL11_DEVICE_PARITY.csv",
+      "bytes": 723,
+      "sha256": "ab7777059bf5166f59a45a045bb4e8464daacf49a56b6299865982e27a7db510"
+    }
+  ]
+}
