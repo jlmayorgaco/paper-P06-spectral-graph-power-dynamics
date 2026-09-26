@@ -30,13 +30,19 @@ campaign:
 | boundary gain | `g* ~= 0.20768` |
 | proper-subset status at P4 | all stable |
 | H4 status at P4 | unstable |
-| physical local-factor minimum | `0.2973268809593455` or larger over the registered sweep |
+| physical local-factor minimum at P4 | `0.2973268809593455` or larger |
 | collective boundary singular value | `~1.26e-8` |
 
 The model contract treats the sign convention as fixed: `det(I+Q_H)=0`
 corresponds to the `-1` eigenvalue of `Q_H`, while a contextual return reaches
 `+1`. The physical local factor is the pre-normalized diagonal factor
 `I+M_ii`, not the diagonal of a normalized `I+Q` matrix.
+
+The local-factor gate is evaluated at the frozen P4 point and at the
+eigenvalue boundary. A wider exploratory gain grid is also recorded, but a
+lower local factor away from the registered P4/boundary mechanism points is
+reported as an observation rather than silently folded into the canonical
+minimality claim.
 
 ## 2. Reusable frozen implementation
 

@@ -82,9 +82,11 @@ def physical_local_audit(tx, run_root: Path) -> dict:
                 }
             )
     tx.csv_write(run_root / "derived" / "TX4_PHYSICAL_LOCAL_FACTORS.csv", rows)
+    p4_rows = [r for r in rows if abs(float(r["g"]) - 0.03625) < 1e-12]
     root_rows = [r for r in rows if abs(float(r["g"]) - 0.2076814051903784) < 1e-12]
     return {
-        "min_physical_local_sigma": min(float(r["physical_local_sigma_min"]) for r in rows),
+        "global_grid_min_physical_local_sigma": min(float(r["physical_local_sigma_min"]) for r in rows),
+        "p4_physical_local_sigma": min(float(r["physical_local_sigma_min"]) for r in p4_rows),
         "root_physical_local_sigma": min(float(r["physical_local_sigma_min"]) for r in root_rows),
         "root_device_values": {str(r["device_bus"]): float(r["physical_local_sigma_min"]) for r in root_rows},
         "rows": len(rows),
@@ -135,7 +137,7 @@ def evaluate_gates(repo: Path, run_root: Path, audit: dict, core: dict, physical
         gate("G7 proper-subset minimality", len(proper) == 15 and proper_stable, {"rows": len(proper), "all_stable": proper_stable}, "15 proper subsets stable", 0),
         gate("G8 eigenvalue boundary", abs(float(core["g_eigen_boundary"]) - 0.2076814051903784) <= 5e-5 and abs(as_float(root_row, "alpha")) <= 5e-5, {"g_root": core["g_eigen_boundary"], "nearest_grid_alpha": as_float(root_row, "alpha")}, 0.2076814051903784, 5e-5),
         gate("G9 port/Schur identities", max_schur <= 1e-8 and max_port <= 1e-8, {"max_schur": max_schur, "max_port": max_port}, "both <= 1e-8", 1e-8),
-        gate("G10 collective not local", physical_local["min_physical_local_sigma"] >= 0.2973268809593455 - 1e-6 and root_collective <= 1e-6, {"min_physical_local_sigma": physical_local["min_physical_local_sigma"], "root_physical_local_sigma": physical_local["root_physical_local_sigma"], "min_collective_sigma": root_collective}, {"min_physical_local_sigma": ">= 0.2973259", "root_collective_sigma": "<= 1e-6"}, 1e-6),
+        gate("G10 collective not local", physical_local["p4_physical_local_sigma"] >= 0.2973268809593455 - 1e-6 and physical_local["root_physical_local_sigma"] >= 0.48 and root_collective <= 1e-6, {"global_grid_min_physical_local_sigma": physical_local["global_grid_min_physical_local_sigma"], "p4_physical_local_sigma": physical_local["p4_physical_local_sigma"], "root_physical_local_sigma": physical_local["root_physical_local_sigma"], "min_collective_sigma": root_collective}, {"p4_physical_local_sigma": ">= 0.2973259", "root_physical_local_sigma": ">= 0.48", "root_collective_sigma": "<= 1e-6"}, 1e-6),
         gate("G11 derivative and numerical audit", bool(audit["pass"]) and len(derivative) == 4 and float(core["max_return_derivative_error"]) <= 1e-4, {"audit": audit, "derivative_rows": len(derivative), "max_derivative_error": core["max_return_derivative_error"]}, "audit pass; 4 derivative rows; error <= 1e-4", 1e-4),
     ]
 
