@@ -57,7 +57,41 @@ def gate(name: str, passed: bool, observed: object, expected: object, tolerance:
     }
 
 
-def evaluate_gates(repo: Path, run_root: Path, audit: dict, core: dict) -> list[dict]:
+def physical_local_audit(tx, run_root: Path) -> dict:
+    """Measure pre-normalized physical factors I+M_ii."""
+
+    import numpy as np
+
+    base = tx.tx4_case((), tx.Theta(g=0.0, k=1.425, t=1.5, h=1.0))
+    rows = []
+    gains = [*tx.G_GRID, 0.2076814051903784]
+    for g in gains:
+        case = tx.tx4_case(tx.CORE, tx.Theta(g=float(g), k=1.425, t=1.5, h=1.0))
+        mode = tx.mode_of(case)
+        space = tx.build_action_space(base, case, tx.CORE)
+        total = np.eye(2 * space.order, dtype=complex) + space.m(1j * mode.eig.imag)
+        for i, bus in enumerate(tx.CORE):
+            block = space.block(total, i, i)
+            sigma = float(np.linalg.svd(block, compute_uv=False)[-1])
+            rows.append(
+                {
+                    "g": float(g),
+                    "device_bus": int(bus),
+                    "frequency_hz": float(mode.frequency_hz),
+                    "physical_local_sigma_min": sigma,
+                }
+            )
+    tx.csv_write(run_root / "derived" / "TX4_PHYSICAL_LOCAL_FACTORS.csv", rows)
+    root_rows = [r for r in rows if abs(float(r["g"]) - 0.2076814051903784) < 1e-12]
+    return {
+        "min_physical_local_sigma": min(float(r["physical_local_sigma_min"]) for r in rows),
+        "root_physical_local_sigma": min(float(r["physical_local_sigma_min"]) for r in root_rows),
+        "root_device_values": {str(r["device_bus"]): float(r["physical_local_sigma_min"]) for r in root_rows},
+        "rows": len(rows),
+    }
+
+
+def evaluate_gates(repo: Path, run_root: Path, audit: dict, core: dict, physical_local: dict) -> list[dict]:
     derived = run_root / "derived"
     truth = read_csv(derived / "TX4_CONTEXTUAL_RETURN_NUMERICAL_TRUTH.csv")
     proper = read_csv(derived / "TX4_PROPER_SUBSET_CLOSURE.csv")
@@ -84,7 +118,6 @@ def evaluate_gates(repo: Path, run_root: Path, audit: dict, core: dict) -> list[
     max_eig_error = max(as_float(r, "numpy_scipy_eig_error") for r in truth)
     max_schur = max(as_float(r, "return_schur_residual_max") for r in sweep)
     max_port = max(as_float(r, "port_identity_residual") for r in sweep)
-    min_local = min(as_float(r, "local_sigma_min") for r in sweep)
     root_collective = min(as_float(r, "collective_sigma_min") for r in sweep)
     proper_stable = all(r["stable"].lower() == "true" for r in proper)
     hash_pass = all(v["match"] for v in source_hashes.values())
@@ -102,7 +135,7 @@ def evaluate_gates(repo: Path, run_root: Path, audit: dict, core: dict) -> list[
         gate("G7 proper-subset minimality", len(proper) == 15 and proper_stable, {"rows": len(proper), "all_stable": proper_stable}, "15 proper subsets stable", 0),
         gate("G8 eigenvalue boundary", abs(float(core["g_eigen_boundary"]) - 0.2076814051903784) <= 5e-5 and abs(as_float(root_row, "alpha")) <= 5e-5, {"g_root": core["g_eigen_boundary"], "nearest_grid_alpha": as_float(root_row, "alpha")}, 0.2076814051903784, 5e-5),
         gate("G9 port/Schur identities", max_schur <= 1e-8 and max_port <= 1e-8, {"max_schur": max_schur, "max_port": max_port}, "both <= 1e-8", 1e-8),
-        gate("G10 collective not local", min_local >= 0.2973268809593455 - 1e-6 and root_collective <= 1e-6, {"min_local_sigma": min_local, "min_collective_sigma": root_collective}, {"min_local_sigma": ">= 0.2973259", "root_collective_sigma": "<= 1e-6"}, 1e-6),
+        gate("G10 collective not local", physical_local["min_physical_local_sigma"] >= 0.2973268809593455 - 1e-6 and root_collective <= 1e-6, {"min_physical_local_sigma": physical_local["min_physical_local_sigma"], "root_physical_local_sigma": physical_local["root_physical_local_sigma"], "min_collective_sigma": root_collective}, {"min_physical_local_sigma": ">= 0.2973259", "root_collective_sigma": "<= 1e-6"}, 1e-6),
         gate("G11 derivative and numerical audit", bool(audit["pass"]) and len(derivative) == 4 and float(core["max_return_derivative_error"]) <= 1e-4, {"audit": audit, "derivative_rows": len(derivative), "max_derivative_error": core["max_return_derivative_error"]}, "audit pass; 4 derivative rows; error <= 1e-4", 1e-4),
     ]
 
@@ -119,7 +152,7 @@ def write_report(run_root: Path, summary: dict, gates: list[dict], manifest: dic
         f"Campaign status: **{status}**.\n\n"
         "## Safe claims\n\n"
         "- The reported values come from the frozen active Python TX4 path and are routed to this run root.\n"
-        "- The H4 P4 mode, proper-subset minimality, collective boundary, local factors, Schur identity, and root-motion derivative are gated by G0--G11 below.\n\n"
+        "- The H4 P4 mode, proper-subset minimality, collective boundary, pre-normalized physical local factors, Schur identity, and root-motion derivative are gated by G0--G11 below.\n\n"
         "## Unsafe claims\n\n"
         "- This run does not establish equivalence with the historical PowerDynamics TDS alternative model.\n"
         "- It does not justify a global stability claim outside the registered transverse frequency band or beyond the frozen IEEE-39/P4 contract.\n\n"
@@ -159,7 +192,8 @@ def main() -> int:
     tx.OUT.mkdir(parents=True, exist_ok=True)
     audit = tx.audit_cases()
     core = tx.sweep_and_tables()
-    summary = {"audit": audit, "core": core}
+    physical_local = physical_local_audit(tx, run_root)
+    summary = {"audit": audit, "core": core, "physical_local": physical_local}
     (run_root / "claims" / "tx4_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
 
     source_hashes = {}
@@ -180,7 +214,7 @@ def main() -> int:
         "source_hashes": source_hashes,
         "output_policy": "all generated files are beneath this immutable run root; no zip is produced",
     }
-    gates = evaluate_gates(repo, run_root, audit, core)
+    gates = evaluate_gates(repo, run_root, audit, core, physical_local)
     write_report(run_root, summary, gates, manifest)
     print(json.dumps({"status": "PASS" if all(g["status"] == "PASS" for g in gates) else "BLOCKED", "run_root": str(run_root), "gates": gates}, indent=2))
     return 0 if all(g["status"] == "PASS" for g in gates) else 2
