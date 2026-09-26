@@ -1,0 +1,58 @@
+{
+  "model_version": "ieee68_sp33_pstprimary_v1",
+  "purpose": "Documented primary-frequency dynamics (turbine governors, machine damping) for the Singh & Pal (2013) v3.3 IEEE 68-bus benchmark, which itself ignores governors and sets D = 0.",
+  "sources": {
+    "pst_data16m": {
+      "file": "code/Supporting_files/data16m.m",
+      "repository": "https://github.com/pnnl/GridSTAGE (PNNL, BSD-style licence, see inputs/source_excerpts/gridstage_LICENSE.txt)",
+      "sha256": "c16e78f4e6db3dae5a5b59efda51811c2ed3797bc0ef3d3919795745b39c5f82",
+      "description": "Power System Toolbox (Chow & Rogers) 16-machine, 68-bus data file; same system and the same scheduled generation as Singh & Pal v3.3 (P = 2.50, 5.45, 6.50, 6.32, 5.052, 7.00, 5.60, 5.40, 8.00, 5.00, 10.00, 13.50, 35.91, 17.85, 10.00 pu, slack 40.00); generator buses numbered 53-68 instead of 1-16; machine electrical data differ from v3.3 (GE 1981 source).",
+      "used": ["mac_con column 3 (machine MVA rating)", "mac_con column 17 (d_o, damping, pu on machine base)", "tg_con block (commented out in the file, 'tg_con = [];' follows it)"]
+    },
+    "pst_tg_model": {
+      "file": "pstess/tg.m",
+      "repository": "https://github.com/sandialabs/snl-pstess (Sandia, MIT-style licence, see inputs/source_excerpts/pstess_LICENSE.txt)",
+      "sha256": "c15840219e6d2998199e054e15fc146f7a14a37292ccc08dc7477ef93cb52e24",
+      "equations": "demand = Pref + (wref - w)/R;  Ts dtg1/dt = demand - tg1;  Tc dtg2/dt = (1 - T3/Tc) tg1 - tg2;  T5 dtg3/dt = (tg2 + (T3/Tc) tg1)(1 - T4/T5) - tg3;  Pm = tg3 + (T4/T5)(tg2 + (T3/Tc) tg1); demand limited to [0, Tmax] (not active at any small-signal equilibrium). Initialization tg1 = Pm0, tg2 = (1 - T3/Tc) Pm0, tg3 = (1 - T4/T5) Pm0, Pref = Pm0."
+    },
+    "singh_pal_v33": "Singh & Pal (2013), IEEE PES TF Benchmark report v3.3: governors ignored, mechanical torque constant, D = 0 (configs/ieee68/G3_preregistration.yaml)."
+  },
+  "governor": {
+    "model": "PST tg model 1 (simplified steam turbine with reheat)",
+    "per_machine": "identical for all 16 machines in the documented block",
+    "wf": 1.0,
+    "inv_R_pu_machine_base": 25.0,
+    "Tmax_pu_machine_base": 100.0,
+    "Ts": 0.1,
+    "Tc": 0.5,
+    "T3": 0.0,
+    "T4": 1.25,
+    "T5": 5.0
+  },
+  "machines": [
+    {"sp_idx": 1, "sp_bus": 1, "pst_bus": 53, "rating_mva": 300, "pst_d0": 0.0},
+    {"sp_idx": 2, "sp_bus": 2, "pst_bus": 54, "rating_mva": 800, "pst_d0": 0.0},
+    {"sp_idx": 3, "sp_bus": 3, "pst_bus": 55, "rating_mva": 800, "pst_d0": 0.0},
+    {"sp_idx": 4, "sp_bus": 4, "pst_bus": 56, "rating_mva": 800, "pst_d0": 0.0},
+    {"sp_idx": 5, "sp_bus": 5, "pst_bus": 57, "rating_mva": 700, "pst_d0": 0.0},
+    {"sp_idx": 6, "sp_bus": 6, "pst_bus": 58, "rating_mva": 900, "pst_d0": 0.0},
+    {"sp_idx": 7, "sp_bus": 7, "pst_bus": 59, "rating_mva": 800, "pst_d0": 0.0},
+    {"sp_idx": 8, "sp_bus": 8, "pst_bus": 60, "rating_mva": 800, "pst_d0": 0.0},
+    {"sp_idx": 9, "sp_bus": 9, "pst_bus": 61, "rating_mva": 1000, "pst_d0": 0.0},
+    {"sp_idx": 10, "sp_bus": 10, "pst_bus": 62, "rating_mva": 1200, "pst_d0": 0.0},
+    {"sp_idx": 11, "sp_bus": 11, "pst_bus": 63, "rating_mva": 1600, "pst_d0": 0.0},
+    {"sp_idx": 12, "sp_bus": 12, "pst_bus": 64, "rating_mva": 1900, "pst_d0": 0.0},
+    {"sp_idx": 13, "sp_bus": 13, "pst_bus": 65, "rating_mva": 12000, "pst_d0": 4.0782},
+    {"sp_idx": 14, "sp_bus": 14, "pst_bus": 66, "rating_mva": 10000, "pst_d0": 3.0},
+    {"sp_idx": 15, "sp_bus": 15, "pst_bus": 67, "rating_mva": 10000, "pst_d0": 3.0},
+    {"sp_idx": 16, "sp_bus": 16, "pst_bus": 68, "rating_mva": 11000, "pst_d0": 4.45}
+  ],
+  "machine_mapping_rule": "PST machine i (bus 52 + i) is Singh & Pal machine i (bus i): identical scheduled active power sequence.",
+  "base_conversion": "Physical quantities are preserved: a damping or droop coefficient in pu on the PST rating becomes coefficient * rating_mva / Sn_SP on the Singh & Pal device base (Sn_SP = 100 or 200 MVA, the mac_con MVA column of v3.3). Equivalently the damping torque and the governor response are the same number of MW per pu speed deviation in both files.",
+  "variants": {
+    "REAL": "Singh & Pal v3.3 + PST governors on every surviving synchronous machine + PST damping d_o on every surviving machine (non-zero only on the area equivalents G13-G16). Confirmatory model.",
+    "NOGOV": "REAL with the governors removed (damping kept). Ablation B.",
+    "SP33": "Singh & Pal v3.3 exactly as published and validated in Gate 3: no governors, D = 0. Ablation C."
+  },
+  "replaced_units": "A replaced machine is removed with its governor and damping; the grid-following converter carries its P and Q and has no frequency response (the frozen TX4 GFL)."
+}

@@ -1,0 +1,66 @@
+{
+ "label": "deterministic stress envelopes E05 (+-5 %) and E10 (+-10 %); coverages are fractions of designed draws, not probabilities",
+ "A_E05": {
+  "n_draws": 20,
+  "frac_draws_level_D": 0.0,
+  "frac_draws_level_T": 0.0,
+  "frac_draws_level_A": 0.0,
+  "frac_draws_any_stabilizing_EM_material": 0.0,
+  "median_T_destab_material": 8.0,
+  "T_min_over_draws": -0.005537723641063086,
+  "all_portfolios_stable_frac": 1.0,
+  "alpha_max_over_draws": -0.06687386212227348,
+  "witnesses": {}
+ },
+ "A_E10": {
+  "n_draws": 20,
+  "frac_draws_level_D": 0.0,
+  "frac_draws_level_T": 0.0,
+  "frac_draws_level_A": 0.0,
+  "frac_draws_any_stabilizing_EM_material": 0.0,
+  "median_T_destab_material": 5.5,
+  "T_min_over_draws": -0.0056363389057279,
+  "all_portfolios_stable_frac": 1.0,
+  "alpha_max_over_draws": -0.06686342616577043,
+  "witnesses": {}
+ },
+ "B_E05": {
+  "n_draws": 10,
+  "frac_draws_level_D": 0.0,
+  "frac_draws_level_T": 0.0,
+  "frac_draws_level_A": 0.0,
+  "frac_draws_any_stabilizing_EM_material": 0.0,
+  "median_T_destab_material": 87.5,
+  "T_min_over_draws": -0.0009130888967014972,
+  "all_portfolios_stable_frac": 1.0,
+  "alpha_max_over_draws": -0.06687616580792229,
+  "witnesses": {}
+ },
+ "B_E10": {
+  "n_draws": 10,
+  "frac_draws_level_D": 0.0,
+  "frac_draws_level_T": 0.0,
+  "frac_draws_level_A": 0.0,
+  "frac_draws_any_stabilizing_EM_material": 0.0,
+  "median_T_destab_material": 88.5,
+  "T_min_over_draws": -0.0013822295943103913,
+  "all_portfolios_stable_frac": 1.0,
+  "alpha_max_over_draws": -0.06686297366922424,
+  "witnesses": {}
+ },
+ "A_ranking_draws": {
+  "n": 10,
+  "rho_tot_quantiles": [
+   0.9954703832752613,
+   0.9956760841274506,
+   0.9959678434994332
+  ],
+  "rho_em_posthoc_quantiles": [
+   0.9973888585701691,
+   0.9977225977079047,
+   0.998110910541119
+  ],
+  "truth_abs_max_median": 4.343863954715116e-05
+ },
+ "witness_identity_note": "the nominal reference policy has no level-D or level-T witness, so witness identity is undefined unless a draw creates one"
+}
