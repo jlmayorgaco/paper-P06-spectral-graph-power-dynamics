@@ -1,0 +1,56 @@
+% Module 6: synthetic envelope; compile this file for its own preview.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterMiddleRowHeight][t]{\PosterHalfWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterMiddleRowHeight}{6}{THE CANONICAL $H_4$ IS NOT UNIVERSAL}
+    {\Subhead\color{IASDarkGreen}Frozen synthetic envelope (\NumScenarios\ scenario IDs)\par}
+    \vspace{1mm}
+    \begin{tikzpicture}[x=0.985mm,y=1mm]
+      \fill[IASPaleGreen] (0,0) rectangle (426,17);
+      \fill[IASMidGreen] (0,0) rectangle (\ValidBarWidth,17);
+      \fill[IASVermillion] (\ValidBarWidth,0) rectangle (426,17);
+      \draw[white,line width=1pt] (\ValidBarWidth,0)--(\ValidBarWidth,17);
+      \node[font=\bfseries\fontsize{25pt}{27pt}\selectfont,text=white,align=center]
+        at (\ValidBarCenter,8.5) {\NumValidMC\ valid (\ValidScenarioPercent\%)};
+    \end{tikzpicture}\par
+    {\FigureSize\color{IASVermillion}\bfseries\NumInfeasibleMC\ infeasible (\InfeasibleScenarioPercent\%)\quad
+      \color{IASDarkText}\normalfont Fractions below use \NumValidMC\ valid IDs.\par}
+    \vspace{1mm}
+    \noindent\begin{minipage}[t]{135mm}\centering\vspace{0pt}
+      \colorbox{IASPaleGold}{\parbox[c][58mm][c]{129mm}{\centering
+        {\MetricSize\bfseries\color{IASVermillion}\BlockerPersistenceCount/\NumValidMC\par}
+        {\HeroEquation\bfseries\color{IASVermillion}\HFourMinimalPercent\%\par}
+        {\TableSize\bfseries\color{IASDarkText}$H_4$ minimal\par}}}
+    \end{minipage}\hspace{3mm}%
+    \begin{minipage}[t]{135mm}\centering\vspace{0pt}
+      \colorbox{IASPaleGreen}{\parbox[c][58mm][c]{129mm}{\centering
+        {\MetricSize\bfseries\color{IASDarkGreen}\NumCollectiveBlockerScenarios/\NumValidMC\par}
+        {\HeroEquation\bfseries\color{IASDarkGreen}\CollectiveBlockerPercent\%\par}
+        {\TableSize\bfseries\color{IASDarkText}any $V_4$ collective blocker\par}}}
+    \end{minipage}\hspace{3mm}%
+    \begin{minipage}[t]{135mm}\centering\vspace{0pt}
+      \colorbox{IASPaleGold}{\parbox[c][58mm][c]{129mm}{\centering
+        {\MetricSize\bfseries\color{IASGold!70!black}\NumAlternativeWitnessScenarios/\NumValidMC\par}
+        {\HeroEquation\bfseries\color{IASGold!70!black}\AlternativeWitnessPercent\%\par}
+        {\TableSize\bfseries\color{IASDarkText}alternative witnesses\par}}}
+    \end{minipage}\par
+    \vspace{2mm}{\TableSize\bfseries\color{IASGray}SCENARIO TOTALS: PENDING USER REVIEW\par}
+    {\FigureSize\color{IASDarkText}Descriptive synthetic ensemble; IDs are not a probability sample. H$_4$ is minimal in the audited event.}
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewHalfPageWidth}
+  \def\PosterPageHeight{\PosterPreviewMiddlePageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewHalfLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

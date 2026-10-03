@@ -1,0 +1,79 @@
+% Module 3: stable target versus safe path; compile this file for its own preview.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterTopRowHeight][t]{\PosterThreeWidth}\vspace{0pt}
+  \begin{TicketTwoPanel}{\PosterTopRowHeight}{3}{STABLE TARGET $\ne$ SAFE PATH}
+    {\FigureSize\color{IASDarkText}Three nested guarantees for a target portfolio $T$:\par}
+    \vspace{1mm}
+    \noindent\begin{minipage}[t]{\linewidth}\centering\vspace{0pt}
+      \fcolorbox{IASBlue}{white}{\parbox[c][64mm][c]{74mm}{\centering
+        {\PosterCondensed\bfseries\fontsize{42pt}{44pt}\selectfont\color{IASBlue}A\par}
+        {\PosterCondensed\TableSize\bfseries\color{IASDarkText}FINAL STATE\\STABLE\par}
+        \vspace{2mm}
+        {\fontsize{32pt}{35pt}\selectfont$\alpha_{\perp}(T,\theta)<0$}}}\hspace{0.5mm}%
+      \fcolorbox{IASGold}{IASPaleGold}{\parbox[c][64mm][c]{58mm}{\centering
+        {\PosterCondensed\bfseries\fontsize{42pt}{44pt}\selectfont\color{IASGold!70!black}B\par}
+        {\PosterCondensed\TableSize\bfseries\color{IASDarkText}SOME ORDER\\IS SAFE\par}
+        \vspace{2mm}
+        {\PosterCondensed\fontsize{30pt}{33pt}\selectfont\shortstack{Stable prefix\\chain exists}}}}\hspace{0.5mm}%
+      \fcolorbox{IASMidGreen}{IASPaleGreen}{\parbox[c][64mm][c]{67mm}{\centering
+        {\PosterCondensed\bfseries\fontsize{42pt}{44pt}\selectfont\color{IASMidGreen}C\par}
+        {\PosterCondensed\TableSize\bfseries\color{IASDarkText}EVERY ORDER\\SAFE\par}
+        \vspace{2mm}
+        {\PosterCondensed\fontsize{30pt}{33pt}\selectfont\shortstack{No blocker\\in $T$.}}}}
+    \end{minipage}\par
+    \vspace{1mm}
+    {\PosterCondensed\bfseries\fontsize{35pt}{38pt}\selectfont\color{IASDarkGreen}$C\Rightarrow B\Rightarrow A$\par}
+    {\TableSize\color{IASVermillion}Converse implications do not hold.\par}
+    \vspace{1mm}
+    \colorbox{IASPaleGreen}{\parbox[c][24mm][c]{\dimexpr\linewidth-2\fboxsep\relax}{\centering
+      {\fontsize{34pt}{37pt}\selectfont$C(T)\iff\forall e\in\mathcal H(\theta),\ e\nsubseteq T$}}}\par
+    \vspace{2mm}
+    {\PosterCondensed\bfseries\fontsize{29pt}{32pt}\selectfont\color{IASDarkGreen}Exact $\mathcal H$ recovered on the frozen F10 set\par}
+    {\FigureSize\color{IASDarkText}Counts of \BaselineTotal\ operating points\par}
+    \vspace{1mm}
+    \noindent\begin{minipage}[c][17mm][c]{66mm}{\FigureSize first-order modal}\end{minipage}\hspace{1mm}%
+      \begin{minipage}[c][17mm][c]{85mm}\centering
+        \begin{tikzpicture}[x=1mm,y=1mm]
+          \pgfmathsetmacro{\tbar}{85*\BaselineModalExactCount/\BaselineTotal}
+          \fill[IASRule] (0,0) rectangle (85,5);
+          \fill[IASBlue] (0,0) rectangle (\tbar,5);
+        \end{tikzpicture}
+      \end{minipage}\hspace{1mm}%
+      \begin{minipage}[c][17mm][c]{41mm}\centering{\TableSize\bfseries\color{IASBlue}\BaselineModalExactCount/\BaselineTotal}\end{minipage}\par
+    \noindent\begin{minipage}[c][17mm][c]{66mm}{\FigureSize additive}\end{minipage}\hspace{1mm}%
+      \begin{minipage}[c][17mm][c]{85mm}\centering
+        \begin{tikzpicture}[x=1mm,y=1mm]
+          \pgfmathsetmacro{\tbar}{85*\BaselineAdditiveExactCount/\BaselineTotal}
+          \fill[IASRule] (0,0) rectangle (85,5);
+          \fill[IASBlue] (0,0) rectangle (\tbar,5);
+        \end{tikzpicture}
+      \end{minipage}\hspace{1mm}%
+      \begin{minipage}[c][17mm][c]{41mm}\centering{\TableSize\bfseries\color{IASBlue}\BaselineAdditiveExactCount/\BaselineTotal}\end{minipage}\par
+    \noindent\begin{minipage}[c][17mm][c]{66mm}{\FigureSize pairwise}\end{minipage}\hspace{1mm}%
+      \begin{minipage}[c][17mm][c]{85mm}\centering
+        \pgfmathsetmacro{\tbar}{85*\BaselinePairwiseExactCount/\BaselineTotal}
+        \begin{tikzpicture}[x=1mm,y=1mm]
+          \fill[IASRule] (0,0) rectangle (85,5);
+          \fill[IASBlue] (0,0) rectangle (\tbar,5);
+        \end{tikzpicture}
+      \end{minipage}\hspace{1mm}%
+      \begin{minipage}[c][17mm][c]{41mm}\centering{\TableSize\bfseries\color{IASBlue}\BaselinePairwiseExactCount/\BaselineTotal}\end{minipage}\par
+  \end{TicketTwoPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewThreePageWidth}
+  \def\PosterPageHeight{\PosterPreviewTopRowPageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewThreeLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

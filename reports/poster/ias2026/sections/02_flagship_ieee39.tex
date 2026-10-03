@@ -1,0 +1,62 @@
+% Module 2: flagship IEEE-39 result; compile this file for its own preview.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterTopRowHeight][t]{\PosterTwoWidth}\vspace{0pt}
+  \begin{TicketTwoPanel}{\PosterTopRowHeight}{2}{FLAGSHIP RESULT: IEEE-39}
+    \noindent\begin{minipage}[t]{134mm}\centering\vspace{0pt}
+      {\Subhead\color{IASDarkGreen}IEEE-39 network\par}\vspace{1mm}
+      \begin{tikzpicture}[x=1mm,y=1mm]
+        \input{generated/figures/network_ieee39.tikz}
+      \end{tikzpicture}\par
+      {\FigureSize\CandidateBusMark\; buses 30, 33, 35, 37: IBR candidates\par}
+      {\FigureSize\textcolor{IASGray}{muted buses and lines: rest of network}\par}
+    \end{minipage}\hspace{2mm}%
+    \begin{minipage}[t]{130mm}\centering\vspace{0pt}
+      {\PosterCondensed\bfseries\fontsize{72pt}{76pt}\selectfont\color{IASBlue}\NumProperStable/\NumProperTotal\par}
+      {\PosterCondensed\bfseries\fontsize{30pt}{33pt}\selectfont\color{IASBlue}proper subsets stable\par}
+      \vspace{1mm}
+      \begin{tikzpicture}[x=1mm,y=1mm]
+        \draw[-{Stealth[length=7mm]},IASGold,line width=2.2pt] (67,15)--(67,1);
+      \end{tikzpicture}\par
+      \colorbox{IASPaleGold}{\parbox[c][42mm][c]{\dimexpr\linewidth-2\fboxsep\relax}{\centering
+        {\PosterCondensed\bfseries\fontsize{40pt}{43pt}\selectfont\color{IASVermillion}$H_4=\FlagshipBlocker$\par}
+        {\TableSize\bfseries\color{IASVermillion}unstable}}}
+      \vspace{2mm}
+      {\TableSize\bfseries\color{IASDarkGreen}P4 control settings\par}
+      {\FigureSize\color{IASDarkText}$g=\BaselineGain,\ k=\ControllerK$\quad $t=\ControllerT,\ h=\ControllerH$\par}
+      {\EquationSize\bfseries\color{IASVermillion}$\alpha_{\perp}=\FlagshipAlpha\;\mathrm{s}^{-1}$\par}
+      {\EquationSize\bfseries\color{IASDarkGreen}$f=\FlagshipFrequency\;\mathrm{Hz}$\par}
+      {\TableSize\color{IASDarkText}SG displaced: \bfseries\DisplacedMW\ MW\par}
+      {\TableSize\color{IASDarkText}IBR rating: \bfseries\ConverterMVA\ MVA\par}
+    \end{minipage}\hspace{2mm}%
+    \begin{minipage}[t]{134mm}\centering\vspace{0pt}
+      {\Subhead\color{IASDarkGreen}Hasse lattice of $H_4$\par}\vspace{1mm}
+      \begin{tikzpicture}[xscale=0.70]
+        \input{generated/figures/hasse_h4.tikz}
+        \foreach \yy/\rank/\countlabel in {0/0/1 empty,24/1/4 singles,48/2/6 pairs,72/3/4 triples,96/4/1 full set}{
+          \node[anchor=east,font=\FigureSize,text=IASDarkText,inner sep=0pt] at (-52mm,\yy mm) {$|S|=\rank$};
+          \node[anchor=west,font=\FigureSize,text=IASDarkText,inner sep=0pt] at (52mm,\yy mm) {\countlabel};
+        }
+      \end{tikzpicture}\par
+      {\FigureSize\StableMark\; proper subset\quad\HasseFullMark\; full coalition\par}
+      \vspace{1mm}
+      {\TableSize\bfseries\color{IASDarkText}$H_4$ is the canonical minimal blocker; it is not a universal bus set.\par}
+    \end{minipage}
+  \end{TicketTwoPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewTwoPageWidth}
+  \def\PosterPageHeight{\PosterPreviewTopRowPageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewTwoLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

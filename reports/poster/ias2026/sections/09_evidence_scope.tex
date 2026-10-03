@@ -1,0 +1,50 @@
+% Module 9: evidence and scope; compile this file for its own preview.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterBottomRowHeight][t]{\PosterGridWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterBottomRowHeight}{9}{MEASURED EVIDENCE AND SCOPE}
+    \vspace{7mm}
+    \noindent\begin{minipage}[c][25mm][c]{140mm}\centering
+      {\MetricSize\bfseries\color{IASBlue}\CrossCodeAgreement\par}
+      {\FigureSize\color{IASDarkText}same-model cross-code\par}
+    \end{minipage}\hfill
+    \begin{minipage}[c][25mm][c]{140mm}\centering
+      {\MetricSize\bfseries\color{IASBlue}\TDSAgreement\par}
+      {\FigureSize\color{IASDarkText}finite TDS sign agreement\par}
+    \end{minipage}\hfill
+    \begin{minipage}[c][25mm][c]{140mm}\centering
+      {\MetricSize\bfseries\color{IASBlue}\NumProperStable/\NumProperTotal\par}
+      {\FigureSize\color{IASDarkText}proper subsets stable\par}
+    \end{minipage}\hfill
+    \begin{minipage}[c][25mm][c]{140mm}\centering
+      {\MetricSize\bfseries\color{IASBlue}\NumDistinctPolicyA/\NumDistinctPolicyB/\NumDistinctPolicyC\par}
+      {\FigureSize\color{IASDarkText}distinct policy blockers\par}
+    \end{minipage}\hfill
+    \begin{minipage}[c][25mm][c]{140mm}\centering
+      {\MetricSize\bfseries\color{IASMidGreen}\InterventionImproves/\NumValidMC\par}
+      {\FigureSize\color{IASDarkText}improved; review pending\par}
+    \end{minipage}\hfill
+    \begin{minipage}[c][25mm][c]{140mm}\centering
+      {\MetricSize\bfseries\color{IASGold!70!black}\BlockerPersistenceCount/\NumValidMC\par}
+      {\FigureSize\color{IASDarkText}$H_4$ minimal; review pending\par}
+    \end{minipage}\par
+    \vspace{3mm}
+    {\FigureSize\color{IASDarkText}\textbf{Scope:} phasor-domain DAE; stationary, re-equilibrated portfolios; no physical switching transient, EMT, current-limit, or DC-link claim; blocker identity depends on model and control policy.}
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewFullPageWidth}
+  \def\PosterPageHeight{\PosterPreviewBottomPageHeight}
+  \def\PosterPreviewLeft{\PosterOuterMargin}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish
