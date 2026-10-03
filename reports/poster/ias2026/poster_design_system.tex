@@ -54,8 +54,8 @@
 \newcommand{\PosterHeaderByline}{\bfseries\fontsize{30pt}{34pt}\selectfont}
 \newcommand{\PosterPanelBadgeType}{\bfseries\fontsize{32pt}{32pt}\selectfont}
 \newcommand{\PosterSubpanelBadge}[1]{{\bfseries\fontsize{22pt}{22pt}\selectfont #1}}
-\newcommand{\PosterPanelHeadingType}{\PosterCondensed\bfseries\fontsize{43pt}{46pt}\selectfont}
-\newcommand{\PosterTicketHeadingType}{\PosterCondensed\bfseries\fontsize{44pt}{47pt}\selectfont}
+\newcommand{\PosterPanelHeadingType}{\PosterCondensed\bfseries\addfontfeatures{LetterSpace=2.5}\fontsize{42pt}{46pt}\selectfont}
+\newcommand{\PosterTicketHeadingType}{\PosterCondensed\bfseries\addfontfeatures{LetterSpace=2.5}\fontsize{41pt}{45pt}\selectfont}
 \newcommand{\PosterMetricValueType}{\PosterCondensed\bfseries\fontsize{40pt}{42pt}\selectfont}
 \newcommand{\PosterMetricLabelType}{\bfseries\fontsize{27pt}{30pt}\selectfont}
 \newcommand{\PosterMetricDetailType}{\fontsize{24.2pt}{26.2pt}\selectfont}
@@ -98,6 +98,7 @@
         font=\PosterPanelBadgeType](num){#1};
     \end{minipage}\hspace{\PosterPanelTitleGap}%
     \begin{minipage}[c][\PosterPanelTitleHeight][c]{\dimexpr\linewidth-\PosterPanelContentInset\relax}\raggedright
+      \vspace*{2mm}% Optical centering: cap-height sits above the line box center.
       {\PosterPanelHeadingType\color{white}#2\par}
     \end{minipage}%
   \end{minipage}%
@@ -122,6 +123,7 @@
         font=\PosterPanelBadgeType](num){#1};
     \end{minipage}\hspace{\PosterPanelTitleGap}%
     \begin{minipage}[c][\PosterTicketTitleHeight][c]{\dimexpr\linewidth-\PosterPanelContentInset\relax}\raggedright
+      \vspace*{2mm}% Match the badge's visual center in the taller first-row band.
       {\PosterTicketHeadingType\color{white}#2\par}
     \end{minipage}%
   \end{minipage}%

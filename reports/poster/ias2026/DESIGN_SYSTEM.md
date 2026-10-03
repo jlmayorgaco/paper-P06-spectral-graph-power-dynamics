@@ -36,8 +36,8 @@ Fuente de texto: **TeX Gyre Heros**. Títulos y cifras destacados: **TeX Gyre He
 | Sobrelinea del título | `\PosterHeaderEyebrow` | 25 / 28 pt | Contexto breve en dorado |
 | Subtítulo del header | `\PosterHeaderSubtitle` | 36 / 40 pt | Explicación científica breve |
 | Autor y afiliación | `\PosterHeaderByline` | 30 / 34 pt | Línea final del header |
-| Título de módulo | `\PosterPanelHeadingType` | 43 / 46 pt | Bandas verdes generales |
-| Título de primera fila | `\PosterTicketHeadingType` | 44 / 47 pt | Tres módulos superiores |
+| Título de módulo | `\PosterPanelHeadingType` | 42 / 46 pt | Bandas verdes generales; tracking 2,5 |
+| Título de primera fila | `\PosterTicketHeadingType` | 41 / 45 pt | Tres módulos superiores; tracking 2,5 |
 | Número de módulo | `\PosterPanelBadgeType` | 32 / 32 pt | Círculo dorado |
 | Número de submódulo | `\PosterSubpanelBadge` | 22 / 22 pt | Identificadores 4A/4B y 9A/9B |
 | Párrafo principal | `\PosterParagraph` | 34,2 / 39 pt | Texto normal, alineado a la izquierda y con final irregular |
@@ -69,7 +69,7 @@ Hay tamaños locales en diagramas y tablas que resuelven casos concretos. Para t
 
 La banda blanca contiene solo los logos: IAS a la izquierda, Universidad de los Andes a la derecha. Sus anchos son **137 mm** y **120 mm**, respectivamente (`\PosterIASLogoWidth`, `\PosterUniandesLogoWidth`). Conserva la proporción original de cada archivo y el aire blanco entre ambos; el título comienza en la banda verde inferior.
 
-Dentro de los módulos, `PosterPanel` usa una banda de título de **32 mm** y `TicketTwoPanel` una de **36 mm**. Ambos usan borde de **1,1 pt**, esquinas de **3 mm**, padding horizontal de **3 mm**, superior de **4 mm** e inferior de **2 mm**. El número va en un círculo de **14 mm**. La franja de métricas usa celdas de **40 mm** de alto. Estas medidas están definidas como tokens en `poster_design_system.tex`.
+Dentro de los módulos, `PosterPanel` usa una banda de título de **32 mm** y `TicketTwoPanel` una de **36 mm**. Ambos usan borde de **1,1 pt**, esquinas de **3 mm**, padding horizontal de **3 mm**, superior de **4 mm** e inferior de **2 mm**. El número va en un círculo de **14 mm**. Los dos componentes de título aplican una corrección óptica vertical de **2 mm** al texto para centrarlo visualmente con el círculo; el tracking se define en los roles tipográficos, sin escalar las letras. La franja de métricas usa celdas de **40 mm** de alto. Estas medidas están definidas como tokens en `poster_design_system.tex`.
 
 Los espacios locales de 1–6 mm son ajustes ópticos de figuras y fórmulas; mantenlos dentro de cada módulo. Si el contenido no cabe, reordena o edita el interior antes de tocar la caja exterior. Los submódulos 4A/4B y 9A/9B usan la misma retícula de dos columnas que las filas 5/6 y 7/8. Conserva suficiente blanco entre bloques para distinguir pregunta, método, evidencia y conclusión.
 
