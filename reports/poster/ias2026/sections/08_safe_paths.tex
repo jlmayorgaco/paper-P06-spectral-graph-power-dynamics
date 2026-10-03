@@ -1,35 +1,35 @@
 % Module 8: safe paths; compile this file for its own preview.
 \long\def\PosterSectionContent{%
 \begin{minipage}[t][\PosterLowerRowHeight][t]{\PosterHalfWidth}\vspace{0pt}
-  \begin{PosterPanel}{\PosterLowerRowHeight}{8}{SAFE PATHS AVOID EVERY HYPEREDGE}
+  \begin{PosterPanel}{\PosterLowerRowHeight}{8}{SAFE PATHS CHECK EVERY PREFIX}
     {\Subhead\color{IASDarkGreen}Path-constrained planning formulation\par}
     \vspace{-8mm}
     {\fontsize{38pt}{42pt}\selectfont
      \setlength{\abovedisplayskip}{2mm}\setlength{\belowdisplayskip}{1mm}
      \setlength{\abovedisplayshortskip}{1mm}\setlength{\belowdisplayshortskip}{1mm}
      \[
-      \max_{S}\sum_{i\in S}P_i\qquad
-      \text{s.t. } e\nsubseteq S,\quad \forall e\in\mathcal H(\theta)
+      \max_{\{S_t\}}\sum_{i\in S_f}P_i\qquad
+      \text{s.t. } S_0=\varnothing,\ S_{t+1}=S_t\cup\{i_t\},\ \alpha_{\perp}(S_t,\theta)<0\ \forall t
     \]}
-    {\TableSize\color{IASDarkText}Apply the same constraint to every intermediate prefix of the implementation path.\par}
+    {\TableSize\color{IASDarkText}IEEE-39 census: 3 of 327 stable targets depend on order.\par}
     \vspace{1mm}
     \noindent\begin{minipage}[t]{209mm}\centering\vspace{0pt}
       {\Subhead\color{IASVermillion}Unsafe implementation path\par}
-      {\FigureSize\color{IASDarkText}Schematic: the path reaches the canonical hyperedge.\par}
+      {\FigureSize\color{IASDarkText}Schematic: a prefix is unstable.\par}
       \begin{tikzpicture}[x=1mm,y=1mm]
         \draw[-{Stealth[length=4mm]},IASRule,line width=1.5pt] (9,22)--(196,22);
         \foreach \x/\lab in {17/$S_0$,58/$S_1$,99/$S_2$,140/$S_3$,182/$S_4$}{
         \node[circle,draw=IASBlue,line width=1.4pt,fill=IASWhite,minimum size=11mm] at (\x,22) {};
         \node[font=\fontsize{24.2pt}{26.2pt}\selectfont,text=IASDarkText] at (\x,4) {\lab};}
         \node[circle,draw=IASVermillion,fill=IASVermillion,text=white,line width=1.5pt,minimum size=11mm,
-          font=\bfseries\fontsize{24.2pt}{26.2pt}\selectfont] at (140,22) {$H_4$};
+          font=\bfseries\fontsize{24.2pt}{26.2pt}\selectfont] at (140,22) {$e$};
         \node[cross out,draw=IASVermillion,line width=2.1pt,minimum size=16mm] at (182,22) {};
       \end{tikzpicture}\par
-      {\TableSize\bfseries\color{IASVermillion}Reject the route when a prefix contains $H_4$.}
+      {\TableSize\bfseries\color{IASVermillion}Reject a route with an unstable prefix.}
     \end{minipage}\hspace{4mm}%
     \begin{minipage}[t]{209mm}\centering\vspace{0pt}
       {\Subhead\color{IASMidGreen}Safe implementation path\par}
-      {\FigureSize\color{IASDarkText}Schematic: every prefix avoids every blocker.\par}
+      {\FigureSize\color{IASDarkText}Schematic: every prefix is stable.\par}
       \begin{tikzpicture}[x=1mm,y=1mm]
         \draw[-{Stealth[length=4mm]},IASMidGreen,line width=1.8pt] (9,22)--(196,22);
         \foreach \x/\lab in {17/$S_0$,58/$S_1$,99/$S_2$,140/$\cdots$,182/$S_f$}{
@@ -40,7 +40,7 @@
     \end{minipage}\par
     \vspace{4mm}
     \colorbox{IASPaleGreen}{\parbox[c][22mm][c]{\dimexpr\linewidth-2\fboxsep\relax}{\centering
-      {\fontsize{31pt}{34pt}\selectfont\bfseries\color{IASDarkGreen}The order matters: every prefix must avoid every blocker.}}}\par
+      {\fontsize{31pt}{34pt}\selectfont\bfseries\color{IASDarkGreen}The order matters: test stability after each replacement.}}}\par
   \end{PosterPanel}
 \end{minipage}%
 }%

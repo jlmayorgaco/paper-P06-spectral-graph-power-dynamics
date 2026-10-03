@@ -1,6 +1,6 @@
 # Póster IAS 2026: edición modular
 
-Cada archivo de `sections/` contiene una pieza editable y puede compilarse por separado. `main.tex` solo arma la página. `poster_layout.tex` fija las medidas exteriores y las vistas individuales. `poster_design_system.tex` define colores, fuentes, tipos de texto y componentes; [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md) explica cuándo usar cada uno. `poster_common.tex` carga los paquetes y esos archivos compartidos. Los datos y afirmaciones numéricas viven en `generated/`. Los logos usados por el póster están en `assets/`; la evaluación visual de cada pieza está en [VISUAL_REVIEW.md](VISUAL_REVIEW.md).
+Cada archivo de `sections/` contiene una pieza editable y puede compilarse por separado. `main.tex` solo arma la página. `poster_layout.tex` fija las medidas exteriores y las vistas individuales. `poster_design_system.tex` define colores, fuentes, tipos de texto y componentes; [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md) explica cuándo usar cada uno. `poster_common.tex` carga los paquetes y esos archivos compartidos. Los datos y afirmaciones numéricas viven en `generated/`. Los logos usados por el póster están en `assets/`; la evaluación visual de cada pieza está en [VISUAL_REVIEW.md](VISUAL_REVIEW.md) y la revisión de contenido y procedencia en [POSTER_REVIEW.md](POSTER_REVIEW.md).
 
 ## Contrato de medidas
 
