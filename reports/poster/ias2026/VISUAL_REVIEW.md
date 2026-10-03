@@ -25,3 +25,5 @@ Los paneles 04A/04B y 09A/09B son archivos independientes con caja exterior fija
 ## Auditoría tipográfica
 
 Las dos variantes de TeX Gyre Heros cubren texto, títulos y cifras; Latin Modern Math cubre las fórmulas. Los tamaños de texto de los quince módulos y de las figuras TikZ generadas se definen ahora en `poster_design_system.tex`; no quedan declaraciones `\fontsize` en esos archivos. Se igualaron las leyendas y notas de métricas a 24/27 pt, los nodos SG/IBR a 30/32 pt y las cifras locales a roles consistentes. El texto ordinario más pequeño son las referencias de 20 pt y el mayor es el título de 90 pt; los glifos inferiores a 20 pt en el PDF corresponden a subíndices, exponentes y marcas matemáticas. El módulo 9A se revisó a 100 dpi tras dar aire a la nota inferior sin solaparla con los denominadores.
+
+En una segunda pasada, el texto de «Motivation & Question» se redujo de 34,2 a 27 pt y la pregunta destacada de 34,2 a 29 pt. Así conserva la jerarquía del recuadro dorado sin sobresalir por tamaño frente a las demás explicaciones del póster.

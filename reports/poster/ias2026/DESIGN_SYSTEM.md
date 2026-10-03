@@ -40,7 +40,7 @@ Fuente de texto: **TeX Gyre Heros**. Títulos y cifras destacados: **TeX Gyre He
 | Título de primera fila | `\PosterTicketHeadingType` | 41 / 45 pt | Tres módulos superiores; tracking 2,5 |
 | Número de módulo | `\PosterPanelBadgeType` | 32 / 32 pt | Círculo dorado |
 | Número de submódulo | `\PosterSubpanelBadge` | 22 / 22 pt | Identificadores 4A/4B y 9A/9B |
-| Párrafo principal | `\PosterParagraph` | 34,2 / 39 pt | Texto normal, alineado a la izquierda y con final irregular |
+| Párrafo principal | `\PosterParagraph` | 27 / 31 pt | Texto normal, alineado a la izquierda y con final irregular |
 | Subtítulo interior | `\Subhead` | 38 / 41 pt | Entrada a figura o bloque técnico |
 | Ecuación | `\EquationSize` | 36 / 41 pt | Fórmulas corrientes |
 | Ecuación protagonista | `\HeroEquation` | 44 / 48 pt | Fórmula que debe dominar un bloque |
@@ -87,7 +87,7 @@ Fuente de texto: **TeX Gyre Heros**. Títulos y cifras destacados: **TeX Gyre He
 | Detalle de comprobación | `\PosterEvidenceDetailType` | 21 / 24 pt | Condición del denominador |
 | Etiqueta de barra | `\PosterBarLabelType` | 25 / 28 pt | Valor blanco sobre barra verde |
 
-La escala está ordenada por función: referencias a 20 pt; detalles, ejes y leyendas a 21–26 pt; texto compacto a 27–31 pt; cuerpo y fórmulas a 30–44 pt; cifras protagonistas a 52–72 pt; título principal a 90 pt. Las marcas matemáticas más pequeñas del PDF son subíndices y exponentes, no párrafos. Las secciones y los diagramas generados deben usar estos comandos: `\fontsize` queda reservado para `poster_design_system.tex`. No comprimas ni escales texto para forzar que quepa.
+La escala está ordenada por función: referencias a 20 pt; detalles, ejes y leyendas a 21–26 pt; cuerpo y texto compacto a 27–31 pt; fórmulas y títulos interiores a 30–44 pt; cifras protagonistas a 52–72 pt; título principal a 90 pt. Las marcas matemáticas más pequeñas del PDF son subíndices y exponentes, no párrafos. Las secciones y los diagramas generados deben usar estos comandos: `\fontsize` queda reservado para `poster_design_system.tex`. No comprimas ni escales texto para forzar que quepa.
 
 ## Retícula y aire
 
