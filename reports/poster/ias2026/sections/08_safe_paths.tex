@@ -4,7 +4,7 @@
   \begin{PosterPanel}{\PosterLowerRowHeight}{8}{SAFE PATHS CHECK EVERY PREFIX}
     {\Subhead\color{IASDarkGreen}Path-constrained planning formulation\par}
     \vspace{-8mm}
-    {\fontsize{38pt}{42pt}\selectfont
+    {\MetricSize
      \setlength{\abovedisplayskip}{2mm}\setlength{\belowdisplayskip}{1mm}
      \setlength{\abovedisplayshortskip}{1mm}\setlength{\belowdisplayshortskip}{1mm}
      \[
@@ -20,9 +20,9 @@
         \draw[-{Stealth[length=4mm]},IASRule,line width=1.5pt] (9,22)--(196,22);
         \foreach \x/\lab in {17/$S_0$,58/$S_1$,99/$S_2$,140/$S_3$,182/$S_4$}{
         \node[circle,draw=IASBlue,line width=1.4pt,fill=IASWhite,minimum size=11mm] at (\x,22) {};
-        \node[font=\fontsize{24.2pt}{26.2pt}\selectfont,text=IASDarkText] at (\x,4) {\lab};}
+        \node[font=\FigureSize,text=IASDarkText] at (\x,4) {\lab};}
         \node[circle,draw=IASVermillion,fill=IASVermillion,text=white,line width=1.5pt,minimum size=11mm,
-          font=\bfseries\fontsize{24.2pt}{26.2pt}\selectfont] at (140,22) {$e$};
+          font=\FigureSize\bfseries] at (140,22) {$e$};
         \node[cross out,draw=IASVermillion,line width=2.1pt,minimum size=16mm] at (182,22) {};
       \end{tikzpicture}\par
       {\TableSize\bfseries\color{IASVermillion}Reject a route with an unstable prefix.}
@@ -34,13 +34,13 @@
         \draw[-{Stealth[length=4mm]},IASMidGreen,line width=1.8pt] (9,22)--(196,22);
         \foreach \x/\lab in {17/$S_0$,58/$S_1$,99/$S_2$,140/$\cdots$,182/$S_f$}{
         \node[circle,draw=IASMidGreen,line width=1.5pt,fill=IASPaleGreen,minimum size=11mm] at (\x,22) {};
-        \node[font=\fontsize{24.2pt}{26.2pt}\selectfont,text=IASDarkText] at (\x,4) {\lab};}
+        \node[font=\FigureSize,text=IASDarkText] at (\x,4) {\lab};}
       \end{tikzpicture}\par
       {\TableSize\bfseries\color{IASMidGreen}Accept only after checking all path prefixes.}
     \end{minipage}\par
     \vspace{4mm}
     \colorbox{IASPaleGreen}{\parbox[c][22mm][c]{\dimexpr\linewidth-2\fboxsep\relax}{\centering
-      {\fontsize{31pt}{34pt}\selectfont\bfseries\color{IASDarkGreen}The order matters: test stability after each replacement.}}}\par
+      {\PosterCalloutType\color{IASDarkGreen}The order matters: test stability after each replacement.}}}\par
   \end{PosterPanel}
 \end{minipage}%
 }%

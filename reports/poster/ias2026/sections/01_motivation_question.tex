@@ -8,7 +8,7 @@
     \begin{center}
       \begin{tikzpicture}[x=1mm,y=1mm]
         \draw[IASDarkGreen,line width=1.8pt] (30,27) circle (14);
-        \node[font=\bfseries\fontsize{30pt}{32pt}\selectfont,text=IASDarkGreen] at (30,27) {SG};
+        \node[font=\PosterDiagramNodeType,text=IASDarkGreen] at (30,27) {SG};
         \node[font=\FigureSize,align=center,text=IASDarkText] at (30,2) {synchronous\\dynamics};
         \draw[-{Stealth[length=5mm]},IASMidGreen,line width=2pt] (49,27)--(164,27);
         \node[font=\FigureSize,text=IASDarkGreen] at (106,36) {replacement};
@@ -16,15 +16,15 @@
         \draw[IASMidGreen,line width=1.3pt] (184,14)--(184,40);
         \draw[IASMidGreen,line width=1.3pt] (194,14)--(194,40);
         \draw[IASMidGreen,line width=1.3pt] (204,14)--(204,40);
-        \node[font=\bfseries\fontsize{29pt}{31pt}\selectfont,text=IASDarkGreen] at (194,27) {IBR};
+        \node[font=\PosterDiagramNodeType,text=IASDarkGreen] at (194,27) {IBR};
         \node[font=\FigureSize,align=center,text=IASDarkText] at (194,2) {controlled\\dynamics};
       \end{tikzpicture}
     \end{center}
     \vspace{5mm}
     \colorbox{IASPaleGold}{\parbox[c][43mm][c]{\dimexpr\linewidth-2\fboxsep\relax}{\centering
-      {\fontsize{34pt}{38pt}\selectfont\bfseries\color{IASDarkText}Which replacement combinations are incompatible, why do they fail, and how can paths avoid them?}}}
+      {\PosterBody\bfseries\color{IASDarkText}Which replacement combinations are incompatible, why do they fail, and how can paths avoid them?}}}
     \vspace{5mm}
-    {\fontsize{36pt}{40pt}\selectfont\[
+    {\EquationSize\[
       \mathcal H(\theta)=\operatorname{Min}_{\subseteq}\{S:\alpha_{\perp}(S,\theta)\geq0\}
     \]}
     {\TableSize\color{IASDarkText}Edges mark minimal unstable coalitions.\par}

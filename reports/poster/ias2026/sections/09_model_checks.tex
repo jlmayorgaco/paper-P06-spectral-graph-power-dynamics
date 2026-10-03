@@ -2,19 +2,19 @@
 \long\def\PosterSectionContent{%
 \begin{minipage}[t][\PosterBottomRowHeight][t]{\PosterHalfWidth}\vspace{0pt}
   \begin{PosterPanel}{\PosterBottomRowHeight}{\PosterSubpanelBadge{9A}}{MODEL CHECKS}
-    \vspace{2mm}
+    \vspace{-2mm}
     \noindent\begin{minipage}[c][31mm][c]{202mm}\centering
-      {\PosterCondensed\bfseries\fontsize{43pt}{46pt}\selectfont\color{IASBlue}\CrossCodeAgreement\par}
-      {\fontsize{24pt}{27pt}\selectfont\bfseries\color{IASDarkText}cross-code agreement\par}
-      {\fontsize{21pt}{23pt}\selectfont\color{IASGray}same model\par}
+      {\PosterEvidenceCountType\color{IASBlue}\CrossCodeAgreement\par}
+      {\PosterEvidenceLabelType\color{IASDarkText}cross-code agreement\par}
+      {\PosterEvidenceDetailType\color{IASGray}same model\par}
     \end{minipage}\hspace{6mm}%
     \begin{minipage}[c][31mm][c]{202mm}\centering
-      {\PosterCondensed\bfseries\fontsize{43pt}{46pt}\selectfont\color{IASBlue}\TDSAgreement\par}
-      {\fontsize{24pt}{27pt}\selectfont\bfseries\color{IASDarkText}time-domain sign agreement\par}
-      {\fontsize{21pt}{23pt}\selectfont\color{IASGray}completed phasor-DAE runs\par}
+      {\PosterEvidenceCountType\color{IASBlue}\TDSAgreement\par}
+      {\PosterEvidenceLabelType\color{IASDarkText}time-domain sign agreement\par}
+      {\PosterEvidenceDetailType\color{IASGray}completed phasor-DAE runs\par}
     \end{minipage}\par
     \vspace{2mm}
-    {\fontsize{22pt}{25pt}\selectfont\color{IASDarkText}\TDSZeroHzDisagreements\ zero-frequency disagreements among \TDSCompleted\ completed runs; \TDSSolverFailures\ of \TDSTotal\ runs had solver failures.\par}
+    {\PosterDataNoteType\color{IASDarkText}\TDSZeroHzDisagreements\ zero-frequency disagreements among \TDSCompleted\ completed runs; \TDSSolverFailures\ of \TDSTotal\ runs had solver failures.\par}
   \end{PosterPanel}
 \end{minipage}%
 }%

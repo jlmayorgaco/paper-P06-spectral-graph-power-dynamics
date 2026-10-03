@@ -2,7 +2,7 @@
 \long\def\PosterSectionContent{%
 \begin{minipage}[t][\PosterFourHeight][t]{\PosterHalfWidth}\vspace{0pt}
   \begin{PosterPanel}{\PosterFourHeight}{\PosterSubpanelBadge{4B}}{THE COLLECTIVE TERM CLOSES}
-    {\fontsize{29pt}{32pt}\selectfont\color{IASDarkText}\textbf{Boundary scan:} $g^*=\BoundaryGain$; $\alpha_{\perp}=\BoundaryAlpha$; $f=\BoundaryFrequency$ Hz\par}
+    {\PosterCompactBodyType\color{IASDarkText}\textbf{Boundary scan:} $g^*=\BoundaryGain$; $\alpha_{\perp}=\BoundaryAlpha$; $f=\BoundaryFrequency$ Hz\par}
     \vspace{1mm}
     \noindent\begin{minipage}[t]{258mm}\centering\vspace{0pt}
       \begin{tikzpicture}
@@ -13,9 +13,9 @@
           xtick={0.05,0.10,0.15,0.20,0.25},
           ytick={1e-8,1e-6,1e-4,1e-2,1},
           xlabel={feedback gain $g$},ylabel={$\sigma_{\min}$},
-          yticklabel style={font=\fontsize{22pt}{24pt}\selectfont,text=IASDarkText},
-          tick label style={font=\fontsize{22pt}{24pt}\selectfont,text=IASDarkText},
-          label style={font=\fontsize{23pt}{25pt}\selectfont,text=IASDarkText},
+          yticklabel style={font=\PosterPlotTickType,text=IASDarkText},
+          tick label style={font=\PosterPlotTickType,text=IASDarkText},
+          label style={font=\PosterPlotAxisType,text=IASDarkText},
           axis line style={IASDarkText,line width=1pt},
           grid=major,major grid style={IASRule,line width=0.6pt},clip=false]
           \addplot[IASBlue,line width=2pt,mark=*,mark size=3.3pt]
@@ -29,12 +29,12 @@
       {\FigureSize\color{IASDarkText}\StableMark\; local\quad\UnstableMark\; collective\quad\BoundaryMark\; $g^*$\par}
     \end{minipage}\hspace{5mm}%
     \begin{minipage}[t]{153mm}\vspace{2mm}
-      {\PosterCondensed\bfseries\fontsize{29pt}{32pt}\selectfont\color{IASBlue}LOCAL DEVICES\par}
-      {\fontsize{39pt}{43pt}\selectfont\bfseries\color{IASDarkText}$\sigma_{\min}\approx0.49$\par}
+      {\PosterCompactHeadingType\color{IASBlue}LOCAL DEVICES\par}
+      {\MetricSize\bfseries\color{IASDarkText}$\sigma_{\min}\approx0.49$\par}
       {\TableSize\color{IASDarkText}remain regular\par}
       \vspace{8mm}
-      {\PosterCondensed\bfseries\fontsize{29pt}{32pt}\selectfont\color{IASVermillion}NETWORK RETURN\par}
-      {\fontsize{36pt}{40pt}\selectfont\bfseries\color{IASDarkText}$\sigma_{\min}\approx4.4\times10^{-8}$\par}
+      {\PosterCompactHeadingType\color{IASVermillion}NETWORK RETURN\par}
+      {\EquationSize\bfseries\color{IASDarkText}$\sigma_{\min}\approx4.4\times10^{-8}$\par}
       {\TableSize\color{IASDarkText}approaches singularity\par}
     \end{minipage}\par
   \end{PosterPanel}

@@ -64,11 +64,11 @@ def write_tikz_network(bus_ids: list[int]) -> None:
     for n in nodes:
         x, y = coords[n]
         if n in bus_ids:
-            style = "circle,draw=IASVermillion,fill=IASVermillion,line width=1.8pt,text=white,minimum size=11.5mm,font=\\bfseries\\fontsize{30pt}{30pt}\\selectfont"
+            style = "circle,draw=IASVermillion,fill=IASVermillion,line width=1.8pt,text=white,minimum size=11.5mm,font=\\PosterNetworkCandidateType"
         elif n in {int(row["bus"]) for row in data["machines"]}:
-            style = "circle,draw=IASMidGreen!60,fill=IASIvory,line width=1.0pt,text=IASGray!90,minimum size=7.2mm,font=\\fontsize{24.2pt}{24.2pt}\\selectfont"
+            style = "circle,draw=IASMidGreen!60,fill=IASIvory,line width=1.0pt,text=IASGray!90,minimum size=7.2mm,font=\\PosterNetworkBusType"
         else:
-            style = "circle,draw=IASGray!60,fill=IASIvory,line width=0.8pt,text=IASGray!90,minimum size=7.2mm,font=\\fontsize{24.2pt}{24.2pt}\\selectfont"
+            style = "circle,draw=IASGray!60,fill=IASIvory,line width=0.8pt,text=IASGray!90,minimum size=7.2mm,font=\\PosterNetworkBusType"
         lines.append(
             f"\\node[{style},inner sep=0pt] "
             f"at (b{n}) {{{n}}};"
@@ -140,7 +140,7 @@ def write_hasse(bus_ids: list[int]) -> None:
             lines.append(f"\\node[circle,draw=IASBlue,fill=IASBlue,minimum size=6.0mm,inner sep=0pt] at ({x:.1f}mm,{y:.1f}mm) {{}};")
     blocker_label = r"\{" + ",".join(str(item) for item in ordered) + r"\}"
     lines.append(
-        f"\\node[font=\\bfseries\\fontsize{{24.2pt}}{{26.2pt}}\\selectfont,text=IASVermillion,"
+        f"\\node[font=\\bfseries\\FigureSize,text=IASVermillion,"
         f"align=center,anchor=south] at (0mm,101mm) {{${blocker_label}$\\\\(unstable)}};"
     )
     (FIGURES / "hasse_h4.tikz").write_text("\n".join(lines) + "\n", encoding="utf-8")

@@ -47,4 +47,4 @@
 \node[circle,draw=IASBlue,fill=IASBlue,minimum size=6.0mm,inner sep=0pt] at (9.0mm,72.0mm) {};
 \node[circle,draw=IASBlue,fill=IASBlue,minimum size=6.0mm,inner sep=0pt] at (27.0mm,72.0mm) {};
 \node[circle,draw=IASVermillion,fill=IASVermillion,line width=1pt,minimum size=7.0mm,inner sep=0pt] at (0.0mm,96.0mm) {};
-\node[font=\bfseries\fontsize{24.2pt}{26.2pt}\selectfont,text=IASVermillion,align=center,anchor=south] at (0mm,101mm) {$\{30,33,35,37\}$\\(unstable)};
+\node[font=\bfseries\FigureSize,text=IASVermillion,align=center,anchor=south] at (0mm,101mm) {$\{30,33,35,37\}$\\(unstable)};

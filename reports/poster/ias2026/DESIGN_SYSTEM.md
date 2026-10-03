@@ -46,10 +46,10 @@ Fuente de texto: **TeX Gyre Heros**. Títulos y cifras destacados: **TeX Gyre He
 | Ecuación protagonista | `\HeroEquation` | 44 / 48 pt | Fórmula que debe dominar un bloque |
 | Cifra interior | `\MetricSize` | 38 / 42 pt | Resultados dentro de módulos |
 | Tabla o nota compacta | `\TableSize` | 26 / 29 pt | Datos densos con lectura cercana |
-| Pie de figura | `\FigureSize` | 24,7 / 27,2 pt | Leyendas breves y etiquetas |
+| Pie de figura | `\FigureSize` | 24 / 27 pt | Leyendas breves y etiquetas |
 | Franja: cifra | `\PosterMetricValueType` | 40 / 42 pt | Valor dorado |
 | Franja: etiqueta | `\PosterMetricLabelType` | 27 / 30 pt | Descripción blanca |
-| Franja: detalle | `\PosterMetricDetailType` | 24,2 / 26,2 pt | Nota verde pálido |
+| Franja: detalle | `\PosterMetricDetailType` | 24 / 27 pt | Nota verde pálido; comparte escala con pie de figura |
 | Pie: rótulo inicial | `\PosterFooterKickerType` | 24 / 27 pt | «TAKEAWAY» en dorado |
 | Pie: titular | `\PosterFooterTitleType` | 56 / 59 pt | Conclusión principal |
 | Pie: explicación | `\PosterFooterSummaryType` | 29 / 32 pt | Instrucción de lectura |
@@ -61,7 +61,33 @@ Fuente de texto: **TeX Gyre Heros**. Títulos y cifras destacados: **TeX Gyre He
 | Pie: correo | `\PosterFooterContactEmailType` | 26 / 29 pt | Correo de contacto |
 | Pie: datos de contacto | `\PosterFooterContactLineType` | 21 / 24 pt | Afiliación y ciudad |
 
-Hay tamaños locales en diagramas y tablas que resuelven casos concretos. Para texto nuevo, empieza por un rol de esta tabla y ajusta localmente solo si la figura lo exige. No comprimas ni escales fuentes para forzar que quepan.
+### Roles interiores y de figuras
+
+| Rol | Comando | Tamaño / interlineado | Uso |
+| --- | --- | ---: | --- |
+| Título interior compacto | `\PosterCompactHeadingType` | 29 / 32 pt | Filas de 4A, tarjetas y resultados secundarios |
+| Párrafo interior compacto | `\PosterCompactBodyType` | 29 / 32 pt | 4B y 9B, donde la caja es corta |
+| Párrafo breve | `\PosterSmallBodyType` | 27 / 31 pt | Aclaraciones de alcance en 9B |
+| Llamado a la acción | `\PosterCalloutType` | 31 / 34 pt | Conclusión dentro de un módulo |
+| Nota de datos | `\PosterDataNoteType` | 22 / 25 pt | Denominadores y fallos bajo cifras en 9A |
+| Letra de garantía | `\PosterGuaranteeLetterType` | 42 / 44 pt | A, B y C |
+| Texto de garantía | `\PosterGuaranteeBodyType` | 30 / 33 pt | Explicación breve en las tarjetas |
+| Ecuación densa | `\PosterEquationDenseType` | 30 / 34 pt | Fila más larga de 4A |
+| Ecuación compacta | `\PosterEquationCompactType` | 32 / 36 pt | Fórmulas en 3 y 4A |
+| Ecuación corta | `\PosterEquationShortType` | 34 / 38 pt | Fórmulas breves con más peso |
+| Nodo de diagrama | `\PosterDiagramNodeType` | 30 / 32 pt | SG e IBR |
+| Bus secundario IEEE-39 | `\PosterNetworkBusType` | 24 / 24 pt | Números en la red |
+| Bus candidato IEEE-39 | `\PosterNetworkCandidateType` | 30 / 30 pt | Cuatro números rojos |
+| Marca de eje | `\PosterPlotTickType` | 22 / 24 pt | Gráfico denso de frontera |
+| Nombre de eje | `\PosterPlotAxisType` | 23 / 25 pt | Gráfico denso de frontera |
+| Cifra de política | `\PosterPolicyCountType` | 52 / 55 pt | Recuentos 30, 36 y 16 |
+| Cifra principal IEEE-39 | `\PosterFlagshipCountType` | 72 / 76 pt | Resultado 15/15 |
+| Cifra de comprobación | `\PosterEvidenceCountType` | 43 / 46 pt | 100/100 y 56/60 |
+| Etiqueta de comprobación | `\PosterEvidenceLabelType` | 24 / 27 pt | Concepto bajo la cifra |
+| Detalle de comprobación | `\PosterEvidenceDetailType` | 21 / 24 pt | Condición del denominador |
+| Etiqueta de barra | `\PosterBarLabelType` | 25 / 28 pt | Valor blanco sobre barra verde |
+
+La escala está ordenada por función: referencias a 20 pt; detalles, ejes y leyendas a 21–26 pt; texto compacto a 27–31 pt; cuerpo y fórmulas a 30–44 pt; cifras protagonistas a 52–72 pt; título principal a 90 pt. Las marcas matemáticas más pequeñas del PDF son subíndices y exponentes, no párrafos. Las secciones y los diagramas generados deben usar estos comandos: `\fontsize` queda reservado para `poster_design_system.tex`. No comprimas ni escales texto para forzar que quepa.
 
 ## Retícula y aire
 
