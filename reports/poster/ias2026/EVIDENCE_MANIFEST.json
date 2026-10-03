@@ -1,0 +1,112 @@
+{
+  "snapshot": "IAS 2026 poster frozen evidence",
+  "scope": "Regenerate displayed poster data and figures from frozen outputs; does not rerun simulations",
+  "hash_normalization": "CRLF is normalized to LF before SHA-256 for cross-platform checkout",
+  "files": [
+    {
+      "path": "reports/poster/ias2026/evidence/claim_audit.md",
+      "sha256": "edf3ad8cb2318eae28e3354c7848337a66f64e7932333f808b9d865f16833c2e",
+      "bytes": 2575
+    },
+    {
+      "path": "reports/poster/ias2026/evidence/scientific_claim_audit.md",
+      "sha256": "b42a2a2316b0bf9f94445318bfd7761876bb40dbd92a071a8c428b0a88426c19",
+      "bytes": 2177
+    },
+    {
+      "path": "reports/poster/ias2026/research/bnd_h4_mechanism/configs/IAS26-050_INTERVENTION_V1.json",
+      "sha256": "54f5b18fb6752efe0bb17c1474abf6c89c5ae9d0f7064be9d67487e5695691e1",
+      "bytes": 6473
+    },
+    {
+      "path": "reports/poster/ias2026/research/bnd_h4_mechanism/docs/IAS26-060_V4_BLOCKER_ATLAS_DESCRIPTIVE.md",
+      "sha256": "1c03ff043ca8ea764be7b718d5ed9075bb0aaf524c397963c3c77e3949e40889",
+      "bytes": 5824
+    },
+    {
+      "path": "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260926T162252Z_d0fecb32_ias26_030_f2_closure_v1/tables/F2_ALIGNED_LOCAL_COLLECTIVE_ALPHA.csv",
+      "sha256": "3bb636240aeaed94670ae4116d67048ef1501b935ef4b4c4b1d5d985d18eafbe",
+      "bytes": 19748
+    },
+    {
+      "path": "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260926T162252Z_d0fecb32_ias26_030_f2_closure_v1/tables/F2_BOUNDARY_PORT_AUDIT.csv",
+      "sha256": "9a961072c488d519f3c5ead0b7200d35f682077869c7cba7c431234550639573",
+      "bytes": 2595
+    },
+    {
+      "path": "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260927T144629Z_d0fecb32_ias26_060_operating_v1/derived/SCENARIO_METRICS.csv",
+      "sha256": "61c749a12524b12bc80cbc32edc3d4bfe3dc6209cbc31468356770a67b440a2e",
+      "bytes": 8308005
+    },
+    {
+      "path": "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260927T144629Z_d0fecb32_ias26_060_operating_v1/reports/IAS2026_POSTER_READINESS.json",
+      "sha256": "6340d0c9ee218af7f3b7362a8d240a6d060e6ce68689fc8576e69e79aaeecd02",
+      "bytes": 3373
+    },
+    {
+      "path": "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260927T144629Z_d0fecb32_ias26_060_operating_v1/tables/IAS26-FINAL_EVIDENCE_STRIP.csv",
+      "sha256": "a3d74a5a9a32e5151f151c1286413e5504a3956cc54d250de75f71ee783eb081",
+      "bytes": 338
+    },
+    {
+      "path": "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260927T144629Z_d0fecb32_ias26_060_operating_v1/tables/IAS26-FINAL_P4_MC_DATA.csv",
+      "sha256": "8fba56dd1d0ab35e15b0c8f581275f27761233f06ddbd573a5fcf3dff5861674",
+      "bytes": 97585
+    },
+    {
+      "path": "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260927T144629Z_d0fecb32_ias26_060_operating_v1/tables/IAS26-FINAL_P4_TDS_TRACES.csv",
+      "sha256": "033700107977cd89126026e3b35f9497aa9b3a97b603667eab336fb4caa85c24",
+      "bytes": 426205
+    },
+    {
+      "path": "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260927T144629Z_d0fecb32_ias26_060_operating_v1/tables/MC_EVENT_RATES.csv",
+      "sha256": "ae89e7f83cef446b6df91a66a4c6f3ec30198d7aaf664504e9e6886cedf70b9c",
+      "bytes": 1080
+    },
+    {
+      "path": "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260927T144629Z_d0fecb32_ias26_060_operating_v1/tables/POSTER_NUMBERS_FINAL.csv",
+      "sha256": "13ef8de3ca6e3b31d64195789efb187d5bd84ff737060ba9dd629e2722c5a77e",
+      "bytes": 1278
+    },
+    {
+      "path": "reports/poster/ias2026/research/bnd_h4_mechanism/tickets/STATUS.json",
+      "sha256": "261f003807f535ad658aafbc7e48d63e6227a161a1c638b39047c9703425599b",
+      "bytes": 4165
+    },
+    {
+      "path": "reports/poster/ias2026/research/configs/ias2026/ieee39_network.json",
+      "sha256": "7cab4e73f9bcac3f33e4d99f3b2e631852333bf103695581aa00160cf9bcb391",
+      "bytes": 23963
+    },
+    {
+      "path": "reports/poster/ias2026/research/results/20260911_BASELINE_COMPARISON.csv",
+      "sha256": "38e0c6731f9cb0d0af8f5ef88eadbe4598185db6309127c61b8fba5e84746973",
+      "bytes": 7820
+    },
+    {
+      "path": "reports/poster/ias2026/research/results/20260911_CLAIM_MATRIX.csv",
+      "sha256": "6d3ec048f168275986cac3d106c0fbd88ff31e634828d4783b0890d04bc2a489",
+      "bytes": 12697
+    },
+    {
+      "path": "reports/poster/ias2026/research/results/FINAL_CLOSURE/FC10_census_lattice.csv",
+      "sha256": "7ccdb71183cad0f08a879ebc321d1314a1678fde1836995b63f1c3482f6e9d61",
+      "bytes": 46926
+    },
+    {
+      "path": "reports/poster/ias2026/research/results/FINAL_CLOSURE/FC10_summary.json",
+      "sha256": "ac9cc4bf44104514a4ae67b7da41bc58fc901901426578c32bbc4293d78fbfb2",
+      "bytes": 1661
+    },
+    {
+      "path": "reports/poster/ias2026/research/results/FINAL_CLOSURE/figures/FIG1_policy_map_source.csv",
+      "sha256": "6c471fbfeeca4f6764183d8b3f466ce2e6b354e53c2337cfdeebdf857b10b3b2",
+      "bytes": 5178976
+    },
+    {
+      "path": "research/ias2026_final_closure/reports/P6_GENUINE_HOLDOUT_STATUS.md",
+      "sha256": "9d75a66fb1634a167f9eb552947070bd413192398c9c04999713472a3a8faf9f",
+      "bytes": 563
+    }
+  ]
+}
