@@ -1,0 +1,49 @@
+% Module 1: motivation and question; compile this file for its own preview.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterTopRowHeight][t]{\PosterOneWidth}\vspace{0pt}
+  \begin{TicketTwoPanel}{\PosterTopRowHeight}{1}{MOTIVATION \& QUESTION}
+    \vspace{5mm}
+    {\PosterParagraph Replacing SG units changes the full portfolio. A stable endpoint can still contain an unstable intermediate coalition.\par}
+    \vspace{6mm}
+    \begin{center}
+      \begin{tikzpicture}[x=1mm,y=1mm]
+        \draw[IASDarkGreen,line width=1.8pt] (30,27) circle (14);
+        \node[font=\PosterDiagramNodeType,text=IASDarkGreen] at (30,27) {SG};
+        \node[font=\FigureSize,align=center,text=IASDarkText] at (30,2) {synchronous\\dynamics};
+        \draw[-{Stealth[length=5mm]},IASMidGreen,line width=2pt] (49,27)--(164,27);
+        \node[font=\FigureSize,text=IASDarkGreen] at (106,36) {replacement};
+        \draw[fill=IASPaleGreen,draw=IASMidGreen,line width=1.5pt,rounded corners=2mm] (173,13) rectangle (215,41);
+        \draw[IASMidGreen,line width=1.3pt] (184,14)--(184,40);
+        \draw[IASMidGreen,line width=1.3pt] (194,14)--(194,40);
+        \draw[IASMidGreen,line width=1.3pt] (204,14)--(204,40);
+        \node[font=\PosterDiagramNodeType,text=IASDarkGreen] at (194,27) {IBR};
+        \node[font=\FigureSize,align=center,text=IASDarkText] at (194,2) {controlled\\dynamics};
+      \end{tikzpicture}
+    \end{center}
+    \vspace{5mm}
+    \colorbox{IASPaleGold}{\parbox[c][43mm][c]{\dimexpr\linewidth-2\fboxsep\relax}{\centering
+      {\PosterCompactBodyType\bfseries\color{IASDarkText}Which replacement combinations are incompatible, why do they fail, and how can paths avoid them?}}}
+    \vspace{5mm}
+    {\EquationSize\[
+      \mathcal H(\theta)=\operatorname{Min}_{\subseteq}\{S:\alpha_{\perp}(S,\theta)\geq0\}
+    \]}
+    {\TableSize\color{IASDarkText}Edges mark minimal unstable coalitions.\par}
+  \end{TicketTwoPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewOnePageWidth}
+  \def\PosterPageHeight{\PosterPreviewTopRowPageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewOneLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

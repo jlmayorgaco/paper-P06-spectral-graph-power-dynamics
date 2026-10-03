@@ -1,0 +1,55 @@
+% Module 5: policy atlas; compile this file for its own preview.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterMiddleRowHeight][t]{\PosterHalfWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterMiddleRowHeight}{5}{POLICY CHANGES THE MINIMAL BLOCKER}
+    \noindent\begin{minipage}[t]{215mm}\centering\vspace{0pt}
+      {\Subhead\color{IASDarkGreen}Policy atlas A: four IBR candidates\par}
+      \includegraphics[width=130mm]{generated/figures/policy_atlas_heatmap.png}\par
+      {\FigureSize\color{IASDarkText}$Q/V$ gain $g$ (horizontal); AVR gain $k$ (vertical).\par}
+    \end{minipage}\hspace{3mm}%
+    \begin{minipage}[t]{204mm}\centering\vspace{0pt}
+      {\Subhead\color{IASDarkGreen}Distinct full-spectrum hypergraphs\par}
+      \noindent\begin{minipage}[t]{63mm}\centering\vspace{0pt}
+        {\PosterPolicyCountType\color{IASBlue}\NumDistinctPolicyA\par}
+        {\TableSize\color{IASDarkText}A: $g\times k$\par}
+        {\FigureSize\color{IASGray}$t=1.5,\ h=1$\par}
+      \end{minipage}\hspace{7mm}%
+      \begin{minipage}[t]{63mm}\centering\vspace{0pt}
+        {\PosterPolicyCountType\color{IASBlue}\NumDistinctPolicyB\par}
+        {\TableSize\color{IASDarkText}B: $g\times t$\par}
+        {\FigureSize\color{IASGray}$k=1,\ h=1$\par}
+      \end{minipage}\hspace{7mm}%
+      \begin{minipage}[t]{63mm}\centering\vspace{0pt}
+        {\PosterPolicyCountType\color{IASBlue}\NumDistinctPolicyC\par}
+        {\TableSize\color{IASDarkText}C: $g\times h$\par}
+        {\FigureSize\color{IASGray}$k=1,\ t=1$\par}
+      \end{minipage}\par
+      \vspace{2mm}
+      {\TableSize\bfseries\color{IASDarkText}Along B at $t\approx0.852$: blocker size\par}
+      {\HeroEquation\bfseries\color{IASBlue}$\PolicyPath$\par}
+      {\FigureSize\color{IASDarkText}Fixed network and dispatch; policy changes blocker structure.\par}
+      \vspace{3mm}
+      {\TableSize\color{IASDarkText}$t$: exciter time scale; $h$: exciter heterogeneity.\par}
+      \vspace{4mm}
+      {\FigureSize\PolicySwatch{IASPaleGreen}{$\varnothing$}\quad\PolicySwatch{IASBlue}{1}\quad\PolicySwatch{IASMidGreen}{2}\quad\PolicySwatch{IASGold}{3}\quad\PolicySwatch{IASVermillion}{4}\quad\PolicySwatch{IASGray}{unsampled}\par}
+      {\FigureSize\color{IASGray}Colors indicate minimal blocker order $|H_{\min}|$.\par}
+    \end{minipage}
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewHalfPageWidth}
+  \def\PosterPageHeight{\PosterPreviewMiddlePageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewHalfLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

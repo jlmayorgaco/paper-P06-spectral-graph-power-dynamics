@@ -1,0 +1,16 @@
+metric,value,unit,source
+canonical proper-triple α⊥,-0.2046876902220358,s^-1,F1_FINAL_AUDIT.csv
+canonical original H4 α⊥,0.1270064678283096,s^-1,F1_FINAL_AUDIT.csv
+canonical retuned H4 α⊥,-0.0173846760615566,s^-1,IAS26-050_NOMINAL_COMPARISON.csv
+fixed g original → intervention,0.03625 → 0.25,dimensionless,IAS26-050 frozen config
+F2 collective boundary g*,0.20768140519037842,dimensionless,IAS26-030 summary
+minimum physical local σmin at boundary,0.4892354857736281,dimensionless,F2_BOUNDARY_PORT_AUDIT.csv
+collective σmin(I+QH) at boundary,4.393670368678711e-08,dimensionless,F2_BOUNDARY_PORT_AUDIT.csv
+MC H4 minimal-blocker persistence,190/967,proportion,MC_EVENT_RATES.csv
+MC H4 persistence Wilson 95% CI,"[0.1727, 0.2227]",proportion,MC_EVENT_RATES.csv
+MC collective-phenomenon persistence,555/967,proportion,MC_EVENT_RATES.csv
+fixed intervention improvement,594/967,proportion,MC_EVENT_RATES.csv
+fixed intervention H4 rescue,186/967,proportion,MC_EVENT_RATES.csv
+H4 rescue Wilson 95% CI,"[0.1687, 0.2184]",proportion,MC_EVENT_RATES.csv
+TDS sign agreement among completed finite fits,56/60,proportion; same-model phasor TDS,IAS26-080_TDS_RESULTS.csv
+MC frozen IDs physically feasible,967/1000,scenarios; no replacements,SCENARIO_METRICS.csv

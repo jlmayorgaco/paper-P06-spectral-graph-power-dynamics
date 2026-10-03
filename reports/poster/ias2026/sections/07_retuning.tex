@@ -1,0 +1,92 @@
+% Module 7: retuning; compile this file for its own preview.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterLowerRowHeight][t]{\PosterHalfWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterLowerRowHeight}{7}{A CANONICAL REPAIR IS NOT UNIVERSAL}
+    \noindent\begin{minipage}[t]{\linewidth}\vspace{0pt}
+      {\Subhead\color{IASDarkGreen}Synthetic retuning: $g=\BaselineGain\to\RetunedGain$\par}
+      \noindent\begin{minipage}[c][30mm][c]{137mm}\centering
+        \colorbox{IASPaleGreen}{\parbox[c][27mm][c]{132mm}{\centering
+          {\MetricSize\bfseries\color{IASMidGreen}\InterventionImproves/\NumValidMC\quad\InterventionImprovesPercent\%\par}
+          {\TableSize\bfseries\color{IASDarkText}$\alpha_{\perp}$ improves\par}}}
+      \end{minipage}\hspace{2mm}%
+      \begin{minipage}[c][30mm][c]{137mm}\centering
+        \colorbox{IASPaleGreen}{\parbox[c][27mm][c]{132mm}{\centering
+          {\MetricSize\bfseries\color{IASBlue}\InterventionRescues/\NumValidMC\quad\InterventionRescuesPercent\%\par}
+          {\TableSize\bfseries\color{IASDarkText}canonical $H_4$ rescued\par}}}
+      \end{minipage}\hspace{2mm}%
+      \begin{minipage}[c][30mm][c]{137mm}\centering
+        \colorbox{IASPaleGold}{\parbox[c][27mm][c]{132mm}{\centering
+          {\MetricSize\bfseries\color{IASVermillion}\InterventionDeteriorates/\NumValidMC\quad\InterventionDeterioratesPercent\%\par}
+          {\TableSize\bfseries\color{IASDarkText}stability deteriorates\par}}}
+      \end{minipage}\par
+    \end{minipage}\par
+    \vspace{1mm}
+    \noindent\begin{minipage}[t]{208mm}\centering\vspace{0pt}
+      {\FigureSize\StableMark\; improved\qquad\UnstableMark\; deteriorated\par}
+      \begin{tikzpicture}
+        \begin{axis}[
+          scale only axis,width=152mm,height=56mm,
+          xmin=-0.25,xmax=0.5,ymin=-0.1,ymax=0.1,
+          xtick={-0.2,0,0.2,0.4},ytick={-0.05,0,0.05},
+          xlabel={original $\alpha_{\perp}$ (s$^{-1}$)},ylabel={retuned $\alpha_{\perp}$ (s$^{-1}$)},
+          tick label style={font=\FigureSize,text=IASDarkText},
+          label style={font=\FigureSize,text=IASDarkText},
+          axis line style={IASDarkText,line width=1pt},grid=major,major grid style={IASRule},
+          clip=true]
+          \addplot[only marks,mark=*,mark size=2.0pt,color=IASBlue]
+            table[col sep=comma,x=alpha_perp_original,y=alpha_perp_intervention] {generated/tables/intervention_improved.csv};
+          \addplot[only marks,mark=x,mark size=2.5pt,color=IASVermillion]
+            table[col sep=comma,x=alpha_perp_original,y=alpha_perp_intervention] {generated/tables/intervention_deteriorated.csv};
+        \end{axis}
+      \end{tikzpicture}
+    \end{minipage}\hspace{4mm}%
+    \begin{minipage}[t]{208mm}\centering\vspace{0pt}
+      {\PosterCondensed\PosterCalloutType\color{IASDarkGreen}Canonical phasor-DAE response (0--30 s)\par}
+      \begin{tikzpicture}
+        \begin{axis}[
+          scale only axis,width=152mm,height=56mm,
+          xmin=0,xmax=30,xlabel={time (s)},ylabel={$\Delta\omega$ (p.u.)},
+          tick label style={font=\FigureSize,text=IASDarkText},
+          label style={font=\FigureSize,text=IASDarkText},
+          axis line style={IASDarkText,line width=1pt},grid=major,major grid style={IASRule},
+          legend style={font=\FigureSize,draw=none,fill=white,at={(0.02,0.98)},anchor=north west},
+          clip=true]
+          \addplot[IASVermillion,line width=1.8pt] table[col sep=comma,x=time_s,y=omega_sg34_minus_omega_sg39_pu] {generated/tables/tds_h4_original.csv};
+          \addlegendentry{H$_4$, original}
+          \addplot[IASBlue,line width=1.8pt] table[col sep=comma,x=time_s,y=omega_sg34_minus_omega_sg39_pu] {generated/tables/tds_h4_retuned.csv};
+          \addlegendentry{H$_4$, retuned}
+          \addplot[IASMidGreen,line width=1.5pt,dashed] table[col sep=comma,x=time_s,y=omega_sg34_minus_omega_sg39_pu] {generated/tables/tds_proper_triple.csv};
+          \addlegendentry{proper triple}
+        \end{axis}
+      \end{tikzpicture}
+    \end{minipage}\par
+    \vspace{2mm}
+    \noindent\begin{minipage}[c][10mm][c]{208mm}\centering
+      {\FigureSize\bfseries\color{IASGold!70!black}Condenser support: \CondenserMVA\ MVA (conditional)}
+    \end{minipage}\hspace{4mm}%
+    \begin{minipage}[c][10mm][c]{208mm}\centering
+      {\FigureSize\color{IASDarkText}Time-domain: \TDSAgreement\ agree; \TDSSolverFailures/\TDSTotal\ runs failed}
+    \end{minipage}\par
+    \vspace{1mm}
+    \noindent\begin{minipage}[c][10mm][c]{\linewidth}\centering
+      {\FigureSize\color{IASGray}Counts reproduce frozen files; independent-model validation remains open.}
+    \end{minipage}\par
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewHalfPageWidth}
+  \def\PosterPageHeight{\PosterPreviewLowerPageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewHalfLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

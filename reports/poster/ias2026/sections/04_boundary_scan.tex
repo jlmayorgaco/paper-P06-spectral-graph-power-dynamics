@@ -1,0 +1,58 @@
+% Module 4B: boundary evidence for the collective network return.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterFourHeight][t]{\PosterHalfWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterFourHeight}{\PosterSubpanelBadge{4B}}{THE COLLECTIVE TERM CLOSES}
+    {\PosterCompactBodyType\color{IASDarkText}\textbf{Boundary scan:} $g^*=\BoundaryGain$; $\alpha_{\perp}=\BoundaryAlpha$; $f=\BoundaryFrequency$ Hz\par}
+    \vspace{1mm}
+    \noindent\begin{minipage}[t]{258mm}\centering\vspace{0pt}
+      \begin{tikzpicture}
+        \begin{axis}[
+          scale only axis,width=224mm,height=72mm,
+          xmin=0.03,xmax=0.26,
+          ymin=1e-8,ymax=1,ymode=log,log basis y=10,
+          xtick={0.05,0.10,0.15,0.20,0.25},
+          ytick={1e-8,1e-6,1e-4,1e-2,1},
+          xlabel={feedback gain $g$},ylabel={$\sigma_{\min}$},
+          yticklabel style={font=\PosterPlotTickType,text=IASDarkText},
+          tick label style={font=\PosterPlotTickType,text=IASDarkText},
+          label style={font=\PosterPlotAxisType,text=IASDarkText},
+          axis line style={IASDarkText,line width=1pt},
+          grid=major,major grid style={IASRule,line width=0.6pt},clip=false]
+          \addplot[IASBlue,line width=2pt,mark=*,mark size=3.3pt]
+            table[col sep=comma,x=g,y=local_sigma_min] {generated/tables/f2_local_collective_closure.csv};
+          \addplot[IASVermillion,line width=2pt,dashed,mark=x,mark size=3.8pt]
+            table[col sep=comma,x=g,y=collective_sigma_min] {generated/tables/f2_local_collective_closure.csv};
+          \addplot[IASGold,densely dotted,line width=1.7pt,no marks]
+            coordinates {(\BoundaryGain,1e-8) (\BoundaryGain,1)};
+        \end{axis}
+      \end{tikzpicture}\par
+      {\FigureSize\color{IASDarkText}\StableMark\; local\quad\UnstableMark\; collective\quad\BoundaryMark\; $g^*$\par}
+    \end{minipage}\hspace{5mm}%
+    \begin{minipage}[t]{153mm}\vspace{2mm}
+      {\PosterCompactHeadingType\color{IASBlue}LOCAL DEVICES\par}
+      {\MetricSize\bfseries\color{IASDarkText}$\sigma_{\min}\approx0.49$\par}
+      {\TableSize\color{IASDarkText}remain regular\par}
+      \vspace{8mm}
+      {\PosterCompactHeadingType\color{IASVermillion}NETWORK RETURN\par}
+      {\EquationSize\bfseries\color{IASDarkText}$\sigma_{\min}\approx4.4\times10^{-8}$\par}
+      {\TableSize\color{IASDarkText}approaches singularity\par}
+    \end{minipage}\par
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewHalfPageWidth}
+  \def\PosterPageHeight{\PosterPreviewFourPageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewHalfLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

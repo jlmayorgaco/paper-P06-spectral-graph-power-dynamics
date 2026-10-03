@@ -1,0 +1,29 @@
+% Module 9B: what the poster's safe-path claim does and does not cover.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterBottomRowHeight][t]{\PosterHalfWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterBottomRowHeight}{\PosterSubpanelBadge{9B}}{WHAT ``SAFE PATH'' MEANS HERE}
+    \vspace{3mm}
+    {\PosterCompactBodyType\color{IASDarkText}Each prefix is a \textbf{re-equilibrated phasor-DAE} portfolio.\par}
+    \vspace{2mm}
+    {\PosterSmallBodyType\color{IASDarkText}The analysis does not simulate \textbf{physical switching}, EMT, current limits or DC-link limits.\par}
+    \vspace{2mm}
+    {\PosterSmallBodyType\color{IASDarkGreen}\textbf{Blockers depend on the model and control policy.}\par}
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewHalfPageWidth}
+  \def\PosterPageHeight{\PosterPreviewBottomPageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewHalfLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

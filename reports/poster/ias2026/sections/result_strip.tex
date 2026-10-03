@@ -1,0 +1,29 @@
+% Four-result bridge
+\long\def\PosterSectionContent{%
+{\setlength{\fboxsep}{0pt}%
+\colorbox{IASDeepGreen}{\begin{minipage}[c][\PosterStripHeight][c]{\PosterGridWidth}
+  \noindent\begin{minipage}[c]{215.6mm}\MetricCell{\NumProperStable/\NumProperTotal}{smaller portfolios stable}{all strict subsets}\end{minipage}%
+  \begin{minipage}[c]{2mm}\centering\textcolor{IASPaleGreen}{\rule{0.7pt}{30mm}}\end{minipage}%
+  \begin{minipage}[c]{215.6mm}\MetricCell{$H_4=\FlagshipBlocker$}{canonical witness}{not the universal blocker}\end{minipage}%
+  \begin{minipage}[c]{2mm}\centering\textcolor{IASPaleGreen}{\rule{0.7pt}{30mm}}\end{minipage}%
+  \begin{minipage}[c]{215.6mm}\MetricCell{$\FlagshipAlpha\;\mathrm{s}^{-1}$}{critical growth rate}{canonical portfolio}\end{minipage}%
+  \begin{minipage}[c]{2mm}\centering\textcolor{IASPaleGreen}{\rule{0.7pt}{30mm}}\end{minipage}%
+  \begin{minipage}[c]{215.6mm}\MetricCell{\NumOrderDependentTargets/\NumStableTargets}{order-dependent targets}{matched-policy IEEE-39 census}\end{minipage}
+\end{minipage}}}\par%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewFullPageWidth}
+  \def\PosterPageHeight{\PosterPreviewStripPageHeight}
+  \def\PosterPreviewLeft{\PosterOuterMargin}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

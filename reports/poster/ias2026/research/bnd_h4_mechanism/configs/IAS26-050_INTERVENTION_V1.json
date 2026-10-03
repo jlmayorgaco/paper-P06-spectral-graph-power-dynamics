@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "ticket": "IAS26-050",
+  "config_id": "IAS26-050_INTERVENTION_V1",
+  "status": "FROZEN_BEFORE_NOMINAL_VERIFICATION",
+  "frozen_at_utc": "2026-09-26T17:39:53Z",
+  "scope": {
+    "purpose": "Freeze the single primary H4 control intervention and its nominal direct-DAE check before IAS26-060.",
+    "experiment_limit": "One canonical nominal H4 DAE evaluation at g=0.25 only. No parameter sweep, Monte Carlo, eta/M2/M3, GFM, or poster-figure generation.",
+    "m1_dependency": "None for the direct DAE eigenvalue comparison. IAS26-010 remains BLOCKED_M1_STRICT; no reduced-root prediction or validation is permitted."
+  },
+  "system": {
+    "network": "frozen IEEE-39 TX4",
+    "base_mva": 100,
+    "frequency_hz": 60,
+    "load_model": "constant-power loads",
+    "portfolio": "30+33+35+37",
+    "port_order": [30, 33, 35, 37],
+    "technology": "all-GFL",
+    "unchanged_parameters": {
+      "k": 1.425,
+      "t": 1.5,
+      "h": 1.0,
+      "leak": 0.05,
+      "network_loads_dispatch_locations_ratings": "identical to frozen P4 IEEE-39 TX4 source"
+    }
+  },
+  "treatment": {
+    "control": {
+      "name": "original",
+      "g": 0.03625
+    },
+    "primary_intervention": {
+      "name": "fixed_QV_retuning",
+      "g": 0.25,
+      "selection_basis": "pre-existing canonical g sweep; fixed by IAS26-050, not optimized on development or holdout scenarios"
+    },
+    "paired_comparison": "Same frozen IEEE-39 network, loads, dispatch, H4 locations, ratings, and all non-g controller/model parameters.",
+    "additional_comparator": "none",
+    "cost_or_optimality_claim": false
+  },
+  "metrics_and_decisions": {
+    "primary_metric": "alpha_perp: spectral abscissa over the complete transverse spectrum of the direct DAE linearization",
+    "secondary_metric": "alpha_Omega: rightmost transverse eigenvalue restricted to 0.3-1.5 Hz; report separately and never substitute for alpha_perp",
+    "target_band_hz": [0.3, 1.5],
+    "tau_dec_s-1": 1e-8,
+    "tau_dec_source": "F1 preregistered renderer BOUNDARY_TOLERANCE=1e-8 at source commit a042efd7156a505928c52b9a373aa0839371f32b; unchanged",
+    "classification": {
+      "stable": "alpha_perp < -tau_dec",
+      "unstable": "alpha_perp > +tau_dec",
+      "indeterminate": "abs(alpha_perp) <= tau_dec"
+    },
+    "nominal_pre_run_prediction": {
+      "metric": "alpha_Omega at the dominant target-band eigenvalue, direct DAE",
+      "alpha_original_s-1": 0.12700646782830968,
+      "alpha_intervention_s-1": -0.017384676061556643,
+      "delta_alpha_intervention_minus_original_s-1": -0.14439114388986632,
+      "frequency_original_hz": 0.6222796695036534,
+      "frequency_intervention_hz": 0.7105408660892832,
+      "direction": "negative; preregistered target-band improvement",
+      "source": "baseline TX4_CONTEXTUAL_RETURN_SWEEP.csv, exact rows g=0.03625 and g=0.25; full DAE transverse operator, target-band eigenvalue only",
+      "important_scope": "This numeric prediction is alpha_Omega, not a prediction of complete-spectrum delta alpha_perp. The new nominal check must retain the full transverse spectrum and determine alpha_perp directly."
+    },
+    "nominal_feasibility": {
+      "valid_only_if": [
+        "frozen tx4_case DAE solve returns successfully",
+        "equilibrium and complete transverse spectrum are finite",
+        "max absolute differential and algebraic equilibrium residuals are each <= 1e-7, matching baseline G2"
+      ],
+      "if_invalid": "Mark intervention nominal check BLOCKED/INVALID; do not retune, relax thresholds, or claim rescue."
+    },
+    "mode_identity": "Retain complete eigenvalues/eigenvectors at both canonical g values where available; report alpha_perp and alpha_Omega separately. Do not claim a tracked mode-family transition from eigenvalue ordering alone.",
+    "failure_and_replacement": "No silent case substitution. Nominal failure remains visible. IAS26-060 must assign every pre-generated scenario ID a result or auditable failure code; no post-hoc draw replacement."
+  },
+  "existing_evidence": {
+    "baseline_run_id": "20260925T204017_549c3c07_h4_crossmode_v3",
+    "baseline_commit": "549c3c07383c1ecc6e6a274cc7ca900f97bc47d3",
+    "f1_full_spectra_run_id": "20260926T161116Z_d0fecb32_ias26_020_f1_audit_v1",
+    "f1_H4_equilibrium_hash": "18adf2938aa8263bbdb97165dceba885d7323a935664a1d18f16fbac7294ac34",
+    "f1_H4_model_hash": "5bd6c2c82d876e9667ba177eff952b958902967f19b887fb1e3d7aba06e4fb5c",
+    "f1_H4_state_count": 86,
+    "f1_H4_transverse_state_count": 84,
+    "sha256": {
+      "f1_full_spectra_npz": "db6581d59fa0d042839e9a327c6d682d677ea4d6dd2209bcb2abb0b1e68f34db",
+      "f1_final_audit_csv": "4ea8042a80bb1e68bee1f272b0daf7baa4f23a9611fa6b5975cd3239ac11f718",
+      "baseline_sweep_csv": "2dd4559acdd847349f68faa26818687eb3a6194f5a2387bab17205955525429b",
+      "baseline_gates_json": "a06b65d2141c16a6f972ef2e7fd7ebebde9fd1a61bd8ae92db948e54294de1e4",
+      "tx4_contextual_return_source": "77d4ed0f76f8c4a6ec369bc30b306361cff9b789c6f432e287d5f180d9210b74",
+      "ieee39_case_source": "1f38a8e541780ab7205809dc1ba58bdafb6c923933f5772d46407064edc8c722",
+      "ieee39_devices_source": "bcf0c76be65b171b580684065cde4eb88d0433c6b4d7beefec966f8711036d90",
+      "ieee39_network_source": "f42144cd02a6dc779ed690fd866ad026f33eb7844584c7f10281fc7d98e3fe13",
+      "port_admittance_source": "b0fa694dd0111be158133a9cf8c4e36be670e50ef562dcd63f89d7ff87b8d4ef",
+      "port_core_source": "38c54b1a70f87fbbe2c301a717e6dd6b4112b3a9cf8deb663426ce08b729bb9b",
+      "shared_parameter_source": "2e6ac2b3490c061d5ee3c344043dbfa6dd663e50bfbe4aadab304ad0a8dfd44f",
+      "transverse_operator_source": "1773203ef87389a1e0e661dd955a543961c671b05977908dc9ae30abb246c4d4",
+      "symmetry_source": "053a3b1a28bf526b4b543aef23bb87f028dffe9fcf9c9e2b5f91bd84a9cab012",
+      "fingerprint_helper_source": "97f6213f5de22b356cb509239878444c0833326ece81ecf09f8194be774cc231"
+    }
+  },
+  "explicitly_not_frozen_here": {
+    "mc_operational_distribution_P_L_Q_L_P_G_correlations_limits_redispatch": "IAS26-060 pre-run configuration; execution prohibited until fully specified",
+    "mc_seed_and_1000_scenario_ids": "IAS26-060 pre-run configuration; generation and hash must precede any MC evaluation",
+    "holdout_selection_and_strata": "IAS26-060/080 pre-run contracts",
+    "full_spectrum_alpha_perp_at_g_0_25": "measured only by the single preregistered nominal direct-DAE verification launched after this config is frozen"
+  }
+}

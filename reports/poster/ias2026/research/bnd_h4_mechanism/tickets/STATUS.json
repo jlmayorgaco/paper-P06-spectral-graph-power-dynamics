@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "campaign": "IAS2026_H4_POSTER",
+  "plan_version": "1.0",
+  "active_ticket": "IAS26-120",
+  "active_phase": "SCIENTIFIC_AUDIT_PASS_HOUSEKEEPING_PENDING",
+  "completed": ["IAS26-000", "IAS26-020", "IAS26-030", "IAS26-050", "IAS26-060B", "IAS26-080", "IAS26-110"],
+  "blocked": [
+    {
+      "ticket": "IAS26-010",
+      "reason": "IAS26-010R closed BLOCKED_M1_STRICT: action-space residual 2.340724075262523e-11 exceeds the frozen 1e-12 gate; classified as a numerical floor of the frozen DAE/port representation. No further 010 repetition authorized."
+    },
+    {
+      "ticket": "IAS26-040",
+      "reason": "M1 strict did not pass; F3/eta remains blocked and is removed from the current poster path."
+    }
+  ],
+  "queued_core": ["IAS26-120"],
+  "optional_after_core_review": ["IAS26-070", "IAS26-090", "IAS26-100"],
+  "next_after_active_ticket": "REMOVE_QA_SCRATCH_AND_CLOSE_IAS26-120",
+  "existing_evidence": {
+    "baseline_run": "20260925T204017_549c3c07_h4_crossmode_v3",
+    "m1a_reproduction_run": "20260926T100829_d0fecb32_ias26_010_reproduce",
+    "m1a_latest_run": "20260926T154705Z_d0fecb32_ias26_010_action_audit_v1",
+    "f1_f2_asset_run": "20260926T083621_h4_f1_f2_assets_v1",
+    "f1_final_audit_run": "20260926T161116Z_d0fecb32_ias26_020_f1_audit_v1",
+    "f2_final_audit_run": "20260926T162252Z_d0fecb32_ias26_030_f2_closure_v1",
+    "ias26_050_config": "reports/poster/ias2026/research/bnd_h4_mechanism/configs/IAS26-050_INTERVENTION_V1.json",
+    "ias26_050_nominal_run": "20260926T174848Z_d0fecb32_ias26_050_nominal_v1",
+    "ias26_060_config": "reports/poster/ias2026/research/bnd_h4_mechanism/configs/IAS26-060_MC_OPERATING_V1.json",
+    "ias26_060_scenarios": "reports/poster/ias2026/research/bnd_h4_mechanism/inputs/IAS26-060_SCENARIOS_V1.csv",
+    "ias26_060_prerun_summary": "reports/poster/ias2026/research/bnd_h4_mechanism/inputs/IAS26-060_SCENARIOS_V1_SUMMARY.json",
+    "ias26_060_prerun_sha256": "reports/poster/ias2026/research/bnd_h4_mechanism/inputs/IAS26-060_PRE_RUN_SHA256.json",
+    "ias26_060b_080_run": "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260927T144629Z_d0fecb32_ias26_060_operating_v1",
+    "ias26_080_tds_config": "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260927T144629Z_d0fecb32_ias26_060_operating_v1/config/IAS26-080_TDS_OPERATING_V1.json",
+    "ias26_080_tds_holdout": "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260927T144629Z_d0fecb32_ias26_060_operating_v1/inputs/IAS26-080_TDS_HOLDOUT_V1.csv",
+    "poster_final_figures": "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260927T144629Z_d0fecb32_ias26_060_operating_v1/figures/final",
+    "poster_claim_ledger": "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260927T144629Z_d0fecb32_ias26_060_operating_v1/claims/POSTER_CLAIM_LEDGER.csv",
+    "poster_readiness_report": "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260927T144629Z_d0fecb32_ias26_060_operating_v1/reports/IAS2026_POSTER_READINESS.md",
+    "ias26_110_poster_package": "reports/poster/ias2026/deliverables/IAS26-110",
+    "ias26_120_adversarial_audit": "reports/poster/ias2026/deliverables/IAS26-120/IAS26-120_ADVERSARIAL_AUDIT.md"
+  },
+  "last_update": "2026-09-27",
+  "note": "IAS26-010 remains closed BLOCKED_M1_STRICT; no eta/M2/M3/GFM work was run. IAS26-020/030/050 remain PASS. IAS26-060B/080 preserve all 1,000 frozen IDs without replacement (967 physically feasible, 33 infeasible); 90/90 TDS records remain visible (60 COMPLETED, 30 SOLVER_FAILED). IAS26-110 poster package is complete. IAS26-120 scientific claim audit passes with explicit limitations, but its repository-organization gate is still open because tool policy rejected deletion of the exact QA scratch paths listed in deliverables/IAS26-120/IAS26-120_ADVERSARIAL_AUDIT.md. TDS primary-extractor signs agree in 56/60 completed finite records; four disagreements are zero-frequency with missing R2, so mode identity is unresolved. Python-Julia same-model verdict parity is 100/100, with mode identity unresolved. F3/M1, eta/M2/M3 and GFM/F4 remain unsupported. No further scientific work was started."
+}
