@@ -22,7 +22,7 @@ Las medidas siguientes están definidas en `poster_layout.tex` y se usan tanto e
 | 08 Rutas seguras | 430,2 × 210 mm |
 | 09A Comprobaciones | 430,2 × 84 mm |
 | 09B Alcance del modelo | 430,2 × 84 mm |
-| Footer | 868,4 × 84 mm |
+| Footer | 868,4 × 80 mm |
 
 La retícula tiene 868,4 mm de ancho y márgenes laterales de 23 mm, alineados con los bordes exteriores de los logos. La primera fila suma 224 + 8 + 412,4 + 8 + 216 = 868,4 mm. Las filas de dos columnas suman 430,2 + 8 + 430,2 = 868,4 mm. El espacio vertical entre filas es 4 mm.
 

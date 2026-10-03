@@ -18,6 +18,6 @@ Se inspeccionaron las quince vistas individuales a 100 dpi y el póster completo
 | 08 Rutas | Las rutas insegura y segura se distinguen por color, forma y texto; se retiraron las métricas repetidas y se dejó un cierre sobre la importancia del orden. |
 | 09A Comprobaciones | Dos cifras con sus denominadores y la nota de fallos del solver sustituyen el inventario repetido de seis métricas. |
 | 09B Alcance | Tres frases explican qué modela la ruta segura y qué fenómenos no se simularon. |
-| Footer | Conclusión, contacto y referencias ocupan tres bloques. Los cinco trabajos incluyen datos bibliográficos suficientes para identificarlos sin QR. |
+| Footer | Conclusión, contacto y referencias ocupan tres bloques. Los cinco trabajos incluyen datos bibliográficos suficientes para identificarlos sin QR. El pie conserva aire interior y una franja blanca más amplia bajo el póster. |
 
 Los paneles 04A/04B y 09A/09B son archivos independientes con caja exterior fija. La nueva composición mantiene márgenes de 23 mm, separación horizontal de 8 mm y separación vertical de 4 mm. Los encabezados de todos los módulos se revisaron tras añadir tracking y corregir la alineación óptica con los círculos; el título más largo de la primera fila permanece en una línea. La compilación final con `-Section all -StrictLayout` no emitió avisos de composición; se inspeccionó el PNG de cada panel y el de la página completa después de corregir un recorte inicial en 04B.

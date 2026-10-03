@@ -73,7 +73,7 @@ Dentro de los módulos, `PosterPanel` usa una banda de título de **32 mm** y `T
 
 Los espacios locales de 1–6 mm son ajustes ópticos de figuras y fórmulas; mantenlos dentro de cada módulo. Si el contenido no cabe, reordena o edita el interior antes de tocar la caja exterior. Los submódulos 4A/4B y 9A/9B usan la misma retícula de dos columnas que las filas 5/6 y 7/8. Conserva suficiente blanco entre bloques para distinguir pregunta, método, evidencia y conclusión.
 
-El pie usa tres zonas fijas dentro de sus 868,4 × 84 mm: conclusión (390 mm), contacto (220 mm) y referencias (258,4 mm), separadas por líneas doradas. Las referencias llevan autor, fuente, volumen y páginas cuando corresponde. Mantén el contacto en la zona central y las referencias en la zona derecha.
+El pie usa tres zonas fijas dentro de sus 868,4 × 80 mm: conclusión (390 mm), contacto (220 mm) y referencias (258,4 mm), separadas por líneas doradas. Las referencias llevan autor, fuente, volumen y páginas cuando corresponde. Mantén el contacto en la zona central y las referencias en la zona derecha. La página conserva una franja blanca visible bajo el pie; `\PosterHeaderTopOffset` fija la posición vertical del conjunto sin alterar las alturas de los módulos.
 
 ## Componentes y estados
 
