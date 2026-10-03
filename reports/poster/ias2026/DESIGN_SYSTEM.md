@@ -53,8 +53,9 @@ Fuente de texto: **TeX Gyre Heros**. Títulos y cifras destacados: **TeX Gyre He
 | Pie: rótulo inicial | `\PosterFooterKickerType` | 24 / 27 pt | «TAKEAWAY» en dorado |
 | Pie: titular | `\PosterFooterTitleType` | 56 / 59 pt | Conclusión principal |
 | Pie: explicación | `\PosterFooterSummaryType` | 29 / 32 pt | Instrucción de lectura |
-| Pie: referencias | `\PosterFooterReferenceType` | 19 / 22 pt | Citas densas |
-| Pie: rótulo de referencias | `\PosterFooterReferenceHeadingType` | 23 / 26 pt | Etiqueta dorada |
+| Pie: detalle | `\PosterFooterDetailType` | 25 / 28 pt | Alcance y consecuencia en la columna izquierda |
+| Pie: referencias | `\PosterFooterReferenceType` | 20 / 23 pt | Citas en la columna derecha |
+| Pie: rótulo de referencias | `\PosterFooterReferenceHeadingType` | 25 / 28 pt | Etiqueta dorada |
 | Pie: rótulo de contacto | `\PosterFooterContactHeadingType` | 25 / 28 pt | Etiqueta dorada |
 | Pie: nombre de contacto | `\PosterFooterContactNameType` | 28 / 31 pt | Nombre en blanco |
 | Pie: correo | `\PosterFooterContactEmailType` | 26 / 29 pt | Correo de contacto |
@@ -71,6 +72,8 @@ La banda blanca contiene solo los logos: IAS a la izquierda, Universidad de los 
 Dentro de los módulos, `PosterPanel` usa una banda de título de **32 mm** y `TicketTwoPanel` una de **36 mm**. Ambos usan borde de **1,1 pt**, esquinas de **3 mm**, padding horizontal de **3 mm**, superior de **4 mm** e inferior de **2 mm**. El número va en un círculo de **14 mm**. La franja de métricas usa celdas de **40 mm** de alto. Estas medidas están definidas como tokens en `poster_design_system.tex`.
 
 Los espacios locales de 1–6 mm son ajustes ópticos de figuras y fórmulas; mantenlos dentro de cada módulo. Si el contenido no cabe, reordena o edita el interior antes de tocar la caja exterior. Los submódulos 4A/4B y 9A/9B usan la misma retícula de dos columnas que las filas 5/6 y 7/8. Conserva suficiente blanco entre bloques para distinguir pregunta, método, evidencia y conclusión.
+
+El pie usa tres zonas fijas dentro de sus 868,4 × 84 mm: conclusión (390 mm), contacto (220 mm) y referencias (258,4 mm), separadas por líneas doradas. Las referencias llevan autor, fuente, volumen y páginas cuando corresponde. Mantén el contacto en la zona central y las referencias en la zona derecha.
 
 ## Componentes y estados
 
