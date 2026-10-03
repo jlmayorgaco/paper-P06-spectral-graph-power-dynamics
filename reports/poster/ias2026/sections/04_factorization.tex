@@ -1,0 +1,53 @@
+% Module 4A: exact network factorization, with room for each equation.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterFourHeight][t]{\PosterHalfWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterFourHeight}{\PosterSubpanelBadge{4A}}{FROM DEVICES TO NETWORK RETURN}
+    \vspace{2mm}
+    \noindent\begin{minipage}[c][29mm][c]{85mm}
+      {\PosterCondensed\bfseries\fontsize{29pt}{32pt}\selectfont\color{IASDarkGreen}Network update\par}
+    \end{minipage}\hspace{4mm}%
+    \begin{minipage}[c][29mm][c]{327mm}
+      {\fontsize{32pt}{36pt}\selectfont\color{IASDarkText}$\displaystyle T_S(s)=T_0(s)+\sum_{i\in S}E_i\Delta Y_i(s)E_i^{\mathsf T}$\par}
+    \end{minipage}\par
+    \noindent\color{IASRule}\rule{\linewidth}{0.8pt}\par
+    \noindent\begin{minipage}[c][29mm][c]{85mm}
+      {\PosterCondensed\bfseries\fontsize{29pt}{32pt}\selectfont\color{IASDarkGreen}Characteristic\par}
+    \end{minipage}\hspace{4mm}%
+    \begin{minipage}[c][29mm][c]{327mm}
+      {\fontsize{32pt}{36pt}\selectfont\color{IASDarkText}$\displaystyle\det P_S(s)=h_S(s)\det T_0(s)\det(I+M_{SS}(s))$\par}
+    \end{minipage}\par
+    \noindent\color{IASRule}\rule{\linewidth}{0.8pt}\par
+    \noindent\begin{minipage}[c][33mm][c]{85mm}
+      {\PosterCondensed\bfseries\fontsize{29pt}{32pt}\selectfont\color{IASDarkGreen}Local $\times$ collective\par}
+    \end{minipage}\hspace{4mm}%
+    \begin{minipage}[c][33mm][c]{327mm}
+      {\fontsize{30pt}{34pt}\selectfont\color{IASDarkText}$\displaystyle\det(I+M_{SS})=\left[\prod_{i\in S}\det(I+M_{ii})\right]\det(I+Q_{SS})$\par}
+    \end{minipage}\par
+    \noindent\color{IASRule}\rule{\linewidth}{0.8pt}\par
+    \noindent\begin{minipage}[c][29mm][c]{85mm}
+      {\PosterCondensed\bfseries\fontsize{29pt}{32pt}\selectfont\color{IASDarkGreen}Interactions\par}
+    \end{minipage}\hspace{4mm}%
+    \begin{minipage}[c][29mm][c]{327mm}
+      {\fontsize{34pt}{38pt}\selectfont\color{IASDarkText}$\displaystyle\det(I+Q_{SS})=\sum_{T\subseteq S}\mu_T$\par}
+    \end{minipage}\par
+    \vspace{1mm}
+    {\FigureSize\color{IASGray}Strict M1 reduction is not established: residual $\MOneResidual$ exceeds the $\MOneGate$ gate.\par}
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewHalfPageWidth}
+  \def\PosterPageHeight{\PosterPreviewFourPageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewHalfLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

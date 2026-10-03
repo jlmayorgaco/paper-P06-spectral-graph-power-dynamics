@@ -1,4 +1,4 @@
-% References, takeaway, contact, and QR
+% References, takeaway, and contact. The poster is self-contained.
 \long\def\PosterSectionContent{%
   \begin{tikzpicture}[x=1mm,y=1mm]
     \useasboundingbox (0,0) rectangle (\PosterGridWidthMm,\PosterBottomRowHeightMm);
@@ -33,25 +33,19 @@
 
     \node[anchor=north west,inner sep=0pt,outer sep=0pt,
       font={\PosterFooterContactHeadingType},text=IASGold] at (660,75)
-      {CONTACT + CODE};
+      {CONTACT};
     \node[anchor=north west,inner sep=0pt,outer sep=0pt,
-      font={\PosterFooterContactNameType},text=IASWhite] at (660,61)
+      font={\PosterFooterContactNameType},text=IASWhite] at (660,60)
       {Jorge Luis Mayorga Taborda};
     \node[anchor=north west,inner sep=0pt,outer sep=0pt,
-      font={\PosterFooterContactLineType},text=IASPaleGreen] at (660,49)
+      font={\PosterFooterContactEmailType},text=IASPaleGreen] at (660,45)
       {jl.mayorga@uniandes.edu.co};
     \node[anchor=north west,inner sep=0pt,outer sep=0pt,
-      font={\PosterFooterContactLineType},text=IASPaleGreen] at (660,37)
+      font={\PosterFooterContactLineType},text=IASPaleGreen] at (660,29)
       {Universidad de los Andes};
     \node[anchor=north west,inner sep=0pt,outer sep=0pt,
-      font={\PosterFooterContactLineType},text=IASPaleGreen] at (660,25)
+      font={\PosterFooterContactLineType},text=IASPaleGreen] at (660,18)
       {Bogot\'a, Colombia};
-    \fill[IASWhite] (792,13) rectangle (854,74);
-    \node[anchor=north west,inner sep=0pt,outer sep=0pt] at (796,70)
-      {\includegraphics[width=54mm]{assets/repo_qr.png}};
-    \node[anchor=north,inner sep=0pt,outer sep=0pt,
-      font={\PosterFooterQrLabelType},text=IASPaleGreen] at (823,10)
-      {CODE + DATA};
   \end{tikzpicture}\par%
 }%
 \ifdefined\PosterFull

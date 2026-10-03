@@ -39,6 +39,7 @@ Fuente de texto: **TeX Gyre Heros**. Títulos y cifras destacados: **TeX Gyre He
 | Título de módulo | `\PosterPanelHeadingType` | 43 / 46 pt | Bandas verdes generales |
 | Título de primera fila | `\PosterTicketHeadingType` | 44 / 47 pt | Tres módulos superiores |
 | Número de módulo | `\PosterPanelBadgeType` | 32 / 32 pt | Círculo dorado |
+| Número de submódulo | `\PosterSubpanelBadge` | 22 / 22 pt | Identificadores 4A/4B y 9A/9B |
 | Párrafo principal | `\PosterParagraph` | 34,2 / 39 pt | Texto normal, alineado a la izquierda y con final irregular |
 | Subtítulo interior | `\Subhead` | 38 / 41 pt | Entrada a figura o bloque técnico |
 | Ecuación | `\EquationSize` | 36 / 41 pt | Fórmulas corrientes |
@@ -55,9 +56,9 @@ Fuente de texto: **TeX Gyre Heros**. Títulos y cifras destacados: **TeX Gyre He
 | Pie: referencias | `\PosterFooterReferenceType` | 19 / 22 pt | Citas densas |
 | Pie: rótulo de referencias | `\PosterFooterReferenceHeadingType` | 23 / 26 pt | Etiqueta dorada |
 | Pie: rótulo de contacto | `\PosterFooterContactHeadingType` | 25 / 28 pt | Etiqueta dorada |
-| Pie: nombre de contacto | `\PosterFooterContactNameType` | 23 / 26 pt | Nombre en blanco |
-| Pie: datos de contacto | `\PosterFooterContactLineType` | 21 / 24 pt | Correo, afiliación y ciudad |
-| Pie: etiqueta del QR | `\PosterFooterQrLabelType` | 19 / 21 pt | Texto bajo el código |
+| Pie: nombre de contacto | `\PosterFooterContactNameType` | 28 / 31 pt | Nombre en blanco |
+| Pie: correo | `\PosterFooterContactEmailType` | 26 / 29 pt | Correo de contacto |
+| Pie: datos de contacto | `\PosterFooterContactLineType` | 21 / 24 pt | Afiliación y ciudad |
 
 Hay tamaños locales en diagramas y tablas que resuelven casos concretos. Para texto nuevo, empieza por un rol de esta tabla y ajusta localmente solo si la figura lo exige. No comprimas ni escales fuentes para forzar que quepan.
 
@@ -69,7 +70,7 @@ La banda blanca contiene solo los logos: IAS a la izquierda, Universidad de los 
 
 Dentro de los módulos, `PosterPanel` usa una banda de título de **32 mm** y `TicketTwoPanel` una de **36 mm**. Ambos usan borde de **1,1 pt**, esquinas de **3 mm**, padding horizontal de **3 mm**, superior de **4 mm** e inferior de **2 mm**. El número va en un círculo de **14 mm**. La franja de métricas usa celdas de **40 mm** de alto. Estas medidas están definidas como tokens en `poster_design_system.tex`.
 
-Los espacios locales de 1–6 mm son ajustes ópticos de figuras y fórmulas; mantenlos dentro de cada módulo. Si el contenido no cabe, reordena o edita el interior antes de tocar la caja exterior. Conserva suficiente blanco entre bloques para distinguir pregunta, método, evidencia y conclusión.
+Los espacios locales de 1–6 mm son ajustes ópticos de figuras y fórmulas; mantenlos dentro de cada módulo. Si el contenido no cabe, reordena o edita el interior antes de tocar la caja exterior. Los submódulos 4A/4B y 9A/9B usan la misma retícula de dos columnas que las filas 5/6 y 7/8. Conserva suficiente blanco entre bloques para distinguir pregunta, método, evidencia y conclusión.
 
 ## Componentes y estados
 

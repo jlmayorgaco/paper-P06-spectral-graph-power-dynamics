@@ -1,21 +1,23 @@
-# Revisión visual por módulo · IAS 2026
+# Revisión visual · Póster IAS 2026
 
-Se revisaron los PNG individuales de las trece piezas a 100 dpi y el póster completo a 75 dpi. La evaluación cubrió alineación con la retícula, jerarquía, contraste, espacio interior, legibilidad y posibles cortes o superposiciones. Los valores científicos y las medidas exteriores no se modificaron.
+Se inspeccionaron las quince vistas individuales a 100 dpi y el póster completo a 75 dpi. La revisión cubrió jerarquía, alineación, contraste, espacio interior, legibilidad y recortes. El póster conserva una página de 36 × 48 pulgadas.
 
-| Pieza | Evaluación y decisión |
+| Pieza | Resultado de la revisión |
 | --- | --- |
-| Header blanco | Logos equilibrados en los extremos y aire central limpio. Se copiaron ambos a `assets/` para que el proyecto compile desde GitHub. |
-| Header verde | Título dominante, subtítulo y autor con separación y contraste adecuados. Se conserva. |
-| 01 Motivación y pregunta | Secuencia clara: contexto, transición SG→IBR, pregunta y definición. La caja amarilla y la ecuación conservan aire suficiente. |
-| 02 Resultado IEEE‑39 | Se reforzó el contraste de líneas y buses secundarios sin competir con los cuatro candidatos rojos. Las tres columnas mantienen títulos y pies legibles. |
-| 03 Destino y ruta | Las garantías A/B/C, la implicación y las barras de evidencia mantienen un recorrido visual ordenado. Se conserva. |
-| Franja de resultados | Cuatro cifras con anchos y separadores consistentes; legibles sobre verde oscuro. Se conserva. |
-| 04 Cierre de red | Fórmulas, mecanismo, gráfica y lectura contextual distinguen evidencia de interpretación. Los avisos quedan dentro de la caja. Se conserva. |
-| 05 Atlas de políticas | Se acortó la nota de estado y se marcó «CONDITIONAL» con el color semántico dorado. El mapa, cifras y leyenda tienen jerarquía clara. |
-| 06 Envolvente sintética | Se aclaró que las fracciones usan 967 IDs válidos y se reunió el aviso de revisión junto al cierre del módulo. Las tres tarjetas quedan equilibradas. |
-| 07 Reajuste | Se trasladó la leyenda de la serie temporal a la zona superior sin datos para liberar el centro de la curva. Cifras, dos gráficas y estados quedan separados. |
-| 08 Rutas seguras | Formulación, comparación de rutas y validaciones se leen en ese orden; rojo y verde tienen también textos y formas distintivas. Se conserva. |
-| 09 Evidencia y alcance | Las seis métricas se reparten de forma regular; la frase de alcance cabe completa y cierra el argumento. Se conserva. |
-| Footer | Conclusión, referencias, contacto y QR tienen zonas definidas. El QR está ahora dentro de `assets/` para una compilación portátil. |
+| Header blanco | Los dos logos mantienen sus márgenes y el centro queda libre. |
+| Header verde | Título, subtítulo y autor conservan la jerarquía. |
+| 01 Motivación | Contexto, reemplazo SG→IBR y pregunta se leen en ese orden. |
+| 02 IEEE-39 | Los candidatos rojos destacan frente a la red secundaria; se retiró una nota sobre el color que no añadía información científica. |
+| 03 Destino y ruta | Las garantías A/B/C, la fórmula y las barras de evidencia siguen una lectura clara. |
+| Franja de resultados | Cuatro cifras y sus etiquetas permanecen alineadas. |
+| 04A Factorización | Las cuatro ecuaciones ocupan filas amplias; el límite de la reducción M1 queda bajo ellas. |
+| 04B Frontera | La gráfica y los valores local/colectivo comparten una escala visual clara; la leyenda queda dentro del panel. |
+| 05 Políticas | El atlas y sus cifras conservan jerarquía. La nota delimita el barrido auditado sin etiqueta de estado administrativo. |
+| 06 Envolvente | El denominador de 967 casos válidos y el carácter provisional de los totales quedan explícitos. |
+| 07 Reajuste | Las gráficas permanecen visibles; la nota sobre el análisis incompleto es breve. |
+| 08 Rutas | Las rutas insegura y segura se distinguen por color, forma y texto; se retiraron las métricas repetidas y se dejó un cierre sobre la importancia del orden. |
+| 09A Comprobaciones | Dos cifras con sus denominadores y la nota de fallos del solver sustituyen el inventario repetido de seis métricas. |
+| 09B Alcance | Tres frases explican qué modela la ruta segura y qué fenómenos no se simularon. |
+| Footer | Sin QR; contacto, conclusión y referencias tienen zonas definidas y aire. |
 
-Las piezas se recompilaron con `./compile_section.ps1 -Section all -StrictLayout` sin avisos de composición. Tras cada ajuste visual se revisó la pieza afectada y la página completa. Para futuros cambios, sigue el contrato de `SECTIONS.md` y los roles de `DESIGN_SYSTEM.md`.
+Los paneles 04A/04B y 09A/09B son archivos independientes con caja exterior fija. La nueva composición mantiene márgenes de 23 mm, separación horizontal de 8 mm y separación vertical de 4 mm. La compilación final con `-Section all -StrictLayout` no emitió avisos de composición; se inspeccionó el PNG de cada panel y el de la página completa después de corregir un recorte inicial en 04B.

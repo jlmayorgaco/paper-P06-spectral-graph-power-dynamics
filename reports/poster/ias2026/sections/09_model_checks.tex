@@ -1,0 +1,36 @@
+% Module 9A: two independent checks, with their denominator stated.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterBottomRowHeight][t]{\PosterHalfWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterBottomRowHeight}{\PosterSubpanelBadge{9A}}{MODEL CHECKS}
+    \vspace{2mm}
+    \noindent\begin{minipage}[c][31mm][c]{202mm}\centering
+      {\PosterCondensed\bfseries\fontsize{43pt}{46pt}\selectfont\color{IASBlue}\CrossCodeAgreement\par}
+      {\fontsize{24pt}{27pt}\selectfont\bfseries\color{IASDarkText}cross-code agreement\par}
+      {\fontsize{21pt}{23pt}\selectfont\color{IASGray}same model\par}
+    \end{minipage}\hspace{6mm}%
+    \begin{minipage}[c][31mm][c]{202mm}\centering
+      {\PosterCondensed\bfseries\fontsize{43pt}{46pt}\selectfont\color{IASBlue}\TDSAgreement\par}
+      {\fontsize{24pt}{27pt}\selectfont\bfseries\color{IASDarkText}TDS sign agreement\par}
+      {\fontsize{21pt}{23pt}\selectfont\color{IASGray}completed phasor-DAE runs\par}
+    \end{minipage}\par
+    \vspace{2mm}
+    {\fontsize{22pt}{25pt}\selectfont\color{IASDarkText}\TDSZeroHzDisagreements\ zero-Hz disagreements among \TDSCompleted\ completed runs; \TDSSolverFailures\ of \TDSTotal\ runs had solver failures.\par}
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewHalfPageWidth}
+  \def\PosterPageHeight{\PosterPreviewBottomPageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewHalfLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish
