@@ -1,0 +1,17 @@
+uniform_0.1ms unchanged (-0.011100293248041427+30.919898111360457j) kappa 3.837315549006764e-06 effort 0.0
+uniform_0.1ms sitewise (-0.003354324366186001+30.937271100042352j) kappa 1.4269660980445676e-20 effort 0.0031324074055247833
+uniform_0.1ms collective (-0.060000101013278906+30.839910114651985j) kappa 6.924494343803905e-20 effort 0.005147494519249134
+uniform_0.5ms unchanged (0.18110707318644867+30.74900800149014j) kappa 1.918657774503382e-05 effort 0.0
+uniform_0.5ms sitewise (0.2196770901633007+30.834195124495597j) kappa 1.4017190431471863e-19 effort 0.015662037027623955
+uniform_0.5ms collective (-0.060000098910124935+30.417099027170078j) kappa 8.470329472543003e-20 effort 0.038284047939747094
+Traceback (most recent call last):
+  File "C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics\experiments\network_moment_codesign_20261004\codesign_multimode.py", line 117, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics\experiments\network_moment_codesign_20261004\codesign_multimode.py", line 91, in main
+    t0=time.perf_counter();pc,sc,it=collective(m,dt,seeds)
+                                    ~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics\experiments\network_moment_codesign_20261004\codesign_multimode.py", line 60, in collective
+    else:raise RuntimeError('SQP did not converge')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: SQP did not converge

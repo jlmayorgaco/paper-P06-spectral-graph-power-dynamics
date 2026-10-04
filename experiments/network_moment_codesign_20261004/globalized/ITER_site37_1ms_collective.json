@@ -1,0 +1,90 @@
+[
+  {
+    "iteration": 0,
+    "alpha": -0.01362478335079988,
+    "objective": 1.2841203116765439e-06,
+    "merit": 46.37531793332043,
+    "full_step_norm": 0.006364873828625377,
+    "beta": 1.0,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 1.2689515137533806e-17
+  },
+  {
+    "iteration": 1,
+    "alpha": -0.05622958924521871,
+    "objective": 2.153992973883667e-05,
+    "merit": 3.7705322947110296,
+    "full_step_norm": 0.001420305027876608,
+    "beta": 1.0,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 6.466711012594539e-19
+  },
+  {
+    "iteration": 2,
+    "alpha": -0.05986399647901107,
+    "objective": 2.4780424077623366e-05,
+    "merit": 0.13612830141300872,
+    "full_step_norm": 0.00030761933708142714,
+    "beta": 1.0,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 5.629596742095943e-19
+  },
+  {
+    "iteration": 3,
+    "alpha": -0.05998544481880021,
+    "objective": 2.488381301659342e-05,
+    "merit": 0.01468006501281018,
+    "full_step_norm": 0.00010274333903578696,
+    "beta": 1.0,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 5.950736358653168e-19
+  },
+  {
+    "iteration": 4,
+    "alpha": -0.05999859594443561,
+    "objective": 2.4894906689966043e-05,
+    "merit": 0.001528950471082725,
+    "full_step_norm": 3.308738228084273e-05,
+    "beta": 1.0,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 5.857095107102908e-19
+  },
+  {
+    "iteration": 5,
+    "alpha": -0.05999993883240092,
+    "objective": 2.4896034958612763e-05,
+    "merit": 0.0001860636340375835,
+    "full_step_norm": 1.0814834143630367e-05,
+    "beta": 1.0,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 5.888635995967424e-19
+  },
+  {
+    "iteration": 6,
+    "alpha": -0.060000082958579594,
+    "objective": 2.489615619945126e-05,
+    "merit": 4.193757660621164e-05,
+    "full_step_norm": 3.5186232034491393e-06,
+    "beta": 1.0,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 5.878313644854846e-19
+  },
+  {
+    "iteration": 7,
+    "alpha": -0.060000098507583095,
+    "objective": 2.4896169007641727e-05,
+    "merit": 2.638858591297714e-05,
+    "full_step_norm": 1.1465486100072446e-06,
+    "beta": 1.0,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 5.881809204081255e-19
+  }
+]

@@ -1,0 +1,156 @@
+[
+  {
+    "iteration": 0,
+    "alpha": 0.17701343203290676,
+    "objective": 1.5263179051300865e-05,
+    "merit": 237.01354729608582,
+    "full_step_norm": 0.039894155046266325,
+    "beta": 1.0,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 3.308161544277395e-18
+  },
+  {
+    "iteration": 1,
+    "alpha": -0.06061313511441859,
+    "objective": 0.0008110349824790691,
+    "merit": 0.0008110349824790691,
+    "full_step_norm": 0.00983690464484685,
+    "beta": 1.0,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 2.3757541230857537e-17
+  },
+  {
+    "iteration": 2,
+    "alpha": -0.06019646994966314,
+    "objective": 0.0007351780079781852,
+    "merit": 0.0007351780079781852,
+    "full_step_norm": 0.0010821372242800409,
+    "beta": 1.0,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 4.698486946352386e-19
+  },
+  {
+    "iteration": 3,
+    "alpha": -0.060003219955510875,
+    "objective": 0.0007329159389270483,
+    "merit": 0.0007329159389270483,
+    "full_step_norm": 0.0001778453238918239,
+    "beta": 0.5,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 4.76866942211599e-19
+  },
+  {
+    "iteration": 4,
+    "alpha": -0.06000157509685023,
+    "objective": 0.0007328731143729057,
+    "merit": 0.0007328731143729057,
+    "full_step_norm": 0.00010633808071389193,
+    "beta": 0.5,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 4.790963739761078e-19
+  },
+  {
+    "iteration": 5,
+    "alpha": -0.06000080415318006,
+    "objective": 0.0007328530233735531,
+    "merit": 0.0007328530233735531,
+    "full_step_norm": 6.461320810218493e-05,
+    "beta": 0.5,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 4.800095298694394e-19
+  },
+  {
+    "iteration": 6,
+    "alpha": -0.06000043835869477,
+    "objective": 0.0007328433845662292,
+    "merit": 0.0007328433845662292,
+    "full_step_norm": 3.967145659485917e-05,
+    "beta": 0.5,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 4.80272366851596e-19
+  },
+  {
+    "iteration": 7,
+    "alpha": -0.060000262443812936,
+    "objective": 0.0007328387005948275,
+    "merit": 0.0007328387005948275,
+    "full_step_norm": 2.452595378702004e-05,
+    "beta": 0.5,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 4.804662214716486e-19
+  },
+  {
+    "iteration": 8,
+    "alpha": -0.06000017909292039,
+    "objective": 0.0007328364041401939,
+    "merit": 0.0007328364041401939,
+    "full_step_norm": 1.5234490033333868e-05,
+    "beta": 0.5,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 4.805224776958404e-19
+  },
+  {
+    "iteration": 9,
+    "alpha": -0.06000013865985817,
+    "objective": 0.0007328352742439646,
+    "merit": 0.0007328352742439646,
+    "full_step_norm": 9.495079845175307e-06,
+    "beta": 0.5,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 4.805399693336519e-19
+  },
+  {
+    "iteration": 10,
+    "alpha": -0.06000011896459786,
+    "objective": 0.000732834716082187,
+    "merit": 0.000732834716082187,
+    "full_step_norm": 5.932769217624361e-06,
+    "beta": 0.5,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 4.806046071134971e-19
+  },
+  {
+    "iteration": 11,
+    "alpha": -0.06000010933310667,
+    "objective": 0.0007328344368227274,
+    "merit": 0.0007328344368227274,
+    "full_step_norm": 3.7139923080593897e-06,
+    "beta": 0.5,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 4.805600657157977e-19
+  },
+  {
+    "iteration": 12,
+    "alpha": -0.060000104606101314,
+    "objective": 0.0007328342981651996,
+    "merit": 0.0007328342981651996,
+    "full_step_norm": 2.3284311945925757e-06,
+    "beta": 0.5,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 4.8068152868467e-19
+  },
+  {
+    "iteration": 13,
+    "alpha": -0.06000010227874826,
+    "objective": 0.0007328342292099299,
+    "merit": 0.0007328342292099299,
+    "full_step_norm": 1.46145332386696e-06,
+    "beta": 0.5,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 4.805495634348455e-19
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "iteration": 0,
+    "alpha": -0.057705344060489404,
+    "imag": 30.966094287031282,
+    "relative_gain_norm": 0.003540178770844558,
+    "update_norm": 0.000248721757055548,
+    "root_residual": 1.2252184024758289e-14,
+    "QP_status": "optimal",
+    "restoration_slack": 1.1012148914140038e-18
+  },
+  {
+    "iteration": 1,
+    "alpha": -0.06000389877815516,
+    "imag": 30.962240134057115,
+    "relative_gain_norm": 0.0035489052173834222,
+    "update_norm": 7.297278577815961e-07,
+    "root_residual": 1.2219752388848823e-14,
+    "QP_status": "optimal",
+    "restoration_slack": 1.1220507617812025e-18
+  },
+  {
+    "iteration": 2,
+    "alpha": -0.060000103083439615,
+    "imag": 30.962248313832806,
+    "relative_gain_norm": 0.003548876452122772,
+    "update_norm": 6.094631815615278e-10,
+    "root_residual": 1.2219234389104188e-14,
+    "QP_status": "optimal",
+    "restoration_slack": 1.1190163357104466e-18
+  }
+]

@@ -1,0 +1,34 @@
+SPECTRAL_START base
+M3_A_EDGE_DONE edge=1 tau_ms=40.0 evals=4165
+M3_A_EDGE_DONE edge=2 tau_ms=40.0 evals=12489
+M3_A_EDGE_DONE edge=3 tau_ms=40.0 evals=16653
+M3_A_EDGE_DONE edge=4 tau_ms=40.0 evals=26469
+SPECTRAL_DONE (design = "base", status = "PASS_NUMERICAL", count = 0, count_real = 2.402731827962629e-7, count_imag = 5.4173998602727385e-15, phase_count = -1.2795037414850247e-16, quadrature_error = 1.3443051981147187e-5, radius = 10400.029531940998, evaluations = 26469, error = "")
+SPECTRAL_START uniform_1ms_unchanged
+M3_A_EDGE_DONE edge=1 tau_ms=41.0 evals=4165
+M3_A_EDGE_DONE edge=2 tau_ms=41.0 evals=12489
+M3_A_EDGE_DONE edge=3 tau_ms=41.0 evals=16653
+M3_A_EDGE_DONE edge=4 tau_ms=41.0 evals=26301
+SPECTRAL_DONE (design = "uniform_1ms_unchanged", status = "FAIL_MARGIN", count = 6, count_real = 6.000000278259129, count_imag = -1.9327322463758824e-15, phase_count = 6.000000000000005, quadrature_error = 1.214405752139012e-5, radius = 10400.033151915955, evaluations = 26301, error = "")
+SPECTRAL_START uniform_1ms_sitewise
+M3_A_EDGE_DONE edge=1 tau_ms=41.0 evals=4165
+M3_A_EDGE_DONE edge=2 tau_ms=41.0 evals=12489
+M3_A_EDGE_DONE edge=3 tau_ms=41.0 evals=16653
+M3_A_EDGE_DONE edge=4 tau_ms=41.0 evals=26301
+SPECTRAL_DONE (design = "uniform_1ms_sitewise", status = "FAIL_MARGIN", count = 6, count_real = 6.000000265382339, count_imag = -3.9630967539698674e-15, phase_count = 5.999999999999988, quadrature_error = 1.193923731745364e-5, radius = 10401.458724745082, evaluations = 26301, error = "")
+SPECTRAL_START uniform_1ms_collective
+M3_A_EDGE_DONE edge=1 tau_ms=41.0 evals=4165
+M3_A_EDGE_DONE edge=2 tau_ms=41.0 evals=12489
+M3_A_EDGE_DONE edge=3 tau_ms=41.0 evals=16653
+M3_A_EDGE_DONE edge=4 tau_ms=41.0 evals=26861
+SPECTRAL_DONE (design = "uniform_1ms_collective", status = "PASS_NUMERICAL", count = 0, count_real = 2.2605834164889618e-7, count_imag = 2.748526576333228e-13, phase_count = 8.308405347102152e-16, quadrature_error = 1.395938368960137e-5, radius = 10400.373517413156, evaluations = 26861, error = "")
+EVENT_START 8 -100.0
+EVENT_DONE (design = "uniform_1ms_collective", bus = 8, delta = -100.0, F = 0.4569976603577978, R = 0.1450331965800243, Vmin = 0.987548386767232, Vmax = 1.078326221614806, slack = 0.09930008545779924, runtime = 116.42400002479553, pass = true, error = "")
+EVENT_START 16 100.0
+EVENT_DONE (design = "uniform_1ms_collective", bus = 16, delta = 100.0, F = 0.4390344463515206, R = 0.12920428388024702, Vmin = 0.9720436885093943, Vmax = 1.0612147089214927, slack = 0.008899887416148333, runtime = 89.04399991035461, pass = true, error = "")
+EVENT_START 16 -100.0
+EVENT_DONE (design = "uniform_1ms_collective", bus = 16, delta = -100.0, F = 0.4659285875271421, R = 0.1309236370486111, Vmin = 0.9859965103504748, Vmax = 1.0787755586439651, slack = 0.096186182562755, runtime = 87.9760000705719, pass = true, error = "")
+EVENT_START 29 100.0
+EVENT_DONE (design = "uniform_1ms_collective", bus = 29, delta = 100.0, F = 0.4234208517051246, R = 0.1380422819318157, Vmin = 0.9733030535956948, Vmax = 1.0612477962028353, slack = 0.013687800863134258, runtime = 84.41199994087219, pass = true, error = "")
+EVENT_START 29 -100.0
+EVENT_DONE (design = "uniform_1ms_collective", bus = 29, delta = -100.0, F = 0.43647301104162417, R = 0.21922438533695288, Vmin = 0.9827037376281363, Vmax = 1.0748211496882145, slack = 0.1055048548985591, runtime = 91.22300004959106, pass = true, error = "")

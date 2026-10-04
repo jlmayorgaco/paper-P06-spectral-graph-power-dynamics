@@ -1,0 +1,42 @@
+{
+  "files": {
+    "experiments/network_moment_codesign_20261004/validate_julia.jl": "c966be1016d810964d7e33db63efaf0b60b1dd9730bb7d48228a34c16de901a3",
+    "experiments/network_moment_codesign_20261004/globalized/designs/uniform_1ms_collective.toml": "d35e0c1f02e88b7ca0a825615fac22adbb7901ff9f376e1aff710c882e06a4a0",
+    "experiments/network_moment_codesign_20261004/designs/base.toml": "cb81ad8a8bb536aad3f2570bdd55db256a1a75f340cae7cedb99c037f3836d86",
+    "experiments/network_moment_codesign_20261004/designs/uniform_1ms_unchanged.toml": "5a75de99560de0f15404bf0b7f5f5d7da9ea528be0142c1925dcc6ef92101229",
+    "experiments/network_moment_codesign_20261004/designs/uniform_1ms_sitewise.toml": "366380cb986d1ef2717ed2dd4744ae259402754663dd5ca78a5cab9b087b0ffc"
+  },
+  "spectrum_gamma": -0.05,
+  "event_horizon_s": 60,
+  "window_s": 0.5,
+  "events": [
+    [
+      8,
+      -100
+    ],
+    [
+      16,
+      100
+    ],
+    [
+      16,
+      -100
+    ],
+    [
+      29,
+      100
+    ],
+    [
+      29,
+      -100
+    ]
+  ],
+  "limits": {
+    "F_Hz": 0.5,
+    "R_Hz_s": 0.5,
+    "Vmin": 0.9,
+    "Vmax": 1.1,
+    "SG_normalized_actuator_slack": 0.002
+  },
+  "solver": "exact exponential contour; nonlinear method of steps with adaptive Rosenbrock, tol1e-9,dtmax.01"
+}

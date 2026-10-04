@@ -1,0 +1,79 @@
+[
+  {
+    "iteration": 0,
+    "alpha": 0.14455218963401123,
+    "objective": 4.941766682144303e-07,
+    "merit": 204.5522901281879,
+    "full_step_norm": 0.0357015358302961,
+    "beta": 1.0,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 2.184767371845709e-19
+  },
+  {
+    "iteration": 1,
+    "alpha": -0.05825843102915669,
+    "objective": 0.0006377940069891728,
+    "merit": 1.7423067648502997,
+    "full_step_norm": 0.004016267737287029,
+    "beta": 1.0,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 6.6768783871439334e-18
+  },
+  {
+    "iteration": 2,
+    "alpha": -0.06033929720868879,
+    "objective": 0.000640687033237713,
+    "merit": 0.000640687033237713,
+    "full_step_norm": 0.0009829738639277935,
+    "beta": 1.0,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 4.191104665576705e-18
+  },
+  {
+    "iteration": 3,
+    "alpha": -0.06001489688980626,
+    "objective": 0.0006381149606949726,
+    "merit": 0.0006381149606949726,
+    "full_step_norm": 0.00019360955198984462,
+    "beta": 1.0,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 3.796473437748728e-18
+  },
+  {
+    "iteration": 4,
+    "alpha": -0.060000703743042845,
+    "objective": 0.0006380055114601732,
+    "merit": 0.0006380055114601732,
+    "full_step_norm": 3.858046076058944e-05,
+    "beta": 1.0,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 3.7463176024703905e-18
+  },
+  {
+    "iteration": 5,
+    "alpha": -0.06000012369588438,
+    "objective": 0.000638001069549202,
+    "merit": 0.000638001069549202,
+    "full_step_norm": 7.710459782569242e-06,
+    "beta": 1.0,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 3.700753723909141e-18
+  },
+  {
+    "iteration": 6,
+    "alpha": -0.060000100801110075,
+    "objective": 0.0006380008947249201,
+    "merit": 0.0006380008947249201,
+    "full_step_norm": 1.5419387994942726e-06,
+    "beta": 1.0,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 3.703311646244273e-18
+  }
+]

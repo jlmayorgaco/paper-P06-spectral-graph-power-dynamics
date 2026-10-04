@@ -1,0 +1,23 @@
+C:\Users\walla\anaconda3\Lib\site-packages\scipy\_lib\_util.py:1233: LinAlgWarning: Diagonal number 14 is exactly zero. Singular matrix.
+  return f(*arrays, *other_args, **kwargs)
+Traceback (most recent call last):
+  File "C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics\experiments\network_moment_codesign_20261004\moments.py", line 147, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics\experiments\network_moment_codesign_20261004\moments.py", line 121, in main
+    freeze();m=Moments();dump('STRUCTURAL_AUDIT.json',m.audit)
+               ~~~~~~~^^
+  File "C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics\experiments\network_moment_codesign_20261004\moments.py", line 51, in __init__
+    XX=-la.lu_solve(self.lu,XX)
+        ~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\walla\anaconda3\Lib\site-packages\scipy\linalg\_decomp_lu.py", line 185, in lu_solve
+    return _lu_solve(lu, piv, b, trans=trans, overwrite_b=overwrite_b,
+                     check_finite=check_finite)
+  File "C:\Users\walla\anaconda3\Lib\site-packages\scipy\_lib\_util.py", line 1233, in wrapper
+    return f(*arrays, *other_args, **kwargs)
+  File "C:\Users\walla\anaconda3\Lib\site-packages\scipy\linalg\_decomp_lu.py", line 192, in _lu_solve
+    b1 = asarray_chkfinite(b)
+  File "C:\Users\walla\anaconda3\Lib\site-packages\numpy\lib\_function_base_impl.py", line 665, in asarray_chkfinite
+    raise ValueError(
+        "array must not contain infs or NaNs")
+ValueError: array must not contain infs or NaNs

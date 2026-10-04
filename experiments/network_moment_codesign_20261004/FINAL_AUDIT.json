@@ -1,0 +1,18 @@
+{
+  "frozen_input_integrity": true,
+  "headline_contour_counts": [
+    0,
+    6,
+    6,
+    0
+  ],
+  "nonlinear_events_passed": 5,
+  "catalog_only_collective_patterns_passed": 14,
+  "all14_rounded_moment_residuals_enclosed_below_1e_12": true,
+  "warnings_in_latex": false,
+  "journal_ready": false,
+  "optimality": "UNPROVED",
+  "communication_controller": "THEOREM_ONLY",
+  "headline_optimizer": "MAX_ITERATIONS",
+  "modal_only_optimizer": "LINE_SEARCH_STALLED"
+}

@@ -1,0 +1,17 @@
+uniform_0.1ms unchanged (-0.011100294369439198+30.919898111161842j) kappa 3.837315549006764e-06 effort 0.0
+uniform_0.1ms sitewise (-0.0033543245703972877+30.93727109906085j) kappa 1.4269660980445676e-20 effort 0.0031324074055247833
+uniform_0.1ms collective (-0.06000010038295831+30.839910113532877j) kappa 1.3129010682441655e-19 effort 0.005147494551218983
+uniform_0.5ms unchanged (0.1811070705537253+30.749008002769827j) kappa 1.918657774503382e-05 effort 0.0
+uniform_0.5ms sitewise (0.21967709016228093+30.834195124496173j) kappa 1.4017190431471863e-19 effort 0.015662037027623955
+uniform_0.5ms collective (0.1770134320398718+30.74333330472726j) kappa 5.675120746603812e-20 effort 0.005525066343728511
+Traceback (most recent call last):
+  File "C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics\experiments\network_moment_codesign_20261004\codesign.py", line 101, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics\experiments\network_moment_codesign_20261004\codesign.py", line 70, in main
+    t0=time.perf_counter();pc,sc,it=collective(m,dt,seed)
+                                    ~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics\experiments\network_moment_codesign_20261004\codesign.py", line 33, in collective
+    if z.value is None:raise RuntimeError('QP '+prob.status)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: QP infeasible

@@ -1,0 +1,23 @@
+{
+  "experiment_status": "THEORY_AND_TARGETED_VALIDATION_COMPLETE",
+  "claim_status": "NUMERICALLY_VALIDATED",
+  "GFL_MW": 4735.315953731491,
+  "GFL_percent": 87.64622153133244,
+  "retained_SG_MW": 667.445136247356,
+  "replacement_optimized": false,
+  "globalized_status": "MAX_ITERATIONS",
+  "catalog_alpha": -0.0585728980256243,
+  "full_spectrum_status": "PASS_NUMERICAL",
+  "nonlinear_five_events_pass": true,
+  "F_max_Hz": 0.4659285875271421,
+  "R_max_Hz_s": 0.2192243853369528,
+  "worst_frequency_bus": 16,
+  "worst_frequency_delta": -100.0,
+  "moment_constraint_cost_percent_vs_local_modal_only": -11.19376785010614,
+  "max_partial_catalog_alpha_collective": -0.0585728980256243,
+  "journal_ready": false,
+  "global_optimality": "NOT_ESTABLISHED",
+  "graph_communication_implemented": false,
+  "certificate_scope": "exact binary64 matrices exported by Julia; G0 restored by right multiplication I-11T/10",
+  "interval_weight_signs": true
+}

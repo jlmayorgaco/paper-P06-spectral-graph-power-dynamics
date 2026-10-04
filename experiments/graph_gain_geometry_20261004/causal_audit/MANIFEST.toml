@@ -1,0 +1,59 @@
+all_cases_pass = true
+cases = 30
+common_rho_grid = [0.0, 0.875, 0.95, 0.99, 0.999, 1.0]
+created_utc = "2026-10-04T14:36:22.561"
+endpoint_all_events_pass = true
+julia_version = "1.11.9"
+max_gain_voltage_error_inf = 0.0
+max_jump_identity_error_inf = 1.1035616864774056e-13
+max_trim_voltage_error_inf = 1.0869083411080283e-13
+runtime_seconds = 20.60800004005432
+status = "NEGATIVE_INSTANTANEOUS_GATE_NUMERICAL"
+window_seconds = 0.5
+
+[[events]]
+bus = 8
+delta_MW = -100.0
+[[events]]
+bus = 16
+delta_MW = 100.0
+[[events]]
+bus = 16
+delta_MW = -100.0
+[[events]]
+bus = 29
+delta_MW = 100.0
+[[events]]
+bus = 29
+delta_MW = -100.0
+
+[output_sha256]
+"TABLE_01_INSTANTANEOUS_ALGEBRAIC.csv" = "93321ba28ea14b79a03e19e8341cddf6341a290331933c622fec943f938859be"
+"TABLE_02_EXISTING_BASELINE_FIRST_40MS.csv" = "951362e9223b799b73b45b31bbdeb529104c84992e3cc61604c1b883283bcfa4"
+
+[source_sha256]
+"Manifest.toml" = "92bc7849ea4445a4bedd18f732611ec271147e238c349aa5eeefc6d02023e911"
+"Project.toml" = "e170a2f9fca57aa3f8f3f053b318f0d5e3d434679dbdd4a4b8eef5481cfc0e4f"
+"experiments/graph_gain_geometry_20261004/causal_audit/PROTOCOL.md" = "7dd86ee4ee0a1b8f9fa2fe0cbab23ed886e18d6250fdde598e064fe8dbb97134"
+"experiments/graph_gain_geometry_20261004/causal_audit/run_audit.jl" = "85debeeef3c55324ad15fbbdfe49089cd205fb595dcc0b9fa9f9c7bec8a1bde5"
+"experiments/graph_gsp_codesign_20261003/DelayedEvents.jl" = "864f71792dba687ae0a526f3c13903be883902b9694fe91a1994d120a8cc5950"
+"experiments/graph_gsp_codesign_20261003/baseline.toml" = "73e01ef3d56abb45731768f87e12ac1830e93806a699489a7aa5b1c4563e8d5f"
+"experiments/graph_gsp_codesign_20261003/eval/baseline/bus16_-100_trajectory.csv" = "0732df5d34d4dce3ee80d9e207895e5132fcb87c71611d941478b90a526e53e0"
+"experiments/graph_gsp_codesign_20261003/eval/baseline/bus16_100_trajectory.csv" = "d9b3363822d3ff94cfe3722a53322255fffa158516fe78525c6d77ed6cbb0a81"
+"experiments/graph_gsp_codesign_20261003/eval/baseline/bus29_-100_trajectory.csv" = "53091c3c014341fd43abafd0e8af824aee6fa2e3037d6e59a50c1a22f1c7adc3"
+"experiments/graph_gsp_codesign_20261003/eval/baseline/bus29_100_trajectory.csv" = "96613667f311422d776faed989d578a603015cd330bd53108bc7180130db2fd2"
+"experiments/graph_gsp_codesign_20261003/eval/baseline/bus8_-100_trajectory.csv" = "07e36178ceb9417479945da6cb1435f491ee6dd6749a4ab70a1e52cabcdfdbd9"
+"experiments/nonlinear_codesign_20261001/ReducedDAE.jl" = "c5d721bc371dd6ee424afb2f40638e60307fd62389bba2ac69f3b7d247a2c80d"
+"reports/experiment_A/matrices/bus33_baseline_equilibrium.csv" = "1f930e5f426c87811b3383fbe5bc59eb9cc126bbb9bfbdbc2426410e18097cbf"
+"reports/experiment_D/inputs/avr.csv" = "46d9062bc0db558f863faf5706829d109b3ca817297edc43d492ae7af39457bf"
+"reports/experiment_D/inputs/branch.csv" = "b1858adb3e409750b5db24bc5073dda1e0683a59ef6e5966840cd73a18293972"
+"reports/experiment_D/inputs/bus.csv" = "d732a896e95c013fa3906941a540f2d9161ca99a2c60e571a890174680cb6943"
+"reports/experiment_D/inputs/gov.csv" = "2cd24f6c43c0fb4175b0b6e5f579239e23f6b7a01805e0c71eb88b1fb892d7ac"
+"reports/experiment_D/inputs/load.csv" = "635e38cb30ed983be884d2e1e88cbe4069d69097a98969648390da1464df0d30"
+"reports/experiment_D/inputs/machine.csv" = "8cf9a02574f650d2c459f536a02ae6bbfe16122e927dbbd54ca54ec2556616a1"
+"reports/experiment_N/TABLE_N01_original_operating_point.csv" = "d0ea9984f8f0ffffd27f11cd4205c76bde2da30016b21de868f16ed527eac1af"
+"reports/experiment_N/TABLE_N01_original_operating_point.csv.sha256" = "ff3464434335b1a6228557b91904b7dac31ffa0fde9c6cc0f6c0b2770f2a08f5"
+"src/bnd_design/AnalyticGFLPLL.jl" = "369e63bf6213dbf12d8ede98edf2513f09296d9af72622388d631e8ffea95880"
+"src/bnd_design/AnalyticSG.jl" = "50cec450c19a5788053c1d5836867d7ee3b5013335e9b45eec30a8685cf290fa"
+"src/bnd_design_e/CollectiveModel.jl" = "d13e8a839e138c4315c0893035a233abdb4ed640275ed30d60c576ed137794b8"
+"src/bnd_model_expN/PDExactDesignN.jl" = "f5211509b117d8a06e31efa62aa49b1df20d2c1ef7f5c6f9114bb9eb25838365"

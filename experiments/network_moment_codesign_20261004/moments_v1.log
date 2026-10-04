@@ -1,0 +1,35 @@
+{
+  "hidden_dimension": 174,
+  "hidden_condition_raw": 3884266205.6739235,
+  "hidden_condition_balanced": 22197908.715510685,
+  "hidden_min_sv": 0.0009196882133216095,
+  "gauge_rank_second_smallest_sv": 0.9034520242692952,
+  "gauge_rank_smallest_sv_restored": 5.9742342208672e-17,
+  "d": 0.09286351207409993,
+  "G0_gauge_correction_norm": 6.683808883592112e-12,
+  "T0_gauge_correction_norm": 1.2885435089622577e-11,
+  "G0_gauge_correction_relative": 1.54058539033261e-12,
+  "A0_export_model_relative": 1.2234449938397143e-18,
+  "C_export_model_relative": 5.259955047921067e-16,
+  "status": "NUMERICALLY_VALIDATED; explicit symmetry-restored germ, not interval certificate"
+}
+         case     kappa  power  coefficient_abs_error  coefficient_relative_error  lower_coeff_max_error
+uniform_0.1ms  0.000004      2           4.310514e-13                3.594080e-06                    0.0
+uniform_0.5ms  0.000019      2           6.050464e-13                1.008968e-06                    0.0
+  uniform_1ms  0.000038      2           4.920895e-13                4.103012e-07                    0.0
+   site30_1ms -0.000002      2           2.339353e-14                4.137728e-07                    0.0
+   site31_1ms  0.000015      2           1.978207e-13                4.129860e-07                    0.0
+   site32_1ms  0.000021      2           2.964579e-13                4.617044e-07                    0.0
+   site33_1ms -0.000012      2           3.378249e-13                8.792100e-07                    0.0
+   site34_1ms  0.000004      2           5.127117e-14                3.803616e-07                    0.0
+   site35_1ms -0.000008      2           2.290452e-13                9.502422e-07                    0.0
+   site36_1ms  0.000003      2           4.459328e-14                4.132753e-07                    0.0
+   site37_1ms -0.000006      2           8.064199e-14                4.636279e-07                    0.0
+   site38_1ms  0.000014      2           2.012164e-13                4.617936e-07                    0.0
+   site39_1ms  0.000008      2           9.722943e-14                3.804486e-07                    0.0
+     ramp_1ms  0.000018      2           2.103426e-13                3.668599e-07                    0.0
+    Ki_site30  0.000164      1           4.222932e-16                8.216239e-11                    0.0
+    Ki_site32 -0.001868      1           9.772312e-15                1.674137e-10                    0.0
+    Ki_site33  0.001118      1           6.457910e-15                1.848782e-10                    0.0
+    Ki_site39 -0.000743      1           4.294328e-15                1.848358e-10                    0.0
+DC responses Hz per unit MW parameter: [-0.002644   -0.0029153  -0.00309155]

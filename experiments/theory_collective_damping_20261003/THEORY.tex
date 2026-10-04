@@ -13,7 +13,7 @@
 \newcommand{\ii}{\mathrm{i}}
 \newcommand{\status}[1]{\par\smallskip\noindent\textbf{Status: \texttt{#1}.}\ }
 
-\title{Beyond Nodal Damping:\\Collective Interaction Bounds for Delay-Aware SG--GFL Co-Design}
+\title{Beyond Nodal Damping:\\Collective PLL Interactions and Network Frequency-Response Constraints}
 \author{Jorge Luis Mayorga Taborda\\Universidad de los Andes, Colombia}
 \date{4 October 2026}
 \begin{document}
@@ -37,6 +37,7 @@ Negative campaigns, unresolved solves and failure of the walk-series condition
 are retained. The result establishes a finite interaction-aware tuning decision;
 it does not establish a maximum replacement, general controller insufficiency,
 or global nonlinear stability.
+ A full-network Laurent analysis additionally separates the authority of integral gains, proportional gains and delays over frequency-response moments. It yields an exact network-weighted compensation equality and a conditional moment-neutral graph-control direction. IEEE--39 tests distinguish moment matching from modal stability, with independent delayed nonlinear validation. This remains a research manuscript; engineering superiority and global replacement optimality are not established.
 \end{abstract}
 \noindent\textbf{Index terms:} grid-following converters, PLL delay,
 descriptor systems, nonlinear eigenvalues, collective interactions,
@@ -47,9 +48,10 @@ Replacing synchronous generation changes inertia, electrical coupling
 and converter synchronization simultaneously. Retuning each PLL against
 one operating point can preserve an assigned oscillatory mode while
 moving other modes toward a security boundary. The design question is
-therefore quantitative: within a declared replacement and gain region,
-how much replacement can any admissible local PLL tuning support,
-at fixed physical delays and under a stated security contract?
+which features of network frequency response finite PLL retuning can preserve
+while controlling collective modes. Section~\ref{sec:networkmoments} derives
+exact constraints on this authority and tests a targeted delay-compensation
+design. The ultimate maximum-replacement problem remains open.
 
 Detailed low-inertia models already connect converter control settings
 to collective modal behavior \cite{markovic}. Grid structure and PLL
@@ -60,9 +62,10 @@ addresses converter-driven modes \cite{jia}. Thus neither PLL tuning,
 delay-induced instability, nor the use of network information is by
 itself a new contribution.
 
-The methodological distinction examined here is a \emph{necessary
-finite regional bound across all allowed local gains}, rather than
-only a successful tuning or a fixed-pattern assignment obstruction.
+A separate unresolved route, preserved below, examines a \emph{necessary
+finite regional bound across all allowed local gains}. The present executed
+closure concerns finite interactions and network response moments; it does
+not claim that the regional-bound route has delivered a replacement ceiling.
 Descriptor lifting \cite{peaucelle}, nonlinear-eigenvalue contour
 localization \cite{bindel}, contour moments \cite{beyn}, structured
 DDE robustness \cite{borgioli}, and fixed-structure delayed-controller
@@ -2364,6 +2367,345 @@ distributed design; fixed-pattern incompatibility is not that bound.
 
 
 % BEGIN GENERATED ALL-PLL VALIDATION
+\section{Network moment laws: what PLL tuning can and cannot change}
+\label{sec:networkmoments}
+
+The preceding interaction construction protects finite-frequency modal decay.
+We now ask a different question: which features of the low-frequency response
+are reachable by PLL tuning at all? This separates controller authority from
+an attractive but potentially misleading interpretation as adjustable inertia.
+The derivation uses the actual lossy network and device dynamics. It does not
+replace their Jacobian by a symmetric physical Laplacian. The simple-pole
+resolvent and moment identities are classical \cite{beyn,malladamoments};
+the model-specific content is their identification with the delayed PLL ports.
+
+\subsection{All-PLL elimination and assumptions}
+Hold replacement, dispatch, physical plant and operating point fixed. Remove
+each PLL triple $(\theta_i,\omega_i,\xi_i)$ from the hidden state, retaining
+the other device and network variables in $z$. The linearized port equations are
+\begin{align}
+ (sI-A_h)z&=B_\theta\theta+B_d d,\\
+ e&=C_hz+D_\theta\theta+D_dd,\\
+ \phi&=O_hz+O_\theta\theta+O_dd.
+\end{align}
+Here $d$ is a disturbance parameter, $\phi$ contains bus voltage phases, and
+the direct terms include the event-dependent algebraic voltage response.
+Assume $-A_h$ is invertible. Define the analytic, gain-independent maps
+\begin{align}
+ G&=D_\theta+C_h(sI-A_h)^{-1}B_\theta,&
+ g&=D_d+C_h(sI-A_h)^{-1}B_d,\\
+ T&=O_\theta+O_h(sI-A_h)^{-1}B_\theta,&
+ Z&=O_d+O_h(sI-A_h)^{-1}B_d.
+\end{align}
+The actual filtered type-II PLL gives
+\[
+ s^2(1+t_{f,i}s)\theta_i=(sK_{p,i}+K_{i,i})e^{-s\tau_i}e_i.
+\]
+For nonzero integral gains this yields the exact retained equation
+\begin{equation}
+ K(s)\theta=g(s)d,\qquad
+ K(s)=\diag\!\left(
+ \frac{s^2(1+t_{f,i}s)e^{s\tau_i}}{sK_{p,i}+K_{i,i}}
+ \right)-G(s).
+ \label{eq:momentK}
+\end{equation}
+It is valid near zero, away from singular eliminated blocks. It is not a
+global pole-equivalence claim across those singularities.
+
+Write $G(s)=\sum_j s^jG_j$, and similarly for the other analytic maps.
+The coefficients, not derivatives without factorials, are
+\begin{align}
+ K_0&=-G_0,& K_1&=-G_1,\\
+ K_2&=-G_2+\diag(K_i^{-1}),&
+ K_3&=-G_3+\diag\!\left((t_f+\tau)/K_i-K_p/K_i^2\right).
+ \label{eq:momentKcoeff}
+\end{align}
+Rotational equivariance supplies $K_0r=0$ with $r=\one$, and $T_0r=\one$
+for physical bus phases. Additionally require
+\[
+ \ker K_0=\operatorname{span}\{r\},\quad
+ \ell^*K_0=0,\quad d_0=\ell^*K_1r\ne0.
+\]
+Then the classical simple-root residue is
+\begin{equation}
+ K(s)^{-1}=\frac{P}{s}+O(1),\qquad
+ P=\frac{r\ell^*}{d_0}.
+ \label{eq:momentresidue}
+\end{equation}
+The gauge is retained for this Laurent calculation and is deflated separately
+for physical stability tests. Merely deleting a coordinate before the
+calculation would discard the residue responsible for the frequency response.
+
+For a common measurement window $W>0$, the Hz output transfer is
+\begin{equation}
+ H(s)=\frac{1-e^{-sW}}{2\pi W}
+ \left[T(s)K(s)^{-1}g(s)+Z(s)\right]
+      =H_0+sH_1+s^2H_2+O(s^3).
+ \label{eq:momentfreq}
+\end{equation}
+Its removable singularity gives $H_0=T_0Pg_0/(2\pi)$. The instantaneous
+phase-derivative output follows by taking $W\to0$.
+
+\status{EXACT\_IDENTITY}
+\begin{theorem}[Finite PLL changes and the synchronization residue]
+\label{thm:momentlaw}
+Under the assumptions above, at fixed plant and replacement:
+\begin{enumerate}
+\item $H_0$ is independent of all PLL proportional gains, nonzero integral
+gains, and fixed measurement delays.
+\item For any finite integral-gain change, allowing proportional gains and
+delays to change as well, let
+\[
+ D_2=\diag(1/K_i^{b}-1/K_i^{a}),\qquad
+ \kappa_2=\ell^*D_2r/d_0.
+\]
+Then $H_b-H_a=-s\kappa_2H_0+O(s^2)$.
+\item If integral gains are held fixed, let
+\[
+ D_3=\diag(\Delta\tau/K_i-\Delta K_p/K_i^2),\qquad
+ \kappa_3=\ell^*D_3r/d_0.
+\]
+Then
+\begin{equation}
+ \boxed{H_b(s)-H_a(s)=-s^2\kappa_3H_0+O(s^3).}
+ \label{eq:momentlaw}
+\end{equation}
+These are exact identities between Taylor coefficients of the full linearized
+model. They are not finite-frequency approximations with a certified error
+range, nor identities for finite-amplitude nonlinear trajectories.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+The first two $K$ coefficients and hence the residue are independent of PLL
+gains and delays. For two designs the exact resolvent identity gives
+\[
+ K_b^{-1}-K_a^{-1}=-K_b^{-1}(K_b-K_a)K_a^{-1}.
+\]
+If $K_b-K_a=s^mD_m+O(s^{m+1})$, $m\ge2$, substitution of
+\eqref{eq:momentresidue} gives
+\[
+ K_b^{-1}-K_a^{-1}=-s^{m-2}PD_mP+O(s^{m-1}).
+\]
+Since $PD_mP=(\ell^*D_mr/d_0)P$ and the window factor is
+$s/(2\pi)+O(s^2)$, the frequency difference is
+$-s^{m-1}(\ell^*D_mr/d_0)H_0+O(s^m)$.
+Equation~\eqref{eq:momentKcoeff} identifies $m=2$ or $m=3$ and its finite
+coefficient difference. No small parameter change is required.
+\end{proof}
+
+\subsection{An exact restriction on frequency-response shaping}
+Suppose both nongauge systems are exponentially stable and the relevant
+step-response moments converge. For a common step $d(t)=d_0^{\rm in}$,
+write $f_\infty=H_0d_0^{\rm in}$. The Laplace-transform moment formula gives
+\begin{align}
+ \int_0^\infty(f_b-f_a)\,dt&=-\kappa_2f_\infty
+       &&\text{if integral gains change},\label{eq:arealaw}\\
+ \int_0^\infty(f_b-f_a)\,dt&=0
+       &&\text{if integral gains are fixed},\\
+ \int_0^\infty t(f_b-f_a)\,dt&=\kappa_3f_\infty
+       &&\text{if integral gains are fixed}.\label{eq:firstmomentlaw}
+\end{align}
+These are signed integrals. Cancellation permits large excursions and does
+not bound nadir, absolute-error integrals, RoCoF, or settling time.
+If a component of $f_\infty$ vanishes, normalizing by it is invalid.
+
+\begin{corollary}[One direction of first-area authority]
+For nonzero final response define
+$A_j=\int_0^\infty(1-f_j(t)/f_{\infty,j})\,dt$.
+Any admissible finite PLL gain/delay change at fixed plant satisfies
+\[
+ A_j^b-A_j^a=\kappa_2,\qquad
+ (A_j-A_k)^b=(A_j-A_k)^a.
+\]
+Thus PLL tuning cannot independently change the buswise normalized signed
+areas. Proportional gains and delays cannot change any of these areas at all.
+\end{corollary}
+This is a limitation of the declared architecture, not a theorem that GFLs
+cannot support frequency. Altering active-power control, synthetic-inertia
+feedthrough, droop, dispatch or replacement changes the premise. In particular,
+an SG-to-GFL change modifies $G,g,T,Z$ and invalidates reuse of the same weights.
+
+\subsection{Signed network weights and spatial latency}
+Define the real weights
+\begin{equation}
+ w_i=\bar\ell_i r_i/d_0,\qquad
+ \kappa_3=\sum_iw_i\left(\Delta\tau_i/K_{i,i}
+                          -\Delta K_{p,i}/K_{i,i}^2\right).
+ \label{eq:networkweights}
+\end{equation}
+They incorporate the actual network, device dynamics, operating point and
+replacement. They are not nonnegative inertia shares, probabilities, or a
+Laplacian centrality. Negative weights allow the leading signed moment to
+respond with either sign to an equal positive delay increment at different
+sites. That sign alone says nothing about stability or frequency peaks.
+
+For a prescribed delay-increment multiset $t_1\le\cdots\le t_n$, put
+$a_i=w_i/K_{i,i}$ and order $a_{(1)}\le\cdots\le a_{(n)}$.
+The rearrangement inequality gives the exact extreme \emph{moment} coefficients
+over all assignments:
+\[
+ \min_\pi\sum_i a_it_{\pi(i)}=\sum_i a_{(i)}t_{n+1-i},\qquad
+ \max_\pi\sum_i a_it_{\pi(i)}=\sum_i a_{(i)}t_i.
+\]
+This is a closed-form placement law for a response coefficient, not an
+optimization of physical delays or of the replacement frontier. A graph
+Fourier expansion of $w$ merely changes coordinates unless its modal content
+is independently shown to explain a design consequence.
+
+\subsection{Collective compensation and competing modal authority}
+Keeping $K_i$ fixed, preserve $H_2$ by imposing the single exact equality
+\begin{equation}
+ c^Tk=b_\tau,\qquad
+ c_i=w_i/K_{i,i}^2,\quad
+ b_\tau=\sum_iw_i\Delta\tau_i/K_{i,i},\quad k=\Delta K_p.
+ \label{eq:collectivemoment}
+\end{equation}
+The sitewise rule $k_i=K_{i,i}\Delta\tau_i$ is sufficient but unnecessary.
+For box bounds $l\le k\le u$, the equality is feasible exactly when
+\[
+ \sum_i\min(c_il_i,c_iu_i)\le b_\tau\le
+ \sum_i\max(c_il_i,c_iu_i).
+\]
+This proves feasibility only of moment compensation. Without box bounds,
+minimizing $k^TRk/2$ gives the standard projection
+\[
+ k_0=\frac{R^{-1}c}{c^TR^{-1}c}b_\tau.
+\]
+Suppose a simple critical root has local gain gradient $a=\nabla_{K_p}\Re\lambda$
+and requires $a^Tk\le h$. The remaining damping direction is
+\[
+ v=R^{-1}a-R^{-1}c\frac{c^TR^{-1}a}{c^TR^{-1}c}.
+\]
+If $a^Tk_0>h$ and $a^Tv>0$, the exact solution of this \emph{linearized}
+one-mode subproblem is
+\begin{equation}
+ k^*=k_0-v\frac{a^Tk_0-h}{a^Tv},\qquad
+ \frac12{k^*}^TRk^*
+ =\frac{b_\tau^2}{2c^TR^{-1}c}
+  +\frac{(a^Tk_0-h)^2}{2a^Tv}.
+ \label{eq:projectedauthority}
+\end{equation}
+If $a^Tv=0$ and the inequality fails at $k_0$, no moment-neutral gain direction
+can satisfy that local modal requirement. For multiple modes or active boxes,
+solve the corresponding convex QP and re-evaluate the exact DDE roots.
+This is standard constrained optimization, not a new global optimality theorem.
+
+The root sensitivities use the full exponential characteristic
+\[
+ \lambda_p=-\frac{y^*\Delta_p(\lambda)x}
+                  {y^*\Delta_s(\lambda)x},\quad
+ \Delta(s)=sI-A_0-B\diag(e^{-s\tau})C.
+\]
+Root tracking, line-search/globalization and complete-spectrum checks are
+separate requirements. A one-mode correction can transfer the active limit to
+another mode. Moments cannot detect that failure.
+
+\subsection{Graph-polynomial actions: a conditional design direction}
+Consider an explicitly different architecture with invertible matrix integral
+gain $K_I$ and matrix proportional gain $K_P$, acting on delayed detector
+errors. Its PLL equation is
+\[
+ s^2(I+sT_f)\theta=(sK_P+K_I)e^{-sT_\tau}e.
+\]
+The retained controller coefficients are now
+\[
+ K_2^{\rm ctrl}=K_I^{-1},\qquad
+ K_3^{\rm ctrl}=T_\tau K_I^{-1}+K_I^{-1}T_f
+                         -K_I^{-1}K_PK_I^{-1}.
+\]
+The order and residue theorem still applies; matrix ordering matters.
+At fixed $K_I$ and delays, choose
+\begin{equation}
+ \Delta K_P=K_I S K_I,\qquad Sr=0.
+ \label{eq:graphneutral}
+\end{equation}
+Then $\Delta K_3^{\rm ctrl}r=-Sr=0$, so $H_0,H_1,H_2$ are unchanged exactly.
+For a valid graph Laplacian $L$ with $Lr=0$, any polynomial
+$S=\sum_{j\ge1}\beta_jL^j$ has this property. Such an action supplies
+finite-frequency tuning directions that are automatically neutral in these
+low-frequency moments. It may stabilize or destabilize other modes.
+
+This corollary neither proves superiority over diagonal gains (which already
+have a moment-neutral subspace) nor supplies a distributed implementation.
+Communication, signal availability, delays, gain bounds and nonlinear
+validation would require a new controller contract. No numerical result below
+is attributed to this unimplemented architecture.
+
+\subsection{Numerical scope and unresolved publication claim}
+The coefficient identities concern the full linearized physical-supply model.
+Finite-amplitude nonlinear simulations test operational feasibility separately.
+The symmetry-restored germ is explicitly documented; rounding defects in raw
+CSV matrices are not silently treated as exact rotational symmetry. The
+following values and decisions are generated from the experiment tables.
+
+The tools used here---Laurent residues, response moments, rearrangement and
+constrained QP---are established. Delayed PLL tuning also predates this work
+\cite{wilson}; signed-area constraints have an established control literature
+\cite{aalipourmoments}. A journal-level contribution requires a demonstrated
+engineering value for the structural constraint and a fair comparison with
+modal tuning that omits it. No maximum replacement, global gain optimum,
+robust operating-region certificate, or first-in-literature claim follows
+from this section.
+
+
+\status{NUMERICALLY\_VALIDATED}
+The Julia input derivative export agrees with centered differences to
+$2.16\times10^{-9}$ relative.
+The maximum coefficient-check errors are
+$3.59\times10^{-6}$ (cubic PLL change)
+and $1.85\times10^{-10}$ (integral-gain change).
+Arb arithmetic encloses the hidden inverse, a nonzero nine-dimensional gauge
+minor, a nonzero residue denominator, and all ten weight signs for the explicitly
+gauge-restored binary export. This is not a physical uncertainty certificate.
+The fourteen rounded collective designs have interval-enclosed
+$|\kappa_3|<10^{-12}$; literal exact neutrality is not attributed to rounded gains.
+
+At the fixed replacement of 87.646222\%, or
+4735.315954 MW, changing uniform PLL delay from 40 to 41 ms gives:
+\begin{center}
+\begin{tabular}{lrr}
+\toprule Method & Catalog $\alpha$ (s$^{-1}$) & $\|\Delta K_p/K_p\|_2$\\
+\midrule
+Unchanged & 0.413952 & 0.000000\\
+Sitewise compensation & 0.490670 & 0.031324\\
+Moment only & 0.405520 & 0.011050\\
+Modal only & -0.060001 & 0.091062\\
+Collective moment and modes & -0.058573 & 0.085815\\
+\bottomrule
+\end{tabular}
+\end{center}
+The collective candidate's solver status is
+\texttt{MAX\_ITERATIONS}; no global optimum is claimed.
+It passes the original $-0.05$ guard but misses the auxiliary $-0.0600001$
+target. The modal-only candidate reaches that tighter target but its line
+search stalls. Their costs do not establish superiority at an equal achieved
+modal margin; neither run proves a local optimum.
+The complete-region numerical DDE contour gives
+\texttt{PASS\_NUMERICAL}.
+All 5 of 5 frozen 60 s nonlinear events pass; the
+worst excursion is 0.465929Hz and windowed RoCoF is
+0.219224Hz/s. Current-limiter safety is not modeled.
+The delay-perturbed candidate retains 667.445136 MW of SG;
+this experiment does not optimize replacement.
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=.84\linewidth]{experiments/network_moment_codesign_20261004/FIG_01_NETWORK_WEIGHTS.pdf}
+\caption{Network moment weights for the fixed IEEE--39 design. Their signs
+are interval-verified for the symmetry-restored exported model.}\end{figure}
+\begin{figure}[htbp]\centering
+\includegraphics[width=.88\linewidth]{experiments/network_moment_codesign_20261004/FIG_02_DELAY_AND_DAMPING.pdf}
+\caption{Exact-exponential pole calculations: equal moments do not protect
+modal damping. Lines connect the declared samples, not a certified frontier.}\end{figure}
+\begin{figure}[htbp]\centering
+\includegraphics[width=\linewidth]{experiments/network_moment_codesign_20261004/FIG_03_TUNING_AND_ABLATION.pdf}
+\caption{Finite tuning increments and algorithm ablations at 41 ms. Gain effort
+is compared between local numerical candidates, not global optima.}\end{figure}
+\begin{figure}[htbp]\centering
+\includegraphics[width=\linewidth]{experiments/network_moment_codesign_20261004/FIG_05_NONLINEAR_EVENTS.pdf}
+\caption{Five frozen nonlinear events. Frequency and RoCoF use the inherited
+0.5 s window over all 39 bus voltage phases.}\end{figure}
+
+
 \begin{thebibliography}{99}
 \bibitem{pates} R. Pates and E. Mallada,
 \emph{Damping, Inertia, and Delay Robustness Trade-offs in Power Systems},
@@ -2478,5 +2820,15 @@ Automatica, 22(3):309--319, 1986.
 \emph{Decentralized Stability of IBR-dominated Power Grids Using Block Diagonal Dominance},
 preprint, arXiv:2606.28023, 2026.
 \url{https://arxiv.org/abs/2606.28023}.
+
+\bibitem{malladamoments} F. Paganini and E. Mallada,
+\emph{Global Analysis of Synchronization Performance for Power Systems:
+Bridging the Theory-Practice Gap}, IEEE Transactions on Automatic Control,
+65(7):3007--3022,2020. \url{https://doi.org/10.1109/TAC.2019.2942536}.
+\bibitem{aalipourmoments} F. Aalipour and T. Das,
+\emph{Shaping the Transient Response of Nonlinear Systems to Satisfy a Class
+of Integral Constraints}, Advances in Control Applications,4(3):e110,2022.
+\url{https://arxiv.org/abs/2012.12493}.
+
 \end{thebibliography}
 \end{document}

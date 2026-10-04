@@ -1,0 +1,82 @@
+[
+  {
+    "iteration": 0,
+    "alpha": 0.3603835481694207,
+    "imag": 30.52713421351456,
+    "relative_gain_norm": 0.0005209067219932834,
+    "update_norm": 0.047873496530838805,
+    "root_residual": 1.4034862037250498e-14,
+    "QP_status": "optimal",
+    "restoration_slack": 5.133913936566982e-19
+  },
+  {
+    "iteration": 1,
+    "alpha": -0.040293361182949725,
+    "imag": 29.669327651357026,
+    "relative_gain_norm": 0.047876330413903406,
+    "update_norm": 0.002931947259378257,
+    "root_residual": 4.551250216056122e-16,
+    "QP_status": "optimal",
+    "restoration_slack": 3.912032896478153e-19
+  },
+  {
+    "iteration": 2,
+    "alpha": -0.05987155860515049,
+    "imag": 29.61832146718591,
+    "relative_gain_norm": 0.05052257479620088,
+    "update_norm": 0.0002949012381553792,
+    "root_residual": 1.0178405086765347e-14,
+    "QP_status": "optimal",
+    "restoration_slack": 2.3034990110023025e-19
+  },
+  {
+    "iteration": 3,
+    "alpha": -0.05999947604934049,
+    "imag": 29.617730527522024,
+    "relative_gain_norm": 0.050539331396595416,
+    "update_norm": 3.166916521142749e-05,
+    "root_residual": 1.3014501478253457e-14,
+    "QP_status": "optimal",
+    "restoration_slack": 2.261724690098587e-19
+  },
+  {
+    "iteration": 4,
+    "alpha": -0.0600000930019836,
+    "imag": 29.617756367232406,
+    "relative_gain_norm": 0.05053940691840696,
+    "update_norm": 3.696721406270913e-06,
+    "root_residual": 1.3779570116686452e-14,
+    "QP_status": "optimal",
+    "restoration_slack": 2.271785697680285e-19
+  },
+  {
+    "iteration": 5,
+    "alpha": -0.06000009990528487,
+    "imag": 29.617753140780295,
+    "relative_gain_norm": 0.05053940774160048,
+    "update_norm": 4.3011053364641177e-07,
+    "root_residual": 1.3795158580749916e-14,
+    "QP_status": "optimal",
+    "restoration_slack": 2.270906957924005e-19
+  },
+  {
+    "iteration": 6,
+    "alpha": -0.06000009999873303,
+    "imag": 29.617753513786287,
+    "relative_gain_norm": 0.050539407752743765,
+    "update_norm": 5.005971090667089e-08,
+    "root_residual": 1.3798332021387314e-14,
+    "QP_status": "optimal",
+    "restoration_slack": 2.2709434248408913e-19
+  },
+  {
+    "iteration": 7,
+    "alpha": -0.06000009999999756,
+    "imag": 29.617753470340812,
+    "relative_gain_norm": 0.050539407752894706,
+    "update_norm": 5.826119659515752e-09,
+    "root_residual": 1.3854187654311533e-14,
+    "QP_status": "optimal",
+    "restoration_slack": 2.271234199782967e-19
+  }
+]

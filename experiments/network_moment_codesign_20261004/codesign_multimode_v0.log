@@ -1,0 +1,13 @@
+uniform_0.1ms unchanged (-0.011100294369439198+30.919898111161842j) kappa 3.837315549006764e-06 effort 0.0
+uniform_0.1ms sitewise (-0.0033543245703972877+30.93727109906085j) kappa 1.4269660980445676e-20 effort 0.0031324074055247833
+uniform_0.1ms collective (-0.06000010001972992+30.8399101141244j) kappa 2.1525224772099907e-19 effort 0.005147494514913832
+uniform_0.5ms unchanged (0.1811070705537253+30.749008002769827j) kappa 1.918657774503382e-05 effort 0.0
+uniform_0.5ms sitewise (0.21967709016228093+30.834195124496173j) kappa 1.4017190431471863e-19 effort 0.015662037027623955
+Traceback (most recent call last):
+  File "C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics\experiments\network_moment_codesign_20261004\codesign_multimode.py", line 107, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\walla\Documents\Github\paper-P06-spectral-graph-power-dynamics\experiments\network_moment_codesign_20261004\codesign_multimode.py", line 86, in main
+    assert min(abs(roots[i]-roots[j]) for i in range(len(roots)) for j in range(i))>1e-5,'catalog collision'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: catalog collision
