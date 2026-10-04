@@ -1,0 +1,29 @@
+INDEPENDENT TECHNICAL REVIEW, 2026-10-03
+Reviewer: regional_math_review (read-only agent; no calculations rerun).
+
+Checked: finite Schur update sign, gamma denominator, mass scaling, v-row
+conjugation, Hermitian rank-two inertia, all saved 60-case summaries, and
+the five-event same-rho comparison.
+Verdict: no sign, conjugation or mass-scaling error found.
+Corrections integrated:
+- Explicit per-unit SG speed and M_i=2 H_i S_i^0 (1-rho_i) in poster.
+- Both frequency and RoCoF use the canonical 0.5 s phase window.
+- Say "smaller remainder bound", not smaller approximation error.
+- Distinguish the displayed 5 Hz slice from all 60 cases.
+- State the regional root is inside the contour for every box parameter.
+- Update three stale article statements about missing comparator/independence tests.
+
+The reviewer independently confirmed:
+max update residual 4.8476e-8; same-rho retuning raises frequency excursion
+by 0.000177--0.000207 Hz, lowers RoCoF by 0.0000744--0.000435 Hz/s,
+and slightly decreases SG actuator slack. All five events pass both designs.
+No optimality, whole-regional-spectrum, or nonlinear interval certificate follows.
+
+Bibliography:
+The previous literature audit is preserved in regional_paper_closure_20261003.
+The poster's Beyn journal citation was checked against the publisher:
+W.-J. Beyn, An integral method for solving nonlinear eigenvalue problems,
+Linear Algebra and its Applications 436(10), 3839--3863 (2012).
+https://doi.org/10.1016/j.laa.2011.03.030
+The manuscript cites the corresponding 2010 arXiv author version.
+No claim of bibliographic priority for the present synthesis is made.

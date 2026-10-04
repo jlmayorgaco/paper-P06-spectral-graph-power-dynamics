@@ -1,0 +1,40 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterLowerRowHeight][t]{\PosterHalfWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterLowerRowHeight}{8}{A CONTINUOUS REGIONAL CERTIFICATE}
+
+    \noindent\begin{minipage}[c]{251mm}\centering
+      \includegraphics[width=248mm,height=127mm,keepaspectratio]{generated/figures/contour.pdf}
+    \end{minipage}\hfill%
+    \begin{minipage}[c]{163mm}\raggedright
+      {\Subhead\color{IASDarkGreen}Every point in the box\par}\vspace{4mm}
+      {\EquationSize $|\delta\rho_i|\le0.001$\par}
+      {\EquationSize $|\delta K_i|/K_i^0\le1\%$\par}
+      {\FigureSize for both $K_p,K_i$; center $\rho_i^0=0.875$.\par}\vspace{4mm}
+      {\Subhead\color{IASBlue}Exactly one root\par}
+      {\EquationSize $\Re\lambda<-0.08229$\par}
+      {\FigureSize inside the contour for every parameter vector in the box.\par}\vspace{3mm}
+      {\FigureSize \PanelCount\ interval panels; 128-bit complex ball arithmetic; envelope $q<0.98794235<1$.\par}
+    \end{minipage}\par
+    \vspace{4mm}
+    {\FigureSize\RegionalClaim\ The certificate encloses the whole contour and parameter box at exact $\tau=1/25$ s; exported binary64 coefficients are treated as exact data.}
+
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewHalfPageWidth}
+  \def\PosterPageHeight{\PosterPreviewLowerPageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewHalfLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

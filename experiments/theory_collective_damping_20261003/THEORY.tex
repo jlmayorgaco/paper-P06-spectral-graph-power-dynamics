@@ -1,6 +1,8 @@
 \documentclass[11pt]{article}
 \usepackage[margin=24mm]{geometry}
 \usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,hyperref}
+\usepackage{graphicx,microtype}
+\setlength{\emergencystretch}{2em}
 \hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue}
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -12,34 +14,35 @@
 \newcommand{\status}[1]{\par\smallskip\noindent\textbf{Status: \texttt{#1}.}\ }
 
 \title{Beyond Nodal Damping:\\Collective Interaction Bounds for Delay-Aware SG--GFL Co-Design}
-\author{Research manuscript}
+\author{Jorge Luis Mayorga Taborda\\Universidad de los Andes, Colombia}
 \date{3 October 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
-Grid-following penetration limits depend on collective device--network
-interactions that bounded local PLL retuning may not remove.
-We formulate a regional bound problem for synchronous-to-grid-following
-replacement with fixed measurement delays and freely moving modal patterns.
-Retaining network algebraic variables yields an affine descriptor
-perturbation for a declared fixed-equilibrium sharing contract.
-A contour identity converts this perturbation into finite changes of
-spectral-cluster means. We derive their full parameter Hessian,
-an explicit closed-walk remainder, and an error budget for omitting
-inter-site interactions. Necessary cluster conditions give linear and
-semidefinite outer relaxations of the secure replacement problem;
-their bounds require verified contour and numerical errors.
-Three frozen IEEE--39 algebraic tests give walk remainders
-18--46 times smaller than a scalar-norm bound, without establishing
-replacement superiority. Complex ball arithmetic certifies one root
-cluster throughout a declared IEEE--39 parameter box.
-A separate preserved nonlinear experiment
-validates one analytical PLL retuning step at 40 ms uniform delay:
-87.6\% GFL, with five declared events passing. Unchanged gains also
-pass its spectral test. The theory therefore supplies a conditional
-finite-bound method and a validated feasible construction, not a
-demonstrated physical replacement maximum. We identify the missing
-informative-bound and comparison tests required for that stronger claim.
+Local PLL tuning and measurement delay act through the whole electrical
+network. Starting from the exact delayed linearization, we show that
+changing one PLL delay produces a rank-one update of the physical
+torque--speed impedance. With independent propagation paths and a
+nonzero update, its Hermitian damping increment has one positive
+and one negative eigenvalue: latency redistributes harmonic damping
+across collective directions.
+For a fixed-equilibrium SG/GFL sharing contract, retaining network
+algebraic variables also gives an affine descriptor perturbation.
+A contour identity yields finite spectral-cluster changes, their full
+parameter Hessian, and an explicit closed-walk remainder.
+Necessary cluster conditions lead to linear and semidefinite outer
+relaxations of secure replacement, conditional on verified contour
+and remainder bounds.
+In IEEE--39, all 60 declared harmonic tests confirm the finite-delay
+identity numerically. Three frozen algebraic points give walk remainder
+bounds 18--46 times smaller than a scalar-norm bound. Complex ball
+arithmetic certifies one root cluster throughout a declared parameter box.
+A preserved analytical gain construction at 40 ms delay yields 87.6\%
+GFL and passes five nonlinear events. A new matched Julia comparison
+finds that unchanged gains also pass all five, with small opposing
+frequency and RoCoF changes. The results establish conditional
+interaction laws and a feasible construction; they do not establish
+replacement superiority or a physically limiting maximum.
 \end{abstract}
 \noindent\textbf{Index terms:} grid-following converters, PLL delay,
 descriptor systems, nonlinear eigenvalues, collective interactions,
@@ -74,12 +77,12 @@ of this work. The proposed synthesis specializes them to the actual
 SG/GFL sharing model and makes inter-site curvature and remainder
 terms explicit.
 
-The manuscript establishes three conditional mathematical results:
-an affine full-model intervention representation, a cluster
-curvature/closed-walk bound, and a controller-bounded necessary
-replacement relaxation. Its numerical evidence has two distinct
-scopes: identity and enclosure tests of the bound machinery, and one
-previously frozen full-model feasible retuning step. An informative
+The manuscript establishes four conditional mathematical results:
+a finite physical damping-redistribution identity, an affine full-model
+intervention representation, a cluster curvature/closed-walk bound,
+and a controller-bounded necessary replacement relaxation. Its numerical evidence includes identity and enclosure tests of the
+bound machinery, a frozen full-model feasible retuning step, and a
+matched five-event fixed-gain follow-up. An informative
 IEEE--39 replacement ceiling below the parameter-box ceiling has not
 been demonstrated. This limitation prevents a claim of superior
 replacement capacity or certified near-optimality.
@@ -133,10 +136,12 @@ Thus P/Q and voltage effects enter the actual characteristic operator;
 a lossless Laplacian does not replace the AC Jacobian.
 No converter current limiter is implemented, so no limiter safety is claimed.
 
-Sources inspected are
-\path{experiments/nonlinear_codesign_20261001/ReducedDAE.jl},
-\path{src/bnd_model_expN/PDExactDesignN.jl}, and
-\path{experiments/graph_gsp_codesign_20261003/DelayedEvents.jl}.
+Sources inspected include:
+\begin{itemize}
+\item \path{experiments/nonlinear_codesign_20261001/ReducedDAE.jl};
+\item \path{src/bnd_model_expN/PDExactDesignN.jl};
+\item \path{experiments/graph_gsp_codesign_20261003/DelayedEvents.jl}.
+\end{itemize}
 The intended DC convention is physical supply in \path{ReducedDAE.jl};
 the older helper by itself uses a different convention.
 
@@ -303,8 +308,10 @@ $\|J\|_2\le a<1$ and $\|V_1\|_2\le v$, then
  \|V_{\rm rem}\|_2\le\frac{av}{1-a}. \label{eq:voltage-remainder}
 \end{equation}
 Because $G,N$ are affine in $\rho$, computable bounds are
-$a=\sum_j r_{\rho,j}\|G_0^{-1}G_{\rho_j}\|_2$ and
-$v=\sum_j r_{\rho,j}\|G_0^{-1}(N_{\rho_j}+G_{\rho_j}V_0)\|_2$.
+\begin{align*}
+a&=\sum_j r_{\rho,j}\|G_0^{-1}G_{\rho_j}\|_2,\\
+v&=\sum_j r_{\rho,j}\|G_0^{-1}(N_{\rho_j}+G_{\rho_j}V_0)\|_2.
+\end{align*}
 These require verified solves and norm enclosures for a certificate.
 
 Set $D_0(s)=B_v+B_0E_\tau(s)H_v$ and define
@@ -827,8 +834,10 @@ This closes the numerical chain from an analytical gain construction
 to a feasible full-model candidate for the declared events.
 It does not establish a maximum or demonstrate that retuning is needed
 for this step: the same replacement with unchanged gains also passes
-the spectral margin. Its nonlinear events were not run, so nonlinear
-superiority or equivalence is undetermined.
+the spectral margin. The subsequent matched nonlinear comparison
+in Section~\ref{sec:posterclosure} finds that both designs pass all five
+events, with small opposing changes in frequency and RoCoF metrics.
+Neither superiority nor exact performance equivalence is established.
 Two frozen eigenpairs/patterns produce nonzero assignment residuals
 after replacement, but this does not prove that local PLLs cannot
 stabilize the network when their modal patterns are allowed to change.
@@ -953,6 +962,109 @@ Thus even perfect verification of this regional box cannot establish
 the main application claim of a physical interior replacement limit.
 The manuscript does not expand the box after observing this result.
 
+
+
+
+
+\section{Targeted closure: physical damping and matched nonlinear comparison}
+\label{sec:posterclosure}
+This follow-up adds two declared tests without changing the historical
+design, events, gains, or frozen result files. Its protocol and outputs
+are stored in \texttt{experiments/poster\_julia\_validation\_20261003/}.
+The harmonic tests are algebraic; the event comparator uses Julia 1.11.9.
+
+\subsection{Finite-delay physical damping law in IEEE--39}
+\status{NUMERICALLY\_VALIDATED}
+For the historical baseline and analytical designs, at each of
+$f=0.5,5,10$ Hz, increase the delay at one of buses 30--39 by exactly
+the numerical increment 1 ms, starting from uniform 40 ms.
+All $2\times3\times10=60$ cases are retained. No case was chosen by
+its sign or stability outcome. At each point, independently eliminate
+the 194 hidden states in the old and modified 204-state operators and
+compare the difference with the finite rank-one formula
+in Appendix~\ref{app:physical}.
+The physical mass scaling is
+$M_i=2H_iS_i^0(1-\rho_i)$, in MW\,s for per-unit speed.
+
+The largest relative error in $\delta Z=\gamma_i u_i v_i^*$ is
+$4.85\times10^{-8}$. Every computed Hermitian increment has one
+positive and one negative eigenvalue above the declared relative
+threshold $10^{-7}\|\delta D_H\|_2$; the other eight eigenvalues
+have relative magnitude at most $1.40\times10^{-9}$.
+The minimum squared sine between the two propagation paths is
+$0.00327$, so none of these sampled paths is numerically collinear.
+Hidden-block condition numbers and all signed eigenvalues are
+reported in \texttt{TABLE\_02\_FINITE\_DELAY\_RANK\_LAW.csv}.
+This supports the finite physical identity at the declared points.
+It does not certify an interval of frequencies, imply stability from
+the sign of the increment, or improve a replacement-capacity bound.
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=.87\linewidth]{reports/poster/ias2026/collective_interaction_20261003/generated/figures/rank_two.pdf}
+\caption{Physical damping redistribution at the preregistered illustrative
+frequency 5 Hz, analytical design. One PLL delay is increased from
+40 to 41 ms at a time. The symmetric-log scale exposes both signs.
+This is a harmonic linear-model check, not a nonlinear stability test.}
+\label{fig:rankclosure}
+\end{figure}
+
+\subsection{Same replacement, unchanged versus analytical gains}
+\status{NUMERICALLY\_VALIDATED}
+The missing matched comparator is now executed at the same
+$\rho_i=0.876$ and $\tau_i=40$ ms as the analytical candidate.
+Its gains remain at the common baseline values.
+The canonical method-of-steps solver uses Rodas5P, tolerance $10^{-9}$,
+maximum step 0.01 s, and a 60 s event horizon. Both phase-derived
+frequency and RoCoF metrics use the canonical 0.5 s window over all
+39 bus voltages. The five nominal event magnitudes correspond to
+the existing constant-impedance perturbation contract.
+Equilibrium residual and gain bounds are checked before execution.
+
+\begin{table}[htbp]\centering\small
+\caption{All five matched events. $F$ is peak absolute frequency deviation
+in Hz; $R$ is peak absolute RoCoF in Hz/s. A denotes the analytical map;
+fixed retains the original gains. All original guards also pass.}
+\begin{tabular}{rrrrrl}\toprule
+Bus, MW & $F_{\rm fixed}$ & $F_{\rm A}$ & $R_{\rm fixed}$ & $R_{\rm A}$ & Guards\\\midrule
+8, -100 & 0.465209 & 0.465412 & 0.138636 & 0.138451 & Pass / Pass\\
+16, +100 & 0.446979 & 0.447157 & 0.126583 & 0.126491 & Pass / Pass\\
+16, -100 & 0.474417 & 0.474624 & 0.129118 & 0.129044 & Pass / Pass\\
+29, +100 & 0.431049 & 0.431226 & 0.128359 & 0.128104 & Pass / Pass\\
+29, -100 & 0.444418 & 0.444619 & 0.201209 & 0.200774 & Pass / Pass\\
+\\[-2.5mm]\bottomrule
+\end{tabular}\label{tab:pairedclosure}
+\end{table}
+
+Both designs pass all five events. Analytical retuning increases
+frequency excursion by $0.000177$--$0.000207$ Hz and reduces RoCoF
+by $0.0000744$--$0.000435$ Hz/s across these cases. Its SG actuator
+slack is also slightly smaller. These are small numerical tradeoffs,
+not a demonstrated engineering advantage; no refinement study was
+performed to turn these small differences into accuracy-certified
+performance claims. The purpose of the exact gain map is achieved:
+the assigned PLL eigenpair is preserved after the prescribed
+replacement step. This matched trial does not show that retuning
+was necessary for feasibility, that it maximized replacement, or
+that it dominates fixed gains.
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=\linewidth]{reports/poster/ias2026/collective_interaction_20261003/generated/figures/events.pdf}
+\caption{Preserved analytical-design trajectories for every frozen
+event, plotted across the full 60 s horizon. Frequency and RoCoF use
+the declared 0.5 s phase window. The new comparator's complete
+trajectories and paired metrics are included separately in the archive.}
+\label{fig:allfrozen}
+\end{figure}
+
+\paragraph{Updated contribution boundary.}
+The physical finite-delay theorem, the collective contour Hessian,
+and the walk remainder provide explicit equations for network-mediated
+effects. The numerical evidence now includes all 60 physical-law
+checks and a matched five-event comparator. No informative
+verified physical replacement maximum follows. The posterior
+comparison therefore supports a theory-and-validation poster;
+the stronger application claim remains open.
+
 \section{Discussion, contribution boundary and limitations}
 \begin{center}\small
 \begin{tabular}{p{0.29\linewidth}p{0.61\linewidth}}\toprule
@@ -981,10 +1093,9 @@ priority for the combination has not been proved.
 
 \paragraph{What still prevents a strong application paper.}
 An informative verified regional upper bound or controller-exclusion
-witness below the box-only ceiling is missing. The preserved trial
-also lacks a paired nonlinear fixed-gain comparison and a fair
-fixed-structure spectral-abscissa/SQP comparator with identical
-constraints. A controller tuned with $I+L+L^2$ terms has not been
+witness below the box-only ceiling is missing. The matched nonlinear fixed-gain comparison now shows both designs
+feasible, with small opposing metric changes. A fair fixed-structure
+spectral-abscissa/SQP comparator with identical constraints remains missing. A controller tuned with $I+L+L^2$ terms has not been
 implemented or shown necessary. The graph Fourier basis may express
 interactions, but no low-frequency truncation theorem follows.
 
@@ -1020,8 +1131,10 @@ experiment artifacts are preserved. New checks, protocol, exact
 input copies, package versions, tables, claim ledger and manifests
 are under \path{experiments/regional_paper_closure_20261003/}.
 Numerical table entries in the new main text are generated from
-the saved result files. The closure performs linear-algebra and
-contour checks only; it does not rerun nonlinear trajectories.
+the saved result files. The initial closure performed linear-algebra
+and contour checks. The subsequent poster closure adds the 60 physical-law
+checks and five new fixed-gain nonlinear comparator trajectories under
+\path{experiments/poster_julia_validation_20261003/}.
 The historical event evidence remains explicitly attributed to its
 frozen experiment. Three independent reviews audited the equations,
 evidence provenance and literature boundary; their corrections and
@@ -1071,7 +1184,7 @@ At finite frequency the inverse tracking defect is exactly
 Delay rotates this defect without changing its magnitude. This defect
 is not itself physical damping or a Laplacian.
 
-\section{Physical collective damping and its finite latency law}
+\section{Physical collective damping and its finite latency law}\label{app:physical}
 \status{EXACT\_IDENTITY}
 The exact characteristic operator of the full linearization is
 \[
@@ -1143,7 +1256,7 @@ Collinear paths can instead give a rank-one change of either sign or
 zero; phase-periodic increments can make $\kappa_i=0$.
 Multiple channel changes may combine to have another sign pattern.
 This theorem alone does not determine stability or nonlinear safety.
-IEEE--39 path independence has not been tested in this theory-only work.
+Section~\ref{sec:posterclosure} checks path independence numerically at 60 frozen IEEE--39 harmonic cases; no frequency interval is certified.
 
 Differentiating the finite formula gives
 \begin{equation}

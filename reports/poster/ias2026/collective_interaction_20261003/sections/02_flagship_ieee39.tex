@@ -1,0 +1,43 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterTopRowHeight][t]{\PosterTwoWidth}\vspace{0pt}
+  \begin{TicketTwoPanel}{\PosterTopRowHeight}{2}{IEEE-39: A VALIDATED CONSTRUCTION}
+
+    \noindent\begin{minipage}[c]{282mm}\centering
+      \includegraphics[width=277mm,height=155mm,keepaspectratio]{generated/figures/network.pdf}
+    \end{minipage}\hfill%
+    \begin{minipage}[c]{115mm}\raggedright
+      {\PosterCondensed\bfseries\fontsize{68pt}{72pt}\selectfont\color{IASBlue}\GFLPercent\%\par}
+      {\PosterParagraph GFL dispatch share\par}\vspace{5mm}
+      {\MetricSize\bfseries\color{IASDarkGreen}\GFLMW\par}
+      {\FigureSize MW GFL\par}\vspace{4mm}
+      {\MetricSize\bfseries\color{IASGold!70!black}\SGMW\par}
+      {\FigureSize MW retained SG\par}\vspace{4mm}
+      {\Subhead\color{IASDarkGreen}40 ms\par}
+      {\FigureSize at every PLL\par}
+    \end{minipage}\par
+    \vspace{3mm}
+    {\EquationSize\color{IASBlue}
+      $\rho_i:0.875\longrightarrow0.876\qquad\Delta P_{\mathrm{GFL}}=\AddedMW\ \mathrm{MW}$\par}
+    \vspace{4mm}
+    {\FigureSize\FeasibleClaim\ Five frozen external events pass the declared nonlinear security checks.\par}
+
+  \end{TicketTwoPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewTwoPageWidth}
+  \def\PosterPageHeight{\PosterPreviewTopRowPageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewTwoLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

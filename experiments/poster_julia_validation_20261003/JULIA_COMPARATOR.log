@@ -1,0 +1,11 @@
+EVENT_START fixed 8 -100.0
+EVENT_DONE (design = "fixed", bus = 8, delta = -100.0, F = 0.46520930921090214, R = 0.13863596704636613, Vmin = 0.9874746118116062, Vmax = 1.077751100413476, slack = 0.09668996581105183, runtime = 88.25399994850159, pass = true, error = "")
+EVENT_START fixed 16 100.0
+EVENT_DONE (design = "fixed", bus = 16, delta = 100.0, F = 0.44697882941935196, R = 0.12658332839466108, Vmin = 0.9720617223334936, Vmax = 1.061245867734256, slack = 0.00639881263496922, runtime = 67.97099995613098, pass = true, error = "")
+EVENT_START fixed 16 -100.0
+EVENT_DONE (design = "fixed", bus = 16, delta = -100.0, F = 0.4744170425543096, R = 0.12911795026794598, Vmin = 0.9859358205296774, Vmax = 1.0787752486101438, slack = 0.09350167953042295, runtime = 70.36100006103516, pass = true, error = "")
+EVENT_START fixed 29 100.0
+EVENT_DONE (design = "fixed", bus = 29, delta = 100.0, F = 0.4310489926200508, R = 0.12835937062989955, Vmin = 0.9733403369677511, Vmax = 1.0612533380422462, slack = 0.0112476342050144, runtime = 68.27099990844727, pass = true, error = "")
+EVENT_START fixed 29 -100.0
+EVENT_DONE (design = "fixed", bus = 29, delta = -100.0, F = 0.44441789159122747, R = 0.20120912706550545, Vmin = 0.9836789336943254, Vmax = 1.0747909047648097, slack = 0.10295986391193297, runtime = 74.41199994087219, pass = true, error = "")
+COMPLETE all_events_pass=true

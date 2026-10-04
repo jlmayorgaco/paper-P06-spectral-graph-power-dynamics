@@ -1,0 +1,58 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterFourHeight][t]{\PosterGridWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterFourHeight}{4}{ONE LOCAL DELAY REDISTRIBUTES COLLECTIVE DAMPING}
+
+    \noindent\begin{minipage}[t]{270mm}\vspace{0pt}
+      {\Subhead\color{IASDarkGreen}Physical torque--speed ports\par}
+      {\EquationSize\[
+      \Delta=sI-A_0-\sum_i b_ic_i^T e^{-s\tau_i}
+      \]}
+      {\EquationSize\[
+      Z=M(\Delta_{\nu\nu}-\Delta_{\nu z}\Delta_{zz}^{-1}\Delta_{z\nu})
+      \]}
+      {\EquationSize\[
+      D_H(\Omega)=\operatorname{Herm}Z(\mathrm{j}\Omega)
+      \]}
+      {\FigureSize $\nu$: per-unit SG speed deviation; $z$: hidden states.
+      $M=\operatorname{diag}[2H_iS_i^0(1-\rho_i)]$.
+      Harmonic mechanical supply: $\tfrac12\widehat\nu^*D_H\widehat\nu$.\par}
+    \end{minipage}\hfill%
+    \begin{minipage}[t]{282mm}\vspace{0pt}
+      {\Subhead\color{IASDarkGreen}Finite-change identity\par}
+      {\HeroEquation\color{IASBlue}\[
+      \delta Z=\gamma_i u_i v_i^*
+      \]}
+      {\HeroEquation\color{IASBlue}\[
+      \delta D_H=\tfrac12(a_i v_i^*+v_i a_i^*)
+      \]}
+      {\FigureSize $a_i=\gamma_i u_i$; $u_i,v_i$ are the two network propagation paths from a single PLL channel.\par}\vspace{4mm}
+      {\PosterParagraph If the paths are independent and $\gamma_i\ne0$, the change has one positive and one negative eigenvalue.\par}
+    \end{minipage}\hfill%
+    \begin{minipage}[t]{288mm}\vspace{0pt}\centering
+      {\Subhead\color{IASDarkGreen}IEEE-39: +1 ms at one site\par}
+      \includegraphics[width=281mm,height=87mm,keepaspectratio]{generated/figures/rank_two.pdf}\par
+      {\FigureSize Figure: 5 Hz, analytic design; symmetric-log axis. All 60 checks (2 designs $\times$ 3 frequencies $\times$ 10 sites) pass; error $<5\times10^{-8}$.\par}
+      \vspace{2mm}
+      {\FigureSize Requires invertible hidden blocks. These signs alone do not certify stability.\par}
+    \end{minipage}\par
+
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewFullPageWidth}
+  \def\PosterPageHeight{\PosterPreviewFourPageHeight}
+  \def\PosterPreviewLeft{\PosterOuterMargin}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

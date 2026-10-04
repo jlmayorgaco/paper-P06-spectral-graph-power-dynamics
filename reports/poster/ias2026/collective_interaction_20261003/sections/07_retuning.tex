@@ -1,0 +1,33 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterLowerRowHeight][t]{\PosterHalfWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterLowerRowHeight}{7}{NONLINEAR DELAYED VALIDATION IN JULIA}
+
+    {\FigureSize Full retained-device DAE reduction; true delay by method of steps, Rodas5P; 60 s, tolerance $10^{-9}$. All 39 bus phase frequencies.\par}
+    \vspace{2mm}
+    \includegraphics[width=419mm,height=106mm,keepaspectratio]{generated/figures/events.pdf}\par
+    \vspace{2mm}
+    {\MetricSize\bfseries\color{IASBlue}$|\Delta f|_{\max}=\FreqMax$ Hz
+       \qquad $|\mathrm{RoCoF}|_{\max}=\RocofMax$ Hz/s\par}
+    \vspace{2mm}
+    {\FigureSize Dashed limits: 0.5 Hz and 0.5 Hz/s. Both metrics use a 0.5 s phase window. Frozen impedance-load events at the indicated nominal MW.}
+
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewHalfPageWidth}
+  \def\PosterPageHeight{\PosterPreviewLowerPageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewHalfLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish
