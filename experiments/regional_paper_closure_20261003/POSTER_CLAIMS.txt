@@ -1,0 +1,53 @@
+PERMITTED CLAIMS — 2026-10-03
+
+C1 — EXACT_IDENTITY
+In the inspected fixed-equilibrium sharing chart, retaining network/PLL detector
+algebraic variables yields an affine descriptor perturbation in ordinary rho,
+Kp and Ki increments. Delays remain fixed. This is a model-specific use of
+established descriptor lifting, not a new general lifting theorem.
+
+C2 — EXACT_IDENTITY / PROVED_REDUCED_MODEL
+Under the stated uniform contour hypotheses, the cluster Hessian is an integral
+of tr(E_a T E_b T). A nonnegative entrywise envelope gives an explicit closed-
+walk remainder and a bound on the error of discarding inter-site terms. The
+result allows moving modal patterns and internal root collisions.
+
+C3 — NUMERICALLY_VALIDATED
+At the three previously frozen IEEE-39 algebraic frequencies, the walk tail is
+18.11–45.78 times smaller than the scalar norm tail. This is improved sharpness
+of an intermediate bound; it is not improved replacement capacity.
+
+C4 — NUMERICALLY_VALIDATED WITH VERIFIED INTERVAL ARITHMETIC
+For the exported binary64 matrices/gain inputs and uniform exact-decimal delay
+tau=0.04 s, 485 continuous panels prove that exactly one root stays inside the
+declared square throughout rho increments +/-0.001 and ordinary gains +/-1%.
+Its real part is less than -0.08229 1/s, satisfying the -0.05 margin.
+Scope: one cluster only, no full-spectrum or nonlinear safety certificate.
+
+C5 — NUMERICALLY_VALIDATED (PRESERVED EARLIER EXPERIMENT)
+The analytical all-PLL gain map constructs a candidate with rho_i=0.876,
+4732.818714821 MW GFL and 669.942375157 MW retained SG. At uniform 40 ms delay,
+all five frozen nonlinear events and the numerical spectral margin passed.
+The gains are reproduced in the manuscript and archived design file.
+They are not an optimized rho/Kp/Ki solution. Fixed gains also passed the
+spectral test, so retuning superiority is not established.
+
+C6 — NEGATIVE_RESULT
+The chosen region is already at its rho ceiling at the numerically feasible
+corner, to reported precision. It cannot demonstrate an interior physical SG
+support floor. Exact boundary feasibility remains numerical, with binary/decimal
+endpoint distinctions explicitly recorded. No certified near-optimal gap follows.
+
+C7 — NEGATIVE_RESULT
+The verified coarse scalar first-order remainder is approximately 4.45818 1/s.
+This is too broad for a useful spectral replacement bound. Verified integration
+of the sharper walk majorant remains to be done on an informative new region.
+
+NOT PERMITTED
+Global or near-global optimum; local PLL impossibility; need for communication;
+heterogeneous-delay replacement advantage; GSP gain compression; a physical-line
+cycle instability law; full nonlinear safety certificate; award readiness.
+
+POSTER_READY_FOR_MAXIMUM_REPLACEMENT_CLAIM: NO
+Missing gate: informative same-domain replacement upper bound / strict finite
+controller-exclusion witness, followed by a fair full-security comparison.

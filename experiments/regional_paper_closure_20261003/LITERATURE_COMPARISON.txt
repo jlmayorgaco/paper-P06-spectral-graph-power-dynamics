@@ -1,0 +1,71 @@
+PRIMARY-SOURCE COMPARISON — searched/read 2026-10-03
+
+Peaucelle & Ebihara (IFAC 2014)
+Robust stability analysis of discrete-time systems with parametric and switching uncertainties
+https://skoge.folk.ntnu.no/prost/proceedings/ifac2014/media/files/0282.pdf
+Overlap: retaining algebraic/auxiliary variables for rational parameter dependence.
+Boundary: the new article does not claim invention of affine descriptor lifting.
+
+Bindel & Hood (2013)
+Localization Theorems for Nonlinear Eigenvalue Problems
+https://www.cs.cornell.edu/~bindel/papers/2013-simax.pdf
+Overlap: contour root count and perturbation homotopy with multiplicities.
+Boundary: internal collisions and norm-based contour preservation are established.
+
+Beyn (2010 author version)
+An integral method for solving nonlinear eigenvalue problems
+https://arxiv.org/abs/1003.1580
+Overlap: resolvent contour moments for nonlinear eigenvalues.
+Boundary: the application here is a finite parameter-region necessary replacement
+relaxation; generic use of contour moments is not a novelty claim.
+
+Borgioli, Michiels, Lu & Vandereycken (2019)
+A globally convergent method to compute the real stability radius for time-delay systems
+https://www.unige.ch/math/vandereycken/papers/published_Borgioli_MLV.pdf
+Overlap: fixed delays, structured real perturbations, determinant return matrices.
+Difference: distance to destabilizing uncertainty versus maximizing beneficial
+replacement with bounded adjustable PLL gains. Their global guarantee does not
+transfer automatically to this repeated-diagonal co-design domain.
+
+Michiels & Gumussoy (2014; arXiv author version 2020)
+Eigenvalue based algorithms and software for the design of fixed-order
+stabilizing controllers for interconnected systems with time-delays
+https://arxiv.org/abs/2003.05496
+Overlap: structured controller optimization for delayed descriptor systems.
+Role: the strongest algorithmic family for a fair same-contract comparator.
+No head-to-head experiment with this family has been executed here.
+
+Markovic et al. (TPWRS 2021)
+Understanding Small-Signal Stability of Low-Inertia Systems
+https://sps.cut.ac.cy/publication/2021jmarkovicb/2021JMarkovicb.pdf
+DOI 10.1109/TPWRS.2021.3061434
+Overlap: detailed machine/converter dynamics, collective modes, PLL settings and
+permissible converter integration. Their PLL-gain/penetration illustration is
+not to be relabeled as the same SG-to-GFL replacement contract.
+
+Chu & Teng (arXiv author version 2023)
+Stability Constrained Optimization in High IBR-Penetrated Power Systems—Part I
+https://arxiv.org/abs/2307.12151
+Overlap: incorporating synchronization, voltage and frequency limits in optimization.
+Difference: the present model retains the delayed characteristic operator;
+gSCR constraints have another model/guarantee scope. No numerical superiority
+against their method is established.
+
+Jia et al. (TPWRS 2025)
+Converter-Driven Stability Constrained Generation Expansion for High IBG-Penetrated Power Systems
+https://doi.org/10.1109/TPWRS.2025.3558879
+Closest application overlap: converter-driven modal stability across generation
+mixtures. Only publication metadata and abstract-level methodology were available
+to the review; no detailed implementation comparison is claimed.
+
+Johansson (IEEE Transactions on Computers 2017)
+Arb: Efficient Arbitrary-Precision Midpoint-Radius Interval Arithmetic
+https://arxiv.org/abs/1611.02831
+https://doi.org/10.1109/TC.2017.2690633
+Role: verified real/complex ball arithmetic used for the continuous contour gate.
+
+VERDICT
+No exact duplicate of the full model-specific construction was found in this
+limited search. This does not establish first publication. The useful novelty
+must be demonstrated by a nonvacuous replacement decision, not by renaming
+standard mathematics or by a better intermediate norm alone.
