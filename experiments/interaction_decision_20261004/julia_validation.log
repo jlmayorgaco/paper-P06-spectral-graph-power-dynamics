@@ -1,0 +1,46 @@
+SPECTRAL_START anchor
+M3_A_EDGE_DONE edge=1 tau_ms=40.0 evals=4161
+M3_A_EDGE_DONE edge=2 tau_ms=40.0 evals=12481
+M3_A_EDGE_DONE edge=3 tau_ms=40.0 evals=16641
+M3_A_EDGE_DONE edge=4 tau_ms=40.0 evals=26425
+SPECTRAL_DONE (design = "anchor", status = "PASS_NUMERICAL", count = 0, count_real = -1.6018363475479447e-7, count_imag = 8.59802356419028e-15, phase_count = 2.2976798442253436e-15, quadrature_error = 1.3142063280400053e-5, radius = 10399.086282746395, evaluations = 26425, error = "")
+SPECTRAL_START single30
+M3_A_EDGE_DONE edge=1 tau_ms=40.0 evals=4161
+M3_A_EDGE_DONE edge=2 tau_ms=40.0 evals=12481
+M3_A_EDGE_DONE edge=3 tau_ms=40.0 evals=16641
+M3_A_EDGE_DONE edge=4 tau_ms=40.0 evals=26345
+SPECTRAL_DONE (design = "single30", status = "PASS_NUMERICAL", count = 0, count_real = -5.216702065244877e-8, count_imag = 4.717339620326043e-16, phase_count = -1.3124705910886276e-15, quadrature_error = 1.257529920739073e-5, radius = 10396.512947721296, evaluations = 26345, error = "")
+SPECTRAL_START single37
+M3_A_EDGE_DONE edge=1 tau_ms=40.0 evals=4165
+M3_A_EDGE_DONE edge=2 tau_ms=40.0 evals=12489
+M3_A_EDGE_DONE edge=3 tau_ms=40.0 evals=16653
+M3_A_EDGE_DONE edge=4 tau_ms=40.0 evals=26365
+SPECTRAL_DONE (design = "single37", status = "PASS_NUMERICAL", count = 0, count_real = 2.4433880886907967e-7, count_imag = 1.1660446315590324e-14, phase_count = 5.491900971585774e-16, quadrature_error = 1.2734493695760317e-5, radius = 10402.502802804254, evaluations = 26365, error = "")
+SPECTRAL_START joint
+M3_A_EDGE_DONE edge=1 tau_ms=40.0 evals=4165
+M3_A_EDGE_DONE edge=2 tau_ms=40.0 evals=12489
+M3_A_EDGE_DONE edge=3 tau_ms=40.0 evals=16653
+M3_A_EDGE_DONE edge=4 tau_ms=40.0 evals=26493
+SPECTRAL_DONE (design = "joint", status = "FAIL_MARGIN", count = 2, count_real = 2.000000272422856, count_imag = 2.3157447460049886e-14, phase_count = 2.000000000000006, quadrature_error = 1.3366431264383438e-5, radius = 10400.095159286851, evaluations = 26493, error = "")
+SPECTRAL_START complex_pair
+M3_A_EDGE_DONE edge=1 tau_ms=40.0 evals=4161
+M3_A_EDGE_DONE edge=2 tau_ms=40.0 evals=12481
+M3_A_EDGE_DONE edge=3 tau_ms=40.0 evals=16641
+M3_A_EDGE_DONE edge=4 tau_ms=40.0 evals=26425
+SPECTRAL_DONE (design = "complex_pair", status = "PASS_NUMERICAL", count = 0, count_real = 2.592749858147198e-7, count_imag = 1.3660889589364552e-14, phase_count = 7.778140344056504e-16, quadrature_error = 1.3158088807323632e-5, radius = 10397.168069044481, evaluations = 26425, error = "")
+SPECTRAL_START corrected
+M3_A_EDGE_DONE edge=1 tau_ms=40.0 evals=4165
+M3_A_EDGE_DONE edge=2 tau_ms=40.0 evals=12489
+M3_A_EDGE_DONE edge=3 tau_ms=40.0 evals=16653
+M3_A_EDGE_DONE edge=4 tau_ms=40.0 evals=26469
+SPECTRAL_DONE (design = "corrected", status = "PASS_NUMERICAL", count = 0, count_real = 2.402731827962629e-7, count_imag = 5.4173998602727385e-15, phase_count = -1.2795037414850247e-16, quadrature_error = 1.3443051981147187e-5, radius = 10400.029531940998, evaluations = 26469, error = "")
+EVENT_START 8 -100.0
+EVENT_DONE (design = "corrected", bus = 8, delta = -100.0, F = 0.45689026712701897, R = 0.1447633930267566, Vmin = 0.9876135967017379, Vmax = 1.078173394618606, slack = 0.09932215023831177, runtime = 102.4060001373291, pass = true, error = "")
+EVENT_START 16 100.0
+EVENT_DONE (design = "corrected", bus = 16, delta = 100.0, F = 0.4389713733721574, R = 0.1291094758062224, Vmin = 0.9720436885093943, Vmax = 1.0612026312767993, slack = 0.008918436399068863, runtime = 82.78099989891052, pass = true, error = "")
+EVENT_START 16 -100.0
+EVENT_DONE (design = "corrected", bus = 16, delta = -100.0, F = 0.4658739712754266, R = 0.13087992305156917, Vmin = 0.9860085466309313, Vmax = 1.0787755586439651, slack = 0.09620455256195508, runtime = 89.84500002861023, pass = true, error = "")
+EVENT_START 29 100.0
+EVENT_DONE (design = "corrected", bus = 29, delta = 100.0, F = 0.42338903555786783, R = 0.13805313890601364, Vmin = 0.9733030535956948, Vmax = 1.0612071229843463, slack = 0.013697548443919683, runtime = 90.42799997329712, pass = true, error = "")
+EVENT_START 29 -100.0
+EVENT_DONE (design = "corrected", bus = 29, delta = -100.0, F = 0.4364696189649373, R = 0.21906007137739097, Vmin = 0.9827919937055369, Vmax = 1.0748211496882145, slack = 0.10550560320130997, runtime = 95.26400017738342, pass = true, error = "")

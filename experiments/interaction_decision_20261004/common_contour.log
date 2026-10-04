@@ -1,0 +1,9 @@
+anchor 64 [+/- 3.81] + [+/- 2.64]j False
+anchor 128 [1e+0 +/- 0.433] + [+/- 0.421]j True
+single30 64 [+/- 4.60] + [+/- 3.42]j False
+single30 128 [1e+0 +/- 0.451] + [+/- 0.438]j True
+single37 64 [+/- 4.29] + [+/- 3.11]j False
+single37 128 [1e+0 +/- 0.471] + [+/- 0.458]j True
+joint 64 [+/- 4.32] + [+/- 3.16]j False
+joint 128 [1e+0 +/- 0.413] + [+/- 0.403]j True
+COMMON_COUNT_GATE_PASSED
