@@ -1,0 +1,66 @@
+\documentclass[final]{beamer}
+\def\PosterFull{1}
+\input{poster_layout.tex}
+\def\PosterPageWidth{\PosterPhysicalPageWidthCm}
+\def\PosterPageHeight{\PosterPhysicalPageHeightCm}
+\input{poster_common.tex}
+
+% Dense v3: three columns of four panels between the header and a rules strip.
+\newcommand{\ColWidth}{284.1mm}
+\newcommand{\ColHeight}{900mm}
+\newcommand{\RulesHeight}{60mm}
+
+\newcommand{\Header}{%
+  \vspace*{\PosterHeaderTopOffset}%
+  \noindent\hspace*{\PosterIdentityLeft}%
+  \begin{minipage}[t][\PosterHeaderHeight][t]{\PosterIdentityWidth}\vspace{0pt}%
+    \begin{tikzpicture}[x=1mm,y=1mm]
+      \useasboundingbox (0,0) rectangle (\PosterIdentityWidthMm,\PosterHeaderHeightMm);
+      \path[clip] (0,0) rectangle (\PosterIdentityWidthMm,\PosterHeaderHeightMm);
+      \begin{scope}[yshift=\PosterGreenHeightMm mm]
+        \input{sections/header_white.tex}
+      \end{scope}
+      \begin{scope}[xshift=\PosterGreenInset]
+        \input{sections/header_green.tex}
+      \end{scope}
+    \end{tikzpicture}%
+  \end{minipage}\par
+}
+\newcommand{\Gap}{\par\vspace{\PosterRowGap}}
+
+\begin{document}
+\begin{frame}[t]
+\Header
+\vspace{\PosterRowGap}
+
+\noindent\hspace*{\PosterOuterMargin}%
+\begin{minipage}[t][\ColHeight][t]{\ColWidth}\vspace{0pt}%
+  \input{panels/L1_problem.tex}\Gap
+  \input{panels/L2_structure.tex}\Gap
+  \input{panels/L3_beyond_nodal.tex}\Gap
+  \input{panels/L4_pairs.tex}
+\end{minipage}%
+\hspace{\PosterColumnGap}%
+\begin{minipage}[t][\ColHeight][t]{\ColWidth}\vspace{0pt}%
+  \input{panels/C1_law.tex}\Gap
+  \input{panels/C2_hero.tex}\Gap
+  \input{panels/C3_time.tex}\Gap
+  \input{panels/C4_choice.tex}
+\end{minipage}%
+\hspace{\PosterColumnGap}%
+\begin{minipage}[t][\ColHeight][t]{\ColWidth}\vspace{0pt}%
+  \input{panels/R1_both_tests.tex}\Gap
+  \input{panels/R2_reach.tex}\Gap
+  \input{panels/R3_portfolios.tex}\Gap
+  \input{panels/R4_limits.tex}
+\end{minipage}\par
+\vspace{\PosterRowGap}
+
+\noindent\hspace*{\PosterOuterMargin}%
+\input{panels/rules_strip.tex}
+\vspace{\PosterRowGap}
+
+\noindent\hspace*{\PosterOuterMargin}%
+\input{sections/footer.tex}
+\end{frame}
+\end{document}

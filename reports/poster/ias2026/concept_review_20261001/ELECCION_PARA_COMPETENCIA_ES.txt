@@ -1,0 +1,199 @@
+ELECCIÓN PARA LA COMPETENCIA DE PÓSTERES — 1 OCTUBRE 2026
+Decisión editorial basada en resultados existentes. Sin nuevas simulaciones.
+
+TÍTULO RECOMENDADO
+
+Beyond Nodal Damping
+Where Should Synchronous Generation Remain?
+
+Subtítulo:
+Joint SG–GFL and PLL design with numerical local optimality
+and nonlinear event validation.
+
+IDEA ÚNICA
+
+Convertir una pregunta de penetración de convertidores en una decisión:
+cuánto despacho síncrono conservar, dónde, con qué ganancias PLL y qué
+restricciones impiden retirarlo adicionalmente en la solución encontrada.
+
+La frase científica defendible es:
+“In this IEEE-39 local design, frequency peaks and normalized model robustness
+limit further SG removal, while the spectral-margin constraint is slack.”
+
+No convertir esta observación en una ley universal sobre el valor de cada nodo.
+Las contribuciones por bus son marginales KKT; los picos activos de frecuencia
+se observan en el bus 34. El bus donde se retiene SG y el bus de la salida
+limitante no son necesariamente el mismo.
+
+POR QUÉ ÉSTA Y NO LAS OTRAS LÍNEAS
+
+Q2B/CERTIFIED_SEARCH reúne decisión, ajuste, verificación local y validación
+no lineal. Es la recomendación principal. Su novedad frente a métodos cercanos
+todavía necesita una comparación equivalente.
+
+H4 tiene un gancho visual excelente: quince subconjuntos propios estables y
+una coalición inestable. Su regularidad local no prueba estabilidad local;
+M1 sigue bloqueado. Es un contraejemplo nominal con limitaciones, no una nueva
+teoría general. Puede ir al suplemento; no mezclar sus cifras TX4 con Q2B.
+
+TX3 tiene el desarrollo matemático más rico de estas alternativas, pero el
+efecto operativo sobre el modo limitante no alcanzó materialidad. La elegancia
+de la reconstrucción no basta para justificar un titular de decisión industrial.
+
+CDW tiene una comparación contra índices estáticos y transferencia del ranking
+de ramas a dos redes y dos modelos. La inversión contextual no se replicó en
+IEEE-68; parte de la evidencia material es post hoc. Es una alternativa válida
+para otro póster centrado en refuerzos de red, menos alineada con este objetivo.
+
+F2 impide presentar como resultado una ley escalar de ganancias sobre el
+Laplaciano físico. G/H/J0 contienen avances y correcciones útiles, pero no
+superan en validación al cierre Q2B. Los porcentajes de GFL de modelos o
+instrumentos distintos no se comparan como una clasificación de métodos.
+
+El núcleo acoplado más residuo, los retardos y la limitación de corriente son
+la siguiente investigación. Su formulación propuesta no es evidencia obtenida
+para este póster. No ocuparán un panel principal como si estuvieran resueltos.
+
+QUÉ PUEDE ATRAER A UN ESPECIALISTA
+
+No basta “la red importa”, “los dispositivos interactúan”, “small-signal no
+implica seguridad no lineal” ni “las ganancias se pueden optimizar”. Son hechos
+conocidos. El resultado debe permitir comprobar una decisión mejor y explicar
+el coste de cambiarla. La comparación equivalente es la prueba pendiente clave.
+
+El contenido ya disponible permite mostrar:
+- 312.523288 MW de SG retenidos en cinco sitios y 94.215489% del despacho GFL.
+- Ajuste conjunto de cinco retenciones y veinte ganancias, no un reparto manual.
+- Evidencia KKT/LICQ/SOSC numérica para el problema analítico y soporte declarado.
+- Restricción modal holgada; frecuencia domina marginalmente en 30/39 y beta
+  en 33/35/37. Beta es una incertidumbre normalizada en coordenadas congeladas,
+  no un porcentaje de tolerancia a parámetros físicos.
+- PowerDynamics: evento de diseño en bus 16, +100 MW Pset ZIP, |df|=0.468755 Hz
+  y RoCoF=0.171771 Hz/s, límites 0.5, ventana causal 0.5 s, diez buses generadores.
+- Bus 8: RoCoF=0.512750 Hz/s; bus 29: |df|=0.588571 Hz. Los fallos externos
+  permanecen visibles y excluyen una afirmación de seguridad espacial general.
+
+HISTORIA VISUAL DEL PÓSTER
+
+1. Pregunta y resultado, arriba: qué conservar y dónde.
+   Mostrar cinco barras/mapa de retención, porcentaje de despacho y alcance.
+   No gastar la cabecera en siglas del solver o una lista de disciplinas.
+
+2. Figura central: retención por sitio junto a contribuciones marginales.
+   Es la figura que convierte la cifra en una explicación. Conservar el pequeño
+   valor negativo de robustez en bus 39; no dibujar un reparto porcentual físico.
+
+3. Validación: predicción analítica y curva PowerDynamics del evento de diseño.
+   Límites, unidades e instrumento visibles. La predicción no es idéntica a la
+   respuesta no lineal de gran señal; no ocultar esa diferencia.
+
+4. Comparación y alcance: hoy, tabla de eventos externos. Si se completa el
+   comparador equivalente, añadir su resultado y mantener los fallos en una
+   franja legible. No llenar celdas pendientes con estimaciones.
+
+Franja inferior: alcance del certificado local, referencias cercanas y enlace
+a datos/código. Las limitaciones materiales deben leerse en el propio póster,
+no aparecer exclusivamente detrás de un QR.
+
+No agregar cinco historias científicas. H4, TX3, CDW y la teoría futura van al
+suplemento como respuestas a preguntas, con sus modelos y alcances separados.
+
+EXPERIMENTO PRIORITARIO PARA ELEVAR EL VALOR DE LA CONTRIBUCIÓN
+
+Congelar exactamente modelo, soporte, perturbación/clase, límites, normalización,
+medida y cotas. Resolver con el mismo presupuesto y tolerancias:
+A. Optimización de retenciones con PLL fijos.
+B. Optimización de retenciones con un Kp/Ki común a todos los GFL.
+C. Optimización conjunta con Kp/Ki independientes por sitio.
+
+Comparar SG retenido, coste computacional, factibilidad, residuos de optimalidad
+local y validación no lineal. La solución común, si es factible, es una semilla
+factible para la búsqueda libre; ayuda a evitar que una inicialización pobre
+parezca una desventaja estructural del método libre.
+
+La clase C contiene B bajo las mismas cotas, por lo que su óptimo global no
+puede ser peor. Una mejora, por sí sola, NO demuestra un algoritmo nuevo:
+cuantificar su magnitud y coste establece el valor aplicado del ajuste espacial.
+Para reclamar aceleración algorítmica debe compararse el mismo problema C
+con otro método y el mismo criterio de aceptación.
+
+Como comprobación explicativa adicional, congelar rho y permutar pares (Kp,Ki)
+entre sitios dentro de las cotas. Así se conservan SG total, inercia física,
+reparto y conjunto de ajustes; cambia dónde se aplican. No está ejecutado ni
+se anticipa que necesariamente produzca un fallo. Si hay efecto, comprobarlo
+con el modelo completo. Es un contraste de localización, no una prueba causal
+universal ni sustituto del comparador optimizado.
+
+SENSIBILIDADES QUE NO SE PUEDEN ESQUIVAR
+
+Las veinte ganancias están en sus cotas. La ventaja puede depender del rango
+permitido. La incertidumbre beta depende de la métrica congelada y no representa
+automáticamente incertidumbres físicas. Sin abordar ambas, no prometer diseño
+listo para despliegue ni una asignación única/físicamente inevitable de SG.
+
+PREGUNTAS PARA PREPARAR LA DEFENSA
+
+Estas preguntas son inferencias editoriales a partir de perfiles públicos,
+no opiniones atribuidas a las personas ni una simulación de su evaluación.
+
+Payman Dehghanian: confiabilidad, resiliencia y planificación de redes con
+renovables. Preparar: qué incertidumbre está cubierta; qué cambio de operación
+invalida la recomendación; qué decisión mejora frente a una alternativa; qué
+significa exactamente “robusto”.
+Perfil institucional: https://engineering.gwu.edu/payman-dehghanian
+
+David Celeita: redes inteligentes, integración renovable, localización de fallas
+y automatización. Preparar: cómo se aplican las ganancias; qué pasa con límites
+de corriente/retardos; qué datos requiere el cálculo; qué podría comprobar una
+implementación o simulador independiente.
+Perfil institucional: https://www.unisabana.edu.co/sala-de-prensa/directorio-de-expertos/cesar-barraza
+El enlace institucional tiene un slug distinto, pero la página identifica a
+David Celeita. No se infiere que sea juez de esta competencia.
+
+RESPUESTAS CORTAS A OBJECIONES DIFÍCILES
+
+“¿Qué inventaron?” Herramientas clásicas integradas en una decisión concreta
+de sustitución y control, con evidencia local y validación. La superioridad
+frente a alternativas equivalentes está pendiente. No reclamar prioridad amplia.
+
+“¿Es el máximo de GFL?” No: candidato con evidencia de optimalidad local de la
+formulación analítica; sin cota global informativa ni óptimo no lineal probado.
+
+“¿Funciona ante cualquier perturbación?” No: el diseño cubre el requisito
+declarado; dos pruebas en otras ubicaciones violan límites y están reportadas.
+
+“¿El PLL reemplaza la energía o la respuesta primaria?” No. Las ganancias
+modifican sincronización e interacciones; los recursos energéticos son separados.
+
+“¿Por qué no basta el damping?” En esta solución el margen modal satisface
+su límite con multiplicador cero; otras restricciones limitan el retiro local.
+Eso no implica que el damping sea irrelevante en otras soluciones.
+
+PITCH EN ESPAÑOL, APROXIMADAMENTE 60–90 SEGUNDOS
+
+“Estudiamos dónde conservar generación síncrona cuando se reemplaza por
+convertidores grid-following. Calculamos conjuntamente las fracciones de
+sustitución y las ganancias PLL con restricciones de estabilidad, robustez
+del modelo y respuesta de frecuencia. En este caso IEEE-39, la solución
+conserva 312.52 MW en cinco sitios y asigna 94.22% del despacho a GFL. Lo
+interesante es qué limita retirar más: el margen modal está holgado; los
+picos de frecuencia y la robustez normalizada tienen contribuciones marginales
+distintas según el sitio. Verificamos numéricamente la optimalidad local del
+problema analítico y contrastamos el evento de diseño con PowerDynamics. La
+misma solución viola límites ante dos ubicaciones externas; eso delimita el
+alcance. La contribución que buscamos es una decisión de sustitución explicable
+y comprobable. La comparación con controles comunes debe establecer cuánto
+valor aporta permitir ajustes por sitio.”
+
+JUICIO FINAL
+
+Ésta es la apuesta editorial más fuerte con la evidencia revisada. No hay base
+para garantizar un premio ni la reacción de personas concretas. Hoy tampoco
+hay una comparación que permita afirmar superioridad científica completa.
+La siguiente evidencia decisiva es una comparación equivalente; más siglas,
+más decimales o una teoría futura en el título no sustituyen ese resultado.
+
+La convocatoria oficial acepta ideas de investigación sustentadas por resultados
+preliminares y relevantes para IAS; no publica ahí una rúbrica completa del
+premio. No convertir esos criterios de selección en puntuaciones inventadas.
+https://ias-am.ieee.org/2026/student-poster-competition-program/

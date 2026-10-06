@@ -1,0 +1,6 @@
+support = [30, 33, 35, 37, 38, 39]
+model_sha = "e2f104608f1eb1705f0ad2c07764e7beab0a5df4deb4d4ce4f359b1e79947f0a"
+no_PowerDynamics_in_evaluator = true
+source_candidate_sha = "8888c50ae7df017d2b2bb319c1adf2dc631a4af190c4045047cf1741875c922d"
+analytic_derivatives = true
+phase_units = "radians"

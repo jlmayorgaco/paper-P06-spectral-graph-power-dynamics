@@ -1,0 +1,5 @@
+candidate,source,lambda_min,lambda_max,zero_mode_count,condition_number,psd,spd,symmetry_residual,selected,decision
+Kron passive-port conductance Re(Yport),"Hermitian part of complex branch-only Kron Ybus at buses 30,31,32,33,34,35,36,37,38,39",0.001127537540072563,5.0133384196549695,0,4446.271845931033,true,true,0.0,true,Primary: nonnegative passive dissipation operator
+Kron susceptance -Im(Yport),Reactive part of the same complex port admittance,-1.1619045685355136,46.99608947104022,0,Inf,false,false,2.060207738325562e-16,false,Indefinite; no eigenvalue clipping
+ExpC C0 primary synchronizing backbone L_G,classified from frozen ExpC C0 primary synchronizing backbone,-1.1851504075403063e-17,0.30296846490232776,1,Inf,true,false,8.980670938572753e-17,false,PSD in this case; no controller-based selection
+ExpC C33 primary synchronizing backbone L_G,classified from frozen ExpC bus-33 GFL primary synchronizing backbone,-19.149473092834636,1439.5766661507869,1,Inf,false,false,4.447046013376485e-17,false,Indefinite; no real square root

@@ -1,0 +1,13 @@
+elapsed_s = 733.4160001277924
+beta_req = 1.6991206999182038e-6
+model_sha = "e2f104608f1eb1705f0ad2c07764e7beab0a5df4deb4d4ce4f359b1e79947f0a"
+formal_certificate = false
+beta_observed_upper = 1.6991208318817978e-6
+nodes = 50001
+certified_float64_lipschitz = false
+outward_rounded = false
+status = "INCOMPLETE_INTERVAL_BOUND"
+max_depth = 62
+tail_lower = 1.000001698732376
+beta_lower_bound_float64 = 1.6991207004188757e-6
+candidate = "Z_Q2B_CORE_d100_restored.toml"

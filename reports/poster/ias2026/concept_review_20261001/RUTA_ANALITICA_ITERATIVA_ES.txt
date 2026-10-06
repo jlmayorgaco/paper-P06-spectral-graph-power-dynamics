@@ -1,0 +1,343 @@
+CO-DISEÑO ROBUSTO SG -> GFL: RUTA ANALÍTICA ITERATIVA
+1 octubre 2026 — formulación propuesta; no es un resultado experimental nuevo.
+
+DECISIÓN
+
+La dirección es viable como programa de investigación: estructura de red y
+actualizaciones algebraicas para buscar; certificado del modelo no lineal para
+aceptar; simulación independiente para contrastar. No hay fundamento para
+prometer una fórmula universal de rho, Kp y Ki, ni un máximo global.
+
+La contribución que debe intentarse demostrar es calcular una frontera de
+sustitución bajo requisitos físicos, explicando qué interacción la limita,
+con menos conservadurismo o menos coste que comparadores equivalentes.
+GSP, Schur, Woodbury, small gain y SQP son herramientas conocidas.
+
+1. QUÉ EXISTE Y QUÉ FALTA
+
+Q2B/CERTIFIED_SEARCH ya contiene búsqueda conjunta de cinco retenciones y
+veinte ganancias, evidencia numérica de óptimo local de su formulación
+analítica y validación no lineal de un evento. Conserva 312.523288 MW;
+94.215489% del despacho inicial corresponde a GFL. No cubre por ello una
+clase general de perturbaciones ni límites duros de corriente o retardos puros.
+
+La línea coupled_dq_contract contiene un certificado regional no lineal para
+entradas acotadas y diseño fijo. Su radio normalizado 3.5522e-7 no demuestra
+capacidad operativa. Aún falta conectar síntesis exterior y verificación útil.
+El cuello de botella no es obtener más autovalores, sino conservar información
+dinámica al acotar el modelo no lineal y representar recursos físicos.
+
+El programa F2 rechazó el desacoplamiento por el grafo físico: acoplamiento
+reactivo fuera de diagonal 0.2914 frente a un umbral 0.05. Una nueva propuesta
+debe conservar esos términos; no puede reusar la hipótesis rechazada.
+
+La implementación del PLL tiene un filtro de primer orden tau_PLL. Ese filtro
+NO es un retardo de transporte. El modelo anterior no contiene un limitador
+duro de corriente ni una corriente nominal validada.
+
+2. PROBLEMA DE CONTROL GENERAL
+
+Definir p=(rho,Kp,Ki), rho_i fracción sustituida, y pesos P_i^0 declarados.
+Los parámetros de soporte de frecuencia, si se añaden, son variables distintas.
+
+  C*(W,Theta,Tau,limites,recursos)
+    = sup_p sum_i P_i^0 rho_i / sum_i P_i^0
+
+sujeto a existencia y buena definición de la solución, estabilidad regional,
+y limites de f, RoCoF medido, tensión, corriente y energía, para toda entrada
+w en W, incertidumbre theta en Theta y retardo admisible en Tau, desde las
+historias iniciales especificadas. El objetivo usa despacho, salvo que se
+reformule explícitamente como capacidad instalada.
+
+Ejemplo general: W={w=S_w d: ||d(t)||_infty<=epsilon_req c.t.p.}.
+La norma y S_w expresan amplitudes y simultaneidad permitidas. Canales en todos
+los buses permiten una teoría sin nodo privilegiado. La formulación no fija
+100 MW, tres nodos, una forma temporal ni 0.5 Hz. Los datos del benchmark sí
+deben fijar recursos y límites antes de optimizar.
+
+No puede garantizarse seguridad frente a entradas arbitrariamente grandes.
+Para perturbar demanda de manera persistente debe existir respuesta energética
+y equilibrio factible. Ajustar el PLL no crea reservas, energía DC ni respuesta
+primaria. Una restricción de energía finita es incompatible con sostener para
+siempre un déficit mediante una batería sin reposición.
+
+3. MODELO NO LINEAL, PLL, CORRIENTE Y RETARDOS
+
+  xdot = f(x,v,x_t,v_t,p,theta,w_t),  0=g(x,v,p,theta,w).
+
+x_t y v_t representan historias. Se supone una rama algebraica única y regular
+en todo el dominio de verificación; g_v invertible sólo en el centro no basta.
+Con v=psi(x,p,theta,w), la eliminación conserva exactamente la DAE en esa rama.
+Se elimina la simetría angular, conservando las variables físicas de frecuencia.
+Las historias y condiciones iniciales deben ser consistentes con esa rama.
+
+Un PLL coherente con la estructura actual, al añadir un retardo de medición, es
+
+  e_i(t)=detector_fase(v_i(t),theta_PLL,i(t)),
+  xidot_i=Ki_i e_i(t-tau_i),
+  T_PLL,i omegadot_PLL,i=xi_i+Kp_i e_i(t-tau_i)-omega_PLL,i,
+  thetadot_PLL,i=omega_PLL,i en una carta síncrona fija.
+
+La posición exacta del retardo debe corresponder al hardware: retrasar v antes
+del detector no es idéntico a retrasar e después del detector. T_PLL es el
+filtro; tau es el retardo puro. En PDExactDesignN, el detector actual es
+e=-sin(theta) v_r+cos(theta) v_i, la tensión q en el marco del PLL; omega_PLL
+representa desviación de frecuencia. Conservar esa definición y sus unidades.
+
+Con retardo verdadero el modelo reducido es funcional/retardado, no una ODE
+finita exacta. Pade sirve como aproximación si se controla su error; no convierte
+una prueba de la aproximación en prueba del retardo físico.
+
+Hay un ejemplo analítico útil para inicializar ganancias: en el límite de PLL
+aislado frente a tensión rígida V>0, e=-V theta a primer orden, el polinomio
+característico sin retardo y su extensión retardada son
+
+  T_PLL s^3+s^2+V Kp s+V Ki=0,
+  T_PLL s^3+s^2+V (Kp s+Ki) exp(-s tau)=0.
+
+En el primer caso, T_PLL,Kp,Ki>0 y Kp>T_PLL Ki dan estabilidad por Routh.
+En el segundo, una frontera de raíces imaginarias s=j omega, omega>0, tiene
+
+  Ki(omega)=omega^2/V [cos(omega tau)-T_PLL omega sin(omega tau)],
+  Kp(omega)=omega/V [sin(omega tau)+T_PLL omega cos(omega tau)].
+
+Se debe determinar el lado estable y contar las raíces pertinentes; estas
+curvas no son automáticamente la región estable completa. Son relaciones del
+PLL aislado, NO condiciones necesarias o suficientes de la red heterogénea
+completa. Su papel es proponer semillas y detectar errores de unidades/modelo.
+
+Un posible limitador es i_ref=Proj_{||i||<=Iref_max}(i_cmd), con antiwindup y
+la prioridad P/Q declarada. Esto limita la referencia, NO garantiza por sí solo
+||i_actual||<=Imax durante un transitorio. Deben conservarse el filtro eléctrico,
+el regulador de corriente, el DC y los límites físicos en las salidas.
+Si se atraviesa saturación, Taylor suave requiere sectores/piezas o cotas
+Lipschitz válidas; una Hessiana de la rama no saturada no cubre la otra rama.
+
+4. PAPEL REAL DE GSP Y DE LA ELIMINACIÓN DINÁMICA
+
+Un grafo estructural positivo L=U Lambda U' permite coordenadas, agrupación de
+modos y precondicionamiento. No reemplaza la admitancia AC Ybus. La transformación
+completa conserva la dinámica; una truncación requiere cota de error. En estados
+heterogéneos no siempre existe un producto U tensor I de dimensión uniforme:
+se transforman canales compatibles y se completa una base invertible.
+
+Para el núcleo lineal reducido con retardos constantes,
+
+  Delta(s;p)=sI-A0(p)-sum_l Al(p) exp(-s tau_l), R=Delta^-1.
+
+Una partición en grupos a,b da el complemento exacto
+
+  S_a(s)=Delta_aa-Delta_ab Delta_bb^-1 Delta_ba.
+
+El segundo término es una interacción dinámica matricial, dependiente de
+frecuencia, ganancias y retardos. Retenerla tiene contenido más preciso que
+asignar sólo una inercia o un damping escalar por nodo. No es una identidad
+nueva, ni permite ignorar los polos internos de Delta_bb: la estabilidad debe
+verificarse en el sistema completo, incluyendo modos ocultos/cancelaciones.
+
+En el modelo de PLL existente, a punto de operación fijo, las filas de ganancias
+tienen estructura de bajo rango. Woodbury ya está implementado en
+src/bnd_design/WoodburyPLL.jl y src/bnd_design_e/PLLLowRank.jl. Debe auditarse
+otra vez después de introducir limitación/retardos y al mover el equilibrio.
+Éste es un recurso concreto para acelerar la búsqueda, no una nueva ley modal.
+
+Una parametrización K=Kbase+U_q a puede dar una semilla de pocas variables.
+Si se restringe a ella, su conjunto factible es menor que el de ganancias
+libres: no puede superar el óptimo global libre con idénticos requisitos.
+Puede mejorar coste, regularidad espacial o comportamiento fuera del ajuste;
+debe medirse. No obliga a implementar comunicación en línea: las ganancias
+pueden diseñarse centralmente y ejecutarse localmente.
+
+5. PROPUESTA A EVALUAR: NÚCLEO DINÁMICO ACOPLADO + RESIDUO NO LINEAL
+
+Este paso busca superar la pérdida de cancelaciones del certificado actual.
+No se ha implementado ni demostrado que mejore su radio en IEEE-39.
+
+En coordenadas y=H(x-x*) y para una arquitectura fija:
+
+  ydot=A0 y(t)+sum_l Al y(t-tau_l)+B[w_t]+n(y_t,w_t;p).
+
+Es una identidad, no una sustitución del modelo por su linealización. n incluye
+TODO el residuo, términos cruzados con entradas y errores de centro. En regiones
+suaves, Taylor con residuo integral permite acotarlo; en saturación se usan
+cotas por sectores/piezas. Para incertidumbre se exige uniformidad en Theta.
+
+Sea R(t) el núcleo causal del sistema retardado lineal completo. Debe verificarse
+su estabilidad exponencial y una cota de la cola. Para bloques i,j, definir
+
+  G_ij >= sup_{theta,tau} integral_0^infty ||R_ij(t;theta,tau)|| dt,
+  b_i  >= ganancia L_infty del canal w hacia el bloque i,
+  a_i  >= sup_t ||respuesta del bloque i a historias iniciales admisibles||.
+
+Los supremos anteriores cubren parámetros y RETARDOS CONSTANTES desconocidos.
+No bastan para retardos variables en el tiempo: ahí se necesita una cota del
+operador variable o un funcional Lyapunov-Krasovskii/Razumikhin uniforme.
+Una malla de frecuencias o de retardos sin cotas de interpolación/cola no prueba
+estos supremos. Una norma H_infty tampoco sustituye la ganancia L_infty para
+señales persistentemente acotadas, que pueden tener energía infinita.
+
+Si ||y_j||<=r_j y ||d||_infty<=epsilon, construir
+
+  ||n_j|| <= q_j(r,epsilon;p),  q_j>=0, monótona en r.
+
+La fórmula de variación de constantes proporciona el criterio suficiente
+
+  a + b epsilon + G q(r,epsilon;p) < r,                 (1)
+
+junto con cotas de TODAS las salidas físicas dentro de sus límites y regularidad
+algebraica en el tubo. En el primer supuesto instante de salida, la convolución
+implica un valor estrictamente inferior a r: contradicción. Por continuación,
+las trayectorias permanecen en el tubo para las historias y entradas declaradas.
+Esto no afirma que el tubo sea invariante para CUALQUIER historia dentro de él;
+el conjunto de historias usado en a es parte del contrato.
+
+G conserva primero la respuesta acoplada con sus fases/cancelaciones y luego
+acota los bloques. Puede reducir conservadurismo frente a acotar cada entrada
+del Jacobiano, pero no existe dominación automática entre ambos certificados.
+El cálculo de G también puede ser caro; se medirán error y coste.
+
+Para estabilidad incremental se necesita adicionalmente una cota de Lipschitz
+del residuo, ||Delta n_i||<=sum_j L_ij sup_hist||Delta y_j||. Una condición
+suficiente exponencial usa G_gamma, integral ponderada por exp(gamma t), y
+
+  spr(G_gamma L)<1, gamma>0.                           (2)
+
+Se incluyen en L los factores exp(gamma tau_max) de argumentos retardados al
+pasar a normas temporales ponderadas. Debe verificarse la cota exponencial de
+las respuestas iniciales. Esto es small gain regional para igual entrada;
+la invariancia/acotación (1) sola no prueba sincronización ni convergencia.
+
+6. POR QUÉ LA SOLUCIÓN PUEDE SER ANALÍTICA E ITERATIVA
+
+Para p fijo, proponer radios mediante
+
+  r^{k+1}=T_p(r^k)=a+b epsilon+G q(r^k,epsilon;p).
+
+Un intervalo de radios preservado y una norma con ||D_r T_p||<1 dan convergencia
+por contracción. Sin esas hipótesis, la iteración sólo propone y puede fallar.
+El candidato se acepta únicamente al verificar la desigualdad estricta (1),
+con margen aritmético. Un fallo del certificado no prueba inviabilidad física.
+
+Caso ilustrativo escalar: historia cero, sin términos no lineales de entrada,
+q(r)<=c r^2, G=g>0, b>0. Entonces
+
+  b epsilon+g c r^2<r,
+  r_minus=(1-sqrt(1-4 g c b epsilon))/(2 g c),
+  r_plus =(1+sqrt(1-4 g c b epsilon))/(2 g c).
+
+Si 4 g c b epsilon<1, cualquier radio entre las raíces que además cumpla los
+límites físicos y el dominio de Taylor satisface esa desigualdad. La raíz
+menor es atractiva para el punto fijo local; se deja margen antes de certificar.
+Es una demostración algebraica del mecanismo, no un resultado de IEEE-39.
+
+En una rama diferenciable, si r(p)=T_p(r(p)),
+
+  dr/dp = [I-D_r T_p]^-1 D_p T_p.                      (3)
+
+Si a,b,G dependen de p,
+  D_p T_p = a_p + b_p epsilon + G_p q + G q_p.
+
+La sensibilidad de la rama DAE, a x fijo, es
+  psi_p=-g_v^-1 g_p; F_p=f_p-f_v g_v^-1 g_p,
+añadiendo las cadenas de argumentos retardados cuando corresponda. El
+equilibrio x*(p), H(p) y los límites que dependan de p también aportan derivadas.
+
+Para retardos fijos, la identidad de sensibilidad del núcleo es
+
+  R_p(s)=R(s)[A0_p+sum_l Al_p exp(-s tau_l)]R(s).        (4)
+
+Si tau_l también se optimiza, se añade -s Al exp(-s tau_l) tau_l,p dentro del
+corchete. Las matrices y sus derivadas usan las unidades físicas y el equilibrio
+consistentes. Máximos, normas, incertidumbres activas y saturación pueden romper
+diferenciabilidad: usar derivadas direccionales/bundle, sin omitir ramas activas.
+
+El bucle exterior maximiza sustitución con SQP/región de confianza y (3)-(4).
+Congela H y la caja de cotas durante la propuesta; recalcula todas las cotas
+para aceptar. Mantiene el último diseño factible. No optimiza epsilon hacia
+cero para aumentar artificialmente la sustitución: epsilon_req es un requisito.
+EM no es natural porque aquí no hay una verosimilitud ni variables latentes.
+
+Los límites rho=0/1 cambian los dispositivos y la dimensión física. Tratar
+soportes en cartas separadas y auditar inserciones/remociones; no mantener
+polos de máquinas de potencia cero como si fueran recursos físicos.
+
+7. CERTIFICADO ALTERNATIVO SENCILLO CON RETARDOS
+
+Puede conservarse la ruta por comparación positiva si se demuestra, en toda
+la región e incertidumbre,
+
+  D^+s(t)<=-D s(t)+sum_{l=0}^m M_l s(t-tau_l(t))+b epsilon+delta,
+
+con D diagonal positiva, M_l>=0 y tau_0=0. Si la historia cumple s<=r y
+
+  (D-sum_l M_l)r>b epsilon+delta,                       (5)
+
+el argumento de la primera cara prueba invariancia para retardos acotados
+admisibles. Este criterio ignora su magnitud y puede resultar excesivamente
+conservador o imposible para un PLL cuyo efecto estabilizante está retrasado.
+No tratar como término instantáneo negativo lo que actúa con retardo.
+Para explotar un tau_max pequeño se requiere una prueba dependiente del retardo.
+La teoría de comparación y los funcionales correspondientes son literatura
+establecida, no nuestra novedad.
+
+8. PROGRAMA MÍNIMO PARA SABER SI HAY SUPERIORIDAD
+
+A. Comparación de síntesis bajo contrato Q2B intacto:
+   retenciones con PLL fijos, PLL comunes optimizados y PLL libres optimizados;
+   mismo soporte, límites, modelo, instrumentación y tolerancias. Reportar MW,
+   residuo, tiempo, evaluaciones y variabilidad por semillas. Es la comparación
+   más cercana; un resultado peor que el óptimo libre no invalida aceleración.
+
+B. Prueba del certificado propuesto SIN añadir todos los efectos a la vez:
+   mismo candidato físico, misma W y mismas salidas; comparar bloques actuales
+   frente a núcleo acoplado más residuo, con cotas de cola y salidas. Debe
+   aumentar un radio de relevancia física o reducir coste a igual radio.
+   No comparar el 3.55e-7 entre normalizaciones diferentes.
+
+C. Cerrar el co-diseño para epsilon_req fijo y luego extender el modelo:
+   introducir corriente real, antiwindup y reservas; separar sensibilidad a
+   cotas de ganancias; incorporar retardos en lugares físicos explícitos.
+   Los nuevos modelos necesitan nuevos equilibrios, Jacobianos y validación.
+
+D. Generalización y falsación:
+   inputs simultáneos, distintos canales, incertidumbre física, varias cargas
+   y otra red; búsqueda adversaria fuera del conjunto de ajuste. El muestreo
+   puede refutar una garantía mal implementada, pero no reemplaza su prueba.
+   Julia/PowerDynamics y ANDES sólo contrastan si usan ecuaciones, controles,
+   instrumento y recursos equivalentes; no basta usar el mismo archivo IEEE-39.
+
+Separar resultados: mejora de cálculo, menor conservadurismo, mayor sustitución
+segura y cercanía global son cuatro afirmaciones distintas.
+Si p es certificado, C(p)<=C_cert*<=C_fisica* con idéntico contrato. Un fallo de
+certificación no acota C_fisica*. Una brecha global requiere además una cota
+superior admisible del MISMO problema, por ejemplo una relajación comprobada.
+Multistart, KKT y comparar papers no proporcionan por sí solos esa cota.
+
+9. ANTECEDENTES Y FUENTES
+
+Herramientas y antecedentes que limitan el reclamo de novedad:
+- Pates y Mallada, Robust Scale-Free Synthesis for Frequency Control in Power
+  Systems (2019): síntesis robusta descentralizada, heterogeneidad y retardos.
+  https://arxiv.org/abs/1804.00729
+- Taul, Wu, Chou y Blaabjerg (2021): ajuste de controles de GFL para robustez
+  de gran señal con modelo no lineal y validación experimental.
+  https://doi.org/10.1109/TPEL.2021.3066205
+- Chatterjee y Geng (preprint 2024): asignación GFM/GFL y algoritmo iterativo.
+  https://arxiv.org/abs/2412.15446
+- Wang y Geng (preprint 2026): OPF con estabilidad y precios sombra nodales.
+  https://arxiv.org/abs/2604.17603
+- Feyzmahdavian, Besselink y Johansson (2018): Lyapunov max-separable,
+  sistemas monótonos y retardos. https://arxiv.org/abs/1607.07966
+
+Procedencia local:
+reports/experiment_Q2B/CERTIFIED_SEARCH/DERIVACION_CERTIFICADOS.md
+reports/experiment_Q2B/CERTIFIED_SEARCH/RESULTADO_LOCAL_Y_BRECHA_GLOBAL.md
+reports/nonlinear_codesign_20261001/coupled_dq_contract/CONTROL_MODAL_COMPARACION_Y_CODESIGN_ES.txt
+reports/experiment_F_program/FINAL_SUMMARY.md
+src/bnd_model_expN/PDExactDesignN.jl
+src/bnd_design_e/PLLLowRank.jl
+
+No se ejecutaron nuevas simulaciones, optimizaciones ni certificados físicos
+al escribir esta nota. (1)-(5) son una propuesta condicionada por hipótesis
+explícitas, basada en herramientas clásicas; su utilidad y prioridad siguen
+por establecerse mediante implementación, comparación y revisión especializada.

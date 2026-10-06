@@ -1,0 +1,137 @@
+{
+  "scope": "Finite-budget, finite-event, nonlinear experiment; not a capacity optimum or all-input guarantee",
+  "candidates": {
+    "baseline": {
+      "replacement_percent": 87.5,
+      "retained_SG_MW": 675.3451362473559
+    },
+    "joint_final": {
+      "replacement_percent": 90.04704209216474,
+      "retained_SG_MW": 537.7345371464966
+    },
+    "fixed_gains_final": {
+      "replacement_percent": 89.86037666420985,
+      "retained_SG_MW": 547.8196242564852
+    }
+  },
+  "gradient_gate": {
+    "trim_residual": 3.1117984461542358e-09,
+    "trajectory_gradient_relative_error": 0.00552485146683638,
+    "threshold": 0.02,
+    "scope": "Three parameter classes at bus39; nonlinear SDIRK tangents versus independently integrated adaptive Rodas5P finite differences; no global claim",
+    "physical_modal_similarity_error": 4.199656246324217e-16,
+    "local_parameter_derivative_error": 2.4134333214759635e-14
+  },
+  "independent_comparison": [
+    {
+      "label": "baseline",
+      "candidate_hash_matches": true,
+      "frequency_difference_Hz": 4.363692740483316e-11,
+      "rocof_difference_Hz_s": 7.381123274530221e-07,
+      "alpha_difference_s_inv": 3.098861445227641e-11,
+      "frequency_pass": true,
+      "rocof_pass": true,
+      "modal_pass": true,
+      "voltage_pass": true
+    },
+    {
+      "label": "joint_final",
+      "candidate_hash_matches": true,
+      "frequency_difference_Hz": 8.673173290674185e-12,
+      "rocof_difference_Hz_s": 1.9716450694318155e-12,
+      "alpha_difference_s_inv": 3.215148980384441e-11,
+      "frequency_pass": true,
+      "rocof_pass": true,
+      "modal_pass": true,
+      "voltage_pass": true
+    },
+    {
+      "label": "fixed_gains_final",
+      "candidate_hash_matches": true,
+      "frequency_difference_Hz": 6.447620215510597e-12,
+      "rocof_difference_Hz_s": 1.2815304373248182e-12,
+      "alpha_difference_s_inv": 7.495226661546894e-12,
+      "frequency_pass": true,
+      "rocof_pass": true,
+      "modal_pass": true,
+      "voltage_pass": true
+    }
+  ],
+  "holdouts": [
+    {
+      "label": "holdout_8_-100",
+      "F_Hz": 0.505685761681077,
+      "R_Hz_s": 0.15127834511973887,
+      "max_normalized_constraint": 0.011371523362154079,
+      "frequency_pass": false,
+      "rocof_pass": true,
+      "actuator_margin_pass": true,
+      "limiting_actuator_bus": 30,
+      "limiting_actuator_kind": "governor",
+      "passes_declared_constraints": false
+    },
+    {
+      "label": "holdout_16_100",
+      "F_Hz": 0.48182774531799716,
+      "R_Hz_s": 0.1329002887829403,
+      "max_normalized_constraint": 0.020000258235630657,
+      "frequency_pass": true,
+      "rocof_pass": true,
+      "actuator_margin_pass": false,
+      "limiting_actuator_bus": 34,
+      "limiting_actuator_kind": "governor",
+      "passes_declared_constraints": false
+    },
+    {
+      "label": "holdout_16_-100",
+      "F_Hz": 0.5177168222815087,
+      "R_Hz_s": 0.13517350808752543,
+      "max_normalized_constraint": 0.03543364456301745,
+      "frequency_pass": false,
+      "rocof_pass": true,
+      "actuator_margin_pass": true,
+      "limiting_actuator_bus": 30,
+      "limiting_actuator_kind": "governor",
+      "passes_declared_constraints": false
+    },
+    {
+      "label": "holdout_29_100",
+      "F_Hz": 0.4678087865417,
+      "R_Hz_s": 0.14587579317559007,
+      "max_normalized_constraint": 0.020003788171614172,
+      "frequency_pass": true,
+      "rocof_pass": true,
+      "actuator_margin_pass": false,
+      "limiting_actuator_bus": 34,
+      "limiting_actuator_kind": "governor",
+      "passes_declared_constraints": false
+    },
+    {
+      "label": "holdout_29_-100",
+      "F_Hz": 0.488871611420568,
+      "R_Hz_s": 0.2500333211916787,
+      "max_normalized_constraint": -0.022256777158863983,
+      "frequency_pass": true,
+      "rocof_pass": true,
+      "actuator_margin_pass": true,
+      "limiting_actuator_bus": 30,
+      "limiting_actuator_kind": "governor",
+      "passes_declared_constraints": true
+    }
+  ],
+  "incomplete_holdouts": [],
+  "joint_extra_replacement_vs_start_MW": 137.6105991008593,
+  "joint_extra_replacement_vs_fixed_MW": 10.085087109988649,
+  "max_explicit_step_residual": 1.9239818072058767e-14,
+  "new_current_or_energy_certificate": false,
+  "optimality_certified": false,
+  "assessment": {
+    "trajectory_gradient_gate_pass": true,
+    "explicit_step_algebra_pass": true,
+    "all_accepted_design_steps_feasible": true,
+    "joint_replacement_improved": true,
+    "independent_validation_complete": true,
+    "independent_primary_case_pass": true,
+    "all_external_events_pass": false
+  }
+}

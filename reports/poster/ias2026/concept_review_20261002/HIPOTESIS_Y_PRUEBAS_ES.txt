@@ -1,0 +1,293 @@
+BEYOND NODAL DAMPING: HIPÓTESIS QUE MERECE LA PENA INTENTAR REFUTAR
+Revisión focalizada de literatura y repositorio, 2026-10-02.
+Estado: propuesta de investigación. No demuestra una contribución nueva.
+No se ejecutaron nuevas simulaciones en esta revisión.
+
+DECISIÓN PROPUESTA
+
+Investigar cuándo una sustitución FINITA de SG por GFL puede compensarse
+reajustando los PLL y cuándo ningún ajuste dentro de la familia permitida
+puede mantener las restricciones operativas. La contribución potencial sería
+una garantía útil para esa decisión, basada en la propagación de red, con una
+cota verificable del error. No sería descubrir Schur, GSP, Farkas, SQP,
+pasividad, certificados composicionales ni fronteras de estabilidad.
+
+Prioridad:
+1. Prueba pequeña de compensabilidad finita: es la vía más próxima al código.
+2. Certificados por grupos que conserven cancelaciones: posible salto teórico,
+   pero más arriesgado y con antecedentes composicionales muy próximos.
+3. Cotas exteriores por potencia/energía/corredores: vía al gap de capacidad;
+   no presentar conservación de energía o cortes como novedades.
+
+La búsqueda no permite afirmar prioridad bibliográfica de ninguna candidata.
+
+POR QUÉ ESTA PREGUNTA Y NO MÁS COMPLEJIDAD ESPECTRAL
+
+El experimento físico de cuatro iteraciones obtuvo 90.04704209% de GFL frente
+a 89.86037666% con PLL fijos: 10.08508711 MW adicionales bajo ese presupuesto.
+No comparó óptimos y falló cuatro de cinco eventos externos. El margen de
+actuadores, incluido el gobernador del bus 34, es operacionalmente relevante.
+Referencia: reports/analytic_iteration_20261001/refined/RESULTADOS_ES.txt.
+
+El programa F encontró acoplamiento reactivo fuera de diagonal de 29.14% y
+transferencia heterogénea de 28.37%. La base del grafo de conductancia no
+diagonaliza el modelo detallado. No hay una ley universal Kp(lambda),Ki(lambda)
+validada. Referencia: reports/experiment_F_program/FINAL_SUMMARY.md.
+
+La certificación no lineal por comparación de bloques amplió su radio de
+entrada hasta 3.552198859e-7 en su normalización. Sigue siendo microscópico;
+un gran factor de mejora relativa no lo convierte en una garantía operativa.
+Referencia: reports/nonlinear_codesign_20261001/coupled_dq_contract/
+CONTROL_MODAL_COMPARACION_Y_CODESIGN_ES.txt.
+
+Estos son hechos de campañas distintas. No deben mezclarse sus porcentajes,
+contratos, modelos DC o garantías.
+
+FORMULACIÓN GENERAL, SIN FIJAR BUSES NI UN ESCALÓN CONCRETO
+
+Sea p=(rho,kappa), kappa=(log Kp, log Ki), y considere:
+  xdot = f(x,z,p,w,theta),    0 = g(x,z,p,w,theta).
+
+W, Theta, el conjunto inicial X0, el horizonte T y los límites físicos son
+datos de la teoría. W puede describir entradas acotadas con restricciones
+adicionales de energía, duración o banda cuando correspondan. No significa
+perturbaciones arbitrariamente grandes. La elección se declara ANTES de
+optimizar, no se reduce después para validar el candidato.
+
+Para cada límite j, h_j<=0 expresa seguridad. Defina:
+  H_j(p) = sup h_j(x(t),z(t),p,theta),
+con supremo sobre w en W, theta en Theta, x0 en X0 y 0<=t<=T.
+
+Objetivo de despacho:
+  C(p) = sum_i Pbase_i rho_i / sum_i Pbase_i,
+  maximizar C(p), sujeto a H_j(p)<=0 y al contrato de estabilidad declarado.
+
+Frecuencia, RoCoF medido/filtrado, tensión, corriente y energía DC necesitan
+definiciones y unidades explícitas. Seguridad en [0,T] no demuestra estabilidad
+asintótica; para esa conclusión hace falta un certificado terminal/invariante
+o un argumento separado. Límites de hardware inexistentes en el modelo actual
+deben incorporarse y documentarse antes de reclamar su cumplimiento.
+
+Supuestos que no se pueden omitir: regularidad algebraica, inicialización
+consistente y existencia de soluciones. Saturaciones exigen análisis por
+regiones o herramientas híbridas; un Taylor suave no cubre automáticamente
+un cambio de modo. Retardos exactos no son idénticos a una aproximación finita.
+Los extremos rho=0,1 pueden exigir cambios de soporte/dimensión del modelo.
+
+QUÉ SIGNIFICARÍA DEMOSTRAR QUE EL REAJUSTE NO PUEDE RESOLVERLO
+
+Fije una sustitución objetivo rho* y una caja compacta de ganancias K.
+Un optimizador que falla NO certifica inviabilidad.
+
+Construya cotas inferiores verificadas
+  lower_H_j(kappa) <= H_j(rho*,kappa), para todo kappa en K.
+Si existe lambda>=0, sum lambda_j=1, y se verifica globalmente
+  inf_{kappa en K} sum_j lambda_j lower_H_j(kappa) > 0,
+ningún reajuste de esa caja satisface todas las restricciones.
+
+La lógica de separación es estándar. Lo difícil y potencialmente valioso es
+obtener cotas inferiores estrechas para la DAE de red sin destruir las
+correlaciones entre canales. Deben incluir error de integración, variación
+del equilibrio y resto no lineal, además de cambios de saturación tratados.
+
+Una perturbación testigo y un instante de evaluación proporcionan una cota
+inferior de H_j; no hace falta resolver todo el adversario para refutar una
+caja. Diferentes cajas pueden necesitar diferentes testigos. En cambio,
+probar factibilidad robusta requiere cubrir TODA W, no una lista de testigos.
+
+Para un residual suave asociado a un testigo, un primer prototipo puede usar:
+  h_j(p+delta) >= h_j(p) + J_j delta - R_j(delta),
+con R_j una cota UNIFORME y verificada. La derivada de un máximo de trayectoria
+no se trata como una derivada suave cuando cambia el pico activo.
+
+La exclusión cubre solamente rho* y K. Para una cota global de máxima capacidad
+hay que cubrir todos los diseños de mayor capacidad, incluyendo soportes y
+cajas de ganancias pertinentes. Un certificado de imposibilidad local no se
+renombra como optimalidad global de IEEE-39.
+
+PAPEL CONCRETO DEL GRAFO
+
+La topología sola no basta: importan admitancias, operación, controladores,
+tiempos, pérdidas, reservas, dispositivos y canales de perturbación/salida.
+El operador relevante combina interconexión y dinámica de puertos.
+
+Conservar todos los modos de Fourier y todos los términos acoplados es un
+cambio de coordenadas. Diagonalizar un Laplaciano no diagonaliza los PLL
+heterogéneos ni la DAE. Una reducción exacta de puertos puede conservar lo
+necesario; restricciones en buses internos requieren reconstruir sus salidas.
+
+La hipótesis útil es que basta retener ciertos grupos de interacciones con una
+cota del resto, seleccionados por su efecto en la restricción operacional.
+La sensibilidad adjunta y Schur son instrumentos conocidos para encontrarlos.
+No suponer que el acoplamiento de mayor norma es el de mayor efecto.
+
+SEGUNDA HIPÓTESIS: CERTIFICAR SIN DESTRUIR CANCELACIONES
+
+La comparación positiva sustituye bloques por normas no negativas. Puede
+perder signos, fase y cancelaciones energéticas. Comprobar si esa pérdida,
+y no una limitación física, explica el radio microscópico actual.
+
+Comparar familias anidadas de almacenamiento/certificados:
+  P nodal por bloques -> P con grupos seleccionados -> P densa,
+o su generalización no lineal por almacenamiento de subredes y puertos.
+
+La inclusión de familias evita empeorar el mejor certificado teórico; no
+garantiza que un optimizador local encuentre el mejor miembro ni que la
+familia densa sea exacta para el problema físico.
+
+Teorema objetivo, todavía NO obtenido: una cota computable y uniforme del
+error causado por omitir una interacción, expresada en frecuencia, RoCoF o
+reserva, que permita afinar solamente los grupos que cambian la decisión.
+
+La mejora debe superar composición/IQC y referencia cuadrática densa cuando
+sea computable, o lograr calidad comparable a costo significativamente menor.
+Agrupar nodos o añadir términos cruzados de Lyapunov ya tiene antecedentes.
+
+TERCERA HIPÓTESIS: COTAS EXTERIORES POR RECURSOS Y CORTES
+
+Para región S y horizonte T, conservación de energía da una condición necesaria
+del tipo:
+  integral Pload,S <= E_S(0)-Emin,S
+                     + integral (Psource,max,S + Pimport,max,frontera S).
+
+Omitir pérdidas no negativas hace la condición permisiva. Contabilizar energía
+extraíble dentro de límites, rampas, cargas ZIP, almacenamiento de líneas y
+corredores compartidos sin duplicación. Esta desigualdad elemental no es nueva.
+
+El objetivo interesante sería una familia de cortes espacio-temporales que
+produzca cotas exteriores ajustadas y cuya separación sea computable.
+Un óptimo global de una relajación exterior válida daría C*<=C_upper.
+Un diseño robustamente certificado da C_lower<=C*. Solo entonces:
+  C_lower <= C* <= C_upper.
+
+Un certificado SUFICIENTE de estabilidad genera factibilidad interior:
+optimizarlo no proporciona una cota superior de capacidad física.
+Momentos/SOS y medidas de ocupación son herramientas candidatas para problemas
+pequeños; ya se aplican a estabilidad de potencia y no prometen escalabilidad
+automática a nuestra DAE de 281 estados.
+
+EXPERIMENTO QUE DECIDE SI CONTINUAR
+
+Primero: red de 3-9 buses, dos áreas, arquitectura SG/GFL explícita, ganancias
+acotadas y recursos finitos. Fijar antes la clase W y límites. Buscar dos
+regímenes: reemplazo recuperable por PLL y reemplazo excluido para toda K.
+Usar intervalos o un método global verificable como referencia en esa escala.
+Una malla densa sirve para refutar errores, no prueba globalidad continua.
+
+Comparar mismo modelo, operación, recursos y restricciones:
+  a) criterio nodal/espectral;
+  b) optimización de la DAE completa con reinicios y presupuesto comparable;
+  c) composición/bloques estándar;
+  d) método propuesto conservando interacciones seleccionadas.
+
+La prueba decisiva no es que dos sistemas estables tengan transitorios distintos:
+eso ya se sabe. Debe haber una decisión material que el nuevo certificado
+justifique mejor, con costo y conservadurismo medidos.
+
+Después: repetir en IEEE-39 usando el modelo físico, inicialización consistente,
+validación independiente y escenarios adversarios. Separar claramente:
+evidencia numérica, garantía para W, exclusión de una caja y optimalidad global.
+
+Abandonar o reformular si:
+- la exclusión solo reproduce Farkas/KKT de primer orden;
+- el dominio certificado continúa siendo operacionalmente insignificante;
+- la cota exterior queda siempre en 100%;
+- la mejora desaparece al igualar recursos, controles y presupuesto;
+- basta un balance agregado o límite estático para explicar todo el efecto;
+- un antecedente ya da la misma garantía bajo hipótesis equivalentes.
+
+POSTER CONDICIONAL A OBTENER RESULTADOS
+
+Título de trabajo:
+  Beyond Nodal Damping:
+  When Can PLL Retuning Compensate for Synchronous Generation Replacement?
+
+Figura central propuesta: mapa de sustitución/ganancias con regiones
+certificadas factibles, excluidas y aún desconocidas; acompañarlo de la
+interacción que explica la frontera y una validación temporal independiente.
+No completar esas regiones con datos inexistentes. El título no promete que
+ya sepamos responder la pregunta ni que se vaya a ganar un premio.
+
+ANTECEDENTES QUE DELIMITAN LA CONTRIBUCIÓN
+
+[1] Bačić et al. (preprint, 9 julio 2026).
+A graph theoretic view on small signal stability of inverter-based power grids.
+Red sin pérdidas, droop heterogéneo y dinámica q-V; criterio necesario/suficiente
+bajo sus hipótesis y corrección por ciclos. En sus tres IEEE la corrección
+limita poco la frontera. No trasladar el teorema automáticamente a GFL-PLL.
+https://arxiv.org/html/2607.08260v1
+
+[2] Chen, Preece y Barnes (IEEE TPWRS 38(2), 2023; online 2022).
+Identifying Feasibility Region Boundaries in Power Systems With Multiple VSCs.
+Fronteras multidimensionales mediante bifurcación e interacción de parámetros.
+Nombrar una frontera de reajuste no constituye novedad.
+https://researchportal.bath.ac.uk/en/publications/identifying-feasibility-region-boundaries-in-power-systems-with-m/
+DOI: 10.1109/TPWRS.2022.3175007.
+
+[3] Yang et al. (preprint, 2025).
+Compositional and Equilibrium-Free Conditions for Power System Stability,
+Part I: Theory. Disipatividad y DAE no lineal con pérdidas; requiere regularidad
+y condiciones sobre el conjunto de equilibrios. No resuelve nuestro máximo
+reemplazo con garantías de picos y recursos.
+https://arxiv.org/html/2506.11406v1
+
+[4] Peng et al. (IEEE TPWRS 41(3), 2026).
+Compositional Grid Codes With Guarantee on Both Stability and Dynamic Performance.
+Pasividad transformada, Schur y requisitos de dispositivos; estabilidad y
+prestaciones ya se combinan en literatura. Verificar las hipótesis del teorema
+antes de adaptar y la versión del código antes de reproducir.
+https://www.researchgate.net/publication/394048628_Compositional_Grid_Codes_with_Guarantee_on_Both_Stability_and_Dynamic_Performance
+DOI: 10.1109/TPWRS.2026.3651937.
+
+[5] Nazerian et al. (Nature Communications, 27 enero 2026).
+The frequency response of networks as open systems. Entrada-salida, caminos,
+no normalidad y H2 para sistemas linealizados. H2 no es una garantía de pico
+para toda entrada acotada.
+https://www.nature.com/articles/s41467-026-68602-1
+
+[6] Saberi et al. (IJEPES, 2021).
+Antecedente de energía de cutsets, sensibilidad de generación/inercia y Benders.
+Solo resumen verificado en esta revisión; no atribuirle una cota exterior
+idéntica a la propuesta sin leer el texto completo.
+https://doi.org/10.1016/j.ijepes.2020.106338
+
+[7] Josz, Molzahn, Tacchi y Sojoudi (IEEE ISGT, 2019).
+Transient Stability Analysis of Power Systems via Occupation Measures.
+Aproximaciones interiores/exteriores de región de atracción para swing no
+lineal. Ofrece herramientas de certificación; no un máximo GFL global.
+https://molzahn.github.io/pubs/josz_molzahn_tacchi_sojoudi-isgt2019.pdf
+DOI: 10.1109/ISGT.2019.8791570.
+
+[8] Henrion, Tacchi, Cardozo y Lasserre (IFAC-PapersOnLine, 2020).
+Approximating regions of attraction of a sparse polynomial differential system.
+Jerarquías momento-SOS con condiciones específicas de dispersidad.
+https://arxiv.org/abs/1911.09500
+DOI: 10.1016/j.ifacol.2020.12.1488.
+
+[9] IEEE Transactions on Power Delivery 40(6), 2025.
+Transient Stability Analysis of Grid Forming-Grid Following Paralleled System
+Using Improved Sum-of-Squares Programming. SOS y dominio de atracción para
+GFM/GFL ya existen; resumen primario verificado, no el teorema completo.
+https://ieeexplore.ieee.org/document/11168960/
+DOI: 10.1109/TPWRD.2025.3611302.
+
+[10] Cifelli y Anta (preprint v2, 14 abril 2026).
+Decentralized Small Gain and Phase Stability Conditions for Grid-Forming
+Converters: Limitations and Extensions. Coordenadas, loop shifting y filtros
+reducen conservadurismo de certificados suficientes de pequeña señal.
+https://arxiv.org/html/2510.20544v2
+
+MÉTODO Y LIMITACIONES DE ESTA REVISIÓN
+
+Búsqueda focalizada, no revisión sistemática ni prueba de ausencia de precedentes.
+Fecha de corte: 2026-10-02. Fuentes priorizadas: textos de autores, arXiv,
+revistas y repositorios institucionales. Consulta de títulos exactos y familias:
+heterogeneous PLL stability boundary; multidimensional VSC feasibility;
+graph cycles inverter stability; compositional dissipativity; sparse IQC;
+retuning infeasibility; cutset energy; occupation measures; sparse ROA.
+
+Síntesis asistida por IA con deep-research: auditoría del repositorio,
+bibliografía y verificación crítica en tres revisiones paralelas, seguidas de
+contraste de fuentes primarias por el compilador. Se distingue texto completo
+de resumen. No se inventaron simulaciones, garantías ni una aceptación editorial.
+El registro estructurado adjunto conserva las hipótesis y niveles de evidencia.

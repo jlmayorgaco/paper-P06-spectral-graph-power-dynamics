@@ -1,0 +1,9 @@
+# P4 — Direct robustness and declared transient checks
+
+Status: **INCOMPLETE_ROBUST_OPTIMIZATION**. The frozen ExpG full-block model and beta were reused unchanged.
+
+- Equation: `beta_star = inf_ω σmin(jωI−(Aq+σI))`. At the nominal candidate, the single-point value at ω=0 is `3.746493388818478e-11`, so it is a rigorous upper bound on beta-star and is far below `1.6991206999182038e-6`. This proves the ExpN incumbent does not meet the robust requirement.
+- Conditional scalar root, with all 20 gains fixed: ε=`0.0013695147207744968`, retained `1.136697218242845` MW, full-spectrum α=`-0.05169088501717586` s⁻¹. The Lipschitz interval audit returns `CERTIFIED`, lower radius bound `1.6991528445276632e-6` versus required β=`1.6991206999182038e-6`, using `34333` nodes and depth `48`. This is a Float64 numerical interval certificate with no outward rounding; the margin is `3.214460945939892e-11`, so it is provisional numerical evidence, not a formal validated-arithmetic proof, new frozen candidate, or robust optimum. The separate CARE attempt remains rejected (`BOUNDED_REAL_NUMERICAL_FAILURE`; residual `0.0004231754804684846`, max residual eigenvalue `0.066105211862391`).
+- The frozen ExpG event is a sustained 100 MW step at bus 16, with 0.5 Hz/s RoCoF and 0.5 Hz limits. ExpN's six stored traces are 0.1 s pulses; their 100 MW extrapolations are retained as diagnostics but cannot be used as the declared step result. The step constraint is therefore **not evaluated in P4** and no transient-constrained optimum was computed. P5 runs the frozen sustained step after candidate freeze.
+- Certificate scope: the nominal ExpN incumbent is robust-infeasible by a pointwise witness. One fixed-gain conditional point passes the Float64 Lipschitz lower-bound test, but no joint robust KKT or robust-optimum search was run. P4 still leaves robust maximization and transient constraints open; the nonlinear model was not called in design.
+- Time: `36.614 s`; PD calls: 0.

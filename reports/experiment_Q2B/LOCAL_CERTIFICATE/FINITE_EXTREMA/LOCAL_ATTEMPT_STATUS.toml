@@ -1,0 +1,22 @@
+retained_MW = 314.54516922932254
+primal = 5.902326380375627e-5
+active_rows = ["g2", "g8", "g22", "upper15", "upper16", "upper19", "upper20", "upper21", "upper22", "upper23", "lower25"]
+multipliers = [1.5170090050947309e-5, 0.07584797113907954, 0.11647003460402852, 0.0, 9.939205867860967e-6, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+disturbance_MW = 100.0
+event_bus = 16
+status = "MERIT_STAGNATION"
+window_s = 0.5
+model_evaluations = 377
+elapsed_s = 65.28700017929077
+complementarity = 1.9473434171571196e-8
+scope = "fixed-support analytical problem; stationary frequency refinement pending full-band audit"
+global_certified = false
+LICQ_rank = 11
+best_feasible_MW = "NONE"
+robust_frequency_factorizations = 754
+active_count = 11
+local_certified = false
+stationarity = 0.2380028369223529
+
+has_numerically_feasible_incumbent = false
+output_metadata_correction = "The seed also exceeded primal tolerance; no feasible incumbent was found."

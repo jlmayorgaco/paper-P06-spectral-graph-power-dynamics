@@ -1,0 +1,16 @@
+scope = "Algebraic identities and a toy graph verified. No nonlinear IEEE-39 controller, ROA, SOS certificate, or optimum computed."
+status = "PASS"
+
+[gfl_lift]
+samples = 200
+max_dc_energy_residual = 1.7763568394002505e-15
+max_relative_vector_field_error = 0.0
+max_circle_derivative = 3.552713678800501e-15
+source_sha256 = "f5211509b117d8a06e31efa62aa49b1df20d2c1ef7f5c6f9114bb9eb25838365"
+
+[graph]
+max_cross_mode_quadratic_coefficient = 0.5295207560624716
+heterogeneous_gain_offdiagonal_fraction = 0.46208524231845755
+model = "illustrative four-node lossless graph, not IEEE-39"
+max_coordinate_error = 1.7979101253009106e-15
+max_error_over_Taylor_bound = 0.48637756016324557

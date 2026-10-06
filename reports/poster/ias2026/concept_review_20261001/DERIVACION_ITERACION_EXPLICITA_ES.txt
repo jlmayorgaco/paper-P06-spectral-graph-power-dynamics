@@ -1,0 +1,309 @@
+CO-DISEÑO SG–GFL: DERIVACIÓN DE UNA ITERACIÓN ANALÍTICA EXPLÍCITA
+1 octubre 2026. Propuesta de extensión no lineal; no es un nuevo resultado IEEE-39.
+
+Respuesta: sí se puede expresar p_(k+1)=T(p_k) mediante ecuaciones explícitas.
+T requiere resolver trayectorias/sensibilidades y restricciones activas. No
+equivale a una fórmula finita universal p*=f(L) ni a convergencia global.
+La derivación siguiente concreta el método y sus condiciones de validez.
+
+1. VARIABLES, MODELO Y PROBLEMA
+
+p=(rho,Kp,Ki), en unidades escaladas consistentemente. Una transformación
+afín de escala se incorpora por regla de la cadena. Para arquitectura fija,
+rho recorre sólo los dispositivos cuya proporción se puede variar sin cambiar
+la dimensión física. Las inserciones/remociones exactas son cartas distintas.
+
+C(p)=c^T p+C0, con c_rho,i=P0_i/sum(P0) y c_Kp=c_Ki=0.
+Si se usa log(Kp), recuperar Kp=exp(kappa_p) y multiplicar la columna de
+sensibilidad por Kp; la capacidad sigue siendo afín en las coordenadas rho.
+
+  xdot=f(x,z,p,theta,w), 0=g(x,z,p,theta,w).
+
+Supuestos para las ecuaciones suaves: f,g suficientemente diferenciables,
+g_z uniformemente invertible en el dominio, rama única elegida y condiciones
+iniciales consistentes. Fijar la referencia angular para quitar la simetría.
+Incluir medición, controles y recursos reales en el modelo. La sección 9
+explica cómo cambiar la formulación para saturación y retardo puro.
+
+Maximizar C(p) sujeto a existencia/regularidad, estabilidad regional y
+  G_j(p)=sup_{theta en Theta,w en W,t en [0,infinito)} h_j(p,theta,w,t)<=0,
+desde las historias iniciales declaradas, además de p_min<=p<=p_max.
+W y Theta son requisitos fijos, independientes de la decisión. Una teoría
+general los parametriza; no obliga a fijar un bus o una forma temporal.
+Se puede trabajar en [0,T] con una cota adicional de la cola; truncar sin
+esa cota no certifica el horizonte infinito.
+
+2. DERIVAR LA DAE NO LINEAL, NO SUSTITUIR SU TRAYECTORIA
+
+Para un theta y w fijos, S=x_p, Z=z_p satisfacen exactamente:
+  Sdot=f_x S+f_z Z+f_p,
+  0=g_x S+g_z Z+g_p.
+Eliminar Z mediante una resolución lineal:
+  Z=-g_z^{-1}(g_x S+g_p),
+  Sdot=A(t) S+Bp(t),
+  A(t)=f_x-f_z g_z^{-1}g_x,
+  Bp(t)=f_p-f_z g_z^{-1}g_p.                         (1)
+Las derivadas se evalúan sobre x(t),z(t), soluciones NO LINEALES.
+Son derivadas de primer orden exactas donde la solución es diferenciable;
+los errores de su integración numérica se controlan aparte. La ecuación
+variacional es lineal, pero no congela A en el equilibrio.
+
+Si x0,z0 son un equilibrio que cambia con p:
+  [f_x f_z; g_x g_z]_0 [S0;Z0]=-[f_p;g_p]_0.        (2)
+Para otro inicializador, diferenciar sus ecuaciones reales. Omitir (2)
+equivale a comparar experimentos con inicialización física inconsistente.
+Para una DAE implícita R(t,y,ydot,p)=0, la forma general es
+  R_ydot Sdot+R_y S+R_p=0,
+incluyendo así dependencias de la matriz de masa respecto de p.
+
+Sea Phi(t,s) la matriz de transición, d_t Phi=A(t)Phi, Phi(s,s)=I.
+  S(t)=Phi(t,0)S0+integral_0^t Phi(t,s)Bp(s) ds.      (3)
+No reemplazar Phi por exp(A0(t-s)) si A depende de la trayectoria.
+
+3. DERIVADAS DE LAS RESTRICCIONES Y DEL PEOR CASO
+
+Para una salida instantánea h_j=c_j(x,z,p):
+  D_p h_j=c_j,x S+c_j,z Z+c_j,p.                    (4)
+Las dependencias explícitas de theta,w,t se mantienen fijas en (4).
+Algebraicamente se pueden eliminar también las variables z de la salida:
+  ell_x=c_x-c_z g_z^{-1}g_x,
+  ell_p=c_p-c_z g_z^{-1}g_p.
+
+Ejemplos normalizados:
+  h_f=(Delta f/Fmax)^2-1,
+  h_R=(RoCoF/Rmax)^2-1,
+  h_I=(id^2+iq^2)/Imax^2-1.
+Añadir límites de tensión y energía con las unidades y cotas declaradas.
+
+Para la fase relativa desenrollada phi y ventana Tm:
+  Delta f_Tm(t)=[phi(t)-phi(t-Tm)]/(2*pi*Tm),
+  R_Tm(t)=[phi(t)-2phi(t-Tm)+phi(t-2Tm)]/(2*pi*Tm^2).
+Esta definición evita diferenciar idealmente un escalón. Las historias
+anteriores al evento forman parte del problema, no son valores arbitrarios.
+Si v=vr+j vi y |v|>0:
+  D_p phi=(vr D_p vi-vi D_p vr)/|v|^2.
+Aplicar las mismas diferencias temporales a esa sensibilidad. Si el sensor
+del experimento es otro, derivar su operador concreto.
+
+Si el peor caso (theta*,w*,t*) es único, alcanzado y cumple las hipótesis
+de envolvente, D_p G_j=D_p h_j evaluado allí. No hay que sumar una derivada
+arbitraria del argmax. Si hay máximos empatados, preservar sus gradientes:
+la derivada direccional del máximo finito es max_a D_p h_a d. Para un
+índice compacto y familia regular la regla se extiende; para W infinito
+sin máximo alcanzado hacen falta cotas/oráculos de supremo o secuencias
+aproximantes controladas. No presuponer compacidad de cualquier clase de señales.
+
+En un máximo interior suave en una coordenada adversaria q, con h_qq
+negativa definida, la Hessiana de la envolvente es
+  G_pp=h_pp-h_pq h_qq^{-1}h_qp.
+En fronteras del conjunto adversario se diferencian sus ecuaciones KKT;
+en cambios de rama usar varias restricciones o métodos no suaves.
+
+4. ADJUNTO: UNA EXPRESIÓN PARTICULARMENTE ÚTIL PARA Kp Y Ki
+
+Después de eliminar z, xdot=F(x,p,w). Para una restricción terminal
+ell(x(tau),p), definir a(t) por
+  -adot=A(t)^T a, a(tau)=ell_x(tau)^T.
+Integración por partes de (1) da
+  grad_p h=ell_p^T+S0^T a(0)+integral_0^tau Bp(t)^T a(t) dt.  (5)
+Una restricción que usa varias muestras temporales produce saltos del
+adjunto: a(tj^-)=a(tj^+)+(partial h/partial x(tj))^T.
+Las salidas de frecuencia/RoCoF de ventana requieren estos términos.
+
+Para el PLL que implementa PDExactDesignN.jl:
+  e_i=-sin(theta_i) vr_i+cos(theta_i) vi_i,
+  theta_dot_i=omega_i,
+  T_i omega_dot_i=xi_i+Kp_i e_i-omega_i,
+  xi_dot_i=Ki_i e_i.
+Cuando las ganancias sólo entran en estas ecuaciones y g no depende
+directamente de ellas, las columnas directas son
+  B_Kp_i=(e_i/T_i) e_omega_i, B_Ki_i=e_i e_xi_i.
+Por tanto, en ganancias físicas sin logaritmo:
+  partial h/partial Kp_i = ell_Kp_i + S0_Kp_i^T a(0)
+                          + integral a_omega_i(t) e_i(t)/T_i dt,
+  partial h/partial Ki_i = ell_Ki_i + S0_Ki_i^T a(0)
+                          + integral a_xi_i(t) e_i(t) dt.      (6)
+Si otra ecuación también depende de las ganancias, incluir sus términos.
+
+El error de fase es local; el adjunto a_i contiene la influencia de toda
+la red y de la restricción observada. Así se obtiene una dirección de ajuste
+por nodo que incluye interacciones y trayectorias, no sólo damping nodal.
+El diseño puede ser central y la ejecución del PLL local. No se deduce un
+algoritmo distribuido que use exclusivamente mediciones locales.
+
+Para rho_i usar la columna completa f_rho_i-f_z g_z^{-1}g_rho_i en (5).
+No introducir una mezcla afín SG/GFL sin demostrar que coincide con el modelo
+de potencia, corriente, masa y recursos usado por los simuladores.
+
+5. PASO EXPLÍCITO DE CO-DISEÑO
+
+En p_k recopilar restricciones físicas, de estabilidad/certificación y
+escenarios activos. Sea h su vector de valores, J sus filas D_p h y H_k>0
+una aproximación regularizada de la Hessiana de la Lagrangiana.
+Resolver el subproblema local
+  min_d 0.5 d^T H_k d-c^T d,
+  sujeto a h+Jd<=0, cotas de p_k+d y región de confianza.
+
+Para un conjunto de filas activas I del QP, incluir también las cotas activas
+en J,h. Sus condiciones KKT son
+  H_k d-c+J^T mu=0, Jd=-h, mu>=0.
+Si J tiene rango fila completo, M=J H_k^{-1}J^T es invertible y
+  mu=M^{-1}(h+J H_k^{-1}c),
+  d=H_k^{-1}c-H_k^{-1}J^T M^{-1}(h+J H_k^{-1}c),     (7)
+  p_(k+1)=p_k+eta_k d+correccion_k.                  (8)
+H y M se resuelven mediante factorizaciones, no inversas densas explícitas.
+La fórmula incluye simultáneamente rho, Kp y Ki.
+
+Verificar mu>=0 y todas las filas inactivas. Si no se cumple, cambiar el
+conjunto activo; no aceptar el paso de un conjunto equivocado. Si hay filas
+dependientes, usar una formulación QP que trate degeneración; una inversa
+inexistente no se arregla ignorando restricciones físicas distintas.
+Si el subproblema es incompatible, usar restauración de factibilidad y
+holguras penalizadas. Esas holguras no autorizan publicar un diseño inseguro.
+
+Si h=0, (7) es el ascenso de capacidad proyectado sobre el espacio tangente
+de las restricciones. Si h!=0, el segundo término también corrige el residual.
+Lejos de la solución usar región de confianza, filtro/penalización y nueva
+evaluación no lineal. Un paso tangente puede salir de una región curva para
+cualquier eta>0; la búsqueda de paso por sí sola no siempre lo resuelve.
+En un paso completo que satisface h+Jd=0 se puede proponer la corrección
+  e=-H^{-1}J^T M^{-1} h_I(p_k+d),
+de orden dos bajo regularidad. Volver a comprobar todas las restricciones,
+cotas y tamaño de la corrección; no garantizar seguridad sólo por esta fórmula.
+
+6. GENERAR PERTURBACIONES SIN FIJAR UN BUS
+
+La iteración exterior necesita un oráculo adversario o un certificado.
+Para W convexo en un espacio de señales sobre [0,T], puede proponerse
+  w_(l+1)=Proj_W(w_l+gamma_l grad_w h_j).
+Para una salida terminal sin dependencia directa de w en ese instante,
+  grad_w h_j(t)=F_w(t)^T a(t).
+Si la salida tiene términos directos de w, o ventanas/múltiples tiempos,
+incluirlos explícitamente. Discretizar una señal no representa toda W sin
+una cota de error entre discretizaciones.
+Actualizar theta con sus sensibilidades y proyectar sobre Theta; optimizar
+t también cuando corresponda. Usar múltiples ramas para buscar violaciones.
+Este ascenso interior sólo obtiene contraejemplos/candidatos locales.
+Que no encuentre más no prueba el supremo global de la restricción.
+
+7. CÓMO CERRAR UNA GARANTÍA GENERAL MEDIANTE COTAS NO LINEALES
+
+Una vía suficiente, ya propuesta en RUTA_ANALITICA_ITERATIVA_ES.txt, conserva
+el núcleo acoplado completo y acota todo el residuo:
+  ydot=A0(p)y+B0(p)w+n(y,w;p).
+En una rama suave con equilibrio nominal y eta=(y,w), Taylor integral da
+  n(eta)=integral_0^1 (1-s) D^2 F(s eta)[eta,eta] ds.
+Con cotas de Hessianas por bloques Gamma_iab válidas en todo el dominio,
+  ||n_i||<=q_i(r,epsilon;p)=0.5 sum_ab Gamma_iab d_a d_b,
+donde d contiene radios de estado y cotas de entradas. Deben incluirse
+términos cruzados y cualquier residual constante si el centro no es equilibrio.
+
+Para el núcleo estable completo, sean G_ij cotas de las integrales de las
+normas de sus bloques, a las respuestas iniciales y b la ganancia de entrada.
+Una condición de tubo para epsilon_req fijo es
+  T(p,r)=a(p)+b(p)epsilon_req+G(p)q(r,epsilon_req;p)<r,
+además de regularidad algebraica y cotas de todas las salidas.
+La propuesta de radio r_(l+1)=T(p,r_l) converge si preserva un dominio y
+es contractiva allí. La raíz satisface igualdad; para verificar se necesita
+un radio ampliado que satisfaga la desigualdad estricta con margen.
+En una rama diferenciable con I-T_r invertible:
+  r_p=(I-T_r)^{-1}T_p.                              (9)
+Para una restricción de salida certificada chi_j(p,r(p))<=0:
+  D_p chi_j=chi_j,p+chi_j,r (I-T_r)^{-1}T_p.          (10)
+Usar esas filas en (7). También se puede optimizar conjuntamente (p,r),
+con T(p,r)-r<=-delta y chi_j<=0, evitando eliminar r.
+
+La acotación por un tubo no demuestra por sí sola estabilidad incremental.
+Una condición suficiente adicional, para igual entrada y un Lipschitz
+regional por bloques L del residuo, es spr(G_gamma L)<1, con gamma>0 y
+núcleo/respuestas iniciales acotados exponencialmente. Comprobar todas
+estas cotas uniformemente en la incertidumbre declarada.
+Un fracaso de este certificado no demuestra inviabilidad física. Optimizar
+sus restricciones da un óptimo del conjunto certificado, posiblemente
+conservador respecto al verdadero conjunto seguro.
+
+8. GRAFO, MODOS Y CONVERGENCIA
+
+La incidencia y las matrices de dispositivos conservan la estructura dispersa
+de f,g,A,Bp. La transformación completa de canales compatibles por una base
+del grafo Q da Ahat(t)=Q^{-1}A(t)Q y Shat=Q^{-1}S si Q es fija.
+Las entradas fuera de diagonal no desaparecen. Si Q cambia con p hay que
+derivarla; mantenerla fija durante el paso evita esa dependencia adicional.
+Las factorizaciones y Schur/Woodbury pueden acelerar (1),(5),(7).
+Si se trunca una base se restringe el diseño o se aproxima la dinámica;
+declarar cuál y verificar/certificar el error que corresponda.
+
+Una restricción de polos simples del equilibrio usa
+  d lambda/dp_j = l* (d Aeq/dp_j) r / (l* r),
+con derivada TOTAL del equilibrio. Aeq es constante por diseño; no es A(t)
+de la trayectoria perturbada. Estabilidad modal no reemplaza la verificación
+no lineal de la región, corrientes o sincronización.
+
+Con conjunto activo fijo y suave, definir
+  R(p,mu)=[-c+J(p)^T mu; h_I(p)],
+  D R=[H_L J^T; J 0], H_L=sum_i mu_i Hess(h_i).
+La iteración Newton sobre este sistema tiene convergencia cuadrática local
+si DR es no singular y Lipschitz cerca de la raíz y se parte suficientemente
+cerca. LICQ, complementariedad estricta y condiciones suficientes de segundo
+orden proporcionan la regularidad pertinente en el NLP suave.
+No atribuir esa tasa automáticamente a cualquier H_k regularizada, BFGS,
+cambio de escenario o máximo no suave. Para obtener optimalidad local hay
+que comprobar factibilidad, KKT y curvatura; una raíz KKT aislada no basta.
+La globalización de SQP puede llevar a estacionariedad bajo sus hipótesis;
+no transforma un problema no convexo en uno con óptimo global garantizado.
+
+9. SATURACIÓN, RETARDOS Y CAMBIOS DE ARQUITECTURA
+
+En regiones suaves de un limitador usar las derivadas de esa rama. En cruces,
+derivadas direccionales/generalizadas; para sistemas con conmutaciones y
+resets, sensibilidades de eventos/saltación. No prolongar una Hessiana suave
+de la zona no saturada a todo el dominio. Para certificar pueden usarse
+cotas por sectores o Lipschitz válidas, evaluando la corriente real.
+
+Con retardo verdadero fijo, después de eliminar las algebraicas compatibles:
+  Sdot=A0(t)S(t)+sum_l Al(t)S(t-tau_l)+Bp(t).
+Si tau_l depende de p, cada término añade
+  -Al(t) xdot(t-tau_l) D_p tau_l.
+La historia y su sensibilidad son parte del problema. Un adjunto de DDE
+lleva términos avanzados durante su integración hacia atrás; no usar (5)
+sin esa modificación. Un filtro PLL no es un retardo puro.
+Las cotas de núcleo para retardos constantes no cubren automáticamente
+retardos variables en el tiempo.
+
+En rho=0 o 1 puede cambiar la dimensión física. Continuar en cartas/modelos
+consistentes y auditar transiciones entre soportes. Mantener estados fantasma
+de una máquina eliminada puede falsear polos y optimalidad.
+
+10. COMPROBACIÓN HECHA Y SIGUIENTE IMPLEMENTACIÓN
+
+verify_analytic_iteration.py comprueba (1)-(2) frente a diferencias centrales
+de trayectorias no lineales independientes, en una DAE ilustrativa de índice
+uno con equilibrio dependiente de rho. No es un modelo IEEE-39.
+Error relativo de Frobenius con paso 5e-5: 1.47e-10. Se observaron errores
+decrecientes al reducir el paso. La fórmula (7) coincide con la resolución
+del sistema KKT completo a 2.22e-16; residuales menores de 1e-15.
+ANALYTIC_ITERATION_CHECK.json conserva el alcance y las cifras.
+
+El repositorio ya implementa una forma SQP con múltiples picos y corrección
+de segundo orden en experiments/bnd_expQ2B/certified_search/SQP.jl.
+MultiPeak.jl deriva superficies de la respuesta analítica del modelo reducido;
+todavía no constituye la implementación de (1)-(10) sobre trayectorias no
+lineales y una clase general de perturbaciones.
+El siguiente cambio concreto es un oráculo no lineal de valores/derivadas
+para el mismo contrato inicial, contrastar las columnas rho/Kp/Ki y conectar
+ese oráculo con el solucionador existente. Después ampliar el contrato y
+conectar certificados. No se modificó ni se reoptimizó el candidato Q2B.
+
+REFERENCIAS DE MÉTODO
+
+Sensibilidades de DAE y condiciones iniciales consistentes, documentación
+primaria de SUNDIALS/IDAS:
+https://sundials.readthedocs.io/en/latest/idas/Mathematics_link.html
+Sensibilidades de equilibrio y red, Joswig-Jones et al. (2026):
+https://arxiv.org/abs/2607.28764
+Revisión de métodos semi-infinitos, Stein (2012):
+https://optimization-online.org/2012/03/3410/
+
+Derivadas implícitas, adjuntos, SQP/KKT, Newton y small gain son herramientas
+establecidas. Esta nota deriva su aplicación y separa lo comprobado de lo
+pendiente; no presenta esas identidades como teoremas originales.

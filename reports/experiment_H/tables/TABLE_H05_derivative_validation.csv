@@ -1,0 +1,6 @@
+method,metric,value,status
+analytic determinant-trace derivative vs independent complex-step,median_relative_error_nonzero,1.2773469299597916e-6,PASS
+analytic determinant-trace derivative vs independent complex-step,p95_relative_error_nonzero,1.7791350538237444e-6,PASS
+analytic determinant-trace derivative vs independent complex-step,near_zero_cutoff,4.240256005344507e-7,EXCLUDED
+analytic determinant-trace derivative vs independent complex-step,target_median,1.0e-5,TARGET
+analytic determinant-trace derivative vs independent complex-step,target_p95,0.0001,TARGET

@@ -1,0 +1,8 @@
+The legacy-DC search was stopped deliberately on 2026-10-01 after the DC-energy
+audit identified an inconsistent supply convention. All saved feasible candidates,
+rejected trials and numerical results remain available as legacy-model diagnostics.
+The last accepted candidate was at iteration 3. This is not an optimized physical
+capacity claim and not a convergence or infeasibility result.
+Subsequent runs use the isolated physical_supply model variant documented in
+dc_physics_audit.toml and PDPhysicalReference.jl. No shared core or installed
+PowerDynamics source was modified by this correction.

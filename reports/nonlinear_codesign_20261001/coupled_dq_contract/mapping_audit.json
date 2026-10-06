@@ -1,0 +1,21 @@
+{
+  "status": "FULL_NETWORK_IMPLEMENTATION_AUDITED_NOT_YET_CERTIFIED",
+  "state_count": 281,
+  "input_count": 88,
+  "physical_frequency_retained": true,
+  "julia_probes": 30,
+  "max_absolute_mapping_errors": [
+    6.054638734820372e-11,
+    1.3322676295501878e-15,
+    1.1503317287435422e-15,
+    1.1503317287435422e-14
+  ],
+  "interval_evaluation_seconds": 0.3705714999814518,
+  "reference_jacobian_midpoint_error": 9.313225746154785e-10,
+  "reference_Float64_jacobian_enclosure_excess": -1.5e-323,
+  "maximum_point_jacobian_interval_width": 2.9418879421427846e-06,
+  "network_inverse_neumann_residual": 2.7881351193434554e-11,
+  "point_rhs_bound": 1.2373721752947098e-06,
+  "model_sha256": "2d6ae0523c25cbbce21cbcc18fe7437685245da4f96b6cf09a828b598dd6dcf5",
+  "implementation_sha256": "8dfd88a0ad10ded5cb24aa86f8984c9732e6143e83d04f2104fb4cf1d7b4cb7e"
+}

@@ -1,0 +1,20 @@
+accepted_iterations_per_arm = 4
+design_event_bus = 8
+minimum_actuator_fraction_slack = 0.002
+current_and_energy_limits_certified = false
+rocof_limit_Hz_s = 0.5
+measurement_window_s = 0.5
+global_or_local_optimality_claim = false
+dc_convention = "physical_supply"
+modal_decay_s_inv = 0.05
+voltage_max_pu = 1.1
+monitor_buses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
+arms = ["fixed_gains", "joint"]
+tangent_horizon_s = 20.0
+continuous_disturbance_certificate = false
+validation_horizon_s = 60.0
+frequency_limit_Hz = 0.5
+network = "IEEE39"
+voltage_min_pu = 0.9
+seed = "rho=0.875 at every generator; nominal PLL gains; original rho=0.9 failed preflight and is preserved in the parent directory"
+design_delta_MW = 100.0

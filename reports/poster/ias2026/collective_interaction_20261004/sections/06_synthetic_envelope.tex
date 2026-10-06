@@ -1,0 +1,46 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterMiddleRowHeight][t]{\PosterHalfWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterMiddleRowHeight}{6}{WHY, IN EXACT FORM: THE BOOKKEEPING}
+
+    \noindent\begin{minipage}[t]{272mm}\vspace{0pt}
+      {\FigureSize With $F=F_0+U\Theta V$, $H=\Theta VF_0^{-1}U$, $B_i=I+H_{ii}$, $K_{ij}=B_i^{-1}H_{ij}$, $P=K_{ij}K_{ji}$:\par}
+      {\fontsize{31pt}{35pt}\selectfont\color{IASDarkText}\[
+        \begin{aligned}
+          \det(I+H)&=\det B_i\,\det B_j\,\det\!\begin{bmatrix}I&K_{ij}\\K_{ji}&I\end{bmatrix}\\
+          &=\det B_i\,\det B_j\,\det(I-P)
+        \end{aligned}
+      \]}
+      \vspace{1mm}
+      {\FigureSize The mean of the roots inside $\Gamma$ is a contour integral, so the interaction is exact:\par}
+      {\fontsize{33pt}{38pt}\selectfont\color{IASBlue}\[
+        \mathcal I=-\frac{1}{2\pi\mathrm{j}\,m}\oint_{\Gamma}(s-c)\,
+          \operatorname{tr}\!\big[(I-P)^{-1}P_s\big]\,ds
+      \]}
+    \end{minipage}\hfill%
+    \begin{minipage}[t]{146mm}\vspace{0pt}
+      {\Subhead\color{IASDarkGreen}Reading it\par}\vspace{1mm}
+      {\FigureSize $\mathcal I=z-z_0-\sum_i(z_i-z_0)$: what is left after adding the single-site shifts of the mean root $z$.\par}\vspace{2mm}
+      {\FigureSize First term $\frac{1}{2\pi\mathrm{j}m}\oint\operatorname{tr}P\,ds$; the remainder is exact and of fourth order.\par}\vspace{2mm}
+      {\FigureSize Valid for any $P$ if the root counts agree and $\Gamma$ is root-free.\par}
+    \end{minipage}\par
+
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewHalfPageWidth}
+  \def\PosterPageHeight{\PosterPreviewMiddlePageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewHalfLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

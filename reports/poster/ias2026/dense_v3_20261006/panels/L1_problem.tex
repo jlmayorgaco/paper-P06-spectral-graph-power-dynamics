@@ -1,0 +1,18 @@
+\begin{DensePanel}{210mm}{1}{A PLL THAT LISTENS LATE}
+  {\DenseBody Inverters (GFL) replace synchronous generators. Each one tracks the grid phase with a phase-locked loop (PLL), and that measurement arrives $\tau$ late.\par}
+  \vspace{2mm}
+  \begin{center}
+  \begin{tikzpicture}[x=1mm,y=1.25mm,font=\DenseBody,>=latex]
+    \node[draw=IASBlue,fill=IASPaleGreen,rounded corners=2.5mm,line width=1.6pt,minimum width=62mm,minimum height=32mm,align=center] (inv) at (32,30) {inverter\\+ PLL $(k_p,k_I)$};
+    \node[draw=IASGold,fill=IASPaleGold,rounded corners=3mm,line width=1.6pt,minimum width=62mm,minimum height=32mm,align=center] (grid) at (210,30) {IEEE-39\\grid, 10 sites};
+    \draw[->,line width=2pt,IASBlue] (inv.east) -- node[above] {power} (grid.west);
+    \draw[->,line width=2pt,IASVermillion,dashed] (grid.south) |- node[below,pos=0.72] {measured phase, $\tau$ late} (inv.south);
+  \end{tikzpicture}
+  \end{center}
+  \vspace{2mm}
+  {\fontsize{33pt}{38pt}\selectfont\bfseries\raggedright\color{IASDarkGreen} If a retune keeps one oscillation mode exactly where it was, is the grid safe?\par}
+  \vspace{2mm}
+  {\DenseBody IEEE-39 at 87.5\,\% inverter share, ten PLLs; the PLL delay grows from 40 to 44 ms. Full delayed DAE (204 states), exact exponentials.\par}
+  \vspace{3mm}
+  \begin{DenseWords}\textbf{\color{IASGold!65!black}HOW TO READ\ \ }Left: the exact structure of a local retune (2--4). Centre: the main result, delay compensation (5--8). Right: what the network decides (9--12).\end{DenseWords}
+\end{DensePanel}

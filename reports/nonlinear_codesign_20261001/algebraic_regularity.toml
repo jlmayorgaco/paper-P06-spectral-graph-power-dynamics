@@ -1,0 +1,3 @@
+zero_stator_resistance_equal_subtransient_reactances = true
+scope = "State-independent port regularity conditional on nonzero SG speed and fixed Z-load admittance. Numerical eigenvalue evaluation, not interval arithmetic; no claim for other load models or a continuous disturbance family."
+all_declared_cases_positive_port_accretivity = true

@@ -1,0 +1,4 @@
+case,state_count,M_max_abs_error,A_max_abs_error,A_relative_frobenius,max_finite_pole_error_s_inv,matrix_identity_pass,pole_identity_pass
+all_SG,192,0.0,5.684341886080802e-14,3.338359468300056e-17,7.958078640513122e-13,True,True
+ExpG_candidate,195,0.0,5.684341886080802e-14,2.3714379824597082e-20,7.656030351438041e-11,True,True
+ExpK_nominal,186,0.0,1.1641532182693481e-10,7.69243843379784e-18,1.6487913491111672e-09,True,True

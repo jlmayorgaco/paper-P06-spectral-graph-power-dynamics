@@ -1,0 +1,618 @@
+\documentclass[final]{beamer}
+\usepackage[size=custom,width=91.44,height=121.92,scale=1.0]{beamerposter}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning,shapes.geometric,shapes.misc,arrows.meta,patterns}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{booktabs,tabularx,array}
+\usepackage{ragged2e}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+% Palette sampled from the approved poster reference, with accessible plot markers.
+\definecolor{IASDarkGreen}{HTML}{003B2D}
+\definecolor{IASDeepGreen}{HTML}{00291F}
+\definecolor{IASMidGreen}{HTML}{006B4A}
+\definecolor{IASGold}{HTML}{C99A20}
+\definecolor{IASIvory}{HTML}{F4F2E9}
+\definecolor{IASWhite}{HTML}{FFFFFF}
+\definecolor{IASDarkText}{HTML}{17372D}
+\definecolor{IASPaleGreen}{HTML}{EEF5F0}
+\definecolor{IASPaleGold}{HTML}{FFF2C5}
+\definecolor{IASBlue}{HTML}{1768AC}
+\definecolor{IASVermillion}{HTML}{D6292E}
+\definecolor{IASGray}{HTML}{78827E}
+\definecolor{IASRule}{HTML}{C8D7CF}
+\usetheme{IAS2026}
+
+\setmainfont{TeX Gyre Heros}[Ligatures=TeX]
+\setsansfont{TeX Gyre Heros}[Ligatures=TeX]
+\setmathfont{Latin Modern Math}
+\newfontfamily\PosterCondensed{TeX Gyre Heros Cn}[Ligatures=TeX]
+\setbeamertemplate{background canvas}{\color{IASIvory}\rule{\paperwidth}{\paperheight}}
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=0mm,text margin right=0mm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\textwidth}{\paperwidth}
+\setlength{\textheight}{\paperheight}
+\pagestyle{empty}
+\pagecolor{IASIvory}
+
+\newcommand{\PosterPending}{\textcolor{IASGray}{\bfseries PENDING}}
+\newcommand{\StableMark}{\tikz[baseline=-0.65ex]\node[circle,fill=IASBlue,draw=IASBlue,inner sep=2.1pt] {};}
+\newcommand{\UnstableMark}{\tikz[baseline=-0.55ex]\node[cross out,draw=IASVermillion,line width=1.5pt,minimum size=5.2mm,inner sep=0pt] {};}
+\newcommand{\BoundaryMark}{\tikz[baseline=-0.55ex]\node[diamond,fill=IASGold,draw=IASGold,minimum size=5.0mm,inner sep=0pt] {};}
+\newcommand{\UnresolvedMark}{\tikz[baseline=-0.55ex]\node[circle,draw=IASGray,line width=1.3pt,minimum size=4.8mm,inner sep=0pt] {};}
+\newcommand{\HasseFullMark}{\tikz[baseline=-0.55ex]\node[circle,draw=IASVermillion,fill=IASVermillion,minimum size=5mm,inner sep=0pt] {};}
+\input{generated/results.tex}
+\input{generated/claims.tex}
+
+\newcommand{\PosterBody}{\fontsize{34.2pt}{39pt}\selectfont}
+\newcommand{\Subhead}{\PosterCondensed\bfseries\fontsize{38pt}{41pt}\selectfont}
+\newcommand{\EquationSize}{\fontsize{36pt}{41pt}\selectfont}
+\newcommand{\HeroEquation}{\fontsize{44pt}{48pt}\selectfont}
+\newcommand{\MetricSize}{\fontsize{38pt}{42pt}\selectfont}
+\newcommand{\TableSize}{\fontsize{26pt}{29pt}\selectfont}
+\newcommand{\FigureSize}{\fontsize{24.7pt}{27.2pt}\selectfont}
+\newcommand{\FooterReferenceSize}{\fontsize{24.2pt}{26.2pt}\selectfont}
+\newcommand{\StatusPending}[1]{{\bfseries\color{IASGray}#1}}
+\newcommand{\StatusConditional}[1]{{\bfseries\color{IASGold!70!black}#1}}
+\newcommand{\StatusPass}[1]{{\bfseries\color{IASBlue}#1}}
+\newcommand{\PolicySwatch}[2]{\tikz[baseline=-0.65ex]\filldraw[fill=#1,draw=IASRule,line width=0.5pt] (0,0) rectangle (4mm,4mm);\,#2}
+
+\newcommand{\PosterPanelTitle}[2]{%
+  \begin{minipage}[c][36mm][c]{\linewidth}\hspace{2mm}%
+    \begin{minipage}[c][36mm][c]{17mm}\centering
+      \tikz[baseline=(num.base)]\node[circle,fill=IASGold,text=IASDarkGreen,minimum size=15mm,inner sep=0pt,
+        font=\bfseries\fontsize{34pt}{34pt}\selectfont](num){#1};
+    \end{minipage}\hspace{1mm}%
+    \begin{minipage}[c][36mm][c]{\dimexpr\linewidth-22mm\relax}\raggedright
+      {\PosterCondensed\bfseries\fontsize{48pt}{50pt}\selectfont\color{white}#2\par}
+    \end{minipage}%
+  \end{minipage}%
+}
+\newtcolorbox{PosterPanel}[3]{
+  enhanced, width=\linewidth, height=#1,
+  colback=IASIvory, colframe=IASRule, colbacktitle=IASMidGreen,
+  coltitle=white, boxrule=1.1pt, arc=3mm,
+  left=3mm,right=3mm,top=2mm,bottom=1.7mm,boxsep=0mm,
+  toptitle=0mm,bottomtitle=0mm,lefttitle=0mm,righttitle=0mm,
+  title={\PosterPanelTitle{#2}{#3}},
+  before skip=0pt,after skip=0pt,
+  before upper={\setlength{\parskip}{0pt}\setlength{\parindent}{0pt}},
+  halign title=left,
+}
+
+\newcommand{\Header}{%
+  \noindent\makebox[\paperwidth][c]{%
+    {\setlength{\fboxsep}{0pt}\colorbox{IASDarkGreen}{%
+      \begin{minipage}[c][108mm][c]{\paperwidth}\hspace*{5mm}%
+        \begin{minipage}[c]{220mm}\centering
+          \includegraphics[width=217mm]{generated/figures/ias_annual_2026_header.png}
+        \end{minipage}\hspace{19mm}%
+        \begin{minipage}[c]{516mm}\raggedright\color{white}
+          {\raisebox{4mm}[0pt][0pt]{\color{IASGold}\bfseries\fontsize{27.6pt}{30pt}\selectfont Beyond Nodal Damping}\par}%
+          {\PosterCondensed\bfseries\fontsize{114pt}{96pt}\selectfont
+            \makebox[516mm][l]{\scalebox{0.68}[1]{WHEN STABLE REPLACEMENTS FAIL TOGETHER}}\par}%
+          {\PosterCondensed\bfseries\fontsize{44pt}{47pt}\selectfont
+            \makebox[516mm][l]{\mbox{\scalebox{0.76}[1]{Minimal Incompatibility Hypergraphs for Safe SG $\to$ IBR Transition Planning}}}\par}%
+          {\bfseries\fontsize{34.2pt}{37pt}\selectfont Jorge Luis Mayorga Taborda\; |\; Universidad de los Andes, Colombia\par}%
+          {\raisebox{-6mm}[0pt][0pt]{\fontsize{30.2pt}{33pt}\selectfont IEEE IAS Annual Meeting 2026\; $\bullet$\; Vancouver, Canada\; $\bullet$\; Student Poster Competition}\par}%
+        \end{minipage}\hspace{27mm}%
+        \begin{minipage}[c]{117mm}\centering
+          \includegraphics[width=114mm]{generated/figures/uniandes_logo_white_header.png}
+        \end{minipage}\hspace*{10mm}%
+      \end{minipage}%
+    }}%
+  }\par
+  \noindent\makebox[\paperwidth][c]{\color{IASDeepGreen}\rule{\paperwidth}{1.2mm}}\par
+}
+
+\newcommand{\MetricCell}[3]{%
+  \begin{minipage}[c][40mm][c]{\linewidth}\centering
+    {\PosterCondensed\bfseries\fontsize{40pt}{42pt}\selectfont\color{IASGold}#1\par}
+    {\bfseries\fontsize{27pt}{30pt}\selectfont\color{white}#2\par}
+    {\fontsize{24.2pt}{26.2pt}\selectfont\color{IASPaleGreen}#3\par}
+  \end{minipage}%
+}
+
+\begin{document}
+\begin{frame}[t]
+\Header
+\vspace{-9mm}
+
+% ROW 1 — three rounded panels, with the IEEE-39 witness as the visual anchor.
+\noindent\hspace*{6mm}%
+\begin{minipage}[t][289mm][t]{280mm}\vspace{0pt}
+  \begin{PosterPanel}{289mm}{1}{FINAL-STATE STABILITY DOES NOT GUARANTEE A SAFE TRANSITION}
+    {\PosterBody\color{IASDarkText}SG retirement changes a portfolio one unit at a time. Stability belongs to the whole portfolio, so a stable final state cannot certify every implementation order.\par}
+    \vspace{2mm}
+    {\EquationSize\[
+      \alpha_{\perp}(S,\theta)=\max\operatorname{Re}\lambda\!\left(A_{\perp}(S,\theta)\right)
+    \]}
+    {\EquationSize\[
+      \mathcal H(\theta)=\operatorname{Min}_{\subseteq}\{S:\alpha_{\perp}(S,\theta)\geq0\}
+    \]}
+    {\TableSize\color{IASDarkText}Each hyperedge is an inclusion-minimal unstable replacement coalition.\par}
+    \vspace{2mm}
+    \begin{center}
+      \begin{tikzpicture}[x=1mm,y=1mm]
+        \draw[IASRule,line width=1.5pt] (62,32)--(143,32);
+        \draw[-{Stealth[length=5mm]},IASMidGreen,line width=2pt] (105,32)--(141,32);
+        \draw[IASDarkGreen,line width=1.8pt] (31,32) circle (15);
+        \draw[IASDarkGreen,line width=1.8pt] (21,32)--(41,32);
+        \draw[IASDarkGreen,line width=1.8pt] (31,22)--(31,42);
+        \node[font=\fontsize{32pt}{34pt}\selectfont,text=IASDarkGreen] at (31,32) {SG};
+        \node[font=\bfseries\fontsize{25pt}{27pt}\selectfont,text=IASDarkGreen,align=center] at (31,8) {synchronous\\generators};
+        \draw[fill=IASPaleGreen,draw=IASMidGreen,line width=1.4pt,rounded corners=2mm] (151,19) rectangle (231,45);
+        \draw[IASMidGreen,line width=1.5pt] (166,20)--(166,44);
+        \draw[IASMidGreen,line width=1.5pt] (186,20)--(186,44);
+        \draw[IASMidGreen,line width=1.5pt] (206,20)--(206,44);
+        \node[font=\bfseries\fontsize{30pt}{32pt}\selectfont,text=IASDarkGreen] at (190,32) {IBR};
+        \node[font=\bfseries\fontsize{25pt}{27pt}\selectfont,text=IASDarkGreen,align=center] at (191,8) {inverter-based\\resources};
+        \node[font=\fontsize{24.2pt}{26.2pt}\selectfont,text=IASDarkText] at (102,47) {retire and replace in stages};
+      \end{tikzpicture}
+    \end{center}
+    \vspace{1mm}
+    \colorbox{IASPaleGold}{\parbox[c][22mm][c]{\dimexpr\linewidth-2\fboxsep\relax}{\centering
+      {\TableSize\bfseries\color{IASDarkText}A stable target can still be unreachable without crossing an unstable portfolio.}}}
+  \end{PosterPanel}
+\end{minipage}\hspace{4mm}%
+\begin{minipage}[t][289mm][t]{388mm}\vspace{0pt}
+  \begin{PosterPanel}{289mm}{2}{15/15 SMALLER PORTFOLIOS ARE STABLE; THE COMPLETE PORTFOLIO IS NOT}
+    \noindent\begin{minipage}[t]{124mm}\centering\vspace{0pt}
+      {\Subhead\color{IASDarkGreen}IEEE-39 one-line diagram\par}\vspace{1mm}
+      \begin{tikzpicture}[x=1mm,y=1mm]
+        \input{generated/figures/network_ieee39.tikz}
+      \end{tikzpicture}\par
+      {\FigureSize\StableMark\; synchronous generator\par}
+      {\FigureSize\UnstableMark\; highlighted IBR candidate\par}
+    \end{minipage}\hspace{2mm}%
+    \begin{minipage}[t]{128mm}\centering\vspace{0pt}
+      {\PosterCondensed\bfseries\fontsize{78pt}{82pt}\selectfont\color{IASBlue}\NumProperStable/\NumProperTotal\par}
+      {\PosterCondensed\bfseries\fontsize{31pt}{34pt}\selectfont\color{IASBlue}proper subsets stable\par}
+      \vspace{3mm}
+      \colorbox{IASPaleGold}{\parbox[c][43mm][c]{\dimexpr\linewidth-2\fboxsep\relax}{\centering
+        {\HeroEquation\bfseries\color{IASVermillion}$H_4=\FlagshipBlocker$\par}
+        {\TableSize\bfseries\color{IASVermillion}canonical, not universal}}}
+      \vspace{3mm}
+      {\Subhead\color{IASDarkGreen}P4 control settings\par}
+      {\TableSize\raggedright\color{IASDarkText}
+        $g=\BaselineGain$\quad $k=\ControllerK$\par
+        $t=\ControllerT$\quad $h=\ControllerH$\par}
+      \vspace{1mm}
+      {\EquationSize\bfseries\color{IASVermillion}$\alpha_{\perp}=\FlagshipAlpha\;\mathrm{s}^{-1}$\par}
+      {\EquationSize\bfseries\color{IASDarkGreen}$f=\FlagshipFrequency\;\mathrm{Hz}$\par}
+      {\TableSize\color{IASDarkText}Displaced: \bfseries\DisplacedMW\ MW\par}
+      {\TableSize\color{IASDarkText}Converter: \bfseries\ConverterMVA\ MVA\par}
+    \end{minipage}\hspace{2mm}%
+    \begin{minipage}[t]{122mm}\centering\vspace{0pt}
+      {\Subhead\color{IASDarkGreen}Hasse lattice ($n=4$)\par}\vspace{2mm}
+      \begin{tikzpicture}[x=1mm,y=1mm]
+        \input{generated/figures/hasse_h4.tikz}
+      \end{tikzpicture}\par
+      {\FigureSize\StableMark\; proper subset\quad\HasseFullMark\; full coalition\par}
+      \vspace{2mm}
+      {\TableSize\color{IASDarkText}$H_4$ is a minimal instability hyperedge.\par}
+    \end{minipage}
+  \end{PosterPanel}
+\end{minipage}\hspace{4mm}%
+\begin{minipage}[t][289mm][t]{226mm}\vspace{0pt}
+  \begin{PosterPanel}{289mm}{3}{\scalebox{0.86}[1]{STABLE TARGET $\ne$ SAFE PATH}}
+    {\FigureSize\color{IASDarkText}Three levels of safety and how they relate:\par}
+    \vspace{1mm}
+    \noindent\begin{minipage}[t]{\linewidth}\centering\vspace{0pt}
+      \begin{minipage}[c][50mm][c]{63mm}\centering
+        \colorbox{IASPaleGreen}{\parbox[c][48mm][c]{59mm}{\centering
+          {\HeroEquation\bfseries\color{IASMidGreen}A\par}
+          {\TableSize\bfseries\color{IASDarkText}final-state\\stable\par}
+          {\FigureSize$\alpha_{\perp}(S,\theta)<0$}}}
+      \end{minipage}\hspace{1mm}%
+      \begin{minipage}[c][50mm][c]{63mm}\centering
+        \colorbox{IASPaleGreen}{\parbox[c][48mm][c]{59mm}{\centering
+          {\HeroEquation\bfseries\color{IASBlue}B\par}
+          {\TableSize\bfseries\color{IASDarkText}some safe\\order\par}
+          {\FigureSize$\exists$ all prefixes stable}}}
+      \end{minipage}\hspace{1mm}%
+      \begin{minipage}[c][50mm][c]{63mm}\centering
+        \colorbox{IASPaleGold}{\parbox[c][48mm][c]{59mm}{\centering
+          {\HeroEquation\bfseries\color{IASGold!70!black}C\par}
+          {\TableSize\bfseries\color{IASDarkText}every order\\safe\par}
+          {\FigureSize$\forall$ orders safe}}}
+      \end{minipage}
+    \end{minipage}\par
+    \vspace{1mm}{\PosterCondensed\bfseries\fontsize{32pt}{35pt}\selectfont\color{IASDarkGreen}C $\Rightarrow$ B $\Rightarrow$ A\par}
+    {\TableSize\bfseries\color{IASVermillion}The converse does not hold.\par}
+    \vspace{1mm}
+    \colorbox{IASPaleGreen}{\parbox[c][22mm][c]{\dimexpr\linewidth-2\fboxsep\relax}{\centering
+      {\TableSize$C(T)\Longleftrightarrow e\nsubseteq T\;\;\forall e\in\mathcal H(\theta)$}}}
+    \vspace{1mm}
+    {\Subhead\color{IASDarkGreen}Why common screens fall short\par}
+    {\PosterCondensed\TableSize\renewcommand{\arraystretch}{1.04}
+      \begin{tabularx}{\linewidth}{@{}>{\RaggedRight\arraybackslash}p{55mm}>{\RaggedRight\arraybackslash}p{71mm}>{\RaggedRight\arraybackslash}X@{}}
+        \textbf{Screen} & \textbf{Configuration} & \textbf{Blocker}\\
+        \midrule
+        SCR / gSCR & \textcolor{IASBlue}{$\checkmark$} local & \textcolor{IASVermillion}{$\times$}\\
+        Modal & \textcolor{IASBlue}{$\checkmark$} local & \textcolor{IASVermillion}{$\times$}\\
+        Additive & \textcolor{IASBlue}{$\checkmark$} approximate & \textcolor{IASVermillion}{$\times$}\\
+        Pairwise & \textcolor{IASBlue}{$\checkmark$} approximate & \textcolor{IASGold!70!black}{incomplete}\\
+        Full eigensolve & \textcolor{IASBlue}{$\checkmark$} per case & enumerate all\\
+        $\mathcal H(\theta)$ & \textcolor{IASBlue}{$\checkmark$} exact & explicit set\\
+      \end{tabularx}}
+    \vspace{1mm}
+    {\colorbox{IASPaleGold}{\parbox[c][20mm][c]{\dimexpr\linewidth-2\fboxsep\relax}{\centering
+      {\TableSize\bfseries\color{IASDarkText}9-candidate safe-set census: \PosterPending.}}}}
+  \end{PosterPanel}
+\end{minipage}\par
+\vspace{3mm}
+
+% RESULT STRIP — the four result cues form the bridge into the mechanism panel.
+\noindent\hspace*{6mm}%
+\colorbox{IASDeepGreen}{\begin{minipage}[c][44mm][c]{902mm}
+  \noindent\begin{minipage}[c]{224mm}\MetricCell{\NumProperStable/\NumProperTotal}{smaller portfolios stable}{all strict subsets}\end{minipage}%
+  \begin{minipage}[c]{2mm}\centering\textcolor{IASPaleGreen}{\rule{0.7pt}{30mm}}\end{minipage}%
+  \begin{minipage}[c]{224mm}\MetricCell{$H_4=\FlagshipBlocker$}{canonical witness}{not the universal blocker}\end{minipage}%
+  \begin{minipage}[c]{2mm}\centering\textcolor{IASPaleGreen}{\rule{0.7pt}{30mm}}\end{minipage}%
+  \begin{minipage}[c]{224mm}\MetricCell{$\FlagshipAlpha\;\mathrm{s}^{-1}$}{critical growth rate}{canonical portfolio}\end{minipage}%
+  \begin{minipage}[c]{2mm}\centering\textcolor{IASPaleGreen}{\rule{0.7pt}{30mm}}\end{minipage}%
+  \begin{minipage}[c]{224mm}\MetricCell{$\FlagshipFrequency\;\mathrm{Hz}$}{critical frequency}{nominal IEEE-39 case}\end{minipage}
+\end{minipage}}\par
+\vspace{3mm}
+
+% ROW 2 — exact network-closure mechanism.
+\noindent\hspace*{6mm}%
+\begin{minipage}[t][189mm][t]{902mm}\vspace{0pt}
+  \begin{PosterPanel}{189mm}{4}{THE DEVICES REMAIN REGULAR; THE NETWORK CLOSES THE INSTABILITY}
+    \noindent\begin{minipage}[t]{230mm}\vspace{0pt}
+      {\Subhead\color{IASDarkGreen}Exact factorization\par}
+      {\fontsize{34pt}{38pt}\selectfont
+        \setlength{\abovedisplayskip}{0pt}\setlength{\belowdisplayskip}{0pt}
+        \setlength{\abovedisplayshortskip}{0pt}\setlength{\belowdisplayshortskip}{0pt}
+        \setlength{\jot}{0pt}
+        \[
+        \begin{aligned}
+        T_S(s)&=T_0(s)+\\[-1.5mm]
+          &\sum_{i\in S}E_i\,\Delta Y_i(s)\,E_i^{\mathsf T}\\[-1mm]
+        \det P_S(s)&=h_S(s)\det T_0(s)\\[-1.5mm]
+          &\qquad\cdot\det(I+M_{SS}(s))\\[-1mm]
+        \det(I+M_{SS})&=\prod_{i\in S}\det(I+M_{ii})\\[-1.5mm]
+          &\qquad\cdot\det(I+Q_{SS})\\[-1mm]
+        \det(I+Q_{SS})&=\sum_{T\subseteq S}\mu_T.
+        \end{aligned}
+        \]}
+    \end{minipage}\hspace{4mm}%
+    \begin{minipage}[t]{245mm}\centering\vspace{0pt}
+      {\Subhead\color{IASDarkGreen}Devices to collective closure\par}
+      \begin{tikzpicture}[x=1mm,y=1mm]
+        \draw[draw=IASRule,fill=IASPaleGreen,line width=1.3pt,rounded corners=3mm] (2,29) rectangle (105,86);
+        \node[font=\bfseries\fontsize{24.2pt}{26.2pt}\selectfont,text=IASDarkGreen,align=center] at (53.5,76) {LOCAL DEVICE FACTORS};
+        \node[font=\fontsize{28pt}{31pt}\selectfont,text=IASDarkText,align=center] at (53.5,56) {$\prod_{i\in S}\det(I+M_{ii})$};
+        \node[font=\bfseries\fontsize{24.2pt}{26.2pt}\selectfont,text=IASBlue,align=center] at (53.5,39) {each device remains regular};
+        \node[font=\bfseries\fontsize{38pt}{40pt}\selectfont,text=IASDarkGreen] at (122,57) {$\times$};
+        \draw[draw=IASRule,fill=IASPaleGold,line width=1.3pt,rounded corners=3mm] (141,29) rectangle (241,86);
+        \node[font=\bfseries\fontsize{24.2pt}{26.2pt}\selectfont,text=IASVermillion,align=center] at (191,76) {COLLECTIVE NETWORK CLOSURE};
+        \node[font=\fontsize{28pt}{31pt}\selectfont,text=IASDarkText,align=center] at (191,56) {$\det(I+Q_{SS})$};
+        \node[font=\bfseries\fontsize{24.2pt}{26.2pt}\selectfont,text=IASVermillion,align=center] at (191,39) {can close at zero};
+        \draw[-{Stealth[length=4mm]},IASGold,line width=1.8pt] (191,27)--(191,14);
+        \node[font=\bfseries\fontsize{24.2pt}{26.2pt}\selectfont,text=IASDarkGreen,align=center] at (122,7) {network-mediated collective return};
+      \end{tikzpicture}\par
+      {\FigureSize\color{IASDarkText}The local factors stay finite while the network return closes.\par}
+    \end{minipage}\hspace{4mm}%
+    \begin{minipage}[t]{245mm}\centering\vspace{0pt}
+      {\Subhead\color{IASDarkGreen}Boundary behavior\par}
+      {\FigureSize\color{IASDarkText}$g^*=\BoundaryGain$; $\alpha_{\perp}=\BoundaryAlpha$; $f=\BoundaryFrequency$ Hz\par}
+      \begin{tikzpicture}
+        \begin{axis}[
+          scale only axis,width=165mm,height=64mm,
+          xmin=0.03,xmax=0.26,
+          ymin=1e-8,ymax=1,ymode=log,log basis y=10,
+          xtick={0.05,0.10,0.15,0.20,0.25},
+          ytick={1e-8,1e-6,1e-4,1e-2,1},
+          xlabel={feedback gain $g$},ylabel={$\sigma_{\min}$},
+          yticklabel style={font=\fontsize{24.2pt}{26.2pt}\selectfont,text=IASDarkText},
+          tick label style={font=\fontsize{24.2pt}{26.2pt}\selectfont,text=IASDarkText},
+          label style={font=\fontsize{24.2pt}{26.2pt}\selectfont,text=IASDarkText},
+          axis line style={IASDarkText,line width=1pt},
+          grid=major,major grid style={IASRule,line width=0.6pt},clip=false]
+          \addplot[IASBlue,line width=1.8pt,mark=*,mark size=3.5pt]
+            table[col sep=comma,x=g,y=local_sigma_min] {generated/tables/f2_local_collective_closure.csv};
+          \addplot[IASVermillion,line width=2pt,dashed,mark=x,mark size=4pt]
+            table[col sep=comma,x=g,y=collective_sigma_min] {generated/tables/f2_local_collective_closure.csv};
+          \addplot[IASGold,densely dotted,line width=1.6pt,no marks]
+            coordinates {(\BoundaryGain,1e-8) (\BoundaryGain,1)};
+        \end{axis}
+      \end{tikzpicture}\par
+      {\FigureSize\StableMark\; local\quad
+       \UnstableMark\; $Q_H$ closure\quad
+       \BoundaryMark\; $g^*$\par}
+    \end{minipage}\hspace{4mm}%
+    \begin{minipage}[t]{145mm}\vspace{0pt}
+      \colorbox{IASPaleGold}{\parbox[c][64mm][c]{\dimexpr\linewidth-2\fboxsep\relax}{\centering
+        {\PosterCondensed\bfseries\fontsize{29pt}{32pt}\selectfont\color{IASDarkGreen}Every member is necessary in context\par}
+        {\TableSize\color{IASDarkText}\textbf{$H_4$ is minimal}; all proper subsets remain stable.}}}
+      \vspace{1mm}
+      \colorbox{IASPaleGreen}{\parbox[c][44mm][c]{\dimexpr\linewidth-2\fboxsep\relax}{\centering
+        {\fontsize{25pt}{27pt}\selectfont\bfseries\color{IASDarkGreen}The devices remain locally regular.\par}
+        {\fontsize{25pt}{27pt}\selectfont\color{IASDarkText}Instability appears when the network-mediated collective return closes.}}}
+      \vspace{1mm}
+      {\fontsize{25pt}{27pt}\selectfont\bfseries\color{IASVermillion}Strict M1 reduction: \MOneEvidenceState.\par}
+      {\FigureSize\color{IASDarkText}$r=\MOneResidual$; gate $\MOneGate$.\par}
+    \end{minipage}
+  \end{PosterPanel}
+\end{minipage}\par
+\vspace{3mm}
+
+% ROW 3 — policy dependence plus the reviewed synthetic scenario envelope.
+\noindent\hspace*{6mm}%
+\begin{minipage}[t][175mm][t]{448mm}\vspace{0pt}
+  \begin{PosterPanel}{175mm}{5}{THE SAME GRID CAN HAVE DIFFERENT MINIMAL BLOCKERS}
+    \noindent\begin{minipage}[t]{224mm}\centering\vspace{0pt}
+      {\Subhead\color{IASDarkGreen}IEEE-39 V4 policy atlas\par}
+      \includegraphics[width=116mm]{generated/figures/policy_atlas_heatmap.png}\par
+      {\FigureSize\color{IASDarkText}$Q/V$ gain $g$ (horizontal); AVR gain $k$ (vertical).\par}
+      {\FigureSize\PolicySwatch{IASPaleGreen}{$\varnothing$}\PolicySwatch{IASBlue}{1}\PolicySwatch{IASMidGreen}{2}\PolicySwatch{IASGold}{3}\PolicySwatch{IASVermillion}{4}\PolicySwatch{IASGray}{unsampled}\quad blocker order $|H_{\min}|$.\par}
+    \end{minipage}\hspace{3mm}%
+    \begin{minipage}[t]{207mm}\centering\vspace{0pt}
+      {\Subhead\color{IASDarkGreen}Distinct hypergraphs\par}
+      {\PosterCondensed\bfseries\fontsize{52pt}{55pt}\selectfont\color{IASBlue}
+        \NumDistinctPolicyA\quad\NumDistinctPolicyB\quad\NumDistinctPolicyC\par}
+      {\TableSize F7A\hspace{12mm}F7B\hspace{12mm}F7C\par}
+      \vspace{2mm}
+      {\TableSize\bfseries\color{IASDarkText}Blocker-cardinality sequence\par}
+      {\HeroEquation\bfseries\color{IASBlue}$\PolicyPath$\par}
+      {\FigureSize\color{IASDarkText}One grid, different policy, different blocker structure.\par}
+      \vspace{3mm}
+      {\TableSize\color{IASDarkText}Previously audited atlas; current policy campaign status: \PolicyAtlasEvidenceState.}
+    \end{minipage}
+  \end{PosterPanel}
+\end{minipage}\hspace{4mm}%
+\begin{minipage}[t][175mm][t]{450mm}\vspace{0pt}
+  \begin{PosterPanel}{175mm}{6}{$H_4$ IS THE WITNESS — NOT THE UNIVERSAL BLOCKER}
+    {\Subhead\color{IASDarkGreen}Frozen synthetic envelope (\NumScenarios\ scenario IDs)\par}
+    \vspace{1mm}
+    \begin{tikzpicture}[x=1mm,y=1mm]
+      \fill[IASPaleGreen] (0,0) rectangle (426,17);
+      \fill[IASMidGreen] (0,0) rectangle (\ValidBarWidth,17);
+      \fill[IASVermillion] (\ValidBarWidth,0) rectangle (426,17);
+      \draw[white,line width=1pt] (\ValidBarWidth,0)--(\ValidBarWidth,17);
+      \node[font=\bfseries\fontsize{25pt}{27pt}\selectfont,text=white,align=center]
+        at (\ValidBarCenter,8.5) {\NumValidMC\ valid (\ValidScenarioPercent\%)};
+    \end{tikzpicture}\par
+    {\FigureSize\color{IASVermillion}\bfseries\NumInfeasibleMC\ infeasible (\InfeasibleScenarioPercent\%)\quad
+      \color{IASDarkText}\normalfont Scenario totals await review.\par}
+    \vspace{1mm}
+    \noindent\begin{minipage}[t]{135mm}\centering\vspace{0pt}
+      \colorbox{IASPaleGold}{\parbox[c][58mm][c]{129mm}{\centering
+        {\MetricSize\bfseries\color{IASVermillion}\BlockerPersistenceCount/\NumValidMC\par}
+        {\HeroEquation\bfseries\color{IASVermillion}\HFourMinimalPercent\%\par}
+        {\TableSize\bfseries\color{IASDarkText}$H_4$ minimal\par}}}
+    \end{minipage}\hspace{3mm}%
+    \begin{minipage}[t]{135mm}\centering\vspace{0pt}
+      \colorbox{IASPaleGreen}{\parbox[c][58mm][c]{129mm}{\centering
+        {\MetricSize\bfseries\color{IASBlue}\NumCollectiveBlockerScenarios/\NumValidMC\par}
+        {\HeroEquation\bfseries\color{IASBlue}\CollectiveBlockerPercent\%\par}
+        {\TableSize\bfseries\color{IASDarkText}any $V_4$ collective blocker\par}}}
+    \end{minipage}\hspace{3mm}%
+    \begin{minipage}[t]{135mm}\centering\vspace{0pt}
+      \colorbox{IASPaleGold}{\parbox[c][58mm][c]{129mm}{\centering
+        {\MetricSize\bfseries\color{IASGold!70!black}\NumAlternativeWitnessScenarios/\NumValidMC\par}
+        {\HeroEquation\bfseries\color{IASGold!70!black}\AlternativeWitnessPercent\%\par}
+        {\TableSize\bfseries\color{IASDarkText}alternative witnesses\par}}}
+    \end{minipage}\par
+    \vspace{1mm}{\TableSize\bfseries\color{IASVermillion}PENDING USER REVIEW\par}
+    {\FigureSize\color{IASDarkText}Descriptive synthetic ensemble; IDs are not a probability sample. H$_4$ is minimal in the audited event.}
+  \end{PosterPanel}
+\end{minipage}\par
+\vspace{3mm}
+
+% ROW 4 — a canonical fix, its scope, and the safe-path formulation.
+\noindent\hspace*{6mm}%
+\begin{minipage}[t][207mm][t]{450mm}\vspace{0pt}
+  \begin{PosterPanel}{207mm}{7}{\scalebox{0.79}[1]{A FIX THAT REPAIRS THE CANONICAL CASE IS NOT A UNIVERSAL CURE}}
+    \noindent\begin{minipage}[t]{\linewidth}\vspace{0pt}
+      {\Subhead\color{IASDarkGreen}Control retuning: $g=\BaselineGain\to\RetunedGain$\par}
+      \noindent\begin{minipage}[c][30mm][c]{137mm}\centering
+        \colorbox{IASPaleGreen}{\parbox[c][27mm][c]{132mm}{\centering
+          {\MetricSize\bfseries\color{IASMidGreen}\InterventionImproves/\NumValidMC\quad\InterventionImprovesPercent\%\par}
+          {\TableSize\bfseries\color{IASDarkText}$\alpha_{\perp}$ improves\par}}}
+      \end{minipage}\hspace{2mm}%
+      \begin{minipage}[c][30mm][c]{137mm}\centering
+        \colorbox{IASPaleGreen}{\parbox[c][27mm][c]{132mm}{\centering
+          {\MetricSize\bfseries\color{IASBlue}\InterventionRescues/\NumValidMC\quad\InterventionRescuesPercent\%\par}
+          {\TableSize\bfseries\color{IASDarkText}canonical $H_4$ rescued\par}}}
+      \end{minipage}\hspace{2mm}%
+      \begin{minipage}[c][30mm][c]{137mm}\centering
+        \colorbox{IASPaleGold}{\parbox[c][27mm][c]{132mm}{\centering
+          {\MetricSize\bfseries\color{IASVermillion}\InterventionDeteriorates/\NumValidMC\quad\InterventionDeterioratesPercent\%\par}
+          {\TableSize\bfseries\color{IASDarkText}stability deteriorates\par}}}
+      \end{minipage}\par
+    \end{minipage}\par
+    \vspace{1mm}
+    \noindent\begin{minipage}[t]{215mm}\centering\vspace{0pt}
+      {\FigureSize\StableMark\; improved\qquad\UnstableMark\; deteriorated\par}
+      \begin{tikzpicture}
+        \begin{axis}[
+          scale only axis,width=165mm,height=60mm,
+          xmin=-0.25,xmax=0.5,ymin=-0.1,ymax=0.1,
+          xtick={-0.2,0,0.2,0.4},ytick={-0.05,0,0.05},
+          xlabel={original $\alpha_{\perp}$ (s$^{-1}$)},ylabel={retuned $\alpha_{\perp}$ (s$^{-1}$)},
+          tick label style={font=\fontsize{24.2pt}{26.2pt}\selectfont,text=IASDarkText},
+          label style={font=\fontsize{24.2pt}{26.2pt}\selectfont,text=IASDarkText},
+          axis line style={IASDarkText,line width=1pt},grid=major,major grid style={IASRule},
+          clip=true]
+          \addplot[only marks,mark=*,mark size=2.0pt,color=IASBlue]
+            table[col sep=comma,x=alpha_perp_original,y=alpha_perp_intervention] {generated/tables/intervention_improved.csv};
+          \addplot[only marks,mark=x,mark size=2.5pt,color=IASVermillion]
+            table[col sep=comma,x=alpha_perp_original,y=alpha_perp_intervention] {generated/tables/intervention_deteriorated.csv};
+        \end{axis}
+      \end{tikzpicture}
+    \end{minipage}\hspace{4mm}%
+    \begin{minipage}[t]{215mm}\centering\vspace{0pt}
+      {\PosterCondensed\bfseries\fontsize{31pt}{34pt}\selectfont\color{IASDarkGreen}Canonical phasor-DAE response (0--30 s)\par}
+      \begin{tikzpicture}
+        \begin{axis}[
+          scale only axis,width=165mm,height=60mm,
+          xmin=0,xmax=30,xlabel={time (s)},ylabel={$\Delta\omega$ (p.u.)},
+          tick label style={font=\fontsize{24.2pt}{26.2pt}\selectfont,text=IASDarkText},
+          label style={font=\fontsize{24.2pt}{26.2pt}\selectfont,text=IASDarkText},
+          axis line style={IASDarkText,line width=1pt},grid=major,major grid style={IASRule},
+          legend style={font=\fontsize{24.2pt}{26.2pt}\selectfont,draw=none,fill=white,at={(0.98,0.98)},anchor=north east},
+          clip=true]
+          \addplot[IASVermillion,line width=1.8pt] table[col sep=comma,x=time_s,y=omega_sg34_minus_omega_sg39_pu] {generated/tables/tds_h4_original.csv};
+          \addlegendentry{H$_4$, original}
+          \addplot[IASBlue,line width=1.8pt] table[col sep=comma,x=time_s,y=omega_sg34_minus_omega_sg39_pu] {generated/tables/tds_h4_retuned.csv};
+          \addlegendentry{H$_4$, retuned}
+          \addplot[IASMidGreen,line width=1.5pt,dashed] table[col sep=comma,x=time_s,y=omega_sg34_minus_omega_sg39_pu] {generated/tables/tds_proper_triple.csv};
+          \addlegendentry{proper triple}
+        \end{axis}
+      \end{tikzpicture}
+    \end{minipage}\par
+    \vspace{1mm}
+    \noindent\begin{minipage}[c][10mm][c]{92mm}\centering
+      {\FigureSize\bfseries\color{IASGray}\MonteCarloReviewStatus}
+    \end{minipage}\hfill
+    \begin{minipage}[c][10mm][c]{103mm}\centering
+      {\FigureSize\bfseries\color{IASGold!70!black}Support: \CondenserMVA\ MVA, conditional}
+    \end{minipage}\hfill
+    \begin{minipage}[c][10mm][c]{155mm}\centering
+      {\FigureSize\color{IASDarkText}TDS \TDSAgreement; \TDSZeroHzDisagreements\ zero-Hz; \TDSSolverFailures\ failed}
+    \end{minipage}\hfill
+    \begin{minipage}[c][10mm][c]{82mm}\centering
+      {\FigureSize\bfseries\color{IASGray}Envelope: PENDING}
+    \end{minipage}\par
+  \end{PosterPanel}
+\end{minipage}\hspace{4mm}%
+\begin{minipage}[t][207mm][t]{448mm}\vspace{0pt}
+  \begin{PosterPanel}{207mm}{8}{\scalebox{0.70}[1]{AVOIDING EVERY HYPEREDGE PROTECTS THE WHOLE IMPLEMENTATION PATH}}
+    {\Subhead\color{IASDarkGreen}Path-constrained planning formulation\par}
+    \vspace{-8mm}
+    {\fontsize{38pt}{42pt}\selectfont
+     \setlength{\abovedisplayskip}{2mm}\setlength{\belowdisplayskip}{1mm}
+     \setlength{\abovedisplayshortskip}{1mm}\setlength{\belowdisplayshortskip}{1mm}
+     \[
+      \max_{S}\sum_{i\in S}P_i\qquad
+      \text{s.t. } e\nsubseteq S,\quad \forall e\in\mathcal H(\theta)
+    \]}
+    {\TableSize\color{IASDarkText}Apply the same constraint to every intermediate prefix of the implementation path.\par}
+    \vspace{1mm}
+    \noindent\begin{minipage}[t]{210mm}\centering\vspace{0pt}
+      {\Subhead\color{IASVermillion}Unsafe implementation path\par}
+      {\FigureSize\color{IASDarkText}Schematic: the path reaches the canonical hyperedge.\par}
+      \begin{tikzpicture}[x=1mm,y=1mm]
+        \draw[-{Stealth[length=4mm]},IASRule,line width=1.5pt] (9,22)--(196,22);
+        \foreach \x/\lab in {17/$S_0$,58/$S_1$,99/$S_2$,140/$S_3$,182/$S_4$}{
+        \node[circle,draw=IASBlue,line width=1.4pt,fill=IASWhite,minimum size=11mm] at (\x,22) {};
+        \node[font=\fontsize{24.2pt}{26.2pt}\selectfont,text=IASDarkText] at (\x,4) {\lab};}
+        \node[circle,draw=IASVermillion,fill=IASVermillion,text=white,line width=1.5pt,minimum size=11mm,
+          font=\bfseries\fontsize{24.2pt}{26.2pt}\selectfont] at (140,22) {$H_4$};
+        \node[cross out,draw=IASVermillion,line width=2.1pt,minimum size=16mm] at (182,22) {};
+      \end{tikzpicture}\par
+      {\TableSize\bfseries\color{IASVermillion}Reject the route when a prefix contains $H_4$.}
+    \end{minipage}\hspace{4mm}%
+    \begin{minipage}[t]{210mm}\centering\vspace{0pt}
+      {\Subhead\color{IASMidGreen}Safe implementation path\par}
+      {\FigureSize\color{IASDarkText}Schematic: every prefix avoids every blocker.\par}
+      \begin{tikzpicture}[x=1mm,y=1mm]
+        \draw[-{Stealth[length=4mm]},IASMidGreen,line width=1.8pt] (9,22)--(196,22);
+        \foreach \x/\lab in {17/$S_0$,58/$S_1$,99/$S_2$,140/$\cdots$,182/$S_f$}{
+        \node[circle,draw=IASMidGreen,line width=1.5pt,fill=IASPaleGreen,minimum size=11mm] at (\x,22) {};
+        \node[font=\fontsize{24.2pt}{26.2pt}\selectfont,text=IASDarkText] at (\x,4) {\lab};}
+      \end{tikzpicture}\par
+      {\TableSize\bfseries\color{IASMidGreen}Accept only after checking all path prefixes.}
+    \end{minipage}\par
+    \vspace{1mm}
+    \noindent\begin{minipage}[c][24mm][c]{104mm}\centering
+      {\fontsize{30pt}{32pt}\selectfont\bfseries\color{IASBlue}\CrossCodeAgreement\par}
+      {\FigureSize\color{IASDarkText}cross-code\par}
+    \end{minipage}\hfill
+    \begin{minipage}[c][24mm][c]{104mm}\centering
+      {\fontsize{30pt}{32pt}\selectfont\bfseries\color{IASBlue}\TDSAgreement\par}
+      {\FigureSize\color{IASDarkText}finite TDS agreement\par}
+    \end{minipage}\hfill
+    \begin{minipage}[c][24mm][c]{104mm}\centering
+      {\fontsize{28pt}{30pt}\selectfont\bfseries\color{IASGray}$P_{\infty}$ PENDING\par}
+      {\FigureSize\color{IASDarkText}safe-set census pending\par}
+    \end{minipage}
+  \end{PosterPanel}
+\end{minipage}\par
+\vspace{3mm}
+
+% ROW 5 — six compact validation metrics and the explicit scope line.
+\noindent\hspace*{6mm}%
+\begin{minipage}[t][74mm][t]{902mm}\vspace{0pt}
+  \begin{PosterPanel}{74mm}{9}{\scalebox{0.88}[1]{EVIDENCE IS MEASURED, SCOPED, AND READY TO AUDIT}}
+    \noindent\begin{minipage}[c][25mm][c]{143mm}\centering
+      {\MetricSize\bfseries\color{IASBlue}\CrossCodeAgreement\par}
+      {\FigureSize\color{IASDarkText}same-model cross-code\par}
+    \end{minipage}\hfill
+    \begin{minipage}[c][25mm][c]{143mm}\centering
+      {\MetricSize\bfseries\color{IASBlue}\TDSAgreement\par}
+      {\FigureSize\color{IASDarkText}finite TDS sign agreement\par}
+    \end{minipage}\hfill
+    \begin{minipage}[c][25mm][c]{143mm}\centering
+      {\MetricSize\bfseries\color{IASBlue}\NumProperStable/\NumProperTotal\par}
+      {\FigureSize\color{IASDarkText}proper subsets stable\par}
+    \end{minipage}\hfill
+    \begin{minipage}[c][25mm][c]{143mm}\centering
+      {\MetricSize\bfseries\color{IASBlue}\NumDistinctPolicyA/\NumDistinctPolicyB/\NumDistinctPolicyC\par}
+      {\FigureSize\color{IASDarkText}distinct policy blockers\par}
+    \end{minipage}\hfill
+    \begin{minipage}[c][25mm][c]{143mm}\centering
+      {\MetricSize\bfseries\color{IASMidGreen}\InterventionImproves/\NumValidMC\par}
+      {\FigureSize\color{IASDarkText}improved; review pending\par}
+    \end{minipage}\hfill
+    \begin{minipage}[c][25mm][c]{143mm}\centering
+      {\MetricSize\bfseries\color{IASGold!70!black}\BlockerPersistenceCount/\NumValidMC\par}
+      {\FigureSize\color{IASDarkText}$H_4$ minimal; review pending\par}
+    \end{minipage}\par
+    \vspace{1mm}
+    {\FigureSize\color{IASDarkText}\textbf{Scope:} phasor-domain DAE; stationary, re-equilibrated portfolios; no physical switching transient, EMT, current-limit, or DC-link claim; blocker identity depends on model and control policy.}
+  \end{PosterPanel}
+\end{minipage}\par
+\vspace{3mm}
+
+% FULL-WIDTH FOOTER — references, takeaway, and right-aligned contact/QR.
+\noindent\makebox[\paperwidth][c]{%
+  {\setlength{\fboxsep}{0pt}\colorbox{IASDeepGreen}{%
+    \begin{minipage}[t][106mm][t]{\paperwidth}\hspace*{10mm}
+      \begin{minipage}[t][77mm][t]{250mm}\vspace{5mm}\color{white}
+        {\PosterCondensed\bfseries\fontsize{31pt}{34pt}\selectfont REFERENCES\par}\vspace{1mm}
+        {\FooterReferenceSize
+          [1] Kundur, \textit{Power System Stability}, 1994.\par
+          [2] Kundur et al., IEEE Trans. Power Syst. 19, 2004.\par
+          [3] Hatziargyriou et al., IEEE Trans. Power Syst. 36, 2021.\par
+          [4] D\"orfler et al., PNAS 110, 2013.\par
+          [5] Milano, \textit{Power System Modelling}, 2010.}
+      \end{minipage}\hspace{8mm}%
+      \begin{minipage}[t][77mm][t]{405mm}\vspace{8mm}\centering\color{white}
+        {\PosterCondensed\bfseries\fontsize{40pt}{43pt}\selectfont\color{IASGold}
+          A SAFE GENERATION TRANSITION\\IS NOT DEFINED BY THE NEXT DEVICE.\par}\vspace{2mm}
+        {\fontsize{27pt}{30pt}\selectfont It is defined by which replacement coalitions can coexist,\\
+          under which control policy, along the entire implementation path.}
+      \end{minipage}\hspace{7mm}%
+      \begin{minipage}[t][77mm][t]{210mm}\vspace{5mm}\color{white}
+        \begin{minipage}[t][66mm][t]{136mm}\vspace{0pt}\raggedleft
+          {\PosterCondensed\bfseries\fontsize{31pt}{34pt}\selectfont CONTACT\par}\vspace{1mm}
+          {\fontsize{24.5pt}{27pt}\selectfont Jorge Luis Mayorga Taborda\\
+            jl.mayorga@uniandes.edu.co\\Universidad de los Andes\\Bogot\'a, Colombia}
+        \end{minipage}\hspace{3mm}%
+        \begin{minipage}[t][66mm][t]{61mm}\vspace{0pt}\centering
+          \includegraphics[width=56mm]{../../../temp/poster/artifacts/figures/repo_qr.png}\\[-1mm]
+          {\fontsize{24.2pt}{26.2pt}\selectfont Code + data}
+        \end{minipage}
+      \end{minipage}\hspace*{10mm}\par
+      \vspace{1mm}\noindent\textcolor{IASPaleGreen}{\rule{\dimexpr\paperwidth-20mm\relax}{0.8pt}}\par
+      \begin{minipage}[c][22mm][c]{\paperwidth}\hspace*{12mm}
+        {\fontsize{24.2pt}{26.2pt}\selectfont\color{white}IEEE IAS Annual Meeting 2026}%
+        \hfill{\fontsize{24.2pt}{26.2pt}\selectfont\color{white}Vancouver, Canada\; $\bullet$\; October 4--8, 2026}\hspace*{12mm}
+      \end{minipage}
+\end{minipage}%
+  }}%
+}\par
+\end{frame}
+\end{document}

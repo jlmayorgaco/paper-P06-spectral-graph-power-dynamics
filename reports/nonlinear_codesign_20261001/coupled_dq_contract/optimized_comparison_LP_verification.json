@@ -1,0 +1,25 @@
+{
+  "status": "FROZEN_LP_REENCLOSURE_AND_RATIONAL_RECHECK_PASSED",
+  "epsilon": 3.552198858700823e-07,
+  "min_boundary_margin": 8.935866062809405e-16,
+  "contraction_rate_lower": 0.019030347518502876,
+  "comparison_perron_upper": 0.8405296486317401,
+  "exact_contraction_rate_lower": "1402585647867852699047428403672068338101137170753/73702576713543615703763772371471521497096581545984",
+  "min_LP_slack": 9.624527414051923e-08,
+  "LP_primal": 1.1233039095345225,
+  "LP_dual_upper": 1.123304225491568,
+  "LP_relative_gap_upper": 2.812746875947441e-07,
+  "frequency_bound": 0.00015897609743808176,
+  "rocof_bound": 0.0024947948791639563,
+  "voltage_min": 0.9819610645484338,
+  "voltage_max": 1.0635609195437372,
+  "scope": "Fixed-domain comparison LP at fixed gains/replacement; shared interval backend, independently recomputed bounds and rational scalar inequalities. Not global physical optimality.",
+  "source_hashes": {
+    "model.toml": "2d6ae0523c25cbbce21cbcc18fe7437685245da4f96b6cf09a828b598dd6dcf5",
+    "refined_center.json": "da54479b4587d46ba25320629b6cf1f72abd4635b97104c83e2f09c7b7382beb",
+    "block_modal_certificate.npz": "997512d855644bbd6b342a45fcc5f1553a205d521e9cdc3bc8c2f48c390167f3",
+    "optimized_comparison_LP.npz": "d2ab7199afb69b1a1b52a202e777979097b06a9e62d4a5b9ed1e2aca2aec830f",
+    "optimized_comparison_LP.json": "d627031b28bec0fadb85dd6a4af274630ee8b11469272beac94e0bb71927c402"
+  },
+  "script_sha256": "f2be8e7381ba227cfb4b557fce5daa21467e057aa667fc58daef37810e3eb2dd"
+}

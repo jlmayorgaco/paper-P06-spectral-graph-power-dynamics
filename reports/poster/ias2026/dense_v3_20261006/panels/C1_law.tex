@@ -1,0 +1,20 @@
+\begin{DensePanel}{230mm}{5}{TWO GAINS, ONE MODE: THE EXACT LAW}
+  {\DenseBody Loop factor $\kappa(s)=(k_p s+k_I)e^{-s\tau}$. The delay grows by $h$; protect the mode $\lambda=\alpha+\mathrm{j}\omega$.\par}
+  \vspace{1mm}
+  {\DenseHead Transport of the gains\par}
+  {\HeroEquation\color{IASBlue}\[
+    k_p(h)\lambda+k_I(h)=(k_p\lambda+k_I)\,e^{\lambda h}
+  \]}
+  \vspace{-2mm}
+  {\DenseHead Error left at every other frequency\par}
+  {\DenseEq\color{IASBlue}\[
+    \Delta\kappa(s)=-(s-\lambda)(s-\bar\lambda)\,e^{-s\tau}\!\!\int_0^h\!\! k_p(t)e^{-st}dt
+  \]}
+  \vspace{-2mm}
+  {\DenseHead Spillover onto any other mode $\mu$\par}
+  {\DenseEq\color{IASBlue}\[
+    \frac{d\mu}{dh}=-k_p\,(\mu-\lambda)(\mu-\bar\lambda)\,\frac{\partial\mu}{\partial k_I}
+  \]}
+  \vspace{-1mm}
+  \begin{DenseWords}\textbf{\color{IASGold!65!black}IN WORDS\ \ }The PLL fixes the quadratic factor; the network fixes the residue $\partial\mu/\partial k_I$. Gains need no network model; choosing $\lambda$ does. Budget: $k_I>0$ while $h<\varphi_{PI}(\omega)/\omega$.\end{DenseWords}
+\end{DensePanel}

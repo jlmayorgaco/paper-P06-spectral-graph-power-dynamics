@@ -1,0 +1,34 @@
+[
+  {
+    "kind": "modal_plus_exact_sensor_cascade",
+    "radius": 0.0,
+    "condition": 823911.1038295702,
+    "inverse_check": 2.805937463035454e-08,
+    "decay": 0.05003035198857226,
+    "input_gain": 374775.92205719993
+  },
+  {
+    "kind": "modal_plus_exact_sensor_cascade",
+    "radius": 1e-09,
+    "condition": 823911.1038295702,
+    "inverse_check": 2.805937463035454e-08,
+    "decay": 0.05001927754893045,
+    "input_gain": 374775.92205719993
+  },
+  {
+    "kind": "modal_plus_exact_sensor_cascade",
+    "radius": 1e-07,
+    "condition": 823911.1038295702,
+    "inverse_check": 2.805937463035454e-08,
+    "decay": 0.04892335435918459,
+    "input_gain": 374775.92205719993
+  },
+  {
+    "kind": "modal_plus_exact_sensor_cascade",
+    "radius": 1e-05,
+    "condition": 823911.1038295702,
+    "inverse_check": 2.805937463035454e-08,
+    "decay": -0.06258186471437065,
+    "input_gain": 374775.92205719993
+  }
+]

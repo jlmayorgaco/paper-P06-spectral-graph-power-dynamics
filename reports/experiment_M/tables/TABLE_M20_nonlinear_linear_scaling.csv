@@ -1,0 +1,4 @@
+case,event_bus,pulse_fraction,trace_points,linear_peak_Hz,nonlinear_peak_Hz,max_absolute_error_Hz,max_relative_error,source
+ExpK_nominal,16,1e-05,607,5.689783891659417e-06,5.689786950399713e-06,4.7519714973420546e-11,8.351760959336102e-06,ExpM_high_accuracy_nonlinear_trace_vs_PD_exact_linearization
+ExpK_nominal,16,0.0001,607,5.6897838986426124e-05,5.6898006497226764e-05,6.313182338589572e-10,1.1095645196816141e-05,ExpM_high_accuracy_nonlinear_trace_vs_PD_exact_linearization
+ExpK_nominal,16,0.001,607,0.000568978389925208,0.0005689949962702161,6.301449887157482e-08,0.0001107502498993996,ExpM_high_accuracy_nonlinear_trace_vs_PD_exact_linearization

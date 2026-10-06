@@ -1,0 +1,3 @@
+iteration,stage,seed_status,active_gfl_buses,normalized_gain_correction,active_bounds,note
+0,initialization,PROJECTED_SEED_REJECTED_BY_FRACTIONAL_NETWORK_SPECTRUM; NOMINAL_FALLBACK,30:31:32:33:34:35:36:37:38:39,0.0,,gain authority is reported on the all-GFL physical zero branch; final correction is re-evaluated on the exact mixed spectrum
+1,exact mixed closure,PROJECTED_SEED_REJECTED_BY_FRACTIONAL_NETWORK_SPECTRUM; NOMINAL_FALLBACK,36:37:38,0.0,,no gain correction required at the feasible coordinate candidate

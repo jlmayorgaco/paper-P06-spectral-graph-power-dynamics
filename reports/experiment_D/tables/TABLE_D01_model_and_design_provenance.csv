@@ -1,0 +1,12 @@
+item,value,source
+Experiment A-C statuses,PASS / PASS / PASS,frozen result files
+Frozen input hashes,reports\experiment_A\RESULTS_EXP_A.json=767e85bc5b5550044947382eae0d8eac9fa48040b0196672424e89b6cacfa1fe; reports\experiment_A\matrices\bus33_baseline_equilibrium.csv=1f930e5f426c87811b3383fbe5bc59eb9cc126bbb9bfbdbc2426410e18097cbf; reports\experiment_A\matrices\bus33_mixed_equilibrium.csv=69a3441f697ab59100c0dfd9872e721d3792afad63aa0a0e5b5791649671edb3; reports\experiment_A\tables\TABLE_A03_state_partition.csv=5e61c179424d1f3138928349f35426ae91a57b7a0e8cd657e5a86af9a286931d; reports\experiment_B\RESULTS_EXP_B.json=11ee0818df4594b53a65c3084aa4ddc13a970a64359c633d4ddcb71bca87e6f0; reports\experiment_C\RESULTS_EXP_C.json=b73e1be25359b0f7e337c11efddb4daa9f6b8c1a0ee7068915b8ead814d9ca15; reports\experiment_D\inputs\avr.csv=46d9062bc0db558f863faf5706829d109b3ca817297edc43d492ae7af39457bf; reports\experiment_D\inputs\branch.csv=b1858adb3e409750b5db24bc5073dda1e0683a59ef6e5966840cd73a18293972; reports\experiment_D\inputs\bus.csv=d732a896e95c013fa3906941a540f2d9161ca99a2c60e571a890174680cb6943; reports\experiment_D\inputs\gov.csv=2cd24f6c43c0fb4175b0b6e5f579239e23f6b7a01805e0c71eb88b1fb892d7ac; reports\experiment_D\inputs\load.csv=635e38cb30ed983be884d2e1e88cbe4069d69097a98969648390da1464df0d30; reports\experiment_D\inputs\machine.csv=8cf9a02574f650d2c459f536a02ae6bbfe16122e927dbbd54ca54ec2556616a1,SHA-256
+PowerDynamics design calls,0,analytic runner call audit
+GFL source equations,PowerDynamics 5.0.0 SimpleGFLDC component equations transcribed independently,installed package source; no runtime import
+Local GFL state order,gamma_q;gamma_d;theta;delta_omega_rad_s;delta_omega_i_rad_s;i_f_i;i_f_r;v_dc_i;v_dc_state,ExpA state map and component equations
+Frozen PLL nominal gains,"Kp=31.41592653589793, Ki=246.74011002723395, tau=0.0005305164769729845",src/pd39/model.jl parameter formulas
+Frozen bus-33 SG port residual,1.4274295970122415e-14,independent Sauer-Pai/AVR/TGOV1 equations and ExpA all-SG equilibrium
+Rated-base GFL transfer equivalence p95,8.311121666456143e-16,state/parameter base conversion; system-base current scaling
+Local GFL equilibrium residual,3.0518849357575527e-13,independently coded ODE at frozen ExpA operating point
+Candidate file,NOT_CREATED,no rho maximum derived; validation remains disabled
+Run timestamp UTC,2026-09-29T08:18:18.775,Julia Dates

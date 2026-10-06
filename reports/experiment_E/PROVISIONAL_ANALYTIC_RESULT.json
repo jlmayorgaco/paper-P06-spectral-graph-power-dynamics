@@ -1,0 +1,27 @@
+{
+  "status": "PROVISIONAL_ANALYTIC_ONLY",
+  "source": "anchor38_gain_continuation",
+  "source_step": 7,
+  "replaceable_buses": [
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39
+  ],
+  "initial_SG_MW": 5402.761089978775,
+  "GFL_replacement_MW": 5401.57187809661,
+  "retained_SG_MW": 1.1892118821653361,
+  "replacement_fraction": 0.9997798881234318,
+  "spectral_abscissa": -0.050000000460885985,
+  "required_spectral_abscissa": -0.05,
+  "global_optimality_certified": false,
+  "detailed_model_validated": false,
+  "time_domain_validated": false,
+  "candidate_frozen_for_validation": false
+}

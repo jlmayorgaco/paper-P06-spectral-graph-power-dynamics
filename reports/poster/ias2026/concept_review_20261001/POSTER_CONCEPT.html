@@ -1,0 +1,74 @@
+<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Beyond Nodal Damping — Where Should Synchronous Generation Remain?</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#edf1f2;color:#173547;font-family:Arial,Helvetica,sans-serif;line-height:1.48}
+main{max-width:1280px;margin:30px auto;background:white;padding:42px;box-shadow:0 2px 20px #16364a12}
+.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:12px;font-weight:700;color:#97601a}
+h1{font-size:44px;line-height:1.07;max-width:920px;margin:15px 0}h2{font-size:22px;line-height:1.2;margin-top:0}
+.lede{max-width:950px;font-size:19px}.scope{background:#edf4f5;padding:15px 18px;border-left:4px solid #147da0;font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:25px 0}.stat{padding:20px;background:#15364a;color:white}
+.stat strong{display:block;font-size:34px}.stat span{font-size:13px;display:block}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}.panel{border-top:3px solid #b86d18;padding-top:20px;margin-top:25px}
+.wide{grid-column:1/-1}img{width:100%;height:auto;display:block}
+p{margin:10px 0}.small,figcaption{font-size:13px;color:#4c6472}.formula{font-family:Georgia,serif;font-size:23px;padding:15px;background:#f6f7f7}
+.note{background:#fff6e8;padding:16px;border-left:4px solid #b86d18}a{color:#126785}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{border-bottom:1px solid #dce5e9;text-align:right;padding:6px}
+th:first-child,td:first-child{text-align:left}footer{margin-top:30px;border-top:1px solid #c9d5dc;padding-top:20px}
+@media(max-width:850px){main{margin:0;padding:22px}h1{font-size:34px}.grid{display:block}.stats{gap:8px}.stat{padding:12px}.stat strong{font-size:26px}}
+@media print{body{background:white}main{box-shadow:none;margin:0;padding:15px}.panel{break-inside:avoid}}
+</style><main>
+<div class="eyebrow">Beyond Nodal Damping · Working concept · 1 October 2026</div>
+<h1>Where Should Synchronous Generation Remain?</h1>
+<p class="lede">Joint SG–GFL and PLL design with numerical local optimality and nonlinear event validation.</p>
+<p class="scope"><b>Central finding.</b> In this IEEE-39 local design, frequency peaks and normalized model robustness limit further removal of synchronous generation. The spectral-margin constraint is slack. The remaining generators serve different marginal roles.</p>
+<div class="stats"><div class="stat"><strong>94.22%</strong><span>of original dispatch assigned to GFL</span></div>
+<div class="stat"><strong>312.52 MW</strong><span>synchronous dispatch retained at five buses</span></div>
+<div class="stat"><strong>25 variables</strong><span>five retentions + twenty local PLL gains</span></div></div>
+<p class="small">A model-specific research result. Fixed design event: +100 MW ZIP-load setpoint at bus 16.
+Causal phase measurements use T = 0.5 s at ten generator buses. This is a content concept, not the final competition poster.</p>
+<div class="grid">
+<section class="panel"><h2>1. Co-design a feasible replacement</h2>
+<div class="formula">min<sub>ε,Kp,Ki</sub> Σ P<sub>i</sub><sup>0</sup> ε<sub>i</sub></div>
+<p>Enforce the full physical spectrum, a normalized robustness requirement, and frequency / RoCoF peaks of the analytic model. Preserve competing time-domain peaks as separate active constraints.</p>
+<p class="small">The numerical local certificate applies to the analytic security problem on the declared support. Nonlinear validation checks the selected design; it does not establish optimality for nonlinear trajectory constraints.</p>
+</section>
+<section class="panel"><h2>2. Explain each retained location</h2>
+<p>Frequency-peak multipliers dominate at buses 30 and 39. The normalized model-robustness constraint dominates at buses 33, 35 and 37. The modal-margin and RoCoF multipliers are zero at this point.</p>
+<p class="small">These are local KKT contributions, not a new law, causal proof, physical shares of reserve, or prices transferable to another grid. All twenty gains are at their declared bounds.</p>
+</section>
+<section class="panel wide"><img src="01_retention_and_constraints.png" alt="Retained synchronous MW by bus and signed normalized marginal contributions">
+<figcaption>Left: the retained dispatch. Right: multiplier-weighted contributions to the local stationarity condition. Negative contributions are retained.</figcaption></section>
+<section class="panel wide"><h2>3. Predict, then validate the nonlinear response</h2>
+<img src="03_original_trajectory_comparison.png" alt="Original analytic and nonlinear PowerDynamics frequency and RoCoF trajectories">
+<figcaption>Unmodified source figure from Q2B/CERTIFIED_SEARCH. The horizontal coordinate is time after the event.
+The displayed load step is a ZIP-setpoint change; effective demand varies with voltage.
+PowerDynamics peaks: |Δf| = 0.468755 Hz and |RoCoF| = 0.171771 Hz/s; both declared limits are 0.5.</figcaption></section>
+<section class="panel wide"><h2>4. Test the design outside its target event</h2>
+<img src="02_event_scope.png" alt="Design event passes while two external locations each violate one requirement">
+<figcaption>The two external failures remain visible. An all-location or all-input guarantee has not been demonstrated for this design.</figcaption></section>
+<section class="panel"><h2>Numerical evidence behind the design</h2>
+<ul><li>KKT, LICQ and positive reduced Hessian at the local point.</li>
+<li>Riccati / bounded-real inequality checked at 256-bit precision across all frequencies.</li>
+<li>Physical matrices, trim and 143 finite poles reconciled with PowerDynamics.</li>
+<li>Selected nonlinear event validated after freezing the design.</li></ul>
+<p class="small">Numerical checks use declared tolerances, not outward-rounded formal proofs.
+The robustness norm acts on a frozen-coordinate reduced operator; it is not a load-disturbance envelope.
+The global lower bound is still zero.</p></section>
+<section class="panel"><h2>Reproducible design values</h2>
+<table><thead><tr><th>Bus</th><th>SG MW</th><th>Kp</th><th>Ki</th></tr></thead><tbody><tr><td>30</td><td>151.11</td><td>7.854</td><td>986.960</td></tr><tr><td>31</td><td>0.00</td><td>125.664</td><td>61.685</td></tr><tr><td>32</td><td>0.00</td><td>125.664</td><td>986.960</td></tr><tr><td>33</td><td>49.57</td><td>7.854</td><td>986.960</td></tr><tr><td>34</td><td>0.00</td><td>125.664</td><td>986.960</td></tr><tr><td>35</td><td>50.46</td><td>7.854</td><td>986.960</td></tr><tr><td>36</td><td>0.00</td><td>7.854</td><td>986.960</td></tr><tr><td>37</td><td>32.34</td><td>7.854</td><td>986.960</td></tr><tr><td>38</td><td>0.00</td><td>7.854</td><td>986.960</td></tr><tr><td>39</td><td>29.04</td><td>125.664</td><td>61.685</td></tr></tbody></table>
+<p class="small">PLL gains are in the frozen model convention. They do not add a sustained active-power resource. Hard converter-current protection is not modeled.</p></section>
+</div>
+<footer>
+<div class="note"><b>Required before a stronger performance claim:</b> optimize a matched common-gain baseline under the same constraints; test gain-bound and physically meaningful parameter sensitivity; expand the declared disturbance set if claiming spatial generality. These experiments have not been run as part of this review.</div>
+<p><a href="ELECCION_PARA_COMPETENCIA_ES.txt">Competition strategy and scientific defense (Spanish)</a> ·
+<a href="DECISION_Y_GUION_ES.txt">Decision and evidence review (Spanish)</a> ·
+<a href="EVIDENCE_MATRIX.csv">Research-line comparison</a> ·
+<a href="SOURCE_MANIFEST.json">Source hashes</a> ·
+<a href="../../../experiment_Q2B/CERTIFIED_SEARCH/RESULTADO_LOCAL_Y_BRECHA_GLOBAL.md">Full result and scope</a></p>
+<p class="small"><b>Prior art acknowledged:</b>
+<a href="https://doi.org/10.1109/ISGT-Europe47291.2020.9248794">Zhao &amp; Flynn: high GFL shares and control</a>;
+<a href="https://arxiv.org/abs/2412.15446">Chatterjee &amp; Geng: GFM/GFL allocation and tuning</a>;
+<a href="https://arxiv.org/abs/2604.17603">Wang &amp; Geng: stability-constrained OPF and nodal shadow prices</a>.
+No first-in-literature or global-optimum claim is made.</p>
+</footer></main></html>

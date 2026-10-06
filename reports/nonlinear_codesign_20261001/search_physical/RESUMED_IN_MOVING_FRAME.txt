@@ -1,0 +1,6 @@
+The physical-supply search was resumed from its first accepted candidate in
+search_physical_fast. This change accelerates the independent nonlinear acceptance
+with a verified exact moving-reference-frame coordinate transformation. It does
+not change the design variables, physical equations, disturbance set or limits.
+The interrupted in-progress evaluation is not a completed case set. Preserve it
+for provenance; the best.json checkpoint contains only a completed accepted design.

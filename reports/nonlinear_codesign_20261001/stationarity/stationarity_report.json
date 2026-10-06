@@ -1,0 +1,58 @@
+{
+  "status": "LOCAL_DIAGNOSTIC_NOT_GLOBAL_OPTIMALITY_CERTIFICATE",
+  "gradient_horizon_s": 60.0,
+  "gradient_step_s": 0.025,
+  "KKT_audits": [
+    {
+      "active_tolerance": 0.001,
+      "active_constraints": [],
+      "multipliers": [],
+      "stationarity_inf": 0.1536251531720515,
+      "relative_stationarity_inf": 1.0,
+      "primal_violation": 0.0,
+      "constraint_complementarity_inf": 0.0
+    },
+    {
+      "active_tolerance": 0.003,
+      "active_constraints": [
+        "constraint_0",
+        "constraint_15"
+      ],
+      "multipliers": [
+        0.004558223204406301,
+        0.06483004039784693
+      ],
+      "stationarity_inf": 0.08334659521028953,
+      "relative_stationarity_inf": 0.5425322187763487,
+      "primal_violation": 0.0,
+      "constraint_complementarity_inf": 0.00012717826544594656
+    },
+    {
+      "active_tolerance": 0.01,
+      "active_constraints": [
+        "constraint_0",
+        "constraint_15"
+      ],
+      "multipliers": [
+        0.004558223204406301,
+        0.06483004039784693
+      ],
+      "stationarity_inf": 0.08334659521028953,
+      "relative_stationarity_inf": 0.5425322187763487,
+      "primal_violation": 0.0,
+      "constraint_complementarity_inf": 0.00012717826544594656
+    }
+  ],
+  "exchange_active_rows": [
+    0,
+    15,
+    16,
+    25
+  ],
+  "cautions": [
+    "Peak ties and active-set changes require gradient bundles.",
+    "KKT with a loose active tolerance is only a diagnostic.",
+    "Exchange signatures require finite nonlinear validation.",
+    "No global lower bound on retained SG has been computed."
+  ]
+}

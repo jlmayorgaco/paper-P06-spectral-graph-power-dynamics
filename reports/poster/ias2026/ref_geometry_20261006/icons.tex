@@ -1,0 +1,196 @@
+% Icon library for the IAS 2026 poster (DESIGN_V3 section 1). One consistent two-tone line-art set.
+% Every macro: \IconXXX{x}{y}{scale}; (x,y) = icon centre in reference pixels (y downward); scale 1 = about 40 px wide (local box -20..20).
+% Style: deep green outline (PGreen, 1.8 pt, round caps/joins), mint or cream fill, ONE gold accent per icon.
+% NOTE: y points down, so "up" on the page is NEGATIVE y and arcs that bulge upward run from 180 to 360 degrees.
+% Strokes do not scale with the icon (constant pen), so scale 2 keeps the same line weight as scale 1.
+\tikzset{
+  ic/.style={draw=PGreen,line width=1.8pt,line cap=round,line join=round},
+  icf/.style={draw=PGreen,line width=1.2pt,line cap=round,line join=round},
+  icm/.style={ic,fill=PPaleGreen},
+  icc/.style={ic,fill=PPaleGold},
+  icg/.style={draw=PGreen,line width=1.2pt,line cap=round,line join=round,fill=PGold},
+  icw/.style={ic,fill=white},
+  icarr/.style={ic,-{Stealth[length=3.6pt,width=3.6pt,round]}},
+}
+
+% ---- synchronous generator: stator ring, rotor with gold pole, shaft + coupling, output sine
+\newcommand{\IconSG}[3]{\begin{scope}[shift={(#1,#2)},scale=#3]
+  \draw[icc] (11,-3.2) rectangle (19.5,0.8);                      % shaft
+  \draw[icg] (13.5,-5.6) rectangle (16,3.2);                      % coupling flange
+  \draw[icm] (-4,-3) circle (15);                                 % stator
+  \draw[icf] (-4,-3) circle (11.2);                               % air gap
+  \draw[icc] (-4,-3) circle (7.2);                                % rotor
+  \begin{scope}[rotate around={-30:(-4,-3)}]
+    \draw[icg] (-9.2,-4.4) rectangle (1.2,-1.6);                  % pole bar
+    \draw[icg] (-9.2,-4.4) rectangle (1.2,-1.6);
+  \end{scope}
+  \fill[PGreen] (-4,-3) circle (1.8);                             % hub
+  \draw[ic] (-9,-14.2) -- (-9,-16.5) (-4,-18.2) -- (-4,-20) (1,-14.2) -- (1,-16.5); % winding stubs
+  \draw[ic] (-4,12) -- (-4,15);
+  \draw[ic] plot[smooth,samples=24,domain=-16:8] (\x,{17.5-3.4*sin((\x+16)*15)}); % output sine (one period)
+\end{scope}}
+
+% ---- grid-following converter: cabinet, IGBT switch, DC capacitor, output sine
+\newcommand{\IconGFL}[3]{\begin{scope}[shift={(#1,#2)},scale=#3]
+  \draw[icm] (-15,-19) rectangle (15,8);                          % cabinet
+  \draw[icf] (-15,-14.5) -- (15,-14.5);                           % door header
+  \fill[PGreen] (-12,-17) circle (0.9) (-9.2,-17) circle (0.9);   % status dots
+  \fill[PGold] (-6.4,-17) circle (0.9);
+  \draw[ic] (-7,-10) -- (-7,-6.5);                                % IGBT switch: lever + contacts
+  \draw[ic] (-7,-6.5) -- (-1,-2.2);
+  \draw[ic] (-7,-1) -- (-7,4);
+  \draw[icg] (-7,-6.5) circle (1.5);                              % pivot (gold)
+  \draw[icf] (-4.2,-8.5) -- (-1.2,-8.5) -- (-1.2,-5);             % gate
+  \draw[ic] (7,-10) -- (7,-4.6);                                  % DC capacitor
+  \draw[ic] (2.8,-4.6) -- (11.2,-4.6);
+  \draw[ic] (2.8,-1.2) -- (11.2,-1.2);
+  \draw[ic] (7,-1.2) -- (7,4);
+  \draw[ic] (-7,4) -- (7,4);
+  \draw[icf] (-7,-10) -- (7,-10);
+  \draw[ic] (0,8) -- (0,13.5);                                    % to output sine
+  \draw[ic] plot[smooth,samples=30,domain=-16:16] (\x,{17.5-3.6*sin((\x+16)*11.25)});
+  \draw[icg] (0,17.5) circle (1.7);
+\end{scope}}
+
+% ---- PLL: phase detector -> PI -> integrator -> theta, with feedback
+\newcommand{\IconPLL}[3]{\begin{scope}[shift={(#1,#2)},scale=#3]
+  \draw[icw] (-16.5,-4) circle (4.6);                             % phase detector
+  \draw[icf] (-18.8,-6.3) -- (-14.2,-1.7) (-18.8,-1.7) -- (-14.2,-6.3);
+  \draw[icarr] (-11.8,-4) -- (-8.6,-4);
+  \draw[icm] (-8.4,-10.5) rectangle (2.4,2.5);                    % PI block
+  \node[inner sep=0pt,text=PGreen,font=\FiraBold\fontsize{12.5pt}{12.5pt}\selectfont] at (-3,-3.6) {PI};
+  \draw[icarr] (2.6,-4) -- (5.6,-4);
+  \draw[icc] (5.8,-10.5) rectangle (16.6,2.5);                    % integrator
+  \node[inner sep=0pt,text=PGreen,font=\FiraBold\fontsize{15pt}{15pt}\selectfont] at (11.2,-3.8) {$\int$};
+  \draw[ic] (16.8,-4) -- (21,-4);
+  \draw[ic] (19,-4) -- (19,10) -- (-16.5,10) -- (-16.5,1.2);      % feedback
+  \draw[ic,-{Stealth[length=3.6pt,width=3.6pt,round]}] (-16.5,5) -- (-16.5,0.9);
+  \draw[icg] (19,-4) circle (1.7);                                % tap (gold)
+  \node[inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{12pt}{12pt}\selectfont] at (12,-15.5) {$\theta$};
+  \node[inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{10.5pt}{10.5pt}\selectfont] at (-16.5,-12.5) {$\Delta$};
+\end{scope}}
+
+% ---- bus bar with feeders
+\newcommand{\IconBus}[3]{\begin{scope}[shift={(#1,#2)},scale=#3]
+  \draw[ic] (0,-17) -- (0,-3);                                    % incoming feeder
+  \draw[icg] (0,-17) circle (2.2);
+  \draw[ic] (-10,3) -- (-10,12) (0,3) -- (0,12) (10,3) -- (10,12);
+  \draw[icm] (-10,12) circle (2.6) (0,12) circle (2.6) (10,12) circle (2.6);
+  \draw[ic,fill=PGreen] (-19,-3.5) rectangle (19,3.5);            % bar
+  \draw[PGold,line width=1.4pt,line cap=round] (-14,0) -- (-8,0); % gold highlight
+  \fill[PGold] (-16,0) circle (0.01);
+\end{scope}}
+
+% ---- transmission line: lattice tower + conductors with insulators
+\newcommand{\IconLine}[3]{\begin{scope}[shift={(#1,#2)},scale=#3]
+  \draw[icm] (-8.5,18) -- (-2.6,-14) -- (2.6,-14) -- (8.5,18) -- cycle;   % tower
+  \draw[icf] (-6.3,6) -- (6.3,6) (-4.3,13.5) -- (4.3,13.5) (-7.4,12) -- (7.4,12);
+  \draw[icf] (-6.3,6) -- (4.3,13.5) (6.3,6) -- (-4.3,13.5) (-3.6,-2) -- (3.6,-2);
+  \draw[icf] (-3.6,-2) -- (6.3,6)  (3.6,-2) -- (-6.3,6);
+  \draw[ic] (-15,-8.5) -- (15,-8.5);                                       % upper cross-arm
+  \draw[ic] (-11,-1.8) -- (11,-1.8);                                       % lower cross-arm
+  \draw[ic] (0,-14) -- (0,-18);
+  \draw[icg] (0,-18.4) circle (1.9);                                       % lightning rod (gold)
+  \foreach \xx/\yy in {-15/-8.5,15/-8.5,-11/-1.8,11/-1.8}{\draw[ic] (\xx,\yy) -- (\xx,\yy+3.4);\fill[PGold] (\xx,\yy+4.6) circle (1.5);\draw[icf] (\xx,\yy+4.6) circle (1.5);}
+  \draw[icf] (-15,-3.9) .. controls (-18,0) and (-19.5,2) .. (-20,5);
+  \draw[icf] (15,-3.9) .. controls (18,0) and (19.5,2) .. (20,5);
+\end{scope}}
+
+% ---- network: mesh of six buses
+\newcommand{\IconNetwork}[3]{\begin{scope}[shift={(#1,#2)},scale=#3]
+  \draw[ic] (-14,-9) -- (0,-15) -- (14,-9) -- (14,9) -- (0,15) -- (-14,9) -- cycle;
+  \draw[ic] (0,-15) -- (0,15);
+  \draw[ic] (-14,-9) -- (14,9);
+  \draw[ic] (14,-9) -- (-14,9);
+  \foreach \xx/\yy in {-14/-9,0/-15,14/-9,14/9,0/15,-14/9}{\draw[icm] (\xx,\yy) circle (4.1);}
+  \draw[icg] (0,-15) circle (4.1);
+  \draw[icg] (0,0) circle (2.6);
+\end{scope}}
+
+% ---- clock with delay tau
+\newcommand{\IconClock}[3]{\begin{scope}[shift={(#1,#2)},scale=#3]
+  \draw[icc] (-2,-2) circle (16);
+  \foreach \a in {0,90,180,270}{\draw[icf] ($(-2,-2)+(\a:12.2)$) -- ($(-2,-2)+(\a:14.2)$);}
+  \foreach \a in {30,60,120,150,210,240,300,330}{\fill[PGreen] ($(-2,-2)+(\a:13.2)$) circle (0.7);}
+  \draw[ic] (-2,-2) -- (-2,-11);
+  \draw[ic] (-2,-2) -- (5,1.5);
+  \fill[PGreen] (-2,-2) circle (1.7);
+  \draw[PGold,line width=2.4pt,line cap=round] (-2,-18) arc[start angle=270,end angle=325,radius=16]; % delay arc (y down: 270 = up)
+  \draw[icg] (14,13) circle (6.2);
+  \node[inner sep=0pt,text=PGreen,font=\FiraBold\fontsize{15pt}{15pt}\selectfont] at (14,13.3) {$\tau$};
+\end{scope}}
+
+% ---- spectrum: complex plane, stable half, margin line, roots
+\newcommand{\IconSpectrum}[3]{\begin{scope}[shift={(#1,#2)},scale=#3]
+  \draw[ic,fill=white,rounded corners=3pt] (-19,-17) rectangle (19,17);
+  \fill[PPaleGreen,rounded corners=2pt] (-17.6,-15.6) rectangle (6,15.6);
+  \draw[icf] (-17,0) -- (17.5,0);                                 % real axis
+  \draw[ic] (6,-16.5) -- (6,16.5);                                % imaginary axis
+  \draw[PGold,line width=1.8pt,dash pattern=on 3.4pt off 2.4pt,line cap=butt] (-4.5,-15.5) -- (-4.5,15.5); % margin
+  \foreach \xx/\yy in {-12.5/-8,-12.5/8,-14/0}{\draw[ic] (\xx-2,\yy-2) -- (\xx+2,\yy+2) (\xx-2,\yy+2) -- (\xx+2,\yy-2);}
+  \foreach \yy in {-6,6}{\draw[PGold,line width=1.8pt,line cap=round] (-4.5-2.4,\yy-2.4) -- (-4.5+2.4,\yy+2.4) (-4.5-2.4,\yy+2.4) -- (-4.5+2.4,\yy-2.4);}
+\end{scope}}
+
+% ---- status discs
+\newcommand{\IconCheck}[3]{\begin{scope}[shift={(#1,#2)},scale=#3]
+  \fill[PTeal] (0,0) circle (14.5);\draw[PGreen,line width=1.8pt] (0,0) circle (14.5);
+  \draw[white,line width=3.4pt,line cap=round,line join=round] (-6.5,0.5) -- (-1.8,5.4) -- (7,-5);
+\end{scope}}
+\newcommand{\IconCross}[3]{\begin{scope}[shift={(#1,#2)},scale=#3]
+  \fill[PRed] (0,0) circle (14.5);\draw[PGreen,line width=1.8pt] (0,0) circle (14.5);
+  \draw[white,line width=3.4pt,line cap=round] (-5.6,-5.6) -- (5.6,5.6) (-5.6,5.6) -- (5.6,-5.6);
+\end{scope}}
+\newcommand{\IconWarn}[3]{\begin{scope}[shift={(#1,#2)},scale=#3]
+  \fill[PGold] (0,0) circle (14.5);\draw[PGreen,line width=1.8pt] (0,0) circle (14.5);
+  \draw[PGreen,line width=3.4pt,line cap=round] (0,-7.2) -- (0,1.6);
+  \fill[PGreen] (0,6.6) circle (2);
+\end{scope}}
+
+% ---- frequency event: damped oscillation after a disturbance (gold bolt)
+\newcommand{\IconWave}[3]{\begin{scope}[shift={(#1,#2)},scale=#3]
+  \draw[ic,fill=white,rounded corners=3pt] (-19,-17) rectangle (19,17);
+  \draw[icf,dash pattern=on 2.6pt off 2.2pt] (-17,3) -- (17,3);
+  \draw[ic] plot[smooth,samples=44,domain=-16.5:16.5] (\x,{3-13*exp(-(\x+16.5)/12)*sin((\x+16.5)*13.5)});
+  \draw[icg] (11,-15) -- (5,-5) -- (9,-5) -- (6.5,4) -- (14,-7) -- (10,-7) -- cycle;
+\end{scope}}
+
+% ---- graph hop: central node, hop rings, nodes on rings
+\newcommand{\IconGraphHop}[3]{\begin{scope}[shift={(#1,#2)},scale=#3]
+  \draw[icf,dash pattern=on 3pt off 2.2pt,fill=PPaleGreen] (0,0) circle (19);
+  \draw[icf,dash pattern=on 3pt off 2.2pt,fill=PPaleGold] (0,0) circle (11.2);
+  \foreach \a in {20,140,260}{\draw[icf] (0,0) -- (\a:11.2);}
+  \foreach \a/\b in {20/-10,20/45,140/105,140/175,260/230,260/305}{\draw[icf] (\a:11.2) -- (\b:19);}
+  \foreach \b in {-10,45,105,175,230,305}{\draw[icm,line width=1.4pt] (\b:19) circle (3.1);}
+  \foreach \a in {20,140,260}{\draw[icw,line width=1.4pt] (\a:11.2) circle (3.1);}
+  \draw[icg,line width=1.4pt] (0,0) circle (4.3);
+\end{scope}}
+
+% ---- matrix: brackets and a 3x3 grid with a gold diagonal
+\newcommand{\IconMatrix}[3]{\begin{scope}[shift={(#1,#2)},scale=#3]
+  \draw[ic] (-12,-17) -- (-16.5,-17) -- (-16.5,17) -- (-12,17);
+  \draw[ic] (12,-17) -- (16.5,-17) -- (16.5,17) -- (12,17);
+  \foreach \i in {0,1,2}{\foreach \j in {0,1,2}{%
+    \pgfmathparse{int(\i==\j)}\ifnum\pgfmathresult=1
+      \draw[icg,rounded corners=1pt] (-9.5+\i*8.2-3,-9.8+\j*9.8-3) rectangle (-9.5+\i*8.2+3.4,-9.8+\j*9.8+3.2);
+    \else
+      \draw[icf,fill=PPaleGreen,rounded corners=1pt] (-9.5+\i*8.2-3,-9.8+\j*9.8-3) rectangle (-9.5+\i*8.2+3.4,-9.8+\j*9.8+3.2);
+    \fi}}
+\end{scope}}
+
+% ---- funnel: Schur elimination (many states in, the retained block out)
+\newcommand{\IconFunnel}[3]{\begin{scope}[shift={(#1,#2)},scale=#3]
+  \draw[icm] (-18,-12) -- (18,-12) -- (4.2,2.5) -- (4.2,16) -- (-4.2,16) -- (-4.2,2.5) -- cycle;
+  \draw[icf] (-18,-12) .. controls (-9,-8) and (9,-8) .. (18,-12);   % rim opening
+  \fill[PGreen] (-10,-18) circle (1.6) (0,-19) circle (1.6) (10,-18) circle (1.6);
+  \fill[PGreen] (-9,-6) circle (2) (9,-6) circle (2) (0,-5.5) circle (2);
+  \draw[icf,fill=white] (-3,-0.5) circle (1.6) (3,-0.5) circle (1.6);
+  \draw[icg] (0,9) circle (2.7);
+\end{scope}}
+
+% ---- lock: padlock with gold keyhole
+\newcommand{\IconLock}[3]{\begin{scope}[shift={(#1,#2)},scale=#3]
+  \draw[ic] (-7.2,-3) -- (-7.2,-8.5) arc[start angle=180,end angle=360,radius=7.2] -- (7.2,-3);
+  \draw[icc,rounded corners=3pt] (-12.5,-3) rectangle (12.5,17);
+  \draw[icg] (0,5.2) circle (3);
+  \draw[ic,line width=2.4pt] (0,6.5) -- (0,11.5);
+\end{scope}}

@@ -1,0 +1,13 @@
+\begin{DensePanel}{190mm}{2}{A RETUNE IS A RANK-ONE CHANGE}
+  {\DenseBody Each PLL enters the delayed grid only through its loop factor:\par}
+  {\DenseEq\color{IASBlue}\[
+    \Delta(s)=sI-A_0-\sum_i b_i(k_i)\,c_i^{\top}e^{-s\tau_i}
+  \]}
+  \vspace{-2mm}
+  {\DenseBody Retuning a set $S$ of $m$ PLLs changes $m$ columns, so the 204-state determinant reduces exactly to an $m\times m$ one:\par}
+  {\DenseEq\color{IASBlue}\[
+    \frac{\det\Delta_S(s)}{\det\Delta_0(s)}=\det\!\big(I_m+C_S^{\top}\Delta_0^{-1}(s)P_S\big)
+  \]}
+  \vspace{-1mm}
+  \begin{DenseWords}\textbf{\color{IASGold!65!black}EXACT\ \ }Replacement plus retuning acts through at most 30 directions (10 at fixed share). Reconstruction error $3\times10^{-16}$ over 21 designs and three delay fields.\end{DenseWords}
+\end{DensePanel}

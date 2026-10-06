@@ -1,0 +1,106 @@
+\documentclass[final]{beamer}
+\usepackage[size=custom,width=91.44,height=121.92,scale=1.0]{beamerposter}
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+\setmainfont{TeX Gyre Heros}[Ligatures=TeX]
+\setsansfont{TeX Gyre Heros}[Ligatures=TeX]
+\definecolor{IASDark}{HTML}{003B2D}
+\definecolor{IASGreen}{HTML}{006B4A}
+\definecolor{IASGold}{HTML}{C99A20}
+\definecolor{IASIvory}{HTML}{F4F2E9}
+\definecolor{IASText}{HTML}{17372D}
+\definecolor{IASBlue}{HTML}{1768AC}
+\definecolor{IASRed}{HTML}{C93624}
+\definecolor{IASGray}{HTML}{626B66}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{background canvas}{\color{IASIvory}\rule{\paperwidth}{\paperheight}}
+\setbeamersize{text margin left=12mm,text margin right=12mm}
+\setbeamercolor{normal text}{fg=IASText,bg=IASIvory}
+\setbeamercolor{header}{fg=white,bg=IASDark}
+\setbeamercolor{panelhead}{fg=white,bg=IASDark}
+\setbeamercolor{callout}{fg=IASDark,bg=white}
+\setbeamercolor{evidence}{fg=IASText,bg=white}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\newcommand{\PosterBody}{\fontsize{27pt}{32pt}\selectfont}
+\newcommand{\PosterCaption}{\fontsize{23pt}{28pt}\selectfont}
+\newcommand{\PosterSmall}{\fontsize{21pt}{25pt}\selectfont}
+\newcommand{\PanelTitle}[1]{%
+  \begin{beamercolorbox}[wd=\linewidth,sep=3mm]{panelhead}%
+    {\bfseries\fontsize{33pt}{38pt}\selectfont #1}%
+  \end{beamercolorbox}\vspace{2mm}%
+}
+\newcommand{\Caption}[1]{{\PosterCaption\color{IASText}#1\par}}
+\newcommand{\RunRoot}{../../research/bnd_h4_mechanism/results/20260927T144629Z_d0fecb32_ias26_060_operating_v1}
+\newcommand{\FinalFigures}{\RunRoot/figures/final}
+
+\begin{document}
+\begin{frame}[t]
+\vspace*{6mm}
+\begin{beamercolorbox}[wd=\textwidth,sep=6mm]{header}
+  {\color{IASGold}\bfseries\fontsize{26pt}{30pt}\selectfont BEYOND NODAL DAMPING\par}
+  {\bfseries\fontsize{72pt}{79pt}\selectfont WHEN STABLE REPLACEMENTS FAIL TOGETHER\par}
+  {\fontsize{34pt}{40pt}\selectfont A canonical IEEE-39 phasor-DAE case, its collective closure, and its operating-point limits\par}
+  \vspace{2mm}{\fontsize{25pt}{30pt}\selectfont Jorge Luis Mayorga Taborda \quad Universidad de los Andes, Colombia \quad IEEE IAS Annual Meeting 2026 - Vancouver\par}
+\end{beamercolorbox}
+\vspace{7mm}
+
+% P1 and P2: canonical phenomenon and nominal mechanism.
+\noindent\begin{minipage}[t]{0.49\textwidth}
+  \PanelTitle{P1 | The stability cliff}
+  \includegraphics[width=\linewidth]{\FinalFigures/P1_STABILITY_CLIFF.pdf}\par
+  \vspace{2mm}\Caption{IEEE-39/TX4 canonical case, deterministic calculation: H4 = $\{30,33,35,37\}$ has 15 stable proper subsets and is unstable ($\alpha_{\perp}=+0.1270\ \mathrm{s}^{-1}$, $f=0.6223\ \mathrm{Hz}$). Full transverse spectrum; all 16 exact portfolios; $\tau_{\mathrm{dec}}=10^{-8}\ \mathrm{s}^{-1}$; no ensemble interval. A nominal witness, not a universal blocker.}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\textwidth}
+  \PanelTitle{P2 | Regular devices, collective closure}
+  \includegraphics[width=\linewidth]{\FinalFigures/P2_LOCAL_COLLECTIVE_CLOSURE.pdf}\par
+  \vspace{2mm}\Caption{IEEE-39/TX4 deterministic boundary audit: four physical pre-normalized local factors $I+M_{ii}$ remain nonsingular (minimum $\sigma_{\min}=0.4892$), while $I+Q_H$ approaches singularity ($4.39\times10^{-8}$) at $g^*=0.207681$, $\alpha_{\perp}=0$, and $f=0.7064$ Hz. Same equilibrium and port order; no ensemble interval. Local nonsingularity is not positive local damping; strict M1 reduction remains blocked.}
+\end{minipage}
+
+\vspace{8mm}
+
+% P3 and P4: synthetic operating-point envelope and fixed intervention.
+\noindent\begin{minipage}[t]{0.49\textwidth}
+  \PanelTitle{P3 | The minimal witness changes}
+  \includegraphics[width=\linewidth]{\FinalFigures/P3_MC_BLOCKER_ROBUSTNESS.pdf}\par
+  \vspace{2mm}\begin{beamercolorbox}[wd=\linewidth,sep=3mm]{callout}
+    {\bfseries\fontsize{29pt}{34pt}\selectfont V4 blocker atlas: 412 none \quad 190 H4-minimal \quad 365 alternative-witness scenarios\par}
+    \vspace{1mm}\Caption{In those 365 cases H4 remains unstable but is no longer minimal. This exact-mask census is descriptive and post hoc; all counts are within $V4=\{30,33,35,37\}$. Across valid IDs, the three observed minimal triples all include bus 33.}
+  \end{beamercolorbox}
+  \vspace{2mm}\Caption{Frozen synthetic envelope: 1,000 scenario IDs; 967 valid and 33 physically infeasible, retained without replacement. H4 minimality: 190/967 (Wilson 95\%: 17.3--22.3\%); any V4 collective blocker: 555/967 (54.3--60.5\%). These are not real-world probabilities.}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\textwidth}
+  \PanelTitle{P4 | Fixed retuning helps, but is not universal}
+  \includegraphics[width=\linewidth]{\FinalFigures/P4_FIXED_INTERVENTION_TDS.pdf}\par
+  \vspace{2mm}\begin{beamercolorbox}[wd=\linewidth,sep=3mm]{callout}
+    \PosterBody\bfseries $g: 0.03625\rightarrow0.25$ \quad 594/967 improve \quad 186/967 rescue \quad 373/967 deteriorate\par
+    \PosterSmall Wilson 95\%: improvement 58.3--64.4\%; rescue 16.9--21.8\%; deterioration 35.6--41.7\%.
+  \end{beamercolorbox}
+  \vspace{2mm}\Caption{The fixed candidate $g=0.25$ was preregistered before the paired synthetic evaluation. The plot also shows three canonical nonlinear phasor-DAE traces. Of 90 planned TDS records, 60 completed with finite primary fits; 56/60 signs agree. Four disagreements are zero-frequency with unavailable $R^2$, so mode identity is unresolved; all 30 solver failures remain counted. No EMT claim.}
+\end{minipage}
+
+\vspace{7mm}
+\begin{beamercolorbox}[wd=\textwidth,sep=2mm]{panelhead}
+  {\bfseries\fontsize{27pt}{31pt}\selectfont Reproducibility strip | same-model cross-code reproduction, not independent validation\par}
+\end{beamercolorbox}
+\vspace{1mm}
+\begin{beamercolorbox}[wd=\textwidth,sep=1mm]{evidence}
+  \centering\includegraphics[width=0.98\textwidth]{\FinalFigures/EVIDENCE_STRIP_CROSSCODE.pdf}
+\end{beamercolorbox}
+
+\vspace{4mm}
+\begin{beamercolorbox}[wd=\textwidth,sep=4mm]{callout}
+  {\bfseries\fontsize{31pt}{36pt}\selectfont Takeaway: the nominal blocker is not a universal bus set, and the fixed retuning is not a universal cure.\par}
+  \PosterCaption In the audited synthetic V4 envelope, minimal witnesses switch from H4 to triples; at the nominal boundary, physical local factors stay nonsingular while collective closure approaches singularity.
+\end{beamercolorbox}
+\vspace{4mm}
+\begin{beamercolorbox}[wd=\textwidth,sep=3mm]{header}
+  \PosterSmall\textbf{Scope and limits.} IEEE-39/TX4 phasor-domain DAE; results depend on model, operating point, and controller policy. IAS26-010 M1 strict is BLOCKED ($2.34\times10^{-11}>10^{-12}$); no $\eta$/F3 or GFL/GFM/F4 result is presented. TDS is phasor-domain only, not EMT or field validation. Detailed claim-to-row provenance and the post hoc V4 atlas are in the IAS26-110 supplement.
+\end{beamercolorbox}
+\end{frame}
+\end{document}

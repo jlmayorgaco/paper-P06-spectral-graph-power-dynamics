@@ -1,0 +1,17 @@
+gate,status
+D0 design/validation firewall,PASS
+D1 PLL parameter structure,PASS_EXACT_AFFINE_LOW_RANK
+D2 Woodbury PLL representation,PASS_LOCAL_IDENTITY
+D3 continuous rho physical model,PASS_AT_LOCAL_PORT_AND_PD_GRID
+D4 rho update structure,PASS_LOCAL_AFFINE_RHO
+D5 global low-rank update,NOT_USED_FOR_SATURATED_BOUND_CERTIFICATE
+D6 replacement closure,NOT_REQUIRED_FOR_SATURATED_ENDPOINT_PROOF
+D7 algebraic PLL boundary,NOT_ENUMERATED_NONBINDING
+D8 algebraic rho solution,NOT_ENUMERATED_NONBINDING
+D9 analytic maximum rho,PASS_ZERO_GAP_SATURATED_BOUND
+D10 multimode safety,PASS_FULL_STATE_ENDPOINT_SPECTRA
+D11 independent PowerDynamics validation,PASS_ALL_FOUR_ENDPOINTS
+D12 validation grid,COMPLETE_132_CELLS_WITH_9_VIOLATIONS
+D13 cross-bus optimum replication,PASS_BUSES_30_33_35_37
+D14 self-energy mechanism,NOT_REQUIRED_FOR_OPTIMUM_CERTIFICATE
+D15 ready for ExpE,YES_WITH_BUS37_INTERIOR_HOLE_RECORDED

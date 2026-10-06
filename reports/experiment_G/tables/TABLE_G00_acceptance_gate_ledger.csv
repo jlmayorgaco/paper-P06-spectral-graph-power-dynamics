@@ -1,0 +1,11 @@
+gate,status,evidence
+A analytical endpoint reproduction,PASS,TABLE_G00_analytical_model_integrity.csv
+B all-GFL zero/gauge classification,PASS,TABLE_G01_all_gfl_zero_structure.csv and Jordan scaling probe
+C retained-SG derivative validation,PARTIAL,TABLE_G03_sg_spectral_authority.csv and TABLE_G05_gain_authority.csv
+D finite single/pair surrogate enumeration,SURROGATE_GLOBAL,TABLE_G08_all_single_anchor_candidates.csv / TABLE_G09_all_pair_anchor_candidates.csv
+E exact full finite-spectrum strict feasibility,PASS,TABLE_G13_final_per_generator_design.csv
+F robust certificate,PASS,TABLE_G07_robustness_certificate.csv
+G transient/direct matrix exponential agreement,PASS,TABLE_G11_direct_modal_validation.csv
+H pre-blind freeze before ExpE read,PASS,pre-blind candidate and SHA-256
+I independent PowerDynamics validation,PASS,TABLE_G16_powerdynamics_spectral_validation.csv
+J nonlinear TDS validation,PASS,TABLE_G17_powerdynamics_nonlinear_tds.csv

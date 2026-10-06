@@ -1,0 +1,4 @@
+LIMIT_EVENT (time_s = 0.6931471806321633, bus = 30, kind = "governor", side = "upper", limit = 1.0, guard = 1.0e-10)
+LIMIT_EVENT (time_s = 0.40546510814409886, bus = 30, kind = "governor", side = "lower", limit = 0.0, guard = 1.0e-10)
+Test Summary:                                  | Pass  Total  Time
+Existing limiter event realization and release |   12     12  7.0s

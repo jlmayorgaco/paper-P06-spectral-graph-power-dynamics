@@ -1,0 +1,17 @@
+retained_MW = 314.6427947528684
+primal = 0.003568142565183182
+active_rows = ["g2", "g3", "g4", "g5", "g6", "g7", "g8", "g9", "g10", "g11", "g12", "g13", "g14", "g15", "g16", "g17", "g18", "g19", "g20", "g21", "g22", "lower5", "upper16", "upper20", "upper21", "upper22", "upper23", "upper24", "lower26"]
+multipliers = [2.3953362664314896e-5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.08308409858985494, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.46949857433750153, 8.49080219597081e-8, 0.0, 0.0, 4.030455569433558e-6, 1.8396799755694203e-6, 0.0, 1.687983411292575e-5]
+disturbance_MW = 100.0
+event_bus = 16
+status = "MAX_ITERATIONS"
+window_s = 0.5
+elapsed_s = 117.95700001716614
+complementarity = 8.546901290181161e-8
+scope = "fixed-support analytical problem; sampled robustness pending full-band audit"
+global_certified = false
+LICQ_rank = 10
+best_feasible_MW = 314.7398079196941
+active_count = 29
+local_certified = false
+stationarity = 0.25415118454777746

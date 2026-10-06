@@ -1,0 +1,17 @@
+max_relative_rho_derivative_error = 1.814086999881258e-7
+minimum_sampled_sigma_G = 2.4558608939233135
+max_relative_stator_affinity_error = 8.460132619190335e-16
+stator_affinity_checks = 400
+max_frozen_voltage_error_pu = 1.2667644710973036e-13
+status = "PASS"
+max_finite_rho_update_voltage_error_pu = 1.1102230246251565e-15
+max_nonlinear_KCL_residual_pu = 1.8474111129762605e-13
+random_states = 40
+scope = "Exact stator algebra and constant-impedance network, random nearby states. Sampled sigma is not a region certificate. No controller or nonlinear optimum computed."
+max_graph_coordinate_voltage_error_pu = 2.4424906541753444e-15
+max_determinant_identity_log_error = 2.70533595525535e-13
+
+[source_sha256]
+"src/bnd_design_e/CollectiveModel.jl" = "d13e8a839e138c4315c0893035a233abdb4ed640275ed30d60c576ed137794b8"
+"src/bnd_design/AnalyticSG.jl" = "50cec450c19a5788053c1d5836867d7ee3b5013335e9b45eec30a8685cf290fa"
+"src/bnd_model_expN/PDExactDesignN.jl" = "f5211509b117d8a06e31efa62aa49b1df20d2c1ef7f5c6f9114bb9eb25838365"

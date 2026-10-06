@@ -1,0 +1,31 @@
+branch,seed_source,status,retained_sg_MW,exact_feasible,robust_feasible,beta_required,kkt_status
+predictor_bus_30,H6 analytic predictor,PREDICTOR_ONLY_NOT_EXACT_FEASIBILITY,58.432075145783074,false,false,NaN,NOT_CERTIFIED
+predictor_bus_31,H6 analytic predictor,PREDICTOR_ONLY_NOT_EXACT_FEASIBILITY,18.112979038273696,false,false,NaN,NOT_CERTIFIED
+predictor_bus_32,H6 analytic predictor,PREDICTOR_ONLY_NOT_EXACT_FEASIBILITY,15.811530252194137,false,false,NaN,NOT_CERTIFIED
+predictor_bus_33,H6 analytic predictor,PREDICTOR_ONLY_NOT_EXACT_FEASIBILITY,11.195155499298084,false,false,NaN,NOT_CERTIFIED
+predictor_bus_34,H6 analytic predictor,PREDICTOR_ONLY_NOT_EXACT_FEASIBILITY,14.905594633085878,false,false,NaN,NOT_CERTIFIED
+predictor_bus_35,H6 analytic predictor,PREDICTOR_ONLY_NOT_EXACT_FEASIBILITY,13.384017973780036,false,false,NaN,NOT_CERTIFIED
+predictor_bus_36,H6 analytic predictor,PREDICTOR_ONLY_NOT_EXACT_FEASIBILITY,10.62888865306231,false,false,NaN,NOT_CERTIFIED
+predictor_bus_37,H6 analytic predictor,PREDICTOR_ONLY_NOT_EXACT_FEASIBILITY,9.95888217295546,false,false,NaN,NOT_CERTIFIED
+predictor_bus_38,H6 analytic predictor,PREDICTOR_ONLY_NOT_EXACT_FEASIBILITY,7.392351977433544,false,false,NaN,NOT_CERTIFIED
+predictor_bus_39,H6 analytic predictor,PREDICTOR_ONLY_NOT_EXACT_FEASIBILITY,24.216984054369313,false,false,NaN,NOT_CERTIFIED
+exact_single_bus_30_eps_0.051893426108961534,H7 exact determinant correction,EXACT_FEASIBLE_NOMINAL,12.973356527240384,true,false,NaN,NOT_CERTIFIED
+exact_single_bus_30_eps_0.07124253949875282,H7 exact determinant correction,EXACT_FEASIBLE_NOMINAL,17.810634874688205,true,false,NaN,NOT_CERTIFIED
+exact_single_bus_31_eps_0.023349419667150366,H7 exact determinant correction,FAIL_OTHER_POLE,11.948338743199445,false,false,NaN,NOT_CERTIFIED
+exact_single_bus_32_eps_0.015349807212958992,H7 exact determinant correction,FAIL_OTHER_POLE,9.97737468842334,false,false,NaN,NOT_CERTIFIED
+exact_single_bus_33_eps_0.009281647937538611,H7 exact determinant correction,FAIL_OTHER_POLE,5.866001496524406,false,false,NaN,NOT_CERTIFIED
+exact_single_bus_33_eps_0.5619601269599325,H7 exact determinant correction,EXACT_FEASIBLE_NOMINAL,355.1588002386776,true,false,NaN,NOT_CERTIFIED
+exact_single_bus_34_eps_0.021722780870917287,H7 exact determinant correction,FAIL_OTHER_POLE,11.035172682425978,false,false,NaN,NOT_CERTIFIED
+exact_single_bus_35_eps_0.01083280278956534,H7 exact determinant correction,FAIL_OTHER_POLE,7.041321813217478,false,false,NaN,NOT_CERTIFIED
+exact_single_bus_35_eps_0.40023246087174164,H7 exact determinant correction,FAIL_OTHER_POLE,260.15109956663235,false,false,NaN,NOT_CERTIFIED
+exact_single_bus_36_eps_0.01218865314999258,H7 exact determinant correction,FAIL_OTHER_POLE,6.825645763995845,false,false,NaN,NOT_CERTIFIED
+exact_single_bus_37_eps_0.008438373493296548,H7 exact determinant correction,FAIL_OTHER_POLE,4.556721686380128,false,false,NaN,NOT_CERTIFIED
+exact_single_bus_37_eps_0.625816726163656,H7 exact determinant correction,EXACT_FEASIBLE_NOMINAL,337.9410321283737,true,false,NaN,NOT_CERTIFIED
+exact_single_bus_38_eps_0.005854621389987182,H7 exact determinant correction,FAIL_OTHER_POLE,4.859335753689365,false,false,NaN,NOT_CERTIFIED
+exact_single_bus_39_eps_0.09643018820084166,H7 exact determinant correction,FAIL_OTHER_POLE,26.136651886585202,false,false,NaN,NOT_CERTIFIED
+robust_grid_beta_0.0_bus_30,"0.02-epsilon scan; exact alpha, zero-frequency prune, full direct resolvent",NOMINAL_EXACT_BOUNDARY,12.973356527240384,true,true,0.0,NOT_CERTIFIED
+robust_grid_beta_1.0e-6_bus_36,"0.02-epsilon scan; exact alpha, zero-frequency prune, full direct resolvent",DIRECT_SMALL_GAIN_CERTIFIED_SCALAR_GRID,11.200000000000001,true,true,1.0e-6,NOT_CERTIFIED
+robust_grid_beta_3.0e-6_bus_36,"0.02-epsilon scan; exact alpha, zero-frequency prune, full direct resolvent",DIRECT_SMALL_GAIN_CERTIFIED_SCALAR_GRID,11.200000000000001,true,true,3.0e-6,NOT_CERTIFIED
+robust_grid_beta_1.0e-5_bus_36,"0.02-epsilon scan; exact alpha, zero-frequency prune, full direct resolvent",DIRECT_SMALL_GAIN_CERTIFIED_SCALAR_GRID,11.200000000000001,true,true,1.0e-5,NOT_CERTIFIED
+robust_grid_beta_3.0e-5_bus_36,"0.02-epsilon scan; exact alpha, zero-frequency prune, full direct resolvent",DIRECT_SMALL_GAIN_CERTIFIED_SCALAR_GRID,11.200000000000001,true,true,3.0e-5,NOT_CERTIFIED
+robust_grid_beta_0.0001_bus_36,"0.02-epsilon scan; exact alpha, zero-frequency prune, full direct resolvent",DIRECT_SMALL_GAIN_CERTIFIED_SCALAR_GRID,11.200000000000001,true,true,0.0001,NOT_CERTIFIED

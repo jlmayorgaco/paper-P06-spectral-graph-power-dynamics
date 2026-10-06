@@ -1,0 +1,107 @@
+RESULTADO DE LA INVESTIGACION — 1 OCTUBRE 2026
+
+Teoria general y experimento particular
+La red, puntos de operacion, incertidumbres, perturbaciones y limites son entradas
+de la formulacion. IEEE 39, los seis escalones nominales de carga Z de +/-100 MW,
+la ventana de 0.5 s y los limites 0.5 Hz / 0.5 Hz/s son una instancia experimental.
+No son constantes de la teoria. Las amplitudes representan cambios de consigna
+de una carga Z; su potencia efectiva depende de la tension.
+
+Resultado numerico validado
+Sustitucion ponderada por despacho: 90.78544633 %.
+Generacion sincrona conservada: 497.84032003 MW.
+Los seis escenarios se completaron en PowerDynamics compilado durante 60 s
+posteriores al evento y en el modelo exacto reducido durante 600 s; se observaron
+los 39 nodos. Maximos observados: 0.499002606 Hz y 0.334562845 Hz/s.
+Rango de tension combinado: [0.961689534, 1.080928838] pu.
+Los seis equilibrios posteriores tienen polos fisicos con parte real negativa;
+el menos amortiguado tiene parte real -0.000387504 1/s. Esto no certifica
+una region de atraccion ni todas las perturbaciones posibles.
+Ese margen posterior es muy pequeno: el punto es una frontera nominal de
+investigacion, no una recomendacion de capacidad robusta para operar una red.
+El caso mas debil (29, -100 MW) tambien se completo a 10000 s, con salida cada
+0.1 s, sin nuevos picos mayores. Es una comprobacion suplementaria; los picos
+tempranos se verifican por separado con salida cada 0.005/0.01 s.
+
+La referencia uniforme, con ganancias PLL nominales, alcanzo 88.056641 % en
+el barrido/refinamiento local de 60 s: mejora de 2.728806
+puntos porcentuales al co-disenar fracciones y ganancias. La referencia no es un
+maximo escalar global demostrado. No atribuir toda la mejora exclusivamente al
+analisis modal: falta la ablacion del optimizador sin esa guia.
+
+Estado de optimalidad
+El estado correcto es mejor candidato factible encontrado. No se ha calculado
+una cota superior no trivial de sustitucion ni un certificado global. El informe
+stationarity_final/stationarity_report.json contiene el residuo KKT, tolerancias
+y complementariedad calculados con gradientes nuevos en este candidato.
+Tolerancia activa 0.001: residuo KKT relativo 0.99612265; violacion primal 0.
+Tolerancia activa 0.003: residuo KKT relativo 0.085476946; violacion primal 0.
+Tolerancia activa 0.01: residuo KKT relativo 0.085476946; violacion primal 0.
+
+Metodo matematico
+Se minimiza sum_i P0_i(1-rho_i), sujeto a las trayectorias DAE no lineales y a
+supremos de restricciones sobre la familia declarada de perturbaciones. Se
+calculan sensibilidades mediante eliminacion algebraica exacta y derivadas de
+las trayectorias; un QP acotado propone cambios conjuntos en rho, log Kp, log Ki.
+Los autovalores y sus sensibilidades guian el paso. La aceptacion exige simulacion
+no lineal completa. El caso con pico tardio activo amplio el horizonte del gradiente.
+La variante con correccion de factibilidad sigue comprobando cada propuesta en
+la simulacion. El tratamiento por varios modos cercanos esta disponible; los
+polos muy mal condicionados requieren un analisis de subespacio espectral.
+
+El resultado analitico central es v_rho_i=-g_v^(-1)g_rho_i. Para el modelo afín
+en tension, g_rho_i=S_i(i_GFL_i-i_SG_i). El adjunto de red pondera ese desajuste
+local segun la perturbacion y la restriccion activa. Esto permite derivar la
+compensacion de ganancias y una geometria local de intercambio entre nodos.
+En la prueba de 1 MW entre 31/32, el reajuste redujo 11.2577 veces el
+cambio observado en el vector seleccionado de restricciones. La compensacion
+acotada probada entre 35/36 no recupero el margen modal declarado; no demuestra
+que cualquier otro reajuste no lineal sea imposible. Esas pruebas usan el
+candidato intermedio del 90.50 %, identificado por sus parametros propios.
+
+Auditoria fisica y numerica
+Se corrigio, en una variante aislada, la convencion del balance de energia DC:
+C*vdc*vdcdot=Pdc-Pac, junto con el signo correspondiente del regulador DC.
+No se modificaron los archivos compartidos del modelo ni la biblioteca instalada.
+La igualdad de polos nominales no detectaba esa diferencia no lineal.
+La auditoria de gradientes, balance energetico, cierre de red y marco movil exacto
+esta en los archivos TOML del directorio. El contraejemplo previo de 93.2213 %
+sigue violando RoCoF en el modelo fisico corregido: aproximadamente 0.89145 Hz/s.
+
+Limites del resultado y validacion que falta
+1. Cerrar estacionariedad con tolerancia declarada, multiples inicializaciones y
+   un limite superior valido si se quiere afirmar maximo global.
+2. Buscar adversarialmente amplitudes, ubicaciones, topologias e incertidumbres;
+   seis casos no certifican una familia continua.
+3. Incorporar limites reales de corriente, energia DC, fuente primaria y retardos.
+   Los cocientes de corriente respecto al valor inicial son diagnosticos.
+4. Certificar una region terminal/invariante y cubrir cambios de regimen de
+   saturacion. El optimizador actual trabaja con margen de no saturacion SG.
+5. Probar ramas con retirada fisica completa de dispositivos. La busqueda actual
+   usa fracciones interiores de agregados co-localizados; no simula la maniobra
+   fisica de retirar una maquina en operacion.
+6. Completar ablaciones y una comparacion entre simuladores con controladores
+   equivalentes. ANDES REGCP1/REECA1 no se considera equivalente automaticamente.
+
+Propuesta de poster
+Beyond Nodal Damping: How Much Synchronous Generation Can We Safely Replace?
+La historia combina un contraejemplo del diseno lineal, una sensibilidad de
+sustitucion acoplada por la red, un mapa de SG conservados/ganancias y la envolvente
+no lineal validada. El poster existente de hipergrafos es una motivacion previa
+con otro alcance; no mezclar sus conteos o bloqueadores con estos resultados.
+La novedad a defender es esa contribucion concreta, no el uso de gradientes,
+Taylor, Fourier del grafo o SQP por si solos. No se promete un premio.
+Las simulaciones diferenciables completas ya son antecedente directo, por
+ejemplo Bossart y Hodge (2026), doi:10.1016/j.ijepes.2026.111825. La contribucion
+a defender debe centrarse en la sustitucion y su compensabilidad por control.
+
+Archivos principales
+METHOD_SPEC.txt: formulacion, derivaciones, condiciones y referencias primarias.
+candidate_final_physical.toml: candidato congelado.
+physical_candidate_parameters.csv: rho, Kp, Ki y MW por nodo.
+nonlinear_codesign_result.pdf: figura de resultados.
+PD_physical_final/: validacion compilada independiente y trazas.
+long_horizon_final/: seis pruebas de 600 s.
+stationarity_final/: gradientes nuevos y diagnostico de optimalidad.
+exchange_checkpoint/: pruebas finitas de intercambio y figura.
+experiments/nonlinear_codesign_20261001/: codigo Julia y coordinacion Python.

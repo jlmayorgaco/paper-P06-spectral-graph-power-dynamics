@@ -1,0 +1,5 @@
+quantity,value_MW,meaning,status
+L_global,0.0,Trivial valid lower bound from epsilon_i >= 0,VALID
+U_feasible,5402.761089978847,Frozen all-SG secure feasibility reference,NUMERICALLY_VALIDATED
+global_gap,5402.761089978847,U-L,OPEN
+best_known_feasible,5402.761089978847,All-SG reference,NOT_OPTIMIZED

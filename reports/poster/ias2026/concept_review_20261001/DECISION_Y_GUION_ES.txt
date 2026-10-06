@@ -1,0 +1,218 @@
+DECISIÓN DE CONTENIDO PARA EL PÓSTER — 1 OCTUBRE 2026
+Revisión del material disponible; no se ejecutaron nuevas simulaciones.
+
+RECOMENDACIÓN
+
+Usar Q2B/CERTIFIED_SEARCH como núcleo del nuevo concepto:
+“How Much Synchronous Generation Must Remain?”
+Subtítulo: “Location-specific SG–GFL co-design with numerical local optimality
+and nonlinear event validation”.
+
+“Beyond Nodal Damping” puede conservarse como nombre del proyecto. No debe
+convertirse en una afirmación de que se inventaron KKT, Schur, small gain o el
+lema bounded-real.
+
+Corrección de la recomendación anterior: el certificado no lineal de esta
+conversación todavía no optimizó conjuntamente rho y ganancias, pero otra
+línea del mismo proyecto SÍ completó ese co-diseño. El cierre posterior
+Q2B/CERTIFIED_SEARCH supera el informe anterior de Q2B/LOCAL_CERTIFICATE
+y el resumen raíz Q2B, que todavía dice FAIL_OPTIMIZATION. No mezclar sus
+candidatos, alcances ni números.
+
+La sencillez de una ecuación no mide el valor de un resultado. La cuestión
+es qué decisión permite tomar, con qué diferencia frente a alternativas y
+qué comprobación puede refutarla. El material actual ofrece una aplicación
+de ingeniería con evidencia; no establece una teoría de control nueva.
+
+QUÉ REVISÉ Y CÓMO LO USARÍA
+
+1. H4 / póster IAS26-110.
+   Tiene un testigo nominal concreto: los 15 subconjuntos propios estables
+   y el conjunto completo inestable. La interacción colectiva es conocida.
+   La auditoría posterior deja bloqueada la comparación reducida M1;
+   informes antiguos de predicción ciega no levantan ese bloqueo.
+   Uso: contexto o material de reserva, identificado como benchmark TX4.
+   No juntar sus curvas con ExpN/Q2B como si fueran el mismo modelo.
+
+2. TX3 / externalidades finitas y reconstrucción conectada.
+   Existe validación numérica extensa de no-aditividad, integración y
+   descomposición descriptor. No se estableció daño operacional material
+   en el modo que limita la estabilidad. Más fórmulas no resuelven ese
+   déficit de consecuencia práctica. No lo elegiría como titular de IAS.
+
+3. CDW / debilidad contextual.
+   Las inversiones de signo contextual de IEEE-39 no se replicaron en
+   IEEE-68. Sí se transfirió el ranking por sensibilidad total de ramas,
+   con salvedades de materialidad y análisis post hoc del modo EM.
+   La sensibilidad espectral es previa en la literatura. Esta línea tiene
+   más amplitud de validación, pero un mensaje menos fuerte y más indirecto
+   para el retiro de generación síncrona.
+
+4. Experimentos B/C y F0–F7 / Fourier del grafo y self-energy.
+   B/C verifican identidades de Schur y un predictor modal condicionado.
+   F2 rechazó la separación escalar en la base del grafo físico: acoplamiento
+   reactivo fuera de diagonal 0.2914 frente al umbral predeclarado 0.05.
+   No hay ley universal Kp(lambda), Ki(lambda) validada. No vender una base
+   de Fourier como desacoplamiento del modelo heterogéneo.
+
+5. K/M/N/P/Q/Q2/Q2B / co-diseño.
+   K falló validación independiente; M diagnosticó un reparto físico P/Q
+   inconsistente. N reconstruyó un modelo compatible con PowerDynamics.
+   P/Q/Q2 mostraron fallos de seguridad y dependencia del instrumento.
+   El cierre posterior Q2B/CERTIFIED_SEARCH completa ajuste conjunto,
+   evidencia numérica de óptimo local y validación del evento diseñado.
+   Esta es la base recomendada. Los intentos fallidos son procedencia, no
+   resultados que deban ocupar paneles del póster.
+
+6. Certificado no lineal por 184 bloques / 281 estados.
+   Es una línea teórica distinta con dominio robustamente invariante para
+   entradas acotadas. El radio 3.5522e-7 depende de su normalización y sigue
+   siendo demasiado pequeño para un mensaje de capacidad operativa.
+   No transferir su garantía de todas las entradas al candidato Q2B.
+
+CONTRATO CIENTÍFICO PROPUESTO
+
+Pregunta: para un modelo físico y un requisito de servicio declarados,
+¿cuánto despacho síncrono debe conservarse, dónde y con qué ganancias PLL?
+
+Resultado empírico: un diseño IEEE-39 conserva 312.523288 MW de SG y asigna
+94.215489% del despacho inicial a GFL. Optimiza cinco retenciones y veinte
+ganancias sobre el soporte {30,33,35,37,39}.
+
+Resultado metodológico: formulación de seguridad analítica del sistema
+completo, control de picos temporales múltiples, evidencia KKT/LICQ/SOSC,
+verificación numérica de robustez en toda frecuencia y validación separada
+de la trayectoria no lineal en PowerDynamics.
+
+Insight acotado: en este óptimo local, el margen espectral no está activo.
+Los valores marginales de retención dependen principalmente de picos de
+frecuencia en 30/39 y del requisito de robustez del modelo en 33/35/37.
+Esto es una interpretación de multiplicadores, no una nueva ley ni una
+descomposición física del MW retenido.
+
+Prueba de alcance: el evento de diseño pasa; mover el mismo cambio de
+setpoint ZIP a buses 8 y 29 produce una violación en cada caso. El estudio
+identifica el alcance de su diseño; no garantiza seguridad en cualquier nodo.
+
+MODELO, INSTRUMENTO Y ALCANCE QUE DEBEN ESTAR VISIBLES
+
+- IEEE-39, modelo ExpN reconciliado; 143 polos físicos en este candidato.
+- Objetivo: MW de despacho inicial ponderados por fracción retenida.
+  94.215489% no significa fracción de energía anual ni porcentaje universal
+  de potencia instalada que puede retirarse.
+- Ganancias Kp/Ki del PLL; no son droop ni inercia sintética. El GFL usado
+  no obtiene soporte sostenido de potencia por ajustar únicamente el PLL.
+- Evento diseñado: incremento de 100 MW en Pset de la carga ZIP del bus 16;
+  la carga efectiva cambia con tensión y se registra, no es una carga
+  constante de 100 MW impuesta en toda la trayectoria.
+- Salidas en diez buses generadores 30–39; diferencia causal de fase con
+  ventana T=0.5 s y segunda diferencia para RoCoF. No todos los buses.
+- Límites: 0.5 Hz y 0.5 Hz/s; el criterio y la ventana se fijaron antes.
+- Robustez beta: incertidumbre completa normalizada sobre el operador
+  reducido A+0.05I, en coordenadas congeladas. No es un radio de MW de carga,
+  una tolerancia porcentual a parámetros físicos, ni robustez no lineal.
+- Certificación local NUMÉRICA, con tolerancias y pruebas de curvatura;
+  no aritmética validada ni optimalidad global. El problema certificado es
+  el analítico, no el problema de optimización de trayectorias no lineales.
+- Sin protección modelada por límite duro de corriente del convertidor.
+  La trayectoria DC registrada no equivale a validar límites de hardware.
+- Las veinte ganancias terminan en cotas de su dominio. La sensibilidad
+  a esas cotas importa y está pendiente para una afirmación de diseño amplia.
+
+MATERIAL YA DISPONIBLE
+
+Panel 1 — La decisión.
+  min sum_i P_i^0 epsilon_i, ajustando epsilon, Kp y Ki; restricciones de
+  polos, beta y picos f/R. Mostrar mapa/tabla de cinco retenciones.
+  No prometer mínimo global, fórmula universal ni seguridad agnóstica.
+
+Panel 2 — Por qué queda SG en cada sitio.
+  Usar FINAL_DESIGN_BY_BUS.csv y MARGINAL_SECURITY_VALUES.csv.
+  El póster debe distinguir magnitudes MW de contribuciones marginales
+  normalizadas. Estas últimas pueden ser negativas o mayores que uno.
+  alpha=-0.0500573 s^-1 cumple el umbral -0.05; su multiplicador es cero.
+  No atribuir esta decisión a “más damping” cuando no limita el óptimo.
+
+Panel 3 — Predicción y validación.
+  Dos picos analíticos de frecuencia activos, alrededor de 7.294 y 14.623 s.
+  PowerDynamics, bus16: máximo |delta f|=0.468755 Hz; RoCoF=0.171771 Hz/s.
+  Mostrar ambos contra límites. Las curvas son evidencia del evento,
+  no una prueba no lineal universal.
+
+Panel 4 — Dónde termina la garantía.
+  Bus8: f=0.410549 Hz, RoCoF=0.512750 Hz/s (falla RoCoF).
+  Bus29: f=0.588571 Hz, RoCoF=0.281889 Hz/s (falla frecuencia).
+  Esta comparación fija el alcance y motiva la extensión a múltiples eventos.
+
+Franja técnica:
+  KKT/LICQ/SOSC numéricos; certificado Riccati de banda completa;
+  identidad del modelo y polos contrastada con PowerDynamics; código/datos.
+  La cota global es 0 <= J* <= 312.523288 MW, todavía trivial.
+
+El borrador POSTER_CONCEPT.html y sus figuras organizan estos datos.
+Es un concepto para revisión de contenido, no un póster final certificado.
+
+QUÉ FALTA PARA QUE LA COMPARACIÓN SEA CONVINCENTE
+
+Prioridad 1 — Comparador justo.
+  Optimizar retenciones con PLL comunes/fijos y con PLL libres usando
+  EXACTAMENTE modelo, soporte, cotas, instrumento y requisitos de Q2B.
+  Reportar SG retenido, residuos y restricciones activas. Sin esto no
+  atribuir los 125.923 MW de mejora al método frente al estado del arte.
+  El candidato anterior del proyecto no tenía certificado robusto completo
+  ni KKT; es antecedente, no baseline equivalente validado.
+
+Prioridad 2 — Robustez física y sensibilidad.
+  Perturbar parámetros físicos interpretables y las cotas de ganancias.
+  Mantener el certificado beta normalizado separado de esa evidencia.
+  Retener los casos inviables y comprobar la consistencia de la medida.
+
+Prioridad 3 — Alcance espacial.
+  Para la ambición original de una teoría independiente del nodo/evento,
+  hace falta un conjunto de perturbaciones declarado y una síntesis que
+  lo cubra. Tres eventos pueden ser una primera validación, no reemplazan
+  la cuantificación sobre toda una clase de entradas.
+  Si no se ejecuta esa extensión, el póster debe mantener el evento de
+  diseño y mostrar los dos fallos externos. No ocultarlos por claridad visual.
+
+Ninguno de estos puntos se ha ejecutado durante esta revisión. No se ha
+reanudado automáticamente la campaña de optimización que estaba pausada.
+
+POSICIONAMIENTO BIBLIOGRÁFICO
+
+No reclamar como nuevo: interacción entre convertidores; co-diseño genérico
+de controles; KKT; Schur; sensibilidad; precios sombra; small gain; Riccati.
+La novedad posible es una capacidad específica, integrada y comprobable
+de planificación en el modelo declarado. La prioridad sigue sin establecerse
+mediante una revisión exhaustiva.
+
+Antecedentes primarios:
+- Zhao y Flynn, 2020, Transient Stability Enhancement with High Shares of
+  Grid-Following Converters in a 100% Converter Grid.
+  https://doi.org/10.1109/ISGT-Europe47291.2020.9248794
+  IEEE-39, ganancia reactiva y PI de feedback PLL, 95% GFL en escenarios.
+  Sus porcentajes no son comparables directamente con nuestro despacho.
+- Chatterjee y Geng, Unified Control Scheme for Optimal Allocation of
+  GFM and GFL Inverters in Power Networks, preprint 2024.
+  https://arxiv.org/abs/2412.15446
+  Asignación GFM/GFL, droop y disipación transitoria; ejemplo de tres buses.
+- Wang y Geng, Decentralized Stability-Constrained Optimal Power Flow for
+  Inverter-Based Power Systems, preprint 2026.
+  https://arxiv.org/abs/2604.17603
+  Restricciones locales de pequeña señal y precios sombra nodales.
+  Evitar vender la interpretación marginal de Q2B como precio sombra nuevo.
+- Li y Turitsyn, Stability-constrained Optimization for Nonlinear Systems
+  based on Convex Lyapunov Functions, 2018.
+  https://arxiv.org/abs/1810.04352
+  Optimización con estabilidad no lineal y DAE ya tiene antecedentes.
+
+JUICIO SOBRE EL PREMIO
+
+La propuesta Q2B tiene una pregunta aplicable, cifras, una asignación por nodo,
+razón matemática y validación con límites visibles. Es una base más fuerte
+que presentar H4 como hallazgo general. No existe evidencia para predecir un
+premio ni para afirmar que ya superamos la literatura. El programa oficial
+acepta investigación respaldada por resultados preliminares; eso no exige
+teoremas barrocos ni implica que este resultado sea ganador.
+
+https://ias-am.ieee.org/2026/student-poster-competition-program/

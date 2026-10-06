@@ -1,0 +1,6 @@
+event,estimate,numerator,denominator,wilson95_low,wilson95_high,invalid_count,indeterminate_count,all_id_conservative_low,all_id_conservative_high,ensemble_interpretation
+E1_H4_MINIMAL_BLOCKER_PERSISTS,0.19648397104446744,190,967,0.17266215441506172,0.2227077129646814,33,0,0.19,0.223,descriptive synthetic ensemble; not a real-world network probability
+E2_COLLECTIVE_PHENOMENON_PERSISTS,0.5739400206825233,555,967,0.5425401916027943,0.604754712936723,33,0,0.555,0.588,descriptive synthetic ensemble; not a real-world network probability
+E3_INTERVENTION_IMPROVES,0.6142709410548087,594,967,0.5831961628794999,0.6444414168633907,33,0,0.594,0.627,descriptive synthetic ensemble; not a real-world network probability
+E4_INTERVENTION_RESCUES_H4,0.1923474663908997,186,967,0.1687419081764319,0.21838768482347806,33,0,0.186,0.219,descriptive synthetic ensemble; not a real-world network probability
+E5_INTERVENTION_DETERIORATES,0.3857290589451913,373,967,0.35555858313660943,0.4168038371205001,33,0,0.373,0.406,descriptive synthetic ensemble; not a real-world network probability

@@ -1,0 +1,23 @@
+{
+  "candidate_json": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\nonlinear_codesign_20261001\\search_full_horizon\\best.json",
+  "candidate_sha256": "90a324f64d13f49ecaafa939559576e2342109203a1b41cc8343b810144167f5",
+  "history_files": [
+    "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\nonlinear_codesign_20261001\\search_physical\\history.json",
+    "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\nonlinear_codesign_20261001\\search_physical_fast\\history.json",
+    "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\nonlinear_codesign_20261001\\search_full_horizon\\history.json"
+  ],
+  "evaluation_csv": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\nonlinear_codesign_20261001\\search_full_horizon\\0033_eval.csv",
+  "evaluation_sha256": "5789337e7e0228d127c24d88bde0d91554493c35113d4f4e6bdf4ccfeea92f0d",
+  "replacement_percent": 90.78544633492469,
+  "retained_MW": 497.8403200319095,
+  "max_frequency_Hz": 0.4990026036976859,
+  "max_RoCoF_Hz_s": 0.334562843692672,
+  "voltage_min_pu": 0.9616895340936189,
+  "voltage_max_pu": 1.0809268263567775,
+  "maximum_current_to_initial_ratio": 1.0187218233897648,
+  "dc_voltage_min": 2.49923226230083,
+  "dc_voltage_max": 2.500866158534742,
+  "minimum_actuator_fraction_slack": 0.0022042804218346257,
+  "nominal_alpha": -0.05004918930285062,
+  "global_optimality_certified": false
+}

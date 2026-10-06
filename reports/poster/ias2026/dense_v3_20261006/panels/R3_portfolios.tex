@@ -1,0 +1,20 @@
+\begin{DensePanel}{200mm}{11}{WHICH SETS FAIL: PORTFOLIO CLOSURE}
+  \noindent\begin{minipage}[t]{112mm}\vspace{0pt}
+    {\DenseBig\color{IASVermillion}15\,/\,1\par}
+    {\DenseSmall\raggedright safe / unsafe subsets of $H_4=\{30,33,35,37\}$: every proper subset stable, the full set unstable ($+0.127\ \mathrm{s^{-1}}$, 0.62 Hz).\par}
+  \end{minipage}\hfill%
+  \begin{minipage}[t]{160mm}\vspace{0pt}
+    {\DenseSmall Closure of a replacement set $H$ through the network ports:\par}
+    {\fontsize{25pt}{30pt}\selectfont\color{IASBlue}\[
+      \det(I+Q_H)=\det(I+Q_{RR})\,\det\!\big(I-R_{i|R}\big)
+    \]}
+    \vspace{-3mm}
+    {\fontsize{25pt}{30pt}\selectfont\color{IASBlue}\[
+      R_{i|R}=Q_{iR}(I+Q_{RR})^{-1}Q_{Ri}
+    \]}
+  \end{minipage}\par
+  \vspace{1mm}
+  {\DenseSmall Adding bus 34 restores stability ($-0.205\ \mathrm{s^{-1}}$). Blind prediction from one network kernel: 16 of 16 on four buses; on nine buses 395 of 512 with 116 false-safe, so the closure explains but does not yet scale.\par}
+  \vspace{1mm}
+  {\DenseSmall\color{IASGray} TX4 model with a fixed policy: no governor, no delay.\par}
+\end{DensePanel}

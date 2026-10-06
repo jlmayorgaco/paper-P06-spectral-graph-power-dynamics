@@ -1,0 +1,37 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterLowerRowHeight][t]{\PosterHalfWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterLowerRowHeight}{8}{DOES IT TRANSFER? AND WHAT WE DO NOT CLAIM}
+    \hyphenpenalty=10000\exhyphenpenalty=10000
+
+    \noindent\begin{minipage}[t]{150mm}\vspace{0pt}
+      {\PosterCondensed\bfseries\fontsize{74pt}{78pt}\selectfont\color{IASDarkGreen}5 of 5\par}
+      {\FigureSize events pass on a second base design (85\,\% inverter share) with the rule applied unchanged: 0 roots beyond the margin.\par}
+    \end{minipage}\hfill%
+    \begin{minipage}[t]{262mm}\vspace{0pt}
+      {\FigureSize \textbf{Nine-bus bank} (assumed dynamic data): transport on its three PLLs gives $-0.131\ \mathrm{s^{-1}}$ from $+0.886$ (spectral re-run; its 12 of 12 events are reported).\par}\vspace{2mm}
+      {\FigureSize \textbf{First-order version} of the formula gives the same root counts: the choice of mode matters, not the truncation.\par}\vspace{2mm}
+      {\FigureSize \textbf{Phase budget} $h^{\star}=\varphi_{PI}(\omega)/\omega$: 8.99 ms for the 4.91 Hz mode, a limit of the formula, not of operation.\par}
+    \end{minipage}\par
+    \vspace{4mm}
+    \begin{InWords}\InWordsLabel \textbf{Not claimed:} an optimal mode, a maximum delay, a maximum inverter share, superiority over other compensators. Root counts are floating point, checked against eigenvalues at zero delay, not interval-certified. One network.\end{InWords}
+
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewHalfPageWidth}
+  \def\PosterPageHeight{\PosterPreviewLowerPageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewHalfLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

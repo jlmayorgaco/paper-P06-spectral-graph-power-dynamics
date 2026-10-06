@@ -1,0 +1,6 @@
+case,input_pass,graph_basis_pass,graph_identity_pass,Gamma_identity_pass,number_analyzed_modes,predictor_status,median_predictor_error,max_predictor_error,dominant_intermodal_mode
+C0,true,true,true,true,7,SUPPORTED,0.00020971905184731152,0.13749974048575472,1
+C30,true,true,true,true,6,LIMITED,0.0060372736472636725,0.09555394722064185,2
+C33,true,true,true,true,8,LIMITED,0.001077925957374811,0.052139893203882744,2
+C35,true,true,true,true,7,LIMITED,0.0007333514552952371,0.04684258970662243,2
+C37,true,true,true,true,8,LIMITED,0.006828042004780248,0.07629899986440988,2

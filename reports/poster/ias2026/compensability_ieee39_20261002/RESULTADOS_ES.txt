@@ -1,0 +1,123 @@
+COMPENSABILIDAD PLL A MEZCLA SG/GFL FIJA — IEEE-39
+Prueba de concepto, 2026-10-02
+
+PREGUNTA Y MODELO
+
+Se mantuvo fijo el vector rho de un candidato de 90.78544633% GFL
+(497.84032003 MW SG retenidos). Se compararon exactamente el mismo punto
+operativo, soporte de dispositivos, red, cargas y eventos con:
+  (1) las ganancias Kp, Ki del candidato co-diseñado;
+  (2) Kp=2*pi*5, Ki=(2*pi*5)^2/4 en todos los GFL.
+
+El DAE de PowerDynamics se inicializó de nuevo para cada brazo. Se integraron
+61 s incluyendo 1 s de prefalla, paso de salida 0.005 s, tolerancias 1e-9,
+y se midieron frecuencia, RoCoF de ventana 0.5 s y tensión en los 39 buses.
+
+RESULTADO DEL CONTRAFACTUAL NO LINEAL
+
+Ambos brazos completaron los seis eventos. El tuning redujo el pico de
+frecuencia en LOS SEIS:
+  bus 8, carga +100 MW: 0.447211 -> 0.429913 Hz (mejora 0.017297 Hz); RoCoF 0.154497 -> 0.192318 Hz/s.
+  bus 8, carga -100 MW: 0.502778 -> 0.482508 Hz (mejora 0.020271 Hz); RoCoF 0.131987 -> 0.152231 Hz/s.
+  bus 16, carga +100 MW: 0.473503 -> 0.456160 Hz (mejora 0.017343 Hz); RoCoF 0.115897 -> 0.123944 Hz/s.
+  bus 16, carga -100 MW: 0.516675 -> 0.498723 Hz (mejora 0.017952 Hz); RoCoF 0.118298 -> 0.122017 Hz/s.
+  bus 29, carga +100 MW: 0.464380 -> 0.450945 Hz (mejora 0.013435 Hz); RoCoF 0.138748 -> 0.175471 Hz/s.
+  bus 29, carga -100 MW: 0.499597 -> 0.499003 Hz (mejora 0.000595 Hz); RoCoF 0.242987 -> 0.334563 Hz/s.
+
+El peor pico de frecuencia pasó de 0.516675 a 0.499003 Hz. Con el mismo
+límite exploratorio de 0.5 Hz, los PLL nominales fallaron 2/6
+eventos y el candidato ajustado  0/6.
+
+El tuning subió el RoCoF máximo de 0.242987 a 0.334563 Hz/s. Ningún brazo
+excedió el límite de 0.5 Hz/s (0/6 frente a 0/6).
+Todas las tensiones quedaron entre 0.9 y 1.1 pu (0/6 y
+0/6 fallos, respectivamente).
+
+Esto demuestra una COMPENSACIÓN condicionada en esta instancia: a igual
+porcentaje de reemplazo, los PLL ajustados recuperan margen de frecuencia
+frente a dos perturbaciones de carga que hacen fallar la referencia nominal.
+El efecto no es gratuito: en este conjunto el pico de RoCoF aumentó en los
+seis casos. La figura retuning_tradeoff muestra la relación de un vistazo.
+
+ENVOLVENTE MATEMÁTICA LOCAL
+
+Para la DAE index-1 xdot=f(x,z,p,w), 0=g(x,z,p,w), en una rama algebraica
+regular, la eliminación local de z da:
+  A = f_x - f_z g_z^(-1) g_x,
+  B_eta = f_eta - f_z g_z^(-1) g_eta,
+  Sdot_eta = A S_eta + B_eta,
+para eta=rho o kappa=(log Kp,log Ki). Apilando restricciones normalizadas
+en g(p)<=0, su mapa de compensación de primer orden es:
+  maximize tau
+  sujeto a g + J_rho * 1 * tau + J_kappa * delta_kappa <= 0,
+           |delta_kappa_l| <= log(1.1), 0<=tau<=0.01.
+
+Con 36 filas (6 modos y 5 métricas por cada uno de 6 eventos), el QP
+regularizado sobre la tangente predijo tau=1.6964305e-05,
+equivalente a 0.001696 puntos
+porcentuales adicionales de reemplazo bajo esa dirección uniforme. La
+restricción activa es el polo de decaimiento. La sensibilidad de ese polo
+analítica y la diferencia central fresca difieren 2.605e-06
+relativamente; la fila modal guardada coincide con el gradiente analítico
+actualizado (error 0.000e+00).
+
+Ese número es una predicción local de la tangente; NO es una cota física.
+Las filas de trayectoria proceden de una tangente SDIRK de paso 0.025 s y
+su resto de segundo orden no está acotado. Por eso aún no certificamos que
+ninguna ganancia del recuadro pueda superar la frontera no lineal.
+
+FORMA CONDICIONAL DEL TEOREMA QUE FALTA VALIDAR
+
+Sea h(p)<=0 una familia de restricciones de trayectoria diferenciables en
+un recuadro B, y lambda>=0. Si se prueba en todo B la cota
+  ||nabla^2(lambda' h)(p)||_2 <= L_lambda,
+entonces, para cada delta en B,
+  lambda'h(p+delta) >= lambda'h(p)
+      + lambda'J delta - (L_lambda/2)||delta||_2^2.
+Si el mínimo global de la parte derecha sobre B es estrictamente positivo,
+no existe diseño factible en B: cualquier punto factible tendría
+lambda'h<=0, contradicción. Para una cota rectangular en las ganancias,
+el mínimo lineal es una función soporte que puede calcularse por coordenada.
+
+La prueba es una aplicación de Taylor con resto y separación dual; por sí
+sola no sería una novedad matemática. El hueco investigable es obtener una
+cota de curvatura estrecha y reproducible a través del DAE completo y de sus
+interacciones de red, y demostrar que esa exclusión finita anticipa la
+frontera observada por PowerDynamics. Si se activan limitadores, hay que
+certificar cada modo híbrido o tratar los eventos; la suavidad de un Taylor
+único ya no se puede asumir.
+
+ALCANCE Y SIGUIENTE PRUEBA
+
+La comparación mantiene fija la rho del candidato, pero su contraparte de
+ganancias nominales no es una búsqueda óptima sobre todo el recuadro. Los
+seis escalones sólo falsifican/ilustran casos; no representan toda la clase
+general de perturbaciones. Los límites de corriente del convertidor y de
+energía DC no están certificados. 90.785% no es máximo global.
+
+El siguiente paso para que esto sea un resultado de investigación es:
+1. verificar cotas Hessianas/intervalares para las restricciones activas y
+   mantener separadas las regiones de limitadores;
+2. recorrer radios de recuadro y de sustitución, cotejando la predicción
+   del no-go finito con optimización y trayectoria PowerDynamics;
+3. buscar un certificado no local o un gap interior/exterior en una instancia
+   reducida; después repetir la ablación de grafo y DAE completa en IEEE-39.
+
+El experimento prueba que el tuning importa a porcentaje SG/GFL fijo. Aún
+no prueba una teoría nueva, no demuestra imposibilidad global y no valida
+robustez frente a cualquier perturbación.
+
+ARCHIVOS Y REPRODUCCIÓN
+
+Experimento PowerDynamics:
+  julia --startup-file=no --project=. experiments/compensability_ieee39_20261002/pd_compare.jl
+Sobre local y auditoría modal:
+  julia --startup-file=no --project=. experiments/compensability_ieee39_20261002/linear_envelope.jl
+Resumen y figura:
+  C:/Users/walla/anaconda3/python.exe experiments/compensability_ieee39_20261002/summarize_results.py
+
+Resultados: events.csv, comparison.csv, linear_envelope.toml y
+retuning_tradeoff.png/.svg/.pdf en reports/poster/ias2026/compensability_ieee39_20261002/.
+La formulación teórica candidata, incluyendo sensibilidades de segundo orden,
+estructura de caminos/ciclos y condiciones que faltan, está en
+experiments/compensability_ieee39_20261002/TEORIA_CANDIDATA_ES.md.

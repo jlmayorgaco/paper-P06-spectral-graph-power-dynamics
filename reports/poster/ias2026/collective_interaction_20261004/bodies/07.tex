@@ -1,0 +1,26 @@
+\begin{minipage}[t][\PosterLowerRowHeight][t]{\PosterHalfWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterLowerRowHeight}{7}{BEYOND NODAL: ONE DELAY MOVES DAMPING AROUND}
+
+    \noindent\begin{minipage}[t]{205mm}\vspace{0pt}
+      {\FigureSize Delay one PLL by 1 ms. The damping the grid supplies at frequency $\Omega$ does not just rise or fall:\par}
+      \vspace{1mm}
+      {\HeroEquation\color{IASBlue}\[
+        \begin{gathered}
+          \delta Z=\gamma\,u\,v^{*}\\[2mm]
+          \delta D_H=\tfrac12\,(a\,v^{*}+v\,a^{*})
+        \end{gathered}
+      \]}
+      \vspace{1mm}
+      \begin{InWords}\InWordsLabel Along one network path damping grows, along another it shrinks: always one positive and one negative eigenvalue (60 of 60 checks).\end{InWords}
+    \end{minipage}\hfill%
+    \begin{minipage}[t]{215mm}\vspace{0pt}
+      \includegraphics[width=213mm,height=100mm,keepaspectratio]{generated/figures/rank_two2.pdf}\par
+      {\FigureSize IEEE-39, 5 Hz, $+1$ ms at each PLL site; error $<5\times10^{-8}$.\par}
+    \end{minipage}\par
+    \vspace{3mm}
+    {\FigureSize $Z$: torque--speed impedance seen by the generators. $D_H=\mathrm{Herm}\,Z(\mathrm{j}\Omega)$: damping supplied at $\Omega$. $u,v$: the two network paths from the delayed PLL; $a=\gamma u$.\par}
+    \vspace{2mm}
+    {\FigureSize \textbf{Why ``beyond nodal'':} in one frozen design the nodal term of the projected damping is $+38.7$ but the collective term is $-737.5$; ignoring the grid paths flips the sign. \textbf{Caution:} damping at one frequency is not a stability test.\par}
+
+  \end{PosterPanel}
+\end{minipage}%

@@ -1,0 +1,48 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterFourHeight][t]{\PosterGridWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterFourHeight}{4}{WHY: THE NETWORK SETS THE PRICE}
+
+    \noindent\begin{minipage}[t]{292mm}\vspace{0pt}
+      {\Subhead\color{IASDarkGreen}Spillover onto any other mode $\mu$\par}\vspace{1mm}
+      {\HeroEquation\color{IASBlue}\[
+        \frac{d\mu}{dh}=-k_p\,(\mu-\lambda)(\mu-\bar\lambda)\,\frac{\partial\mu}{\partial k_I}
+      \]}
+      \vspace{-2mm}
+      {\FigureSize The PLL fixes the quadratic factor. The network fixes the residue $\partial\mu/\partial k_I$, through its reduced operator $Z(s)$.\par}
+      \vspace{3mm}
+      \noindent{\PosterCondensed\bfseries\fontsize{64pt}{66pt}\selectfont\color{IASBlue}0.99}\hspace{3mm}%
+      \begin{minipage}[b]{190mm}{\FigureSize rank correlation between predicted and exact price over 11 candidate modes.\par}\end{minipage}
+    \end{minipage}\hfill%
+    \begin{minipage}[t]{262mm}\vspace{0pt}
+      {\Subhead\color{IASDarkGreen}One analysis ranks the choices\par}\vspace{1mm}
+      \includegraphics[width=258mm,height=100mm,keepaspectratio]{generated/figures/price_prediction.pdf}\par
+      {\FigureSize Worst root after +4 ms when protecting each mode.\par}
+    \end{minipage}\hfill%
+    \begin{minipage}[t]{262mm}\vspace{0pt}
+      {\Subhead\color{IASDarkGreen}The selection rule\par}\vspace{1mm}
+      {\PosterParagraph \StepBadge{1}\ One eigen-analysis of the base design.\par}\vspace{2.5mm}
+      {\PosterParagraph \StepBadge{2}\ Predict the worst root for each candidate mode.\par}\vspace{2.5mm}
+      {\PosterParagraph \StepBadge{3}\ Keep those inside the margin; take the one that keeps the most $k_I$.\par}\vspace{2.5mm}
+      {\PosterParagraph \StepBadge{4}\ Verify: root count and nonlinear events.\par}
+    \end{minipage}\par
+
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewFullPageWidth}
+  \def\PosterPageHeight{\PosterPreviewFourPageHeight}
+  \def\PosterPreviewLeft{\PosterOuterMargin}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

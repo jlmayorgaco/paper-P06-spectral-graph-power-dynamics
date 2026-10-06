@@ -1,0 +1,14 @@
+% Reserved order-truncation plot geometry. No M1 order-by-order result is released.
+\draw[IASRule,line width=1.5pt] (28,17)--(316,17);
+\draw[IASRule,line width=1.5pt] (28,17)--(28,84);
+\draw[IASRule] (64,14)--(64,20);
+\node[font=\fontsize{28pt}{30pt}\selectfont,text=IASDarkText] at (64,7) {1};
+\draw[IASRule] (132,14)--(132,20);
+\node[font=\fontsize{28pt}{30pt}\selectfont,text=IASDarkText] at (132,7) {2};
+\draw[IASRule] (200,14)--(200,20);
+\node[font=\fontsize{28pt}{30pt}\selectfont,text=IASDarkText] at (200,7) {3};
+\draw[IASRule] (268,14)--(268,20);
+\node[font=\fontsize{28pt}{30pt}\selectfont,text=IASDarkText] at (268,7) {4};
+\node[font=\fontsize{26.2pt}{29pt}\selectfont,text=IASDarkText] at (174,1) {retained interaction order};
+\node[font=\fontsize{33pt}{36pt}\selectfont,text=IASGray,align=center] at (174,63) {\UnresolvedMark\\ PENDING};
+\node[font=\fontsize{26.2pt}{29pt}\selectfont,text=IASGray,align=center] at (174,42) {M1 order-by-order outputs\\ not released};

@@ -1,0 +1,35 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterLowerRowHeight][t]{\PosterHalfWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterLowerRowHeight}{7}{IT EXTENDS DELAY TOLERANCE, NOT THE MAXIMUM SHARE}
+
+    \noindent\begin{minipage}[t]{190mm}\vspace{0pt}
+      {\FigureSize Each cell retunes the PLLs by the rule and counts roots beyond the margin. A red bar marks the same cell without retuning. Numbers are nonlinear events passed.\par}
+      \vspace{2mm}
+      \begin{InWords}\InWordsLabel Where the 40 ms design is feasible, the rule keeps the margin at 44 and 48 ms. 92.5\,\% already fails at 40 ms.\end{InWords}
+      \vspace{2mm}
+      {\FigureSize At 90\,\% even the 40 ms design fails the events (0 of 2): the limit there is the share, not the retune.\par}
+    \end{minipage}\hfill%
+    \begin{minipage}[t]{230mm}\vspace{0pt}
+      \includegraphics[width=228mm,height=150mm,keepaspectratio]{generated/figures/share_delay_map.pdf}\par
+    \end{minipage}\par
+
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewHalfPageWidth}
+  \def\PosterPageHeight{\PosterPreviewLowerPageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewHalfLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

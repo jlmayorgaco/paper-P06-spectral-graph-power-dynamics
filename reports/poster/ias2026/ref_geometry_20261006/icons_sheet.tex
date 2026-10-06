@@ -1,0 +1,32 @@
+% Icon sheet: every icon at scale 1 and 2 (reference-pixel coordinates, same preamble as main.tex). Page = 960 x 560 px.
+\documentclass{article}
+\usepackage[paperwidth=756mm,paperheight=441mm,margin=0pt]{geometry}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\input{refstyle.tex}
+\input{extra.tex}
+\newcommand{\Cell}[4]{% col, row, macro name (without \Icon), (unused)
+  \begin{scope}[shift={({#1*240},{#2*100})}]
+    \fill[PBody] (2,2) rectangle (238,98); \draw[PBorder,line width=0.7pt] (2,2) rectangle (238,98);
+    \csname Icon#3\endcsname{34}{50}{1}
+    \csname Icon#3\endcsname{110}{50}{2}
+    \node[anchor=west,inner sep=0pt,text=PText,font=\FiraMed\fontsize{17pt}{17pt}\selectfont] at (160,50) {\texttt{#3}};
+  \end{scope}}
+\begin{document}
+\noindent\mbox{}%
+\begin{OnPage}
+  \fill[white] (0,0) rectangle (960,560);
+  \begin{scope}[shift={(0,0)}]
+  \Cell{0}{0}{SG}{}      \Cell{1}{0}{GFL}{}     \Cell{2}{0}{PLL}{}     \Cell{3}{0}{Bus}{}
+  \Cell{0}{1}{Line}{}    \Cell{1}{1}{Network}{} \Cell{2}{1}{Clock}{}   \Cell{3}{1}{Spectrum}{}
+  \Cell{0}{2}{Check}{}   \Cell{1}{2}{Cross}{}   \Cell{2}{2}{Warn}{}    \Cell{3}{2}{Wave}{}
+  \Cell{0}{3}{GraphHop}{} \Cell{1}{3}{Matrix}{} \Cell{2}{3}{Funnel}{}  \Cell{3}{3}{Lock}{}
+  \end{scope}
+  % macro tests
+  \HeroBox{20}{425}{250}{475}
+  \BigNumber{300}{450}{+0.127}{s$^{-1}$ unstable\\at 0.62 Hz}
+  \BigNumber[PGreen]{560}{450}{11/12}{cases repaired}
+  \NextChip{940}{450}{Why? closure (4)}
+  \SectionRule{A}{Section rule}{20}{510}{940}
+\end{OnPage}
+\end{document}

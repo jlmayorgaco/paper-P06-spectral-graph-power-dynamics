@@ -1,0 +1,199 @@
+{
+  "status": "FULL_GFL_NONLINEAR_IMPLEMENTATION_CHECKS_PASSED",
+  "point_checks": [
+    {
+      "bus": 30,
+      "samples": 200,
+      "max_exact_factorization_error": 7.275957614183426e-12,
+      "max_convex_hull_error": 1.3969838619232178e-09,
+      "max_trim_enclosure_excess_float": 1.2677465255279851e-11,
+      "max_sampled_boundary_derivative": -100.26737696280719
+    },
+    {
+      "bus": 31,
+      "samples": 200,
+      "max_exact_factorization_error": 9.094947017729282e-12,
+      "max_convex_hull_error": 1.862645149230957e-09,
+      "max_trim_enclosure_excess_float": 1.0667048490004394e-11,
+      "max_sampled_boundary_derivative": -88.72833854700653
+    },
+    {
+      "bus": 32,
+      "samples": 200,
+      "max_exact_factorization_error": 9.094947017729282e-12,
+      "max_convex_hull_error": 1.3969838619232178e-09,
+      "max_trim_enclosure_excess_float": 8.251912023499538e-12,
+      "max_sampled_boundary_derivative": -320.5430978825492
+    },
+    {
+      "bus": 33,
+      "samples": 200,
+      "max_exact_factorization_error": 7.275957614183426e-12,
+      "max_convex_hull_error": 1.3969838619232178e-09,
+      "max_trim_enclosure_excess_float": 9.191841541696363e-12,
+      "max_sampled_boundary_derivative": -253.22233159403774
+    },
+    {
+      "bus": 34,
+      "samples": 200,
+      "max_exact_factorization_error": 7.275957614183426e-12,
+      "max_convex_hull_error": 1.3969838619232178e-09,
+      "max_trim_enclosure_excess_float": 1.1537145649302372e-11,
+      "max_sampled_boundary_derivative": -189.28768047862292
+    },
+    {
+      "bus": 35,
+      "samples": 200,
+      "max_exact_factorization_error": 7.275957614183426e-12,
+      "max_convex_hull_error": 1.862645149230957e-09,
+      "max_trim_enclosure_excess_float": 1.1932909658682104e-11,
+      "max_sampled_boundary_derivative": -100.37162157704897
+    },
+    {
+      "bus": 36,
+      "samples": 200,
+      "max_exact_factorization_error": 7.275957614183426e-12,
+      "max_convex_hull_error": 1.862645149230957e-09,
+      "max_trim_enclosure_excess_float": 9.096770999739385e-12,
+      "max_sampled_boundary_derivative": -103.57860597939508
+    },
+    {
+      "bus": 37,
+      "samples": 200,
+      "max_exact_factorization_error": 9.094947017729282e-12,
+      "max_convex_hull_error": 1.3969838619232178e-09,
+      "max_trim_enclosure_excess_float": 1.1491865486128544e-11,
+      "max_sampled_boundary_derivative": -205.54798215162958
+    },
+    {
+      "bus": 38,
+      "samples": 200,
+      "max_exact_factorization_error": 7.275957614183426e-12,
+      "max_convex_hull_error": 1.862645149230957e-09,
+      "max_trim_enclosure_excess_float": 1.1675461117681009e-11,
+      "max_sampled_boundary_derivative": -149.23302665172542
+    },
+    {
+      "bus": 39,
+      "samples": 200,
+      "max_exact_factorization_error": 9.094947017729282e-12,
+      "max_convex_hull_error": 1.3969838619232178e-09,
+      "max_trim_enclosure_excess_float": 1.4076978392062924e-11,
+      "max_sampled_boundary_derivative": -216.85981339063306
+    }
+  ],
+  "trajectories": [
+    {
+      "bus": 30,
+      "initial": "origin",
+      "max_storage": 0.4403860934581538,
+      "max_normalized_output": 0.10259314655692882,
+      "min_vdc": 2.4999607497130474,
+      "max_vdc": 2.500050625416198,
+      "max_current": 2.7704316659282537
+    },
+    {
+      "bus": 30,
+      "initial": "current_boundary",
+      "max_storage": 0.998001,
+      "max_normalized_output": 0.9944268432377241,
+      "min_vdc": 2.4999601108707084,
+      "max_vdc": 2.5004271702089156,
+      "max_current": 2.851539531486078
+    },
+    {
+      "bus": 31,
+      "initial": "origin",
+      "max_storage": 0.45090857457575606,
+      "max_normalized_output": 0.09311212123018858,
+      "min_vdc": 2.4999609897847095,
+      "max_vdc": 2.500050225617804,
+      "max_current": 5.577635112393023
+    },
+    {
+      "bus": 32,
+      "initial": "origin",
+      "max_storage": 0.45167397142742854,
+      "max_normalized_output": 0.09351103364716566,
+      "min_vdc": 2.499960421961841,
+      "max_vdc": 2.500051056334721,
+      "max_current": 6.9391292763697345
+    },
+    {
+      "bus": 33,
+      "initial": "origin",
+      "max_storage": 0.4476512827291717,
+      "max_normalized_output": 0.1016309309799494,
+      "min_vdc": 2.499957849010337,
+      "max_vdc": 2.5000552087778583,
+      "max_current": 6.43952908430282
+    },
+    {
+      "bus": 34,
+      "initial": "origin",
+      "max_storage": 0.4394286091298058,
+      "max_normalized_output": 0.10776159925239122,
+      "min_vdc": 2.4999558046531694,
+      "max_vdc": 2.500057330239965,
+      "max_current": 5.285474978186511
+    },
+    {
+      "bus": 35,
+      "initial": "origin",
+      "max_storage": 0.4428824112133849,
+      "max_normalized_output": 0.10085710649414636,
+      "min_vdc": 2.4999600891131077,
+      "max_vdc": 2.500051505113964,
+      "max_current": 6.522893987551371
+    },
+    {
+      "bus": 36,
+      "initial": "origin",
+      "max_storage": 0.4299301527649131,
+      "max_normalized_output": 0.11300313130817667,
+      "min_vdc": 2.49995632654785,
+      "max_vdc": 2.5000572328713893,
+      "max_current": 5.35795041588032
+    },
+    {
+      "bus": 37,
+      "initial": "origin",
+      "max_storage": 0.44415360832102085,
+      "max_normalized_output": 0.10022080157332332,
+      "min_vdc": 2.499960930218935,
+      "max_vdc": 2.500051885397685,
+      "max_current": 5.260599040275896
+    },
+    {
+      "bus": 38,
+      "initial": "origin",
+      "max_storage": 0.4296182518407706,
+      "max_normalized_output": 0.11595318902801177,
+      "min_vdc": 2.499952538187836,
+      "max_vdc": 2.50006314885285,
+      "max_current": 8.09655531504444
+    },
+    {
+      "bus": 39,
+      "initial": "origin",
+      "max_storage": 0.4462151303602556,
+      "max_normalized_output": 0.09381267451155643,
+      "min_vdc": 2.4999651304626864,
+      "max_vdc": 2.5000466750993007,
+      "max_current": 2.741305335513352
+    },
+    {
+      "bus": 39,
+      "initial": "current_boundary",
+      "max_storage": 0.9980009999999997,
+      "max_normalized_output": 0.99415677223155,
+      "min_vdc": 2.499964373139032,
+      "max_vdc": 2.5004497950122073,
+      "max_current": 2.8304453518543777
+    }
+  ],
+  "synthesis_sha256": "b65f04fe19d0fed0ecef4aa26f01f43c6e98292f95a435141d59c6e1cb4cc93d",
+  "verification_sha256": "d0354f380e5c0059f79fe6ee824d8275e0330c852a08ac6ba73b8f9d5c20fa9f",
+  "script_sha256": "c1f8f19c9c1f609c208c291c63bf85b790b166b9fd41a264153c1c4353f827d9",
+  "scope": "Implementation checks; exact rational certificates, not these finite tests, establish the conditional input guarantee."
+}

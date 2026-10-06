@@ -1,0 +1,41 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterMiddleRowHeight][t]{\PosterHalfWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterMiddleRowHeight}{6}{SPECTRUM AND EVENTS: PASS BOTH}
+
+    \noindent\begin{minipage}[t]{208mm}\vspace{0pt}
+      \begin{tcolorbox}[enhanced,colback=IASPaleGreen,colframe=IASPaleGreen,boxrule=0pt,arc=1.5mm,borderline west={2.2mm}{0pt}{IASBlue},left=5mm,right=3mm,top=2mm,bottom=2mm,height=92mm,valign=top,before skip=0pt,after skip=0pt]
+        {\Subhead\color{IASBlue}Roots clean, events fail\par}\vspace{1.5mm}
+        {\PosterParagraph Protecting the 4.91 Hz mode at 44 ms leaves 0 roots beyond the margin, yet only \textbf{2 of 5} events meet the limits (0.505 Hz; SG reserve $\approx0$).\par}\vspace{2mm}
+        {\FigureSize The retune spends integral gain: $k_I$ falls from 246.7 to 137.8.\par}
+      \end{tcolorbox}
+    \end{minipage}\hfill%
+    \begin{minipage}[t]{208mm}\vspace{0pt}
+      \begin{tcolorbox}[enhanced,colback=IASPaleGreen,colframe=IASPaleGreen,boxrule=0pt,arc=1.5mm,borderline west={2.2mm}{0pt}{IASGray},left=5mm,right=3mm,top=2mm,bottom=2mm,height=92mm,valign=top,before skip=0pt,after skip=0pt]
+        {\Subhead\color{IASGray}Events clean, roots unstable\par}\vspace{1.5mm}
+        {\PosterParagraph With no retune at 42 ms there are 4 unstable roots ($+0.096\ \mathrm{s^{-1}}$ at 4.8 Hz), yet the event meets every limit for 30 s.\par}\vspace{2mm}
+        {\FigureSize The 0.5 s windows do not see a slow 5 Hz growth.\par}
+      \end{tcolorbox}
+    \end{minipage}\par
+    \vspace{3mm}
+    \begin{InWords}\InWordsLabel Neither test is enough alone: the spectrum misses the spent reserve, the events miss slow growth.\end{InWords}
+
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewHalfPageWidth}
+  \def\PosterPageHeight{\PosterPreviewMiddlePageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewHalfLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

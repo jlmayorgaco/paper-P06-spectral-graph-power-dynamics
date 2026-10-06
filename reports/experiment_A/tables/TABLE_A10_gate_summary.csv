@@ -1,0 +1,9 @@
+gate,metric,threshold,observed,status,notes
+GATE A0 — MODEL PROVENANCE,version/source/state map,exact provenance,PowerDynamics 5.0.0; IEEE-39 package example,PASS,Source path and exact state map saved.
+GATE A1 — EQUILIBRIUM,normalized equilibrium residual,<=1e-8,1.6287446460197112e-13,PASS,F/G residuals both reported.
+GATE A2 — LINEARIZATION SANITY,QZ vs reduced spectrum; Jacobian FD sign check,FD<=1e-5; spectrum<=1e-6,1.5649471803316973e-10; 3.333913236981773e-9,PASS,Raw descriptor retained; Jacobian FD and synthetic sensitivity-sign FD recorded.
+GATE A3 — EXACT SCHUR IDENTITY,Schur block residual median and p95,median<1e-10; p95<1e-8,7.149733680142577e-20; 3.757006678717024e-19,PASS,Conditioned and all-point metrics saved.
+GATE A4 — RETAINED POLE PRESERVATION,visible-pole normalized sigma_min residual,<=1e-8,4.0048975131161274e-18,PASS,Pole root solving omitted; singular-value test used.
+GATE A5 — BND SECOND-ORDER BRIDGE,angle-equation BND relative residual,PASS-EXACT<=1e-8; PASS-APPROX<=1e-2,PASS-EXACT; p95=4.1861097973902148e-16,PASS-EXACT,"Π_q is derived from model blocks; global Σ(s) is unavailable because T_cc(0) is singular."
+GATE A6 — SMALL-SIGNAL/TDS CONSISTENCY,max signal NRMSE,<=1e-2,0.00010398809829054601,PASS,Small local pulse only.
+GATE A7 — CROSS-BUS REPRODUCIBILITY,buses 30/33/35/37 Schur and pole checks,all four pass,true,PASS,No retuning.

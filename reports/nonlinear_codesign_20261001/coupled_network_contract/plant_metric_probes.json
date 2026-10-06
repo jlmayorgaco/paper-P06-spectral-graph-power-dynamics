@@ -1,0 +1,26 @@
+[
+  {
+    "kind": "plant_observability",
+    "radius": 1e-09,
+    "condition": 14436219.39233388,
+    "decay": 0.021372092476568533,
+    "input_gain": 915167.0128687193,
+    "linear_radius_per_input": 1.0926967274152067e-06
+  },
+  {
+    "kind": "plant_observability",
+    "radius": 1e-07,
+    "condition": 14436219.39233388,
+    "decay": -0.328623308672412,
+    "input_gain": 915167.0128687193,
+    "linear_radius_per_input": 1.0926967274152067e-06
+  },
+  {
+    "kind": "plant_observability",
+    "radius": 1e-05,
+    "condition": 14436219.39233388,
+    "decay": -35.440279609690094,
+    "input_gain": 915167.0128687193,
+    "linear_radius_per_input": 1.0926967274152067e-06
+  }
+]

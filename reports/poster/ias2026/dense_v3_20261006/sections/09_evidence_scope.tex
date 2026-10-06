@@ -1,0 +1,34 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterBottomRowHeight][t]{\PosterGridWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterBottomRowHeight}{9}{THREE RULES FOR THE ENGINEER}
+
+    \noindent\begin{minipage}[t]{278mm}\vspace{0pt}
+      {\fontsize{34pt}{38pt}\selectfont \StepBadge{1}\ \textbf{Do not} compensate PLL delay at low frequency.\par}
+    \end{minipage}\hfill%
+    \begin{minipage}[t]{278mm}\vspace{0pt}
+      {\fontsize{34pt}{38pt}\selectfont \StepBadge{2}\ Choose the protected mode with the spillover law: one modal analysis is enough.\par}
+    \end{minipage}\hfill%
+    \begin{minipage}[t]{278mm}\vspace{0pt}
+      {\fontsize{34pt}{38pt}\selectfont \StepBadge{3}\ Check the \textbf{spectrum and the events}.\par}
+    \end{minipage}\par
+
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewFullPageWidth}
+  \def\PosterPageHeight{\PosterPreviewBottomPageHeight}
+  \def\PosterPreviewLeft{\PosterOuterMargin}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

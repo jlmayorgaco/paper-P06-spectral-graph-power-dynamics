@@ -1,0 +1,12 @@
+gate,metric,threshold,observed,status,notes
+GATE B0 — SYNTHETIC REALIZATION,max controller spectral abscissa,< 0,-1.2566370614359172,PASS,All primary Σ(s) functions are explicit stable state-space realizations; static cases use zero controller states.
+GATE B1 — GENERALIZED GRAPH BASIS,max M/L basis residual,< 1e-10,2.2737367544323206e-12,PASS,Mass-normalized Cholesky eigensolve; common-angle zero modes retained and excluded from oscillatory metrics.
+GATE B2 — DISSIPATIVE POWER IDENTITY,maximum relative error,< 1e-10,1.8030416667673328e-16,PASS,Direct harmonic power equals ω² zᴴ Herm(Σ̂) z / 2 under the declared left-side force convention.
+GATE B3 — COMMUTING BASELINE,S0 offdiag / χcomm / |Γ|,all < 1e-10,1.3198250538923129e-16,PASS,S0 is diagonal in graph coordinates by construction.
+GATE B4 — EXACT INTERMODAL SCHUR SELF-ENERGY,median / p95 residual,median < 1e-11; p95 < 1e-9,"1.1879712950780814e-16, 2.4433835282883075e-16",PASS,Residual combines scalar Schur elimination and determinant factorization away from near-singular complements.
+GATE B5 — QUADRATIC COUPLING SCALING,two log-log slopes,1.8 ≤ p ≤ 2.2,mode 2: 1.99994; mode 3: 1.99995,PASS,Fit uses the first seven ε values at a fixed diagonal pole.
+GATE B6 — POLE-PREDICTOR WEAK-COUPLING VALIDITY,valid ε ranges at ≤1% relative pole error,nontrivial weak-coupling interval,"Dict(2 => (0.0001, 0.4, 0.0034614002009403255), 3 => (0.0001, 0.4, 0.0034608902774148484))",PASS,Branches are tracked using eigenvalue continuation and eigenvector overlap.
+GATE B7 — RESONANCE MECHANISM,max/min |Γ| across detuning sweep,>= 10,311.4253295322636,PASS,The modal pair remains nondegenerate; each detuning changes the complementary modal dynamic stiffness.
+GATE B8 — PAIRWISE CONTRIBUTION RECONSTRUCTION,relative error at smallest ε,< 1%,3.3749250020694977e-6,PASS,Second-order pairwise terms are summed and compared with exact Γ at the same ε.
+GATE B9 — CANDIDATE χG CERTIFICATE,status,PROVEN|EMPIRICALLY_SUPPORTED|INCONCLUSIVE|FALSIFIED,INCONCLUSIVE,INCONCLUSIVE,"Only a finite jω grid was evaluated; full RHP analyticity, hidden-pole, and infinity hypotheses remain unverified."
+GATE B10 — EXP-A ADAPTER READY,synthetic TOML round trip,Σ and Σ′ error < 1e-13,0.0,PASS,"Versioned adapter accepts M,L, stable realization, and required metadata."

@@ -1,0 +1,5 @@
+controller_class,parameter_count,retained_sg_MW,robust_margin,deltaP_max_MW,gain_effort,status,graph_feature_rank,simultaneous_diagonalization_claim
+uniform gains,2,,,,,OPTIONAL_ABLATION_NOT_RUN,5,false
+single-L graph feature class,2,,,,,OPTIONAL_ABLATION_NOT_RUN,5,false
+noncommutative LG/LB feature class,10,,,,,OPTIONAL_ABLATION_NOT_RUN,5,false
+fully free local gains,20,3821.771246228776,0.05000107709644368,125.19145972552722,0.0,MAIN_DESIGN,5,false

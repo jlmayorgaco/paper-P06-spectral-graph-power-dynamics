@@ -1,0 +1,24 @@
+{
+  "status": "GRAPH_AND_STORAGE_ABLATION_DIAGNOSTIC",
+  "graph_nodes": 39,
+  "graph_edges": 46,
+  "generator_structural_laplacian_eigenvalues": [
+    6.394884621840902e-14,
+    11.414417672038027,
+    14.692502872287552,
+    16.704213843819737,
+    21.210277143935283,
+    30.409625212099172,
+    34.90536975833935,
+    40.534430447965086,
+    41.291602449807804,
+    44.513375599068844
+  ],
+  "structural_laplacian_row_sum_residual": 5.684341886080802e-14,
+  "dropped_cross_bus_storage_logarithmic_norm": 404.0717504157327,
+  "nominal_full_metric_decay_reported": 0.05003361050261296,
+  "interpretation": "Removing cross-bus blocks from this P loses its Lyapunov property if the ablation norm is positive; this does not exclude all possible nodal certificates. The structural Laplacian is an interpretation coordinate, not a replacement for AC Y or a diagonalization of nonlinear dynamics.",
+  "model_sha256": "473f3afb24e8351e16302edb8175c0bdc90df4e28d7dc7dbed8e9a4dd5f65261",
+  "metric_sha256": "e9921ff06d1b421bd76ada698ba7d6e92ae3863612b7115a329365bb02621b3a",
+  "script_sha256": "77515590bb5fa07cca1ec81e506d3f87ebd5d9ebc8596baf40f02e0ae5ea8b0a"
+}

@@ -1,0 +1,268 @@
+LITERATURA RECIENTE Y PLAN PARA CERRAR EL CO-DISEÑO SG–GFL
+1 octubre 2026. Revisión dirigida y propuesta matemática; sin simulaciones nuevas.
+
+DECISIÓN
+
+Continuar desde Q2B con sensibilidades totales de red, SQP y generación de
+restricciones. Usar port-Hamiltonian para auditar energía, reservas y posibles
+certificados; usar álgebra del grafo para reducir coste y construir cotas.
+GSP es una hipótesis de parametrización/aceleración que debe ganar una ablación.
+No hace falta incorporar toda la literatura de GSP ni sustituir el modelo
+detallado por una diagonalización que F2 ya rechazó.
+
+La pregunta científica propuesta es: ¿cuánto reemplazo es realizable, cuánto
+queda excluido por recursos físicos y qué interacción explica la diferencia?
+La integración sólo será una contribución fuerte si demuestra una ventaja
+medible frente a métodos equivalentes. Las herramientas individuales son conocidas.
+
+1. EVIDENCIA EXISTENTE Y HUECOS CONCRETOS
+
+Fuente principal: reports/experiment_Q2B/CERTIFIED_SEARCH/
+RESULTADO_LOCAL_Y_BRECHA_GLOBAL.md y PD/EVENTS.csv.
+
+El diseño conserva 312.523288435 MW de SG y asigna 94.215489% del despacho
+original a GFL. La evidencia de optimalidad es local y numérica para la
+formulación analítica congelada; no para el problema no lineal general.
+La implementación PowerDynamics valida el evento de diseño del bus 16.
+Los eventos externos de los buses 8 y 29 incumplen, respectivamente, RoCoF
+y frecuencia. Esos fallos son contraejemplos útiles para ampliar el dominio.
+
+Las veinte ganancias PLL están en sus cotas. Antes de interpretar su patrón
+como una ley física, hay que justificar los rangos y estudiar su influencia.
+La restricción modal tiene multiplicador cero en el óptimo actual.
+La incertidumbre beta está definida sobre una matriz en coordenadas congeladas;
+no equivale a tolerancias físicas de líneas, cargas o controladores.
+El filtro PLL de primer orden no es un retardo de transporte. No se ha
+certificado un límite duro de corriente ni disponibilidad de reservas DC.
+
+Faltan: comparación equivalente, dominio físico completo, un certificado
+no lineal de tamaño operativo y una cota global útil. El certificado regional
+coupled_dq_contract, de radio normalizado aproximadamente 3.55e-7 para diseño
+fijo, no cierra todavía el tercero de esos huecos.
+
+2. TRABAJOS PARA APROVECHAR, CON SU ALCANCE
+
+[1] Conte, Mancilla-David, Silvestro y Grillo (25 mayo 2026),
+Small-Signal Stability Manifolds in Converter-Dominated Power Systems.
+https://arxiv.org/abs/2605.26254
+Texto: https://arxiv.org/html/2605.26254v1
+Regiones de parámetros mediante modelo de red completo, clasificación SVM,
+muestreo adaptativo y múltiples puntos operativos. Aprovechar admisibilidad
+de ganancias y selección de evaluaciones. La frontera aprendida no certifica
+seguridad no lineal. Sus reglas de ancho de banda dependen de su arquitectura.
+Código disponible: https://github.com/grisamgit/SCooPS
+
+[2] Joswig-Jones, Dong, Tan y Zhang (30 julio 2026),
+Sensitivity-Based System Strength Assessment: Mapping Power Flow and Network
+Topology Perturbations to System Eigenvalues.
+https://arxiv.org/abs/2607.28764
+Texto: https://arxiv.org/html/2607.28764v1
+Sensibilidades que propagan cambios de operación y red hasta los polos.
+Aprovechar derivadas con reequilibrio y cálculo disperso para proponer pasos.
+La aproximación local debe comprobarse al realizar cambios finitos.
+Código: https://github.com/TragerJoswig-Jones/Simplus-Grid-Tool-System-Sensitivity
+
+[3] Joswig-Jones y Zhang (15 enero 2026),
+Safe Trajectory Gradient Flow Control of a Grid-Interfacing Inverter.
+https://arxiv.org/abs/2601.10671
+Texto: https://arxiv.org/html/2601.10671v1
+Optimización de trayectorias con restricciones de corriente. Su modelo
+controla tensión/frecuencia del inversor y supone predicción exacta; no es
+el co-diseño de PLL de nuestra red. Adoptar el controlador cambiaría el modelo.
+Sus resultados de simulación no transfieren una garantía de tiempo real.
+Código: https://github.com/TragerJoswig-Jones/Safe-Trajectory-Gradient-Flow
+
+[4] Bernal y Milano (23 mayo 2025), Transient Slack Capability.
+https://arxiv.org/abs/2505.17984
+Texto: https://arxiv.org/html/2505.17984v1
+Marco port-Hamiltonian para condiciones necesarias de energía almacenada,
+potencia de entrada controlada, balance energético y sincronización.
+Aprovechar su auditoría física: ajustar PLL no crea reservas. Las condiciones
+por dispositivo no constituyen un certificado suficiente para toda la red.
+
+[5] Lowery y Birchfield, Spectral Graph Filters for Large Power Systems,
+preprint identificado por sus autores para TPEC 2026.
+https://birchfield.engr.tamu.edu/wp-content/uploads/sites/256/2026/01/Spectral_Graph_Filters_for_Large_Systems_preprint.pdf
+Filtros racionales, factorizaciones dispersas y actualizaciones de bajo rango
+para grafos grandes. Aprovechar implementación de filtros/bases sin calcular
+todos los autovectores. Su convolución espacial no resuelve la capacidad
+dinámica SG–GFL; Cholesky requiere matrices apropiadas, no la DAE general.
+
+[6] Wang y Geng (19 abril 2026), Decentralized Stability-Constrained Optimal
+Power Flow for Inverter-Based Power Systems.
+https://arxiv.org/abs/2604.17603
+Condiciones algebraicas descentralizadas y precios sombra de estabilidad.
+Relevante para comparar interpretación de restricciones activas: los
+multiplicadores KKT o los precios nodales no son por sí solos novedad.
+No identifica automáticamente los multiplicadores Q2B con precios económicos.
+
+Los artículos arXiv se tratan como preprints en las versiones revisadas,
+sin inferir aceptación editorial. Se revisaron textos de [1]–[5] y el resumen
+de [6]. Los repositorios enlazados existen; no se ejecutaron ni adaptaron aquí.
+Esta búsqueda es dirigida, no una revisión exhaustiva ni prueba de prioridad.
+
+3. PROBLEMA GENERAL, SIN FIJAR UN BUS O UNA FORMA DE PERTURBACIÓN
+
+p = (rho, Kp, Ki), C(p) = sum_i P0_i rho_i / sum_i P0_i.
+
+Maximizar C(p), sujeto a:
+  xdot = f(x,z,x_t,p,theta,w_t), 0 = g(x,z,p,theta,w),
+  existencia y regularidad de la solución en el dominio,
+  estabilidad regional especificada,
+  c_j(x,z,x_t,p) <= 0 para todo t, theta en Theta, w en W,
+  y toda historia inicial admisible.
+
+W puede parametrizar amplitud, energía, duración, tasa de cambio y canales
+distribuidos. No exige un escalón ni un bus concreto. Debe excluir cargas
+físicamente imposibles de atender con los recursos declarados. Una batería
+finita no sostiene por sí sola un déficit permanente.
+Los límites incluyen f y RoCoF definidos por su sensor/ventana, tensión,
+corriente real y energía DC. Las constantes son parámetros del problema.
+
+4. FUNCIÓN DE CADA HERRAMIENTA
+
+KKT / SQP
+Ya hay un solucionador SQP y una auditoría KKT/SOSC. Reutilizarlos.
+Calcular derivadas totales: p cambia parámetros y también el equilibrio.
+Si F_eq(xbar,p)=0, entonces dxbar/dp=-F_eq,x^{-1} F_eq,p en una rama regular.
+Esta inversa representa una resolución lineal, no formar una inversa densa.
+Los máximos de varios modos o picos temporales requieren conservar ramas
+activas; no diferenciarlos como si siempre hubiera un máximo único.
+EM sólo tendría justificación con un modelo probabilístico y variables
+latentes explícitas; aquí no añade una ventaja conceptual evidente.
+
+ÁLGEBRA DEL GRAFO
+Con incidencia B y variables dq, una representación de puerto local es:
+  K(s,p) = blkdiag(Ydev_i(s,p_i))
+         + (B kron I2) blkdiag(Yline_l(s)) (B^T kron I2).
+Se construye alrededor de un equilibrio: es un núcleo de pequeña señal.
+Las derivadas incluyen el cambio de ese equilibrio. Para una raíz simple,
+K(lambda,p)r=0 y l* K(lambda,p)=0:
+  d lambda / d p_j = - (l* K_pj r) / (l* K_s r).
+Se requiere denominador no nulo y representación regular en lambda.
+No se deben perder modos internos al eliminar estados o usar admitancias.
+Esta fórmula es conocida; su valor aquí sería acelerar el co-diseño.
+Schur/Woodbury y factorizaciones dispersas ya tienen apoyo en el repositorio.
+
+GSP
+Construir un Laplaciano estructural simétrico con pesos positivos justificados.
+En los n nodos controlados, proponer bases de rango creciente Vq y
+  log(Kp) = a0*1 + Vq*a; log(Ki) = b0*1 + Vq*b,
+manteniendo las cotas físicas en las ganancias resultantes.
+q=0 corresponde a ganancias comunes; con una base completa se recuperan
+ganancias independientes. Si se restringen autovectores de toda la red a esos
+n nodos, verificar rango e independencia antes de afirmar esa equivalencia.
+Comparar conjuntos anidados y verificar siempre el modelo completo.
+Una parametrización reducida puede ahorrar evaluaciones, pero no superar
+el óptimo global del conjunto libre que la contiene. Su utilidad debe medirse.
+No confundir frecuencia espacial del grafo con frecuencia temporal en Hz.
+
+PORT-HAMILTONIAN
+Cuando se demuestra una representación física apropiada:
+  xdot=(J-R) grad H + G u, J=-J^T, R>=0,
+  Hdot=-grad(H)^T R grad(H) + y^T u, y=G^T grad H.
+La interconexión por incidencia cancela potencia en puertos internos.
+Esto organiza balance energético y recursos de red. No implica que el GFL
+controlado y las cargas de potencia constante sean automáticamente pasivos.
+Para estabilidad alrededor de un equilibrio no nulo pueden hacer falta
+almacenamiento incremental, condiciones de detectabilidad y análisis del
+PLL/limitador. Un balance de energía no impone por sí solo f o RoCoF.
+
+5. UNA COTA FÍSICA PARA INTENTAR MEDIR LA BRECHA
+
+Propuesta a derivar y validar en el modelo extendido, no resultado obtenido.
+Sea S un subconjunto de la red con energía física E_S, puertos de frontera
+contabilizados y pérdidas no negativas. Su balance absoluto es
+  dE_S/dt = Psrc_S + Pimp_S - Pload_S - Ploss_S.
+Si E_S(T)>=Emin_S, Psrc_S<=Psrc,max_S y Pimp_S<=Pimp,max_S, integrar da:
+  integral_0^T Pload_S dt <= E_S(0)-Emin_S
+                    + integral_0^T (Psrc,max_S + Pimp,max_S) dt.
+
+Es una condición necesaria por corte del grafo. No sustituir Pload por su
+incremento sin derivar también las variaciones de pérdidas y energía.
+Para cargas ZIP debe acotarse la demanda real bajo las tensiones admisibles,
+no usar Pset como si fuera potencia constante. Los límites de puerto pueden
+sobrestimarse para una relajación externa, nunca subestimarse.
+No contar una misma reserva a la vez como energía almacenada y fuente
+externa ilimitada. La energía mínima debe seguir de los estados y límites
+físicos; una medida eléctrica de frecuencia no acota automáticamente todos
+los estados mecánicos o electromagnéticos internos.
+
+Imponer un conjunto de estas condiciones y relajar otras restricciones
+produce un problema externo que puede dar C_UB >= C_global*. Para que el
+valor calculado sea una cota, resolver/certificar esa relajación globalmente;
+un óptimo local de la relajación no basta. Si se obtienen cotas afines en rho,
+puede resultar un LP; no se presupone que todo el modelo lo sea.
+Un diseño seguro para el MISMO contrato da C_safe <= C_global*. Entonces:
+  C_safe <= C_global* <= C_UB.
+La diferencia C_UB-C_safe sería una brecha informativa, aunque las cotas
+pueden resultar débiles. El 94.215489% actual no es C_safe del problema
+extendido. No existe todavía este intervalo útil en los resultados.
+Esta estrategia usa conservación y relajaciones conocidas; no se reclama
+la desigualdad elemental como un teorema nuevo.
+
+6. ALGORITMO PROPUESTO Y CONDICIONES DE ACEPTACIÓN
+
+A. Fijar W, Theta, historias, sensores y límites de recursos, sin privilegiar
+   nodos en la teoría. Restaurar factibilidad al ampliar el contrato Q2B.
+B. Resolver el problema con escenarios/restricciones activos mediante SQP
+   y región de confianza; usar derivadas totales y estructura dispersa.
+C. Buscar perturbaciones, parámetros, puntos operativos y picos violadores.
+   Añadir los contraejemplos y repetir. Los fallos de buses 8/29 son semillas,
+   no una definición universal del conjunto de perturbaciones.
+D. Verificar regularidad DAE, estabilidad y restricciones del modelo no
+   lineal. Una búsqueda adversaria local sin violaciones no prueba cobertura
+   de W. Para una garantía general hace falta una cota superior certificada
+   de las violaciones, por ejemplo mediante tubos y residuos no lineales.
+E. Contrastar el diseño con una implementación independiente de la misma
+   física y evaluar robustez fuera de la muestra. El desacuerdo se reporta.
+F. Resolver la relajación externa y publicar brecha sólo si sus cotas y el
+   diseño corresponden exactamente al mismo problema.
+
+La ruta de tubos y núcleo dinámico acoplado está desarrollada en
+RUTA_ANALITICA_ITERATIVA_ES.txt. La dificultad principal es conseguir un
+dominio útil sin perder cancelaciones al aplicar normas. No se promete
+convergencia global del algoritmo exterior ni del oráculo adversario.
+
+7. ORDEN DE TRABAJO Y MAPA AL CÓDIGO EXISTENTE
+
+PASO 1 — COMPARACIÓN QUE PODRÍA REFUTAR LA UTILIDAD DEL CO-DISEÑO.
+Usar el problema congelado: ganancias fijas, ganancias comunes y ganancias
+libres, optimizando retenciones bajo idénticos límites y soporte. Añadir GSP
+como ablación intermedia después. Publicar MW retenidos, violaciones,
+evaluaciones, tiempo con/sin compilación y residual de optimalidad comparable.
+Medir influencia de las veinte cotas activas y justificar ancho de banda.
+Si la ventaja desaparece, no vender superioridad algorítmica.
+
+PASO 2 — FRONTERA DE RECURSOS EN UN CONTRATO NUEVO.
+Incluir corriente real, limitador/anti-windup, potencia y energía DC, reservas
+y tolerancias físicas. Añadir retardo de transporte cuando sea pertinente.
+Volver a optimizar y validar; no trasladar automáticamente el porcentaje Q2B.
+
+PASO 3 — CONTRAEJEMPLOS Y CERTIFICADO GENERAL.
+Cerrar búsqueda/verificación para W y Theta. El hito es un radio y horizonte
+operativamente relevantes, con estado de certificación declarado.
+
+PASO 4 — COTA EXTERNA Y ESCALABILIDAD.
+Probar primero balance global y cortes simples. Ver si la relajación reduce
+la brecha. Medir después el ahorro real de bases/filtros del grafo.
+
+Puntos de entrada:
+  experiments/bnd_expQ2B/certified_search/SQP.jl
+  experiments/bnd_expQ2B/certified_search/MultiPeak.jl
+  experiments/bnd_expQ2B/certified_search/LocalOracle.jl
+  experiments/bnd_expQ2B/certified_search/RiccatiCertificate.jl
+  experiments/bnd_expQ2B/certified_search/validate_independent_pd.jl
+  src/bnd_model_expN/PDExactDesignN.jl
+  src/bnd_design/WoodburyPLL.jl
+  src/bnd_design_e/PLLLowRank.jl
+
+8. CRITERIO PARA EL POSTER
+
+La figura más valiosa sería una frontera que muestre reemplazo alcanzable,
+cota de posibilidad física y el mecanismo que impide cerrar la diferencia:
+interacción PLL-red, frecuencia, corriente o energía. Las fronteras deben
+usar modelos/contratos claramente identificados y resultados calculados.
+Esto conectaría Beyond Nodal Damping con una decisión de ingeniería.
+Actualmente es una dirección de investigación; la evidencia disponible
+sostiene el resultado Q2B local y el alcance limitado de sus validaciones.

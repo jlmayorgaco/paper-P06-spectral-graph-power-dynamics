@@ -1,0 +1,83 @@
+frozen_utc = "2026-09-30T04:48:51.118658+00:00"
+repository_commit = "d0fecb3264aeb855ab6700fc6ef66120d4b6c33c"
+repository_branch = "research/expM-pd-model-identity-audit"
+julia_version = "julia version 1.11.9"
+project_path = "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\Project.toml"
+project_sha256 = "e170a2f9fca57aa3f8f3f053b318f0d5e3d434679dbdd4a4b8eef5481cfc0e4f"
+manifest_path = "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\Manifest.toml"
+manifest_sha256 = "92bc7849ea4445a4bedd18f732611ec271147e238c349aa5eeefc6d02023e911"
+
+[packages.PowerDynamics]
+installed = true
+uuid = "cc46b21f-1b17-51c2-b642-af74c3d3a8be"
+version = "5.0.0"
+git_tree_sha1 = "1a32897016af608de2d2134922017614051f87b6"
+
+[packages.NetworkDynamics]
+installed = true
+uuid = "22e9dc34-2a0d-11e9-0de0-8588d035468b"
+version = "1.3.0"
+git_tree_sha1 = "4223c5dc3e1c14d83afdd5e2149ebd4cdd0cd506"
+
+[packages.ModelingToolkit]
+installed = false
+
+[packages.ModelingToolkitBase]
+installed = true
+uuid = "7771a370-6774-4173-bd38-47e70ca0b839"
+version = "1.70.0"
+git_tree_sha1 = "ac104b1b21454a7f6c8bae083645fa382bfe9fdb"
+
+[packages.SciMLBase]
+installed = true
+uuid = "0bca4576-84f4-4d90-8ffe-ffa030f20462"
+version = "3.53.2"
+git_tree_sha1 = "27b1230e9622eae1175d9d5df74eef88f3356974"
+
+[packages.ForwardDiff]
+installed = true
+uuid = "f6369f11-7733-5829-9624-2563aa707210"
+version = "1.4.6"
+git_tree_sha1 = "3b0f72e2ffef1a139ac450725c9ecd01c0a3c050"
+
+[packages.OrdinaryDiffEqRosenbrock]
+installed = true
+uuid = "43230ef6-c299-4910-a778-202eb28ce4ce"
+version = "2.7.1"
+git_tree_sha1 = "a82d81b06e0dfe81643a79f0212d0d98d049af4e"
+
+[packages.IEEE39]
+installed = false
+
+[ieee39_source]
+path = "C:\\Users\\walla\\.julia\\packages\\PowerDynamics\\VzOiZ\\docs\\examples\\ieee39_part1.jl"
+sha256 = "bd9d4c02ad10fcf0d1041c0f7baf1e0a38aed084c1eef39516a4071dab089d9d"
+origin = "PowerDynamics installed example"
+
+[ieee39_inputs.avr]
+path = "C:\\Users\\walla\\.julia\\packages\\PowerDynamics\\VzOiZ\\docs\\examples\\ieee39data\\avr.csv"
+sha256 = "46d9062bc0db558f863faf5706829d109b3ca817297edc43d492ae7af39457bf"
+
+[ieee39_inputs.branch]
+path = "C:\\Users\\walla\\.julia\\packages\\PowerDynamics\\VzOiZ\\docs\\examples\\ieee39data\\branch.csv"
+sha256 = "b1858adb3e409750b5db24bc5073dda1e0683a59ef6e5966840cd73a18293972"
+
+[ieee39_inputs.branch_raw]
+path = "C:\\Users\\walla\\.julia\\packages\\PowerDynamics\\VzOiZ\\docs\\examples\\ieee39data\\branch_raw.csv"
+sha256 = "b8360b2a8f2e1e79e43bfc899a1daab95178651850e33424aa35795fedac408e"
+
+[ieee39_inputs.bus]
+path = "C:\\Users\\walla\\.julia\\packages\\PowerDynamics\\VzOiZ\\docs\\examples\\ieee39data\\bus.csv"
+sha256 = "d732a896e95c013fa3906941a540f2d9161ca99a2c60e571a890174680cb6943"
+
+[ieee39_inputs.gov]
+path = "C:\\Users\\walla\\.julia\\packages\\PowerDynamics\\VzOiZ\\docs\\examples\\ieee39data\\gov.csv"
+sha256 = "2cd24f6c43c0fb4175b0b6e5f579239e23f6b7a01805e0c71eb88b1fb892d7ac"
+
+[ieee39_inputs.load]
+path = "C:\\Users\\walla\\.julia\\packages\\PowerDynamics\\VzOiZ\\docs\\examples\\ieee39data\\load.csv"
+sha256 = "635e38cb30ed983be884d2e1e88cbe4069d69097a98969648390da1464df0d30"
+
+[ieee39_inputs.machine]
+path = "C:\\Users\\walla\\.julia\\packages\\PowerDynamics\\VzOiZ\\docs\\examples\\ieee39data\\machine.csv"
+sha256 = "8cf9a02574f650d2c459f536a02ae6bbfe16122e927dbbd54ca54ec2556616a1"

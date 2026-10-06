@@ -1,0 +1,19 @@
+\begin{minipage}[t][\PosterTopRowHeight][t]{\PosterThreeWidth}\vspace{0pt}
+  \begin{TicketTwoPanel}{\PosterTopRowHeight}{3}{TWO GAINS, ONE MODE}
+
+    {\FigureSize PLL loop factor $\kappa(s)=(k_p s+k_I)\,e^{-s\tau}$. The delay grows by $h$; we protect the mode $\lambda=\alpha+\mathrm{j}\omega$.\par}
+    \vspace{1mm}
+    {\FigureSize\textbf{Exact transport of the gains}\par}
+    {\HeroEquation\color{IASBlue}\[
+      k_p(h)\lambda+k_I(h)=(k_p\lambda+k_I)\,e^{\lambda h}
+    \]}
+    \vspace{-2mm}
+    {\FigureSize\textbf{What is left at every other frequency}\par}
+    {\fontsize{33pt}{38pt}\selectfont\color{IASBlue}\[
+      \Delta\kappa(s)=-(s-\lambda)(s-\bar\lambda)\,e^{-s\tau}\!\!\int_0^h\!\! k_p(t)e^{-st}dt
+    \]}
+    \vspace{3mm}
+    \begin{InWords}\InWordsLabel Zero error at the protected mode, quadratic error everywhere else. The gains need no network model.\end{InWords}
+
+  \end{TicketTwoPanel}
+\end{minipage}%

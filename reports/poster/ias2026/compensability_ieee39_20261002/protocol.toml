@@ -1,0 +1,12 @@
+candidate_sha256 = "0be33b8f198419f1a755642a1d9b7a928eb3f0fed4744dafd5fe4deeed46aae3"
+nominal_Kp = 31.41592653589793
+events = [[8.0, 100.0], [8.0, -100.0], [16.0, 100.0], [16.0, -100.0], [29.0, 100.0], [29.0, -100.0]]
+backend = "compiled PowerDynamics DAE"
+horizon_s_after_event = 60.0
+monitor_buses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
+rho_held_fixed_between_arms = true
+tuned_gains_from_candidate = true
+claim = "Finite six-case counterfactual at fixed replacement fractions; no continuous robust or global optimality claim."
+sample_step_s = 0.005
+nominal_Ki = 246.74011002723395
+trim_residual_tuned = 2.8621549574836536e-11

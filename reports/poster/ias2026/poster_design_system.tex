@@ -1,0 +1,145 @@
+% IAS 2026 poster design system: palette, typography, spacing, and components.
+% The paired DESIGN_SYSTEM.md documents each token and its intended use.
+% Palette sampled from the approved poster reference, with accessible plot markers.
+\definecolor{IASDarkGreen}{HTML}{003B2D}
+\definecolor{IASDeepGreen}{HTML}{00291F}
+\definecolor{IASHeaderGreen}{HTML}{004A3A}
+\definecolor{IASMidGreen}{HTML}{00664B}
+\definecolor{IASGold}{HTML}{C99A20}
+\definecolor{IASWhite}{HTML}{FFFFFF}
+% Legacy figure code uses this name for node fills; keep it neutral white.
+\colorlet{IASIvory}{IASWhite}
+\definecolor{IASDarkText}{HTML}{17372D}
+\definecolor{IASPaleGreen}{HTML}{EAF2ED}
+\definecolor{IASPaleGold}{HTML}{FFF4D6}
+\definecolor{IASBlue}{HTML}{176494}
+\definecolor{IASVermillion}{HTML}{BC3030}
+\definecolor{IASGray}{HTML}{5F6B66}
+\definecolor{IASRule}{HTML}{CFDDD5}
+\usetheme{IAS2026}
+
+\setmainfont{TeX Gyre Heros}[Ligatures=TeX]
+\setsansfont{TeX Gyre Heros}[Ligatures=TeX]
+\setmathfont{Latin Modern Math}
+\newfontfamily\PosterCondensed{TeX Gyre Heros Cn}[Ligatures=TeX]
+\setbeamertemplate{background canvas}{\color{IASWhite}\rule{\paperwidth}{\paperheight}}
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=0mm,text margin right=0mm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\textwidth}{\paperwidth}
+\setlength{\textheight}{\paperheight}
+\pagestyle{empty}
+\pagecolor{IASWhite}
+
+\newcommand{\PosterPending}{\textcolor{IASGray}{\bfseries PENDING}}
+\newcommand{\StableMark}{\tikz[baseline=-0.65ex]\node[circle,fill=IASBlue,draw=IASBlue,inner sep=2.1pt] {};}
+\newcommand{\UnstableMark}{\tikz[baseline=-0.55ex]\node[cross out,draw=IASVermillion,line width=1.5pt,minimum size=5.2mm,inner sep=0pt] {};}
+\newcommand{\BoundaryMark}{\tikz[baseline=-0.55ex]\node[diamond,fill=IASGold,draw=IASGold,minimum size=5.0mm,inner sep=0pt] {};}
+\newcommand{\UnresolvedMark}{\tikz[baseline=-0.55ex]\node[circle,draw=IASGray,line width=1.3pt,minimum size=4.8mm,inner sep=0pt] {};}
+\newcommand{\HasseFullMark}{\tikz[baseline=-0.55ex]\node[circle,draw=IASVermillion,fill=IASVermillion,minimum size=5mm,inner sep=0pt] {};}
+\newcommand{\CandidateBusMark}{\tikz[baseline=-0.55ex]\node[circle,draw=IASVermillion,fill=IASVermillion,minimum size=5mm,inner sep=0pt] {};}
+\newcommand{\PosterBody}{\fontsize{34.2pt}{39pt}\selectfont}
+\newcommand{\PosterParagraph}{\PosterBody\color{IASDarkText}\raggedright}
+\newcommand{\Subhead}{\PosterCondensed\bfseries\fontsize{38pt}{41pt}\selectfont}
+\newcommand{\EquationSize}{\fontsize{36pt}{41pt}\selectfont}
+\newcommand{\HeroEquation}{\fontsize{44pt}{48pt}\selectfont}
+\newcommand{\MetricSize}{\fontsize{38pt}{42pt}\selectfont}
+\newcommand{\TableSize}{\fontsize{26pt}{29pt}\selectfont}
+\newcommand{\FigureSize}{\fontsize{24.7pt}{27.2pt}\selectfont}
+% Semantic type roles; keep the names stable when retuning the type scale.
+\newcommand{\PosterHeaderEyebrow}{\bfseries\fontsize{25pt}{28pt}\selectfont}
+\newcommand{\PosterHeroTitle}{\PosterCondensed\bfseries\fontsize{90pt}{94pt}\selectfont}
+\newcommand{\PosterHeaderSubtitle}{\bfseries\fontsize{36pt}{40pt}\selectfont}
+\newcommand{\PosterHeaderByline}{\bfseries\fontsize{30pt}{34pt}\selectfont}
+\newcommand{\PosterPanelBadgeType}{\bfseries\fontsize{32pt}{32pt}\selectfont}
+\newcommand{\PosterPanelHeadingType}{\PosterCondensed\bfseries\fontsize{43pt}{46pt}\selectfont}
+\newcommand{\PosterTicketHeadingType}{\PosterCondensed\bfseries\fontsize{44pt}{47pt}\selectfont}
+\newcommand{\PosterMetricValueType}{\PosterCondensed\bfseries\fontsize{40pt}{42pt}\selectfont}
+\newcommand{\PosterMetricLabelType}{\bfseries\fontsize{27pt}{30pt}\selectfont}
+\newcommand{\PosterMetricDetailType}{\fontsize{24.2pt}{26.2pt}\selectfont}
+\newcommand{\PosterFooterKickerType}{\PosterCondensed\bfseries\fontsize{24pt}{27pt}\selectfont}
+\newcommand{\PosterFooterTitleType}{\PosterCondensed\bfseries\fontsize{56pt}{59pt}\selectfont}
+\newcommand{\PosterFooterSummaryType}{\fontsize{29pt}{32pt}\selectfont}
+\newcommand{\PosterFooterReferenceType}{\fontsize{19pt}{22pt}\selectfont}
+\newcommand{\PosterFooterReferenceHeadingType}{\PosterCondensed\bfseries\fontsize{23pt}{26pt}\selectfont}
+\newcommand{\PosterFooterContactHeadingType}{\PosterCondensed\bfseries\fontsize{25pt}{28pt}\selectfont}
+\newcommand{\PosterFooterContactNameType}{\bfseries\fontsize{23pt}{26pt}\selectfont}
+\newcommand{\PosterFooterContactLineType}{\fontsize{21pt}{24pt}\selectfont}
+\newcommand{\PosterFooterQrLabelType}{\PosterCondensed\bfseries\fontsize{19pt}{21pt}\selectfont}
+
+% Interior spacing and panel anatomy. Outer grid values live in poster_layout.tex.
+\newcommand{\PosterPanelTitleHeight}{32mm}
+\newcommand{\PosterTicketTitleHeight}{36mm}
+\newcommand{\PosterPanelBadgeWidth}{17mm}
+\newcommand{\PosterPanelBadgeDiameter}{14mm}
+\newcommand{\PosterPanelTitleInset}{2mm}
+\newcommand{\PosterPanelTitleGap}{1mm}
+\newcommand{\PosterPanelContentInset}{22mm}
+\newcommand{\PosterPanelBorder}{1.1pt}
+\newcommand{\PosterPanelCornerRadius}{3mm}
+\newcommand{\PosterPanelPaddingX}{3mm}
+\newcommand{\PosterPanelPaddingTop}{4mm}
+\newcommand{\PosterPanelPaddingBottom}{2mm}
+\newcommand{\PosterMetricCellHeight}{40mm}
+\newcommand{\PosterIASLogoWidth}{137mm}
+\newcommand{\PosterUniandesLogoWidth}{120mm}
+\newcommand{\StatusPending}[1]{{\bfseries\color{IASGray}#1}}
+\newcommand{\StatusConditional}[1]{{\bfseries\color{IASGold!70!black}#1}}
+\newcommand{\StatusPass}[1]{{\bfseries\color{IASBlue}#1}}
+\newcommand{\PolicySwatch}[2]{\tikz[baseline=-0.65ex]\filldraw[fill=#1,draw=IASRule,line width=0.5pt] (0,0) rectangle (4mm,4mm);\,#2}
+
+\newcommand{\PosterPanelTitle}[2]{%
+  \begin{minipage}[c][\PosterPanelTitleHeight][c]{\linewidth}\hspace{\PosterPanelTitleInset}%
+    \begin{minipage}[c][\PosterPanelTitleHeight][c]{\PosterPanelBadgeWidth}\centering
+      \tikz[baseline=(num.base)]\node[circle,fill=IASGold,text=IASDarkGreen,minimum size=\PosterPanelBadgeDiameter,inner sep=0pt,
+        font=\PosterPanelBadgeType](num){#1};
+    \end{minipage}\hspace{\PosterPanelTitleGap}%
+    \begin{minipage}[c][\PosterPanelTitleHeight][c]{\dimexpr\linewidth-\PosterPanelContentInset\relax}\raggedright
+      {\PosterPanelHeadingType\color{white}#2\par}
+    \end{minipage}%
+  \end{minipage}%
+}
+\newtcolorbox{PosterPanel}[3]{
+  enhanced, width=\linewidth, height=#1,
+  colback=IASWhite, colframe=IASRule, colbacktitle=IASMidGreen,
+  coltitle=white, boxrule=\PosterPanelBorder, arc=\PosterPanelCornerRadius,
+  left=\PosterPanelPaddingX,right=\PosterPanelPaddingX,top=\PosterPanelPaddingTop,bottom=\PosterPanelPaddingBottom,boxsep=0mm,
+  toptitle=0mm,bottomtitle=0mm,lefttitle=0mm,righttitle=0mm,
+  title={\PosterPanelTitle{#2}{#3}},
+  before skip=0pt,after skip=0pt,
+  before upper={\setlength{\parskip}{0pt}\setlength{\parindent}{0pt}},
+  halign title=left,
+}
+
+% Ticket 2 uses a compact local panel title; later poster bands keep PosterPanel.
+\newcommand{\TicketTwoPanelTitle}[2]{%
+  \begin{minipage}[c][\PosterTicketTitleHeight][c]{\linewidth}\hspace{\PosterPanelTitleInset}%
+    \begin{minipage}[c][\PosterTicketTitleHeight][c]{\PosterPanelBadgeWidth}\centering
+      \tikz[baseline=(num.base)]\node[circle,fill=IASGold,text=IASDarkGreen,minimum size=\PosterPanelBadgeDiameter,inner sep=0pt,
+        font=\PosterPanelBadgeType](num){#1};
+    \end{minipage}\hspace{\PosterPanelTitleGap}%
+    \begin{minipage}[c][\PosterTicketTitleHeight][c]{\dimexpr\linewidth-\PosterPanelContentInset\relax}\raggedright
+      {\PosterTicketHeadingType\color{white}#2\par}
+    \end{minipage}%
+  \end{minipage}%
+}
+\newtcolorbox{TicketTwoPanel}[3]{
+  enhanced, width=\linewidth, height=#1,
+  colback=IASWhite, colframe=IASRule, colbacktitle=IASMidGreen,
+  coltitle=white, boxrule=\PosterPanelBorder, arc=\PosterPanelCornerRadius,
+  left=\PosterPanelPaddingX,right=\PosterPanelPaddingX,top=\PosterPanelPaddingTop,bottom=\PosterPanelPaddingBottom,boxsep=0mm,
+  toptitle=0mm,bottomtitle=0mm,lefttitle=0mm,righttitle=0mm,
+  title={\TicketTwoPanelTitle{#2}{#3}},
+  before skip=0pt,after skip=0pt,
+  before upper={\setlength{\parskip}{0pt}\setlength{\parindent}{0pt}},
+  halign title=left,
+}
+
+\newcommand{\MetricCell}[3]{%
+  \begin{minipage}[c][\PosterMetricCellHeight][c]{\linewidth}\centering
+    {\PosterMetricValueType\color{IASGold}#1\par}
+    {\PosterMetricLabelType\color{white}#2\par}
+    {\PosterMetricDetailType\color{IASPaleGreen}#3\par}
+  \end{minipage}%
+}

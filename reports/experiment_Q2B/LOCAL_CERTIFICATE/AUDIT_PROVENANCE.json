@@ -1,0 +1,122 @@
+{
+  "parent_commit": "d0fecb3264aeb855ab6700fc6ef66120d4b6c33c",
+  "branch": "research/expQ2B-secure-optimum",
+  "model_sha": "e2f104608f1eb1705f0ad2c07764e7beab0a5df4deb4d4ce4f359b1e79947f0a",
+  "frozen_model_inputs": [
+    {
+      "file": "reports/experiment_N/SOFTWARE_PROVENANCE.toml",
+      "expected": "a867f61bc02a3c104ffe746715f5ebc4f590d4edef936bf8441c4b90d5b93e66",
+      "actual": "a867f61bc02a3c104ffe746715f5ebc4f590d4edef936bf8441c4b90d5b93e66",
+      "pass": true
+    },
+    {
+      "file": "reports/experiment_N/TABLE_N01_original_operating_point.csv",
+      "expected": "d0ea9984f8f0ffffd27f11cd4205c76bde2da30016b21de868f16ed527eac1af",
+      "actual": "d0ea9984f8f0ffffd27f11cd4205c76bde2da30016b21de868f16ed527eac1af",
+      "pass": true
+    },
+    {
+      "file": "reports/experiment_N/TABLE_N02_rho_semantics.csv",
+      "expected": "1f8e4a160dd4ede721bf79f31e6e528a1477c73ae3edfe52a0ce541ad2a7e9e7",
+      "actual": "1f8e4a160dd4ede721bf79f31e6e528a1477c73ae3edfe52a0ce541ad2a7e9e7",
+      "pass": true
+    },
+    {
+      "file": "reports/experiment_N/TABLE_N03_near_zero_mode_classification.csv",
+      "expected": "25c3b5306d92accc0c9c87e3aec5dbfc3e29be65eef354f63e0f4fad5e6d17cb",
+      "actual": "25c3b5306d92accc0c9c87e3aec5dbfc3e29be65eef354f63e0f4fad5e6d17cb",
+      "pass": true
+    },
+    {
+      "file": "reports/experiment_N/TABLE_N04_trim_validation.csv",
+      "expected": "fac604af6ddd873a2b0fcca2a91e645720b8bacf0b203ab58af510e9deb25017",
+      "actual": "fac604af6ddd873a2b0fcca2a91e645720b8bacf0b203ab58af510e9deb25017",
+      "pass": true
+    },
+    {
+      "file": "reports/experiment_N/TABLE_N05_parametric_identity.csv",
+      "expected": "cdaf8e5e54a2789a498491560fbd8663f8d3665b1ca19a5028470a1996aba8ab",
+      "actual": "cdaf8e5e54a2789a498491560fbd8663f8d3665b1ca19a5028470a1996aba8ab",
+      "pass": true
+    },
+    {
+      "file": "reports/experiment_N/TABLE_N06_withheld_port_identity.csv",
+      "expected": "4b2d4b45b2ba585d25641824dc5bc7f12a38a737f03bb7dde7d735030a54837f",
+      "actual": "4b2d4b45b2ba585d25641824dc5bc7f12a38a737f03bb7dde7d735030a54837f",
+      "pass": true
+    },
+    {
+      "file": "reports/experiment_N/TABLE_N07_withheld_pole_identity.csv",
+      "expected": "42c435874a83ba3129e242263e8f8193d7f56953dc43f05488eac90a1813792c",
+      "actual": "42c435874a83ba3129e242263e8f8193d7f56953dc43f05488eac90a1813792c",
+      "pass": true
+    },
+    {
+      "file": "reports/experiment_N/TABLE_N08_derivative_validation.csv",
+      "expected": "eaf91286670b3a29e4c3a4b9d8af16c37201820a695e02a44c0a02a408787e1d",
+      "actual": "eaf91286670b3a29e4c3a4b9d8af16c37201820a695e02a44c0a02a408787e1d",
+      "pass": true
+    },
+    {
+      "file": "src/bnd_design/AnalyticGFLPLL.jl",
+      "expected": "369e63bf6213dbf12d8ede98edf2513f09296d9af72622388d631e8ffea95880",
+      "actual": "369e63bf6213dbf12d8ede98edf2513f09296d9af72622388d631e8ffea95880",
+      "pass": true
+    },
+    {
+      "file": "src/bnd_design/AnalyticSG.jl",
+      "expected": "50cec450c19a5788053c1d5836867d7ee3b5013335e9b45eec30a8685cf290fa",
+      "actual": "50cec450c19a5788053c1d5836867d7ee3b5013335e9b45eec30a8685cf290fa",
+      "pass": true
+    },
+    {
+      "file": "src/bnd_design_e/CollectiveModel.jl",
+      "expected": "d13e8a839e138c4315c0893035a233abdb4ed640275ed30d60c576ed137794b8",
+      "actual": "d13e8a839e138c4315c0893035a233abdb4ed640275ed30d60c576ed137794b8",
+      "pass": true
+    },
+    {
+      "file": "src/bnd_model_expN/PDExactDesignN.jl",
+      "expected": "f5211509b117d8a06e31efa62aa49b1df20d2c1ef7f5c6f9114bb9eb25838365",
+      "actual": "f5211509b117d8a06e31efa62aa49b1df20d2c1ef7f5c6f9114bb9eb25838365",
+      "pass": true
+    },
+    {
+      "file": "src/bnd_model_expN/PDReferenceN.jl",
+      "expected": "79226d8115158d8ba99e2a00b3fbdd2ad7274e08afff2ce27930794435ac2d83",
+      "actual": "79226d8115158d8ba99e2a00b3fbdd2ad7274e08afff2ce27930794435ac2d83",
+      "pass": true
+    },
+    {
+      "file": "src/pd39/PD39.jl",
+      "expected": "5d85c0e4053f4c40bd04541ea6814dd48fecf65618d8be5b89430dec418d04c4",
+      "actual": "5d85c0e4053f4c40bd04541ea6814dd48fecf65618d8be5b89430dec418d04c4",
+      "pass": true
+    },
+    {
+      "file": "src/pd39/equilibrium.jl",
+      "expected": "ace2392075d5252460a32df54e7713f8923040e424381a9e38e2cbfea1afa5b0",
+      "actual": "ace2392075d5252460a32df54e7713f8923040e424381a9e38e2cbfea1afa5b0",
+      "pass": true
+    },
+    {
+      "file": "src/pd39/model.jl",
+      "expected": "d2cc3b542cec12662d589689df7d807e029de5475a8217678275d5c91a840953",
+      "actual": "d2cc3b542cec12662d589689df7d807e029de5475a8217678275d5c91a840953",
+      "pass": true
+    }
+  ],
+  "original_Q2B_candidate_unchanged": true,
+  "current_sources": {
+    "experiments/bnd_expQ2B/local_certificate/audit.jl": "8f9c00e5ad250e6ef4588ab235705ff87258a70afaad7f8e248070ac3c9d3629",
+    "experiments/bnd_expQ2B/local_certificate/check_peak.jl": "85a29f787f124efc35548dfa902f2e1071b1f6986a1c5e3da99d062900c6d26c",
+    "experiments/bnd_expQ2B/local_certificate/LocalOracle.jl": "08e170cbedabab256b5ad9412f7cae66ecd1a68056488e53d7558119c0622295",
+    "experiments/bnd_expQ2B/local_certificate/run_and_certify.jl": "51a52f037105b046998aa895d7cb8bc9a899048e609710b39fda14b8a8176017",
+    "experiments/bnd_expQ2B/local_certificate/second_order_audit.jl": "5ed5087bbd2c680575e8161b9d3324ba92bd712bbfe44b0cc55816a8f6295681",
+    "experiments/bnd_expQ2B/local_certificate/solve.jl": "9f65dff7e14f9530962b20aea1fb72b62d41ccf9f69129ffc7cfaa5a5da05fd6"
+  },
+  "dependencies": {
+    "Project.toml": "e170a2f9fca57aa3f8f3f053b318f0d5e3d434679dbdd4a4b8eef5481cfc0e4f",
+    "Manifest.toml": "92bc7849ea4445a4bedd18f732611ec271147e238c349aa5eeefc6d02023e911"
+  }
+}

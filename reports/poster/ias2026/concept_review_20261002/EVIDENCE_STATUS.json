@@ -1,0 +1,141 @@
+{
+  "as_of": "2026-10-02",
+  "review_type": "focused_critical_research_brief",
+  "new_simulations_run": false,
+  "novelty_established": false,
+  "recommended_question": "Finite SG-to-GFL replacement compensability under bounded PLL retuning and nonlinear operational constraints",
+  "main_missing_result": "Useful verified bounds that distinguish a feasible retuning from impossibility throughout a declared gain box, while preserving consequential network interactions",
+  "candidates": [
+    {
+      "name": "finite_retuning_compensability",
+      "priority": 1,
+      "status": "hypothesis",
+      "standard_ingredients": ["DAE sensitivities", "Farkas separation", "interval bounds", "branch and bound"],
+      "required_advance": "Tight network-aware finite nonlinear trajectory bounds with a material decision benefit",
+      "does_not_imply": "Global maximum replacement across all designs and supports"
+    },
+    {
+      "name": "interaction_preserving_certificate_refinement",
+      "priority": 2,
+      "status": "hypothesis",
+      "standard_ingredients": ["dissipativity", "IQC", "clustered storage", "Schur complement", "goal-oriented error analysis"],
+      "required_advance": "Uniform operational-output error bounds for omitted interactions and practical non-microscopic safety regions"
+    },
+    {
+      "name": "resource_and_cutset_outer_bounds",
+      "priority": 3,
+      "status": "hypothesis",
+      "standard_ingredients": ["energy conservation", "cutsets", "AC relaxations", "occupation measures"],
+      "required_advance": "Nontrivial tight capacity upper bounds valid for the same nonlinear physical contract as the feasible design"
+    }
+  ],
+  "repository_evidence": [
+    {
+      "path": "reports/analytic_iteration_20261001/refined/RESULTADOS_ES.txt",
+      "joint_GFL_percent": 90.04704209,
+      "fixed_PLL_GFL_percent": 89.86037666,
+      "extra_replaced_MW": 10.08508711,
+      "external_event_failures": 4,
+      "external_event_count": 5,
+      "limitation": "Four accepted iterations; not an optimum comparison or robust guarantee"
+    },
+    {
+      "path": "reports/experiment_F_program/FINAL_SUMMARY.md",
+      "reactive_offdiagonal_ratio": 0.2914,
+      "limitation": "Chosen physical graph basis does not diagonalize detailed GFL model"
+    },
+    {
+      "path": "reports/nonlinear_codesign_20261001/coupled_dq_contract/CONTROL_MODAL_COMPARACION_Y_CODESIGN_ES.txt",
+      "certified_input_radius_in_report_normalization": 3.552198859e-7,
+      "limitation": "Microscopic certified envelope; not operational capacity proof"
+    }
+  ],
+  "decisive_sources": [
+    {
+      "id": "Bacic2026",
+      "url": "https://arxiv.org/html/2607.08260v1",
+      "publication_type": "preprint",
+      "verification": "full_text",
+      "collision": "Graph cycles, heterogeneous droop, necessary and sufficient small-signal criterion under lossless-network and device assumptions"
+    },
+    {
+      "id": "Chen2023",
+      "doi": "10.1109/TPWRS.2022.3175007",
+      "url": "https://researchportal.bath.ac.uk/en/publications/identifying-feasibility-region-boundaries-in-power-systems-with-m/",
+      "publication_type": "journal",
+      "verification": "institutional_metadata_and_abstract; author_full_text_reviewed_by_verification_agent",
+      "collision": "Multidimensional VSC feasibility boundaries and controller interactions"
+    },
+    {
+      "id": "Yang2025",
+      "url": "https://arxiv.org/html/2506.11406v1",
+      "publication_type": "preprint",
+      "verification": "full_text",
+      "collision": "Nonlinear DAE compositional dissipativity and equilibrium-set stability"
+    },
+    {
+      "id": "Peng2026",
+      "doi": "10.1109/TPWRS.2026.3651937",
+      "url": "https://www.researchgate.net/publication/394048628_Compositional_Grid_Codes_with_Guarantee_on_Both_Stability_and_Dynamic_Performance",
+      "publication_type": "journal",
+      "verification": "author_accepted_text",
+      "collision": "Compositional stability and dynamic performance grid codes"
+    },
+    {
+      "id": "Nazerian2026",
+      "doi": "10.1038/s41467-026-68602-1",
+      "url": "https://www.nature.com/articles/s41467-026-68602-1",
+      "publication_type": "journal",
+      "verification": "full_text",
+      "collision": "Input-output graph dynamics, paths, H2 amplification and nonnormality"
+    },
+    {
+      "id": "Saberi2021",
+      "doi": "10.1016/j.ijepes.2020.106338",
+      "url": "https://doi.org/10.1016/j.ijepes.2020.106338",
+      "publication_type": "journal",
+      "verification": "abstract_only",
+      "collision": "Cutset energy, generation and inertia sensitivity, Benders unit scheduling",
+      "limitation": "Do not attribute the proposed dynamic outer bound without full-text comparison"
+    },
+    {
+      "id": "Josz2019",
+      "doi": "10.1109/ISGT.2019.8791570",
+      "url": "https://molzahn.github.io/pubs/josz_molzahn_tacchi_sojoudi-isgt2019.pdf",
+      "publication_type": "conference",
+      "verification": "primary_abstract_and_author_pdf",
+      "collision": "Occupation measures for inner and outer power-system ROA approximations"
+    },
+    {
+      "id": "Henrion2020",
+      "doi": "10.1016/j.ifacol.2020.12.1488",
+      "url": "https://arxiv.org/abs/1911.09500",
+      "publication_type": "conference",
+      "verification": "primary_abstract_and_publisher_metadata",
+      "collision": "Sparse moment-SOS region-of-attraction approximations"
+    },
+    {
+      "id": "TPWRD2025SOS",
+      "doi": "10.1109/TPWRD.2025.3611302",
+      "url": "https://ieeexplore.ieee.org/document/11168960/",
+      "publication_type": "journal",
+      "verification": "publisher_abstract_only",
+      "collision": "Improved SOS transient stability assessment for a GFM-GFL paralleled system"
+    },
+    {
+      "id": "CifelliAnta2026v2",
+      "url": "https://arxiv.org/html/2510.20544v2",
+      "publication_type": "preprint",
+      "verification": "full_text_reviewed_by_bibliography_agent",
+      "collision": "Coordinate and loop-shift changes to reduce decentralized gain-phase certificate conservatism"
+    }
+  ],
+  "limitations": [
+    "Focused search cannot establish absence of prior art",
+    "Some sources verified only through primary abstracts",
+    "No numerical global optimality gap exists for the current nonlinear IEEE-39 design",
+    "Sparse certificates and hierarchy construction are established tools, not novelty by themselves",
+    "Finite-horizon safety, asymptotic stability, and global design optimality are different claims",
+    "General theory still requires a declared disturbance class and physical resource limits"
+  ]
+}

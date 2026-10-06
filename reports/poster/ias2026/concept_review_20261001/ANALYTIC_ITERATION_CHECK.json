@@ -1,0 +1,27 @@
+{
+  "scope": "DERIVATION_IDENTITY_CHECK_ONLY; not a physical SG-GFL experiment or robust certificate",
+  "initial_equilibrium_residual": 3.652049423109068e-17,
+  "nonlinear_dae_gradient_checks": [
+    {
+      "step": 0.0002,
+      "max_absolute_error": 5.469946717795438e-10,
+      "relative_frobenius_error": 2.4859559564497774e-09
+    },
+    {
+      "step": 0.0001,
+      "max_absolute_error": 1.3690604205862655e-10,
+      "relative_frobenius_error": 6.205070278405117e-10
+    },
+    {
+      "step": 5e-05,
+      "max_absolute_error": 3.198996623154926e-11,
+      "relative_frobenius_error": 1.4687715348029931e-10
+    }
+  ],
+  "active_set_formula_check": {
+    "step_error_vs_saddle_solve": 2.220446049250313e-16,
+    "stationarity_residual": 9.992007221626409e-16,
+    "active_constraint_residual": 4.440892098500626e-16,
+    "min_multiplier": 0.6272155309009368
+  }
+}

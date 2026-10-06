@@ -1,0 +1,39 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterTopRowHeight][t]{\PosterOneWidth}\vspace{0pt}
+  \begin{TicketTwoPanel}{\PosterTopRowHeight}{1}{A PLL THAT LISTENS LATE}
+
+    {\FigureSize Inverters replace synchronous generators. Each one tracks the grid phase with a phase-locked loop (PLL), and that measurement arrives $\tau$ late.\par}
+    \vspace{3mm}
+    \begin{center}
+    \begin{tikzpicture}[x=1.22mm,y=1.22mm,font=\FigureSize,>=latex]
+      \node[draw=IASBlue,fill=IASPaleGreen,rounded corners=2.5mm,line width=1.6pt,minimum width=52mm,minimum height=34mm,align=center] (inv) at (28,34) {inverter\\+ PLL};
+      \node[draw=IASGold,fill=IASPaleGold,rounded corners=3mm,line width=1.6pt,minimum width=52mm,minimum height=34mm,align=center] (grid) at (150,34) {IEEE-39\\grid};
+      \draw[->,line width=2pt,IASBlue] (inv.east) -- node[above] {power} (grid.west);
+      \draw[->,line width=2pt,IASVermillion,dashed] (grid.south) |- node[below,pos=0.7] {phase, $\tau$ late} (inv.south);
+    \end{tikzpicture}
+    \end{center}
+    \vspace{4mm}
+    {\PosterParagraph\bfseries\color{IASDarkGreen} If a retune keeps one oscillation mode exactly where it was, is the grid safe?\par}
+    \vspace{3mm}
+    {\FigureSize IEEE-39 at 87.5\,\% inverter share, ten PLLs. Their delay grows from 40 to 44 ms.\par}
+
+  \end{TicketTwoPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewOnePageWidth}
+  \def\PosterPageHeight{\PosterPreviewTopRowPageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewOneLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

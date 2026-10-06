@@ -1,0 +1,61 @@
+RESULTADO DE LA CAMPAÑA SG–GFL — 2026-10-01
+
+La campaña NO demuestra reemplazo máximo ni un ajuste aprobado para todas las perturbaciones requeridas.
+Sí encuentra un candidato con menos SG y confirma su estabilidad lineal local. Una prueba no lineal requerida lo rechaza.
+
+DISEÑO ENSAYADO
+SG retenido: 366.238767 MW; sustitución GFL: 93.221267% del despacho base.
+El candidato anterior retenía 438.446282 MW. Los ensayados aquí retienen 366.238767 MW y eliminan completamente SG en 31, 32, 34 y 36.
+Las dos variantes usan la misma asignación rho; repaired aumenta algunas Kp del PLL. Su nombre es una etiqueta experimental, no una reparación certificada.
+
+EVIDENCIA POR VARIANTE
+improved: alpha_PD=-0.0521654932512 s^-1; 155 polos físicos; error máximo de reconstrucción=1.47e-09.
+Suite completa aprobada: False. Casos con violación demostrada: ['step_8'].
+Casos requeridos sin trayectoria completa: ['step_8'].
+  Bus 8 +100 MW, prefijo completo de 5 s, coarse: F=0.349364220 Hz, RoCoF=0.891537779 Hz/s; tolerancia=1.0e-8.
+  Bus 8 +100 MW, prefijo completo de 5 s, fine: F=0.349364211 Hz, RoCoF=0.891537761 Hz/s; tolerancia=1.0e-10.
+  Integración incompleta step_8: MaxIters, t absoluto=6.62 s (evento en t=1).
+  Integración incompleta step_8_relaxed: MaxIters, t absoluto=6.4 s (evento en t=1).
+  Integración incompleta step_8_event_limits: MaxIters, t absoluto=11.64 s (evento en t=1).
+  Integración incompleta step_8_event_limits_refined: MaxIters, t absoluto=10.18 s (evento en t=1).
+  Contraste a 1 MW, small_16: error relativo máximo de forma de onda = 0.6734%.
+repaired: alpha_PD=-0.0521655286538 s^-1; 155 polos físicos; error máximo de reconstrucción=1.17e-09.
+Suite completa aprobada: False. Casos con violación demostrada: [].
+Casos requeridos sin trayectoria completa: ['step_8', 'refined_8'].
+  Integración incompleta step_8: MaxIters, t absoluto=6.44 s (evento en t=1).
+  Integración incompleta step_8_relaxed: MaxIters, t absoluto=6.45 s (evento en t=1).
+  Integración incompleta stress_29: MaxIters, t absoluto=10.2 s (evento en t=1).
+  El intento adicional de prefijo de 5 s tampoco completó la integración; no se le atribuyen picos ni convergencia.
+  Contraste a 1 MW, small_16: error relativo máximo de forma de onda = 0.6734%.
+  Contraste a 1 MW, small_8: error relativo máximo de forma de onda = 1.1466%.
+  Contraste a 1 MW, small_29: error relativo máximo de forma de onda = 2.6904%.
+
+QUÉ ESTÁ COMPROBADO Y QUÉ NO
+Los límites declarados son 0.5 Hz y 0.5 Hz/s con ventana causal de fase de 0.5 s. Se observan los diez buses generadores.
+La violación de RoCoF en un prefijo completado basta para rechazar ese candidato: no depende del posterior fallo del integrador.
+Un fallo MaxIters no demuestra por sí solo inestabilidad física, pérdida de sincronismo ni colapso de tensión.
+El escalón de 150 MW en bus 29 es estrés adicional fuera de la especificación de diseño de 100 MW; se informa separado.
+El radio de robustez usa perturbaciones complejas no estructuradas de la matriz en coordenadas fijas. Su cota de toda la banda es numérica Float64, no una prueba formal ni una garantía ante eventos grandes.
+Las tres búsquedas SLSQP sumaron 14 770 evaluaciones. No convergieron con certificación KKT; el menor residuo de estacionariedad normalizado observado fue aproximadamente 0.04747. No se verificó SOSC ni se obtuvo una cota global del objetivo.
+La comprobación del evaluador incluye unidades físicas, derivadas, exponencial matricial independiente, respuesta lineal refinada y cota de su cola. Estas comprobaciones pasan y no convierten la aproximación lineal en una garantía no lineal.
+El contraste PowerDynamics–modelo lineal a 1 MW deja diferencias de forma de onda de hasta 2.69%. No se ha completado un barrido de amplitud tendiendo a cero que separe el error de linealización del de medición o implementación de la entrada/salida.
+
+CONSECUENCIA MATEMÁTICA PARA LA SIGUIENTE BÚSQUEDA
+Mantener min J=sum_i P0_i*(1-rho_i), con restricciones espectrales y del radio, y añadir seguridad de la DAE no lineal para cada escenario.
+Para cada bus de perturbación b y amplitud d: sup_t max_i |f_T_i(t;rho,Kp,Ki,b,d)| <= 0.5 y sup_t max_i |R_T_i(t;rho,Kp,Ki,b,d)| <= 0.5.
+f_T=[theta(t)-theta(t-T)]/(2*pi*T); R_T=[theta(t)-2*theta(t-T)+theta(t-2*T)]/(2*pi*T^2).
+Añadir límites de tensión, corriente y estados del controlador con valores físicos documentados. La corriente relativa al punto inicial no sustituye una corriente nominal admisible.
+Usar los casos fallidos como contraejemplos al seleccionar nuevos diseños; reservar perturbaciones y puntos de operación para validación que no haya intervenido en la selección.
+Completar un barrido pequeño de amplitudes y localizar las diferencias de entrada/salida antes de atribuir toda discrepancia a un mecanismo no lineal concreto.
+Para afirmar óptimo local: gradientes fiables, conjunto activo completo, KKT y condiciones de segundo orden pertinentes. Para máximo global: una cota válida que cierre la brecha entre el mejor diseño factible y la relajación, cubriendo también las arquitecturas SG presentes/ausentes.
+
+LECTURA CIENTÍFICA
+El resultado defendible es que estabilidad modal y robustez lineal no bastan para certificar seguridad ante grandes perturbaciones del co-diseño SG–GFL. Esta campaña contiene un contraejemplo numérico reproducible.
+No se ha establecido aquí que esa observación sea nueva en la literatura. El póster no debería afirmar máximo reemplazo seguro ni ganancias óptimas mientras falten estas garantías.
+
+ARCHIVOS
+VALIDATION_REPORT_improved.txt y VALIDATION_REPORT_repaired.txt: métodos, métricas, fallos y comandos.
+parameters_improved.csv y parameters_repaired.csv: rho, potencia SG, Kp y Ki por nodo; son parámetros ensayados, no recomendaciones aprobadas.
+campaign_event_comparison.csv: resultados completos y prefijos, con su horizonte explícito.
+validation_improved.png/.pdf y validation_repaired.png/.pdf: figuras científicas en formato vertical.
+source_manifest.json y los SHA256 de candidatos: trazabilidad. Los scripts están en experiments/codesign_validation_20261001.

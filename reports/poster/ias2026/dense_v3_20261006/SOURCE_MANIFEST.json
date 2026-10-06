@@ -1,0 +1,64 @@
+{
+  "inputs": [
+    {
+      "path": "experiments/all_pll_gain_map_validation_20261003/SUMMARY.json",
+      "sha256": "c382199b7e6c5b8c61d360f0d1961f6072bb38d0b35da1d3c8b337723a8cec9a"
+    },
+    {
+      "path": "experiments/all_pll_gain_map_validation_20261003/TABLE_08_NONLINEAR_EVENTS.csv",
+      "sha256": "cdbc136eb3a3caba7507b70f5656c353a236768292c02796ad2ee1a245fbd56c"
+    },
+    {
+      "path": "experiments/regional_paper_closure_20261003/TABLE_01_WALK_REMAINDER.csv",
+      "sha256": "84338f7ad33ecb2cb6600bb140f770fb01741cc03293224e99801bd14cccb87f"
+    },
+    {
+      "path": "experiments/poster_julia_validation_20261003/TABLE_02_FINITE_DELAY_RANK_LAW.csv",
+      "sha256": "4e3f63e5b5e18bd1305d36c971577ac07abf1a9bda2933ac8a5306fa92311ea5"
+    },
+    {
+      "path": "experiments/poster_julia_validation_20261003/RANK_LAW_SUMMARY.json",
+      "sha256": "c70d60517c2dae36ce98026aa473260e779bf6c32be960f25b9237f1f4b14f92"
+    },
+    {
+      "path": "experiments/regional_paper_closure_20261003/CONTOUR_RESULT.json",
+      "sha256": "b595eb29a7c5cfc4856c5a116fb481bc44da66084c5848afa018d77785f3ef14"
+    },
+    {
+      "path": "experiments/regional_paper_closure_20261003/PANELS.json",
+      "sha256": "24ccb38a98119512f0ddaaa612f0bd5112e15a30c0441c037f641d0087c0a18a"
+    },
+    {
+      "path": "reports/poster/ias2026/collective_interaction_20261003/reference_template/network_ieee39.tikz",
+      "sha256": "26ec772d191dc28d661901392a7fc28ed1d71134d6ee3daad31335694d0b32b2"
+    },
+    {
+      "path": "reports/experiment_D/inputs/branch.csv",
+      "sha256": "b1858adb3e409750b5db24bc5073dda1e0683a59ef6e5966840cd73a18293972"
+    },
+    {
+      "path": "experiments/all_pll_gain_map_validation_20261003/nonlinear/bus8_-100_trajectory.csv",
+      "sha256": "4e6cc1b7ca47a375feef0a36468e70119283c01453b20c554431682900e7624b"
+    },
+    {
+      "path": "experiments/all_pll_gain_map_validation_20261003/nonlinear/bus16_100_trajectory.csv",
+      "sha256": "17f2375c4301258a601f1cd98ac8782e7b3370bd357d02cfc956cbc50b0f8ce6"
+    },
+    {
+      "path": "experiments/all_pll_gain_map_validation_20261003/nonlinear/bus16_-100_trajectory.csv",
+      "sha256": "c791bc211bdefbe90dcd3c4154e7ae2a219a3f50e76bb3ed3056921a4c52ba4c"
+    },
+    {
+      "path": "experiments/all_pll_gain_map_validation_20261003/nonlinear/bus29_100_trajectory.csv",
+      "sha256": "5b561999f3c3c6780ce35a6dcd0c2997e68895917fc8f51d6fe4638cb9bd34a6"
+    },
+    {
+      "path": "experiments/all_pll_gain_map_validation_20261003/nonlinear/bus29_-100_trajectory.csv",
+      "sha256": "95f2d92edd0ebcea55f60b6ee275b26dcd6792114c43ab9183ae3ac3f9064f5a"
+    }
+  ],
+  "qr_target": "https://github.com/jlmayorgaco/paper-P06-spectral-graph-power-dynamics/tree/codex/collective-interaction-bounds-20261003",
+  "geometry": "36 x 48 inches; inherited from existing user poster, not a claim about conference requirements",
+  "copied_template": "reports/poster/ias2026; original modules and main preserved",
+  "scientific_scope": "exact conditional identities + pointwise checks + one regional cluster + nonlinear feasible construction"
+}

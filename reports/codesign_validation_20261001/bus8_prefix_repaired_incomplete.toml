@@ -1,0 +1,8 @@
+event = "bus8_prefix_repaired"
+status = "INCOMPLETE_TDS"
+retcode = "MaxIters"
+tolerance = 1.0e-8
+requested_horizon_after_event_s = 5.0
+candidate_sha256 = "8888c50ae7df017d2b2bb319c1adf2dc631a4af190c4045047cf1741875c922d"
+physical_instability_proven = false
+note = "The coarse short run did not complete; the fine run was not executed. No prefix peaks are available for this candidate."

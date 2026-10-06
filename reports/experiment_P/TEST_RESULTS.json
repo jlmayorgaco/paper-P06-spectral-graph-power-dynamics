@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "command": "julia --project=. --startup-file=no test/bnd_expP/runtests.jl",
+  "test_source_sha256": "b1a6310fd9f4750492547bf339b4ba4cdf94d2ee4e963d156b554d4a1737e0e4",
+  "total_passed": 56,
+  "total_failed": 0,
+  "test_sets": [
+    {"name": "ExpP frozen inputs and stage gates", "passed": 31, "total": 31},
+    {"name": "P1 local PLL rank-one and SG rank-two identities", "passed": 12, "total": 12},
+    {"name": "P2 exact retention root checks complete physical poles", "passed": 3, "total": 3},
+    {"name": "P3 local KKT and P6 open globality ledger", "passed": 10, "total": 10}
+  ],
+  "checks_recomputed": [
+    "frozen ExpN input hashes",
+    "rank-one PLL and affine-pair determinant identities",
+    "rank-two single-SG and rank-four two-SG identities",
+    "conditional retention roots with complete physical pole check",
+    "PD nominal validation and small-pulse comparisons",
+    "declared sustained-step metrics and limit failures",
+    "new 1e-6 guard root and unchanged frozen candidate",
+    "reject invalid H-infinity upper certificate",
+    "check conditional interval lower and sampled upper bounds plus no-outward-rounding caveat",
+    "fixed-support KKT record and 1024-support globality ledger"
+  ],
+  "limitations": "These tests recompute selected identities and gates; they do not run fault-injection mutation tests for every deliberately corrupted implementation listed in the specification."
+}

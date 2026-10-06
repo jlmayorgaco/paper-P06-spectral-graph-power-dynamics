@@ -1,0 +1,14 @@
+gate,metric,threshold_or_classification,observed,status,notes
+C0 input integrity,"A/B status, hashes, same-model bus-33 Ared reproduction",PASS,"A=true, B=true, Ared_rel=0.0",PASS,A/B output files were read only.
+C1 generalized Psi exactness,median / p95 reconstruction; Pi derivative median / p95,<1e-11 / <1e-9; <1e-7 / <1e-5,3.137097402395099e-17 / 1.5454154575947225e-16; 5.588712197100199e-11 / 4.223080096247069e-10,PASS,Complex sample points for every case; finite differences avoid Tcc poles.
+C2 zero-frequency singularity,"nullspace, semisimplicity, low-frequency scaling and residue",EXPLAINED / PARTIALLY_EXPLAINED / UNRESOLVED,"nullity=1, semisimple=false, p=1.000032247027082",PARTIALLY_EXPLAINED,Threshold sensitivity prevents a Jordan/residue claim; no Pi(0) or pseudoinverse.
+C3 graph backbone and basis,M SPD and generalized basis residuals,<1e-10,"Mmin=0.0026525823848649226, eM=1.7319027339675558e-14, eL=1.7378700631082228e-11",PASS,Primary backbone fixed by the configured projection rule.
+C4 exact graph transform,median / p95 reconstruction error,<1e-11 / <1e-9,p95=3.589464951382952e-15,PASS,Imaginary-axis grid plus offsets near analyzed poles.
+C5 exact Gamma Schur identity,median / p95 scalar residual,<1e-11 / <1e-9,p95=0.0,PASS,"Complementary solves, no explicit inverse."
+C6 exact pathway reconstruction,max relative pathway sum error,<1e-10,5.747216055983061e-11,PASS,Per-mode exact pathway matrix.
+C7 real predictor,matched exact pole errors stratified by eta,SUPPORTED / LIMITED / FALSIFIED / BLOCKED,"SUPPORTED, n=24, median=0.000905638706335024",SUPPORTED,No predictor is called exact.
+C8 real detuning mechanism,Spearman ranking against exact diagonal pathway,SUPPORTED / NOT_OBSERVED / INCONCLUSIVE,NOT_OBSERVED,NOT_OBSERVED,Susceptibility is approximate when complement modes are coupled.
+C9 generalized dissipative power identity,direct versus graph harmonic power; Sigma special-case,<1e-10,5.698518231827367e-16; special=1.0540250939223871e-16,PASS,"Hermitian imaginary part, not Hermitian{Psi}."
+C10 backbone robustness,principal-angle and Gamma sensitivity,ROBUST / PARTIALLY_ROBUST / BASIS_SENSITIVE,PARTIALLY_ROBUST,PARTIALLY_ROBUST,Primary and Euclidean projected Hermitian choices.
+C11 cross-bus reproducibility,"graph, Gamma, Psi identities across cases",all feasible cases,5/5,PASS,"C0 baseline plus 30, 33, 35 and 37."
+C12 ready for ExpD,"C0,C1,C3,C4,C5,C6,C11",YES only if every required gate passes,true,YES,Controller variation must still be exposed without semantic changes.

@@ -1,0 +1,24 @@
+{
+  "status": "TRANSFER_SCOPE_AND_MODEL_DIFFERENCE_RECORDED",
+  "q2b_reported_status": "PASS_LOCAL_SECURE",
+  "q2b_reported_GFL_fraction": 0.9421548939088187,
+  "independently_reran_q2b_optimization": false,
+  "nonlinear_DC_model_identical": false,
+  "robust_all_input_capacity_bound": false,
+  "reported_primary_event_F_Hz": 0.46875545519546014,
+  "reported_primary_event_R_Hz_s": 0.17177143877121545,
+  "reported_external_bus8_R_Hz_s": 0.512749948815544,
+  "reported_external_bus29_F_Hz": 0.5885706494819505,
+  "source_hashes": {
+    "reports/experiment_Q2B/CERTIFIED_SEARCH/TERMINAL_SUMMARY.json": "120e47a13969b22c43ed59f5d37c30d37d69971ab523aad0fe69bdafe5c34dfe",
+    "reports/experiment_Q2B/CERTIFIED_SEARCH/Z_LOCAL_SECURE_FINAL.toml": "66513a8d3a1b4cc37c9d6f2b1a5824371fed2d0c5621d2ccdb7540490fe59124",
+    "reports/experiment_Q2B/CERTIFIED_SEARCH/PD/EVENTS.csv": "17fa7b3bdfbb824e10eecd5994744df4f6f3bb7d8f9bb6815fc5543f8cf7c3fe",
+    "reports/experiment_Q2B/CERTIFIED_SEARCH/RESULTADO_LOCAL_Y_BRECHA_GLOBAL.md": "73b471eb934e741f509036c76e59a427952fe3ebfe1f1b38dc8a33e849616d6b",
+    "src/pd39/model.jl": "d2cc3b542cec12662d589689df7d807e029de5475a8217678275d5c91a840953",
+    "src/bnd_model_expN/PDReferenceN.jl": "79226d8115158d8ba99e2a00b3fbdd2ad7274e08afff2ce27930794435ac2d83",
+    "experiments/bnd_expQ2B/certified_search/validate_independent_pd.jl": "b8a60101a76e2a429f8adeebc6e132b41b2c82c831e44dba365fc94d788dc4c6",
+    "experiments/nonlinear_codesign_20261001/PDPhysicalReference.jl": "5e1ca06ca97dd35245b0052d9f50549a9dcd2ba713bf29e8dfd8da99c6f9d50f",
+    "experiments/bnd_expQ2B/certified_search/LocalOracle.jl": "17049a3c59b036f7ca67afdb8608c3fe7b6e6ca5ac1d28efef7d65b0384c3aa2"
+  },
+  "script_sha256": "ed36150ee08e3d7e0bd78401ecdaf653684c6ca0770c617031fb2fcebd93c59f"
+}

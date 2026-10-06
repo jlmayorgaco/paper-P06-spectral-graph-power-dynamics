@@ -1,0 +1,93 @@
+{
+  "status": "NONLINEAR_COUPLED_ENCLOSURE_RECHECK_PASSED_MICROSCOPIC_REGION",
+  "verification_type": "Directed binary64 matrix enclosures plus mpmath interval elementary functions; not a proof-assistant certificate",
+  "state_count": 281,
+  "input_count": 88,
+  "radius": 2.1544346900318822e-06,
+  "input_radius": 1.2087055600175472e-13,
+  "certified_decay_lower_bound": 0.02631524830128768,
+  "input_gain_upper_bound": 374776.19411337795,
+  "trim_drift_upper_bound": 1.9193578774559003e-23,
+  "inward_margin_exact": "969385931154840096008080751613/85070591730234615865843651857942052864",
+  "inward_margin_float": 1.1395076858391174e-08,
+  "initial_original_trim_metric_norm_bound": 5.1556188252130566e-09,
+  "original_trim_inside": true,
+  "frequency_bound": 2.630623158379693e-07,
+  "rocof_bound": 2.4065521785769124e-05,
+  "voltage_min": 0.9819999407073382,
+  "voltage_max": 1.0635001270130877,
+  "hardware_requirements_not_validated": [
+    {
+      "bus": 30,
+      "current_magnitude_model_base_required": 2.7645798339913275,
+      "vdc_min": 2.4999999993327764,
+      "vdc_max": 2.5000000006672236
+    },
+    {
+      "bus": 31,
+      "current_magnitude_model_base_required": 5.571838689373302,
+      "vdc_min": 2.49999999950648,
+      "vdc_max": 2.50000000049352
+    },
+    {
+      "bus": 32,
+      "current_magnitude_model_base_required": 6.933212870636662,
+      "vdc_min": 2.4999999994855555,
+      "vdc_max": 2.5000000005144445
+    },
+    {
+      "bus": 33,
+      "current_magnitude_model_base_required": 6.432864517756517,
+      "vdc_min": 2.499999999493879,
+      "vdc_max": 2.500000000506121
+    },
+    {
+      "bus": 34,
+      "current_magnitude_model_base_required": 5.278681361389187,
+      "vdc_min": 2.499999999464605,
+      "vdc_max": 2.500000000535395
+    },
+    {
+      "bus": 35,
+      "current_magnitude_model_base_required": 6.516979055227425,
+      "vdc_min": 2.499999999274759,
+      "vdc_max": 2.500000000725241
+    },
+    {
+      "bus": 36,
+      "current_magnitude_model_base_required": 5.350881238307189,
+      "vdc_min": 2.499999999100202,
+      "vdc_max": 2.500000000899798
+    },
+    {
+      "bus": 37,
+      "current_magnitude_model_base_required": 5.253942443550405,
+      "vdc_min": 2.499999999305628,
+      "vdc_max": 2.500000000694372
+    },
+    {
+      "bus": 38,
+      "current_magnitude_model_base_required": 8.08878967193386,
+      "vdc_min": 2.499999999088551,
+      "vdc_max": 2.500000000911449
+    },
+    {
+      "bus": 39,
+      "current_magnitude_model_base_required": 2.735051236311503,
+      "vdc_min": 2.499999999197285,
+      "vdc_max": 2.500000000802715
+    }
+  ],
+  "metric_inverse_neumann_check": 2.805937463035454e-08,
+  "network_inverse_neumann_check": 6.23098980195036e-10,
+  "seconds": 2.690532600041479,
+  "source_hashes": {
+    "model.toml": "473f3afb24e8351e16302edb8175c0bdc90df4e28d7dc7dbed8e9a4dd5f65261",
+    "refined_center.json": "f514b919576a4e83ae352091b5c6e02b425cd013abf45bd4a3927474b7a5b702",
+    "synthesis_modal.json": "330192b0c3226e66ef2c947dab5d26d77a854445a883b50b7c33abcfc44e58a8",
+    "certificate_modal.npz": "e9921ff06d1b421bd76ada698ba7d6e92ae3863612b7115a329365bb02621b3a"
+  },
+  "implementation_sha256": "29cbb33ee29f70765f4f0d277a3b6219f76a7e5cb4f88fcbdbd520c3d1f5f1c9",
+  "script_sha256": "9cb6c03a3aa89bcb2ff540f56c214a9aa476e13143823814aa4631ebe576b6e2",
+  "scope": "All 39-bus current channels and 10 DC-source channels in the declared joint instantaneous ball; fixed design; practically negligible envelope, no capacity optimum or hardware feasibility claim"
+}

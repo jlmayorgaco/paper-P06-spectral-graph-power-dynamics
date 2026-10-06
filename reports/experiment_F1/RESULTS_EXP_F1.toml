@@ -1,0 +1,14 @@
+max_analytic_vs_numeric_pole_error = 2.787913920690064e-7
+nu = [0.6, 1.5, 4.0, 9.0, 16.0]
+claim_scope = "Each isolated commuting mode is optimally damped; no global optimum over arbitrary noncommuting D is claimed."
+nonproportional_reference = "not implemented; no verified Weyl-Horn construction was available in the local audited theory"
+D_modal_formula = "2 M^(1/2) (M^(-1/2) K M^(-1/2))^(1/2) M^(1/2)"
+status = "PASS"
+experiment = "BND_EXP_F1"
+synthetic_dimension = 5
+max_modal_damping_transform_residual = 1.2351231148954867e-14
+
+[damping_factors]
+underdamped = 0.7
+overdamped = 1.8
+modal_critical = 1.0

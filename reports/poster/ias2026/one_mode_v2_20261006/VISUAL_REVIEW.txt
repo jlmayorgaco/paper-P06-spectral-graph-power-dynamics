@@ -1,0 +1,19 @@
+VISUAL REVIEW, 2026-10-03
+
+Every poster module was compiled separately with StrictLayout, followed by
+the integrated page. The full raster preview and enlarged previews were
+inspected. Initial tcolorbox overflow was visible despite a clean TeX log;
+the affected top-right, physical-law and trajectory modules were shortened
+and re-rendered. The result strip was aligned to the same outer grid.
+
+Final geometry retains the original 36 x 48 inch page, 8 mm column gaps,
+4 mm row gaps, logos, palette and semantic font roles. Math display spacing
+was made explicit. The finite-damping plot uses a declared symmetric-log
+axis so the smaller positive changes remain visible alongside the negative
+changes. Every frozen event is plotted for the complete 60 s horizon.
+No events, buses, or algebra points were selected based on a desired outcome.
+
+The article was rendered across all pages and examined in page contact
+sheets, with the new figures/table separately legible. Automated PDF checks
+also verify page counts, no text outside page bounds, and clean TeX logs.
+The final PDF_CHECKS.json and hashes identify the deliverable versions.

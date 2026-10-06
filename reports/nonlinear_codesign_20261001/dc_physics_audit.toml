@@ -1,0 +1,6 @@
+interpretation = "With positive converter-to-AC power and positive DC supply, physical balance is d(E_dc+E_filter)/dt=Pdc-Pbus-Rf*I^2. Both the inherited DC balance and voltage-control errors had opposite signs. Corrected physical convention is a separate model variant. At trim the two linearizations are similar under delta-vdc sign reversal; nonlinear equivalence is not asserted."
+physical_trim_residual = 2.338166264278311e-9
+legacy_physical_energy_balance_max_error_pu = 0.09715881060355948
+nominal_Jacobian_similarity_error = 0.0
+physical_energy_balance_max_error_pu = 4.441271569260996e-15
+sample_count = 200

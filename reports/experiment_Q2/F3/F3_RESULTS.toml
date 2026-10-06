@@ -1,0 +1,12 @@
+dynamic_gain_point = "ExpG corrected interior, active GFL bus 38"
+max_abs_dalpha_dK = 7.593602048107098e-8
+max_abs_dH0_dKi = 1.2459340800613709e-14
+centered_DC_gain_derivatives = 60
+max_abs_dH0_dKp = 7.656890899819576e-14
+stage = "F3"
+dynamic_metrics = "alpha, pointwise beta radius at frozen ExpG peak frequency, SG-filtered h=5 F_peak and R_peak; F_inf"
+PLL_STEADY_SUPPORT_RESULT = "PLL_DC_SUPPORT_INDEPENDENT"
+beta_method = "pointwise fixed-frequency singular-value radius at ExpG frozen peak, not a full re-optimized beta-star or formal interval certificate"
+dynamic_gain_bus = 38
+dynamic_peak_frequency_rad_s = 0.30622137413374856
+withheld_mixed_points = 30

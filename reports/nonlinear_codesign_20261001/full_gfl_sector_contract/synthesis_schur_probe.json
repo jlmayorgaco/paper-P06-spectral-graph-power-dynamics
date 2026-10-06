@@ -1,0 +1,55 @@
+{
+  "status": "FULL_GFL_SDP_CANDIDATES_REQUIRE_INDEPENDENT_VERIFICATION",
+  "formulation": "squared_radius",
+  "specification": {
+    "angle_box": 0.05,
+    "id_box": 0.1,
+    "iq_box": 0.1,
+    "vdc_box": 0.05,
+    "gamma_scale": 0.001,
+    "integral_current_scale": 0.1,
+    "frequency_max_hz": 0.5,
+    "rocof_max_hz_s": 0.5,
+    "measurement_tau": 0.1,
+    "decay_rate": 5.0,
+    "time_scale": 0.1,
+    "frame_rate_per_voltage": 62.83185307179586,
+    "dc_power_per_voltage": 10.0,
+    "matrix_guard": 1e-08,
+    "trace_bound": 2.0,
+    "epsilon_bound": 1.0,
+    "objective_radius_unit": 0.001
+  },
+  "state_names": [
+    "delta",
+    "omega",
+    "xi",
+    "chi",
+    "gamma_q",
+    "gamma_d",
+    "i_d",
+    "i_q",
+    "v_dc_i",
+    "v_dc"
+  ],
+  "gain_policy": "network_candidate",
+  "models_sha256": "5f44d698e1bd1c7768c6a53188ec5193d89c8ef2360cb54c9549b4484f4e43d2",
+  "source_sha256": "f0afd418bb583f738b23a106024b9c6f1eec3b910ba8dc26dfde4672e4c3ef65",
+  "candidates": [
+    {
+      "status": "SOLVER_ERROR",
+      "error": "Solver 'CLARABEL' failed. Try another solver, or solve with verbose=True for more information.",
+      "bus": 30,
+      "Kp": 40.654556519725986,
+      "Ki": 355.43804466166
+    },
+    {
+      "status": "SOLVER_ERROR",
+      "error": "Solver 'CLARABEL' failed. Try another solver, or solve with verbose=True for more information.",
+      "bus": 39,
+      "Kp": 45.25577735911157,
+      "Ki": 355.4380446616606
+    }
+  ],
+  "scope": "Full local GFL plus filtered PLL RoCoF; network ports remain open"
+}

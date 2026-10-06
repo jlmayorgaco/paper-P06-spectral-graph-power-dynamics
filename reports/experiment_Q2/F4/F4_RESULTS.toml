@@ -1,0 +1,11 @@
+finite_steady_frequency_outputs = 186
+STEADY_FREQ_STRUCTURE = "NONAFFINE"
+withheld_designs = 200
+model_sha = "e2f104608f1eb1705f0ad2c07764e7beab0a5df4deb4d4ce4f359b1e79947f0a"
+c_i_MW_per_Hz = [283.78342455317465, 173.7689317164427, 339.4620809517033, 167.13284674368606, 164.71522992742157, 122.9744698936073, 241.8750949384369, 157.65035947471702, 550.9132906323591, -23.930601024850553]
+stage = "F4"
+affine_holdout_max_abs_error_MW_per_Hz = 3298.2702948913593
+finite_holdout_designs = 86
+affine_holdout_max_relative_error = 1.7802360964952553
+K_load_MW_per_Hz = 302.1132202618006
+fit_training_designs = 100
