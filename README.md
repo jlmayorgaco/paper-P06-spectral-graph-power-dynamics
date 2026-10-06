@@ -55,3 +55,7 @@ system = andes.load("data/processed/mix60/mix60.xlsx", setup=True)
 system.PFlow.run()
 system.EIG.run()
 ```
+
+## Research handoff (2026-10-02)
+
+For a continuity package on the IEEE-39 SG-to-GFL PLL co-design and Beyond Nodal Damping work, start with [the next-AI restart guide](reports/handoff/ai_migration_20261002/START_HERE_FOR_NEXT_AI.md), then use the [master research dossier](reports/handoff/ai_migration_20261002/HANDOFF_MASTER.md) and its [artifact map](reports/handoff/ai_migration_20261002/ARTIFACT_MAP.json). The rendered internal report is in output/pdf/IEEE39_BND_PROJECT_HANDOFF_20261002.pdf. This package preserves failed experiments and claim limits; it is not a camera-ready IEEE submission.
