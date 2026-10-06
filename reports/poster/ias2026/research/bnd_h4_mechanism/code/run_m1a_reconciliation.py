@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+import dataclasses
 import hashlib
 import json
 import platform
@@ -24,6 +25,140 @@ def sha256(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def array_sha256(value: np.ndarray) -> str:
+    array = np.ascontiguousarray(np.asarray(value))
+    digest = hashlib.sha256()
+    digest.update((array.dtype.str + str(array.shape)).encode())
+    digest.update(array.tobytes())
+    return digest.hexdigest()
+
+
+def normalize_hash_payload(value):
+    if dataclasses.is_dataclass(value):
+        return normalize_hash_payload(dataclasses.asdict(value))
+    if isinstance(value, dict):
+        return {str(key): normalize_hash_payload(value[key]) for key in sorted(value, key=str)}
+    if isinstance(value, (list, tuple)):
+        return [normalize_hash_payload(item) for item in value]
+    if isinstance(value, complex):
+        return {"real": float(value.real), "imag": float(value.imag)}
+    if isinstance(value, np.ndarray):
+        return {"dtype": value.dtype.str, "shape": list(value.shape), "sha256": array_sha256(value)}
+    if isinstance(value, (np.floating, np.integer)):
+        return value.item()
+    if isinstance(value, (str, int, float, bool)) or value is None:
+        return value
+    return repr(value)
+
+
+def model_fingerprint(case) -> str:
+    network = case.dae.network
+    payload = {
+        "bus_idx": normalize_hash_payload(network.bus_idx),
+        "ybus_sha256": array_sha256(network.ybus),
+        "loads": normalize_hash_payload(network.loads),
+        "load_model": network.load_model,
+        "machines": normalize_hash_payload(network.machines),
+        "frequency_hz": getattr(network, "frequency_hz", None),
+        "base_mva": getattr(network, "base_mva", None),
+        "plan": normalize_hash_payload(case.plan),
+        "slots": [
+            {
+                "bus": slot.bus,
+                "kind": slot.kind,
+                "weight": slot.weight,
+                "loading": slot.loading,
+                "device_type": type(slot.device).__module__ + "." + type(slot.device).__qualname__,
+                "parameters": normalize_hash_payload(getattr(slot.device, "parameters", None)),
+            }
+            for slot in case.dae.slots
+        ],
+    }
+    return hashlib.sha256(
+        json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
+
+
+def equilibrium_fingerprints(case) -> dict[str, str]:
+    return {
+        "xz_sha256": hashlib.sha256(
+            (array_sha256(case.equilibrium.x) + array_sha256(case.equilibrium.z)).encode()
+        ).hexdigest(),
+        "reduced_A_sha256": array_sha256(case.system.A),
+    }
+
+
+def matched_base_port_operator(base_case, flagship_case, buses, reference_operator):
+    """Linearize the base counterfactual at the matched flagship operating point.
+
+    This changes only the comparison point used by the retained action-space
+    diagnostic. It never changes either solved case, its equilibrium, dispatch,
+    network, or model parameters.
+    """
+    from ibr_cycles.models.port_admittance import PortOperator, linearize_device, load_admittance
+
+    base_dae, flag_dae = base_case.dae, flagship_case.dae
+    base_net, flag_net = base_dae.network, flag_dae.network
+    same_network = (
+        base_net.bus_idx == flag_net.bus_idx
+        and np.array_equal(base_net.ybus, flag_net.ybus)
+        and base_net.loads == flag_net.loads
+        and base_net.load_model == flag_net.load_model
+        and np.array_equal(base_dae.power_flow.voltages, flag_dae.power_flow.voltages)
+    )
+    if not same_network:
+        raise RuntimeError("matched base port construction requires the frozen identical network/PF")
+
+    common_z = flagship_case.equilibrium.z
+    common_v = flag_dae.voltages(common_z)
+    flag_slots = {slot.bus: slot for slot in flag_dae.slots}
+    action_buses = set(buses)
+    x_base = np.empty(base_dae.n_x, dtype=float)
+    for slot in base_dae.slots:
+        voltage = complex(common_v[base_net.position(slot.bus)])
+        if slot.bus in action_buses:
+            # Keep the frozen base device parameters; use initialization only
+            # to obtain its state at the shared voltage and unchanged dispatch.
+            dispatch = base_dae.power_flow.injection(slot.bus, base_net.ybus)
+            dispatch += base_net.loads.get(slot.bus, 0.0 + 0.0j)
+            _, state = slot.device.initialize(voltage, dispatch)
+        else:
+            shared = flag_slots.get(slot.bus)
+            if (
+                shared is None
+                or slot.kind != shared.kind
+                or type(slot.device) is not type(shared.device)
+                or slot.stop - slot.start != shared.stop - shared.start
+                or getattr(slot.device, "parameters", None) != getattr(shared.device, "parameters", None)
+            ):
+                raise RuntimeError(f"unmatched non-action device at bus {slot.bus}")
+            state = flagship_case.equilibrium.x[shared.start : shared.stop]
+        state = np.asarray(state, dtype=float)
+        if state.size != slot.stop - slot.start:
+            raise RuntimeError(f"state-size mismatch at base device bus {slot.bus}")
+        x_base[slot.start : slot.stop] = state
+
+    ports = tuple(
+        linearize_device(
+            slot,
+            x_base,
+            complex(common_v[base_net.position(slot.bus)]),
+        )
+        for slot in base_dae.slots
+    )
+    loads = {
+        bus: load_admittance(load, complex(common_v[base_net.position(bus)]))
+        for bus, load in base_net.loads.items()
+    }
+    return PortOperator(
+        ybus_real=reference_operator.ybus_real,
+        ports=ports,
+        load_blocks=loads,
+        bus_index=reference_operator.bus_index,
+        n_bus=reference_operator.n_bus,
+    )
 
 
 def git(repo: Path, *args: str) -> str:
@@ -108,6 +243,8 @@ def main() -> int:
         raise SystemExit("usage: run_m1a_reconciliation.py <repo-root> <run-root>")
     repo = Path(sys.argv[1]).resolve()
     run_root = Path(sys.argv[2]).resolve()
+    if run_root.exists():
+        raise FileExistsError(f"immutable M1A run root already exists: {run_root}")
     for name in ("raw/python", "raw/julia", "raw/reconciliation", "tables", "claims", "report", "environment", "logs"):
         (run_root / name).mkdir(parents=True, exist_ok=True)
 
@@ -163,8 +300,11 @@ def main() -> int:
 
     candidate_operator = build_port_operator(case.dae, case.equilibrium.x, case.equilibrium.z)
     action_space = build_action_space(base, case, tx.CORE)
+    matched_base = matched_base_port_operator(base, case, tx.CORE, action_space.ts)
+    action_space = dataclasses.replace(action_space, t0=matched_base)
     port_rows = []
     block_rows = []
+    ordered_buses = tuple(case.dae.network.bus_idx)
     for offset in STENCIL:
         s = lambda_c + offset
         t_port = candidate_operator.evaluate(s)
@@ -177,21 +317,28 @@ def main() -> int:
             "relative_frobenius_residual": float(np.linalg.norm(difference) / max(np.linalg.norm(t_raw), 1e-300)),
             "candidate_port_condition": float(np.linalg.cond(t_port)),
         })
-        for bus_i in tx.CORE:
-            for bus_j in tx.CORE:
+        for bus_i in ordered_buses:
+            for bus_j in ordered_buses:
                 pi = candidate_operator.bus_index[bus_i]
                 pj = candidate_operator.bus_index[bus_j]
                 rows = slice(2 * pi, 2 * pi + 2)
                 cols = slice(2 * pj, 2 * pj + 2)
                 block_raw = t_raw[rows, cols]
                 block_delta = difference[rows, cols]
+                entry_i, entry_j = np.unravel_index(np.argmax(np.abs(block_delta)), block_delta.shape)
                 block_rows.append({
                     "offset_real": offset.real,
                     "offset_imag": offset.imag,
                     "bus_i": bus_i,
                     "bus_j": bus_j,
+                    "block_class": "diagonal_device_load" if bus_i == bus_j else "network_offdiagonal",
                     "absolute_block_residual": float(np.linalg.norm(block_delta)),
                     "relative_block_residual": float(np.linalg.norm(block_delta) / max(np.linalg.norm(block_raw), 1e-300)),
+                    "max_entry_abs": float(abs(block_delta[entry_i, entry_j])),
+                    "max_entry_row_component": int(entry_i),
+                    "max_entry_col_component": int(entry_j),
+                    "max_entry_real": float(block_delta[entry_i, entry_j].real),
+                    "max_entry_imag": float(block_delta[entry_i, entry_j].imag),
                 })
 
     u = action_space.selector()
@@ -212,15 +359,31 @@ def main() -> int:
             "condition_base": float(np.linalg.cond(t0)),
             "condition_flagship": float(np.linalg.cond(th)),
         })
-        for i, bus_i in enumerate(tx.CORE):
-            for j, bus_j in enumerate(tx.CORE):
-                block = action_space.block(difference, i, j)
+        for bus_i in ordered_buses:
+            for bus_j in ordered_buses:
+                pi = action_space.t0.bus_index[bus_i]
+                pj = action_space.t0.bus_index[bus_j]
+                block = difference[2 * pi : 2 * pi + 2, 2 * pj : 2 * pj + 2]
+                entry_i, entry_j = np.unravel_index(np.argmax(np.abs(block)), block.shape)
                 delta_block_rows.append({
                     "offset_real": offset.real,
                     "offset_imag": offset.imag,
                     "bus_i": bus_i,
                     "bus_j": bus_j,
+                    "block_class": (
+                        "action_bus_diagonal" if bus_i == bus_j and bus_i in tx.CORE
+                        else "non_action_diagonal" if bus_i == bus_j
+                        else "network_offdiagonal"
+                    ),
                     "absolute_block_residual": float(np.linalg.norm(block)),
+                    "relative_to_full_residual": float(
+                        np.linalg.norm(block) / max(np.linalg.norm(difference), 1e-300)
+                    ),
+                    "max_entry_abs": float(abs(block[entry_i, entry_j])),
+                    "max_entry_row_component": int(entry_i),
+                    "max_entry_col_component": int(entry_j),
+                    "max_entry_real": float(block[entry_i, entry_j].real),
+                    "max_entry_imag": float(block[entry_i, entry_j].imag),
                 })
 
     load_rows = []
@@ -234,6 +397,27 @@ def main() -> int:
             "bus": int(bus),
             "absolute_residual": float(np.linalg.norm(difference)),
             "relative_residual": float(np.linalg.norm(difference) / max(np.linalg.norm(load_flagship), 1e-300)),
+        })
+
+    t0_lambda = action_space.t0.evaluate(lambda_c)
+    th_lambda = action_space.ts.evaluate(lambda_c)
+    device_rows = []
+    for bus in ordered_buses:
+        device_base = action_space.t0.bus_admittance(lambda_c, bus)
+        device_flag = action_space.ts.bus_admittance(lambda_c, bus)
+        load_base = action_space.t0.load_blocks.get(bus, np.zeros((2, 2), dtype=complex))
+        load_flag = action_space.ts.load_blocks.get(bus, np.zeros((2, 2), dtype=complex))
+        pi = action_space.t0.bus_index[bus]
+        diagonal = slice(2 * pi, 2 * pi + 2)
+        actual_delta = (th_lambda - t0_lambda)[diagonal, diagonal]
+        device_rows.append({
+            "bus": bus,
+            "in_action_support": bus in tx.CORE,
+            "base_kind": next((port.kind for port in action_space.t0.ports if port.bus == bus), "none"),
+            "flagship_kind": next((port.kind for port in action_space.ts.ports if port.bus == bus), "none"),
+            "device_admittance_delta_abs": float(np.linalg.norm(device_base - device_flag)),
+            "load_block_delta_abs": float(np.linalg.norm(load_flag - load_base)),
+            "operator_diagonal_delta_abs": float(np.linalg.norm(actual_delta)),
         })
 
     t0 = action_space.t0.evaluate(lambda_c)
@@ -309,6 +493,7 @@ def main() -> int:
     write_csv(run_root / "tables" / "M1A_BASE_DELTAY_STENCIL.csv", delta_rows)
     write_csv(run_root / "tables" / "M1A_BASE_DELTAY_BLOCKS.csv", delta_block_rows)
     write_csv(run_root / "tables" / "M1A_LOAD_BLOCK_MISMATCH.csv", load_rows)
+    write_csv(run_root / "tables" / "M1A_DEVICE_PORT_MISMATCH.csv", device_rows)
     write_csv(run_root / "tables" / "M1A_SCALAR_SCHUR_STENCIL.csv", schur_rows)
     nonroot_identity = [row for row in identity_rows if not row["is_root"]]
     write_json(run_root / "claims" / "M1A_RAW_DIAGNOSTICS.json", {"lambda_c": complex_pair(lambda_c), "fx_distance_to_lambda": fx_distance, "r_A_abs": r_a_abs, "r_A_relative": r_a_rel, "r_descriptor_abs": r_desc_abs, "r_descriptor_relative": r_desc_rel, "raw_sigma_min": raw_smin, "raw_sigma_max": raw_smax, "raw_relative_sigma": raw_smin / max(raw_smax, 1e-300), "raw_backward_error": raw_backward, "identity_stencil_max_Ared_nonroot": max(row["pencil_vs_Ared_ratio_residual"] for row in nonroot_identity), "identity_stencil_max_raw_nonroot": max(row["pencil_vs_raw_schur_ratio_residual"] for row in nonroot_identity), "identity_root_row_is_conditioned_by_zero": True})
@@ -338,9 +523,163 @@ def main() -> int:
         claim = "F_FLOATING_POINT_SCALE_LIMIT"
         next_action = "Propose a separately preregistered backward-error M1 v1.1; do not rewrite v1."
 
-    manifest = {"run_root": str(run_root), "git_commit": git(repo, "rev-parse", "HEAD"), "git_dirty": bool(git(repo, "status", "--porcelain")), "python": {"version": sys.version, "implementation": platform.python_implementation(), "executable": sys.executable}, "packages": {"numpy": np.__version__}, "source_hashes": {"tx4_contextual_return.py": sha256(experiment / "tx4_contextual_return.py"), "ieee39_case.py": sha256(source / "ibr_cycles/models/ieee39_case.py"), "port_admittance.py": sha256(source / "ibr_cycles/models/port_admittance.py")}, "output_policy": "all diagnostics are beneath this immutable run root; no zip is produced"}
+    claim_status = {
+        "status": "M1A_COMPLETE",
+        "first_degrading_stage": first_fail,
+        "root_cause_category": claim,
+        "max_absolute_residual": max(row["absolute_residual"] for row in ladder),
+        "max_relative_backward_error": max(row["relative_residual"] for row in ladder),
+        "recommended_m1_status": "BLOCKED_M1_STRICT",
+        "safe_to_run_m2": False,
+        "one_next_corrective_action": next_action,
+        "ladder": ladder,
+    }
+
+    model_hashes = {"base": model_fingerprint(base), "flagship": model_fingerprint(case)}
+    equilibrium_hashes = {
+        "base": equilibrium_fingerprints(base),
+        "flagship": equilibrium_fingerprints(case),
+    }
+    canonical_mode = tx.mode_of(case)
+    f1_path = repo / "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260926T083621_h4_f1_f2_assets_v1/derived/F1_PORTFOLIOS.csv"
+    parity_path = repo / "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260925T225832_dee6fe69_h4_modal_schur_v1/claims/CROSSCODE_GFL11_RECONCILIATION.json"
+    with f1_path.open(newline="", encoding="utf-8") as handle:
+        f1_rows = list(csv.DictReader(handle))
+    f1_h4_rows = [row for row in f1_rows if row["portfolio"] == "30+33+35+37"]
+    f1_proper_rows = [row for row in f1_rows if row["portfolio"] != "30+33+35+37"]
+    parity = json.loads(parity_path.read_text(encoding="utf-8"))
+    regression = {
+        "current_h4": {
+            "state_count": case.n_states,
+            "alpha": canonical_mode.alpha,
+            "frequency_hz": canonical_mode.frequency_hz,
+            "model_hash_matches_pre_correction": model_hashes["flagship"] == "5bd6c2c82d876e9667ba177eff952b958902967f19b887fb1e3d7aba06e4fb5c",
+            "equilibrium_hash_matches_pre_correction": equilibrium_hashes["flagship"]["xz_sha256"] == "18adf2938aa8263bbdb97165dceba885d7323a935664a1d18f16fbac7294ac34",
+            "reduced_A_hash_matches_pre_correction": equilibrium_hashes["flagship"]["reduced_A_sha256"] == "da25d45096f80d872ef40caa968fa2c996ef0cc6b1bb92420ad2869c7cc92751",
+        },
+        "frozen_proper_subset_ledger_read_only": {
+            "path": str(f1_path),
+            "sha256": sha256(f1_path),
+            "portfolio_rows": len(f1_rows),
+            "proper_subset_rows_including_base": len(f1_proper_rows),
+            "all_proper_subsets_stable": bool(f1_proper_rows) and all(row["status"] == "STABLE" for row in f1_proper_rows),
+            "h4_status": f1_h4_rows[0]["status"] if len(f1_h4_rows) == 1 else "INVALID_LEDGER",
+        },
+        "frozen_julia_gfl11_parity_read_only": {
+            "path": str(parity_path),
+            "sha256": sha256(parity_path),
+            "status": parity.get("status"),
+            "python_states": parity["h4"]["python_state_dim"],
+            "julia_states": parity["h4"]["julia_state_dim"],
+            "alpha_difference_s-1": parity["h4"]["alpha_difference_s-1"],
+            "frequency_difference_hz": parity["h4"]["frequency_difference_hz"],
+            "pass": bool(
+                parity.get("status") == "PASS_GFL11_EXACT_REPRODUCTION"
+                and parity["h4"]["python_state_dim"] == 86
+                and parity["h4"]["julia_state_dim"] == 86
+            ),
+        },
+    }
+
+    assembly_provenance = {
+        "case": "frozen H4/P4 GFL11",
+        "action_buses": list(tx.CORE),
+        "base_counterfactual_linearization_point": "flagship solved equilibrium z; unchanged shared-device states from flagship equilibrium",
+        "base_replacement_device_dispatch": "unchanged base power-flow generation at each action bus",
+        "base_replacement_device_parameters": "frozen base slot parameters retained; initializer-returned retuned device discarded",
+        "network_ybus_exactly_equal": bool(np.array_equal(base.dae.network.ybus, case.dae.network.ybus)),
+        "bus_order_exactly_equal": bool(base.dae.network.bus_idx == case.dae.network.bus_idx),
+        "bus_index_exactly_equal": bool(
+            {bus: base.dae.network.position(bus) for bus in base.dae.network.bus_idx}
+            == {bus: case.dae.network.position(bus) for bus in case.dae.network.bus_idx}
+        ),
+        "power_flow_voltage_exactly_equal": bool(
+            np.array_equal(base.dae.power_flow.voltages, case.dae.power_flow.voltages)
+        ),
+        "load_maps_exactly_equal": bool(base.dae.network.loads == case.dae.network.loads),
+        "load_model_equal": bool(base.dae.network.load_model == case.dae.network.load_model),
+        "base_flag_equilibrium_voltage_distance_max_pu": float(
+            np.max(abs(base.dae.voltages(base.equilibrium.z) - case.dae.voltages(case.equilibrium.z)))
+        ),
+        "base_equilibrium_vs_common_pf_voltage_distance_max_pu": float(
+            np.max(abs(base.dae.voltages(base.equilibrium.z) - base.dae.power_flow.voltages))
+        ),
+        "flag_equilibrium_vs_common_pf_voltage_distance_max_pu": float(
+            np.max(abs(case.dae.voltages(case.equilibrium.z) - case.dae.power_flow.voltages))
+        ),
+        "port_equation": "T(s)=Y_net-sum(device port admittances)-load blocks",
+        "replacement_update_sign": "T_H-T_0 = E (Y_base_device-Y_flag_device) E^T",
+        "port_normalization": "native rectangular current/voltage coordinates; no rescaling",
+        "canonical_dae_equilibrium_unchanged": True,
+    }
+    write_json(run_root / "claims" / "M1A_ASSEMBLY_PROVENANCE.json", assembly_provenance)
+    write_json(run_root / "claims" / "M1A_REGRESSION_CHECKS.json", regression)
+
+    baseline_id = "20260926T100829_d0fecb32_ias26_010_reproduce"
+    baseline_root = run_root.parent / baseline_id
+    baseline_ladder_path = baseline_root / "tables/M1A_ERROR_LADDER.csv"
+    baseline_port_path = baseline_root / "claims/M1A_PORT_DIAGNOSTICS.json"
+    baseline_status_path = baseline_root / "claims/M1A_STATUS.json"
+    with baseline_ladder_path.open(newline="", encoding="utf-8") as handle:
+        baseline_ladder = list(csv.DictReader(handle))
+    baseline_port = json.loads(baseline_port_path.read_text(encoding="utf-8"))
+    baseline_status = json.loads(baseline_status_path.read_text(encoding="utf-8"))
+    changed_script_rel = Path("reports/poster/ias2026/research/bnd_h4_mechanism/code/run_m1a_reconciliation.py")
+    changed_diff = subprocess.check_output(
+        ["git", "diff", "--no-ext-diff", "--no-color", "HEAD", "--", str(changed_script_rel)],
+        cwd=repo,
+        text=True,
+    )
+    diff_path = run_root / "raw/reconciliation/IAS26_010_CHANGED_FILES.patch"
+    diff_path.write_text(changed_diff, encoding="utf-8")
+    before_after = {
+        "before_run_id": baseline_id,
+        "after_run_id": run_root.name,
+        "before_error_ladder": baseline_ladder,
+        "after_error_ladder": ladder,
+        "before_claim": baseline_status,
+        "after_claim": claim_status,
+        "before_action_space_relative_backward_error": baseline_port["action_space_relative_backward_error"],
+        "after_action_space_relative_backward_error": action_rel,
+        "before_base_delta_relative_residual": baseline_port["base_delta_max_relative_residual"],
+        "after_base_delta_relative_residual": delta_max,
+        "before_root_cause_record": "docs/IAS26-010_ROOT_CAUSE.md",
+        "baseline_full_blocks": str(baseline_root / "tables/M1A_BASE_DELTAY_BLOCKS.csv"),
+        "after_full_blocks": str(run_root / "tables/M1A_BASE_DELTAY_BLOCKS.csv"),
+        "changed_file_diff": str(diff_path),
+        "changed_file_diff_sha256": sha256(diff_path),
+        "model_hashes_after": model_hashes,
+        "equilibrium_and_reduced_A_hashes_after": equilibrium_hashes,
+        "regression_checks": regression,
+    }
+    write_json(run_root / "claims" / "M1A_BEFORE_AFTER.json", before_after)
+
+    source_files = {
+        "run_m1a_reconciliation.py": repo / changed_script_rel,
+        "tx4_contextual_return.py": experiment / "tx4_contextual_return.py",
+        "_f7_common.py": experiment / "_f7_common.py",
+        "ieee39_case.py": source / "ibr_cycles/models/ieee39_case.py",
+        "ieee39_network.py": source / "ibr_cycles/models/ieee39_network.py",
+        "ieee39_devices.py": source / "ibr_cycles/models/ieee39_devices.py",
+        "port_admittance.py": source / "ibr_cycles/models/port_admittance.py",
+        "IAS26-010_ROOT_CAUSE.md": repo / "reports/poster/ias2026/research/bnd_h4_mechanism/docs/IAS26-010_ROOT_CAUSE.md",
+    }
+    manifest = {
+        "run_id": run_root.name,
+        "run_root": str(run_root),
+        "git_commit": git(repo, "rev-parse", "HEAD"),
+        "git_dirty": bool(git(repo, "status", "--porcelain")),
+        "python": {"version": sys.version, "implementation": platform.python_implementation(), "executable": sys.executable},
+        "packages": {"numpy": np.__version__},
+        "source_hashes": {name: sha256(path) for name, path in source_files.items()},
+        "model_hashes": model_hashes,
+        "equilibrium_and_canonical_matrix_hashes": equilibrium_hashes,
+        "regression_checks": regression,
+        "changed_file_diff": str(diff_path),
+        "changed_file_diff_sha256": sha256(diff_path),
+        "output_policy": "all diagnostics are beneath this immutable run root; no zip is produced",
+    }
     write_json(run_root / "environment" / "runtime.json", manifest)
-    claim_status = {"status": "M1A_COMPLETE", "first_degrading_stage": first_fail, "root_cause_category": claim, "max_absolute_residual": max(row["absolute_residual"] for row in ladder), "max_relative_backward_error": max(row["relative_residual"] for row in ladder), "recommended_m1_status": "BLOCKED_M1_STRICT", "safe_to_run_m2": False, "one_next_corrective_action": next_action, "ladder": ladder}
     write_json(run_root / "claims" / "M1A_STATUS.json", claim_status)
     (run_root / "report" / "RUN_SUMMARY.md").write_text("# M1A DAE-to-retained-operator reconciliation\n\n" + json.dumps(claim_status, indent=2, default=float) + "\n", encoding="utf-8")
     return 0

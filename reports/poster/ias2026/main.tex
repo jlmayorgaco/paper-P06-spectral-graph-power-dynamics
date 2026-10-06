@@ -1,5 +1,68 @@
-\documentclass{article}
-\begin{document}
-IAS 2026 poster scaffold.
-\end{document}
+\documentclass[final]{beamer}
+\def\PosterFull{1}
+\input{poster_layout.tex}
+\def\PosterPageWidth{\PosterPhysicalPageWidthCm}
+\def\PosterPageHeight{\PosterPhysicalPageHeightCm}
+\input{poster_common.tex}
 
+% Content aligns to the outside edges of the logos in the white header.
+\newcommand{\Header}{%
+  % Counter Beamer's frame inset so the logo band has balanced visible margins.
+  \vspace*{\PosterHeaderTopOffset}%
+  \noindent\hspace*{\PosterIdentityLeft}%
+  \begin{minipage}[t][\PosterHeaderHeight][t]{\PosterIdentityWidth}\vspace{0pt}%
+    \begin{tikzpicture}[x=1mm,y=1mm]
+      \useasboundingbox (0,0) rectangle (\PosterIdentityWidthMm,\PosterHeaderHeightMm);
+      \path[clip] (0,0) rectangle (\PosterIdentityWidthMm,\PosterHeaderHeightMm);
+      \begin{scope}[yshift=\PosterGreenHeightMm mm]
+        \input{sections/header_white.tex}
+      \end{scope}
+      \begin{scope}[xshift=\PosterGreenInset]
+        \input{sections/header_green.tex}
+      \end{scope}
+    \end{tikzpicture}%
+  \end{minipage}\par
+}
+
+\begin{document}
+\begin{frame}[t]
+\Header
+\vspace{\PosterRowGap}
+
+% First row: three TicketTwo panels.
+\noindent\hspace*{\PosterOuterMargin}%
+\input{sections/01_motivation_question.tex}%
+\hspace{\PosterColumnGap}%
+\input{sections/02_flagship_ieee39.tex}%
+\hspace{\PosterColumnGap}%
+\input{sections/03_target_vs_path.tex}\par
+\vspace{\PosterRowGap}
+
+\noindent\hspace*{\PosterOuterMargin}%
+\input{sections/result_strip.tex}
+\vspace{\PosterRowGap}
+
+\noindent\hspace*{\PosterOuterMargin}%
+\input{sections/04_network_closure.tex}\par
+\vspace{\PosterRowGap}
+
+\noindent\hspace*{\PosterOuterMargin}%
+\input{sections/05_policy_atlas.tex}%
+\hspace{\PosterColumnGap}%
+\input{sections/06_synthetic_envelope.tex}\par
+\vspace{\PosterRowGap}
+
+\noindent\hspace*{\PosterOuterMargin}%
+\input{sections/07_retuning.tex}%
+\hspace{\PosterColumnGap}%
+\input{sections/08_safe_paths.tex}\par
+\vspace{\PosterRowGap}
+
+\noindent\hspace*{\PosterOuterMargin}%
+\input{sections/09_evidence_scope.tex}\par
+\vspace{\PosterRowGap}
+
+\noindent\hspace*{\PosterOuterMargin}%
+\input{sections/footer.tex}
+\end{frame}
+\end{document}
