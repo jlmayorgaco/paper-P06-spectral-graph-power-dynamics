@@ -12,7 +12,7 @@
       \pgfmathsetmacro{\rot}{\aa+#1*90}
       \node[inner sep=0pt,text=#7,rotate=\rot,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at ($(c)+({#2*cos(\aa)},{-#2*sin(\aa)})$) {\g};}}
   % ---------------------------------------------------------------- hero: hop rings on G_c around one GFL (site 31)
-  \coordinate (c) at (118,922);
+  \coordinate (c) at (118,918);
   \fill[PTeal!8!white]  (c) circle (95);
   \fill[PTeal!17!white] (c) circle (72);
   \fill[PTeal!30!white] (c) circle (44);
@@ -21,7 +21,7 @@
   \foreach \r in {30,58,86}{\draw[PTeal!55!white,line width=0.9pt,dash pattern=on 2.5pt off 3pt] (c) circle (\r);}
   % node positions: bus / angle (degrees, y up) / radius = 29 * hop distance
   \foreach \b/\a/\r in {31/0/0, 39/30/30, 32/165/30, 30/80/58, 37/12/58, 38/48/86}{
-    \pgfmathsetmacro{\nx}{118+\r*cos(\a)}\pgfmathsetmacro{\ny}{922-\r*sin(\a)}
+    \pgfmathsetmacro{\nx}{118+\r*cos(\a)}\pgfmathsetmacro{\ny}{918-\r*sin(\a)}
     \coordinate (b\b) at (\nx,\ny);}
   % links of G_c inside the ego component (all from GRAPH_Gc.csv)
   \foreach \u/\v in {31/32, 31/39, 32/39, 30/39, 37/39, 30/37, 30/38, 37/38}{
@@ -31,10 +31,10 @@
     \fill[white] (b\b) circle (10.5);
     \draw[PGreen!35!white,line width=0.8pt] (b\b) circle (10.5);}
   \foreach \ia/\ir in {165/30, 30/30, 80/58, 12/58, 48/86}{
-    \pgfmathsetmacro{\ix}{118+\ir*cos(\ia)}\pgfmathsetmacro{\iy}{922-\ir*sin(\ia)}
+    \pgfmathsetmacro{\ix}{118+\ir*cos(\ia)}\pgfmathsetmacro{\iy}{918-\ir*sin(\ia)}
     \IconGFL{\ix}{\iy}{0.46}}
   \fill[PGold] (b31) circle (14.5); \draw[PGreen,line width=1.4pt] (b31) circle (14.5);
-  \IconGFL{118}{922}{0.58}
+  \IconGFL{118}{918}{0.58}
   % bus-number badges
   \foreach \b/\dx/\dy in {31/17/13, 32/-1/15, 39/13/11, 30/-14/-8, 37/14/9, 38/14/-4}{
     \node[inner sep=0pt,text=PGreen,font=\FiraBold\fontsize{16pt}{16pt}\selectfont] at ($(b\b)+(\dx,\dy)$) {\b};}
@@ -62,32 +62,32 @@
     \node[inner sep=0pt,text=PMuted,font=\FiraBold\fontsize{16pt}{16pt}\selectfont] at (\x+11,\y+10) {\b};}
   \node[anchor=north west,inner sep=0pt,text=PMuted,align=left,font=\FiraMed\fontsize{18pt}{20pt}\selectfont] at (226,938)
     {Second cluster: no path\\[-1pt]from site 31 at any $n$.};
-  \NoteBox{226}{966}{379}{1002}{PNavy}
-  \node[anchor=west,inner sep=0pt,text=PNavy,align=left,font=\FiraSemi\fontsize{18pt}{20pt}\selectfont] at (233,984)
+  \NoteBox{226}{962}{379}{998}{PNavy}
+  \node[anchor=west,inner sep=0pt,text=PNavy,align=left,font=\FiraSemi\fontsize{18pt}{20pt}\selectfont] at (233,980)
     {Graph-local $\neq$ polynomial in $L$:\\[-1pt]shared polynomial keeps $\varepsilon\geq 9{\times}10^{-3}$.}; % source: derived/E2_architectures.csv (arch=b_shared_poly, graph=frozen: min eps 9.09e-3, max 7.05e-2)
-  \NextChip{379}{1013}{What it buys}
+  \NextChip{379}{1008}{What it buys}
 
   % ---------------------------------------------------------------- the one HeroBox: the residual law
-  \HeroBox{24}{1024}{379}{1070}
-  \node[anchor=west,inner sep=0pt,text=PNavy] at (34,1033) {\fontsize{22pt}{24pt}\selectfont $\mathcal N_i^{(n)}=\{\,j:\ \mathrm{dist}_{G_c}(i,j)\le n\,\}$};
-  \node[anchor=west,inner sep=0pt,text=PNavy] at (34,1047) {\fontsize{21pt}{23pt}\selectfont $C_i^{(n)}k_i=b_i,\quad \varepsilon_i(n)=\|(I-C_iC_i^{+})\,b_i\|\,/\,\|b_i\|$};
-  \node[anchor=west,inner sep=0pt,text=PNavy] at (34,1061) {\fontsize{22pt}{24pt}\selectfont $\mathcal K_n\subset\mathcal K_{n+1}\ \Rightarrow\ \varepsilon(n{+}1)\le\varepsilon(n)$};
-  \ProvedTag{343}{1033}{EXACT}
-  \node[anchor=east,inner sep=0pt,text=PMuted,align=right,font=\FiraMed\fontsize{17.5pt}{17.5pt}\selectfont] at (373,1061) {free $n$-hop class only};
+  \HeroBox{24}{1018}{379}{1064}
+  \node[anchor=west,inner sep=0pt,text=PNavy] at (34,1027) {\fontsize{22pt}{24pt}\selectfont $\mathcal N_i^{(n)}=\{\,j:\ \mathrm{dist}_{G_c}(i,j)\le n\,\}$};
+  \node[anchor=west,inner sep=0pt,text=PNavy] at (34,1041) {\fontsize{21pt}{23pt}\selectfont $C_i^{(n)}k_i=b_i,\quad \varepsilon_i(n)=\|(I-C_iC_i^{+})\,b_i\|\,/\,\|b_i\|$};
+  \node[anchor=west,inner sep=0pt,text=PNavy] at (34,1055) {\fontsize{22pt}{24pt}\selectfont $\mathcal K_n\subset\mathcal K_{n+1}\ \Rightarrow\ \varepsilon(n{+}1)\le\varepsilon(n)$};
+  \ProvedTag{343}{1027}{EXACT}
+  \node[anchor=east,inner sep=0pt,text=PMuted,align=right,font=\FiraMed\fontsize{17.5pt}{17.5pt}\selectfont] at (373,1055) {free $n$-hop class only};
 
   % ---------------------------------------------------------------- distributed PLL law
-  \CardBox{24}{1073}{379}{1108}
-  \node[anchor=west,inner sep=0pt,text=PNavy] at (32,1082) {\fontsize{21pt}{23pt}\selectfont $\dot\xi_i=\sum_{j\in\mathcal N_i^{(n)}}k_{I,ij}\,e_j(t-\tau_j)$};
-  \node[anchor=west,inner sep=0pt,text=PNavy] at (32,1097) {\fontsize{21pt}{23pt}\selectfont $t_f\dot\omega_i=\xi_i-\omega_i+\sum_{j\in\mathcal N_i^{(n)}}k_{p,ij}\,e_j(t-\tau_j)$};
+  \CardBox{24}{1069}{379}{1104}
+  \node[anchor=west,inner sep=0pt,text=PNavy] at (32,1078) {\fontsize{21pt}{23pt}\selectfont $\dot\xi_i=\sum_{j\in\mathcal N_i^{(n)}}k_{I,ij}\,e_j(t-\tau_j)$};
+  \node[anchor=west,inner sep=0pt,text=PNavy] at (32,1093) {\fontsize{21pt}{23pt}\selectfont $t_f\dot\omega_i=\xi_i-\omega_i+\sum_{j\in\mathcal N_i^{(n)}}k_{p,ij}\,e_j(t-\tau_j)$};
 
   % ---------------------------------------------------------------- four architectures
   \foreach \x/\k/\la in {24/0/{local $n{=}0$}, 113/1/{polynomial in $L$}, 202/2/{free $n$-hop}, 291/3/{dense benchmark}}{
-    \CardBox{\x}{1110}{\x+88}{1127.5}
-    \begin{scope}[shift={(\x+10,1118.75)},line width=1.2pt,draw=PGreen,scale=0.8]
+    \CardBox{\x}{1109}{\x+88}{1126.5}
+    \begin{scope}[shift={(\x+10,1117.75)},line width=1.2pt,draw=PGreen,scale=0.8]
       \ifnum\k=0 \fill[PGold] (0,0) circle (3.5); \draw[PGreen] (0,0) circle (7);\fi
       \ifnum\k=1 \draw[PGreen] (-7,2.5) -- (-2.5,-2.5) -- (2.5,2.5) -- (7,-2.5); \foreach \px/\py in {-7/2.5,-2.5/-2.5,2.5/2.5,7/-2.5}{\fill[PGreen] (\px,\py) circle (2.2);}\fi
       \ifnum\k=2 \foreach \ang in {20,110,200,290}{\draw[PGreen] (0,0) -- (\ang:7);\fill[PGreen] (\ang:7) circle (2);}\fill[PGold] (0,0) circle (2.8);\fi
       \ifnum\k=3 \draw[PGreen] (-5.5,-5.5) rectangle (5.5,5.5) (-5.5,-5.5) -- (5.5,5.5) (-5.5,5.5) -- (5.5,-5.5);\foreach \px/\py in {-5.5/-5.5,5.5/-5.5,5.5/5.5,-5.5/5.5}{\fill[PGreen] (\px,\py) circle (2);}\fi
     \end{scope}
-    \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (\x+20,1118.9) {\la};}
+    \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (\x+20,1117.9) {\la};}
 \end{scope}

@@ -18,11 +18,12 @@
   \newcommand{\GenG}[7]{%
     \fill[#4] (#1,#2) circle (#3);
     \draw[white,line width=1.2pt] (#1,#2) circle (#3*0.72);
-    \draw[white,line width=1.4pt,line cap=round] plot[smooth,samples=12,domain=-0.5:0.5] ({#1+\x*#3*1.25},{#2-#3*0.33*sin(\x*360)});
+    % internal sine: own plot variable \tt (the outer \foreach already owns \x), kept inside the inner ring
+    \draw[white,line width=1.4pt,line cap=round] plot[variable=\tt,smooth,samples=14,domain=-0.5:0.5] ({#1+\tt*#3*1.0},{#2-#3*0.26*sin(\tt*720)});
     \node[inner sep=0.8pt,fill=white,fill opacity=0.8,text opacity=1,rounded corners=1pt,text=#4,font=\FiraBold\fontsize{17pt}{17pt}\selectfont] at (#1+#6,#2+#7) {#5};}
 
   % ---------------------------------------------------------------- contract label (grey exploratory-style pill)
-  \node[anchor=north west,fill=PGrey,text=white,rounded corners=2.4mm,inner xsep=5pt,inner ysep=2.4pt,font=\FiraBold\fontsize{15.5pt}{15.5pt}\selectfont\addfontfeature{LetterSpace=6}]
+  \node[anchor=north west,fill=PMuted,text=white,rounded corners=2.4mm,inner xsep=5pt,inner ysep=2.4pt,font=\FiraBold\fontsize{15.5pt}{15.5pt}\selectfont\addfontfeature{LetterSpace=6}]
     at (773,150) {SEPARATE TX4 FIXED-POLICY MODEL CONTRACT (NO PLL DELAY)};
 
   % ---------------------------------------------------------------- A: IEEE-39 grid with generator glyphs
@@ -64,19 +65,19 @@
   \node[anchor=west,inner sep=0pt,text=PMuted,font=\FiraMed\fontsize{17.5pt}{19pt}\selectfont] at (1062,314) {$\varnothing$ none replaced};
   \end{scope}
   \node[anchor=north west,inner sep=0pt,text=PMuted,align=left,font=\FiraMed\fontsize{17.5pt}{19.5pt}\selectfont] at (962,331)
-    {glyph = one portfolio; filled dot = replaced site\\[2pt](grid 30\,33 / 35\,37)};
+    {glyph = one portfolio; filled dot = replaced site\\[2pt]dot positions: 30\,33 (top), 35\,37 (bottom)};
 
   % ---------------------------------------------------------------- hero: the one key number
-  \HeroBox{773}{356}{1141}{402}
+  \HeroBox{775}{356}{1139}{402}
   \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{21.5pt}{21.5pt}\selectfont] at (785,366) {Minimal collective blocker\ \ $H_4=\{30,33,35,37\}$};
   \node[anchor=west,inner sep=0pt,text=PNavy] at (785,386) {\fontsize{24pt}{26pt}\selectfont $\alpha_\perp(H_4)=$}; % source: .../h4_crossmode_v3/claims/tx4_summary.json (alpha_P4 = 0.12700646782830968), docs/IAS26-010_ROOT_CAUSE.md (f = 0.6222796695036534 Hz)
-  \BigNumber[PRed]{838}{387}{$+0.127$}{s$^{-1}$\\at $0.6223$ Hz}
+  \BigNumber[PRed]{838}{387}{$+0.127$}{s$^{-1}$\\at 0.6223\,Hz}
 
   % ---------------------------------------------------------------- stability cliff note
-  \NoteBox{773}{408}{1141}{430}{PRed}
+  \NoteBox{775}{408}{1139}{430}{PRed}
   \node[anchor=west,inner sep=0pt,text=PRed,font=\FiraSemi\fontsize{22pt}{22pt}\selectfont] at (783,419.2) {15/15 proper subsets stable\ \textemdash\ full coalition unstable}; % source: derived/TX4_PROPER_SUBSET_CLOSURE.csv (15 rows, stable=True), claims/tx4_summary.json minimality_all_proper_stable
 
   % ---------------------------------------------------------------- scope + story chip
   \node[anchor=west,inner sep=0pt,text=PMuted,font=\FiraMed\fontsize{18pt}{18pt}\selectfont] at (773,441.5) {Canonical nominal witness, not a universal blocker.};
-  \NextChip{1141}{441.5}{Why? closure}
+  \NextChip{1139}{441.5}{Why? closure}
 \end{scope}

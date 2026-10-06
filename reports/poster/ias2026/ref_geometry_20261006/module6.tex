@@ -56,8 +56,8 @@
   \node[anchor=west,inner sep=0pt,text=PRed,align=left,font=\FiraSemi\fontsize{18pt}{19.5pt}\selectfont] at (985,707) {Preserving one mode\\does not preserve the others.};
 
   % ---------------------------------------------------------------- evidence: three icon tiles
-  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{19pt}{19pt}\selectfont] at (776,730) {Full IEEE-39, exact delay 44\,ms};
-  \ObservedTag{1096}{730}{NUMERICAL}
+  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{19pt}{19pt}\selectfont] at (776,729) {Full IEEE-39, exact delay 44\,ms};
+  \ObservedTag{1096}{729}{NUMERICAL}
   % sources (verified): roots 8/0/0 -> research_gold/checks/T3_full_spectrum_count.csv (none 44 ms: 8 unstable; protect_fast 44 ms: 0) and research_gold/checks/T6_node_choice.csv (node 1.0415 Hz, 44 ms: 0)
   % events -> research_gold/checks/T5_nonlinear_events.csv (A_transport_44ms: 2 of 5 pass; B_original_gains_44ms: DDE integration MaxIters = abort),
   %           research_gold/checks/T5c_nonlinear_events_node1Hz_44ms.csv (5 of 5 pass); table of the poster: reports/poster/ias2026/one_mode_20261005/bodies/05.tex
@@ -65,13 +65,13 @@
       774/{no retune}/{8 roots}/{events abort}/PRed/0,
       898.5/{protect 4.91\,Hz}/{0 roots}/{2/5 events pass}/PGoldDeep/1,
       1023/{protect 1.04\,Hz}/{0 roots}/{5/5 events pass}/PTeal/2}{
-    \CardBox{\tx}{738}{\tx+116}{780}
-    \ifnum\kind=0 \IconCross{\tx+19}{759}{0.95}\fi
-    \ifnum\kind=1 \IconWarn{\tx+19}{759}{0.95}\fi
-    \ifnum\kind=2 \IconCheck{\tx+19}{759}{0.95}\fi
-    \node[anchor=west,inner sep=0pt,text=PText,font=\FiraSemi\fontsize{19pt}{19pt}\selectfont] at (\tx+38,746.5) {\lab};
-    \node[anchor=west,inner sep=0pt,text=\col!75!black,font=\FiraBold\fontsize{20pt}{20pt}\selectfont] at (\tx+38,759.5) {\rts};
-    \node[anchor=west,inner sep=0pt,text=PText,font=\FiraMed\fontsize{18pt}{18pt}\selectfont] at (\tx+38,771.5) {\evt};}
-  \node[anchor=west,inner sep=0pt,text=PMuted,font=\FiraMed\fontsize{17pt}{17pt}\selectfont] at (776,787) {abort = integrator stopped};
-  \NextChip{1139}{787}{With more information}
+    \CardBox{\tx}{736}{\tx+116}{776.5}
+    \ifnum\kind=0 \IconCross{\tx+19}{756.5}{0.95}\fi
+    \ifnum\kind=1 \IconWarn{\tx+19}{756.5}{0.95}\fi
+    \ifnum\kind=2 \IconCheck{\tx+19}{756.5}{0.95}\fi
+    \node[anchor=west,inner sep=0pt,text=PText,font=\FiraSemi\fontsize{19pt}{19pt}\selectfont] at (\tx+38,743.5) {\lab};
+    \node[anchor=west,inner sep=0pt,text=\col!75!black,font=\FiraBold\fontsize{20pt}{20pt}\selectfont] at (\tx+38,756.5) {\rts};
+    \node[anchor=west,inner sep=0pt,text=PText,font=\FiraMed\fontsize{18pt}{18pt}\selectfont] at (\tx+38,769) {\evt};}
+  \node[anchor=west,inner sep=0pt,text=PMuted,font=\FiraMed\fontsize{17pt}{17pt}\selectfont] at (776,784.5) {abort = integrator stopped};
+  \NextChip{1139}{784.5}{With more information}
 \end{scope}

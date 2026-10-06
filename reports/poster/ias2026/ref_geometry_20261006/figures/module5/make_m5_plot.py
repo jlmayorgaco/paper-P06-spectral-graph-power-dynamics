@@ -39,7 +39,7 @@ ax.set_xticks(centres); ax.set_xticklabels([str(s) for s in sites], color=TEXT, 
 ax.tick_params(axis="x", pad=3)
 for sp in ["top", "right", "bottom"]: ax.spines[sp].set_visible(False)
 ax.set_ylim(-4500, 450); ax.set_xlim(-0.8, max(xs)+0.8)
-ax.text(0.025, 1.0, "60 cases: 10 PLL sites (bus) × 3 frequencies × 2 designs", transform=ax.transAxes, color=MUTED, fontsize=17.5, va="top", ha="left")
+ax.text(0.025, 1.0, "60 cases: 10 PLL sites (bus) × 3 frequencies × 2 designs; symlog axis", transform=ax.transAxes, color=MUTED, fontsize=17.5, va="top", ha="left")
 y0 = ax.get_position().y0; hh = ax.get_position().height
 fig.text(0.022, y0 + hh*0.74, "positive", rotation=90, color=TEAL, fontsize=19, fontweight="semibold", va="center", ha="center")
 fig.text(0.022, y0 + hh*0.25, "negative", rotation=90, color=GOLDT, fontsize=19, fontweight="semibold", va="center", ha="center")

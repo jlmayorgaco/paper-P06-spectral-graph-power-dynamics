@@ -39,7 +39,7 @@ ax.set_yticklabels(["\u22122", "0", "2"])
 ax.tick_params(colors=MUTED, labelsize=17.5)
 ax.yaxis.grid(True, color=GRID, linewidth=0.9, zorder=0); ax.set_axisbelow(True)
 for sp in ["top", "right"]: ax.spines[sp].set_visible(False)
-ax.text(40.3, 3.0, "unstable", color=RED, fontsize=17.5, fontweight="semibold", ha="left", va="top", zorder=6)
+ax.text(tau_c + 0.18, 3.0, "unstable", color=RED, fontsize=17.5, fontweight="semibold", ha="left", va="top", zorder=6)
 ax.text(40.2, 0.35, "stable", color=GREEN, fontsize=18, fontweight="semibold", ha="left", va="bottom") if False else None
 ax.set_xlabel("uniform delay \u03c4 (ms)", fontsize=17.5, color=TEXT, labelpad=2)
 ax.set_ylabel("Re \u03bb (1/s)", fontsize=17.5, color=TEXT, labelpad=2)

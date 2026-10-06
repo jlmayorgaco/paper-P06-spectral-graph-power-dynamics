@@ -51,11 +51,14 @@
   \DotsGroup{879}{1111}{0,0,0,0,0}   \DotsGroup{925}{1111}{0,0,0,0,0}
   \fill[PPaleGreen,rounded corners=3pt] (860,1118) rectangle (990,1127);
   \DotsGroup{925}{1122.5}{1,1,1,1,1}
-  \foreach \cx/\yy in {971/1088}{\node[text=PMist,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (\cx,\yy-0.5) {--};}
+  \foreach \cx/\yy in {971/1088}{\node[text=PMuted,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (\cx,\yy-0.5) {--};}
   \node[anchor=west,inner sep=0pt,text=PTeal,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (993,1122.5) {5/5};
   \node[anchor=west,inner sep=0pt,text=PRed,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (950,1111) {$|\Delta f|>0.5$\,Hz};
 
   % ---------------------------------------------------------------- red note: necessary, not sufficient
-  \NoteBox{1034}{1068}{1139}{1127}{PRed}
-  \node[anchor=west,inner sep=0pt,text=PRed,align=left,font=\FiraBold\fontsize{21pt}{22.5pt}\selectfont] at (1042,1097.5) {Spectral margin\\is necessary,\\not sufficient.};
+  \NoteBox{1060}{1068}{1139}{1127}{PRed}
+  \node[anchor=west,inner sep=0pt,text=PRed,align=left,font=\FiraBold\fontsize{19.5pt}{21pt}\selectfont] at (1067,1097.5) {Spectral margin\\is necessary,\\not sufficient.};
+  % failure causes next to the red dots (source: research/nhop_ieee39_20261006/derived/E6_events.csv)
+  \node[anchor=east,inner sep=0pt,text=PRed,font=\FiraMed\fontsize{17.5pt}{17.5pt}\selectfont] at (856,1099.5) {SG reserve};
+  \node[anchor=west,inner sep=0pt,text=PRed,align=left,font=\FiraMed\fontsize{17pt}{16.5pt}\selectfont] at (994,1098.5) {voltage band /\\integration stop};
 \end{scope}

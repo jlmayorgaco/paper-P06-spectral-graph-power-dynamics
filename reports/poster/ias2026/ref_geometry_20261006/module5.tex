@@ -23,7 +23,7 @@
   \SectionRule{C}{Damping operator $D_H(\Omega)=\mathrm{Herm}\,Z(j\Omega)$}{415}{603}{746}
   \HeroBox{415}{611}{746}{640}
   \node[inner sep=0pt,text=PNavy] at (500,625.5) {\fontsize{28pt}{30pt}\selectfont $\delta D_H=\tfrac12(a\,v^H+v\,a^H)$};
-  \node[anchor=west,inner sep=0pt,text=PGreen,align=left,font=\FiraSemi\fontsize{19.5pt}{21pt}\selectfont] at (593,625.5) {one \textcolor{PTeal}{positive}, one\\\textcolor{PGoldDeep}{negative} eigenvalue};
+  \node[anchor=west,inner sep=0pt,text=PGreen,align=left,font=\FiraSemi\fontsize{19.5pt}{21pt}\selectfont] at (593,625.5) {one \textcolor{PTeal}{positive}, one\\\textcolor{PGoldDeep!78!black}{negative} eigenvalue};
 
   % ---------------------------------------------------------------- hero visual: diverging lollipop, 60 real cases grouped by PLL site (bus 30-39)
   % source: reports/poster/ias2026/one_mode_20261005/generated/data/TABLE_02_FINITE_DELAY_RANK_LAW.csv (lambda_min, lambda_max; 60 rows)
@@ -33,13 +33,16 @@
   % ---------------------------------------------------------------- closing card: network sketch (+ path grows, - path shrinks) + sentence + chip
   \CardBox{415}{757}{746}{792}
   \begin{scope}[line cap=round,line join=round]
-    \draw[PMist,line width=1.8pt] (430,782) -- (446,762) -- (462,782) -- cycle;
-    \foreach \x/\y in {430/782,446/762,462/782}{\fill[PTeal!55!PMist] (\x,\y) circle (4.6);}
-    \draw[-{Stealth[length=5pt,width=5pt]},PTeal,line width=2.2pt] (433,777) -- (443,765);
-    \draw[-{Stealth[length=5pt,width=5pt]},PGoldDeep,line width=2.2pt] (449,765) -- (459,777);
-    \fill[PTeal] (424,765) circle (4.6);\fill[PGoldDeep] (468,765) circle (4.6);
-    \draw[white,line width=1.4pt] (421.7,765) -- (426.3,765) (424,762.7) -- (424,767.3) (465.7,765) -- (470.3,765);
+    % network sketch: two parallel paths between A and B; upper path gains damping (teal arrow), lower path loses it (gold arrow)
+    \draw[PTeal,line width=2.4pt] (428,775) -- (448,764.5) -- (468,775);
+    \draw[PGoldDeep,line width=2.4pt] (428,775) -- (448,785.5) -- (468,775);
+    \draw[-{Stealth[length=8.5pt,width=8.5pt]},PTeal,line width=2.4pt] (431.5,773.2) -- (442.5,767.2);
+    \draw[-{Stealth[length=8.5pt,width=8.5pt]},PGoldDeep,line width=2.4pt] (444.5,783.7) -- (433.5,777.7);
+    \foreach \x/\y in {428/775,468/775}{\fill[PGreen] (\x,\y) circle (4.4);\fill[white] (\x,\y) circle (1.6);}
+    \foreach \x/\y in {448/764.5,448/785.5}{\fill[PMist] (\x,\y) circle (3.6);\draw[PGreen,line width=1pt] (\x,\y) circle (3.6);}
   \end{scope}
-  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraBold\fontsize{21pt}{21pt}\selectfont] at (482,768) {A local change moves damping between paths.};
+  \node[anchor=west,inner sep=0pt,text=PTeal,font=\FiraBold\fontsize{17.5pt}{17.5pt}\selectfont] at (476,766) {damping $\uparrow$};
+  \node[anchor=west,inner sep=0pt,text=PGoldDeep!78!black,font=\FiraBold\fontsize{17.5pt}{17.5pt}\selectfont] at (476,784.5) {damping $\downarrow$};
+  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraBold\fontsize{19.5pt}{19.5pt}\selectfont] at (535,768) {A local change moves damping between paths.};
   \NextChip{741}{783}{Damping alone misleads}
 \end{scope}

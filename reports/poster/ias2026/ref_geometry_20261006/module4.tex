@@ -28,7 +28,7 @@
       \IconPLL{\x}{556}{0.82}
       \draw[-{Stealth[length=6pt,width=6pt]},PTeal,line width=2.2pt] (\x-9,577) .. controls (\x-26,574) and (\x-30,560) .. (\x-24,552);
       \draw[-{Stealth[length=6pt,width=6pt]},PTeal,line width=2.2pt] (\x+22,551) .. controls (\x+34,556) and (\x+30,573) .. (\x+10,577);
-      \node[inner sep=0pt,text=PTeal] at (\x+36,543) {\fontsize{21pt}{21pt}\selectfont $M_{\p\p}$};
+      \node[inner sep=0pt,text=PTeal] at (\x+31,543) {\fontsize{21pt}{21pt}\selectfont $M_{\p\p}$};
       \draw[-{Stealth[length=6pt,width=6pt]},PNavy,line width=2.4pt] (\ifnum\x<200 \x+25\else \x-25\fi,606) -- (\ifnum\x<200 134\else 275\fi,606);
       \node[inner sep=0pt,text=PNavy] at (\ifnum\x<200 107\else 306\fi,595) {\fontsize{20pt}{20pt}\selectfont $\Delta Y_\p$};
     }
@@ -53,6 +53,6 @@
   \node[anchor=west,inner sep=0pt,text=PText,font=\FiraMed\fontsize{17.5pt}{19pt}\selectfont] at (32,758.5) {Delayed full IEEE-39, 44\,ms: $\mathrm{eig}(Q)=-1$ at every unstable root, all $|L_i|\ge0.011$.}; % source: research/feedback_cycle_fullmodel_20261005/FINAL_FEEDBACK_CYCLE_REPORT.md (|L_i| in [0.011,0.28]; eig(Q)=-1 at every unstable root)
 
   % ---------------------------------------------------------------- hero sentence + story thread
-  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraBold\fontsize{21pt}{21pt}\selectfont] at (24,774) {Nothing failed locally. The network closed the destabilising loop.};
-  \NextChip{386}{785.5}{Who can repair it?}
+  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraBold\fontsize{21pt}{21pt}\selectfont] at (24,774) {Nothing failed locally. The network closed the destabilizing loop.};
+  \NextChip{386}{784.5}{Who can repair it?}
 \end{scope}
