@@ -3,6 +3,7 @@
 \usepackage[paperwidth=914.4mm,paperheight=1066.8mm,margin=0pt]{geometry}
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
+\usepackage{array,colortbl}
 \input{refstyle.tex}
 \input{extra.tex}
 
@@ -17,7 +18,8 @@
   \SkylineRight
   \fill[PGoldLine] (12,108) rectangle (1149,111.6);
   \fill[PGoldLine!35!white] (12,111.6) rectangle (1149,113);
-  \node[anchor=north west,inner sep=0pt] at (18,11) {\includegraphics[width=198\PX]{assets/ias_annual_2026_logo.png}};
+  % official vector logo, cropped from the IAS Annual Meeting 2026 Call for Papers (ias-am.ieee.org)
+  \node[anchor=north west,inner sep=0pt] at (16,10) {\includegraphics[height=92\PY]{assets/ias_am2026_logo.pdf}};
   % title: real condensed bold face at its natural proportions (no stretching)
   \node[anchor=base,inner sep=0pt,text=PTitle,font=\TitleFont\fontsize{140pt}{140pt}\selectfont] at (578,61) {BEYOND NODAL DAMPING};
   \node[anchor=base,inner sep=0pt,text=PSub,font=\CondSemi\fontsize{31pt}{31pt}\selectfont] at (579,81) {Minimal Replacement Blockers, Collective Network Closure, and Information-Radius Co-Design for Safe SG\,\Arr\,GFL Transitions};
@@ -36,10 +38,9 @@
   \RefPanel{9}{DELAYS, CO-DESIGN, AND NONLINEAR CHECKS}{764/801.5/1148/1134.5}{26/23}{803/310}
 
   % ---------------------------------------------------------------- panels 10-12 (reference row 4)
-  \RefSection{MAIN CONTRIBUTIONS}{13/1142.5/548/1251.5}{20/29}
-  \RefSection{SCOPE OF THE RESULTS}{555/1142.5/837/1251.5}{20/29}
-  \RefSection{REFERENCES / CONTACT}{844/1142.5/1148/1251.5}{20/29}
-  % reserved blank space (x 1058-1146, y 1143-1239) for a QR code: omitted until its destination is verified as the final paper/code/data URL
+  \RefSection{MAIN CONTRIBUTIONS}{13/1142.5/333/1304.5}{20/29}
+  \RefSection{KEY RESULTS}{339/1142.5/675/1304.5}{20/29}
+  \RefSection{REFERENCES / CONTACT}{681/1142.5/1148/1304.5}{20/29}
 
   \input{module1.tex}
   \input{module2.tex}
@@ -50,15 +51,11 @@
   \begin{scope}[shift={(0,5)}]\input{module7.tex}\end{scope}
   \begin{scope}[shift={(0,5)}]\input{module8.tex}\end{scope}
   \begin{scope}[shift={(0,5)}]\input{module9.tex}\end{scope}
-  \begin{scope}[shift={(0,5)}]\input{module10.tex}\end{scope}
-  % ---------------------------------------------------------------- footer
-  \begin{scope}[shift={(0,4)}]
-  \fill[PGoldLine] (12,1256) rectangle (1149,1259);
-  \fill[PGreenDark,rounded corners=1.5pt] (12,1259) rectangle (1149,1343);
-  \FooterArtLeft
-  \FooterArtRight
-  \node[anchor=base,inner sep=0pt,text=white,font=\CondBold\fontsize{64.2pt}{64.2pt}\selectfont] at (582.5,1291) {PRESERVING ONE MODE DOES NOT PROTECT THE GRID.};
-  \node[anchor=base,inner sep=0pt,text=PFootGold,font=\CondReg\fontsize{35.6pt}{35.6pt}\selectfont] at (579,1316.5) {More information gives more control authority\ \textemdash\ only the full grid decides whether a larger SG\,\Arr\,GFL transition is safe.};
-  \end{scope}
+  \input{module10.tex}
+  % ---------------------------------------------------------------- footer: slim identity band (factual text only)
+  \fill[PGoldLine] (12,1311) rectangle (1149,1313.5);
+  \fill[PGreenDark,rounded corners=1.5pt] (12,1313.5) rectangle (1149,1347);
+  \node[anchor=west,inner sep=0pt,text=white,font=\FiraMed\fontsize{19pt}{19pt}\selectfont] at (24,1330.7) {IEEE IAS Annual Meeting 2026\ \ \textbullet\ \ Vancouver, Canada\ \ \textbullet\ \ October 4\textendash 8, 2026};
+  \node[anchor=east,inner sep=0pt,text=white,font=\FiraMed\fontsize{19pt}{19pt}\selectfont] at (1137,1330.7) {Jorge Luis Mayorga Taborda\ \ \textbullet\ \ Universidad de los Andes\ \ \textbullet\ \ jl.mayorga236@uniandes.edu.co};
 \end{OnPage}
 \end{document}

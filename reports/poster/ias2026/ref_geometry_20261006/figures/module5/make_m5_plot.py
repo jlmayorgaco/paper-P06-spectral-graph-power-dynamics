@@ -17,7 +17,7 @@ d = pd.read_csv("../../../one_mode_20261005/generated/data/TABLE_02_FINITE_DELAY
 d = d.sort_values(["bus", "design", "frequency_Hz"]).reset_index(drop=True)
 TEAL, GOLD, GOLDT, TEXT, GRID, MUTED = "#2C7A70", "#E0A91E", "#9A6F08", "#1C2B27", "#E3EBE7", "#4F5D59"
 fig = plt.figure(figsize=(W_PX*PXW, H_PX*PXH))
-ax = fig.add_axes([0.155, 0.15, 0.842, 0.84])
+ax = fig.add_axes([0.19, 0.15, 0.808, 0.84])
 sites = sorted(d.bus.unique()); step = 1.0; gap = 0.45
 xs = []; centres = []; pos = 0.0
 for s in sites:
@@ -41,7 +41,6 @@ for sp in ["top", "right", "bottom"]: ax.spines[sp].set_visible(False)
 ax.set_ylim(-4500, 450); ax.set_xlim(-0.8, max(xs)+0.8)
 ax.text(0.025, 1.0, "60 cases: 10 PLL sites (bus) × 3 frequencies × 2 designs; symlog axis", transform=ax.transAxes, color=MUTED, fontsize=17.5, va="top", ha="left")
 y0 = ax.get_position().y0; hh = ax.get_position().height
-fig.text(0.022, y0 + hh*0.74, "positive", rotation=90, color=TEAL, fontsize=19, fontweight="semibold", va="center", ha="center")
-fig.text(0.022, y0 + hh*0.25, "negative", rotation=90, color=GOLDT, fontsize=19, fontweight="semibold", va="center", ha="center")
+fig.text(0.03, y0 + hh*0.5, "eigenvalues of δD$_H$\n(symlog)", rotation=90, color=MUTED, fontsize=17.5, fontweight="medium", va="center", ha="center", linespacing=1.05)
 fig.savefig("m5_signed_eigs.pdf", transparent=True)
 print(d.positive_count.sum(), d.negative_count.sum(), len(d))

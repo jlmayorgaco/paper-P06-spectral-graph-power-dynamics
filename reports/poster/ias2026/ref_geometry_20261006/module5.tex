@@ -11,6 +11,7 @@
   \node[anchor=east,inner sep=0pt,text=PMuted] at (746,523) {\FiraMed\fontsize{17.5pt}{18pt}\selectfont $r$ kept, $c$ eliminated};
 
   % ---------------------------------------------------------------- B: even/odd split
+  \begin{scope}[shift={(0,-2)}]
   \SectionRule{B}{Even/odd split $\Pi=\Pi_e+\Pi_o$}{415}{539}{690}
   \ProposedTag{727}{539}{PROPOSED}
   \node[anchor=west,inner sep=0pt,text=PNavy] at (415,553) {\fontsize{22pt}{24pt}\selectfont $L_{\rm eff}=L+\Pi_e(0),\quad D_{\rm eff}=D_0+\Pi_o(s)/s$};
@@ -18,8 +19,10 @@
   \node[anchor=west,inner sep=0pt,text=PNavy] at (415,582) {\fontsize{24pt}{26pt}\selectfont $T=s^2M_{\rm eff}+sD_{\rm eff}+L_{\rm eff}$};
   \NoteBox{628}{567}{746}{592}{PRed}
   \node[anchor=west,inner sep=0pt,text=PRed,align=left,font=\FiraSemi\fontsize{17.5pt}{19pt}\selectfont] at (636,579.5) {$M_{\rm eff}$: an operator,\\not rotor inertia.};
+  \end{scope}
 
   % ---------------------------------------------------------------- C: hero
+  \begin{scope}[shift={(0,-4)}]
   \SectionRule{C}{Damping operator $D_H(\Omega)=\mathrm{Herm}\,Z(j\Omega)$}{415}{603}{746}
   \HeroBox{415}{611}{746}{640}
   \node[inner sep=0pt,text=PNavy] at (500,625.5) {\fontsize{28pt}{30pt}\selectfont $\delta D_H=\tfrac12(a\,v^H+v\,a^H)$};
@@ -28,10 +31,12 @@
   % ---------------------------------------------------------------- hero visual: diverging lollipop, 60 real cases grouped by PLL site (bus 30-39)
   % source: reports/poster/ias2026/one_mode_20261005/generated/data/TABLE_02_FINITE_DELAY_RANK_LAW.csv (lambda_min, lambda_max; 60 rows)
   % source: experiments/poster_julia_validation_20261003/RANK_LAW_SUMMARY.json (cases=60; max_relative_update_error=4.8476337614923296e-08, not printed)
-  \node[anchor=north west,inner sep=0pt] at (415,644) {\includegraphics[width=331\PX,height=108\PY]{figures/module5/m5_signed_eigs.pdf}};
+  \node[anchor=north west,inner sep=0pt] at (415,644) {\includegraphics[width=331\PX,height=96\PY]{figures/module5/m5_signed_eigs.pdf}};
+  \end{scope}
 
-  % ---------------------------------------------------------------- closing card: network sketch (+ path grows, - path shrinks) + sentence + chip
-  \CardBox{415}{757}{746}{792}
+  % ---------------------------------------------------------------- closing card: network sketch (+ path grows, - path shrinks) + sentence
+  \begin{scope}[shift={(0,-13)}]
+  \CardBox{415}{757}{746}{790}
   \begin{scope}[line cap=round,line join=round]
     % network sketch: two parallel paths between A and B; upper path gains damping (teal arrow), lower path loses it (gold arrow)
     \draw[PTeal,line width=2.4pt] (428,775) -- (448,764.5) -- (468,775);
@@ -43,6 +48,6 @@
   \end{scope}
   \node[anchor=west,inner sep=0pt,text=PTeal,font=\FiraBold\fontsize{17.5pt}{17.5pt}\selectfont] at (476,766) {damping $\uparrow$};
   \node[anchor=west,inner sep=0pt,text=PGoldDeep!78!black,font=\FiraBold\fontsize{17.5pt}{17.5pt}\selectfont] at (476,784.5) {damping $\downarrow$};
-  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraBold\fontsize{19.5pt}{19.5pt}\selectfont] at (535,768) {A local change moves damping between paths.};
-  \NextChip{741}{783}{Damping alone misleads}
-\end{scope}
+  \node[anchor=west,inner sep=0pt,text=PGreen,align=left,font=\FiraSemi\fontsize{17.5pt}{19pt}\selectfont] at (535,774.5) {One local change raises damping along one direction\\and lowers it along another; damping at a single\\frequency is not a stability test.};
+  \end{scope}
+  \PanelRefs{415}{785.5}{[8]}\end{scope}

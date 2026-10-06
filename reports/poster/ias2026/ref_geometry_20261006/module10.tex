@@ -1,38 +1,50 @@
-% MODULE 10: lower strip (three unnumbered sections). Bars are drawn in main.tex; bodies start at y 1160 (bars end at 1157.5).
-% MAIN CONTRIBUTIONS x 13-548 | SCOPE OF THE RESULTS x 555-837 | REFERENCES / CONTACT x 844-1148 (x 1058-1146 stays blank for the future QR code).
+% MODULE 10: lower strip (three unnumbered sections). Bars are drawn in main.tex (page coordinates, no shift); bars end at y 1162.5, boxes end at y 1304.5.
+% MAIN CONTRIBUTIONS x 13-333 | KEY RESULTS x 339-675 | REFERENCES / CONTACT x 681-1148.
 % Every statement summarises other panels of this poster (panels 3-9); no new numbers are introduced here.
 \begin{scope}
   \hyphenpenalty=10000 \exhyphenpenalty=10000 \tolerance=9999 \emergencystretch=3em
-  % ---------------------------------------------------------------- MAIN CONTRIBUTIONS: five numbered items in two columns
-  \newcommand{\ContribItem}[4]{% x, y (top), icon name, text: icon on a mint plate instead of a number
+  \newcommand{\TRule}{\\\noalign{\vskip 3pt}\hline\noalign{\vskip 4pt}}
+  % ---------------------------------------------------------------- MAIN CONTRIBUTIONS: five items, one line each
+  \newcommand{\ContribItem}[4]{% x, y (top), icon name, text
     \fill[PPaleGreen] (#1+10,#2+10) circle (11);
     \csname Icon#3\endcsname{#1+10}{#2+10}{0.46}
-    \node[anchor=north west,inner sep=0pt,text=PText,align=left,text width=222\PX,font=\FiraMed\fontsize{18pt}{20.5pt}\selectfont] at (#1+27,#2-1.5) {#4};}
-  \ContribItem{22}{1163}{Warn}{\textbf{Minimal replacement blockers:} the $H_4$ witness is unstable although all its proper subsets are stable.}
-  \ContribItem{22}{1189}{Matrix}{\textbf{Exact closure factorization} of the network return into a local and a collective part.}
-  \ContribItem{22}{1215}{Wave}{\textbf{Beyond nodal damping:} self-energy and signed damping redistribution.}
-  \ContribItem{290}{1163}{Clock}{\textbf{Grid-embedded PLL gain synthesis} and exact delay transport.}
-  \ContribItem{290}{1189}{GraphHop}{\textbf{Information radius on the full IEEE-39:} authority grows, safety must still be verified.}
+    \node[anchor=west,inner sep=0pt,text=PText,align=left,text width=275\PX,font=\FiraMed\fontsize{20.5pt}{22.5pt}\selectfont] at (#1+28,#2+10.4) {#4};}
+  \ContribItem{22}{1171}{Warn}{\textbf{Minimal replacement blockers:} the $H_4$ witness is unstable although all its proper subsets are stable.}
+  \ContribItem{22}{1198}{Matrix}{\textbf{Exact closure factorization} of the network return into a local and a collective part.}
+  \ContribItem{22}{1225}{Wave}{\textbf{Beyond nodal damping:} self-energy and signed damping redistribution.}
+  \ContribItem{22}{1252}{Clock}{\textbf{Grid-embedded PLL gain synthesis} and exact delay transport.}
+  \ContribItem{22}{1279}{GraphHop}{\textbf{Information radius on the full IEEE-39:} authority grows, safety must still be verified.}
 
-  % ---------------------------------------------------------------- SCOPE OF THE RESULTS: three mini-columns with evidence pills
-  % pills
-  \IconCheck{569}{1169.5}{0.4}\ProvedTag{596}{1169.5}{EXACT}
-  \IconWave{649}{1169.5}{0.4}\ObservedTag{686}{1169.5}{NUMERICAL}
-  \IconWarn{758}{1169.5}{0.4}\ProposedTag{794}{1169.5}{PROPOSED}
-  \node[anchor=north west,inner sep=0pt,text=PText,align=left,text width=76\PX,font=\FiraMed\fontsize{17pt}{19.5pt}\selectfont] at (561,1180)
-    {closure factorization\par gain map $W_i$\par delay transport\par commutator identity\par signed $\delta D_H$};
-  \node[anchor=north west,inner sep=0pt,text=PText,align=left,text width=100\PX,font=\FiraMed\fontsize{17pt}{19.5pt}\selectfont] at (641,1180)
-    {$H_4$ witness (TX4 contract)\par\addvspace{1.5pt}full IEEE-39 delay campaign\par\addvspace{1.5pt}$n$-hop authority, spillover, repair\par\addvspace{1.5pt}nonlinear events};
-  \node[anchor=north west,inner sep=0pt,text=PText,align=left,text width=82\PX,font=\FiraMed\fontsize{17pt}{19.5pt}\selectfont] at (750,1180)
-    {$M_\mathrm{eff}$, $D_\mathrm{eff}$ graph diagnostics\par certified global maximum share\par EMT and current limits};
+  % ---------------------------------------------------------------- KEY RESULTS: 4-row table (model | finding | evidence); every number is printed in the panel named in the comment
+  % source (TX4 row): panel 3 / module3.tex: 15 of 15 proper subsets stable (derived/TX4_PROPER_SUBSET_CLOSURE.csv), alpha_P4 = 0.12700646782830968 (claims/tx4_summary.json)
+  % source (delay row): panel 9 / module9.tex: 41.57 ms (TABLE_D01b_delay_crossings.csv), K_p -14 %, 5 of 5 events (TABLE12_nonlinear_events.csv)
+  % source (n-hop row): panel 8 / module8.tex: n_min = 0, 1, 1, 2 for m = 1..4 (E1_nmin.csv); 11 of 12 exact assignments (E5_spillover.csv, graph=frozen)
+  % source (delta D_H row): panel 5 / module5.tex: 60 cases (RANK_LAW_SUMMARY.json, TABLE_02_FINITE_DELAY_RANK_LAW.csv)
+  \node[anchor=north west,inner sep=0pt,text=PText,font=\FiraMed\fontsize{19.5pt}{21.5pt}\selectfont] at (345,1168) {%
+    \setlength{\tabcolsep}{0pt}\renewcommand{\arraystretch}{1}\arrayrulecolor{PBorder}%
+    \begin{tabular}{@{}>{\raggedright\arraybackslash}p{58\PX}@{\hspace{5\PX}}>{\raggedright\arraybackslash}p{150\PX}@{\hspace{5\PX}}>{\raggedright\arraybackslash}p{108\PX}@{}}
+      {\FiraSemi\color{PGreen}model} & {\FiraSemi\color{PGreen}finding} & {\FiraSemi\color{PGreen}evidence}\TRule
+      TX4 IEEE-39 & $H_4$ blocker, 15/15 proper subsets stable, $\alpha_\perp(H_4)=+0.127\,\mathrm{s^{-1}}$ & full-spectrum, fixed policy\TRule
+      full IEEE-39, exact delay & first margin crossing 41.57\,ms; uniform $K_p\,{-}14\,\%$ restores margin, 5/5 events & argument-principle counts + Julia events\TRule
+      $n$-hop, full IEEE-39 & $n_{\min}=0,1,1,2$ for $m=1$--$4$; 11/12 exact assignments leave roots beyond the margin & modal equations + full counts\TRule
+      $\delta D_H$ & 60/60 cases with one positive and one negative eigenvalue & Julia validation
+    \end{tabular}};
 
-  % ---------------------------------------------------------------- REFERENCES / CONTACT (right 90 px kept blank for the QR code)
-  \node[anchor=north west,inner sep=0pt,text=PText,align=left,text width=198\PX,font=\FiraMed\fontsize{17pt}{19.3pt}\selectfont] at (851,1159.5)
-    {\hangindent=1.9em\hangafter=1\noindent\makebox[1.9em][l]{[1]}P. Kundur, \emph{Power System Stability and Control}, 1994.\par
-     \hangindent=1.9em\hangafter=1\noindent\makebox[1.9em][l]{[2]}F. D\"orfler et al., Sparsity-promoting optimal wide-area control, IEEE TPWRS, 2014.\par
-     \hangindent=1.9em\hangafter=1\noindent\makebox[1.9em][l]{[3]}L. Huang et al., Impacts of grid structure on PLL-synchronization stability, arXiv:1903.05489.\par
-     \hangindent=1.9em\hangafter=1\noindent\makebox[1.9em][l]{[4]}W. Michiels, S. Gumussoy, fixed-order controllers for time-delay systems, arXiv:2003.05496.\par
-     \hangindent=1.9em\hangafter=1\noindent\makebox[1.9em][l]{[5]}J. L. Mayorga T., Beyond nodal damping, in prep.\par
-     {\FiraSemi\color{PGreen}jl.mayorga236@uniandes.edu.co}};
-  % reserved blank space (x 1058-1146): QR code placeholder intentionally empty
+  % ---------------------------------------------------------------- REFERENCES / CONTACT
+  % nine references of plans/REFS_PLAN.md in two columns (Fira Medium 17 pt, hanging indent for the label), contact line across the bottom
+  \newcommand{\RefEntry}[2]{\hangindent=1.9em\hangafter=1\noindent\makebox[1.9em][l]{[#1]}#2\par}
+  \node[anchor=north west,inner sep=0pt,text=PText,font=\FiraMed\fontsize{17pt}{19pt}\selectfont] at (688,1168)
+    {\begin{minipage}[t]{222\PX}\raggedright
+      \RefEntry{1}{P. Kundur, \emph{Power System Stability and Control}, McGraw-Hill, 1994.}
+      \RefEntry{2}{F. Dörfler et al., ``Sparsity-promoting optimal wide-area control of power networks,'' IEEE Trans. Power Syst., vol. 29, no. 5, pp. 2281--2291, 2014.}
+      \RefEntry{3}{L. Huang et al., ``Impacts of grid structure on PLL-synchronization stability of converter-integrated power systems,'' arXiv:1903.05489.}
+      \RefEntry{4}{W. Michiels, S. Gumussoy, ``Eigenvalue based algorithms and software for the design of fixed-order stabilizing controllers for interconnected systems with time-delays,'' arXiv:2003.05496.}
+     \end{minipage}\hspace{9\PX}\begin{minipage}[t]{222\PX}\raggedright
+      \RefEntry{5}{U. Marković et al., ``Understanding small-signal stability of low-inertia systems,'' IEEE Trans. Power Syst., vol. 36, no. 5, pp. 3997--4017, 2021.}
+      \RefEntry{6}{X. Wang et al., ``Grid-synchronization stability of converter-based resources---an overview,'' IEEE Open J. Ind. Appl., vol. 1, pp. 115--134, 2020.}
+      \RefEntry{7}{F. Dörfler, F. Bullo, ``Kron reduction of graphs with applications to electrical networks,'' IEEE Trans. Circuits Syst. I, vol. 60, no. 1, pp. 150--163, 2013.}
+      \RefEntry{8}{S. Skogestad, I. Postlethwaite, \emph{Multivariable Feedback Control: Analysis and Design}, 2nd ed., Wiley, 2005.}
+      \RefEntry{9}{A. Ortega et al., ``Graph signal processing: overview, challenges, and applications,'' Proc. IEEE, vol. 106, no. 5, pp. 808--828, 2018.}
+     \end{minipage}};
+  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{17pt}{17pt}\selectfont] at (688,1297.5) {Jorge Luis Mayorga Taborda\ \ {\color{PGold}\textbullet}\ \ Universidad de los Andes\ \ {\color{PGold}\textbullet}\ \ jl.mayorga236@uniandes.edu.co};
 \end{scope}

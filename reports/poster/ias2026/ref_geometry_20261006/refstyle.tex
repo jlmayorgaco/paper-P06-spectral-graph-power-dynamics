@@ -112,6 +112,8 @@
 % \NextChip{x}{y}{text}: story-thread chip; (x,y) = right edge, vertical centre; draws "-> text"
 \newcommand{\NextChip}[3]{%
   \node[anchor=east,inner xsep=7pt,inner ysep=3.6pt,fill=PGold,rounded corners=3pt,text=PGreenDark,font=\FiraSemi\fontsize{16.5pt}{16.5pt}\selectfont] at (#1,#2) {\Arr\ #3};}
+% \PanelRefs{x}{y}{labels}: muted "Refs: [..]" line at the bottom of a panel; (x,y) = left edge, vertical centre
+\newcommand{\PanelRefs}[3]{\node[anchor=west,inner sep=0pt,text=PMuted,font=\FiraMed\fontsize{17pt}{17pt}\selectfont] at (#1,#2) {Refs: #3};}
 % \SectionRule{letter}{text}{x}{y}{xend}: gold letter chip + SemiBold heading + 0.8 pt hairline rule running to xend; (x,y) = left edge, vertical centre
 \newcommand{\SectionRule}[5]{%
   \fill[PGold,rounded corners=1.5pt] (#3,#4-5.5) rectangle (#3+11,#4+5.5);

@@ -7,7 +7,7 @@
     {\parbox{283mm}{\raggedright\fontsize{23.5pt}{27pt}\selectfont A replacement is local hardware, but stability is a property of the closed grid and its controller architecture.}};
 
   % ---------------------------------------------------------------- hero scene: SG -> grid -> GFL (with PLL), port i
-  \begin{scope}[line cap=round,line join=round]
+  \begin{scope}[line cap=round,line join=round,shift={(0,-2)}] % scene lifted ~5 px to make room for the Refs line
   % soft stage behind the scene
   \fill[PPaleGreen!55,rounded corners=10pt] (14,192) rectangle (395,314);
   % feeders: SG -- pylon -- grid -- pylon -- GFL (conductors run behind the cross-arms)
@@ -35,30 +35,35 @@
   \node[fill=PGold,text=PGreenDark,rounded corners=3pt,inner xsep=6pt,inner ysep=2.6pt,font=\FiraBold\fontsize{19pt}{19pt}\selectfont] at (190,181) {replace};
   \end{scope}
   % ---------------------------------------------------------------- one-line message
-  \node[inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{20.5pt}{20.5pt}\selectfont] at (205,322) {A safe SG\,$\rightarrow$\,GFL transition is a portfolio--controller co-design problem.};
+  \node[inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{20.5pt}{20.5pt}\selectfont] at (205,319) {Safe SG\,$\rightarrow$\,GFL replacement is a joint portfolio and controller design problem.};
 
   % ---------------------------------------------------------------- engineering objective (hero)
-  \HeroBox{23}{331}{389}{388}
+  \begin{scope}[shift={(0,-4)}]
+  \HeroBox{23}{331}{389}{385}
   \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{21.5pt}{21.5pt}\selectfont] at (35,340) {Engineering objective};
   \node[anchor=east,inner sep=0pt,text=PNavy] at (380,340) {\fontsize{21.5pt}{21.5pt}\selectfont $S(\delta)=\{\,i:\delta_i=1\,\}$};
   \node[inner sep=0pt,text=PNavy] at (206,360) {\fontsize{26pt}{28pt}\selectfont $\displaystyle\max_{S,\,K}\ \sum_{i\in S}P_i^{0}\quad\text{s.t.}\quad \alpha_\perp(S,K)\le-\sigma_{\rm req},\quad K\in\mathcal K_n$};
   % symbol key (one line)
   \node[anchor=west,inner sep=0pt,text=PMuted,font=\FiraMed\fontsize{16pt}{16pt}\selectfont] at (35,378.5)
     {$P_i^{0}$ SG$_i$ dispatch\ \ $\alpha_\perp$ rightmost non-gauge root\ \ $\sigma_{\rm req}$ decay margin\ \ $\mathcal K_n$ gains using $\le n$ hops};
+  \end{scope}
 
   % ---------------------------------------------------------------- four steps (chips)
+  \begin{scope}[shift={(0,-9)}]
   \foreach \xa/\n/\l in {
       23/1/{\FiraSemi Choose\\[-1pt]\FiraSemi portfolio $\delta$},
       116/2/{\FiraSemi Choose radius\\[-1pt]\FiraSemi $n$: $K\in\mathcal K_n$},
       209/3/{\FiraSemi Design gains\\[-1pt]\FiraSemi $K_p,\ K_I$},
       302/4/{\FiraSemi Verify grid\\[-1pt]\FiraSemi spectrum, events}}{
-    \CardBox{\xa}{394}{\xa+87}{424}
-    \StepNumber{\xa+12.5}{409}{\n}
-    \node[anchor=west,inner sep=0pt,text=PGreen,align=left,font=\fontsize{17pt}{18.5pt}\selectfont] at (\xa+25,409.3) {\l};}
+    \CardBox{\xa}{394}{\xa+87}{420}
+    \StepNumber{\xa+12.5}{407}{\n}
+    \node[anchor=west,inner sep=0pt,text=PGreen,align=left,font=\fontsize{17pt}{18.5pt}\selectfont] at (\xa+25,407.3) {\l};}
+  \end{scope}
 
-  % ---------------------------------------------------------------- scope note (no optimality claim) + story chip
+  % ---------------------------------------------------------------- scope note (no optimality claim)
+  \begin{scope}[shift={(0,-15)}]
   \NoteBox{23}{430}{300}{450}{PRed}
   \node[anchor=west,inner sep=0pt,text=PRed,align=left,font=\FiraMed\fontsize{17pt}{19pt}\selectfont] at (31,440.2)
     {Report the largest independently verified portfolio found.\\[-1.5pt]Certified global optimality is future work.};
-  \NextChip{389}{441}{Model it}
-\end{scope}
+  \end{scope}
+  \PanelRefs{23}{443}{[1] [5] [6]}\end{scope}

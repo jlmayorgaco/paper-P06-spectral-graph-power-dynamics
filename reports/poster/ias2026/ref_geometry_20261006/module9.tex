@@ -14,7 +14,7 @@
   % ---------------------------------------------------------------- C: compact co-design loop (left column, icons instead of numbers)
   \SectionRule{C}{Co-design loop}{775}{899}{898}
   % rows: y top / height / icon / label
-  \foreach \y/\h/\ic/\lab in {910/16/GFL/{Choose portfolio}, 928.2/16/Network/{Equilibrium, spectrum}, 946.4/16/Matrix/{Closure $Q$, $D_H$}, 964.6/16/GraphHop/{Radius $n$}, 982.8/16/Clock/{Gain map, predictor}, 1001/26/Spectrum/{FULL-SPECTRUM\\corrector}, 1029.2/16/Wave/{Nonlinear events}}{
+  \foreach \y/\h/\ic/\lab in {910/16/GFL/{Choose portfolio}, 927.7/16/Network/{Equilibrium, spectrum}, 945.4/16/Matrix/{Closure $Q$, $D_H$}, 963.1/16/GraphHop/{Radius $n$}, 980.8/16/Clock/{Gain map, predictor}, 998.5/26/Spectrum/{FULL-SPECTRUM\\corrector}, 1026.2/16/Wave/{Nonlinear events}}{
     \ifnum\h=26
       \fill[PGreen,rounded corners=3pt] (775,\y) rectangle (898,\y+\h);
       \fill[PGold] (775,\y) rectangle (778.2,\y+\h);
@@ -25,40 +25,40 @@
     \fi
     \def\isc{0.4}\def\tmpic{GFL}\ifx\ic\tmpic\def\isc{0.3}\fi \csname Icon\ic\endcsname{790}{\y+\h/2}{\isc}}
   % flow chevrons between the rows and the loop-back arrow
-  \foreach \y in {926.2, 944.4, 962.6, 980.8, 999.0, 1027.2}{\fill[PGold] (832,\y) -- (840,\y) -- (836,\y+3.6) -- cycle;}
-  \draw[PGold,line width=1.8pt,-{Stealth[length=4pt]}] (898,1037.2) -- (903,1037.2) -- (903,918) -- (899,918);
+  \foreach \y in {925.05, 942.75, 960.45, 978.15, 995.85, 1023.55}{\fill[PGold] (832,\y) -- (840,\y) -- (836,\y+3.6) -- cycle;}
+  \draw[PGold,line width=1.8pt,-{Stealth[length=4pt]}] (898,1034.2) -- (903,1034.2) -- (903,918) -- (899,918);
 
   % ---------------------------------------------------------------- B: delay root locus (hero)
   \SectionRule{B}{Delay root locus}{908}{899}{1062}
   \ObservedTag{1103}{899}{NUMERICAL}
   % source: research/feedback_cycle_fullmodel_20261005/derived/TABLE_D01_delay_continuation.csv (PLL family, 9 branches) and TABLE_D01b_delay_crossings.csv (41.57 ms = R0 margin crossing)
-  \BigNumber[PGoldDeep]{908}{922.5}{41.57 ms}{first margin\\crossing}
-  \node[anchor=north west,inner sep=0pt] at (908,939) {\includegraphics[width=231\PX,height=104\PY]{figures/module9/m9_delay_locus.pdf}};
-  \node[anchor=west,inner sep=0pt,text=PMuted,font=\FiraMed\fontsize{17.5pt}{17.5pt}\selectfont] at (908,1049.5) {full IEEE-39, exact delay; margin $-0.05\,\mathrm{s^{-1}}$};
+  \node[anchor=north west,inner sep=0pt] at (908,910) {\includegraphics[width=231\PX,height=112\PY]{figures/module9/m9_delay_locus.pdf}};
+  \node[anchor=north west,inner sep=0pt,text=PMuted,align=left,font=\FiraMed\fontsize{17.5pt}{19pt}\selectfont] at (908,1024.5) {gold marker: first crossing of the $-0.05\,\mathrm{s^{-1}}$\\margin; full IEEE-39, exact delay};
 
   % ---------------------------------------------------------------- D: nonlinear checks as a dot matrix
-  \SectionRule{D}{Five frozen nonlinear events}{775}{1060}{1139}
+  \SectionRule{D}{Five frozen nonlinear events}{775}{1051}{1139}
   % source: research/nhop_ieee39_20261006/derived/E6_events.csv (events_passed, failures) and research/feedback_cycle_fullmodel_20261005/derived/TABLE12_nonlinear_events.csv (EV_uniform_kp, 44 ms: 5 of 5 pass)
   \foreach \cx/\h in {879/$n{=}0$, 925/$n{=}1$, 971/$n{=}3$}{
-    \node[inner sep=0pt,text=PMuted,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (\cx,1075) {\h};}
-  \draw[PGrid,line width=0.8pt] (775,1081.5) -- (1005,1081.5);
-  \foreach \y/\lab in {1088/{48\,ms}, 1099.5/{52\,ms}, 1111/{44\,ms, 90\,\%}, 1122.5/{44\,ms, $K_p\,{-}14\,\%$}}{
+    \node[inner sep=0pt,text=PMuted,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (\cx,1064.5) {\h};}
+  \draw[PGrid,line width=0.8pt] (775,1070) -- (1005,1070);
+  \foreach \y/\lab in {1076/{48\,ms}, 1086.8/{52\,ms}, 1097.6/{44\,ms, 90\,\%}, 1108.4/{44\,ms, $K_p\,{-}14\,\%$}}{
     \node[anchor=west,inner sep=0pt,text=PText,font=\FiraMed\fontsize{17.5pt}{17.5pt}\selectfont] at (775,\y) {\lab};}
   % dots: pass = teal, fail = red; first dot centre = column centre - 15.2
   \newcommand{\DotsGroup}[3]{\foreach \p [count=\i from 0] in {#3}{\ifnum\p=1 \fill[PTeal] ({#1-15.2+\i*7.6},#2) circle (3.2);\else \fill[PRed] ({#1-15.2+\i*7.6},#2) circle (3.2);\fi}}
-  \DotsGroup{879}{1088}{1,1,1,1,1}   \DotsGroup{925}{1088}{1,1,1,1,1}
-  \DotsGroup{879}{1099.5}{1,0,1,1,1} \DotsGroup{925}{1099.5}{1,1,1,1,1} \DotsGroup{971}{1099.5}{0,0,0,0,0}
-  \DotsGroup{879}{1111}{0,0,0,0,0}   \DotsGroup{925}{1111}{0,0,0,0,0}
-  \fill[PPaleGreen,rounded corners=3pt] (860,1118) rectangle (990,1127);
-  \DotsGroup{925}{1122.5}{1,1,1,1,1}
-  \foreach \cx/\yy in {971/1088}{\node[text=PMuted,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (\cx,\yy-0.5) {--};}
-  \node[anchor=west,inner sep=0pt,text=PTeal,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (993,1122.5) {5/5};
-  \node[anchor=west,inner sep=0pt,text=PRed,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (950,1111) {$|\Delta f|>0.5$\,Hz};
+  \DotsGroup{879}{1076}{1,1,1,1,1}   \DotsGroup{925}{1076}{1,1,1,1,1}
+  \DotsGroup{879}{1086.8}{1,0,1,1,1} \DotsGroup{925}{1086.8}{1,1,1,1,1} \DotsGroup{971}{1086.8}{0,0,0,0,0}
+  \DotsGroup{879}{1097.6}{0,0,0,0,0}   \DotsGroup{925}{1097.6}{0,0,0,0,0}
+  \fill[PPaleGreen,rounded corners=3pt] (860,1103.9) rectangle (990,1112.9);
+  \DotsGroup{925}{1108.4}{1,1,1,1,1}
+  \foreach \cx/\yy in {971/1076}{\node[text=PMuted,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (\cx,\yy-0.5) {--};}
+  \node[anchor=west,inner sep=0pt,text=PTeal,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (993,1108.4) {5/5};
+  \node[anchor=west,inner sep=0pt,text=PRed,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (950,1097.6) {$|\Delta f|>0.5$\,Hz};
 
   % ---------------------------------------------------------------- red note: necessary, not sufficient
-  \NoteBox{1060}{1068}{1139}{1127}{PRed}
-  \node[anchor=west,inner sep=0pt,text=PRed,align=left,font=\FiraBold\fontsize{19.5pt}{21pt}\selectfont] at (1067,1097.5) {Spectral margin\\is necessary,\\not sufficient.};
+  \NoteBox{1060}{1059}{1139}{1113}{PRed}
+  \node[anchor=west,inner sep=0pt,text=PRed,align=left,font=\FiraBold\fontsize{19.5pt}{21pt}\selectfont] at (1067,1086.5) {Spectral margin\\is necessary,\\not sufficient.};
   % failure causes next to the red dots (source: research/nhop_ieee39_20261006/derived/E6_events.csv)
-  \node[anchor=east,inner sep=0pt,text=PRed,font=\FiraMed\fontsize{17.5pt}{17.5pt}\selectfont] at (856,1099.5) {SG reserve};
-  \node[anchor=west,inner sep=0pt,text=PRed,align=left,font=\FiraMed\fontsize{17pt}{16.5pt}\selectfont] at (994,1098.5) {voltage band /\\integration stop};
+  \node[anchor=east,inner sep=0pt,text=PRed,font=\FiraMed\fontsize{17.5pt}{17.5pt}\selectfont] at (856,1086.8) {SG reserve};
+  \node[anchor=west,inner sep=0pt,text=PRed,align=left,font=\FiraMed\fontsize{17pt}{16.5pt}\selectfont] at (994,1085.8) {voltage band /\\integration stop};
+  \PanelRefs{775}{1121.5}{[4] [9]}
 \end{scope}

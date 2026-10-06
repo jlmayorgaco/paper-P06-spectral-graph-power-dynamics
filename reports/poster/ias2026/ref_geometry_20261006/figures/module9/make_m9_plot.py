@@ -33,6 +33,8 @@ ax.plot(env.index, env.values, color=GREEN, lw=4.0, zorder=3, solid_capstyle="ro
 ax.axhline(-0.05, color=RED, lw=2.0, zorder=2)
 ax.axvline(tau_c, color=GOLD, lw=2.4, ls=(0, (3, 2)), zorder=1)
 ax.plot([tau_c], [-0.05], "o", ms=15, mfc=GOLD, mec=GREEN, mew=2.0, zorder=5)
+ax.annotate(f"{tau_c:.2f} ms", xy=(tau_c, -0.05), xytext=(tau_c + 0.3, 1.35), color="#8A6200", fontsize=18, fontweight="semibold",
+            ha="left", va="bottom", zorder=7, arrowprops=dict(arrowstyle="-", color="#8A6200", lw=1.6, shrinkA=2, shrinkB=9))
 ax.set_xlim(40, 50); ax.set_ylim(-3.1, 3.3)
 ax.set_xticks([40, 42, 44, 46, 48, 50]); ax.set_yticks([-2, 0, 2])
 ax.set_yticklabels(["\u22122", "0", "2"])

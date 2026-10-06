@@ -6,8 +6,8 @@
 \begin{scope}
   % ---------------------------------------------------------------- definitions
   \node[anchor=west,inner sep=0pt,text=PNavy] at (23,497) {\fontsize{26pt}{28pt}\selectfont $T_S(s)=T_0(s)+\sum_{i\in S}E_i\,\Delta Y_i(s)\,E_i^{\mathsf T}$};
-  \node[anchor=west,inner sep=0pt,text=PNavy] at (23,513) {\fontsize{22pt}{24pt}\selectfont $\Delta Y_i=E_i^{\mathsf T}\big[T_{\{i\}}(s)-T_0(s)\big]E_i,\ \ \mathcal K=E^{\mathsf T}T_0^{-1}E=\mathcal K_d+\mathcal K_o$};
-  \SectionRule{A}{Two devices, one network}{23}{530}{386}
+  \node[anchor=west,inner sep=0pt,text=PNavy] at (23,518) {\fontsize{22pt}{24pt}\selectfont $\Delta Y_i=E_i^{\mathsf T}\big[T_{\{i\}}(s)-T_0(s)\big]E_i,\ \ \mathcal K=E^{\mathsf T}T_0^{-1}E=\mathcal K_d+\mathcal K_o$};
+  \SectionRule{A}{Two devices, one network}{23}{533.5}{386}
 
   % ---------------------------------------------------------------- hero scene
   \CardBox{23}{539}{386}{676}
@@ -42,17 +42,22 @@
   \node[anchor=east,inner sep=0pt,text=PRed] at (378,665) {\fontsize{21pt}{21pt}\selectfont $Q=(I+\mathcal D\mathcal K_d)^{-1}\mathcal D\mathcal K_o$};
 
   % ---------------------------------------------------------------- hero identity
+  \begin{scope}[shift={(0,-2)}]
   \HeroBox{23}{682}{386}{718}
   \node[inner sep=0pt,text=PNavy] at (200,700) {\fontsize{27pt}{30pt}\selectfont $\displaystyle\det(I+M_S)=\prod_{i\in S}{\color{PTeal}\det(I+M_{ii})}\cdot{\color{PRed}\det(I+Q_S)}$};
   \ProvedTag{362}{688}{EXACT}
+  \end{scope}
 
   % ---------------------------------------------------------------- audit (teal note)
+  \begin{scope}[shift={(0,-3)}]
   \NoteBox{23}{724}{386}{766}{PTeal}
   \node[anchor=west,inner sep=0pt,text=PTeal,font=\FiraSemi\fontsize{19.5pt}{19.5pt}\selectfont] at (32,731.5) {Audit: stored boundary $\mathrm H_4=\{30,33,35,37\}$, $f\approx0.7064$\,Hz}; % source: research/bnd_h4_mechanism/results/20260925T204017_549c3c07_h4_crossmode_v3/claims/tx4_summary.json (core.frequency_root_hz=0.706424788006417)
   \node[anchor=west,inner sep=0pt,text=PNavy] at (32,745.5) {\fontsize{21pt}{23pt}\selectfont $\min_i\sigma_{\min}(I{+}M_{ii})={\color{PTeal}0.4892}$,\ \ $\sigma_{\min}(I{+}Q_{\mathrm H_4})={\color{PRed}4.39\times10^{-8}}$}; % source: same tx4_summary.json (physical_local.root_physical_local_sigma=0.4892354857736281; core.collective_sigma_min_root=4.3936703686787105e-08)
-  \node[anchor=west,inner sep=0pt,text=PText,font=\FiraMed\fontsize{17.5pt}{19pt}\selectfont] at (32,758.5) {Delayed full IEEE-39, 44\,ms: $\mathrm{eig}(Q)=-1$ at every unstable root, all $|L_i|\ge0.011$.}; % source: research/feedback_cycle_fullmodel_20261005/FINAL_FEEDBACK_CYCLE_REPORT.md (|L_i| in [0.011,0.28]; eig(Q)=-1 at every unstable root)
+  \node[anchor=west,inner sep=0pt,text=PText,font=\FiraMed\fontsize{18.5pt}{19pt}\selectfont] at (32,758.5) {Delayed full IEEE-39, 44\,ms: $\mathrm{eig}(Q)=-1$ at every unstable root, all $|L_i|\ge0.011$.}; % source: research/feedback_cycle_fullmodel_20261005/FINAL_FEEDBACK_CYCLE_REPORT.md (|L_i| in [0.011,0.28]; eig(Q)=-1 at every unstable root)
 
-  % ---------------------------------------------------------------- hero sentence + story thread
-  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraBold\fontsize{21pt}{21pt}\selectfont] at (24,774) {Nothing failed locally. The network closed the destabilizing loop.};
-  \NextChip{386}{784.5}{Who can repair it?}
+  \end{scope}
+
+  % ---------------------------------------------------------------- hero sentence
+  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraBold\fontsize{20pt}{20pt}\selectfont] at (24,771.5) {All local factors stay regular; the instability enters through $\det(I+Q_S)$.};
+  \PanelRefs{23}{785.5}{[7] [8]}
 \end{scope}

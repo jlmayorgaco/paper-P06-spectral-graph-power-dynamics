@@ -39,13 +39,12 @@
   % ---------------------------------------------------------------- hero: transverse abscissa
   \HeroBox{415}{358}{746}{396}
   \node[inner sep=0pt,text=PNavy,anchor=west] at (425,377) {\fontsize{27pt}{29pt}\selectfont $\alpha_\perp(S,K)=\max\,\mathrm{Re}\,\sigma(A_\perp)$};
-  \node[anchor=east,fill=PTeal,text=white,rounded corners=2.4mm,inner xsep=5pt,inner ysep=3pt,font=\FiraBold\fontsize{15.5pt}{15.5pt}\selectfont\addfontfeature{LetterSpace=6}] at (740,369) {$<0$ STABLE};
-  \node[anchor=east,fill=PRed,text=white,rounded corners=2.4mm,inner xsep=5pt,inner ysep=3pt,font=\FiraBold\fontsize{15.5pt}{15.5pt}\selectfont\addfontfeature{LetterSpace=6}] at (740,385) {$>0$ UNSTABLE};
+  \node[anchor=east,inner sep=0pt,text=PTeal,font=\FiraSemi\fontsize{18pt}{18pt}\selectfont] at (734,369) {$\alpha_\perp<0$: stable};
+  \node[anchor=east,inner sep=0pt,text=PRed,font=\FiraSemi\fontsize{18pt}{18pt}\selectfont] at (734,385) {$\alpha_\perp>0$: unstable};
 
   % ---------------------------------------------------------------- delay note (navy bar) with clock
   \NoteBox{415}{402}{746}{430}{PNavy}
   \IconClock{727}{416}{0.62}
   \node[anchor=west,inner sep=0pt,text=PNavy,align=left,font=\FiraMed\fontsize{17.5pt}{19.5pt}\selectfont] at (423,416)
     {{\FiraSemi With PLL delay,} $\alpha_\perp$ is the rightmost root of $\det\Delta_\perp(s)$;\\[-1pt]$\Delta(s)=sI-A_0-B\,E(s)\,C$, exact exponentials.};
-  \NextChip{746}{441.5}{Where it fails}
-\end{scope}
+  \PanelRefs{415}{443}{[1] [7]}\end{scope}
