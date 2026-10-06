@@ -16,28 +16,23 @@ for m in a.m:
     x.append(pos); pos += 1; prev = m
 x = np.array(x)
 fig = plt.figure(figsize=(W*PXW, H*PXH))
-ax = fig.add_axes([0.155, 0.30, 0.835, 0.66])
+ax = fig.add_axes([0.01, 0.25, 0.98, 0.72])
+YM = 22
 cols = [TEAL if v == 0 else RED for v in a.N_margin]
-ax.bar(x, a.N_margin, width=0.62, color=cols, zorder=3)
-ax.bar(x[a.N_margin == 0], np.full((a.N_margin == 0).sum(), 0.35), width=0.62, color=TEAL, zorder=3)
-ax.scatter(x, dl.N_margin, s=70, marker="D", color=NAVY, edgecolors="white", linewidths=1.0, zorder=5)
-ax.axhline(10, color=MUTED, lw=1.4, ls=(0, (4, 3)), zorder=2)
-ax.text(x[-1] + 0.62, 10.5, "no retune: 10", color=MUTED, fontsize=17.5, fontweight="semibold", ha="right", va="bottom")
-ax.set_ylim(0, 19); ax.set_xlim(-0.6, x[-1] + 0.7)
-ax.set_yticks([0, 10, 17]); ax.set_yticklabels(["0", "10", "17"], color=MUTED)
-ax.set_xticks(x); ax.set_xticklabels([str(int(n)) for n in a.n], color=MUTED)
+ax.bar(x, np.where(a.N_margin == 0, 0.5, a.N_margin), width=0.72, color=cols, zorder=3)
+ax.scatter(x, dl.N_margin, s=120, marker="D", color=NAVY, edgecolors="white", linewidths=1.4, zorder=5)
+for xi, v in zip(x, a.N_margin):
+    ax.text(xi, v + 0.5 if v else 1.1, str(int(v)) if v else "none", color=RED if v else TEAL, fontsize=17.5, fontweight="bold", ha="center", va="bottom")
+ax.axhline(10, color=MUTED, lw=1.6, ls=(0, (4, 3)), zorder=2)
+ax.text(x[-1] + 0.62, 9.4, "no retune: 10", color=MUTED, fontsize=17.5, fontweight="semibold", ha="right", va="top")
+ax.set_ylim(0, YM); ax.set_xlim(-0.6, x[-1] + 0.7)
+ax.set_yticks([]); ax.set_xticks(x); ax.set_xticklabels([str(int(n)) for n in a.n], color=MUTED)
 ax.tick_params(axis="x", length=0, pad=2)
-ax.yaxis.grid(True, color=GRID, lw=0.9, zorder=0); ax.set_axisbelow(True)
-for sp in ["top", "right"]: ax.spines[sp].set_visible(False)
-ax.set_ylabel("roots beyond\nmargin", color=TEXT, fontsize=17.5, labelpad=7, linespacing=0.95)
+for sp in ["top", "right", "left"]: ax.spines[sp].set_visible(False)
 for m in range(1, 5):
     xs = x[a.m.values == m]
-    ax.text(xs.mean(), -0.40, f"$m{{=}}{m}$", transform=ax.get_xaxis_transform() if False else ax.transData, color=TEXT,
-            fontsize=17.5, fontweight="semibold", ha="center", va="top", clip_on=False) if False else None
-    ax.annotate(f"$m{{=}}{m}$", xy=(xs.mean(), 0), xycoords=("data", "axes fraction"), xytext=(0, -27), textcoords="offset points",
+    ax.annotate(f"$m{{=}}{m}$", xy=(xs.mean(), 0), xycoords=("data", "axes fraction"), xytext=(0, -25), textcoords="offset points",
                 color=TEXT, fontsize=17.5, fontweight="semibold", ha="center", va="top", annotation_clip=False)
-ax.text(x[-1] + 0.6, 18.6, "11 of 12 exact assignments", color=RED, fontsize=17.5, fontweight="bold", ha="right", va="top")
-ax.text(x[-1] + 0.6, 15.9, "leave roots beyond the margin", color=RED, fontsize=17.5, fontweight="bold", ha="right", va="top")
-ax.text(0, 1.1, "none", color=TEAL, fontsize=17.5, fontweight="semibold", ha="center", va="bottom")
+ax.text(-0.5, 21.5, "x-axis: n = hop radius", color=MUTED, fontsize=17.5, ha="left", va="top") if False else None
 fig.savefig("m8_plotB.pdf", transparent=True)
 print(list(zip(a.m, a.n, a.N_margin, dl.N_margin)), (a.N_margin > 0).sum())

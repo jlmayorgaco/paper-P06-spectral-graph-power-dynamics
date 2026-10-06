@@ -1,56 +1,77 @@
 % MODULE 6: GRID-EMBEDDED PLL GAIN SYNTHESIS. Panel box (reference px): x 765-1148, y 459.5-793.5, title bar to y 485.5.
-% Design v2: four-step pipeline (CardBox + gold connector), one HeroBox (K = Phi), red NoteBox (delay strip), three evidence tiles.
+% Design v3: hero visual = four illustrated stations (open-port PLL, row-condition matrix, W_i dial, K_p/K_I knobs) joined by ONE thick gold flow arrow;
+% then the HeroBox (K = Phi), the red delay note and the evidence as three icon tiles (cross / warn / check), NextChip at the bottom.
 % Formulas follow plans/POSTER_PLAN.md (M6): W_i has denominator y_i; K_p = Im W/omega; K_I = Re W - alpha K_p.
+% notes: step 1 in full is A(s;rho)z=B(s;rho)theta, e=C(s;rho)z+D(s;rho)theta, G(s;rho)=D+CA^{-1}B; abort = integrator stopped; 5 events per protected design.
+\newcommand{\MSixDial}[3]{\begin{scope}[shift={(#1,#2)},scale=#3]
+  \draw[icc] (-17,7) arc[start angle=180,end angle=360,radius=17] -- cycle;
+  \foreach \a in {200,230,260,290,320,340}{\draw[icf] ($(0,7)+(\a:12.6)$) -- ($(0,7)+(\a:15.2)$);}
+  \draw[PGold,line width=3pt,line cap=round] (0,7) -- ($(0,7)+(300:13)$);
+  \draw[icg] (0,7) circle (2.8);
+  \draw[ic] (-19,10.5) -- (19,10.5);
+\end{scope}}
+\newcommand{\MSixKnobs}[3]{\begin{scope}[shift={(#1,#2)},scale=#3]
+  \foreach \x/\a in {-10.5/115,10.5/55}{
+    \draw[icm] (\x,0) circle (9.2);
+    \draw[icf] (\x,0) circle (6.2);
+    \draw[PGold,line width=2.6pt,line cap=round] (\x,0) -- ($(\x,0)+(\a:6.8)$);
+    \foreach \t in {20,60,100,140,180,220,260,300,340}{\draw[icf] ($(\x,0)+(\t:11.6)$) -- ($(\x,0)+(\t:13.8)$);}}
+\end{scope}}
 \begin{scope}
-  % ---------------------------------------------------------------- pipeline: four steps joined by a gold connector
-  \foreach \ya/\yb/\n in {489/519/1, 522/561/2, 564/595/3, 598/627/4}{
+  % ---------------------------------------------------------------- hero visual: four stations on one gold flow arrow
+  \foreach \ya/\yb in {488/520, 523/563, 566/599, 602/634}{
     \CardBox{774}{\ya}{1139}{\yb}}
-  \draw[PGold,line width=1.8pt,line cap=round] (788,504) -- (788,612.5);
-  \foreach \y/\n in {504/1, 541.5/2, 579.5/3, 612.5/4}{\StepNumber{788}{\y}{\n}}
-  \foreach \y in {522,564,598}{\fill[PGold] (783,\y-3.5) -- (793,\y-3.5) -- (788,\y+2.5) -- cycle;}
+  \draw[PGold,line width=6pt,line cap=round,-{Stealth[length=9pt,width=13pt]}] (786,504) -- (786,638);
+  \foreach \y/\n in {504/1, 543/2, 582.5/3, 618/4}{\StepNumber{786}{\y}{}}
+  % station icons
+  \IconPLL{817}{503}{0.85}
+  \fill[PPaleGreen] (813,506) rectangle (822,516);
+  \draw[PGold,line width=2.2pt,line cap=round] (811.5,514) -- (814.5,506.5) (820,514) -- (823,506.5);
+  \IconMatrix{817}{543}{1.0}
+  \draw[PGold,line width=2pt,rounded corners=2pt] (803,538) rectangle (831,548.5);
+  \MSixDial{817}{578}{0.92}
+  \MSixKnobs{817}{618}{0.78}
   % step 1: open PLL ports
-  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{20pt}{20pt}\selectfont] at (806,495) {Open the PLL ports, target $\lambda=\alpha+j\omega$};
-  \node[anchor=west,inner sep=0pt,text=PNavy] at (806,510) {\fontsize{21pt}{23pt}\selectfont $A(s;\rho)z=B(s;\rho)\theta,\ e=Cz+D\theta\ \Rightarrow\ G=D+CA^{-1}B$};
+  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{20pt}{20pt}\selectfont] at (846,495) {Open the PLL ports, target $\lambda=\alpha+j\omega$};
+  \node[anchor=west,inner sep=0pt,text=PNavy] at (846,510) {\fontsize{23pt}{25pt}\selectfont $Az=B\theta,\ e=Cz+D\theta\Rightarrow G=D+CA^{-1}B$};
   % step 2: row condition
-  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{20pt}{20pt}\selectfont] at (806,529) {Row condition at $\lambda$, pattern $q$, $y=G(\lambda;\rho)\,q$};
-  \node[anchor=west,inner sep=0pt,text=PNavy] at (806,544) {\fontsize{23pt}{25pt}\selectfont $(\lambda K_{p,i}+K_{I,i})\,e^{-\lambda\tau_i}\,y_i=\lambda^2(1+t_{f,i}\lambda)\,q_i$};
-  \node[anchor=west,inner sep=0pt,text=PMuted] at (806,555.5) {\FiraMed\fontsize{17pt}{17pt}\selectfont from $s\theta=\omega,\ t_f s\omega=\xi+K_pe_d-\omega,\ s\xi=K_Ie_d$};
+  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{20pt}{20pt}\selectfont] at (846,530) {Row condition: $y=G(\lambda;\rho)\,q$};
+  \node[anchor=west,inner sep=0pt,text=PNavy] at (846,545) {\fontsize{23pt}{25pt}\selectfont $(\lambda K_{p,i}+K_{I,i})\,e^{-\lambda\tau_i}\,y_i=\lambda^2(1+t_{f,i}\lambda)\,q_i$};
+  \node[anchor=west,inner sep=0pt,text=PMuted] at (846,557.5) {\FiraMed\fontsize{17pt}{17pt}\selectfont from $s\theta=\omega,\ t_f s\omega=\xi+K_pe_d-\omega,\ s\xi=K_Ie_d$};
   % step 3: required complex gain
-  \node[anchor=west,inner sep=0pt,text=PNavy] at (806,579.5) {\fontsize{24pt}{26pt}\selectfont $W_i=\dfrac{\lambda^2(1+t_{f,i}\lambda)\,e^{\lambda\tau_i}\,q_i}{y_i}$};
-  \node[anchor=west,inner sep=0pt,text=PMuted] at (1030,579.5) {\FiraMed\fontsize{19pt}{20pt}\selectfont $W_i=\lambda K_{p,i}+K_{I,i}$};
+  \node[anchor=west,inner sep=0pt,text=PNavy] at (846,582.5) {\fontsize{24pt}{26pt}\selectfont $W_i=\dfrac{\lambda^2(1+t_{f,i}\lambda)\,e^{\lambda\tau_i}\,q_i}{y_i}$};
+  \node[anchor=east,inner sep=0pt,text=PMuted] at (1134,582.5) {\FiraMed\fontsize{19pt}{20pt}\selectfont $W_i=\lambda K_{p,i}+K_{I,i}$};
   % step 4: real gains
-  \node[anchor=west,inner sep=0pt,text=PNavy] at (806,612.5) {\fontsize{24pt}{26pt}\selectfont $K_{p,i}=\dfrac{\mathrm{Im}\,W_i}{\omega},\quad K_{I,i}=\mathrm{Re}\,W_i-\alpha K_{p,i}$};
+  \node[anchor=west,inner sep=0pt,text=PNavy] at (846,618) {\fontsize{24pt}{26pt}\selectfont $K_{p,i}=\dfrac{\mathrm{Im}\,W_i}{\omega},\ \ K_{I,i}=\mathrm{Re}\,W_i-\alpha K_{p,i}$};
 
   % ---------------------------------------------------------------- hero box
-  \HeroBox{774}{633}{1139}{663}
-  \node[inner sep=0pt,text=PNavy] at (860,648.5) {\fontsize{29pt}{31pt}\selectfont $K=\Phi(\rho,\lambda,q,\tau)$};
-  \node[anchor=west,inner sep=0pt,text=PGreen,align=left,font=\FiraSemi\fontsize{18.5pt}{20pt}\selectfont] at (950,648.5) {The gain is local;\\its design is embedded in the grid mode.};
+  \HeroBox{774}{641}{1139}{669}
+  \node[inner sep=0pt,text=PNavy] at (865,655) {\fontsize{29pt}{31pt}\selectfont $K=\Phi(\rho,\lambda,q,\tau)$};
+  \node[anchor=west,inner sep=0pt,text=PGreen,align=left,font=\FiraSemi\fontsize{18.5pt}{19.5pt}\selectfont] at (955,655) {The gain is local; its design\\is embedded in the grid mode.};
 
   % ---------------------------------------------------------------- delay strip (red note)
-  \NoteBox{774}{669}{1139}{717}{PRed}
-  \node[anchor=west,inner sep=0pt,text=PNavy] at (783,680.5) {\fontsize{21pt}{23pt}\selectfont $[\lambda K_p(h)+K_I(h)]\,e^{-\lambda(\tau+h)}=[\lambda K_p+K_I]\,e^{-\lambda\tau}$};
-  \node[anchor=west,inner sep=0pt,text=PNavy] at (783,700) {\fontsize{21pt}{23pt}\selectfont $\dfrac{d\mu}{dh}\Big|_0=-K_p(\mu-\lambda)(\mu-\bar\lambda)\,\dfrac{\partial\mu}{\partial K_I}$};
-  \node[anchor=west,inner sep=0pt,text=PRed,align=left,font=\FiraSemi\fontsize{18pt}{19.5pt}\selectfont] at (985,700) {Preserving one mode\\does not preserve the others.};
+  \NoteBox{774}{674}{1139}{721}{PRed}
+  \node[anchor=west,inner sep=0pt,text=PNavy] at (783,685) {\fontsize{21pt}{23pt}\selectfont $[\lambda K_p(h)+K_I(h)]\,e^{-\lambda(\tau+h)}=[\lambda K_p+K_I]\,e^{-\lambda\tau}$};
+  \node[anchor=west,inner sep=0pt,text=PNavy] at (783,707) {\fontsize{21pt}{23pt}\selectfont $\dfrac{d\mu}{dh}\Big|_0=-K_p(\mu-\lambda)(\mu-\bar\lambda)\,\dfrac{\partial\mu}{\partial K_I}$};
+  \node[anchor=west,inner sep=0pt,text=PRed,align=left,font=\FiraSemi\fontsize{18pt}{19.5pt}\selectfont] at (985,707) {Preserving one mode\\does not preserve the others.};
 
-  % ---------------------------------------------------------------- evidence: three tiles
-  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{19pt}{19pt}\selectfont] at (776,727.5) {Full IEEE-39, exact delay 44\,ms};
-  \ObservedTag{1096}{727.5}{NUMERICAL}
+  % ---------------------------------------------------------------- evidence: three icon tiles
+  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{19pt}{19pt}\selectfont] at (776,730) {Full IEEE-39, exact delay 44\,ms};
+  \ObservedTag{1096}{730}{NUMERICAL}
   % sources (verified): roots 8/0/0 -> research_gold/checks/T3_full_spectrum_count.csv (none 44 ms: 8 unstable; protect_fast 44 ms: 0) and research_gold/checks/T6_node_choice.csv (node 1.0415 Hz, 44 ms: 0)
   % events -> research_gold/checks/T5_nonlinear_events.csv (A_transport_44ms: 2 of 5 pass; B_original_gains_44ms: DDE integration MaxIters = abort),
   %           research_gold/checks/T5c_nonlinear_events_node1Hz_44ms.csv (5 of 5 pass); table of the poster: reports/poster/ias2026/one_mode_20261005/bodies/05.tex
   \foreach \tx/\lab/\rts/\evt/\col/\kind in {
       774/{no retune}/{8 roots}/{events abort}/PRed/0,
-      898.5/{protect 4.91\,Hz}/{0 roots}/{2/5 events pass}/PGold/1,
+      898.5/{protect 4.91\,Hz}/{0 roots}/{2/5 events pass}/PGoldDeep/1,
       1023/{protect 1.04\,Hz}/{0 roots}/{5/5 events pass}/PTeal/2}{
-    \CardBox{\tx}{737}{\tx+116}{782}
-    \fill[\col] (\tx+14,748) circle (8);
-    \begin{scope}[line cap=round,line join=round,line width=1.8pt]
-      \ifnum\kind=0 \draw[white] (\tx+10.8,744.8) -- (\tx+17.2,751.2) (\tx+10.8,751.2) -- (\tx+17.2,744.8);\fi
-      \ifnum\kind=1 \draw[PText] (\tx+14,744) -- (\tx+14,749) (\tx+14,752) -- (\tx+14,752.2);\fi
-      \ifnum\kind=2 \draw[white] (\tx+10.6,748.4) -- (\tx+13,750.9) -- (\tx+17.6,745.2);\fi
-    \end{scope}
-    \node[anchor=west,inner sep=0pt,text=PText,font=\FiraSemi\fontsize{18.5pt}{18.5pt}\selectfont] at (\tx+26,748) {\lab};
-    \node[anchor=west,inner sep=0pt,text=\col!75!black,font=\FiraSemi\fontsize{19pt}{19pt}\selectfont] at (\tx+8,761.5) {\rts};
-    \node[anchor=west,inner sep=0pt,text=PText,font=\FiraMed\fontsize{18pt}{18pt}\selectfont] at (\tx+8,773.5) {\evt};}
-  \node[anchor=west,inner sep=0pt,text=PMuted,font=\FiraMed\fontsize{15.5pt}{15.5pt}\selectfont] at (776,789.5) {5 events per protected design; abort: integrator stopped.};
+    \CardBox{\tx}{738}{\tx+116}{780}
+    \ifnum\kind=0 \IconCross{\tx+19}{759}{0.95}\fi
+    \ifnum\kind=1 \IconWarn{\tx+19}{759}{0.95}\fi
+    \ifnum\kind=2 \IconCheck{\tx+19}{759}{0.95}\fi
+    \node[anchor=west,inner sep=0pt,text=PText,font=\FiraSemi\fontsize{19pt}{19pt}\selectfont] at (\tx+38,746.5) {\lab};
+    \node[anchor=west,inner sep=0pt,text=\col!75!black,font=\FiraBold\fontsize{20pt}{20pt}\selectfont] at (\tx+38,759.5) {\rts};
+    \node[anchor=west,inner sep=0pt,text=PText,font=\FiraMed\fontsize{18pt}{18pt}\selectfont] at (\tx+38,771.5) {\evt};}
+  \node[anchor=west,inner sep=0pt,text=PMuted,font=\FiraMed\fontsize{17pt}{17pt}\selectfont] at (776,787) {abort = integrator stopped};
+  \NextChip{1139}{787}{With more information}
 \end{scope}

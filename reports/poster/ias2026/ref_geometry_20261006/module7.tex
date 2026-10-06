@@ -1,74 +1,93 @@
 % MODULE 7: INFORMATION RADIUS AND N-HOP CONTROL. Panel box (reference px): x 13-390, y 796.5-1129.5, title bar to y 822.5.
-% Design v2: hop-ring illustration on the real G_c (largest element), one HeroBox (residual law), PLL law card, four-architecture strip.
+% Design v3: hero = hop rings drawn on the real G_c with GFL glyphs at the sites; one HeroBox (residual law); PLL law card; four-architecture strip; NextChip.
 % Graph source: research/nhop_ieee39_20261006/derived/GRAPH_Gc.csv (graph=frozen: 13 links, 10 GFL sites, two clusters {30,31,32,37,38,39} and {33,34,35,36}).
 % Hop distances from site 31 (row of GRAPH_Gc_frozen_hopdist.csv, index 1): 32 and 39 at 1; 30 and 37 at 2; 38 at 3; 33-36 infinite.
 % Edges drawn = the 13 rows of GRAPH_Gc.csv. Text edge x = 24, right edge x = 379.
 \begin{scope}[line cap=round,line join=round]
-  % ---------------------------------------------------------------- A: hop rings around one GFL (site 31)
-  \SubHead{A}{Hop rings on $G_c$}{208}{836}
-  \begin{scope}
-    \coordinate (c) at (114,918);
-    % shaded bands: n = 3 (lightest) ... n = 0 (darkest)
-    \fill[PTeal!9!white]  (c) circle (87);
-    \fill[PTeal!20!white] (c) circle (66);
-    \fill[PTeal!34!white] (c) circle (42);
-    \fill[PTeal!52!white] (c) circle (18);
-    \foreach \r in {18,42,66,87}{\draw[white,line width=1.6pt] (c) circle (\r);}
-    % node positions: bus / visual angle / radius (ring radii 0, 30, 54, 78)
-    \foreach \b/\a/\r in {31/0/0, 39/50/30, 32/165/30, 30/84/54, 37/22/54, 38/54/78}{
-      \coordinate (b\b) at ($(c)+({\r*cos(\a)},{-\r*sin(\a)})$);}
-    % links of G_c inside the ego component (all from GRAPH_Gc.csv)
-    \foreach \u/\v in {31/32, 31/39, 32/39, 30/39, 37/39, 30/37, 30/38, 37/38}{
-      \draw[PGreen!70!white,line width=1.8pt] (b\u) -- (b\v);}
-    % nodes
-    \foreach \b in {32,39,30,37,38}{
-      \fill[PGreen] (b\b) circle (10.5);
-      \node[inner sep=0pt,text=white,font=\FiraSemi\fontsize{17pt}{17pt}\selectfont] at ($(b\b)+(0,0.3)$) {\b};}
-    \fill[PGold] (b31) circle (12);
-    \node[inner sep=0pt,text=PText,font=\FiraBold\fontsize{17pt}{17pt}\selectfont] at ($(b31)+(0,0.3)$) {31};
-    % ring labels along the empty lower side
-    \foreach \r/\t in {30/1,54/2,76/3}{
-      \node[inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{17pt}{17pt}\selectfont] at ($(c)+(0,\r)$) {\textit{n}\,=\,\t};}
-  \end{scope}
+  % one curved ring label: radius, centre angle (deg, y up), three glyphs; glyphs follow the arc, upright for the lower half
+  \newcommand{\RingLabel}[7]{% sign (+1 lower arc, -1 upper arc), r, centre angle (deg, y up), three glyphs, colour
+    \pgfmathsetmacro{\dd}{6.2/#2*57.3}
+    \foreach \g[count=\k from -1] in {#4,#5,#6}{
+      \pgfmathsetmacro{\aa}{#3+#1*\k*\dd}
+      \pgfmathsetmacro{\rot}{\aa+#1*90}
+      \node[inner sep=0pt,text=#7,rotate=\rot,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at ($(c)+({#2*cos(\aa)},{-#2*sin(\aa)})$) {\g};}}
+  % ---------------------------------------------------------------- hero: hop rings on G_c around one GFL (site 31)
+  \coordinate (c) at (118,922);
+  \fill[PTeal!8!white]  (c) circle (95);
+  \fill[PTeal!17!white] (c) circle (72);
+  \fill[PTeal!30!white] (c) circle (44);
+  \fill[PTeal!46!white] (c) circle (17);
+  \foreach \r in {17,44,72,95}{\draw[white,line width=2pt] (c) circle (\r);}
+  \foreach \r in {30,58,86}{\draw[PTeal!55!white,line width=0.9pt,dash pattern=on 2.5pt off 3pt] (c) circle (\r);}
+  % node positions: bus / angle (degrees, y up) / radius = 29 * hop distance
+  \foreach \b/\a/\r in {31/0/0, 39/30/30, 32/165/30, 30/80/58, 37/12/58, 38/48/86}{
+    \pgfmathsetmacro{\nx}{118+\r*cos(\a)}\pgfmathsetmacro{\ny}{922-\r*sin(\a)}
+    \coordinate (b\b) at (\nx,\ny);}
+  % links of G_c inside the ego component (all from GRAPH_Gc.csv)
+  \foreach \u/\v in {31/32, 31/39, 32/39, 30/39, 37/39, 30/37, 30/38, 37/38}{
+    \draw[PGreen!70!white,line width=2.2pt] (b\u) -- (b\v);}
+  % GFL glyphs on white plates, site number as a small green badge at the lower right
+  \foreach \b in {32,39,30,37,38}{
+    \fill[white] (b\b) circle (10.5);
+    \draw[PGreen!35!white,line width=0.8pt] (b\b) circle (10.5);}
+  \foreach \ia/\ir in {165/30, 30/30, 80/58, 12/58, 48/86}{
+    \pgfmathsetmacro{\ix}{118+\ir*cos(\ia)}\pgfmathsetmacro{\iy}{922-\ir*sin(\ia)}
+    \IconGFL{\ix}{\iy}{0.46}}
+  \fill[PGold] (b31) circle (14.5); \draw[PGreen,line width=1.4pt] (b31) circle (14.5);
+  \IconGFL{118}{922}{0.58}
+  % bus-number badges
+  \foreach \b/\dx/\dy in {31/17/13, 32/-1/15, 39/13/11, 30/-14/-8, 37/14/9, 38/14/-4}{
+    \node[inner sep=0pt,text=PGreen,font=\FiraBold\fontsize{16pt}{16pt}\selectfont] at ($(b\b)+(\dx,\dy)$) {\b};}
+  % curved ring labels: n = 0 above the centre, n = 1..3 stacked on the lower-left arc
+  \RingLabel{-1}{26}{90}{n}{=}{0}{PGreen}
+  \RingLabel{1}{30}{250}{n}{=}{1}{PGreen}
+  \RingLabel{1}{58}{250}{n}{=}{2}{PGreen}
+  \RingLabel{1}{86}{250}{n}{=}{3}{PGreen}
 
-  % ---------------------------------------------------------------- right column: key, the cluster that is never heard, scope note
-  \node[anchor=west,inner sep=0pt,text=PMuted,align=left,font=\FiraMed\fontsize{17.5pt}{19pt}\selectfont] at (208,856)
-    {{\color{PGoldDeep}\FiraSemi Gold}: site 31, own PLL.\\[-1pt]Rings: sites within $n$ hops.};
+  % ---------------------------------------------------------------- right column: heading, key, the cluster that is never heard, scope note
+  \SectionRule{A}{Hop rings on $G_c$}{226}{838}{379}
+  \IconGFL{236}{864}{0.4}
+  \node[anchor=west,inner sep=0pt,text=PMuted,align=left,font=\FiraMed\fontsize{18pt}{20pt}\selectfont] at (250,864)
+    {site 31 and its own PLL;\\[-1pt]ring $n$ = sites within $n$ hops};
   % second cluster of G_c: no path from site 31
-  \begin{scope}[shift={(278,912)}]
-    \foreach \b/\x/\y in {33/-27/-9, 34/-3/-21, 35/-3/7, 36/27/-3}{\coordinate (q\b) at (\x,\y);}
-    \foreach \u/\v in {33/34, 33/35, 33/36, 34/35, 35/36}{\draw[PMist,line width=1.8pt] (q\u) -- (q\v);}
-    \foreach \b in {33,34,35,36}{
-      \fill[PMist] (q\b) circle (10.5);
-      \node[inner sep=0pt,text=white,font=\FiraSemi\fontsize{17pt}{17pt}\selectfont] at ($(q\b)+(0,0.3)$) {\b};}
+  \begin{scope}[shift={(300,915)}]
+    \foreach \b/\x/\y in {33/-34/-8, 34/-6/-20, 35/-6/8, 36/30/-2}{\coordinate (q\b) at (\x,\y);}
+    \foreach \u/\v in {33/34, 33/35, 33/36, 34/35, 35/36}{\draw[PMist,line width=2pt] (q\u) -- (q\v);}
+    \foreach \b in {33,34,35,36}{\fill[white] (q\b) circle (9.5); \draw[PMist,line width=1pt] (q\b) circle (9.5);}
   \end{scope}
-  \node[anchor=north west,inner sep=0pt,text=PMuted,align=left,font=\FiraMed\fontsize{17.5pt}{19pt}\selectfont] at (208,930)
+  \begin{scope}[opacity=0.55]
+    \IconGFL{266}{907}{0.42} \IconGFL{294}{895}{0.42} \IconGFL{294}{923}{0.42} \IconGFL{330}{913}{0.42}
+  \end{scope}
+  \foreach \b/\x/\y in {33/266/907, 34/294/895, 35/294/923, 36/330/913}{
+    \node[inner sep=0pt,text=PMuted,font=\FiraBold\fontsize{16pt}{16pt}\selectfont] at (\x+11,\y+10) {\b};}
+  \node[anchor=north west,inner sep=0pt,text=PMuted,align=left,font=\FiraMed\fontsize{18pt}{20pt}\selectfont] at (226,938)
     {Second cluster: no path\\[-1pt]from site 31 at any $n$.};
-  \NoteBox{208}{959}{379}{995}{PNavy}
-  \node[anchor=west,inner sep=0pt,text=PNavy,align=left,font=\FiraSemi\fontsize{17.5pt}{19pt}\selectfont] at (216,977)
+  \NoteBox{226}{966}{379}{1002}{PNavy}
+  \node[anchor=west,inner sep=0pt,text=PNavy,align=left,font=\FiraSemi\fontsize{18pt}{20pt}\selectfont] at (233,984)
     {Graph-local $\neq$ polynomial in $L$:\\[-1pt]shared polynomial keeps $\varepsilon\geq 9{\times}10^{-3}$.}; % source: derived/E2_architectures.csv (arch=b_shared_poly, graph=frozen: min eps 9.09e-3, max 7.05e-2)
+  \NextChip{379}{1013}{What it buys}
 
-  % ---------------------------------------------------------------- hero: the residual law
-  \HeroBox{24}{1008}{379}{1066}
-  \node[anchor=west,inner sep=0pt,text=PNavy] at (34,1018) {\fontsize{22pt}{24pt}\selectfont $\mathcal N_i^{(n)}=\{\,j:\ \mathrm{dist}_{G_c}(i,j)\le n\,\}$};
-  \node[anchor=west,inner sep=0pt,text=PNavy] at (34,1035) {\fontsize{21pt}{23pt}\selectfont $C_i^{(n)}k_i=b_i,\quad \varepsilon_i(n)=\|(I-C_iC_i^{+})\,b_i\|\,/\,\|b_i\|$};
-  \node[anchor=west,inner sep=0pt,text=PNavy] at (34,1054) {\fontsize{22pt}{24pt}\selectfont $\mathcal K_n\subset\mathcal K_{n+1}\ \Rightarrow\ \varepsilon(n{+}1)\le\varepsilon(n)$};
-  \ProvedTag{343}{1018}{EXACT}
-  \node[anchor=east,inner sep=0pt,text=PMuted,align=right,font=\FiraMed\fontsize{17pt}{17pt}\selectfont] at (373,1054) {free $n$-hop class only};
+  % ---------------------------------------------------------------- the one HeroBox: the residual law
+  \HeroBox{24}{1024}{379}{1070}
+  \node[anchor=west,inner sep=0pt,text=PNavy] at (34,1033) {\fontsize{22pt}{24pt}\selectfont $\mathcal N_i^{(n)}=\{\,j:\ \mathrm{dist}_{G_c}(i,j)\le n\,\}$};
+  \node[anchor=west,inner sep=0pt,text=PNavy] at (34,1047) {\fontsize{21pt}{23pt}\selectfont $C_i^{(n)}k_i=b_i,\quad \varepsilon_i(n)=\|(I-C_iC_i^{+})\,b_i\|\,/\,\|b_i\|$};
+  \node[anchor=west,inner sep=0pt,text=PNavy] at (34,1061) {\fontsize{22pt}{24pt}\selectfont $\mathcal K_n\subset\mathcal K_{n+1}\ \Rightarrow\ \varepsilon(n{+}1)\le\varepsilon(n)$};
+  \ProvedTag{343}{1033}{EXACT}
+  \node[anchor=east,inner sep=0pt,text=PMuted,align=right,font=\FiraMed\fontsize{17.5pt}{17.5pt}\selectfont] at (373,1061) {free $n$-hop class only};
 
   % ---------------------------------------------------------------- distributed PLL law
-  \CardBox{24}{1070}{379}{1097}
-  \node[anchor=west,inner sep=0pt,text=PNavy] at (32,1078.5) {\fontsize{21pt}{23pt}\selectfont $\dot\xi_i=\sum_{j\in\mathcal N_i^{(n)}}k_{I,ij}\,e_j(t-\tau_j)$};
-  \node[anchor=west,inner sep=0pt,text=PNavy] at (32,1090.5) {\fontsize{21pt}{23pt}\selectfont $t_f\dot\omega_i=\xi_i-\omega_i+\sum_{j\in\mathcal N_i^{(n)}}k_{p,ij}\,e_j(t-\tau_j)$};
+  \CardBox{24}{1073}{379}{1108}
+  \node[anchor=west,inner sep=0pt,text=PNavy] at (32,1082) {\fontsize{21pt}{23pt}\selectfont $\dot\xi_i=\sum_{j\in\mathcal N_i^{(n)}}k_{I,ij}\,e_j(t-\tau_j)$};
+  \node[anchor=west,inner sep=0pt,text=PNavy] at (32,1097) {\fontsize{21pt}{23pt}\selectfont $t_f\dot\omega_i=\xi_i-\omega_i+\sum_{j\in\mathcal N_i^{(n)}}k_{p,ij}\,e_j(t-\tau_j)$};
 
   % ---------------------------------------------------------------- four architectures
-  \foreach \x/\k/\la/\lb in {24/0/{local}/{$n{=}0$}, 113/1/{polynomial}/{in $L$}, 202/2/{free}/{$n$-hop}, 291/3/{dense}/{benchmark}}{
-    \CardBox{\x}{1100}{\x+88}{1127}
-    \begin{scope}[shift={(\x+17,1113.5)},line width=1.4pt,draw=PGreen]
-      \ifnum\k=0 \fill[PGold] (0,0) circle (4.5); \draw[PGreen] (0,0) circle (9);\fi
-      \ifnum\k=1 \draw[PGreen] (-9,3) -- (-3,-3) -- (3,3) -- (9,-3); \foreach \px/\py in {-9/3,-3/-3,3/3,9/-3}{\fill[PGreen] (\px,\py) circle (2.6);}\fi
-      \ifnum\k=2 \foreach \ang in {20,110,200,290}{\draw[PGreen] (0,0) -- (\ang:9);\fill[PGreen] (\ang:9) circle (2.4);}\fill[PGold] (0,0) circle (3.2);\fi
-      \ifnum\k=3 \draw[PGreen] (-7,-7) rectangle (7,7) (-7,-7) -- (7,7) (-7,7) -- (7,-7);\foreach \px/\py in {-7/-7,7/-7,7/7,-7/7}{\fill[PGreen] (\px,\py) circle (2.4);}\fi
+  \foreach \x/\k/\la in {24/0/{local $n{=}0$}, 113/1/{polynomial in $L$}, 202/2/{free $n$-hop}, 291/3/{dense benchmark}}{
+    \CardBox{\x}{1110}{\x+88}{1127.5}
+    \begin{scope}[shift={(\x+10,1118.75)},line width=1.2pt,draw=PGreen,scale=0.8]
+      \ifnum\k=0 \fill[PGold] (0,0) circle (3.5); \draw[PGreen] (0,0) circle (7);\fi
+      \ifnum\k=1 \draw[PGreen] (-7,2.5) -- (-2.5,-2.5) -- (2.5,2.5) -- (7,-2.5); \foreach \px/\py in {-7/2.5,-2.5/-2.5,2.5/2.5,7/-2.5}{\fill[PGreen] (\px,\py) circle (2.2);}\fi
+      \ifnum\k=2 \foreach \ang in {20,110,200,290}{\draw[PGreen] (0,0) -- (\ang:7);\fill[PGreen] (\ang:7) circle (2);}\fill[PGold] (0,0) circle (2.8);\fi
+      \ifnum\k=3 \draw[PGreen] (-5.5,-5.5) rectangle (5.5,5.5) (-5.5,-5.5) -- (5.5,5.5) (-5.5,5.5) -- (5.5,-5.5);\foreach \px/\py in {-5.5/-5.5,5.5/-5.5,5.5/5.5,-5.5/5.5}{\fill[PGreen] (\px,\py) circle (2);}\fi
     \end{scope}
-    \node[anchor=west,inner sep=0pt,text=PGreen,align=left,font=\FiraSemi\fontsize{17pt}{18pt}\selectfont] at (\x+32,1113.5) {\la\\[-1pt]{\FiraMed\lb}};}
+    \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (\x+20,1118.9) {\la};}
 \end{scope}

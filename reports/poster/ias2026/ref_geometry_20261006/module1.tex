@@ -1,63 +1,64 @@
 % MODULE 1: THE PROBLEM: SAFE SG -> GFL TRANSITION. Panel box (reference px): x 12-397, y 119.5-451, title bar to y 145.5.
-% Design v2: left text edge x = 23, right edge x = 389; one HeroBox (objective), CardBox steps, one red NoteBox (scope).
+% Design v3 (editorial): hero = illustrated replacement scene (SG icon -> grid -> GFL icon with its PLL); one HeroBox (objective); steps strip + scope note support it.
+% Notes (not printed): symbol key fully defined in the HeroBox; science identical to POSTER_PLAN M1.
 \begin{scope}
   % ---------------------------------------------------------------- opening statement (2 lines)
-  \node[anchor=north west,inner sep=0pt,text=PText] at (23,150.5)
-    {\parbox{283mm}{\raggedright\fontsize{26pt}{30.5pt}\selectfont A replacement is local hardware, but stability is a property of the closed grid and its controller architecture.}};
+  \node[anchor=north west,inner sep=0pt,text=PText] at (23,150)
+    {\parbox{283mm}{\raggedright\fontsize{23.5pt}{27pt}\selectfont A replacement is local hardware, but stability is a property of the closed grid and its controller architecture.}};
 
-  % ---------------------------------------------------------------- schematic: SG -> grid -> replace -> GFL (port i)
+  % ---------------------------------------------------------------- hero scene: SG -> grid -> GFL (with PLL), port i
   \begin{scope}[line cap=round,line join=round]
-  \draw[PTeal,line width=2.2pt,fill=white] (59.5,210) circle (21);
-  \node[inner sep=0pt,text=PTeal,font=\CondBold\fontsize{27pt}{27pt}\selectfont] at (59.5,202.5) {SG};
-  \draw[PTeal,line width=1.8pt] (49,217.5) .. controls (52.5,211) and (56,211) .. (59.5,217.5) .. controls (63,224) and (66.5,224) .. (70,217.5);
-  \draw[-{Stealth[length=7pt,width=7pt]},PNavy,line width=1.8pt] (81,212.5) -- (107,212.5);
-  \draw[PNavy,line width=1.8pt,fill=PNavy!10,rounded corners=1pt] (109.5,205.5) rectangle (141.5,219.5);
-  \node[inner sep=0pt,text=PMuted,font=\FiraMed\fontsize{21pt}{21pt}\selectfont] at (125.5,232.5) {grid};
-  \draw[PNavy,line width=1.8pt] (141.5,212.5) -- (147,212.5);
-  \fill[PGold] (151,208) rectangle (174,217);
-  \fill[PGold] (173,202.5) -- (188,212.5) -- (173,222.5) -- cycle;
-  \node[inner sep=0pt,text=PText,font=\FiraSemi\fontsize{23.5pt}{23.5pt}\selectfont] at (169,232) {replace};
-  \draw[-{Stealth[length=7pt,width=7pt]},PNavy,line width=1.8pt] (193,212.5) -- (211.5,212.5);
-  \draw[PNavy,line width=2.2pt,fill=PNavy!8,rounded corners=4pt] (214.5,189.5) rectangle (258.5,232);
-  \node[inner sep=0pt,text=PNavy,font=\CondBold\fontsize{27pt}{27pt}\selectfont] at (236.5,199.5) {GFL};
-  \draw[PNavy,line width=1.8pt] (227.5,208.5) rectangle (245.5,226.5) (227.5,226.5) -- (245.5,208.5);
-  \draw[PNavy,line width=1.8pt] (229.6,213.6) .. controls (231.2,211.4) and (232.8,211.4) .. (234.4,213.6);
-  \draw[PNavy,line width=1.8pt] (238.8,221.3) -- (243.6,221.3) (238.8,223.6) -- (243.6,223.6);
-  \node[inner sep=0pt,text=PText,font=\FiraMed\fontsize{21pt}{21pt}\selectfont] at (237,242) {port $i$};
+  % soft stage behind the scene
+  \fill[PPaleGreen!55,rounded corners=10pt] (14,192) rectangle (395,314);
+  % feeders: SG -- pylon -- grid -- pylon -- GFL (conductors run behind the cross-arms)
+  \draw[PNavy,line width=2pt] (100,242) -- (152,242) (152,242) -- (176,224) (152,242) -- (176,262);
+  \draw[PNavy,line width=2pt] (234,224) -- (255,242) (234,262) -- (255,242) -- (296,242) -- (296,228) -- (312,228);
+  \IconLine{126}{251}{1.0}
+  \IconLine{275}{251}{1.0}
+  \fill[PGold] (152,242) circle (3) (255,242) circle (3);
+  % rest of the grid
+  \IconNetwork{205}{244}{2.15}
+  \draw[PGold,line width=1.6pt] (205,244) circle (9);
+  \node[inner sep=0pt,text=PNavy,font=\FiraSemi\fontsize{19pt}{19pt}\selectfont] at (205,296) {closed grid, port $i$};
+  % synchronous machine (the thing being replaced)
+  \IconSG{58}{238}{2.0}
+  \node[inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{23pt}{23pt}\selectfont] at (62,287) {SG$_i$};
+  \node[inner sep=0pt,text=PNavy,font=\FiraMed\fontsize{19pt}{19pt}\selectfont] at (62,303) {$\delta_i=0$};
+  % converter with its PLL
+  \IconGFL{338}{224}{1.65}
+  \IconPLL{342}{289}{1.2}
+  \node[anchor=east,inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{23pt}{23pt}\selectfont] at (310,283) {GFL$_i$};
+  \node[anchor=east,inner sep=0pt,text=PNavy,font=\FiraMed\fontsize{19pt}{19pt}\selectfont] at (310,300) {$\delta_i=1$};
+  \draw[PGold,line width=2pt,-{Stealth[length=5pt,width=5.5pt]}] (365,285) -- (365,266); % theta to the converter
+  % gold swap arc: replace
+  \draw[PGold,line width=3.4pt,-{Stealth[length=9pt,width=10pt]}] (64,196) .. controls (110,176) and (270,176) .. (318,190);
+  \node[fill=PGold,text=PGreenDark,rounded corners=3pt,inner xsep=6pt,inner ysep=2.6pt,font=\FiraBold\fontsize{19pt}{19pt}\selectfont] at (190,181) {replace};
   \end{scope}
-
-  % ---------------------------------------------------------------- portfolio variable (left-aligned on the panel text edge)
-  \node[anchor=west,inner sep=0pt,text=PNavy] at (23,265) {\fontsize{32pt}{34pt}\selectfont $\delta_i\in\{0,1\},\qquad S(\delta)=\{\,i:\delta_i=1\,\}$};
-  \node[anchor=west,inner sep=0pt,text=PMuted] at (23,279) {\FiraMed\fontsize{17.5pt}{18pt}\selectfont $\delta_i=0$: retain $\mathrm{SG}_i$\qquad $\delta_i=1$: replace $\mathrm{SG}_i$ by $\mathrm{GFL}_i$};
+  % ---------------------------------------------------------------- one-line message
+  \node[inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{20.5pt}{20.5pt}\selectfont] at (205,322) {A safe SG\,$\rightarrow$\,GFL transition is a portfolio--controller co-design problem.};
 
   % ---------------------------------------------------------------- engineering objective (hero)
-  \HeroBox{23}{288}{282}{344}
-  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{23.5pt}{23.5pt}\selectfont] at (35,298) {Engineering objective};
-  \node[inner sep=0pt,text=PNavy] at (154,322) {\fontsize{26pt}{28pt}\selectfont $\displaystyle\max_{S,\,K}\ \sum_{i\in S}P_i^{0}\quad\text{s.t.}\quad \alpha_\perp(S,K)\le-\sigma_{\rm req},\quad K\in\mathcal K_n$};
+  \HeroBox{23}{331}{389}{388}
+  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{21.5pt}{21.5pt}\selectfont] at (35,340) {Engineering objective};
+  \node[anchor=east,inner sep=0pt,text=PNavy] at (380,340) {\fontsize{21.5pt}{21.5pt}\selectfont $S(\delta)=\{\,i:\delta_i=1\,\}$};
+  \node[inner sep=0pt,text=PNavy] at (206,360) {\fontsize{26pt}{28pt}\selectfont $\displaystyle\max_{S,\,K}\ \sum_{i\in S}P_i^{0}\quad\text{s.t.}\quad \alpha_\perp(S,K)\le-\sigma_{\rm req},\quad K\in\mathcal K_n$};
+  % symbol key (one line)
+  \node[anchor=west,inner sep=0pt,text=PMuted,font=\FiraMed\fontsize{16pt}{16pt}\selectfont] at (35,378.5)
+    {$P_i^{0}$ SG$_i$ dispatch\ \ $\alpha_\perp$ rightmost non-gauge root\ \ $\sigma_{\rm req}$ decay margin\ \ $\mathcal K_n$ gains using $\le n$ hops};
 
-  % ---------------------------------------------------------------- scope note (no optimality claim): red-bar note
-  \NoteBox{23}{350}{282}{376}{PRed}
-  \node[anchor=west,inner sep=0pt,text=PRed,align=left,font=\FiraMed\fontsize{19.5pt}{23pt}\selectfont] at (33,363.3)
-    {Report the largest independently verified portfolio found.\\Certified global optimality is future work.};
+  % ---------------------------------------------------------------- four steps (chips)
+  \foreach \xa/\n/\l in {
+      23/1/{\FiraSemi Choose\\[-1pt]\FiraSemi portfolio $\delta$},
+      116/2/{\FiraSemi Choose radius\\[-1pt]\FiraSemi $n$: $K\in\mathcal K_n$},
+      209/3/{\FiraSemi Design gains\\[-1pt]\FiraSemi $K_p,\ K_I$},
+      302/4/{\FiraSemi Verify grid\\[-1pt]\FiraSemi spectrum, events}}{
+    \CardBox{\xa}{394}{\xa+87}{424}
+    \StepNumber{\xa+12.5}{409}{\n}
+    \node[anchor=west,inner sep=0pt,text=PGreen,align=left,font=\fontsize{17pt}{18.5pt}\selectfont] at (\xa+25,409.3) {\l};}
 
-  % ---------------------------------------------------------------- four numbered steps (right column)
-  \foreach \ya/\yb/\n/\l in {
-      181/215/1/{\FiraSemi Choose\\[-1pt]\FiraSemi portfolio $\delta$},
-      217.5/263.5/2/{\FiraSemi Choose\\[-1pt]\FiraSemi information\\[-1pt]{\FiraMed\fontsize{18.5pt}{20pt}\selectfont radius $n$: $K\in\mathcal K_n$}},
-      266.5/304/3/{\FiraSemi Design gains\\[-1pt]\FiraSemi $K_p,\ K_I$},
-      307/345.5/4/{\FiraSemi Verify grid\\[-1pt]{\FiraMed\fontsize{18.5pt}{20pt}\selectfont spectrum + events}}}{
-    \CardBox{289.5}{\ya}{389}{\yb}
-    \StepNumber{304}{(\ya+\yb)/2}{\n}
-    \node[anchor=west,inner sep=0pt,text=PGreen,align=left,font=\fontsize{22.5pt}{24.5pt}\selectfont] at (317.5,{(\ya+\yb)/2+0.5}) {\l};}
-
-  % ---------------------------------------------------------------- symbol key (every symbol of the objective is defined here)
-  \node[anchor=north west,inner sep=0pt,text=PMuted] at (23,415.5)
-    {\parbox{288mm}{\raggedright\FiraMed\fontsize{17.5pt}{21pt}\selectfont $P_i^{0}$: dispatched power of SG$_i$\quad
-      $\alpha_\perp$: rightmost physical (non-gauge) root\quad
-      $\sigma_{\rm req}$: required decay margin\quad
-      $\mathcal K_n$: PLL gains that may use measurements up to $n$ network hops away}};
-
-  % ---------------------------------------------------------------- bottom callout
-  \CardBox{23}{381}{389}{410}
-  \node[inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{23pt}{23pt}\selectfont] at (207,395.8) {A safe SG\,$\rightarrow$\,GFL transition is a portfolio--controller co-design problem.};
+  % ---------------------------------------------------------------- scope note (no optimality claim) + story chip
+  \NoteBox{23}{430}{300}{450}{PRed}
+  \node[anchor=west,inner sep=0pt,text=PRed,align=left,font=\FiraMed\fontsize{17pt}{19pt}\selectfont] at (31,440.2)
+    {Report the largest independently verified portfolio found.\\[-1.5pt]Certified global optimality is future work.};
+  \NextChip{389}{441}{Model it}
 \end{scope}

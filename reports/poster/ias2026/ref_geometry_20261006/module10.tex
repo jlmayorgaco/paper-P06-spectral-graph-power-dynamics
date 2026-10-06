@@ -4,20 +4,21 @@
 \begin{scope}
   \hyphenpenalty=10000 \exhyphenpenalty=10000 \tolerance=9999 \emergencystretch=3em
   % ---------------------------------------------------------------- MAIN CONTRIBUTIONS: five numbered items in two columns
-  \newcommand{\ContribItem}[4]{% x, y (top), number, text
-    \StepNumber{#1+9.6}{#2+9.6}{#3}
-    \node[anchor=north west,inner sep=0pt,text=PText,align=left,text width=228\PX,font=\FiraMed\fontsize{18pt}{20.5pt}\selectfont] at (#1+22,#2-1.5) {#4};}
-  \ContribItem{22}{1163}{1}{\textbf{Minimal replacement blockers:} the $H_4$ witness is unstable although all its proper subsets are stable.}
-  \ContribItem{22}{1189}{2}{\textbf{Exact closure factorization} of the network return into a local and a collective part.}
-  \ContribItem{22}{1215}{3}{\textbf{Beyond nodal damping:} self-energy and signed damping redistribution.}
-  \ContribItem{290}{1163}{4}{\textbf{Grid-embedded PLL gain synthesis} and exact delay transport.}
-  \ContribItem{290}{1189}{5}{\textbf{Information radius on the full IEEE-39:} authority grows, safety must still be verified.}
+  \newcommand{\ContribItem}[4]{% x, y (top), icon name, text: icon on a mint plate instead of a number
+    \fill[PPaleGreen] (#1+10,#2+10) circle (11);
+    \csname Icon#3\endcsname{#1+10}{#2+10}{0.46}
+    \node[anchor=north west,inner sep=0pt,text=PText,align=left,text width=222\PX,font=\FiraMed\fontsize{18pt}{20.5pt}\selectfont] at (#1+27,#2-1.5) {#4};}
+  \ContribItem{22}{1163}{Warn}{\textbf{Minimal replacement blockers:} the $H_4$ witness is unstable although all its proper subsets are stable.}
+  \ContribItem{22}{1189}{Matrix}{\textbf{Exact closure factorization} of the network return into a local and a collective part.}
+  \ContribItem{22}{1215}{Wave}{\textbf{Beyond nodal damping:} self-energy and signed damping redistribution.}
+  \ContribItem{290}{1163}{Clock}{\textbf{Grid-embedded PLL gain synthesis} and exact delay transport.}
+  \ContribItem{290}{1189}{GraphHop}{\textbf{Information radius on the full IEEE-39:} authority grows, safety must still be verified.}
 
   % ---------------------------------------------------------------- SCOPE OF THE RESULTS: three mini-columns with evidence pills
   % pills
-  \ProvedTag{591}{1169.5}{EXACT}
-  \ObservedTag{692}{1169.5}{NUMERICAL}
-  \ProposedTag{795}{1169.5}{PROPOSED}
+  \IconCheck{569}{1169.5}{0.4}\ProvedTag{596}{1169.5}{EXACT}
+  \IconWave{649}{1169.5}{0.4}\ObservedTag{686}{1169.5}{NUMERICAL}
+  \IconWarn{758}{1169.5}{0.4}\ProposedTag{794}{1169.5}{PROPOSED}
   \node[anchor=north west,inner sep=0pt,text=PText,align=left,text width=76\PX,font=\FiraMed\fontsize{17pt}{19.5pt}\selectfont] at (561,1180)
     {closure factorization\par gain map $W_i$\par delay transport\par commutator identity\par signed $\delta D_H$};
   \node[anchor=north west,inner sep=0pt,text=PText,align=left,text width=100\PX,font=\FiraMed\fontsize{17pt}{19.5pt}\selectfont] at (641,1180)
