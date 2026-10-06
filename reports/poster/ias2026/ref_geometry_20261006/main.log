@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (MiKTeX 25.12) (format=lualatex 2026.4.29)  6 OCT 2026 02:36
+This is LuaHBTeX, Version 1.24.0 (MiKTeX 25.12) (format=lualatex 2026.4.29)  6 OCT 2026 08:33
  restricted system commands enabled.
 **main.tex
 (./main.tex
@@ -1287,6 +1287,16 @@ File: assets/uniandes_logo_color.pdf Graphic file (type pdf)
 Package luatex.def Info: assets/uniandes_logo_color.pdf  used on input line 25.
 
 (luatex.def)             Requested size: 304.76526pt x 106.13858pt.
+LaTeX Font Info:    Calculating math sizes for size <37> on input line 28.
+(./module1.tex
+LaTeX Font Info:    Calculating math sizes for size <21> on input line 26.
+LaTeX Font Info:    Calculating math sizes for size <32> on input line 29.
+LaTeX Font Info:    Calculating math sizes for size <17> on input line 30.
+LaTeX Font Info:    Calculating math sizes for size <26> on input line 35.
+LaTeX Font Info:    Calculating math sizes for size <22.5> on input line 49.
+LaTeX Font Info:    Calculating math sizes for size <18.5> on input line 49.
+LaTeX Font Info:    Calculating math sizes for size <23> on input line 60.
+)
 
 Package fontspec Info: 
 (fontspec)             Could not resolve font "Bahnschrift/BI" (it probably
@@ -1306,46 +1316,6 @@ Package fontspec Info:
 Package fontspec Info: 
 (fontspec)             Font family 'Bahnschrift(5)' created for font
 (fontspec)             'Bahnschrift' with options
-(fontspec)             [RawFeature={+axis={wght=700,wdth=87.5}},LetterSpace=8].
-
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->"name:Bahnschrift:mode=node;script=latn;language=dflt
-;letterspace=8;+axis={wght=700,wdth=87.5};"
-
-Inserting `luaotfload.letterspace' in `pre_linebreak_filter'.
-Inserting `luaotfload.letterspace' in `hpack_filter'.
-LaTeX Font Info:    Calculating math sizes for size <37> on input line 30.
-(./module1.tex
-LaTeX Font Info:    Calculating math sizes for size <21> on input line 26.
-LaTeX Font Info:    Calculating math sizes for size <32> on input line 29.
-LaTeX Font Info:    Calculating math sizes for size <17> on input line 30.
-LaTeX Font Info:    Calculating math sizes for size <26> on input line 35.
-LaTeX Font Info:    Calculating math sizes for size <22.5> on input line 49.
-LaTeX Font Info:    Calculating math sizes for size <23> on input line 53.
-)
-
-Package fontspec Info: 
-(fontspec)             Could not resolve font "Bahnschrift/BI" (it probably
-(fontspec)             doesn't exist).
-
-
-Package fontspec Info: 
-(fontspec)             Could not resolve font "Bahnschrift/B" (it probably
-(fontspec)             doesn't exist).
-
-
-Package fontspec Info: 
-(fontspec)             Could not resolve font "Bahnschrift/I" (it probably
-(fontspec)             doesn't exist).
-
-
-Package fontspec Info: 
-(fontspec)             Font family 'Bahnschrift(6)' created for font
-(fontspec)             'Bahnschrift' with options
 (fontspec)             [RawFeature={+axis={wght=600,wdth=87.5}},LetterSpace=6].
 
 (fontspec)              
@@ -1356,7 +1326,9 @@ Package fontspec Info:
 (fontspec)             <->"name:Bahnschrift:mode=node;script=latn;language=dflt
 ;letterspace=6;+axis={wght=600,wdth=87.5};"
 
-LaTeX Font Info:    Calculating math sizes for size <35.6> on input line 53.
+Inserting `luaotfload.letterspace' in `pre_linebreak_filter'.
+Inserting `luaotfload.letterspace' in `hpack_filter'.
+LaTeX Font Info:    Calculating math sizes for size <35.6> on input line 51.
  [1
 
 {C:/Users/walla/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}<./assets/ias_a
@@ -1369,23 +1341,23 @@ L3 programming layer <2025-12-24>
 )
 
 Here is how much of LuaTeX's memory you used:
- 22688 strings out of 476081
+ 22698 strings out of 476081
  100000,1144653 words of node,token memory allocated
  505 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 8 attribute, 54 glue_spec,
  8 attribute_list, 2 write nodes
-   avail lists: 2:9593,3:5841,4:1162,5:410,6:4,7:6022,8:33,9:1044,10:1,11:302
- 44601 multiletter control sequences out of 65536+600000
- 286 fonts using 125947407 bytes
- 89i,7n,96p,480b,823s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/WINDOWS/Fonts/bahnschrift.ttf><C:/WINDOWS/Fonts/segoeui.ttf><C:/WINDOWS/Font
-s/segoeuib.ttf><C:/WINDOWS/Fonts/segoeui.ttf><C:/Windows/Fonts/ARIALNB.TTF><C:/W
-INDOWS/Fonts/bahnschrift.ttf><C:/WINDOWS/Fonts/bahnschrift.ttf><C:/Users/walla/A
-ppData/Roaming/MiKTeX/fonts/opentype/public/lm-math/latinmodern-math.otf><C:/WIN
-DOWS/Fonts/bahnschrift.ttf><C:/WINDOWS/Fonts/bahnschrift.ttf>
-Output written on main.pdf (1 page, 162249 bytes).
+   avail lists: 2:9522,3:5815,4:1154,5:330,6:6,7:6206,8:33,9:1022,10:1,11:298
+ 44611 multiletter control sequences out of 65536+600000
+ 296 fonts using 134956079 bytes
+ 89i,8n,96p,480b,831s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/WINDOWS/Fonts/segoeui.ttf><C:/WINDOWS/Fonts/segoeuib.ttf><C:/WINDOWS/Fonts/b
+ahnschrift.ttf><C:/WINDOWS/Fonts/segoeui.ttf><C:/Windows/Fonts/ARIALNB.TTF><C:/W
+INDOWS/Fonts/bahnschrift.ttf><C:/Users/walla/AppData/Roaming/MiKTeX/fonts/openty
+pe/public/lm-math/latinmodern-math.otf><C:/WINDOWS/Fonts/bahnschrift.ttf><C:/WIN
+DOWS/Fonts/bahnschrift.ttf>
+Output written on main.pdf (1 page, 154760 bytes).
 
-PDF statistics: 84 PDF objects out of 1000 (max. 8388607)
+PDF statistics: 77 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 1048576)
  16 words of extra memory for PDF output out of 10000 (max. 100000000)
 

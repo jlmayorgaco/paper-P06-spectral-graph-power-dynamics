@@ -41,12 +41,19 @@
   % ---------------------------------------------------------------- four numbered steps (right column)
   \foreach \ya/\yb/\n/\l in {
       181/215/1/{\textbf{Choose}\\[-1pt]\textbf{portfolio} $\delta$},
-      217.5/263.5/2/{\textbf{Choose}\\[-1pt]\textbf{information}\\[-1pt]{\fontsize{18.5pt}{20pt}\selectfont (architecture)}},
+      217.5/263.5/2/{\textbf{Choose}\\[-1pt]\textbf{information}\\[-1pt]{\fontsize{18.5pt}{20pt}\selectfont radius $n$: $K\in\mathcal K_n$}},
       266.5/304/3/{\textbf{Design gains}\\[-1pt]$K_p,\ K_I$},
       307/345.5/4/{\textbf{Verify grid}\\[-1pt]{\fontsize{18.5pt}{20pt}\selectfont spectrum + events}}}{
     \fill[PCard,rounded corners=3.5pt] (289.5,\ya) rectangle (389,\yb);
     \StepNumber{304}{(\ya+\yb)/2}{\n}
     \node[anchor=west,inner sep=0pt,text=PGreen,align=left,font=\fontsize{22.5pt}{24.5pt}\selectfont] at (317.5,{(\ya+\yb)/2+0.5}) {\l};}
+
+  % ---------------------------------------------------------------- symbol key (every symbol of the objective is defined here)
+  \node[anchor=north west,inner sep=0pt,text=PMuted] at (24,415.5)
+    {\parbox{288mm}{\fontsize{17pt}{21pt}\selectfont $P_i^{0}$: dispatched power of SG$_i$\quad
+      $\alpha_\perp$: rightmost physical (non-gauge) root\quad
+      $\sigma_{\rm req}$: required decay margin\quad
+      $\mathcal K_n$: PLL gains that may use measurements up to $n$ network hops away}};
 
   % ---------------------------------------------------------------- bottom callout
   \GreenCallout{23}{381}{389}{410}
