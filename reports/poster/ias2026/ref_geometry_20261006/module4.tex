@@ -42,14 +42,14 @@
   \node[anchor=east,inner sep=0pt,text=PRed] at (378,665) {\fontsize{21pt}{21pt}\selectfont $Q=(I+\mathcal D\mathcal K_d)^{-1}\mathcal D\mathcal K_o$};
 
   % ---------------------------------------------------------------- hero identity
-  \begin{scope}[shift={(0,-2)}]
+  \begin{scope}[shift={(0,-4)}]
   \HeroBox{23}{682}{386}{718}
   \node[inner sep=0pt,text=PNavy] at (200,700) {\fontsize{27pt}{30pt}\selectfont $\displaystyle\det(I+M_S)=\prod_{i\in S}{\color{PTeal}\det(I+M_{ii})}\cdot{\color{PRed}\det(I+Q_S)}$};
   \ProvedTag{362}{688}{EXACT}
   \end{scope}
 
   % ---------------------------------------------------------------- audit (teal note)
-  \begin{scope}[shift={(0,-3)}]
+  \begin{scope}[shift={(0,-6)}]
   \NoteBox{23}{724}{386}{766}{PTeal}
   \node[anchor=west,inner sep=0pt,text=PTeal,font=\FiraSemi\fontsize{19.5pt}{19.5pt}\selectfont] at (32,731.5) {Audit: stored boundary $\mathrm H_4=\{30,33,35,37\}$, $f\approx0.7064$\,Hz}; % source: research/bnd_h4_mechanism/results/20260925T204017_549c3c07_h4_crossmode_v3/claims/tx4_summary.json (core.frequency_root_hz=0.706424788006417)
   \node[anchor=west,inner sep=0pt,text=PNavy] at (32,745.5) {\fontsize{21pt}{23pt}\selectfont $\min_i\sigma_{\min}(I{+}M_{ii})={\color{PTeal}0.4892}$,\ \ $\sigma_{\min}(I{+}Q_{\mathrm H_4})={\color{PRed}4.39\times10^{-8}}$}; % source: same tx4_summary.json (physical_local.root_physical_local_sigma=0.4892354857736281; core.collective_sigma_min_root=4.3936703686787105e-08)
@@ -58,6 +58,6 @@
   \end{scope}
 
   % ---------------------------------------------------------------- hero sentence
-  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraBold\fontsize{20pt}{20pt}\selectfont] at (24,771.5) {All local factors stay regular; the instability enters through $\det(I+Q_S)$.};
-  \PanelRefs{23}{785.5}{[7] [8]}
+  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraBold\fontsize{20pt}{20pt}\selectfont] at (24,768) {All local factors stay regular; the instability enters through $\det(I+Q_S)$.};
+  \PanelRefs{23}{786.5}{[7] [8]}
 \end{scope}

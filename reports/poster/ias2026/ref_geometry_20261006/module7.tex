@@ -1,8 +1,8 @@
-% MODULE 7: INFORMATION RADIUS AND N-HOP CONTROL. Panel box (reference px): x 13-390, y 796.5-1129.5, title bar to y 822.5.
+% MODULE 7: INFORMATION RADIUS AND N-HOP CONTROL. Panel box (reference px): x 13-396, y 796.5-1129.5, title bar to y 822.5.
 % Design v3: hero = hop rings drawn on the real G_c with GFL glyphs at the sites; one HeroBox (residual law); PLL law card; four-architecture strip; NextChip.
 % Graph source: research/nhop_ieee39_20261006/derived/GRAPH_Gc.csv (graph=frozen: 13 links, 10 GFL sites, two clusters {30,31,32,37,38,39} and {33,34,35,36}).
 % Hop distances from site 31 (row of GRAPH_Gc_frozen_hopdist.csv, index 1): 32 and 39 at 1; 30 and 37 at 2; 38 at 3; 33-36 infinite.
-% Edges drawn = the 13 rows of GRAPH_Gc.csv. Text edge x = 24, right edge x = 379.
+% Edges drawn = the 13 rows of GRAPH_Gc.csv. Text edge x = 24, right edge x = 385 (box 13-396).
 \begin{scope}[line cap=round,line join=round]
   % one curved ring label: radius, centre angle (deg, y up), three glyphs; glyphs follow the arc, upright for the lower half
   \newcommand{\RingLabel}[7]{% sign (+1 lower arc, -1 upper arc), r, centre angle (deg, y up), three glyphs, colour
@@ -45,7 +45,7 @@
   \RingLabel{1}{86}{250}{n}{=}{3}{PGreen}
 
   % ---------------------------------------------------------------- right column: heading, key, the cluster that is never heard, scope note
-  \SectionRule{A}{Hop rings on $G_c$}{226}{838}{379}
+  \SectionRule{A}{Hop rings on $G_c$}{226}{838}{385}
   \IconGFL{236}{864}{0.4}
   \node[anchor=west,inner sep=0pt,text=PMuted,align=left,font=\FiraMed\fontsize{18pt}{20pt}\selectfont] at (250,864)
     {site 31 and its own PLL;\\[-1pt]ring $n$ = sites within $n$ hops};
@@ -62,31 +62,31 @@
     \node[inner sep=0pt,text=PMuted,font=\FiraBold\fontsize{17.5pt}{17.5pt}\selectfont] at (\x+11,\y+10) {\b};}
   \node[anchor=north west,inner sep=0pt,text=PMuted,align=left,font=\FiraMed\fontsize{18pt}{20pt}\selectfont] at (226,938)
     {Second cluster: no path\\[-1pt]from site 31 at any $n$.};
-  \NoteBox{226}{962}{379}{998}{PNavy}
+  \NoteBox{226}{962}{385}{998}{PNavy}
   \node[anchor=west,inner sep=0pt,text=PNavy,align=left,font=\FiraSemi\fontsize{18pt}{20pt}\selectfont] at (233,980)
     {Graph-local $\neq$ polynomial in $L$:\\[-1pt]shared polynomial keeps $\varepsilon\geq 9{\times}10^{-3}$.}; % source: derived/E2_architectures.csv (arch=b_shared_poly, graph=frozen: min eps 9.09e-3, max 7.05e-2)
   % ---------------------------------------------------------------- the one HeroBox: the residual law
-  \HeroBox{24}{1014}{379}{1058}
+  \HeroBox{24}{1014}{385}{1058}
   \node[anchor=west,inner sep=0pt,text=PNavy] at (34,1023.5) {\fontsize{22pt}{24pt}\selectfont $\mathcal N_i^{(n)}=\{\,j:\ \mathrm{dist}_{G_c}(i,j)\le n\,\}$};
   \node[anchor=west,inner sep=0pt,text=PNavy] at (34,1036.5) {\fontsize{21pt}{23pt}\selectfont $C_i^{(n)}k_i=b_i,\quad \varepsilon_i(n)=\|(I-C_iC_i^{+})\,b_i\|\,/\,\|b_i\|$};
   \node[anchor=west,inner sep=0pt,text=PNavy] at (34,1049.5) {\fontsize{22pt}{24pt}\selectfont $\mathcal K_n\subset\mathcal K_{n+1}\ \Rightarrow\ \varepsilon(n{+}1)\le\varepsilon(n)$};
-  \ProvedTag{343}{1023.5}{EXACT}
-  \node[anchor=east,inner sep=0pt,text=PMuted,align=right,font=\FiraMed\fontsize{17.5pt}{17.5pt}\selectfont] at (373,1049.5) {free $n$-hop class only};
+  \ProvedTag{349}{1023.5}{EXACT}
+  \node[anchor=east,inner sep=0pt,text=PMuted,align=right,font=\FiraMed\fontsize{17.5pt}{17.5pt}\selectfont] at (379,1049.5) {free $n$-hop class only};
 
   % ---------------------------------------------------------------- distributed PLL law
-  \CardBox{24}{1062}{379}{1094}
-  \node[anchor=west,inner sep=0pt,text=PNavy] at (32,1070.5) {\fontsize{21pt}{23pt}\selectfont $\dot\xi_i=\sum_{j\in\mathcal N_i^{(n)}}k_{I,ij}\,e_j(t-\tau_j)$};
-  \node[anchor=west,inner sep=0pt,text=PNavy] at (32,1085.5) {\fontsize{21pt}{23pt}\selectfont $t_f\dot\omega_i=\xi_i-\omega_i+\sum_{j\in\mathcal N_i^{(n)}}k_{p,ij}\,e_j(t-\tau_j)$};
+  \CardBox{24}{1062}{385}{1089}
+  \node[anchor=west,inner sep=0pt,text=PNavy] at (32,1070) {\fontsize{21pt}{23pt}\selectfont $\dot\xi_i=\sum_{j\in\mathcal N_i^{(n)}}k_{I,ij}\,e_j(t-\tau_j)$};
+  \node[anchor=west,inner sep=0pt,text=PNavy] at (32,1083.5) {\fontsize{21pt}{23pt}\selectfont $t_f\dot\omega_i=\xi_i-\omega_i+\sum_{j\in\mathcal N_i^{(n)}}k_{p,ij}\,e_j(t-\tau_j)$};
 
   % ---------------------------------------------------------------- four architectures
-  \foreach \x/\k/\la in {24/0/{local $n{=}0$}, 113/1/{polynomial in $L$}, 202/2/{free $n$-hop}, 291/3/{dense benchmark}}{
-    \CardBox{\x}{1098}{\x+88}{1114.5}
-    \begin{scope}[shift={(\x+10,1106.25)},line width=1.2pt,draw=PGreen,scale=0.8]
+  \foreach \x/\k/\la in {24/0/{local $n{=}0$}, 114.75/1/{polynomial in $L$}, 205.5/2/{free $n$-hop}, 296.25/3/{dense benchmark}}{
+    \CardBox{\x}{1093}{\x+88.75}{1109.5}
+    \begin{scope}[shift={(\x+10,1101.25)},line width=1.2pt,draw=PGreen,scale=0.8]
       \ifnum\k=0 \fill[PGold] (0,0) circle (3.5); \draw[PGreen] (0,0) circle (7);\fi
       \ifnum\k=1 \draw[PGreen] (-7,2.5) -- (-2.5,-2.5) -- (2.5,2.5) -- (7,-2.5); \foreach \px/\py in {-7/2.5,-2.5/-2.5,2.5/2.5,7/-2.5}{\fill[PGreen] (\px,\py) circle (2.2);}\fi
       \ifnum\k=2 \foreach \ang in {20,110,200,290}{\draw[PGreen] (0,0) -- (\ang:7);\fill[PGreen] (\ang:7) circle (2);}\fill[PGold] (0,0) circle (2.8);\fi
       \ifnum\k=3 \draw[PGreen] (-5.5,-5.5) rectangle (5.5,5.5) (-5.5,-5.5) -- (5.5,5.5) (-5.5,5.5) -- (5.5,-5.5);\foreach \px/\py in {-5.5/-5.5,5.5/-5.5,5.5/5.5,-5.5/5.5}{\fill[PGreen] (\px,\py) circle (2);}\fi
     \end{scope}
-    \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (\x+20,1106.4) {\la};}
-  \PanelRefs{24}{1121.5}{[2] [9]}
+    \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (\x+20,1101.4) {\la};}
+  \PanelRefs{24}{1122.5}{[2] [9]}
 \end{scope}

@@ -6,8 +6,8 @@
 | Fonts | all embedded and subset (Fira Sans, Latin Modern Math, Bahnschrift) | OK |
 | Equations / art | vector (TikZ + matplotlib PDF, fonttype 42) | OK |
 | Raster images | none: the IEEE IAS logo is now the official vector (cropped from the AM 2026 Call for Papers, images stripped with tools_strip_logo.py); Uniandes logo vector | OK |
-| Side margins | panels and (now) header rule + footer inset at 9.5 mm; only the faint header hills/skyline run to the edge (decorative, safe if trimmed) | OK |
-| Top / bottom margin | 8.5 mm / 6.1 mm | OK (above the usual 5 mm unprintable edge) |
+| Outer margins | measured on the render: left 15.9, right 15.9, top 16.6, bottom 13.9 mm (whole layout scaled 0.985; header art clipped to the panel margins) | OK |
+| Column alignment | rows 7-9 now share the exact column edges of rows 1-6 | OK |
 | Row gutters | were 6.7 / 2.4 mm (row 2 → row 3 too tight); fixed to ≈ 6 mm everywhere (row 3, lower strip +5 px, footer +4 px) | FIXED |
 | Column gutters | ≈ 6.3–7 mm; row-3 column edges sit 5–6 mm left of rows 1–2 (inherited from the reference grid) | minor, cosmetic |
 | Text size | body 20–24 pt, captions 17–19 pt, pills 15.5 pt; icon-internal labels (PI, θ, Δ, τ) 10.5–15 pt — decorative only | OK |

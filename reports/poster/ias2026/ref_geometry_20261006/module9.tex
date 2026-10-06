@@ -41,24 +41,24 @@
   \foreach \cx/\h in {879/$n{=}0$, 925/$n{=}1$, 971/$n{=}3$}{
     \node[inner sep=0pt,text=PMuted,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (\cx,1064.5) {\h};}
   \draw[PGrid,line width=0.8pt] (775,1070) -- (1005,1070);
-  \foreach \y/\lab in {1076/{48\,ms}, 1086.8/{52\,ms}, 1097.6/{44\,ms, 90\,\%}, 1108.4/{44\,ms, $K_p\,{-}14\,\%$}}{
+  \foreach \y/\lab in {1076/{48\,ms}, 1085.8/{52\,ms}, 1095.6/{44\,ms, 90\,\%}, 1105.4/{44\,ms, $K_p\,{-}14\,\%$}}{
     \node[anchor=west,inner sep=0pt,text=PText,font=\FiraMed\fontsize{17.5pt}{17.5pt}\selectfont] at (775,\y) {\lab};}
   % dots: pass = teal, fail = red; first dot centre = column centre - 15.2
   \newcommand{\DotsGroup}[3]{\foreach \p [count=\i from 0] in {#3}{\ifnum\p=1 \fill[PTeal] ({#1-15.2+\i*7.6},#2) circle (3.2);\else \fill[PRed] ({#1-15.2+\i*7.6},#2) circle (3.2);\fi}}
   \DotsGroup{879}{1076}{1,1,1,1,1}   \DotsGroup{925}{1076}{1,1,1,1,1}
-  \DotsGroup{879}{1086.8}{1,0,1,1,1} \DotsGroup{925}{1086.8}{1,1,1,1,1} \DotsGroup{971}{1086.8}{0,0,0,0,0}
-  \DotsGroup{879}{1097.6}{0,0,0,0,0}   \DotsGroup{925}{1097.6}{0,0,0,0,0}
-  \fill[PPaleGreen,rounded corners=3pt] (860,1103.9) rectangle (990,1112.9);
-  \DotsGroup{925}{1108.4}{1,1,1,1,1}
+  \DotsGroup{879}{1085.8}{1,0,1,1,1} \DotsGroup{925}{1085.8}{1,1,1,1,1} \DotsGroup{971}{1085.8}{0,0,0,0,0}
+  \DotsGroup{879}{1095.6}{0,0,0,0,0}   \DotsGroup{925}{1095.6}{0,0,0,0,0}
+  \fill[PPaleGreen,rounded corners=3pt] (860,1100.9) rectangle (990,1109.9);
+  \DotsGroup{925}{1105.4}{1,1,1,1,1}
   \foreach \cx/\yy in {971/1076}{\node[text=PMuted,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (\cx,\yy-0.5) {--};}
-  \node[anchor=west,inner sep=0pt,text=PTeal,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (993,1108.4) {5/5};
-  \node[anchor=west,inner sep=0pt,text=PRed,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (950,1097.6) {$|\Delta f|>0.5$\,Hz};
+  \node[anchor=west,inner sep=0pt,text=PTeal,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (993,1105.4) {5/5};
+  \node[anchor=west,inner sep=0pt,text=PRed,font=\FiraSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (950,1095.6) {$|\Delta f|>0.5$\,Hz};
 
   % ---------------------------------------------------------------- red note: necessary, not sufficient
-  \NoteBox{1060}{1059}{1139}{1113}{PRed}
+  \NoteBox{1060}{1059}{1139}{1109}{PRed}
   \node[anchor=west,inner sep=0pt,text=PRed,align=left,font=\FiraBold\fontsize{19.5pt}{21pt}\selectfont] at (1067,1086.5) {Spectral margin\\is necessary,\\not sufficient.};
   % failure causes next to the red dots (source: research/nhop_ieee39_20261006/derived/E6_events.csv)
-  \node[anchor=east,inner sep=0pt,text=PRed,font=\FiraMed\fontsize{17.5pt}{17.5pt}\selectfont] at (856,1086.8) {SG reserve};
-  \node[anchor=west,inner sep=0pt,text=PRed,align=left,font=\FiraMed\fontsize{17pt}{16.5pt}\selectfont] at (994,1085.8) {voltage band /\\integration stop};
-  \PanelRefs{775}{1121.5}{[4] [9]}
+  \node[anchor=east,inner sep=0pt,text=PRed,font=\FiraMed\fontsize{17.5pt}{17.5pt}\selectfont] at (856,1085.8) {SG reserve};
+  \node[anchor=west,inner sep=0pt,text=PRed,align=left,font=\FiraMed\fontsize{17pt}{16.5pt}\selectfont] at (994,1084.3) {voltage band /\\integration stop};
+  \PanelRefs{775}{1122.5}{[4] [9]}
 \end{scope}

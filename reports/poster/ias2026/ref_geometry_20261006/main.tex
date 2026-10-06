@@ -12,10 +12,14 @@
 \begin{OnPage}
   % ---------------------------------------------------------------- white page
   \fill[white] (0,0) rectangle (1161,1355);
+  % print margins: the whole poster is scaled uniformly (text included) around the content centre
+  \begin{scope}[scale around={0.985:(580.5,677.5)},every node/.append style={transform shape}]
 
   % ---------------------------------------------------------------- header
+  \begin{scope}\clip (12,0) rectangle (1149,115);
   \HillsLeft
   \SkylineRight
+  \end{scope}
   \fill[PGoldLine] (12,108) rectangle (1149,111.6);
   \fill[PGoldLine!35!white] (12,111.6) rectangle (1149,113);
   % official vector logo, cropped from the IAS Annual Meeting 2026 Call for Papers (ias-am.ieee.org)
@@ -33,9 +37,9 @@
   \RefPanel{4}{EXACT NETWORK CLOSURE: LOCAL \Times\ COLLECTIVE}{13/459.5/396/793.5}{26/23}{51/334}
   \RefPanel{5}{BEYOND NODAL DAMPING: EFFECTIVE OPERATORS}{405/459.5/756/793.5}{26/23}{444/308}
   \RefPanel{6}{GRID-EMBEDDED PLL GAIN SYNTHESIS}{765/459.5/1148/793.5}{26/23}{805/251}
-  \RefPanel{7}{INFORMATION RADIUS AND N-HOP CONTROL}{13/801.5/390/1134.5}{26/23}{51/286}
-  \RefPanel{8}{N-HOP RESULTS: AUTHORITY, SPILLOVER, REPAIR}{398/801.5/756/1134.5}{26/23}{435/315}
-  \RefPanel{9}{DELAYS, CO-DESIGN, AND NONLINEAR CHECKS}{764/801.5/1148/1134.5}{26/23}{803/310}
+  \RefPanel{7}{INFORMATION RADIUS AND N-HOP CONTROL}{13/801.5/396/1134.5}{26/23}{51/286}
+  \RefPanel{8}{N-HOP RESULTS: AUTHORITY, SPILLOVER, REPAIR}{405/801.5/756/1134.5}{26/23}{444/306}
+  \RefPanel{9}{DELAYS, CO-DESIGN, AND NONLINEAR CHECKS}{765/801.5/1148/1134.5}{26/23}{805/310}
 
   % ---------------------------------------------------------------- panels 10-12 (reference row 4)
   \RefSection{MAIN CONTRIBUTIONS}{13/1142.5/333/1304.5}{20/29}
@@ -57,5 +61,6 @@
   \fill[PGreenDark,rounded corners=1.5pt] (12,1313.5) rectangle (1149,1347);
   \node[anchor=west,inner sep=0pt,text=white,font=\FiraMed\fontsize{19pt}{19pt}\selectfont] at (24,1330.7) {IEEE IAS Annual Meeting 2026\ \ \textbullet\ \ Vancouver, Canada\ \ \textbullet\ \ October 4\textendash 8, 2026};
   \node[anchor=east,inner sep=0pt,text=white,font=\FiraMed\fontsize{19pt}{19pt}\selectfont] at (1137,1330.7) {Jorge Luis Mayorga Taborda\ \ \textbullet\ \ Universidad de los Andes\ \ \textbullet\ \ jl.mayorga236@uniandes.edu.co};
+  \end{scope}
 \end{OnPage}
 \end{document}
