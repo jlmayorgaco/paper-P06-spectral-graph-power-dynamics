@@ -1,0 +1,2 @@
+bus,delta,complete,retcode,last_time,runtime_s,Fpeak_Hz,Rpeak_Hz_s,F_bus,F_time,R_bus,R_time,Vmin,Vmax,current_ratio_max,DC_min,DC_max,limiter_slack,limiter_fraction,limiter_bus,limiter_kind,limiter_time,limiter_side,retained_MW
+29,-100.0,true,Success,10000.0,47.7420954,0.4990023881249662,0.33445801466279246,37,38.4,39,1.0,0.9748462322309772,1.080926826600632,1.0095845560265764,2.4995774953863625,2.500349189918115,0.08370929657632542,0.08370929657632542,30,governor,38.7,lower,497.8403200319095

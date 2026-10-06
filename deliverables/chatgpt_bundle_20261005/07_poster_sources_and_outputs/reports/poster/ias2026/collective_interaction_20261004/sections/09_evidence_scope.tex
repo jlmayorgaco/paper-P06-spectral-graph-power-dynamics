@@ -1,0 +1,43 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterBottomRowHeight][t]{\PosterGridWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterBottomRowHeight}{9}{CONCLUSIONS: WHAT IS ESTABLISHED, WHAT IS OPEN}
+
+    \noindent\begin{minipage}[c]{210mm}\centering
+      {\MetricSize\bfseries\color{IASBlue}Exact\par}
+      {\FigureSize pair identity, rank-two law, gain formula\par}
+    \end{minipage}\hfill%
+    \begin{minipage}[c]{205mm}\centering
+      {\MetricSize\bfseries\color{IASBlue}Certified\par}
+      {\FigureSize the pair's roots, boxes of radius $10^{-7}$\par}
+    \end{minipage}\hfill%
+    \begin{minipage}[c]{205mm}\centering
+      {\MetricSize\bfseries\color{IASDarkGreen}Validated\par}
+      {\FigureSize 5/5 delayed nonlinear events\par}
+    \end{minipage}\hfill%
+    \begin{minipage}[c]{225mm}\centering
+      {\MetricSize\bfseries\color{IASGold!70!black}Still open\par}
+      {\FigureSize maximum replacement; how often this happens\par}
+    \end{minipage}\par
+    \vspace{2mm}
+    {\fontsize{22pt}{24.5pt}\selectfont \textbf{Retracted:} the 94.2\% GFL candidate fails bus-8 RoCoF (0.513 Hz/s) and bus-29 frequency (0.589 Hz). \textbf{Open:} one certified pair; decay-only retunes violated the margin in 2 of 88 resolved cases. \textbf{Not claimed:} a maximum, superiority over fixed gains (they also pass the events), instability (the pole stays stable), full-spectrum interval certificates, converter current limits.\par}
+
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewFullPageWidth}
+  \def\PosterPageHeight{\PosterPreviewBottomPageHeight}
+  \def\PosterPreviewLeft{\PosterOuterMargin}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

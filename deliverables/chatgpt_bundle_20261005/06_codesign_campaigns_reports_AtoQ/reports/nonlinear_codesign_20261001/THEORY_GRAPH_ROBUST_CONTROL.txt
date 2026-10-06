@@ -1,0 +1,539 @@
+BEYOND NODAL DAMPING: CONTROL NO LINEAL Y CAPACIDAD CERTIFICADA SG -> GFL
+Especificación matemática principal. 2026-10-01.
+Estado: certificado acoplado no lineal por 184 bloques modales, con LP interno
+y brecha verificada. La envolvente creció seis órdenes de magnitud, pero sigue
+sin justificar capacidad operativa útil ni un máximo de sustitución SG/GFL.
+Actualización detallada: coupled_dq_contract/CONTROL_MODAL_COMPARACION_Y_CODESIGN_ES.txt.
+
+0. CAMBIO DE OBJETO CIENTÍFICO
+
+La implementación más reciente verifica D^+s <= (M-D)s+b epsilon+delta sobre
+un dominio completo del modelo no lineal, con D diagonal positivo y M>=0 que
+conserva las interacciones entre bloques. La condición
+  (D-M)r > b epsilon+delta
+certifica invariancia del producto de bolas modales ||y_k||<=r_k; las cotas de
+salida y regularidad algebraica se verifican en el mismo dominio. Para entrada
+constante, una tasa de contracción regional positiva permite concluir estabilidad
+exponencial del equilibrio único en la región. No se elimina el residuo de trim.
+Con dominio y ganancias fijos, maximizar epsilon sobre r es un LP. El resultado
+verificado alcanza epsilon=3.5521988587e-7, tasa>=0.0190303475/s y brecha relativa
+del LP<=2.812746876e-7. La cota dual sólo corresponde a ese LP congelado.
+No se han optimizado rho ni Kp,Ki para una envolvente útil de entradas requerida.
+Las condiciones de comparación/small gain son antecedentes establecidos:
+https://arxiv.org/abs/0901.1842 . La contribución debe demostrarse en el co-diseño.
+
+La teoría no debe definirse por una colección de eventos, ubicaciones o formas
+temporales. Su objeto es un conjunto de operación robustamente invariante del
+modelo no lineal interconectado. Los ensayos temporales son una validación externa
+y una herramienta para encontrar contraejemplos; no definen la garantía.
+
+Agnóstico significa que las ecuaciones no privilegian nombres de nodos, una red
+de ensayo, un escalón, un pulso o una duración particular. No significa ausencia
+de modelo, ausencia de límites físicos, ni una única ganancia válida para todas
+las redes. La conectividad y los dispositivos sí cambian la solución del diseño.
+
+La propuesta es obtener un mapa
+  (modelos locales, operador de red, recursos, límites, clase de entradas)
+       -> (rho, Kp, Ki, otros controles admitidos, certificado de operación).
+La capacidad certificada será una cota inferior de la capacidad física robusta.
+La búsqueda de un certificado que no existe en una familia restringida no prueba
+que el diseño físico sea inviable.
+
+1. MODELO PORTUARIO NO LINEAL Y DOS OPERADORES DE RED
+
+Sea G=(N,E) cualquier grafo conectado, con matriz de incidencia B. Definimos
+  L = B diag(a_e) B^T,       a_e > 0.                         (1)
+L es un operador estructural real, simétrico y semidefinido positivo. Para ramas
+recíprocas sin transformadores, la admitancia eléctrica es
+  Y_G = B diag(y_e) B^T + Y_sh,                              (2)
+con y_e complejo. Transformadores, taps y otras redes requieren sus operadores
+portuarios correctos. Un único Laplaciano real no sustituye la admitancia AC,
+las pérdidas, los controles internos ni las restricciones algebraicas.
+
+El modelo cerrado general es
+  xdot = f(x,v,w;p,G,xi),       0 = g(x,v,w;p,G,xi),          (3)
+  p = (rho, kappa),            0 <= rho_i <= 1.
+x reúne los estados físicos y de control; v las variables algebraicas; xi las
+incertidumbres de modelo. Una matriz de masa diferencial invertible puede
+absorberse exactamente en f. Una DAE de índice superior necesita otro análisis.
+
+rho_i representa sustitución de capacidad/dispatch según una convención física
+declarada. En agregados paralelos compatibles, puede usarse el puerto
+  i_i = (1-rho_i) i_SG,i + rho_i i_GFL,i.                    (4)
+Esto no autoriza a interpolar arbitrariamente las ecuaciones de dos dispositivos.
+Al retirar por completo un dispositivo deben retirarse sus estados desconectados
+o tratarse explícitamente: una realización interior redundante no certifica
+automáticamente rho_i=0 o rho_i=1.
+
+kappa incluye los Kp_i,Ki_i del PLL y sólo los demás controles que realmente estén
+en el modelo. El PLL instalado en el prototipo tiene, en coordenadas relativas,
+  theta_dot = omega,
+  tau_i omega_dot = zeta_i + Kp_i e_q,i - omega,
+  zeta_dot = Ki_i e_q,i.                                    (5)
+Los estados de corriente, DC, reguladores y límites físicos siguen en (3).
+
+Si se añade soporte activo por frecuencia/RoCoF, es un control adicional, por
+ejemplo con la convención de que potencia positiva se inyecta a la red:
+  tau_P,i DeltaP_dot = -DeltaP_i
+                      + sat_i(-k_f,i fhat_i-k_r,i rhat_i).   (6)
+Sus retardos, headroom, límites de corriente, fuente DC y energía disponible
+deben acompañar a (6). Kp_i,Ki_i del PLL por sí solos no suministran esa energía.
+La prueba no exige (5) ni (6): admite cualquier controlador modelado en (3).
+
+2. ENTRADAS SIN FORMA TEMPORAL NI UBICACIÓN PREFIJADA
+
+Un punto de partida es el conjunto instantáneo
+  W = {w in R^r : w^T R_w w <= 1},    R_w > 0,
+  W_infty = {w(.) medible : w(t) in W casi en todo t}.       (7)
+Los canales cubren todos los puertos de perturbación declarados. Ningún soporte
+nodal se fija: se admiten entradas simultáneas, pasos persistentes, oscilaciones
+y señales no periódicas dentro de la envolvente. R_w normaliza unidades y
+magnitudes; una estructura isotrópica o por tipos de puerto no privilegia nodos.
+Una caja de cotas por puerto también sirve y cambia la función soporte de §6.
+
+No se promete tolerar perturbaciones de amplitud ilimitada. Esta imposibilidad
+es física, no una decisión del benchmark. Además, si para alguna entrada constante
+admisible todo control disponible deja un déficit energético uniforme epsilon>0,
+  E_dot_total <= -epsilon,
+y E_total tiene un límite inferior operativo, la operación segura infinita es
+imposible. Una fuente con energía finita necesita una clase con presupuesto de
+energía/duración o una reserva sostenible; ningún ajuste del PLL elimina esto.
+
+Si interesan cambios de topología, fallos, retardos o dinámicas no modeladas, deben
+representarse como una familia de operadores/modelos o contratos de incertidumbre.
+No son automáticamente equivalentes a una inyección aditiva. Para conmutación
+arbitraria se requiere un certificado común en coordenadas compatibles; los resets
+necesitan además una condición de no crecimiento del almacenamiento o condiciones
+de permanencia. La formulación básica siguiente usa xi constante o una inclusión
+bien definida para la que las desigualdades sean uniformes.
+
+3. FRECUENCIA, ROCOF Y SOLUCIÓN ALGEBRAICA
+
+Las magnitudes de seguridad se definen mediante operadores de medida declarados.
+Se aumentan los estados con un instrumento causal realizable:
+  qdot = a_m(q,x,v),  fhat = h_f(q,x,v),  rhat = h_r(q,x,v).
+Un ejemplo, cuando fhat ya es una estimación física de frecuencia, es
+  tau_r chi_dot = fhat-chi,   rhat = (fhat-chi)/tau_r.
+Es una derivada filtrada, no la derivada ideal. La teoría deja tau_r libre dentro
+del diseño/especificación, sin imponer una ventana numérica del experimento.
+
+Una derivada ideal de la fase algebraica puede contener impulsos ante saltos
+admisibles de w. No puede prometerse una cota finita de RoCoF ideal para cualquier
+w esencialmente acotada. Hay que especificar medición filtrada o regularidad de la
+entrada. Una ventana exacta con retardo pertenece a un sistema con historia y
+requiere un funcional de Lyapunov apropiado, no un V finito dimensional sin prueba.
+
+Sea z el estado dinámico aumentado, expresado respecto al equilibrio nominal y
+en el cociente por la rotación angular común cuando la simetría lo permita.
+Se conserva la frecuencia común física: no se elimina un modo de deriva sólo
+para obtener un espectro estable. El instrumento debe respetar esa reconstrucción.
+
+Hipótesis de regularidad: en un dominio D y para cada entrada/incertidumbre
+admisible existe una rama consistente única
+  v = psi(z,w;p,G,xi),   sigma_min(g_v) >= gamma > 0.        (8)
+La unicidad de la rama es una hipótesis adicional: un Jacobiano invertible en un
+punto sólo da inversión local. Requerimos continuidad apropiada y un campo
+  zdot = F(z,w;p,G,xi)                                    (9)
+localmente Lipschitz en z, uniformemente respecto a las entradas, con soluciones
+de Carathéodory y continuación mientras permanezcan en un compacto de D.
+(9) es una eliminación exacta de la DAE, no una linealización.
+
+El almacenamiento depende de estados dinámicos z, no directamente del voltaje
+algebraico que salta con w. De lo contrario aparecería wdot al derivarlo. Las
+restricciones de salida sí pueden depender de v y por ello se verifican para
+todos los valores admisibles de w.
+
+4. CERTIFICADO PRINCIPAL: INVARIANCIA + ESTABILIDAD NO LINEAL
+
+Fijemos p y los operadores. Sean V(z) continuamente diferenciable, alpha>0,
+mu>=0 y c>0. Supongamos:
+  A. Omega_c={z:V(z)<=c} es compacto, contenido en el interior de D;
+     V es positiva definida en las coordenadas físicas conservadas;
+     grad V != 0 en V=c. El conjunto inicial Z0 satisface Z0 subset Omega_c.
+  B. Para todo z in Omega_c, w in W y xi admisible,
+       grad V(z)^T F(z,w;p,G,xi)
+           <= -2 alpha V(z) + mu w^T R_w w.               (10)
+  C. mu <= 2 alpha c.
+  D. Para cada límite operativo ell y todos esos z,w,xi,
+       h_ell(z,psi(z,w),w;p) <= 0.                        (11)
+     Por ejemplo: fhat_i^2<=fmax_i^2, rhat_i^2<=rmax_i^2,
+     Vmin_i<=|v_i|<=Vmax_i, |i_i|<=Imax_i y Emin_i<=E_i<=Emax_i.
+     Los valores son parámetros físicos/especificaciones, no constantes universales.
+
+RESULTADO CONDICIONAL. Omega_c es robustamente invariante para toda w(.) de (7).
+Las restricciones (11) se cumplen durante toda la evolución, y
+  V(z(t)) <= exp(-2 alpha t) V(z(0))
+             + mu/(2 alpha) [1-exp(-2 alpha t)].          (12)
+Con w=0, V decae exponencialmente. Si m1||z||^2<=V<=m2||z||^2,
+se obtiene estabilidad exponencial local en esas coordenadas, u orbital respecto
+a la rotación eliminada. Para entradas persistentes hay una cota tipo ISS;
+no se afirma retorno al equilibrio nominal.
+
+PRUEBA. En la frontera V=c, (10) y (7) dan Vdot<=-2 alpha c+mu<=0.
+La regularidad de la frontera y del campo garantiza la condición de invariancia
+de Nagumo para cada velocidad admisible. La compacidad interior y (8) permiten
+continuar la solución. Integrando la desigualdad escalar Vdot+2 alpha V<=mu
+resulta (12); para w=0 se integra sin término forzante. (11) contiene todas las
+salidas de las trayectorias consistentes. No se selecciona un evento ni un nodo.
+Una holgura estricta mu<2 alpha c facilita certificación numérica de la frontera.
+
+Este argumento es control robusto clásico aplicado a nuestro problema. La
+novedad a investigar no es la desigualdad de Lyapunov o la invariancia por sí sola.
+Un límite de ganancia L2 tampoco implica automáticamente límites de pico de
+frecuencia/RoCoF; por eso (11) es parte explícita del certificado.
+
+5. CÓMO ENTRA EL LAPLACIANO: ALMACENAMIENTO E INTERACCIÓN
+
+Una familia propuesta de certificados es
+  V(z;p,L) = sum_i V_i(z_i;p_i)
+            + (1/2) e(z)^T [K_beta(L) tensor Q] e(z)
+            + V_cross(z),                                (13)
+  K_beta(L) = sum_{m=1}^d beta_m L^m,   Q >= 0.
+e_i(z_i) son rasgos dinámicos de dimensión común, incluso cuando SG y GFL tienen
+diferentes números de estados. K_beta(L) debe ser PSD sobre el espectro declarado;
+beta_m>=0 es suficiente, no necesario. Se impone positividad del V total aunque
+V_cross permita términos cruzados más generales. La forma (13) es una familia
+de búsqueda, no una afirmación de que siempre exista un certificado dentro de ella.
+
+Los V_i cubren estados internos, estados de medida y frecuencia coherente. Como
+L 1=0, la energía de diferencias de red por sí sola no controla la frecuencia
+común. Un cambio de pesos de amortiguamiento por nodo tampoco representa todos
+los términos cruzados de la planta o de (13).
+
+Con L=U Lambda U^T y ehat=(U^T tensor I)e, exactamente
+  e^T[K_beta(L) tensor Q]e
+     = sum_k h_beta(lambda_k) ehat_k^T Q ehat_k,            (14)
+  h_beta(lambda)=sum_m beta_m lambda^m.
+Esta Fourier del grafo organiza variaciones espaciales. No diagonaliza en general
+el campo no lineal: heterogeneidad de dispositivos y controles vuelve densos
+U^T diag(d_i) U, y los términos no lineales acoplan componentes espectrales.
+lambda_k no es una frecuencia temporal en Hz ni un autovalor del Jacobiano DAE.
+Eliminar modos sin acotar el residuo invalida la garantía.
+
+En la subclase de acoplamiento sinusoidal sin pérdidas y magnitudes de tensión
+constantes, sí hay una identidad no lineal particularmente útil:
+  U_net(theta)=sum_e b_e[1-cos((B^T theta)_e)],
+  Hess U_net=B diag(b_e cos((B^T theta)_e)) B^T.            (15)
+Es un Laplaciano dependiente del estado, PSD si b_e>0 y |(B^T theta)_e|<pi/2.
+La positividad es regional y transversal a la rotación común. (15) no se traslada
+sin demostración al modelo con pérdidas, tensiones dinámicas y controles GFL.
+
+Invariancia a nombres: para una permutación P de buses, L'=P L P^T, y se permutan
+coherentemente dispositivos, límites, pesos de entrada y pesos del objetivo.
+El cambio de coordenadas lleva cada certificado a uno con la misma capacidad.
+Esto formaliza independencia de etiquetas. No afirma que dos buses físicamente
+distintos sean intercambiables sin alterar la seguridad.
+El certificado (13) corresponde a parámetros y operador fijos. Si L o p cambian
+durante la operación, aparecen derivadas paramétricas o saltos de V; se necesita
+una condición adicional de transición o un almacenamiento verdaderamente común.
+
+6. ELIMINACIÓN ANALÍTICA DE TODAS LAS DIRECCIONES DE ENTRADA
+
+Cuando la reducción exacta es afín en w,
+  F(z,w;p)=F0(z;p)+E(z;p) w,                              (16)
+para cualquier a se cumple
+  sup_{w^T R_w w<=1} a^T E w
+       = sqrt(a^T E R_w^{-1} E^T a).                     (17)
+Prueba: s=R_w^(1/2)w y Cauchy-Schwarz; si el coeficiente no es cero,
+  w_star = R_w^{-1} E^T a / sqrt(a^T E R_w^{-1} E^T a)
+alcanza la igualdad. Si es cero, cualquier w admisible da cero.
+
+Así, una condición equivalente de orientación hacia el interior en la frontera es
+  grad V^T F0 + sqrt(grad V^T E R_w^{-1} E^T grad V) <= 0,
+                                                   para V=c.   (18)
+(18) certifica invariancia, pero no sustituye por sí sola el decaimiento interior
+de (10). Puede combinarse con una condición nominal de Lyapunov independiente.
+Para una caja |w_j|<=bar_w_j, el radical se sustituye por
+  sum_j bar_w_j |(E^T grad V)_j|.
+
+Alternativamente, con una barrera b(z)>=0, la condición robusta
+  grad b^T F0 - sqrt(grad b^T E R_w^{-1} E^T grad b)
+         >= -a_b(b)                                      (19)
+en la región pertinente implica invariancia bajo las hipótesis habituales de
+frontera regular y buena definición del campo; a_b es una función de clase K
+extendida. Las restricciones algebraicas directas se siguen verificando sobre W.
+
+La dirección w_star cambia con el estado. No se presupone que el peor evento sea
+un escalón en un solo bus. Se elimina exactamente la maximización instantánea de
+todas las direcciones; la verificación sigue siendo universal sobre el estado.
+La reducción de una DAE puede volver F NO afín en w aunque f parezca afín antes
+de eliminar v. En ese caso (17)-(19) no se usan sin una envolvente válida; se
+mantiene la condición universal de (10) o se verifica directamente sobre g=0.
+
+7. RUTA COMPOSICIONAL: MODELOS LOCALES + MATRIZ DE INTERCONEXIÓN
+
+En una representación portuaria compatible, se buscan contratos locales válidos
+para TODO estado/puerto en el dominio declarado:
+  Vdot_i + 2 alpha V_i
+       <= [u_i;y_i]^T Pi_i(p_i) [u_i;y_i] + w^T R_i w.    (20)
+Aquí R_i>=0 está expresada en las mismas coordenadas globales de w; incluye la
+selección local apropiada. Pi_i y V_i se obtienen de las ecuaciones no lineales,
+no únicamente de un Jacobiano nominal. La conexión se expresa como
+  u=M_G y+B_G w,    [u;y]=T_G[y;w],
+  T_G=[[M_G,B_G],[I,0]].                                  (21)
+Pi es el ensamblaje de los Pi_i en el orden GLOBAL [u;y]; si el código usa
+[u_1;y_1;u_2;y_2;...] debe aplicar la permutación correspondiente.
+
+Si se verifica
+  M_cert := T_G^T Pi T_G
+             + blockdiag(0, sum_i R_i-mu R_w) <= 0,       (22)
+entonces la suma de (20) da (10) para V=sum_i V_i. Hay que verificar también
+contención inicial, restricciones operativas y regularidad algebraica.
+En una red genuinamente difusiva M_G=-L tensor I. Para AC completo se usa su
+operador de puertos realificado o una restricción algebraica equivalente;
+no se impone artificialmente la conexión difusiva al modelo.
+
+(22) conserva términos entre nodos. La positividad de un parámetro de damping
+aislado no implica (22), y el fallo de un contrato local no prueba inestabilidad
+de la interconexión. Si la familia separable es demasiado conservadora, se amplía
+con (13), cliques/subredes o multiplicadores dinámicos con sus hipótesis propias.
+Un contrato con IQC integral requiere contabilizar su almacenamiento/filtro y
+su validez en horizonte finito; no se sustituye por una cota puntual gratuitamente.
+
+7B. FÓRMULA ESPECTRAL CERRADA BAJO CONTRATOS HOMOGÉNEOS
+
+Esta especialización da un papel analítico concreto a Fourier del grafo, sin
+suponer que las ecuaciones no lineales se hayan desacoplado. Escribamos el
+suministro apilado como Pi=[[Q_c,S_c],[S_c^T,R_c]]. Para u=-L y+B_w w, (22) es
+  [[ L^T Q_c L-L^T S_c-S_c^T L+R_c,  (S_c^T-L^T Q_c)B_w ],
+   [ B_w^T(S_c-Q_c L), B_w^T Q_c B_w+R_sum-mu R_w ]] <=0. (29)
+Se han omitido productos tensor I del puerto para facilitar lectura.
+Las matrices Q_c,S_c,R_c dependen de los contratos de los dispositivos y por
+tanto, cuando se logren obtener, de rho,Kp,Ki y demás parámetros físicos.
+
+Si los contratos son homogéneos (aunque sus realizaciones internas puedan ser
+distintas), Q_c=q I, S_c=s I, R_c=-d I, B_w=I, R_sum=sigma I y R_w=r I, con
+r>0, entonces (U^T tensor I) transforma EXACTAMENTE (29) en los bloques
+  M_k = [[ q lambda_k^2-2 s lambda_k-d,  s-q lambda_k ],
+         [ s-q lambda_k,                q+sigma-mu r ]]
+       <=0,                 para todo lambda_k in spec(L).     (30)
+Esto diagonaliza el TEST CUADRÁTICO de interconexión; no la planta no lineal.
+La transformación de w preserva su envolvente isotrópica, de modo que se cubren
+todas sus direcciones, incluyendo las coherentes, sin elegir ubicaciones.
+
+Cuando Delta=mu r-q-sigma>0, el complemento de Schur da la condición escalar
+  q lambda_k^2 - 2 s lambda_k - d
+        + (s-q lambda_k)^2 / Delta <= 0,                 (31)
+con mu<=2 alpha c. Deben cumplirse A,D y la regularidad de §4 además de (31).
+La igualdad Delta=0 se trata con la matriz (30), no dividiendo por cero.
+
+El modo lambda_1=0 exige -d+s^2/Delta<=0: la conectividad no puede reparar por
+sí sola la falta de soporte del modo coherente. Para q>=0, el lado izquierdo de
+(31) es convexo en lambda, por lo que verificarlo en 0 y lambda_bar basta para
+todos los Laplacianos simétricos con espectro en [0,lambda_bar] y los mismos
+contratos. Esta es una condición suficiente para una FAMILIA de redes; no una
+declaración de que la capacidad real dependa únicamente de lambda_bar.
+
+Con contratos heterogéneos Q_c,S_c,R_c ya no conmutan en general con L. Se usa
+(29), o se deriva una envolvente demostrada; sustituirlos por promedios no
+mantiene el certificado. Así, incluso la ruta espectral necesita más información
+que un damping por nodo: usa ganancias de suministro, interacciones y recursos.
+Las identidades (29)-(31) son álgebra de disipatividad/complemento de Schur,
+no una nueva ley universal de GFL. Falta construir contratos no triviales del
+modelo SG/GFL completo antes de usarlas como resultado aplicado.
+
+8. SÍNTESIS DE rho, Kp, Ki Y MARGEN DE CAPACIDAD
+
+Sean s_i>=0 pesos físicos fijos (por ejemplo potencia de referencia, no energía)
+y sum_i s_i>0. Definimos la capacidad robusta certificable en una familia Vset:
+  C_cert^* = sup [sum_i s_i rho_i / sum_i s_i]             (23)
+             sobre p,V in Vset,alpha,mu,c y multiplicadores,
+             sujeto a (8), (10)-(11), mu<=2 alpha c,
+             Z0 subset Omega_c y límites físicos/de control.
+Si existen varios puntos de operación, las condiciones se imponen para todos,
+con certificado común o una familia debidamente justificada.
+
+Para un resultado efectivamente verificado y el mismo modelo, recursos, entradas
+y condiciones iniciales:
+  C_encontrada <= C_cert^* <= C_robusta_física^*.           (24)
+Encontrar C_encontrada no demuestra las dos igualdades. La familia de certificados
+y la optimización no convexa son dos fuentes distintas de pérdida.
+
+Una ruta iterativa apropiada es:
+  1. Fijar p y buscar V, contratos/multiplicadores y márgenes verificables.
+  2. Fijar o actualizar el certificado y proponer un paso conjunto en rho y kappa.
+  3. Verificar las desigualdades universales para el nuevo diseño; aceptar sólo
+     si se preservan los márgenes y mejora el objetivo.
+  4. Ampliar la familia de certificados si su conservadurismo impide progresar.
+No es EM: no hay una distribución latente o una verosimilitud que lo justifique.
+Puede ser una alternancia SDP/SOS + optimización secuencial, cuando la estructura
+permita esos subproblemas. Ganancias por coeficientes de V, rho por ganancias y
+descripción de Omega_c producen productos bilineales/no convexidad en general.
+Ni cada bloque es automáticamente convexo ni la alternancia garantiza el máximo.
+
+Si (22) es una matriz simétrica diferenciable y su autovalor máximo es simple,
+  d lambda_max(M_cert)/d p_j = q^T (d M_cert/d p_j) q,     (25)
+con ||q||=1. Si hay multiplicidad se usa el subespacio activo, no un autovector
+elegido arbitrariamente. Esta derivada sugiere un paso de confianza conjunto:
+  max_delta  s^T delta_rho - (eta/2)||delta_p||^2,
+  sujeto a modelos locales de los márgenes, cotas y región de confianza.
+La aceptación necesita reverificar el certificado completo, porque (25) sólo
+predice el cambio de margen. Los vectores q son modos del CERTIFICADO, distintos
+de los modos dinámicos temporales y de la Fourier estructural de (14).
+
+Un intercambio infinitesimal i -> j a capacidad total fija satisface
+  s_i delta_rho_i + s_j delta_rho_j = 0.
+El retuning local intenta mantener los márgenes activos mediante
+  J_rho delta_rho + J_kappa delta_kappa <= 0.             (26)
+Así se define intercambiabilidad condicionada por el modelo, el estado operativo,
+el certificado y los actuadores disponibles. No existe una tabla universal de
+equivalencias de nodos basada únicamente en damping o en su grado.
+
+Las ecuaciones de los dispositivos son locales; el margen de red no lo es.
+Operadores polinomiales L^m permiten cómputo con intercambios entre vecinos a m
+saltos. Eso no convierte automáticamente el óptimo global en una decisión basada
+sólo en mediciones locales sin información o coordinación de red.
+
+9. VERIFICACIÓN SIN SUSTITUIR LA PLANTA POR UNA LINEALIZACIÓN
+
+En vez de formar psi explícitamente, se puede verificar directamente en la
+variedad g(z,v,w)=0. Con c=1 por normalización, sea
+  Phi = -grad V^T f_aug - 2 alpha V + mu w^T R_w w.
+Para modelos polinomiales, una condición suficiente es
+  Phi - sigma_V(1-V) - sigma_W(1-w^T R_w w)
+       - sum_j sigma_j d_j(z,v,w) - ell(z,v,w)^T g
+        es SOS,                                          (27)
+con sigma no negativas/SOS y d_j>=0 describiendo el dominio. Sobre ese dominio
+y g=0, (27) implica Phi>=0. Se necesitan condiciones análogas para positividad
+de V, inclusión inicial y cada salida segura. El multiplicador ell de la igualdad
+no necesita signo. Hay que controlar también la rama algebraica física.
+
+Senos, cocientes y saturaciones del modelo real exigen un tratamiento explícito:
+levantamientos exactos con identidades y dominios válidos; multiplicación por
+denominadores de signo conocido; contratos sectoriales; o aproximaciones con
+cotas rigurosas de error. Un Taylor truncado sin resto acotado no es certificado.
+Para F=F_T+DeltaF, ||DeltaF||<=epsilon(z), se puede imponer
+  grad V^T F_T + ||grad V|| epsilon(z)
+       <= -2 alpha V + mu w^T R_w w.                     (28)
+
+Derivar Jacobianos/Hessianos sobre toda la región no equivale a sustituir la
+planta por el Jacobiano del equilibrio. Si se usa Taylor de una DAE reducida,
+la curvatura de psi cuenta. Para direcciones a,b y w,p fijos:
+  psi_z=-g_v^{-1}g_z,
+  D2psi[a,b]=-g_v^{-1}(g_zz[a,b]+g_zv[a,psi_z b]
+                    +g_vz[psi_z a,b]+g_vv[psi_z a,psi_z b]).
+En D2(f o (id,psi)) aparece además f_v D2psi. Eliminar ese término da una
+expansión incorrecta incluso si las ecuaciones diferenciales locales son exactas.
+
+El análisis modal nominal puede inicializar o diagnosticar el diseño. Una prueba
+de autovalores nominales, una simulación prolongada o un barrido de perturbaciones
+no reemplazan la verificación de (10)-(11). Solvers SOS/SDP en punto flotante
+requieren márgenes, residuos y, si se afirma rigor formal, validación de redondeo
+o reconstrucción exacta/intervalar apropiada.
+
+10. RELACIÓN CON LA EVIDENCIA EXISTENTE Y PRÓXIMO RESULTADO EXIGIBLE
+
+Actualización más reciente: coupled_network_contract/CERTIFICADO_ACOPLADO_Y_LIMITES_ES.txt
+implementa el certificado conjunto de 281 estados y 88 canales de entrada, con
+medidas de frecuencia/RoCoF en los 39 buses. Conserva el modelo no lineal y verifica
+una envolvente de sus derivadas mediante intervalos. La entrada certificada es
+solamente epsilon=1.2087e-13 en la normalización declarada: no es todavía una
+envolvente útil para cuantificar sustitución práctica ni optimizar capacidad.
+La métrica modal con términos entre buses mejora la cota pero no resuelve la
+pérdida de dependencias de las cajas intervalares. Los límites de hardware siguen
+sin validarse y el porcentaje del candidato NO se convierte en máximo robusto.
+La implementación, sus hipótesis aritméticas, auditorías y limitaciones están
+documentadas en ese informe. El próximo paso es reducir ese conservadurismo
+con residuos factorizados/sectores y estructura de la DAE, manteniendo el objetivo.
+
+Actualización principal: full_gfl_sector_contract/GFL_COMPLETO_Y_COMPOSICION_ES.txt
+extiende el contrato a los nueve estados de cada GFL y al instrumento de RoCoF.
+Se verificaron racionalmente 32 vértices por dispositivo, 320 en total, conservando
+las no linealidades mediante una inclusión multiafín y cubriendo el residuo de trim.
+Es un resultado condicionado por los puertos de tensión, frecuencia de referencia
+y potencia DC. No impone una forma temporal de perturbación. Los límites de dominio
+de corriente/tensión DC usados no equivalen a ratings de hardware comprobados.
+
+También se construyó y contrastó con la DAE de Julia un testigo de fallo de cierre
+de esos contratos independientes. Diez variaciones de estado dentro de sus regiones
+locales usan, por separado, como máximo 0.887195 de la cota de entrada de tensión
+de cualquier receptor. Juntas, usan 2.728973 en un receptor, aun cuando cada
+V_i <= 0.019796. Se usó una rebanada algebraica EXACTA, sin elegir eventos temporales.
+Esto impide concluir invariancia de la red a partir de ese producto de regiones;
+no demuestra inestabilidad, alcanzabilidad del testigo ni un límite de sustitución.
+La siguiente síntesis debe incorporar la interconexión mediante contratos de
+suministro, términos cruzados o multiplicadores de la igualdad DAE, conservando
+SG, restricciones de salida, regularidad y frecuencia común.
+
+Las cotas duales verificadas de los SDP del GFL completo siguen siendo poco
+ajustadas (brechas de 15.4% a 66.6% a ganancias fijas). No se ha demostrado
+cercanía al óptimo de esos contratos ni se reutiliza para ellos la brecha muy
+pequeña obtenida anteriormente para el PLL aislado.
+
+Actualización de implementación: pll_sector_contract/CONTRATO_PLL_ES.txt contiene
+el primer contrato no lineal verificado para el PLL instalado y un instrumento de
+RoCoF. La inclusión sectorial conserva el seno y la frecuencia común. La síntesis
+SDP tiene verificación racional de factibilidad y una cota dual del óptimo a
+ganancias fijas; la búsqueda exterior en Kp,Ki sigue siendo local. El contrato
+es condicional a entradas de tensión y velocidad de referencia y todavía NO cierra
+la interconexión de corriente/DC/SG/red ni certifica un porcentaje de sustitución.
+
+El nuevo resultado Q2B de otro chat se registra separadamente en
+Q2B_CERTIFIED_SEARCH_TRANSFER_AUDIT.txt. Ofrece evidencia numérica de optimalidad
+local para su problema analítico de un evento y ensayos PD; no es un certificado
+del presente problema no lineal universal. Su modelo conserva la convención DC
+heredada. Reutilizar el candidato requiere reevaluar el modelo y las restricciones.
+
+Los experimentos en esta carpeta aportan un backend DAE no lineal, auditorías
+de sensibilidad, identidad energética y comparaciones temporales. El diseño
+numérico publicado en RESULTADOS_ES.txt sigue siendo factible en los ensayos
+declarados. NO se ha construido para él V, (22) o (27) que cubra la envolvente
+de esos ensayos de operación: el certificado microscópico posterior no la cubre.
+No se debe presentar su porcentaje como C_cert^*.
+
+En la campaña anterior del póster, FINAL_TRANSACTION_THEORY_AND_EVIDENCE.md §B.10
+reportó certificados de curvatura extremadamente conservadores y fallos de small
+gain, sobre otro modelo congelado. Esto aconseja probar pronto contratos con
+interacciones/subredes. No demuestra que (13) funcionará ni que el modelo actual
+herede aquellos resultados: ambos modelos y sus servicios de frecuencia difieren.
+
+El siguiente resultado útil debe contener:
+  - un dominio no trivial, un certificado concreto y sus hipótesis físicas;
+  - la verificación universal de entrada, estado y límites de salida;
+  - sustitución y ganancias obtenidas con un margen certificado positivo;
+  - comparación bajo idénticos recursos contra contratos sólo locales y contra
+    ajuste modal nominal, para medir conservadurismo y utilidad del acoplamiento;
+  - auditoría de etiquetas/topologías y perturbaciones externas al entrenamiento,
+    como contrastes independientes y no como sustitutos del certificado;
+  - separación entre cota alcanzada, mejor cota superior conocida y óptimo global.
+
+Hipótesis de contribución para el póster: co-diseñar la sustitución SG->GFL y su
+control mediante certificados no lineales que retienen interacciones del operador
+de red, cuantificando qué combinaciones de sustitución y retuning conservan un
+dominio seguro para toda entrada admisible. Esto debe demostrarse útil antes de
+presentarse como novedad validada o capacidad óptima.
+
+Título provisional, sujeto a que se obtenga un certificado de utilidad operativa:
+  Beyond Nodal Damping: Graph-Structured Certificates for SG-to-GFL Replacement
+Sin esa cobertura útil, el título y las conclusiones deben indicar que se trata
+de una formulación/prototipo con validación temporal preliminar.
+
+11. ANTECEDENTES PRIMARIOS Y ATRIBUCIÓN
+
+[1] Jensen, Junnarkar, Arcak, Wu, Gumussoy. Certifying Stability and Performance
+    of Uncertain Differential-Algebraic Systems: A Dissipativity Framework.
+    https://arxiv.org/abs/2308.08471
+    Antecedente: disipatividad de DAE inciertas, IQCs, SOS/SDP. Sus condiciones
+    de desempeño L2 no son por sí solas nuestras cotas instantáneas de f/RoCoF.
+
+[2] Xu, Tabuada, Grizzle, Ames. Robustness of Control Barrier Functions for
+    Safety Critical Control. https://arxiv.org/abs/1612.01554
+    Antecedente: barreras e invariancia robusta. La robustez tipo ISS de una
+    barrera nominal puede preservar un conjunto relajado; (19) exige incorporar
+    explícitamente el peor efecto admisible para preservar el conjunto indicado.
+
+[3] Shuman, Narang, Frossard, Ortega, Vandergheynst. The Emerging Field of Signal
+    Processing on Graphs. https://arxiv.org/abs/1211.0053
+    Antecedente: Fourier y filtros de grafo. No prueba desacoplamiento dinámico
+    no lineal ni seguridad de una red SG/GFL.
+
+Las fórmulas de soporte elipsoidal, composición de suministros, invariancia y
+sensibilidad de autovalores son ingredientes establecidos. Su inclusión aquí
+no constituye una reivindicación de prioridad matemática. La aportación concreta
+dependerá del certificado y del algoritmo SG/GFL que logremos construir y validar.
+
+Auditoría reproducible de las identidades (17), (29)-(31) y de invariancia a
+permutaciones: experiments/nonlinear_codesign_20261001/audit_graph_control_identities.py.
+La salida graph_control_identity_audit.json de esta carpeta incluye semilla,
+versiones, errores y hashes. Comprueba el álgebra numérica; no verifica (20) para
+dispositivos SG/GFL ni sustituye las hipótesis del resultado condicional de §4.

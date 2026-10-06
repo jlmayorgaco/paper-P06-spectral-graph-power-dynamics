@@ -1,0 +1,872 @@
+source,key,value
+H03_gate.json,bound_check_all_ok,true
+H03_gate.json,new_n_base_stable,19
+H03_gate.json,new_n_base_unstable,5
+H03_gate.json,new_frac_A,1.0
+H03_gate.json,new_frac_A_both_dirs,0.8947368421052632
+H03_gate.json,new_frac_B,0.9473684210526315
+H03_gate.json,new_frac_B_both_dirs,0.42105263157894735
+H03_gate.json,new_frac_C,0.8947368421052632
+H03_gate.json,new_frac_C_both_dirs,0.3684210526315789
+H03_gate.json,new_frac_D,0.8947368421052632
+H03_gate.json,new_frac_D_both_dirs,0.15789473684210525
+H03_gate.json,new_frac_arbitrary_global,1.0
+H03_gate.json,new_frac_arbitrary_tracked,0.9473684210526315
+H03_gate.json,old_n_base_stable,18
+H03_gate.json,old_n_base_unstable,6
+H03_gate.json,old_frac_A,1.0
+H03_gate.json,old_frac_A_both_dirs,0.9444444444444444
+H03_gate.json,old_frac_B,0.8888888888888888
+H03_gate.json,old_frac_B_both_dirs,0.2777777777777778
+H03_gate.json,old_frac_C,0.8888888888888888
+H03_gate.json,old_frac_C_both_dirs,0.2777777777777778
+H03_gate.json,old_frac_D,0.8888888888888888
+H03_gate.json,old_frac_D_both_dirs,0.16666666666666666
+H03_gate.json,old_frac_arbitrary_global,1.0
+H03_gate.json,old_frac_arbitrary_tracked,0.8888888888888888
+H03_gate.json,discovery_n_base_stable,15
+H03_gate.json,discovery_n_base_unstable,0
+H03_gate.json,discovery_frac_A,1.0
+H03_gate.json,discovery_frac_A_both_dirs,0.9333333333333333
+H03_gate.json,discovery_frac_B,0.9333333333333333
+H03_gate.json,discovery_frac_B_both_dirs,0.4
+H03_gate.json,discovery_frac_C,0.9333333333333333
+H03_gate.json,discovery_frac_C_both_dirs,0.4
+H03_gate.json,discovery_frac_D,0.9333333333333333
+H03_gate.json,discovery_frac_D_both_dirs,0.3333333333333333
+H03_gate.json,discovery_frac_arbitrary_global,1.0
+H03_gate.json,discovery_frac_arbitrary_tracked,0.9333333333333333
+H03_gate.json,H3_primary_frac_C_new,0.8947368421052632
+H03_gate.json,H3_pass,true
+H03_gate.json,H3_D_secondary_pass,true
+H03_gate.json,L1_pass,true
+H03_gate.json,L2_pass,true
+H03_gate.json,L3_pass,true
+H03_gate.json,L4_pass,true
+H03_gate.json,new_C_pairs,3263
+H03_gate.json,new_C_dir_counts.d2s,2172
+H03_gate.json,new_C_dir_counts.s2d,1091
+H03_gate.json,new_C_mag_quartiles,"[0.01127, 0.0127, 0.01653]"
+H03_gate.json,new_C_frac_em_clean_witness,0.9436101746858719
+H04_gate.json,new_FULL_n,19
+H04_gate.json,new_FULL_median_pstar,0.7494231656668204
+H04_gate.json,new_FULL_median_frac_regret,0.3761467889908257
+H04_gate.json,new_FULL_range_pstar,"[0.6220760233918129, 0.8321631561350719]"
+H04_gate.json,new_EM_n,19
+H04_gate.json,new_EM_median_pstar,0.9728997289972899
+H04_gate.json,new_EM_median_frac_regret,0.034334763948497854
+H04_gate.json,new_EM_range_pstar,"[0.8048780487804879, 0.994535519125683]"
+H04_gate.json,new_SAME_n,19
+H04_gate.json,new_SAME_median_pstar,0.9780412823891085
+H04_gate.json,new_SAME_median_frac_regret,0.02262443438914027
+H04_gate.json,new_SAME_range_pstar,"[0.7913043478260869, 0.994535519125683]"
+H04_gate.json,old_FULL_n,18
+H04_gate.json,old_FULL_median_pstar,0.7516759185322726
+H04_gate.json,old_FULL_median_frac_regret,0.36922190047190045
+H04_gate.json,old_FULL_range_pstar,"[0.6383777694329703, 0.8412784398699892]"
+H04_gate.json,old_EM_n,18
+H04_gate.json,old_EM_median_pstar,0.9722925062802207
+H04_gate.json,old_EM_median_frac_regret,0.028925619834710745
+H04_gate.json,old_EM_range_pstar,"[0.7723214285714286, 1.0]"
+H04_gate.json,old_SAME_n,18
+H04_gate.json,old_SAME_median_pstar,0.9779600254887368
+H04_gate.json,old_SAME_median_frac_regret,0.021692076039902128
+H04_gate.json,old_SAME_range_pstar,"[0.7962085308056872, 1.0]"
+H04_gate.json,discovery_FULL_n,15
+H04_gate.json,discovery_FULL_median_pstar,0.7861213543412672
+H04_gate.json,discovery_FULL_median_frac_regret,0.3597560975609756
+H04_gate.json,discovery_FULL_range_pstar,"[0.6665581243894497, 0.8274155995343423]"
+H04_gate.json,discovery_EM_n,15
+H04_gate.json,discovery_EM_median_pstar,0.9763676148796498
+H04_gate.json,discovery_EM_median_frac_regret,0.029045643153526972
+H04_gate.json,discovery_EM_range_pstar,"[0.7622504537205081, 1.0]"
+H04_gate.json,discovery_SAME_n,15
+H04_gate.json,discovery_SAME_median_pstar,0.981810115350488
+H04_gate.json,discovery_SAME_median_frac_regret,0.016736401673640166
+H04_gate.json,discovery_SAME_range_pstar,"[0.8072445019404916, 1.0]"
+H04_gate.json,H4_new_pass,true
+H04_gate.json,L5_pass,true
+H04_gate.json,transfer_n_policies,52
+H04_gate.json,transfer_median_diag_acc,0.7625660471756824
+H04_gate.json,transfer_median_offdiag_acc,0.7252331209386425
+H04_gate.json,transfer_median_diag_regret,0.3736861861861862
+H04_gate.json,transfer_median_offdiag_regret_by_test,0.3960071053444547
+H04_gate.json,transfer_new_median_offdiag_regret_by_test,0.40186915887850466
+H04_gate.json,transfer_new_median_diag_regret,0.3761467889908257
+H04_gate.json,L6_pass,true
+H04_gate.json,distance_vs_degradation_spearman,0.30604217879644
+H04_gate.json,distance_vs_degradation_mantel_p_descriptive,0.0
+H04_gate.json,n_distinct_optimal_orders_full,24
+H04_gate.json,regret_anatomy_new.decisions,6149
+H04_gate.json,regret_anatomy_new.material,2265
+H04_gate.json,regret_anatomy_new.choice_out_of_EM_band,2089
+H04_gate.json,regret_anatomy_new.choice_out_of_band_and_delta_ge_1,2032
+H04_gate.json,regret_anatomy_new.share_out_of_band,0.9222958057395143
+H05_stats.json,new_cov_A,"[1.0, 1.0, 1.0]"
+H05_stats.json,new_cov_B,"[0.9473684210526315, 0.8421052631578947, 1.0]"
+H05_stats.json,new_cov_C,"[0.8947368421052632, 0.7368421052631579, 1.0]"
+H05_stats.json,new_cov_D,"[0.8947368421052632, 0.7368421052631579, 1.0]"
+H05_stats.json,new_C_mag_per_policy_median,"[0.012632458705503738, 0.011960823091717865, 0.013233168616465452]"
+H05_stats.json,new_C_mag_IQR,"[0.011960823091717865, 0.013233168616465452]"
+H05_stats.json,new_FULL_pstar,"[0.7494231656668204, 0.7397160538769567, 0.7825015403573629]"
+H05_stats.json,new_FULL_pstar_IQR,"[0.7362601433405948, 0.7840069539242644]"
+H05_stats.json,new_FULL_regret,"[0.3761467889908257, 0.3603603603603603, 0.3869047619047619]"
+H05_stats.json,new_FULL_regret_IQR,"[0.35691734030102606, 0.39827165806081466]"
+H05_stats.json,new_EM_pstar,"[0.97289972899729, 0.9523449319213312, 0.9762532981530344]"
+H05_stats.json,new_EM_pstar_IQR,"[0.948511770491751, 0.9774961505427928]"
+H05_stats.json,new_EM_regret,"[0.0343347639484978, 0.0206611570247933, 0.0844444444444444]"
+H05_stats.json,new_EM_regret_IQR,"[0.01652892561983465, 0.08959064327485375]"
+H05_stats.json,new_SAME_pstar,"[0.9780412823891084, 0.9671977507029054, 0.9836065573770492]"
+H05_stats.json,new_SAME_pstar_IQR,"[0.9612558801823705, 0.9838812799072936]"
+H05_stats.json,new_SAME_regret,"[0.0226244343891402, 0.0175438596491228, 0.0666666666666666]"
+H05_stats.json,new_SAME_regret_IQR,"[0.0152096980649047, 0.0668061366806136]"
+H05_stats.json,old_cov_A,"[1.0, 1.0, 1.0]"
+H05_stats.json,old_cov_B,"[0.8888888888888888, 0.7222222222222222, 1.0]"
+H05_stats.json,old_cov_C,"[0.8888888888888888, 0.7222222222222222, 1.0]"
+H05_stats.json,old_cov_D,"[0.8888888888888888, 0.7222222222222222, 1.0]"
+H05_stats.json,old_C_mag_per_policy_median,"[0.01312159683606548, 0.011536793862568895, 0.014627593522634458]"
+H05_stats.json,old_C_mag_IQR,"[0.011520203060747927, 0.014790097501530625]"
+H05_stats.json,old_FULL_pstar,"[0.7516759185322726, 0.7333707775432874, 0.7836708540098201]"
+H05_stats.json,old_FULL_pstar_IQR,"[0.7332726430896902, 0.7840646815759368]"
+H05_stats.json,old_FULL_regret,"[0.3692219004719004, 0.3513545198759108, 0.39250493096646943]"
+H05_stats.json,old_FULL_regret_IQR,"[0.35082696053675777, 0.3949704142011834]"
+H05_stats.json,old_EM_pstar,"[0.9722925062802207, 0.9606219790856239, 0.9778617216117216]"
+H05_stats.json,old_EM_pstar_IQR,"[0.957250960260235, 0.978514194139194]"
+H05_stats.json,old_EM_regret,"[0.0289256198347107, 0.0165289256198347, 0.05700107296137335]"
+H05_stats.json,old_EM_regret_IQR,"[0.0165289256198347, 0.05975053648068668]"
+H05_stats.json,old_SAME_pstar,"[0.9779600254887368, 0.9729220619065235, 0.9869415106505526]"
+H05_stats.json,old_SAME_pstar_IQR,"[0.9727817856702429, 0.9871063957389598]"
+H05_stats.json,old_SAME_regret,"[0.0216920760399021, 0.0043668122270742, 0.03347338935574225]"
+H05_stats.json,old_SAME_regret_IQR,"[0.0021834061135371, 0.03354341736694672]"
+H05_stats.json,discovery_cov_A,"[1.0, 1.0, 1.0]"
+H05_stats.json,discovery_cov_B,"[0.9333333333333333, 0.8, 1.0]"
+H05_stats.json,discovery_cov_C,"[0.9333333333333333, 0.8, 1.0]"
+H05_stats.json,discovery_cov_D,"[0.9333333333333333, 0.8, 1.0]"
+H05_stats.json,discovery_C_mag_per_policy_median,"[0.01269646405847312, 0.01215143723793545, 0.014775562836001399]"
+H05_stats.json,discovery_C_mag_IQR,"[0.012130544567930238, 0.014750283794815716]"
+H05_stats.json,discovery_FULL_pstar,"[0.7861213543412672, 0.7593167701863354, 0.8006299212598426]"
+H05_stats.json,discovery_FULL_pstar_IQR,"[0.7625660471756824, 0.7990088655194055]"
+H05_stats.json,discovery_FULL_regret,"[0.3597560975609756, 0.3475609756097561, 0.3843843843843844]"
+H05_stats.json,discovery_FULL_regret_IQR,"[0.3493757259001161, 0.38426536292389946]"
+H05_stats.json,discovery_EM_pstar,"[0.9763676148796498, 0.966880341880342, 0.9840510366826156]"
+H05_stats.json,discovery_EM_pstar_IQR,"[0.9682227796358231, 0.9833655365728484]"
+H05_stats.json,discovery_EM_regret,"[0.0290456431535269, 0.0135135135135135, 0.0371900826446281]"
+H05_stats.json,discovery_EM_regret_IQR,"[0.0150212195666741, 0.0371900826446281]"
+H05_stats.json,discovery_SAME_pstar,"[0.981810115350488, 0.968026460859978, 0.9872568745808182]"
+H05_stats.json,discovery_SAME_pstar_IQR,"[0.9691984156151743, 0.986564865141065]"
+H05_stats.json,discovery_SAME_regret,"[0.0167364016736401, 0.0046296296296296, 0.0416666666666666]"
+H05_stats.json,discovery_SAME_regret_IQR,"[0.00646419240817575, 0.0416666666666666]"
+H05_stats.json,shift_pstar_new_minus_old,"[-0.0022527528654521234, -0.03595445194883995, 0.040758676798109295]"
+H05_stats.json,shift_regret_new_minus_old,"[0.0069248885189253095, -0.01987916059772349, 0.02890001564700362]"
+H05_stats.json,T1_sign_test.k_below_0.90,19
+H05_stats.json,T1_sign_test.n,19
+H05_stats.json,T1_sign_test.p_one_sided,1.9073486328125e-06
+H05_stats.json,L7_cov_by_env_global.EC,1.0
+H05_stats.json,L7_cov_by_env_global.EM-f,0.9
+H05_stats.json,L7_cov_by_env_global.EM-u,0.8
+H05_stats.json,L7_cov_by_env_global.EMC,1.0
+H05_stats.json,L7_cov_by_env_samemode.EC,0.0
+H05_stats.json,L7_cov_by_env_samemode.EM-f,0.5
+H05_stats.json,L7_cov_by_env_samemode.EM-u,0.6
+H05_stats.json,L7_cov_by_env_samemode.EMC,0.7
+H05_stats.json,L7_cov_by_env_EM_samemode.EC,0.0
+H05_stats.json,L7_cov_by_env_EM_samemode.EM-f,0.5
+H05_stats.json,L7_cov_by_env_EM_samemode.EM-u,0.6
+H05_stats.json,L7_cov_by_env_EM_samemode.EMC,0.7
+H05_stats.json,L7_n_envs_ge_0.5,4
+H05_stats.json,L7_pass,true
+H05_stats.json,L7_EM_n_envs_ge_0.5,3
+H07_goldb_gate.json,IV_frac_ok_links,1.0
+H07_goldb_gate.json,IV_n,4048
+H07_goldb_gate.json,n_conditions,88
+H07_goldb_gate.json,n_conditions_failed_R0,77
+H07_goldb_gate.json,frac_steps_converged_g1.50,1.0
+H07_goldb_gate.json,frac_steps_admissible_g1.50,1.0
+H07_goldb_gate.json,n_conditions_R0_eligible,11
+H07_goldb_gate.json,R0_max_all,2.1461792529264834e-07
+H07_goldb_gate.json,GB_prereg_n,8
+H07_goldb_gate.json,GB_prereg_n_clusters,6
+H07_goldb_gate.json,GB_prereg_median_rho_Dtotal,0.9845821769966081
+H07_goldb_gate.json,GB_prereg_median_rho_Dfrozen,0.9129201356768423
+H07_goldb_gate.json,GB_prereg_median_rho_Dconv,-0.04613012642614862
+H07_goldb_gate.json,GB_prereg_median_rho_S1,0.4905951279679309
+H07_goldb_gate.json,GB_prereg_median_rho_oracle_static,0.4905951279679309
+H07_goldb_gate.json,GB_prereg_median_diff,0.4915201973481344
+H07_goldb_gate.json,GB_prereg_diff_ci95,"[0.477459142769041, 0.6084489670058588]"
+H07_goldb_gate.json,GB_prereg_diff_lo5,0.477459142769041
+H07_goldb_gate.json,GB_prereg_mean_diff,0.5507554733271662
+H07_goldb_gate.json,GB_prereg_median_diff_vs_oracle_static,0.4915201973481344
+H07_goldb_gate.json,GB_prereg_median_top5_Dtotal,1.0
+H07_goldb_gate.json,GB_prereg_median_top5_S1,0.2
+H07_goldb_gate.json,GB_prereg_frac_cond_Dtotal_beats_every_static,1.0
+H07_goldb_gate.json,GB_prereg_pass,true
+H07_goldb_gate.json,GB_prereg_T2_signflip_p,0.061193880611938804
+H07_goldb_gate.json,GB_prereg_median_kendall_Dtotal,0.9236714975845411
+H07_goldb_gate.json,GB_prereg_median_kendall_S1,0.38550724637681166
+H07_goldb_gate.json,GB_prereg_median_concord_Dtotal,0.9800747347615884
+H07_goldb_gate.json,GB_prereg_median_concord_S1,0.7043629241960436
+H07_goldb_gate.json,GB_prereg_median_top3_Dtotal,0.8333333333333333
+H07_goldb_gate.json,GB_prereg_median_top3_S1,0.0
+H07_goldb_gate.json,GB_prereg_median_ndcg5_Dtotal,0.9855643057688763
+H07_goldb_gate.json,GB_prereg_median_ndcg5_S1,0.6294081652602959
+H07_goldb_gate.json,GB_prereg_median_sign_acc_Dtotal,1.0
+H07_goldb_gate.json,GB_prereg_median_sign_acc_S1,NaN
+H07_goldb_gate.json,GB_hardened_pass,true
+H07_goldb_gate.json,GB_primary_n,64
+H07_goldb_gate.json,GB_primary_n_clusters,28
+H07_goldb_gate.json,GB_primary_median_rho_Dtotal,0.9873573851372186
+H07_goldb_gate.json,GB_primary_median_rho_Dfrozen,0.8951588035769349
+H07_goldb_gate.json,GB_primary_median_rho_Dconv,0.033919210607462225
+H07_goldb_gate.json,GB_primary_median_rho_S1,0.4965155720012334
+H07_goldb_gate.json,GB_primary_median_rho_oracle_static,0.4987974098057354
+H07_goldb_gate.json,GB_primary_median_diff,0.488868331791551
+H07_goldb_gate.json,GB_primary_diff_ci95,"[0.48399629972247926, 0.6380511871723711]"
+H07_goldb_gate.json,GB_primary_diff_lo5,0.4844896700585878
+H07_goldb_gate.json,GB_primary_mean_diff,0.5845783225408572
+H07_goldb_gate.json,GB_primary_median_diff_vs_oracle_static,0.4872648781991983
+H07_goldb_gate.json,GB_primary_median_top5_Dtotal,1.0
+H07_goldb_gate.json,GB_primary_median_top5_S1,0.2
+H07_goldb_gate.json,GB_primary_frac_cond_Dtotal_beats_every_static,1.0
+H07_goldb_gate.json,GB_primary_pass,true
+H07_goldb_gate.json,GB_primary_T2_signflip_p,9.999000099990002e-05
+H07_goldb_gate.json,GB_primary_median_kendall_Dtotal,0.9285024154589373
+H07_goldb_gate.json,GB_primary_median_kendall_S1,0.38937198067632856
+H07_goldb_gate.json,GB_primary_median_concord_Dtotal,0.9803816105384808
+H07_goldb_gate.json,GB_primary_median_concord_S1,0.7051346467177795
+H07_goldb_gate.json,GB_primary_median_top3_Dtotal,1.0
+H07_goldb_gate.json,GB_primary_median_top3_S1,0.0
+H07_goldb_gate.json,GB_primary_median_ndcg5_Dtotal,0.9936603399123897
+H07_goldb_gate.json,GB_primary_median_ndcg5_S1,0.6072232781273372
+H07_goldb_gate.json,GB_primary_median_sign_acc_Dtotal,1.0
+H07_goldb_gate.json,GB_primary_median_sign_acc_S1,NaN
+H07_goldb_gate.json,GB_EM_n,61
+H07_goldb_gate.json,GB_EM_n_clusters,27
+H07_goldb_gate.json,GB_EM_median_rho_Dtotal,0.9875423990132592
+H07_goldb_gate.json,GB_EM_median_rho_Dfrozen,0.8977489978415046
+H07_goldb_gate.json,GB_EM_median_rho_Dconv,0.0056120875732346585
+H07_goldb_gate.json,GB_EM_median_rho_S1,0.4982423681776133
+H07_goldb_gate.json,GB_EM_median_rho_oracle_static,0.4993524514338575
+H07_goldb_gate.json,GB_EM_median_diff,0.48781991982732037
+H07_goldb_gate.json,GB_EM_diff_ci95,"[0.4837496145544249, 0.5996916435399322]"
+H07_goldb_gate.json,GB_EM_diff_lo5,0.4837496145544249
+H07_goldb_gate.json,GB_EM_mean_diff,0.5667086233653317
+H07_goldb_gate.json,GB_EM_median_diff_vs_oracle_static,0.48670983657107614
+H07_goldb_gate.json,GB_EM_median_top5_Dtotal,1.0
+H07_goldb_gate.json,GB_EM_median_top5_S1,0.2
+H07_goldb_gate.json,GB_EM_frac_cond_Dtotal_beats_every_static,1.0
+H07_goldb_gate.json,GB_EM_pass,true
+H07_goldb_gate.json,GB_EM_T2_signflip_p,0.00019998000199980003
+H07_goldb_gate.json,GB_EM_median_kendall_Dtotal,0.9285024154589373
+H07_goldb_gate.json,GB_EM_median_kendall_S1,0.39130434782608703
+H07_goldb_gate.json,GB_EM_median_concord_Dtotal,0.9804727646454265
+H07_goldb_gate.json,GB_EM_median_concord_S1,0.7052845528455285
+H07_goldb_gate.json,GB_EM_median_top3_Dtotal,1.0
+H07_goldb_gate.json,GB_EM_median_top3_S1,0.0
+H07_goldb_gate.json,GB_EM_median_ndcg5_Dtotal,0.9942560487246036
+H07_goldb_gate.json,GB_EM_median_ndcg5_S1,0.6011564885589634
+H07_goldb_gate.json,GB_EM_median_sign_acc_Dtotal,1.0
+H07_goldb_gate.json,GB_EM_median_sign_acc_S1,NaN
+H07_goldb_gate.json,GB_SAME_n,64
+H07_goldb_gate.json,GB_SAME_n_clusters,28
+H07_goldb_gate.json,GB_SAME_median_rho_Dtotal,0.9875423990132592
+H07_goldb_gate.json,GB_SAME_median_rho_Dfrozen,0.8971939562133826
+H07_goldb_gate.json,GB_SAME_median_rho_Dconv,0.004316990440949737
+H07_goldb_gate.json,GB_SAME_median_rho_S1,0.49497378970089423
+H07_goldb_gate.json,GB_SAME_median_rho_oracle_static,0.4957755164970706
+H07_goldb_gate.json,GB_SAME_median_diff,0.4895467160037002
+H07_goldb_gate.json,GB_SAME_diff_ci95,"[0.4837496145544249, 0.6084489670058588]"
+H07_goldb_gate.json,GB_SAME_diff_lo5,0.48479802651865556
+H07_goldb_gate.json,GB_SAME_mean_diff,0.5753295559666974
+H07_goldb_gate.json,GB_SAME_median_diff_vs_oracle_static,0.4886833179155104
+H07_goldb_gate.json,GB_SAME_median_top5_Dtotal,1.0
+H07_goldb_gate.json,GB_SAME_median_top5_S1,0.2
+H07_goldb_gate.json,GB_SAME_frac_cond_Dtotal_beats_every_static,1.0
+H07_goldb_gate.json,GB_SAME_pass,true
+H07_goldb_gate.json,GB_SAME_T2_signflip_p,9.999000099990002e-05
+H07_goldb_gate.json,GB_SAME_median_kendall_Dtotal,0.9285024154589373
+H07_goldb_gate.json,GB_SAME_median_kendall_S1,0.38937198067632856
+H07_goldb_gate.json,GB_SAME_median_concord_Dtotal,0.9808080808080808
+H07_goldb_gate.json,GB_SAME_median_concord_S1,0.7049847405900305
+H07_goldb_gate.json,GB_SAME_median_top3_Dtotal,1.0
+H07_goldb_gate.json,GB_SAME_median_top3_S1,0.0
+H07_goldb_gate.json,GB_SAME_median_ndcg5_Dtotal,0.9936603399123897
+H07_goldb_gate.json,GB_SAME_median_ndcg5_S1,0.5961692375741126
+H07_goldb_gate.json,GB_SAME_median_sign_acc_Dtotal,1.0
+H07_goldb_gate.json,GB_SAME_median_sign_acc_S1,NaN
+H07_goldb_gate.json,GB_no_near_tie_n,62
+H07_goldb_gate.json,GB_no_near_tie_n_clusters,28
+H07_goldb_gate.json,GB_no_near_tie_median_rho_Dtotal,0.9875423990132592
+H07_goldb_gate.json,GB_no_near_tie_median_rho_Dfrozen,0.8971939562133826
+H07_goldb_gate.json,GB_no_near_tie_median_rho_Dconv,0.016466234967622572
+H07_goldb_gate.json,GB_no_near_tie_median_rho_S1,0.4975639839654641
+H07_goldb_gate.json,GB_no_near_tie_median_rho_oracle_static,0.4987974098057354
+H07_goldb_gate.json,GB_no_near_tie_median_diff,0.4880049337033611
+H07_goldb_gate.json,GB_no_near_tie_diff_ci95,"[0.4837496145544249, 0.6084489670058588]"
+H07_goldb_gate.json,GB_no_near_tie_diff_lo5,0.48399629972247926
+H07_goldb_gate.json,GB_no_near_tie_mean_diff,0.5719972546328072
+H07_goldb_gate.json,GB_no_near_tie_median_diff_vs_oracle_static,0.4872648781991983
+H07_goldb_gate.json,GB_no_near_tie_median_top5_Dtotal,1.0
+H07_goldb_gate.json,GB_no_near_tie_median_top5_S1,0.2
+H07_goldb_gate.json,GB_no_near_tie_frac_cond_Dtotal_beats_every_static,1.0
+H07_goldb_gate.json,GB_no_near_tie_pass,true
+H07_goldb_gate.json,GB_no_near_tie_T2_signflip_p,9.999000099990002e-05
+H07_goldb_gate.json,GB_no_near_tie_median_kendall_Dtotal,0.9285024154589373
+H07_goldb_gate.json,GB_no_near_tie_median_kendall_S1,0.3903381642512078
+H07_goldb_gate.json,GB_no_near_tie_median_concord_Dtotal,0.9806404227267537
+H07_goldb_gate.json,GB_no_near_tie_median_concord_S1,0.7052845528455285
+H07_goldb_gate.json,GB_no_near_tie_median_top3_Dtotal,1.0
+H07_goldb_gate.json,GB_no_near_tie_median_top3_S1,0.0
+H07_goldb_gate.json,GB_no_near_tie_median_ndcg5_Dtotal,0.9943500837496169
+H07_goldb_gate.json,GB_no_near_tie_median_ndcg5_S1,0.6023640449535761
+H07_goldb_gate.json,GB_no_near_tie_median_sign_acc_Dtotal,1.0
+H07_goldb_gate.json,GB_no_near_tie_median_sign_acc_S1,NaN
+H07_goldb_gate.json,GB_new_policies_n,24
+H07_goldb_gate.json,GB_new_policies_n_clusters,24
+H07_goldb_gate.json,GB_new_policies_median_rho_Dtotal,0.9961147086031452
+H07_goldb_gate.json,GB_new_policies_median_rho_Dfrozen,0.7123034227567068
+H07_goldb_gate.json,GB_new_policies_median_rho_Dconv,0.30385445575084796
+H07_goldb_gate.json,GB_new_policies_median_rho_S1,0.2555041628122109
+H07_goldb_gate.json,GB_new_policies_median_rho_oracle_static,0.44515029010120966
+H07_goldb_gate.json,GB_new_policies_median_diff,0.7412889300030834
+H07_goldb_gate.json,GB_new_policies_diff_ci95,"[0.5855072463768116, 0.8621646623496763]"
+H07_goldb_gate.json,GB_new_policies_diff_lo5,0.5882207832254086
+H07_goldb_gate.json,GB_new_policies_mean_diff,0.7080994963511152
+H07_goldb_gate.json,GB_new_policies_median_diff_vs_oracle_static,0.5458457012648095
+H07_goldb_gate.json,GB_new_policies_median_top5_Dtotal,1.0
+H07_goldb_gate.json,GB_new_policies_median_top5_S1,0.2
+H07_goldb_gate.json,GB_new_policies_frac_cond_Dtotal_beats_every_static,1.0
+H07_goldb_gate.json,GB_new_policies_pass,true
+H07_goldb_gate.json,GB_new_policies_T2_signflip_p,0.00029997000299970003
+H07_goldb_gate.json,GB_new_policies_median_kendall_Dtotal,0.9623188405797102
+H07_goldb_gate.json,GB_new_policies_median_kendall_S1,0.1816425120772947
+H07_goldb_gate.json,GB_new_policies_median_concord_Dtotal,0.9987507217878491
+H07_goldb_gate.json,GB_new_policies_median_concord_S1,0.6160624023527249
+H07_goldb_gate.json,GB_new_policies_median_top3_Dtotal,1.0
+H07_goldb_gate.json,GB_new_policies_median_top3_S1,0.3333333333333333
+H07_goldb_gate.json,GB_new_policies_median_ndcg5_Dtotal,0.9990106666722531
+H07_goldb_gate.json,GB_new_policies_median_ndcg5_S1,0.6358830289682484
+H07_goldb_gate.json,GB_new_policies_median_sign_acc_Dtotal,1.0
+H07_goldb_gate.json,GB_new_policies_median_sign_acc_S1,NaN
+H07_goldb_gate.json,GB_fresh_draws_n,40
+H07_goldb_gate.json,GB_fresh_draws_n_clusters,4
+H07_goldb_gate.json,GB_fresh_draws_median_rho_Dtotal,0.985877274128893
+H07_goldb_gate.json,GB_fresh_draws_median_rho_Dfrozen,0.9012025901942646
+H07_goldb_gate.json,GB_fresh_draws_median_rho_Dconv,-0.0707986432315757
+H07_goldb_gate.json,GB_fresh_draws_median_rho_S1,0.5032994141227258
+H07_goldb_gate.json,GB_fresh_draws_median_rho_oracle_static,0.503854455750848
+H07_goldb_gate.json,GB_fresh_draws_median_diff,0.4838729571384521
+H07_goldb_gate.json,GB_fresh_draws_diff_ci95,"[0.48344125809435706, 0.48633980881899486]"
+H07_goldb_gate.json,GB_fresh_draws_diff_lo5,0.48344125809435706
+H07_goldb_gate.json,GB_fresh_draws_mean_diff,0.5104656182547025
+H07_goldb_gate.json,GB_fresh_draws_median_diff_vs_oracle_static,0.48362627197039776
+H07_goldb_gate.json,GB_fresh_draws_median_top5_Dtotal,0.8
+H07_goldb_gate.json,GB_fresh_draws_median_top5_S1,0.2
+H07_goldb_gate.json,GB_fresh_draws_frac_cond_Dtotal_beats_every_static,1.0
+H07_goldb_gate.json,GB_fresh_draws_pass,true
+H07_goldb_gate.json,GB_fresh_draws_T2_signflip_p,0.12148785121487851
+H07_goldb_gate.json,GB_fresh_draws_median_kendall_Dtotal,0.9246376811594205
+H07_goldb_gate.json,GB_fresh_draws_median_kendall_S1,0.39516908212560387
+H07_goldb_gate.json,GB_fresh_draws_median_concord_Dtotal,0.977977183568562
+H07_goldb_gate.json,GB_fresh_draws_median_concord_S1,0.7063572149344097
+H07_goldb_gate.json,GB_fresh_draws_median_top3_Dtotal,0.6666666666666666
+H07_goldb_gate.json,GB_fresh_draws_median_top3_S1,0.0
+H07_goldb_gate.json,GB_fresh_draws_median_ndcg5_Dtotal,0.9913179521187145
+H07_goldb_gate.json,GB_fresh_draws_median_ndcg5_S1,0.5772005878694825
+H07_goldb_gate.json,GB_fresh_draws_median_sign_acc_Dtotal,1.0
+H07_goldb_gate.json,GB_fresh_draws_median_sign_acc_S1,NaN
+H07_goldb_gate.json,GB_g1.10_n,64
+H07_goldb_gate.json,GB_g1.10_n_clusters,28
+H07_goldb_gate.json,GB_g1.10_median_rho_Dtotal,0.9986432315757013
+H07_goldb_gate.json,GB_g1.10_median_rho_Dfrozen,0.8910884983040395
+H07_goldb_gate.json,GB_g1.10_median_rho_Dconv,0.06000616712920136
+H07_goldb_gate.json,GB_g1.10_median_rho_S1,0.4948504471168671
+H07_goldb_gate.json,GB_g1.10_median_rho_oracle_static,0.49620721554116554
+H07_goldb_gate.json,GB_g1.10_median_diff,0.5030527289546717
+H07_goldb_gate.json,GB_g1.10_diff_ci95,"[0.4979340117175456, 0.6381745297563984]"
+H07_goldb_gate.json,GB_g1.10_diff_lo5,0.4983040394696271
+H07_goldb_gate.json,GB_g1.10_mean_diff,0.5936305118717237
+H07_goldb_gate.json,GB_g1.10_median_diff_vs_oracle_static,0.5018193031144003
+H07_goldb_gate.json,GB_g1.10_median_top5_Dtotal,1.0
+H07_goldb_gate.json,GB_g1.10_median_top5_S1,0.2
+H07_goldb_gate.json,GB_g1.10_frac_cond_Dtotal_beats_every_static,1.0
+H07_goldb_gate.json,GB_g1.10_pass,true
+H07_goldb_gate.json,GB_g1.10_T2_signflip_p,9.999000099990002e-05
+H07_goldb_gate.json,GB_g1.10_median_kendall_Dtotal,0.9845410628019325
+H07_goldb_gate.json,GB_g1.10_median_kendall_S1,0.3874396135265701
+H07_goldb_gate.json,GB_g1.10_median_concord_Dtotal,1.0
+H07_goldb_gate.json,GB_g1.10_median_concord_S1,0.7237308146399055
+H07_goldb_gate.json,GB_g1.10_median_top3_Dtotal,1.0
+H07_goldb_gate.json,GB_g1.10_median_top3_S1,0.3333333333333333
+H07_goldb_gate.json,GB_g1.10_median_ndcg5_Dtotal,1.0
+H07_goldb_gate.json,GB_g1.10_median_ndcg5_S1,0.6418846729387206
+H07_goldb_gate.json,GB_g1.10_median_sign_acc_Dtotal,1.0
+H07_goldb_gate.json,GB_g1.10_median_sign_acc_S1,NaN
+H07_goldb_gate.json,GB_g1.25_n,64
+H07_goldb_gate.json,GB_g1.25_n_clusters,28
+H07_goldb_gate.json,GB_g1.25_median_rho_Dtotal,0.995436324390996
+H07_goldb_gate.json,GB_g1.25_median_rho_Dfrozen,0.8941720629047178
+H07_goldb_gate.json,GB_g1.25_median_rho_Dconv,0.055997533148319456
+H07_goldb_gate.json,GB_g1.25_median_rho_S1,0.49503546099290774
+H07_goldb_gate.json,GB_g1.25_median_rho_oracle_static,0.4974406413814369
+H07_goldb_gate.json,GB_g1.25_median_diff,0.4995374653098983
+H07_goldb_gate.json,GB_g1.25_diff_ci95,"[0.489300030835646, 0.6426148627813753]"
+H07_goldb_gate.json,GB_g1.25_diff_lo5,0.4894850447116867
+H07_goldb_gate.json,GB_g1.25_mean_diff,0.592277597903176
+H07_goldb_gate.json,GB_g1.25_median_diff_vs_oracle_static,0.496145544249152
+H07_goldb_gate.json,GB_g1.25_median_top5_Dtotal,1.0
+H07_goldb_gate.json,GB_g1.25_median_top5_S1,0.2
+H07_goldb_gate.json,GB_g1.25_frac_cond_Dtotal_beats_every_static,1.0
+H07_goldb_gate.json,GB_g1.25_pass,true
+H07_goldb_gate.json,GB_g1.25_T2_signflip_p,9.999000099990002e-05
+H07_goldb_gate.json,GB_g1.25_median_kendall_Dtotal,0.961352657004831
+H07_goldb_gate.json,GB_g1.25_median_kendall_S1,0.3903381642512078
+H07_goldb_gate.json,GB_g1.25_median_concord_Dtotal,0.9978471474703983
+H07_goldb_gate.json,GB_g1.25_median_concord_S1,0.7130801687763713
+H07_goldb_gate.json,GB_g1.25_median_top3_Dtotal,1.0
+H07_goldb_gate.json,GB_g1.25_median_top3_S1,0.0
+H07_goldb_gate.json,GB_g1.25_median_ndcg5_Dtotal,0.9995071808172409
+H07_goldb_gate.json,GB_g1.25_median_ndcg5_S1,0.6291276844750664
+H07_goldb_gate.json,GB_g1.25_median_sign_acc_Dtotal,1.0
+H07_goldb_gate.json,GB_g1.25_median_sign_acc_S1,NaN
+H07_goldb_gate.json,GB_V9_n,24
+H07_goldb_gate.json,GB_V9_n_clusters,24
+H07_goldb_gate.json,GB_V9_median_rho_Dtotal,0.9943262411347518
+H07_goldb_gate.json,GB_V9_median_rho_Dfrozen,0.943200740055504
+H07_goldb_gate.json,GB_V9_median_rho_Dconv,-0.19500462534690102
+H07_goldb_gate.json,GB_V9_median_rho_S1,-0.1826086956521739
+H07_goldb_gate.json,GB_V9_median_rho_oracle_static,0.32560754926443464
+H07_goldb_gate.json,GB_V9_median_diff,1.1796484736355226
+H07_goldb_gate.json,GB_V9_diff_ci95,"[1.12463768115942, 1.2477335800185014]"
+H07_goldb_gate.json,GB_V9_diff_lo5,1.1316065371569533
+H07_goldb_gate.json,GB_V9_mean_diff,1.1828399629972248
+H07_goldb_gate.json,GB_V9_median_diff_vs_oracle_static,0.6715250914100248
+H07_goldb_gate.json,GB_V9_median_top5_Dtotal,1.0
+H07_goldb_gate.json,GB_V9_median_top5_S1,0.0
+H07_goldb_gate.json,GB_V9_frac_cond_Dtotal_beats_every_static,1.0
+H07_goldb_gate.json,GB_V9_pass,true
+H07_goldb_gate.json,GB_V9_T2_signflip_p,9.999000099990002e-05
+H07_goldb_gate.json,GB_V9_median_kendall_Dtotal,0.952657004830918
+H07_goldb_gate.json,GB_V9_median_kendall_S1,-0.13333333333333336
+H07_goldb_gate.json,GB_V9_median_concord_Dtotal,0.9781881528516352
+H07_goldb_gate.json,GB_V9_median_concord_S1,0.4332032597124136
+H07_goldb_gate.json,GB_V9_median_top3_Dtotal,1.0
+H07_goldb_gate.json,GB_V9_median_top3_S1,0.0
+H07_goldb_gate.json,GB_V9_median_ndcg5_Dtotal,0.999914998363878
+H07_goldb_gate.json,GB_V9_median_ndcg5_S1,0.8093705363855017
+H07_goldb_gate.json,GB_V9_median_sign_acc_Dtotal,0.9767441860465116
+H07_goldb_gate.json,GB_V9_median_sign_acc_S1,NaN
+H07_goldb_gate.json,H8_frac_material_H4,0.28125
+H07_goldb_gate.json,H8_median_kendall_frozen_total_H4,0.7536231884057971
+H07_goldb_gate.json,H8_median_frac_ratio_gt1_H4,0.45652173913043476
+H07_goldb_gate.json,H8_conditions_with_sign_flip_H4,1.0
+H07_goldb_gate.json,H8_example_modes.agree,0
+H07_goldb_gate.json,H8_example_modes.differ,32
+H07_goldb_gate.json,H8_example_modes.flip,32
+H07_goldb_gate.json,node_R1_max_rel_frozen_minus_total_controller,2.2045457076618752e-07
+H07_goldb_gate.json,node_R1_pass,true
+H07_goldb_gate.json,node_vset_max_abs_frozen,0.0
+H07_goldb_gate.json,node_opoint_median_ratio_indirect_over_frozen.load,1.2978850830954298
+H07_goldb_gate.json,node_opoint_median_ratio_indirect_over_frozen.vset,132044640739.82385
+H07_goldb_gate.json,node_opoint_frac_indirect_dominates.load,0.6052631578947368
+H07_goldb_gate.json,node_opoint_frac_indirect_dominates.vset,1.0
+H07_goldb_gate.json,node_controller_median_ratio.g,0.0
+H07_goldb_gate.json,node_controller_median_ratio.ka,4.633474615120876e-10
+H07_goldb_gate.json,node_controller_median_ratio.pll,0.0
+H07_goldb_gate.json,node_IV_frac_ok,1.0
+H10_gate.json,k1_null_vs_H06_max_abs_diff,0.0
+H10_gate.json,K2_01|A|new_frac_ge95,0.0
+H10_gate.json,K2_01|A|new_median_pct,0.767
+H10_gate.json,K2_01|A|new_EM_frac_ge95,0.0
+H10_gate.json,K2_01|A|old_frac_ge95,0.0
+H10_gate.json,K2_01|A|old_median_pct,0.786
+H10_gate.json,K2_01|A|old_EM_frac_ge95,0.0
+H10_gate.json,K2_01|B|new_frac_ge95,0.0
+H10_gate.json,K2_01|B|new_median_pct,0.8482142857142857
+H10_gate.json,K2_01|B|new_EM_frac_ge95,0.0
+H10_gate.json,K2_01|B|old_frac_ge95,0.0
+H10_gate.json,K2_01|B|old_median_pct,0.8511904761904762
+H10_gate.json,K2_01|B|old_EM_frac_ge95,0.0
+H10_gate.json,K3_01=K4_03|A|new_frac_ge95,0.0
+H10_gate.json,K3_01=K4_03|A|new_median_pct,0.121
+H10_gate.json,K3_01=K4_03|A|new_EM_frac_ge95,0.0
+H10_gate.json,K3_01=K4_03|A|old_frac_ge95,0.0
+H10_gate.json,K3_01=K4_03|A|old_median_pct,0.113
+H10_gate.json,K3_01=K4_03|A|old_EM_frac_ge95,0.0
+H10_gate.json,K3_01=K4_03|B|new_frac_ge95,0.0
+H10_gate.json,K3_01=K4_03|B|new_median_pct,0.16463414634146342
+H10_gate.json,K3_01=K4_03|B|new_EM_frac_ge95,0.0
+H10_gate.json,K3_01=K4_03|B|old_frac_ge95,0.0
+H10_gate.json,K3_01=K4_03|B|old_median_pct,0.15853658536585366
+H10_gate.json,K3_01=K4_03|B|old_EM_frac_ge95,0.0
+H10_gate.json,K3_02=K4_02|A|new_frac_ge95,0.0
+H10_gate.json,K3_02=K4_02|A|new_median_pct,0.662
+H10_gate.json,K3_02=K4_02|A|new_EM_frac_ge95,0.0
+H10_gate.json,K3_02=K4_02|A|old_frac_ge95,0.03125
+H10_gate.json,K3_02=K4_02|A|old_median_pct,0.664
+H10_gate.json,K3_02=K4_02|A|old_EM_frac_ge95,0.03225806451612903
+H10_gate.json,K3_02=K4_02|B|new_frac_ge95,0.0
+H10_gate.json,K3_02=K4_02|B|new_median_pct,0.7682926829268293
+H10_gate.json,K3_02=K4_02|B|new_EM_frac_ge95,0.0
+H10_gate.json,K3_02=K4_02|B|old_frac_ge95,0.03125
+H10_gate.json,K3_02=K4_02|B|old_median_pct,0.7682926829268293
+H10_gate.json,K3_02=K4_02|B|old_EM_frac_ge95,0.03225806451612903
+H10_gate.json,K3_12=K4_23|A|new_frac_ge95,0.0
+H10_gate.json,K3_12=K4_23|A|new_median_pct,0.11956521739130435
+H10_gate.json,K3_12=K4_23|A|new_EM_frac_ge95,0.0
+H10_gate.json,K3_12=K4_23|A|old_frac_ge95,0.0
+H10_gate.json,K3_12=K4_23|A|old_median_pct,0.11956521739130435
+H10_gate.json,K3_12=K4_23|A|old_EM_frac_ge95,0.0
+H10_gate.json,K3_12=K4_23|B|new_frac_ge95,0.0
+H10_gate.json,K3_12=K4_23|B|new_median_pct,0.11956521739130435
+H10_gate.json,K3_12=K4_23|B|new_EM_frac_ge95,0.0
+H10_gate.json,K3_12=K4_23|B|old_frac_ge95,0.0
+H10_gate.json,K3_12=K4_23|B|old_median_pct,0.11956521739130435
+H10_gate.json,K3_12=K4_23|B|old_EM_frac_ge95,0.0
+H10_gate.json,K4_13|A|new_frac_ge95,0.03125
+H10_gate.json,K4_13|A|new_median_pct,0.8152173913043478
+H10_gate.json,K4_13|A|new_EM_frac_ge95,0.03278688524590164
+H10_gate.json,K4_13|A|old_frac_ge95,0.03125
+H10_gate.json,K4_13|A|old_median_pct,0.8152173913043478
+H10_gate.json,K4_13|A|old_EM_frac_ge95,0.03225806451612903
+H10_gate.json,K4_13|B|new_frac_ge95,0.03125
+H10_gate.json,K4_13|B|new_median_pct,0.8152173913043478
+H10_gate.json,K4_13|B|new_EM_frac_ge95,0.03278688524590164
+H10_gate.json,K4_13|B|old_frac_ge95,0.03125
+H10_gate.json,K4_13|B|old_median_pct,0.8152173913043478
+H10_gate.json,K4_13|B|old_EM_frac_ge95,0.03225806451612903
+H10_gate.json,TXall|A|new_frac_ge95,0.6875
+H10_gate.json,TXall|A|new_median_pct,0.976
+H10_gate.json,TXall|A|new_EM_frac_ge95,0.7213114754098361
+H10_gate.json,TXall|A|old_frac_ge95,0.71875
+H10_gate.json,TXall|A|old_median_pct,0.978
+H10_gate.json,TXall|A|old_EM_frac_ge95,0.7419354838709677
+H10_gate.json,TXall|B|new_frac_ge95,0.765625
+H10_gate.json,TXall|B|new_median_pct,0.992
+H10_gate.json,TXall|B|new_EM_frac_ge95,0.8032786885245902
+H10_gate.json,TXall|B|old_frac_ge95,0.71875
+H10_gate.json,TXall|B|old_median_pct,0.992
+H10_gate.json,TXall|B|old_EM_frac_ge95,0.7419354838709677
+H10_gate.json,TXcore|A|new_frac_ge95,0.0
+H10_gate.json,TXcore|A|new_median_pct,0.484
+H10_gate.json,TXcore|A|new_EM_frac_ge95,0.0
+H10_gate.json,TXcore|A|old_frac_ge95,0.0
+H10_gate.json,TXcore|A|old_median_pct,0.485
+H10_gate.json,TXcore|A|old_EM_frac_ge95,0.0
+H10_gate.json,TXcore|B|new_frac_ge95,0.0
+H10_gate.json,TXcore|B|new_median_pct,0.702513966480447
+H10_gate.json,TXcore|B|new_EM_frac_ge95,0.0
+H10_gate.json,TXcore|B|old_frac_ge95,0.0
+H10_gate.json,TXcore|B|old_median_pct,0.7039106145251397
+H10_gate.json,TXcore|B|old_EM_frac_ge95,0.0
+H10_gate.json,TXother|A|new_frac_ge95,0.828125
+H10_gate.json,TXother|A|new_median_pct,0.986
+H10_gate.json,TXother|A|new_EM_frac_ge95,0.8688524590163934
+H10_gate.json,TXother|A|old_frac_ge95,0.78125
+H10_gate.json,TXother|A|old_median_pct,0.986
+H10_gate.json,TXother|A|old_EM_frac_ge95,0.8064516129032258
+H10_gate.json,TXother|B|new_frac_ge95,0.84375
+H10_gate.json,TXother|B|new_median_pct,0.966
+H10_gate.json,TXother|B|new_EM_frac_ge95,0.8688524590163934
+H10_gate.json,TXother|B|old_frac_ge95,0.8125
+H10_gate.json,TXother|B|old_median_pct,0.966
+H10_gate.json,TXother|B|old_EM_frac_ge95,0.8064516129032258
+H10_gate.json,H10_robust_weak_corridors,"[""TXother""]"
+H10_gate.json,H10_pass,true
+H13_mixing.json,max_abs_decomposition_check,0.0
+H13_mixing.json,mu00,0.07808539278193605
+H13_mixing.json,share_abs_C_of_abs_C_plus_abs_F_median,0.3313367580287594
+H13_mixing.json,var_share_C,0.18682001388765854
+H13_mixing.json,cov_C_F,-4.726279552038949e-06
+H13_mixing.json,var_total_change,3.13270330120287e-05
+H13_mixing.json,rel_range_mu10,0.1928609282876297
+H13_mixing.json,rel_range_mu11,0.372114151510434
+H13_mixing.json,rel_range_mu01,0.48722486040722346
+H13_mixing.json,new_median_C,0.0013647001125610264
+H13_mixing.json,new_median_F,0.00373566228830707
+H13_mixing.json,new_IQR_C,"[-0.000346057789024027, 0.003069252154950979]"
+H13_mixing.json,new_IQR_F,"[0.002904417338204625, 0.003975903191176957]"
+H13_mixing.json,old_median_C,0.001600546598704091
+H13_mixing.json,old_median_F,0.003821820558686944
+H13_mixing.json,old_IQR_C,"[-8.07947713908283e-06, 0.0030296661771116295]"
+H13_mixing.json,old_IQR_F,"[0.003271332645600162, 0.004589340740931119]"
+H13_mixing.json,discovery_median_C,0.001566703664762803
+H13_mixing.json,discovery_median_F,0.0038039308393051086
+H13_mixing.json,discovery_IQR_C,"[3.519842830040226e-05, 0.00290949464950346]"
+H13_mixing.json,discovery_IQR_F,"[0.0029737703939869582, 0.003995533680839415]"
+H13_mixing.json,T3_primary.rho,0.5484908863249031
+H13_mixing.json,T3_primary.p,0.016298370162983702
+H13_mixing.json,T3_primary.n,19
+H13_mixing.json,tests.new|mu10|n_rev.rho,0.5484908863249031
+H13_mixing.json,tests.new|mu10|n_rev.p,0.016298370162983702
+H13_mixing.json,tests.new|mu10|n_rev.n,19
+H13_mixing.json,tests.new|mu10|n_nested.rho,0.5484908863249031
+H13_mixing.json,tests.new|mu10|n_nested.p,0.016298370162983702
+H13_mixing.json,tests.new|mu10|n_nested.n,19
+H13_mixing.json,tests.new|mu10|n_nested.p_holm_Fmix,0.47265273472652736
+H13_mixing.json,tests.new|mu10|regret.rho,0.27368421052631575
+H13_mixing.json,tests.new|mu10|regret.p,0.2592740725927407
+H13_mixing.json,tests.new|mu10|regret.n,19
+H13_mixing.json,tests.new|mu10|regret.p_holm_Fmix,1.0
+H13_mixing.json,tests.new|mu_060|n_rev.rho,0.5484908863249031
+H13_mixing.json,tests.new|mu_060|n_rev.p,0.016298370162983702
+H13_mixing.json,tests.new|mu_060|n_rev.n,19
+H13_mixing.json,tests.new|mu_060|n_rev.p_holm_Fmix,0.47265273472652736
+H13_mixing.json,tests.new|mu_060|n_nested.rho,0.5484908863249031
+H13_mixing.json,tests.new|mu_060|n_nested.p,0.016298370162983702
+H13_mixing.json,tests.new|mu_060|n_nested.n,19
+H13_mixing.json,tests.new|mu_060|n_nested.p_holm_Fmix,0.47265273472652736
+H13_mixing.json,tests.new|mu_060|regret.rho,0.27368421052631575
+H13_mixing.json,tests.new|mu_060|regret.p,0.2592740725927407
+H13_mixing.json,tests.new|mu_060|regret.n,19
+H13_mixing.json,tests.new|mu_060|regret.p_holm_Fmix,1.0
+H13_mixing.json,tests.new|mu_070|n_rev.rho,0.5484908863249031
+H13_mixing.json,tests.new|mu_070|n_rev.p,0.016298370162983702
+H13_mixing.json,tests.new|mu_070|n_rev.n,19
+H13_mixing.json,tests.new|mu_070|n_rev.p_holm_Fmix,0.47265273472652736
+H13_mixing.json,tests.new|mu_070|n_nested.rho,0.5484908863249031
+H13_mixing.json,tests.new|mu_070|n_nested.p,0.016298370162983702
+H13_mixing.json,tests.new|mu_070|n_nested.n,19
+H13_mixing.json,tests.new|mu_070|n_nested.p_holm_Fmix,0.47265273472652736
+H13_mixing.json,tests.new|mu_070|regret.rho,0.27368421052631575
+H13_mixing.json,tests.new|mu_070|regret.p,0.2592740725927407
+H13_mixing.json,tests.new|mu_070|regret.n,19
+H13_mixing.json,tests.new|mu_070|regret.p_holm_Fmix,1.0
+H13_mixing.json,tests.new|mu_080|n_rev.rho,0.5484908863249031
+H13_mixing.json,tests.new|mu_080|n_rev.p,0.016298370162983702
+H13_mixing.json,tests.new|mu_080|n_rev.n,19
+H13_mixing.json,tests.new|mu_080|n_rev.p_holm_Fmix,0.47265273472652736
+H13_mixing.json,tests.new|mu_080|n_nested.rho,0.5484908863249031
+H13_mixing.json,tests.new|mu_080|n_nested.p,0.016298370162983702
+H13_mixing.json,tests.new|mu_080|n_nested.n,19
+H13_mixing.json,tests.new|mu_080|n_nested.p_holm_Fmix,0.47265273472652736
+H13_mixing.json,tests.new|mu_080|regret.rho,0.27368421052631575
+H13_mixing.json,tests.new|mu_080|regret.p,0.2592740725927407
+H13_mixing.json,tests.new|mu_080|regret.n,19
+H13_mixing.json,tests.new|mu_080|regret.p_holm_Fmix,1.0
+H13_mixing.json,tests.new|C|n_rev.rho,0.4852034763643374
+H13_mixing.json,tests.new|C|n_rev.p,0.03569643035696431
+H13_mixing.json,tests.new|C|n_rev.n,19
+H13_mixing.json,tests.new|C|n_rev.p_holm_Fmix,0.7853214678532148
+H13_mixing.json,tests.new|C|n_nested.rho,0.4852034763643374
+H13_mixing.json,tests.new|C|n_nested.p,0.03569643035696431
+H13_mixing.json,tests.new|C|n_nested.n,19
+H13_mixing.json,tests.new|C|n_nested.p_holm_Fmix,0.7853214678532148
+H13_mixing.json,tests.new|C|regret.rho,0.2157894736842105
+H13_mixing.json,tests.new|C|regret.p,0.37676232376762325
+H13_mixing.json,tests.new|C|regret.n,19
+H13_mixing.json,tests.new|C|regret.p_holm_Fmix,1.0
+H13_mixing.json,tests.new|mu11|n_rev.rho,0.48328567606250206
+H13_mixing.json,tests.new|mu11|n_rev.p,0.0390960903909609
+H13_mixing.json,tests.new|mu11|n_rev.n,19
+H13_mixing.json,tests.new|mu11|n_nested.rho,0.48328567606250206
+H13_mixing.json,tests.new|mu11|n_nested.p,0.0390960903909609
+H13_mixing.json,tests.new|mu11|n_nested.n,19
+H13_mixing.json,tests.new|mu11|regret.rho,0.2175438596491228
+H13_mixing.json,tests.new|mu11|regret.p,0.3658634136586341
+H13_mixing.json,tests.new|mu11|regret.n,19
+H13_mixing.json,tests.old|mu10|n_rev.rho,0.21431122904609354
+H13_mixing.json,tests.old|mu10|n_rev.p,0.39576042395760425
+H13_mixing.json,tests.old|mu10|n_rev.n,18
+H13_mixing.json,tests.old|mu10|n_rev.p_holm_Fmix,1.0
+H13_mixing.json,tests.old|mu10|n_nested.rho,0.21431122904609354
+H13_mixing.json,tests.old|mu10|n_nested.p,0.39576042395760425
+H13_mixing.json,tests.old|mu10|n_nested.n,18
+H13_mixing.json,tests.old|mu10|n_nested.p_holm_Fmix,1.0
+H13_mixing.json,tests.old|mu10|regret.rho,0.13319568114711103
+H13_mixing.json,tests.old|mu10|regret.p,0.5976402359764024
+H13_mixing.json,tests.old|mu10|regret.n,18
+H13_mixing.json,tests.old|mu10|regret.p_holm_Fmix,1.0
+H13_mixing.json,tests.old|mu_060|n_rev.rho,0.21431122904609354
+H13_mixing.json,tests.old|mu_060|n_rev.p,0.39576042395760425
+H13_mixing.json,tests.old|mu_060|n_rev.n,18
+H13_mixing.json,tests.old|mu_060|n_rev.p_holm_Fmix,1.0
+H13_mixing.json,tests.old|mu_060|n_nested.rho,0.21431122904609354
+H13_mixing.json,tests.old|mu_060|n_nested.p,0.39576042395760425
+H13_mixing.json,tests.old|mu_060|n_nested.n,18
+H13_mixing.json,tests.old|mu_060|n_nested.p_holm_Fmix,1.0
+H13_mixing.json,tests.old|mu_060|regret.rho,0.13319568114711103
+H13_mixing.json,tests.old|mu_060|regret.p,0.5976402359764024
+H13_mixing.json,tests.old|mu_060|regret.n,18
+H13_mixing.json,tests.old|mu_060|regret.p_holm_Fmix,1.0
+H13_mixing.json,tests.old|mu_070|n_rev.rho,0.21431122904609354
+H13_mixing.json,tests.old|mu_070|n_rev.p,0.39576042395760425
+H13_mixing.json,tests.old|mu_070|n_rev.n,18
+H13_mixing.json,tests.old|mu_070|n_rev.p_holm_Fmix,1.0
+H13_mixing.json,tests.old|mu_070|n_nested.rho,0.21431122904609354
+H13_mixing.json,tests.old|mu_070|n_nested.p,0.39576042395760425
+H13_mixing.json,tests.old|mu_070|n_nested.n,18
+H13_mixing.json,tests.old|mu_070|n_nested.p_holm_Fmix,1.0
+H13_mixing.json,tests.old|mu_070|regret.rho,0.13319568114711103
+H13_mixing.json,tests.old|mu_070|regret.p,0.5976402359764024
+H13_mixing.json,tests.old|mu_070|regret.n,18
+H13_mixing.json,tests.old|mu_070|regret.p_holm_Fmix,1.0
+H13_mixing.json,tests.old|mu_080|n_rev.rho,0.21431122904609354
+H13_mixing.json,tests.old|mu_080|n_rev.p,0.39576042395760425
+H13_mixing.json,tests.old|mu_080|n_rev.n,18
+H13_mixing.json,tests.old|mu_080|n_rev.p_holm_Fmix,1.0
+H13_mixing.json,tests.old|mu_080|n_nested.rho,0.21431122904609354
+H13_mixing.json,tests.old|mu_080|n_nested.p,0.39576042395760425
+H13_mixing.json,tests.old|mu_080|n_nested.n,18
+H13_mixing.json,tests.old|mu_080|n_nested.p_holm_Fmix,1.0
+H13_mixing.json,tests.old|mu_080|regret.rho,0.13319568114711103
+H13_mixing.json,tests.old|mu_080|regret.p,0.5976402359764024
+H13_mixing.json,tests.old|mu_080|regret.n,18
+H13_mixing.json,tests.old|mu_080|regret.p_holm_Fmix,1.0
+H13_mixing.json,tests.old|C|n_rev.rho,0.010715561452304677
+H13_mixing.json,tests.old|C|n_rev.p,0.9684031596840316
+H13_mixing.json,tests.old|C|n_rev.n,18
+H13_mixing.json,tests.old|C|n_rev.p_holm_Fmix,1.0
+H13_mixing.json,tests.old|C|n_nested.rho,0.010715561452304677
+H13_mixing.json,tests.old|C|n_nested.p,0.9684031596840316
+H13_mixing.json,tests.old|C|n_nested.n,18
+H13_mixing.json,tests.old|C|n_nested.p_holm_Fmix,1.0
+H13_mixing.json,tests.old|C|regret.rho,-0.04233351106226009
+H13_mixing.json,tests.old|C|regret.p,0.8672132786721328
+H13_mixing.json,tests.old|C|regret.n,18
+H13_mixing.json,tests.old|C|regret.p_holm_Fmix,1.0
+H13_mixing.json,tests.old|mu11|n_rev.rho,0.6572211024080202
+H13_mixing.json,tests.old|mu11|n_rev.p,0.0036996300369963003
+H13_mixing.json,tests.old|mu11|n_rev.n,18
+H13_mixing.json,tests.old|mu11|n_nested.rho,0.6572211024080202
+H13_mixing.json,tests.old|mu11|n_nested.p,0.0036996300369963003
+H13_mixing.json,tests.old|mu11|n_nested.n,18
+H13_mixing.json,tests.old|mu11|regret.rho,0.5203924286677827
+H13_mixing.json,tests.old|mu11|regret.p,0.0287971202879712
+H13_mixing.json,tests.old|mu11|regret.n,18
+H15_topology_gate.json,n_actions,81
+H15_topology_gate.json,n_policies,16
+H15_topology_gate.json,label_counts_all.EM-NEUTRAL,14316
+H15_topology_gate.json,label_counts_all.EM-DESTABILIZING,3863
+H15_topology_gate.json,label_counts_all.EM-STABILIZING,1812
+H15_topology_gate.json,label_counts_all.MODE-SWITCH,386
+H15_topology_gate.json,label_counts_all.FAST-MODE DOMINATED,343
+H15_topology_gate.json,label_counts_all.UNRESOLVED,16
+H15_topology_gate.json,label_counts_H4.EM-NEUTRAL,806
+H15_topology_gate.json,label_counts_H4.EM-DESTABILIZING,276
+H15_topology_gate.json,label_counts_H4.EM-STABILIZING,136
+H15_topology_gate.json,label_counts_H4.FAST-MODE DOMINATED,50
+H15_topology_gate.json,label_counts_H4.UNRESOLVED,15
+H15_topology_gate.json,label_counts_H4.MODE-SWITCH,13
+H15_topology_gate.json,em_removal_H4_P4,"[""dbl13"", ""dbl43"", ""dbl1"", ""dbl0""]"
+H15_topology_gate.json,em_removal_H4_any_policy,"[{""pid"": ""D01"", ""action"": ""dbl13""}, {""pid"": ""D01"", ""action"": ""dbl43""}, {""pid"": ""H06"", ""action"": ""dbl45""}, {""pid"": ""D01"", ""action"": ""dbl1""}, {""pid"": ""D01"", ""action"": ""dbl0""}]"
+H15_topology_gate.json,em_creation,"[{""pid"": ""H02"", ""action"": ""out14"", ""H_EM"": ""30+33+35""}, {""pid"": ""D03"", ""action"": ""out28"", ""H_EM"": ""30+33+35|30+33+37""}, {""pid"": ""D01"", ""action"": ""out26"", ""H_EM"": ""33|30+35|30+37""}, {""pid"": ""H01"", ""action"": ""out13"", ""H_EM"": ""33""}, {""pid"": ""D01"", ""action"": ""out0"", ""H_EM"": ""30|33|35|37""}, {""pid"": ""D01"", ""action"": ""out28"", ""H_EM"": ""30+33+35|30+33+37""}, {""pid"": ""D01"", ""action"": ""out19"", ""H_EM"": ""30+33+35|30+33+37|33+35+37""}, {""pid"": ""D01"", ""action"": ""out18"", ""H_EM"": ""30+33+35""}, {""pid"": ""D03"", ""actio"
+H15_topology_gate.json,n_em_creation,45
+H15_topology_gate.json,n_fast_creation,0
+H15_topology_gate.json,Q13_yes,true
+H15_topology_gate.json,n_H_changes,187
+H15_topology_gate.json,n_HEM_changes,168
+H15_topology_gate.json,census_P4_nominal.action,"""NOMINAL"""
+H15_topology_gate.json,census_P4_nominal.kappa_V9,4
+H15_topology_gate.json,census_P4_nominal.n_edges_V9,52
+H15_topology_gate.json,census_P4_nominal.kappa_EM_V9,4
+H15_topology_gate.json,census_P4_nominal.n_edges_EM_V9,6
+H15_topology_gate.json,census_P4_kappa_EM_counts.4,59
+H15_topology_gate.json,census_P4_kappa_EM_counts.3,12
+H15_topology_gate.json,census_P4_kappa_EM_counts.1,5
+H15_topology_gate.json,census_P4_kappa_EM_counts.2,3
+H15_topology_gate.json,census_P4_kappa_EM_counts.5,2
+H15_topology_gate.json,census_P4_kappa_counts.4,59
+H15_topology_gate.json,census_P4_kappa_counts.3,13
+H15_topology_gate.json,census_P4_kappa_counts.1,5
+H15_topology_gate.json,census_P4_kappa_counts.2,3
+H15_topology_gate.json,census_P4_kappa_counts.5,1
+H15_topology_gate.json,H16.fiedler.n_pol_em,16
+H15_topology_gate.json,H16.fiedler.median_rho_em,-0.49762080025237915
+H15_topology_gate.json,H16.fiedler.frac_abs_ge_0.6_em,0.25
+H15_topology_gate.json,H16.fiedler.predicts_em,false
+H15_topology_gate.json,H16.fiedler.median_rho_full,-0.5157633242999096
+H15_topology_gate.json,H16.fiedler.predicts_full,false
+H15_topology_gate.json,H16.gscr_H4.n_pol_em,16
+H15_topology_gate.json,H16.gscr_H4.median_rho_em,-0.537150442356467
+H15_topology_gate.json,H16.gscr_H4.frac_abs_ge_0.6_em,0.3125
+H15_topology_gate.json,H16.gscr_H4.predicts_em,false
+H15_topology_gate.json,H16.gscr_H4.median_rho_full,-0.5766518555413471
+H15_topology_gate.json,H16.gscr_H4.predicts_full,false
+H15_topology_gate.json,H16.kirchhoff.n_pol_em,16
+H15_topology_gate.json,H16.kirchhoff.median_rho_em,0.5613596929386402
+H15_topology_gate.json,H16.kirchhoff.frac_abs_ge_0.6_em,0.375
+H15_topology_gate.json,H16.kirchhoff.predicts_em,false
+H15_topology_gate.json,H16.kirchhoff.median_rho_full,0.5539972899728998
+H15_topology_gate.json,H16.kirchhoff.predicts_full,false
+H15_topology_gate.json,H16.losses.n_pol_em,16
+H15_topology_gate.json,H16.losses.median_rho_em,0.5464535464535464
+H15_topology_gate.json,H16.losses.frac_abs_ge_0.6_em,0.375
+H15_topology_gate.json,H16.losses.predicts_em,false
+H15_topology_gate.json,H16.losses.median_rho_full,0.5315943992773261
+H15_topology_gate.json,H16.losses.predicts_full,false
+H15_topology_gate.json,H16.max_flow.n_pol_em,16
+H15_topology_gate.json,H16.max_flow.median_rho_em,0.38957095536042896
+H15_topology_gate.json,H16.max_flow.frac_abs_ge_0.6_em,0.0
+H15_topology_gate.json,H16.max_flow.predicts_em,false
+H15_topology_gate.json,H16.max_flow.median_rho_full,0.3747515808491418
+H15_topology_gate.json,H16.max_flow.predicts_full,false
+H15_topology_gate.json,H16.mean_reff_core.n_pol_em,16
+H15_topology_gate.json,H16.mean_reff_core.median_rho_em,0.41165413533834583
+H15_topology_gate.json,H16.mean_reff_core.frac_abs_ge_0.6_em,0.0625
+H15_topology_gate.json,H16.mean_reff_core.predicts_em,false
+H15_topology_gate.json,H16.mean_reff_core.median_rho_full,0.4616644083107498
+H15_topology_gate.json,H16.mean_reff_core.predicts_full,false
+H15_topology_gate.json,H16.min_scr_core.n_pol_em,16
+H15_topology_gate.json,H16.min_scr_core.median_rho_em,-0.5370680758263622
+H15_topology_gate.json,H16.min_scr_core.frac_abs_ge_0.6_em,0.25
+H15_topology_gate.json,H16.min_scr_core.predicts_em,false
+H15_topology_gate.json,H16.min_scr_core.median_rho_full,-0.5520130533796956
+H15_topology_gate.json,H16.min_scr_core.predicts_full,false
+H15_topology_gate.json,H16_any_static_predicts_em,false
+H18_gate.json,alt_cases,488
+H18_gate.json,alt_status.UNSTABLE,411
+H18_gate.json,alt_status.STABLE,76
+H18_gate.json,alt_status.BOUNDARY_OR_UNRESOLVED,1
+H18_gate.json,alt_init_residual_max,2.4868995751603507e-13
+H18_gate.json,alt_frac_init_ok_core,1.0
+H18_gate.json,n_tested_policies,7
+H18_gate.json,A_frac,0.0
+H18_gate.json,A_verdict,"""MODEL-SPECIFIC"""
+H18_gate.json,A_gfl_frac_same_policies,0.7142857142857143
+H18_gate.json,B_meaningful,true
+H18_gate.json,B_alt_mean_frac_stable_ctx_EM,0.5083333333333333
+H18_gate.json,B_frac,0.0
+H18_gate.json,B_verdict,"""MODEL-SPECIFIC"""
+H18_gate.json,B_EM_frac,0.0
+H18_gate.json,n_policies_evaluated,8
+H18_gate.json,C_median_kendall,0.0606060606060606
+H18_gate.json,C_median_spearman,0.1258741258741259
+H18_gate.json,C_verdict,"""MODEL-SPECIFIC"""
+H18_gate.json,C2_median_diff,0.2027972027972028
+H18_gate.json,C2_median_rho_altFD,0.9930069930069931
+H18_gate.json,C2_median_rho_S1,0.7902097902097903
+H18_gate.json,C2_verdict,"""TRANSFERS"""
+H18_gate.json,C2_n_below_0.20,3
+H18_gate.json,D_frac_top1_agree,0.7142857142857143
+H18_gate.json,D_verdict,"""PARTIAL"""
+H18_gate.json,E_pooled_sign_agree,1.0
+H18_gate.json,E_n_pairs,29
+H18_gate.json,E_verdict,"""TRANSFERS"""
+H18_gate.json,L8_pass,false
+H19_evidence.json,n_positive,7
+H19_evidence.json,strong_claim,true
+H19_evidence.json,layers,"[{""layer"": ""L1"", ""question"": ""arbitrary-context reversal"", ""value_new_holdout"": 1.0, ""rule"": "">=0.75"", ""positive"": true}, {""layer"": ""L2"", ""question"": ""nested-context reversal (level A)"", ""value_new_holdout"": 1.0, ""rule"": "">=0.75"", ""positive"": true}, {""layer"": ""L3"", ""question"": ""same-mode nested reversal (level B)"", ""value_new_holdout"": 0.9473684210526315, ""rule"": "">=0.50"", ""positive"": true}, {""layer"": ""L4"", ""question"": ""EM same-mode nested reversal (level C)"", ""value_new_holdout"": 0.894736842105"
+H19_evidence.json,em_qualifiers.L5_EM_median_pstar,0.9728997289972899
+H19_evidence.json,em_qualifiers.L5_EM_median_regret,0.034334763948497854
+H19_evidence.json,em_qualifiers.L5_SAME_median_pstar,0.9780412823891085
+H19_evidence.json,em_qualifiers.L5_SAME_median_regret,0.02262443438914027
+H19_evidence.json,em_qualifiers.L5_EM_would_pass_A3_rule,false
+H19_evidence.json,em_qualifiers.L7_EM_same_mode_cov.EC,0.0
+H19_evidence.json,em_qualifiers.L7_EM_same_mode_cov.EM-f,0.5
+H19_evidence.json,em_qualifiers.L7_EM_same_mode_cov.EM-u,0.6
+H19_evidence.json,em_qualifiers.L7_EM_same_mode_cov.EMC,0.7
+H19_evidence.json,em_qualifiers.L7_EM_n_envs_ge_0.5,3
+H19_evidence.json,F_conf_raw_p.T1_goldA_sign,1.9073486328125e-06
+H19_evidence.json,F_conf_raw_p.T2_goldB_signflip,0.061193880611938804
+H19_evidence.json,F_conf_raw_p.T3_mixing,0.016298370162983702
+H19_evidence.json,F_conf_holm_p.T1_goldA_sign,5.7220458984375e-06
+H19_evidence.json,F_conf_holm_p.T3_mixing,0.032596740325967405
+H19_evidence.json,F_conf_holm_p.T2_goldB_signflip,0.061193880611938804
+H19_evidence.json,T3_correlates,false
+CDWH_DETERMINISM.json,H_H01.n_tasks,16
+CDWH_DETERMINISM.json,H_H01.identical,16
+CDWH_DETERMINISM.json,H_H01.differing_keys,[]
+CDWH_DETERMINISM.json,H_H06.n_tasks,4
+CDWH_DETERMINISM.json,H_H06.identical,4
+CDWH_DETERMINISM.json,H_H06.differing_keys,[]
+CDWH_DETERMINISM.json,all_identical,true

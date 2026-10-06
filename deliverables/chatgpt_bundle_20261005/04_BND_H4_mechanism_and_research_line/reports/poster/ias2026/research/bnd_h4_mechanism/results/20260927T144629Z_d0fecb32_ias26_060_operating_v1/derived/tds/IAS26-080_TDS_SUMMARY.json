@@ -1,0 +1,25 @@
+{
+  "ticket": "IAS26-080",
+  "run_id": "20260927T144629Z_d0fecb32_ias26_060_operating_v1",
+  "N_planned": 90,
+  "N_completed_records": 90,
+  "N_canonical": 18,
+  "N_holdout": 72,
+  "run_status_counts": {
+    "COMPLETED": 60,
+    "SOLVER_FAILED": 30
+  },
+  "fit_available_N": 90,
+  "sign_agreement_N": 90,
+  "sign_agreement_rate": 0.9555555555555556,
+  "alpha_mae_s_inv": 0.01122014449605785,
+  "alpha_median_absolute_error_s_inv": 0.00023962645079854406,
+  "alpha_q95_absolute_error_s_inv": 0.011763757757015087,
+  "frequency_mae_hz": 0.04075732583084223,
+  "frequency_median_absolute_error_hz": 1.2900159074347162e-05,
+  "frequency_q95_absolute_error_hz": 0.0006977768061613984,
+  "mean_fit_r2_diagnostic": 0.9342576829887828,
+  "same_model_tds_not_emt": true,
+  "elapsed_wall_s": 17534.230543300015,
+  "no_scenario_replacements": true
+}

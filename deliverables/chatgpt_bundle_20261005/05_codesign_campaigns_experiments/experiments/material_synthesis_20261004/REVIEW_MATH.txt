@@ -1,0 +1,363 @@
+INDEPENDENT SKEPTICAL MATHEMATICAL REVIEW
+2026-10-04. Scope: extracted attached PDFs, with emphasis on PDF3 and PDF5,
+and comparison with the current THEORY and network_moment_codesign sources.
+Page numbers below are physical PDF pages, not the Spanish printed page labels.
+No simulations were run. No frozen/main source was changed.
+
+BOTTOM-LINE ASSESSMENT
+
+PDF3 has the strongest existing engineering object: a precisely scoped minimal
+replacement blocker, its exact contextual return, and a testable physical repair.
+PDF1 adds a stronger architectural restriction than another interaction index:
+the full-network frequency-moment law. PDF5 offers a useful synthesis, but its
+partition/Mobius/holonomy/manifold terminology is mostly classical mathematics,
+and several claims exceed the formulas actually proved. The most promising
+next result is a certified finite lower bound on the number of moment-neutral
+graph-control links needed to repair a forbidden mode, paired with a feasible
+upper witness. It is a candidate engineering theorem, not an established result
+of the current experiments or a new general small-gain theorem.
+
+1. WHAT CHECKS OUT, AND WHAT IS ALREADY STANDARD
+
+PDF5 pp5-8,26-28: implicit differentiation on a regular AC equilibrium branch,
+Jacobi determinant transport, the mixed partition-cycle derivative of log det,
+and the cubical integral of a smooth anchored Mobius dividend are correct.
+For a set S of distinct action labels, the coefficient
+  (-1)^(|pi|-1)/|pi| times sum over all block permutations
+has the right multiplicity because trace is cyclic. In the affine case only
+singleton blocks remain, yielding distinct-label cyclic products. These are
+chain-rule/implicit-function, log-determinant, and finite-difference identities.
+Their possible contribution is a decision enabled by a physical model, not the
+identities themselves. A gauge-fixed nonsingular equilibrium Jacobian and one
+smooth equilibrium branch over the WHOLE action cell are required; a local IFT
+at the anchor does not supply this for a finite line outage or controller switch.
+
+PDF5 pp9-10,26: determinant cycle covers, acyclic support sufficiency, SCC
+factorization, the isolated block-cycle determinant, and the distinction between
+simple cycles and repeated closed walks are sound. The overlap counterexample
+1-ab-cd is valuable: neither isolated cycle need close for the whole core to do
+so. Physical transmission cycles and action-return cycles are different objects.
+
+PDF5 pp11-12,27: the polynomial inverse-entry estimate is correct under its
+diagonalizability/approximation hypotheses, and eta<1 gives the stated
+-r log(1-eta) determinant-magnitude error. A spectral gap alone does not imply
+geometric polynomial approximation of 1/z on an arbitrary compact set; a compact
+set encircling zero supplies the basic obstruction. Nonnormal conditioning can
+make locality bounds useless. The paper appropriately makes the geometric
+approximation conditional, but no generic grid-locality guarantee follows.
+
+PDF5 pp16,27: the contour perturbation theorem is an application of
+Rouche/Gohberg-Sigal, with analytic/meromorphic hypotheses and bookkeeping.
+This is established theory; the claimed application is choosing an exterior
+model by its port error. Primary sources checked in this review:
+  Gohberg-Sigal (1971), DOI 10.1070/SM1971v013n04ABEH003702:
+  https://www.mathnet.ru/php/archive.phtml?jrnid=sm&option_lang=eng&paperid=3169&wshow=paper
+  Benzi-Razouk, sparse matrix-function decay (author technical report):
+  https://www.cs.emory.edu/technical-reports/techrep-00021.pdf
+Sparse pole placement is also established, including minimum-gain placement with
+sparsity constraints: https://arxiv.org/abs/1805.08762 . These checks are not an
+exhaustive novelty or citation audit of the PDFs.
+
+2. MATERIAL GAPS IN PDF5
+
+A. Spectral potential attribution is not generally representation invariant.
+   Pages7-8,12-13,15,17-18,21,25.
+
+Let T_tilde(s,a)=exp(h(s,a)) T(s,a), with h analytic in s and smooth in a.
+This is an invertible equation normalization: roots and the modeled dynamics do
+not change. Nevertheless
+  log|det T_tilde| = log|det T| + n Re h,
+so a mixed derivative or finite dividend can be changed arbitrarily. Taking
+h=c*a_i*a_j, for example, changes the pair dividend by n*c*alpha_i*alpha_j.
+Dividing by the baseline or subtracting singleton factors removes separable
+normalizations, but not this joint normalization. A fixed physical descriptor
+and port normalization can DEFINE a useful convention; it does not make the
+number an intrinsic dynamic externality. Regularized logdet(T*T+epsilon^2 I)
+also needs physical norms and units; arbitrary nonunitary scalings change it.
+
+The invariant correction is already substantially present in PDF1 pp6-10,16-18:
+  S_m(a)=(1/(2*pi*i))*integral_Gamma s^m tr(T^-1 T_s) ds.
+If analytic L,R are invertible on AND inside Gamma, replacing T by LTR leaves
+every S_m unchanged, because the added logarithmic derivatives are analytic.
+On a common nonsingular action cell,
+  D_S S_m = -m/(2*pi*i)*integral_Gamma s^(m-1) D_S logdet(T) ds.
+This follows by integration by parts; mixed log derivatives are single valued.
+For m=0 this derivative is zero: an integer count is locally constant. For a
+single enclosed conjugate pair with no poles, S_1=2 Re(lambda). For a larger
+cluster, its centroid is only a necessary stability diagnostic, not full safety.
+For a Schur pencil, include the weighted moments of eliminated poles as well as
+root counts: moving hidden poles change S_m for m>0.
+
+Even after contour integration the separate 'intrinsic' and 'feedback' terms
+need not be invariant. Action-dependent row transformations alter T_i and T_ij;
+the changes cancel in the sum, not necessarily in each proposed share. Use the
+split as a diagnostic of a declared physical representation. This correction
+is NOT a new contribution beyond the current PDF1/repository contour theory.
+
+B. The curvature bound does not certify the frozen affine model error.
+   Page8 eq(52), pages23-24 Gate A.
+
+The bound controls omitted nonsingleton partitions of the exact mixed derivative
+at the actual point a. The retained singleton partition still uses G(a) and
+T_i(a). It does not bound replacing them by their baseline values, freezing the
+equilibrium, compressing dense total derivatives to local low-rank ports, or
+omitting pure-coordinate nonlinearities.
+Counterexample: T(a,b)=1+a^2+b on [0,1]^2. T_ab=0 everywhere, so the pair
+curvature-vertex bound is zero. The baseline affine tangent is 1+b and has zero
+pair interaction, but the true finite log dividend is log(3)-2*log(2), nonzero.
+Thus Gate A cannot require eq(52) to cover the full frozen-model error as written.
+A useful replacement gate needs a bound on the full operator remainder
+T(a)-[T(0)+sum a_i T_i(0)], including pure second derivatives, followed by a
+uniform contour perturbation bound (or an exact nonlinear action model).
+
+C. Piecewise smoothness alone does not preserve the stated integral identity.
+   Page26 Appendix C; damping-minimum applications pages17,21.
+
+For f(a,b)=min(a,b) on [0,1]^2, Delta_ab f=1, while the classical mixed derivative
+f_ab is zero on both open smooth pieces. Its area integral is zero. Interface
+or distributional terms are essential. Thus zeta_min, maximum real part, and
+protection min/max objectives cannot use the smooth mixed-derivative integral
+across mode switches without additional terms or a smooth branch restriction.
+Endpoint Mobius inversion remains perfectly valid for any finite set function.
+Moreover, such an objective can have a nonzero dividend even for dynamically
+disconnected subsystems: switching the active minimum/maximum is an objective
+aggregation effect, not a newly discovered feedback interaction.
+
+D. Holonomy scalarization overstates the matrix theorem.
+   Pages10-11,26-27, especially Propositions11 and15.
+
+Simultaneous diagonalization of a finite family of diagonalizable matrices on
+ONE space is equivalent to pairwise commutation. That statement is correct.
+Holonomies at different base vertices may act on different spaces/dimensions.
+They cannot simply be put into one algebra or commutator without identification.
+A sufficient setting is equal-dimensional fibers, invertible edge transports,
+chosen spanning-tree identifications, and all relevant non-tree returns based
+at a common vertex. A graph cycle-space basis is not automatically a generating
+set for noncommutative directed path products with singular/rectangular edges.
+Even with a common space, a reducible algebra need not admit block-DIAGONAL
+channels: a 2x2 Jordan block has a proper invariant subspace but no invariant
+complement. Invariant flags give block triangularization; direct-sum reduction
+requires complementary reducing subspaces/appropriate semisimplicity. Also,
+pointwise bases at each frequency need not define one physical frequency-band
+controller basis. Preserve the valid isolated-cycle similarity invariants; do
+not infer scalar grid-strength adequacy from the present Proposition11 alone.
+
+E. The scalability claim needs uniform support and the right objective.
+   Pages15-16,24-25.
+
+An exact fixed affine determinant on block-principal restrictions does factor by
+SCC. A pair-cumulant support graph can miss a pure directed three-cycle because
+all pair cyclic traces can vanish. Use certified port support, not nonzero pairs
+alone. Re-equilibration vertices can couple distinct tangent SCCs. Pruning one
+portfolio at one frequency is not a certificate for all coalitions/cell points.
+Finally a generic damping minimum is not additive across independent SCCs;
+the max/min aggregation can itself couple its coalition dividends. Therefore
+sum_c 2^(m_c) is not yet a general exact complexity guarantee for the stated
+re-equilibrated physical security game. The p25 'prime-cycle Shapley result'
+needs an explicit theorem for the precise determinant/logdet game, convergence
+domain, restriction property, and output; it cannot silently transfer to zeta_min.
+
+F. EMT and action-distance qualifications affect the proposed headline.
+   Pages13-16,27-28.
+
+Preserving exterior self-energy certifies the stated retained-core linear count,
+subject to hidden factors. An unobservable decoupled unstable exterior state can
+leave self-energy unchanged. Full-model claims must include the hidden factors
+of both models and the relevant contour/high-frequency scope. For external
+disturbances or outputs, elimination changes B_eff, C_eff and direct feedthrough
+as well as Sigma. The transfer identity on p16 assumes those maps are shared;
+Sigma alone does not ensure the required I/O accuracy. The declared nonlinear
+and manufacturer-EMT evidence gates remain uncompleted; p28 correctly warns
+that a stationary holonomy cannot certify faults or limit switching.
+
+The action-radius lower bound on p14 applies only to failure represented by a
+change of the protected contour count, starting from an appropriate safe count.
+It is not automatically a bound for the arbitrary waveform/protection unsafe
+set used in eq(94). If the Lipschitz bound is known only in a radius-R ball, the
+guaranteed radius is at most min(R,delta_Gamma/L_Gamma). A fixed weighted chord
+norm is also not a geodesic distance for a state-dependent metric W(a).
+
+The spectral one-form on p15 is locally exact and globally closed; connected
+nonsingular does not imply globally exact. Its loop integral may be 2*pi*i*k.
+The determinant ratio is endpoint invariant; its transported logarithm can
+depend on path winding. The later wording partly acknowledges this distinction.
+
+3. PDF3: RETAIN THE STRONG CLAIM, NOT A UNIVERSAL H4 LAW
+
+Pages3-6: the exact invariant-subspace quotient, physical terminal replacement
+factorization, and contextual-return Schur argument are sound for the declared
+model. Check the uniform-frequency Jordan identity in the actual full equations;
+rotation covariance alone proves the gauge, not the extra Jordan partner.
+Frequency-translation equivariance of the entire device model is needed for
+that stronger identity. This frozen no-governor model is not the simple-gauge
+governed model of PDF1's moment section.
+
+Page4: the blocker antichain is elementary but useful. Its precise planning
+meaning is safety of every subset/every sequential stationary order. An endpoint
+containing a blocker can nevertheless be stable after additional replacements:
+stability is not monotone. It does not imply that every order is unsafe, that
+there is no safe continuous retuning path, or that the switching transient is
+safe. Those are separate decision problems.
+
+Pages5,8-10: contextual unity return and nonzero local critical vectors follow
+from proper-subset regularity. The residue repair derivative is correct and
+classical. The log-strength derivative rho*d lambda/d rho is invariant under
+unit rescaling rho'=c*rho, not arbitrary nonlinear reparameterization. Its finite
+ranking remains an empirical test; the manuscript correctly calls it pending.
+
+Pages7-8,11: preserve the 110 full-spectrum false-safe cases of the EM-band
+predictor, the small connected four-way share, and disappearance of the specific
+H4 witness when governors are added. Those prevent three unjustified claims:
+complete-spectrum safety, irreducible four-body physics, and a bus-intrinsic H4.
+PDF2 pp35,40-41 independently reinforces model dependence: its R1 architecture
+does not reproduce H4, and its finite event evidence has explicit limitations.
+
+4. ONE RECOMMENDED NEXT THEOREM/DESIGN QUESTION
+
+Can one certify the MINIMUM NUMBER of added graph-control links needed to repair
+a latency-induced forbidden mode while preserving the full-network frequency
+moments, within a fixed and physically bounded controller architecture?
+
+This extends the conditional graph direction of PDF1 p40. Its new output would
+be a finite architecture requirement and feasible repair, not another projector
+or an assertion that graph gains outperform diagonal gains. It is not yet known
+to be nonvacuous on IEEE39. The following theorem is provable from the existing
+exact model and has a focused, falsifiable test.
+
+Assumptions and controller contract.
+
+Fix the plant, SG/GFL replacement rho, equilibrium, integral matrix KI (invertible),
+baseline proportional matrix KP0, filter Tf and detector delays
+E_tau(s)=diag(exp(-s*tau_i)). The open all-PLL plant gives e=G(s)theta+g(s)d,
+with the same analytic hidden/input/output maps for every proposed edge action.
+Let B=[b_e] be the incidence matrix of the physically allowed communication
+edges, b_e=unit_i-unit_j, so B^T r=0 for the rotational vector r=1.
+Declare in advance finite engineering limits |t_e|<=bar_t_e (or 0<=t_e<=bar_t_e)
+and allowed supports. The NEW control architecture is
+  KP(t)=KP0+KI B diag(t) B^T KI.
+It is not the already implemented diagonal-PLL family. Signal access, channel
+delays, units and off-diagonal gain costs need their own controller contract.
+
+Near s=0 assume the repository moment hypotheses: regular hidden block, rank
+K0=n-1, K0*r=0, ell* K0=0, d0=ell* K1*r nonzero, and analytic physical output
+maps. With (s KP+KI) E_tau acting on detector error, the retained controller is
+  K(s)=E_tau(s)^(-1) (s KP+KI)^(-1) s^2(I+s Tf)-G(s).
+Then K2ctrl=KI^(-1) and
+  K3ctrl=T_tau KI^(-1)+KI^(-1)Tf-KI^(-1)KP KI^(-1).
+Any FINITE edge update has Delta K3=-B diag(t) B^T and Delta K3*r=0.
+The resolvent identity and common rank-one synchronization residue therefore
+give Delta H(s)=O(s^3): H0,H1,H2 are identical exactly. No small gain change is
+required for coefficient equality. Stable time-domain moment interpretations
+require both designs to be stable and the corresponding integrals to converge.
+Neither this identity nor edge balance proves modal improvement.
+
+Exact finite edge-return law.
+
+Use the un-inverted-gain retained PLL equation
+  J0(s)=s^2(I+s Tf)-(s KP0+KI) E_tau(s) G(s).
+It avoids spurious singularities from inverting s KP+KI. The updated operator is
+  Jt(s)=J0(s)-s KI B diag(t) B^T KI E_tau(s) G(s).
+For s on a chart where J0 is invertible, define
+  L(s)=s B^T KI E_tau(s) G(s) J0(s)^(-1) KI B.
+The determinant lemma gives the exact finite identity
+  det Jt(s)/det J0(s)=det[I-diag(t)L(s)].
+For a single edge it reduces to 1-t_e L_ee(s). The exterior/open hidden factors
+are unchanged across these edge updates; retain their determinant factors when
+counting full roots. If a Schur chart has poles inside a contour, count its
+zero-minus-pole index and explicitly restore those fixed hidden contributions.
+Contour points themselves must be regular. No truncated delay or walk series
+is needed.
+
+Finite cardinality exclusion theorem.
+
+Choose a closed bounded contour Gamma whose entire interior lies in the forbidden
+half-plane Re s> -sigma, with at least one full baseline NONROTATIONAL root and
+none on its boundary. Exclude structural gauge roots from the protected region
+or deflate them exactly before assigning its forbidden root count. Take verified
+nonnegative bounds
+  M_ij(s) >= bar_t_i * |L_ij(s)|
+and one positive vector w over candidate edges. Let top_k denote the sum of the
+k largest members of a nonnegative list. If
+  sup_(s in Gamma) max_i top_k({M_ij(s)*w_j}_j)/w_i < 1,             (A)
+then EVERY allowed intervention using at most k edges retains the same number
+of full roots inside Gamma; in particular it cannot achieve the required margin.
+
+Proof: for a support S with |S|<=k, the weighted infinity norm of
+diag(t_S)L_SS(s) is bounded by the corresponding row sums, each bounded by (A).
+This remains <1 throughout the homotopy t -> u*t, 0<=u<=1. Thus the determinant
+ratio never vanishes on Gamma, its boundary homotopy has zero winding change,
+and the full characteristic root count is unchanged. Fixed eliminated poles
+cancel between endpoints once included correctly. The positive forbidden count
+therefore persists. The argument is independent of which subset S was chosen.
+Alternative subset-specific bounds can sharpen (A); failure of (A) proves nothing.
+
+A certified stable (k+1)-edge design establishes that k+1 is the minimum number
+within this FIXED-BASE, bounded edge-update family. A full-region DDE certificate,
+with high-frequency exclusion and gauge treatment, is needed for the upper
+witness; merely moving the one targeted pole is insufficient. Nonlinear event
+validation remains a separate operational requirement.
+
+Exact edge selection derivative and a structural no-authority case.
+
+For a simple baseline root lambda with right/left vectors v,u of J0 and
+d=u*J0_s(lambda)v nonzero, the exact first derivative is
+  d lambda/d t_e = lambda*(u* KI b_e)
+                  *(b_e^T KI E_tau(lambda)G(lambda)v)/d.           (B)
+This is ordinary NEP sensitivity applied to the physical edge stamp. The two
+factors expose actuation receptivity and the edge difference of a transformed
+PLL error; physical graph distance or Fiedler value alone cannot give its sign.
+It can rank candidates, but a large derivative is not a finite repair certificate.
+
+There is also an exact finite obstruction: if
+  B^T KI E_tau(lambda)G(lambda)v=0,
+then Jt(lambda)v=0 for EVERY edge-weight vector t. Equivalently, the transformed
+critical PLL-error vector is constant on each allowed communication component.
+No controller in this edge family can remove that pole, regardless of gain.
+Similarly u* KI B=0 preserves a left nullvector for every t. For one edge either
+zero factor in (B) preserves the pole for all its finite gains. For several
+edges, separate per-edge zero sensitivities do NOT by themselves imply this
+global obstruction: higher-order combinations can act unless a shared left or
+right annihilation condition holds. Exact equalities need structural evidence;
+near-coherence gives small local authority, not an exact impossibility theorem.
+
+Focused falsification test, not a broad simulation campaign.
+
+Freeze one documented latency-stressed IEEE39 design, one protected forbidden
+root contour, the original local gains, and a small declared engineering edge
+set with finite gain limits. Compute (B) and exact single-edge determinants;
+evaluate (A) for k=1 (and only then k=2 if meaningful). Search for an upper
+witness in the same frozen family, check exact moments and full DDE spectrum,
+and compare with the best bounded diagonal retuning at identical requirements.
+If the lower bound is vacuous, if no stable upper witness exists, or if diagonal
+retuning provides the same desired output more cheaply, retain that negative
+result. Do not enlarge bounds or alter the moment objective after observing it.
+
+Most important scope restriction: this does NOT prove that neighbors/communication
+are necessary when all 20 local gains can be retuned. Such a claim requires a
+uniform exclusion over that entire admissible local-gain family, including its
+nonlinear spectral dependence; a failed local optimizer or fixed-gain lower
+bound is insufficient. If local gains vary in a certified region, (A) may be
+extended only with uniform L/count/hidden-chart bounds over the whole region.
+Likewise an SG-retention alternative changes the plant and moment weights and
+requires a separate chart; it cannot inherit the fixed-rho proof.
+
+5. WHAT PDF4 CONTRIBUTES, AND WHAT NOT TO IMPORT
+
+PDF4 is a robotics audit, not a power-system theorem. Its relevant lesson is
+precise: physical authority/feasibility, recursive safety, progress and optimizer
+success are different claims (pp3,10-14). Its Farkas examples certify the stated
+QP, not every possible physical controller; the same scope rule applies to a
+PLL-gain exclusion. Its delayed-consensus lambda_max law (p13) belongs to a
+uniform-delay scalar consensus model and must not be transplanted to this DDAE.
+One could study safe replacement paths rather than any-order blocker avoidance,
+but that is a separate future problem. It is not needed to justify the single
+focused theorem/design target above.
+
+FINAL RECOMMENDATION
+
+Use PDF3's model-scoped H4/contextual-return evidence as an existing anchor and
+PDF1's exact moment law as the architectural constraint. Correct PDF5's explicit
+mathematical overclaims before using it as theory. The strongest achievable next
+target is a nonvacuous finite lower/upper architecture decision under declared
+physical bounds. Until that target succeeds, neither expanded calculus vocabulary
+nor a new collection of graph diagnostics supplies a stronger engineering result.

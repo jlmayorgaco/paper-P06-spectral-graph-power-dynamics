@@ -1,0 +1,48 @@
+# F1/F2 poster asset regeneration
+
+Status: **PASS**
+
+This run regenerated the exact 16-case GFL11 target-band spectra for F1 and the physical-local/collective closure data for F2. It did not run M2, eta continuation, GFM substitutions, or TDS.
+
+{
+  "status": "PASS",
+  "F1": {
+    "status": "READY",
+    "portfolios": 16,
+    "spectra_rows": 1216,
+    "h4": {
+      "portfolio": "30+33+35+37",
+      "members": "30+33+35+37",
+      "cardinality": 4,
+      "dae_state_dim": 86,
+      "transverse_dim": 84,
+      "alpha": 0.12700646782830968,
+      "dominant_lambda_real_s-1": 0.12700646782830968,
+      "dominant_lambda_imag_rad_s-1": 3.9098984763819242,
+      "dominant_frequency_hz": 0.6222796695036534,
+      "damping_ratio": -0.03246619193153392,
+      "status": "UNSTABLE",
+      "equilibrium_f_residual": 4.35983562251079e-13,
+      "equilibrium_g_residual": 9.103828801926284e-13,
+      "coupling_residual": 5.317544637406261e-12
+    },
+    "full_spectra_retained": true,
+    "inclusion_lattice_complete": true
+  },
+  "F2": {
+    "status": "READY",
+    "physical_rows": 72,
+    "collective_rows": 17,
+    "g_star": 0.20768140519037842,
+    "physical_local_convention": "I+M_ii",
+    "collective_convention": "I+Q_H"
+  },
+  "F3": {
+    "status": "BLOCKED_M1_STRICT",
+    "safe_to_run": false
+  },
+  "F4": {
+    "status": "PENDING_DEDICATED_JULIA_LATTICE",
+    "safe_to_run": false
+  }
+}

@@ -1,0 +1,89 @@
+PROPOSED POSTER ARGUMENT — 2026-10-04
+
+WORKING TITLE
+Beyond Nodal Damping: Network Limits on Local Frequency Support
+
+ONE SENTENCE TO REMEMBER
+For a declared nonlinear lossless network, two power-flow endpoints impose
+a local-frequency inertia floor that moving the same inertia or adding
+energy-neutral damping cannot remove.
+
+THE QUESTION
+Can a perfectly shaped average frequency hide a local violation that no
+energy-neutral controller can eliminate at the available inertia?
+
+THE ANSWER CURRENTLY PROVED
+Yes. For a localized step, the exact secant graph gives
+  m+kappa > d0^2 (e_k-c)^T Lbar_k^dagger (e_k-c)
+as a necessary condition for all local frequencies to avoid crossing the
+final value, with zero net supplementary energy. The worst area is at the
+disturbed site, by a graph maximum principle; the worst instantaneous peak
+need not be there.
+
+In the dimensionless two-node instantaneous-damping example,
+  inf m = 2 asin(P/2)/P.
+The boundary is not attained. A closed-form controller supplies a feasible
+trajectory for every m strictly above it, without actuator bounds. For
+P=1,m=41/40, COI is exactly monotone but a local overshoot is unavoidable.
+The uncontrolled case converges by a proved energy barrier and LaSalle.
+
+THE GRAPH IS FUNCTIONAL, NOT DECORATIVE
+The secant resistance is a sum of event projections weighted by inverse
+graph eigenvalues, a minimum flow energy, and bounded below by every cut.
+It measures transfer between the event site and distributed primary response.
+For finite amplitude, it uses the TWO endpoints, not a frozen initial Jacobian.
+
+CONTROLLER DESIGN CONSEQUENCE
+The boundary identifies when waveform reshaping with zero net energy cannot
+meet the specification. Escape requires changing total support, net energy,
+primary response, network/endpoints, or the performance contract.
+For the two-node ideal class, the construction is explicit. For detailed
+GFL, the same conclusion requires a model-specific derivation and validation.
+
+THREE MAIN VISUALS
+1. Graph/event/primary-response diagram with the endpoint law and cut.
+2. FIG_SHARP_NETWORK_LIMIT.png: forbidden region and feasible construction.
+3. A detailed-model validation panel, only after the physical bridge is fixed.
+   Do not substitute the old41ms or94.215% results for this missing panel.
+
+WHAT SHOULD NOT APPEAR AS A POSTER CLAIM
+- Maximum IEEE39 GFL replacement.
+- Certified SG floor in the actual PLL/DC model.
+- Every form of overshoot violates a grid-code limit.
+- Nadir is invariant when inertia is redistributed.
+- Local PLL tuning cannot stabilize any such system.
+- Graph/GSP, power conservation, Thomson identity or fractional-knapsack LP
+  as a first invention.
+
+LITERATURE POSITION
+Poolla--Bolognani--Dorfler already optimize inertia allocation with robust
+disturbance location. Jiang et al.2026 explicitly distinguish COI shaping
+from inter-area dynamics. Aalipour--Das already uses integral constraints
+to explain necessary excursions. Kohlhaas--Kotyczka2026 uses aggregate-neutral
+damping to preserve initial RoCoF and the frequency endpoint.
+Compare the exact finite endpoint restriction and sharp nonlinear example,
+not the existence of those ingredients. Priority has not been established.
+
+COMPETITION READINESS
+Theoretical narrative: substantially more precise than the previous
+unqualified COI-area proposal; fully written with proofs and counterexamples.
+Detailed IEEE39 physical validation: BLOCKED.
+Reason: the archived DC/filter balance has signed storage K+Ef-Edc,
+voltage-dependent events, and evidence of governor limiting. A positive
+physical storage and frequency-measurement contract must be resolved first.
+Native LaTeX compilation: the host compiler fails before source diagnostics
+with 'Unable to find standard directories for platform'. No compiled PDF
+is claimed for the updated source.
+
+NEXT DECISIVE WORK
+1. Declare a fresh, physically consistent converter/primary-response model
+   with positive stored energy and unchanged frozen historical records.
+2. Prove its summed balance and identify whether measured bus frequency,
+   inertia, endpoints and supplementary energy meet the theorem contract.
+3. Freeze a minimal test: one local event below the predicted obstruction,
+   one above, a balanced controller and an energy-changing intervention.
+4. Validate full trajectories and all actual guards; retain negative results.
+5. Only then claim an IEEE39 engineering benefit or finalize that poster panel.
+
+No heavy simulation, optimization campaign, poster-source replacement or
+publication action was performed during this development.

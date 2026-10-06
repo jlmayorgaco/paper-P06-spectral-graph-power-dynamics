@@ -1,0 +1,158 @@
+\section{Registered Benchmark and Protocol}
+\subsection{Matched IEEE 39-Bus Testbed}
+
+The principal case is a reconciled IEEE 39-bus system with GFL converter
+plants at buses 36, 37, and 38. The population remains GFL-only throughout the
+campaign; no GFL-to-grid-forming model substitution is part of the action
+space. The ANDES implementation uses a symbolic--numeric DAE framework
+\cite{cui2021andes}. Its static data were reconciled to a matched ParaEMT
+model before the main campaign.
+
+The E02C prerequisite verified the common post-conversion operating point,
+network-wide stationarity, converter active/reactive power, current and PLL
+channels, adjacent-timestep convergence, and generalized-QZ eigenpair
+residuals. All seven registered readiness gates passed after retaining the
+canonical 0.97143 transformer tap. This establishes that the benchmark is
+suitable for the ANDES experiments below. It does \emph{not} provide EMT
+validation of any externality, modal mechanism, or intervention.
+
+The 100-MVA ac solve uses bus 39 as its reference/slack bus. GFL buses 36--38
+are fixed-$P/Q$ injections: their legacy PV voltage equations are disabled and
+their registered reactive injections are fixed, while the remaining
+synchronous PV controls and the slack close the network equations. Thus the
+A7 active-power increment is balanced by the reference generator through the
+power flow. Every accepted vertex was outside the implemented converter
+current and controller-saturation limits. Across the recorded E03 vertices,
+minimum bus voltage was 0.84056 pu and maximum GFL current was 0.90842 pu on
+the device base, below the 1.2-pu current limit.
+
+\subsection{Finite Engineering Actions}
+
+Table~\ref{tab:actions} lists the eight actions frozen before discovery. The
+controller actions preserve model class and state dimension. For PLL
+bandwidth actions, the proportional and integral gains follow
+$K_p=K_{p0}r$ and $K_i=K_{i0}r^2$ with $r=1+0.2a_i$. The current-command
+bandwidth actions use the corresponding registered REGCP interpolation.
+A7 changes the GFL37 active-power reference by 20 MW (0.20 on the 100-MVA
+system base, 0.02 on the 1000-MVA device base), and A8 increases the series
+reactance of branch 25--37 by 10\%. The three GFL ratings are 1000 MVA, with
+baseline active injections of 560, 540, and 830 MW. The frozen PLL natural
+frequency changes from 2.0 to 2.4 Hz; the current-command time constant changes
+from 0.0200 to 0.0167 s; and the branch-25--37 reactance changes from 0.0232 to
+0.02552 pu. A8 was
+chosen by a static network rule: branch 25--37 is the median-reactance member
+of the three transformer branches incident to the GFL cluster. No dynamic
+result informed the choice.
+
+\begin{table}[t]
+\caption{Frozen Finite Action Set}
+\label{tab:actions}
+\centering
+\footnotesize
+\begin{tabular}{clcl}
+\toprule
+ID & Family & Location & Full action\\
+\midrule
+A1 & PLL bandwidth & bus 36 & $+20\%$ natural frequency\\
+A2 & PLL bandwidth & bus 37 & $+20\%$ natural frequency\\
+A3 & PLL bandwidth & bus 38 & $+20\%$ natural frequency\\
+A4 & Current-command BW & bus 36 & $+20\%$ bandwidth\\
+A5 & Current-command BW & bus 37 & $+20\%$ bandwidth\\
+A6 & Current-command BW & bus 38 & $+20\%$ bandwidth\\
+A7 & Active-power reference & bus 37 & $540\rightarrow560$ MW\\
+A8 & Network reactance & line 25--37 & $0.0232\rightarrow0.02552$ pu\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The 24 preregistered operating points comprise 16 discovery and eight locked
+holdout seeds. Each point evaluates all 28 pairs and 56 triples, for 672 pair
+and 1,344 triple cases. A failed ac solution, initialization, descriptor
+build, or smooth-path check invalidates the case and remains in the failure
+ledger; cases are never silently dropped.
+
+\subsection{Spectral Functional and Numerical Uncertainty}
+
+The primary band is 0.1--30 Hz. Frequency integration uses Gauss--Legendre
+quadrature in log frequency with 48 nodes and a 96-node reference. A
+conditioning-only pilot selected the first admissible fixed contour shift,
+$\sigma=0$, from a preregistered list. A 0.1--50 Hz band is retained only as a
+sensitivity analysis. Connected integration uses the frozen action-hypercube
+rule, complete pair/triple partitions, and sparse active-column trace solves;
+the implementation never forms the full $T^{-1}$ for the campaign.
+
+The direct uncertainty $\epsilon_{\mathrm{direct}}$ is a conservative sum of
+case-specific frequency refinement, sparse-log-determinant, and power-flow/
+Jacobian terms. A direct coefficient is called resolved only if
+\begin{equation}
+|\ext{S}\Phi|>5\epsilon_{\mathrm{direct}}.
+\label{eq:resolve}
+\end{equation}
+The reconstruction criterion is
+\begin{equation}
+|\ext{S}\Phi_{\mathrm{conn}}-\ext{S}\Phi_{\mathrm{direct}}|
+\le 5\epsilon_{\mathrm{combined}},
+\label{eq:recongate}
+\end{equation}
+where the combined budget also includes derivative, action-grid, hypercube,
+and connected-frequency errors. Correlation is descriptive and cannot pass
+this gate.
+
+The sequence of freezes separates method selection, discovery, and holdout.
+Numerical pilots may select only predeclared resolution parameters. Direct
+discovery determines which effects exceed their uncertainty. The connected
+implementation then reconstructs every resolved case. Finally, action
+coalitions are locked without inspecting modal consequence and evaluated on
+independent holdout seeds.
+
+\subsection{Modal Consequence and Stress Ladder}
+
+For an eigenvalue $\lambda=\alpha+j\beta$, modal frequency and damping are
+$f=|\beta|/(2\pi)$ and $\zeta=-\alpha/|\lambda|$. Left and right
+eigenvectors are biorthogonally normalized. Tracking uses a registered
+biorthogonal MAC (BMAC), eigenvalue distance, one-to-one assignment, and
+adaptive homotopy. A modal family must be locked in discovery before the
+holdout is viewed.
+
+The finite damping externality $\ext{S}\zeta$ is computed with the same
+inclusion--exclusion rule as \eqref{eq:mobius}. The registered materiality
+threshold is $|\ext{S}\zeta|\ge 0.0025$ at four or more of eight holdout
+points, with at least six valid tracks and same-sign fraction at least 0.75.
+This 0.0025 value and the separate 5\% minimum-damping screen are study
+criteria, not universal grid-code limits.
+
+Two increasingly targeted stress tests were frozen after the nominal
+materiality claim failed. E05C scales load to the first 0.85-pu voltage
+boundary using eight new seeds and all 15 retained coalitions. E05D was
+intended to vary grid strength, but its immutable rule required a baseline
+minimum damping of at least 5\% before any coalition could be evaluated. A
+later descriptive audit at $\kappa_{\mathrm{grid}}=1$ was explicitly barred
+from changing any gate.
+
+\subsection{Evidence Ladder}
+
+Table~\ref{tab:evidence} distinguishes structural evidence from operational
+evidence. This ordering prevents an exact mathematical decomposition from
+being promoted automatically into a stability or mitigation claim.
+
+\begin{table}[t]
+\caption{Registered Evidence Ladder and Terminal Status}
+\label{tab:evidence}
+\centering
+\footnotesize
+\begin{tabular}{p{0.08\columnwidth}p{0.54\columnwidth}p{0.20\columnwidth}}
+\toprule
+ID & Question & Status\\
+\midrule
+C1 & Do finite re-equilibrated pair/triple externalities exist? & Supported\\
+C2 & Does connected reconstruction close the direct result? & Supported\\
+D1 & Does exact Schur factor anatomy close? & Supported\\
+D2 & Are finite-pole externalities reproducible? & Supported\\
+D3 & Can certified contours localize pole motion? & Supported, conditional\\
+N1 & Is nominal modal materiality established? & Rejected\\
+N2 & Is load-stress materiality established? & Rejected\\
+N3 & Is weak-grid materiality established? & Unresolved; baseline ineligible\\
+N4 & Is a cycle/SCC intervention established? & Unassessed\\
+\bottomrule
+\end{tabular}
+\end{table}

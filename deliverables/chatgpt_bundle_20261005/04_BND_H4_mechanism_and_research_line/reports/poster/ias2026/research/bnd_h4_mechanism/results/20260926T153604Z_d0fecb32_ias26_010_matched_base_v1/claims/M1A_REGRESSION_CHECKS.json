@@ -1,0 +1,28 @@
+{
+  "current_h4": {
+    "state_count": 86,
+    "alpha": 0.12700646782830968,
+    "frequency_hz": 0.6222796695036534,
+    "model_hash_matches_pre_correction": true,
+    "equilibrium_hash_matches_pre_correction": true,
+    "reduced_A_hash_matches_pre_correction": true
+  },
+  "frozen_proper_subset_ledger_read_only": {
+    "path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\poster\\ias2026\\research\\bnd_h4_mechanism\\results\\20260926T083621_h4_f1_f2_assets_v1\\derived\\F1_PORTFOLIOS.csv",
+    "sha256": "beda8de970cdf78e8f36392b626dbebaae765e8a0a2f87bd3558878fde414644",
+    "portfolio_rows": 16,
+    "proper_subset_rows_including_base": 15,
+    "all_proper_subsets_stable": true,
+    "h4_status": "UNSTABLE"
+  },
+  "frozen_julia_gfl11_parity_read_only": {
+    "path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\poster\\ias2026\\research\\bnd_h4_mechanism\\results\\20260925T225832_dee6fe69_h4_modal_schur_v1\\claims\\CROSSCODE_GFL11_RECONCILIATION.json",
+    "sha256": "9e107558c042160527d382b5710b53aa42ba79a379363d71b17459dcfb8f9951",
+    "status": "PASS_GFL11_EXACT_REPRODUCTION",
+    "python_states": 86,
+    "julia_states": 86,
+    "alpha_difference_s-1": 4.9398755e-10,
+    "frequency_difference_hz": 1.50509e-11,
+    "pass": true
+  }
+}

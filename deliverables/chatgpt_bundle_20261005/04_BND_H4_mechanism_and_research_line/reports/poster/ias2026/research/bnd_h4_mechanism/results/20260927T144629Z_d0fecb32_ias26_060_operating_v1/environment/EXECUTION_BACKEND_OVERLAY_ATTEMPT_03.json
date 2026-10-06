@@ -1,0 +1,45 @@
+{
+  "ticket": "IAS26-060B",
+  "attempt": "03",
+  "created_at_utc": "2026-09-27T15:01:04.104036+00:00",
+  "authorization": "The current user instruction explicitly requires Julia primary when an exact GFL11 runner exists; frozen scenario/config files are used unchanged.",
+  "julia_backend": "custom exact TX4/P4/GFL11 Julia implementation",
+  "powerdynamics_exact_model_available": false,
+  "powerdynamics_reason": "Existing PowerDynamics IEEE-39 portfolio census is explicitly an alternative dynamic model; it does not reproduce frozen TX4/no-governor machine physics. The frozen GFL11 injector is exact at device level, but its available network census is not the canonical TX4 DAE.",
+  "custom_julia_canonical_regression": "PASS per TX4_EXACT_P4_JULIA_FINAL_REPORT.md: 86 H4 states, 16/16 verdict agreement, alpha/frequency and H4 mode MAC pass.",
+  "custom_julia_runner_sha256": "7af3df03d627c4d7f4e9e804e193a10472d7eee71992e9cad0fec57285cf4c22",
+  "custom_julia_data_sha256": "1552cda3f08b4bb9a408baf22150d0295e6b75fa98faff289caee2a66771b8b2",
+  "campaign_runner_sha256": "73d6baeef76089983798d9a5487afdcf7dcf53e90c3ad8ca86c1b505bc13d6f7",
+  "project_sha256": "bb10797c84a225d9563fda8c15277091c03b881d941243c5336bb2ea4fd0403e",
+  "manifest_sha256": "0f5219decf3de7a3efb91eeadaccd270645579f38c1ec463da53c6e8e7e0f458",
+  "exact_regression_report_sha256": "4f2da5d07e3d355c6e4d268125a0994c2f6b81f1104fdd711cbe3a0d6cc148c4",
+  "powerdynamics_alternative_report_sha256": "53f90589ae3944718d5a2cf23ce29070c55bae527dc4261e35b67e7da146e4ab",
+  "julia_executable": "C:\\Users\\walla\\AppData\\Local\\Microsoft\\WindowsApps\\julia.exe",
+  "julia_project": "research/ias2026_last_validation/env/julia/Project.toml",
+  "julia_version_required": "1.11.9 per existing exact-run record",
+  "frozen_input_hashes": {
+    "config": "75db11e64299757bbe170f5ecadcb8c1a3f2ea969583e3c95bcdebc008bfb4b4",
+    "scenario_manifest": "45c425fa4d146aa3a0a3bf26cfbdda1c99590da67ea6c4318cf788c1006b6eb3",
+    "intervention_config": "54f5b18fb6752efe0bb17c1474abf6c89c5ae9d0f7064be9d67487e5695691e1"
+  },
+  "numerical_backend_note": {
+    "frozen_config_backend": {
+      "power_flow": "Frozen scipy.optimize.root(method='hybr') in ieee39_network.solve_power_flow",
+      "eigenvalues": "numpy.linalg.eig on the dense real A_perp, matching the frozen F1/IAS26-050 implementation."
+    },
+    "executed_backend": "Julia custom TX4 analytic-equilibrium path; finite-difference DAE Jacobian and LinearAlgebra.eigen; frozen P4_G binding is made mutable only in-memory for the two preregistered g treatments.",
+    "thresholds_preserved": {
+      "power_flow_residual_acceptance": 1e-09,
+      "dae_f": 1e-07,
+      "dae_g": 1e-07,
+      "eigenpair_relative_residual": 1e-08,
+      "tau_dec": 1e-08
+    },
+    "physics_changed": false,
+    "parameters_or_scenarios_changed": false,
+    "note": "This execution-backend choice is user-directed and is recorded separately; the frozen V1 config and manifest are not edited. Numerical tolerances and model equations are unchanged. Results are tied to the Julia source hashes above."
+  },
+  "scenario_order": "frozen ascending manifest order for full MC; five technical smoke selectors in the order min L, max L, nearest L=1, S0001, S1000.",
+  "no_outcome_dependent_filtering": true,
+  "no_retries_or_replacements": true
+}

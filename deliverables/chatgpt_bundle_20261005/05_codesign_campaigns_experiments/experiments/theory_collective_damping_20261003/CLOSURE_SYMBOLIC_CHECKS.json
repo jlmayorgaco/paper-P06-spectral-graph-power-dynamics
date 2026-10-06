@@ -1,0 +1,172 @@
+{
+  "all_passed": true,
+  "check_count": 27,
+  "checks": [
+    {
+      "name": "unique_real_gains",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "single_pair_inverse",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "single_pair_rank",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "full_matrix_row_assignment",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "site_0_gain_recovery_p",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "site_0_gain_recovery_i",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "site_1_gain_recovery_p",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "site_1_gain_recovery_i",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "complex_pattern_scale_invariance",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "total_gain_quotient_derivative",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "real_proportional_gain_chain_rule",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "real_integral_gain_chain_rule",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "local_two_pair_conflict_is_nonzero",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "neighbor_adds_the_missing_rank",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "projector_annihilates_self_gain_actions",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "projector_is_idempotent",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "added_gain_formula_satisfies_conflict",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "added_gain_formula_recovers_unique_solution",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "self_gain_reconstruction",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "full_assignment_after_neighbor_correction",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "minimum_added_gain_cost",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "weighted_stationarity",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "compatible_local_demands",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "redundant_neighbor_has_no_added_authority",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "redundant_neighbor_cannot_resolve_conflict",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "polynomial_delay_commutator",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    },
+    {
+      "name": "exact_frequency_edge_identity",
+      "passed": true,
+      "status": "EXACT_IDENTITY",
+      "verification": "symbolic algebra"
+    }
+  ],
+  "simulation_count": 0,
+  "optimization_runs": 0,
+  "spectral_sweeps": 0,
+  "interpretation": "Proof supplements and algebraic fixtures only; no new IEEE-39 design"
+}

@@ -1,0 +1,30 @@
+{
+  "status": "BLOCK_MODAL_NONLINEAR_REGION_RECHECK_PASSED",
+  "coordinate": "dq",
+  "state_count": 281,
+  "input_count": 88,
+  "blocks": 184,
+  "epsilon": 3.162277660168379e-07,
+  "min_boundary_margin": 4.2882384992647274e-11,
+  "exact_min_boundary_margin": "16823568328429122532213383290976374594349872977/392318858461667547739736838950479151006397215279002157056",
+  "certified_comparison_Perron_upper": 0.8542018532597442,
+  "max_initial_region_usage": 8.342867666725819e-06,
+  "frequency_bound": 0.0001579457832338688,
+  "rocof_bound": 0.002484491737121827,
+  "voltage_min": 0.9819615847372738,
+  "voltage_max": 1.0635602820275947,
+  "min_block_decay": 0.0454409470662526,
+  "max_block_decay": 4387.5222018789345,
+  "metric_inverse_check": 2.8010227391578547e-08,
+  "network_inverse_check": 6.03822624013509e-07,
+  "implementation_type": "Nonlinear interval model enclosure; rational check of all boundary inequalities; shares interval model with synthesis",
+  "source_hashes": {
+    "model.toml": "2d6ae0523c25cbbce21cbcc18fe7437685245da4f96b6cf09a828b598dd6dcf5",
+    "refined_center.json": "da54479b4587d46ba25320629b6cf1f72abd4635b97104c83e2f09c7b7382beb",
+    "block_modal_synthesis.json": "84f78faa60eb8d2b03e120dfbb4f6de43e047409a5cb44f2b8f1beb31f624f43",
+    "block_modal_certificate.npz": "997512d855644bbd6b342a45fcc5f1553a205d521e9cdc3bc8c2f48c390167f3"
+  },
+  "implementation_sha256": "8dfd88a0ad10ded5cb24aa86f8984c9732e6143e83d04f2104fb4cf1d7b4cb7e",
+  "script_sha256": "dc8a0fc14beddf119ccf69d28d4497a33a67b3b9b7e30831ff2d9cadfc2bb63f",
+  "scope": "Fixed design and declared current/DC ball. Not global optimality, useful operating-capacity proof, or independently validated hardware limits."
+}

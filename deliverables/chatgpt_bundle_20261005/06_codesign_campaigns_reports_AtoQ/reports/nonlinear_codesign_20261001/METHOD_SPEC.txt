@@ -1,0 +1,526 @@
+BEYOND NODAL DAMPING: NONLINEAR SG-TO-GFL REPLACEMENT FRONTIER
+Research specification, 2026-10-01. This document defines the method; it does not
+claim that the global maximum, a region-of-attraction certificate, or all equipment
+limits have already been validated. See generated numerical audit files for results.
+
+RESEARCH DIRECTION UPDATE: CONTROL THEORY, NOT A FINITE-SCENARIO DEFINITION
+The primary theory is now specified in THEORY_GRAPH_ROBUST_CONTROL.txt in this
+directory. It uses nonlinear DAE models, graph/network operators, robust invariant
+operating sets and compositional dissipativity certificates for all admissible
+input signals, without prescribing their waveform or bus support. The scenario
+exchange formulation below remains an experimental/falsification backend, not the
+defining theoretical contribution. Existing network replacement percentages are
+NOT established as robust capacity optima. A coupled numerical certificate now
+exists only for a microscopic envelope; a useful operating envelope is pending.
+Latest implementation: coupled_dq_contract/CONTROL_MODAL_COMPARACION_Y_CODESIGN_ES.txt.
+Nonlinear Jacobian enclosures over the full region now yield a positive comparison
+system for 184 modal blocks, retaining all 281 states and all 88 input channels.
+The fixed-domain inner LP reaches epsilon=3.5521988587e-7 with a verified relative
+LP gap <=2.812746876e-7 and regional contraction rate >=0.0190303475/s. This improves
+the previous scalar-metric radius by about 2.94 million times; the input envelope
+is still too small for an operating-capacity claim. Most improvement comes from
+modal comparison; the exact dq coordinate change contributes about 15.48% in the
+controlled block-method ablation. Neither rho nor PLL gains were optimized here.
+The LP dual bound is not an upper bound on physical replacement capacity. The
+robust outer problem must fix a useful required input envelope before maximizing
+replacement. Frequency/RoCoF feedback, DC resources and hardware limits must be
+included in the actual model before being credited to that outer co-design.
+The updated document includes a conditional theorem and proof, analytical input
+support functions, graph-based storage, a compositional matrix condition and the
+distinction between certified capacity, local search and the physical optimum.
+First component certificate: pll_sector_contract/CONTRATO_PLL_ES.txt derives and
+verifies the installed nonlinear PLL with filtered RoCoF, including exact rational
+LMI checks and a fixed-gain SDP optimality bound. This conditional component result
+does not certify the existing network candidate or replace the remaining network,
+current-loop, DC, energy and synchronous-machine contracts.
+
+Full GFL update: full_gfl_sector_contract/GFL_COMPLETO_Y_COMPOSICION_ES.txt now
+verifies all nine local GFL states plus the RoCoF instrument at ten operating points,
+with 320 exact-rational vertex checks and a bounded trim residual. These are
+conditional input contracts, not full-grid certificates. An independently checked
+algebraic witness shows why their Cartesian-product regions do not close on the
+present network: isolated state variations use at most 0.887195 of any receiver's
+voltage-input radius, whereas their joint application uses 2.728973. This is a
+certificate-composition failure, not a claim of instability or reachability.
+Useful SG/network composition, physical hardware limits and replacement co-design
+remain open. The later microscopic coupled result includes bus-frequency
+instruments. The full-GFL fixed-gain dual bounds remain loose.
+
+The separate Q2B transfer is audited in Q2B_CERTIFIED_SEARCH_TRANSFER_AUDIT.txt.
+Its newly reported local optimum supersedes that campaign's historical failed
+attempt, but belongs to its frozen event and inherited DC model. It is not a
+feasible replacement bound for the present all-input nonlinear control problem.
+
+Latest coupled result: coupled_network_contract/CERTIFICADO_ACOPLADO_Y_LIMITES_ES.txt
+retains 281 states and 88 input channels, with all-bus phase-frequency instruments.
+Its nonlinear derivative enclosures yield a positive invariant-region margin for
+epsilon=1.2087e-13 in the declared input normalization. This is a numerical method
+prototype, not a useful operational envelope, optimized capacity, or hardware
+certificate. The exact nonlinear model is enclosed throughout a region; its
+nominal modes only initialize the metric. The next work must preserve nonlinear
+dependencies to reduce interval conservatism before optimizing replacement.
+
+MODEL AUDIT UPDATE: PHYSICAL DC-SUPPLY CONVENTION
+The inherited model labels P_ac as converter-to-filter power and initializes a
+positive P_dc, but uses C*vdc*vdcdot=P_ac-P_dc and voltage errors Vref-vdc.
+For positive DC supply and positive AC output, the physical convention is
+  C*vdc*vdcdot=P_dc-P_ac,
+  iref_d=(vdc-Vref)*kp_dc+vdi, vdi_dot=(vdc-Vref)*ki_dc.
+The isolated physical_supply variant makes both corrections. With filter energy
+E_f=(Xf/omega_base)*|i|^2/2, it satisfies exactly
+  d(E_dc+E_f)/dt=P_dc-P_bus-Rf*|i|^2.
+The randomized energy audit and nominal-Jacobian similarity result are saved in
+dc_physics_audit.toml. At trim, changing the sign of the DC-voltage perturbation
+maps one Jacobian to the other; equality of nominal poles is therefore insufficient
+to validate this energy convention. Nonlinear trajectories must be re-evaluated.
+The original source files were preserved. The legacy search was stopped and its
+outputs remain model-specific diagnostics. Physical search results are stored in
+search_physical and must not be mixed with legacy results. The mathematical
+optimization and DAE sensitivity method applies to both vector fields; physical
+capacity claims must use a model with the correct power/energy semantics.
+
+GENERAL THEORY: NO IEEE39 OR 100-MW CONSTANT IN THE DEFINING EQUATIONS
+User clarification: the network, disturbance and numerical limits below are only
+an experimental instance. The theory takes them as inputs, not universal constants.
+Let a network/model M, an operating-point set O, uncertainty set Xi, disturbance
+family D and measurement operators H_f,H_r be declared. D must be bounded or
+otherwise physically restricted; no finite grid can satisfy arbitrary disturbances.
+For every operating point o, uncertainty xi and disturbance d(t;eta) in those sets,
+  xdot=f(x,v,p,d;M,o,xi), 0=g(x,v,p,d;M,o,xi).
+The index-one formulation requires g_v nonsingular on the considered trajectory.
+The general derivative is v_p=-g_v^{-1}g_p, v_x=-g_v^{-1}g_x. It applies to
+nonlinear algebraic load laws as well as the affine-Z special case implemented.
+The closed finite rank-two update is restricted to that affine-voltage special
+case; it is not asserted for an arbitrary nonlinear g.
+With a nonsingular differential mass matrix M_d, first reduce F=M_d^{-1}f, and
+include the derivatives of M_d in F_x,F_p. With a residual DAE R(z,zdot,p)=0,
+the equivalent tangent equation is R_zdot*Sdot+R_z*S+R_p=0.
+
+Define each security functional through a supremum, for example
+  C_f(p)=sup_{o in O,xi in Xi,d in D,b in B,t in [0,H]}
+         (|H_f[phi_b](t)|/fmax_b-1),
+and likewise C_r,C_V,C_I,C_E plus the declared terminal/stability condition.
+The general co-design is min J(p) subject to every C_l(p)<=0 and device bounds.
+Measurement windows, nominal frequency, powers, horizon and hardware limits are
+parameters. The differentiable measurement operators act on phase sensitivities.
+
+The robust search contains two coupled optimization problems:
+  design: improve p using the currently active disturbances and time/location cuts;
+  separation: maximize a normalized violation over D,O,Xi and time/location.
+A newly found violation becomes a cut/scenario and the design is repaired.
+Adjoints can also differentiate the response with respect to disturbance amplitude,
+location-dependent injection, duration and smooth uncertainty parameters. Discrete
+fault locations/topologies require enumeration or a justified discrete search;
+fault times/reset maps require event-time and saltation terms.
+Six endpoint simulations do not solve this general separation problem. A global
+robust-feasibility statement requires a global separation bound or another valid
+certificate; a local adversarial search supplies counterexamples, not such a bound.
+The current executable is the finite-D specialization. Continuous adversarial
+separation, uncertainty sweeps and terminal certificates are extensions to validate.
+For tied worst cases, retain their gradients as a bundle (Danskin-type envelope
+derivatives under the usual compactness/smoothness assumptions). Do not assume a
+single differentiable maximum. No monotonicity in disturbance size is assumed.
+
+SCIENTIFIC CONTRACT
+Problem: maximize the power-weighted fraction of synchronous generation replaced
+by co-located grid-following converters under declared disturbances and limits.
+Gap to test: equilibrium damping and isolated PLL tuning can admit designs whose
+nonlinear trajectories violate frequency/RoCoF limits. This is supported by the
+previous IEEE39 bus-8 counterexample, not a universal statement about every grid.
+Proposed contribution: derive a network-coupled marginal value of SG replacement
+from the complete nonlinear DAE, and use it to co-design placement, fractions and
+PLL gains along an explicitly validated replacement frontier.
+Falsification: compare against uniform replacement, modal-only co-design and
+nonlinear co-design without modal guidance, on identical models and constraints.
+Consequence: identify how many MW can be converted, where synchronous support
+must remain, and which disturbance, location and physical limit set the boundary.
+
+MODEL AND SCOPE
+p=(rho, kappa_p, kappa_i), Kp=Kp_ref*exp(kappa_p), Ki=Ki_ref*exp(kappa_i).
+Reference gains carry the units. The executable uses numerical log gains in fixed
+declared units, which differs only by a constant offset of these coordinates.
+J(p)=sum_i P0_i (1-rho_i). Minimize J; replaced fraction=1-J/sum_i P0_i.
+This is a dispatch-weighted replacement fraction of co-located aggregates. It is
+not the fraction of units retired, installed renewable capacity, or delivered energy.
+Internal SG equations retain their original per-unit inertia and parameters;
+terminal current is scaled by 1-rho. Scaling inertia again double-counts removal.
+PLL gains do not provide primary energy reserves or synthetic inertia by themselves.
+The implemented GFL includes PLL, current filter/controller and DC-link controller.
+
+For the frozen constant-impedance-load model, each SG stator map at fixed internal
+state is exactly affine in the terminal voltage: i_s=D_i(x_i)v_i+c_i(x_i).
+G(x,rho,d)=Y_Z(d)+sum_i (1-rho_i) S_i D_i(x_i) S_i^T.
+h(x,rho)=sum_i S_i[(1-rho_i)c_i(x_i)+rho_i j_g(x_i)].
+g(x,v,p,d)=Gv+h=0. If G is nonsingular, v=-G^{-1}h exactly.
+The nonlinear vector field is F(x,p,d)=f(x,v(x,p,d),p,d).
+No Taylor truncation of the plant is introduced by this algebraic elimination.
+Passive-bus Kron reduction further reduces the algebraic solve from 78 to 20 real
+port coordinates, while retaining every SG/GFL dynamic state. It assumes the
+passive block remains invertible; changed loads/topologies require rebuilding it.
+General constant-power load models require a nonlinear algebraic solve instead.
+
+CONDITIONAL STATE-INDEPENDENT ALGEBRAIC REGULARITY
+For a port-reduced real admittance K, define H=-(K+K^T)/2. If H>=gamma I,
+gamma>0, and each SG stator map D_i is skew-symmetric, then
+  G_port=K+sum_i (1-rho_i) S_i D_i S_i^T,
+  -sym(G_port)=H, sigma_min(G_port)>=gamma, ||G_port^{-1}||_2<=1/gamma.
+Proof: gamma||z||^2 <= -z^T G_port z <= ||z|| ||G_port z||.
+In this particular machine dataset, Rs=0 and Xd''=Xq''=X'', giving
+  D_i=(S_i_rating/S_base)/(omega_i X_i'') * J, J=[0,-1;1,0].
+Thus the bound holds independently of angles, replacement fractions and internal
+electromagnetic states, conditional on nonzero machine speed and fixed admittance.
+Together with an invertible passive block, it proves algebraic solvability of the
+full network. It does not prove dynamic stability, voltage limits, or a safe
+all-GFL operating point. More general machines/loads need another condition.
+The nominal and six declared Z-load cases have positive numerical gamma values
+(minimum approximately 0.5133; see algebraic_regularity.csv). The eigenvalue
+calculation is floating-point, not a formal interval certificate; this finite
+case audit does not certify a continuous disturbance family.
+For a distributed or approximate adjoint solve G^T zeta=b with residual r,
+  ||zeta_hat-zeta|| <= ||r||/gamma.
+The corresponding local replacement-score error is at most
+  ||i_g-i_s|| * ||r||/gamma
+at that instant, before integration and other sensitivity errors. Local device
+data supplies the current mismatch; a network solve or converged distributed
+iteration supplies the global influence. Purely local measurements alone do not
+identify the robust network-wide replacement capacity.
+
+EXACT MOVING REFERENCE FRAME FOR FAST NONLINEAR ACCEPTANCE
+The equations are equivariant under a common phase rotation. Let T_alpha denote
+that group action and q(y)=d T_alpha(y)/d alpha at alpha=0. Choose a phase coordinate
+y_r with q_r=1 and keep y_r fixed. Represent x=T_alpha(y), with
+  alpha_dot=Omega(y)=F_r(y),
+  ydot=F(y)-Omega(y)*q(y).
+The redundant fixed y_r is replaced in the state vector by alpha, so no physical
+mode or common frequency is discarded. The exact Jacobian on the unfixed
+coordinates is F_y-q*(dOmega/dy)-Omega*Dq, with the alpha column zero and the
+alpha row dOmega/dy. Reconstruct voltages as v=T_alpha(v_relative).
+Thus terminal phase is alpha+phi_relative. Frequency/RoCoF must include both
+terms; omitting alpha would erase the physical common-frequency response.
+This avoids resolving a continuing common rotation in every converter current
+after a load step. A benchmark compares the exact coordinate change against the
+original coordinates; see rotating_frame_audit.toml. It is a numerical acceleration,
+not an equilibrium linearization, dynamic truncation or stability certificate.
+
+EXACT LOCAL-TO-NETWORK REPLACEMENT DERIVATIVE
+At fixed internal states in a fixed support:
+  v_{rho_i} = -G^{-1} S_i (j_g,i-i_s,i).
+The mismatch is local, but propagation through G^{-1} is network dependent.
+Thus a local damping score alone cannot determine the network replacement value.
+For a finite delta in rho_i at fixed states, with Z_ii=S_i^T G^{-1} S_i:
+  v_new = v-delta G^{-1}S_i[I_2-delta D_i Z_ii]^{-1}(j_g,i-i_s,i).
+  det(G_new)/det(G)=det(I_2-delta D_i Z_ii).
+This rank-two identity predicts algebraic response and regularity at that instant;
+it is not a formula for admissible dynamic replacement after a disturbance.
+At the matched pre-event equilibrium the mismatch vanishes. This does not imply
+zero trajectory sensitivity: the mismatch develops during the transient.
+
+NONLINEAR TRAJECTORY SENSITIVITIES
+At every point of the actual nonlinear trajectory:
+  v_x=-g_v^{-1}g_x; v_p=-g_v^{-1}g_p.
+  F_x=f_x+f_v v_x; F_p=f_p+f_v v_p.
+  Sdot=F_x S+F_p, S(0)=dx0/dp.
+Differentiating a nonlinear simulation is not replacing it by one equilibrium
+linearization. The matrices here vary with the nonlinear trajectory.
+For our common frozen trim, x0 is independent of interior rho and PLL gains.
+For other dispatches, consistent equilibrium differentiation is mandatory.
+The installed PLL uses e_i=-sin(theta_i)u_r+cos(theta_i)u_i and
+  theta_dot=omega; tau omega_dot=xi+Kp e-omega; xi_dot=Ki e.
+Its direct derivatives are F_{log Kp}=Kp e/tau in the omega equation and
+F_{log Ki}=Ki e in the xi equation. Network feedback is retained in F_x.
+
+AN ANALYTICAL PLL INITIALIZATION, WITH ITS LIMITATION
+At a fixed stiff terminal voltage V>0, the isolated installed PLL has polynomial
+  tau*s^3+s^2+Kp*V*s+Ki*V.
+Routh-Hurwitz gives Kp>tau*Ki in addition to positive gains. Matching it to
+  tau*(s+a)*(s^2+2*zeta*omega_n*s+omega_n^2)
+gives a=1/tau-2*zeta*omega_n>0,
+  Kp=tau*(omega_n^2+2*a*zeta*omega_n)/V,
+  Ki=tau*a*omega_n^2/V.
+These formulas can initialize gain choices with specified isolated-loop poles.
+They do not include converter current/DC-loop or network interactions, and do
+not define optimal gains for a multi-converter network. This local calculation
+is a useful baseline precisely because the full-network method can falsify it.
+
+ADJOINT INTERPRETATION (DERIVED; PROTOTYPE IMPLEMENTS FORWARD TANGENTS)
+For a scalar active path constraint, integrate the reduced adjoint backwards:
+  -lambda_dot=F_x^T lambda, between observation times, with output-gradient jumps.
+Let zeta=G^{-T} f_v^T lambda. Then the trajectory contribution to its gradient is
+  d c / d rho_i = - integral zeta_i^T (j_g,i-i_s,i) dt
+plus explicit voltage-output terms at the observation times and any initial-state
+terms. Gain gradients are integral lambda_omega Kp e/tau and lambda_xi Ki e.
+This is the useful analytical result: a network adjoint weights a local current
+mismatch. It assigns replacement value with respect to the actual active limit.
+It does not require claiming that all nodes or graph modes are interchangeable.
+The transpose convention uses real rectangular voltage coordinates.
+For clarity, a windowed RoCoF constraint at a fixed active (bus,time) has phase
+weights a_m=sign(r_T)*[1,-2,1]_m/(2*pi*T^2*rmax), m=0,1,2, at t_m=t*-m*T.
+Writing H(x,p)=unwrapped angle of that bus, its exact smooth-regime derivative is
+  dc/dp = lambda(0)^T*x0_p + integral lambda^T*F_p dt + sum_m a_m*H_p(t_m),
+  lambda(t_m^-)=lambda(t_m^+)+a_m*H_x(t_m)^T, lambda(t>t*)=0.
+The prescribed pre-event history contributes its own derivative when it depends
+on the design. Frequency uses [1,-1] instead. This explicitly includes voltage
+feedthrough and prevents accidentally discarding the algebraic phase jump.
+
+MEASUREMENTS AND PEAK CONSTRAINTS
+Use the unwrapped terminal-voltage phase phi, not the PLL's own estimated frequency.
+For an explicitly declared causal window T:
+  f_T(t)=[phi(t)-phi(t-T)]/(2*pi*T).
+  r_T(t)=[phi(t)-2phi(t-T)+phi(t-2T)]/(2*pi*T^2).
+At a voltage/load discontinuity include the post-event algebraic phase jump.
+Negative-time history is the equilibrium history. At window discontinuities,
+check both one-sided values when defining a continuous-time supremum.
+Voltage-phase derivative: phi_p=(u_r u_i,p-u_i u_r,p)/|v|^2.
+Apply the same finite-window operators to phi_p to get frequency/RoCoF gradients.
+For a unique active sample c=|f_T|-fmax, dc=sign(f_T) df_T. At tied peaks use
+multiple active cuts/a gradient bundle; differentiating one arbitrary peak can fail.
+The same applies to voltage, current, DC energy, and multiple disturbances.
+Grid sampling alone is not a continuous-time certificate; refine peaks, solver
+tolerances and windows, or bound the interpolation remainder.
+
+CONSTRAINED PROBLEM
+For every declared disturbance d in D and monitored node/time:
+  g=0, xdot=f; consistent pre-event trim and post-event algebraic reinitialization;
+  |f_T|<=fmax, |r_T|<=rmax, Vmin<=|v|<=Vmax;
+  |i_gfl|<=Imax, E_dc,min<=E_dc<=E_dc,max when physical limits are supplied;
+  SG actuator constraints, network regularity, and terminal/stability conditions.
+Initial numerical cases: +/-100 MW Pset steps, buses 8,16,29; Qset unchanged;
+Z-load meaning preserved (actual power is voltage dependent), T=0.5 s;
+fmax=0.5 Hz, rmax=0.5 Hz/s. The expanded search monitors all 39 buses.
+An exploratory voltage band 0.9--1.1 pu is explicitly an experiment assumption.
+Converter current-to-initial-current ratios are diagnostics, not nameplate limits.
+No current/energy certificate may be reported until those bounds are specified.
+Finite 60 s survival and equilibrium eigenvalues are evidence, not a proof of
+asymptotic nonlinear stability. A terminal invariant-region certificate would
+extend finite-horizon validation; it is not implemented in this prototype.
+
+ITERATIVE METHOD
+1. Establish an independently validated feasible anchor and a fixed active support.
+2. Simulate the nonlinear DAE; find the largest normalized constraints and their
+   locations/times. Enrich the active set when new peaks/disturbances are found.
+3. Compute exact nonlinear sensitivities (or adjoints). Include gain bounds.
+4. Form a trust-region quadratic subproblem:
+   min_delta grad J^T delta + 0.5 delta^T H delta + penalty*sum(slack)
+   s.t. c_l + grad c_l^T delta <= slack_l, slack_l>=0, box bounds, ||D delta||<=Delta.
+   Slacks restore feasibility in subproblems; they do not waive final constraints.
+5. Validate the trial with the original nonlinear model and reject incomplete
+   simulations or violations. Shrink the radius if the predicted reduction fails.
+   The extended prototype may first try a bounded minimum-norm feasibility
+   correction using the same constraint Jacobian, while retaining objective
+   improvement. Each correction is independently simulated; it is not accepted
+   solely from its first-order prediction. This follows curved active boundaries
+   but is not itself a proof of convergence to a KKT point.
+6. Refine active times and the discretization as the boundary is approached.
+   In the initial run a late bus-29 event made the 20 s gradient horizon inadequate;
+   the code detected this and the resumed search uses the full 60 s gradients.
+7. If a fraction reaches an endpoint, remove the physical device states, rebuild
+   trim/gauge and validate that support as a separate branch. Also test restoring
+   support where a full-removal branch fails. Do not retain ghost-state poles.
+8. Stop only with declared feasibility tolerance and stationarity/KKT residual,
+   or label the result best feasible found. Compare independent starts/supports.
+This is constrained sequential optimization, not expectation-maximization:
+there is no probabilistic latent variable or likelihood defining an EM E-step.
+
+ANALYTICAL GAIN COMPENSATION AND NODE EXCHANGEABILITY
+For an active constraint set, partition its Jacobian as [A_rho A_kappa].
+Given a replacement step d_rho, let b=-c_active-A_rho*d_rho. The minimum weighted
+gain change satisfying A_kappa*d_kappa=b is, when feasible,
+  d_kappa = W_kappa^{-1} A_kappa^T
+            (A_kappa W_kappa^{-1} A_kappa^T)^dagger b.
+W_kappa is positive definite. The equality must be checked: the pseudoinverse
+does not make an inconsistent target feasible. Gain bounds require the bounded
+QP instead. The nonlinear acceptance step is still mandatory.
+If the joint QP contains a gain linear term ell_k or a cross Hessian block
+H_kr*d_rho, first set a=-H_kk^{-1}(ell_k+H_kr*d_rho), then the conditional solution is
+  d_kappa=a+H_kk^{-1}A_kappa^T
+            (A_kappa H_kk^{-1}A_kappa^T)^dagger*(b-A_kappa*a).
+This is the corresponding general formula for the joint modal-metric QP.
+This provides a closed analytical control step conditional on a local replacement
+step and active set, rather than pretending there is a universal closed-form optimum.
+
+To exchange the same number of MW between nodes i and j, set
+  d_rho = delta_MW*(e_i/P0_i-e_j/P0_j).
+Without retuning, first-order interchangeability on the selected constraint vector
+requires A_rho*d_rho=0. With unconstrained retuning, it requires
+  (I-A_kappa A_kappa^dagger)*A_rho*d_rho=0.
+With finite gain limits, solve the bounded compensation QP and report its remaining
+constraint residual. Large compensation or a near-singular gain Jacobian means
+that formal unconstrained interchangeability is not practically available.
+Preserving the active constraint vector locally is weaker than preserving the
+entire nonlinear response or stability region. Validate finite MW exchanges with
+the nonlinear simulator; this is a directly falsifiable beyond-nodal experiment.
+The implemented joint trust-region QP contains this local compensation problem;
+the local exchangeability map and finite-exchange experiments are saved under
+stationarity and exchange_checkpoint, with their actual scope and residuals.
+
+A REGULARIZED GEOMETRY OF REPLACEMENT AND CONTROL AUTHORITY
+If A_kappa has full row rank, its unbounded column-space test can become vacuous:
+every small constraint shift can formally be cancelled, possibly by enormous
+gain changes. Keep the required gain effort and physical bounds in the analysis.
+For weights W_c>0,W_k>0 and lambda>0 define the local exchange cost
+  d_ij^2=min_delta_k ||A_rho*delta_rho+A_kappa*delta_k||_{W_c}^2
+                           +lambda*||delta_k||_{W_k}^2,
+with gain bounds included when imposed. Without bounds, put
+  H_k=A_kappa^T W_c A_kappa+lambda W_k,
+  delta_k=-H_k^{-1}A_kappa^T W_c A_rho*delta_rho.
+The minimum is delta_rho^T M delta_rho with the positive-semidefinite matrix
+  M=A_rho^T[W_c-W_c A_kappa H_k^{-1} A_kappa^T W_c]A_rho.
+For equal-MW exchange use delta_rho=delta_MW*(e_i/P0_i-e_j/P0_j).
+This gives a declared, constraint-weighted local geometry of node exchange and
+control authority. It depends on the operating point, disturbance set, active
+limits and weights; it is not a universal graph distance or a global equivalence.
+The Schur-complement/least-squares algebra itself is established mathematics.
+The scientific question is whether this application explains and improves the
+validated replacement frontier compared with nodal/modal-only baselines.
+Without a tie-breaking control-effort objective, maximum replacement generally
+does not determine unique PLL gains. If unique implementable gains are desired,
+minimize control effort lexicographically after the replacement objective, rather
+than silently changing the capacity objective with an arbitrary penalty.
+Finite exchange experiments are stored in exchange_checkpoint: the local 31/32
+compensation was tested in the full nonlinear trajectory at 0.1 and 1 MW; the
+bounded compensation tested for 35/36 did not recover the declared decay margin.
+That failed compensation is not a global proof that no nonlinear retuning exists.
+
+WHY PLL TUNING CANNOT REMOVE EVERY REPLACEMENT LIMIT
+For the installed controller, a synchronized relative equilibrium with common
+angular offset Omega satisfies theta_dot=Omega, omega_PLL=Omega, xi_PLL=Omega,
+e_q=0 (Ki>0), constant dq currents and constant DC voltage. Kp and Ki disappear
+from those equilibrium equations. Hence, within a fixed synchronized equilibrium
+branch and with fixed converter power/resource setpoints, PLL gains affect
+transient behavior and stability but cannot change its steady-state frequency,
+power balance or voltages. A binding steady-state reserve/frequency limit is
+therefore not generally repairable by retuning the PLL alone.
+This statement is controller-specific: a controller that changes active-power
+references through frequency feedback adds gains to the equilibrium equations
+and must include its energy/headroom constraints. It does not contradict that case.
+A useful general design architecture separates necessary post-disturbance
+equilibrium/resource feasibility from transient/PLL/network feasibility; both
+are required before claiming maximum admissible replacement.
+
+ROLE OF MODAL AND GRAPH ANALYSIS
+Use the physical Jacobian's quotient by the one rotational symmetry. For a simple
+pole lambda_j with left/right vectors w_j,v_j:
+  d lambda_j/dp = w_j^* (dA/dp) v_j / (w_j^* v_j).
+Modal residues C v_j w_j^* B/(w_j^*v_j), not damping ratios alone, reveal which
+disturbances excite a mode and which measured nodes observe it.
+Use scaled modal gradients/residues to construct a positive trust metric, initialize
+directions and explain the result; do not let a modal proxy override a failed TDS.
+Near repeated/ill-conditioned poles use a spectral subspace/Schur analysis rather
+than unstable individual-eigenvector derivatives.
+Graph Fourier coordinates describe spatial structure. U^T G U generally remains
+dense and state dependent; electrical graph eigenvalues are not temporal Hz.
+If every graph mode is retained the transform is a change of coordinates, not an
+approximation. Any truncation requires a residual bound and full-model validation.
+Distributed polynomial filters are an optional execution layer for a future power
+controller with known reserves; they are not needed for static offline PLL tuning.
+
+OPTIONAL FREQUENCY/ROCOF POWER SUPPORT: A DIFFERENT CONTROL LAYER
+If the hardware has usable headroom and a DC energy source, augment each GFL with
+  tau_f * fhat_dot = f_meas - fhat,
+  tau_r * z_dot = fhat - z, rhat=(fhat-z)/tau_r,
+  eta_dot=fhat,
+  DeltaP_cmd=sat_{P,I,E}(-k_f*fhat-k_r*rhat-k_int*eta+u_graph),
+where all frequencies are deviations in explicitly declared units. The derivative
+filter is realizable; raw differentiation of noisy frequency is not assumed.
+The saturation, anti-windup, DC-source and energy dynamics must be included in the
+DAE. These k_f,k_r,k_int are distinct from the PLL's Kp,Ki. The same sensitivity
+and constrained co-design framework applies after adding the new states/gains.
+For an undirected communication Laplacian L, u_graph=sum_{l=0}^q a_l L^l fhat
+can be evaluated by q neighbor exchanges. In graph coordinates its response is
+h(lambda)=sum_l a_l lambda^l; communication delay/noise and a missing neighbor
+change the realized dynamics and must be included in validation. This controller
+is a proposed extension, not part of the numerical replacement percentages here.
+
+OPTIMALITY AND A PHYSICAL INTERPRETATION
+Let mu_l be active-constraint multipliers. For an interior replacement fraction:
+  P0_i = sum_l mu_l (d c_l / d rho_i).
+Hence the constraint-weighted marginal security cost per converted MW equals one
+at stationary interior nodes; bound-active nodes satisfy the corresponding inequalities.
+For interior PLL gains: sum_l mu_l (d c_l / d kappa_i)=0.
+This provides a testable explanation of why a node retains SG and whether further
+gain tuning can buy additional replacement. Multipliers are meaningful only after
+the constraints and KKT residual are validated and constraint qualification holds.
+Local KKT stationarity is not global maximality. A global statement requires an
+upper bound on attainable replacement (equivalently a lower bound on retained SG),
+e.g. a valid reserve/energy relaxation or verified branch-and-bound. A conservative
+Lyapunov/SOS feasible set gives a lower bound on admissible replacement, not an
+upper bound on the true physical optimum. Do not invert those bounds.
+
+A possible upper-bound route for the asymptotically convergent step-disturbance
+problem is to drop the transient equations but retain necessary post-disturbance
+power balance, voltage/resource limits and steady-frequency limits. Globally solve
+or outer-relax that equilibrium-feasibility problem (with valid bilinear/AC-network
+relaxations); its attainable replacement is an upper bound for that asymptotic
+problem. A locally solved equilibrium optimization is not such an upper bound.
+This extra equilibrium condition is not automatically necessary for an arbitrary
+finite-horizon-only problem; the terminal convergence assumption matters.
+The familiar aggregate-inertia RoCoF formula assumes coherent frequency and a
+specific initial response/measurement. It is not a valid universal upper bound
+for local finite-window voltage-phase RoCoF with algebraic jumps and PLL dynamics.
+
+HYBRID AND IMPLEMENTATION LIMITS
+Hard AVR/governor saturation changes the vector field. Smooth-mode sensitivities
+cannot be propagated blindly through event crossings. Either include saltation/
+event-time derivatives with transversality checks, or constrain the search to a
+declared nonsaturated operating region. Grazing/chattering is not a smooth case.
+The prototype audits derivatives inside that region and uses an actuator margin
+when searching it. Full saturation-aware optimization is a separate extension.
+The SDIRK2 trajectory derivative differentiates the implicit numerical stages,
+including the implicit voltage solve. It is exact for the discretized equations
+up to Newton tolerance; convergence to the continuous gradient needs refinement.
+Final trajectory acceptance uses adaptive Rodas5P, independent of the SDIRK mesh.
+
+NOVELTY POSITIONING (TARGET, NOT AN EXHAUSTIVE PRIORITY CLAIM)
+Trajectory sensitivities for transient security are established: Tang/McCalley,
+2012, https://certs.lbl.gov/publications/efficient-transient-stability.html .
+End-to-end differentiable simulation including initialization is also established:
+Bossart and Hodge, 2026, "Differentiable programming for transient power system
+simulations", https://doi.org/10.1016/j.ijepes.2026.111825 . Their Julia/PSID code:
+https://github.com/m-bossart/DifferentiablePowerSystemSimulations . The general
+gradient machinery is therefore explicitly prior art, not the novelty claim here.
+In this replacement experiment the preserved trim makes x0_p=0 for rho/PLL gains;
+other design variables need initialization sensitivities, as that work emphasizes.
+Unified inverter-rich stability-constrained optimization already exists: Chu/Teng,
+https://arxiv.org/abs/2307.12151 .
+DAE dissipativity and IEEE39 certificates already exist: Jensen et al.,
+https://arxiv.org/html/2308.08471v2 . L2 certificates do not automatically bound peaks.
+PLL/DC-loop interactions and their bandwidth design already exist: Zhang et al.,
+https://arxiv.org/abs/2605.05932 .
+PLL transient Lyapunov/reset design already exists: Sun et al.,
+https://arxiv.org/abs/2509.00489 .
+Therefore do not claim that gradients, graph Fourier transforms, PLL tuning, or
+DAE models individually establish novelty. The specific co-design objective,
+network-adjoint replacement value, falsifiable counterexample, and validated
+frontier must together earn the contribution against those baselines.
+
+POSTER NARRATIVE
+Working title: Beyond Nodal Damping: How Much Synchronous Generation Can We Safely Replace?
+One visual sequence: a linear-design false acceptance -> network-coupled replacement
+derivative -> constrained search -> map of retained SG/PLL gains -> nonlinear
+constraint envelope and a transparent optimality status.
+Main takeaway should be a verified capacity and active limiting mechanism, with
+uncertainty/resources stated. Avoid a wall of Taylor/Fourier/SOS equations.
+The competition guidelines require a sound abstract supported by preliminary
+results and IAS relevance. No official judging weights were found in the guideline.
+https://ias.ieee.org/wp-content/uploads/2026/05/IEEE-IAS-AM-2026-Student-Poster-Competition-Program-Guideline-1.pdf
+Application deadline: May 15, 2026. Conference: October 4--8, Vancouver.
+Submission/acceptance status must be established separately; no award is promised.
+
+RELATION TO THE EXISTING POSTER
+The current poster's main.tex is titled "When Stable Replacements Fail Together"
+and studies minimal incompatibility hypergraphs for stationary, re-equilibrated
+portfolios under specified policies. Its explicit scope excludes current/DC-link
+claims and physical switching transients. The nonlinear co-design prototype here
+uses a different, explicitly audited full GFL model and continuous fractions.
+Do not merge counts, blocker identities, or validation percentages across them.
+A useful mathematical bridge is the gain-feasibility set
+  K(S)={kappa : C_l(rho(S),kappa)<=0 for every l},
+for a declared discrete support S, model and disturbance family. A fixed-policy
+blocker can be rescued if a validated kappa in K(S) is found. Failure of a local
+optimizer does not prove K(S) empty. A policy-independent blocker needs a valid
+infeasibility certificate or exhaustive/global argument over the declared gains.
+The present all-interior fractional search has not established such discrete
+support certificates. Use the original collective-failure story as motivation;
+the new evidence is a nonlinear feasible design, its marginal sensitivity, and
+explicitly tested gain-compensated exchanges. A claim of maximum capacity still
+requires a suitable upper bound and optimality gap.

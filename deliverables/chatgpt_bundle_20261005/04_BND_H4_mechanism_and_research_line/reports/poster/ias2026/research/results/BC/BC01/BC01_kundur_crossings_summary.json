@@ -1,0 +1,17 @@
+{
+ "crossings": 194,
+ "results": {
+  "PORT_EVALUABLE_AT_ZERO": 194
+ },
+ "g0_below_domain_or_at_zero": 0,
+ "g0_minus_gstar_range": [
+  -2.031724278446544e-05,
+  -3.586618928710586e-06
+ ],
+ "descriptor_vs_A_maxdist": 2.4401407377426374e-07,
+ "original_port": {
+  "NOT_EVALUABLE_AT_ZERO": 170,
+  "EVALUABLE_AT_ZERO": 24
+ },
+ "reasons": {}
+}

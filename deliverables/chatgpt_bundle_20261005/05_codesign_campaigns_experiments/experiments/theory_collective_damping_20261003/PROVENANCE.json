@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-03",
+  "git_head": "d0fecb3264aeb855ab6700fc6ef66120d4b6c33c",
+  "git_status_porcelain": " M README.md\n M reports/poster/ias2026/main.tex\n M reports/poster/ias2026/research/bnd_h4_mechanism/code/run_m1a_reconciliation.py\n M reports/poster/ias2026/research/bnd_h4_mechanism/tickets/STATUS.json\n M src/pd39/model.jl\n?? $qaDir/\n?? .codex-remote-attachments/\n?? deliverables/latency_robust_pll_closure_20261003_full_bundle.zip\n?? deliverables/latency_robust_pll_closure_20261003_full_bundle.zip.sha256\n?? experiments/analytic_iteration_20261001/\n?? experiments/analytical_delay_codesign_mega_20261002/\n?? experiments/bnd_expA/\n?? experiments/bnd_expB/\n?? experiments/bnd_expC/\n?? experiments/bnd_expD/\n?? experiments/bnd_expE/\n?? experiments/bnd_expF0/\n?? experiments/bnd_expF1/\n?? experiments/bnd_expF2/\n?? experiments/bnd_expF3/\n?? experiments/bnd_expF4/\n?? experiments/bnd_expF5/\n?? experiments/bnd_expF6/\n?? experiments/bnd_expF7/\n?? experiments/bnd_expF_program/\n?? experiments/bnd_expG/\n?? experiments/bnd_expH/\n?? experiments/bnd_expJ0/\n?? experiments/bnd_expK/\n?? experiments/bnd_expM/\n?? experiments/bnd_expN/\n?? experiments/bnd_expP/\n?? experiments/bnd_expQ/\n?? experiments/bnd_expQ2/\n?? experiments/bnd_expQ2B/\n?? experiments/codesign_validation_20261001/\n?? experiments/compensability_ieee39_20261002/\n?? experiments/delay_dressed_replacement_frontier_20261002/\n?? experiments/graph_gsp_codesign_20261003/\n?? experiments/ieee39_exact_action_space_codesign_20261002.zip\n?? experiments/ieee39_exact_action_space_codesign_20261002/\n?? experiments/latency_robust_pll_closure_20261003/\n?? experiments/latency_robust_pll_codesign_20261003/\n?? experiments/latency_robust_pll_codesign_20261003_bundle.zip\n?? experiments/latency_robust_pll_codesign_20261003_bundle.zip.sha256\n?? experiments/nonlinear_codesign_20261001/\n?? experiments/nonlinear_formulation_20261001/\n?? experiments/optimal_latency_margin_20261002/\n?? experiments/physical_collective_damping_20261003/\n?? experiments/retuning_boundary_20261002/\n?? experiments/theory_collective_damping_20261003/\n?? output/pdf/IAS2026_Poster_Pulido.pdf\n?? output/pdf/IAS2026_Poster_Pulido.png\n?? output/pdf/IEEE39_BND_PROJECT_HANDOFF_20261002.pdf\n?? reports/analytic_iteration_20261001/\n?? reports/codesign_audit_20261001/\n?? reports/codesign_validation_20261001/\n?? reports/experiment_A/\n?? reports/experiment_B/\n?? reports/experiment_C/\n?? reports/experiment_D/\n?? reports/experiment_E/\n?? reports/experiment_F0/\n?? reports/experiment_F1/\n?? reports/experiment_F2/\n?? reports/experiment_F3/\n?? reports/experiment_F4/\n?? reports/experiment_F5/\n?? reports/experiment_F6/\n?? reports/experiment_F7/\n?? reports/experiment_F_program/\n?? reports/experiment_G/\n?? reports/experiment_H/\n?? reports/experiment_J0/\n?? reports/experiment_K/\n?? reports/experiment_M/\n?? reports/experiment_N/\n?? reports/experiment_P/\n?? reports/experiment_Q/\n?? reports/experiment_Q2/\n?? reports/experiment_Q2B/\n?? reports/experiment_Q2B_bundle.zip\n?? reports/experiment_Q2B_bundle.zip.sha256\n?? reports/experiment_Q2B_certified_local_bundle.zip\n?? reports/experiment_Q2B_certified_local_bundle.zip.sha256\n?? reports/experiment_Q2_bundle.zip\n?? reports/experiment_Q_bundle.zip\n?? reports/handoff/\n?? reports/nonlinear_codesign_20261001/\n?? reports/nonlinear_formulation_20261001/\n?? reports/poster/ias2026/AGENTS.md\n?? reports/poster/ias2026/DESIGN_SYSTEM.md\n?? reports/poster/ias2026/SECTIONS.md\n?? reports/poster/ias2026/VISUAL_REVIEW.md\n?? reports/poster/ias2026/archive/\n?? reports/poster/ias2026/assets/\n?? reports/poster/ias2026/beamerthemeIAS2026.sty\n?? reports/poster/ias2026/build_poster_qa.py\n?? reports/poster/ias2026/compensability_ieee39_20261002/\n?? reports/poster/ias2026/compile_section.ps1\n?? reports/poster/ias2026/concept_review_20261001/\n?? reports/poster/ias2026/concept_review_20261002/\n?? reports/poster/ias2026/deliverables/\n?? reports/poster/ias2026/generate_poster_assets.py\n?? reports/poster/ias2026/generated/\n?? reports/poster/ias2026/poster_common.tex\n?? reports/poster/ias2026/poster_design_system.tex\n?? reports/poster/ias2026/poster_layout.tex\n?? reports/poster/ias2026/poster_preview_end.tex\n?? reports/poster/ias2026/poster_preview_start.tex\n?? reports/poster/ias2026/research/bnd_h4_mechanism/code/audit_finalize_f1.py\n?? reports/poster/ias2026/research/bnd_h4_mechanism/code/audit_finalize_f2.py\n?? reports/poster/ias2026/research/bnd_h4_mechanism/code/freeze_ias26_060_prerun.py\n?? reports/poster/ias2026/research/bnd_h4_mechanism/code/run_ias26_050_nominal.py\n?? reports/poster/ias2026/research/bnd_h4_mechanism/configs/\n?? reports/poster/ias2026/research/bnd_h4_mechanism/docs/IAS26-010_ROOT_CAUSE.md\n?? reports/poster/ias2026/research/bnd_h4_mechanism/docs/IAS26-060_V4_BLOCKER_ATLAS_DESCRIPTIVE.md\n?? reports/poster/ias2026/research/bnd_h4_mechanism/inputs/\n?? reports/poster/ias2026/research/bnd_h4_mechanism/scripts/\n?? reports/poster/ias2026/research/bnd_h4_mechanism/src/\n?? reports/poster/ias2026/research/scripts/\n?? reports/poster/ias2026/research/src/ias26_060_julia_runner.jl\n?? reports/poster/ias2026/sections/\n?? reports/retuning_boundary_20261002/\n?? src/bnd_design/\n?? src/bnd_design_e/\n?? src/bnd_design_g/\n?? src/bnd_design_h/\n?? src/bnd_design_k/\n?? src/bnd_design_p/\n?? src/bnd_expQ/\n?? src/bnd_expQ2/\n?? src/bnd_expQ2B/\n?? src/bnd_graph/\n?? src/bnd_graphpll/\n?? src/bnd_model_audit_m/\n?? src/bnd_model_expN/\n?? src/bnd_opt_expN/\n?? src/bnd_opt_expP/\n?? src/bnd_validation/\n?? test/bnd_expB/\n?? test/bnd_expC/\n?? test/bnd_expD/\n?? test/bnd_expE/\n?? test/bnd_expG/\n?? test/bnd_expH/\n?? test/bnd_expK/\n?? test/bnd_expM/\n?? test/bnd_expN/\n?? test/bnd_expP/\n?? test/bnd_expQ/\n?? test/bnd_expQ2/\n?? test/bnd_expQ2B/\n?? test/bnd_graphpll/\n?? tmp/pdfs/poster_design_baseline.png\n?? tmp/pdfs/poster_design_v2.png\n?? tmp/pdfs/poster_design_v3.png\n?? tmp/pdfs/poster_design_v4.png\n",
+  "python": "3.13.9",
+  "sympy": "1.14.0",
+  "source_files": [
+    {
+      "path": "experiments/nonlinear_codesign_20261001/ReducedDAE.jl",
+      "sha256": "c5d721bc371dd6ee424afb2f40638e60307fd62389bba2ac69f3b7d247a2c80d"
+    },
+    {
+      "path": "src/bnd_model_expN/PDExactDesignN.jl",
+      "sha256": "f5211509b117d8a06e31efa62aa49b1df20d2c1ef7f5c6f9114bb9eb25838365"
+    },
+    {
+      "path": "experiments/graph_gsp_codesign_20261003/DelayedEvents.jl",
+      "sha256": "864f71792dba687ae0a526f3c13903be883902b9694fe91a1994d120a8cc5950"
+    },
+    {
+      "path": "experiments/physical_collective_damping_20261003/THEORY.md",
+      "sha256": "f69868711282503f15e58a74b0cf83d490edacc4db81888a1a7d4e6088c0ca88"
+    },
+    {
+      "path": "experiments/physical_collective_damping_20261003/action_attribution.py",
+      "sha256": "e85373896c5b1dc9d4e5861104dd81493d697dca872e78ed3700226e382399b1"
+    },
+    {
+      "path": "experiments/graph_gsp_codesign_20261003/THEORY.md",
+      "sha256": "19f38575b6e03e228f2793cfc9c52b9f96a74371201e01b1e6113eddedef8011"
+    }
+  ],
+  "new_artifacts": [
+    {
+      "path": "THEORY.tex",
+      "sha256": "149474a3f353259d3d7f56095adebfe19250f0fda06e0815ce5b93349cf2fbcb"
+    },
+    {
+      "path": "verify_symbolic.py",
+      "sha256": "279494b001fe181312a4a98b2f81c92221548e0f886c1f83c476a35b43b06787"
+    },
+    {
+      "path": "SYMBOLIC_CHECKS.json",
+      "sha256": "f9a50900de348efaf0a72f0927d64fb7e5e8eefadff404893c1efeacfb9e00fe"
+    }
+  ],
+  "scope": "theory and algebra only; no frozen file modified; no commit/push",
+  "full_model_claim": "no new IEEE-39 feasibility/optimum/nonlinear validation"
+}

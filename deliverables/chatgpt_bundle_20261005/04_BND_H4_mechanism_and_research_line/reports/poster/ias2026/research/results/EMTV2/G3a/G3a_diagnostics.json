@@ -1,0 +1,116 @@
+{
+ "DV2-1": {
+  "R-SG30_emt": {
+   "frozen_matrix_pencil": {
+    "resolved": false,
+    "alpha": -0.11836766237508814,
+    "freq": 1.177112387994365,
+    "order": 10,
+    "resid": 0.9988720710296547
+   },
+   "fixed_order_fit": {
+    "alpha": -0.11823160452640227,
+    "freq": 1.177050201357771,
+    "rel_residual": 0.0024179956585209956
+   }
+  },
+  "R-SG30_ref": {
+   "frozen_matrix_pencil": {
+    "resolved": false,
+    "alpha": -0.11836746916565062,
+    "freq": 1.1771123349786559,
+    "order": 10,
+    "resid": 0.9988721492673756
+   },
+   "fixed_order_fit": {
+    "alpha": -0.11823160534616176,
+    "freq": 1.1770502119094781,
+    "rel_residual": 0.0024179877350001804
+   }
+  },
+  "B-SG36_emt": {
+   "frozen_matrix_pencil": {
+    "resolved": false,
+    "alpha": 6.313365372777597,
+    "freq": 1.1051160511955778,
+    "order": 16,
+    "resid": 0.9987462362415802
+   },
+   "fixed_order_fit": {
+    "alpha": -0.2439564003081158,
+    "freq": 1.2507827942867846,
+    "rel_residual": 0.017981062517959896
+   }
+  },
+  "B-SG36_ref": {
+   "frozen_matrix_pencil": {
+    "resolved": false,
+    "alpha": 6.297606338173656,
+    "freq": 1.1096802195465332,
+    "order": 16,
+    "resid": 0.998739140164445
+   },
+   "fixed_order_fit": {
+    "alpha": -0.243956269324882,
+    "freq": 1.2507827768666617,
+    "rel_residual": 0.01798104529498657
+   }
+  }
+ },
+ "DV2-2": [
+  {
+   "alpha_true": 0.127,
+   "f_true": 0.622,
+   "A_matrix_pencil": {
+    "error": "LinAlgError: SVD did not converge in Linear Least Squares"
+   },
+   "B_hilbert": {
+    "resolved": true,
+    "alpha": 0.12664107811373124,
+    "freq": 0.6216261448693562
+   },
+   "classify": "ERROR LinAlgError"
+  },
+  {
+   "alpha_true": -0.144,
+   "f_true": 0.637,
+   "A_matrix_pencil": {
+    "resolved": false,
+    "alpha": -0.14398643306274989,
+    "freq": 0.6369945820833427
+   },
+   "B_hilbert": {
+    "resolved": true,
+    "alpha": -0.14678465461153353,
+    "freq": 0.6367336923606759
+   },
+   "classify": "UNRESOLVED"
+  },
+  {
+   "alpha_true": -0.0174,
+   "f_true": 0.71,
+   "A_matrix_pencil": {
+    "error": "LinAlgError: SVD did not converge in Linear Least Squares"
+   },
+   "B_hilbert": {
+    "resolved": false,
+    "alpha": -0.019029008691193207,
+    "freq": 0.7096289569064
+   },
+   "classify": "ERROR LinAlgError"
+  },
+  {
+   "alpha_true": 0.0036,
+   "f_true": 0.705,
+   "A_matrix_pencil": {
+    "error": "LinAlgError: SVD did not converge in Linear Least Squares"
+   },
+   "B_hilbert": {
+    "resolved": false,
+    "alpha": 0.0021333534633419743,
+    "freq": 0.7047293501436646
+   },
+   "classify": "ERROR LinAlgError"
+  }
+ ]
+}

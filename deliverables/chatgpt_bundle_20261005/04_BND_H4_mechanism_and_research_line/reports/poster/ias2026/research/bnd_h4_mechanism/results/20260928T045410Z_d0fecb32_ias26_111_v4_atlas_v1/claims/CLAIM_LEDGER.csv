@@ -1,0 +1,10 @@
+claim_id,claim,status,evidence,limitation
+IAS26-111-C1,"The valid synthetic V4 cohort partitions into 412 with no minimal blocker, 190 H4-only, and 365 with alternative minimal witnesses.",SUPPORTED_WITHIN_SCOPE,Exact reclassification of frozen MC_CASES; 967 valid IDs; 0 mask mismatches versus frozen SCENARIO_METRICS.,Post hoc; frozen synthetic ensemble; restricted to V4.
+IAS26-111-C2,No singleton or pair portfolio is unstable in any of the 967 valid scenarios under tau_dec=1e-8.,SUPPORTED_WITHIN_SCOPE,SINGLETON_PAIR_AUDIT.csv and PORTFOLIO_CLASS_COUNTS.csv.,Only the 16 portfolios in V4 and the frozen validity gate.
+IAS26-111-C3,"The minimum blocker order is 3 in 365 scenarios, 4 in 190, and undefined in 412.",SUPPORTED_WITHIN_SCOPE,BLOCKER_ORDER_COUNTS.csv; exact inclusion-minimal masks in SCENARIO_ATLAS.csv.,V4 only; not a network-wide or V9 blocker-order statement.
+IAS26-111-C4,"The alternative minimal blockers observed are {30,33,35}, {30,33,37}, and {33,35,37}; every observed minimal triple includes bus 33.",SUPPORTED_DESCRIPTIVE,BLOCKER_MASK_COUNTS.csv and TRIPLE_AUDIT.csv.,Association only; no causal anchor/backbone claim.
+IAS26-111-C5,"m_comp=min(y,-x) is a signed coordinate margin in the (x,y) boundary plane.",SUPPORTED_DEFINITION,SCENARIO_ATLAS.csv and report definition.,Not a physical probability or universal stability margin.
+IAS26-111-C6,The collective closure mechanism remains invariant when witness identity changes.,UNSUPPORTED_NOT_TESTED,No M_ii or Q_B factorization was reconstructed in IAS26-111.,Requires IAS26-112.
+IAS26-111-C7,Bus 33 is a causal anchor/backbone for blocker switching.,UNSUPPORTED_NOT_TESTED,"Incidence is descriptive; no singular-vector, ablation, or null-model test was run.",Requires IAS26-113.
+IAS26-111-C8,The V4 pattern generalizes to V9 or IEEE-39-wide blockers.,UNSUPPORTED_NOT_TESTED,Only the 16 V4 portfolios were reanalyzed.,Requires a separately authorized V9 campaign.
+IAS26-111-C9,The scenario frequencies are real-world probabilities.,UNSUPPORTED_INVALID_INTERPRETATION,The input is a declared synthetic stress ensemble.,Report only descriptive ensemble frequencies.

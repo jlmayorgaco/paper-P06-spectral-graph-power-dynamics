@@ -1,0 +1,86 @@
+optimizer = "custom feasible-start active-set SQP"
+design_pd_calls = false
+model_sha = "e2f104608f1eb1705f0ad2c07764e7beab0a5df4deb4d4ce4f359b1e79947f0a"
+status = "MAX_ITERATIONS"
+branch_completeness_certified = false
+continuation_reached_100MW = true
+support_searched = [30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
+
+[[continuation_points]]
+iterations = 25
+KKT_primal = 0.0
+alpha = -0.05017352930267081
+Fpeak = 0.0
+KKT_stationarity = nan
+beta = 1.9664598497739904e-6
+disturbance_MW = 0.0
+cost = 402.0635444085275
+status = "BEST_FOUND_KKT_OPEN"
+Finf = 0.0
+accepted_steps = 0
+max_g = -0.017352930267081068
+[[continuation_points]]
+iterations = 0
+KKT_primal = 0.0
+alpha = -0.05017352930267081
+Fpeak = 0.19058335042605107
+KKT_stationarity = nan
+beta = 1.9664598497739904e-6
+disturbance_MW = 25.0
+cost = 402.0635444085275
+status = "CORE_HOLD_FREQUENCY_INACTIVE"
+Finf = 0.13919448584221328
+accepted_steps = 0
+max_g = -0.017352930267081068
+[[continuation_points]]
+iterations = 0
+KKT_primal = 0.0
+alpha = -0.05017352930267081
+Fpeak = 0.38116670085210214
+KKT_stationarity = nan
+beta = 1.9664598497739904e-6
+disturbance_MW = 50.0
+cost = 402.0635444085275
+status = "CORE_HOLD_FREQUENCY_INACTIVE"
+Finf = 0.27838897168442656
+accepted_steps = 0
+max_g = -0.017352930267081068
+[[continuation_points]]
+iterations = 0
+KKT_primal = 0.0
+alpha = -0.05017352930267081
+Fpeak = 0.476458376065128
+KKT_stationarity = nan
+beta = 1.9664598497739904e-6
+disturbance_MW = 62.5
+cost = 402.0635444085275
+status = "CORE_HOLD_FREQUENCY_INACTIVE"
+Finf = 0.3479862146055332
+accepted_steps = 0
+max_g = -0.017352930267081068
+[[continuation_points]]
+iterations = 0
+KKT_primal = 0.0
+alpha = -0.05017352930267081
+Fpeak = 0.4943255651675679
+KKT_stationarity = nan
+beta = 1.9664598497739904e-6
+disturbance_MW = 64.84375
+cost = 402.0635444085275
+status = "CORE_HOLD_FREQUENCY_INACTIVE"
+Finf = 0.36103569765324073
+accepted_steps = 0
+max_g = -0.011348869664864147
+[[continuation_points]]
+iterations = 24
+KKT_primal = 0.0
+alpha = -0.050300072357039885
+Fpeak = 0.4943779896253275
+KKT_stationarity = nan
+beta = 1.369606030987308e-5
+disturbance_MW = 100.0
+cost = 459.41972844045597
+status = "MAX_ITERATIONS"
+Finf = 0.4703761188322019
+accepted_steps = 24
+max_g = -0.011244020749345052

@@ -1,0 +1,53 @@
+{
+  "experiment": "E18_holonomy",
+  "seed": 20260909,
+  "config": {
+    "core": [
+      30,
+      33,
+      35,
+      37
+    ],
+    "band_hz": [
+      0.1,
+      5.0
+    ],
+    "matched": 12
+  },
+  "python": "3.13.14",
+  "platform_name": "Windows-11-10.0.26200-SP0",
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "dependencies": {
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1",
+    "networkx": "3.6.1",
+    "pyarrow": "25.0.1"
+  },
+  "started_utc": "2026-09-10T01:12:01.664974+00:00",
+  "results": {
+    "created_mode": {
+      "real": 0.14467022043327096,
+      "imag": 3.6108277568825344
+    },
+    "cycles": 13,
+    "gauge_drift_of_cycle_invariants": 5.322842190252396e-15,
+    "strongest_cycle_at_mode": {
+      "cycle": "33->35->33",
+      "length": 2,
+      "abs_trace": 0.07156876199185347,
+      "abs_det": 0.002039652860341807,
+      "spectral_radius": 0.04546502983598245
+    },
+    "flagship_len4_spectral_radius": 0.0007044790274278886,
+    "matched_len4_max": 0.00454310099367489,
+    "cycle_separation_ratio": 0.155065676155713,
+    "closure_separation_ratio": 899539.2078087453,
+    "cycle_score_is_discriminative": false,
+    "elapsed_s": 1.5237324237823486
+  },
+  "status": "SUCCESS",
+  "config_sha256": "8dfb031d3e32b4d1aefb8de35fe3cd43dfca15cc1e3ef9a3bb4117ea6a642cbb",
+  "finished_utc": "2026-09-10T01:12:01.665627+00:00"
+}

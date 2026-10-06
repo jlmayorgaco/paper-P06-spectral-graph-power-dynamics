@@ -1,0 +1,40 @@
+IEEE39 RETUNING BOUNDARY — exploratory campaign, frozen initial scope 2026-10-02.
+
+Scientific question: distinguish finite SG-to-GFL substitutions recoverable by
+PLL retuning from operating constraints invariant to those gains.
+
+Theory remains parameterized by network, disturbance class, observation/filter
+definition, resources and limits. IEEE39 and the following events are instances.
+Model: existing physical_supply nonlinear DAE with all interior co-located SG/GFL
+aggregates retained. Reuse dependencies; no changes to shared model sources.
+
+Primary exact obstruction to investigate: instantaneous post-event algebraic
+voltage/phase at continuous device states, which is independent of PLL gains.
+For the existing rectangular-window phase measurements (T=0.5 s), a phase jump
+gives F(0+)=jump/(2*pi*T), R(0+)=jump/(2*pi*T^2). These are measured quantities,
+not instantaneous rotor acceleration. Voltage bounds also apply at the jump.
+This concerns the stated phasor DAE and load-switch model, not an EMT claim.
+
+Preflight selection is exploratory and will be preserved:
+uniform rho grid .875,.90,.925,.95,.975,.99,.995,.999;
+events +/-100 MW changes of Z-load Pset at buses 8,16,29.
+If the immediate bound is not active there, report the negative result and
+continue event amplitude to find its boundary; do not hide the original grid.
+
+Transient design arm: begin from frozen prior physical candidates, perform
+finite substitutions and bounded gain retuning, with matched fixed-gain cases.
+Gain domain: nominal/4 to 4*nominal for each of ten Kp and ten Ki.
+Measurements: all 39 buses, F<=0.5 Hz, windowed R<=0.5 Hz/s, V in [.9,1.1],
+SG actuator normalized headroom >=.002; nominal physical alpha<=-.05/s.
+Smooth derivative proposals cannot cross unhandled actuator saturation.
+Final acceptance requires adaptive nonlinear simulation and independent
+compiled PowerDynamics validation. New candidates and failed solves preserved.
+
+Any damping exclusion by a structured resolvent is separately labeled a
+small-signal necessary-condition exclusion, not a nonlinear safety certificate.
+Any equilibrium gain-invariance result is branch-qualified.
+
+No claim of novelty established by this experiment. No global capacity claim
+without a globally solved necessary-condition relaxation. Finite simulations
+do not prove all disturbances safe. No hard converter current/DC-energy claims
+where hardware limits and limiting dynamics are absent.

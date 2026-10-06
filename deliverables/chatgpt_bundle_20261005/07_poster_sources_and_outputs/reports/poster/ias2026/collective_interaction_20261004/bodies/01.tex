@@ -1,0 +1,18 @@
+\begin{minipage}[t][\PosterTopRowHeight][t]{\PosterOneWidth}\vspace{0pt}
+  \begin{TicketTwoPanel}{\PosterTopRowHeight}{1}{INTRO AND OBJECTIVES}
+
+    {\Subhead\color{IASDarkGreen}Introduction\par}\vspace{1mm}
+    {\FigureSize Inverters (GFL) are replacing synchronous generators (SG). Each one locks to the grid with a delayed phase-locked loop (PLL), tuned through its gains $K_p,K_i$ until its own oscillation decays fast enough.\par}
+    \vspace{3mm}
+    {\Subhead\color{IASDarkGreen}Objectives\par}\vspace{1mm}
+    {\FigureSize
+    \StepBadge{1}\ Decide whether site-by-site PLL retunes stay safe together.\par\vspace{1.5mm}
+    \StepBadge{2}\ Find the exact law behind any failure.\par\vspace{1.5mm}
+    \StepBadge{3}\ Give a repair rule and check it on the delayed nonlinear grid.\par}
+    \vspace{3mm}
+    \begin{InWords}\InWordsLabel If every retune is safe on its own, is the grid still safe when two of them happen together?\end{InWords}
+    \vspace{3mm}
+    {\FigureSize \textbf{Setting.} IEEE-39, PLL delay 40 ms at every site, five frozen nonlinear events. Replaced share: $P_{\mathrm{GFL}}=\sum_i P_i^0\,\rho_i$, with $\rho_i$ the fraction of site $i$ replaced.\par}
+
+  \end{TicketTwoPanel}
+\end{minipage}%

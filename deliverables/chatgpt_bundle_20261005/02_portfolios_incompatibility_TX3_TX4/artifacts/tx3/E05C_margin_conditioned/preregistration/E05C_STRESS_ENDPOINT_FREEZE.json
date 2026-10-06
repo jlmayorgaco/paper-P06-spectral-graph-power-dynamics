@@ -1,0 +1,116 @@
+{
+  "calibration_population": "EMPTY coalition only",
+  "coalition_outcomes_inspected_before_freeze": false,
+  "created_utc": "2026-08-27T23:33:31.841482+00:00",
+  "endpoint_reason_counts": {
+    "VOLTAGE_MIN": 8
+  },
+  "freeze_id": "TX3-E05C-STRESS-ENDPOINTS-1.0",
+  "gamma_end_range": [
+    1.0522500000000001,
+    1.083125
+  ],
+  "limits": [
+    {
+      "boundary_bracket_high": 1.0875,
+      "boundary_bracket_low": 1.085,
+      "endpoint_maximum_physical_real_part_per_s": -0.1,
+      "endpoint_reason": "VOLTAGE_MIN",
+      "endpoint_voltage_max_pu": 1.0519182408177072,
+      "endpoint_voltage_min_pu": 0.8514745607753683,
+      "gamma_end": 1.083125,
+      "gamma_limit": 1.0875,
+      "seed_id": "C00",
+      "status": "SUCCESS"
+    },
+    {
+      "boundary_bracket_high": 1.0550000000000002,
+      "boundary_bracket_low": 1.0525000000000002,
+      "endpoint_maximum_physical_real_part_per_s": -0.1,
+      "endpoint_reason": "VOLTAGE_MIN",
+      "endpoint_voltage_max_pu": 1.0554833671201191,
+      "endpoint_voltage_min_pu": 0.8509529435289824,
+      "gamma_end": 1.0522500000000001,
+      "gamma_limit": 1.0550000000000002,
+      "seed_id": "C01",
+      "status": "SUCCESS"
+    },
+    {
+      "boundary_bracket_high": 1.06,
+      "boundary_bracket_low": 1.0575,
+      "endpoint_maximum_physical_real_part_per_s": -0.1,
+      "endpoint_reason": "VOLTAGE_MIN",
+      "endpoint_voltage_max_pu": 1.0533982888631512,
+      "endpoint_voltage_min_pu": 0.8506919020400445,
+      "gamma_end": 1.057,
+      "gamma_limit": 1.06,
+      "seed_id": "C02",
+      "status": "SUCCESS"
+    },
+    {
+      "boundary_bracket_high": 1.085,
+      "boundary_bracket_low": 1.0825,
+      "endpoint_maximum_physical_real_part_per_s": -0.1,
+      "endpoint_reason": "VOLTAGE_MIN",
+      "endpoint_voltage_max_pu": 1.0548040786535153,
+      "endpoint_voltage_min_pu": 0.851116403523454,
+      "gamma_end": 1.0807499999999999,
+      "gamma_limit": 1.085,
+      "seed_id": "C03",
+      "status": "SUCCESS"
+    },
+    {
+      "boundary_bracket_high": 1.0675,
+      "boundary_bracket_low": 1.065,
+      "endpoint_maximum_physical_real_part_per_s": -0.1,
+      "endpoint_reason": "VOLTAGE_MIN",
+      "endpoint_voltage_max_pu": 1.0538380730474344,
+      "endpoint_voltage_min_pu": 0.8508909288969888,
+      "gamma_end": 1.064125,
+      "gamma_limit": 1.0675,
+      "seed_id": "C04",
+      "status": "SUCCESS"
+    },
+    {
+      "boundary_bracket_high": 1.0875,
+      "boundary_bracket_low": 1.085,
+      "endpoint_maximum_physical_real_part_per_s": -0.1,
+      "endpoint_reason": "VOLTAGE_MIN",
+      "endpoint_voltage_max_pu": 1.0547126935215565,
+      "endpoint_voltage_min_pu": 0.8508146148690335,
+      "gamma_end": 1.083125,
+      "gamma_limit": 1.0875,
+      "seed_id": "C05",
+      "status": "SUCCESS"
+    },
+    {
+      "boundary_bracket_high": 1.0575,
+      "boundary_bracket_low": 1.0550000000000002,
+      "endpoint_maximum_physical_real_part_per_s": -0.1,
+      "endpoint_reason": "VOLTAGE_MIN",
+      "endpoint_voltage_max_pu": 1.0529786086962887,
+      "endpoint_voltage_min_pu": 0.8507194986902672,
+      "gamma_end": 1.0546250000000001,
+      "gamma_limit": 1.0575,
+      "seed_id": "C06",
+      "status": "SUCCESS"
+    },
+    {
+      "boundary_bracket_high": 1.0875,
+      "boundary_bracket_low": 1.085,
+      "endpoint_maximum_physical_real_part_per_s": -0.1,
+      "endpoint_reason": "VOLTAGE_MIN",
+      "endpoint_voltage_max_pu": 1.053345012009527,
+      "endpoint_voltage_min_pu": 0.851621363381901,
+      "gamma_end": 1.083125,
+      "gamma_limit": 1.0875,
+      "seed_id": "C07",
+      "status": "SUCCESS"
+    }
+  ],
+  "limits_path": "artifacts/tx3/E05C_margin_conditioned/baseline_calibration/E05C_BASELINE_STRESS_LIMITS.parquet",
+  "limits_sha256": "90cc29c3c11892dbc91d885b628091e5f42a4605848603bd10cc943efc6f67ac",
+  "seed_count": 8,
+  "trace_path": "artifacts/tx3/E05C_margin_conditioned/baseline_calibration/E05C_BASELINE_CALIBRATION_TRACE.parquet",
+  "trace_sha256": "c0cd234e891eec03cc3a26f2453994e7368ea74c9fac3fe683ca93cf826f0096"
+}

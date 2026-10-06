@@ -1,0 +1,14 @@
+{
+ "checks": {
+  "installs_and_initializes": true,
+  "deterministic_bit_identical": true,
+  "serialization_reload_identical": true,
+  "snapshot_created_and_resumed": true,
+  "small_disturbance_sensible": true,
+  "stock_no_event_stationary": false,
+  "non_stationarity_attributed_to_unused_xfmr_tap": true
+ },
+ "GATE_EMT00": "PASS (tool)",
+ "note": "The stock IEEE-39 no-event run is NOT stationary (0.62 pu start-up jump). Cause: upstream never applies pfd.xfmr_k (6-31, k = 0.9714, to-bus side); with only that tap applied the jump is 2.2e-4 pu and the 10 s drift is at the level of the stock power-flow residual (1.8e-3 pu). The tool itself is deterministic, serializes and resumes. This is an upstream case/code defect, not an installation failure; the TX4 adapter applies the documented taps.",
+ "smoke_threshold_verdict_as_first_written": "FAIL"
+}

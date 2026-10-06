@@ -1,0 +1,47 @@
+reference_sha256 = "287994ad2981bc55d49ac02582317f0f964ff5f5c3dc71614f9f107b9267c76d"
+jacobian_independent_max_row_sum_error = 5.820766091346741e-11
+script_sha256 = "14a9bfbb982b7ac2830d846fe363e39790d92a33d371aa771d11b55f93de2711"
+status = "TRAJECTORY_CHECK_FAILED"
+scope = "Three finite nonlinear trajectory checks; universal guarantee, if claimed, comes from block inequalities, not these simulations"
+jacobian_sha256 = "d9322a44988145f2cb6555cf51f0e8d11da8400e1536140edfc300edf7e7a197"
+certificate_sha256 = "997512d855644bbd6b342a45fcc5f1553a205d521e9cdc3bc8c2f48c390167f3"
+
+[[cases]]
+end_time = 10.37
+rocof_max_Hz_s = 2.600895638899386e-7
+name = "origin_waves"
+input_ball_usage = 0.8000000000000002
+passed = false
+voltage_max = 1.0635000653816609
+max_region_usage = 0.1294913082272524
+seconds = 180.58500003814697
+frequency_max_Hz = 7.915157418876384e-8
+voltage_min = 0.9819999812647756
+complete = false
+retcode = "Terminated"
+[[cases]]
+end_time = 10.02
+rocof_max_Hz_s = 1.2622410044280413e-7
+name = "origin_switches"
+input_ball_usage = 0.8
+passed = false
+voltage_max = 1.0635000537830948
+max_region_usage = 0.1337399777892247
+seconds = 180.27500009536743
+frequency_max_Hz = 5.488595131172489e-8
+voltage_min = 0.9819999879240389
+complete = false
+retcode = "Terminated"
+[[cases]]
+end_time = 11.06
+rocof_max_Hz_s = 0.00027308288176738406
+name = "boundary_waves"
+input_ball_usage = 0.8000000000000002
+passed = false
+voltage_max = 1.0635013318455924
+max_region_usage = 0.8500000000000002
+seconds = 180.2739999294281
+frequency_max_Hz = 1.542199604161929e-5
+voltage_min = 0.981999353224096
+complete = false
+retcode = "Terminated"

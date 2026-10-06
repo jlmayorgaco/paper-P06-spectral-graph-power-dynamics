@@ -1,0 +1,47 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterMiddleRowHeight][t]{\PosterHalfWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterMiddleRowHeight}{5}{RESULTS: THE REPAIR HOLDS ON THE NONLINEAR GRID}
+
+    {\FigureSize Repaired design, full retained-device DAE with true delay (method of steps, Julia Rodas5P), 60 s, frozen impedance-load events.\par}
+    \vspace{1mm}
+    \noindent\begin{minipage}[c]{292mm}
+      \begin{center}\FigureSize\renewcommand{\arraystretch}{1.25}
+      \begin{tabular}{rrrrr}
+      \textbf{Event} & \textbf{$|\Delta f|_{\max}$ [Hz]} & \textbf{RoCoF [Hz/s]} & \textbf{V [pu]} & \textbf{SG slack}\\\hline
+      bus 8, $-100$ MW  & 0.457 & 0.145 & 0.988--1.078 & 0.0993\\
+      bus 16, $+100$ MW & 0.439 & 0.129 & 0.972--1.061 & 0.0089\\
+      bus 16, $-100$ MW & 0.466 & 0.131 & 0.986--1.079 & 0.0962\\
+      bus 29, $+100$ MW & 0.423 & 0.138 & 0.973--1.061 & 0.0137\\
+      bus 29, $-100$ MW & 0.436 & 0.219 & 0.983--1.075 & 0.1055\\
+      \end{tabular}\end{center}
+    \end{minipage}\hfill%
+    \begin{minipage}[c]{122mm}\raggedright
+      {\PosterCondensed\bfseries\fontsize{62pt}{66pt}\selectfont\color{IASBlue}5/5\par}
+      {\PosterParagraph events pass\par}\vspace{2mm}
+      {\FigureSize limits: 0.5 Hz, 0.5 Hz/s, V in [0.9, 1.1], slack $\ge0.002$\par}
+    \end{minipage}\par
+    \vspace{2mm}
+    {\EquationSize\color{IASBlue}$\Re\lambda:\ -0.0657\ \xrightarrow{\ \text{both retunes}\ }\ -0.0414\ \xrightarrow{\ \text{repair}\ }\ -0.0600$\par}
+    \vspace{2mm}
+    {\FigureSize The full-spectrum margin check is a floating-point contour (0 roots beyond $-0.05$), not an interval certificate. No converter current-limit claim.}
+
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewHalfPageWidth}
+  \def\PosterPageHeight{\PosterPreviewMiddlePageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewHalfLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

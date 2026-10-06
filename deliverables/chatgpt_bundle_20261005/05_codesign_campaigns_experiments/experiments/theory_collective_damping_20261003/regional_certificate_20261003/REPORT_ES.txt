@@ -1,0 +1,93 @@
+CIERRE TEÓRICO REGIONAL — AVANCE Y LÍMITES
+
+Se añadió la sección 'A finite regional replacement bound with moving modal
+patterns' al THEORY.tex abierto. No se ejecutaron simulaciones de red ni
+optimización. Los resultados congelados y su procedencia se preservaron.
+
+PROBLEMA QUE SE RESUELVE MATEMÁTICAMENTE
+La aproximación anterior g=g0+J*d+r dejaba sin construir la cota de r.
+Ahora se deriva una identidad de la media de raíces dentro de un contorno:
+
+  z(p)-z(p0) = -1/(2*pi*i*m) integral_Gamma tr(log(I+H(s,d))) ds.
+
+Se permiten movimientos y colisiones internas de los modos; no se fijan
+autovectores. Se requiere conteo constante y regularidad en todo el contorno.
+Una media estable es NECESARIA, no suficiente, para estabilidad de cada raíz.
+
+MEJORA ESPECÍFICA DEL CONTRATO IEEE-39 INSPECCIONADO
+Retener voltajes y detectores algebraicos produce una matriz descriptor F
+de 234 coordenadas equivalente al modelo de 204 estados:
+det(F)=det(G)*det(Delta), con G regular.
+Su cambio es exactamente U*Theta(d)*V(s), afín en rho,Kp,Ki ordinarios.
+La matriz T=V*F0^(-1)*U tiene 40 canales y H=Theta*T.
+No hay resto de parametrización matricial: H_rem=0. El resto finito
+proviene de la serie del logaritmo, que se acota explícitamente:
+
+  beta = longitud(Gamma)*40/(2*pi*m)*[-log(1-kappa)-kappa].
+
+La fórmula conserva retrasos puros fijos, incluso heterogéneos. No convierte
+el modelo físico no lineal en lineal ni demuestra estabilidad de gran señal.
+
+QUÉ PUEDE CERTIFICAR
+Con enclosures rigurosos de kappa<1 y de los coeficientes, el LP necesario
+maximiza P0'*delta_rho sobre TODAS las direcciones de la caja regional y
+las ganancias admisibles. Su dual elimina las ganancias mediante soportes
+de sus intervalos. Un testigo positivo puede excluir un reemplazo concreto
+en la región, incluso permitiendo que cambien los patrones modales.
+Esto daría P_F <= P*_D <= P_U,D. P_F debe pertenecer al mismo dominio,
+tener el mismo vector de retrasos y pasar espectro y eventos completos.
+La factibilidad numérica no se convierte en un certificado por combinarla
+con una cota superior. Un límite regional no es un máximo global.
+
+COMPROBACIONES EJECUTADAS
+Identidades simbólicas: 11/11.
+Fixture DDE de dos estados: 10/10.
+Discrepancia máxima raíz-integral: 2.604343e-18.
+El ejemplo pequeño tiene cota uniforme demostrada 36/28525,
+sin estimarla a partir de muestras. No es una red de potencia.
+Factorizaciones IEEE-39: 3/3.
+Descriptor afín y equivalencia de determinantes: 3/3.
+Discrepancia máxima del descriptor: 1.010734e-12.
+
+RESULTADO NEGATIVO CONSERVADO
+La primera cota escalar por productos de normas estuvo entre
+209.415111 y 2648.674810,
+por encima del requisito kappa<1 en los tres puntos.
+La reformulación afín y la norma ponderada dieron expresiones superiores
+puntuales entre 0.016741 y 0.240766,
+en la misma caja y los mismos puntos. El refinamiento cambió el análisis,
+no el experimento ni el controlador. Esto es NUMERICALLY_VALIDATED.
+La primera ejecución del script del descriptor pasó el álgebra y falló al
+serializar un entero NumPy; se corrigió la conversión a int y se repitieron
+los mismos puntos. No se cambió ninguna tolerancia o definición científica.
+
+QUÉ FALTA, EXACTAMENTE
+1. Elegir contornos de grupos físicos relevantes bajo un vector de tau fijo.
+2. Verificar inversas, exponenciales, conteos e integrales sobre todos sus
+   paneles continuos con redondeo exterior. Hay una fórmula explícita para
+   acotar entre puntos: no basta incrementar la densidad de una malla.
+3. Construir y resolver el LP superior con los errores certificados incluidos.
+4. Comprobar que limita la región más que sus propios bordes; de lo contrario
+   es una cota válida pero inútil para explicar soporte síncrono.
+5. Identificar si el límite es colectivo/modal, una ganancia saturada o un
+   evento no lineal. No presuponer que los PLL son el cuello de botella.
+6. Contrastar con métodos existentes bajo el mismo contrato para una novedad
+   de aplicación demostrable. La dualidad, los contornos, las expansiones
+   log-det y las cotas de matrices positivas son herramientas conocidas.
+
+CONEXIÓN CON BEYOND NODAL DAMPING
+tr(H^2) contiene productos H_ij*H_ji; órdenes superiores contienen recorridos
+cerrados entre puertos dinámicos. Su signo es complejo/frecuencial y depende
+de la red completa. No se denominan ciclos físicos de líneas ni Laplaciano.
+La expansión permite acotar cuánto se pierde al omitir acoplamientos;
+todavía no demuestra que esos términos limiten reemplazo en IEEE-39.
+
+ESTADO FINAL
+Teoremas/identidades condicionales: derivados y documentados.
+Cota uniforme analítica del ejemplo pequeño: demostrada.
+Identidades del modelo IEEE-39: verificadas numéricamente.
+Cota superior IEEE-39 en MW: NO OBTENIDA.
+Óptimo global/nuevo diseño/ventaja de reemplazo: NO OBTENIDOS.
+Novedad bibliográfica: NO ESTABLECIDA.
+No se necesita otra simulación pesada para el siguiente paso: falta cerrar
+la verificación de contorno y evaluar si el LP es informativo.

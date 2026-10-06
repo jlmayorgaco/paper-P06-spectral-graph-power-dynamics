@@ -1,0 +1,4 @@
+case,perturbation,status,max_absolute_trajectory_error,max_relative_trajectory_error,input_source
+ExpK_nominal,tiny_load_step_bus16,PASS_PD_EXACT_CLOSURE,9.232659125071874e-20,1.3789431532609151e-14,PD parameter Jacobian shared by both models
+ExpK_nominal,SG39_speed_state_1e-7_pu,PASS_PD_EXACT_CLOSURE,2.7568381334285713e-17,2.010718041755684e-12,same physical state perturbation
+ExpK_nominal,independent_port_current_voltage,NOT_INDEPENDENTLY_DEFINED,,,Closure port matrices match by construction; direct full-network port channel not exported

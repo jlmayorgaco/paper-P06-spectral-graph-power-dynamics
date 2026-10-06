@@ -1,0 +1,4 @@
+limit,characteristic
+exact implemented PLL with first-order frequency state,tau*s^3 + s^2 + V*Kp*s + V*Ki
+ideal frequency-loop limit tau -> 0,s^2 + V*Kp*s + V*Ki
+graph coupling conclusion,Lc does not enter the isolated PLL equation; network coupling remains in the full matrix port admittance

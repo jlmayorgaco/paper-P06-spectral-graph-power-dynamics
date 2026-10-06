@@ -1,0 +1,17 @@
+{
+  "status": "PASS_BASELINE",
+  "model_sha": "e2f104608f1eb1705f0ad2c07764e7beab0a5df4deb4d4ce4f359b1e79947f0a",
+  "checks": 14,
+  "all_pass": true,
+  "ExpN_alpha_analytic": -0.0500000011050941,
+  "ExpN_alpha_PD": -0.050000000138500054,
+  "ExpN_retained_SG_MW": 1.124344477653483,
+  "ExpN_rho38": 0.9986453680992127,
+  "ExpN_nominal_step_peak_Hz": 39.33340125578227,
+  "ExpN_nominal_step_RoCoF_Hz_s": 1.072208443371192,
+  "ExpN_beta_pointwise_upper": 3.746493388818478e-11,
+  "max_PQ_error_pu": 1.4813844595451542e-15,
+  "allSG_alpha": -0.09806540933624713,
+  "allSG_PD_frequency_peak_Hz": 0.07536489665023405,
+  "allSG_PD_RoCoF_Hz_s": 0.12383507394416611
+}

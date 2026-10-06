@@ -1,0 +1,16 @@
+check,value,pass
+expN_candidate_sha,3915a8f57da0f552779b11464572f14a86f0b648b532be77124f668eeff9f263,true
+expP_candidate_sha,dbe727713acccec9b0802619f4b2e10763a0a88b9799ba24a74411ac88ff7046,true
+analytic_alpha,-0.0500000011050941,true
+PD_alpha,-0.050000000138500054,true
+complete_PD_poles,101,true
+trim_residual,5.395296582857102e-12,true
+max_P_error_pu,1.1368683772161603e-15,true
+max_Q_error_pu,1.4813844595451542e-15,true
+bus38_algebraic_root_retained_MW,1.1243444770645108,true
+nominal_beta_pointwise_upper,3.746493388818478e-11,true
+beta_req,1.6991206999182038e-6,true
+event_peak_frequency_Hz,39.33340125578227,true
+event_peak_RoCoF_Hz_s,1.072208443371192,true
+event_settling_s,NaN,true
+max_contract_error_pu,1.4813844595451542e-15,true

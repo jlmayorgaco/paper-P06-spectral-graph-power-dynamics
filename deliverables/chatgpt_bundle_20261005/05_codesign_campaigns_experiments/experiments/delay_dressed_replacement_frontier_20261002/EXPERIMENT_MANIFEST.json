@@ -1,0 +1,56 @@
+{
+  "campaign": "delay_dressed_replacement_frontier_20261002",
+  "created": "2026-10-02",
+  "git_head_at_audit": "d0fecb3264aeb855ab6700fc6ef66120d4b6c33c",
+  "delay_values_are_exogenous": true,
+  "delay_optimization": false,
+  "tau_units": "seconds",
+  "uniform_delay_grid_ms": [0, 2, 5, 10, 20, 30, 40, 50],
+  "heterogeneous_delay_multiset_rule": "tau_j=(j-1)*50/9 ms, j=1,...,10; freeze exact IEEE-754 vector and hash in FROZEN_DELAY_PATTERNS.json before any delayed result",
+  "frozen_delay_patterns_sha256": "94d63264d602601a5306ed2526c9e9db2b66fe43dfee431ecfa8890549cc32c9",
+  "random_permutation_seed": 20261002,
+  "random_permutation_count": 100,
+  "model_channel": "phase-detector error e_ang delayed identically into PLL proportional and integral branches only; existing 300-Hz frequency low-pass is retained",
+  "candidate_buses": [30,31,32,33,34,35,36,37,38,39],
+  "Kp_bounds_factor_nominal": [0.25, 4],
+  "Ki_bounds_factor_nominal": [0.25, 4],
+  "security_limits_from_existing_protocol": {
+    "spectral_decay_margin_s_inv": 0.05,
+    "frequency_peak_Hz": 0.5,
+    "RoCoF_Hz_s": 0.5,
+    "measurement_window_s": 0.5,
+    "voltage_pu": [0.9, 1.1],
+    "minimum_actuator_slack": 0.002,
+    "hard_current_dc_limits_certified": false
+  },
+  "frozen_event_set": [
+    {"case": "design_bus8_plus100", "bus": 8, "delta_load_MW": 100},
+    {"case": "holdout_bus8_minus100", "bus": 8, "delta_load_MW": -100},
+    {"case": "holdout_bus16_plus100", "bus": 16, "delta_load_MW": 100},
+    {"case": "holdout_bus16_minus100", "bus": 16, "delta_load_MW": -100},
+    {"case": "holdout_bus29_plus100", "bus": 29, "delta_load_MW": 100},
+    {"case": "holdout_bus29_minus100", "bus": 29, "delta_load_MW": -100}
+  ],
+  "gates": {
+    "D0_baseline_parity": "NUMERICALLY_VALIDATED_PASS",
+    "D1_exact_DDE_spectrum": "BLOCKED_EXACT_DDE_SPECTRUM",
+    "D2_derivatives": "SUPPORTED_LOCAL_KP_KI_TAU; BLOCKED_RHO_AND_ROOT_COMPLETENESS",
+    "D3_network_Taylor": "NUMERICALLY_VALIDATED_LOSSLESS_BRANCH_POWER_ONLY",
+    "D4_graph_operators": "BLOCKED_SCHUR_SINGULAR_AFTER_GAUGE_DEFLATION",
+    "D5_GSP_placement": "FROZEN_DESCRIPTORS_ONLY; CAPACITY_RELATION_BLOCKED_BY_D1",
+    "D6_co_design_frontier": "BLOCKED_BY_D1",
+    "nonlinear_DDE": "BLOCKED_NONLINEAR_DDE",
+    "optimality_bound": "BLOCKED; NO_VALIDATED_GLOBAL_OR_BOX_UPPER_BOUND"
+  },
+  "claim_status_vocabulary": [
+    "EXACT_IDENTITY",
+    "PROVED_REDUCED_MODEL",
+    "NUMERICALLY_VALIDATED",
+    "SUPPORTED_LOCAL",
+    "SUPPORTED_EMPIRICAL",
+    "NEGATIVE_RESULT",
+    "BLOCKED"
+  ],
+  "no_pade_primary_truth": true,
+  "no_global_optimality_claim_until_validated_upper_bound": true
+}

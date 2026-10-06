@@ -1,0 +1,435 @@
+{
+  "before_run_id": "20260926T100829_d0fecb32_ias26_010_reproduce",
+  "after_run_id": "20260926T153604Z_d0fecb32_ias26_010_matched_base_v1",
+  "before_error_ladder": [
+    {
+      "stage": "Ared eigenpair",
+      "matrix_dimension": "86",
+      "absolute_residual": "1.3007950430743702e-12",
+      "relative_residual": "1.3228987985692548e-16",
+      "condition_number": "1.5478703366301946e+16",
+      "root_real": "0.12700646777028055",
+      "root_imag": "3.909898476444902",
+      "root_distance_to_DAE": "0.0",
+      "status": "PASS"
+    },
+    {
+      "stage": "descriptor pencil",
+      "matrix_dimension": "164",
+      "absolute_residual": "1.854516576802816e-12",
+      "relative_residual": "1.9521884044892894e-16",
+      "condition_number": "3.369423676403473e+17",
+      "root_real": "0.12700646777028055",
+      "root_imag": "3.909898476444902",
+      "root_distance_to_DAE": "0.0",
+      "status": "PASS"
+    },
+    {
+      "stage": "raw network Schur",
+      "matrix_dimension": "78",
+      "absolute_residual": "3.6358310676284247e-13",
+      "relative_residual": "7.901611726521909e-17",
+      "condition_number": "2830019943296459.0",
+      "root_real": "0.12700646777028055",
+      "root_imag": "3.909898476444902",
+      "root_distance_to_DAE": "0.0",
+      "status": "PASS"
+    },
+    {
+      "stage": "candidate-port Schur",
+      "matrix_dimension": "78",
+      "absolute_residual": "3.4343092974669935e-08",
+      "relative_residual": "1.3083705992724766e-11",
+      "condition_number": "8234756409156.093",
+      "root_real": "0.12700646777028055",
+      "root_imag": "3.909898476444902",
+      "root_distance_to_DAE": "0.0",
+      "status": "PASS"
+    },
+    {
+      "stage": "base+deltaY",
+      "matrix_dimension": "78",
+      "absolute_residual": "7.188392772871091e-05",
+      "relative_residual": "2.7385662723109105e-08",
+      "condition_number": "8234756409156.093",
+      "root_real": "0.12700646777028055",
+      "root_imag": "3.909898476444902",
+      "root_distance_to_DAE": "0.0",
+      "status": "FAIL"
+    },
+    {
+      "stage": "action-space",
+      "matrix_dimension": "8",
+      "absolute_residual": "9.454488128727047e-08",
+      "relative_residual": "2.8147989492173677e-08",
+      "condition_number": "26018116.958441984",
+      "root_real": "0.12700646777028055",
+      "root_imag": "3.909898476444902",
+      "root_distance_to_DAE": "0.0",
+      "status": "FAIL"
+    },
+    {
+      "stage": "modal transform",
+      "matrix_dimension": "8",
+      "absolute_residual": "1.3926654823816938e-15",
+      "relative_residual": "4.146256553549757e-16",
+      "condition_number": "1.0",
+      "root_real": "0.12700646777028055",
+      "root_imag": "3.909898476444902",
+      "root_distance_to_DAE": "0.0",
+      "status": "PASS"
+    },
+    {
+      "stage": "scalar Schur",
+      "matrix_dimension": "1",
+      "absolute_residual": "9.454488128953357e-08",
+      "relative_residual": "2.814798949284744e-08",
+      "condition_number": "4.551910972331013",
+      "root_real": "0.12700684036014673",
+      "root_imag": "3.9098984759249658",
+      "root_distance_to_DAE": "3.725902289582782e-07",
+      "status": "FAIL"
+    }
+  ],
+  "after_error_ladder": [
+    {
+      "stage": "Ared eigenpair",
+      "matrix_dimension": 86,
+      "absolute_residual": 1.3007950430743702e-12,
+      "relative_residual": 1.3228987985692548e-16,
+      "condition_number": 1.5478703366301946e+16,
+      "root_real": 0.12700646777028055,
+      "root_imag": 3.909898476444902,
+      "root_distance_to_DAE": 0.0,
+      "status": "PASS"
+    },
+    {
+      "stage": "descriptor pencil",
+      "matrix_dimension": 164,
+      "absolute_residual": 1.854516576802816e-12,
+      "relative_residual": 1.9521884044892894e-16,
+      "condition_number": 3.369423676403473e+17,
+      "root_real": 0.12700646777028055,
+      "root_imag": 3.909898476444902,
+      "root_distance_to_DAE": 0.0,
+      "status": "PASS"
+    },
+    {
+      "stage": "raw network Schur",
+      "matrix_dimension": 78,
+      "absolute_residual": 3.6358310676284247e-13,
+      "relative_residual": 7.901611726521909e-17,
+      "condition_number": 2830019943296459.0,
+      "root_real": 0.12700646777028055,
+      "root_imag": 3.909898476444902,
+      "root_distance_to_DAE": 0.0,
+      "status": "PASS"
+    },
+    {
+      "stage": "candidate-port Schur",
+      "matrix_dimension": 78,
+      "absolute_residual": 3.4343092974669935e-08,
+      "relative_residual": 1.3083705992724766e-11,
+      "condition_number": 8234756409156.093,
+      "root_real": 0.12700646777028055,
+      "root_imag": 3.909898476444902,
+      "root_distance_to_DAE": 0.0,
+      "status": "PASS"
+    },
+    {
+      "stage": "base+deltaY",
+      "matrix_dimension": 78,
+      "absolute_residual": 7.140111712107682e-15,
+      "relative_residual": 7.66822908440606e-18,
+      "condition_number": 8234756409156.093,
+      "root_real": 0.12700646777028055,
+      "root_imag": 3.909898476444902,
+      "root_distance_to_DAE": 0.0,
+      "status": "PASS"
+    },
+    {
+      "stage": "action-space",
+      "matrix_dimension": 8,
+      "absolute_residual": 7.862140035943986e-11,
+      "relative_residual": 2.340724075262523e-11,
+      "condition_number": 31287650421.520405,
+      "root_real": 0.12700646777028055,
+      "root_imag": 3.909898476444902,
+      "root_distance_to_DAE": 0.0,
+      "status": "FAIL"
+    },
+    {
+      "stage": "modal transform",
+      "matrix_dimension": 8,
+      "absolute_residual": 1.1555499094457146e-15,
+      "relative_residual": 3.4403145719119106e-16,
+      "condition_number": 1.0,
+      "root_real": 0.12700646777028055,
+      "root_imag": 3.909898476444902,
+      "root_distance_to_DAE": 0.0,
+      "status": "PASS"
+    },
+    {
+      "stage": "scalar Schur",
+      "matrix_dimension": 1,
+      "absolute_residual": 7.862140057515609e-11,
+      "relative_residual": 2.3407240816848483e-11,
+      "condition_number": 4.551908942943943,
+      "root_real": 0.1270064680014381,
+      "root_imag": 3.9098984766512177,
+      "root_distance_to_DAE": 3.098387505133546e-10,
+      "status": "PASS"
+    }
+  ],
+  "before_claim": {
+    "status": "M1A_COMPLETE",
+    "first_degrading_stage": "base+deltaY",
+    "root_cause_category": "B_DELTAY_MISMATCH",
+    "max_absolute_residual": 7.188392772871091e-05,
+    "max_relative_backward_error": 2.814798949284744e-08,
+    "recommended_m1_status": "BLOCKED_M1_STRICT",
+    "safe_to_run_m2": false,
+    "one_next_corrective_action": "Reconcile matched load blocks between base and flagship port operators before rerunning M1.",
+    "ladder": [
+      {
+        "stage": "Ared eigenpair",
+        "matrix_dimension": 86,
+        "absolute_residual": 1.3007950430743702e-12,
+        "relative_residual": 1.3228987985692548e-16,
+        "condition_number": 1.5478703366301946e+16,
+        "root_real": 0.12700646777028055,
+        "root_imag": 3.909898476444902,
+        "root_distance_to_DAE": 0.0,
+        "status": "PASS"
+      },
+      {
+        "stage": "descriptor pencil",
+        "matrix_dimension": 164,
+        "absolute_residual": 1.854516576802816e-12,
+        "relative_residual": 1.9521884044892894e-16,
+        "condition_number": 3.369423676403473e+17,
+        "root_real": 0.12700646777028055,
+        "root_imag": 3.909898476444902,
+        "root_distance_to_DAE": 0.0,
+        "status": "PASS"
+      },
+      {
+        "stage": "raw network Schur",
+        "matrix_dimension": 78,
+        "absolute_residual": 3.6358310676284247e-13,
+        "relative_residual": 7.901611726521909e-17,
+        "condition_number": 2830019943296459.0,
+        "root_real": 0.12700646777028055,
+        "root_imag": 3.909898476444902,
+        "root_distance_to_DAE": 0.0,
+        "status": "PASS"
+      },
+      {
+        "stage": "candidate-port Schur",
+        "matrix_dimension": 78,
+        "absolute_residual": 3.4343092974669935e-08,
+        "relative_residual": 1.3083705992724766e-11,
+        "condition_number": 8234756409156.093,
+        "root_real": 0.12700646777028055,
+        "root_imag": 3.909898476444902,
+        "root_distance_to_DAE": 0.0,
+        "status": "PASS"
+      },
+      {
+        "stage": "base+deltaY",
+        "matrix_dimension": 78,
+        "absolute_residual": 7.188392772871091e-05,
+        "relative_residual": 2.7385662723109105e-08,
+        "condition_number": 8234756409156.093,
+        "root_real": 0.12700646777028055,
+        "root_imag": 3.909898476444902,
+        "root_distance_to_DAE": 0.0,
+        "status": "FAIL"
+      },
+      {
+        "stage": "action-space",
+        "matrix_dimension": 8,
+        "absolute_residual": 9.454488128727047e-08,
+        "relative_residual": 2.8147989492173677e-08,
+        "condition_number": 26018116.958441984,
+        "root_real": 0.12700646777028055,
+        "root_imag": 3.909898476444902,
+        "root_distance_to_DAE": 0.0,
+        "status": "FAIL"
+      },
+      {
+        "stage": "modal transform",
+        "matrix_dimension": 8,
+        "absolute_residual": 1.3926654823816938e-15,
+        "relative_residual": 4.146256553549757e-16,
+        "condition_number": 1.0,
+        "root_real": 0.12700646777028055,
+        "root_imag": 3.909898476444902,
+        "root_distance_to_DAE": 0.0,
+        "status": "PASS"
+      },
+      {
+        "stage": "scalar Schur",
+        "matrix_dimension": 1,
+        "absolute_residual": 9.454488128953357e-08,
+        "relative_residual": 2.814798949284744e-08,
+        "condition_number": 4.551910972331013,
+        "root_real": 0.12700684036014673,
+        "root_imag": 3.9098984759249658,
+        "root_distance_to_DAE": 3.725902289582782e-07,
+        "status": "FAIL"
+      }
+    ]
+  },
+  "after_claim": {
+    "status": "M1A_COMPLETE",
+    "first_degrading_stage": "action-space",
+    "root_cause_category": "C_ACTION_COMPRESSION_MISMATCH",
+    "max_absolute_residual": 3.4343092974669935e-08,
+    "max_relative_backward_error": 2.3407240816848483e-11,
+    "recommended_m1_status": "BLOCKED_M1_STRICT",
+    "safe_to_run_m2": false,
+    "one_next_corrective_action": "Repair the action-space embedding/update identity before modal reduction.",
+    "ladder": [
+      {
+        "stage": "Ared eigenpair",
+        "matrix_dimension": 86,
+        "absolute_residual": 1.3007950430743702e-12,
+        "relative_residual": 1.3228987985692548e-16,
+        "condition_number": 1.5478703366301946e+16,
+        "root_real": 0.12700646777028055,
+        "root_imag": 3.909898476444902,
+        "root_distance_to_DAE": 0.0,
+        "status": "PASS"
+      },
+      {
+        "stage": "descriptor pencil",
+        "matrix_dimension": 164,
+        "absolute_residual": 1.854516576802816e-12,
+        "relative_residual": 1.9521884044892894e-16,
+        "condition_number": 3.369423676403473e+17,
+        "root_real": 0.12700646777028055,
+        "root_imag": 3.909898476444902,
+        "root_distance_to_DAE": 0.0,
+        "status": "PASS"
+      },
+      {
+        "stage": "raw network Schur",
+        "matrix_dimension": 78,
+        "absolute_residual": 3.6358310676284247e-13,
+        "relative_residual": 7.901611726521909e-17,
+        "condition_number": 2830019943296459.0,
+        "root_real": 0.12700646777028055,
+        "root_imag": 3.909898476444902,
+        "root_distance_to_DAE": 0.0,
+        "status": "PASS"
+      },
+      {
+        "stage": "candidate-port Schur",
+        "matrix_dimension": 78,
+        "absolute_residual": 3.4343092974669935e-08,
+        "relative_residual": 1.3083705992724766e-11,
+        "condition_number": 8234756409156.093,
+        "root_real": 0.12700646777028055,
+        "root_imag": 3.909898476444902,
+        "root_distance_to_DAE": 0.0,
+        "status": "PASS"
+      },
+      {
+        "stage": "base+deltaY",
+        "matrix_dimension": 78,
+        "absolute_residual": 7.140111712107682e-15,
+        "relative_residual": 7.66822908440606e-18,
+        "condition_number": 8234756409156.093,
+        "root_real": 0.12700646777028055,
+        "root_imag": 3.909898476444902,
+        "root_distance_to_DAE": 0.0,
+        "status": "PASS"
+      },
+      {
+        "stage": "action-space",
+        "matrix_dimension": 8,
+        "absolute_residual": 7.862140035943986e-11,
+        "relative_residual": 2.340724075262523e-11,
+        "condition_number": 31287650421.520405,
+        "root_real": 0.12700646777028055,
+        "root_imag": 3.909898476444902,
+        "root_distance_to_DAE": 0.0,
+        "status": "FAIL"
+      },
+      {
+        "stage": "modal transform",
+        "matrix_dimension": 8,
+        "absolute_residual": 1.1555499094457146e-15,
+        "relative_residual": 3.4403145719119106e-16,
+        "condition_number": 1.0,
+        "root_real": 0.12700646777028055,
+        "root_imag": 3.909898476444902,
+        "root_distance_to_DAE": 0.0,
+        "status": "PASS"
+      },
+      {
+        "stage": "scalar Schur",
+        "matrix_dimension": 1,
+        "absolute_residual": 7.862140057515609e-11,
+        "relative_residual": 2.3407240816848483e-11,
+        "condition_number": 4.551908942943943,
+        "root_real": 0.1270064680014381,
+        "root_imag": 3.9098984766512177,
+        "root_distance_to_DAE": 3.098387505133546e-10,
+        "status": "PASS"
+      }
+    ]
+  },
+  "before_action_space_relative_backward_error": 2.8147989492173677e-08,
+  "after_action_space_relative_backward_error": 2.340724075262523e-11,
+  "before_base_delta_relative_residual": 2.7385662723109105e-08,
+  "after_base_delta_relative_residual": 7.66822908440606e-18,
+  "before_root_cause_record": "docs/IAS26-010_ROOT_CAUSE.md",
+  "baseline_full_blocks": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\poster\\ias2026\\research\\bnd_h4_mechanism\\results\\20260926T100829_d0fecb32_ias26_010_reproduce\\tables\\M1A_BASE_DELTAY_BLOCKS.csv",
+  "after_full_blocks": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\poster\\ias2026\\research\\bnd_h4_mechanism\\results\\20260926T153604Z_d0fecb32_ias26_010_matched_base_v1\\tables\\M1A_BASE_DELTAY_BLOCKS.csv",
+  "changed_file_diff": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\poster\\ias2026\\research\\bnd_h4_mechanism\\results\\20260926T153604Z_d0fecb32_ias26_010_matched_base_v1\\raw\\reconciliation\\IAS26_010_CHANGED_FILES.patch",
+  "changed_file_diff_sha256": "5700cefdc0df550d1b902a64c4ca921a0f053ba696217c3cf6de654713ee054b",
+  "model_hashes_after": {
+    "base": "447d5b8d9ac3c6f5ed1771ec4ab6ed44fee05d97731751920ec522b3022ec848",
+    "flagship": "5bd6c2c82d876e9667ba177eff952b958902967f19b887fb1e3d7aba06e4fb5c"
+  },
+  "equilibrium_and_reduced_A_hashes_after": {
+    "base": {
+      "xz_sha256": "17a018be296ba90644c714196e057156b95e2ceb38f54035bf78deca3236a002",
+      "reduced_A_sha256": "5dd3da246201a21275c86e3d888239ae584aac8e1f5687ac1ab3792b34a60ce8"
+    },
+    "flagship": {
+      "xz_sha256": "18adf2938aa8263bbdb97165dceba885d7323a935664a1d18f16fbac7294ac34",
+      "reduced_A_sha256": "da25d45096f80d872ef40caa968fa2c996ef0cc6b1bb92420ad2869c7cc92751"
+    }
+  },
+  "regression_checks": {
+    "current_h4": {
+      "state_count": 86,
+      "alpha": 0.12700646782830968,
+      "frequency_hz": 0.6222796695036534,
+      "model_hash_matches_pre_correction": true,
+      "equilibrium_hash_matches_pre_correction": true,
+      "reduced_A_hash_matches_pre_correction": true
+    },
+    "frozen_proper_subset_ledger_read_only": {
+      "path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\poster\\ias2026\\research\\bnd_h4_mechanism\\results\\20260926T083621_h4_f1_f2_assets_v1\\derived\\F1_PORTFOLIOS.csv",
+      "sha256": "beda8de970cdf78e8f36392b626dbebaae765e8a0a2f87bd3558878fde414644",
+      "portfolio_rows": 16,
+      "proper_subset_rows_including_base": 15,
+      "all_proper_subsets_stable": true,
+      "h4_status": "UNSTABLE"
+    },
+    "frozen_julia_gfl11_parity_read_only": {
+      "path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\poster\\ias2026\\research\\bnd_h4_mechanism\\results\\20260925T225832_dee6fe69_h4_modal_schur_v1\\claims\\CROSSCODE_GFL11_RECONCILIATION.json",
+      "sha256": "9e107558c042160527d382b5710b53aa42ba79a379363d71b17459dcfb8f9951",
+      "status": "PASS_GFL11_EXACT_REPRODUCTION",
+      "python_states": 86,
+      "julia_states": 86,
+      "alpha_difference_s-1": 4.9398755e-10,
+      "frequency_difference_hz": 1.50509e-11,
+      "pass": true
+    }
+  }
+}

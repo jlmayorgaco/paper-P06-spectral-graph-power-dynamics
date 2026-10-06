@@ -1,0 +1,108 @@
+PUENTE FÍSICO Y LEY INTEGRAL DE FRECUENCIA — IEEE39
+Campaña limitada, preregistrada y ejecutada el 4 de octubre de 2026 (Bogotá)
+
+RESULTADO PRINCIPAL
+Se cierra el defecto de signo del almacenamiento DC en una variante aislada,
+y se demuestra/verifica una identidad de frecuencia–energía para el modelo
+IEEE39 con gobernadores, cargas ZIP y pérdidas. La corrección conserva el
+espectro y prácticamente las respuestas AC de este candidato. No mejora
+los dos eventos antes fallidos y no produce un máximo global de sustitución.
+
+1. Qué se cambió y qué se preservó
+PhysicalBridge.jl cambia sólo C vdot=(Pdc-Pac)/v y los dos errores PI a v-V.
+No se modificó ninguna fuente ni resultado congelado. Los hashes de todos
+los inputs preregistrados siguen iguales: True.
+Los parámetros rho, Kp, Ki, ratings, P/Q y demás ganancias permanecieron fijos.
+Se usó el candidato Q2B: 5090.237801544 MW GFL
+(94.215489391%), 312.523288435 MW SG.
+Ese porcentaje procede del candidato anterior; NO es una optimización nueva
+ni prueba de que sea robusto o máximo para esta variante física.
+
+2. Matemática cerrada
+EXACT_IDENTITY: E=K+Ef+Edc satisface dot(E)=Pm+Pdc-carga-pérdidas
+bajo las ecuaciones declaradas; la versión heredada usaba K+Ef-Edc.
+EXACT_IDENTITY: en trim, reflexión de sólo delta(vdc) produce Ap=S Ao S,
+Ep=S Eo S. Los puertos AC lineales se conservan con las hipótesis escritas.
+La reflexión NO es una equivalencia no lineal general; su defecto comienza
+en segundo orden. Estos resultados usan álgebra clásica, no una nueva teoría
+universal de similitud ni una demostración de pasividad.
+EXACT_IDENTITY: para cualquier tiempo finito desde el trim,
+sum_g d_g integral(nu_g) - Pm39(0) integral(nu39) = Bgov + Aaw + integral(Delta Pdc) - integral(Delta load_and_losses) - Delta(K+Ef+Edc)
+Los términos terminales del gobernador y su antiwindup no se omiten.
+La salida de TGOV1 es torque por velocidad; SG39 conserva torque fijo.
+La prueba completa, las excepciones y una ley infinita CONDICIONAL están en
+PHYSICAL_BRIDGE_SECTION.tex y MATH_REVIEW.txt.
+
+3. Paridad y comprobaciones independientes
+Residual de equilibrio: 6.57448e-12.
+Error relativo de similitud del Jacobiano: 0.
+Error relativo de masa descriptor: 0.
+144 polos finitos (incluido un gauge); matching biyectivo
+con error máximo 0; alpha física=-0.050057324250 1/s.
+La reproducción NUEVA legacy +1MW coincide punto a punto con su traza archivada.
+El error de balance positivo gradiente(E) por RHS versus potencias independientes
+es como máximo 2.91904e-10 MW en los cuatro casos físicos.
+Gate numérico de energía de campaña: True.
+Esto evalúa una identidad del modelo; no es certificación intervalar ni medida experimental.
+
+4. Cinco integraciones, sin barridos ni retuning
+Julia/PowerDynamics: una reproducción legacy y cuatro casos físicos.
+Rodas5P, atol=rtol=1e-10, 0–61s, muestras cada 5ms.
+El evento a t=1s cambia Pset ZIP, con Qset fijo: el consumo realizado depende
+del voltaje y no equivale exactamente al rótulo nominal de MW.
+Frecuencia y RoCoF se miden por diferencias causales de fase en buses 30–39
+con W=0.5s. NO son máximos de los 39 buses ni derivadas instantáneas.
+Límites: 0.5 Hz y 0.5 Hz/s.
+
+bus16_1MW          0.005000021 Hz  0.001670433 Hz/s  PASS
+bus16_100MW        0.468755451 Hz  0.171772384 Hz/s  PASS
+bus8_100MW         0.410549067 Hz  0.512749700 Hz/s  FAIL RoCoF
+bus29_100MW        0.588570613 Hz  0.281888064 Hz/s  FAIL frecuencia
+
+Sólo 2/4 cumplen ambos límites,
+incluido el ensayo pequeño de 1MW. De los tres casos de 100MW, sólo bus16 pasa.
+Las diferencias máximas AC respecto a trazas heredadas son
+2.34654e-06 Hz y 4.94058e-06 Hz/s.
+La corrección física no explica ni elimina los incumplimientos previos.
+NEGATIVE_RESULT: este diseño fijo de 94.215489% no es seguro para la colección ensayada.
+
+5. Balance finito y limitador observado
+La identidad se verifica también integrando las trazas, sin usar un endpoint
+supuesto a infinito. A 5ms, error máximo de cierre de energía:
+0.0464371 MJ. Error máximo de área:
+0.0464016 MJ.
+Se conservan los errores a 5/10/20ms en QUADRATURE_SENSITIVITY.csv; la capa
+rápida del evento no queda resuelta exactamente por el muestreo de 5ms.
+No confundir estos errores de cuadratura con el residual punto a punto de RHS.
+En bus29/+100MW se observa directamente el gobernador de SG35 limitado:
+380 muestras, duración estimada 1.900s,
+con corrección antiwindup -0.728186650 MJ.
+El exceso máximo de válvula es ~2.37e-8 pu por el limitador numérico con desigualdad
+estricta; no presentarlo como un margen de actuador positivo ni como gran violación.
+
+6. Qué falta exactamente para la contribución de reemplazo por grafo
+El balance físico positivo YA no bloquea esta variante. Todavía bloquean un
+piso universal IEEE39 las contribuciones dependientes de la trayectoria:
+consumo ZIP, pérdidas, limitadores, almacenamiento terminal y fases finales.
+La ley infinita requiere además convergencia/integrabilidad y coherencia de
+la salida medida. No se demostraron con un horizonte de 61s.
+La teoría lossless de resistencia secante permanece válida en su clase.
+No se transfiere simplemente reemplazando su Laplaciana por un Jacobiano AC.
+
+Próximo gate concreto: fijar una familia de diseños y acotar uniformemente
+el término residual y los endpoints de la ley de área. Un camino comprobable
+es combinar una cota de alcanzabilidad finita con una cota de cola y regiones
+de gobernador declaradas; si resulta vacuo, reportarlo. Medir un residual
+pequeño después de optimizar no crea una cota predictiva ni global.
+Sólo después corresponde co-diseñar rho/Kp/Ki y validar todos los eventos.
+
+7. Alcance y decisión de póster
+Este trabajo es una corrección física documentada y un puente verificable,
+no evidencia suficiente de novedad competitiva, superioridad de control,
+máximo de SG→GFL, estabilidad no lineal global o seguridad con retrasos.
+La campaña usa tau_PLL=0; W=0.5s es medida, no retraso PLL.
+No hay current limiter ni límite energético de la fuente DC demostrados.
+POSTER MAIN CLAIM READY: NO para un máximo IEEE39 demostrado por la ley del grafo.
+Gate faltante: cota uniforme de los defectos del modelo completo + diseño que
+cumpla todos los eventos del contrato. El documento puede mostrar los resultados
+reducidos con su alcance y estos ensayos como auditoría, sin venderlos como ese máximo.

@@ -1,0 +1,67 @@
+FROZEN BEFORE NEW MODEL EVALUATIONS — 2026-10-03
+
+Question: does the all-PLL analytical gain map reconstruct a known IEEE-39
+design and predict a finite replacement change with exact pure-delay closure?
+This is one targeted validation, not optimization or a replacement frontier.
+
+Read-only baseline:
+experiments/graph_gsp_codesign_20261003/baseline.toml
+rho = 0.875 at all ten generator sites; tau = 0.04 s fixed.
+Its five nonlinear events and numerical full-margin contour already passed.
+The present experiment independently rechecks equilibrium and linearization.
+
+No controller architecture change; local PLLs only. No neighbor links added.
+The initial reference pole is the largest-real-part root in the frozen baseline
+catalog with frequency between 2 and 12 Hz. Preserve its full complex value
+and normalized PLL-angle pattern. This selects a PLL-family target, not the
+rightmost physical pole of the complete system.
+
+One finite trial: increase every rho_i by 0.001 (0.1 percentage point).
+Keep tau, target pole and PLL pattern fixed. Compute all Kp/Ki analytically.
+No step search or replacement optimization. If a gate fails, report it; do
+not alter this trial to create a successful outcome.
+Comparator: the identical replacement change with all gains fixed.
+Compare their spectra. This is not a superiority test against optimized SQP.
+
+Prediction must be saved and hashed before independent full-model validation.
+Save the complete candidate vectors and root-movement predictions.
+Check reconstruction for every nonreal root in the existing catalog.
+Check gain-map derivatives at buses 30,34,38 for the leading slow mode and
+the two largest-real-part PLL-family modes (nine vector derivative cases).
+Centered rho finite difference h=1e-5; no new target selection after evaluation.
+Compute two-mode fixed-pattern compatibility at baseline and at the finite
+replacement, as a restricted assignment diagnostic only.
+
+Numerical gates:
+equilibrium infinity residual <=1e-7;
+parametric versus independent ForwardDiff full Jacobian relative <=1e-8;
+baseline gain reconstruction max relative <=1e-5;
+normalized full characteristic residual <=1e-9;
+target root absolute error <=1e-5 /s and PLL-pattern MAC >=0.999999;
+gain derivative relative error <=1% or vector absolute infinity error <=1e-6;
+gain bounds are the repository bounds (0.25--4 times original nominal gains).
+Report all hidden-block condition numbers and small detector denominators.
+Numerical rank/residuals do not certify global impossibility.
+
+Spectrum:
+Use the full descriptor with exact exponentials, remove the actual rotational
+mode, and reuse the existing trace-integral + determinant-phase contour oracle.
+Required margin Re(s)<=-0.05/s. Same oracle settings:
+step=10, max_depth=22, count integer distance <0.01, quadrature error <0.01,
+phase/count discrepancy <0.01, maximum phase increment <pi/2.
+A finite tail bound closes the truncated contour.
+This is floating-point numerical evidence, not interval certification.
+
+If independent parity, gain bounds, target preservation and the full numerical
+margin pass, run the candidate with the canonical nonlinear method of steps:
+Rodas5P, tol=1e-9, dtmax=0.01 s, horizon=60 s.
+All five frozen Z-load events: (8,-100),(16,+100),(16,-100),(29,+100),(29,-100).
+All 39 bus-voltage phase metrics, 0.5 s windows:
+|frequency|<=0.5 Hz; |RoCoF|<=0.5 Hz/s; V in [0.9,1.1] pu;
+SG actuator normalized slack >=0.002.
+No current-limiter or global robustness claim.
+Retain all failures; no retuning after event labels.
+
+All new artifacts live in this directory. Frozen inputs stay read-only.
+No commit or push. New results may be added to the open THEORY.tex with their
+scope explicitly identified; prior provenance records remain unchanged.

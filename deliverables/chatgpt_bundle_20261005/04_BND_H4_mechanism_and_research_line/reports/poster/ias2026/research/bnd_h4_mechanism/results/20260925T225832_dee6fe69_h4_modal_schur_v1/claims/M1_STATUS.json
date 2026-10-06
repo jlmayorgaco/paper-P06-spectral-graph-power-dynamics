@@ -1,0 +1,21 @@
+{
+  "lambda_full": [
+    0.12700646782830968,
+    3.9098984763819242
+  ],
+  "frequency_full_hz": 0.6222796695036534,
+  "operator_dimension": 8,
+  "operator_singular_value_at_full_pole": 9.453013576299889e-08,
+  "h_at_full_pole_abs": 9.453013584752564e-08,
+  "m1_threshold": 1e-08,
+  "root_eta_1": [
+    0.12700684036014512,
+    3.9098984759249666
+  ],
+  "root_eta_1_residual": 6.308021233197467e-16,
+  "root_distance_to_full": 3.7253211569341967e-07,
+  "root_solver_success": true,
+  "root_solver_evaluations": 7,
+  "complement_condition_at_full_pole": 4.551910971502867,
+  "status": "BLOCKED_M1_STRICT"
+}

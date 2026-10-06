@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "scope": "Equilibrium and independent differentiation of the corrected design using only extracted source/data and the host Julia package environment; no event replay",
+  "source_data_root": "qa/bundle_smoke",
+  "julia_version": "1.11.9",
+  "GFL_MW": 4735.3159537314905,
+  "SG_MW": 667.4451362473558,
+  "detector_relative_error": 3.605957493761861e-16,
+  "equilibrium_residual": 2.8107711084746334e-9,
+  "jacobian_relative_error": 4.752387737877156e-18
+}

@@ -1,0 +1,61 @@
+{
+  "E05C_or_E06_permitted": false,
+  "algebraic_factor": "sparse LU logabsdet(-gy)",
+  "coarse_frequency_nodes": 48,
+  "contour_gap_fraction": 0.45,
+  "contour_nodes": 128,
+  "contour_numerical_tolerance": 1e-08,
+  "contour_reference_band_hz": [
+    0.1,
+    30.0
+  ],
+  "finite_pole_factor": "eigenvalues of M^-1(fx-fy gy^-1 gx), evaluated independently of full descriptor logdet",
+  "freeze_id": "TX3-E05B-NUMERICS-1.0",
+  "frequency_rule": "normalized Gauss-Legendre integration in log frequency",
+  "full_descriptor_reference": "frozen E03 48/96-node full logdet vertices for all 24 development operating points",
+  "git_sha_before_preregistration_commit": "24dd4019678c896085500459c62928284dbd20a3",
+  "mass_factor": "sum log(M_ii), with M_ii strictly positive",
+  "new_paraemt_runs_permitted": false,
+  "pointwise_factorization_audit": {
+    "frequencies_hz": [
+      0.1,
+      0.3,
+      1.0,
+      3.0,
+      10.0,
+      30.0
+    ],
+    "maximum_absolute_logdet_residual": 1e-07,
+    "operating_points": [
+      "OP00",
+      "B00",
+      "B15"
+    ],
+    "subsets": [
+      "EMPTY",
+      "A3",
+      "A6",
+      "A3-A6",
+      "A7",
+      "A8",
+      "A7-A8",
+      "A2",
+      "A2-A7",
+      "A2-A8",
+      "A2-A7-A8"
+    ]
+  },
+  "primary_frequency_band_hz": [
+    0.1,
+    30.0
+  ],
+  "reference_frequency_nodes": 96,
+  "sigma": 0.0,
+  "source_hashes": {
+    "experiments/tx3/E05B_dynamic_spectral_shift/dynamic_spectral_shift.py": "f6992939f309dc6863309543ba5c8ed8148f62981b95893cbab1dcca6fb85db7",
+    "experiments/tx3/E05B_dynamic_spectral_shift/freeze_e05b_candidates.py": "f2736c02f58933c5fd9b2a1da7b923ddb1f36dbcfcfe1d40606a69f2a5f62e4a",
+    "experiments/tx3/E05B_dynamic_spectral_shift/run_e05b_contours.py": "bb6eb01cc1ae2f31c75badde8e1a1f4cd38458652a01e60123a07bc1e2d4fb80",
+    "experiments/tx3/E05B_dynamic_spectral_shift/run_e05b_decomposition.py": "ed2a953b90d167c5c0449e6e41024fc7bb2a4f3467f8e896daf250f2bc2063a7",
+    "tests/unit/test_e05b_dynamic_spectral_shift.py": "1e5971b8dcf9d3cae3e461976c25bcd697232d24c6b2886f7bc9ea72f1f819e5"
+  }
+}

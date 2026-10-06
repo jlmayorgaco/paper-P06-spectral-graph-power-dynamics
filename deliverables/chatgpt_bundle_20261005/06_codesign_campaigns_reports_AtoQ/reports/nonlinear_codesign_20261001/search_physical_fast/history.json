@@ -1,0 +1,242 @@
+[
+  {
+    "iteration": 1,
+    "trial": 0,
+    "radius": 0.025,
+    "retained_MW": 550.4365421479288,
+    "max_constraint": 0.002758865128155135,
+    "accepted": false,
+    "modal_condition": 17.831658611484272,
+    "elapsed_s": 138.42244329996174
+  },
+  {
+    "iteration": 1,
+    "trial": 1,
+    "radius": 0.0125,
+    "retained_MW": 590.6730899373214,
+    "max_constraint": -0.0011330956010313815,
+    "accepted": true,
+    "modal_condition": 17.831658611484272,
+    "elapsed_s": 145.0539288999862
+  },
+  {
+    "iteration": 2,
+    "trial": 0,
+    "radius": 0.01625,
+    "retained_MW": 539.6422969731309,
+    "max_constraint": 0.0016964497972515695,
+    "accepted": false,
+    "modal_condition": 20.14134604362133,
+    "elapsed_s": 188.472180199984
+  },
+  {
+    "iteration": 2,
+    "trial": 1,
+    "radius": 0.008125,
+    "retained_MW": 565.3471491725918,
+    "max_constraint": -0.0010076116116497676,
+    "accepted": true,
+    "modal_condition": 20.14134604362133,
+    "elapsed_s": 194.70141360000707
+  },
+  {
+    "iteration": 3,
+    "trial": 0,
+    "radius": 0.0105625,
+    "retained_MW": 534.7703185457049,
+    "max_constraint": 0.0006607486437326497,
+    "accepted": false,
+    "modal_condition": 41.18734673386223,
+    "elapsed_s": 235.78152719995705
+  },
+  {
+    "iteration": 3,
+    "trial": 1,
+    "radius": 0.00528125,
+    "retained_MW": 549.4461268170663,
+    "max_constraint": -0.0013168835377985917,
+    "accepted": true,
+    "modal_condition": 41.18734673386223,
+    "elapsed_s": 242.2734369999962
+  },
+  {
+    "iteration": 4,
+    "trial": 0,
+    "radius": 0.006865625000000001,
+    "retained_MW": 530.1361510636486,
+    "max_constraint": -0.0008804670281648171,
+    "accepted": true,
+    "modal_condition": 27.76139132567231,
+    "elapsed_s": 281.46291020000353
+  },
+  {
+    "iteration": 5,
+    "trial": 0,
+    "radius": 0.008925312500000001,
+    "retained_MW": 510.28540764654576,
+    "max_constraint": 0.10125216792876562,
+    "accepted": false,
+    "modal_condition": 21.477514513387323,
+    "elapsed_s": 316.87582979997387
+  },
+  {
+    "iteration": 5,
+    "trial": 1,
+    "radius": 0.0044626562500000005,
+    "retained_MW": 520.3204074372583,
+    "max_constraint": 0.0227619686255226,
+    "accepted": false,
+    "modal_condition": 21.477514513387323,
+    "elapsed_s": 322.6990557999816
+  },
+  {
+    "iteration": 5,
+    "trial": 2,
+    "radius": 0.0022313281250000002,
+    "retained_MW": 525.3379073326143,
+    "max_constraint": 0.0030153448984894526,
+    "accepted": false,
+    "modal_condition": 21.477514513387323,
+    "elapsed_s": 328.5578014999628
+  },
+  {
+    "iteration": 5,
+    "trial": 3,
+    "radius": 0.0011156640625000001,
+    "retained_MW": 527.8466572802927,
+    "max_constraint": -0.0012832671303496246,
+    "accepted": true,
+    "modal_condition": 21.477514513387323,
+    "elapsed_s": 334.38917320000473
+  },
+  {
+    "iteration": 6,
+    "trial": 0,
+    "radius": 0.0014503632812500002,
+    "retained_MW": 524.661414176944,
+    "max_constraint": 0.0016000809026371632,
+    "accepted": false,
+    "modal_condition": 20.765548460854998,
+    "elapsed_s": 370.45922690001316
+  },
+  {
+    "iteration": 6,
+    "trial": 1,
+    "radius": 0.0007251816406250001,
+    "retained_MW": 526.2559207282865,
+    "max_constraint": -0.0010830727407742935,
+    "accepted": true,
+    "modal_condition": 20.765548460854998,
+    "elapsed_s": 376.5460159999784
+  },
+  {
+    "iteration": 7,
+    "trial": 0,
+    "radius": 0.0009427361328125002,
+    "retained_MW": 524.2190969670733,
+    "max_constraint": -0.00022792919191619299,
+    "accepted": true,
+    "modal_condition": 20.403463702961712,
+    "elapsed_s": 412.0436685999739
+  },
+  {
+    "iteration": 8,
+    "trial": 0,
+    "radius": 0.0012255569726562503,
+    "retained_MW": 521.7378962731492,
+    "max_constraint": 0.0006709105240543245,
+    "accepted": false,
+    "modal_condition": 20.09978118521292,
+    "elapsed_s": 449.1601999999839
+  },
+  {
+    "iteration": 8,
+    "trial": 1,
+    "radius": 0.0006127784863281251,
+    "retained_MW": 523.0131568478484,
+    "max_constraint": -0.0013721419329118523,
+    "accepted": true,
+    "modal_condition": 20.09978118521292,
+    "elapsed_s": 455.7114148999681
+  },
+  {
+    "iteration": 9,
+    "trial": 0,
+    "radius": 0.0007966120322265627,
+    "retained_MW": 521.4434512801133,
+    "max_constraint": -0.0009560695384934481,
+    "accepted": true,
+    "modal_condition": 20.074559126715638,
+    "elapsed_s": 492.1791637999704
+  },
+  {
+    "iteration": 10,
+    "trial": 0,
+    "radius": 0.0010355956418945315,
+    "retained_MW": 519.4830707309811,
+    "max_constraint": -0.0005050447463418595,
+    "accepted": true,
+    "modal_condition": 20.173326580961064,
+    "elapsed_s": 527.4323994999868
+  },
+  {
+    "iteration": 11,
+    "trial": 0,
+    "radius": 0.001346274334462891,
+    "retained_MW": 517.0376138682773,
+    "max_constraint": 5.392669534795558e-05,
+    "accepted": false,
+    "modal_condition": 20.553460490469757,
+    "elapsed_s": 559.0778552999836
+  },
+  {
+    "iteration": 11,
+    "trial": 1,
+    "radius": 0.0006731371672314455,
+    "retained_MW": 518.2724781075424,
+    "max_constraint": -0.0015040298448282252,
+    "accepted": true,
+    "modal_condition": 20.553460490469757,
+    "elapsed_s": 564.5310290000052
+  },
+  {
+    "iteration": 12,
+    "trial": 0,
+    "radius": 0.0008750783174008792,
+    "retained_MW": 516.648355814772,
+    "max_constraint": -0.0012859035730998503,
+    "accepted": true,
+    "modal_condition": 20.943251765543305,
+    "elapsed_s": 599.1761336000054
+  },
+  {
+    "iteration": 13,
+    "trial": 0,
+    "radius": 0.001137601812621143,
+    "retained_MW": 514.5808879893881,
+    "max_constraint": -0.0004871243795367963,
+    "accepted": true,
+    "modal_condition": 20.54337527690831,
+    "elapsed_s": 634.688858199981
+  },
+  {
+    "iteration": 14,
+    "trial": 0,
+    "radius": 0.001478882356407486,
+    "retained_MW": 511.8971374696395,
+    "max_constraint": 2.7732376456368613e-06,
+    "accepted": false,
+    "modal_condition": 21.3572242464309,
+    "elapsed_s": 670.5141097999876
+  },
+  {
+    "iteration": 14,
+    "trial": 1,
+    "radius": 0.000739441178203743,
+    "retained_MW": 513.2629695221049,
+    "max_constraint": -0.001486738745979932,
+    "accepted": true,
+    "modal_condition": 21.3572242464309,
+    "elapsed_s": 676.2195873999735
+  }
+]

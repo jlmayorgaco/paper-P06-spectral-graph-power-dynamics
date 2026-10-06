@@ -1,0 +1,94 @@
+\section{Finite Externalities and Connected Reconstruction}
+\subsection{Direct Pair and Triple Effects}
+
+All 2,016 E03 cases were smooth-valid. Among 672 pair cases, 266 exceeded the
+five-budget resolution criterion; among 1,344 triple cases, 147 did so. The
+unresolved majority, especially 1,197 of the triple cases, is part of the
+result: higher-order effects are not ubiquitous at the frozen amplitudes.
+
+The strongest resolved discovery pair was A7--A8 at OP12,
+$\ext{\{7,8\}}\Phi=-0.00535233$ with direct uncertainty
+$6.93\times10^{-6}$. The largest locked-holdout value for the same pair was
+$-0.00483156$. It combines a 20-MW dispatch increase at GFL37 with a 10\%
+reactance increase on its incident branch. The leading triple was A2--A7--A8,
+which adds the bus-37 PLL bandwidth action. Its largest discovery coefficient
+was $-2.64008\times10^{-5}$, and its largest holdout magnitude was
+$2.45036\times10^{-5}$.
+
+The holdout replication rule was met by ten pairs and five triples, each with
+same-sign fraction 1.0. (The broader C1 gate counts one additional pair under
+its original population rule; the later E05B population contains the ten
+fully retained pairs used for anatomy and stress.) These are existential
+results on the frozen coordinates. They do not imply that every finite
+controller or network portfolio is non-additive.
+
+\subsection{Independent Connected Closure}
+
+All 413 effects resolved in E03 were reconstructed through
+\eqref{eq:bridge}--\eqref{eq:connected}. On the locked holdout, all 129 cases
+satisfied \eqref{eq:recongate}. Median absolute errors were
+$1.11638\times10^{-6}$ for pairs and $5.80806\times10^{-8}$ for triples.
+The overall mean bias, $2.45587\times10^{-7}$, was below the median combined
+uncertainty. Figure~\ref{fig:reconstruction} shows direct and reconstructed
+values with case-specific uncertainty bars; the pointwise gate, rather than
+the apparent correlation, supports the closure claim.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figure_E04_1_direct_vs_reconstructed.pdf}
+\caption{Direct re-equilibrated externality versus connected reconstruction
+for every resolved discovery and holdout case. Error bars are conservative
+combined uncertainty; the signed symlog axes retain small and negative
+values. All 129 holdout cases close within five budgets.}
+\label{fig:reconstruction}
+\end{figure}
+
+This agreement checks more than a final scalar. The direct route uses only
+coalition vertices and M\"obius differencing. The connected route evaluates
+total matrix derivatives, the complete set-partition expansion, frequency
+integration, and action-hypercube quadrature. Closing the two independently
+implemented paths is therefore evidence for the calculus and its numerical
+implementation. It is not a causal identification theorem: both calculations
+operate on the same model and action definitions.
+
+\subsection{Why Re-Equilibration Is Material to the Calculation}
+
+The connected anatomy distinguishes intrinsic mixed derivatives, products of
+single-action feedback terms, and mixed curvature. For A7--A8 on holdout, the
+median curvature contribution was $-0.00338136$ and the median feedback
+contribution was $-0.000694529$, giving a median singleton-feedback adequacy
+ratio of only 0.169. Thus most of this finite pair is associated with the
+operating-point/network curvature that appears when dispatch and branch
+reactance are changed together.
+
+At OP00, the fully re-equilibrated A7--A8 externality is approximately
+$-0.00411$, while the frozen-affine result is $-0.00065321$. The frozen
+calculation therefore captures only about 15.9\% of the finite magnitude, an
+underestimate of approximately $6.3\times$. Figure~\ref{fig:frozen} shows
+the diagnostic for the registered exemplars. This factor belongs to A7--A8 at
+the reference operating point; it is not asserted as a universal correction
+factor.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figure_E04_4_frozen_vs_reequilibrated.pdf}
+\caption{Fully re-equilibrated versus frozen-affine externality at OP00 for
+registered examples. The dispatch--network pair A7--A8 lies far from the
+identity line: re-equilibration increases its magnitude by about $6.3\times$.}
+\label{fig:frozen}
+\end{figure}
+
+The result sharpens the comparison with local sensitivity. Higher-order
+equilibrium sensitivities can be computed
+\cite{nam2000eigensensitivity,zamoracardenas2013multiparameter}; the present
+calculus does not claim otherwise. Its distinction is that the target object
+is the exact finite coalition remainder, and that mixed curvature is retained
+along the entire finite action path rather than truncated at one expansion
+point.
+
+For the resolved triples, the median adequacy of the pure-feedback
+description was 0.975323, but signed terms sometimes canceled strongly.
+Accordingly, component signs and magnitudes are reported directly rather than
+converted into unstable percentage shares near a zero total. A large
+adequacy ratio for one action family does not justify discarding curvature
+for another.

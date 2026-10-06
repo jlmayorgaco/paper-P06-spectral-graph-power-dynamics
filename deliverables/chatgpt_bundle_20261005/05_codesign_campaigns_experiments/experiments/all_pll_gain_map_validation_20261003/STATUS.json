@@ -1,0 +1,19 @@
+{
+  "status": "TARGETED_VALIDATION_PASSED",
+  "claim_status": "NUMERICALLY_VALIDATED",
+  "gates": {
+    "reconstruction": true,
+    "derivatives": true,
+    "gain_bounds": true,
+    "independent_equilibrium_and_jacobian": true,
+    "target_eigenpair": true,
+    "tracked_root_residuals": true,
+    "full_margin_numerical": true,
+    "five_frozen_events": true
+  },
+  "optimality": "NOT_OPTIMIZED",
+  "superiority": "NOT_ESTABLISHED",
+  "heterogeneous_delay_validation": "NOT_RUN",
+  "neighbor_control_validation": "NOT_RUN",
+  "poster_ready_for_maximum_or_superiority_claim": false
+}

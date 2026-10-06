@@ -1,0 +1,55 @@
+{
+ "table": [
+  {
+   "source": "Kundur holdout",
+   "holdout_crossings": 29,
+   "detected": 28,
+   "missed": 1,
+   "negative_controls": 445,
+   "false_positives": 0,
+   "beta_inconsistent": 0,
+   "max_determinant_residual": 8.768097359279636e-12,
+   "min_abs_eig_relocated": 5.77857609920874e-05
+  },
+  {
+   "source": "synthetic",
+   "holdout_crossings": 200,
+   "detected": 200,
+   "missed": 0,
+   "negative_controls": 200,
+   "false_positives": 0,
+   "beta_inconsistent": 0,
+   "max_determinant_residual": 6.038291822108022e-08,
+   "min_abs_eig_relocated": NaN
+  },
+  {
+   "source": "IEEE-68",
+   "holdout_crossings": 0,
+   "detected": 0,
+   "missed": 0,
+   "negative_controls": 0,
+   "false_positives": 0,
+   "beta_inconsistent": 0,
+   "max_determinant_residual": NaN,
+   "min_abs_eig_relocated": NaN
+  }
+ ],
+ "kundur_by_kind": {
+  "size": {
+   "NO_CROSSING": 336,
+   "OSCILLATORY_CROSSING": 109,
+   "REAL_CROSSING": 29
+  },
+  "sum": {
+   "NO_CROSSING": 0,
+   "OSCILLATORY_CROSSING": 0,
+   "REAL_CROSSING": 28
+  }
+ },
+ "kundur_real_by_subset": {
+  "2+3+4": 14,
+  "2+4": 1,
+  "3+4": 14
+ },
+ "elapsed_s": 951.3
+}

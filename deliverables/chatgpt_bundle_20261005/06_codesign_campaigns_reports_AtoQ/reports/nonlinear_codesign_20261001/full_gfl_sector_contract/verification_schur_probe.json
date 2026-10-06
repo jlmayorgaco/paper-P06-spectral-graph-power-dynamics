@@ -1,0 +1,17 @@
+{
+  "status": "SOME_CERTIFICATES_FAILED",
+  "certificates": [
+    {
+      "status": "EXACT_VERIFICATION_FAILED",
+      "bus": 30,
+      "error": "No primal SDP candidate; solver status: SOLVER_ERROR"
+    },
+    {
+      "status": "EXACT_VERIFICATION_FAILED",
+      "bus": 39,
+      "error": "No primal SDP candidate; solver status: SOLVER_ERROR"
+    }
+  ],
+  "synthesis_sha256": "a90edec0fe9ccfb5cc4106d143ff4d47eaad38a2d5d89065586cd99583f9adf9",
+  "script_sha256": "208d87c1b7e27f63a754722fd672d4c0abfe5de83cc3bc7a4e48de295910461a"
+}

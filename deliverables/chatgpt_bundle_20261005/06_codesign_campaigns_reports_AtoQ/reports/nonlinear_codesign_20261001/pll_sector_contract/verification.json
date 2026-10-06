@@ -1,0 +1,124 @@
+{
+  "status": "CONDITIONAL_NONLINEAR_PLL_CONTRACT_VERIFIED",
+  "certificates": [
+    {
+      "status": "EXACT_RATIONAL_LMI_AND_OUTPUT_CHECK_PASSED",
+      "epsilon_verified": 0.0008085881173803045,
+      "epsilon_verified_exact": "1864477257794637/2305843009213693952",
+      "reference_frequency_envelope_hz": 0.008085881173803044,
+      "min_X_LDL_pivot": 1.8414180363096932e-05,
+      "min_negative_vertex_LDL_pivot": 1.3315882640946855e-07,
+      "exact_positive_output_margins": [
+        "147571235136296531511/147573952589676412928",
+        "142681384486205257/144115188075855872",
+        "1299004707781054548630569/12980742146337070512478121581609"
+      ],
+      "output_margins_float": [
+        0.9999815858196369,
+        0.9900509890123731,
+        1.0007168258462094e-07
+      ],
+      "gain_pair": [
+        31.41592653589793,
+        246.74011002723395
+      ],
+      "fixed_gain_guarded_SDP_upper_bound": 0.000808588309089876,
+      "fixed_gain_guarded_SDP_upper_bound_exact": "94821433229438797837516024739645992255405890833565681806077470108140660819076557822637824599436053076673638971654071593/117267875584507401974829390119361905846056512140873020999568524718539887661855972850524696061073230751439257600000000000000",
+      "fixed_gain_guarded_SDP_relative_gap": 2.3709169343432966e-07,
+      "dual_psd_diagonal_repairs": [
+        1e-14,
+        1e-14,
+        1e-14
+      ],
+      "dual_stationarity_X_row_sum_bound": 1.909513401166776e-10,
+      "dual_stationarity_epsilon_residual": -3.634551973745752e-11,
+      "input_envelope": "||Delta u_dq||^2/epsilon^2 + nu_reference^2/(frame_rate_per_voltage*epsilon)^2 <= 1",
+      "meaning": "All measurable input signals within this moving-frame ellipsoid; initial state in certified ellipsoid; PLL and declared instrument only"
+    },
+    {
+      "status": "EXACT_RATIONAL_LMI_AND_OUTPUT_CHECK_PASSED",
+      "epsilon_verified": 0.000688975053213995,
+      "epsilon_verified_exact": "6354673239904493/9223372036854775808",
+      "reference_frequency_envelope_hz": 0.00688975053213995,
+      "min_X_LDL_pivot": 9.281406160640729e-06,
+      "min_negative_vertex_LDL_pivot": 1.7353806549533494e-07,
+      "exact_positive_output_margins": [
+        "295145165791767394005/295147905179352825856",
+        "570739710226067319/576460752303423488",
+        "1300712923577113014918185/12980742146337070512478121581609"
+      ],
+      "output_margins_float": [
+        0.9999907185938394,
+        0.9900755740013591,
+        1.0020327874274512e-07
+      ],
+      "gain_pair": [
+        40.0,
+        355.438
+      ],
+      "fixed_gain_guarded_SDP_upper_bound": 0.0006889756069316074,
+      "fixed_gain_guarded_SDP_upper_bound_exact": "631208638706376617505209436549049487408561493109992591149944119592120119545533813602544059669971294201817257754628573/916155278003964077928354610307514889422316501100570476559129099363592872358249787894724187977134615245619200000000000000",
+      "fixed_gain_guarded_SDP_relative_gap": 8.036824624031974e-07,
+      "dual_psd_diagonal_repairs": [
+        1e-14,
+        1e-14,
+        1e-14
+      ],
+      "dual_stationarity_X_row_sum_bound": 5.514005986944442e-10,
+      "dual_stationarity_epsilon_residual": -2.0248470657815347e-10,
+      "input_envelope": "||Delta u_dq||^2/epsilon^2 + nu_reference^2/(frame_rate_per_voltage*epsilon)^2 <= 1",
+      "meaning": "All measurable input signals within this moving-frame ellipsoid; initial state in certified ellipsoid; PLL and declared instrument only"
+    },
+    {
+      "status": "EXACT_RATIONAL_LMI_AND_OUTPUT_CHECK_PASSED",
+      "epsilon_verified": 0.0008952801962663564,
+      "epsilon_verified_exact": "8257502327392967/9223372036854775808",
+      "reference_frequency_envelope_hz": 0.008952801962663563,
+      "min_X_LDL_pivot": 6.1133629268444946e-06,
+      "min_negative_vertex_LDL_pivot": 1.8045366852851674e-07,
+      "exact_positive_output_margins": [
+        "147568447378294619129/147573952589676412928",
+        "570763941498721149/576460752303423488",
+        "1298407844878014206663721/12980742146337070512478121581609"
+      ],
+      "output_margins_float": [
+        0.9999626952366242,
+        0.9901176085588845,
+        1.0002570193911457e-07
+      ],
+      "gain_pair": [
+        22.890806216242105,
+        210.08461740772532
+      ],
+      "fixed_gain_guarded_SDP_upper_bound": 0.0008952802794503324,
+      "fixed_gain_guarded_SDP_upper_bound_exact": "114830205463580020197138532441834306700535031353114804065442871821353878030348266775567793411811014499473107545205583437/128261738920554970909969645443052084519124310154079866718278073910903002130154970305261386316798846134386688000000000000000",
+      "fixed_gain_guarded_SDP_relative_gap": 9.291389282482046e-08,
+      "dual_psd_diagonal_repairs": [
+        1e-14,
+        1e-14,
+        1e-14
+      ],
+      "dual_stationarity_X_row_sum_bound": 8.286037951503614e-11,
+      "dual_stationarity_epsilon_residual": -1.628052162590058e-11,
+      "input_envelope": "||Delta u_dq||^2/epsilon^2 + nu_reference^2/(frame_rate_per_voltage*epsilon)^2 <= 1",
+      "meaning": "All measurable input signals within this moving-frame ellipsoid; initial state in certified ellipsoid; PLL and declared instrument only"
+    }
+  ],
+  "gradient_audit": [
+    {
+      "parameter": "Kp",
+      "dual_gradient": -1.4699158323970534e-05,
+      "central_difference": -1.4699300665619684e-05,
+      "relative_error": 9.683566068096923e-06
+    },
+    {
+      "parameter": "Ki",
+      "dual_gradient": 6.52217787468769e-08,
+      "central_difference": 6.52210946857704e-08,
+      "relative_error": 1.0488231379784305e-05
+    }
+  ],
+  "synthesis_sha256": "52839e47d87447ea64c03d63ab5469eaf0c6b0e32cd1bda2733b70b282c5b880",
+  "verification_script_sha256": "ce196d398e67e3636c4b15ea89abddf5ab5d33ec2863a9456475086e32c34d67",
+  "scope": "Not a certificate for the GFL current/DC subsystem, algebraic network, SG replacement fraction, or raw bus RoCoF"
+}

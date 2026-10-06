@@ -1,0 +1,64 @@
+{
+  "freeze_id": "TX3-E05C-FIGURE-PANELS-1.0",
+  "primary_panel_candidates": [
+    {
+      "actions": [
+        "A7",
+        "A8"
+      ],
+      "candidate_id": "MC01",
+      "coalition_key": "A7-A8",
+      "e05b_median_absolute_delta_phi_poles": 0.0005908904695104411,
+      "e05b_median_delta_phi_poles": -0.0005908904695104411,
+      "e05b_resolved_holdout_points": 16,
+      "e05b_same_sign_fraction": 1.0,
+      "e05b_sign": "negative",
+      "order": 2
+    },
+    {
+      "actions": [
+        "A3",
+        "A6"
+      ],
+      "candidate_id": "MC02",
+      "coalition_key": "A3-A6",
+      "e05b_median_absolute_delta_phi_poles": 0.0003360997428671908,
+      "e05b_median_delta_phi_poles": -0.0003360997428671908,
+      "e05b_resolved_holdout_points": 16,
+      "e05b_same_sign_fraction": 1.0,
+      "e05b_sign": "negative",
+      "order": 2
+    },
+    {
+      "actions": [
+        "A2",
+        "A7",
+        "A8"
+      ],
+      "candidate_id": "MC11",
+      "coalition_key": "A2-A7-A8",
+      "e05b_median_absolute_delta_phi_poles": 2.1576032224857045e-05,
+      "e05b_median_delta_phi_poles": -2.1576032224857045e-05,
+      "e05b_resolved_holdout_points": 16,
+      "e05b_same_sign_fraction": 1.0,
+      "e05b_sign": "negative",
+      "order": 3
+    },
+    {
+      "actions": [
+        "A2",
+        "A5",
+        "A8"
+      ],
+      "candidate_id": "MC12",
+      "coalition_key": "A2-A5-A8",
+      "e05b_median_absolute_delta_phi_poles": 6.814322972559239e-06,
+      "e05b_median_delta_phi_poles": -6.814322972559239e-06,
+      "e05b_resolved_holdout_points": 14,
+      "e05b_same_sign_fraction": 1.0,
+      "e05b_sign": "negative",
+      "order": 3
+    }
+  ],
+  "selection_source": "E05B frozen dynamic ranking only"
+}

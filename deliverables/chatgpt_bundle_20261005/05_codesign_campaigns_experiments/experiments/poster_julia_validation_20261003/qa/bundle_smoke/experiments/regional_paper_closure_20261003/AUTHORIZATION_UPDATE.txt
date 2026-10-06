@@ -1,0 +1,10 @@
+2026-10-03: the user explicitly requested continuing the current work and pushing
+to GitHub once finished. This supersedes the earlier no-commit/no-push instruction
+for this closure work only. Existing unrelated changes and frozen outputs remain
+outside the commit. Scientific definitions in PROTOCOL.txt remain unchanged.
+
+Implementation repair before accepting any contour result: compute panel centers,
+radii and increments with Arb arithmetic from exact binary64 endpoints, rather
+than with a floating-point midpoint/radius. The diagnostic process was stopped
+and the same frozen contour restarted. Its partial bounds were not accepted as
+certificates. No scientific parameter, contour, or acceptance criterion changed.

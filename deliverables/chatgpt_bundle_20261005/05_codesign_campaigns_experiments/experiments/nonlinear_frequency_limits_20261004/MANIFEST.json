@@ -1,0 +1,130 @@
+{
+  "git_head": "8f21ec0b3be48f217e280f615bfd1c619df4d7ff",
+  "modified_tracked_files": [
+    " M README.md",
+    " M experiments/theory_collective_damping_20261003/THEORY.tex",
+    " M reports/poster/ias2026/main.tex",
+    " M reports/poster/ias2026/research/bnd_h4_mechanism/code/run_m1a_reconciliation.py",
+    " M reports/poster/ias2026/research/bnd_h4_mechanism/tickets/STATUS.json",
+    " M src/pd39/model.jl"
+  ],
+  "main_source_sha256": "560e93fc86827af0998cf8364fc89a9168f04d3d6da439bba632060e717095c2",
+  "artifacts": [
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/audit_archived_ieee39_balance.py",
+      "sha256": "91416897a01cf3e7c623eab6a172c75f41b39500c9fc7bda72368b596e254a27",
+      "bytes": 19561
+    },
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/CLAIM_LEDGER.csv",
+      "sha256": "b2169ee75122c051fac9c1e24d4029f4d073258e1b994e5f6493720dac015dac",
+      "bytes": 1138
+    },
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/CLOSED_FORM_RESULTS.json",
+      "sha256": "12b4e2ff57a4d67f007532e17a0f734846aa5f68fe874f7c0d2943f41cdad387",
+      "bytes": 2272
+    },
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/FIG_SHARP_NETWORK_LIMIT.png",
+      "sha256": "df0d249e7fec34259076e0980a6554d096199ec353ccba42ebca384b812b1821",
+      "bytes": 214323
+    },
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/FIG_SHARP_NETWORK_LIMIT.svg",
+      "sha256": "4c5787e39a806877c246cc034297590bd7911f9a958d80471eaa90af947be6ae",
+      "bytes": 106446
+    },
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/FINAL_STATUS.json",
+      "sha256": "5eae51e880edba6ed2b96a03ef30901d00dd82b3c9ba0318587ab7f99db8fc5b",
+      "bytes": 684
+    },
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/FREQUENCY_LIMITS_SECTION.tex",
+      "sha256": "d5f347bdd66fb506b78872359253e36e3ca1539d28fea023d435af11a9b06e81",
+      "bytes": 17971
+    },
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/IEEE39_BALANCE_AUDIT.json",
+      "sha256": "468ebe6a0a8b55f23f66852ff9d0c8bdc4f6a1d705df4d9786563cc09b7979ab",
+      "bytes": 5131
+    },
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/IEEE39_BALANCE_NODES.csv",
+      "sha256": "9c8382401dd638ab5d5f9b89da656998e91518d17e043329d290a684735daa9d",
+      "bytes": 15082
+    },
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/IEEE39_BALANCE_QUADRATURE.csv",
+      "sha256": "cae03d38c762189906c448cfd5d66c8ccef6976f8dc13a53ff384a9be7b7eb41",
+      "bytes": 3164
+    },
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/IEEE39_BALANCE_REVIEW.txt",
+      "sha256": "a7a767def742ff841d23df6ef0897d869a0f5f5b48587203b93cf93f53f79071",
+      "bytes": 17655
+    },
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/IEEE39_BALANCE_SUMMARY.csv",
+      "sha256": "67e669f3c354294a8a579f26472e0351ffccff8a9956cfe50f92381236cd78a0",
+      "bytes": 8517
+    },
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/IEEE39_BALANCE_TRACES.csv",
+      "sha256": "2abfa177a9ca13c64d4b63c57561198262a7d4a9dfc02187cfb12a8e22a092d5",
+      "bytes": 1250485
+    },
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/IEEE39_GOVERNOR_BALANCE.csv",
+      "sha256": "de8cc85bd46c3d1868e457a7b46e2de61ae60b8f078dfb7a4b6dc245338d2c17",
+      "bytes": 6952
+    },
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/integrate_manuscript.py",
+      "sha256": "f03f76037b4b96f424269e58bc2d433f8943eea8c7e44d3ad6d504e010a566f6",
+      "bytes": 3245
+    },
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/MANUSCRIPT_INTEGRATION.json",
+      "sha256": "63822851b0a213c390372b7829427fe2281476cd7d03529c2382d9f4ab47a03f",
+      "bytes": 577
+    },
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/MATH_REVIEW.txt",
+      "sha256": "2b17b7a5504eabf35018ad805e6484c6e436a258e1243c3399a98f2aebaa6859",
+      "bytes": 19790
+    },
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/NOVELTY_AND_POSTER_REVIEW.txt",
+      "sha256": "b8d83833001eb34db59683aa988d61430564163c0270424f2e706e2622709a36",
+      "bytes": 16335
+    },
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/POSTER_ARGUMENT.txt",
+      "sha256": "5dcbd95dcf0c6afa27299178d69ef34cf75287ab267b5b4dd977dc7d3c40ccb0",
+      "bytes": 4588
+    },
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/README.txt",
+      "sha256": "fef8f701061fd35379db56469202249867c11304e5a3da6f649b810d5e82af1d",
+      "bytes": 2711
+    },
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/STATIC_GRAPH_CHECKS.csv",
+      "sha256": "8372ce8179c39215b5da1bfce5e70afc3a3f2b76b031cbf7ec6ac875e5c30859",
+      "bytes": 3672
+    },
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/THEORY_before_extension.tex",
+      "sha256": "616de2a93d7d5fb118570975ff8a1d5f3f0787663a5bceebbecf4250a593915c",
+      "bytes": 138301
+    },
+    {
+      "path": "experiments/nonlinear_frequency_limits_20261004/verify_closed_form.py",
+      "sha256": "27b9693056e981335b51be3abb190a29de11337d0a819afe0e455e3ff1696c4d",
+      "bytes": 7900
+    }
+  ],
+  "source_hashes_note": "IEEE39_BALANCE_AUDIT.json contains frozen input and source hashes."
+}

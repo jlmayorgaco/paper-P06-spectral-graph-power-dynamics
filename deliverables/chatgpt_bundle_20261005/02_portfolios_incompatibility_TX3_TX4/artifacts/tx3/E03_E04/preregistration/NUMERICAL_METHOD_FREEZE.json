@@ -1,0 +1,81 @@
+{
+  "C2_case_multiplier": 5.0,
+  "action_hypercube_order": 3,
+  "action_hypercube_rule": "tensor Gauss-Legendre on [0,1]",
+  "central_derivative_pilot_radii": [
+    0.04,
+    0.02,
+    0.01
+  ],
+  "connected_frequency_error_reference_nodes": 24,
+  "connected_frequency_nodes": 48,
+  "created_utc": "2026-08-27T20:24:52.530631+00:00",
+  "derivative_sparse_entry_threshold": 1e-10,
+  "direct_coarse_frequency_nodes": 48,
+  "direct_reference_frequency_nodes": 96,
+  "direct_uncertainty": {
+    "epsilon_PF_Jacobian": "2^order * maximum coalition-vertex initialization residual",
+    "epsilon_frequency": "case-specific abs(Delta_96-Delta_48)",
+    "epsilon_logdet": "2^order * 1e-10"
+  },
+  "freeze_id": "TX3-E03-E04-NUMERICS-1.0",
+  "frequency_rule": "Gauss-Legendre in log frequency",
+  "frequency_weight": "normalized logarithmic: 1/(omega log(omega_max/omega_min))",
+  "git_sha_before_preregistration_commit": "14dd51ce1528533843508b9f5af08284528bc728",
+  "holdout_externalities_inspected_before_freeze": false,
+  "near_singular_pivot_ratio_threshold": 1e-12,
+  "operator_derivative_scheme": "tensor Lagrange differentiation at the same interior q3 Gauss nodes",
+  "paraemt_scientific_runs_permitted": false,
+  "pilot_comparison_action_orders": [
+    2,
+    3
+  ],
+  "pilot_connected_24_to_48_maximum_by_order": {
+    "2": 3.5441405814348476e-05,
+    "3": 1.7160885612537323e-05
+  },
+  "pilot_direct_48_to_96_maximum_by_order": {
+    "2": 3.208246380381752e-05,
+    "3": 1.3628109286401013e-05
+  },
+  "pilot_minimum_to_maximum_lu_pivot_ratio": 1.0619729176471256e-08,
+  "pilot_q2_to_q3_maximum_by_order": {
+    "2": 3.5186598185037513e-06,
+    "3": 4.797140744399979e-08
+  },
+  "primary_frequency_band_hz": [
+    0.1,
+    30.0
+  ],
+  "reconstruction_uncertainty": {
+    "epsilon_PF_Jacobian": "2^order * 1e-8",
+    "epsilon_derivative_by_order": {
+      "2": 3.5186598185037513e-06,
+      "3": 4.797140744399979e-08
+    },
+    "epsilon_frequency_by_order": {
+      "2": 3.5441405814348476e-05,
+      "3": 1.7160885612537323e-05
+    },
+    "epsilon_hypercube_by_order": {
+      "2": 3.5186598185037513e-06,
+      "3": 4.797140744399979e-08
+    },
+    "epsilon_logdet": "2^order * 1e-9"
+  },
+  "secondary_frequency_band_hz": [
+    0.1,
+    50.0
+  ],
+  "sigma": 0.0,
+  "sigma_action_dependent": false,
+  "significance_multiplier_K": 5.0,
+  "source_hashes": {
+    "dicgrid/connected/sparse_logdet.py": "9a421942d8e142bb63fe5dbb3bea3e2370b828a5975bf0a8dfb25aae992a44f6",
+    "experiments/tx3/E03_finite_externality/campaign_core.py": "3f51a9c1f4935bd0e80bbab15b388434a080bcf97eab6c5c8ba074fb2a16c5fb",
+    "experiments/tx3/E04_connected_reconstruction/connected_engine.py": "2baaf58ae9b8d453d57f68bda9c603c81040b2e9f31a60cea7ac57bb8e669c76",
+    "tests/unit/test_sparse_logdet.py": "2c2ae61020bc2c50afc8eb4f95f2defdca54e1c60661bc6251c1f2e48e406d91"
+  },
+  "trace_method": "exact active-column sparse-LU resolvent products; no inverse and no stochastic estimator",
+  "uncertainty_rule": "conservative arithmetic sum; no independence assumption"
+}

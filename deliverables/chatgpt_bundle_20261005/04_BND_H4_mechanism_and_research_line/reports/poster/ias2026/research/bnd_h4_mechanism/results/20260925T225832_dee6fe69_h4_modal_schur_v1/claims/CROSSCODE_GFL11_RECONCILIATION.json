@@ -1,0 +1,18 @@
+{
+  "status": "PASS_GFL11_EXACT_REPRODUCTION",
+  "runner": "code/tx4/run_tx4_exact_p4_ieee39.jl",
+  "h4": {
+    "python_state_dim": 86,
+    "julia_state_dim": 86,
+    "python_alpha_s-1": 0.12700646782830968,
+    "julia_alpha_s-1": 0.12700646832229723,
+    "alpha_difference_s-1": 4.9398755e-10,
+    "python_frequency_hz": 0.6222796695036534,
+    "julia_frequency_hz": 0.6222796695187043,
+    "frequency_difference_hz": 1.50509e-11,
+    "python_stable": false,
+    "julia_stable": false
+  },
+  "all_16_cases": "executed_by_exact_gfl11_runner",
+  "old_82_state_runner": "not_used_as_gate"
+}

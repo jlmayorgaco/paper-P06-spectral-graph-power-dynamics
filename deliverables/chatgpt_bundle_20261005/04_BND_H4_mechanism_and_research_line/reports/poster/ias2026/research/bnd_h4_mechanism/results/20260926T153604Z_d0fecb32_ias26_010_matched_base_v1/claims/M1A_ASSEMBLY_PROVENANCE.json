@@ -1,0 +1,25 @@
+{
+  "case": "frozen H4/P4 GFL11",
+  "action_buses": [
+    30,
+    33,
+    35,
+    37
+  ],
+  "base_counterfactual_linearization_point": "flagship solved equilibrium z; unchanged shared-device states from flagship equilibrium",
+  "base_replacement_device_dispatch": "unchanged base power-flow generation at each action bus",
+  "base_replacement_device_parameters": "frozen base slot parameters retained; initializer-returned retuned device discarded",
+  "network_ybus_exactly_equal": true,
+  "bus_order_exactly_equal": true,
+  "bus_index_exactly_equal": true,
+  "power_flow_voltage_exactly_equal": true,
+  "load_maps_exactly_equal": true,
+  "load_model_equal": true,
+  "base_flag_equilibrium_voltage_distance_max_pu": 2.2657194734889667e-07,
+  "base_equilibrium_vs_common_pf_voltage_distance_max_pu": 5.626146037898512e-08,
+  "flag_equilibrium_vs_common_pf_voltage_distance_max_pu": 1.7031048696991158e-07,
+  "port_equation": "T(s)=Y_net-sum(device port admittances)-load blocks",
+  "replacement_update_sign": "T_H-T_0 = E (Y_base_device-Y_flag_device) E^T",
+  "port_normalization": "native rectangular current/voltage coordinates; no rescaling",
+  "canonical_dae_equilibrium_unchanged": true
+}

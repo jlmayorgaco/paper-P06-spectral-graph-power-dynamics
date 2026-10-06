@@ -1,0 +1,173 @@
+{
+ "flagship_pg_mw": 2096.607719000153,
+ "e34_options": 198,
+ "e34_measured_plans": 23,
+ "e34_frozen_front_points": 10,
+ "e34_front_recomputed_with_frozen_axes_equals_frozen": true,
+ "e34_front_pg_points": 10,
+ "e34_points_added_by_pg_axis": [],
+ "e34_points_removed_by_pg_axis": [],
+ "e34_m4_ever_pareto_efficient_pg": false,
+ "e34_zero_pg_forgone_strategies": [
+  "M1 converter only",
+  "M2 condenser only",
+  "M3 converter + condenser"
+ ],
+ "e23_restore_choice_unchanged": true,
+ "e21": [
+  {
+   "strategy": "R0 none",
+   "detail": "unrepaired flagship",
+   "converter_sn_mva_kept": 4270.7,
+   "converter_sn_mva_forgone": 0.0,
+   "converter_pg_mw_kept": 2096.607719000153,
+   "converter_pg_mw_forgone": 0.0,
+   "synchronous_mva_added": 0.0,
+   "relative_parameter_change": 0.0,
+   "spectral_abscissa": 0.1446702204332709
+  },
+  {
+   "strategy": "R0 none",
+   "detail": "base case, all machines",
+   "converter_sn_mva_kept": 0.0,
+   "converter_sn_mva_forgone": 4270.7,
+   "converter_pg_mw_kept": 0.0,
+   "converter_pg_mw_forgone": 2096.607719000153,
+   "synchronous_mva_added": 0.0,
+   "relative_parameter_change": 0.0,
+   "spectral_abscissa": -0.1264782361820857
+  },
+  {
+   "strategy": "RA restore one SG",
+   "detail": "machine 30 kept",
+   "converter_sn_mva_kept": 3230.7,
+   "converter_sn_mva_forgone": 1040.0,
+   "converter_pg_mw_kept": 1660.521334000144,
+   "converter_pg_mw_forgone": 436.08638500000893,
+   "synchronous_mva_added": 1040.0,
+   "relative_parameter_change": 0.0,
+   "spectral_abscissa": -0.2081913701319853
+  },
+  {
+   "strategy": "RA restore one SG",
+   "detail": "machine 33 kept",
+   "converter_sn_mva_kept": 3095.9,
+   "converter_sn_mva_forgone": 1174.7999999999995,
+   "converter_pg_mw_kept": 1444.6077210001392,
+   "converter_pg_mw_forgone": 651.9999980000136,
+   "synchronous_mva_added": 1174.8,
+   "relative_parameter_change": 0.0,
+   "spectral_abscissa": -0.1601392854725809
+  },
+  {
+   "strategy": "RA restore one SG",
+   "detail": "machine 35 kept",
+   "converter_sn_mva_kept": 3185.0,
+   "converter_sn_mva_forgone": 1085.6999999999998,
+   "converter_pg_mw_kept": 1409.6077210000394,
+   "converter_pg_mw_forgone": 686.9999980001135,
+   "synchronous_mva_added": 1085.7,
+   "relative_parameter_change": 0.0,
+   "spectral_abscissa": -0.1727474393891518
+  },
+  {
+   "strategy": "RA restore one SG",
+   "detail": "machine 37 kept",
+   "converter_sn_mva_kept": 3300.5,
+   "converter_sn_mva_forgone": 970.1999999999998,
+   "converter_pg_mw_kept": 1775.0863810001454,
+   "converter_pg_mw_forgone": 321.5213380000075,
+   "synchronous_mva_added": 970.2,
+   "relative_parameter_change": 0.0,
+   "spectral_abscissa": -0.1634564631627448
+  },
+  {
+   "strategy": "RB weaken P loop",
+   "detail": "kp_P and ki_P scaled by 0.4273",
+   "converter_sn_mva_kept": 4270.7,
+   "converter_sn_mva_forgone": 0.0,
+   "converter_pg_mw_kept": 2096.607719000153,
+   "converter_pg_mw_forgone": 0.0,
+   "synchronous_mva_added": 0.0,
+   "relative_parameter_change": 1.2024245004810117,
+   "spectral_abscissa": -0.0499999607841378
+  },
+  {
+   "strategy": "RC minimum-norm retune",
+   "detail": "kp_p x1.226, ki_p x0.460, kp_q x1.173, ki_q x1.273, kp_i x1.115, ki_i x0.960",
+   "converter_sn_mva_kept": 4270.7,
+   "converter_sn_mva_forgone": 0.0,
+   "converter_pg_mw_kept": 2096.607719000153,
+   "converter_pg_mw_forgone": 0.0,
+   "synchronous_mva_added": 0.0,
+   "relative_parameter_change": 0.8621764937874469,
+   "spectral_abscissa": -0.0500000002551357
+  },
+  {
+   "strategy": "RD synchronous condenser",
+   "detail": "rating fraction 0.25 at each retired bus",
+   "converter_sn_mva_kept": 4270.7,
+   "converter_sn_mva_forgone": 0.0,
+   "converter_pg_mw_kept": 2096.607719000153,
+   "converter_pg_mw_forgone": 0.0,
+   "synchronous_mva_added": 1067.675,
+   "relative_parameter_change": 0.0,
+   "spectral_abscissa": -0.2011190612868597
+  }
+ ],
+ "e23": [
+  {
+   "target_abscissa": -0.02,
+   "frozen_restore_bus": 37,
+   "restore_bus_min_sn": 37,
+   "restore_bus_min_pg_forgone": 37,
+   "same_choice": true,
+   "restore_sn_mva": 970.2,
+   "restore_pg_mw_forgone": 321.5213380000075,
+   "restore_converter_pg_mw_kept": 1775.0863810001454,
+   "retune_converter_pg_mw_kept": 2096.607719000153,
+   "retune_converter_sn_mva_kept": 4270.7,
+   "condenser_mva": 1067.675
+  },
+  {
+   "target_abscissa": -0.05,
+   "frozen_restore_bus": 37,
+   "restore_bus_min_sn": 37,
+   "restore_bus_min_pg_forgone": 37,
+   "same_choice": true,
+   "restore_sn_mva": 970.2,
+   "restore_pg_mw_forgone": 321.5213380000075,
+   "restore_converter_pg_mw_kept": 1775.0863810001454,
+   "retune_converter_pg_mw_kept": 2096.607719000153,
+   "retune_converter_sn_mva_kept": 4270.7,
+   "condenser_mva": 1067.675
+  },
+  {
+   "target_abscissa": -0.1,
+   "frozen_restore_bus": 37,
+   "restore_bus_min_sn": 37,
+   "restore_bus_min_pg_forgone": 37,
+   "same_choice": true,
+   "restore_sn_mva": 970.2,
+   "restore_pg_mw_forgone": 321.5213380000075,
+   "restore_converter_pg_mw_kept": 1775.0863810001454,
+   "retune_converter_pg_mw_kept": 2096.607719000153,
+   "retune_converter_sn_mva_kept": 4270.7,
+   "condenser_mva": 1067.675
+  },
+  {
+   "target_abscissa": -0.126,
+   "frozen_restore_bus": 37,
+   "restore_bus_min_sn": 37,
+   "restore_bus_min_pg_forgone": 37,
+   "same_choice": true,
+   "restore_sn_mva": 970.2,
+   "restore_pg_mw_forgone": 321.5213380000075,
+   "restore_converter_pg_mw_kept": 1775.0863810001454,
+   "retune_converter_pg_mw_kept": 2096.607719000153,
+   "retune_converter_sn_mva_kept": 4270.7,
+   "condenser_mva": 1067.675
+  }
+ ],
+ "elapsed_s": 2.7
+}

@@ -1,0 +1,57 @@
+[
+  {
+    "check": "exact algebraic voltage increment",
+    "pass": true,
+    "status": "EXACT_IDENTITY"
+  },
+  {
+    "check": "exact algebraic inverse remainder",
+    "pass": true,
+    "status": "EXACT_IDENTITY"
+  },
+  {
+    "check": "closed-walk decomposition order two",
+    "pass": true,
+    "status": "EXACT_IDENTITY"
+  },
+  {
+    "check": "off-diagonal correction has zero trace",
+    "pass": true,
+    "status": "EXACT_IDENTITY"
+  },
+  {
+    "check": "block-diagonal determinant separation",
+    "pass": true,
+    "status": "EXACT_IDENTITY"
+  },
+  {
+    "check": "rectangular determinant lemma",
+    "pass": true,
+    "status": "EXACT_IDENTITY"
+  },
+  {
+    "check": "root-sum contour integration sign",
+    "pass": true,
+    "status": "EXACT_IDENTITY"
+  },
+  {
+    "check": "dual witness cancels controller",
+    "pass": true,
+    "status": "EXACT_IDENTITY"
+  },
+  {
+    "check": "dual witness matches replacement objective",
+    "pass": true,
+    "status": "EXACT_IDENTITY"
+  },
+  {
+    "check": "dual objective exact rational",
+    "pass": true,
+    "status": "EXACT_IDENTITY"
+  },
+  {
+    "check": "proposed step excluded independently of control",
+    "pass": true,
+    "status": "EXACT_IDENTITY"
+  }
+]

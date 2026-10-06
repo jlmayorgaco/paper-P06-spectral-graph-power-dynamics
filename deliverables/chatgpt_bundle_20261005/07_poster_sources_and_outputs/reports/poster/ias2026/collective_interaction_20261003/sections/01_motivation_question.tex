@@ -1,0 +1,41 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterTopRowHeight][t]{\PosterOneWidth}\vspace{0pt}
+  \begin{TicketTwoPanel}{\PosterTopRowHeight}{1}{THE DESIGN QUESTION}
+
+    {\PosterParagraph How much SG can a grid replace with delayed, locally controlled GFL?\par}
+    \vspace{2mm}
+    {\HeroEquation\color{IASBlue}\[
+       P_{\mathrm{GFL}}=\sum_i P_i^0\rho_i
+    \]}
+    {\FigureSize Initialized dispatch $P_i^0$; sharing $\rho_i$ at each generator site.\par}
+    \vspace{2mm}
+    {\Subhead\color{IASDarkGreen}The physical PLL\par}
+    {\EquationSize\[
+    \begin{aligned}
+    \dot\vartheta_i&=\omega_{p,i}\\
+    t_{f,i}\dot\omega_{p,i}&=\xi_i+K_{p,i}e_i^\tau-\omega_{p,i}\\
+    \dot\xi_i&=K_{i,i}e_i^\tau
+    \end{aligned}
+    \]}
+    {\FigureSize $e_i^\tau=e_i(t-\tau_i)$ is the delayed voltage phase error. Delays are fixed; only $\rho,K_p,K_i$ are design variables.\par}
+
+  \end{TicketTwoPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewOnePageWidth}
+  \def\PosterPageHeight{\PosterPreviewTopRowPageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewOneLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

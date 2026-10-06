@@ -1,0 +1,7 @@
+include(joinpath(@__DIR__,"..","..","src","bnd_validation","PowerDynamicsValidation.jl"))
+const ROOT=normpath(joinpath(@__DIR__,"..",".."))
+result=PowerDynamicsValidation.run_validation(ROOT)
+println("VALIDATION_STATUS:"); println(result.status)
+println("VALIDATION_REASON:"); println(result.reason)
+println("POWERDYNAMICS_IMPORTED:"); println(result.powerdynamics_imported ? "YES" : "NO")
+println("POWERDYNAMICS_CALLS:"); println(result.powerdynamics_calls)

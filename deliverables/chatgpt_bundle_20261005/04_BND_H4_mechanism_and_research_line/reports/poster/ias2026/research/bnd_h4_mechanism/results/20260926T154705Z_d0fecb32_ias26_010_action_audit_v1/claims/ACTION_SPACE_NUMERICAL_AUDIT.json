@@ -1,0 +1,33 @@
+{
+  "frozen_gate": 1e-12,
+  "lambda_c_binary64": [
+    0.12700646777028055,
+    3.909898476444902
+  ],
+  "action_space_relative_residual_frobenius": 2.340724075262523e-11,
+  "action_space_absolute_residual": 7.862140035943986e-11,
+  "action_space_high_precision_same_vector_relative_residual_frobenius": "2.340721918715154998502779e-11",
+  "action_condition_2norm": 31287650421.520386,
+  "T0_condition_2norm": 3893.835300814646,
+  "terminal_lift_relative_backward_residual_frobenius": 1.363399305353116e-13,
+  "action_to_terminal_mapping_relative_backward_residual_frobenius_double": 1.503973704754824e-17,
+  "action_to_terminal_mapping_relative_backward_residual_frobenius_80dps": "5.922425661371685092956907e-19",
+  "determinant_identity_absolute_residual": 4.59854310426928e-16,
+  "alternative_action_residuals_frobenius": {
+    "numpy_inverse": 2.340724102496347e-11,
+    "scipy_solve": 2.340724102496347e-11
+  },
+  "high_precision_K_vs_saved_double_K_relative_difference": 9.686069204963874e-15,
+  "low_rank_identity": {
+    "absolute_frobenius_residual": 7.140111712107682e-15,
+    "relative_frobenius_residual": 2.7201720726061947e-18,
+    "maximum_entry_residual": 7.105427357601002e-15,
+    "high_precision_relative_frobenius_residual": "4.497239718878352386693146e-18"
+  },
+  "independent_candidate_port_vs_DAE_schur_relative_residual": 1.3083705992724766e-11,
+  "prior_corrected_run_action_relative_residual": 2.340724075262523e-11,
+  "mapping_algebra": "PASS",
+  "arithmetic_solve_floor": "excluded: high-precision solve preserves the same failing action residual",
+  "classification": "NUMERICAL_FLOOR_OF_FROZEN_DAE_PORT_REPRESENTATION",
+  "gate_status": "FAIL_ACTION_SPACE"
+}

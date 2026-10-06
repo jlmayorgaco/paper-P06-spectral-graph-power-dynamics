@@ -1,0 +1,123 @@
+[
+  {
+    "iteration": 0,
+    "alpha": 0.0651170837552598,
+    "objective": 2.4660181407369372e-06,
+    "merit": 125.11718622127796,
+    "full_step_norm": 0.015904769333487605,
+    "beta": 1.0,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 4.030521888670654e-19
+  },
+  {
+    "iteration": 1,
+    "alpha": -0.06005466677592858,
+    "objective": 0.0001289468619164608,
+    "merit": 0.0001289468619164608,
+    "full_step_norm": 0.0013653247151158856,
+    "beta": 0.5,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 1.5066806822887854e-19
+  },
+  {
+    "iteration": 2,
+    "alpha": -0.06002668252002007,
+    "objective": 0.00012285014819474142,
+    "merit": 0.00012285014819474142,
+    "full_step_norm": 0.0006720269947783884,
+    "beta": 0.5,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 1.7486088910295204e-19
+  },
+  {
+    "iteration": 3,
+    "alpha": -0.06001321702124623,
+    "objective": 0.00011998357986569013,
+    "merit": 0.00011998357986569013,
+    "full_step_norm": 0.0003308142832964241,
+    "beta": 0.5,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 1.8517516925728213e-19
+  },
+  {
+    "iteration": 4,
+    "alpha": -0.06000661717192108,
+    "objective": 0.00011859430823922211,
+    "merit": 0.00011859430823922211,
+    "full_step_norm": 0.00016284359046697086,
+    "beta": 0.5,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 1.912804822911694e-19
+  },
+  {
+    "iteration": 5,
+    "alpha": -0.060003350299452855,
+    "objective": 0.00011791033063287923,
+    "merit": 0.00011791033063287923,
+    "full_step_norm": 8.015208041354425e-05,
+    "beta": 0.5,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 1.9522227348422836e-19
+  },
+  {
+    "iteration": 6,
+    "alpha": -0.060001720346407245,
+    "objective": 0.00011757092121603037,
+    "merit": 0.00011757092121603037,
+    "full_step_norm": 3.944545607871261e-05,
+    "beta": 0.5,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 1.975687170827516e-19
+  },
+  {
+    "iteration": 7,
+    "alpha": -0.060000909827235514,
+    "objective": 0.00011740184223974061,
+    "merit": 0.00011740184223974061,
+    "full_step_norm": 1.940926872508515e-05,
+    "beta": 0.5,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 1.9807570384212914e-19
+  },
+  {
+    "iteration": 8,
+    "alpha": -0.06000050493259578,
+    "objective": 0.00011731745373592064,
+    "merit": 0.00011731745373592064,
+    "full_step_norm": 9.548682003046772e-06,
+    "beta": 0.5,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 1.9651514798889355e-19
+  },
+  {
+    "iteration": 9,
+    "alpha": -0.06000030257099229,
+    "objective": 0.00011727529601147606,
+    "merit": 0.00011727529601147606,
+    "full_step_norm": 4.696727660917747e-06,
+    "beta": 0.5,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 1.9853405730429117e-19
+  },
+  {
+    "iteration": 10,
+    "alpha": -0.06000020141176835,
+    "objective": 0.00011725422598255018,
+    "merit": 0.00011725422598255018,
+    "full_step_norm": 2.3097333832526307e-06,
+    "beta": 1.0,
+    "accepted": true,
+    "QP_status": "optimal",
+    "restoration_slack": 1.9735100441644266e-19
+  }
+]

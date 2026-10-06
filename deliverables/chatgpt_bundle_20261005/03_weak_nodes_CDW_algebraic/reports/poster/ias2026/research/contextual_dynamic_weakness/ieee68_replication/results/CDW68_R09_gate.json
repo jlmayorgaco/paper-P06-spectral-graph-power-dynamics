@@ -1,0 +1,114 @@
+{
+ "A": {
+  "FULL": {
+   "median_n_decisions": 57.0,
+   "median_n_material_pref": 0.0,
+   "median_p_star": null,
+   "median_frac_regret": 0.0,
+   "median_regret_optimal": 0.0,
+   "median_screened_regret": 0.0,
+   "evaluable": true,
+   "n_policies": 16,
+   "insufficient_bar_met": false,
+   "transfer_diag_median_regret": 0.0,
+   "transfer_offdiag_median_regret": 0.0
+  },
+  "EM": {
+   "median_n_decisions": 0.0,
+   "median_n_material_pref": 0.0,
+   "median_p_star": null,
+   "median_frac_regret": null,
+   "median_regret_optimal": null,
+   "median_screened_regret": null,
+   "evaluable": false,
+   "n_policies": 16,
+   "insufficient_bar_met": false
+  },
+  "LEVELD": {
+   "median_n_decisions": 0.0,
+   "median_n_material_pref": 0.0,
+   "median_p_star": null,
+   "median_frac_regret": null,
+   "median_regret_optimal": null,
+   "median_screened_regret": null,
+   "evaluable": false,
+   "n_policies": 16,
+   "insufficient_bar_met": false
+  },
+  "TRACKED": {
+   "median_n_decisions": 51.5,
+   "median_n_material_pref": 30.5,
+   "median_p_star": 1.0,
+   "median_frac_regret": 0.0,
+   "median_regret_optimal": 0.0,
+   "median_screened_regret": 0.0,
+   "evaluable": true,
+   "n_policies": 16,
+   "insufficient_bar_met": false,
+   "transfer_diag_median_regret": 0.0,
+   "transfer_offdiag_median_regret": 0.0
+  },
+  "T1_sign_test": {
+   "k_below_090": 0,
+   "n": 0,
+   "p_one_sided": null
+  },
+  "headline_allowed": false
+ },
+ "B": {
+  "FULL": {
+   "median_n_decisions": 57.0,
+   "median_n_material_pref": 0.0,
+   "median_p_star": null,
+   "median_frac_regret": 0.0,
+   "median_regret_optimal": 0.0,
+   "median_screened_regret": 0.0,
+   "evaluable": true,
+   "n_policies": 16,
+   "insufficient_bar_met": false,
+   "transfer_diag_median_regret": 0.0,
+   "transfer_offdiag_median_regret": 0.0
+  },
+  "EM": {
+   "median_n_decisions": 0.0,
+   "median_n_material_pref": 0.0,
+   "median_p_star": null,
+   "median_frac_regret": null,
+   "median_regret_optimal": null,
+   "median_screened_regret": null,
+   "evaluable": false,
+   "n_policies": 16,
+   "insufficient_bar_met": false
+  },
+  "LEVELD": {
+   "median_n_decisions": 0.0,
+   "median_n_material_pref": 0.0,
+   "median_p_star": null,
+   "median_frac_regret": null,
+   "median_regret_optimal": null,
+   "median_screened_regret": null,
+   "evaluable": false,
+   "n_policies": 16,
+   "insufficient_bar_met": false
+  },
+  "TRACKED": {
+   "median_n_decisions": 46.5,
+   "median_n_material_pref": 52.0,
+   "median_p_star": 1.0,
+   "median_frac_regret": 0.0,
+   "median_regret_optimal": 0.0,
+   "median_screened_regret": 0.0,
+   "evaluable": true,
+   "n_policies": 16,
+   "insufficient_bar_met": false,
+   "transfer_diag_median_regret": 0.0,
+   "transfer_offdiag_median_regret": 0.0
+  },
+  "T1_sign_test": {
+   "k_below_090": 0,
+   "n": 0,
+   "p_one_sided": null
+  },
+  "headline_allowed": false
+ }
+}

@@ -1,0 +1,138 @@
+{
+  "action_source": "artifacts/tx3/E03_E04/preregistration/ACTION_SET_FREEZE.json",
+  "action_source_sha256": "a9b1004eebca5a541aac370c8f465b0fb2156fe3dba34160e1ae3db28b1e33bb",
+  "actions": [
+    {
+      "bus": 36,
+      "family": "PLL_BANDWIDTH",
+      "id": "A1",
+      "mapping": "r=1+0.20 alpha; Kp=Kp0*r; Ki=Ki0*r^2",
+      "primary_change": "+20% PLL natural frequency",
+      "state_dimension_preserved": true
+    },
+    {
+      "bus": 37,
+      "family": "PLL_BANDWIDTH",
+      "id": "A2",
+      "mapping": "r=1+0.20 alpha; Kp=Kp0*r; Ki=Ki0*r^2",
+      "primary_change": "+20% PLL natural frequency",
+      "state_dimension_preserved": true
+    },
+    {
+      "bus": 38,
+      "family": "PLL_BANDWIDTH",
+      "id": "A3",
+      "mapping": "r=1+0.20 alpha; Kp=Kp0*r; Ki=Ki0*r^2",
+      "primary_change": "+20% PLL natural frequency",
+      "state_dimension_preserved": true
+    },
+    {
+      "bus": 36,
+      "family": "CURRENT_COMMAND_BANDWIDTH",
+      "id": "A4",
+      "mapping": "r=1+0.20 alpha; Tg=Tg0/r",
+      "primary_change": "+20% REGCP current-command bandwidth",
+      "state_dimension_preserved": true
+    },
+    {
+      "bus": 37,
+      "family": "CURRENT_COMMAND_BANDWIDTH",
+      "id": "A5",
+      "mapping": "r=1+0.20 alpha; Tg=Tg0/r",
+      "primary_change": "+20% REGCP current-command bandwidth",
+      "state_dimension_preserved": true
+    },
+    {
+      "bus": 38,
+      "family": "CURRENT_COMMAND_BANDWIDTH",
+      "id": "A6",
+      "mapping": "r=1+0.20 alpha; Tg=Tg0/r",
+      "primary_change": "+20% REGCP current-command bandwidth",
+      "state_dimension_preserved": true
+    },
+    {
+      "bus": 37,
+      "family": "ACTIVE_POWER_REFERENCE",
+      "id": "A7",
+      "mapping": "P37=P37,0 + alpha*20 MW",
+      "primary_change": "+20 MW (+0.02 device pu) at GFL37",
+      "state_dimension_preserved": true
+    },
+    {
+      "branch": "25-37 / Line_45",
+      "family": "NETWORK_REACTANCE",
+      "id": "A8",
+      "mapping": "X=X0*(1+0.10 alpha)",
+      "primary_change": "+10% series reactance",
+      "selection_rule": "median-reactance member of the three transformer branches incident to GFL36/37/38; no dynamic result inspected",
+      "state_dimension_preserved": true
+    }
+  ],
+  "baseline_calibration_population": "EMPTY coalition only",
+  "boundary_bisection_tolerance": 0.005,
+  "coalition_outcomes_inspected_during_endpoint_calibration": false,
+  "coarse_increment": 0.1,
+  "coarse_kappa_grid": [
+    1.0,
+    1.1,
+    1.2,
+    1.3,
+    1.4,
+    1.5,
+    1.6,
+    1.7,
+    1.8,
+    1.9,
+    2.0,
+    2.1,
+    2.2,
+    2.3,
+    2.4,
+    2.5,
+    2.6,
+    2.7,
+    2.8,
+    2.9,
+    3.0
+  ],
+  "coordinate_count": 1,
+  "first_boundary_priority": [
+    "DAMPING_SCREEN_0.05",
+    "BASELINE_UNSTABLE",
+    "PF_FAIL",
+    "VOLTAGE_LIMIT",
+    "GENERATOR_LIMIT",
+    "LIMITER_ACTIVE",
+    "NONSMOOTH_REGIME",
+    "EIG_FAIL",
+    "EIGENPAIR_RESIDUAL_FAIL",
+    "NUMERICAL_UNRESOLVED"
+  ],
+  "freeze_id": "TX3-E05D-STRESS-RULE-1.0",
+  "kappa_cap": 3.0,
+  "kappa_start": 1.0,
+  "mapping": "scale R and X of every frozen included external-grid line by kappa_grid",
+  "primary_coordinate": "kappa_grid >= 1",
+  "safe_endpoint_fraction_dynamic": 0.9,
+  "safe_endpoint_fraction_physical": 0.95,
+  "tau_grid": [
+    0.0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1.0
+  ],
+  "unscaled": [
+    "GFL internal/filter impedance",
+    "synchronous-machine internal impedance",
+    "controller parameters",
+    "transformer tap ratios",
+    "fixed shunts",
+    "loads",
+    "A8 branch 25-37"
+  ]
+}

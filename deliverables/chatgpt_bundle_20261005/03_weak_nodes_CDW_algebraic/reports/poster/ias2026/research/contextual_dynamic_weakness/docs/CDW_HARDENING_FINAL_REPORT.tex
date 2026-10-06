@@ -1,0 +1,188 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{fontspec}
+\setmainfont{Cambria}
+\setmonofont{Consolas}[Scale=0.85]
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{longtable,booktabs,array}
+\usepackage{enumitem}
+\setlist{nosep,leftmargin=1.4em}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{fancyvrb}
+\usepackage{newunicodechar}
+\newunicodechar{∪}{\ensuremath{\cup}}
+\newunicodechar{∩}{\ensuremath{\cap}}
+\newunicodechar{⊗}{\ensuremath{\otimes}}
+\newunicodechar{⊥}{\ensuremath{\perp}}
+\newunicodechar{⊆}{\ensuremath{\subseteq}}
+\newunicodechar{⊂}{\ensuremath{\subset}}
+\renewcommand{\arraystretch}{1.15}
+\setlength{\parskip}{3pt}
+\setlength{\parindent}{0pt}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\title{CDW hardening campaign: final report}
+\date{2026-09-12}
+\author{CDW campaign (branch research/contextual-dynamic-weakness)}
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+Branch \texttt{research/\allowbreak{}contextual-dynamic-weakness-hardening} (from \texttt{e73dd355}). Preregistration \texttt{05b507e3}. No push. TX4 untouched. Every number below is read from \texttt{results/\allowbreak{}hardening/\allowbreak{}*.json} by \texttt{experiments/\allowbreak{}cdw\_\allowbreak{}hardening/\allowbreak{}CDWH\_\allowbreak{}REPORT.py}. Analyses added after the preregistered results (internal-review requests) are marked \emph{post hoc}.
+
+\section{Verdict}
+The contextual core of CDW survives a new preregistered holdout, at small magnitude. In 17/19 base-stable new-holdout policies the same replacement moves the same tracked electromechanical mode in opposite directions in two nested stable portfolios (level D; primary level-C gate 0.895 >= 0.75 passes on the point estimate, bootstrap interval 0.74-1.00). The effects are about 0.01 s\textasciicircum{}-1 (level-D quartiles [0.0111, 0.0127, 0.0152] s\textasciicircum{}-1, about 0.3\% damping ratio) and vanish above 0.05 s\textasciicircum{}-1; both directions on one tracked mode occur in 3/19 policies.
+
+GOLD-B holds with margin: on the 8 preregistration-eligible conditions the re-equilibrated sensitivity of the planned portfolio ranks finite reinforcements at median Spearman 0.985 against 0.491 for |P\_e| (lower 95\% bound of the paired advantage 0.477 > 0.20). On the 24 new policies it reaches 0.996 against 0.712 for the frozen derivative and 0.818 for a fixed list learned from other clusters (post hoc), and it also ranks doublings (0.992) and outages (0.885). The secondary test T2 is not significant (p 0.061, six clusters).
+
+Weakened or negative: (i) the fixed-ranking failure (p* 0.75, regret 0.38) comes from replacements that cross a singularity-induced-bifurcation-type instability of the phasor model at high converter share (2089/2265 material regrets leave the EM band; post hoc: alpha jumps to 3773-109804 s\textasciicircum{}-1 within one 0.025 step where sigma\_min(g\_z) is 0.002-0.007); with a stability screen a fixed ranking errs in 0.065 of feasible decisions; (ii) the modal-mixing mechanism is not confirmed (new rho 0.55, p 0.016); (iii) the reversals and the specific branch ranking are not reproduced by a frozen WECC library GFL chain; (iv) corridors: TXother (the other eight transformers) meets the preregistered rule: top 5\% of size-matched arbitrary groups in 0.83 of the 64 new conditions, but 16/24 new policies against 37/40 draws at P4, so the pass rests on the draws; old holdout 0.78; all 12 transformers 0.69 (fails); spectral cutsets <= 0.03.
+
+\section{Phase status}
+{\small
+\begin{longtable}{L{0.130\linewidth}L{0.482\linewidth}L{0.328\linewidth}}
+\toprule
+\textbf{phase} & \textbf{status} & \textbf{key file} \\
+\midrule
+\endhead
+H0 preregistration & committed \texttt{05b507e3} & \texttt{docs/\allowbreak{}CDW\_\allowbreak{}HARDENING\_\allowbreak{}PREREG\_\allowbreak{}V1.md} \\
+H1 new policy holdout (24 maximin LHS) & COMPLETE, 19 base-stable & \texttt{results/\allowbreak{}hardening/\allowbreak{}prereg\_\allowbreak{}inputs/\allowbreak{}hardening\_\allowbreak{}policies.json} \\
+H2 chain identity & PROVED (classical algebra; locates interaction terms) & \texttt{theory/\allowbreak{}CDW\_\allowbreak{}CONTEXTUAL\_\allowbreak{}CURVATURE\_\allowbreak{}THEOREM.md} \\
+H3 nested reversal & PASS (0.895, point estimate) & \texttt{results/\allowbreak{}hardening/\allowbreak{}H03\_\allowbreak{}gate.json} \\
+H4 fixed ranking + transfer & PASS (FULL); fails in EM stratum & \texttt{results/\allowbreak{}hardening/\allowbreak{}H04\_\allowbreak{}gate.json} \\
+H5 GOLD-A statistics & COMPLETE & \texttt{results/\allowbreak{}hardening/\allowbreak{}H05\_\allowbreak{}stats.json} \\
+H6/H7 GOLD-B new holdout & PASS (literal-eligible set and full set) & \texttt{results/\allowbreak{}hardening/\allowbreak{}H07\_\allowbreak{}goldb\_\allowbreak{}gate.json} \\
+H8 frozen vs total & COMPLETE & \texttt{results/\allowbreak{}hardening/\allowbreak{}H08\_\allowbreak{}*} \\
+H9-H11 corridors & PASS (TXother; carried by the P4 draws, 16/24 policies) & \texttt{results/\allowbreak{}hardening/\allowbreak{}H10\_\allowbreak{}gate.json, H11\_\allowbreak{}corridor\_\allowbreak{}table.csv} \\
+H12/H13 mixing & NEGATIVE (primary fails) & \texttt{results/\allowbreak{}hardening/\allowbreak{}H13\_\allowbreak{}mixing.json} \\
+H14-H16 topology EM & SUPPORTED (supporting observation) & \texttt{results/\allowbreak{}hardening/\allowbreak{}H15\_\allowbreak{}topology\_\allowbreak{}gate.json} \\
+H17 ALT-WECC qualification & PASS Q1-Q4 (with logged refinements) & \texttt{results/\allowbreak{}hardening/\allowbreak{}alt/\allowbreak{}H17\_\allowbreak{}qualification\_\allowbreak{}andes.json} \\
+H18 cross-model matrix & A MODEL-SPECIFIC (uninformative, pinned pole); uniform tested-policy rule: C MODEL-SPECIFIC, C2 TRANSFERS, D PARTIAL, E TRANSFERS & \texttt{results/\allowbreak{}hardening/\allowbreak{}H18\_\allowbreak{}gate.json, H31\_\allowbreak{}revision.json} \\
+H19 evidence layers & 7/8 positive (L8 negative); SUPPORTED, not STRONGLY & \texttt{results/\allowbreak{}hardening/\allowbreak{}H19\_\allowbreak{}evidence.json} \\
+H20 novelty boundary & COMPLETE & \texttt{docs/\allowbreak{}CDW\_\allowbreak{}NOVELTY\_\allowbreak{}BOUNDARY.md} \\
+H21 literature & 58 verified entries & \texttt{results/\allowbreak{}CDW\_\allowbreak{}LITERATURE\_\allowbreak{}GAP\_\allowbreak{}MATRIX.csv} \\
+H22 reviewer attack & COMPLETE & \texttt{docs/\allowbreak{}CDW\_\allowbreak{}REVIEWER\_\allowbreak{}ATTACK.md} \\
+H23-H30 paper + supplement & COMPLETE (revised after H31) & \texttt{reports/\allowbreak{}papers/\allowbreak{}cdw\_\allowbreak{}contextual\_\allowbreak{}dynamic\_\allowbreak{}weakness/\allowbreak{}} \\
+H31 internal reviews & two independent internal reviews, both MAJOR REVISION; fixed where existing evidence permits (docs/CDW\_AUTHOR\_RESPONSE\_TO\_INTERNAL\_REVIEW.md) & \texttt{docs/\allowbreak{}CDW\_\allowbreak{}REVIEWER1\_\allowbreak{}FINAL.md, CDW\_\allowbreak{}REVIEWER2\_\allowbreak{}FINAL.md, CDW\_\allowbreak{}AUTHOR\_\allowbreak{}RESPONSE\_\allowbreak{}TO\_\allowbreak{}INTERNAL\_\allowbreak{}REVIEW.md} \\
+determinism & identical in every summary field & \texttt{results/\allowbreak{}hardening/\allowbreak{}CDWH\_\allowbreak{}DETERMINISM.json} \\
+\bottomrule
+\end{longtable}}
+\section{The 22 final questions (H33)}
+\textbf{Q1. Does nested contextual sign reversal survive the new holdout?} Yes. Base-stable new policies with a nested reversal: level A 1.00, B 0.95, C 0.895 (old holdout C 0.889). The level-C gate passes on the point estimate; its bootstrap interval (0.74-1.00) and the exact binomial interval (0.67-0.99) reach below 0.75.
+
+\textbf{Q2. Does same-mode electromechanical reversal survive?} Yes at level D in 17/19 (2543 pairs: s->d 743, d->s 1800); both directions in 3/19. Magnitudes: quartiles [0.0111, 0.0127, 0.0152] s\textasciicircum{}-1, max 0.042. Coverage vs threshold: level D 11/19 at 0.02, 5/19 at 0.03, 0 at 0.05. Gap-robust coverage 16/19; continuation ends on the matched mode in 100\% of 60 marginals (post hoc).
+
+\textbf{Q3. Is the optimal fixed node ranking still materially insufficient?} Over all transitions yes (p* 0.75, regret 0.38; regret-optimal order 0.344). In the EM stratum no (p* 0.97, regret 0.03). With a stability screen 0.065 on contexts with a stable option (0.22 have none). A portfolio-conditioned gSCR screen errs in 0.76 (post hoc).
+
+\textbf{Q4. How large is the old-to-new holdout shift?} Negligible: p* shift -0.002 (interval -0.036 to 0.041); regret shift 0.007; level-C coverage 0.889 old vs 0.895 new.
+
+\textbf{Q5. Does GOLD-A remain strong enough for a headline claim?} For the existence of nested same-mode reversals, yes, stated with its magnitude (about 0.01 s\textasciicircum{}-1) and its model boundary. The fixed-ranking half is a diagnostic about singularity crossings, not an EM result.
+
+\textbf{Q6. Does total dynamic line sensitivity still beat every static baseline on the new holdout?} Yes: Dtotal exceeds the per-condition best static index in 1.00 of conditions (oracle static median 0.499). Static indices do not change across conditions; against a learned fixed list the margin is smaller (0.818 new policies, 0.959 draws), and Dtotal still wins in every condition (post hoc).
+
+\textbf{Q7. Is the improvement statistically and practically material?} Practically yes: median paired advantage 0.492 (CI 0.477-0.608); top-5 precision 1.00 vs 0.20. Statistically: T2 sign-flip p 0.061 on the literal 8-condition set (6 clusters, not significant), < 1e-3 on all 64.
+
+\textbf{Q8. When does re-equilibration materially change the line ranking?} In 0.28 of V4 conditions by the H2 rule; every condition has at least one frozen/total sign flip; the frozen derivative drops to 0.712 on the new policies while Dtotal stays 0.996. For controller coordinates frozen = total (2.2e-07), as the affinity argument predicts; for loads the operating-point term dominates in 61\% of cases.
+
+\textbf{Q9. Does TXother remain a strong corridor under equal intervention budget?} Family-A null percentile >= 0.95 in 0.83 of new conditions (median percentile 0.99); TXother (the other eight transformers) meets the preregistered rule: top 5\% of size-matched arbitrary groups in 0.83 of the 64 new conditions, but 16/24 new policies against 37/40 draws at P4, so the pass rests on the draws; old holdout 0.78; all 12 transformers 0.69 (fails); spectral cutsets <= 0.03.
+
+\textbf{Q10. Does it beat size-matched random connected corridors?} Family B: >= 0.95 in 0.84 of new conditions (old holdout 0.81).
+
+\textbf{Q11. How much of old modal-mixing variation was controller- vs frequency-induced?} Variance terms of the mixing change: controller 24\%, frequency 106\%, 2cov -30\% (not additive shares).
+
+\textbf{Q12. Does fixed-frequency modal mixing still correlate with contextuality?} Not at the preregistered bar: new rho 0.55 (p 0.016, Holm 0.033); old holdout at fixed frequency rho 0.21. Not confirmed (low power at n = 19).
+
+\textbf{Q13. After filtering to EM modes, can topology still both remove and create incompatibility?} Yes: removal at P4 by ['dbl13', 'dbl43', 'dbl1', 'dbl0'] (lines 1-2, 1-39, 8-9, transformer 23-36); 45 EM creations of hyperedges of size <= 3, all outages, 34 at discovery, 8 old, 3 new; 0 fast-only. Expected N-1 behavior; a supporting observation.
+
+\textbf{Q14. Do Fiedler/gSCR/static topology scores remain poor predictors of the EM effect?} Yes: no score meets |rho| >= 0.6 in >= 75\% of policies (best fraction 0.38); their medians of about |0.5| separate outages from doublings, and within doublings they are near zero (Fiedler 0.00).
+
+\textbf{Q15. Does contextual reversal transfer to a genuinely dynamic alternative converter model?} No. Preregistered global test: 0.0 of 7 (custom GFL 0.71), uninformative because an isolated REPCA1 pole pins alpha at -0.100 s\textasciicircum{}-1. Post hoc EM-tracked: stabilizing at 3/7, nested reversal at 1/7. Library voltage control on (QFLAG=1, post hoc): 0/7 global, 0/7 tracked.
+
+\textbf{Q16. Does dynamic link ranking transfer?} The specific ranking does not (median Kendall 0.06). The method does, marginally (C2 advantage 0.203 against the 0.20 bar, 3 of 7 policies below).
+
+\textbf{Q17. Which findings are model-specific?} The reversals; the specific branch ranking; the singularity crossings behind the fixed-ranking failure (idealized custom GFL, not tested in ALT). Carried over: the ranking method (marginal), corridor top-1 agreement PARTIAL (0.71), topology direction (1.00 on 29 pairs).
+
+\textbf{Q18. What exact novelty remains after the literature review?} An empirical, preregistered case study (docs/CDW\_NOVELTY\_BOUNDARY.md): nested reversals of SG->GFL replacements graded to the same tracked EM mode on a held-out policy design; the anatomy of fixed-ranking failure as singularity crossings, with stability-screened and static-screen baselines; held-out evaluation of the portfolio-conditioned re-equilibrated sensitivity as a reinforcement ranking against frozen, learned-list and static baselines; a frozen library-GFL boundary. No single ingredient is new; displacement effects on modes (Gautam 2009, Quintero 2014), feasible sensitivities (Smed 1993, Nam 2000) and non-submodular spectral set functions (Olshevsky 2018) are prior work.
+
+\textbf{Q19. What are the 3 strongest defensible paper contributions?} (1) Portfolio-conditioned re-equilibrated reinforcement ranking (STRONGLY\_SUPPORTED on the preregistered gate; beats frozen, learned list and static indices; also doublings and outages). (2) Nested same-mode EM reversal on the holdout (SUPPORTED; small). (3) Why fixed unit rankings fail here: singularity crossings at high share, removable by a stability screen, not by a gSCR screen (SUPPORTED, FULL only; exploratory mechanism).
+
+\textbf{Q20. What claims must be dropped or weakened?} Dropped: modal-mixing mechanism; model-independent reversal; converter-independent branch ranking; 'certificate' as a contribution; 'rankings do not transfer'; 'fast converter-control modes'; any computational-cost claim; the Laplacian story (the contextual weakness lives in the controlled operator, not the static network spectrum); 'weak corridor' without the equal-budget, size-null and policy/draw qualifiers. Weakened: 'weakness is contextual' to SUPPORTED; topology to a supporting observation.
+
+\textbf{Q21. Is the paper ready for TPWRS?} Not yet for a TPWRS claims paper. The revised manuscript is internally consistent, preregistered and fully traceable, and it is suitable as a preprint or an empirical case-study submission; but both internal reviewers scored novelty (3 and 5 of 10) and model adequacy (3 and 3 of 10) low, and those scores cannot be raised with the existing evidence: one network, one custom GFL, D = 0, no governors, constant-power loads, and reversals of about 0.01 s\textasciicircum{}-1 that the library converter does not reproduce.
+
+\textbf{Q22. If not, what single missing experiment blocks submission?} One preregistered replication on a second network (e.g. IEEE 68-bus NETS-NYPS) with realistic SG damping and governors: sampled nested replacement chains for level-D reversals at material magnitude (H3 rule) and the GOLD-B total-vs-frozen-vs-learned-list ranking test (H7 rule). It decides whether C1 generalizes beyond one idealized benchmark; C3 is already strong.
+
+\section{Final claim matrix}
+{\small
+\begin{longtable}{L{0.439\linewidth}L{0.501\linewidth}}
+\toprule
+\textbf{claim} & \textbf{final status} \\
+\midrule
+\endhead
+Chain identity locates an interaction term of the matching sign for every nested reversal & PROVED (classical algebra) \\
+Nested EM same-mode contextual sign reversal & SUPPORTED (small effects; one network; not reproduced by the library converter) \\
+alpha\_perp is neither submodular nor supermodular (both nested directions) & SUPPORTED \\
+Oracle fixed node ranking materially insufficient & SUPPORTED (FULL only; driven by singularity-type crossings; nearly adequate with a stability screen) \\
+Fixed rankings do not transfer across policies & NOT SUPPORTED as a separate claim (transfer adds 0.026 regret; L6 rule met) \\
+Weakness is contextual (8-layer evidence rule) & SUPPORTED (rule met; downgraded from STRONGLY because L5 does not hold in the EM stratum) \\
+Portfolio-conditioned total branch sensitivity ranks finite reinforcements (GOLD-B) & STRONGLY\_SUPPORTED (preregistered gate on 8 conditions; T2 not significant) \\
+Re-equilibration matters for network/operating-point coordinates, not controller coordinates & SUPPORTED \\
+Robust weak corridor under equal budget and size-matched null & SUPPORTED (gate met on the 64 new conditions; carried by the P4 draws; 16/24 policies) \\
+Controller-weighted modal mixing explains contextuality & NEGATIVE (not confirmed) \\
+Topology alone removes and creates EM incompatibility; static scores do not predict & SUPPORTED (supporting observation: all 45 creations are outages, 42 at discovery or old-holdout policies) \\
+Contextual reversal transfers to a validated library GFL & NEGATIVE (preregistered test uninformative; exploratory tracked test 1/7) \\
+Fixed-ranking regret arises at singularity-induced-bifurcation-type crossings & EXPLORATORY \\
+GFM and Africano/PV generalization & BLOCKED \\
+\bottomrule
+\end{longtable}}
+\section{Negative and blocked results (same prominence)}
+\begin{itemize}
+\item Fixed-ranking insufficiency does not hold for EM-only transitions (A3 bar failed in the EM stratum); with a stability screen a fixed ranking is nearly adequate.
+\item Fixed-frequency modal mixing does not correlate with contextuality at the preregistered bar; the earlier reading was mostly a frequency effect.
+\item Contextual reversal is not reproduced by the frozen WECC library GFL chain, nor by its voltage-control variant; the specific branch ranking is converter-model-specific.
+\item The Laplacian/static-spectrum story is not rescued: static indices do not change across conditions and do not order reinforcements within a portfolio.
+\item Corridors: TXother (the other eight transformers) meets the preregistered rule: top 5\% of size-matched arbitrary groups in 0.83 of the 64 new conditions, but 16/24 new policies against 37/40 draws at P4, so the pass rests on the draws; old holdout 0.78; all 12 transformers 0.69 (fails); spectral cutsets <= 0.03.
+\item T2 (GOLD-B sign-flip on the 8-condition set) is not significant (p 0.061, six clusters).
+\item GFM generalization and the Africano/PV benchmark remain BLOCKED (no validated GFM model; no source material).
+\item The preregistered R0 <= 1e-8 eligibility rule was stricter than the solver tolerance; the literal primary GOLD-B set has only 8 conditions (still passes).
+\end{itemize}
+\section{Deviations and disclosures}
+See \texttt{docs/\allowbreak{}CDW\_\allowbreak{}HARDENING\_\allowbreak{}DEVIATIONS.md}:
+
+\begin{itemize}
+\item execution fixes: relaunch, import order, bound-check tolerance, H06 pool-crash rerun;
+\item H17 structural-zero and limiter refinements, adopted after one ALT datum had been seen during qualification and before the matrix ran;
+\item literal H6 eligibility, applied after the 64-condition result had been read;
+\item hand-written clock times, corrected against commits in a system-clock entry;
+\item post-hoc analyses (regret anatomy, H31 revision analyses, QFLAG=1 variant);
+\item the H18 tested-policy defect (fixed; D becomes PARTIAL) and the pinned ALT pole;
+\item a condition-key collision in H11 (old and fresh draws shared keys), found by the built-in k = 1 consistency check after the first (invalid) corridor gate had been seen; fixed without recomputation, superseded outputs kept in results/hardening/superseded/.
+\end{itemize}
+No gate threshold changed.
+
+\section{Run facts}
+\begin{itemize}
+\item Compute phases: 11; tasks: 10949; summed phase wall time 3.9 h (parallel workers). Determinism: identical in every summary field.
+\item Commits on this branch: \texttt{fba411da paper(cdw-hardening): H31 revision after two internal reviews}; \texttt{049fea45 paper(cdw-hardening): IEEE manuscript, supplement, claim matrix, reviewer attack (corridors pending)}; \texttt{eb57d907 results(cdw-hardening): GOLD-A/\allowbreak{}B hardening, mixing, topology EM, ALT-WECC cross-model, literature}; \texttt{4de412d2 code(cdw-hardening): hardening modules, curvature theory note, deviation log (before H18 matrix)}; \texttt{05b507e3 prereg(cdw-hardening): H0 hardening preregistration, before any new numerics}.
+\item Literature: 58 verified entries. Privacy note: one literature agent reported once including the user's e-mail as a Crossref \texttt{mailto} parameter; no other personal data was sent, and the bibliography builder sends none.
+\item Internal review scores (before revision): R1 (theory/novelty): novelty 3, correctness 5, model adequacy 3, statistics 5, evidence 5, reproducibility 7, industrial relevance 4, writing 6, figures 5. R2 (methods/statistics): novelty 5, correctness 5, model adequacy 3, statistics 5, evidence 5, reproducibility 6, industrial relevance 3, writing 7, figures 6. Scores were given on the pre-revision manuscript; the revision addresses correctness, statistics, writing and figures but not novelty or model adequacy.
+\end{itemize}
+\section{Figures}
+\begin{figure}[H]\centering\includegraphics[width=0.95\linewidth]{../figures/hardening/CDWH_F1_concept.png}\caption{Level-D nested reversal of the same replacement (N24, unit 33).}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.95\linewidth]{../figures/hardening/CDWH_F2_contextual_reversal.png}\caption{Contextual reversal map, all 63 policies.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.95\linewidth]{../figures/hardening/CDWH_F3_same_mode_examples.png}\caption{Strongest level-D nested reversals.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.95\linewidth]{../figures/hardening/CDWH_F4_fixed_ranking.png}\caption{Fixed ranking by stratum and transfer matrix.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.95\linewidth]{../figures/hardening/CDWH_F5_curvature.png}\caption{EM-clean second differences and coverage vs threshold.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.95\linewidth]{../figures/hardening/CDWH_F6_goldb.png}\caption{GOLD-B on the new holdout.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.95\linewidth]{../figures/hardening/CDWH_F7_why_total.png}\caption{Frozen vs re-equilibration decomposition.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.95\linewidth]{../figures/hardening/CDWH_F8_topology_em.png}\caption{Topology, EM-only.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.95\linewidth]{../figures/hardening/CDWH_S1_corridors.png}\caption{Equal-budget corridors.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.95\linewidth]{../figures/hardening/CDWH_S2_null.png}\caption{Size-matched corridor null.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.95\linewidth]{../figures/hardening/CDWH_S3_mixing.png}\caption{Mixing decomposition.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.95\linewidth]{../figures/hardening/CDWH_S4_crossmodel.png}\caption{Cross-model holdout.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.95\linewidth]{../figures/hardening/CDWH_S5_uncertainty.png}\caption{Fresh envelope draws.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.95\linewidth]{../figures/hardening/CDWH_S6_stratification.png}\caption{Stratification.}\end{figure}
+\begin{figure}[H]\centering\includegraphics[width=0.95\linewidth]{../figures/hardening/CDWH_S7_singularity.png}\caption{Fractional-replacement sweeps and sigma\_min(g\_z).}\end{figure}
+\end{document}

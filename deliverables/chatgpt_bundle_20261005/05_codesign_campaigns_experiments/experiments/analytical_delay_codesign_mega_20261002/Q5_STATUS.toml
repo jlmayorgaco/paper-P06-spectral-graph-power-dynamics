@@ -1,0 +1,10 @@
+physical_conditional_roots = 0
+max_update_row_support_relative_residual = 0.0
+max_affine_second_difference_relative_residual = 1.2611542507654202e-21
+max_schur_reduction_relative_residual = 2.154292557489597e-18
+status = "COMPLETED_CONDITIONAL_RANK_TWO_TEST"
+candidate_buses = [30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
+max_full_descriptor_boundary_residual = "not_applicable_no_physical_real_roots"
+tau_ms = [0.0, 20.0]
+target_frequencies_Hz = [0.017, 0.5, 3.0]
+tests = 120

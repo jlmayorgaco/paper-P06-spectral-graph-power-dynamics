@@ -1,0 +1,111 @@
+{
+  "experiment": "E14B_service_attribution",
+  "seed": 20260909,
+  "config": {
+    "core": [
+      30,
+      33,
+      35,
+      37
+    ],
+    "inertia_grid": [
+      0.1,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "pss_grid": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "condenser_grid": [
+      0.25,
+      0.5,
+      1.0
+    ]
+  },
+  "python": "3.13.14",
+  "platform_name": "Windows-11-10.0.26200-SP0",
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "dependencies": {
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1",
+    "networkx": "3.6.1",
+    "pyarrow": "25.0.1"
+  },
+  "started_utc": "2026-09-10T00:38:54.179248+00:00",
+  "results": {
+    "cases": 25,
+    "reference_branch": {
+      "real": 0.14467022043327096,
+      "frequency_hz": 0.5746810861612759
+    },
+    "unrepaired_tracked_real": 0.14467022043327096,
+    "condenser_restores_stability": true,
+    "minimum_condenser_rating_that_works": 0.25,
+    "factorial": [
+      {
+        "configuration": "H x0.1, AVR auto, PSS off",
+        "tracked_real": -0.1677489817680178,
+        "tracked_frequency_hz": 0.7110265979792538,
+        "unstable": false
+      },
+      {
+        "configuration": "H x0.1, AVR auto, PSS on",
+        "tracked_real": -0.2380932051169829,
+        "tracked_frequency_hz": 2.7304108038019306e-18,
+        "unstable": false
+      },
+      {
+        "configuration": "H x0.1, AVR manual, PSS off",
+        "tracked_real": -0.1667782502482657,
+        "tracked_frequency_hz": 0.7127515958761099,
+        "unstable": false
+      },
+      {
+        "configuration": "H x0.1, AVR manual, PSS on",
+        "tracked_real": -0.1667782502482657,
+        "tracked_frequency_hz": 0.7127515958761099,
+        "unstable": false
+      },
+      {
+        "configuration": "H x1, AVR auto, PSS off",
+        "tracked_real": -0.2210124769225575,
+        "tracked_frequency_hz": 0.6396699866181313,
+        "unstable": false
+      },
+      {
+        "configuration": "H x1, AVR auto, PSS on",
+        "tracked_real": -0.21582732182782724,
+        "tracked_frequency_hz": 0.6400614334076489,
+        "unstable": false
+      },
+      {
+        "configuration": "H x1, AVR manual, PSS off",
+        "tracked_real": -0.22104888049042867,
+        "tracked_frequency_hz": 0.6419535383607772,
+        "unstable": false
+      },
+      {
+        "configuration": "H x1, AVR manual, PSS on",
+        "tracked_real": -0.22104888049042867,
+        "tracked_frequency_hz": 0.6419535383607772,
+        "unstable": false
+      }
+    ],
+    "single_service": {
+      "inertia_only_matters": false,
+      "pss_only_matters": false
+    },
+    "elapsed_s": 6.352475643157959
+  },
+  "status": "SUCCESS",
+  "config_sha256": "48b60df1b70774870425f7ca8a8f2304a7dcc953535138d79dc875c87c816058",
+  "finished_utc": "2026-09-10T00:38:54.182782+00:00"
+}

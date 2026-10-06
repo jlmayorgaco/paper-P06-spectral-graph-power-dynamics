@@ -1,0 +1,151 @@
+PROPUESTA DE PÓSTER Y DERIVACIONES — 2026-10-04
+
+Título recomendado:
+Beyond Nodal Damping: Collective Instability and Recovery in SG–GFL Replacement
+
+Mensaje central: la contribución de una sustitución depende de los otros
+dispositivos; una sustitución adicional puede recuperar estabilidad transversal,
+y un mismo destino admite órdenes con distintos márgenes intermedios.
+
+Contrato: modelo TX4/P4, P/Q y rating igualados, mismo equilibrio AC entre
+portafolios discretos, ganancias de política congeladas, nueve candidatos
+30–38. Se usa todo el espectro TRANSVERSAL; se retiran los modos estructurales
+de rotación y deriva. El SG del modelo tiene D=0 y no tiene gobernador.
+No es el modelo posterior con DDE de 41 ms, ni un certificado de seguridad
+de frecuencia o de conmutación. No mezclar sus cifras con las de aquel modelo.
+
+Evidencia generada de datos existentes
+------------------------------------
+derive_poster_sequence.py lee el CSV congelado y produce POSTER_SEQUENCE_DESIGN.json
+y FIG_POSTER_SEQUENCE_CONCEPT.png. No se han recalculado polos ni ejecutado
+trayectorias. El JSON registra SHA-256 y valores sin redondear.
+
+Base:                alpha=-0.1441317795/s
+Sólo bus 34 GFL:     alpha=-0.1414831423/s
+H4={30,33,35,37}:    alpha=+0.1270064671/s
+H4 más bus 34 GFL:   alpha=-0.2049827843/s
+
+La misma intervención tiene marginal de alpha +0.0026486372/s en la base y
+-0.3319892514/s en H4. Mayor alpha es peor. La primera diferencia no implica
+inestabilidad: ambos extremos están estables. La interacción entre dos bloques
+(H4 y bus34) es -0.3346378887/s. No es una interacción irreducible de orden cinco
+ni el desplazamiento de un único polo: puede cambiar el modo dominante.
+
+Derivación 1: marginal contextual y límite de un ranking nodal
+-------------------------------------------------------------
+Definir d_j(S)=alpha(S union {j})-alpha(S). Si alpha tuviera la forma aditiva
+alpha(empty)+sum_{i in S}c_i, d_j(S)=c_j sería independiente de S. Las dos
+diferencias anteriores contradicen esa representación. Esto prueba una
+limitación de un modelo aditivo sin contexto para este observable, no la
+inutilidad de todos los índices nodales o sensibilidades contextuales.
+Estado: EXACT_IDENTITY lógica sobre etiquetas NUMERICALLY_VALIDATED.
+No reclamar novedad del operador de diferencias finitas.
+
+Derivación 2: retorno exacto de la intervención que puede reparar H4
+------------------------------------------------------------------
+En la representación terminal aditiva validada de TX4:
+  T_S(s)=T_0(s)+E_S D_S(s) E_S^T,
+  K(s)=E^T T_0(s)^-1 E,
+  Q_S=(I+D_S K_d,S)^-1 D_S K_o,S,
+  C_S=I+Q_S.
+Usar puntos s donde los bloques eliminados y factores locales sean regulares.
+Como los incrementos terminales y el punto AC son los mismos para la familia,
+al agregar el puerto j las submatrices previas no se redefinen silenciosamente:
+  C_(H+j) = [[C_H, Q_Hj], [Q_jH, I_2]].
+El complemento de Schur da
+  C_(H|j)=C_H-Q_Hj Q_jH,
+  det C_(H+j)=det C_(H|j).
+Así la intervención adicional actúa sobre el cierre colectivo mediante una
+corrección dinámica de rango a lo sumo dos en coordenadas terminales reales.
+No es una resta de damping constante ni una eliminación de una línea física.
+Estado: EXACT_IDENTITY bajo este contrato. Su evaluación como mecanismo de la
+reparación j=34 está PENDIENTE. Se deben conservar factores locales/ocultos al
+inferir raíces del modelo completo; el retorno solo no prueba seguridad global.
+
+Para una continuación declarada, si C_eff(lambda(a),a)v=0 es simple:
+  d lambda/da = -w* (partial C_eff/partial a) v /
+                         [w* (partial C_eff/partial s) v].
+Si la continuación sólo cambia Sigma=Q_Hj Q_jH con C_H fijo, el numerador
+cambia de signo y resulta +w* Sigma_a v. Ésta es sensibilidad NEP clásica.
+Su valor es predecir y verificar una intervención; no constituye una nueva
+fórmula general. Una interpolación de admitancias no se llama sustitución
+física parcial sin especificar una realización y su inicialización.
+
+Al cambiar cargas o puntos de operación debe reevaluarse T, K y Q. La fórmula
+de submatrices congeladas no se transfiere a una familia AC reequilibrada que
+cambie todos los dispositivos; allí se utiliza el derivado total de D5 con
+sus correcciones matemáticas, y se verifica el endpoint completo.
+
+Advertencia adversarial: en H4, el reparto modal archivado da 98.28% agregado
+en estados SG y 1.72% en GFL; el SG34 tiene participación 49.76%. Esto sugiere
+una oscilación dominada por SG modificada colectivamente, no una oscilación
+PLL pura demostrada. La participación no es atribución causal. Es obligatorio
+comparar una recomendación de reparación con el ranking de participación,
+que ya podría proponer el bus34. No dar por probada una superioridad del retorno.
+
+Derivación 3: orden óptimo en el censo finito
+-------------------------------------------
+Definir m(S)=-alpha(S). Para destino T y orden pi, S_k es su prefijo de k
+sustituciones, incluido S_0=empty. El problema concreto es
+  beta(T)=max_pi min_{k=0,...,|T|} m(S_k).
+La recurrencia exacta es
+  beta(empty)=m(empty),
+  beta(S)=min{m(S), max_{i in S} beta(S\{i})}.
+Prueba: toda cadena entra por un predecesor S\{i}; su cuello de botella es
+el menor entre el mejor cuello del predecesor y m(S). Maximizar sobre el último
+elemento y usar que min es monótona prueba la recurrencia por inducción.
+Es el problema clásico de camino de mayor capacidad aplicado a la tabla;
+no se reclama un nuevo algoritmo de grafos.
+
+Para T={30,33,34,35,37}, un orden óptimo es 30->33->34->35->37.
+beta(T)=0.1441317795/s, incluido el equilibrio inicial. Es también la cota
+superior, porque toda cadena empieza en la misma base. Hay 60 órdenes que
+alcanzan ese valor, 96 de 120 con todos sus equilibrios estables y 24 que
+visitan H4. Se verificó por programación dinámica y enumeración independiente.
+Estado: óptimo EXACTO del problema combinatorio definido por entradas numéricas.
+No es máximo de MW, óptimo de ganancias o certificado de una trayectoria física.
+
+Regla de precedencia para este destino: instalar el bus34 antes de completar
+las otras cuatro sustituciones. No hace falta instalarlo primero. Esta regla
+es equivalente a evitar H4 en los prefijos de este destino concreto; no es
+una regla general de estabilidad para cualquier otra configuración.
+
+Conexión selectiva de los PDF
+----------------------------
+PDF3: ancla H4, retorno colectivo y formulación terminal de este modelo.
+PDF5: lenguaje de intervención, derivadas totales y pruebas de reparación,
+       después de corregir normalización, curvatura y alcance de certificados.
+PDF1: evidencia separada de PLL/DDE y leyes de momentos; extensión futura
+       si el mecanismo se reproduce en ese modelo, no validación transferida.
+PDF2: comprobaciones de límites y contraste de modelos; R1 no es TX4.
+PDF4: separación entre factibilidad, estabilidad estacionaria y ejecución segura.
+
+Figura principal: dos órdenes, mismo destino, una configuración intermedia
+inestable. Panel teórico: cierre colectivo más corrección de rango dos.
+Panel de decisión: marginal cambia de signo y recurrencia de orden óptimo.
+Un único mapa IEEE39 localiza H4 y el bus34; no añadir todos los GSP/índices.
+
+Tres tareas que convierten el ejemplo en una contribución más fuerte
+-----------------------------------------------------------------
+1. Reproducir en Julia los endpoints de cinco GFL y verificar la corrección
+   terminal contra el modelo completo; seguir el grupo de polos pertinente.
+2. Predecir antes de simular qué otros buses reparan o no reparan, con controles
+   negativos y comparación con participación/sensibilidad habituales. La sola
+   narración posterior del bus34 no demuestra una capacidad nueva.
+3. Declarar rampas físicamente realizables y verificar las dos secuencias con
+   el modelo adecuado y límites completos. Si se quiere hablar de seguridad
+   de frecuencia/retardos, cerrar además la transferencia a un modelo que los
+   represente. No ejecutar una gran búsqueda de ganancias antes de estos pasos.
+
+Decisión editorial
+------------------
+Esta es la historia actualmente más concreta para el póster. La ley de inercia
+aparente tiene valor para otro desarrollo teórico, pero no explica todavía la
+recuperación del TX4. Una arquitectura distribuida mínima es una propuesta
+distinta y aún no validada. El póster debe permitir distinguir el hallazgo
+numérico actual de la explicación por verificar y del control futuro.
+
+La convocatoria oficial IAS 2026 pide investigación sólida con resultados
+preliminares y conexión directa con IAS. Es criterio de selección del programa,
+no una rúbrica detallada del premio: https://ias-am.ieee.org/2026/student-poster-competition-program/
+Ningún resultado de esta nota garantiza novedad mundial ni un premio.

@@ -1,0 +1,7 @@
+events = 8
+status = "NUMERICALLY_VALIDATED_D00_PARITY_PASS"
+model = "ReducedDAE fixed-support nonlinear model; static algebraic Schur elimination; no controller delay"
+independent_model = "PowerDynamics/NetworkDynamics IEEE39 physical model"
+warning = "No delayed stability/frontier claim; D1 exact DDE spectral completeness remains blocked."
+all_six_frozen_events_complete = true
+full_203_pole_spectrum_compared = true

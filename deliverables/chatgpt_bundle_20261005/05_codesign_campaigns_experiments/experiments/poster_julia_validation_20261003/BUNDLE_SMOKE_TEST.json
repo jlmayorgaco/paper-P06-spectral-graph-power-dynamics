@@ -1,0 +1,14 @@
+{
+  "fresh_archive_extraction": true,
+  "missing_dependencies_restored": 129,
+  "identical_dependencies": 21,
+  "rank_law_cases": 60,
+  "rank_law_identity_pass": true,
+  "rank_law_max_relative_error": 4.8476337614923296e-08,
+  "julia_version": "1.11.9",
+  "julia_states": 204,
+  "julia_equilibrium_residual": 2.8069511431776328e-09,
+  "julia_GFL_MW": 4732.81871482147,
+  "new_nonlinear_trajectories_rerun_in_smoke": false,
+  "scope": "Restored dependency closure, repeated all 60 algebra checks and initialized Julia fixed-gain model. Scientific inputs match the final package; only this audit record is added after the smoke test."
+}

@@ -1,0 +1,71 @@
+TRANSFERENCIA Q2B: ALCANCE Y COMPATIBILIDAD DE MODELO
+2026-10-01. Lectura de artefactos; no se repitió el optimizador del otro chat.
+
+1. RESULTADO NUEVO QUE DEBE RECONOCERSE
+CERTIFIED_SEARCH declara PASS_LOCAL_SECURE, certificación NUMÉRICA local del
+problema analítico congelado de un evento. Supera la tentativa fallida histórica
+en LOCAL_CERTIFICATE. El nuevo candidato no debe etiquetarse con ese fallo previo.
+Sustitución reportada: 94.215489391%.
+SG retenido: 312.523288435 MW.
+Estacionariedad reportada: 8.27784044e-07; primal cero.
+El informe incluye LICQ y SOSC numéricos, no sólo un residuo KKT.
+SHA candidato: 66513a8d3a1b4cc37c9d6f2b1a5824371fed2d0c5621d2ccdb7540490fe59124.
+
+Su optimalidad es local para restricciones analíticas del modelo nominal y el
+evento especificados. La trayectoria no lineal se comprobó aparte; no demuestra
+optimalidad del problema de trayectorias no lineales ni de nuestro problema robusto.
+La auditoría presente confirma consistencia de los archivos leídos, no reproduce
+independientemente sus certificados KKT/SOSC/Riccati ni sus simulaciones PD.
+
+2. ALCANCE DE ENTRADA Y MEDICIÓN
+Evento primario: cambio sostenido de Pset del ZIP de 100 MW en bus 16.
+Medida: diferencias causales de fase, ventana 0.5 s, diez buses generadores.
+PD reporta F=0.468755455 Hz,
+R=0.171771439 Hz/s: pasa sus dos límites de 0.5.
+Fuera del caso de diseño, la misma tabla conserva dos fallos:
+  bus8/100 MW: R=0.512749949 Hz/s;
+  bus29/100 MW: F=0.588570649 Hz.
+No se usa el porcentaje como capacidad para cualquier señal o soporte de entrada.
+El campo PowerDynamics_validation_at_freeze=NOT_RUN en el TOML describe el momento
+de congelación; la tabla PD posterior y el resumen sí reportan la validación.
+
+3. DIFERENCIA DE MODELO COMPROBADA EN EL CÓDIGO
+validate_independent_pd.jl -> PDReferenceN.jl -> WeightedSimpleGFLDC en
+src/pd39/model.jl. La realización transferida usa
+  Cdc*vdc*vdcdot=Pac-Pdc,
+  iref_d=kpdc*(Vref-vdc)+vdi,
+  vdi_dot=kidc*(Vref-vdc).
+La realización física aislada de esta investigación, PDPhysicalReference.jl, usa
+  Cdc*vdc*vdcdot=Pdc-Pac,
+  iref_d=kpdc*(vdc-Vref)+vdi,
+  vdi_dot=kidc*(vdc-Vref).
+Con Pac definido como potencia del inversor hacia su filtro, Pdc suministro positivo
+y E=Cdc*vdc^2/2, la segunda ecuación DC conserva Edot=Pdc-Pac.
+La auditoría energética previa está en dc_physics_audit.toml. Los Jacobianos
+nominales de estas dos convenciones son similares mediante un cambio de signo
+en la perturbación DC; sus polos iguales no validan identidad no lineal.
+No se modificaron los archivos transferidos ni el modelo compartido.
+
+4. QUÉ SE PUEDE REUTILIZAR
+  - SQP con múltiples picos, corrección de segundo orden y región de confianza.
+  - Disciplina de KKT, LICQ, SOSC y clasificación numérico/formal/global.
+  - Tratamiento explícito de soporte y límites unilaterales al insertar SG.
+  - Reconstrucción algebraica del límite derecho de un evento al exportar sensores.
+La maquinaria temporal puede servir de contraste/falsificación del control robusto;
+sus eventos no pasan a definir la teoría. Las ganancias y rho transferidas son
+semillas candidatas que necesitan reequilibrio, reevaluación física y nueva
+verificación de restricciones antes de entrar en una comparación.
+
+5. QUÉ SIGUE SIN TRANSFERIRSE
+No se transfiere una garantía para entradas generales, límite de corriente,
+reserva energética, estabilidad no lineal regional ni máximo global.
+Las cotas L=0, U=312.523288435 MW son del problema de minimización SG de Q2B;
+no son cotas para nuestro problema de seguridad no lineal para toda señal.
+Los diez contratos GFL aquí verificados, y su fallo de cierre independiente,
+pertenecen al candidato físico anterior y no han sido recalculados para Q2B.
+
+Trazabilidad: q2b_transfer_audit.json. Referencias primarias leídas:
+  reports/experiment_Q2B/CERTIFIED_SEARCH/RESULTADO_LOCAL_Y_BRECHA_GLOBAL.md
+  reports/experiment_Q2B/CERTIFIED_SEARCH/TERMINAL_SUMMARY.json
+  reports/experiment_Q2B/CERTIFIED_SEARCH/Z_LOCAL_SECURE_FINAL.toml
+  reports/experiment_Q2B/CERTIFIED_SEARCH/PD/EVENTS.csv

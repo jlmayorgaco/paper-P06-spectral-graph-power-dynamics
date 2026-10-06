@@ -1,0 +1,127 @@
+{
+  "status": "POINT_DIAGNOSTICS_ONLY_NO_REGIONAL_GUARANTEE",
+  "seed": 605693,
+  "rows": [
+    {
+      "radius": 2.1544346900318822e-06,
+      "trial": 0,
+      "point_decay_lower_bound": 0.050029242173719686
+    },
+    {
+      "radius": 2.1544346900318822e-06,
+      "trial": 1,
+      "point_decay_lower_bound": 0.0500306739712791
+    },
+    {
+      "radius": 2.1544346900318822e-06,
+      "trial": 2,
+      "point_decay_lower_bound": 0.05003119574049622
+    },
+    {
+      "radius": 2.1544346900318822e-06,
+      "trial": 3,
+      "point_decay_lower_bound": 0.05003088177301881
+    },
+    {
+      "radius": 2.1544346900318822e-06,
+      "trial": 4,
+      "point_decay_lower_bound": 0.050030195016601775
+    },
+    {
+      "radius": 2.1544346900318822e-06,
+      "trial": 5,
+      "point_decay_lower_bound": 0.05003009002197791
+    },
+    {
+      "radius": 2.1544346900318822e-06,
+      "trial": 6,
+      "point_decay_lower_bound": 0.050030381698182205
+    },
+    {
+      "radius": 2.1544346900318822e-06,
+      "trial": 7,
+      "point_decay_lower_bound": 0.05003013058705394
+    },
+    {
+      "radius": 2.1544346900318822e-06,
+      "trial": 8,
+      "point_decay_lower_bound": 0.05003005747244398
+    },
+    {
+      "radius": 2.1544346900318822e-06,
+      "trial": 9,
+      "point_decay_lower_bound": 0.05003030071575274
+    },
+    {
+      "radius": 2.1544346900318822e-06,
+      "trial": 10,
+      "point_decay_lower_bound": 0.050030341849955445
+    },
+    {
+      "radius": 2.1544346900318822e-06,
+      "trial": 11,
+      "point_decay_lower_bound": 0.050030749134852275
+    },
+    {
+      "radius": 0.0001,
+      "trial": 0,
+      "point_decay_lower_bound": 0.050030231328913495
+    },
+    {
+      "radius": 0.0001,
+      "trial": 1,
+      "point_decay_lower_bound": 0.050030365389281385
+    },
+    {
+      "radius": 0.0001,
+      "trial": 2,
+      "point_decay_lower_bound": 0.050030100929923174
+    },
+    {
+      "radius": 0.0001,
+      "trial": 3,
+      "point_decay_lower_bound": 0.050029918731079884
+    },
+    {
+      "radius": 0.0001,
+      "trial": 4,
+      "point_decay_lower_bound": 0.05002963596080327
+    },
+    {
+      "radius": 0.0001,
+      "trial": 5,
+      "point_decay_lower_bound": 0.05003026747647484
+    },
+    {
+      "radius": 0.0001,
+      "trial": 6,
+      "point_decay_lower_bound": 0.05003036086683941
+    },
+    {
+      "radius": 0.0001,
+      "trial": 7,
+      "point_decay_lower_bound": 0.050030487343743206
+    },
+    {
+      "radius": 0.0001,
+      "trial": 8,
+      "point_decay_lower_bound": 0.05003072045140465
+    },
+    {
+      "radius": 0.0001,
+      "trial": 9,
+      "point_decay_lower_bound": 0.05003159073007441
+    },
+    {
+      "radius": 0.0001,
+      "trial": 10,
+      "point_decay_lower_bound": 0.05003085885346293
+    },
+    {
+      "radius": 0.0001,
+      "trial": 11,
+      "point_decay_lower_bound": 0.05003011430795968
+    }
+  ],
+  "interpretation": "Sampled point decay can remain positive where the regional box enclosure fails; this does not certify unsampled states or inputs"
+}

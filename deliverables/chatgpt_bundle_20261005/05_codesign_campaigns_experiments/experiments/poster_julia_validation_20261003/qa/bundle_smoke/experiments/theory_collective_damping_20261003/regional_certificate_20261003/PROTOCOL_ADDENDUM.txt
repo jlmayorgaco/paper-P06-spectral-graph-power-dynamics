@@ -1,0 +1,23 @@
+ANALYTICAL REFINEMENT AFTER THE FIRST CONSERVATIVE BOUND
+
+The first scalar product-of-norms envelope was above one at every declared
+IEEE-39 algebra point. Its outputs are preserved in TABLE_02.
+No operating point, gains, delays, replacement interval or frequency changes.
+
+Derive a descriptor lift retaining algebraic voltage and PLL detector variables.
+Its characteristic matrix is affine in ordinary rho,Kp,Ki on the same inspected
+sharing chart. Factor its perturbation as U*Theta*V, with Theta diagonal and
+repeated rho entries. This removes the nonlinear matrix-parameter remainder.
+
+Before evaluating the refinement, fix these checks:
+reuse exactly FROZEN_ALGEBRA_POINT.json and frequencies .5,5,10 Hz;
+compare lifted characteristic difference and determinant ratios with the
+eliminated full model (normalized tolerance 1e-9);
+evaluate a componentwise box envelope using M=diag(radii)*abs(T).
+Construct a positive weight vector from
+(q0*I-M)^(-1)*ones, q0=1.1*spectral_radius(M)+1e-12,
+and report max((M*v)/v). This is a numerical pointwise upper expression,
+not a verified continuous-contour bound or stability label.
+
+Do not reclassify the original loose envelope, shrink the region, retune a
+controller, select new evaluation points or run any dynamics.

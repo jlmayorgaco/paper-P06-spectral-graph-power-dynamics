@@ -1,0 +1,172 @@
+{
+  "E03_or_E05_holdout_reused": false,
+  "created_utc": "2026-08-27T22:05:38.424927+00:00",
+  "freeze_id": "TX3-E05B-HOLDOUT-1.0",
+  "generator": "independent scrambled Sobol base-2 draw of 16 points",
+  "operating_points": [
+    {
+      "gfl_dispatch_scale": 1.0248852401040494,
+      "load_scale": 0.9246010695397854,
+      "operating_point_id": "B00",
+      "reactive_load_scale": 0.9690069729462266,
+      "redispatch_mw": 4.361992785707116,
+      "role": "independent_scrambled_sobol_holdout",
+      "split": "e05b_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 0.9931060994975269,
+      "load_scale": 1.021179437339306,
+      "operating_point_id": "B01",
+      "reactive_load_scale": 1.0055540029890835,
+      "redispatch_mw": -4.530866425484419,
+      "role": "independent_scrambled_sobol_holdout",
+      "split": "e05b_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 1.032171596493572,
+      "load_scale": 1.072541289329529,
+      "operating_point_id": "B02",
+      "reactive_load_scale": 0.9927917811088264,
+      "redispatch_mw": 7.7963159792125225,
+      "role": "independent_scrambled_sobol_holdout",
+      "split": "e05b_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 0.9514483640901744,
+      "load_scale": 0.9716782416403295,
+      "operating_point_id": "B03",
+      "reactive_load_scale": 1.032451930269599,
+      "redispatch_mw": -7.627460164949298,
+      "role": "independent_scrambled_sobol_holdout",
+      "split": "e05b_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 1.0391799946315587,
+      "load_scale": 0.9814807038009167,
+      "operating_point_id": "B04",
+      "reactive_load_scale": 1.0241407551802695,
+      "redispatch_mw": -12.372996574267745,
+      "role": "independent_scrambled_sobol_holdout",
+      "split": "e05b_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 0.9709530428983271,
+      "load_scale": 1.0430517473816872,
+      "operating_point_id": "B05",
+      "reactive_load_scale": 0.951299031637609,
+      "redispatch_mw": 12.423717174679041,
+      "role": "independent_scrambled_sobol_holdout",
+      "split": "e05b_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 1.0037631039507686,
+      "load_scale": 1.0106690937280656,
+      "operating_point_id": "B06",
+      "reactive_load_scale": 1.0378548607230187,
+      "redispatch_mw": -1.6601335443556309,
+      "role": "independent_scrambled_sobol_holdout",
+      "split": "e05b_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 0.9844924510456622,
+      "load_scale": 0.954798721820116,
+      "operating_point_id": "B07",
+      "reactive_load_scale": 0.9869006647728383,
+      "redispatch_mw": 1.6093307454138994,
+      "role": "independent_scrambled_sobol_holdout",
+      "split": "e05b_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 1.025480108615011,
+      "load_scale": 0.9476044024527074,
+      "operating_point_id": "B08",
+      "reactive_load_scale": 1.0465155567973852,
+      "redispatch_mw": 14.419082086533308,
+      "role": "independent_scrambled_sobol_holdout",
+      "split": "e05b_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 0.9565741407684981,
+      "load_scale": 1.0066144037246705,
+      "operating_point_id": "B09",
+      "reactive_load_scale": 0.9787290128879249,
+      "redispatch_mw": -14.133811248466372,
+      "role": "independent_scrambled_sobol_holdout",
+      "split": "e05b_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 1.017513397987932,
+      "load_scale": 1.0596257397532463,
+      "operating_point_id": "B10",
+      "reactive_load_scale": 1.0164795045740902,
+      "redispatch_mw": 3.364255288615823,
+      "role": "independent_scrambled_sobol_holdout",
+      "split": "e05b_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 0.9989187094382942,
+      "load_scale": 0.9961552630364896,
+      "operating_point_id": "B11",
+      "reactive_load_scale": 0.9580806130543351,
+      "redispatch_mw": -3.649486731737852,
+      "role": "independent_scrambled_sobol_holdout",
+      "split": "e05b_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 1.010454457718879,
+      "load_scale": 0.9657230134308339,
+      "operating_point_id": "B12",
+      "reactive_load_scale": 0.9978285147808492,
+      "redispatch_mw": -6.521825585514307,
+      "role": "independent_scrambled_sobol_holdout",
+      "split": "e05b_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 0.9793665402568876,
+      "load_scale": 1.069745221734047,
+      "operating_point_id": "B13",
+      "reactive_load_scale": 1.0269276782870294,
+      "redispatch_mw": 6.118516148999333,
+      "role": "independent_scrambled_sobol_holdout",
+      "split": "e05b_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 1.0465520781464874,
+      "load_scale": 1.0364949598908426,
+      "operating_point_id": "B14",
+      "reactive_load_scale": 0.9653633615002036,
+      "redispatch_mw": -9.386218702420592,
+      "role": "independent_scrambled_sobol_holdout",
+      "split": "e05b_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 0.9651406743563712,
+      "load_scale": 0.9380366902053356,
+      "operating_point_id": "B15",
+      "reactive_load_scale": 1.0100757577456534,
+      "redispatch_mw": 9.789617601782084,
+      "role": "independent_scrambled_sobol_holdout",
+      "split": "e05b_holdout"
+    }
+  ],
+  "outcomes_inspected_before_freeze": false,
+  "ranges": {
+    "gfl_dispatch_scale": [
+      0.95,
+      1.05
+    ],
+    "load_scale": [
+      0.92,
+      1.08
+    ],
+    "reactive_load_scale": [
+      0.95,
+      1.05
+    ],
+    "redispatch_mw": [
+      -15.0,
+      15.0
+    ]
+  },
+  "seed": 20260828
+}

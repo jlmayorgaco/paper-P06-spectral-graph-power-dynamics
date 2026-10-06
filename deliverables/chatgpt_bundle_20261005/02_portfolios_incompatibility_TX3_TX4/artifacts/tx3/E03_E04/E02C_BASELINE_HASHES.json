@@ -1,0 +1,54 @@
+{
+  "aggregate_model_hash": "0f40a8b33e7b93e16a7d8a9f5d1b7ed9f065a64f52c074591890fae9cea6e072",
+  "created_utc": "2026-08-27T20:05:28.388460+00:00",
+  "e02c_reopened": false,
+  "files": {
+    "andes_case": {
+      "bytes": 33248,
+      "path": "systems/ieee39_tx3_gfl3/andes_case.xlsx",
+      "sha256": "c317fbc530df0da8766fab614d839d750163012813e662e0022281de6b50a33e"
+    },
+    "canonical_static_model": {
+      "bytes": 24532,
+      "path": "artifacts/tx3/E01_ieee39_reconciliation/paraemt_ieee39_sanitized.raw",
+      "sha256": "67d709b8515d37b890e04a822e5c4ff51e903a12c2e92f825d97ce20cc45bbe2"
+    },
+    "complex_identity_evidence": {
+      "bytes": 6692,
+      "path": "artifacts/tx3/E04B_complex_identities.json",
+      "sha256": "3103a5d9b2c46b17fa493817e3a2eb02bf1f035d5c9773275349b88a96e4fc3a"
+    },
+    "controller_and_machine_parameters": {
+      "bytes": 33248,
+      "path": "systems/ieee39_tx3_gfl3/andes_case.xlsx",
+      "sha256": "c317fbc530df0da8766fab614d839d750163012813e662e0022281de6b50a33e"
+    },
+    "e02c_readiness": {
+      "bytes": 3060,
+      "path": "artifacts/tx3/E02C/E02_converter_readiness_final.json",
+      "sha256": "673978d07750e8a3a042ce2ec42eb455ab0c1a81b0f5e736bffea2fd4480f607"
+    },
+    "gfl_configuration": {
+      "bytes": 9661,
+      "path": "configs/tx3_gfl_common.yaml",
+      "sha256": "f07a6a40369af8a4d1ec4213fe5be1919fbb169ed15a71e05a585bb1054623d5"
+    },
+    "theory_freeze_input": {
+      "bytes": 4498,
+      "path": "reports/papers/tx3_connected_intervention_calculus/THEORY_FREEZE.md",
+      "sha256": "4a95d6399b9d428d86e623d43a7a8c8f46ce13c2330a5a081076a494e7b96966"
+    },
+    "transformer_initialization": {
+      "bytes": 157233,
+      "path": "vendor/paraemt/Lib_BW.py",
+      "sha256": "774312752d82157af39ffcd6102a30968759cce8a9075665d978b34f9096714d"
+    },
+    "transformer_stamp": {
+      "bytes": 77373,
+      "path": "vendor/paraemt/lib_numba.py",
+      "sha256": "69fd2bb19b46568c12d7639da106334bdccaa221579456ed50815dc3b424468f"
+    }
+  },
+  "git_sha_at_freeze": "14dd51ce1528533843508b9f5af08284528bc728",
+  "stage": "TX3_E03_E04_C1_C2"
+}

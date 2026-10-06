@@ -1,0 +1,37 @@
+portfolio,replaced_buses,intervention_count,scenario,equilibrium_status,error_type,error_message,powerflow_finite,equilibrium_finite,fixed_point,dynamic_margin,max_real,stable,robust_feasible_for_scenario
+33,[33],1,nominal,ok,,,true,true,true,0.09884700664560639,-0.09884700664560639,true,true
+33,[33],1,pll0.8_xf0.8_cc0.8,ok,,,true,true,true,0.09883988031093754,-0.09883988031093754,true,true
+33,[33],1,pll0.8_xf0.8_cc1.2,ok,,,true,true,true,0.09883987584267076,-0.09883987584267076,true,true
+33,[33],1,pll0.8_xf1.2_cc0.8,ok,,,true,true,true,0.09883987883117494,-0.09883987883117494,true,true
+33,[33],1,pll0.8_xf1.2_cc1.2,ok,,,true,true,true,0.09883987586189771,-0.09883987586189771,true,true
+33,[33],1,pll1.2_xf0.8_cc0.8,ok,,,true,true,true,0.09885081790183445,-0.09885081790183445,true,true
+33,[33],1,pll1.2_xf0.8_cc1.2,ok,,,true,true,true,0.09885081587311191,-0.09885081587311191,true,true
+33,[33],1,pll1.2_xf1.2_cc0.8,ok,,,true,true,true,0.09885081793156549,-0.09885081793156549,true,true
+33,[33],1,pll1.2_xf1.2_cc1.2,ok,,,true,true,true,0.09885081658204388,-0.09885081658204388,true,true
+30;33,"[30, 33]",2,nominal,ok,,,true,true,true,0.110622775111542,-0.110622775111542,true,true
+30;33,"[30, 33]",2,pll0.8_xf0.8_cc0.8,ok,,,true,true,true,0.11055688524936724,-0.11055688524936724,true,true
+30;33,"[30, 33]",2,pll0.8_xf0.8_cc1.2,ok,,,true,true,true,0.11055691771635848,-0.11055691771635848,true,true
+30;33,"[30, 33]",2,pll0.8_xf1.2_cc0.8,ok,,,true,true,true,0.11055686762715611,-0.11055686762715611,true,true
+30;33,"[30, 33]",2,pll0.8_xf1.2_cc1.2,ok,,,true,true,true,0.11055691422774881,-0.11055691422774881,true,true
+30;33,"[30, 33]",2,pll1.2_xf0.8_cc0.8,ok,,,true,true,true,0.11065806190267989,-0.11065806190267989,true,true
+30;33,"[30, 33]",2,pll1.2_xf0.8_cc1.2,ok,,,true,true,true,0.11065811616979901,-0.11065811616979901,true,true
+30;33,"[30, 33]",2,pll1.2_xf1.2_cc0.8,ok,,,true,true,true,0.11065805743292054,-0.11065805743292054,true,true
+30;33,"[30, 33]",2,pll1.2_xf1.2_cc1.2,ok,,,true,true,true,0.11065811854496257,-0.11065811854496257,true,true
+32;33,"[32, 33]",2,nominal,ok,,,true,true,true,0.09883096555332965,-0.09883096555332965,true,true
+32;33,"[32, 33]",2,pll0.8_xf0.8_cc0.8,ok,,,true,true,true,0.09880407206030159,-0.09880407206030159,true,true
+32;33,"[32, 33]",2,pll0.8_xf0.8_cc1.2,ok,,,true,true,true,0.09880406579603304,-0.09880406579603304,true,true
+32;33,"[32, 33]",2,pll0.8_xf1.2_cc0.8,ok,,,true,true,true,0.0988040676339559,-0.0988040676339559,true,true
+32;33,"[32, 33]",2,pll0.8_xf1.2_cc1.2,ok,,,true,true,true,0.09880406405636431,-0.09880406405636431,true,true
+32;33,"[32, 33]",2,pll1.2_xf0.8_cc0.8,ok,,,true,true,true,0.09884549036190227,-0.09884549036190227,true,true
+32;33,"[32, 33]",2,pll1.2_xf0.8_cc1.2,ok,,,true,true,true,0.09884548821248913,-0.09884548821248913,true,true
+32;33,"[32, 33]",2,pll1.2_xf1.2_cc0.8,ok,,,true,true,true,0.09884548871198826,-0.09884548871198826,true,true
+32;33,"[32, 33]",2,pll1.2_xf1.2_cc1.2,ok,,,true,true,true,0.09884548785572443,-0.09884548785572443,true,true
+30;32;33,"[30, 32, 33]",3,nominal,ok,,,true,true,true,0.11170101175450624,-0.11170101175450624,true,true
+30;32;33,"[30, 32, 33]",3,pll0.8_xf0.8_cc0.8,ok,,,true,true,true,0.1115861157336207,-0.1115861157336207,true,true
+30;32;33,"[30, 32, 33]",3,pll0.8_xf0.8_cc1.2,ok,,,true,true,true,0.11158610721039286,-0.11158610721039286,true,true
+30;32;33,"[30, 32, 33]",3,pll0.8_xf1.2_cc0.8,ok,,,true,true,true,0.1115861018394946,-0.1115861018394946,true,true
+30;32;33,"[30, 32, 33]",3,pll0.8_xf1.2_cc1.2,ok,,,true,true,true,0.11158611722247548,-0.11158611722247548,true,true
+30;32;33,"[30, 32, 33]",3,pll1.2_xf0.8_cc0.8,ok,,,true,true,true,0.11176227854928632,-0.11176227854928632,true,true
+30;32;33,"[30, 32, 33]",3,pll1.2_xf0.8_cc1.2,ok,,,true,true,true,0.11176230668170055,-0.11176230668170055,true,true
+30;32;33,"[30, 32, 33]",3,pll1.2_xf1.2_cc0.8,ok,,,true,true,true,0.11176228782011977,-0.11176228782011977,true,true
+30;32;33,"[30, 32, 33]",3,pll1.2_xf1.2_cc1.2,ok,,,true,true,true,0.11176232743531306,-0.11176232743531306,true,true

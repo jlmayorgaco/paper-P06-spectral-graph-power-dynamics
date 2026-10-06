@@ -1,0 +1,56 @@
+{
+  "baseline_run_id": "20260925T204017_549c3c07_h4_crossmode_v3",
+  "collective_operator": "I+Q_H",
+  "created_utc": "2026-09-26T16:29:51.010564+00:00",
+  "equilibrium_fingerprint": null,
+  "equilibrium_provenance": "same frozen tx4_case construction, H4=(30,33,35,37), k=1.425, t=1.5, h=1.0, per-g voltage_gain=g; equilibrium state vectors/hashes were not retained, so bitwise state equality is not claimed",
+  "figure": "F2 only",
+  "frozen_adapter_and_model_code_sha256": {
+    "reports/poster/ias2026/research/bnd_h4_mechanism/code/render_f1_f2.py": "02a41dd9c3c4fc0c0ba9ba33b71639e93dbdfb98cae929c91e3bf2ca83ac6193",
+    "reports/poster/ias2026/research/bnd_h4_mechanism/code/run_campaign.py": "8d2f54267bc5852ca21735002e34b9e6bf9864068be0255f431d3a00d9f55c09",
+    "reports/poster/ias2026/research/experiments/tx4_contextual_return.py": "77d4ed0f76f8c4a6ec369bc30b306361cff9b789c6f432e287d5f180d9210b74"
+  },
+  "frozen_gate_source": "baseline claims/gates.json; no thresholds changed or added",
+  "frozen_inputs_sha256": {
+    "claims/gates.json": "a06b65d2141c16a6f972ef2e7fd7ebebde9fd1a61bd8ae92db948e54294de1e4",
+    "derived/TX4_CONTEXTUAL_RETURN_AT_BOUNDARY.csv": "6bac61f319efb4216e46ec78156c1c4446c1e2cfe15c922cdb0b461ae6138e2e",
+    "derived/TX4_CONTEXTUAL_RETURN_CORE_SUMMARY.json": "8308409f4edce2e657a6f9bd67517c3422acfce961578540896eb7bb3aa70b24",
+    "derived/TX4_CONTEXTUAL_RETURN_SWEEP.csv": "2dd4559acdd847349f68faa26818687eb3a6194f5a2387bab17205955525429b",
+    "derived/TX4_PHYSICAL_LOCAL_FACTORS.csv": "4a7b1b64a4bfe39467856d36d0da798ae9106822cef69ab80073bb9e255f49d3",
+    "environment/runtime.json": "e99613e9b5848e21442f91fa33abc341e6bfc11c8db6c6c384507997c2f597b6"
+  },
+  "g_grid": [
+    0.03625,
+    0.05,
+    0.075,
+    0.1,
+    0.125,
+    0.15,
+    0.175,
+    0.19,
+    0.2,
+    0.205,
+    0.2075,
+    0.20768,
+    0.2076814045,
+    0.2077,
+    0.21,
+    0.225,
+    0.25
+  ],
+  "g_star": 0.20768140519037842,
+  "local_operator": "physical pre-normalized I+M_ii",
+  "mode_identity_limit": "The frozen sweep stores only the selected eigenvalue at each g; mode-family/MAC certification cannot be inferred from these artifacts.",
+  "physical_local_g_float_encoding_delta": 2.7755575615628914e-17,
+  "physical_local_g_recorded": 0.2076814051903784,
+  "port_order": [
+    30,
+    33,
+    35,
+    37
+  ],
+  "root_solver": "not rerun; stored 26-iteration bisection result reused",
+  "run_id": "20260926T162252Z_d0fecb32_ias26_030_f2_closure_v1",
+  "scientific_scope": "reconciliation and rendering from the frozen 17-point TX4 sweep plus exact stored boundary; no model/eigenvalue/root recomputation",
+  "ticket": "IAS26-030"
+}

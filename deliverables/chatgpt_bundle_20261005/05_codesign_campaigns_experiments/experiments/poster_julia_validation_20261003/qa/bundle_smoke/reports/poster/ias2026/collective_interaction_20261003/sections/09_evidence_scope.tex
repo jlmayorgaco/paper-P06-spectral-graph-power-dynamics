@@ -1,0 +1,43 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterBottomRowHeight][t]{\PosterGridWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterBottomRowHeight}{9}{WHAT IS ESTABLISHED -- AND WHAT REMAINS OPEN}
+
+    \noindent\begin{minipage}[c]{210mm}\centering
+      {\MetricSize\bfseries\color{IASBlue}\VoltageMin--\VoltageMax\ pu\par}
+      {\FigureSize voltage range; limits [0.9, 1.1]\par}
+    \end{minipage}\hfill%
+    \begin{minipage}[c]{193mm}\centering
+      {\MetricSize\bfseries\color{IASBlue}\SlackMin\par}
+      {\FigureSize minimum SG slack; limit 0.002\par}
+    \end{minipage}\hfill%
+    \begin{minipage}[c]{213mm}\centering
+      {\MetricSize\bfseries\color{IASDarkGreen}Feasibility shown\par}
+      {\FigureSize all-root margin checked numerically\par}
+    \end{minipage}\hfill%
+    \begin{minipage}[c]{227mm}\centering
+      {\MetricSize\bfseries\color{IASGold!70!black}Maximum still open\par}
+      {\FigureSize no certified replacement ceiling\par}
+    \end{minipage}\par
+    \vspace{3mm}
+    {\FigureSize \textbf{Same-$\rho$ comparison:} fixed gains also pass all five events. Retuning slightly lowers RoCoF but increases frequency excursion; superiority is not established. No converter current-limit claim.}
+
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewFullPageWidth}
+  \def\PosterPageHeight{\PosterPreviewBottomPageHeight}
+  \def\PosterPreviewLeft{\PosterOuterMargin}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

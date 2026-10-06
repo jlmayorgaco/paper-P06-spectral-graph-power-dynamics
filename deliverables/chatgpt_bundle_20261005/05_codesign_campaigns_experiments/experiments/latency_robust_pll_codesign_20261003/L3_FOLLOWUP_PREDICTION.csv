@@ -1,0 +1,2 @@
+candidate_id,parent,base_tau_ms,predicted_tau_ms,base_slack,predicted_slack,guard_above_limit,log_step_l1,status
+N_step1_multimode_lp_event_active_lp_followup_lp,N_step1_multimode_lp_event_active_lp,39.962480755300234,40.19577920108596,0.002002940302272993,0.002003,3e-06,0.049999999999999996,REUSED_EVENT_JACOBIAN_PREDICTOR_REQUIRES_EXACT_CORRECTOR

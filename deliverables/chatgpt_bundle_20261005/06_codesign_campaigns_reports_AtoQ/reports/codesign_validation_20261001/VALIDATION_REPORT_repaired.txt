@@ -1,0 +1,151 @@
+VALIDACION SG GFL IEEE 39 — repaired
+Fecha: 2026-10-01. Candidato SHA256: 8888c50ae7df017d2b2bb319c1adf2dc631a4af190c4045047cf1741875c922d
+ESTADO: INCOMPLETO: faltan perturbaciones requeridas.
+
+SG retenido: 366.238767 MW; GFL: 5036.522323 MW; sustitucion: 93.221267%.
+Reduccion de SG respecto al candidato anterior: 72.207515 MW.
+Los porcentajes corresponden al despacho inicial congelado; no son un porcentaje universal de capacidad instalada.
+Soporte SG: [30, 33, 35, 37, 38, 39]. Se retiraron completamente los SG con epsilon=0.
+
+PROBLEMA Y MEDICION
+Variables por nodo: epsilon=1-rho, Kp y Ki del PLL GFL. Objetivo J=sum(P0_i*epsilon_i). Se mantiene el punto inicial P/Q y la regla de escalamiento SG del modelo.
+Restricciones de busqueda: alpha(Aq)<=-0.05 s^-1; radio complejo aditivo de Aq+0.05 I >= beta_req; max|f_T|<=0.5 Hz y max|R_T|<=0.5 Hz/s para escalones de carga de 100 MW en buses 16, 8 y 29.
+f_T(t)=[theta(t)-theta(t-T)]/(2*pi*T); R_T(t)=[theta(t)-2*theta(t-T)+theta(t-2*T)]/(2*pi*T^2), T=0.5 s.
+El radio corresponde a perturbaciones complejas no estructuradas de la matriz en las coordenadas elegidas; no es un porcentaje de incertidumbre fisica de lineas, cargas o controladores.
+Se elimina exactamente un modo de simetria rotacional; se conservan todos los otros polos finitos, incluso cuando se retiran SG.
+
+ESTABILIDAD LOCAL Y ROBUSTEZ LINEAL
+Polos fisicos PD: 155; alpha PD: -0.0521655286538 s^-1; limite: -0.05 s^-1.
+Error maximo de polos emparejados: 1.17109e-09 s^-1.
+Robustez: FULL_BAND_NUMERICAL_LOWER_BOUND; cota inferior: 1.72603614259e-06; requisito: 1.69912069992e-06.
+La cota de toda la banda usa Float64 con una reserva numerica; no es una prueba con redondeo dirigido.
+
+EVENTOS NO LINEALES: cambios de Pset de carga, Qset fijo, ventana causal T=0.5 s.
+Evento               Pico Hz      RoCoF Hz/s    Pasa limites   Tiempo solver s
+small_16               0.0045770     0.0013330 True                0.66
+step_16                0.4017293     0.1238560 True               33.17
+step_29                0.4717428     0.2415312 True               35.05
+negative_16            0.4673370     0.1550874 True               37.17
+pulse_16               0.0137392     0.0140116 True                0.33
+refined_16             0.4017293     0.1238574 True               57.04
+small_8                0.0041583     0.0021954 True               20.56
+small_29               0.0049690     0.0039098 True                0.67
+
+Eventos obligatorios ausentes: ['step_8', 'refined_8']; fallidos: [].
+INCOMPLETO: step_8, MaxIters, t=6.44 s. No demuestra por si solo inestabilidad fisica.
+INCOMPLETO: step_8_relaxed, MaxIters, t=6.45 s. No demuestra por si solo inestabilidad fisica.
+INCOMPLETO: stress_29, MaxIters, t=10.2 s. No demuestra por si solo inestabilidad fisica.
+
+DIAGNOSTICO BUS 8: prefijo independiente de 5 s despues de la perturbacion. No sustituye la validacion de 60 s.
+[]
+Intento de prefijo incompleto: {"event": "bus8_prefix_repaired", "status": "INCOMPLETE_TDS", "retcode": "MaxIters", "tolerance": 1e-08, "requested_horizon_after_event_s": 5.0, "candidate_sha256": "8888c50ae7df017d2b2bb319c1adf2dc631a4af190c4045047cf1741875c922d", "physical_instability_proven": false, "note": "The coarse short run did not complete; the fine run was not executed. No prefix peaks are available for this candidate."}
+VERIFICACIONES DEL EVALUADOR
+8 pruebas de unidades de salto de fase y derivada de meseta: PASS. 12 pruebas del callback de limites: PASS.
+Exponencial matricial aumentada frente al evaluador modal: 3/3 comparaciones PASS; error relativo maximo 9.05e-11.
+Respuesta lineal: prefijo de 120 s con paso 0.0025 s y cota analitica de la cola posterior; los tres buses pasan los limites de 0.5 Hz y 0.5 Hz/s. El prefijo se muestrea; no se certifican todos los extremos entre muestras.
+[
+  {
+    "event_bus": "16",
+    "horizon_s": "120.0",
+    "dt_s": "0.0025",
+    "Fpeak_refined_Hz": "0.46022275636679183",
+    "Rpeak_refined_Hz_s": "0.13343323228979534",
+    "tail_F_upper_Hz": "0.46035872354690505",
+    "tail_R_upper_Hz_s": "8.185176043481452e-6",
+    "pass": "true"
+  },
+  {
+    "event_bus": "8",
+    "horizon_s": "120.0",
+    "dt_s": "0.0025",
+    "Fpeak_refined_Hz": "0.4159522588807652",
+    "Rpeak_refined_Hz_s": "0.2184862528665774",
+    "tail_F_upper_Hz": "0.4133270141645978",
+    "tail_R_upper_Hz_s": "7.802617661942766e-6",
+    "pass": "true"
+  },
+  {
+    "event_bus": "29",
+    "horizon_s": "120.0",
+    "dt_s": "0.0025",
+    "Fpeak_refined_Hz": "0.4971339764627964",
+    "Rpeak_refined_Hz_s": "0.39377296008836166",
+    "tail_F_upper_Hz": "0.49328737895958885",
+    "tail_R_upper_Hz_s": "8.208853412431482e-6",
+    "pass": "true"
+  }
+]
+
+CONVERGENCIA NUMERICA
+{
+  "16": {
+    "Fpeak_Hz": {
+      "absolute_difference": 8.863598743857892e-11,
+      "relative_difference": 2.2063611876972472e-10
+    },
+    "Rpeak_Hz_s": {
+      "absolute_difference": 1.4096597289459112e-06,
+      "relative_difference": 1.138131382549003e-05
+    }
+  }
+}
+Verificacion de eventos de limites: False
+{}
+Los limites anti-windup SG existentes se localizan mediante callbacks. Se selecciona el lado saturado con un desplazamiento de 1e-10 y se contrasta con 1e-11, sin cambiar los limites ni las ganancias. Los registros de eventos estan en PD_repaired_limits.
+
+OPTIMALIDAD
+No se certifica optimalidad local ni global. La busqueda produjo mejores candidatos, pero no paso la auditoria KKT ni se verifico SOSC.
+El candidato improved incorpora 1% de retencion sobre una semilla de la busqueda. El candidato repaired conserva esa asignacion y cambia las ganancias proporcionalmente bajas del PLL mediante Kp>=2*sqrt(Ki); es una heuristica en las unidades del modelo, no una garantia de amortiguamiento del sistema conectado.
+[
+  {
+    "stage": "codesign_validation_20261001",
+    "evaluations": 4086,
+    "best_audited_MW": 364.2034450426684,
+    "minimum_stationarity_residual": 0.2812953897467422,
+    "solver_messages": [
+      "Iteration limit reached"
+    ]
+  },
+  {
+    "stage": "search_faces",
+    "evaluations": 5654,
+    "best_audited_MW": 362.6013226474545,
+    "minimum_stationarity_residual": 0.1067240157409296,
+    "solver_messages": [
+      "Iteration limit reached"
+    ]
+  },
+  {
+    "stage": "search_derivatives",
+    "evaluations": 5030,
+    "best_audited_MW": 362.6027979911681,
+    "minimum_stationarity_residual": 0.047474110255416424,
+    "solver_messages": [
+      "Iteration limit reached"
+    ]
+  }
+]
+La auditoria de pasos muestra que las diferencias finitas de sensibilidades debiles del PLL quedan contaminadas por error numerico cerca de la frontera del radio.
+
+GANANCIAS Y ALCANCE
+Los rho, Kp y Ki por nodo estan en parameters_repaired.csv. Se conservan las unidades del modelo Julia.
+gain_comparison_repaired.csv compara ganancias individuales, nominales y la media de las individuales.
+La media no es un controlador comun optimizado; esta comparacion no prueba superioridad frente al mejor controlador comun.
+No se han validado limitadores duros de corriente, hardware, EMT ni todas las arquitecturas y contingencias.
+Tampoco se demuestra estabilidad no lineal global ni region de atraccion; las trayectorias completadas cubren 60 s despues de los eventos indicados.
+La tension y corriente registradas son diagnosticos. La razon de corriente respecto al valor inicial no equivale a un margen frente a la corriente nominal admisible.
+La respuesta lineal y la no lineal difieren a 100 MW; las dos se reportan por separado.
+
+REPRODUCCION
+julia --startup-file=no --project=@stdlib experiments/codesign_validation_20261001/test_corrections.jl
+julia --startup-file=no --project=. experiments/codesign_validation_20261001/validate_oracle.jl
+julia --startup-file=no --project=. experiments/codesign_validation_20261001/test_limit_events.jl
+julia --startup-file=no --project=. experiments/codesign_validation_20261001/audit_tail.jl
+julia --startup-file=no --project=. experiments/codesign_validation_20261001/validate_pd.jl reports/codesign_validation_20261001/candidate_repaired.toml repaired
+julia --startup-file=no --project=. experiments/codesign_validation_20261001/validate_pd.jl reports/codesign_validation_20261001/candidate_repaired.toml repaired_limits event_limits
+julia --startup-file=no --project=. experiments/codesign_validation_20261001/validate_pd.jl reports/codesign_validation_20261001/candidate_repaired.toml repaired_refined refined_bus8
+julia --startup-file=no --project=. experiments/codesign_validation_20261001/validate_pd.jl reports/codesign_validation_20261001/candidate_repaired.toml repaired_inputs small_inputs
+julia --startup-file=no --project=. experiments/codesign_validation_20261001/diagnose_bus8.jl repaired
+El validador reanuda casos completados; usar otra etiqueta para una repeticion independiente.
+python experiments/codesign_validation_20261001/render_report.py --label repaired
+Julia y PowerDynamics usan el Project.toml y Manifest.toml del repositorio. La busqueda SLSQP usa el evaluador fisico Julia por socket local; no utiliza PD durante la busqueda.

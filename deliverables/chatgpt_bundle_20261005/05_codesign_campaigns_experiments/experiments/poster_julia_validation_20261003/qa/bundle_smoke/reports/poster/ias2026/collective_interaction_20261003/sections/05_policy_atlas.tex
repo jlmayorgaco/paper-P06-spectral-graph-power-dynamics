@@ -1,0 +1,39 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterMiddleRowHeight][t]{\PosterHalfWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterMiddleRowHeight}{5}{BEYOND ADDING NODAL EFFECTS}
+
+    {\FigureSize Affine descriptor lift $F-F_0=U\Theta(d)V$;
+    $T=VF_0^{-1}U$ and $H=\Theta(d)T$ on a root contour $\Gamma$.\par}
+    {\EquationSize\[
+       z_\Gamma(d)-z_\Gamma(0)
+       =-\frac{1}{2\pi\mathrm{j}m}\oint_\Gamma
+                \operatorname{tr}\log(I+H)\,ds
+    \]}
+    {\FigureSize $z_\Gamma$: mean of $m$ enclosed poles. A uniform $\|H\|<1$ preserves the count; the gauge pole is excluded.\par}
+    {\HeroEquation\color{IASBlue}\[
+       \mathcal Q_{ab}=
+       \Re\frac{1}{2\pi\mathrm{j}m}\oint_\Gamma
+                    \operatorname{tr}(E_aTE_bT)\,ds
+    \]}
+    {\FigureSize $E_a$ selects a physical parameter. Mixed curvature captures two interventions coupled through return paths. These are signed interactions on the intervention-port graph, not a Laplacian.}
+
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewHalfPageWidth}
+  \def\PosterPageHeight{\PosterPreviewMiddlePageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewHalfLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

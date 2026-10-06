@@ -1,0 +1,50 @@
+[
+  {
+    "kind": "observability",
+    "radius": 1e-09,
+    "condition": 14444328.84374563,
+    "decay": 0.021144904244331717,
+    "input_gain": 915731.9455527468,
+    "linear_radius_per_input": 1.0920226217470092e-06
+  },
+  {
+    "kind": "observability",
+    "radius": 1e-07,
+    "condition": 14444328.84374563,
+    "decay": -0.33929547939122623,
+    "input_gain": 915731.9455527468,
+    "linear_radius_per_input": 1.0920226217470092e-06
+  },
+  {
+    "kind": "observability",
+    "radius": 1e-05,
+    "condition": 14444328.84374563,
+    "decay": -36.47490205599487,
+    "input_gain": 915731.9455527468,
+    "linear_radius_per_input": 1.0920226217470092e-06
+  },
+  {
+    "kind": "reachability",
+    "radius": 1e-09,
+    "condition": 15461366188.88438,
+    "decay": -10076.21020780149,
+    "input_gain": 15449.098648165444,
+    "linear_radius_per_input": 6.47286953610558e-05
+  },
+  {
+    "kind": "reachability",
+    "radius": 1e-07,
+    "condition": 15461366188.88438,
+    "decay": -11313.4760402399,
+    "input_gain": 15449.098648165444,
+    "linear_radius_per_input": 6.47286953610558e-05
+  },
+  {
+    "kind": "reachability",
+    "radius": 1e-05,
+    "condition": 15461366188.88438,
+    "decay": -135031.751387688,
+    "input_gain": 15449.098648165444,
+    "linear_radius_per_input": 6.47286953610558e-05
+  }
+]

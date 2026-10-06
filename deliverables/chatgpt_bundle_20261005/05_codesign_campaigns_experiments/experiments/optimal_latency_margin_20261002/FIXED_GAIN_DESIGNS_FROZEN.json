@@ -1,0 +1,40 @@
+{
+  "description": "rho line from stored 87.5% seed to stored 88.455% zero-delay design; all Kp/Ki frozen at seed values",
+  "designs": [
+    {
+      "label": "rho_00",
+      "target_GFL_percent": 87.5,
+      "path_eta": 0.0,
+      "file": "fixed_gain_designs/rho_00.toml",
+      "sha256": "62584d61b67609c61bd65b5b38c8346975cc614adc87a5271e3660a28a29ed06"
+    },
+    {
+      "label": "rho_01",
+      "target_GFL_percent": 87.75,
+      "path_eta": 0.2617415191988737,
+      "file": "fixed_gain_designs/rho_01.toml",
+      "sha256": "23d24591ec46ef82c45b61af7f06831efdf0fa4d4e1a065ab05c16f8a778d39b"
+    },
+    {
+      "label": "rho_02",
+      "target_GFL_percent": 88.0,
+      "path_eta": 0.5234830383977473,
+      "file": "fixed_gain_designs/rho_02.toml",
+      "sha256": "1a4647443f4125874d72a879e1e6925b44029c8a822134ec1c9d96f5b78a3192"
+    },
+    {
+      "label": "rho_03",
+      "target_GFL_percent": 88.25,
+      "path_eta": 0.785224557596621,
+      "file": "fixed_gain_designs/rho_03.toml",
+      "sha256": "ec45dabb8218ad022b35407faf61f353cae79c76b9831947b66850015c34f633"
+    },
+    {
+      "label": "rho_04",
+      "target_GFL_percent": 88.45514078456176,
+      "path_eta": 1.0,
+      "file": "fixed_gain_designs/rho_04.toml",
+      "sha256": "83d4f73c2afa3320f36680c52873d9d87a08ed1b7adbf053c3f878598084e479"
+    }
+  ]
+}

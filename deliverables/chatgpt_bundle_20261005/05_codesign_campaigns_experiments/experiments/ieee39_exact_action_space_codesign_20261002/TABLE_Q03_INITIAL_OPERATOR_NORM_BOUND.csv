@@ -1,0 +1,4 @@
+case_id,tau_ms,status,roots_right_of_margin,margin_s_inv,critical_real_s_inv,norm_bound,contour_radius,contour_points,max_phase_increment,min_logabs_small_factor,refinements,certified,notes
+Q0_seed,0.0,NUMERICALLY_VALIDATED_ODE_COUNT,0,-0.05,-0.08080909538081596,,,0,0.0,,0,false,tau=0 reduces to finite ODE; complete eigenvalue list counted
+Q0_seed,20.0,INDETERMINATE,,-0.05,,4.229359777656507e6,4.229359777660736e6,1268808,Inf,Inf,0,false,Float64 argument-principle count; no directed-rounding interval proof
+Q0_seed,40.0,INDETERMINATE,,-0.05,,4.230017157045575e6,4.230017157049805e6,1292602,Inf,Inf,0,false,Float64 argument-principle count; no directed-rounding interval proof

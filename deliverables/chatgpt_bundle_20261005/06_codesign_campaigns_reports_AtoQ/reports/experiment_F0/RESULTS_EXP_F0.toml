@@ -1,0 +1,35 @@
+generator_ports = [30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
+Lc_condition_number = 4446.271845931033
+Lc_imaginary_leakage = 1.0445197831165864e-15
+Ybus_transpose_symmetry_residual = 0.0
+Lc_zero_mode_count = 0
+synchronizing_backbone_lambda_min = -1.1851504075403063e-17
+Lc_spd = true
+reactive_candidate_lambda_min = -1.1619045685355136
+port_operator_min_quadratic_test = 1.9485493444618582
+status = "PASS"
+synchronizing_backbone_lambda_max = 0.30296846490232776
+mode_comparison_status = "Computed post-preregistration M-weighted projections for 7 frozen ExpC critical poles; critical q-subspace rank=7. Lc was not selected or modified using these overlaps."
+Lc_lambda_min = 0.001127537540072563
+Lc_lambda_max = 5.0133384196549695
+Kron_max_abs_current_residual = 2.5635335727383778e-14
+primary_graph = "Lc = Hermitian(Yport) = Re(Yport), complex passive Kron reduction then generator-port selection"
+branch_count = 46
+reactive_candidate_lambda_max = 46.99608947104022
+full_network_min_real_power_test = 205.64926878309018
+synchronizing_backbone_C33_lambda_min = -19.14947309283464
+synchronizing_backbone_C33_psd = false
+Yport_transpose_symmetry_residual = 2.057229442163321e-16
+experiment = "BND_EXP_F0"
+input_branch_sha256 = "b1858adb3e409750b5db24bc5073dda1e0683a59ef6e5966840cd73a18293972"
+synchronizing_backbone_available = true
+reactive_candidate_psd = false
+synchronizing_backbone_C33_lambda_max = 1439.5766661507869
+nbus = 39
+input_bus_sha256 = "d732a896e95c013fa3906941a540f2d9161ca99a2c60e571a890174680cb6943"
+interior_block_condition_number = 99.09917241024525
+gate_reason = "PSD passive network-derived graph and port-current Kron identity verified"
+Kron_relative_current_residual = 4.0750477862428105e-16
+Lc_psd = true
+Lc_hermitian_residual = 0.0
+synchronizing_backbone_psd = true

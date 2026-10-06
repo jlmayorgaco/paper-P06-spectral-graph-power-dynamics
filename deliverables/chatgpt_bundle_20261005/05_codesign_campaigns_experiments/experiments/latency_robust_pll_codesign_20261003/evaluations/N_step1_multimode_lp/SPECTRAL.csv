@@ -1,0 +1,2 @@
+candidate_id,parent,method,predicted_gain_ms,alpha_zero_delay,first_local_crossing_ms,critical_frequency_hz,second_local_crossing_ms,fast_roots_discovered,safe_below_status,unsafe_above_status,all_five_events,status
+N_step1_multimode_lp,N,multimode_lp,0.3116197815877797,-0.08014834933520744,39.69477857171271,5.248907002877365,39.702233585919146,3,SAFE,UNSAFE,PENDING,SPECTRAL_CORRECTOR_PASS_ZERO_DELAY_EVENTS_PENDING

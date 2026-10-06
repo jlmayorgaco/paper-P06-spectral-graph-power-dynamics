@@ -1,0 +1,6 @@
+claim_id,claim,status,evidence,limitation
+C1,Nominal H4 is an inclusion-minimal transverse blocker: all 15 proper subsets stable; H4 unstable.,SAFE_NOMINAL,P1_STABILITY_CLIFF,Do not call this universal across operating points.
+C2,"At the frozen nominal boundary, physical local factors remain nonsingular while collective closure approaches singularity.",SAFE_WITH_SCOPE,P2_LOCAL_COLLECTIVE_CLOSURE,No claim that local damping is positive or M1 reduced-pole equivalence passes.
+C3,H4 minimal-blocker pattern occurs in 190/967 valid frozen synthetic scenarios.,SAFE_DESCRIPTIVE,P3_MC_BLOCKER_ROBUSTNESS,"Not a real-world probability; 33 physically infeasible IDs retained, no replacement."
+C4,Fixed g=0.25 improves α⊥ in 594/967 and rescues H4 in 186/967 valid scenarios.,SAFE_DESCRIPTIVE,P4_FIXED_INTERVENTION_TDS,Not universal: deterioration and non-rescue cases remain visible.
+C5,Python–Julia verdict agreement 100/100; the TDS primary estimator agrees in sign in 56/60 completed finite fits.,SAFE_WITH_LIMITS,EVIDENCE_STRIP_CROSSCODE; P4_FIXED_INTERVENTION_TDS; FALSIFICATION_LEDGER N8,"Four completed-fit sign disagreements are 0 Hz with unavailable R2; mode identity is unresolved, so do not claim mode-specific contradiction. Same-model reproduction only; no EMT claim."

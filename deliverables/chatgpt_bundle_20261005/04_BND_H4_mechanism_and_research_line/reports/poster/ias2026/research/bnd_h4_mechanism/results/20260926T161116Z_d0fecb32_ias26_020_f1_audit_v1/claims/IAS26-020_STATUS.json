@@ -1,0 +1,39 @@
+{
+  "ticket": "IAS26-020",
+  "run_id": "20260926T161116Z_d0fecb32_ias26_020_f1_audit_v1",
+  "status": "PASS",
+  "source_run_id": "20260926T083621_h4_f1_f2_assets_v1",
+  "tau_dec_s-1": 1e-08,
+  "tau_dec_provenance": "BOUNDARY_TOLERANCE in render_f1_f2.py at source commit a042efd7156a505928c52b9a373aa0839371f32b",
+  "portfolio_count": 16,
+  "full_eigenvalue_count": 1216,
+  "proper_subsets_stable": 15,
+  "h4_unstable": true,
+  "indeterminate_count": 0,
+  "alpha_perp_equals_alpha_Omega_all_16": true,
+  "source_alpha_matches_npz": true,
+  "source_csv_spectra_match_npz": true,
+  "source_model_code_hashes_match": {
+    "tx4_contextual_return.py": true,
+    "ieee39_case.py": true,
+    "port_admittance.py": true,
+    "ieee39_devices.py": true
+  },
+  "max_stored_eigenpair_relative_residual": 5.7718537471514345e-15,
+  "max_equilibrium_residual_difference_from_source_csv": 0.0,
+  "h4": {
+    "alpha_perp_s-1": 0.12700646782830968,
+    "alpha_Omega_s-1": 0.12700646782830968,
+    "dominant_frequency_hz": 0.6222796695036534,
+    "dae_state_dim": 86,
+    "transverse_dim": 84,
+    "equilibrium_f_residual": 4.35983562251079e-13,
+    "equilibrium_g_residual": 9.103828801926284e-13,
+    "max_eigenpair_relative_residual": 2.3770062225943724e-15
+  },
+  "julia_scope": "H4 GFL11 only; not a 16-portfolio Julia lattice",
+  "julia_h4_parity_status": "PASS_GFL11_EXACT_REPRODUCTION",
+  "v9_supplement": "NOT_USED_IN_P1; no V9 claim is included in F1",
+  "poster_claim": "15 proper subsets are stable and the exact H4 assembly is unstable for the registered TX4/P4 GFL11 case",
+  "mode_tracking_note": "No cross-portfolio continuation/MAC; each portfolio's dominant family is selected from its retained full spectrum."
+}

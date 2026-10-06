@@ -1,0 +1,32 @@
+{
+  "C3_original_assessed": false,
+  "C3a_reopened": false,
+  "C3b_A": {
+    "destabilizing_sign_fraction_minimum": 0.75,
+    "high_stress_levels": [
+      0.875,
+      1.0
+    ],
+    "median_final_rho_comp_minimum": 0.1,
+    "median_high_to_nominal_amplification_minimum": 2.0,
+    "smooth_only": true,
+    "valid_seed_paths_minimum": 6
+  },
+  "C3b_B_route_1": {
+    "replicated_hard_or_screen_failures_minimum": 2
+  },
+  "C3b_B_route_2": {
+    "delta_zeta_maximum": -0.0025,
+    "destabilizing_sign_fraction_minimum": 0.75,
+    "eligible_tau_levels": [
+      0.875,
+      1.0
+    ],
+    "rho_comp_minimum": 0.25,
+    "seed_paths_minimum": 4
+  },
+  "E06_consideration_rule": "true only if C3b-B is SUPPORTED; execution remains forbidden",
+  "freeze_id": "TX3-E05C-GATES-1.0",
+  "old_E05_absolute_delta_zeta_threshold": 0.0025,
+  "screen_damping_ratio": 0.05
+}

@@ -1,0 +1,109 @@
+\section{Exact Factor Anatomy and Pole Localization}
+\subsection{Schur Closure}
+
+The E05B holdout applied \eqref{eq:factor} to the 15 retained coalitions at 16
+independent operating points. All builds were smooth-valid. The largest
+pointwise log-determinant factorization residual was
+$7.38964\times10^{-13}$; the largest residual after frequency integration was
+$2.27374\times10^{-13}$; and the largest residual after finite M\"obius
+differencing was $3.41061\times10^{-13}$. These values are consistent with
+floating-point roundoff relative to the observed externalities.
+
+The factorization answers a question that the aggregate characteristic
+functional cannot: is a finite externality produced predominantly by
+algebraic re-equilibration, action-dependent dynamic scaling, or pole motion?
+Figure~\ref{fig:factor} reports the median holdout anatomy for four registered
+examples.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figure_E05B_1_factor_anatomy.pdf}
+\caption{Exact median holdout anatomy for registered coalitions. A7--A8 is
+dominated by the algebraic factor, while A3--A6 has zero connected
+algebraic/mass contribution and is pole dominated. Small triple coefficients
+are retained rather than visually inflated.}
+\label{fig:factor}
+\end{figure}
+
+For A7--A8, the median full externality was $-0.00411289$. Its algebraic,
+mass, and pole components were $-0.00353228$, approximately zero, and
+$-0.00059089$, respectively. The leading spectral interaction is therefore
+largely an ac re-equilibration effect in the descriptor determinant, although
+it also contains a reproducible pole component.
+
+A3--A6 provides the complementary case. These two co-located action families
+act on the bus-38 PLL and current-command bandwidths. Their connected
+algebraic and mass terms are zero at the recorded precision, while the median
+pole externality is $-0.00033610$. This is a direct counterexample to the idea
+that every resolved log-determinant externality is merely an algebraic
+power-flow artifact. Ten pairs and five triples exhibit reproducible
+finite-pole externalities on the E05B holdout.
+
+The triple results require careful language. A nonzero third-order coefficient
+in $\Phi_{\mathrm{pole}}$ is a genuine third-order \emph{finite-pole
+externality}: after removing all lower-order set contributions, the pole
+factor remains non-additive. It does not show that three physical devices
+form an isolated causal loop. Such a statement would require a frozen
+localization object, a mechanism-specific intervention, and a matched negative
+control, none of which is present here.
+
+\subsection{Connected Logarithmic Derivative and Contour Moments}
+
+Differentiating only the pole factor with respect to $s$ removes the
+frequency-independent algebraic and mass factors:
+\begin{equation}
+\frac{\partial}{\partial s}\log\det(sI-A)
+=\tr[(sI-A)^{-1}].
+\label{eq:logderiv}
+\end{equation}
+Applying the finite connected difference to \eqref{eq:logderiv} gives a
+resolvent-based description of non-additive pole displacement. Registered
+closed contours then provide zeroth- and first-order moments. A certificate is
+accepted only when the contour stays clear of poles at every required action
+vertex, occupancy is consistent, quadrature refinement closes, and direct and
+connected moments agree.
+
+Three candidates met these conditions across all 16 holdout points: the pair
+A7--A8 and triples A2--A7--A8 and A2--A5--A8. For A7--A8, the median absolute
+first-moment shift was $4.74913\times10^{-3}\ \mathrm{s}^{-1}$; the median
+real and imaginary components were $4.65632\times10^{-3}$ and
+$-8.99434\times10^{-4}\ \mathrm{s}^{-1}$, respectively. Maximum numerical
+contour error was $1.24\times10^{-15}$. Both triple candidates likewise
+retained valid one-pole certificates and same-sign fraction 1.0.
+
+The A3--A6 contour did not pass. Its maximum numerical contour error was
+0.9151, leaving zero valid-resolved holdout points under the registered rule.
+This negative case is retained. The factor decomposition still proves that
+A3--A6 has a pole externality; it does not authorize a contour-localized pole
+claim for that coalition.
+
+\subsection{Relation to Return-Ratio, Impedance, and Spectral Methods}
+
+Return-difference matrices and impedance Nyquist tests diagnose feedback
+stability and interconnection effects
+\cite{macfarlane1970return,sun2011impedance,rygg2016sequence}. They can often
+be measured or assembled with fewer internal model details than
+\eqref{eq:descriptor}. Proximal eigenvalue-displacement methods identify modes
+whose coupling invalidates a first-order open-loop approximation
+\cite{dewangan2026interaction}. That recent comparator returns converter
+interaction modes from open-loop proximity and first-/second-order eigenvalue
+displacement. It overlaps with the present interest in modal interaction, but
+does not define a finite action-coalition M\"obius estimand, require a new AC
+equilibrium at every subset vertex, separate descriptor-factor externalities,
+or test the independently identified minimum-damping family. The present
+method is neither its replacement nor a new stability criterion.
+
+Its output is instead an attribution on a finite action set. The same physical
+portfolio is evaluated at every subset, and inclusion--exclusion isolates what
+belongs only to the joint finite action. The connected formula then states how
+that set-function coefficient is assembled from total operator derivatives.
+Finally, \eqref{eq:factor} asks whether the coefficient lies in algebraic
+re-equilibration, mass scaling, or finite poles. These questions are
+complementary to loop stability and modal proximity.
+
+The determinant language also requires restraint. In finite non-normal
+matrices, log determinants and contour moments are computational identities
+under their stated regularity conditions. They do not inherit the ordering,
+positivity, or causal interpretation of self-adjoint spectral-shift theory.
+This study therefore uses \emph{connected pole localization}, not spectral
+causality.

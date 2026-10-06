@@ -1,0 +1,94 @@
+VALIDACIÓN DEL MAPA ANALÍTICO DE GANANCIAS PLL — IEEE-39
+
+Resultado: TARGETED_VALIDATION_PASSED.
+Se ejecutó UN paso preregistrado: rho_i=0.875 -> 0.876 en los diez sitios.
+Tau_i=40 ms, fijos e iguales. No hubo optimización ni búsqueda
+del tamaño de paso. La predicción y los diseños se sellaron antes de la
+validación independiente. Todos los hashes de entradas congeladas coinciden.
+
+ECUACIÓN PUESTA A PRUEBA
+y = G_PLL(lambda,rho) q
+W_i = lambda^2 (1+t_fi lambda) exp(lambda tau_i) q_i/y_i
+Kp_i = Im(W_i)/Im(lambda)
+Ki_i = Re(W_i) - Re(lambda) Kp_i
+G_PLL es el retorno de la red completa con todos los PLL abiertos; depende
+de rho y de la frecuencia, pero no de las ganancias que se están calculando.
+El modelo conserva los estados ocultos de red/dispositivos. Se requieren un
+bloque oculto regular, un polo no real y denominadores y_i distintos de cero.
+Es una identidad del modelo linealizado con retraso puro. No es una solución
+analítica de toda la dinámica no lineal ni de la maximización de reemplazo.
+
+VERIFICACIÓN
+11 pares reconstruyen las ganancias conocidas: máximo error relativo
+7.265633e-08, límite 1e-5.
+9 derivadas vectoriales (3 modos x buses 30,34,38) frente a diferencias
+centradas: máximo error relativo 2.629131e-05.
+Máximo error absoluto infinito 2.964511e-01;
+se conserva este dato aunque la magnitud de las derivadas sea grande.
+Condición máxima del bloque oculto: 1.636824e+09.
+Por ello, un residuo pequeño no debe confundirse con precisión física de
+trece cifras: son comprobaciones de consistencia en coma flotante.
+Residuo de equilibrio máximo: 2.806951e-09.
+Jacobiano paramétrico frente a ForwardDiff de las ecuaciones no lineales:
+error relativo máximo 3.682265e-18.
+Objetivo: lambda=-0.8015607745+j30.8504716932 /s
+(4.910005 Hz). Es un modo PLL, no el polo dominante global.
+Error de conservación del polo: 1.510909e-13 /s;
+MAC del patrón PLL: 1.000000000000000.
+En los otros modos, la predicción de primer orden tiene error relativo
+máximo 2.791% y absoluto
+9.380979e-04 /s. El límite del 1%
+preregistrado se refiere a DERIVADAS, no al error de un paso finito.
+
+ESPECTRO COMPLETO EN LA REGIÓN DE SEGURIDAD
+El conteo numérico por argumento/traza y fase, con exponenciales exactas,
+rotación eliminada y cota de cola, devuelve cero raíces a la derecha de
+Re(s)=-0.05 /s para baseline, diseño analítico y comparador de ganancias fijas.
+No se usa Padé como verdad espectral. El conteo es numérico, no un certificado
+con aritmética de intervalos. No enumera el espectro infinito completo.
+TABLE_07 conserva errores de cuadratura, pasos de fase y radios utilizados.
+
+VALIDACIÓN NO LINEAL
+Método de pasos, Rodas5P, tol=1e-9, paso máximo 0.01 s, horizonte 60 s.
+Eventos Z-load congelados: (8,-100), (16,+100), (16,-100), (29,+100), (29,-100) MW.
+Métricas de fase de tensión en 39 buses, ventana 0.5 s.
+Eventos que pasan: 5/5.
+Máximo |Delta f| = 0.474623622 Hz; límite 0.5 Hz.
+Máximo RoCoF = 0.200774142 Hz/s; límite 0.5 Hz/s.
+Tensión = [0.972061722,1.078775249] pu; límites [0.9,1.1].
+Holgura SG mínima = 0.006341308; mínimo exigido 0.002.
+Cada restricción tiene su peor evento: frecuencia [16, -100.0],
+RoCoF [29, -100.0], actuador [16, 100.0].
+No se afirma seguridad de un limitador de corriente no modelado ni robustez
+para perturbaciones externas al conjunto ensayado.
+
+DISEÑO FACTIBLE EN ESTE ENSAYO
+GFL = 4732.818714821 MW (87.600000%).
+SG retenida = 669.942375157 MW.
+Incremento = 5.402761090 MW, o 0.1 punto porcentual.
+Los vectores completos están en designs/analytic.toml y TABLE_03.
+Este porcentaje fue prescrito, NO maximizado ni presentado como nuevo récord.
+
+RESULTADOS QUE LIMITAN LA INTERPRETACIÓN
+El comparador con ganancias fijas también pasa el margen espectral.
+Este ensayo NO demuestra que retunar fuera necesario para aceptar el paso.
+No se ejecutaron sus eventos no lineales: no se puede afirmar equivalencia
+ni superioridad de seguridad entre ambos diseños a rho=0.876.
+La gráfica de eventos compara el baseline histórico rho=0.875 con el nuevo
+rho=0.876; no aísla el efecto causal del retuning.
+La incompatibilidad de DOS polos Y patrones congelados produce residuos
+relativos entre 1.213569e-04 y
+1.331604e-03. Es una restricción de esa
+asignación; no prueba que los PLL locales sean incapaces de estabilizar.
+No se probaron retrasos heterogéneos, enlaces vecinos, compresión GSP,
+convergencia de una iteración, máximo global ni una cota de optimalidad.
+
+QUÉ CIERRA Y QUÉ SIGUE
+Se cierra la trazabilidad fórmula -> ganancias -> polo/patrón -> validación
+espectral y cinco eventos de un candidato. La ley utiliza el retorno
+colectivo de la red, aunque su implementación siga siendo PLL local.
+La ventaja práctica de diseño sigue abierta. Antes de un barrido grande,
+formular un problema de comparación que permita mover los patrones modales
+y use restricciones y presupuestos idénticos. Un conflicto con patrones
+arbitrariamente congelados no justifica cambiar la arquitectura.
+No está listo un claim de máximo reemplazo o superioridad para el póster.

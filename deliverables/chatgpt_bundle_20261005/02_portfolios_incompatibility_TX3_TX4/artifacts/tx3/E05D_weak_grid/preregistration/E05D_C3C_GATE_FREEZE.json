@@ -1,0 +1,37 @@
+{
+  "SCR_is_diagnostic_not_gate": true,
+  "amplification_alone_is_not_success": true,
+  "claim": "C3c_WEAK_GRID_MATERIAL_EXTERNALITY",
+  "freeze_id": "TX3-E05D-C3C-GATES-1.0",
+  "historical_absolute_delta_zeta_threshold": 0.0025,
+  "if_not_supported": {
+    "E05E_authorized": false,
+    "c3_mechanism_localization_authorized": false,
+    "e06_consideration_authorized": false,
+    "materiality_search_closed": true
+  },
+  "if_supported": {
+    "c3_mechanism_localization_authorized": true,
+    "e06_consideration_authorized": false
+  },
+  "route_1": {
+    "eligible_failures": [
+      "hard_composition_failure",
+      "screen_composition_failure"
+    ],
+    "replicated_failure_seed_minimum": 2,
+    "same_coalition_required": true
+  },
+  "route_2": {
+    "delta_zeta_maximum": -0.0025,
+    "destabilizing_sign_fraction_minimum": 0.75,
+    "eligible_tau_levels": [
+      0.875,
+      1.0
+    ],
+    "replicated_seed_minimum": 4,
+    "rho_comp_minimum": 0.25,
+    "same_coalition_required": true
+  },
+  "screen_damping_ratio": 0.05
+}

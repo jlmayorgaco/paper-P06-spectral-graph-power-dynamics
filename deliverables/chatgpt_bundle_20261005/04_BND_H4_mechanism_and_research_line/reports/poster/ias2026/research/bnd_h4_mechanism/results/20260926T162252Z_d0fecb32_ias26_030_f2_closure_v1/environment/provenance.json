@@ -1,0 +1,35 @@
+{
+  "baseline_git_commit": "549c3c07383c1ecc6e6a274cc7ca900f97bc47d3",
+  "baseline_run_id": "20260925T204017_549c3c07_h4_crossmode_v3",
+  "baseline_source_hashes": {
+    "experiments/tx4_contextual_return.py": "77d4ed0f76f8c4a6ec369bc30b306361cff9b789c6f432e287d5f180d9210b74",
+    "models/ieee39_case.py": "1f38a8e541780ab7205809dc1ba58bdafb6c923933f5772d46407064edc8c722",
+    "models/ieee39_devices.py": "bcf0c76be65b171b580684065cde4eb88d0433c6b4d7beefec966f8711036d90",
+    "models/ieee39_network.py": "f42144cd02a6dc779ed690fd866ad026f33eb7844584c7f10281fc7d98e3fe13",
+    "models/port_admittance.py": "b0fa694dd0111be158133a9cf8c4e36be670e50ef562dcd63f89d7ff87b8d4ef",
+    "models/port_core.py": "38c54b1a70f87fbbe2c301a717e6dd6b4112b3a9cf8deb663426ce08b729bb9b"
+  },
+  "current_git_commit": "d0fecb3264aeb855ab6700fc6ef66120d4b6c33c",
+  "current_worktree_dirty": true,
+  "equilibrium_hash_limitation": "not present in the frozen source artifacts; no new model solve performed",
+  "equilibrium_state_hash": null,
+  "execution_policy": "post-processing only; no temporary outputs outside run root; no archives",
+  "frozen_analysis_code_sha256": {
+    "reports/poster/ias2026/research/bnd_h4_mechanism/code/render_f1_f2.py": "02a41dd9c3c4fc0c0ba9ba33b71639e93dbdfb98cae929c91e3bf2ca83ac6193",
+    "reports/poster/ias2026/research/bnd_h4_mechanism/code/run_campaign.py": "8d2f54267bc5852ca21735002e34b9e6bf9864068be0255f431d3a00d9f55c09",
+    "reports/poster/ias2026/research/experiments/tx4_contextual_return.py": "77d4ed0f76f8c4a6ec369bc30b306361cff9b789c6f432e287d5f180d9210b74",
+    "reports\\poster\\ias2026\\research\\bnd_h4_mechanism\\code\\audit_finalize_f2.py": "093f38990377939837632692086053aa6b47a9689fb27c110b846cd53d1a7320"
+  },
+  "frozen_data_input_sha256": {
+    "claims/gates.json": "a06b65d2141c16a6f972ef2e7fd7ebebde9fd1a61bd8ae92db948e54294de1e4",
+    "derived/TX4_CONTEXTUAL_RETURN_AT_BOUNDARY.csv": "6bac61f319efb4216e46ec78156c1c4446c1e2cfe15c922cdb0b461ae6138e2e",
+    "derived/TX4_CONTEXTUAL_RETURN_CORE_SUMMARY.json": "8308409f4edce2e657a6f9bd67517c3422acfce961578540896eb7bb3aa70b24",
+    "derived/TX4_CONTEXTUAL_RETURN_SWEEP.csv": "2dd4559acdd847349f68faa26818687eb3a6194f5a2387bab17205955525429b",
+    "derived/TX4_PHYSICAL_LOCAL_FACTORS.csv": "4a7b1b64a4bfe39467856d36d0da798ae9106822cef69ab80073bb9e255f49d3",
+    "environment/runtime.json": "e99613e9b5848e21442f91fa33abc341e6bfc11c8db6c6c384507997c2f597b6"
+  },
+  "matplotlib": "3.10.6",
+  "numpy": "2.3.5",
+  "python": "3.13.9 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 19:09:58) [MSC v.1929 64 bit (AMD64)]",
+  "run_id": "20260926T162252Z_d0fecb32_ias26_030_f2_closure_v1"
+}

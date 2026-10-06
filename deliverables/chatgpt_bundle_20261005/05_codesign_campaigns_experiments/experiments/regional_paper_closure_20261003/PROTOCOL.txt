@@ -1,0 +1,35 @@
+PAPER CLOSURE — THEORY AND VERIFIED LINEAR ALGEBRA ONLY
+Frozen before the new evaluations, 2026-10-03.
+
+Purpose: finish a focused manuscript and test the outstanding continuous-contour
+gate without running nonlinear grid trajectories or an optimization campaign.
+The earlier algebraic and nonlinear experiments remain immutable.
+
+1. Correct the three independently reviewed theorem hypotheses: displacement
+   domain, displacement radii for asymmetric boxes, and rotational-mode exclusion.
+2. Derive the parameter-cluster Hessian and a componentwise closed-walk remainder
+   before testing them. No assertion that these general matrix tools are new.
+3. Attempt one complete IEEE-39 contour verification with complex ball arithmetic.
+   Use the preserved 87.5% baseline, uniform pure delay 0.04 s, rho increments
+   [-0.001,0.001], and ordinary gain increments +/-1% of the baseline gains.
+   Use the square centered at the decimal catalog root
+   -0.12229688588491999 + 0.32408378548166134 i, half-side 0.04.
+   This is the slow physical mode, not a claim that it limits the replacement.
+   Begin with 32 panels per edge; refine failed panels by bisection, at most
+   depth 12. Stop if the method cannot enclose a panel. Never substitute sampled
+   values for enclosures. The count and moment require their own integration
+   error bounds; reporting a contour-nonsingularity test does not certify a count.
+4. A task-local python-flint installation may supply Arb complex balls. Treat
+   CSV values parsed as float64 as the exact input model; do not claim enclosure
+   of physical or equilibrium uncertainty. Freeze package versions and hashes.
+5. The existing feasible design is at the upper corner of this parameter box.
+   Therefore a box-limited numerical optimum is expected and is NOT evidence
+   of irreducible SG support. Do not expand the box after seeing results.
+6. Verify the quadratic identity and majorant on the prior two-state DDE fixture
+   and on the three previous fixed IEEE-39 algebraic frequencies. These are
+   identity checks, not nonlinear validation or a replacement frontier.
+7. Restructure the existing open THEORY.tex in place as a focused manuscript;
+   preserve peripheral derivations in appendices and the pre-edit snapshot.
+   Add primary-literature comparisons, claim ledger, reproducibility, negative
+   results, and explicit remaining submission gates. Compile only with the
+   built-in editor. No commit, push, separate PDF, or alteration of frozen files.

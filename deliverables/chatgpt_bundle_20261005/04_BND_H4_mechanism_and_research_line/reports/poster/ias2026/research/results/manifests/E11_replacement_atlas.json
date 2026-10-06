@@ -1,0 +1,62 @@
+{
+  "experiment": "E11_replacement_atlas",
+  "seed": 20260909,
+  "config": {
+    "rho_grid": [
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "policies": [
+      "matched",
+      "unity_pf"
+    ],
+    "material_degradation": 0.005,
+    "base_zeta_min": 0.026123769254454057
+  },
+  "python": "3.13.14",
+  "platform_name": "Windows-11-10.0.26200-SP0",
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "dependencies": {
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1",
+    "networkx": "3.6.1",
+    "pyarrow": "25.0.1"
+  },
+  "started_utc": "2026-09-09T22:05:28.821138+00:00",
+  "results": {
+    "cases": 72,
+    "infeasible": 4,
+    "max_operating_point_drift_matched": 3.662010408245209e-07,
+    "base_zeta_min": 0.026123769254454057,
+    "base_spectral_abscissa": -0.12647823618208578,
+    "rho_star_matched": {
+      "30": 1.0,
+      "31": 1.0,
+      "32": 1.0,
+      "33": 1.0,
+      "34": 1.0,
+      "35": 1.0,
+      "36": 1.0,
+      "37": 1.0,
+      "38": 1.0
+    },
+    "correlations": {
+      "spearman_delta_zeta_vs_scr": {
+        "rho": -0.2333333333333333,
+        "p_value": 0.5456987782182728
+      },
+      "spearman_delta_zeta_vs_thevenin_magnitude_pu": {
+        "rho": 0.03333333333333333,
+        "p_value": 0.9321567355405039
+      }
+    },
+    "elapsed_s": 8.746955871582031
+  },
+  "status": "SUCCESS",
+  "config_sha256": "f675ccbaedbab5e2aade11556d5c2d8d110e4b9f352e081648f1b59f97fe4719",
+  "finished_utc": "2026-09-09T22:05:28.822972+00:00"
+}

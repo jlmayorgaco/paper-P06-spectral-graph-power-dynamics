@@ -1,0 +1,12 @@
+{
+  "julia_version": "1.11.9",
+  "project": "research/ias2026_last_validation/env/julia/Project.toml",
+  "manifest": "research/ias2026_last_validation/env/julia/Manifest.toml",
+  "source_hashes": {
+    "run_true_same_model_ieee39.jl": "d351a396a7adcbc57564db2bebf2047cdbd885f077b1d587f4156b109cbc99d4",
+    "frozen_gfl11.jl": "1b0359f6597a3d64ddcaf04dbc1fe52150dbcf2afdd8637e2b3ad4dae659ab0b",
+    "Project.toml": "bb10797c84a225d9563fda8c15277091c03b881d941243c5336bb2ea4fd0403e",
+    "Manifest.toml": "0f5219decf3de7a3efb91eeadaccd270645579f38c1ec463da53c6e8e7e0f458"
+  },
+  "command": "julia --project=research/ias2026_last_validation/env/julia research/ias2026_last_validation/code/julia/run_true_same_model_ieee39.jl --campaign-root <RUN_ROOT>"
+}

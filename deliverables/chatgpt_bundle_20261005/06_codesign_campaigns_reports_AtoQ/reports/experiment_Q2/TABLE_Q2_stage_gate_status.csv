@@ -1,0 +1,10 @@
+stage,status,evaluations_or_points,elapsed_seconds,evidence,optimization_allowed
+Q0,PASS_BASELINE,14 checks,not instrumented,BASELINE/TABLE_Q2_BASELINE_REGRESSION.csv,yes
+F0,PASS_CONTINUOUS_ROCOF_METRIC_DEPENDENT,60 architecture points; 1000 continuity rows,414.437,F0/TABLE_Q2_F0_frequency_metric_continuity.csv,conditional only; no unique RoCoF constraint
+F1,PASS_LOCAL_LINEAR_IDENTITY,8 designs; 16 independent PD traces,not instrumented,F1/TABLE_Q2_F1_grid_frequency_identity.csv,no unique secure optimization because Rmax metric unresolved
+F2,PASS_RESIDUE_RECONSTRUCTION,101 finite poles; 10 bus outputs,not instrumented,F2/TABLE_Q2_F2_modal_frequency_contributions.csv,no unique secure optimization because Rmax metric unresolved
+F3,PLL_DC_SUPPORT_INDEPENDENT,30 centered designs; 60 gain perturbations,not instrumented,F3/TABLE_Q2_F3_PLL_DC_support.csv,no unique secure optimization because Rmax metric unresolved
+F4,NONAFFINE,200 designs; 186 finite steady outputs,not instrumented,F4/TABLE_Q2_F4_steady_frequency_samples.csv,no affine global shortcut
+KKT,NOT_RUN,0,0,No frozen finite Rpeak measurement operator,blocked
+Continuation,NOT_RUN,0,0,No frozen finite Rpeak measurement operator,blocked
+Postfreeze_PD_TDS,NOT_RUN,0,0,No new secure candidate was frozen,blocked

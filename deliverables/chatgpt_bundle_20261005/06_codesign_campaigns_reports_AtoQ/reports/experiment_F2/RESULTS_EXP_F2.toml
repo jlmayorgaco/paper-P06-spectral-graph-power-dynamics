@@ -1,0 +1,25 @@
+powerdynamics_imported = false
+homogeneous_closed_loop_port_offdiag_ratio = 0.2807917283445948
+scalar_characteristic = "NONE: reactive network coupling is not diagonal in the F0 conductance basis"
+modal_structure = "NON_MODAL"
+heterogeneous_port_transfer_offdiag_ratio = 0.2836827293809271
+homogeneous_network_offdiag_ratio = 0.2913839107215724
+status = "NON_MODAL_STOP"
+heterogeneous_descriptor_offdiag_ratio = 0.061415305507763626
+approximate_coupling_tolerance = 0.05
+simple_PLL_limit = "tau*s^3+s^2+V*Kp*s+V*Ki; tau->0 yields the classical quadratic"
+experiment = "BND_EXP_F2"
+homogeneous_descriptor_dimension = 110
+physical_graph_source = "F0 passive generator-port conductance graph"
+heterogeneous_descriptor_dimension = 110
+selected_s_imag = 3.9211749225740378
+homogeneous_descriptor_offdiag_ratio = 2.491091916863042e-6
+gate_reason = "homogeneous detailed GFL/network pencil retains >5% off-diagonal coupling in the preregistered graph basis"
+selected_frozen_ExpC_pole = "eig94"
+selected_s_real = -0.35790147141068607
+global_dynamic_polynomial_degree_upper_bound = 90
+
+[gain_update_ranks]
+Ki = 1
+joint = 2
+Kp = 1

@@ -1,0 +1,37 @@
+% Green research header; compile this file for its own preview.
+\long\def\PosterSectionContent{%
+\fill[IASHeaderGreen] (0,0) rectangle (\PosterGridWidthMm,\PosterGreenHeightMm);
+\fill[IASGold] (0,85) rectangle (\PosterGridWidthMm,\PosterGreenHeightMm);
+\fill[IASGold] (19,14) rectangle (21,71);
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,
+  font={\PosterHeaderEyebrow},text=IASGold] at (30,79)
+  {BEYOND NODAL DAMPING};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,
+  font={\PosterHeroTitle},text=IASWhite] at (28,67)
+  {LOCAL TUNING. COLLECTIVE EFFECTS.};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,
+  font={\PosterHeaderSubtitle},text=IASWhite] at (30,35)
+  {Delay-aware PLL co-design: interaction laws and IEEE-39 validation};
+\node[anchor=north west,inner sep=0pt,outer sep=0pt,
+  font={\PosterHeaderByline},text=IASWhite] at (30,20)
+  {Jorge Luis Mayorga Taborda\quad |\quad Universidad de los Andes, Colombia};%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewFullPageWidth}
+  \def\PosterPageHeight{\PosterPreviewGreenPageHeight}
+  \def\PosterPreviewLeft{\PosterOuterMargin}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+\begin{tikzpicture}[x=1mm,y=1mm]
+\useasboundingbox (0,0) rectangle (\PosterGridWidthMm,\PosterGreenHeightMm);
+  \PosterSectionContent
+\end{tikzpicture}
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

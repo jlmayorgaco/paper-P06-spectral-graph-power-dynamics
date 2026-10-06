@@ -1,0 +1,123 @@
+THEORY CLOSURE — 3 October 2026
+
+PRIMARY DECISION
+Develop the all-PLL return relation and an analytical gain map before another
+design campaign. It is a full-linearization eigenstructure construction with
+pure delays, not an exact nonlinear safety certificate.
+
+PROBLEM: increasing SG replacement changes the entire network/device return.
+GAP TO CLOSE HERE: the earlier one-site retuning law did not supply simultaneous
+gains for all sites at a new replacement and prescribed collective pattern.
+INSIGHT: at fixed pole and pattern, all local PI gains follow from complex
+division; several patterns impose an exact real compatibility condition.
+FALSIFYING TEST: the construction cannot reproduce known gains, or its restricted
+pattern conflicts do not explain useful designs after patterns are allowed to vary.
+CONSEQUENCE IF VALIDATED: predict admissible retuning and choose informative
+neighbor signals using the full return, with communication delay included.
+
+WHAT IS CLOSED MATHEMATICALLY
+1. Simultaneous opening of all PLL triples; exact F(s) with no Pade.
+2. Explicit all-site gain map for a prescribed nonreal pole and PLL pattern.
+3. Necessary/sufficient local gain compatibility for several fixed patterns.
+4. Necessary/sufficient added-signal range test and minimum weighted extra gain.
+5. Exact frequency-dependent commutator obstruction for invertible polynomial
+   graph filters applied to delayed source errors.
+6. Gain-map derivatives and a declared continuation/SQP predictor-corrector.
+
+ADVERSARIAL SCOPE REVIEW
+- G must be formed after opening all PLLs. The previous single-site G_i depends
+  on the other controllers and cannot simply be substituted into the all-site law.
+- Nonsingular eliminated blocks and nonzero detector responses are essential.
+- Gains, equilibrium and physical state support must follow the actual model.
+- The eigenvector is a physical PLL-angle pattern, not automatically a Laplacian
+  eigenvector. Lossy heterogeneous networks need not diagonalize in a graph basis.
+- Assignment can succeed while unassigned poles are unstable. Pole multiplicity
+  and conditioning also need checks.
+- An infeasible fixed-pattern target is not a bound on all local stabilization.
+- The neighbor formula assumes unbounded self gains. With any actual bounds,
+  the exact constrained linear feasibility/QP problem is required.
+- Neighbor feedback changes the controller architecture, exposes new signals,
+  and adds physical communication latency. Its cost/bounds must be fixed first.
+- Full-rank modal samples are required; a redundant neighbor adds no capability.
+- A norm on raw coefficients is a declared tuning metric, not automatically
+  actual actuator effort. Fix physical signal scaling and gain normalization.
+- No structural fixed-mode or global replacement theorem follows from these
+  compatibility tests. Simple counting is not a controllability proof.
+- The nonlinear operational metric definitions are retained. No claim about
+  nadir, windowed RoCoF, voltage or actuator margin follows from assignment.
+- Allowing the full pattern to vary does not reduce dimension automatically.
+- All linear-algebra/projection steps have established precedents; novelty
+  depends on the PLL/network-specific result and its demonstrated usefulness.
+
+LITERATURE CAPABILITY BOUNDARY (primary sources checked)
+
+Huang, Xin, Dong, Doerfler, 2019; arXiv:1903.05489.
+Full text previously read. Network Kron reduction, modal PLL/grid analysis,
+retuning and IEEE-39 already exist. Their modal separation uses explicit
+homogeneity assumptions; those assumptions cannot be imposed on this model.
+
+Ram, Mottershead, Tehrani, 2011; DOI 10.1016/j.laa.2010.07.014.
+Publisher PDF accessed via University of Groningen:
+https://pure.rug.nl/ws/portalfiles/portal/173361406/1_s2.0_S0024379510003794_main.pdf
+Sections 1-3 inspected. Symmetric second-order mechanical plant, state feedback
+and receptances; partial delayed pole assignment with preservation of original
+unassigned modes. This is a direct ancestor of the assignment/spillover idea.
+It is not our nonlinear SG/GFL model or a nonlinear security frontier.
+
+Katewa and Pasqualetti, 2021; DOI 10.1109/TAC.2020.3018615.
+Author-hosted publisher PDF, sections I-III inspected:
+https://cps.iisc.ac.in/faculty/vaibhav/Papers/2021TACMininumGainPolePlacement.pdf
+Sparse static state feedback, minimum-gain pole/eigenstructure assignment,
+analytical local conditions and iterative projected methods. Joint eigenvectors
+and feedback make the problem nonconvex. Discusses fixed modes and restrictions
+of sparse static controllers. We cannot claim eigenstructure projection or
+sparse feedback optimization as a new mathematical principle.
+
+Vanbiervliet, Verheyden, Michiels, Vandewalle, 2008;
+DOI 10.1051/cocv:2007060.
+Publisher/archive PDF abstract and model inspected:
+https://www.numdam.org/item/10.1051/cocv:2007060.pdf
+Fixed delays, parameter-dependent retarded systems, nonsmooth spectral-abscissa
+optimization, and continuation of nonlinear equilibria. This prevents claiming
+that fixed-delay spectral continuation itself is new.
+
+Mao and Dai, 2013; DOI 10.3934/naco.2013.3.207.
+Publisher record/abstract inspected, not full algorithm:
+https://www.aimsciences.org/article/doi/10.3934/naco.2013.3.207
+Partial eigenvalue assignment with delay-robustness sensitivity and analytic
+gradient optimization. No detailed head-to-head algorithm claim is made.
+
+Coffey, Harrison, Egea-Alvarez, Xu, 2025;
+DOI 10.1109/ACCESS.2025.3586197.
+Author-repository full PDF, abstract/model-comparison scope inspected:
+https://strathprints.strath.ac.uk/93452/1/Coffey-etal-IEEEAccess-2025-Assessing-the-capability-and-limitations-of-small-signal-simplified.pdf
+Compares full, reduced and simplified GFL models; reduced descriptions miss
+important subsynchronous dynamics in some parameter regions. Supports the
+full-model validation requirement; does not validate our own reduction.
+
+Chakraborty, Pal, Maleki, 2025; arXiv:2505.24204.
+Primary preprint PDF abstract/introduction inspected:
+https://arxiv.org/pdf/2505.24204
+GFL plant power-oscillation damping versus GFM and PSS in a two-area system.
+An auxiliary P/Q action differs from the permitted PLL-only action set.
+It is an architecture comparator, not a reproduced baseline.
+
+RECENCY LIMIT
+The search included 2025/2026 coordinated PLL/GFL tuning. A 2026 adaptive
+PLL/feedforward paper appeared in publisher search results, but its full text
+could not be inspected reliably. It is not used to establish originality.
+This is a focused novelty boundary, not an exhaustive priority certificate.
+
+NEXT VALIDATION, STILL UNEXECUTED
+A. Reconstruct gains from the full-model eigenpair at existing frozen designs.
+B. Verify the explicit gain differential and multi-mode compatibility on
+   held-out simple modes. Fix all numerical tolerances before execution.
+C. Test one finite replacement continuation with the exact gain map, complete
+   spectral validation and all five frozen nonlinear events.
+D. Compare the predictor with an ordinary full-model SQP using identical
+   bounds, initialization, constraints and evaluation budget.
+E. Investigate neighbors only if local conflicts survive releasing arbitrary
+   fixed-pattern constraints; declare link delays and costs beforehand.
+
+No numerical improvement, maximum replacement, global bound or new stable
+controller has been generated by this theory closure.

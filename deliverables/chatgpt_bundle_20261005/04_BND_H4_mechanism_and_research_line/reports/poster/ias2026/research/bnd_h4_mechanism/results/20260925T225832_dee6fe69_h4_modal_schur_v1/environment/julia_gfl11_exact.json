@@ -1,0 +1,8 @@
+{
+  "julia_version": "1.11.9",
+  "command": "julia --project=research/ias2026_last_validation/env/julia code/tx4/run_tx4_exact_p4_ieee39.jl --campaign-root <RUN_ROOT>",
+  "runner_sha256": "7af3df03d627c4d7f4e9e804e193a10472d7eee71992e9cad0fec57285cf4c22",
+  "handoff_sha256": "77eb7e0fca62074768b83aa78b25082153f80c2d33e742a3c4e84ab7e5a9510d",
+  "state_count_gate": "PASS_86_STATES",
+  "portfolio_gate": "PASS_16_CASES"
+}

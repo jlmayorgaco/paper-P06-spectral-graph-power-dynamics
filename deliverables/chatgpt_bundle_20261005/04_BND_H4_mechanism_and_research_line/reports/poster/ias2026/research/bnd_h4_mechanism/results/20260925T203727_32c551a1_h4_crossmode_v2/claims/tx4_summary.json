@@ -1,0 +1,42 @@
+{
+  "audit": {
+    "n_portfolios": 9,
+    "tolerance_rows": 27,
+    "max_numpy_scipy_eig_error": 0.0,
+    "pass": true,
+    "descriptor": "NOT_AVAILABLE"
+  },
+  "core": {
+    "g_eigen_boundary": 0.20768140519037842,
+    "g_return_minimum": 0.20768140481809155,
+    "g_return_grid_minimum": 0.2076814045,
+    "g_boundary_difference": 3.7228686800006017e-10,
+    "root_iterations": 26,
+    "alpha_P4": 0.12700646782830968,
+    "alpha_after": -0.017384676061556643,
+    "frequency_root_hz": 0.706424788006417,
+    "local_sigma_min_root": 1.0,
+    "collective_sigma_min_root": 4.3936703686787105e-08,
+    "eta_H": 0.12083120539406678,
+    "tau_H": 1.3069396516158314,
+    "nearest_Q_eigenvalue_to_minus_one": [
+      -1.0000000690223476,
+      8.670802298382796e-09
+    ],
+    "max_boundary_schur_residual": 2.2959283690665653e-16,
+    "max_return_derivative_error": 2.662806050493975e-07,
+    "minimality_all_proper_stable": true,
+    "newton_or_bisection_iterations": 26
+  },
+  "physical_local": {
+    "min_physical_local_sigma": 0.2767179149831672,
+    "root_physical_local_sigma": 0.4892354857736281,
+    "root_device_values": {
+      "30": 0.4892354857736281,
+      "33": 0.5105975234826342,
+      "35": 0.6573261566216759,
+      "37": 0.7274986138622632
+    },
+    "rows": 72
+  }
+}

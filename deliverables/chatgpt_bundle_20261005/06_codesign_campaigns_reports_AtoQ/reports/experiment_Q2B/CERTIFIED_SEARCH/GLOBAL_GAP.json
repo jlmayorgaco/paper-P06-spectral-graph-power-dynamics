@@ -1,0 +1,13 @@
+{
+  "lower_MW": 0.0,
+  "upper_MW": 312.52328843513294,
+  "gap_MW": 312.52328843513294,
+  "replacement_fraction_gap_percentage_points": 5.784510609118134,
+  "global_certified": false,
+  "lower_scope": "Nonnegative retained dispatch; exact trivial bound",
+  "upper_scope": "Numerically certified analytical feasibility plus independent primary nonlinear event",
+  "local_scope": "Fixed-support numerical KKT/SOSC; strict one-sided insertion witnesses",
+  "unresolved_supports": 1024,
+  "formal_interval_proof": false,
+  "stronger_Bernstein_bound": "Attempted; inconclusive and NOT admitted as rigorous lower bound"
+}

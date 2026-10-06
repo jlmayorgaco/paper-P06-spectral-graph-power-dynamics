@@ -1,0 +1,67 @@
+# Final closure report
+
+All numerical values below are read from the executed tables and the selected five-event design. Critical-delay root coverage is numerical, not interval certified. The positive-delay time-domain result is linear.
+
+FINAL_CLOSURE_STATUS: BEST_VALIDATED_DESIGN_FOUND; MAXIMUM_NOT_ESTABLISHED
+FIXED_GFL_PERCENT: 88.455140785
+FIXED_GFL_MW: 4779.019928394
+FIXED_RETAINED_SG_MW: 623.741161585
+PENDING_41MS_CANDIDATE: pending_41ms
+PENDING_CANDIDATE_TRUE_TAU_CRIT_MS: 41.04999269707394
+PENDING_CANDIDATE_FEASIBLE: ACCEPTED
+ZERO_DELAY_TUNED_TAU_CRIT_MS: 37.387187500
+NOMINAL_TAU_CRIT_MS: 39.383359375
+PREVIOUS_BEST_TAU_CRIT_MS: 40.844903557
+FINAL_BEST_VALIDATED_TAU_CRIT_MS: 43.797191610
+TOTAL_RECOVERY_VS_ZERO_DELAY_MS: 6.410004110
+TOTAL_RECOVERY_VS_ZERO_DELAY_PERCENT: 17.144922
+RECOVERY_VS_NOMINAL_MS: 4.413832235
+FINAL_RHO: [0.88625, 0.88625, 0.88625, 0.88625, 0.88625, 0.88625, 0.8835994479151296, 0.88625, 0.8824044839323419, 0.8696437304514312]
+FINAL_KP: [25.303240346311043, 27.360286833794056, 29.899553873796478, 27.77263460857402, 27.205795255247335, 25.001896748983558, 27.39103255896746, 28.332391844884718, 31.45374231458604, 25.85478678957632]
+FINAL_KI: [242.93797598221724, 246.74011002723395, 244.8055797813603, 246.52888503654455, 246.74011002723395, 250.7161618304582, 239.88537160250655, 246.74011002723395, 257.6202302058993, 246.7176633752432]
+OPTIMIZATION_CONVERGED: NO
+CONVERGENCE_REASON: No full-model KKT/no-material-improvement/active-ceiling criterion met; latest accepted step still improved materially
+KKT_RESIDUAL: FULL_MODEL_NOT_ESTABLISHED; local LP 4.4409e-15
+NUMBER_ACTIVE_DELAYED_FAMILIES: 5 within declared 0.05 ms numerical band
+ACTIVE_FAMILY_IDS: F3, F3, F1, F2, F4_new_orthogonal (nearest-reference provisional labels)
+ACTIVE_FAMILY_FREQUENCIES_HZ: 4.572753, 4.550949, 4.499874, 4.384644, 4.696811
+ACTIVE_FAMILY_TAU_CRIT_SPREAD_MS: 0.001193576
+MODAL_EQUALIZATION: NEAR_BALANCE_NUMERICAL; not optimum
+MODAL_SWITCH_CONFIRMED: SUPPORTED_NUMERICALLY by low reference MAC; continuity labels not certified
+MIN_KEY_FAMILY_MAC: 0.006456667
+ACTUATOR_CONSTRAINT_ACTIVE: NO strict nominal activity; local LP surrogate active
+ACTUATOR_VALUE: 0.002020306
+ACTUATOR_LIMIT: 0.002000000
+ACTUATOR_RESERVE: 0.000020306
+ZERO_DELAY_ALPHA: -0.080148351
+ALL_FIVE_ZERO_DELAY_EVENTS_PASS: TRUE
+MAX_ZERO_DELAY_FREQ_DEVIATION: 0.490018849
+MAX_ZERO_DELAY_ROCOF: 0.205474354
+WORST_FROZEN_EVENT: bus16_plus100 by actuator slack
+POSITIVE_DELAY_TIME_DOMAIN: V2 NUMERICAL METHOD OF STEPS FOR THE FULL LINEAR DDE (NO PADE)
+BELOW_THRESHOLD_RESULT: DECAY
+NEAR_THRESHOLD_RESULT: DECAY
+ABOVE_THRESHOLD_RESULT: GROWTH
+MULTISTART_CONSISTENCY: NOT_TESTED
+GENERIC_OPTIMIZER_BEST_TAU_MS: NOT_RUN
+ANALYTICAL_METHOD_BEST_TAU_MS: 43.797191610
+FULL_MODEL_EVALUATION_SAVINGS: NOT_MEASURED
+EXACT_GAIN_ACTION_RANK: ≤10 for 20 gain variables at fixed rho
+MAX_RECONSTRUCTION_ERROR: 2.9799e-14 relative over checked designs
+PARETO_FRONTIER: NOT_OPTIMIZED; FIG_F3 shows evaluated points only
+NOMINAL_VS_LATENCY_TRADEOFF: observed -alpha0=0.080148351 s^-1 at tau=43.797191610 ms
+ROBUSTNESS_AUDIT: +101 MW at step11: actuator slack 0.0005561030099708875 < 0.002, one-event FAIL; reserve design +101 MW: actuator slack 0.0005711688410848792 < 0.002; step12 tiny +101 MW: actuator slack 0.0005711108323159797 < 0.002; Kp33 -1% at step12 tiny: actuator slack 0.0020184096495678983; step13 +101 MW: actuator slack 0.0005713184315224717; step13 +100.01 MW PASS; +100.02 MW FAIL; ±1% ZIP-load cases reequilibrated but numerical solver did not complete
+ROBUST_DESIGN_TAU_CRIT_MS: 43.797191610 nominal 0.002020000 actuator-reserve target met; no +101 MW robustness claim
+STRONGEST_EXACT_RESULT: Gain-induced linear action factorization rank ≤10 at fixed rho
+STRONGEST_ANALYTICAL_RESULT: Simple-root latency derivative and multimode lower-envelope formula
+STRONGEST_PHYSICAL_RESULT: Five frozen zero-delay nonlinear events pass at unchanged replacement
+STRONGEST_NUMERICAL_RESULT: Validated characteristic critical delay 43.797191610 ms; gain +17.145% versus Z
+STRONGEST_NEGATIVE_RESULT: +101 MW event defeats step11 and nominal-reserve design actuator guards; no nonlinear delayed safety result
+POSTER_READY: NO for maximum/robust-safety headline
+RECOMMENDED_TITLE: Multimode PLL latency tuning at fixed 88.455% GFL replacement on IEEE-39
+HEADLINE_CLAIM: Best validated gain tuning moves the numerical spectral latency margin from 37.387 to 43.797 ms at unchanged replacement and passes five zero-delay events
+HEADLINE_EQUATION: tau_crit(K)=min_m tau_m(K),  grad_K tau_m=-(grad_K Re lambda_m)/(partial_tau Re lambda_m)
+HEADLINE_NUMBER: +6.410 ms / +17.14% versus Z
+HEADLINE_FIGURE: FIG_F1_LATENCY_MARGIN_OPTIMIZATION.png
+IF POSTER_READY = NO: Full delayed nonlinear event validation is absent; maximum/optimality claim also needs convergence and comparative checks
+EXACT_SINGLE_BLOCKER: No validated nonlinear positive-delay DDE event simulations.

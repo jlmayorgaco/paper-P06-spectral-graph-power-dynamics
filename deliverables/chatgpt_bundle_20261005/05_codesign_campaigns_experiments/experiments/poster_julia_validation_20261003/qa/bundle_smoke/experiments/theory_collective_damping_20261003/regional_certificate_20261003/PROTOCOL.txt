@@ -1,0 +1,39 @@
+THEORY-FIRST REGIONAL REPLACEMENT CERTIFICATE — 2026-10-03
+
+Question: can the missing finite Taylor remainder be bounded from the actual
+characteristic operator, without fixing eigenvectors or assuming simple roots?
+
+Scope: derive a contour-cluster moment identity, a finite uniform remainder,
+the physical-model parameter remainder, and a regional replacement upper
+relaxation. Delays are fixed, possibly heterogeneous. Gains remain local.
+Ordinary gain coordinates are used because PLL injections are affine in them.
+No gain bound is enlarged. No equilibrium model is replaced by a lossless graph.
+
+The theorem will be written before the following small verification checks:
+1. Exact symbolic network-inverse remainder for an affine algebraic block.
+2. Determinant-factorization identity and trace closed-walk decomposition.
+3. A two-state pure-DDE fixture:
+   Delta=diag(s+1,s+2)-p*exp(-s/10)*[[1,1],[1,-1]],
+   p in [-1/100,1/100], contour center -1, radius 1/4.
+   Prove the entire-contour bound analytically with rational inequalities.
+   Then numerically check p=-.01,-.005,0,.005,.01 at 256 quadrature nodes,
+   and at 512 only to check quadrature consistency. No power-grid trajectory.
+4. One fixed perturbation of the frozen IEEE-39 matrix export, seed 20261003:
+   rho half-width .001, ordinary Kp/Ki half-width 1% of baseline.
+   Check exact full-characteristic versus low-rank factorization at
+   s=-.05+j*2*pi*f for f=.5,5,10 Hz; fixed heterogeneous tau linspace(0,.04,10).
+   These are algebraic evaluations, not equilibrium/spectral/event validation.
+   Residual tolerance 1e-9 normalized; do not turn pointwise bounds into a
+   uniform IEEE-39 certificate.
+5. Exact rational dual-bound fixture for a declared two-constraint relaxation.
+
+Claims:
+EXACT_IDENTITY — algebraic identities with their stated regularity assumptions.
+PROVED_REDUCED_MODEL — the necessary regional LP and analytic toy-DDE bounds.
+NUMERICALLY_VALIDATED — only the listed floating-point identity checks.
+BLOCKED — no evaluated IEEE-39 uniform contour/design-domain bounds, no
+certified regional replacement number, no global optimum, no superiority claim.
+
+All old experiment outputs stay read-only. Snapshot the open THEORY.tex before
+in-place editing. Preserve old provenance. Do not run simulations, optimize
+IEEE-39, install packages, commit, push, or compile a separate PDF.

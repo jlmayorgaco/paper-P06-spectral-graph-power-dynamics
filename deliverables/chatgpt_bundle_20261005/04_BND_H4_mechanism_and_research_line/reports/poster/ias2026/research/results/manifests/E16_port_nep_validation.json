@@ -1,0 +1,59 @@
+{
+  "experiment": "E16_port_nep_validation",
+  "seed": 20260909,
+  "config": {
+    "core": [
+      30,
+      33,
+      35,
+      37
+    ],
+    "probes": [
+      "(3+7j)",
+      "(-1+2.5j)",
+      "(0.2+3.6j)",
+      "(5-4j)",
+      "(-0.5+1j)"
+    ]
+  },
+  "python": "3.13.14",
+  "platform_name": "Windows-11-10.0.26200-SP0",
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "dependencies": {
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1",
+    "networkx": "3.6.1",
+    "pyarrow": "25.0.1"
+  },
+  "started_utc": "2026-09-10T00:38:58.424606+00:00",
+  "results": {
+    "port_dimension": 78,
+    "action_dimension": 8,
+    "state_space_dimension": 82,
+    "base_modes_visible": 68,
+    "base_modes_total": 68,
+    "flagship_modes_visible": 80,
+    "flagship_modes_total": 80,
+    "update_rank": 8,
+    "finite_difference_floor_relative": 6.353073031508855e-07,
+    "lemma_max_relative_error": 4.75307815697259e-06,
+    "created_mode": {
+      "real": 0.14467022043327096,
+      "imag": 3.6108277568825344
+    },
+    "split": {
+      "abs_full": 4.1832764448951946e-08,
+      "sigma_min_full": 5.512701649682281e-08,
+      "abs_individual": 0.11586325454889851,
+      "abs_collective": 3.610529040287622e-07,
+      "spectral_radius_q": 1.0000001549039121,
+      "sigma_min_i_plus_q": 9.673946056140561e-08
+    },
+    "elapsed_s": 0.6858868598937988
+  },
+  "status": "SUCCESS",
+  "config_sha256": "334ca66834a63afd50c4e2b1a65d36551d1c9e9478f131c1d926e9f0efb85497",
+  "finished_utc": "2026-09-10T00:38:58.425201+00:00"
+}

@@ -1,0 +1,111 @@
+REVISIÓN DE LITERATURA Y SÍNTESIS ESCÉPTICA
+Fecha: 2026-10-04. Revisor independiente; fuentes primarias. Sin simulaciones ni cambios en resultados.
+
+DICTAMEN
+
+La candidata más próxima a una contribución teórica útil es ahora la identidad FINITA NO LINEAL que relaciona el área firmada de frecuencia COI con dos estados estacionarios y con el desajuste espacial entre amortiguamiento e inercia. Su posible consecuencia más fuerte es un límite de control: preservar los estados extremos y la energía neta de una intervención preserva esa área, incluso cuando el controlador cambia mucho los modos y el nadir. La identidad aislada se obtiene mediante un balance integrado bastante corto; la publicación debe apoyarse en una consecuencia operacional no vacua y en hipótesis precisas, no en la dificultad del álgebra.
+
+No encontré la fórmula exacta de área COI por extremos en las fuentes primarias examinadas. Esto NO demuestra prioridad universal. Sí encontré un antecedente muy directo de septiembre/octubre de 2026 que debe compararse explícitamente: Kohlhaas y Kotyczka preservan RoCoF inicial y frecuencia final mediante amortiguamiento con potencia agregada nula. Solo pude verificar su resumen, no el artículo completo. La afirmación genérica de que una restricción de área exige sobrepaso es anterior, incluso para sistemas no lineales y almacenamiento energético.
+
+ORDEN DE LAS CANDIDATAS
+
+1. Identidad no lineal por extremos + límite para control de energía neta nula: mejor relación entre resultado cerrable y decisión concreta. Permite preguntar si modificar únicamente la forma del transitorio puede eliminar todo cruce de la frecuencia final. Debe verificarse que el criterio se activa dentro de un dominio estable, cohesivo y físicamente plausible.
+2. Invariantes exactos de momentos bajo retuning PLL: resultado más próximo al modelo SG/GFL detallado ya implementado. La maquinaria es clásica y falta justificar por qué preservar ese momento es una exigencia útil. Requiere comparar el mismo corrector multimodo con y sin la igualdad de momento; no basta mostrar que se puede cumplir una igualdad más estabilidad.
+3. Exclusión certificada de toda una caja de ganancias PLL + reparación física: potencial práctico mayor, pero actualmente mayor distancia entre ambición y evidencia. La imposibilidad debe cuantificar sobre todas las ganancias y todos los patrones modales permitidos, no sobre un modo o dirección congelados. Un optimizador que falla, una sensibilidad desfavorable o un cribado puntual no prueban imposibilidad.
+4. Reemplazo contextual con reentrancia: objeto de planificación útil, pero no monotonicidad ni interacción entre intervenciones son novedades generales. Su contribución exigiría una regla/algoritmo que cambie decisiones frente a alternativas razonables y certifique exactamente su ámbito. Un bloque mínimo inestable requiere revisar TODOS sus subconjuntos propios cuando no hay monotonicidad; revisar solo los predecesores inmediatos no basta.
+5. m_app lineal por pseudoinversa: buen lema explicativo y límite de pequeña señal del punto 1. Por sí solo parece una aplicación corta de reducción de Schur/expansión en frecuencia. No identificarlo con inercia física ni con un estimador basado en RoCoF inicial.
+
+FUENTES DIRECTAS Y DISTINCIONES
+
+[1] F. Paganini y E. Mallada, Global Analysis of Synchronization Performance for Power Systems: Bridging the Theory-Practice Gap, IEEE TAC 65(7), 2020.
+Texto completo: https://mallada.ece.jhu.edu/pubs/2020-TAC-PM.pdf
+Verificado: modos de sincronización, respuesta agregada y residual, hipótesis proporcionales en resultados principales y extensiones a heterogeneidad; sección VI-A/Lema 7 preservan respuesta DC. No presentar toda la referencia como limitada a máquinas idénticas. Nuestra posible diferencia es el área firmada exacta para una perturbación finita no lineal y su expresión mediante extremos; DC invariante y separar el modo de rotación ya están establecidos.
+
+[2] H. Min, F. Paganini y E. Mallada, Accurate Reduced-Order Models for Heterogeneous Coherent Generators, IEEE LCSS, DOI 10.1109/LCSYS.2020.3043733.
+Texto completo: https://mallada.ece.jhu.edu/pubs/2021-LCSS-MPM.pdf
+Preprint: https://arxiv.org/abs/1909.12864
+Verificado: agregado coherente g_hat=(sum_i g_i^-1)^-1, aproximación en bandas compactas al crecer la conectividad, y reducción de generadores heterogéneos. Para g_i=1/(m_i s+d_i), el agregado coherente usa sumas de inercia/amortiguamiento. El término b^T L^dagger b se posicionaría como corrección de conectividad finita a un momento COI, no como descubrimiento de agregación dependiente de red.
+
+[3] S. Kohlhaas y P. Kotyczka, Structured Modal-Energy Dissipation for Inter-Area Oscillations in Low-Inertia Power Systems, RE Grid Integration Week 2026, contribución 111.
+Resumen primario: https://coms.events/regridweek2026/data/abstracts/en/abstract_0094_0111_0653.html
+VERIFICACIÓN LIMITADA AL RESUMEN. Propone amortiguamiento proporcional distribuido que agrega y retira potencia con suma cero instantánea. Prueba invariancia de RoCoF COI inicial y frecuencia final; reporta nadir prácticamente inalterado numéricamente. Evalúa Kundur aumentado y redes mayores. Es el antecedente más cercano a la clase de intervención propuesta. Diferencia candidata: área COI exacta bajo D heterogéneo y límite de sobrepaso para TODA intervención convergente con energía agregada neta cero y los mismos extremos. No atribuir al artículo ausencia de un teorema no visible en el resumen.
+
+[4] F. Aalipour y T. Das, Shaping the Transient Response of Nonlinear Systems to Satisfy a Class of Integral Constraints, Advances in Control Applications 4(3), e110, 2022, DOI 10.1002/adc2.110.
+Texto completo: https://arxiv.org/pdf/2012.12493
+Verificado: áreas firmadas, excursiones compensatorias y sobrepaso necesario bajo ciertas restricciones integrales; motivación en fuente/almacenamiento y seguimiento de carga. Su Lema 1 determina un área mediante el estado estacionario de un compensador integral. Por tanto, ni «área negativa obliga a sobrepaso» ni «balance energético produce una restricción integral» son principios nuevos. La contribución posible reside en identificar exactamente esa área mediante el flujo de potencia, D/M y extremos del sistema interconectado, y extraer una regla verificable antes de diseñar el controlador.
+
+[5] C. De Persis y N. Monshizadeh, Bregman Storage Functions for Microgrid Control, IEEE TAC 63(1), 53–68, 2018, DOI 10.1109/TAC.2017.2709246.
+Texto completo: https://pure.rug.nl/ws/files/54514412/Bregman_Storage_Functions_for_Microgrid_Control.pdf
+Preprint: https://arxiv.org/abs/1510.05811
+Verificado: funciones de almacenamiento incrementales/Bregman para control no lineal de microrredes, incluyendo acoplamiento angular y de tensión. La interpretación de una diferencia finita de gradientes como energía Bregman simetrizada es clásica. Lo que habría que demostrar como aplicación específica es su igualdad con el área COI y la consecuencia sobre energía neta de control; no anunciar una nueva teoría de energía incremental.
+
+[6] G. Pinheiro, J. H. Chow, F. Milano y D. Dotta, Analytical Framework for Assessing Effective Regional Inertia, preprint 2025.
+Texto completo: https://arxiv.org/html/2511.02574v1
+Registro: https://arxiv.org/abs/2511.02574
+Verificado: inercia nodal/regional dependiente de topología y localización, divisor de frecuencia, RoCoF inicial, agrupación de coherencia; añadir un dispositivo inercial puede empeorar una respuesta local. Es obligatorio distinguir observables: su métrica usa respuesta inicial, mientras m_app propuesta usa el área firmada de largo plazo. «Inercia efectiva dependiente de topología» no sería un reclamo nuevo. No se verificó aquí el estado editorial posterior del preprint.
+
+[7] J. Björk et al., Influence of Sensor Feedback Limitations on Power Oscillation Damping and Transient Stability, IEEE TPWRS, DOI 10.1109/TPWRS.2021.3101834.
+Texto primario: https://arxiv.org/html/1911.03342v3
+Verificado en revisión anterior: limitaciones de sensores locales y compromisos entre amortiguamiento interárea y transitorio, derivados en un modelo de dos máquinas y contrastados en Kundur. El límite propuesto aquí tendría otro cuantificador: conservación de energía agregada y extremos, incluso con medición global y control no lineal. No sería el primer límite fundamental para control local de oscilaciones.
+
+[8] X. Peng et al., Stability Degradation Induced by Angle–Voltage Coupling in Power Systems: Bode-Type Fundamental Performance Limitation Analysis, 2026, DOI 10.1109/TASE.2026.3676916.
+Repositorio de autores: https://github.com/lingo01/Waterbed_Effect
+Artículo: https://github.com/lingo01/Waterbed_Effect/blob/main/Article_Waterbed_Effect.pdf
+Verificado en revisión anterior: leyes integrales de sensibilidad y redistribución de desempeño entre canales ángulo/tensión, con hipótesis racionales y de grado relativo. Contrapunto directo al lenguaje «conservación de desempeño». No equivale a una identidad no lineal de área COI para perturbaciones finitas. Tampoco permite confundir autovalores de sensibilidad con normas de rechazo en sistemas no normales.
+
+[9] S.-H. Wang y E. J. Davison, On the Stabilization of Decentralized Control Systems, IEEE TAC 18(5), 473–478, 1973.
+Registro primario NASA: https://ntrs.nasa.gov/citations/19730059019
+Acceso a resumen/metadata, sin texto descargable. La imposibilidad estructural de estabilizar mediante control descentralizado y los modos fijos son clásicos. A. Alavian y M. C. Rotkowitz generalizan y completan las pruebas para arquitecturas arbitrarias en Constructive Stabilization and Pole Placement by Arbitrary Decentralized Architectures:
+https://arxiv.org/abs/1704.01674
+Una caja acotada de ganancias PI/PLL con retardos exactos es una familia mucho más restringida que todos los controladores dinámicos LTI. No confundir imposibilidad dentro de esa caja con un modo fijo descentralizado, ni presentar un modo poco sensible como incontrolable.
+
+[10] J. Wilson, A. Nelson y B. Farhang-Boroujeny, Parameter Derivation of Type-2 Discrete-Time Phase-Locked Loops Containing Feedback Delays, IEEE TCAS-II 56(12), 886–890, 2009.
+Texto completo: https://span.ece.utah.edu/uploads/Parameter_derivatrion_DT_PLL_with_delays.pdf
+Ya existen compensación de retardo mediante ganancias y separación entre objetivos de polos y estabilidad del PLL. La diferencia potencial del trabajo actual es la identidad de momento distribuida por sitios en el modelo completo, no compensar un retardo con Kp.
+
+[11] W.-J. Beyn, An Integral Method for Solving Nonlinear Eigenvalue Problems, LAA 436(10), 3839–3863, 2012.
+Texto completo: https://arxiv.org/pdf/1003.1580
+El residuo de Keldysh de un polo simple y su normalización con vectores izquierdo/derecho son maquinaria estándar. Lo mismo debe reconocerse para la extracción por contorno de momentos espectrales. Las auditorías locales ya muestran que la atribución fija en s de logdet puede depender de la normalización analítica; no rescatar esa atribución como nueva medida física sin fijar su contrato.
+
+PROPUESTA CONCRETA PARA DISCUTIR CON EL EQUIPO MATEMÁTICO
+
+Modelo: M theta_ddot + D theta_dot + F(theta) = p0 + P M1/m + u(t), con M,D diagonales positivas constantes, m=1^T M1, d0=1^T D1, F gradiente de una red lossless de voltajes fijos. Inicialmente theta_dot=0 y F(theta0)=p0. Se supone convergencia a la misma forma relativa theta1 y velocidad Omega=P/d0, u(t)->0, e integrabilidad de los transitorios relevantes. P es no nulo. Los controles no deben provocar saltos impulsivos de velocidad.
+
+Sea b=D1-d0 M1/m. Para delta=theta1-theta0, módulo rotación, Delta F=-P b/d0. Si A=integral_0^infty (Omega-omega_COI)dt y Q=integral_0^infty 1^T u(t)dt, el balance agregado da
+
+  A = Pm/d0^2 + b^T delta/d0 - Q/d0.
+
+La igualdad es independiente de la trayectoria. Para F=grad U,
+
+  E_sym = delta^T [F(theta1)-F(theta0)]
+        = D_U(theta1,theta0)+D_U(theta0,theta1),
+  A = Pm/d0^2 - E_sym/P - Q/d0.
+
+En un segmento cohesivo con Jacobiano positivo en 1-perp,
+
+  L_bar = integral_0^1 J_F(theta0+t delta)dt,
+  E_sym = P^2 b^T L_bar^dagger b/d0^2,
+  A/P = [m-b^T L_bar^dagger b]/d0^2 - Q/(P d0).
+
+Estos son desarrollos candidatos del equipo, NO resultados tomados de las fuentes. El término L_bar es un Jacobiano secante exacto del flujo de potencia. Su identificación por los extremos necesita las hipótesis de rama/cohesión; no debe sustituirse por el Jacobiano inicial en una afirmación finita. La identidad por extremos no necesita que TODA la trayectoria permanezca en el segmento entre los extremos, aunque sí necesita convergencia e integrabilidad. La positividad de E_sym depende de convexidad sobre ese segmento.
+
+Consecuencia candidata 1: si Q=0, toda intervención que conserva estos extremos conserva A. La suma instantánea 1^T u=0 es suficiente, pero más restrictiva de lo necesario. Esto permite incluir controles dinámicos, no lineales y retardados que satisfagan el contrato, sin afirmar nada sobre su estabilidad. El nadir y el tiempo de asentamiento NO quedan invariantes.
+
+Consecuencia candidata 2: con A0/P=[m-b^T L_bar^dagger b]/d0^2<0 y respuesta continua desde reposo, existe un instante con (omega_COI-Omega)/P>0. Es un cruce inevitable de la frecuencia FINAL. Ningún control con Q=0 y los mismos extremos puede eliminarlo. El argumento área/signo es clásico; el contenido específico es el criterio evaluable mediante dos flujos de potencia y D/M.
+
+Consecuencia candidata 3: evitar todo ese sobrepaso requiere A/P>0 porque al inicio (Omega-omega_COI)/P=1/d0>0. Por tanto Q/P<d0 A0/P<0, o energía agregada neta de signo contrario a P y magnitud estrictamente mayor que d0|A0|. Es condición necesaria, no suficiente. Para déficit de generación (P<0), exige energía neta positiva de soporte. No equivale a una capacidad de batería mínima ni a un certificado de cumplimiento de un límite de nadir.
+
+RIESGOS QUE PUEDEN MATAR ESTA CANDIDATA
+
+- Si el criterio A0/P<0 solo se activa con parámetros irreales, cercanía extrema a pérdida de sincronismo o fuera del dominio de existencia/convergencia, el avance práctico se reduce mucho. Pedir primero un ejemplo analítico pequeño dentro de un dominio cohesivo y estable, después casos físicos; no invertir en un gran barrido antes de esa prueba.
+- La perturbación proporcional a M es especial y frecuentemente no representa una contingencia localizada. Debe justificarse o extenderse el resultado a un vector de perturbación general. La identidad A=Pm/d0^2+b^T delta/d0-Q/d0 sigue siendo evaluable para un escalón general de suma P, pero desaparece la forma cuadrática positiva universal porque Delta F cambia. No ocultar esa diferencia.
+- «Sobrepaso de la frecuencia final» es una especificación más estricta y distinta de un límite reglamentario. Un sobrepaso arbitrariamente pequeño o tardío no acredita un problema de seguridad.
+- Si un almacenamiento se descarga y luego se recarga, Q=0 al infinito: la ley puede obligar a una excursión tardía operacionalmente inocua. Para reivindicar un límite de respuesta rápida hace falta una versión en ventana finita con estado terminal/término de cola controlado.
+- Controles secundarios que cambian la frecuencia final, droop persistente que cambia D, reconfiguración de red, inercia virtual que cambia M, pérdidas activas o estados de tensión adicionales salen del contrato. El teorema swing no es todavía el teorema GFL/PLL del modelo detallado.
+- En el caso D proporcional a M, b=0 y no aparece la corrección espacial. Debe recuperarse explícitamente el agregado clásico. Es una comprobación de consistencia necesaria, no evidencia de novedad.
+
+MÍNIMO PUBLICABLE PLAUSIBLE
+
+Un teorema no lineal por extremos con condiciones verificables; un corolario para una clase amplia de controles de energía neta cero; un caso no vacuo que pruebe que tal clase puede mejorar mucho amortiguamiento sin poder eliminar el cruce final; y una intervención con energía neta/redistribución de D o red que cambie la condición. Comparar con el agregado coherente, con el mismo controlador sin la restricción energética y con la referencia reciente de Kohlhaas–Kotyczka. Si la afirmación se usa para rediseño de red, recomputar los extremos tras cada cambio de línea: variar solo L en un equilibrio congelado no prueba el efecto físico finito.
+
+El informe no recomienda reclamar «primer límite fundamental», «inercia negativa», «nadir invariante», «imposibilidad de todo control local» ni novedad de pseudoinversa/Bregman/Keldysh/IQC. Recomienda una afirmación estrecha: una ley exacta de área COI dependiente de extremos y heterogeneidad, y la clase de intervenciones que no puede cambiar su signo bajo un presupuesto energético dado.

@@ -1,0 +1,16 @@
+{
+  "status": "PROVED_REDUCED_MODEL",
+  "scope": "abstract two-constraint relaxation, not MW on IEEE-39",
+  "exact_primal_optimum": "11/10",
+  "exact_dual_weights": [
+    "1/2",
+    "1/2"
+  ],
+  "exact_controller_aggregate": "0",
+  "excluded_trial": "6/5",
+  "numerical_primal": [
+    1.1,
+    -0.0
+  ],
+  "pass": true
+}

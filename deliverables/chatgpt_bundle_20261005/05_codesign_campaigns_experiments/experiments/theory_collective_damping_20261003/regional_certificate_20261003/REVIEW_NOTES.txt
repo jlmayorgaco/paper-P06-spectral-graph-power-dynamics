@@ -1,0 +1,56 @@
+MATHEMATICAL SELF-REVIEW AND CLAIM BOUNDARY
+
+1. The root-cluster formula uses full holomorphic characteristic operators.
+   A Schur complement with poles would require pole accounting. The descriptor
+   lift is holomorphic and det(G) is independent of s; its roots coincide with
+   the original characteristic roots only where G is nonsingular.
+2. Norm <1 is required on every contour point and every design in the region.
+   It selects a continuous trace-log branch and preserves algebraic root count.
+   Internal repeated roots are permitted; roots crossing the contour are not.
+3. The negative sign in the root-sum formula follows integration by parts and
+   was checked against Delta=s-a-p. Averaging never implies each root is stable.
+4. The affine lift is exact only for the inspected fixed-support sharing chart.
+   General operating-point changes need additional terms. Gains are ordinary,
+   not logarithmic. Delays are fixed coefficients throughout each certificate.
+5. The descriptor remainder H_rem=0 does not mean eigenvalue remainder=0.
+   The nonzero log-series bound and numerical-integration errors remain.
+6. Positive-vector bounds are valid because |Theta*T|<=diag(radii)*|T|.
+   Repeated rho correlation is conservatively relaxed for this bound.
+   The original ten replacement variables remain tied in the regional LP.
+7. The finite LP is a NECESSARY relaxation. Missing event constraints and
+   outside roots can make it optimistic, not falsely restrictive. A rigorous
+   upper bound still needs rigorous input coefficients, remainder and LP error.
+8. A positive dual weight annihilating first-order gain sensitivities does not
+   establish finite impossibility: the remainder must be included before a
+   strict separating inequality can be claimed.
+9. Both scalar and positive-vector envelopes are evaluated only at three
+   fixed frequencies in TABLE_02/TABLE_03. No entire contour, cluster integral,
+   stable heterogeneous-delay design or MW certificate is claimed.
+10. The trace expansion is over dense dynamical intervention channels.
+    Closed walks are not automatically physical line cycles; the operator is
+    not a damping matrix or Laplacian. Its diagonal blocks already contain the
+    full grid. Graph-basis truncation requires a separately bounded error.
+
+LITERATURE BOUNDARY — verified primary records on 2026-10-03
+
+Beyn, 'An integral method for solving nonlinear eigenvalue problems':
+https://arxiv.org/abs/1003.1580
+Contour-based nonlinear eigensolvers and resolvent reduction are antecedents.
+This source does not establish novelty or validate our replacement relaxation.
+
+Lessard and Mireles James, J. Computational Dynamics 7(1):123-158, 2020:
+https://doi.org/10.3934/jcd.2020005
+Validated eigenvalue locations/counts for single-delay equations using a
+functional-analytic/Chebyshev approach. Rigorous DDE spectra are not a new idea.
+
+Michiels and Gumussoy, Delay Systems chapter, 2014; arXiv version posted 2020:
+https://arxiv.org/abs/2003.05496
+https://doi.org/10.1007/978-3-319-01695-5_18
+Prescribed-structure/order controller design for delay DAEs by direct
+eigenvalue optimization. Calling the design a DAE or adding an optimizer
+does not establish originality.
+
+The new derivation combines established tools for the actual parameter
+contract. Neither a focused literature search nor algebraic verification
+establishes first publication. The missing substantive result is an
+informative regional replacement bracket or exclusion witness on IEEE-39.

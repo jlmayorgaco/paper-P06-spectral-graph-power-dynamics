@@ -1,0 +1,35 @@
+{
+  "status": "PASS_LOCAL_SECURE",
+  "certificate_type": "NUMERICAL_NOT_FORMAL",
+  "retained_MW": 312.52328843513294,
+  "GFL_MW": 5090.237801543714,
+  "GFL_fraction": 0.9421548939088187,
+  "support": [
+    30,
+    33,
+    35,
+    37,
+    39
+  ],
+  "primal": 0.0,
+  "stationarity": 8.277840444215201e-07,
+  "complementarity": 1.3021398923313568e-09,
+  "LICQ": "PASS",
+  "SOSC": "PASS_NUMERICAL",
+  "beta_full_band": "PASS_NUMERICAL_256BIT",
+  "PD_alpha": -0.050057324249547404,
+  "PD_Fpeak": 0.4687554551954601,
+  "PD_Rpeak": 0.1717714387712154,
+  "PD_primary_event": "PASS",
+  "global_lower_MW": 0.0,
+  "global_upper_MW": 312.52328843513294,
+  "global_gap_MW": 312.52328843513294,
+  "out_of_sample_failures": [
+    "bus8_100MW",
+    "bus29_100MW"
+  ],
+  "global_certified": false,
+  "formal_interval_certificate": false,
+  "push": false,
+  "commit": false
+}

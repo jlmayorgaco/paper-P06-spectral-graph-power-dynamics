@@ -1,0 +1,451 @@
+{
+  "candidate": {
+    "Fpeak_Hz": [
+      0.46022275639236476,
+      0.4159522509969413,
+      0.4971339272954052
+    ],
+    "support": [
+      30,
+      33,
+      35,
+      37,
+      38,
+      39
+    ],
+    "model_sha": "e2f104608f1eb1705f0ad2c07764e7beab0a5df4deb4d4ce4f359b1e79947f0a",
+    "alpha": -0.05216552870666996,
+    "retention_factor_from_improved": 1.0,
+    "Kp": [
+      112.55789430052813,
+      50.0886519434517,
+      64.52601217034169,
+      62.83176492128491,
+      62.83109460808557,
+      62.83128121705622,
+      62.831675617218615,
+      62.82704173806985,
+      54.63883519427222,
+      125.66364339898753
+    ],
+    "Rpeak_Hz_s": [
+      0.13343323228979584,
+      0.21847581743858155,
+      0.3937584856330412
+    ],
+    "claim": "retuned after nonlinear bus8 failure; independent validation pending",
+    "rho": [
+      0.4358798146637184,
+      1.0,
+      1.0,
+      0.9180293094818949,
+      1.0,
+      0.9243607335444068,
+      1.0,
+      0.937843116954827,
+      0.9820830876181342,
+      0.7203315118364951
+    ],
+    "Ki": [
+      721.8340205552918,
+      627.218263378062,
+      937.730378311737,
+      986.957670780902,
+      986.9366124125498,
+      986.9424748442005,
+      986.954865216846,
+      986.8092933892929,
+      746.3505778467102,
+      61.685028402071836
+    ],
+    "beta_sampled": 4.446241994026527e-05,
+    "global_optimum_certified": false,
+    "pll_floor_heuristic": 1.0,
+    "epsilon": [
+      0.5641201853362816,
+      0.0,
+      0.0,
+      0.08197069051810515,
+      0.0,
+      0.0756392664555932,
+      0.0,
+      0.062156883045172924,
+      0.017916912381865716,
+      0.27966848816350487
+    ],
+    "local_KKT_certified": false,
+    "retained_SG_MW": 366.2387667994565,
+    "converted_GFL_MW": 5036.522323179391
+  },
+  "replacement_percent": 93.22126666902292,
+  "pd_spectrum": {
+    "candidate_sha256": "8888c50ae7df017d2b2bb319c1adf2dc631a4af190c4045047cf1741875c922d",
+    "physical_poles": 155,
+    "trim_bounds_pass": true,
+    "max_matched_pole_error": 1.1710925695297578e-09,
+    "max_P_error_pu": 3.907985046680551e-15,
+    "max_Q_error_pu": 2.6326510416119218e-15,
+    "nominal_margin_pass": true,
+    "removed_gauge_abs": 3.474400682611234e-10,
+    "trim_residual": 6.574473947344784e-12,
+    "analytic_alpha": -0.052165528704431814,
+    "pd_alpha": -0.05216552865380669
+  },
+  "robustness": {
+    "A_shift_norm": 3572319.931326568,
+    "candidate_sha256": "8888c50ae7df017d2b2bb319c1adf2dc631a4af190c4045047cf1741875c922d",
+    "roundoff_allowance": 7.86868652874685e-06,
+    "omega": 0.0,
+    "status": "FULL_BAND_NUMERICAL_LOWER_BOUND",
+    "max_depth": 10,
+    "beta_lower_bound": 1.7260361425938109e-06,
+    "elapsed_s": 50.7652971,
+    "beta_req": 1.6991206999182038e-06,
+    "formal_certificate": false,
+    "beta_observed_upper": 4.446241994026527e-05,
+    "nodes": 17578,
+    "outward_rounded": false,
+    "tail_lower": 1.0000016991980374,
+    "unresolved_intervals": 0
+  },
+  "events": [
+    {
+      "event": "small_16",
+      "bus": "16",
+      "commanded_Pset_MW": "1.0",
+      "duration_s": "Inf",
+      "Fpeak_Hz": "0.004576952377485465",
+      "Rpeak_Hz_s": "0.00133302075796704",
+      "last10s_Hz": "0.0045474076773952795",
+      "last5_vs10_Hz": "7.966492335402357e-6",
+      "F_pass": "true",
+      "R_pass": "true",
+      "Vmin": "0.9819096515075633",
+      "Vmax": "1.0635266513194817",
+      "current_ratio_max": "1.0000910295215137",
+      "Vdc_min": "2.4999948882136307",
+      "Vdc_max": "2.500001025280492",
+      "KCL_error_MW": "1.3500311979441904e-9",
+      "linear_relative_waveform_error": "0.0067335399646499",
+      "dt": "0.01",
+      "solver_tolerance": "1.0e-9",
+      "runtime_s": "0.6597877",
+      "retcode": "Success"
+    },
+    {
+      "event": "step_16",
+      "bus": "16",
+      "commanded_Pset_MW": "100.0",
+      "duration_s": "Inf",
+      "Fpeak_Hz": "0.4017292722209773",
+      "Rpeak_Hz_s": "0.12385597188340915",
+      "last10s_Hz": "0.3951632537802677",
+      "last5_vs10_Hz": "6.042110147974622e-5",
+      "F_pass": "true",
+      "R_pass": "true",
+      "Vmin": "0.9729974379343016",
+      "Vmax": "1.0654643144782971",
+      "current_ratio_max": "1.0097103739536937",
+      "Vdc_min": "2.4994858256680486",
+      "Vdc_max": "2.500106244939837",
+      "KCL_error_MW": "3.4856384445447475e-10",
+      "linear_relative_waveform_error": "0.14242576069665644",
+      "dt": "0.01",
+      "solver_tolerance": "1.0e-9",
+      "runtime_s": "33.1672224",
+      "retcode": "Success"
+    },
+    {
+      "event": "step_29",
+      "bus": "29",
+      "commanded_Pset_MW": "100.0",
+      "duration_s": "Inf",
+      "Fpeak_Hz": "0.4717427589345159",
+      "Rpeak_Hz_s": "0.24153117328282422",
+      "last10s_Hz": "0.42799279445204924",
+      "last5_vs10_Hz": "6.889486196814953e-5",
+      "F_pass": "true",
+      "R_pass": "true",
+      "Vmin": "0.9728066091478593",
+      "Vmax": "1.0734947250370357",
+      "current_ratio_max": "1.0111586673846233",
+      "Vdc_min": "2.499257325755105",
+      "Vdc_max": "2.500344494642063",
+      "KCL_error_MW": "8.793676897767e-11",
+      "linear_relative_waveform_error": "0.24672751362436657",
+      "dt": "0.01",
+      "solver_tolerance": "1.0e-9",
+      "runtime_s": "35.0539182",
+      "retcode": "Success"
+    },
+    {
+      "event": "negative_16",
+      "bus": "16",
+      "commanded_Pset_MW": "-100.0",
+      "duration_s": "Inf",
+      "Fpeak_Hz": "0.46733698837200927",
+      "Rpeak_Hz_s": "0.155087393678143",
+      "last10s_Hz": "0.4664515894367282",
+      "last5_vs10_Hz": "0.0007166041539187207",
+      "F_pass": "true",
+      "R_pass": "true",
+      "Vmin": "0.9804033083899166",
+      "Vmax": "1.0785160447878135",
+      "current_ratio_max": "1.0072517820454734",
+      "Vdc_min": "2.499882494168833",
+      "Vdc_max": "2.500507579363072",
+      "KCL_error_MW": "3.2650859793648124e-10",
+      "linear_relative_waveform_error": "0.05809340236948805",
+      "dt": "0.01",
+      "solver_tolerance": "1.0e-9",
+      "runtime_s": "37.1712103",
+      "retcode": "Success"
+    },
+    {
+      "event": "pulse_16",
+      "bus": "16",
+      "commanded_Pset_MW": "100.0",
+      "duration_s": "0.1",
+      "Fpeak_Hz": "0.013739178042821208",
+      "Rpeak_Hz_s": "0.014011588762802089",
+      "last10s_Hz": "3.168283954500727e-5",
+      "last5_vs10_Hz": "5.105310553910095e-6",
+      "F_pass": "true",
+      "R_pass": "true",
+      "Vmin": "0.9729974379343016",
+      "Vmax": "1.069344819187579",
+      "current_ratio_max": "1.0088226952341137",
+      "Vdc_min": "2.4994858256680486",
+      "Vdc_max": "2.5002579181215867",
+      "KCL_error_MW": "6.897209914313862e-9",
+      "linear_relative_waveform_error": "NaN",
+      "dt": "0.01",
+      "solver_tolerance": "1.0e-9",
+      "runtime_s": "0.3284386",
+      "retcode": "Success"
+    },
+    {
+      "event": "refined_16",
+      "bus": "16",
+      "commanded_Pset_MW": "100.0",
+      "duration_s": "Inf",
+      "Fpeak_Hz": "0.4017292723096133",
+      "Rpeak_Hz_s": "0.12385738154313809",
+      "last10s_Hz": "0.3951632537758137",
+      "last5_vs10_Hz": "6.0421103804608745e-5",
+      "F_pass": "true",
+      "R_pass": "true",
+      "Vmin": "0.9718514818756486",
+      "Vmax": "1.0654643144776919",
+      "current_ratio_max": "1.0097106927261608",
+      "Vdc_min": "2.499484347793674",
+      "Vdc_max": "2.5001062505572027",
+      "KCL_error_MW": "8.793676897767e-11",
+      "linear_relative_waveform_error": "0.14242578094160938",
+      "dt": "0.005",
+      "solver_tolerance": "1.0e-10",
+      "runtime_s": "57.0441385",
+      "retcode": "Success"
+    },
+    {
+      "event": "small_8",
+      "bus": "8",
+      "commanded_Pset_MW": "1.0",
+      "duration_s": "Inf",
+      "Fpeak_Hz": "0.004158341733604592",
+      "Rpeak_Hz_s": "0.002195355475358579",
+      "last10s_Hz": "0.004079046102348087",
+      "last5_vs10_Hz": "7.456904189992279e-6",
+      "F_pass": "true",
+      "R_pass": "true",
+      "Vmin": "0.981802157359971",
+      "Vmax": "1.0635560533173745",
+      "current_ratio_max": "1.0002060938426864",
+      "Vdc_min": "2.4999956667649785",
+      "Vdc_max": "2.500003896624851",
+      "KCL_error_MW": "2.632674522828893e-9",
+      "linear_relative_waveform_error": "0.011466038579380698",
+      "dt": "0.01",
+      "solver_tolerance": "1.0e-9",
+      "runtime_s": "20.5556089",
+      "retcode": "Success"
+    },
+    {
+      "event": "small_29",
+      "bus": "29",
+      "commanded_Pset_MW": "1.0",
+      "duration_s": "Inf",
+      "Fpeak_Hz": "0.004969033859966837",
+      "Rpeak_Hz_s": "0.003909766323794429",
+      "last10s_Hz": "0.004876136257825304",
+      "last5_vs10_Hz": "8.41909540997849e-6",
+      "F_pass": "true",
+      "R_pass": "true",
+      "Vmin": "0.9817825926496295",
+      "Vmax": "1.0637467160106233",
+      "current_ratio_max": "1.0002512826900702",
+      "Vdc_min": "2.49999245521987",
+      "Vdc_max": "2.500005070274742",
+      "KCL_error_MW": "1.941003802130581e-9",
+      "linear_relative_waveform_error": "0.026903617598286172",
+      "dt": "0.01",
+      "solver_tolerance": "1.0e-9",
+      "runtime_s": "0.6682399",
+      "retcode": "Success"
+    }
+  ],
+  "incomplete": [
+    {
+      "tolerance": 1e-09,
+      "event": "step_8",
+      "candidate_sha256": "8888c50ae7df017d2b2bb319c1adf2dc631a4af190c4045047cf1741875c922d",
+      "physical_instability_proven": false,
+      "runtime_s": 126.8522626,
+      "status": "INCOMPLETE_TDS",
+      "retcode": "MaxIters",
+      "last_time_s": 6.44
+    },
+    {
+      "tolerance": 1e-07,
+      "event": "step_8_relaxed",
+      "candidate_sha256": "8888c50ae7df017d2b2bb319c1adf2dc631a4af190c4045047cf1741875c922d",
+      "physical_instability_proven": false,
+      "runtime_s": 110.6581388,
+      "status": "INCOMPLETE_TDS",
+      "retcode": "MaxIters",
+      "last_time_s": 6.45
+    },
+    {
+      "tolerance": 1e-09,
+      "event": "stress_29",
+      "candidate_sha256": "8888c50ae7df017d2b2bb319c1adf2dc631a4af190c4045047cf1741875c922d",
+      "physical_instability_proven": false,
+      "runtime_s": 101.4441191,
+      "status": "INCOMPLETE_TDS",
+      "retcode": "MaxIters",
+      "last_time_s": 10.2
+    }
+  ],
+  "bus8_diagnostic_prefix": [],
+  "required_missing": [
+    "step_8",
+    "refined_8"
+  ],
+  "required_failed": [],
+  "bus8_prefix_demonstrates_violation": false,
+  "bus8_prefix_incomplete": {
+    "event": "bus8_prefix_repaired",
+    "status": "INCOMPLETE_TDS",
+    "retcode": "MaxIters",
+    "tolerance": 1e-08,
+    "requested_horizon_after_event_s": 5.0,
+    "candidate_sha256": "8888c50ae7df017d2b2bb319c1adf2dc631a4af190c4045047cf1741875c922d",
+    "physical_instability_proven": false,
+    "note": "The coarse short run did not complete; the fine run was not executed. No prefix peaks are available for this candidate."
+  },
+  "linear_peak_and_tail_audit": [
+    {
+      "event_bus": "16",
+      "horizon_s": "120.0",
+      "dt_s": "0.0025",
+      "Fpeak_refined_Hz": "0.46022275636679183",
+      "Rpeak_refined_Hz_s": "0.13343323228979534",
+      "tail_F_upper_Hz": "0.46035872354690505",
+      "tail_R_upper_Hz_s": "8.185176043481452e-6",
+      "pass": "true"
+    },
+    {
+      "event_bus": "8",
+      "horizon_s": "120.0",
+      "dt_s": "0.0025",
+      "Fpeak_refined_Hz": "0.4159522588807652",
+      "Rpeak_refined_Hz_s": "0.2184862528665774",
+      "tail_F_upper_Hz": "0.4133270141645978",
+      "tail_R_upper_Hz_s": "7.802617661942766e-6",
+      "pass": "true"
+    },
+    {
+      "event_bus": "29",
+      "horizon_s": "120.0",
+      "dt_s": "0.0025",
+      "Fpeak_refined_Hz": "0.4971339764627964",
+      "Rpeak_refined_Hz_s": "0.39377296008836166",
+      "tail_F_upper_Hz": "0.49328737895958885",
+      "tail_R_upper_Hz_s": "8.208853412431482e-6",
+      "pass": "true"
+    }
+  ],
+  "independent_matrix_exponential": [
+    {
+      "candidate": "repaired",
+      "event_bus": "16",
+      "max_abs_phase_error_rad": "1.2680567706979673e-10",
+      "relative_phase_error": "7.933993260249148e-11",
+      "modal_eigenvector_condition": "78728.67376596003",
+      "pass": "true"
+    },
+    {
+      "candidate": "repaired",
+      "event_bus": "8",
+      "max_abs_phase_error_rad": "1.030506791011021e-10",
+      "relative_phase_error": "7.28611232088953e-11",
+      "modal_eigenvector_condition": "78728.67376596003",
+      "pass": "true"
+    },
+    {
+      "candidate": "repaired",
+      "event_bus": "29",
+      "max_abs_phase_error_rad": "1.5875190051417576e-10",
+      "relative_phase_error": "9.049721064735256e-11",
+      "modal_eigenvector_condition": "78728.67376596003",
+      "pass": "true"
+    }
+  ],
+  "declared_suite_pass": false,
+  "convergence": {
+    "16": {
+      "Fpeak_Hz": {
+        "absolute_difference": 8.863598743857892e-11,
+        "relative_difference": 2.2063611876972472e-10
+      },
+      "Rpeak_Hz_s": {
+        "absolute_difference": 1.4096597289459112e-06,
+        "relative_difference": 1.138131382549003e-05
+      }
+    }
+  },
+  "searches": [
+    {
+      "stage": "codesign_validation_20261001",
+      "evaluations": 4086,
+      "best_audited_MW": 364.2034450426684,
+      "minimum_stationarity_residual": 0.2812953897467422,
+      "solver_messages": [
+        "Iteration limit reached"
+      ]
+    },
+    {
+      "stage": "search_faces",
+      "evaluations": 5654,
+      "best_audited_MW": 362.6013226474545,
+      "minimum_stationarity_residual": 0.1067240157409296,
+      "solver_messages": [
+        "Iteration limit reached"
+      ]
+    },
+    {
+      "stage": "search_derivatives",
+      "evaluations": 5030,
+      "best_audited_MW": 362.6027979911681,
+      "minimum_stationarity_residual": 0.047474110255416424,
+      "solver_messages": [
+        "Iteration limit reached"
+      ]
+    }
+  ],
+  "event_limit_verification": false,
+  "event_limit_relative_peak_differences": {},
+  "global_optimum_certified": false,
+  "local_optimum_certified": false,
+  "limitation": "Full-band radius is a Float64 numerical lower bound, not outward-rounded proof. No hardware current limiter or EMT validation. Common mean gains are a reference, not an optimized common-gain baseline."
+}

@@ -1,0 +1,20 @@
+load_setpoint_variations = "excluded; no unequilibrated load-setpoint uncertainty is asserted"
+frozen_domain_sha256 = "feb02715bf15a9930d4678c4221535837c2597834fac89e2feed07febe1aae9b"
+structured_physical_uncertainty = "local normalized state-matrix perturbation envelope only; not a physical percentage standard"
+rocof_limit_Hz_s = 0.5
+frequency_excursion_limit_Hz = 0.5
+event_load_bus = 16
+delta_norm = "spectral norm <= beta"
+modal_residue_all_sg = 7072.100489765237
+modal_margin_all_sg_s_inv = 0.04806540933624713
+rocof_scenario_deltaP_MW = 100.0
+base_MVA = 100.0
+beta_design = 1.6991206999182038e-6
+uncertainty_model = "additive reduced-state matrix full block: A_delta=A+scale*Delta"
+beta_units = "dimensionless after the declared 1 s^-1 matrix scale"
+experiment = "BND_EXP_G"
+state_matrix_scale_s_inv = 1.0
+base_frequency_Hz = 60.0
+beta_star_all_sg_exact_resolvent = 0.0012189451995067257
+beta_policy = "half the smaller of all-SG exact resolvent radius and half-margin modal-residue radius"
+sigma_req_s_inv = 0.05

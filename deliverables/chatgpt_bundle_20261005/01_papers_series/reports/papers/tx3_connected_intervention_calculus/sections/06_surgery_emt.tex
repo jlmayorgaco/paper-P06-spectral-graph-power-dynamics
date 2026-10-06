@@ -1,0 +1,149 @@
+\section{From Dynamic Externality to Modal Materiality}
+\subsection{Nominal Modal Consequence}
+
+The E05 modal study selected three coalitions mechanically from E03/E04 before
+examining any damping result: A7--A8 as the largest reproducible
+curvature-dominated pair, A3--A6 as the largest reproducible
+feedback-dominated pair, and A2--A7--A8 as the largest reproducible triple.
+Each candidate achieved valid mode tracking at all eight holdout points, with
+consistent signs.
+
+The median finite damping externalities were
+$-1.84336\times10^{-4}$ for A7--A8,
+$-4.09123\times10^{-4}$ for A3--A6, and
+$+1.18769\times10^{-5}$ for A2--A7--A8. A7--A8 and A3--A6 also produced
+median total joint damping changes of $-0.00391371$ and $-0.00565123$,
+respectively. Thus their portfolios change modal damping, but most of that
+change is additive at the tracked-mode level. None of the 24 candidate/seed
+points reached $|\ext{S}\zeta|\ge0.0025$. The nominal materiality claim was
+therefore rejected under its preregistered rule.
+
+This failure is not a contradiction. The characteristic functional integrates
+the complete descriptor over a frequency band, while a damping gate observes
+one tracked modal family. A large value of $\ext{S}\Phi$ may arise from
+algebraic re-equilibration, pole motion in a well-damped family, or a
+distributed collection of small shifts. Only the last stage asks whether the
+non-additive effect consumes a decision-relevant margin.
+
+\subsection{Load-Conditioned Stress}
+
+E05C tested whether modal composition amplified as load increased toward the
+first 0.85-pu voltage boundary. Eight new seeds, all 15 retained coalitions,
+and nine stress levels were evaluated with 100\% valid externality and
+tracking rates. The feasible endpoint multiplier ranged from 1.05225 to
+1.083125 across seeds.
+
+Define the real-part composition ratio
+\begin{equation}
+\rho_{\mathrm{comp}}=
+\frac{\Re\{\lambda_{S}-\lambda_{S}^{(<|S|)}\}}
+{\max(|\Re\{\lambda_{S}^{(<|S|)}\}|,\epsilon_\lambda)},
+\label{eq:rho}
+\end{equation}
+where $\lambda_{S}^{(<|S|)}$ is the lower-order inclusion--exclusion
+prediction and $\epsilon_\lambda$ is the registered numerical floor. The
+largest observed $\rho_{\mathrm{comp}}$ was 0.00211758, and the largest
+candidate median at the final stress point was 0.00197909. No point reached
+the material damping threshold. There were no hard composition failures and
+no 5\% screen crossings attributable to composition before the voltage
+boundary. Both load-conditioned amplification and material consequence were
+rejected.
+
+Although $\rho_{\mathrm{comp}}$ was correlated with conditioning and
+remaining margin, those regressions were explanatory and did not change a
+candidate decision. A statistically monotone trend cannot substitute for the
+frozen magnitude gate.
+
+\subsection{Weak-Grid Attempt: Baseline Ineligibility}
+
+Conventional short-circuit ratio (SCR) is useful context for GFL operation in
+weak networks, but multi-infeed interactions can make single-POI strength
+metrics incomplete \cite{xin2016gscr,nerc2017lowstrength}. Converter control
+can also introduce weak-grid dynamics that require more than static strength
+screening \cite{fan2019type4}. E05D therefore preregistered a grid-strength
+path with an immutable eligibility rule: the empty-coalition baseline had to
+retain at least 5\% damping in the true minimum-damping 0.1--30 Hz mode.
+
+At $\kappa_{\mathrm{grid}}=1$, all eight new baselines already violated that
+screen. Their minimum damping ranged from 0.0416536 to 0.0452751. The
+corresponding conventional single-POI values were
+SCR36=2.60275--2.64401, SCR37=2.57783--2.65366, and
+SCR38=1.32141--1.40561. Because there was no eligible starting point, no safe
+stress endpoint existed and no E05D coalition outcome was inspected.
+
+The only valid status is \emph{unresolved--baseline ineligible}. It is neither
+a rejection nor support of weak-grid materiality. The 5\% rule was not
+changed, the stress direction was not reversed, and no replacement candidate
+search was opened.
+
+\subsection{Critical-Mode Baseline Audit}
+
+After E05D closed, a separate descriptive audit asked why the eligibility
+screen and the externality search referred to such different margins. It used
+only $\kappa_{\mathrm{grid}}=1$, the eight E05D seeds, all 15 frozen E05B
+coalitions, and the original A1--A8 definitions. It did not create a new gate.
+
+For each empty baseline, the audit selected the true minimum-damping
+positive-imaginary eigenvalue in 0.1--30 Hz, retained its left/right vectors,
+condition number, BMAC, and state and descriptor participations, and tracked
+that exact mode through every coalition subset. Global one-to-one matching
+required BMAC at least 0.90, with registered 5-, 9-, and 17-point homotopies.
+All 200 unique subset tracks and all 120 coalition/seed comparisons succeeded.
+
+All eight limiting modes were synchronous-electromechanical. Their frequencies
+were 1.21973--1.22906 Hz, damping ratios were 0.0416536--0.0452751, and
+synchronous-machine/governor/exciter states carried
+0.98619--0.98982 of normalized descriptor participation. By contrast, the 15
+externality-dominant development modes were PLL/current-control families with
+damping 0.49390--0.99168. Figure~\ref{fig:separation} exposes both the damping
+and physical-family separation.
+
+The limiting family is a coherent multi-machine electromechanical mode rather
+than a single converter-local mode. Median descriptor endogeneity is led by
+the rotor speed/angle channels of GENROU32, GENROU30, GENROU34, GENROU31, and
+GENROU33; the median angle-channel shares are 0.1450, 0.0849, 0.0816, 0.0727,
+and 0.0547, respectively. This state anatomy supports the family label without
+promoting it to a causal intervention target.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.94\textwidth]{figure_4_externality_vs_margin_mode.pdf}
+\caption{Externality-dominant development modes versus the actual
+margin-setting mode at $\kappa_{\mathrm{grid}}=1$. Left: the development
+modes are much more strongly damped than the 4.17--4.53\% critical-mode band.
+Right: they are converter-control/PLL dominated, whereas the critical mode is
+synchronous-electromechanical near 1.22 Hz.}
+\label{fig:separation}
+\end{figure*}
+
+Across all 120 coalition/seed cases, the largest critical-mode
+$|\ext{S}\zeta|$ was $5.14674\times10^{-6}$. The maximum
+$\rho_{\mathrm{comp}}$ was $1.39286\times10^{-4}$ for A7--A8 on seed D02,
+where $\ext{\{7,8\}}\Re\lambda=4.56767\times10^{-5}\ \mathrm{s}^{-1}$.
+The most stabilizing ratio was $-9.63916\times10^{-6}$ for A5--A8, and the
+median absolute ratio over all cases was $6.38782\times10^{-6}$. These values
+are descriptive evidence for a mode-family mismatch, not a post hoc
+reinterpretation of E05D.
+
+Table~\ref{tab:materiality} summarizes the resulting boundary. Structural
+externalities survive every exactness and reproducibility check, while
+operational materiality does not survive the registered consequence tests.
+
+\begin{table}[t]
+\caption{Externality Existence Versus Modal Materiality}
+\label{tab:materiality}
+\centering
+\footnotesize
+\begin{tabular}{p{0.35\columnwidth}p{0.24\columnwidth}p{0.22\columnwidth}}
+\toprule
+Evidence & Value & Interpretation\\
+\midrule
+A7--A8 spectral externality & $-0.00411$ median holdout & Exists; algebraic dominated\\
+A3--A6 pole externality & $-3.36\times10^{-4}$ & Exists; pole dominated\\
+Nominal $|\ext{S}\zeta|$ & $4.09\times10^{-4}$ median & Below 0.0025 gate\\
+Load-stress $\rho_{\mathrm{comp}}$ & 0.00211758 maximum & No material point\\
+Weak-grid campaign & 8/8 baselines below 5\% & Ineligible; unresolved\\
+Critical-mode audit & $5.15\times10^{-6}$ max $|\ext{S}\zeta|$ & Below registered gate on limiting family\\
+\bottomrule
+\end{tabular}
+\end{table}

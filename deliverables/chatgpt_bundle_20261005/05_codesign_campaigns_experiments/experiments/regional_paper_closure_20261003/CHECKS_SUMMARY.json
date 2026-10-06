@@ -1,0 +1,12 @@
+{
+  "pointwise_checks": 3,
+  "toy_checks": 10,
+  "walk_vs_scalar_improvement": [
+    19.672874804477058,
+    45.776965733293004,
+    18.106570194048256
+  ],
+  "max_toy_quadratic_error": 3.1397076782465945e-06,
+  "rigorous_toy_bound": 5.769375234756479e-05,
+  "scope": "algebraic/contour identity validation; no new physical trajectory or optimization"
+}

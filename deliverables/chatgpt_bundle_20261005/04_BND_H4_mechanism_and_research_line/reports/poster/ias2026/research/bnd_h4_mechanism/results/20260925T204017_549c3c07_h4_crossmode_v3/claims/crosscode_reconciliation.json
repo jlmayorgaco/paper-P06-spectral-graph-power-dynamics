@@ -1,0 +1,22 @@
+{
+  "status": "BLOCKED_CROSSCODE_MISMATCH",
+  "python_active_tx4": {
+    "state_dim": 86,
+    "alpha_transverse_s-1": 0.12700646782830968,
+    "critical_frequency_hz": 0.6222796695036534,
+    "equilibrium_g_residual_max": 9.379164112033322e-13
+  },
+  "julia_reference_true_same_model": {
+    "state_dim": 82,
+    "alpha_transverse_s-1": 0.14467022068134888,
+    "critical_frequency_hz": 0.5746810861462106,
+    "equilibrium_g_residual_max": 1.6342482922482304e-13,
+    "source": "raw/reconciliation/julia_true_same_model_v4_census.csv"
+  },
+  "differences": {
+    "state_dim": 4,
+    "alpha_s-1": 0.0176637528530392,
+    "frequency_hz": 0.0475985833574428
+  },
+  "interpretation": "The Julia reference passes its own equilibrium/residual checks but does not reproduce the active Python TX4/H4 canonical gate. It is retained as historical cross-code evidence and is not promoted as same-model parity. No parameter tuning or model substitution was performed."
+}

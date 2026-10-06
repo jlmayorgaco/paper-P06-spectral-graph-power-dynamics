@@ -1,0 +1,12 @@
+field,value
+input_bus_csv,reports/experiment_D/inputs/bus.csv
+input_branch_csv,reports/experiment_D/inputs/branch.csv
+bus_order,"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39"
+generator_port_order,"30,31,32,33,34,35,36,37,38,39"
+network_operator,branch-only conventional passive Ybus; loads and device shunts excluded
+tap_convention,"PiLine_fault source ratio r_src, destination ratio 1; verified against frozen analytic assembly"
+interior_bus_treatment,Kron eliminate all buses not in generator-port list using complex Ybus Schur complement
+grounding_or_reference,No artificial ground; transformer tap ratios are retained. Gauge/zero modes reported as found.
+units,per-unit admittance / conductance on archived system base
+Ybus_transpose_symmetry_residual,0.0
+Yport_transpose_symmetry_residual,2.057229442163321e-16

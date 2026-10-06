@@ -1,0 +1,19 @@
+item,subsystem,internal model,ANDES realization,verdict,evidence
+1,per-unit bases,"system 100 MVA; devices on own Sn, scaled by rating share",system 100 MVA; GENROU Sn per machine,EQUIVALENT,mva base read from ANDES config = 100.0; generator S agrees to 2.0e-6 pu
+2,network / Ybus,pi-line model plus the two shunts at buses 4 and 5,"same lines, Shunt_1 b=+1.0 at bus 4, Shunt_2 b=+2.0 at bus 5",EQUIVALENT,live ANDES solution satisfies the internal Ybus; V agrees to 1.7e-7 pu
+3,load model,"constant power, linearized as -conj(S)/conj(V)","PQ with pq2z=0, p2p=q2q=1, p2z=q2z=0",EQUIVALENT,set explicitly; the ANDES default pq2z=1 would be constant impedance and was disabled
+4,slack / reference,"bus 39 slack, fixed magnitude and angle",Slack at bus 39,EQUIVALENT,"slack P,Q agree to 2.0e-6 pu"
+5,machine electrical order,"fourth order: delta, omega, Eq1, Ed1","GENROU sixth order, degraded with xd2=xd1, xq2=xq1, Td20=Tq20=1e-4",EQUIVALENT IN BAND,"band spectrum matches to 1.6e-6; the residual damper modes sit near 1e4 rad/s, far outside the band"
+6,H and D conventions,M = 2H on the machine base; D = 0 throughout the source case,"GENROU M and D columns, D = 0",EQUIVALENT,M column read directly from the same case data; D is zero on both sides
+7,"reactances xd, xq, xd1, xq1","case values, unchanged",same columns of the GENROU sheet,EQUIVALENT,identical source data
+8,stator algebraic equations,ra + jxd1 / jxq1 with the standard dq resolution,GENROU stator with xl leakage and subtransient interpolation,EQUIVALENT IN BAND,collapses when xd2=xd1 and xq2=xq1
+9,AVR,"first order: efd' = (K (vref + vs - |V|) - efd) / T, K = case KA, T = case TE, no limits","SEXS with TA/TB = 1 (lead-lag collapsed), K = case KA, TE = case TE, EMIN/EMAX = +-99",EQUIVALENT,this is the substitution that makes the models agree; see the note below
+9b,AVR as documented in the benchmark,NOT IMPLEMENTED,"IEEEX1 with KA, TA, TB/TC, TE, KE = -0.05, KF1/TF1 rate feedback, saturation",NOT EQUIVALENT - DIFFERENT MODEL,"the internal first-order AVR is a substitution, not a reduction of IEEEX1; with IEEEX1 the ANDES base case carries six unstable real modes"
+10,PSS,"washout plus lag on electrical power, KS = case KS = -2.0","IEEEST MODE 3 with A1..A6, T1..T6, LSMAX limits",NOT EQUIVALENT - DIFFERENT STRUCTURE,reconciliation is performed with the stabilizer REMOVED on both sides; the PSS configuration is not an equivalence point
+11,governor,none,TGOV1N removed from every reconciliation case,EQUIVALENT,removed explicitly on the ANDES side
+12,GFL converter,"ten states, PLL plus dual loop",no equivalent model in ANDES,NOT COMPARABLE,"the reconciliation uses the static-injection configuration, where no converter exists; this is also the configuration in which the original disagreement arose"
+13,Q / voltage-control convention,"converter q_ref fixed, or voltage control with v_ref taken at initialization",n/a in the reconciliation configuration,NOT APPLICABLE,no converter present
+14,current sign convention,injection into the network positive,"ANDES generator injection positive, PQ load positive as consumption; generation entered as a negative PQ",EQUIVALENT,verified by the injection residual test at the ANDES solution
+15,dq frame orientation,"q-axis leading, rotation by exp(-j delta)",GENROU standard dq,EQUIVALENT IN BAND,any frame error would appear as a band eigenvalue mismatch; none is present at 1.6e-6
+16,algebraic variables,bus voltages in rectangular coordinates,bus voltage magnitude and angle,EQUIVALENT,different coordinates for the same algebraic set; the reduced spectrum is coordinate independent
+17,DAE elimination,index-1 reduction A = fx - fz gz^-1 gx,ANDES state matrix after its own algebraic elimination,EQUIVALENT IN BAND,"band spectra agree mode for mode, count agrees 12 of 12"

@@ -1,0 +1,83 @@
+{
+  "actions": [
+    {
+      "bus": 36,
+      "family": "PLL_BANDWIDTH",
+      "id": "A1",
+      "mapping": "r=1+0.20 alpha; Kp=Kp0*r; Ki=Ki0*r^2",
+      "primary_change": "+20% PLL natural frequency",
+      "state_dimension_preserved": true
+    },
+    {
+      "bus": 37,
+      "family": "PLL_BANDWIDTH",
+      "id": "A2",
+      "mapping": "r=1+0.20 alpha; Kp=Kp0*r; Ki=Ki0*r^2",
+      "primary_change": "+20% PLL natural frequency",
+      "state_dimension_preserved": true
+    },
+    {
+      "bus": 38,
+      "family": "PLL_BANDWIDTH",
+      "id": "A3",
+      "mapping": "r=1+0.20 alpha; Kp=Kp0*r; Ki=Ki0*r^2",
+      "primary_change": "+20% PLL natural frequency",
+      "state_dimension_preserved": true
+    },
+    {
+      "bus": 36,
+      "family": "CURRENT_COMMAND_BANDWIDTH",
+      "id": "A4",
+      "mapping": "r=1+0.20 alpha; Tg=Tg0/r",
+      "primary_change": "+20% REGCP current-command bandwidth",
+      "state_dimension_preserved": true
+    },
+    {
+      "bus": 37,
+      "family": "CURRENT_COMMAND_BANDWIDTH",
+      "id": "A5",
+      "mapping": "r=1+0.20 alpha; Tg=Tg0/r",
+      "primary_change": "+20% REGCP current-command bandwidth",
+      "state_dimension_preserved": true
+    },
+    {
+      "bus": 38,
+      "family": "CURRENT_COMMAND_BANDWIDTH",
+      "id": "A6",
+      "mapping": "r=1+0.20 alpha; Tg=Tg0/r",
+      "primary_change": "+20% REGCP current-command bandwidth",
+      "state_dimension_preserved": true
+    },
+    {
+      "bus": 37,
+      "family": "ACTIVE_POWER_REFERENCE",
+      "id": "A7",
+      "mapping": "P37=P37,0 + alpha*20 MW",
+      "primary_change": "+20 MW (+0.02 device pu) at GFL37",
+      "state_dimension_preserved": true
+    },
+    {
+      "branch": "25-37 / Line_45",
+      "family": "NETWORK_REACTANCE",
+      "id": "A8",
+      "mapping": "X=X0*(1+0.10 alpha)",
+      "primary_change": "+10% series reactance",
+      "selection_rule": "median-reactance member of the three transformer branches incident to GFL36/37/38; no dynamic result inspected",
+      "state_dimension_preserved": true
+    }
+  ],
+  "aggregate_e02c_model_hash": "0f40a8b33e7b93e16a7d8a9f5d1b7ed9f065a64f52c074591890fae9cea6e072",
+  "coordinate_domain": [
+    0.0,
+    1.0
+  ],
+  "freeze_id": "TX3-E03-ACTIONS-1.0",
+  "git_sha": "14dd51ce1528533843508b9f5af08284528bc728",
+  "primary_amplitude": 1.0,
+  "scaling_diagnostic_multipliers": [
+    0.5,
+    1.0,
+    1.5
+  ],
+  "selection_used_dynamic_externalities": false
+}

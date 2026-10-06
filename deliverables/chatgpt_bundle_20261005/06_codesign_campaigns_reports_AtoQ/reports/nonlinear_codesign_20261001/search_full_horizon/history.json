@@ -1,0 +1,145 @@
+[
+  {
+    "iteration": 1,
+    "trial": 0,
+    "radius": 0.006,
+    "retained_MW": 507.43867055668386,
+    "max_constraint": 0.19334665990599145,
+    "accepted": false,
+    "modal_condition": 20.974079895101212,
+    "corrections": 1,
+    "elapsed_s": 173.39692249998916
+  },
+  {
+    "iteration": 1,
+    "trial": 1,
+    "radius": 0.003,
+    "retained_MW": 507.8956827466408,
+    "max_constraint": -0.0018425906635211216,
+    "accepted": true,
+    "modal_condition": 20.974079895101212,
+    "corrections": 0,
+    "elapsed_s": 178.82410950004123
+  },
+  {
+    "iteration": 2,
+    "trial": 0,
+    "radius": 0.0039000000000000003,
+    "retained_MW": 505.82099575650966,
+    "max_constraint": -0.0024380600802231985,
+    "accepted": true,
+    "modal_condition": 147.94359430447844,
+    "corrections": 1,
+    "elapsed_s": 264.475175700034
+  },
+  {
+    "iteration": 3,
+    "trial": 0,
+    "radius": 0.005070000000000001,
+    "retained_MW": 501.37154255463906,
+    "max_constraint": 0.1487567707298633,
+    "accepted": false,
+    "modal_condition": 23.46333014869289,
+    "corrections": 1,
+    "elapsed_s": 344.72506540000904
+  },
+  {
+    "iteration": 3,
+    "trial": 1,
+    "radius": 0.0025350000000000004,
+    "retained_MW": 500.998221349573,
+    "max_constraint": -0.000477970569430497,
+    "accepted": true,
+    "modal_condition": 23.46333014869289,
+    "corrections": 0,
+    "elapsed_s": 349.468549799989
+  },
+  {
+    "iteration": 4,
+    "trial": 0,
+    "radius": 0.0032955000000000007,
+    "retained_MW": 500.49024699035266,
+    "max_constraint": 0.14958593181346763,
+    "accepted": false,
+    "modal_condition": 29.34233677051938,
+    "corrections": 1,
+    "elapsed_s": 431.8068303000182
+  },
+  {
+    "iteration": 4,
+    "trial": 1,
+    "radius": 0.0016477500000000003,
+    "retained_MW": 500.301520887978,
+    "max_constraint": 0.08481552092525504,
+    "accepted": false,
+    "modal_condition": 29.34233677051938,
+    "corrections": 1,
+    "elapsed_s": 441.76347559998976
+  },
+  {
+    "iteration": 4,
+    "trial": 2,
+    "radius": 0.0008238750000000002,
+    "retained_MW": 500.29587483630183,
+    "max_constraint": 0.015905611055863356,
+    "accepted": false,
+    "modal_condition": 29.34233677051938,
+    "corrections": 2,
+    "elapsed_s": 457.39300129999174
+  },
+  {
+    "iteration": 4,
+    "trial": 3,
+    "radius": 0.0004119375000000001,
+    "retained_MW": 500.3391804642633,
+    "max_constraint": -0.001984728931175867,
+    "accepted": true,
+    "modal_condition": 29.34233677051938,
+    "corrections": 0,
+    "elapsed_s": 462.20692060003057
+  },
+  {
+    "iteration": 5,
+    "trial": 0,
+    "radius": 0.0005355187500000002,
+    "retained_MW": 500.2351504414549,
+    "max_constraint": -0.0020028611789924163,
+    "accepted": true,
+    "modal_condition": 63.84835417891947,
+    "corrections": 1,
+    "elapsed_s": 546.3279227000312
+  },
+  {
+    "iteration": 6,
+    "trial": 0,
+    "radius": 0.0006961743750000003,
+    "retained_MW": 499.3503426249031,
+    "max_constraint": -0.0009012514507469871,
+    "accepted": true,
+    "modal_condition": 30.349828917401016,
+    "corrections": 3,
+    "elapsed_s": 647.0585939000011
+  },
+  {
+    "iteration": 7,
+    "trial": 0,
+    "radius": 0.0009050266875000004,
+    "retained_MW": 498.4473216956269,
+    "max_constraint": -0.001478868411809442,
+    "accepted": true,
+    "modal_condition": 56.941098521697526,
+    "corrections": 0,
+    "elapsed_s": 734.011297399993
+  },
+  {
+    "iteration": 8,
+    "trial": 0,
+    "radius": 0.0011765346937500005,
+    "retained_MW": 497.8403200319095,
+    "max_constraint": -0.0009837860570123536,
+    "accepted": true,
+    "modal_condition": 58.391476257922086,
+    "corrections": 0,
+    "elapsed_s": 816.5814181999885
+  }
+]

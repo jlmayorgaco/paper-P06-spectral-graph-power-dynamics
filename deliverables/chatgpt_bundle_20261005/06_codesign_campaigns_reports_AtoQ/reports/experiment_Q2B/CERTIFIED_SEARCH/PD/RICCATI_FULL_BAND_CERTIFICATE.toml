@@ -1,0 +1,15 @@
+beta_lower_tested = 1.6991206999182038e-6
+X_positive = true
+formal = false
+beta_Riccati_solve = 1.699120733900618e-6
+strict_negative_LMI = true
+X_min_eigenvalue_Float64 = 1.0027326305503133e-10
+status = "NUMERICALLY_CERTIFIED_FULL_BAND_BOUNDED_REAL"
+invariant_subspace_condition = 142258.74515444515
+precision_bits = 256
+coverage = "Strict bounded-real storage LMI, entire real-frequency axis and infinite-frequency tail"
+rounding = "nearest; NOT outward-rounded"
+Riccati_residual_big = 1.4944130710516857e-23
+elapsed_s = 9.64900016784668
+negative_LMI_min_eigenvalue_Float64 = 3.398241423703442e-14
+Hamiltonian_min_abs_real = 3.503973115342021e-8

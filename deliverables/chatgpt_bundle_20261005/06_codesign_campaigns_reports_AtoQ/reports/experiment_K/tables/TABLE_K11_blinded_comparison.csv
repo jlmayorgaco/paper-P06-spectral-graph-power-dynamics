@@ -1,0 +1,4 @@
+case,support_mask,retained_SG_MW,GFL_MW,exact_ExpK_alpha_s_inv,meets_margin,KKT_certified,provenance
+ExpK_nominal,768,3.3087561260360117,5399.45233385274,-0.050001000514425416,true,false,frozen_candidate
+ExpE_provisional,256,1.1892118821653361,5401.571878096611,-0.05000000218509599,true,false,read_after_ExpK_hash
+ExpG_final,639,3821.771246228776,1580.98984375,-0.1379326878035391,true,false,read_after_ExpK_hash

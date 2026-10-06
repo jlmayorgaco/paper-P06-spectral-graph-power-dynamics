@@ -1,0 +1,40 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterMiddleRowHeight][t]{\PosterHalfWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterMiddleRowHeight}{6}{KEEP THE WALKS, TIGHTEN THE BOUND}
+
+    {\EquationSize\[
+      |H|\le\mathcal M,\quad\varrho(\mathcal M)<1,
+      \qquad
+      \Psi_2(\mathcal M)=-\log\det(I-\mathcal M)-\operatorname{tr}\mathcal M
+    \]}
+    \noindent\begin{minipage}[c]{274mm}\centering
+      \includegraphics[width=271mm,height=97mm,keepaspectratio]{generated/figures/walk_bounds.pdf}
+    \end{minipage}\hfill%
+    \begin{minipage}[c]{143mm}\raggedright
+      {\PosterCondensed\bfseries\fontsize{62pt}{65pt}\selectfont\color{IASBlue}\WalkMin--\WalkMax$\times$\par}
+      {\PosterParagraph smaller remainder bound than the scalar norm bound\par}\vspace{4mm}
+      {\FigureSize Same parameter box; heterogeneous delays spanning 0--40 ms. All three points reported.\par}
+    \end{minipage}\par
+    \vspace{2mm}
+    {\FigureSize\WalkClaim\ A replacement upper bound additionally needs a verified integral over the complete contour.}
+
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewHalfPageWidth}
+  \def\PosterPageHeight{\PosterPreviewMiddlePageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewHalfLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

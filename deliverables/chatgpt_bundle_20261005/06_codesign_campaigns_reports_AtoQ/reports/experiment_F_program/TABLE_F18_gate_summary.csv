@@ -1,0 +1,9 @@
+gate,status,evidence,decision
+F0,PASS,"Lc=Re(Yport) is SPD; Kron relative current residual 4.08e-16","Physical graph admitted"
+F1,PASS,"Synthetic modal-critical law reproduced; max pole error 2.79e-7 s^-1","Theory sanity check only"
+F2,NON_MODAL,"Reactive modal coupling 29.14%; heterogeneous descriptor off-diagonal ratio 6.14%","STOP spectral gain-law path"
+F3,BLOCKED,"No scalar graph-modal characteristic","No Kp*(nu) or Ki*(nu) law"
+F4,BLOCKED,"No frozen F3 gain targets","No spectral/filter/node-local graph controller claim"
+F5,DIAGNOSTIC_ONLY,"Exact F2 Schur Gamma_k evaluated; no graph seed theta_0","Retain coupled self-energy/pathway direction"
+F6,BLOCKED,"No graph controller coefficients or continuation path","No graph capacity comparison"
+F7,BLOCKED,"No analytical design to freeze/hash","No PowerDynamics validation call"

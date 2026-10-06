@@ -1,0 +1,318 @@
+IEEE39: BALANCE AGREGADO EJECUTADO, ALMACENAMIENTO Y ÁREA DE FRECUENCIA
+Auditoría independiente de las siete trazas Q2B — 2026-10-04
+
+Resultado principal
+===================
+El balance agregado exacto del modelo Q2B ejecutado es recuperable desde los
+sensores archivados. Su almacenamiento algebraico es
+
+    E_exec = K_rotor + E_filter - E_dc,
+
+NO K_rotor + E_filter + E_dc. El signo procede de la ecuación DC congelada,
+que coincide con el código PowerDynamics instalado. Las siete trazas apoyan
+ese signo; no es una conclusión extraída solo del balance KCL. Esto conserva
+la validez matemática de las simulaciones del modelo declarado, pero bloquea
+usar esas simulaciones como validación de una ley de almacenamiento físico
+positivo completo o de un no-go energético universal.
+
+También se obtiene un puente exacto, condicionado, entre energía y área de
+frecuencia rotor mediante TGOV1. Hay que conservar los términos terminales
+del gobernador, el torque fijo de SG39 y cualquier saturación. El evento
+bus29/+100 MW revela precisamente esa última salvedad.
+
+No se ejecutó ninguna simulación nueva ni se modificaron archivos congelados.
+Se analizaron los siete CSV existentes, se derivaron sus identidades y se
+reconstruyeron observables algebraicos. Toda integración/diferenciación de CSV
+es numérica y conserva su error de muestreo; no es certificación intervalar.
+
+1. Reproducción y fuentes verificadas
+=====================================
+Raíz: C:/Users/walla/Documents/Github/paper-P06-spectral-graph-power-dynamics
+Ejecutar desde la raíz del repositorio:
+  python experiments/nonlinear_frequency_limits_20261004/audit_archived_ieee39_balance.py
+
+Salidas, todas en este directorio:
+  IEEE39_BALANCE_AUDIT.json: hashes de fuentes/datos, constantes, versiones.
+  IEEE39_BALANCE_SUMMARY.csv: balances y colas por evento.
+  IEEE39_BALANCE_NODES.csv: magnitudes por dispositivo.
+  IEEE39_BALANCE_QUADRATURE.csv: contraste de cuadratura a5/10/20ms.
+  IEEE39_BALANCE_TRACES.csv: observables derivados, no nuevas trayectorias.
+  IEEE39_GOVERNOR_BALANCE.csv: identidad integral y diagnóstico de válvula.
+
+Entradas principales:
+  reports/experiment_Q2B/CERTIFIED_SEARCH/PD/*_SENSORS.csv
+  reports/experiment_Q2B/CERTIFIED_SEARCH/Z_LOCAL_SECURE_FINAL.toml
+  reports/experiment_N/TABLE_N01_original_operating_point.csv
+  reports/experiment_D/inputs/machine.csv
+  reports/experiment_D/inputs/gov.csv
+  reports/experiment_N/MODEL_FREEZE.json
+  reports/experiment_N/DERIVATION_RHO_SCALING.md
+  experiments/bnd_expQ2B/certified_search/validate_independent_pd.jl
+
+Los cuatro hashes actuales de src/pd39/model.jl,
+src/bnd_model_expN/PDExactDesignN.jl, PDReferenceN.jl y
+src/bnd_design/AnalyticSG.jl coinciden BYTE A BYTE con MODEL_FREEZE. Que git
+marque algunos como modificados/no rastreados no altera esa comprobación.
+El candidato conserva SHA:
+66513a8d3a1b4cc37c9d6f2b1a5824371fed2d0c5621d2ccdb7540490fe59124.
+
+PDReferenceN construye WeightedSimpleGFLDC, trim explícito y SG con rating
+retenido. El exportador PD carga esa fuente y el candidato comprobado.
+El código instalado en
+C:/Users/walla/.julia/packages/PowerDynamics/VzOiZ/src/Library/Renewables/ComposableInverter.jl
+define P_ac como potencia DEL convertidor AL filtro AC, y en línea911 usa
+C_dc*dot(vdc)=(P_ac-P_dc)/vdc. El campo P_dc dice «External DC power draw»;
+esa etiqueta no cambia el signo del balance dado el filtro orientado hacia
+la red. Se registra también el hash del archivo instalado; no se afirma que
+un hash de modelo pruebe por sí solo todas las dependencias históricas.
+
+2. Convenciones, unidades y lo que mide cada archivo
+===================================================
+Sbase=100MVA, fbase=60Hz, omega_base=2pi60rad/s. Sn_i=(1-rho_i)Sn_i_original.
+H permanece fijo; M_i=2H_i Sn_i. Con potencias pu convertidas por su base,
+M tiene unidades MW*s, energía MW*s=MJ. No añadir un factor3/2: las ecuaciones
+y los sensores ya usan P=VdId+VqIq y las bases trifásicas declaradas.
+
+SG_Hz=60(omega_i-1), donde omega_i es velocidad rotor pu. SG_mechanical_MW
+=Sn_i*tau_m,i*omega_i, NO Sn_i*tau_m,i. SG_MW es potencia eléctrica terminal.
+La salida grid_Hz es diferencia causal de fase de bus con T=.5s, y no equivale
+exactamente a la velocidad rotor ni a la frecuencia PLL interna.
+
+El GFL conserva estados internos de agregación unitaria; su corriente externa
+se multiplica por rho. Por ello
+  P_GFL=100rho*(v_r i_r+v_i i_i),
+  Pdc_aggregate=100rho*Pdc_pu.
+Pdc_pu no es MW ni potencia terminal: incluye el consumo resistivo del filtro.
+Para este modelo Rf=.01, Xf=.03 y Cdc=1.25. El coeficiente Xf/omega_base
+tiene dimensión temporal; Cdc adquiere la escala energética por la propia
+ecuación pu de voltaje DC. La ventana de medida no es un delay físico: estas
+trazas Q2B NO contienen el pure-delay de campañas posteriores.
+
+3. Balance SG exacto y relación con COI
+=======================================
+La máquina Sauer–Pai usa estator algebraico (stator_dynamics=false):
+  0=Rs Id+omega psi_q+Vd,
+  0=Rs Iq-omega psi_d+Vq,
+  tau_e=psi_d Iq-psi_q Id.
+Multiplicando por corrientes y sumando:
+  omega*tau_e = P_terminal_pu + Rs*(Id²+Iq²).
+
+La ecuación de swing ejecutada es
+  2H dot(omega)=tau_m-tau_e-D(omega-1).
+Definir K_i=H_i Sn_i omega_i² = .5 M_i omega_i². Entonces EXACTAMENTE:
+  dot(K_i)=Pmech_i-Psg_i-Pcu_i-Sn_i D_i omega_i(omega_i-1).
+En los diez parámetros congelados Rs=D=0; la suma de potencias mecánicas menos
+eléctricas es dot(K), sin término magnético oculto adicional en ESTA identidad
+de swing con estator algebraico. Esto no reconstruye un balance electromagnético
+completo de una máquina física con estator dinámico y alimentación del campo.
+
+La forma de torque agregada es distinta:
+  Mtot dot(omega_COI)
+    =sum_i[(Pmech_i-Psg_i-Pcu_i)/omega_i - Sn_i D_i(omega_i-1)],
+  omega_COI=sum M_i omega_i/Mtot.
+Así (Mtot/60)dot(f_COI) tiene unidades MW a torque base nominal. Sustituir el
+lado derecho por un desbalance de POTENCIA sin dividir por omega_i es una
+aproximación. Su mayor diferencia en las siete trazas es1.21050MW (bus8).
+
+Mtot=17071.062596945MW*s; K inicial=8535.531298473MJ. La identidad
+  K(t)-K(0)=Mtot*(omega_COI(t)-1)+.5 sum M_i(omega_i(t)-1)²
+permite distinguir energía cinética real de energía incremental cuadrática.
+En bus16/100MW, K final cambia-119.092869MJ, mientras la energía incremental
+cuadrática máxima es solo0.521470MJ. Usar esta última como energía física
+liberada por el rotor sería un error de interpretación.
+
+4. Filtro y DC: todos los términos necesarios son observables
+============================================================
+La orientación del filtro congelado da
+  (Xf/omega_base)dot(i)=V_I-v-Rf*i+termino_rotacion,
+con i positiva exportadora. El término de rotación tiene producto escalar cero.
+Para s_i=100rho_i,
+  Ef_i=.5*s_i*(Xf/omega_base)*|i_i|²,
+  Lf_i=s_i*Rf*|i_i|²,
+  dot(Ef_i)=Pinverter_i-Pgfl_i-Lf_i.
+
+Aunque no se guardaron los componentes internos i_d/i_q, NO falta su norma:
+  |i_i|²=(Pgfl_i²+Qgfl_i²)/(s_i²*|V_i|²).
+La rotación PLL no cambia esta norma. Por tanto Ef y Lf se reconstruyen
+algebraicamente de P/Q/V. Ef inicial total=1.249376372MJ.
+
+Definir Edc_i=.5*s_i*Cdc*vdc_i², positivo como candidato a energía del capacitor.
+Edc inicial total=3543.928917221MJ. El modelo congelado implica
+  dot(Edc_i)=Pinverter_i-Pdc_i,
+y por tanto
+  dot(Ef_i-Edc_i)=Pdc_i-Pgfl_i-Lf_i.
+
+Esta es la ecuación EJECUTADA. Con un capacitor exportador convencional de
+energía positiva se esperaría dot(Edc_i)=Pdc_i-Pinverter_i, lo que cambiaría
+la suma a Ef_i+Edc_i. No reinterpretar retrospectivamente Pdc ni cambiar
+silenciosamente el signo en una prueba: también habría que revisar controlador,
+orientaciones y contrato de implementación. El presente audit no hace ese cambio.
+
+5. Cierre de red y balance agregado ejecutado
+============================================
+La red es algebraica y fasorial: no contiene estados de energía de líneas.
+Los sensores dan el cierre eléctrico
+  sum Psg + sum Pgfl = Pload + Lnetwork.
+El error KCL máximo es1.60e-9MW entre los siete eventos. Es una comprobación
+eléctrica, no un balance energético independiente del almacenamiento.
+
+Combinar las identidades diferenciales ANTERIORES con ese cierre da
+  dot(E_exec)=sum Pmech + sum Pdc -Pload-Lnetwork-Lfilter-Lcu-Pdamping,
+  E_exec=K+Ef-Edc.
+Es una identidad exacta de las ecuaciones declaradas. Si se escribe en cambio
+Epositive=K+Ef+Edc, el defecto exacto es2dot(Edc), y el defecto integral es
+2[Edc(t)-Edc(0)]. Esa suma positiva NO satisface el balance propuesto.
+
+El sistema tiene flujos SG/AVR adicionales, pero su necesidad no debe inventarse
+para explicar este defecto: bajo las ecuaciones de estator algebraico el
+balance de swing ya cierra como arriba. Para una afirmación sobre almacenamiento
+físico total de la máquina/controlador, sí haría falta un contrato físico más
+completo; E_exec por sí solo no lo proporciona.
+
+6. Pruebas numéricas con datos archivados
+=========================================
+Siete eventos,12201 muestras cada uno,0–61s,dt=.005s. Se usa derivada centrada
+de orden2 y se excluyen25ms alrededor de discontinuidades. El ajuste de signo
+DC excluye50ms. Para integrar, la muestra derecha-consistente del salto no se
+usa como límite izquierdo del intervalo anterior: se extrapola unilateralmente.
+Se conservan resultados al submuestrear a10 y20ms para exponer sensibilidad.
+
+Resultado por evento (error final de integral E_exec, pendiente del ajuste DC):
+  bus16_100MW   -0.045933MJ   +0.997745
+  bus16_1MW    -0.000461MJ   +0.997600
+  bus16_25MW   -0.011516MJ   +0.997625
+  bus16_50MW   -0.023011MJ   +0.997658
+  bus16_pulse  +0.001131MJ   +0.996580
+  bus29_100MW  -0.043884MJ   +0.997087
+  bus8_100MW   -0.041448MJ   +0.999865
+
+La pendiente ajusta dot(Edc) contra Pgfl+Lf+dot(Ef)-Pdc. El signo opuesto
+produce error RMS336–1512veces mayor. Los defectos máximos de la suma positiva
+K+Ef+Edc son0.0209–3.5222MJ. El RMS de la identidad diferencial E_exec es
+2.4e-5–3.23e-3MW; el de la forma exacta COI es~9e-6–2.06e-3MW.
+
+Los residuos integrales se concentran en la capa rápida de entrada/salida,
+insuficientemente resuelta por5ms para un lazo de corriente de600Hz. Al reiniciar
+el balance en1.15s, los errores a61s quedan entre4e-6 y1.275e-3MJ. La cuadratura
+coarsened empeora el cierre, como registra IEEE39_BALANCE_QUADRATURE.csv.
+No alegar residuo exacto cero ni extrapolar una convergencia fina no observada.
+Estas son comprobaciones no triviales porque diferencian energía reconstruida
+de estados y la comparan con potencias, además del chequeo KCL.
+
+7. Puente TGOV1: área firmada de frecuencia y términos terminales
+================================================================
+Para una máquina controlada, con nu_i=omega_i-1 y referencias fijas:
+  T1 dot(x1)=(pref-nu)/R-x1+a_aw,
+  T3 dot(x2)=x1+T2 dot(x1)-x2,
+  Pmech=Sn*(x2-DT*nu).
+El término a_aw es cero en la rama interior. Si el limitador anula dot(x1),
+a_aw=x1-(pref-nu)/R. Restando el equilibrio inicial e integrando:
+
+  integral Delta Pmech_i
+    =-Sn_i(1/R_i+DT_i)*integral nu_i
+     +Sn_i[(T2_i-T1_i)Delta x1_i-T3_i Delta x2_i]
+     +Sn_i integral a_aw,i.
+
+El gobernador tiene memoria: omitir esos términos terminales no es exacto
+durante un evento finito, aunque la frecuencia final parezca casi estacionaria.
+SG39 es una excepción importante: torque fijo, no potencia fija ni TGOV1.
+  Delta Pmech_39=Pmech_39(0)*nu_39.
+Así su coeficiente de área en el lado de respuesta primaria es NEGATIVO.
+
+Definir I_f=sum_{SG controlados} [Sn_i(1/R_i+DT_i)/60]*integral f_rotor,i
+                   -[Pmech_39(0)/60]*integral f_rotor,39,
+con f_rotor=60nu. Sea Bgov la suma de términos terminales y Aaw la suma
+Sn*integral a_aw. Como Pdc permanece constante en estas trazas, se obtiene
+
+  I_f = Bgov + Aaw -Delta E_exec
+              -integral Delta(Pload+Lnetwork+Lfilter+Lcu+Pdamping).
+
+Esta es la ley integral del modelo EJECUTADO, no una ley de almacenamiento
+positivo. No exige coherencia perfecta de todos los rotores. Los pesos
+MW/Hz son201.482523(bus30),20.915470(bus33),20.702810(bus35),13.974068(bus37)
+y aproximadamente-0.483977(bus39). Las PLL no aparecen como fuentes sostenidas
+en esta identidad; sí afectan voltajes, pérdidas, intercambio con almacenamiento
+y la trayectoria que determina todos los términos.
+
+Reconstrucción y límite de observabilidad del gobernador:
+x2=Pmech/Sn+DT*nu se observa. En rama interior,
+  x1=[T3 dot(x2)+x2-(T2/T1)*(pref-nu)/R]/(1-T2/T1).
+En seis eventos cierra la identidad integral mecánica con error menor de5e-5MJ y el
+residuo de su primera ODE es pequeño. En bus29/+100MW, SG35 reconstruido
+como interior supera1 hasta1.01112 y deja déficit0.728391MJ. El candidato
+de rama limitada x1=T3dot(x2)+x2 permanece cerca de1 entre6.48 y8.37s;
+con tolerancia diagnóstica1e-4pu se identifican379muestras. Su corrección
+antiwindup integrada es-0.726142MJ y reduce el defecto mecánico a-0.002249MJ.
+
+La inversión de esa salida NO es globalmente unívoca: los puntos de cambio
+de rama están contaminados por diferenciación a5ms. Por eso la clasificación
+es evidencia consistente con limitación, no observación directa certificada
+de xg1. Los extremos de la reconstrucción durante el cambio no son nuevos
+valores fiables de válvula. El gate pendiente es exportar el estado/indicador
+del limitador de la solución original, o documentar su reconstrucción acotada.
+No cambiar la derivación para borrar el residual: conservar el término híbrido.
+
+La identidad frecuencia–energía con esta corrección queda a~0.0461MJ en el
+peor evento, dominada por la capa rápida ya visible en el balance energético.
+Como ejemplo finito informativo, bus16_pulse da área ponderada I_f=-11.982211MJ,
+energía incremental de carga+pérdidas11.936883MJ y Bgov=-0.052745MJ. Su COI
+final aún es-2.2e-5Hz: es cercano a recuperación, no endpoint exactamente nulo.
+
+8. Ventanas de frecuencia, consumo real y cola: qué no inferir
+=============================================================
+La identidad de medida, para historia de fase perturbada cero, es
+  integral_0^T f_window(t)dt = [1/(2pi W)] integral_{T-W}^T theta(t)dt,
+W=.5s. Se reconstruye theta de la recurrencia de la ventana y se verifica
+la identidad a2e-13Hz*s. Es chequeo algebraico de la métrica, NO validación
+independiente de física ni igualdad con el área COI.
+
+Los escalones sostenidos no restauran frecuencia. Valores finales COI:
+  bus16/100: -0.420048Hz; bus29/100: -0.468007Hz; bus8/100: -0.358069Hz.
+El área firmada de esos escalones no tiene límite finito si persiste el offset;
+haría falta sustraer un endpoint demostrado y controlar los términos de cola.
+La frecuencia rotor sigue variando en los últimos10s: hasta0.002105Hz en
+bus16/50MW. La dispersión entre rotores es pequeña pero no exactamente cero.
+No sustituir el valor a61s por un equilibrio matemático o un límite infinito.
+
+El evento es modificación de Pset ZIP, Qset fijo;100MW es la etiqueta del
+parámetro, no el consumo efectivo. Promedio últimos10s de Delta Pload:
+  bus16/100:108.507597MW;
+  bus29/100:124.146748MW;
+  bus8/100:90.525873MW.
+Las pérdidas de red cambian+0.011986,-2.831487,+1.469682MW respectivamente;
+las de filtro también cambian. Una ley de energía debe integrar las potencias
+realmente consumidas y disipadas. Sustituir por100MW*duración no es exacto.
+
+9. Gates para el paper y conclusión útil
+========================================
+YA VALIDABLE con esta auditoría:
+- Contrato de fuentes congeladas, escalado y orientación de potencias.
+- Balance SG de energía cinética y balance agregado de torque/COI sin coherencia
+  impuesta, con errores numéricos declarados.
+- Reconstrucción exacta de norma de corriente y energía del filtro a partir
+  de P/Q/V, y signo DC as-executed contrastado en siete eventos.
+- Ley integral TGOV1 con memoria, aporte de torque fijo SG39 y término híbrido;
+  evidencia de por qué no puede usarse una ley de droop estático sin términos.
+- Diferencia entre KCL, balance de almacenamiento, área de frecuencia medida,
+  energía incremental cuadrática y energía cinética real.
+
+NO DEMOSTRADO / GATE PENDIENTE:
+1. Una suma positiva de almacenamientos físicos compatible con el GFL exportador
+   congelado. Hay que declarar/corregir y validar un contrato físico nuevo, o
+   restringir explícitamente la conclusión al almacenamiento firmado existente.
+   No basta con cambiar un signo dentro de la prueba conservando las trazas.
+2. Balance completo de energía de un equipo físico fuera de la aproximación
+   fasorial/estator algebraico y de las fuentes/controladores idealizados.
+3. Certificación de la capa sub-5ms y observación directa del limitador SG35.
+4. Convergencia al equilibrio final, integral hasta infinito y una cota de cola
+   no lineal; ningún nuevo resultado de estabilidad global se produjo aquí.
+5. No-go para TODOS los controladores energéticamente neutros: requiere una
+   familia de admisibilidad, límites de almacenamiento, disipación y endpoints,
+   además del dominio de validez físico. Estos datos solos no cierran ese gate.
+
+El puente honesto hacia una ley de diseño tiene que usar POTENCIA Y ENERGÍA
+conservadas bajo un contrato físico, antes de identificar un coeficiente de
+inercia aparente con reserva real. Los datos actuales sostienen una identidad
+fuerte del modelo ejecutado y detectan exactamente dónde se rompe esa inferencia.
+Los espectros, validaciones locales y KKT archivados mantienen su alcance
+matemático original; este audit no los sustituye por una descalificación general.

@@ -1,0 +1,19 @@
+case,matrix,dimension,absolute_frobenius,relative_frobenius,max_absolute,max_row,max_column,PD_minus_AN,row_state,column_state,interpretation
+all_SG,reduced_A,114,1.4872894001882533e-11,2.9190884554353993e-15,1.1212364370294381e-11,18,23,1.1212364370294381e-11,"(31, 'SG', 'avr_vm')","(31, 'SG', 'machine_omega')",Dynamical Schur reduction in physically matched coordinates
+all_SG,descriptor_M,192,0.0,0.0,0.0,1,1,0.0,"(30, 'SG', 'gov_xg1')","(30, 'SG', 'gov_xg1')",Raw descriptor rows; algebraic equation normalization may differ
+all_SG,descriptor_A,192,3456.304480825039,0.5977098497667943,1021.4623698977468,145,146,1021.4623698977468,"(16, 'network', 'busbar_u_r')","(16, 'network', 'busbar_u_i')",Raw descriptor rows; algebraic equation normalization may differ
+all_SG,descriptor_B,NOT_DEFINED_FOR_AUTONOMOUS_PD_NETWORK,,,,,,,,,"NOT_COMPARABLE: official closed-network PD output is (M,A); legacy AN B/C/D are open bus-port channels"
+all_SG,descriptor_C,NOT_DEFINED_FOR_AUTONOMOUS_PD_NETWORK,,,,,,,,,"NOT_COMPARABLE: official closed-network PD output is (M,A); legacy AN B/C/D are open bus-port channels"
+all_SG,descriptor_D,NOT_DEFINED_FOR_AUTONOMOUS_PD_NETWORK,,,,,,,,,"NOT_COMPARABLE: official closed-network PD output is (M,A); legacy AN B/C/D are open bus-port channels"
+ExpG_candidate,reduced_A,117,21677.334334298263,0.002483686165495819,21318.888397756527,90,87,-21318.888397756527,"(36, 'GFL', 'i_f_i')","(36, 'GFL', 'theta')",Dynamical Schur reduction in physically matched coordinates
+ExpG_candidate,descriptor_M,195,0.0,0.0,0.0,1,1,0.0,"(30, 'SG', 'gov_xg1')","(30, 'SG', 'gov_xg1')",Raw descriptor rows; algebraic equation normalization may differ
+ExpG_candidate,descriptor_A,195,21602.27185509834,0.0024749636795570623,21318.888397756527,90,87,-21318.888397756527,"(36, 'GFL', 'i_f_i')","(36, 'GFL', 'theta')",Raw descriptor rows; algebraic equation normalization may differ
+ExpG_candidate,descriptor_B,NOT_DEFINED_FOR_AUTONOMOUS_PD_NETWORK,,,,,,,,,"NOT_COMPARABLE: official closed-network PD output is (M,A); legacy AN B/C/D are open bus-port channels"
+ExpG_candidate,descriptor_C,NOT_DEFINED_FOR_AUTONOMOUS_PD_NETWORK,,,,,,,,,"NOT_COMPARABLE: official closed-network PD output is (M,A); legacy AN B/C/D are open bus-port channels"
+ExpG_candidate,descriptor_D,NOT_DEFINED_FOR_AUTONOMOUS_PD_NETWORK,,,,,,,,,"NOT_COMPARABLE: official closed-network PD output is (M,A); legacy AN B/C/D are open bus-port channels"
+ExpK_nominal,reduced_A,108,4001.217325155386,0.0002511233785651608,2879.371184144602,105,102,-2879.371184144602,"(39, 'GFL', 'i_f_i')","(39, 'GFL', 'theta')",Dynamical Schur reduction in physically matched coordinates
+ExpK_nominal,descriptor_M,186,0.0,0.0,0.0,1,1,0.0,"(30, 'GFL', 'gamma_q')","(30, 'GFL', 'gamma_q')",Raw descriptor rows; algebraic equation normalization may differ
+ExpK_nominal,descriptor_A,186,571834.6806856237,0.035888970343997004,398279.5817656741,78,183,-398279.5817656741,"(38, 'SG', 'avr_vm')","(38, 'network', 'busbar_u_r')",Raw descriptor rows; algebraic equation normalization may differ
+ExpK_nominal,descriptor_B,NOT_DEFINED_FOR_AUTONOMOUS_PD_NETWORK,,,,,,,,,"NOT_COMPARABLE: official closed-network PD output is (M,A); legacy AN B/C/D are open bus-port channels"
+ExpK_nominal,descriptor_C,NOT_DEFINED_FOR_AUTONOMOUS_PD_NETWORK,,,,,,,,,"NOT_COMPARABLE: official closed-network PD output is (M,A); legacy AN B/C/D are open bus-port channels"
+ExpK_nominal,descriptor_D,NOT_DEFINED_FOR_AUTONOMOUS_PD_NETWORK,,,,,,,,,"NOT_COMPARABLE: official closed-network PD output is (M,A); legacy AN B/C/D are open bus-port channels"

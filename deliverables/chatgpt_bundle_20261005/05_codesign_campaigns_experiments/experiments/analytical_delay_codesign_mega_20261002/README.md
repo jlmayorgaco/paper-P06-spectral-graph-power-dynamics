@@ -1,0 +1,9 @@
+# Analytical delay-aware IEEE-39 SG→GFL co-design: gated Mega experiment
+
+This directory contains a new, independent experiment executed on 2026-10-02/03. Prior frozen experiments were read for model provenance and reproduced in this directory; they were not altered. The intended target was the maximum SG→GFL replacement under fixed heterogeneous PLL delays and frozen dynamic-security limits. That maximum was **not established**.
+
+The strongest executed results are: (1) a five-event validated zero-delay best-found design at 88.4551408% GFL and 623.7411616 MW retained SG; (2) an exact rank-≤30 descriptor action identity, reconstructed to `3.23e-16` relative error on model-accepted random designs; and (3) numerical counts of the exact linear DDE characteristic showing a 5.2–5.4 Hz unstable PLL cluster at 40 ms uniform delay. At 40 ms the 87.5% seed has six roots right of the `−0.05 s⁻¹` margin, while the 88.455% zero-delay design has twelve. Both have zero counted roots at 20 and 30 ms. No positive-delay nonlinear event validation, delay-specific co-design optimum, spatial-latency frontier, or global optimality bound was produced.
+
+Read `STATUS.md` for gates, `THEORY_ANALYTICAL_CODESIGN.md` for mathematical statements and their assumptions, `M3_ORACLE_METHOD.md` for DDE counting, `POSTER_CLAIM_LEDGER.md` for permitted claims, and `FINAL_REPORT.md` for the fixed-format conclusion. The three key plots are `FIG_M1_VALIDATED_LINE_SEARCH.png`, `FIG_F6_ACTION_SPACE_DIMENSION.png`, and `FIG_M3_DDE_ROOT_COUNT.png`.
+
+The fixed model/experiment contract and source hashes are in `MEGA_EXPERIMENT_MANIFEST.json`; executed source and output hashes are in `RESULT_HASHES.json` once `hash_outputs.py` has run. All numbers should be read with the scope in `STATUS.md`. A best found zero-delay design is not denoted an optimum.

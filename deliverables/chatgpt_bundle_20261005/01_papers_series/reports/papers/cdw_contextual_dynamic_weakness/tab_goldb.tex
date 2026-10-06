@@ -1,0 +1,28 @@
+\begin{table}[!t]
+\centering
+\caption{Branch-reinforcement ranking for $V_4$ on the 24 new-holdout policies and the 40 fresh draws at P4 (truth: finite re-equilibrated $\times1.5$). Medians over conditions; ``elig.'': the 8 preregistration-eligible conditions ($R_0\le10^{-8}$); other columns: all 64 solved conditions. The port form re-derives the total derivative from re-solved Jacobians (its ``elig.'' entry uses 2 conditions). $^\ddagger$Post hoc: mean finite-effect rank over the conditions of the other clusters.}\label{tab:goldb}
+\scriptsize
+\setlength{\tabcolsep}{2.2pt}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+predictor & $\rho$ elig. & $\rho$ & $\tau$ & concord. & top-5 & NDCG@5 \\
+\midrule
+$|P_e|$ (selected on discovery) & 0.49 & 0.50 & 0.39 & 0.71 & 0.20 & 0.61 \\
+$|S_e|$ & 0.47 & 0.48 & 0.37 & 0.69 & 0.20 & 0.61 \\
+$|z_e|$ & 0.25 & 0.24 & 0.20 & 0.61 & 0.20 & 0.27 \\
+electrical distance & 0.21 & 0.19 & 0.15 & 0.58 & 0.40 & 0.38 \\
+effective resistance & 0.30 & 0.30 & 0.22 & 0.61 & 0.60 & 0.58 \\
+Fiedler edge score & -0.05 & -0.05 & -0.03 & 0.48 & 0.20 & 0.36 \\
+edge betweenness & -0.28 & -0.27 & -0.18 & 0.40 & 0.00 & 0.17 \\
+endpoint $dV/dQ$ & -0.17 & -0.16 & -0.10 & 0.45 & 0.00 & 0.16 \\
+$\Delta$gSCR($V_4$) & 0.16 & 0.17 & 0.12 & 0.57 & 0.20 & 0.30 \\
+\midrule
+base-portfolio eig.\ sens. & -0.05 & 0.03 & 0.01 & 0.50 & 0.60 & 0.91 \\
+frozen (portfolio) & 0.91 & 0.90 & 0.77 & 0.90 & 0.60 & 0.97 \\
+\textbf{total (portfolio)} & \textbf{0.98} & \textbf{0.99} & \textbf{0.93} & \textbf{0.98} & \textbf{1.00} & \textbf{0.99} \\
+port form (verification) & 0.99 & 1.00 & 0.96 & 1.00 & 1.00 & 1.00 \\
+\midrule
+fixed list from other clusters$^\ddagger$ & 0.95 & 0.94 & -- & -- & 0.80 & -- \\
+\bottomrule
+\end{tabular}
+\end{table}

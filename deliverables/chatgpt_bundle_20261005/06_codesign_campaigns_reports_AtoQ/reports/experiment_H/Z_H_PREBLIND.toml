@@ -1,0 +1,97 @@
+spectral_abscissa_s_inv = nan
+frozen_domain_sha256 = "feb02715bf15a9930d4678c4221535837c2597834fac89e2feed07febe1aae9b"
+small_gain_peak = nan
+primary_objective = "sum(P_i_MW * epsilon_i)"
+preblind_predictor_status = "LINEAR_SINGLE_ANCHOR_PREDICTOR"
+powerdynamics_validation = "NOT_RUN"
+generator_buses = [30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
+experiment = "BND_EXP_H"
+GFL_MW = 5395.3815115732405
+beta_required = nan
+sigma_required_s_inv = 0.05
+status = "PREBLIND_PREDICTOR"
+candidate_frozen = false
+design_used_PowerDynamics = false
+GFL_fraction = 0.9986341098037402
+retained_SG_MW = 7.379578405535098
+
+[[generator]]
+Ki = 246.74010689271194
+P_i_MW = 250.0
+H_MVA_s = 4199.999809265137
+epsilon = 0.0
+Kp = 31.415926536614563
+bus = 30
+rho = 1.0
+[[generator]]
+Ki = 246.74010368454327
+P_i_MW = 511.71887411014427
+H_MVA_s = 3030.299997329712
+epsilon = 0.0
+Kp = 31.415926535726612
+bus = 31
+rho = 1.0
+[[generator]]
+Ki = 246.74010164782442
+P_i_MW = 649.9999999999998
+H_MVA_s = 3579.9999237060547
+epsilon = 0.0
+Kp = 31.415926536772925
+bus = 32
+rho = 1.0
+[[generator]]
+Ki = 246.7401010572627
+P_i_MW = 632.0000000000005
+H_MVA_s = 2859.9998474121094
+epsilon = 0.0
+Kp = 31.415926536439017
+bus = 33
+rho = 1.0
+[[generator]]
+Ki = 246.74010313356303
+P_i_MW = 507.99999999999983
+H_MVA_s = 2599.8001098632812
+epsilon = 0.0
+Kp = 31.415926533533813
+bus = 34
+rho = 1.0
+[[generator]]
+Ki = 246.74010101606282
+P_i_MW = 650.0000000000007
+H_MVA_s = 3479.9999237060547
+epsilon = 0.0
+Kp = 31.415926535019413
+bus = 35
+rho = 1.0
+[[generator]]
+Ki = 246.740102143549
+P_i_MW = 560.0
+H_MVA_s = 2639.7001028060913
+epsilon = 0.0
+Kp = 31.415926533739427
+bus = 36
+rho = 1.0
+[[generator]]
+Ki = 246.7401025066401
+P_i_MW = 539.9999999999991
+H_MVA_s = 2429.7001361846924
+epsilon = 0.0
+Kp = 31.415926539236036
+bus = 37
+rho = 1.0
+[[generator]]
+Ki = 246.74009596273206
+P_i_MW = 830.0000000000006
+H_MVA_s = 3450.000047683716
+epsilon = 0.0088910583199218
+Kp = 31.415926542442282
+bus = 38
+rho = 0.9911089416800782
+[[generator]]
+Ki = 246.7401068733795
+P_i_MW = 271.0422158686306
+H_MVA_s = 50000.0
+epsilon = 0.0
+Kp = 31.415926536524186
+bus = 39
+rho = 1.0

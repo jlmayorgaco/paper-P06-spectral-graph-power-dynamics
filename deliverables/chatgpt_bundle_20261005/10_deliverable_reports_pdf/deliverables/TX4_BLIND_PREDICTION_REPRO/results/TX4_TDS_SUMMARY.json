@@ -1,0 +1,23 @@
+{
+  "runs": 3,
+  "disturbance": {
+    "kind": "pulse",
+    "machine": null,
+    "load_bus": 20
+  },
+  "pulse_percent": 2.0,
+  "pulse_duration_s": 0.2,
+  "horizon_rule": "clip(3/abs(lambda_re), 30, 120)",
+  "observable_rule": "machine-speed pair maximizing critical-mode separation",
+  "outcomes": {
+    "proper 30+33+35": "STABLE",
+    "H4 original 30+33+35+37": "UNSTABLE",
+    "H4 retuned g=0.25": "STABLE"
+  },
+  "verdict_agreement": 1.0,
+  "growth_sign_agreement": 1.0,
+  "median_re_error": 0.00031024195760936957,
+  "max_re_error": 0.0003510463198004299,
+  "elapsed_s": 66.34330797195435,
+  "model_scope": "nonlinear phasor-domain DAE; NOT EMT"
+}

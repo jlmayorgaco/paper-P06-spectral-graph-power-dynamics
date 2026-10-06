@@ -1,0 +1,22 @@
+{
+  "status": "THEORY_AND_SMALL_CHECKS_COMPLETE",
+  "symbolic_checks": 11,
+  "symbolic_passed": 11,
+  "toy_DDE_checks": 10,
+  "toy_DDE_passed": 10,
+  "toy_max_moment_error": 2.604342988979101e-18,
+  "toy_max_actual_remainder": 0.00011306595591266053,
+  "toy_uniform_remainder": 0.0012620508326029799,
+  "IEEE39_algebra_points": 3,
+  "IEEE39_algebra_passed": 3,
+  "IEEE39_max_factor_error": 1.8113327685744947e-14,
+  "IEEE39_scalar_envelope_max": 2648.67480989233,
+  "IEEE39_scalar_envelope_min": 209.4151111550505,
+  "IEEE39_scalar_envelope_under_one_points": 0,
+  "IEEE39_region_certificate": "BLOCKED_UNIFORM_ENCLOSURES_NOT_EVALUATED",
+  "IEEE39_replacement_upper_MW": null,
+  "IEEE39_new_feasible_design": false,
+  "grid_simulations_run": 0,
+  "grid_optimization_runs": 0,
+  "novelty_status": "NOT_ESTABLISHED"
+}

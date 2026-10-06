@@ -1,0 +1,48 @@
+{
+  "experiment": "E15_order4_audit",
+  "seed": 20260909,
+  "config": {
+    "core": [
+      30,
+      33,
+      35,
+      37
+    ],
+    "mac_floor": 0.8
+  },
+  "python": "3.13.14",
+  "platform_name": "Windows-11-10.0.26200-SP0",
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "dependencies": {
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1",
+    "networkx": "3.6.1",
+    "pyarrow": "25.0.1"
+  },
+  "started_utc": "2026-09-10T00:38:56.857035+00:00",
+  "results": {
+    "reference_branch": {
+      "real": 0.14467022043327096,
+      "frequency_hz": 0.5746810861612759
+    },
+    "truncations": {
+      "alpha_le_0": -0.12647823618208578,
+      "alpha_le_1": -0.6046962718802407,
+      "alpha_le_2": -0.3615739071530307,
+      "alpha_le_3": -0.07438117163691274,
+      "alpha_le_4": 0.14467022043327094
+    },
+    "mu4": 0.21905139207018368,
+    "mac_min": 0.9673928060301825,
+    "tracked_families": [
+      "sg"
+    ],
+    "reconstruction_residual": 2.7755575615628914e-17,
+    "elapsed_s": 1.7822506427764893
+  },
+  "status": "SUCCESS",
+  "config_sha256": "302e811bfa7613a0a89fb5330f7cdcad8228fe02166775d39f4a58980ab69bde",
+  "finished_utc": "2026-09-10T00:38:56.857325+00:00"
+}

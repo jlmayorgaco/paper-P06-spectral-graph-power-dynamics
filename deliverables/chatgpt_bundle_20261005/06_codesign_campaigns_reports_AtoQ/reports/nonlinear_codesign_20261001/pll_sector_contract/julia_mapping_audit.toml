@@ -1,0 +1,9 @@
+script_sha256 = "1b22e0017f654dfb8f2cdc3cdfff98685207ee20d1f7606606fc2817e4ac234c"
+status = "INSTALLED_PLL_EQUATIONS_MATCH_EXACT_MOVING_FRAME_CONTRACT"
+ReducedDAE_sha256 = "c5d721bc371dd6ee424afb2f40638e60307fd62389bba2ac69f3b7d247a2c80d"
+scope = "PLL equations only; current and DC states were varied but are not certified"
+pll_tau = 0.0005305164769729845
+cases = 1000
+nominal_voltage_min = 0.9819999933242798
+max_absolute_rhs_error = 2.255546860396862e-10
+nominal_voltage_max = 1.0635000467300415

@@ -1,0 +1,11 @@
+claim_id,claim,gate,evidence,status,allowed_interpretation
+C1,Three low-order C12 holdout portfolios are default-path H0 candidates,A,PD39_BLOCKER_DEFAULT_PATH_AUDIT.csv,OBSERVED,Candidates only; not physically confirmed blockers
+C2,The default-path candidate signs are not reproduced by the strict 1e-10 audit,A,PD39_BLOCKER_DEFAULT_PATH_AUDIT.csv; PD39_BLOCKER_NUMERICAL_AUDIT.csv,FAIL,Initialization/tolerance path sensitivity; numerical or model-pathology issue remains unresolved
+C3,Independent dense and descriptor spectra agree within each solved path,A,PD39_BLOCKER_NUMERICAL_AUDIT.csv,PARTIAL PASS,Agreement does not establish physicality when equilibria differ across paths
+C4,All three selected C12 candidates hit the TDS MaxIters guard,B,PD39_BLOCKER_TDS_VALIDATION.csv,FAIL,No nonlinear physical confirmation
+C5,Immediate predecessors and matched controls decay in the common TDS,B,PD39_BLOCKER_TDS_VALIDATION.csv,OBSERVED,Controls provide separation but do not validate the candidate blockers
+C6,The preregistered physical-blocker GO gate is not met,A+B,combined audit and TDS,STOP,CASE C
+C7,Composition strong evidence was not tested as a confirmatory gate,C,PD39_BLOCKER_COMPOSITION_TEST.csv,NOT_APPLICABLE,No physical blocker survived Gates A/B
+C8,The compatibility atlas was not run,conditional,PD39_ATLAS_SUMMARY.csv,NOT_RUN_STOP,No atlas theory or boundary claim is permitted
+C9,Exact PD contextual-return closure is unavailable,closure,TX4_CONTEXTUAL_RETURN_VALIDATION.csv,BLOCKED,No proxy K/D/Q construction or determinant claim
+C10,IAS poster redesign is not justified,final,PD39_BLOCKER_ATLAS_HEADLINE.json,NO,Only a narrow numerical/physicality warning is supported

@@ -1,0 +1,118 @@
+{
+  "experiment": "analytical delay-aware SG-to-GFL co-design mega experiment",
+  "generated_at_utc": "2026-10-03T01:29:03.585512+00:00",
+  "git_head": "d0fecb3264aeb855ab6700fc6ef66120d4b6c33c",
+  "git_branch": "research/expQ2B-secure-optimum",
+  "repository_dirty_before_new_outputs": true,
+  "preexisting_status_entry_count_excluding_this_directory": 135,
+  "new_artifact_directory": "experiments/analytical_delay_codesign_mega_20261002",
+  "commit_or_push_performed": false,
+  "julia_version": "1.11.9",
+  "python_version": "3.13.9",
+  "packages": {
+    "PowerDynamics": "5.0.0",
+    "NetworkDynamics": "1.3.0",
+    "SciMLBase": "3.53.2",
+    "OrdinaryDiffEqRosenbrock": "2.7.1"
+  },
+  "source_sha256": {
+    "Project.toml": "e170a2f9fca57aa3f8f3f053b318f0d5e3d434679dbdd4a4b8eef5481cfc0e4f",
+    "Manifest.toml": "92bc7849ea4445a4bedd18f732611ec271147e238c349aa5eeefc6d02023e911",
+    "src/bnd_model_expN/PDExactDesignN.jl": "f5211509b117d8a06e31efa62aa49b1df20d2c1ef7f5c6f9114bb9eb25838365",
+    "experiments/nonlinear_codesign_20261001/PDPhysicalReference.jl": "5e1ca06ca97dd35245b0052d9f50549a9dcd2ba713bf29e8dfd8da99c6f9d50f",
+    "experiments/bnd_expQ2B/certified_search/ConsistentEventObservation.jl": "c7c243adea0a759fa7cb7dd99fe0c08d2cfb137ef7aa40b3e7856c0e6ee62483",
+    "reports/analytic_iteration_20261001/refined/protocol.toml": "8d02a5cf52a4768d21f941c79cca59d7fc5d435773c6bf8bb6f66f9fee6bac1d",
+    "reports/analytic_iteration_20261001/refined/joint_final.toml": "c8a63bcb04e5c2465a9b8faad886def8932cfc932c7237e24595cc807f19a0df",
+    "experiments/analytic_iteration_20261001/run_experiment.jl": "edf0aa00519e5eafef6b5d39fa979f47cf4676877be51ede1c685b92e1ca49ed",
+    "experiments/delay_dressed_replacement_frontier_20261002/DelayCharacteristic.jl": "3cdcbba68e03f9a1938f4f33bec035ca6528f853e719787c0fd6511cb1e9c845",
+    "experiments/delay_dressed_replacement_frontier_20261002/DDE_NEV.jl": "c4b0fe87f63f998d1f3ba2a1da2da19543e05013c1c814abd2491a6dbeb25e29",
+    "experiments/delay_dressed_replacement_frontier_20261002/FROZEN_DELAY_PATTERNS.json": "91bf937acb27efffbd2e78ce69e0edc21d9eca156933da4755466182adf0539c",
+    "experiments/ieee39_exact_action_space_codesign_20261002/q0_validate_five_events.jl": "5ac40e60fc54ac2e5c7b6f4418d6cf8e39d4751fd2e02969136919f7318fcdf7",
+    "experiments/ieee39_exact_action_space_codesign_20261002/q12_validate_low_rank.jl": "54bbbd5835eca67e68a35358a13223af9f64eee1848ffff710a5f34f709c5ac7",
+    "experiments/ieee39_exact_action_space_codesign_20261002/q4_validate_pi_boundary.jl": "13b9d99f6b667b5b860f3b830b8aa2df19af1ce5158f4c51a7267eef85cdcb0d",
+    "experiments/ieee39_exact_action_space_codesign_20261002/q56_validate_action_space.jl": "75b65671aec43a3171f87dc15634a6c70f55e4f3799fa6264e93fcb5e7ca9773"
+  },
+  "frozen_contract": {
+    "candidate_buses": [
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39
+    ],
+    "gain_bounds_multiplier_of_nominal": [
+      0.25,
+      4.0
+    ],
+    "nominal_Kp": 31.41592653589793,
+    "nominal_Ki": 246.74011002723395,
+    "equilibrium_residual_inf_limit": 1e-08,
+    "spectral_abscissa_limit_s_inv": -0.05,
+    "frequency_limit_Hz": 0.5,
+    "RoCoF_limit_Hz_s": 0.5,
+    "voltage_range_pu": [
+      0.9,
+      1.1
+    ],
+    "min_SG_actuator_fraction_slack": 0.002,
+    "measurement_window_s": 0.5,
+    "event_time_s": 1.0,
+    "simulation_end_s": 61.0,
+    "event_solver": "Rodas5P",
+    "event_abstol": 1e-09,
+    "event_reltol": 1e-09,
+    "event_saveat_s": 0.01,
+    "hard_converter_current_and_dc_energy_limits_certified": false,
+    "events": [
+      {
+        "id": "bus8_minus100",
+        "bus": 8,
+        "load_step_MW": -100.0
+      },
+      {
+        "id": "bus16_plus100",
+        "bus": 16,
+        "load_step_MW": 100.0
+      },
+      {
+        "id": "bus16_minus100",
+        "bus": 16,
+        "load_step_MW": -100.0
+      },
+      {
+        "id": "bus29_plus100",
+        "bus": 29,
+        "load_step_MW": 100.0
+      },
+      {
+        "id": "bus29_minus100",
+        "bus": 29,
+        "load_step_MW": -100.0
+      }
+    ],
+    "uniform_delay_grid_ms": [
+      0,
+      5,
+      10,
+      20,
+      30,
+      40,
+      50
+    ],
+    "heterogeneous_frozen_patterns_path": "experiments/delay_dressed_replacement_frontier_20261002/FROZEN_DELAY_PATTERNS.json",
+    "heterogeneous_frozen_multiset_sha256": "8a2ff6e97b23337ecf575b8c7dcb56afa505c99bc3ed4646420f0b5cc12c7ddc",
+    "heterogeneous_seed": 20261002,
+    "experiment_random_seed": 20261002
+  },
+  "model_variants": {
+    "nonlinear_events": "PowerDynamics IEEE-39 PhysicalGFLDC, fixed interior architecture",
+    "finite_spectrum": "zero-delay PowerDynamics network linearization, gauge mode removed",
+    "DDE": "exact delayed PLL phase-error channel in DelayCharacteristic.jl; no Pade primary truth",
+    "action_space": "fixed-coordinate augmented descriptor in PDExactDesignN.jl"
+  }
+}

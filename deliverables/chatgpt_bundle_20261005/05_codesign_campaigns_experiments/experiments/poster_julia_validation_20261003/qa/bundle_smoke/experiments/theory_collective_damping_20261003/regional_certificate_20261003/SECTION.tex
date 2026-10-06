@@ -1,0 +1,442 @@
+\section{A finite regional replacement bound with moving modal patterns}
+\label{sec:regional}
+
+\paragraph{What is being closed.}
+Equation~\eqref{eq:raybound} needed an unevaluated Taylor remainder.
+Here the remainder is derived from the characteristic operator itself.
+We bound sums of roots inside fixed contours, allowing their eigenvectors
+and individual locations to change. No prescribed-pattern compatibility
+condition is imposed on the regional upper bound. The construction uses
+standard argument-principle, matrix-logarithm and convex-duality tools
+\cite{beyn,lessard}; its specialization and usefulness for this grid
+contract, rather than those tools, are the research question.
+
+\subsection{A finite identity that survives internal root collisions}
+\status{EXACT\_IDENTITY}
+Use the full finite-dimensional characteristic matrix
+$\Delta(s,p)$ of the linearized DDE, with fixed delays.
+It is holomorphic in $s$ on and inside each positively oriented,
+piecewise smooth simple contour $\Gamma$ used below.
+Do not use a meromorphic Schur complement without accounting for its poles.
+Exclude the rotational root from these contours. In the full state chart
+this avoids requiring a parameter-independent gauge-deflation matrix.
+
+Let $p=p_0+d$ lie in a declared compact design region $\mathcal D$ and
+let $\Delta_0(s)=\Delta(s,p_0)$ be nonsingular on $\Gamma$.
+Suppose a factorization
+\[
+ \Delta(s,p)-\Delta_0(s)=\mathcal U(s)\mathcal V(s,d),\qquad
+ H(s,d)=\mathcal V(s,d)\Delta_0(s)^{-1}\mathcal U(s)
+\]
+is available with $H\in\mathbb C^{r\times r}$, $\mathcal V(s,0)=0$.
+All dimensions and coordinates remain fixed on $\mathcal D$.
+Assume the \emph{uniform} bound
+\begin{equation}
+ \sup_{d\in\mathcal D,\,s\in\Gamma}\|H(s,d)\|_2
+ \le\kappa_\Gamma<1 . \label{eq:regional-kappa}
+\end{equation}
+The determinant lemma and invertibility of $I+tH$, $0\le t\le1$,
+preserve the number $m_\Gamma>0$ of enclosed roots, counting multiplicity.
+Define their mean $z_\Gamma(p)=m_\Gamma^{-1}
+\sum_{\lambda\ {\rm inside}\ \Gamma}\lambda$.
+Then
+\begin{equation}
+ \boxed{z_\Gamma(p)-z_\Gamma(p_0)
+ =-\frac{1}{2\pi\ii m_\Gamma}
+       \oint_\Gamma \operatorname{tr}\log(I+H(s,d))\,ds .}
+ \label{eq:regional-log}
+\end{equation}
+\begin{proof}
+The determinant ratio on the contour is $\det(I+H)$.
+The norm-convergent series
+$\operatorname{tr}\log(I+H)=
+\sum_{\ell\ge1}(-1)^{\ell+1}\operatorname{tr}(H^\ell)/\ell$
+chooses a continuous, single-valued logarithm along the closed contour.
+The argument principle gives the difference of root sums as
+$(2\pi\ii)^{-1}\oint s\,d\log\det(I+H)$.
+Integration by parts gives \eqref{eq:regional-log}.
+This only uses regularity on the contour and constant enclosed count;
+roots may collide or become defective inside it.
+\end{proof}
+
+If every physical root satisfies $\Re\lambda\le-\sigma$, then necessarily
+\[
+ g_\Gamma(p):=\Re z_\Gamma(p)+\sigma\le0.
+\]
+The converse is false: a stable mean can hide an unstable member.
+Several disjoint contours can sharpen the necessary conditions.
+One-root contours recover individual sensitivities where regular.
+A finite collection is sufficient for a \emph{necessary relaxation},
+not for a full-spectrum feasibility claim.
+
+\subsection{An explicit uniform remainder}
+\status{PROVED\_REDUCED\_MODEL}
+Write $H=H_1+H_{\rm rem}$ with $H_1$ linear in $d$, and suppose
+\[
+ \sup_{\Gamma,\mathcal D}\|H_{\rm rem}\|_*
+ \le e_\Gamma,\qquad \|\cdot\|_* \text{ is the nuclear norm}.
+\]
+Let $\ell_\Gamma$ be the contour length and put
+$\varphi(x)=-\log(1-x)-x$, $0\le x<1$.
+The affine prediction and its remainder satisfy
+\begin{align}
+ g_\Gamma(p)&=g_\Gamma(p_0)+J_\Gamma d+\mathcal R_\Gamma(d),\\
+ J_\Gamma d&=-\Re\frac{1}{2\pi\ii m_\Gamma}
+                     \oint_\Gamma\operatorname{tr}H_1(s,d)\,ds,\\
+ \boxed{|\mathcal R_\Gamma(d)|\le\beta_\Gamma
+ :=\frac{\ell_\Gamma}{2\pi m_\Gamma}
+       [e_\Gamma+r\varphi(\kappa_\Gamma)] .}
+ \label{eq:regional-remainder}
+\end{align}
+\begin{proof}
+The trace of $H-H_1$ is bounded by its nuclear norm.
+Also $|\operatorname{tr}H^\ell|\le r\|H\|_2^\ell$,
+including nonnormal $H$. Summing terms $\ell\ge2$ gives
+$r\varphi(\kappa_\Gamma)$; contour integration proves the bound.
+\end{proof}
+A simpler conservative expression uses
+$\varphi(x)\le x^2/[2(1-x)]$.
+For the logarithm term, any consistently used induced matrix norm
+can replace the Euclidean norm: each eigenvalue of $H$ is bounded
+by that norm, hence $|\operatorname{tr}H^\ell|\le r\kappa^\ell$.
+Pointwise verified bounds may instead be integrated along $\Gamma$.
+Numerical errors in $g_\Gamma(p_0)$ and $J_\Gamma$ must be included:
+if their certified errors are $e_0$ and $e_{J,a}$ and
+$|d_a|\le r_a$, add $e_0+\sum_a e_{J,a}r_a$ to $\beta_\Gamma$.
+No eigenvalue Hessian or fixed modal pattern is required.
+
+\subsection{The actual replacement contract gives a small factorization}
+\status{EXACT\_IDENTITY}
+For the repository's exported fixed-support, fixed-equilibrium sharing
+chart, define
+\begin{align*}
+ W_\rho&=\diag(1-\rho_1,1-\rho_1,\ldots,1-\rho_n,1-\rho_n),\\
+ G(\rho)&=Y+W_\rho D_s,&
+ N(\rho)&=W_\rho C_s+(I-W_\rho)C_f,\\
+ V(\rho)&=-G(\rho)^{-1}N(\rho),&
+ C(\rho)&=E_\theta+H_vV(\rho),\\
+ B(K)&=B_p\diag K_p+B_i\diag K_i,&
+ E_\tau(s)&=\diag(e^{-s\tau_i}).
+\end{align*}
+Here $V$ is the algebraic voltage \emph{Jacobian}, not the voltage phasor.
+With ordinary gain coordinates,
+\[
+ \Delta(s,p)=sI-A_{\rm dev}-B_vV(\rho)-B(K)E_\tau(s)C(\rho).
+\]
+This is the inspected parametric model, not a universal identity for
+all SG/GFL models or dispatch changes. If equilibrium/device matrices
+change under another contract, their derivatives and remainders must
+also be bounded. Endpoint state removal requires a separate chart.
+
+Denote reference matrices by a subscript $0$, and set
+\[
+ J=G_0^{-1}\delta G,\quad
+ V_1=-G_0^{-1}(\delta N+\delta G V_0),\quad
+ \delta V=(I+J)^{-1}V_1,\quad
+ V_{\rm rem}=- (I+J)^{-1}J V_1 .
+\]
+Thus $\delta V=V_1+V_{\rm rem}$ exactly. If uniformly
+$\|J\|_2\le a<1$ and $\|V_1\|_2\le v$, then
+\begin{equation}
+ \|\delta V\|_2\le\frac{v}{1-a},\qquad
+ \|V_{\rm rem}\|_2\le\frac{av}{1-a}. \label{eq:voltage-remainder}
+\end{equation}
+Because $G,N$ are affine in $\rho$, computable bounds are
+$a=\sum_j r_{\rho,j}\|G_0^{-1}G_{\rho_j}\|_2$ and
+$v=\sum_j r_{\rho,j}\|G_0^{-1}(N_{\rho_j}+G_{\rho_j}V_0)\|_2$.
+These require verified solves and norm enclosures for a certificate.
+
+Set $D_0(s)=B_v+B_0E_\tau(s)H_v$ and define
+\begin{align}
+ \mathcal U(s)&=[\,D_0(s)\quad B_pE_\tau(s)\quad B_iE_\tau(s)\,],\\
+ \mathcal V(s,d)&=-
+ \begin{bmatrix}
+ \delta V\\
+ \diag(\delta K_p)(C_0+H_v\delta V)\\
+ \diag(\delta K_i)(C_0+H_v\delta V)
+ \end{bmatrix}. \label{eq:physical-lowrank}
+\end{align}
+Direct expansion proves $\Delta-\Delta_0=\mathcal U\mathcal V$.
+The linear part uses $V_1,C_0$ in the three block rows.
+The remainder uses respectively
+$V_{\rm rem}$, $\diag(\delta K_p)H_v\delta V$, and
+$\diag(\delta K_i)H_v\delta V$, with the same minus signs.
+For this export, $\mathcal U$ has 40 columns for 204 states:
+20 voltage coordinates and two sets of ten PLL gain channels.
+The dimension is not a discarded-state approximation.
+
+For explicit conservative constants, let
+$v_b=v/(1-a)$, $v_r=av/(1-a)$,
+$k_p=\max_i|\delta K_{p,i}|_{\max}$,
+$k_i=\max_i|\delta K_{i,i}|_{\max}$, and
+$c_b=\|C_0\|_2+\|H_v\|_2v_b$.
+Then
+\begin{align*}
+ \|\mathcal V\|_2&\le v_{\mathcal V}
+   :=\sqrt{v_b^2+(k_pc_b)^2+(k_ic_b)^2},\\
+ \|\mathcal V_{\rm rem}\|_2&\le v_{\rm rem}
+   :=\sqrt{v_r^2+(k_p\|H_v\|_2v_b)^2+(k_i\|H_v\|_2v_b)^2}.
+\end{align*}
+If $w_\Gamma$ uniformly bounds
+$\|\Delta_0(s)^{-1}\mathcal U(s)\|_2$ on the entire contour, use
+$\kappa_\Gamma=v_{\mathcal V}w_\Gamma$ and
+$e_\Gamma=r v_{\rm rem}w_\Gamma$.
+Fixed nonsingular state/port scalings may improve these bounds if
+applied consistently. A large bound is inconclusive, not instability.
+
+\subsection{Stronger route: retain algebraic variables to remove that remainder}
+\label{sec:affinelift}
+\status{EXACT\_IDENTITY}
+The inverse-network remainder can be avoided altogether for this
+sharing contract. Retain the algebraic voltage perturbation $v$ and
+the detector perturbation $e$ with the dynamic state $x$:
+\begin{equation}
+ \mathcal F(s,p)=
+ \begin{bmatrix}
+ sI-A_{\rm dev}&-B_v&-B(K)E_\tau(s)\\
+ N(\rho)&G(\rho)&0\\
+ -E_\theta&-H_v&I
+ \end{bmatrix}. \label{eq:affineDAE}
+\end{equation}
+These are additional algebraic coordinates, not invented dynamics
+or additional control channels. Eliminating $e$ and $v$ proves
+\begin{equation}
+ \det\mathcal F(s,p)=\det G(\rho)\det\Delta(s,p).
+ \label{eq:descriptor-equivalence}
+\end{equation}
+On a region where $G$ is nonsingular, the finite roots and their
+multiplicities coincide. The factor $\det G$ is independent of $s$.
+
+Define $d=(\delta\rho,\delta K_p,\delta K_i)$ and the repeated diagonal
+\[
+ \Theta(d)=\diag(\delta\rho_1,\delta\rho_1,\ldots,
+                \delta\rho_n,\delta\rho_n,\delta K_p,\delta K_i).
+\]
+With the reference operator $\mathcal F_0$, set
+\begin{align}
+ \mathcal U&=
+ \begin{bmatrix}
+ 0&B_p&B_i\\ I&0&0\\0&0&0
+ \end{bmatrix},&
+ \mathcal V(s)&=-
+ \begin{bmatrix}
+ C_s-C_f&D_s&0\\
+ 0&0&E_\tau(s)\\
+ 0&0&E_\tau(s)
+ \end{bmatrix},\\
+ T(s)&=\mathcal V(s)\mathcal F_0(s)^{-1}\mathcal U,&
+ H(s,d)&=\Theta(d)T(s). \label{eq:affine-return}
+\end{align}
+Then, exactly,
+\[
+ \mathcal F(s,p)-\mathcal F_0(s)
+       =\mathcal U\Theta(d)\mathcal V(s),\qquad
+ \frac{\det\mathcal F(s,p)}{\det\mathcal F_0(s)}
+       =\det(I+\Theta(d)T(s)).
+\]
+The descriptor has dimension 234 and the determinant update has
+dimension 40 for this export. In particular,
+\[
+ \boxed{H=H_1,\qquad H_{\rm rem}=0.}
+\]
+All nonlinear dependence of the finite root change is now in the
+logarithm. The ordinary gain coordinates matter: log-gain increments
+would require exponential parameter remainders.
+Applying \eqref{eq:regional-log} to $\mathcal F$ gives the same
+physical root means, and \eqref{eq:regional-remainder} simplifies to
+\begin{equation}
+ \boxed{\beta_\Gamma
+   =\frac{\ell_\Gamma r}{2\pi m_\Gamma}
+          \varphi(\kappa_\Gamma).} \label{eq:affine-remainder}
+\end{equation}
+The baseline-moment and coefficient integration errors still need
+their separate enclosures.
+
+\paragraph{Use the declared parameter box, not a product of large norms.}
+Let $R_d$ contain the corresponding nonnegative half-widths, repeated
+for the two occurrences of each replacement coordinate. Entrywise,
+\[
+ |H(s,d)|\le M(s):=R_d|T(s)|.
+\]
+For any fixed vector $w>0$ on a contour panel,
+\begin{equation}
+ \|H(s,d)\|_{w,\infty}
+ \le \max_a\frac{(M(s)w)_a}{w_a}
+ =:\kappa_w(s). \label{eq:positive-envelope}
+\end{equation}
+This follows by scaling with $\diag w$ and taking absolute row sums.
+It is a standard positive-matrix bound, not a new stability theorem.
+The repeated-coordinate correlation is relaxed conservatively;
+the controllers remain local and the physical gain bounds unchanged.
+A Perron-based weight can suggest $w$, but certification uses verified
+inequalities for the chosen positive vector, not a floating-point
+eigenvalue treated as an exact bound.
+
+\paragraph{A concrete continuous-panel enclosure.}
+On a panel contained in $|s-s_c|\le h$, put
+$Q_c=\mathcal F_0(s_c)^{-1}$,
+$W_c=Q_c\mathcal U$, and
+\[
+ e_\tau(h)=\max_i e^{-\Re(s_c)\tau_i}
+                     (e^{h\tau_i}-1).
+\]
+For fixed delays,
+\[
+ \|\mathcal F_0(s)-\mathcal F_0(s_c)\|_2
+ \le h+\|B_0\|_2e_\tau(h),\qquad
+ \|\mathcal V(s)-\mathcal V(s_c)\|_2\le\sqrt2\,e_\tau(h).
+\]
+If verified bounds give
+$a_c:=\|Q_c\|_2[h+\|B_0\|_2e_\tau(h)]<1$,
+the Neumann series yields
+\begin{equation}
+ \|T(s)-T(s_c)\|_2
+ \le
+ \frac{\|\mathcal V(s_c)\|_2 a_c+\sqrt2\,e_\tau(h)}
+      {1-a_c}\,\|W_c\|_2=:\epsilon_{T,c}. \label{eq:panel}
+\end{equation}
+Hence $R_d(|T(s_c)|+\epsilon_{T,c}\one\one^T)$ is an
+entrywise panel envelope. Verified rounding/solve errors in
+$Q_c,W_c,T(s_c)$ must be added; these formulas do not make an
+ordinary dense solve self-certifying.
+One positive-vector test on that envelope bounds the entire panel
+and the entire parameter box. A finite covering closes the contour.
+Thus the outstanding computation has an explicit error formula,
+rather than an unspecified Hessian-sampling step.
+
+\subsection{Regional maximum and a controller-eliminated witness}
+\status{PROVED\_REDUCED\_MODEL}
+Stack the necessary cluster inequalities and their verified errors.
+Let $d=(\delta\rho,\delta K)$ range over compact boxes
+$\mathcal R\times\mathcal K$, intersected with the original physical
+limits. Let $A=J_\rho$, $C=J_K$, $b=-g_0+\beta$.
+Every fully secure design in this region necessarily satisfies
+\[
+ A\delta\rho+C\delta K\le b.
+\]
+Consequently the LP
+\begin{equation}
+ U_{\mathcal D}=\max_{\delta\rho\in\mathcal R,\,
+                         \delta K\in\mathcal K}
+ (P^0)^T\delta\rho\quad
+ \text{subject to }A\delta\rho+C\delta K\le b \label{eq:regionalLP}
+\end{equation}
+gives
+\begin{equation}
+ \boxed{P_F\le P^\star_{\mathcal D}
+ \le (P^0)^T\rho_0+U_{\mathcal D}=P_{U,\mathcal D}.}
+ \label{eq:regional-bracket}
+\end{equation}
+The lower candidate must belong to this same region and pass the full
+spectrum and all declared events. Numerically validated feasibility
+remains numerical evidence unless its own errors are certified.
+Omitting frequency, RoCoF or actuator constraints from this LP is an
+optimistic relaxation, not a safety claim.
+
+For any $\eta\ge0$, the support functions of the two boxes give
+\begin{equation}
+ U_{\mathcal D}\le
+ \eta^Tb+h_{\mathcal R}(P^0-A^T\eta)
+          +h_{\mathcal K}(-C^T\eta). \label{eq:regionaldual}
+\end{equation}
+Minimization over $\eta$ recovers the feasible bounded LP value
+by ordinary LP duality. For an interval box,
+$h(z)=\sum_j\max(l_jz_j,h_jz_j)$.
+The bound is valid for \emph{all} replacement directions in the
+declared region, unlike the earlier fixed-ray calculation.
+
+For a proposed replacement $\delta\rho$, the strict inequality
+\begin{equation}
+ \eta^T(A\delta\rho-b)>h_{\mathcal K}(-C^T\eta)
+ \label{eq:regional-exclusion}
+\end{equation}
+proves that no permitted local gain vector in the region can satisfy
+the necessary conditions, hence none can meet the full security contract.
+The weights identify which collective requirements conflict.
+If $C^T\eta=0$, their first-order aggregate has no gain authority;
+finite residual authority is still allowed by $\eta^T\beta$.
+Only the strict finite inequality, not a small derivative alone,
+establishes exclusion. This is a regional statement, not a global
+impossibility theorem for all local controllers.
+
+\subsection{Where graph interactions actually enter}
+\status{EXACT\_IDENTITY}
+Group the rows/columns of $H$ by intervention site (two algebraic
+voltage-equation channels and two gain channels per candidate).
+The exact series contains
+\[
+ \operatorname{tr}H^2
+ =\sum_i\operatorname{tr}H_{ii}^2
+   +\sum_{i\ne j}\operatorname{tr}(H_{ij}H_{ji}),
+\]
+and $\operatorname{tr}H^\ell$ sums closed walks of length $\ell$
+through these dynamical intervention ports. Their weights include
+the full resolvent, P/Q coupling, SG dynamics and exact delay phases.
+They are not necessarily physical transmission-line cycles, and $H$
+is neither a Laplacian nor a physical damping matrix.
+Even its diagonal blocks depend on the full network.
+
+Writing $H=D+O$ with $D$ block diagonal gives
+\[
+ \det(I+H)=\det(I+D)\det(I+T),\qquad T=(I+D)^{-1}O,\quad
+ \operatorname{tr}T=0.
+\]
+When the relevant logarithm series converge, the first omitted
+inter-site term after discarding $O$ is
+$-\tfrac12\operatorname{tr}T^2$ in the log determinant.
+Its contribution to the root-sum change has the opposite sign
+because of \eqref{eq:regional-log}; it need not be stabilizing.
+If $\|T\|_2\le t<1$, the discarded log-determinant magnitude is
+at most $r\varphi(t)$.
+This supplies a falsifiable approximation error for neglecting
+collective interactions, rather than assuming graph roughness
+predicts damping.
+
+An orthogonal graph basis can reorganize these operators.
+It preserves traces and Euclidean norms for the corresponding
+similarity, but its diagonal truncation changes the approximation.
+Low graph frequency alone does not justify that truncation.
+No GSP advantage or physical cycle mechanism is established until
+the retained/off-diagonal terms explain a measured limiting decision.
+
+\subsection{What must be verified before any IEEE--39 certificate}
+The closed formulas above replace an unspecified eigenvalue Hessian
+by explicit matrix-inverse and logarithm remainders. The affine
+descriptor removes the matrix-parameter remainder entirely for
+the inspected sharing contract. These identities do not
+automatically make a floating-point evaluation rigorous.
+For each regional box, an executable verification must:
+\begin{enumerate}
+ \item Verify the equilibrium/parameter chart and algebraic inverse
+ over that box, including any input/linearization uncertainty.
+ \item Enclose $\Delta_0^{-1}\mathcal U$ on every \emph{continuous}
+ contour panel with outward-rounded complex arithmetic and verified
+ linear solves; prove the baseline enclosed count and boundary regularity.
+ \item Enclose the baseline moments, coefficient integrals and
+ $\kappa_\Gamma<1$ uniformly. A sampled maximum does not do this.
+ \item Form the optimistic LP, bound numerical coefficient/dual errors,
+ and compare its upper bound with a fully checked candidate in the box.
+ \item Subdivide only to tighten the declared region; a global bound
+ needs exhaustive coverage of the original domain, including chart changes.
+\end{enumerate}
+If a condition fails, report an unresolved box or a conservative bound.
+The average-root condition can be weak even with a perfect remainder.
+A candidate with all strict security slacks and interior replacement
+fractions is not an established local maximum: continuity gives a
+small further feasible replacement if those strict inequalities hold
+for the exact model. The previously validated point therefore does
+not itself establish the presence of a modal conflict.
+
+\paragraph{Current status and novelty boundary.}
+The identities and conditional regional relaxation have proofs.
+Small symbolic and algebraic checks are recorded separately in
+\path{regional_certificate_20261003/}.
+No uniform IEEE--39 contour/parameter enclosure, nontrivial MW upper
+bound, controller-exclusion witness, or advantage over conventional
+tuning has been obtained in this extension.
+Contour eigensolvers, validated DDE spectra, and direct delay-system
+controller optimization already exist \cite{beyn,lessard,michielsdesign}.
+The candidate contribution is an informative, physically interpreted
+replacement bracket under the actual PLL-only action set. Its novelty
+and usefulness remain to be demonstrated; the proofs alone do not
+establish either.

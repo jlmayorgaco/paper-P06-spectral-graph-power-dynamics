@@ -1,0 +1,2299 @@
+=== PAGE 1 ===
+Beyond Nodal Damping:
+Collective PLL Interactions and Network Frequency-Response
+Constraints
+Jorge Luis Mayorga Taborda
+Universidad de los Andes, Colombia
+4 October 2026
+Abstract
+Individually tuned grid-following converters can retain a modal decay rate when synchronous
+generation is replaced, yet their simultaneous deployment can violate the required network margin.
+Starting from the exact delayed descriptor, we separate finite single-site effects from an exact
+collective interaction. For two sites, a rational contour identity remains valid beyond the convergence
+range of a weak-coupling walk expansion. A conditional scalar fixed-point rule allocates additional
+modal decay to compensate this interaction. In a targeted IEEE–39 example at fixed 40 ms
+PLL delay, replacing 7.9 MW across two sites preserves each singleton pole near -0.065709 per
+second but moves the joint pole to -0.041400, violating the -0.05 requirement. Complex-ball root
+and common-contour enclosures certify this finite decision for the exported model. The scalar
+correction preserves the replacement and prescribed proportional gains while recovering a pole near
+-0.060000. Complete-region spectral checks and a separately registered nonlinear campaign test the
+design. Negative campaigns, unresolved solves and failure of the walk-series condition are retained.
+The result establishes a finite interaction-aware tuning decision; it does not establish a maximum
+replacement, general controller insufficiency, or global nonlinear stability. A full-network Laurent
+analysis additionally separates the authority of integral gains, proportional gains and delays over
+frequency-response moments. It yields an exact network-weighted compensation equality and a
+conditional moment-neutral graph-control direction. IEEE–39 tests distinguish moment matching
+from modal stability, with independent delayed nonlinear validation. This remains a research
+manuscript; engineering superiority and global replacement optimality are not established.
+Index terms:grid-following converters, PLL delay, descriptor systems, nonlinear eigenvalues,
+collective interactions, regional replacement bounds.
+1 Introduction and research question
+Replacing synchronous generation changes inertia, electrical coupling and converter synchronization
+simultaneously. Retuning each PLL against one operating point can preserve an assigned oscillatory
+mode while moving other modes toward a security boundary. The design question is which features
+of network frequency response finite PLL retuning can preserve while controlling collective modes.
+Section J derives exact constraints on this authority and tests a targeted delay-compensation design.
+The ultimate maximum-replacement problem remains open.
+Detailed low-inertia models already connect converter control settings to collective modal behavior
+[17]. Grid structure and PLL synchronization are also established concerns [ 4]. Stability-constrained
+planning incorporates frequency and grid-strength constraints [ 18]; recent expansion-planning work
+1
+
+=== PAGE 2 ===
+explicitly addresses converter-driven modes [ 19]. Thus neither PLL tuning, delay-induced instability,
+nor the use of network information is by itself a new contribution.
+A separate unresolved route, preserved below, examines anecessary finite regional bound across
+all allowed local gains. The present executed closure concerns finite interactions and network response
+moments; it does not claim that the regional-bound route has delivered a replacement ceiling.
+Descriptor lifting [20], nonlinear-eigenvalue contour localization [21], contour moments [14], structured
+DDE robustness [22], and fixed-structure delayed-controller optimization [ 16] are antecedents, not
+discoveries of this work. The proposed synthesis specializes them to the actual SG/GFL sharing
+model and makes inter-site curvature and remainder terms explicit.
+A subsequent finite-decision closure in Section 9 now certifies a specific failure of singleton-additive
+prediction and executes a compensating gain rule. Its scope is distinct from a uniform exclusion over
+all admissible gains. The foundational manuscript establishes four conditional mathematical results:
+a finite physical damping-redistribution identity, an affine full-model intervention representation, a
+cluster curvature/closed-walk bound, and a controller-bounded necessary replacement relaxation. Its
+numerical evidence includes identity and enclosure tests of the bound machinery, a frozen full-model
+feasible retuning step, and a matched five-event fixed-gain follow-up. An informative IEEE–39
+replacement ceiling below the parameter-box ceiling has not been demonstrated. This limitation
+prevents a claim of superior replacement capacity or certified near-optimality.
+Organization.The main text states the physical contract, derives the finite regional bounds,
+and reports their evidence and limitations. Appendices preserve the physical damping derivation,
+frequency-moment law, nonlinear RoCoF argument, exact gain map, and local design constructions.
+These auxiliary results have their own assumptions; they are not combined into an unstated nonlinear
+stability theorem.
+2 Physical model and optimization contract
+With fixed device support, write the nonlinear retarded DAE as
+E(x, ρ) ˙x=f0(x, y;ρ) +
+X
+i
+bi(Kp,i, Ki,i)ei(t−τ i),(1)
+0 =g(x, y;ρ, d), e i =−sinθ i vr,i + cosθ i vi,i.(2)
+The exported reduced state convention has E = I. Physical inertia is recovered by consistent rescaling
+of SG swing rows, not by mixing row conventions. The implemented PLL is exactly
+˙θi =ω p,i, t f,i ˙ωp,i =ξ i +K p,iei(t−τ i)−ω p,i, ˙ξi =K i,iei(t−τ i).(3)
+Here tf,i = 1/(300 2π) s is the existing filter constant, distinct from pure delay τi. Other converter
+equations use θi but do not directly use ωp,i or ξi in this implementation. No current-loop, setpoint
+or DC signal is delayed by this contract.
+Use initialized generator dispatch and rating:
+ϵi = 1−ρ i, P SG,i =ϵ iP 0
+i , P GF L,i =ρ iP 0
+i , M i = 2HiS0
+i ϵi, J SG =
+X
+i
+P 0
+i ϵi.
+S0
+i and P 0
+i are different quantities. Replacement changes electrical injection/coupling as well as inertia.
+State removal atρ i = 0 or 1 requires another support chart.
+2
+
+=== PAGE 3 ===
+For consistent per-unit phasors Pi + iQi = ViI ∗
+i . The lossy network and voltage/current/DC
+dynamics remain insideg, f. Ifg y is nonsingular, algebraic elimination gives
+δy=−g −1
+y (gxδx+g dδd), A inst =f x −f yg−1
+y gx
+in ODE coordinates, with the analogous substitution in each detector. Thus P/Q and voltage effects
+enter the actual characteristic operator; a lossless Laplacian does not replace the AC Jacobian. No
+converter current limiter is implemented, so no limiter safety is claimed.
+Sources inspected include:
+experiments/nonlinear_codesign_20261001/ReducedDAE.jl;
+src/bnd_model_expN/PDExactDesignN.jl;
+experiments/graph_gsp_codesign_20261003/DelayedEvents.jl.
+The intended DC convention is physical supply in ReducedDAE.jl; the older helper by itself uses a
+different convention.
+For a compact support-preserving regionD, define
+P ⋆
+D(τ) = sup
+(ρ,Kp,Ki)∈D
+(P 0)T ρ
+over designs satisfying the complete required nonrotational spectral margin and every declared
+nonlinear-event constraint. The delays τi are exogenous. A finite event set is a specified security test,
+not robustness to arbitrary disturbances. The initialized dispatch ( P 0)T1is the denominator for the
+replacement fraction; net load and installed capacity are not substituted for it.
+All identities involving fixed exported matrices apply to the repository’s fixed-support, fixed-
+equilibrium current-sharing chart. The internal per-unit device equations and trims are held fixed
+while their terminal-current contributions are scaled. Physical rating/inertia interpretation must use
+that same normalization. Redispatch, topology changes, removal of device states at endpoints, or
+different nonlinear converter models require a new derivation or explicitly bounded model terms.
+3 A finite regional replacement bound with moving modal patterns
+A regional necessary bound must permit the modal patterns to move with the design. The following
+construction uses complete analytic characteristic matrices and bounds root clusters on fixed contours.
+It does not impose the eigenvector compatibility conditions used by the separate gain-construction
+method.
+3.1 A finite identity that survives internal root collisions
+Status: EXACT IDENTITY.Use the full finite-dimensional characteristic matrix ∆( s, p) of the linearized
+DDE, with fixed delays. It is holomorphic in s on and inside each positively oriented, piecewise smooth
+simple contour Γ used below. Do not use a meromorphic Schur complement without accounting for
+its poles. Exclude the rotational root from these contours. In the full state chart this avoids requiring
+a parameter-independent gauge-deflation matrix.
+Let p = p0 + d lie in a declared compact design region D and define Dd = {d : p0 + d∈ D} , and
+let ∆0(s) = ∆(s, p0) be nonsingular on Γ. Suppose a factorization
+∆(s, p)−∆ 0(s) =U(s)V(s, d), H(s, d) =V(s, d)∆ 0(s)−1U(s)
+3
+
+=== PAGE 4 ===
+is available with H∈C r×r, V(s, 0) = 0. All dimensions and coordinates remain fixed on D. Assume
+theuniformbound
+sup
+d∈Dd, s∈Γ
+∥H(s, d)∥2 ≤κ Γ <1.(4)
+The determinant lemma and invertibility of I + tH, 0 ≤t≤ 1, preserve the number mΓ > 0 of
+enclosed roots, counting multiplicity. Define their meanz Γ(p) =m −1
+Γ
+P
+λinside Γ λ. Then
+zΓ(p)−z Γ(p0) =− 1
+2πimΓ
+I
+Γ
+tr log(I+H(s, d))ds. (5)
+Proof. The determinant ratio on the contour is det(I +H). The norm-convergent series tr log(I +H) =P
+ℓ≥1(−1)ℓ+1 tr(H ℓ)/ℓ chooses a continuous, single-valued logarithm along the closed contour. The
+argument principle gives the difference of root sums as (2 πi)−1H
+s dlog det(I + H). Integration by
+parts gives (5). This only uses regularity on the contour and constant enclosed count; roots may
+collide or become defective inside it.
+If every required nonrotational physical root satisfiesℜλ≤ −σ, then necessarily
+gΓ(p) :=ℜz Γ(p) +σ≤0.
+The converse is false: a stable mean can hide an unstable member. Several disjoint contours can
+sharpen the necessary conditions. One-root contours recover individual sensitivities where regular. A
+finite collection is sufficient for anecessary relaxation, not for a full-spectrum feasibility claim.
+3.2 An explicit uniform remainder
+Status:PROVED REDUCED MODEL.WriteH=H 1 +H rem withH 1 linear ind, and suppose
+sup
+Γ,Dd
+∥Hrem∥∗ ≤e Γ,∥ · ∥ ∗ is the nuclear norm.
+Let ℓΓ be the contour length and put φ(x) = −log (1 −x ) −x , 0 ≤x < 1. The affine prediction and
+its remainder satisfy
+gΓ(p) =g Γ(p0) +J Γd+R Γ(d),(6)
+JΓd=−ℜ 1
+2πimΓ
+I
+Γ
+trH 1(s, d)ds,(7)
+|RΓ(d)| ≤β Γ := ℓΓ
+2πmΓ
+[eΓ +rφ(κ Γ)]. (8)
+Proof. The trace of H−H 1 is bounded by its nuclear norm. Also |trH ℓ| ≤r∥H∥ ℓ
+2, including
+nonnormalH. Summing termsℓ≥2 givesrφ(κ Γ); contour integration proves the bound.
+A simpler conservative expression uses φ(x) ≤x 2/[2(1 −x )]. For the logarithm term, any
+consistently used induced matrix norm can replace the Euclidean norm: each eigenvalue of H is
+bounded by that norm, hence |trH ℓ| ≤rκ ℓ. Pointwise verified bounds may instead be integrated
+along Γ. Numerical errors in gΓ(p0) and JΓ must be included: if their certified errors are e0 and eJ,a
+and|d a| ≤r a, adde 0 +P
+a eJ,ara toβ Γ. No eigenvalue Hessian or fixed modal pattern is required.
+4
+
+=== PAGE 5 ===
+3.3 The actual replacement contract gives a small factorization
+Status: EXACT IDENTITY.For the repository’s exported fixed-support, fixed-equilibrium sharing
+chart, define
+Wρ = diag(1−ρ 1,1−ρ 1, . . . ,1−ρ n,1−ρ n),
+G(ρ) =Y+W ρDs, N(ρ) =W ρCs + (I−W ρ)Cf ,
+V(ρ) =−G(ρ) −1N(ρ), C(ρ) =E θ +H vV(ρ),
+B(K) =B p diagK p +B i diagK i, E τ(s) = diag(e−sτi).
+HereVis the algebraic voltageJacobian, not the voltage phasor. With ordinary gain coordinates,
+∆(s, p) =sI−A dev −B vV(ρ)−B(K)E τ(s)C(ρ).
+This is the inspected parametric model, not a universal identity for all SG/GFL models or dis-
+patch changes. If equilibrium/device matrices change under another contract, their derivatives and
+remainders must also be bounded. Endpoint state removal requires a separate chart.
+Denote reference matrices by a subscript 0, and set
+J=G −1
+0 δG, V 1 =−G −1
+0 (δN+δGV 0), δV= (I+J) −1V1, V rem =−(I+J) −1J V1.
+ThusδV=V 1 +V rem exactly. If uniformly∥J∥ 2 ≤a <1 and∥V 1∥2 ≤v, then
+∥δV∥ 2 ≤ v
+1−a ,∥V rem∥2 ≤ av
+1−a .(9)
+BecauseG, Nare affine inρ, computable bounds are
+a=
+X
+j
+rρ,j∥G−1
+0 Gρj ∥2,
+v=
+X
+j
+rρ,j∥G−1
+0 (Nρj +G ρj V0)∥2.
+These require verified solves and norm enclosures for a certificate.
+SetD 0(s) =B v +B 0Eτ(s)Hv and define
+U(s) = [D 0(s)B pEτ(s)B iEτ(s) ],(10)
+V(s, d) =−
+
+
+δV
+diag(δKp)(C0 +H vδV)
+diag(δKi)(C0 +H vδV)
+
+ .(11)
+Direct expansion proves ∆ − ∆0 = U V. The linear part uses V1, C0 in the three block rows. The
+remainder uses respectively Vrem, diag(δKp)HvδV , and diag(δKi)HvδV , with the same minus signs.
+For this export, U has 40 columns for 204 states: 20 voltage coordinates and two sets of ten PLL gain
+channels. The dimension is not a discarded-state approximation.
+For explicit conservative constants, let vb = v/(1 −a ), vr = av/(1 −a ), kp = maxi |δKp,i|max,
+ki = maxi |δKi,i|max, andc b =∥C 0∥2 +∥H v∥2vb. Then
+∥V∥2 ≤v V :=
+q
+v2
+b + (kpcb)2 + (kicb)2,
+∥Vrem∥2 ≤v rem :=
+q
+v2r + (kp∥Hv∥2vb)2 + (ki∥Hv∥2vb)2.
+If wΓ uniformly bounds ∥∆0(s)−1U(s)∥2 on the entire contour, use κΓ = vV wΓ and eΓ = rvremwΓ.
+Fixed nonsingular state/port scalings may improve these bounds if applied consistently. A large
+bound is inconclusive, not instability.
+5
+
+=== PAGE 6 ===
+3.4 Affine descriptor realization with no parameter remainder
+Status: EXACT IDENTITY.The inverse-network remainder can be avoided altogether for this sharing
+contract. Retain the algebraic voltage perturbation v and the detector perturbation e with the
+dynamic statex:
+F(s, p) =
+
+
+sI−A dev −Bv −B(K)E τ(s)
+N(ρ)G(ρ) 0
+−Eθ −Hv I
+
+ .(12)
+These are additional algebraic coordinates, not invented dynamics or additional control channels.
+Eliminatingeandvproves
+detF(s, p) = detG(ρ) det ∆(s, p).(13)
+On a region where G is nonsingular, the finite roots and their multiplicities coincide. The factor detG
+is independent ofs.
+Defined= (δρ, δK p, δKi) and the repeated diagonal
+Θ(d) = diag(δρ1, δρ1, . . . , δρn, δρn, δKp, δKi).
+With the reference operatorF 0, set
+U=
+
+
+0B p Bi
+I0 0
+0 0 0
+
+ ,V(s) =−
+
+
+Cs −C f Ds 0
+0 0E τ(s)
+0 0E τ(s)
+
+ ,(14)
+T(s) =V(s)F 0(s)−1U, H(s, d) = Θ(d)T(s).(15)
+Then, exactly,
+F(s, p)− F 0(s) =UΘ(d)V(s), detF(s, p)
+detF 0(s) = det(I+ Θ(d)T(s)).
+The descriptor has dimension 234 and the determinant update has dimension 40 for this export. In
+particular,
+H=H 1, H rem = 0.
+All nonlinear dependence of the finite root change is now in the logarithm. The ordinary gain
+coordinates matter: log-gain increments would require exponential parameter remainders. Applying
+(5) toFgives the same physical root means, and (8) simplifies to
+βΓ = ℓΓr
+2πmΓ
+φ(κΓ). (16)
+The baseline-moment and coefficient integration errors still need their separate enclosures.
+Use the declared parameter box, not a product of large norms.For increments la ≤d a ≤u a,
+put ra = max(|la|,|u a|). Let Rd contain these nonnegative displacement radii, repeated for the two
+occurrences of each replacement coordinate. They equal box half-widths only when p0 is its center.
+Entrywise,
+|H(s, d)| ≤M(s) :=R d|T(s)|.
+For any fixed vectorw >0 on a contour panel,
+∥H(s, d)∥w,∞ ≤max
+a
+(M(s)w) a
+wa
+=:κ w(s).(17)
+6
+
+=== PAGE 7 ===
+This follows by scaling with diagw and taking absolute row sums. It is a standard positive-matrix
+bound, not a new stability theorem. The repeated-coordinate correlation is relaxed conservatively;
+the controllers remain local and the physical gain bounds unchanged. A Perron-based weight can
+suggest w, but certification uses verified inequalities for the chosen positive vector, not a floating-point
+eigenvalue treated as an exact bound.
+A concrete continuous-panel enclosure.On a panel contained in |s−s c| ≤h , put Qc = F0(sc)−1,
+Wc =Q cU, and
+eτ(h) = max
+i
+e−ℜ(sc)τi(ehτi −1).
+For fixed delays,
+∥F0(s)− F 0(sc)∥2 ≤h+∥B 0∥2eτ(h),∥V(s)− V(s c)∥2 ≤
+√
+2e τ(h).
+If verified bounds givea c :=∥Q c∥2[h+∥B 0∥2eτ(h)]<1, the Neumann series yields
+∥T(s)−T(s c)∥2 ≤ ∥V(s c)∥2ac +
+√
+2e τ(h)
+1−a c
+∥Wc∥2 =:ϵ T,c .(18)
+Hence Rd(|T (sc)| + ϵT,c11T ) is an entrywise panel envelope. Verified rounding/solve errors in
+Qc, Wc, T(sc) must be added; these formulas do not make an ordinary dense solve self-certifying. One
+positive-vector test on that envelope bounds the entire panel and the entire parameter box. A finite
+covering establishes this contour condition. The displayed constants apply in these coordinates; any
+nonunit state/equation scaling requires rederiving the perturbation bounds in the scaled coordinates.
+Thus the outstanding computation has an explicit error formula, rather than an unspecified Hessian-
+sampling step.
+3.5 Regional maximum and a controller-eliminated witness
+Status: PROVED REDUCED MODEL.Stack the necessary cluster inequalities and their verified errors.
+Let d = (δρ, δK) range over compact boxes R × K, intersected with the original physical limits. Let
+A=J ρ,C=J K,b=−g 0 +β. Every fully secure design in this region necessarily satisfies
+Aδρ+CδK≤b.
+Consequently the LP
+UD = max
+δρ∈R, δK∈K
+(P 0)T δρsubject toAδρ+CδK≤b(19)
+gives
+PF ≤P ⋆
+D ≤(P 0)T ρ0 +U D =P U,D. (20)
+The lower candidate must belong to this same region and pass the full spectrum and all declared
+events. Numerically validated feasibility remains numerical evidence unless its own errors are certified.
+Omitting frequency, RoCoF or actuator constraints from this LP is an optimistic relaxation, not a
+safety claim.
+For anyη≥0, the support functions of the two boxes give
+UD ≤η T b+h R(P 0 −A T η) +h K(−C T η).(21)
+7
+
+=== PAGE 8 ===
+Minimization over η recovers the feasible bounded LP value by ordinary LP duality. For an interval
+box, h(z) =P
+j max(ljzj, hjzj). The bound is valid forallreplacement directions in the declared
+region, unlike the earlier fixed-ray calculation.
+For a proposed replacementδρ, the strict inequality
+ηT (Aδρ−b)> h K(−C T η) (22)
+proves that no permitted local gain vector in the region can satisfy the necessary conditions, hence
+none can meet the full security contract. The weights identify which collective requirements conflict.
+If CT η = 0, their first-order aggregate has no gain authority; finite residual authority is still allowed
+by ηT β. Only the strict finite inequality, not a small derivative alone, establishes exclusion. This is a
+regional statement, not a global impossibility theorem for all local controllers.
+3.6 Where graph interactions actually enter
+Status: EXACT IDENTITY.Group the rows/columns of H by intervention site (two algebraic voltage-
+equation channels and two gain channels per candidate). The exact series contains
+trH 2 =
+X
+i
+trH 2
+ii +
+X
+i̸=j
+tr(HijHji),
+and trH ℓ sums closed walks of length ℓ through these dynamical intervention ports. Their weights
+include the full resolvent, P/Q coupling, SG dynamics and exact delay phases. They are not necessarily
+physical transmission-line cycles, and H is neither a Laplacian nor a physical damping matrix. Even
+its diagonal blocks depend on the full network.
+WritingH=D+OwithDblock diagonal gives
+det(I+H) = det(I+D) det(I+T), T= (I+D) −1O,trT= 0.
+When the relevant logarithm series converge, the first omitted inter-site term after discarding O
+is − 1
+2 trT 2 in the log determinant. Its contribution to the root-sum change has the opposite sign
+because of (5); it need not be stabilizing. If ∥T∥ 2 ≤t < 1, the discarded log-determinant magnitude
+is at most rφ(t). This supplies a falsifiable approximation error for neglecting collective interactions,
+rather than assuming graph roughness predicts damping.
+An orthogonal graph basis can reorganize these operators. It preserves traces and Euclidean norms
+for the corresponding similarity, but its diagonal truncation changes the approximation. Low graph
+frequency alone does not justify that truncation. No GSP advantage or physical cycle mechanism is
+established until the retained/off-diagonal terms explain a measured limiting decision.
+4 Collective curvature and a graph-resolved finite remainder
+Status: EXACT IDENTITY.Let d∈R 3n denote ordinary replacement and gain increments. Define
+fixed diagonal selectors Ea such that Θ( d) = P
+a daEa: a replacement selector contains two unit
+entries, whereas a gain selector contains one. In the affine descriptor chart, H(s, d) =P
+a daEaT (s)
+exactly. All delays remain fixed insideT(s).
+Theorem 1(Collective cluster curvature).Under the contour hypotheses of Section 3, the real cluster
+margin has the second-order expansion
+gΓ(p0 +d) =g Γ,0 +J Γd+ 1
+2 dT QΓd+R Γ,3(d),(Q Γ)ab =ℜ 1
+2πimΓ
+I
+Γ
+tr(EaT EbT)ds.(23)
+The matrix QΓ is real symmetric. It is not required to be positive semidefinite and is not a Laplacian.
+8
+
+=== PAGE 9 ===
+Proof. Substitute H =P
+a daEaT in the convergent series for −tr log(I + H) = −trH +trH 2/2 − · · ·
+in (5). Cyclic invariance of the trace gives tr(EaT EbT ) = tr(EbT EaT ). Collecting terms proves
+the formula. Uniform convergence on the compact contour permits termwise integration. This
+differentiates a cluster moment, so internal root collisions do not require eigenvector derivatives or a
+simple-root assumption.
+For scalar selectors the integrand is TabTba. Thus a mixed change at two sites follows a return
+path through the full dynamical network. Two individually favorable first-order changes need not
+remain favorable when combined. The sign is set by the complex contour integral, not by graph
+adjacency or a positive edge weight. Diagonal terms already include the full grid.
+Status: PROVED REDUCED MODEL.Suppose a continuous, piecewise bounded nonnegative envelope
+satisfies
+|H(s, d)| ≤M(s),sup
+s∈Γ
+ρ(M(s))<1, d∈ D d.
+A verified positive-vector inequality on every panel is one sufficient way to establish this condition.
+Set
+Ψk(M) =
+∞X
+ℓ=k
+trM ℓ
+ℓ =−log det(I−M)−
+k−1X
+ℓ=1
+trM ℓ
+ℓ , k≥2.
+Here the determinant is positive and the logarithm is real: real eigenvalues of M are below one, and
+nonreal eigenvalues occur in conjugate pairs. Despite that spectral representation, every term in the
+defining trace series is nonnegative.
+Theorem 2(Closed-walk remainder and interaction-omission budget).The remainder after degree
+k−1obeys
+|RΓ,k(d)| ≤β walk
+Γ,k := 1
+2πmΓ
+I
+Γ
+Ψk(M(s))|ds|. (24)
+Partition channels into physical intervention sites and let Hb = blockdiag(H11, . . . , Hnn). The omitted
+contribution to the cluster-shift formula, obtained by replacingHwithH b, is bounded by
+βcross
+Γ = 1
+2πmΓ
+I
+Γ
+"
+Ψ2(M)−
+X
+i
+Ψ2(Mii)
+#
+|ds|. (25)
+This is a bound on an algebraic approximation to the contour formula; it does not assert that Hb is a
+realizable physical grid.
+Proof. The entrywise inequality |H ℓ| ≤M ℓ implies |trH ℓ| ≤trM ℓ. Sum the tail of the logarithm
+series and integrate its absolute value to obtain (24). For (25), the terms remaining after block-
+diagonal subtraction are exactly index sequences that visit more than one block before returning to
+their starting channel. Bounding the absolute value of each product by the corresponding product
+of entries of M gives trM ℓ −P
+i trM ℓ
+ii. The degree-one difference is zero. Summation proves the
+result.
+The earlier scalar bound follows from trM ℓ ≤rκ ℓ whenever a common induced norm of M is
+bounded by κ < 1. Retaining the actual walk sums can therefore substantially reduce conservatism.
+A computable, slightly looser expression avoids logarithms:
+Ψk(M)≤ 1
+k tr
+h
+M k(I−M) −1
+i
+.
+9
+
+=== PAGE 10 ===
+All inverse, determinant, integration and rounding errors must still be enclosed. In particular, a
+verified evaluation of (25) requires anupperenclosure of the total minuslowerenclosures of the
+within-site terms; subtracting two upper bounds would be invalid. Directly summing cross-site walks
+is an alternative.
+Meaning of beyond nodal damping.Equation (23) identifies the signed, frequency-dependent
+interaction between two replacement or tuning actions. Equation (25) quantifies the error made by
+dropping those interactions. These are not nodal damping constants: T contains the grid resolvent,
+SG dynamics, voltage/PQ coupling and the exact phases e−sτi. They supplement the physical
+torque–speed damping operator derived in the appendices; they do not turn a contour return matrix
+into a physical impedance. The closed walks are paths in the intervention-port representation, not
+automatically cycles of transmission lines. No communication between PLLs has been introduced.
+4.1 A stronger necessary replacement relaxation
+Write d∈ [l, u] and introduce a real symmetric matrix Z. Every actual design admits Z = ddT , hence
+satisfies
+1d T
+d Z
+
+⪰0,(26)
+Zab ≥l adb +l bda −l alb, Z ab ≥u adb +u bda −u aub,(27)
+Zab ≤u adb +l bda −u alb, Z ab ≤l adb +u bda −l aub.(28)
+Retain the diagonal case of these inequalities as well. Impose, for each verified cluster,
+gΓ,0 +J Γd+ 1
+2 ⟨QΓ, Z⟩ ≤β walk
+Γ,3 .(29)
+Maximizing (P 0)T δρ over this semidefinite relaxation gives an optimistic regional replacement upper
+bound. Dropping Z = ddT enlarges the feasible set, which is the required direction; the returned gains
+need not be physically feasible. Neither a primal floating-point optimum nor a tiny solver residual is
+a certified upper bound. A feasible dual with enclosed errors, or another verified objective bound, is
+required for that label.
+Certified coefficient errors add e0 +P
+a eJ,ara + 1
+2
+P
+a,b eQ,abrarb to the right-hand side, where
+ra = max(|la|,|u a|). The lift may sharpen the linear relaxation, but no universal dominance follows
+if different remainders or additional relaxations are used. Both outer problems can be intersected
+because each contains all secure designs. This strengthening has been derived and identity-tested; the
+IEEE–39 semidefinite upper-bound problem has not been solved.
+5 A reproducible analytical design and bound procedure
+The optimization and certification roles are distinct. The exact all-PLL formula in Eq. (70) constructs
+candidates. The regional outer problem permits arbitrary admissible modal patterns and limits what
+any such candidate can achieve.
+1. Freeze the sharing convention, fixed delay vector, physical gain limits, replacement region, event
+set, and output definitions. Solve and audit the equilibrium; verify the algebraic chart.
+2. At a candidate center, assemble the exact descriptor with exponential delay factors. Use
+numerical roots to propose contours; verify their counts, boundary regularity and parameter-box
+envelopes. Numerical root locations alone do not close this step.
+10
+
+=== PAGE 11 ===
+3. Integrate the reference moments and JΓ (and, if used, QΓ) with error enclosures. Evaluate
+the walk remainder. If a panel or algebraic chart cannot be verified, subdivide it or return an
+unresolved box; do not fill it by interpolation.
+4. Solve the necessary LP or lifted outer problem and verify an upper objective bound or a strict
+controller-exclusion witness. Compare this upper bound against the box-only replacement
+ceiling.
+5. Use the analytical gain map or a trust-region local step to propose a design, then evaluate the
+full delayed spectrum and all events. Failed designs do not supply a feasible lower bound.
+6. Report the same-domain feasible and upper values separately, with their uncertainty. Subdivide
+parameter regions only under a declared branch rule if a wider bound is sought.
+No global convergence theorem for the predictor/corrector is claimed. A global upper bound would
+require a verified cover of the full design domain, including all support charts and unresolved boxes.
+The full event-feasible problem generally has more active constraints than the two-row reduced LP;
+its SG-retention structure cannot be inferred from a two-anchor theorem.
+6 Targeted validation of the all-PLL construction
+Status: NUMERICALLY VALIDATED.This subsequent experiment tests Eq. (70) with one preregistered
+replacement step. It is not an optimization campaign. All ten fractions change from ρi = 0.875 to
+0.876 with τi = 40 ms fixed. The target is the leading PLL-family pole in the frozen 2–12 Hz catalog,
+not the globally rightmost pole:
+λ⋆ =−0.80156077 + i 30.85047169 s −1.
+Its PLL-angle pattern is held fixed and all twenty gains are calculated from the full-grid return. The
+trial design and modal predictions were hashed before independent full-model validation.
+Known gains were reconstructed for all eleven nonreal catalog roots, with maximum relative
+error 7.266 × 10−8. Nine vector derivative tests, using three modes and buses 30, 34 and 38, had
+maximum relative error 2 .629 × 10−5 and maximum absolute infinity error 2 .965 × 10−1. The largest
+hidden-block condition number was 1 .637 × 109; these residuals establish numerical consistency,
+not physical accuracy to all the reported digits. Direct automatic differentiation of the nonlinear
+equations gave maximum relative Jacobian discrepancy 3 .682 × 10−18 and maximum equilibrium
+infinity residual 2.807 × 10−9. This cross-check uses the same nonlinear device equations; it is not an
+independent-simulator or physical-data validation.
+An independently assembled Jacobian of the same model, followed by the delayed calculation,
+preserved the target pole within 1 .511 × 10−13 s−1 with PLL-pattern MAC 1 .000000000000. For
+the other modes, the largest relative finite-step prediction error was 2.791%; the preregistered 1%
+criterion concerns derivative validation, not a finite-step Taylor remainder bound. A numerical
+argument-principle count, cross-checked against determinant phase and closed by a tail bound after
+rotational deflation, found no roots with ℜs >− 0.05 s−1 for the baseline, retuned design, or fixed-gain
+comparator. Exact exponentials were used; floating-point contour counts are not interval certificates.
+The retuned design passed all five frozen nonlinear events, simulated with the canonical method
+of steps (Rodas5P, tolerance 10 −9, maximum step 0 .01 s, horizon 60 s). The 39-bus phase metrics use
+0.5 s windows. Frequency and RoCoF limits are 0 .5 Hz and 0 .5 Hz/s; normalized SG actuator slack
+must exceed 0.002.
+11
+
+=== PAGE 12 ===
+Bus Load change [MW]|∆f|[Hz] RoCoF [Hz/s] SG slack
+8 -100 0.465412 0.138451 0.096623
+16 +100 0.447157 0.126491 0.006341
+16 -100 0.474624 0.129044 0.093434
+29 +100 0.431226 0.128104 0.011190
+29 -100 0.444619 0.200774 0.102894
+All voltage samples remained within [0 .972062, 1.078775] pu against the declared [0 .9, 1.1] limits.
+The candidate contains 4732.818715 MW of GFL (87.600%) and 669.942375 MW of retained SG:
+a prescribed increase of 5.402761 MW. The full vectors are in experiments/all_pll_gain_map_
+validation_20261003/designs/analytic.toml.
+Interpretation and negative evidence.This closes the numerical chain from an analytical
+gain construction to a feasible full-model candidate for the declared events. It does not establish
+a maximum or demonstrate that retuning is needed for this step: the same replacement with
+unchanged gains also passes the spectral margin. The subsequent matched nonlinear comparison
+in Section 8 finds that both designs pass all five events, with small opposing changes in frequency
+and RoCoF metrics. Neither superiority nor exact performance equivalence is established. Two
+frozen eigenpairs/patterns produce nonzero assignment residuals after replacement, but this does not
+prove that local PLLs cannot stabilize the network when their modal patterns are allowed to change.
+No heterogeneous-delay, neighboring-feedback, GSP-compression, convergence, or global-optimality
+claim follows from this trial. Data, prediction hashes, code, trajectories and claim limits are in
+experiments/all_pll_gain_map_validation_20261003/.
+Reproducible gain vector.For buses 30–39, every listed replacement fraction is ρi = 0.876. These
+are constructed feasible-candidate gains, not optimal gains.
+BusK p,i Ki,i
+30 28.27608095 246.76647162
+31 28.24652453 245.80547706
+32 28.24503605 245.70201441
+33 28.21712688 244.76013817
+34 28.17474906 246.56932577
+35 28.24738622 245.39990024
+36 28.25363221 246.19628049
+37 28.27912035 246.57391812
+38 28.25524609 245.98556358
+39 28.28100338 246.76474736
+7 Bound checks, falsification and regional evidence
+Status: NUMERICALLY VALIDATED.The descriptor determinant and affine-factor identities were
+checked at the three frozen frequencies 0.5, 5 and 10 Hz, with s = −0.05 + i2πf , heterogeneous delays
+uniformly spread from 0 to 40 ms, replacement displacement radii 0.001, and ordinary gain radii 1%.
+This delay pattern is different from the uniform-delay nonlinear trial; their lower and upper evidence
+cannot be mixed. The largest previously recorded normalized identity discrepancy was 1 .011 × 10−12.
+The new checks retain those same points and box. They compare the scalar logarithm-tail bound
+with the entrywise closed-walk majorant. The table contains pointwise bounds on the trace logarithm,
+not eigenvalue shifts or a sampled replacement certificate.
+12
+
+=== PAGE 13 ===
+f[Hz] scalar tail walk tail reduction factor
+0.5 0.0189751 0.000964533 19.67
+5 1.38717 0.0303027 45.78
+10 0.0056687 0.000313074 18.11
+The first- and second-order trace predictions and the cross-site omission budgets passed all three
+pointwise numerical checks. This supports improved bound sharpness at these points; it does not
+demonstrate that graph terms increase attainable replacement.
+For the separate two-state pure-DDE fixture
+∆toy(s, p) = diag(s+ 1, s+ 2)−pe −s/10
+1 1
+1−1
+
+,|p| ≤0.01,
+the circle centered at −1 with radius 1 /4 admits the analytic whole-circle bound κ≤ 12/175 < 1
+and one enclosed root. Implicit differentiation gives λ′(0) = e1/10 and λ′′(0) = 1.8e1/5. The contour
+Hessian reproduces both values to numerical error. For the five frozen values of p at 256 and 512
+quadrature nodes, the largest quadratic error is 3 .140 × 10−6, below the analytic cubic-tail bound
+5.770×10 −5. This is a theorem/check on the declared fixture, not on the power grid.
+7.1 Continuous IEEE–39 contour test
+Complex ball arithmetic [ 23] at 128-bit precision encloses every point of a square centered at the
+preserved slow-mode estimate −0.12229688588491999 + i 0.32408378548166134, with half-side 0.04.
+The region uses uniform fixed delay 40 ms, ρi ∈ [0.874, 0.876] and ordinary gains within 1% of
+the baseline. The matrix inputs are the exact binary64 values parsed from the frozen exports.
+The fixed delay is the exact decimal 0 .04 = 1 /25 s enclosed in ball arithmetic, not its binary64
+rounding. Physical and equilibrium uncertainty are not enclosed by this numerical certificate. An
+interval inverse verifies G(ρ) throughout that box. The contour cover uses 485 accepted panels and
+gives κ≤ 0.98794235 < 1. The enclosed argument-principle integral contains exactly one integer,
+1. Consequently one root remains inside this square for every permitted parameter combination.
+Its real part is below −0.08229 s −1, so this one cluster satisfies the −0.05 s −1 margin throughout
+the box. This verifies one cluster; it is not a complete-spectrum or nonlinear certificate. All ball
+enclosures, parameters and code are saved in the reproduction package. The coarse first-order scalar
+moment remainder is bounded by 4 .458179 s−1, much larger than the required margin. This bound is
+conservative even though the contour geometry proves this cluster safe. The sharper walk majorant
+has not yet been integrated with verified errors around this contour.
+7.2 A decisive negative result about the chosen regional box
+Status: NEGATIVE RESULT.To the reported numerical precision, the feasible 87.6% design has
+ρi = 0.876 at every candidate and its gains lie inside the uniform-delay verification box. Its reported
+objective coincides with the box-only upper bound
+Pbox = 0.876(P 0)T1= 4732.818715 MW.
+Conditional on true feasibility of the exact upper-corner design, this is the optimumof that box, by
+monotonicity of a positive dispatch objective. No spectral theorem is needed for this fact. It is not an
+irreducible SG-support bound and is not a meaningful near-global-optimality result. A purported
+upper bound below this value would contradict the numerical witness and require resolving that
+discrepancy. For strict arithmetic bookkeeping, the binary64 literal 0 .876 exceeds the exact decimal
+13
+
+=== PAGE 14 ===
+endpoint by 1 /1125899906842624000; the numerical witness is not treated as an interval-certified
+corner point. No rigorous lower–upper gap is claimed from these rounded values. Thus even perfect
+verification of this regional box cannot establish the main application claim of a physical interior
+replacement limit. The manuscript does not expand the box after observing this result.
+8 Targeted closure: physical damping and matched nonlinear com-
+parison
+This follow-up adds two declared tests without changing the historical design, events, gains, or frozen re-
+sult files. Its protocol and outputs are stored in experiments/poster julia validation 20261003/.
+The harmonic tests are algebraic; the event comparator uses Julia 1.11.9.
+8.1 Finite-delay physical damping law in IEEE–39
+Status: NUMERICALLY VALIDATED.For the historical baseline and analytical designs, at each of
+f = 0 .5, 5, 10 Hz, increase the delay at one of buses 30–39 by exactly the numerical increment 1
+ms, starting from uniform 40 ms. All 2 × 3 × 10 = 60 cases are retained. No case was chosen by
+its sign or stability outcome. At each point, independently eliminate the 194 hidden states in the
+old and modified 204-state operators and compare the difference with the finite rank-one formula in
+Appendix B. The physical mass scaling isM i = 2HiS0
+i (1−ρ i), in MW s for per-unit speed.
+The largest relative error in δZ = γiuiv∗
+i is 4.85 × 10−8. Every computed Hermitian increment has
+one positive and one negative eigenvalue above the declared relative threshold 10 −7∥δDH ∥2; the other
+eight eigenvalues have relative magnitude at most 1.40 ×10−9. The minimum squared sine between the
+two propagation paths is 0.00327, so none of these sampled paths is numerically collinear. Hidden-block
+condition numbers and all signed eigenvalues are reported in TABLE 02 FINITE DELAY RANK LAW.csv.
+This supports the finite physical identity at the declared points. It does not certify an interval of
+frequencies, imply stability from the sign of the increment, or improve a replacement-capacity bound.
+30 31 32 33 34 35 36 37 38 39
+PLL site receiving +1 ms
+−103
+−102
+−101
+−100
+0
+100
+101
+δDH eigenvalue [MW]
+λ + (δDH) > 0 λ − (δDH) < 0
+Figure 1: Physical damping redistribution at the preregistered illustrative frequency 5 Hz, analytical
+design. One PLL delay is increased from 40 to 41 ms at a time. The symmetric-log scale exposes
+both signs. This is a harmonic linear-model check, not a nonlinear stability test.
+14
+
+=== PAGE 15 ===
+8.2 Same replacement, unchanged versus analytical gains
+Status: NUMERICALLY VALIDATED.The missing matched comparator is now executed at the same
+ρi = 0.876 and τi = 40 ms as the analytical candidate. Its gains remain at the common baseline
+values. The canonical method-of-steps solver uses Rodas5P, tolerance 10 −9, maximum step 0.01 s,
+and a 60 s event horizon. Both phase-derived frequency and RoCoF metrics use the canonical 0.5
+s window over all 39 bus voltages. The five nominal event magnitudes correspond to the existing
+constant-impedance perturbation contract. Equilibrium residual and gain bounds are checked before
+execution.
+Table 1: All five matched events. F is peak absolute frequency deviation in Hz; R is peak absolute
+RoCoF in Hz/s. A denotes the analytical map; fixed retains the original gains. All original guards
+also pass.
+Bus, MWF fixed FA Rfixed RA Guards
+8, -100 0.465209 0.465412 0.138636 0.138451 Pass / Pass
+16, +100 0.446979 0.447157 0.126583 0.126491 Pass / Pass
+16, -100 0.474417 0.474624 0.129118 0.129044 Pass / Pass
+29, +100 0.431049 0.431226 0.128359 0.128104 Pass / Pass
+29, -100 0.444418 0.444619 0.201209 0.200774 Pass / Pass
+Both designs pass all five events. Analytical retuning increases frequency excursion by 0 .000177–
+0.000207 Hz and reduces RoCoF by 0 .0000744–0.000435 Hz/s across these cases. Its SG actuator
+slack is also slightly smaller. These are small numerical tradeoffs, not a demonstrated engineering
+advantage; no refinement study was performed to turn these small differences into accuracy-certified
+performance claims. The purpose of the exact gain map is achieved: the assigned PLL eigenpair is
+preserved after the prescribed replacement step. This matched trial does not show that retuning was
+necessary for feasibility, that it maximized replacement, or that it dominates fixed gains.
+0 10 20 30 40 50 60
+Time after event [s]
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5Max. windowed |Δf| [Hz]
+0 10 20 30 40 50 60
+Time after event [s]
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5Max. windowed RoCoF [Hz/s]
+8: -100 MW 16: +100 MW 16: -100 MW 29: +100 MW 29: -100 MW
+Figure 2: Preserved analytical-design trajectories for every frozen event, plotted across the full 60 s
+horizon. Frequency and RoCoF use the declared 0.5 s phase window. The new comparator’s complete
+trajectories and paired metrics are included separately in the archive.
+Updated contribution boundary.The physical finite-delay theorem, the collective contour
+Hessian, and the walk remainder provide explicit equations for network-mediated effects. The
+numerical evidence now includes all 60 physical-law checks and a matched five-event comparator.
+15
+
+=== PAGE 16 ===
+No informative verified physical replacement maximum follows. The posterior comparison therefore
+supports a theory-and-validation poster; the stronger application claim remains open.
+9 Finite interactions can reverse a local damping decision
+The following result addresses a narrower, executed decision than a maximum replacement claim.
+A site may retune its PLL after SG replacement to preserve the real part of one mode in the full
+network. Combining two such individually compensated actions need not preserve that modal margin.
+“Damping-only” here means the modal decay rate −ℜλ, not the damping ratio or a diagonal entry of
+the physical impedance. The two meanings are not interchangeable.
+9.1 Exact local actions and the interaction left after them
+Let F0(s) denote the affine full descriptor at a fixed equilibrium and fixed physical delays. Partition
+the intervention representation into site blocks:
+F(s, d) =F 0(s) +UΘ(d)V(s), H= Θ(d)V(s)F 0(s)−1U.(30)
+Each site has four channels but three independent physical actions: the two replacement channels
+share the same δρi. Let Fi change only site i, keeping the entire physical network. On a common
+contour Γ, write
+Bi =I+H ii, K ij =B −1
+i Hij (i̸=j), K ii = 0.(31)
+Assume F0, each Fi and the joint F are holomorphic regular descriptors inside Γ, have no boundary
+roots, and enclose the same number m > 0 of physical roots. Require the displayed inverses on the
+boundary. These conditions are checked, not inferred from a small singular-value residual. If z0, zi, z
+are the respective mean enclosed roots, define
+zN =z 0 +
+X
+i
+(zi −z 0),I=z−z N .(32)
+zN is an exact-singleton additive counterfactual. It already contains the physical network in every
+singleton calculation; it is not a published decentralized stability certificate or an independently
+realizable system.
+Proposition 3(Finite pair interaction without a weak-coupling assumption).For exactly two active
+sitesi, j, setP=K ijKji. For anyc∈C,
+detFdetF 0
+detF i detF j
+= det(I−P),(33)
+I=− 1
+2πim
+I
+Γ
+(s−c) tr
+
+(I−P) −1Ps
+
+ds. (34)
+No conditionρ(P)<1is needed in this identity.
+Proof. The determinant lemma gives detF/detF 0 = det(I + H). Factoring diag(Bi, Bj) gives
+det(I + H) = detB i detB j det
+h I K ij
+Kji I
+i
+. The last determinant is det(I−P ), while detF i/detF 0 =
+detB i. Differentiate the scalar determinant ratio and apply the argument-principle first moment.
+Equal counts make the constant c vanish. This proof uses logarithmic derivatives, not a globally
+selected matrix logarithm.Kmay be meromorphic in the interior.
+16
+
+=== PAGE 17 ===
+Status: EXACT IDENTITY.This is an application of established determinant and contour identities.
+Its role is to separate finite, physically realizable singleton effects from their joint correction, including
+parameter-dependent mode changes.
+For implementation,
+(Kij)s =B −1
+i
+
+(Hij)s −(H ii)sKij
+
+, P s = (Kij)sKji +K ij(Kji)s.(35)
+The two-step interaction and its exact rational remainder are
+C2 = 1
+2πim
+I
+Γ
+trP ds,(36)
+I −C 2 =− 1
+2πim
+I
+Γ
+(s−c) tr
+
+(I−P) −1P Ps
+
+ds.(37)
+The second identity follows by splitting ( I−P )−1 = I + (I−P )−1P and integrating
+H
+(s−c ) trP s =
+−
+H
+trP . An absolute-integrand bound or a direct signed interval integral encloses the remainder.
+When the two actions scale to zero, its local order is four. In contrast, the positive walk-series bound
+requires ρ(|Kij||Kji|) < 1; it must be abandoned when that condition fails. C2 resums within-site
+effects and is not generally a degree-two polynomial in the finite actions. These loops connect
+intervention ports through the whole network; they are not identified with physical transmission
+cycles.
+9.2 A finite exclusion and a compensation rule
+Suppose m = 1 and the required real-part margin is −σ. Enclosures ℜzN ≤n + and ℜ(zN + I) ≥a −
+prove an incorrectly permissive singleton prediction when
+n+ +σ <0, a − +σ >0.(38)
+For m > 1, a positive mean margin still proves that at least one root violates the requirement; a
+negative mean does not prove every root passes. This excludes the specified joint design, not every
+allowed local controller.
+To correct the decision, keep the replacement and prescribed Kp fixed. Let physical singleton
+maps exist with ℜzi(ri) = α0 −r i, valid gains, and fixed positive weights ri = wit,P
+i wi = 1. Write
+I(t) =ℜI(t) andb=−α 0 −σ >0. The exact joint margin is
+g(t) =−b−t+I(t), t ∗ =I(t ∗)−b. (39)
+The variable t is an allocated modal-decay budget in s −1; it is neither gain effort nor replacement
+MW.
+Theorem 4(Conditional finite compensation budget).Suppose the singleton maps, gain bounds and
+common root counts hold for0 ≤t≤Q . If I(0) > b, |I ′(t)| ≤κ < 1throughout that interval, and
+Q≥[I(0)−b]/(1−κ), there is a unique crossing and
+I(0)−b
+1 +κ ≤t ∗ ≤ I(0)−b
+1−κ .(40)
+The iteration tk+1 = max{0, I(tk) −b} converges from[0 , Q]. Every t∈ [t∗, Q]passes this enclosed-root
+margin condition.
+17
+
+=== PAGE 18 ===
+Proof. The clipped map is κ-Lipschitz, maps [0 , Q] into itself and has a unique fixed point. It is
+positive since its value at zero is positive. The bound follows from |I(t∗) −I (0)| ≤κt ∗. Finally,
+g′(t) = −1 + I ′(t) < 0. This is a specialization of contraction and monotonicity arguments, not a new
+general convergence theorem.
+Status: PROVED REDUCED MODEL.Here “reduced” concerns the scalar budget and enclosed-root
+constraint; the spectral functions can be evaluated on the exact full DDE. A sampled derivative
+bound is insufficient to invoke the uniform theorem.
+What can be composed exactly.If every additive descriptor intervention satisfies δFi(λ∗)v∗ = 0
+for thesamenonzero vector v∗ and F0(λ∗)v∗ = 0, then their sum preserves that eigenpair. Preserving
+only a real part, or even preserving the same eigenvalue with different eigenvectors, does not imply
+this condition. The full-network all-PLL construction in Appendix I supplies a way to impose a
+common pattern; it is a separate design choice, not proof of optimality.
+9.3 Executed IEEE–39 decision and its falsifiers
+The numerical values, figures and tables below are generated from experiments/interaction_
+decision_20261004/. The original grids produced no valid false acceptance and five modal false
+rejections; failed tracking comparisons were retained. A second campaign combined individually
+complex-pole-preserving replacements and found no margin violations in its 230 cases. Its largest
+adverse shift was below 3 × 10−5 s−1, too small to substantiate the intended material failure. Both
+negative findings are retained.
+The adaptive third campaign increased each selected site’s ρ by 0.01, prescribed a 2% increase
+in Kp, and solved its Ki and modal frequency while preserving the real part. The selected sites
+are 30 and 37. Selection was by the saved smallest-step rule; it was not an independent validation
+sample. The all-case table retains 405 designs, of which 88 were resolved and two violated the selected
+margin. The remaining 317 were unresolved or failed the declared frequency guard and are not labeled
+harmless.
+Designℜλ(s −1) Additional GFL MW
+Anchor−0.06570893 0.00
+Bus30 alone−0.06570893 2.50
+Bus37 alone−0.06570893 5.40
+Joint actions−0.04139961 7.90
+Complex-pole rule−0.06570803 7.90
+Interaction correction−0.06000000 7.90
+The displayed root centers have certified coordinate radii 10 −7 before display rounding.
+Status: NUMERICALLY VALIDATED.With rigorous ball enclosures of the exported model, the real
+interaction lies in 0.024309321 ± 4.01 × 10−7 s−1, including display rounding. The joint design violates
+the required margin while each singleton passes its enclosed-root condition. It remains asymptotically
+decaying at this pole; margin violation is not a claim of instability. The equal-budget fixed-point
+correction targets −0.06 s−1 and converged in 11 updates to t = 0.01700492 s−1. It changes Ki at
+buses 30 and 37 to 272.416969 and 288.703323; their prescribed Kp = 28.839821 is unchanged. The
+largest sampled absolute interaction slope was 0.3850; this is not a verified uniform contraction
+constant. The corrected design contains 4735.316 MW GFL (87.64622%) and 667.445 MW retained
+SG. These are prescribed feasible-design coordinates, not maxima. Along the separately declared
+independent tuning policy, the first numerical margin crossing has certified endpoint signs at 6.38445
+18
+
+=== PAGE 19 ===
+0.065
+ 0.060
+ 0.055
+ 0.050
+ 0.045
+Real part of the enclosed pole (1/s)
+Anchor
+Bus30 alone
+Bus37 alone
+Joint actions
+Complex-pole rule
+Interaction correction
+Individually compliant actions violate the joint modal margin
+Required margin
+Figure 3: The finite modal decision reversal and two alternative corrections. Error bars are smaller
+than the markers.
+and 6.38604 additional MW. This is not a global replacement bound; interval-wide monotonicity
+is not certified. Independent Julia linearization reproduces the exported model. The floating-point
+complete-region DDE contour test returns anchor: 0 violating roots, single30: 0 violating roots,
+single37: 0 violating roots, joint: 2 violating roots, complex pair: 0 violating roots, corrected: 0
+violating roots. These counts are numerical; the interval certificates above have their explicitly smaller
+scope. The frozen nonlinear DDE campaign passes 5/5 events, with maximum frequency excursion
+0.465874 Hz, maximum windowed RoCoF 0.219060 Hz/s and minimum retained-SG actuator slack
+0.008918. Frequency and RoCoF use 0.5 s windows. No converter current-limiter safety is asserted.
+Certified scope.Complex-ball arithmetic at 160-bit precision encloses the source CSV values,
+gains and delays as their exact binary64 values. The algebraic elimination is enclosed. A balanced
+open-loop resolvent series encloses its numerical evaluation without approximating the exponential
+delay. Positive-oriented argument-principle contours prove one simple physical root in each small
+square. Four additional common-contour counts prove that the baseline, singletons and joint design
+refer to a common one-root region. This connects their finite difference to Eq. (34). The interval
+enclosure certifies the endpoint correction itself; the two-step approximation is only numerical because
+its walk-series gate failed.
+Comparison and novelty boundary.The ordinary quadratic prediction also detects this violation,
+although less accurately. Thus the example does not establish that only the resummed method can
+make the correct decision. It establishes a finite, certified failure of additive singleton prediction
+and an executed correction rule. Classical multivariable interaction analysis already uses normalized
+off-diagonal return maps [ 24]. A recent IBR block-dominance certificate also accounts for inter-device
+interaction and a prescribed decay rate [ 25]; it is not the additive surrogate falsified here. No claim of
+first publication, globally optimal replacement, GSP compression, necessity of communication, or a
+new physical-line-cycle law follows.
+19
+
+=== PAGE 20 ===
+0 2 4 6 8 10
+Fixed-point iteration
+0.060
+0.055
+0.050
+0.045
+Joint pole real part (1/s)
+Same replacement and prescribed Kp
+0 2 4 6 8 10
+Iteration
+10 10
+10 8
+10 6
+10 4
+10 2
+Budget fixed-point residual (1/s)
+Observed convergence; no global optimum
+Figure 4: Executed scalar compensation rule. Its endpoint root is certified, while convergence beyond
+this run remains conditional.
+10 Discussion, contribution boundary and limitations
+Result Evidentiary scope
+Affine descriptor and gain map Exact identities in the fixed chart.
+Cluster Hessian and walk tails Proved under the stated contour/envelope hypotheses.
+Regional LP / lifted outer bound Necessary relaxation; verified data and dual bound required.
+87.6% candidate, five events Full-model numerical result for uniform 40 ms delay.
+18–46-fold tail reduction Three frozen algebraic points, not a capacity increase.
+Physical maximum or global gap Not established.
+Local PLLs fundamentally insuf-
+ficient
+Not established with freely varying modal patterns.
+GSP compression or physical cy-
+cle law
+Not established.
+What is technically added.The model-specific lift links replacement and PLL gain increments to
+a finite characteristic perturbation without a network-inverse parameter remainder. Cluster curvature
+resolves pairwise collective actions, and the walk budget quantifies the error of dropping them. The
+outer relaxation allows all admissible gains and modal patterns; a strict finite dual witness would
+therefore be stronger than failure to preserve a prescribed eigenvector. This is an applied bound
+construction assembled from established tools. Bibliographic priority for the combination has not
+been proved.
+What still prevents a strong application paper.An informative verified regional upper bound
+or controller-exclusion witness below the box-only ceiling is missing. The matched nonlinear fixed-gain
+comparison now shows both designs feasible, with small opposing metric changes. A fair fixed-structure
+spectral-abscissa/SQP comparator with identical constraints remains missing. A controller tuned
+with I + L + L2 terms has not been implemented or shown necessary. The graph Fourier basis may
+express interactions, but no low-frequency truncation theorem follows.
+Physical limits.The certificate concerns a local linearization of a specific nonlinear model. Non-
+linear event tests remain separate; no global nonlinear stability, arbitrary-disturbance safety, or
+unmodeled converter-current-limit guarantee follows. Delays may be heterogeneous in the derivations,
+20
+
+=== PAGE 21 ===
+but the preserved nonlinear feasible result has uniform delays. The graph moment in the appendices
+concerns a declared swing-network class and has not been transferred to the full IEEE–39 converter
+model.
+11 Conclusion
+Collective effects can be made explicit at the level of finite parameter changes: the full delayed
+network produces a cluster Hessian and a closed-walk remainder, which lead to necessary regional
+replacement bounds. The derivations permit moving modes and fixed heterogeneous delays without
+a low-frequency delay approximation. The available IEEE–39 results validate algebraic sharpness
+and one feasible analytical retuning construction. One continuous complex-ball calculation also
+certifies retention and margin stability of a slow cluster over its complete local box. These results
+do not yet establish a physically limiting replacement ceiling or superior co-design performance.
+The new finite-decision closure certifies one collective margin violation and an interaction-budget
+correction, but not a replacement ceiling. The next planning result remains an informative bound on
+a preregistered region extending beyond the current feasible corner, followed by a comparison under
+the same nonlinear security contract.
+Reproducibility and research integrity
+The main source is edited in place; pre-edit source bytes and prior experiment artifacts are preserved.
+New checks, protocol, exact input copies, package versions, tables, claim ledger and manifests are
+under experiments/regional_paper_closure_20261003/. Numerical table entries in the new main
+text are generated from the saved result files. The initial closure performed linear-algebra and contour
+checks. The subsequent poster closure adds the 60 physical-law checks and five new fixed-gain
+nonlinear comparator trajectories under experiments/poster_julia_validation_20261003/. The
+historical event evidence remains explicitly attributed to its frozen experiment. Three independent
+reviews audited the equations, evidence provenance and literature boundary; their corrections and
+unresolved objections are recorded in the package.
+21
+
+=== PAGE 22 ===
+A First correction: derive the closed PLL before assigning damping
+Status: EXACT IDENTITY.At a locked equilibrium θ∗
+i = argV ∗
+i , let V ◦
+i = |V ∗
+i |> 0 and let ϕi be
+terminal phase perturbation. The linearized detector is δei = V ◦
+i (ϕi −θ i). Eliminating the PLL
+frequency and integrator gives, for zero history,
+Hi(s) = θi(s)
+ϕi(s) = V ◦
+i (Kp,is+K i,i)e−sτi
+s2(1 +t f,is) +V ◦
+i (Kp,is+K i,i)e−sτi
+.(41)
+ForK i,i >0, direct Taylor division proves
+Hi(s) = 1− s2
+V ◦
+i Ki,i
++ Kp,i/Ki,i −t f,i −τ i
+V ◦
+i Ki,i
+s3 +O(s 4).(42)
+Pure delay first appears at cubic order in this phase-tracking transfer, not in its constant, linear or
+quadratic coefficients. Any subsequent reduction using analytic factors and inverses nonsingular at
+zero preserves the O(s3) delay difference. Dividing an angle operator by s shifts that difference to
+O(s2). Singular elimination can change the order. The previously ill-conditioned full hidden block at
+s= 0 prevents an unqualified application of this argument to the full reduced grid.
+Consequently Lτ = Sym(BcKiTτ C) is not established for this implemented closed PLL. It may
+arise for another loop or approximation, which would need its own derivation. At finite frequency the
+inverse tracking defect is exactly
+Qi(s) =H i(s)−1 −1 = s2(1 +t f,is)esτi
+V ◦
+i (Kp,is+K i,i) ,(43)
+|Qi(iΩ)|=
+Ω2
+q
+1 + Ω2t2
+f,i
+V ◦
+i
+q
+K2
+i,i + Ω2K2
+p,i
+,(44)
+argQ i(iΩ) =π+ arctan(Ωt f,i)−arctan(ΩK p,i/Ki,i) + Ωτi (mod 2π).(45)
+Delay rotates this defect without changing its magnitude. This defect is not itself physical damping
+or a Laplacian.
+B Physical collective damping and its finite latency law
+Status:EXACT IDENTITY.The exact characteristic operator of the full linearization is
+∆(s) =sE−A 0 −
+X
+i
+bicT
+i e−sτi.
+The two delayed PLL injections share one column bi, with entries Kp,i/tf,i and Ki,i. cT
+i differentiates
+the actual detector after algebraic voltage elimination.
+In exported E = I coordinates, retain per-unit SG speed deviations ν and eliminate all other
+stateszwherever ∆ zz is invertible:
+Z(s) =M(∆ νν −∆ νz∆−1
+zz ∆zν), d=Z(s)ν, D H(Ω) = HermZ(iΩ).(46)
+di is mechanical torque expressed as MW at nominal speed, injected as di/Mi in the swing equation.
+For physical harmonic phasors,
+⟨dT ν⟩= 1
+2bν∗DH(Ω)bν.
+22
+
+=== PAGE 23 ===
+This is incremental mechanical supply, not total AC power or a nonlinear Lyapunov function. A
+steady harmonic response needs to exist; an unstable system may only admit a formal particular
+phasor solution.
+Theorem 5(One delayed channel redistributes physical damping).Fix ρ, equilibrium, gains, ports
+andΩ > 0. Change only τi to τi + δτi ≥ 0. Assume both hidden blocks are invertible. At s = iΩ,
+evaluate the following factors at the old design:
+κi =e −sτi −e −s(τi+δτi), h i =c T
+z,i∆−1
+zz bz,i,
+ui =M(b ν,i −∆ νz∆−1
+zz bz,i), v ∗
+i =c T
+ν,i −c T
+z,i∆−1
+zz ∆zν ,
+γi =κ i/(1 +κ ihi), a i =γ iui.
+Then
+δZ=γ iuiv∗
+i , δD H = 1
+2(aiv∗
+i +v ia∗
+i ). (47)
+If γi ̸= 0and ui, vi are independent, δDH has exactly one positive and one negative eigenvalue, all
+others zero.
+Proof. The full change is κibicT
+i . Applying Sherman–Morrison inside the Schur complement proves
+(47). Nonsingularity of both hidden blocks makes 1 + κihi ̸= 0 by the determinant lemma. The range
+ofδD H is contained in the span ofa i, vi. Its two possibly nonzero eigenvalues are
+ℓ± = ℜ(v∗
+i ai)±
+p
+∥ai∥2∥vi∥2 −[ℑ(v ∗
+i ai)]2
+2 .
+Their product is
+ℓ+ℓ− =− |γi|2
+4
+ 
+∥ui∥2∥vi∥2 − |v∗
+i ui|2
+<0
+by strict Cauchy–Schwarz. This proves both signs and rank two.
+This is a finite-change statement for the full linearization, not merely a first-order approximation.
+It says that a local latency change increases harmonic dissipation in some collective speed directions
+and decreases it in others, under the stated independence. Hence its negative is not a positive-
+semidefinite delay penalty either. Collinear paths can instead give a rank-one change of either sign or
+zero; phase-periodic increments can make κi = 0. Multiple channel changes may combine to have
+another sign pattern. This theorem alone does not determine stability or nonlinear safety. Section 8
+checks path independence numerically at 60 frozen IEEE–39 harmonic cases; no frequency interval is
+certified.
+Differentiating the finite formula gives
+Zτi(s) =se −sτiuiv∗
+i .(48)
+Away from the imaginary axis v∗
+i denotes the displayed analytic row, not an additional conjugation of
+an analytic function.
+C Graph meaning of the physical directions
+Status: EXACT IDENTITY.Use a verified symmetric physical Laplacian only to define a basis:
+M −1/2LP M −1/2 =UΛU T . The lossy model inZstays intact. Under physical mass normalization,
+cδD=U T M −1/2δDH M −1/2U= 1
+2(babv∗ +bvba∗),ba=U T M −1/2a,bv=U T M −1/2v.
+23
+
+=== PAGE 24 ===
+Thus cδDkℓ = 1
+2(bakbvℓ +bvkbaℓ). Sylvester’s law preserves the positive/negative counts under this
+invertible congruence. Both network paths determine the modal effect; the spatial Fourier spectrum
+of τ alone cannot supply its sign. Low graph modes are not automatically the right control subspace.
+The rank-two claim concerns one channel’s increment, not the full damping matrix.
+D A graph law for inertia and aggregate frequency
+D.1 An explicit reduced class
+Assume, separately from the full-model theorem,
+ν= ˙q, Z r(s)ν=d, Z r(s) =sM+D(s) +L/s,D(s) =D 0 +sD 1 +O(s 2).(49)
+M is positive diagonal, L = BW BT is a connected undirected Laplacian with W > 0, and D is real
+analytic near zero. For physical per-unit speed, q = δ/ω0; consequently L = ω0Langle. M, D0, L then
+have units MW s, MW, and MW/s. This scaling is essential. The class (49) has not been derived for
+the full lossy IEEE–39 PLL/DC model; singular hidden states at zero cannot be ignored.
+Define
+m=1 T M1, d 0 =1 T D01>0, u 0 =M 1/21/√m, M −1/2LM −1/2 =Udiag(0,Λ ⊥)U T .
+Write eD = U T M −1/2DM −1/2U and Z⊥ = sI + eD⊥⊥ + Λ⊥/s. For inertia-proportional input d =
+(M1/m)p, the COI speedw=1 T M ν/msatisfies
+zcoi(s) =m[s+ eD00 − eD0⊥Z−1
+⊥ eD⊥0], w=p/z coi.(50)
+This is an exact Schur identity for this class wherever defined.
+Theorem 6(Graph correction to the aggregate response moment).Let bR = D01 − (d0/m)M1and
+bL =D T
+0 1−(d 0/m)M1. Then
+zcoi(s) =d 0 +sm app +O(s 2), mapp =m+1 T D11−b T
+LL†bR. (51)
+IfD 0 is symmetric,b L =b R =band
+bT L†b=m
+X
+k>0
+eDk0(0)2
+λk
+= min
+Bf=b
+f T W −1f≥0. (52)
+Status:PROVED REDUCED MODEL.
+Proof.Z −1
+⊥ = s(Λ⊥ + seD⊥⊥ + s2I)−1 = sΛ−1
+⊥ + O(s2). Substitute in (50). Both bL, bR sum to zero.
+The mass-normalized spectral solution of Lx = bR differs from L†bR only by a constant vector, which
+bT
+L annihilates. This identifies the cross coefficient as bT
+LL†bR. Symmetry gives the sum of squares.
+For the flow identity, f∗ = W BT L†b is feasible and every feasible f = f∗ + c has Bc = 0. Its cost is
+f T
+∗ W −1f∗ +c T W −1c, proving the minimum.
+mapp is a response moment, not stored kinetic inertia. It may be negative with positive physical
+inertia in a stable system. The mismatch uses row/column sums of collective damping, not its
+diagonal alone. Weak graph modes amplify the effect by 1 /λk. Cycle flows belong to kerB and add
+the nonnegative cost above; no separate cycle damping object is needed. At fixed b, ∂(bT L†b)/∂we =
+−(BT
+e L†b)2 ≤ 0. This concerns the moment at a fixed operating point, not monotonic improvement
+of nadir or stability under actual line changes.
+24
+
+=== PAGE 25 ===
+Corollary 7(Negative moment forces an overshoot).Suppose the frequency response is stable with
+integrable transient. For p(t) = −P 1t≥0, P > 0, define signed frequency drop x = −w. Then
+x∞ =P/d 0 and Z ∞
+0
+(x∞ −x(t))dt=P m app/d2
+0. (53)
+Ifm app <0, the nadir is below the final frequency.
+Proof. Expand X(s) = P/[szcoi(s)]. The limit of P/(d0s) −X (s) at zero is the stated area. A negative
+integral cannot have an everywhere nonnegative integrand.
+A positive moment does not rule out overshoot. A negative one does not quantify the peak or
+establish violation of a declared limit.
+Exact two-node example; no time simulation.Let M = I2, L =
+ 1−1
+−1 1
+
+in dimensionless
+units. Both D0 = 5I2 and D0 = diag(1, 9) have m = 2, d0 = 10. The former has w/p = 1/(2s + 10),
+monotone. For the latter,b= (−4,4) T ,b T L†b= 16,m app =−14, and
+w
+p = s2 + 5s+ 2
+2(s3 + 10s2 + 11s+ 10) .
+The cubic is Hurwitz by 10 , 11, 10 > 0 and 10 · 11 > 10. Equation (53) proves overshoot. Equal total
+inertia and total damping do not determine the frequency transient. This example is not an IEEE–39
+result.
+For a general deficit input d(t) = −v1t≥0 with1 T v = P > 0, put a = v− (P/m)M1. Eliminating
+the disagreement input yields
+Z ∞
+0
+(x∞ −x(t))dt= P mapp
+d2
+0
++ bT
+LL†a
+d0
+.(54)
+The extra term comes from the numerator P−sb T
+LL†a + O(s2). Thus the equations accept arbitrary
+input location. Algebraic load events need their real input map, not an assumed mechanical step.
+E Nonlinear causality, RoCoF and replacement
+Proposition 8(A causal limitation on PLL retuning).Assume the nonlinear DDAE is well posed, its
+pre-event detector history is zero, its trim is gain-independent, and gains occur only as in (3). At fixed
+other parameters, changing site i’s PLL gains cannot change the physical trajectory for0 ≤t < τ i. If
+all tunable channels have positive delay, the trajectory beforeτ min is independent of all their gains.
+Status:EXACT IDENTITY.
+Proof. The corresponding delayed error is zero on the stated interval. Both designs have the same
+vector field and history there; uniqueness of the retarded initial-value problem gives equality.
+Other converter states, currents, DC dynamics, SG governors and algebraic voltages can respond
+immediately. This is not a claim that GFL power is frozen before the PLL delay. Any output-guard
+failure in that common interval is unrepairable by these gains. If Sblind is the set of ρ passing all
+declared event/output guards on that interval, then
+{ρ:∃Kfully feasible} ⊆ S blind, P ∗
+GF L ≤sup
+ρ∈Sblind
+X
+i
+P 0
+i ρi.
+25
+
+=== PAGE 26 ===
+This is an unevaluated necessary-condition relaxation, potentially weak for short delays and long
+measurement windows.
+For a mechanical step in (49), with causal controller realization and no instantaneous synthetic-
+inertia feedthrough,
+˙ν(0+) =M −1d(0+),˙w(0 +) =1 T d(0+)/m.
+An instantaneous COI rotor RoCoF limitR max Hz/s therefore needs
+X
+i
+2HiS0
+i ϵi ≥f 0|1T d(0+)|/Rmax.(55)
+This classical condition is not novel. Minimizing P T ϵ under it and 0 ≤ϵ≤ 1 is fractional knapsack:
+sort 2HiS0
+i /P 0
+i decreasingly for positive dispatch and retain in that order, with at most one final
+fraction. This gives only the necessary-condition bound for that explicit input/output contract.
+The frozen repository instead monitors bus-voltage phase overT w = 0.5 s:
+Fj(t) = ϕj(t)−ϕ j(t−T w)
+2πTw
+, R j(t) = ϕj(t)−2ϕ j(t−T w) +ϕ j(t−2T w)
+2πT 2w
+.
+Z-load events can jump algebraic voltage phase. These metrics cannot be replaced by instantaneous
+rotor RoCoF. No numerical upper replacement bound for the frozen problem is computed in this
+document.
+F The exact connection to stability and local design
+For a simple root, with nonzero eigenvalue denominator,
+λp =− w∗∆pv
+w∗∆sv ,∆ s =E+
+X
+i
+τibicT
+i e−sτi.
+Delayed memory is not stored inertia. At a regular physical-port root,
+λτi =− λe−λτi(ℓ∗ui)(v∗
+i r)
+ℓ∗Zsr . (56)
+This follows by using (48) in λp = −ℓ∗Zpr/(ℓ∗Zsr). Phase and left/right mode overlaps matter; the
+harmonic sign theorem does not replace root or nonlinear-security analysis. The affine PLL injection
+also gives the consistency identity λτi = −λ(λlogK p,i + λlogK i,i) at fixed ρ and trim. Multiple roots
+require subspace/nonsmooth analysis.
+Forp= (ρ,logK p,logK i) a legitimate smooth local predictor is
+max
+δp
+X
+i
+P 0
+i δρi, g j +∇ pgT
+j δp≤0, p+δpinside gain bounds and a trust region.
+Spectral derivatives come from (56); nonlinear peak derivatives need the retarded variational equations
+and all active times. This is standard sequential constrained optimization, not a new global solver.
+No new optimizedρ, K p, Ki are produced here.
+Nor should mapp ≥ 0 be added as a necessary safety constraint: overshoot below final frequency
+may still respect the allowed frequency excursion. Positive harmonic damping at sampled frequencies
+also does not prove stability.
+26
+
+=== PAGE 27 ===
+G Exact retuning and its collective consequences
+Scope.The design question is whether additional replacement can be compensated by bounded
+PLL gains, and which collective modes prevent that compensation. We keep the actual nonlinear
+DDAE, its exact delayed linearization and the physical ports. No new damping operator is postulated.
+All delays remain externally specified. A change of delay below compares two prescribed physical
+scenarios; it is not an optimization over latency. Every formula uses a fixed state-support chart.
+G.1 The actual single-PLL return relation
+Remove the three PLL states at site i and regard its angle θi as an input to the remaining grid. Keep
+all other PLLs, delays, SG, voltage, current and DC equations. At a regular frequency write
+Ai(s;ρ)z=B i(s;ρ)θ i, e i =C i(s;ρ)z+D i(s;ρ)θ i.
+The exact return relation is
+ei =G i(s;ρ)θ i, G i =D i +C iA−1
+i Bi.(57)
+The detector includes the negative local-angle term. Gi is not terminal voltage phase alone or a lossless
+scalar approximation. It is independent of this site’s removed Kp,i, Ki,i, τi; other controllers and
+delays are held fixed. Replacement dependence includes the actual algebraic closure and equilibrium
+dependence. Eliminating this PLL gives
+Fi(s) =s 2(1 +t f,is)−(sK p,i +K i,i)e−sτiGi(s;ρ) = 0.(58)
+Where Ai is nonsingular, the full determinant is det(Ai)Fi/tf,i up to a nonzero ordering constant.
+Hidden-block singularities must instead be treated with the original characteristic operator. Not every
+pole need be visible in this relation.
+Theorem 9(Exact single-site pole assignment with gain limits).Fix ρ, all other controllers and
+delays, andλ=α+ iω,ω >0. AssumeA i(λ)is invertible andG i(λ;ρ)̸= 0. Define
+Wi(λ, ρ, τi) = λ2(1 +t f,iλ)eλτi
+Gi(λ;ρ) .
+The unique real gains assigningλthrough this channel are
+Kp,i = ℑWi
+ω , K i,i =ℜW i − α
+ω ℑWi. (59)
+Under declared gain bounds, such an assignment is possible if and only if
+Wi ∈ {λk p +k i :k p ∈[K −
+p , K+
+p ], k i ∈[K −
+i , K+
+i ]}.(60)
+Status:EXACT IDENTITY.
+Proof.Equation (58) reduces toλK p,i +K i,i =W i. Its imaginary and real parts give (59), uniquely
+sinceω̸= 0. The image of the gain rectangle is precisely the parallelogram in (60).
+This is a one-pole, one-site feasibility test with other gains frozen. Failure is not a certificate
+against all distributed stabilization. Pole assignment is established control theory; the system-specific
+content is the exact return relation and the cross-mode result below.
+27
+
+=== PAGE 28 ===
+G.2 Transport between prescribed heterogeneous delays
+For frozenρand an existing rootλ, compareτ i withτ i +h. The exact gain map is
+Kp,i(h) =e αh
+
+Kp,i cosωh+ Ki,i +αK p,i
+ω sinωh
+
+,(61)
+Ki,i(h) =e αh
+
+Ki,i cosωh− |λ|2Kp,i +αK i,i
+ω sinωh
+
+.(62)
+Indeed,
+[λKp,i(h) +K i,i(h)]e−λ(τi+h) = (λKp,i +K i,i)e−λτi.
+The eliminated PLL equation at λ is unchanged. Applying this map to all prescribed heterogeneous
+delay changes preserves the eliminated full-grid equations at λ, λ, for fixed ρ. It does not ensure that
+these poles remain dominant or that the other poles remain stable. All gain bounds must still hold.
+The same map solves
+d
+dh
+Kp,i
+Ki,i
+
+=
+ 2α1
+−|λ|2 0
+ Kp,i
+Ki,i
+
+.(63)
+At α = 0, initially positive gains first lose positivity through Ki = 0 at h = ω−1 arctan[Ki/(ωKp)] for
+increasing h. Actual bounds may be reached earlier. This is a boundary of the pole-preserving gain
+branch, not the maximum stable grid delay.
+Theorem 10(Modal spillover under single-site pole preservation).Let λ = α + iω and µ be simple
+characteristic roots at the baseline, with return reductions regular at both. Retune site i by (62) as its
+prescribed latency changes, holding other sites fixed. Then
+dµ
+dh
+
+0
+=−K p,i(µ−λ)(µ− λ) ∂µ
+∂Ki,i
+. (64)
+The derivative on the right is in ordinary gain, not log gain.
+Status:EXACT IDENTITY.
+Proof.Differentiating (58) at a simple root gives
+µKp,i =µ µ Ki,i, µ τi =−µ(K p,iµKp,i +K i,iµKi,i).
+Combining these with (63),
+˙µ=µ τi + (Ki,i + 2αKp,i)µKp,i − |λ|2Kp,iµKi,i
+=−K p,i(µ2 −2αµ+|λ| 2)µKi,i.
+Equivalently, forK i(s, h) = [sKp,i(h) +K i,i(h)]e−s(τi+h),
+∂hKi(s,0) =−K p,ie−sτi(s−λ)(s− λ).
+For a finite change, Ki(s, h) − Ki(s, 0) has zeros at λ, λ, and is divisible by that quadratic as an entire
+function ofs.
+28
+
+=== PAGE 29 ===
+Corollary 11(A precise single-site limitation).If λKi,i ̸= 0, any differentiable real retuning at this
+site preserving the full complex root λ while dτi/dh = 1has derivative (63). For Kp,i > 0, it cannot
+also preserve a distinct rootµ /∈ {λ, λ}to first order whenµ Ki,i ̸= 0.
+Proof. The gain-to-root real Jacobian is nonsingular: λKi(λ δKp + δKi) has nonzero real determinant
+forω >0,λ Ki ̸= 0. Compensation is therefore unique; (64) is nonzero.
+This is not an impossibility theorem for preserving only the real parts of two roots, or for
+distributed retuning at other sites. A complex root moving need not have a worsened real part. The
+sign ofℜ˙µis a prediction to test, not an assumed destabilizing outcome.
+Connection to Beyond Nodal Damping.The residue in (64) is
+µKi,i =− ℓ∗
+µZKi,i(µ)rµ
+ℓ∗µZs(µ)rµ
+.
+The local PLL fixes the spectral polynomial; the lossy network, inertia, P/Q and other devices fix
+its collective residue. Nodal damping coefficients do not contain these left/right overlaps. GSP
+can express the overlaps in a graph basis, but unsigned delay roughness cannot substitute for their
+complex sign.
+G.3 Replacement at fixed physical delays
+At any prescribed ρ in the regular region, (59) gives an exact candidate for one target pole. For fixed
+λ, τi, tf,i,
+Wi,ρj =−W iGi,ρj /Gi, K p,i,ρj =ℑW i,ρj /ω, K i,i,ρj =ℜW i,ρj −αℑW i,ρj /ω.
+The derivative of Gi must include equilibrium and algebraic-voltage dependence. The sharing contract
+leaves tf,i fixed. Holding a full complex pole is one candidate strategy. For a requirement on real part
+alone, useλ=−σ req + iωwithωfree; fixingωwould add an unrequested design constraint.
+H From modal prediction to a bounded replacement decision
+Theorem 12(Gain-bounded first-order replacement in a fixed direction).Start at a feasible design.
+Fix ρ = ρ0 + tr, t≥ 0, with P T r > 0, and an admissible interval0 ≤t≤t box. Stack the included
+smooth constraint branches as g≤ 0and put q = −g(p0) ≥ 0, a = gρr, C = gK. Let the gain
+increments belong to a nonempty compact convex set U containing zero. In the first-order constraint
+model,
+∃u∈ U:ta+Cu≤q
+if and only if
+t ηT a≤η T q+h U(−C T η)for everyη≥0.(65)
+Consequently
+tlin
+max = min
+
+tbox,inf
+η≥0, η T a>0
+ηT q+h U(−C T η)
+ηT a
+
+. (66)
+An empty infimum is+∞. The maximal extra replacement in this model ist lin
+maxP T rMW.
+Status:PROVED REDUCED MODEL.
+29
+
+=== PAGE 30 ===
+Proof. Feasibility means q−ta∈CU + Rm
++, a closed convex set. Its separating halfspaces with finite
+lower support use normals η≥ 0, and inf u∈U ηT Cu = −hU(−CT η). This proves (65). For ηT a≤ 0
+the inequality is automatic because q≥ 0, 0 ∈ U and t≥ 0. The remaining inequalities give (66).
+For the physical gain box uj ∈ [lj, hj], hU(z) = P
+j max(ljzj, hjzj). The existing gain bounds
+are not enlarged. If CT η = 0 for a nonnegative η, that weighted combination of constraints has no
+first-order tuning authority, even if gain increments were unbounded. Its replacement demand must
+be met by baseline margin or another physical intervention.
+This is standard convex separation applied to the problem; it extends the repository’s previous
+compensability formulation. It is not a new general optimization theorem, a maximum over all
+replacement directions, or a full nonlinear optimum. The physical contribution sought is how the
+collective residues determine the limiting combination of constraints. For spectral maxima or trajectory
+peaks, retain all relevant active branches or use directional nonsmooth analysis. A finite list does not
+certify unseen roots, time instants or disturbances.
+For a uniformly verified remainder bound on the entire design region,
+|gj(p0 + (tr, u))−g j(p0)−ta j −(Cu) j| ≤ε j,
+replacing q by q + ε gives a necessary relaxation, and hence a regional upper bound on t. Replacing q
+by q−ε in (65) gives a sufficient test for the included constraints. The simplified ratio formula need
+not apply to q−ε , which can have negative entries. No rigorous remainder bound has been obtained
+here.
+H.1 Analytic examples that expose the limiting mechanism
+Let t≥ 0 denote normalized replacement and let u∈ [−κ, κ] be one normalized tuning direction. If
+the two modal constraints are
+t+u≤q, t−u≤q, q≥0,
+then adding them proves t≤q , attained with u = 0. Each constraint separately would allow t = q + κ.
+The dual direction η = (1, 1) cancels the controller action and detects the conflict. More tuning
+range does not remove this particular first-order multimode limitation. In contrast, if both rows are
+t + u≤q , the optimum is t = q + κ, attained with u = −κ. These exact algebraic examples explain
+what the test detects; they do not assert that either row pattern occurs on IEEE–39.
+H.2 A sufficient gate for the complete DDE spectrum
+This standard homotopy argument prevents pole assignment from silently ignoring the other roots.
+At fixedρ, in a common gauge-deflatedE=Istate chart, let
+∆1(s) = ∆0(s) +U(s)C, U i(s) =b 0
+i e−sτ 0
+i −b 1
+i e−sτ 1
+i .
+Both delay vectors are prescribed. Let Γ enclose ℜs≥ −σ , truncated by |s| ≤R , with ∆0 nonsingular
+on Γ. A sufficient condition is
+sup
+s∈Γ
+∥C∆0(s)−1U(s)∥ 2 <1.(67)
+Indeed, for 0 ≤t≤ 1 the determinant lemma and Neumann invertibility make ∆ 0 + tU C nonsingular
+on Γ. Its argument-principle root count is unchanged. There are no omitted roots for |s|> R,ℜs≥ −σ
+if
+R >∥A 0∥2 + max
+k=0,1
+X
+i
+∥bk
+i ∥2∥ci∥2eστ k
+i .
+30
+
+=== PAGE 31 ===
+Dominance of sI proves this bound throughout the affine homotopy. A zero initial root count and
+verified (67) therefore imply the full spectral margin.
+The gauge must actually be removed; pinned roots on the contour need separate deflation and
+are excluded here. This sufficient condition is potentially conservative and has not been evaluated.
+Sampling cannot certify its supremum. Changing ρ requires the full characteristic difference, including
+A0, C and equilibrium dependence, rather than the fixed- ρ low-rank update above. Nonlinear event
+guards remain separate from this spectral argument.
+Deferred validation; no experiments in this extension.First check the gain-sensitivity ratio
+and spillover formula on withheld simple modes. Then check finite gain transport, all gain bounds and
+the complete spectrum. Only afterwards test the frozen nonlinear events and whether a replacement
+predictor improves a feasible design under identical limits. No trajectories, optimization runs or
+spectral sweeps were executed here.
+I All-PLL construction and its exact scope
+Research contract.The primary question is whether the collective grid return can predict an
+admissible PLL retuning as SG replacement increases. The proposed mechanism is incompatibility
+between the gains demanded by different oscillatory patterns. The falsifying test is that this
+incompatibility fails to predict useful full-model designs, or disappears when unnecessary pattern
+restrictions are removed. The consequence, if validated, is a controller decision based on network
+interactions. Neighbor feedback is a separately identified architecture extension, with its own latency
+and gain contract. None of these statements assumes a strict advantage exists.
+I.1 Open every PLL: the plant remains the full grid
+Remove all PLL triples ( θ, ωp, ξ) while keeping the n angles as external inputs to the other de-
+vice/network equations:
+A(s;ρ)z=B(s;ρ)θ, e=C(s;ρ)z+D(s;ρ)θ.
+ForAnonsingular, define
+G(s;ρ) =D+CA −1B, D f(s) =s 2(I+sT f).(68)
+Unlike Gi in (57), G is independent ofallremoved PLL gains and detector delays. The current, DC,
+SG, lossy AC, P/Q and equilibrium dependencies remain in G. This independence uses the actual
+model contract: gains enter only the removed PLL equations. Do not silently reuse it for a model
+with other gain-dependent channels.
+For local diagonal gainsK p, Ki, the exact reduced characteristic is
+F(s;ρ, K) =D f(s)−(sK p +K i)Eτ(s)G(s;ρ), E τ = diag(e−sτi).(69)
+Its determinant describes full-model roots wherever the eliminated block is regular; hidden-block sin-
+gularities need the original descriptor. No approximation of the exponentials or modal diagonalization
+is used.
+Theorem 13(Analytical gains for a prescribed collective pattern).Fix a replacement ρ, λ = α + iω
+with ω > 0, and a nonzero PLL-angle vector q∈C n. Assume A(λ; ρ)is nonsingular and yi =
+[G(λ;ρ)q] i ̸= 0for every site. Set
+Wi = λ2(1 +t f,iλ)eλτiqi
+yi
+, Kp,i = ℑWi
+ω , K i,i =ℜW i −α ℑWi
+ω . (70)
+31
+
+=== PAGE 32 ===
+These are the unique real local gains for which F (λ)q = 0. They are admissible precisely when they
+obey the declared gain bounds.
+Status:EXACT IDENTITY.
+Proof. Row i of F (λ)q = 0 is ( λKp,i + Ki,i)e−λτiyi = λ2(1 + tf,iλ)qi. Its two real equations give (70).
+Reconstruct z = A−1Bq, ωp = λq and ξ = KiEτ y/λ to recover the full eigenvector. Real model
+coefficients also give the conjugate eigenpair.
+If yi = 0 and the right side is nonzero, assignment is impossible. If both vanish, that row imposes
+no gain equation and must be treated without division. Nonzero q is required; its complex scale
+cancels in (70). This result assigns an eigenpair, not dominance, simple multiplicity, the complete
+spectrum, or nonlinear safety. Conversely, any existing local-gain design with such an eigenpair and
+nonzero responses satisfies this same formula. Thus allowing the pole and pattern to vary covers this
+regular eigenpair chart; holding a convenient pattern fixed is the additional restriction.
+The collective dependence is explicit:
+yi =
+X
+j
+Gij(λ;ρ)q j.
+Thus even local gains depend on the spatial amplitudes and phases of the whole pattern. Replacing
+this sum by Giiqi is an additional model approximation. Offline use of G does not require online
+communication or make the controller distributed.
+I.2 Exact gain compatibility for several patterns
+Formdistinct nonreal target pairs (λ r, qr), constructW ir from (70). Let
+CΛ =
+
+
+α1 1
+ω1 0
+... ...
+αm 1
+ωm 0
+
+
+, w i =
+
+
+ℜWi1
+ℑWi1
+...
+ℜWim
+ℑWim
+
+
+.
+Then, with no gain bounds, simultaneous local assignment is possible if and only if
+(I−C ΛC†
+Λ)wi = 0 for alli. (71)
+The gains are [ Kp,i, Ki,i]T = C†
+Λwi. Since ωr > 0, CΛ has rank two and the gains are unique; bounded
+feasibility also requires membership in the gain rectangle.
+Status: EXACT IDENTITY.The proof is the range criterion for CΛki = wi. For two pairs this is four
+real equations for two real gains at each site. The conflict is therefore testable, rather than inferred
+from large or negative damping coefficients.
+Scope restriction.Failure proves infeasibility for thesespecified poles and patterns. It does
+not prove that local controllers cannot stabilize the same replacement with other modes. It is not a
+decentralized fixed-mode theorem. Patterns and target frequencies must be allowed to vary before
+claiming an architectural stabilization limit.
+32
+
+=== PAGE 33 ===
+I.3 Which additional measurement can remove a conflict?
+For an admissible directed information pattern Ni, including the local signal, consider the explicit
+extension
+tf,i ˙ωp,i =ξ i −ω p,i +
+X
+j∈Ni
+kp,ijej(t−τ j −d ij),
+˙ξi =
+X
+j∈Ni
+ki,ijej(t−τ j −d ij), ˙θi =ω p,i.
+Every dij ≥ 0 is an exogenous communication delay, with dii = 0. Signals are calibrated detector
+errors with declared units, sign and timestamps. Their zero locked values preserve the equilibrium.
+Off-diagonal gains and their bounds define a new controller contract; they must not be treated as the
+old twenty-gain architecture.
+For fixed target (λr, qr) define
+yr =G(λ r;ρ)q r, z ijr =e −λr(τj+dij)(yr)j, b ir =λ 2
+r(1 +t f,iλr)(qr)i.
+The row condition is X
+j∈Ni
+[λrzijr kp,ij +z ijr ki,ij] =b ir.
+Stack real and imaginary parts into the real linear system
+Aixi +B iui =b i.(72)
+Ai contains the two self-gain columns; Bi contains the proposed neighbor-gain columns. A proportional
+column for j is the stacking of ℜ(λrzijr),ℑ (λrzijr); an integral column stacks ℜzijr ,ℑz ijr. Apply a
+fixed declared row scaling before using residual norms or singular values. Exact feasibility is unchanged
+by invertible row scaling.
+Theorem 14(Compatibility and minimum added gain).For (72), letΠ i = I−A iA†
+i, ri = Πibi
+and Hi = Π iBi. Assume initially that self gains are unrestricted. There exist real gains realizing
+every prescribed pair at site i if and only if ri ∈rangeH i. With added-gain metric Ri ≻ 0, the unique
+minimum-metric neighbor gain is
+u⋆
+i =R −1
+i H T
+i (HiR−1
+i H T
+i )†ri,(73)
+κ2
+i,min =r T
+i (HiR−1
+i H T
+i )†ri.(74)
+Self gains then solveA ixi =b i −B iu⋆
+i .
+Status:EXACT IDENTITY.
+Proof. Project (72) onto the orthogonal complement of rangeA i. This gives Hiui = ri, which is also
+sufficient because the remaining residual belongs to rangeA i. Whiten ui with R1/2
+i and apply the
+minimum-norm solution of a consistent linear system; this proves both formulas. Its nullspace is
+orthogonal in the metric to the displayed solution, proving minimality and uniqueness.
+An added budget uT
+i Riui ≤κ 2
+i is feasible if and only if the range test holds and κi,min ≤κ i, still
+with unrestricted self gains. With bounds on either gain family, solve the exact convex feasibility/QP
+problem (72) with those bounds; the displayed unconstrained minimizer is not sufficient. Polynomial
+graph coefficients shared across sites require stacking all rows into one linear problem, rather than
+independent row solves.
+33
+
+=== PAGE 34 ===
+With di = |Ni| incoming signals, the assignment matrix has 2 di columns and 2 m rows. Arbitrary
+modal demands require di ≥m and full row rank. One neighbor can resolve a two-pair conflict only
+when its two columns supply the missing directions; communication delays can destroy or improve
+this rank/conditioning. A graph edge count alone is insufficient. These statements concern prescribed
+eigenstructure, not global stabilizability.
+I.4 Why arbitrary powers of a Laplacian do not close the problem
+Let L be a normalized, symmetric, connected Laplacian and K(L) a polynomial graph filter. For
+delayed source measurements,
+[L, K(L)Eτ(s)] =K(L)[L, E τ(s)].(75)
+If K(L) is invertible, the left side vanishes exactly when the rightmost commutator vanishes. Its
+entry is Lij(e−sτj −e −sτi). Commutation throughout a frequency interval therefore forces equal delays
+along all edges, hence uniform delay on a connected graph. At isolated frequencies, phase coincidence
+can be an exception. Furthermore,
+∥[L, Eτ(iΩ)]∥2
+F = 8
+X
+{i,j}∈E
+w2
+ij sin2
+Ω(τi −τ j)
+2
+
+.(76)
+Status: EXACT IDENTITY.Both formulas follow entrywise; each undirected edge occurs twice. If
+σmin(K(L)) ≥γ > 0, the remaining commutator norm is at least γ∥[L, Eτ]∥F . This is a channel-
+mixing result, not a stability lower bound. It does not apply unchanged to nonuniform diagonal gains
+plus graph terms, or to general edge-delayed filters.
+The physical network basis U is useful for expressing q = U a and decomposing Gq. Using all
+graph coordinates is an exact basis change; truncating a restricts the design and needs separate
+evidence. The actual model need not commute with L, even at zero delay. Powers Lℓ encode weighted
+walks, not an independent physical cycle basis. No new instability is established by such powers alone.
+I.5 A calculable replacement predictor and corrector
+Use (70) as an exact gain-elimination map K = Φ(ρ, λ, q) on a regular chart. Normalize one nonzero
+complex component ofqto one. For fixed delays and nonzeroq i, yi, Wi, its differential is
+dWi =W i
+ 2
+λ + tf,i
+1 +t f,iλ +τ i
+
+dλ+ dqi
+qi
+− dyi
+yi
+
+,(77)
+dy=G dq+G sq dλ+
+X
+j
+Gρj q dρj,(78)
+dKp,i = ℑ(dWi)−K p,i dω
+ω ,(79)
+dKi,i =ℜ(dW i)−α dK p,i −K p,i dα.(80)
+Use the undivided quotient rule at a zero numerator. Derivatives of G include the algebraic closure
+and any equilibrium dependence. The chain rule for another simple root is
+dµ=
+X
+j
+µρj dρj +
+X
+i
+(µKp,idKp,i +µ Ki,idKi,i), µ p =− ℓ∗Zpr
+ℓ∗Zsr ,
+where the physical-port representation must be regular; otherwise use the full descriptor sensitivity.
+This retains the collective, reactive and delay effects, including the spillover in (64).
+34
+
+=== PAGE 35 ===
+In normalized real coordinates ζ = (ρ, α, ω,ℜq free,ℑq free), let p(ζ) = (ρ, Φ(ρ, λ, q)). The replace-
+ment problem on this chart is
+min
+ζ
+X
+i
+P 0
+i (1−ρ i), g j(p(ζ))≤0, α≤ −σ req,
+with the actual gain/replacement bounds, every required physical root, and all nonlinear event guards
+included in g. This is an exact reparameterization on the declared chart, not a convexification of the
+security constraints. A computable local subproblem is
+max
+δζ
+(P 0)T δρ− β
+2 δζ T Rζδζ, g k +J g,kJp,kδζ≤0, δζ∈ T k.(81)
+Here β > 0, Rζ ≻ 0 and the convex trust region Tk are declared in advance. It is a convex QP when
+Tk is polyhedral. Include all active smooth branches of peak/spectral constraints; a single gradient
+of their maximum is not generally valid. Jp uses (80). This is a standard SQP predictor with an
+analytical gain map.
+The method to implement after the algebra gate is:
+1. Start from a fully feasible design and a simple visible oscillatory root, with its actual PLL
+pattern. Confirm reconstruction by (70); this parity test is mandatory.
+2. At a frozen ρ-direction, compute the predicted gain change from (80). Alternatively allow ρ
+to vary in a trust region and maximize ( P 0)T dρ using all active linearized security constraints
+after substitutingdK.
+3. Permit ω, the admissible real part, and the complex pattern to vary. Fixing them is a declared
+restricted predictor, not a fair upper bound on local-controller capability.
+4. Evaluate a finite trial through K = Φ( ρ, λ, q), rather than applying only the tangent gain
+update. This makes the chosen eigenpair exact within arithmetic/model error. Reject bound
+violations and singular or poorly conditioned charts.
+5. Check the complete required spectral region and the frozen nonlinear guards. If another mode
+becomes limiting, include it and use the compatibility equations with variable patterns in a
+local Newton/SQP correction. Reduce the step when predicted and actual constraint changes
+disagree.
+6. Stop at a declared local stationarity/residual criterion, a chart failure, or an unresolved feasibility
+conflict. Record which. Do not report a restricted-family stop as the full replacement maximum.
+For prescribed patterns, the gain solve is explicit or convex. Jointly varying patterns and replacement
+makes the outer problem nonconvex. With all q coordinates free, this parameterization does not
+promise dimension reduction or computational superiority. Local Newton convergence requires a
+nonsingular normalized residual Jacobian; root collisions require a subspace/nonsmooth method. No
+global convergence or quantitative speedup is asserted.
+No frequency, RoCoF, voltage or actuator guard is inferred merely from pole assignment. Their
+original nonlinear definitions and all frozen events remain mandatory at the later validation stage.
+A sufficient full-spectrum continuation condition was given above; it has not been evaluated. Exact
+local gains alone are not an exact security frontier.
+35
+
+=== PAGE 36 ===
+I.6 Evidence gates and literature boundary
+Pole assignment with delay, eigenstructure design, sparse feedback and spectral optimization are
+established methods [8, 9, 10, 11]. Ram et al. treat delayed feedback in symmetric mechanical systems;
+Katewa and Pasqualetti treat sparse static state-feedback assignment; Vanbiervliet et al. treat
+nonsmooth spectral optimization for retarded systems, including continuation of nonlinear equilibria.
+These antecedents preclude claiming that the matrix solve, projection, or iterative optimization is
+itself new. The narrower candidate is the bounded PLL compatibility law under the full-grid return
+and its verified consequence for replacement or latency decisions. Recent converter-model comparisons
+reinforce the need to retain hidden dynamics [ 12]; supplementary GFL power-oscillation controllers
+[13] are a different action set from PLL-only tuning.
+Before new grid simulations, close three gates: (i) the exact gain map, compatibility and derivatives
+pass algebra checks; (ii) the controller architecture, fixed delays, bounds, target-selection rule and
+falsification criteria are written down; (iii) the first validation has a numerical prediction to test, not
+a desired replacement percentage. Gate (i) is mathematical only; IEEE–39 parity, all-root checks and
+event validation were the subsequent gates. Section 6 reports their targeted execution.
+The preregistered first experiment tests whether the formula reconstructs known gains and predicts
+a finite replacement correction on withheld modes. Only after that succeeds should a matched-budget
+design comparison run. Neighbor feedback is investigated only if the local modal conflict is material
+after relaxing arbitrary pattern choices. A rigorous claim that neighbors enable otherwise impossible
+secure replacement would need a valid local-architecture upper bound below a fully feasible distributed
+design; fixed-pattern incompatibility is not that bound.
+J Network moment laws: what PLL tuning can and cannot change
+The preceding interaction construction protects finite-frequency modal decay. We now ask a different
+question: which features of the low-frequency response are reachable by PLL tuning at all? This
+separates controller authority from an attractive but potentially misleading interpretation as adjustable
+inertia. The derivation uses the actual lossy network and device dynamics. It does not replace their
+Jacobian by a symmetric physical Laplacian. The simple-pole resolvent and moment identities are
+classical [14, 26]; the model-specific content is their identification with the delayed PLL ports.
+J.1 All-PLL elimination and assumptions
+Hold replacement, dispatch, physical plant and operating point fixed. Remove each PLL triple
+(θi, ωi, ξi) from the hidden state, retaining the other device and network variables in z. The linearized
+port equations are
+(sI−A h)z=B θθ+B dd,(82)
+e=C hz+D θθ+D dd,(83)
+ϕ=O hz+O θθ+O dd.(84)
+Here d is a disturbance parameter, ϕ contains bus voltage phases, and the direct terms include
+the event-dependent algebraic voltage response. Assume −Ah is invertible. Define the analytic,
+gain-independent maps
+G=D θ +C h(sI−A h)−1Bθ, g=D d +C h(sI−A h)−1Bd,(85)
+T=O θ +O h(sI−A h)−1Bθ, Z=O d +O h(sI−A h)−1Bd.(86)
+36
+
+=== PAGE 37 ===
+The actual filtered type-II PLL gives
+s2(1 +t f,is)θi = (sKp,i +K i,i)e−sτiei.
+For nonzero integral gains this yields the exact retained equation
+K(s)θ=g(s)d, K(s) = diag
+ s2(1 +t f,is)esτi
+sKp,i +K i,i
+
+−G(s).(87)
+It is valid near zero, away from singular eliminated blocks. It is not a global pole-equivalence claim
+across those singularities.
+Write G(s) =P
+j sjGj, and similarly for the other analytic maps. The coefficients, not derivatives
+without factorials, are
+K0 =−G 0, K 1 =−G 1,(88)
+K2 =−G 2 + diag(K−1
+i ), K 3 =−G 3 + diag
+ 
+(tf +τ)/K i −K p/K2
+i
+
+.(89)
+Rotational equivariance suppliesK0r = 0 with r =1, and T0r =1for physical bus phases. Additionally
+require
+kerK 0 = span{r}, ℓ ∗K0 = 0, d 0 =ℓ ∗K1r̸= 0.
+Then the classical simple-root residue is
+K(s) −1 = P
+s +O(1), P= rℓ∗
+d0
+.(90)
+The gauge is retained for this Laurent calculation and is deflated separately for physical stability
+tests. Merely deleting a coordinate before the calculation would discard the residue responsible for
+the frequency response.
+For a common measurement windowW >0, the Hz output transfer is
+H(s) = 1−e −sW
+2πW
+
+T(s)K(s) −1g(s) +Z(s)
+
+=H 0 +sH 1 +s 2H2 +O(s 3).(91)
+Its removable singularity gives H0 = T0P g0/(2π). The instantaneous phase-derivative output follows
+by takingW→0.
+Status:EXACT IDENTITY.
+Theorem 15(Finite PLL changes and the synchronization residue).Under the assumptions above,
+at fixed plant and replacement:
+1.H 0 is independent of all PLL proportional gains, nonzero integral gains, and fixed measurement
+delays.
+2. For any finite integral-gain change, allowing proportional gains and delays to change as well, let
+D2 = diag(1/K b
+i −1/K a
+i ), κ 2 =ℓ ∗D2r/d0.
+ThenH b −H a =−sκ 2H0 +O(s 2).
+3. If integral gains are held fixed, let
+D3 = diag(∆τ /Ki −∆K p/K2
+i ), κ 3 =ℓ ∗D3r/d0.
+Then
+Hb(s)−H a(s) =−s 2κ3H0 +O(s 3). (92)
+These are exact identities between Taylor coefficients of the full linearized model. They are not
+finite-frequency approximations with a certified error range, nor identities for finite-amplitude
+nonlinear trajectories.
+37
+
+=== PAGE 38 ===
+Proof. The first two K coefficients and hence the residue are independent of PLL gains and delays.
+For two designs the exact resolvent identity gives
+K−1
+b −K −1
+a =−K −1
+b (Kb −K a)K−1
+a .
+IfK b −K a =s mDm +O(s m+1),m≥2, substitution of (90) gives
+K−1
+b −K −1
+a =−s m−2P DmP+O(s m−1).
+Since P DmP = (ℓ∗Dmr/d0)P and the window factor is s/(2π) + O(s2), the frequency difference is
+−sm−1(ℓ∗Dmr/d0)H0 + O(sm). Equation (89) identifies m = 2 or m = 3 and its finite coefficient
+difference. No small parameter change is required.
+J.2 An exact restriction on frequency-response shaping
+Suppose both nongauge systems are exponentially stable and the relevant step-response moments
+converge. For a common step d(t) = din
+0 , write f∞ = H0din
+0 . The Laplace-transform moment formula
+gives
+Z ∞
+0
+(fb −f a)dt=−κ 2f∞ if integral gains change,(93)
+Z ∞
+0
+(fb −f a)dt= 0 if integral gains are fixed,(94)
+Z ∞
+0
+t(fb −f a)dt=κ 3f∞ if integral gains are fixed.(95)
+These are signed integrals. Cancellation permits large excursions and does not bound nadir, absolute-
+error integrals, RoCoF, or settling time. If a component of f∞ vanishes, normalizing by it is invalid.
+Corollary 16(One direction of first-area authority).For nonzero final response define Aj =R ∞
+0 (1−f j(t)/f∞,j)dt. Any admissible finite PLL gain/delay change at fixed plant satisfies
+Ab
+j −A a
+j =κ 2,(A j −A k)b = (Aj −A k)a.
+Thus PLL tuning cannot independently change the buswise normalized signed areas. Proportional
+gains and delays cannot change any of these areas at all.
+This is a limitation of the declared architecture, not a theorem that GFLs cannot support frequency.
+Altering active-power control, synthetic-inertia feedthrough, droop, dispatch or replacement changes
+the premise. In particular, an SG-to-GFL change modifies G, g, T, Z and invalidates reuse of the same
+weights.
+J.3 Signed network weights and spatial latency
+Define the real weights
+wi = ¯ℓiri/d0, κ 3 =
+X
+i
+wi
+ 
+∆τi/Ki,i −∆K p,i/K2
+i,i
+
+.(96)
+They incorporate the actual network, device dynamics, operating point and replacement. They are
+not nonnegative inertia shares, probabilities, or a Laplacian centrality. Negative weights allow the
+leading signed moment to respond with either sign to an equal positive delay increment at different
+sites. That sign alone says nothing about stability or frequency peaks.
+38
+
+=== PAGE 39 ===
+For a prescribed delay-increment multiset t1 ≤ · · · ≤t n, put ai = wi/Ki,i and order a(1) ≤ · · · ≤
+a(n). The rearrangement inequality gives the exact extrememomentcoefficients over all assignments:
+min
+π
+X
+i
+aitπ(i) =
+X
+i
+a(i)tn+1−i,max
+π
+X
+i
+aitπ(i) =
+X
+i
+a(i)ti.
+This is a closed-form placement law for a response coefficient, not an optimization of physical delays
+or of the replacement frontier. A graph Fourier expansion of w merely changes coordinates unless its
+modal content is independently shown to explain a design consequence.
+J.4 Collective compensation and competing modal authority
+KeepingK i fixed, preserveH 2 by imposing the single exact equality
+cT k=b τ , c i =w i/K2
+i,i, b τ =
+X
+i
+wi∆τi/Ki,i, k= ∆K p.(97)
+The sitewise rule ki = Ki,i∆τi is sufficient but unnecessary. For box bounds l≤k≤u , the equality is
+feasible exactly when X
+i
+min(cili, ciui)≤b τ ≤
+X
+i
+max(cili, ciui).
+This proves feasibility only of moment compensation. Without box bounds, minimizing kT Rk/2 gives
+the standard projection
+k0 = R−1c
+cT R−1c bτ .
+Suppose a simple critical root has local gain gradient a = ∇Kpℜλ and requires aT k≤h . The
+remaining damping direction is
+v=R −1a−R −1c cT R−1a
+cT R−1c .
+Ifa T k0 > handa T v >0, the exact solution of thislinearizedone-mode subproblem is
+k∗ =k 0 −v aT k0 −h
+aT v , 1
+2 k∗T Rk∗ = b2
+τ
+2cT R−1c + (aT k0 −h) 2
+2aT v .(98)
+If aT v = 0 and the inequality fails at k0, no moment-neutral gain direction can satisfy that local modal
+requirement. For multiple modes or active boxes, solve the corresponding convex QP and re-evaluate
+the exact DDE roots. This is standard constrained optimization, not a new global optimality theorem.
+The root sensitivities use the full exponential characteristic
+λp =− y∗∆p(λ)x
+y∗∆s(λ)x ,∆(s) =sI−A 0 −Bdiag(e −sτ)C.
+Root tracking, line-search/globalization and complete-spectrum checks are separate requirements.
+A one-mode correction can transfer the active limit to another mode. Moments cannot detect that
+failure.
+39
+
+=== PAGE 40 ===
+J.5 Graph-polynomial actions: a conditional design direction
+Consider an explicitly different architecture with invertible matrix integral gain KI and matrix
+proportional gainK P , acting on delayed detector errors. Its PLL equation is
+s2(I+sT f)θ= (sK P +K I)e−sTτ e.
+The retained controller coefficients are now
+Kctrl
+2 =K −1
+I , K ctrl
+3 =T τ K−1
+I +K −1
+I Tf −K −1
+I KP K−1
+I .
+The order and residue theorem still applies; matrix ordering matters. At fixed KI and delays, choose
+∆KP =K I SKI , Sr= 0.(99)
+Then ∆Kctrl
+3 r = −Sr = 0, so H0, H1, H2 are unchanged exactly. For a valid graph Laplacian L with
+Lr = 0, any polynomial S =P
+j≥1 βjLj has this property. Such an action supplies finite-frequency
+tuning directions that are automatically neutral in these low-frequency moments. It may stabilize or
+destabilize other modes.
+This corollary neither proves superiority over diagonal gains (which already have a moment-neutral
+subspace) nor supplies a distributed implementation. Communication, signal availability, delays, gain
+bounds and nonlinear validation would require a new controller contract. No numerical result below
+is attributed to this unimplemented architecture.
+J.6 Numerical scope and unresolved publication claim
+The coefficient identities concern the full linearized physical-supply model. Finite-amplitude nonlinear
+simulations test operational feasibility separately. The symmetry-restored germ is explicitly docu-
+mented; rounding defects in raw CSV matrices are not silently treated as exact rotational symmetry.
+The following values and decisions are generated from the experiment tables.
+The tools used here—Laurent residues, response moments, rearrangement and constrained QP—
+are established. Delayed PLL tuning also predates this work [ 5]; signed-area constraints have an
+established control literature [ 27]. A journal-level contribution requires a demonstrated engineering
+value for the structural constraint and a fair comparison with modal tuning that omits it. No
+maximum replacement, global gain optimum, robust operating-region certificate, or first-in-literature
+claim follows from this section.
+Status: NUMERICALLY VALIDATED.The Julia input derivative export agrees with centered differences
+to 2.16 × 10−9 relative. The maximum coefficient-check errors are 3 .59 × 10−6 (cubic PLL change)
+and 1.85 × 10−10 (integral-gain change). Arb arithmetic encloses the hidden inverse, a nonzero nine-
+dimensional gauge minor, a nonzero residue denominator, and all ten weight signs for the explicitly
+gauge-restored binary export. This is not a physical uncertainty certificate. The fourteen rounded
+collective designs have interval-enclosed |κ3|< 10−12; literal exact neutrality is not attributed to
+rounded gains.
+At the fixed replacement of 87.646222%, or 4735.315954 MW, changing uniform PLL delay from
+40 to 41 ms gives:
+Method Catalogα(s −1)∥∆K p/Kp∥2
+Unchanged 0.413952 0.000000
+Sitewise compensation 0.490670 0.031324
+Moment only 0.405520 0.011050
+Modal only -0.060001 0.091062
+Collective moment and modes -0.058573 0.085815
+40
+
+=== PAGE 41 ===
+The collective candidate’s solver status is MAX ITERATIONS; no global optimum is claimed. It passes the
+original −0.05 guard but misses the auxiliary −0.0600001 target. The modal-only candidate reaches
+that tighter target but its line search stalls. Their costs do not establish superiority at an equal achieved
+modal margin; neither run proves a local optimum. The complete-region numerical DDE contour
+gives PASS NUMERICAL. All 5 of 5 frozen 60 s nonlinear events pass; the worst excursion is 0.465929Hz
+and windowed RoCoF is 0.219224Hz/s. Current-limiter safety is not modeled. The delay-perturbed
+candidate retains 667.445136 MW of SG; this experiment does not optimize replacement.
+30 31 32 33 34 35 36 37 38 39
+PLL bus
+2
+0
+2
+4
+6
+Network moment weight wi
+One network, signed control weights
+Figure 5: Network moment weights for the fixed IEEE–39 design. Their signs are interval-verified for
+the symmetry-restored exported model.
+0.0 0.2 0.4 0.6 0.8 1.0
+Additional uniform measurement delay (ms)
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5Rightmost catalog real part (1/s)
+Moment preservation alone does not preserve damping
+unchanged
+sitewise
+collective
+Required margin
+Figure 6: Exact-exponential pole calculations: equal moments do not protect modal damping. Lines
+connect the declared samples, not a certified frontier.
+41
+
+=== PAGE 42 ===
+30 31 32 33 34 35 36 37 38 39
+PLL bus
+1.5
+1.0
+0.5
+0.0
+Kp
+Same +1ms delay, different tuning
+Sitewise
+Collective
+moment only
+sitewise modal only collective
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5Catalog real part (1/s)
+Ablation at 41ms
+Figure 7: Finite tuning increments and algorithm ablations at 41 ms. Gain effort is compared between
+local numerical candidates, not global optima.
+8: -100 16: +100 16: -100 29: +100 29: -100
+Bus: load parameter (MW)
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5Frequency excursion (Hz)
+Frequency excursion (Hz)
+40ms previous design
+41ms collective
+8: -100 16: +100 16: -100 29: +100 29: -100
+Bus: load parameter (MW)
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5Windowed RoCoF (Hz/s)
+Windowed RoCoF (Hz/s)
+Figure 8: Five frozen nonlinear events. Frequency and RoCoF use the inherited 0.5 s window over all
+39 bus voltage phases.
+42
+
+=== PAGE 43 ===
+References
+[1] R. Pates and E. Mallada,Damping, Inertia, and Delay Robustness Trade-offs in Power Systems,
+MTNS, 2018.https://mallada.ece.jhu.edu/pubs/2018-MTNS-PM.pdf.
+[2] F. Paganini and E. Mallada,Global performance metrics for synchronization of heterogeneously
+rated power systems: The role of machine models and inertia, arXiv:1710.07195v2, 2017. https:
+//arxiv.org/html/1710.07195v2.
+[3] L. Pagnier and P. Jacquod,Optimal placement of inertia and primary control: a matrix pertur-
+bation theory approach, arXiv:1906.06922, 2019.https://arxiv.org/abs/1906.06922.
+[4] L. Huang, H. Xin, W. Dong, and F. D¨ orfler,Impacts of Grid Structure on PLL-Synchronization
+Stability of Converter-Integrated Power Systems, arXiv:1903.05489, 2019. https://arxiv.org/
+abs/1903.05489.
+[5] J. Wilson, A. Nelson, and B. Farhang-Boroujeny,Parameter Derivation of Type-2 Discrete-
+Time Phase-Locked Loops Containing Feedback Delays, IEEE TCAS-II, 56(12):886–890, 2009.
+https://doi.org/10.1109/TCSII.2009.2034197.
+[6] P. Z´ ıtek, J. Fiˇ ser, and T. Vyhl´ ıdal,Dimensional analysis approach to dominant three-pole
+placement in delayed PID control loops, Journal of Process Control, 23(8):1063–1074, 2013.
+https://www.sciencedirect.com/science/article/abs/pii/S0959152413001236.
+[7] W. Zhang, Y. Cui, and X. Ding,An Improved Analytical Tuning Rule of a Robust PID Controller
+for Integrating Systems with Time Delay Based on the Multiple Dominant Pole-Placement Method,
+Symmetry, 12(9):1449, 2020.https://doi.org/10.3390/sym12091449.
+[8] Y. M. Ram, J. E. Mottershead, and M. G. Tehrani,Partial pole placement with time delay in
+structures using the receptance and the system matrices, Linear Algebra and Its Applications,
+434(7):1689–1696, 2011.https://doi.org/10.1016/j.laa.2010.07.014.
+[9] V. Katewa and F. Pasqualetti,Minimum-Gain Pole Placement With Sparse Static Feedback,
+IEEE Transactions on Automatic Control, 66(8):3445–3459, 2021. https://doi.org/10.1109/
+TAC.2020.3018615.
+[10] J. Vanbiervliet, K. Verheyden, W. Michiels, and S. Vandewalle,A nonsmooth optimisation
+approach for the stabilisation of time-delay systems, ESAIM: COCV, 14(3):478–493, 2008. https:
+//doi.org/10.1051/cocv:2007060.
+[11] X. Mao and H. Dai,Partial eigenvalue assignment with time delay robustness, Numerical Algebra,
+Control and Optimization, 3(2):207–221, 2013.https://doi.org/10.3934/naco.2013.3.207.
+[12] S. Coffey, S. Harrison, A. Egea-Alvarez, and L. Xu,Assessing the Capability and Limitations
+of Small Signal Simplified Grid Following Models for the Identification of Sub-Synchronous
+Oscillations, IEEE Access, 2025.https://doi.org/10.1109/ACCESS.2025.3586197.
+[13] T. Chakraborty, A. Pal, and S. Maleki,Damping LFOs: Grid Following with Power Oscillation
+Damping vs. Grid Forming vs. PSS, arXiv:2505.24204, 2025. https://arxiv.org/abs/2505.
+24204.
+[14] W.-J. Beyn,An integral method for solving nonlinear eigenvalue problems, arXiv:1003.1580, 2010.
+https://arxiv.org/abs/1003.1580.
+43
+
+=== PAGE 44 ===
+[15] J.-P. Lessard and J. D. Mireles James,A functional analytic approach to validated numerics
+for eigenvalues of delay equations, Journal of Computational Dynamics, 7(1):123–158, 2020.
+https://doi.org/10.3934/jcd.2020005.
+[16] W. Michiels and S. Gumussoy,Eigenvalue based algorithms and software for the design of
+fixed-order stabilizing controllers for interconnected systems with time-delays, in Delay Systems:
+Advances in Delays and Dynamics, Springer, 2014; author version arXiv:2003.05496. https:
+//doi.org/10.1007/978-3-319-01695-5_18.
+[17] U. Markovi´ c, O. Stanojev, P. Aristidou, E. Vrettos, D. Callaway, and G. Hug,Understanding
+Small-Signal Stability of Low-Inertia Systems, IEEE Transactions on Power Systems, 36(5):3997–
+4017, 2021.https://doi.org/10.1109/TPWRS.2021.3061434.
+[18] Z. Chu and F. Teng,Stability Constrained Optimization in High IBR-Penetrated Power Systems—
+Part I: Constraint Development and Unification, author version, arXiv:2307.12151. https:
+//arxiv.org/abs/2307.12151.
+[19] H. Jia et al.,Converter-Driven Stability Constrained Generation Expansion for High IBG-
+Penetrated Power Systems, IEEE Transactions on Power Systems, 2025. https://doi.org/10.
+1109/TPWRS.2025.3558879.
+[20] D. Peaucelle and Y. Ebihara,Robust stability analysis of discrete-time systems with parametric
+and switching uncertainties, IFAC World Congress, 2014.https://skoge.folk.ntnu.no/prost/
+proceedings/ifac2014/media/files/0282.pdf.
+[21] D. Bindel and A. Hood,Localization Theorems for Nonlinear Eigenvalue Problems, SIAM Journal
+on Matrix Analysis and Applications, 2013. https://www.cs.cornell.edu/~bindel/papers/
+2013-simax.pdf.
+[22] F. Borgioli, W. Michiels, D. Lu, and B. Vandereycken,A globally convergent method to compute
+the real stability radius for time-delay systems, author manuscript, 2019. https://www.unige.
+ch/math/vandereycken/papers/published_Borgioli_MLV.pdf.
+[23] F. Johansson,Arb: Efficient Arbitrary-Precision Midpoint-Radius Interval Arithmetic, IEEE
+Transactions on Computers, 66(8):1281–1292, 2017. https://doi.org/10.1109/TC.2017.
+2690633.
+[24] P. Grosdidier and M. Morari,Interaction measures for systems under decentralized control,
+Automatica, 22(3):309–319, 1986.https://doi.org/10.1016/0005-1098(86)90029-4.
+[25] Y. Chen, X. Tan, M. S. Javaid, D. Angeli, and B. Chaudhuri,Decentralized Stability of IBR-
+dominated Power Grids Using Block Diagonal Dominance, preprint, arXiv:2606.28023, 2026.
+https://arxiv.org/abs/2606.28023.
+[26] F. Paganini and E. Mallada,Global Analysis of Synchronization Performance for Power Sys-
+tems: Bridging the Theory-Practice Gap, IEEE Transactions on Automatic Control, 65(7):3007–
+3022,2020.https://doi.org/10.1109/TAC.2019.2942536.
+[27] F. Aalipour and T. Das,Shaping the Transient Response of Nonlinear Systems to Satisfy a Class
+of Integral Constraints, Advances in Control Applications,4(3):e110,2022. https://arxiv.org/
+abs/2012.12493.
+44

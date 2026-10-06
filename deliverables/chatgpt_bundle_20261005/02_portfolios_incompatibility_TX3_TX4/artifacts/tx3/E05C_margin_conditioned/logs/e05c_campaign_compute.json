@@ -1,0 +1,18 @@
+{
+  "build_status_counts": {
+    "SUCCESS": 6984
+  },
+  "candidate_count": 15,
+  "eigensolve_count": 6984,
+  "externality_rows": 1080,
+  "logical_candidate_vertex_requests": 5760,
+  "mode_track_rows": 5760,
+  "physical_build_count": 6984,
+  "pole_factor_count": 1800,
+  "seed_count": 8,
+  "successful_externality_rows": 1080,
+  "tau_count": 9,
+  "unique_endpoint_subset_count": 25,
+  "wall_time_s": 476.4032645999687,
+  "workers": 8
+}

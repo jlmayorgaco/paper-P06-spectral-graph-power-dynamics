@@ -1,0 +1,29 @@
+{
+  "scope": "post-run model CSV inputs; not a rewrite of the frozen preregistration",
+  "files": {
+    "reports/experiment_D/inputs/bus.csv": {
+      "sha256": "d732a896e95c013fa3906941a540f2d9161ca99a2c60e571a890174680cb6943",
+      "bytes": 2621
+    },
+    "reports/experiment_D/inputs/branch.csv": {
+      "sha256": "b1858adb3e409750b5db24bc5073dda1e0683a59ef6e5966840cd73a18293972",
+      "bytes": 4444
+    },
+    "reports/experiment_D/inputs/load.csv": {
+      "sha256": "635e38cb30ed983be884d2e1e88cbe4069d69097a98969648390da1464df0d30",
+      "bytes": 937
+    },
+    "reports/experiment_D/inputs/machine.csv": {
+      "sha256": "8cf9a02574f650d2c459f536a02ae6bbfe16122e927dbbd54ca54ec2556616a1",
+      "bytes": 2330
+    },
+    "reports/experiment_A/matrices/bus33_baseline_equilibrium.csv": {
+      "sha256": "1f930e5f426c87811b3383fbe5bc59eb9cc126bbb9bfbdbc2426410e18097cbf",
+      "bytes": 16344
+    },
+    "reports/experiment_N/TABLE_N01_original_operating_point.csv": {
+      "sha256": "d0ea9984f8f0ffffd27f11cd4205c76bde2da30016b21de868f16ed527eac1af",
+      "bytes": 3652
+    }
+  }
+}

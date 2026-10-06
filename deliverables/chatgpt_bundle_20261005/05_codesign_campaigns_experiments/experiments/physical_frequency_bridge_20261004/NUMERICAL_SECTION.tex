@@ -1,0 +1,38 @@
+
+\subsection{Preregistered zero-delay numerical check}
+Five Julia/PowerDynamics integrations comprise one independent replay of the
+legacy 1 MW event and four physical-variant events. The fixed candidate has
+94.215489\% GFL and 312.523288 MW retained SG;
+no design variable is retuned. The trim residual is
+$6.574\times10^{-12}$, and all 144 finite poles,
+including one gauge, match bijectively with numerical error
+$0$. The physical rightmost pole is
+$-0.050057324\,\mathrm{s}^{-1}$.
+
+\begin{center}\begin{tabular}{lrrl}\toprule
+ZIP event & $\max|\Delta f|$ [Hz] & RoCoF [Hz/s] & Both limits\\\midrule
+bus16\_1MW & 0.005000 & 0.001670 & pass \\
+bus16\_100MW & 0.468755 & 0.171772 & pass \\
+bus8\_100MW & 0.410549 & 0.512750 & fail \\
+bus29\_100MW & 0.588571 & 0.281888 & fail \\
+\bottomrule\end{tabular}\end{center}
+These are sampled maxima at generator buses 30--39, measured by a causal
+0.5 s phase window over 0--61 s, with limits 0.5 Hz and 0.5 Hz/s.
+The event is a nominal ZIP-setpoint increment, not constant realized demand.
+The two failed 100 MW events remain failed after correcting the energy port.
+
+The positive-energy gradient-times-RHS identity has maximum residual
+$2.919\times10^{-10}$ MW. Independently integrating stored
+traces at 5 ms leaves maximum energy and frequency-area residuals of
+0.046437 MJ and
+0.046402 MJ; these are exposed quadrature
+errors, not interval certificates. The SG35 governor is directly observed
+on its limiting branch in 380 samples of the
+bus29 event, giving approximately 1.900 s
+of sampled limiting and an antiwindup integral of
+-0.728187 MJ. Ignoring it changes the area balance.
+The isolated campaign is reproducible from
+\texttt{experiments/physical\_frequency\_bridge\_20261004/}.
+All frozen source and candidate hashes were checked unchanged.
+This closes the physical-port audit for the new variant. It does not close
+the full-model replacement-floor or global-optimality gates.

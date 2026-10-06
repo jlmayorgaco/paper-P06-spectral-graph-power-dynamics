@@ -1,0 +1,41 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterTopRowHeight][t]{\PosterThreeWidth}\vspace{0pt}
+  \begin{TicketTwoPanel}{\PosterTopRowHeight}{3}{GAINS FROM AN EQUATION}
+
+    {\FigureSize Fix one nonreal pole $\lambda$ and PLL pattern $q$. Eliminate hidden states:\par}
+    {\EquationSize\[
+       y=G_{\mathrm{PLL}}(\lambda,\rho)q
+    \]}
+    {\EquationSize\[
+       W_i=\frac{\lambda^2(1+t_{f,i}\lambda)e^{\lambda\tau_i}q_i}{y_i}
+    \]}
+    {\HeroEquation\color{IASBlue}\[
+       K_{p,i}=\frac{\Im W_i}{\Im\lambda}
+    \]}
+    {\EquationSize\color{IASBlue}\[
+       K_{i,i}=\Re W_i-\Re\lambda\,K_{p,i}
+    \]}
+    {\FigureSize Requires nonsingular eliminated blocks, $y_i\ne0$, $\Im\lambda\ne0$ and admissible gains.\par}
+    \vspace{2mm}
+    {\FigureSize \textbf{Target: \TargetFreq\ Hz.} One mode assigned; full spectrum and events need separate checks.\par}
+
+  \end{TicketTwoPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewThreePageWidth}
+  \def\PosterPageHeight{\PosterPreviewTopRowPageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewThreeLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

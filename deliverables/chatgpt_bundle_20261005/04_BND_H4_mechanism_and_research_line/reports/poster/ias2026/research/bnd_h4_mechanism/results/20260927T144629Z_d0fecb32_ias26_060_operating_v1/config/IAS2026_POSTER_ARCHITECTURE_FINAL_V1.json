@@ -1,0 +1,36 @@
+{
+  "document_id": "IAS2026_POSTER_ARCHITECTURE_FINAL_V1",
+  "supersedes": "poster figure mapping only; all scientific protocols, thresholds, models, and historical results remain unchanged",
+  "reason": "F3 remains blocked by IAS26-010 M1A; F4 GFL/GFM campaign was not run. The final poster maps completed evidence into four figures without implying either blocked result.",
+  "principal_figures": [
+    {
+      "id": "P1",
+      "asset": "P1_STABILITY_CLIFF",
+      "source": "IAS26-020 exact 16-portfolio F1 audit"
+    },
+    {
+      "id": "P2",
+      "asset": "P2_LOCAL_COLLECTIVE_CLOSURE",
+      "source": "IAS26-030 F2 physical-factor closure audit"
+    },
+    {
+      "id": "P3",
+      "asset": "P3_MC_BLOCKER_ROBUSTNESS",
+      "source": "IAS26-060 frozen 1000-ID synthetic stress ensemble"
+    },
+    {
+      "id": "P4",
+      "asset": "P4_FIXED_INTERVENTION_TDS",
+      "source": "IAS26-060 paired fixed-g MC and IAS26-080 completed canonical phasor DAE traces"
+    }
+  ],
+  "evidence_strip": "EVIDENCE_STRIP_CROSSCODE; same-model Python\u2013Julia reproduction only",
+  "prohibited_claims": [
+    "MC event frequencies are real-world IEEE-39 probabilities.",
+    "The H4 blocker persists for every perturbed operating point or every grid.",
+    "g=0.25 universally stabilizes H4 or never deteriorates stability margins.",
+    "Mode identity is tracked across scenarios or Python and Julia eigenmodes are physically independent validation.",
+    "The nonlinear phasor DAE trajectories are EMT/field validation.",
+    "IAS26-010 M1 strict gate has passed or any eta/M2/M3/GFM claim is established."
+  ]
+}

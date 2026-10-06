@@ -1,0 +1,6 @@
+example,kappa,d_alg,d_conn,H
+(a) directed ring,4.0,4,4,"[(0, 1, 2, 3)]"
+(b) symmetric path,4.0,4,2,"[(0, 1, 2, 3)]"
+(c) symmetric star,4.0,2,2,"[(0, 1, 2, 3)]"
+(d) tuned det G = 0,4.0,3,4,"[(0, 1, 2, 3)]"
+(e) ring + unstable pair,2.0,4,4,"[(0, 2)]"

@@ -1,0 +1,30 @@
+POSTER CLOSURE: PAIRED NONLINEAR CONTROL COMPARISON
+Frozen before executing the comparator on 2026-10-03.
+
+Purpose: close the previously missing same-rho, fixed-gain nonlinear comparison.
+No optimization or selection over candidates is allowed in this closure.
+Analytical design and its five event outputs remain frozen in
+experiments/all_pll_gain_map_validation_20261003/.
+Comparator: designs/fixed.toml in that directory, rho_i = 0.876 at all ten sites.
+Kp and Ki remain at their original common values. All PLL delays remain 0.04 s.
+Events: exactly DelayedEvents.CASES: (8,-100),(16,+100),(16,-100),
+(29,+100),(29,-100), MW. Retain canonical constant-impedance event semantics.
+Solver: canonical Julia ReducedDAE + DelayedEvents.adaptive method of steps,
+Rodas5P, horizon=60 s, dtmax=0.01 s, tol=1e-9; all 39 bus phase frequencies,
+0.5 s RoCoF window. Frequency <=0.5 Hz; RoCoF <=0.5 Hz/s;
+voltages [0.9,1.1] pu; SG actuator slack >=0.002.
+Equilibrium infinity-norm residual <=1e-7 and gain limits checked before events.
+No current-limiter safety claim: converter current limiting is not modeled.
+Write every event, including failures. Report paired differences and all cases.
+Both designs passing does not establish retuning superiority or optimality.
+This protocol is a follow-up comparison, not a retroactive preregistration
+of the historical analytic construction. Preserve all historical outputs.
+
+Additional algebra-only check, frozen before execution: on both baseline and
+analytic designs, at frequencies 0.5, 5, and 10 Hz, perturb each of the ten
+PLL delays by +1 ms from uniform 40 ms, one channel at a time. Test the exact
+rank-one Schur update and the rank-two Hermitian damping increment against
+direct full-matrix elimination. Report all 60 cases, hidden-block conditions,
+residuals and inertia of the Hermitian increment. No stability or capacity
+claim follows from the harmonic damping signs. The poster's illustrative
+frequency is fixed at 5 Hz, analytic design; do not select it from outcomes.

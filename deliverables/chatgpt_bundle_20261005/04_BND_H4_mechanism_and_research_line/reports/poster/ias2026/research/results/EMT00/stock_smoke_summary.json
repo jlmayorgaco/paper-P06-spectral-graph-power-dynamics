@@ -1,0 +1,65 @@
+{
+ "paremt_commit": "d79d735a4a587d56c5b88187d1a499195b6b2b84",
+ "systemN": 3,
+ "ts_s": 5e-05,
+ "stored_interval_s": 0.001,
+ "net_solver": "lu (serial)",
+ "load_model": "stock const RLC (option 1)",
+ "A_noevent": {
+  "tlen_s": 10.0,
+  "steps": 200000,
+  "wall_s": 52.1,
+  "init_s": 8.84,
+  "us_per_step": 260.5,
+  "network_dimension": 117,
+  "bus_count": 39,
+  "line_count": 34,
+  "transformer_count": 12,
+  "generator_count": 10,
+  "load_count": 19,
+  "shunt_count": 2,
+  "ibr_count": 0,
+  "max_speed_drift_pu": 0.0002608056800994518,
+  "max_relative_angle_drift_rad": 0.038680545261090604,
+  "max_voltage_magnitude_drift_pu": 0.6218781474172657,
+  "max_state_drift_any": 3770.669126596263,
+  "settled_max_speed_drift_pu": 5.4967781827341966e-05,
+  "settled_max_voltage_magnitude_drift_pu": 0.0012090213134852146,
+  "settled_max_relative_angle_drift_rad": 0.003824753616072485,
+  "initial_voltage_step_first_1ms_pu": 0.6218781474172657
+ },
+ "B_serialization": {
+  "reloaded": true,
+  "x_shape": [
+   240,
+   10001
+  ],
+  "v_shape": [
+   117,
+   10001
+  ],
+  "x_identical": true
+ },
+ "C_snapshot_resume": {
+  "first_state_equals_snapshot": true,
+  "max_state_drift_over_1s": 377.0716331768199,
+  "max_speed_drift_pu": 1.101687727518812e-05,
+  "wall_s": 3.42
+ },
+ "D_governor_step": {
+  "step": {
+   "t": 1.0,
+   "gen": 0,
+   "dgref": 0.01
+  },
+  "gen_bus": 30,
+  "pe_gen0_before_machine_pu": 0.24962251696966686,
+  "pe_gen0_final_machine_pu": 0.2566142710248358,
+  "pe_gen0_change_machine_pu": 0.006991754055168942,
+  "terminal_vm_change_pu": 0.0007361875039413324,
+  "max_relative_speed_excursion_pu": 0.00021766663922528906,
+  "finite": true,
+  "wall_s": 18.83
+ },
+ "GATE_EMT00": "FAIL"
+}

@@ -1,0 +1,2 @@
+evidence,N_scenarios,N_case_comparisons,verdict_agreement,max_abs_delta_alpha_s-1,max_abs_delta_frequency_Hz,mode_identity,scope
+"Python ↔ Julia, frozen exact GFL11 model",50,100,100,3.749537466971042e-09,1.5349310711343378e-10,unresolved in all comparisons,same-model cross-language reproduction; not independent physical validation

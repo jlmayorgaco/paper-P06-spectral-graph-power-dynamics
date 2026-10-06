@@ -1,0 +1,112 @@
+{
+  "created_utc": "2026-10-05T01:04:20.374896+00:00",
+  "git_head": "8f21ec0b3be48f217e280f615bfd1c619df4d7ff",
+  "git_tracked_dirty": [
+    " M README.md",
+    " M reports/poster/ias2026/main.tex",
+    " M reports/poster/ias2026/research/bnd_h4_mechanism/code/run_m1a_reconciliation.py",
+    " M reports/poster/ias2026/research/bnd_h4_mechanism/tickets/STATUS.json",
+    " M src/pd39/model.jl"
+  ],
+  "scope": "Read-only audit plus new theoretical derivations and algebra/static endpoint checks. No new dynamical simulation, no edits to frozen results.",
+  "dynamic_simulations": 0,
+  "reviewers": [
+    "interaction_math_review",
+    "interaction_evidence_review",
+    "interaction_literature_review"
+  ],
+  "sources": [
+    {
+      "path": "experiments/material_synthesis_20261004/DOCUMENT_MANIFEST.json",
+      "sha256": "a6d88099188adc7385baa61347020620c6723808f417eab0c15bc96ae8b55386",
+      "bytes": 1987
+    },
+    {
+      "path": "experiments/theory_collective_damping_20261003/THEORY.tex",
+      "sha256": "616de2a93d7d5fb118570975ff8a1d5f3f0787663a5bceebbecf4250a593915c",
+      "bytes": 138301
+    },
+    {
+      "path": "experiments/network_moment_codesign_20261004/THEORY_MOMENT_SECTION.tex",
+      "sha256": "88ecb8569395a5f94ab31f0c83728045d13dd540cd0cf9df6b55ab8ee291d231",
+      "bytes": 11983
+    },
+    {
+      "path": "reports/experiment_Q2B/CERTIFIED_SEARCH/TERMINAL_SUMMARY.json",
+      "sha256": "120e47a13969b22c43ed59f5d37c30d37d69971ab523aad0fe69bdafe5c34dfe",
+      "bytes": 891
+    },
+    {
+      "path": "reports/experiment_Q2B/CERTIFIED_SEARCH/MARGINAL_SECURITY_VALUES.csv",
+      "sha256": "b25c3bc9552abc651672df81aee5736cd16c509f79b873d49ef88bb9cbdfce7e",
+      "bytes": 415
+    },
+    {
+      "path": "results/TX4_V9_GLOBAL_VS_EM_TRUTH.csv",
+      "sha256": "5ffb97ba332486bfad5678a930280e4e58b4b47b71531acc5c4ce8730df52015",
+      "bytes": 221558
+    },
+    {
+      "path": "reports/poster/ias2026/research/contextual_dynamic_weakness/docs/CDW_HARDENING_FINAL_REPORT.md",
+      "sha256": "8bc6eef00b31329d8e6b85b4fc0f06f76c14b072418e7c05686fa07f7f8ca641",
+      "bytes": 19559
+    },
+    {
+      "path": "reports/poster/ias2026/research/contextual_dynamic_weakness/ieee68_replication/docs/CDW68_FINAL_REPLICATION_REPORT.md",
+      "sha256": "0a39d37b06de5eff56d99abfc4ab117ede6f1f4ae51a02e19973759f2e2d8279",
+      "bytes": 22192
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "experiments/theory_synthesis_team_20261004/check_endpoint_law.py",
+      "sha256": "ea762e6f7dc4841e4994666b0bf49cff00dcdf290749f199385d6422d248bc34",
+      "bytes": 6356
+    },
+    {
+      "path": "experiments/theory_synthesis_team_20261004/ENDPOINT_LAW_CHECKS.json",
+      "sha256": "29ec66ad078eeeb6b8469f6a405c0e123292ec464206e7b2ffa3b2c2ecfd508a",
+      "bytes": 1735
+    },
+    {
+      "path": "experiments/theory_synthesis_team_20261004/FIG_ENDPOINT_AREA_ANALYTIC.png",
+      "sha256": "e1c07e2db5b900cbc3ded0614e6f8518ba0a99b4af95b6767b9f59f288b88add",
+      "bytes": 142916
+    },
+    {
+      "path": "experiments/theory_synthesis_team_20261004/FIG_ENDPOINT_AREA_ANALYTIC.svg",
+      "sha256": "3d314db4308809efe5db126b9c9157b831fb9a26c508eb60e209adf8087dc497",
+      "bytes": 65741
+    },
+    {
+      "path": "experiments/theory_synthesis_team_20261004/REVIEW_EVIDENCE.txt",
+      "sha256": "624eac5e26036e36b3936b20399cfd3293d093b8654a7aa5b8de2a43e33d5f3a",
+      "bytes": 26249
+    },
+    {
+      "path": "experiments/theory_synthesis_team_20261004/REVIEW_LITERATURE.txt",
+      "sha256": "b8a39a1894e8fc4ccc9db8b4bccf624fc1fa4cc0821e0b5cb12969cf139ac47f",
+      "bytes": 16959
+    },
+    {
+      "path": "experiments/theory_synthesis_team_20261004/REVIEW_MATH.txt",
+      "sha256": "8c9fe15e7664ce5d75e0fa43f7299b28ec28fc8a6cdedca00f130b34a9d75ebe",
+      "bytes": 20417
+    },
+    {
+      "path": "experiments/theory_synthesis_team_20261004/SINTESIS_MATEMATICA.txt",
+      "sha256": "62a3a7128e8b630802ec5de0789b21e7895a851effbb04deb605cd1e4e7126be",
+      "bytes": 21040
+    }
+  ],
+  "claim_status": {
+    "nonlinear_endpoint_identity": "EXACT_IDENTITY for declared reduced physical class",
+    "graph_no_go_and_energy_floor": "PROVED_REDUCED_MODEL",
+    "two_node_convergence_and_overshoot": "PROVED_REDUCED_MODEL",
+    "algebra_checks": "NUMERICALLY_VALIDATED; not dynamic validation",
+    "full_PLL_pole_area_tradeoff": "EXACT_IDENTITY under fixed-plant, simple-root and stable endpoint assumptions",
+    "IEEE39_transfer_of_nonlinear_endpoint_theorem": "BLOCKED pending model/energy balance derivation",
+    "maximum_robust_GFL_or_global_optimality": "BLOCKED",
+    "publication_priority": "NOT_ESTABLISHED"
+  }
+}

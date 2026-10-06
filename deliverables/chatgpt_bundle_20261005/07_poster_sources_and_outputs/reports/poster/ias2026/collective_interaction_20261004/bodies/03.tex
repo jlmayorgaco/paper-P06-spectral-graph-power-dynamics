@@ -1,0 +1,23 @@
+\begin{minipage}[t][\PosterTopRowHeight][t]{\PosterThreeWidth}\vspace{0pt}
+  \begin{TicketTwoPanel}{\PosterTopRowHeight}{3}{WHY: THE GRID LOOP}
+
+    {\FigureSize A retune at one site changes what the other site feels through the grid. One lap around the loop has gain $P=K_{ij}K_{ji}$.\par}
+    \vspace{1mm}
+    \begin{center}
+    \begin{tikzpicture}[x=1mm,y=1mm,font=\FigureSize,>=latex]
+      \node[draw=IASBlue,fill=IASPaleGreen,rounded corners=2.5mm,line width=1.6pt,minimum width=44mm,minimum height=22mm,align=center] (a) at (22,10) {PLL\\bus 30};
+      \node[draw=IASBlue,fill=IASPaleGreen,rounded corners=2.5mm,line width=1.6pt,minimum width=44mm,minimum height=22mm,align=center] (b) at (158,10) {PLL\\bus 37};
+      \node[draw=IASGold,fill=IASPaleGold,rounded corners=3mm,line width=1.6pt,minimum width=50mm,minimum height=30mm,align=center] (g) at (90,10) {the\\grid};
+      \draw[->,line width=2pt,IASBlue] (a.north) to[out=28,in=152] node[above,yshift=0.5mm] {$K_{ij}$} (b.north);
+      \draw[->,line width=2pt,IASVermillion] (b.south) to[out=-152,in=-28] node[below,yshift=-0.5mm] {$K_{ji}$} (a.south);
+    \end{tikzpicture}
+    \end{center}
+    \vspace{-1mm}
+    {\HeroEquation\color{IASBlue}\[
+      \frac{\det F\,\det F_0}{\det F_i\,\det F_j}=\det(I-P)
+    \]}
+    \vspace{-3mm}
+    \begin{InWords}\InWordsLabel The joint determinant is the product of the single-site ones times $\det(I-P)$. If $P=0$ the retunes are independent; otherwise the loop adds an exact interaction.\end{InWords}
+
+  \end{TicketTwoPanel}
+\end{minipage}%

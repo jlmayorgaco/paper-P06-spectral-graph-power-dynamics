@@ -1,0 +1,120 @@
+INDEPENDENT LITERATURE AND NOVELTY REVIEW — 2026-10-04
+
+Scope: Read doc5's abstract, contribution list, action-calculus discussion, and EMT-boundary/certificate sections; read doc3's abstract and blocker definitions. Checked the primary sources below. This is a targeted novelty assessment, not an exhaustive priority search. The 2026 arXiv papers are preprints unless a publication is explicitly identified. No simulation results were generated or independently reproduced.
+
+RECOMMENDATION
+
+The strongest scientific target is a bounded, model-specific statement that a replacement portfolio cannot be stabilized by any admissible PLL retuning, although every proper subportfolio can. A particularly consequential instance would show that a physical reinforcement increases a precisely defined connectivity metric but destroys this retunability. This turns a fixed-gain damping observation into a planning constraint: within the stated controller architecture and gain limits, changing gains cannot repair the intervention; hardware, topology, dispatch, or controller architecture must change.
+
+This is a research target, NOT an established finding in the supplied PDFs. Its mathematics will still use classical robust-control and analytic root-count tools. The distinctive result would be the physical counterexample and a usable certificate over heterogeneous controller gains, re-equilibrated lossy networks, and exact delays. If a feasible gain vector exists, the claimed exclusion is false; a failed optimizer is not evidence of exclusion.
+
+Rank the alternatives as follows:
+1. Highest scientific upside: certified loss of retunability / minimal retuning-infeasible replacement portfolio.
+2. Strong engineering alternative: a selected hybrid model is certified to preserve a specified replacement or repair decision. This requires real model-fidelity evidence and has close 2026 competitors.
+3. Weakest standalone novelty: lambda_2 rises while fixed-policy damping falls, or a collection of determinant/Schur/cycle identities. Use these as examples and tools supporting one sharper result.
+
+WHAT THE NEW PDFS ALREADY DO, AND WHAT THEY DO NOT ESTABLISH
+
+Doc5 already contains a re-equilibrated intervention path, connected mixed derivatives, finite portfolio externalities, a physical EMT-region objective, and a contour condition ||T_c^{-1} Delta_c|| < 1 for preserving root counts. Recommending that same Schur/Rouche condition as a new direction would merely repackage its existing theorem. Its reported collector-loop example increases lambda_2 by 43.9% while reducing minimum damping from 5.152% to 2.876%; these are manuscript-reported values. A damping-ratio decrease alone can reflect increased oscillation frequency without worse exponential decay. Report spectral abscissa, tracked pole motion, and a relevant response metric before calling this degradation of dynamic stability. Specify which weighted Laplacian defines lambda_2 and whether its weights depend on the new equilibrium.
+
+Doc3's inclusion-minimal unstable replacement sets are counterfactual set objects, distinct from eigenvector clusters. However, they depend on a frozen controller policy. The supplied four-site example does not establish that all admissible retunings fail. Its blocker-free characterization concerns safety of every intermediate subset/order; without a monotonicity theorem, a stable final portfolio can contain an unstable proper subset. Likewise, stability of immediate predecessors alone does not establish stability of all proper subsets.
+
+CLOSEST PRIMARY SOURCES AND FAIR SCOPE COMPARISONS
+
+[1] Coletta and Jacquod, Linear Stability and the Braess Paradox in Coupled Oscillators Networks and Electric Power Grids, Physical Review E 93, 032222 (2016).
+https://arxiv.org/abs/1505.07998
+https://doi.org/10.1103/PhysRevE.93.032222
+Direct foundational overlap: line additions can improve or worsen linear stability, independently of whether flows improve or worsen. Thus, “more connected can be less stable” is established. The proposed differentiator must concern a richer converter model, a stronger quantifier over controllers, or a certified finite intervention—not the paradox itself.
+
+[2] Schaefer et al., Understanding Braess' Paradox in power grids, Nature Communications 13 (2022).
+https://www.nature.com/articles/s41467-022-32917-6
+Primary experiments and grid-planning examples connect reinforcement to adverse flow redistribution and overloads, with a topological explanation. This is not a theorem about exact-delay PLL modal instability. It is nevertheless an essential comparator for any network-reinforcement narrative; do not imply that power-grid Braess effects lack physical evidence.
+
+[3] Gorbunov, Vorobev, and Peng, Identification and Stabilization of Critical Clusters in Inverter-Based Microgrids (2020 preprint); related PSCC/EPSR work, Identification of Critical Clusters in Inverter-based Microgrids (2020).
+https://arxiv.org/abs/2007.09347
+https://pscc-central.epfl.ch/repo/papers/2020/817.pdf
+Weighted-admittance eigenvalues rank inverter clusters by proximity to instability, and eigenvectors identify participating units. The threshold can depend on network R/X rather than topology. A critical modal cluster is not an inclusion-minimal SG-to-GFL replacement set evaluated through all proper counterfactual subsets. Preserve this precise distinction; do not claim that localizing dangerous inverter groups is new.
+
+[4] Gorbunov, Peng, Bialek, and Vorobev, Identification of Stability Regions in Inverter-Based Microgrids, IEEE Transactions on Power Systems 37, 2613–2623 (2022).
+https://arxiv.org/abs/2111.01028
+Constructs certified regions in multidimensional droop-gain space using generalized-Laplacian eigenvalue bounds, including closed-form approximate convex regions and gain choices enlarging the certificate. This directly anticipates graph-informed controller-feasibility geometry. A new PLL result must distinguish sufficient certified-stable regions from a proof that a specified admissible gain set contains no stabilizer.
+
+[5] Gross, Compensating Network Dynamics in Grid-Forming Control, Allerton (2022).
+https://allerton.csl.illinois.edu/files/2022/12/2022-159-paper_4351.pdf
+https://doi.org/10.1109/Allerton49937.2022.9929370
+Shows under homogeneous converter and uniform R/X modeling that slowing GFM dynamics through inertia emulation cannot always stabilize the network, or may require unrealistic inertia, and proposes derivative compensation. This is a direct prior for “retuning a familiar control lever cannot repair a network-induced instability.” The proposed contribution would need heterogeneous multi-parameter PLL exclusion with a specified gain domain, not a universal claim about the limits of controller tuning.
+
+[6] Conte, Mancilla-David, Silvestro, and Grillo, Small-Signal Stability Manifolds in Converter-Dominated Power Systems (May 2026 preprint).
+https://arxiv.org/html/2605.26254v1
+Full-network linearization, adaptive probabilistic SVM boundary estimation, and surrogate gain optimization across 50 operating scenarios directly address multi-IBR controller-feasibility regions. The plotted gain sections hold other parameters fixed. This is a fair baseline for searching for feasible retunings and visualizing regions, not a rigorous exclusion certificate. Give it the same physical model, gain limits, scenario set, and evaluation budget when comparing algorithms.
+
+[7] Bacic et al., A graph theoretic view on small signal stability of inverter-based power grids (July 2026 preprint).
+https://arxiv.org/html/2607.08260v1
+Derives a necessary-and-sufficient matrix criterion for a lossless network under explicit real-rational and positive-real-like device assumptions; includes voltage dynamics and graph-cycle contributions. This prevents a broad claim that all available graph certificates are only sufficient. Its assumptions do not automatically encompass lossy exact-delay GFL PLL networks. Compare assumptions carefully, especially Conditions 1, rather than transplanting its exactness claim or treating it as a failed predictor outside its domain.
+
+[8] Joswig-Jones, Dong, Tan, and Zhang, Sensitivity-Based System Strength Assessment: Mapping Power Flow and Network Topology Perturbations to System Eigenvalues (July 2026 preprint).
+https://arxiv.org/html/2607.28764v1
+Explicitly propagates line-admittance and injection changes through AC power-flow sensitivities into device impedance changes and system eigenvalue residues, with 14- and 118-bus remedial examples. This is very close to the PDFs' re-equilibrated Green-residue repair rationale. The distinction can be certified finite actions or all-gain exclusion; simply including the indirect operating-point derivative is insufficient.
+
+[9] Kook and Park, An Interaction Sensitivity Framework in Perturbation Space for the Converter-Driven Stability of Power Systems (July 2026 preprint).
+https://arxiv.org/abs/2607.25334
+Verified title/authors/abstract: analytic perturbation-dependent mode–state interaction reconfiguration and controller sensitivity. Full technical derivations were not verified in this review. It is a direct required comparison for claims of a new interaction-sensitivity framework; no detailed equivalence or superiority claim is justified from the abstract alone.
+
+[10] Li et al., When Can Phasor-Domain Device Models Be Trusted for Electromechanical Stability Analysis of Grid-Forming Converter-Dominated Microgrids? (June 2026 preprint).
+https://arxiv.org/html/2606.08082v1
+Represents omitted inner-loop/filter EMT dynamics as structured mismatch, gives a frequency-resolved interaction index and mu-based sufficient model-validity certificate, and constructs per-device weights from models or terminal measurements. Section V already covers envelopes over a sampled operating family. Thus neither structured fidelity certification, measured uncertainty weights, nor an operating-family envelope is an empty gap. A possible advance is certified preservation of a specific finite planning decision, including instability and repair ordering, with physical region selection and quantified cost.
+
+[11] Wang et al., Quantifying and Improving the Accuracy of Electromagnetic Transient-Transient Stability Hybrid Simulation, IEEE Transactions on Power Systems (2026).
+https://arxiv.org/html/2604.14523v1
+https://doi.org/10.1109/TPWRS.2026.3683988
+Defines an interface error index available from hybrid signals without full EMT, tests faults and forced oscillations, and recommends EMT expansion or improved interfaces. Explicitly notes that its index does not determine which components significantly participate in a mode; stopping criteria and realistic-network boundary selection remain future work. This provides a narrower potential gap for a decision-based spectral stopping certificate. Merely expanding an EMT region until error decreases is not new.
+
+[12] CURENT 2024 Industry Conference project report, Project 45, Grid Model Partitioning for Hybrid Phasor-EMT Simulation Addressing Increasing IBRs.
+https://curent.utk.edu/wp-content/uploads/2024/07/project_report_v1.pdf
+Primary project report, not a peer-reviewed theorem. Describes adaptive EMT-zone construction using participation/visibility indicators and expansion to retain qualitative stability, including a 39-bus IBR example. This is close practical prior for dangerous-core-driven EMT-region selection. A new study should compare against such participation-based selection, not only geographic distance or random regions.
+
+A CONCRETE THEOREM TARGET FOR THE RECOMMENDED DIRECTION
+
+Define the admissible gains G before searching: positive bounded PI gains, fixed controller architecture and delays, and any engineering bandwidth constraints. For each replacement set S and physical intervention a, define
+  F(S,a) = {g in G : all non-gauge physical roots of T(s;S,a,g) are stable}.
+Every topology/dispatch intervention must use its consistent AC equilibrium. The proposed physical finding is F(S,a0) nonempty but F(S,a1) empty, despite lambda_2(a1)>lambda_2(a0). Alternatively, first establish F(S,a)=empty and F(U,a) nonempty for every proper U subset S. This is a minimum claim worth pursuing even without the reinforcement example.
+
+One sufficient certification theorem is a finite-cover root-witness result. Cover G by cells G_k. In each cell choose a reference g_k and a closed contour Gamma_k wholly within Re(s)>gamma>0. Verify a positive physical root count inside Gamma_k at g_k and a uniform bound
+  sup_{g in G_k, s in Gamma_k}
+  || T(s;g_k)^{-1} [T(s;g)-T(s;g_k)] || < 1.
+Then every gain in G has an unstable root, with real part above gamma. Use the full analytic descriptor/delay characteristic matrix, or account rigorously for every Schur pole and cancellation. A structured real-parameter bound can replace this unstructured norm. The contour and parameter supremum require validated interpolation/interval bounds, not a dense mesh alone. Different cells may use different mode clusters; no fixed eigenvector or fixed dangerous mode is assumed.
+
+This theorem follows classical analytic homotopy/Rouche reasoning. Its value is an executable power-system certificate with non-vacuous gain cells and engineering bounds, not a new general root-count theorem. Real-mu/D,G scaling is likewise classical: Fan, Tits, and Doyle, Robustness in the Presence of Mixed Parametric Uncertainty and Unmodeled Dynamics (1991), https://doi.org/10.1109/9.62265 and https://authors.library.caltech.edu/records/5gnha-ymc80 . A single bad reference plus a barrier on the full imaginary axis is another route, but root witnesses localized in the RHP need not preserve the total unstable-root count over the entire gain domain.
+
+Smallest convincing experiment: one 3–4-site replacement core; certified feasible gains for every proper subset; a complete certified cover of the declared gain domain for the full core; and one physical repair with a validated feasible gain vector. Compare fixed-gain blockers, well-budgeted multistart/SVM-assisted tuning, graph-strength metrics, and appropriate sufficient certificates. Add a second operating condition/network to establish that the method is usable beyond a selected example. Show certificate cost, abstentions, and residual unexcluded cells. If any cell remains unexcluded, label the result unresolved, not impossible.
+
+MODEL-FIDELITY FALLBACK AND ITS MINIMUM EVIDENCE
+
+For a finite family of replacement/repair candidates, certify root counts or pole enclosures under exterior self-energy error for every candidate. A repair ranking is preserved only if the certified performance intervals are disjoint in the required order; matching unstable-root counts alone does not preserve damping rankings. Choose a physical EMT region meeting these decision tolerances and compare cost with participation-, distance-, and interface-error-based regions. A greedy region is inclusion-minimal at best unless global optimality is proved; enlarging a region is not automatically monotone in every hybrid-interface error.
+
+The contribution would need an error bound obtainable without rebuilding the entire detailed model for every candidate, plus validation against actual detailed averaged-EMT or switching-EMT models on withheld cases. Doc5's abstract region optimization and small sparse-network self-energy illustration do not yet supply that evidence. If full EMT data are unavailable, claim certified reduction of the specified linear model, not certified EMT fidelity.
+
+FINAL ASSESSMENT
+
+No priority claim is established by this targeted search. A defensible submission would center on one newly demonstrated engineering capability: proving a particular finite replacement decision unrepairable by an explicitly bounded class of PLL retunings, or selecting a cheaper model with a certificate that it preserves a stated planning decision. The supplied calculus can support either capability. On its own, assembling connected derivatives, cycles, Schur complements, and graph metrics leaves the principal novelty question unresolved.
+
+ADDENDUM: CONTROL-AUTHORITY LIMITS AND MOMENT-PRESERVING SPARSE REPAIR
+
+[13] Bjork, Obradovic, Harnefors, and Johansson, Influence of Sensor Feedback Limitations on Power Oscillation Damping and Transient Stability, accepted TPWRS version (2021).
+https://arxiv.org/html/1911.03342v3
+https://doi.org/10.1109/TPWRS.2021.3101834
+Primary full text verified. Derives local phase/frequency-feedback limitations through filtering sensitivity and Bode constraints in a two-machine model, then validates with nonlinear Kundur simulations. Damping improvements can incur worse transient response for some disturbances regardless of control design. This directly anticipates generic claims that local measurements impose unavoidable damping/transient tradeoffs. It does not establish the present heterogeneous PLL finite-gain authority bound. The thesis supplied by the parent is Joakim Bjork's 2021 Fundamental Control Performance Limitations for Interarea Oscillation Damping and Frequency Stability; its PDF endpoint could not be retrieved here, so the primary journal version above is the verified technical basis.
+
+[14] Peng, Li, Fu, Yang, Wang, and Liu, Stability Degradation Induced by Angle–Voltage Coupling in Power Systems: Bode-Type Fundamental Performance Limitation Analysis, TASE (2026).
+https://github.com/lingo01/Waterbed_Effect
+https://github.com/lingo01/Waterbed_Effect/blob/main/Article_Waterbed_Effect.pdf
+https://doi.org/10.1109/TASE.2026.3676916
+Verified the author-hosted paper, pages 1–6, including Theorems 2–3 and Remark 2. It studies total sensitivity-integral conservation, redistribution between angle/voltage channels, and bandwidth-dependent lower bounds on sensitivity peaks. Remark 2 also states conservation of the sum of pole real parts. Assumptions include rational, proper, stable loop transfer functions with sufficient relative degree; delays are discussed via lag approximation. This is direct prior for general conservation/waterbed narratives. It is not the exact-delay PLL low-frequency time-moment identity. Distinguish a signed integral of a step transient from an integral of log sensitivity over all frequencies, and from a pole sum. None automatically bounds the frequency nadir or establishes an empty PLL gain region.
+
+Sharper design question suggested by the parent: Can a physically sparse line/POI intervention achieve a specified multimode margin and preserve selected network response moments when every admissible nodal PLL gain change fails?
+
+Formulate BOTH competitors with the same moment tolerances, operating scenarios, exact-delay model, gain bounds, and dynamic targets. For gains alone, prove a positive lower bound on the best achievable spectral abscissa (or infeasibility of the target margin). For gains plus at most k physical edge actions, exhibit a re-equilibrated feasible design satisfying the actual moment constraints. The useful output is then a certified authority gap and a sparse physical remedy. Merely beating the existing gain vector, an unsuccessful QP, or a moment-constrained gain baseline while allowing the edge baseline to violate those moments is insufficient.
+
+Moment preservation under a topology change must be recomputed from the new network and input/output definition; old left-nullvector weights cannot simply be reused. First-order moment constraints and mode-sensitivity separation are only local unless a finite-step remainder is bounded. If gain-box exclusion is infeasible, an honest narrower result is a certified local trust-region limit with an explicit radius and remainder, followed by a finite validated edge remedy. No claim about all gains, all controllers, or nonlinear large-event performance follows from that local result.
+
+The strongest minimum is therefore: (i) a certified limitation of the defined nodal control class, (ii) a physical edge action that crosses the limitation while satisfying the same low-frequency requirements, and (iii) evidence that the superiority survives full-model validation. Conservation is the constraint explaining the design problem, not sufficient novelty by itself.

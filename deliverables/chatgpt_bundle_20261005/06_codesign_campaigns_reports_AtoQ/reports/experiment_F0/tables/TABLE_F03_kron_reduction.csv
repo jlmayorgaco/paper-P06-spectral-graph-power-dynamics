@@ -1,0 +1,10 @@
+metric,value
+retained_ports,10.0
+eliminated_buses,29.0
+interior_block_condition_number,99.09917241024525
+direct_vs_kron_relative_current_residual,4.0750477862428105e-16
+direct_vs_kron_max_abs_current_residual,2.5635335727383778e-14
+Ybus_transpose_symmetry_residual,0.0
+Yport_transpose_symmetry_residual,2.057229442163321e-16
+full_network_min_real_power_test,205.64926878309018
+port_operator_min_quadratic_test,1.9485493444618582

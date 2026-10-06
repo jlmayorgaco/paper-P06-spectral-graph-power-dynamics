@@ -1,0 +1,71 @@
+{
+ "LB_eigs_low5": [
+  0.0,
+  5.124669,
+  5.564359,
+  10.540773,
+  11.613022
+ ],
+ "kron_eigs": [
+  -0.0,
+  12.937367,
+  16.701674,
+  18.331626,
+  23.942353,
+  33.141064,
+  41.94076,
+  42.941161,
+  43.51304,
+  47.345746
+ ],
+ "node_tests": [
+  {
+   "score": "abs_fiedler",
+   "target": "E10_shapley",
+   "median_abs_rho": 0.43333333333333335
+  },
+  {
+   "score": "abs_fiedler",
+   "target": "E1_frac_destab",
+   "median_abs_rho": 0.5666666666666667
+  },
+  {
+   "score": "abs_fiedler",
+   "target": "E3_NG_total",
+   "median_abs_rho": 0.1
+  },
+  {
+   "score": "fiedler_entry",
+   "target": "E10_shapley",
+   "median_abs_rho": 0.38333333333333336
+  },
+  {
+   "score": "fiedler_entry",
+   "target": "E1_frac_destab",
+   "median_abs_rho": 0.1628668779193509
+  },
+  {
+   "score": "fiedler_entry",
+   "target": "E3_NG_total",
+   "median_abs_rho": 0.75
+  },
+  {
+   "score": "reff_to_39",
+   "target": "E10_shapley",
+   "median_abs_rho": 0.6
+  },
+  {
+   "score": "reff_to_39",
+   "target": "E1_frac_destab",
+   "median_abs_rho": 0.17500000000000002
+  },
+  {
+   "score": "reff_to_39",
+   "target": "E3_NG_total",
+   "median_abs_rho": 0.7999999999999999
+  }
+ ],
+ "static_graph_predicts_any": true,
+ "edge_S5_median_rho": 0.2997008851528224,
+ "edge_S6_median_rho": -0.0541473943879124
+}

@@ -1,0 +1,64 @@
+GUION PARA PRESENTAR -- UNOS 3 MINUTOS
+
+Mi pregunta es cuánto podemos reemplazar de generación síncrona por
+convertidores seguidores de red cuando sus PLL tienen retrasos físicos.
+La dificultad es que los controladores son locales, pero el efecto sobre
+el amortiguamiento pasa por toda la red.
+
+El resultado central está en el panel 4. Eliminamos los estados internos
+sin aproximar el retraso y obtenemos la impedancia entre torque y velocidad
+de las máquinas retenidas. Cambiar un solo retraso modifica esta matriz
+mediante una actualización de rango uno. Su parte hermítica tiene,
+bajo las condiciones indicadas, una dirección positiva y otra negativa.
+El retraso puede dar más amortiguamiento a un movimiento colectivo y menos
+a otro. Por eso asignar una penalización escalar siempre positiva a cada
+nodo pierde información física.
+
+Comprobamos esa identidad en 60 casos IEEE-39. Luego damos una fórmula
+para Kp y Ki que preserva un modo PLL elegido cuando cambia el reemplazo.
+La fórmula funciona; eso no quiere decir que maximice la penetración.
+
+Para cuantificar interacciones finitas construimos una matriz de retorno
+y un Hessiano de los polos dentro de un contorno. Los términos cruzados
+representan caminos que salen de un puerto de intervención y regresan
+por otro. Retener esas caminatas da cotas de resto entre 18 y 46 veces
+menores en los tres puntos evaluados. Es una mejora de la cota, no una
+mejora de 46 veces en capacidad ni una ley universal sobre ciclos físicos.
+
+Finalmente, el diseño al 87.6% pasa los cinco eventos fijados con retraso
+de 40 ms en Julia. También certificamos un grupo de polos en toda una
+caja de parámetros. Son dos garantías distintas: los eventos son evidencia
+numérica y el certificado regional cubre un grupo, no todo el espectro.
+La comparación honesta es que las ganancias originales también pasan.
+El aporte que defendemos es la explicación y el instrumento matemático;
+el máximo físico y una ventaja de reemplazo siguen abiertos.
+
+RESPUESTAS A PREGUNTAS PROBABLES
+
+¿Es 87.6% el máximo?
+No. Es un paso predefinido desde 87.5%. No hubo optimización de ese porcentaje.
+
+¿Por qué hablar de Beyond Nodal Damping?
+Porque la parte hermítica de una intervención local actúa sobre direcciones
+colectivas; sus términos cruzados y el Hessiano no son una suma de números
+de amortiguamiento asignados a buses aislados.
+
+¿Un retraso puede mejorar la estabilidad?
+La ley da signos opuestos de amortiguamiento armónico. La estabilidad depende
+del espectro completo; no se deduce de uno de esos signos.
+
+¿Es todo nuevo?
+Schur, Sherman--Morrison, asignación de polos, métodos de contorno y aritmética
+de intervalos son herramientas conocidas. La contribución propuesta es su
+especialización explícita y comprobada para este contrato SG/GFL, con caminos
+físicos, interacción finita y separación rigurosa de las garantías.
+No afirmamos prioridad bibliográfica de una teoría universal.
+
+¿Los lazos del dibujo son líneas físicas?
+La figura IEEE-39 muestra líneas físicas; las caminatas de la expansión
+operan en el grafo de puertos dinámicos. No son automáticamente los mismos.
+
+¿Qué falta para el máximo demostrado?
+Una cota superior informativa válida sobre toda la región de diseño
+pertinente, junto con un candidato que pase espectro y eventos, con la misma
+semántica y un intervalo inferior-superior pequeño. Esa cota no está lograda.

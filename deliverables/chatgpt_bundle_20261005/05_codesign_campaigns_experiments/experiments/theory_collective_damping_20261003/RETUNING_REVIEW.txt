@@ -1,0 +1,30 @@
+Scope audit of the theory-only extension
+
+The scalar return relation opens the selected PLL, not the full converter.
+It retains the other delays and the actual lossy P/Q and device dynamics.
+The regularity and visibility assumptions cannot be dropped.
+
+Exact pole assignment is not stabilization. The target pole can be stable
+while another mode is unstable. The interval for positive gains is not a
+maximum stable delay. Exogenous delays are never optimization variables.
+
+The spillover identity concerns full complex pole preservation by one site's
+two real gains. It does not rule out preserving two real parts, or compensation
+by gains at several sites. Nonzero complex movement need not worsen damping.
+
+The first-order replacement formula is exact for its own finite smooth
+constraint model, a fixed replacement direction and a bounded gain set.
+It is not a global SG replacement limit. Uniform remainder and all-constraint
+coverage would be required for a regional full-model upper bound.
+
+The contour condition is a conditional sufficient statement. No supremum
+bound, root count or full nonlinear event test is computed in this extension.
+The initial curve cannot have a zero on the contour; gauge removal is real
+work, not notation. Full rho changes require the complete model difference.
+
+The current claim ledger labels all these scopes. The research novelty
+comparison remains open; ordinary pole placement and convex separation
+are not being claimed as new mathematics.
+
+Verification: thirteen exact symbolic checks passed. No ODE/DDE trajectory,
+parameter sweep, root continuation, grid test or optimizer was run.

@@ -1,0 +1,13 @@
+{
+  "E05_supported_rule": "at least one of C_R, C_F, or C_3 satisfies the candidate-supported rule",
+  "E05_unresolved_rule": "fewer than 6/8 valid tracked holdout points for every candidate",
+  "candidate_supported_rule": {
+    "absolute_damping_ratio_externality_material_threshold": 0.0025,
+    "material_holdout_points_minimum": 4,
+    "minimum_same_sign_fraction": 0.75,
+    "valid_holdout_mode_tracking_points_minimum": 6
+  },
+  "cycle_or_SCC_claim_assessed": false,
+  "freeze_id": "TX3-E05-GATE-1.0",
+  "harmful_label_rule": "harmful only when damping externality is negative or real-part externality is positive; DeltaPhi sign alone is insufficient"
+}

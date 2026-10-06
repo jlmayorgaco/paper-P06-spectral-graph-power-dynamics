@@ -1,0 +1,57 @@
+{
+  "C1": "SUPPORTED_UNCHANGED",
+  "C2": "SUPPORTED_UNCHANGED",
+  "C3a_nominal_material_damping_externality": "REJECTED_UNCHANGED",
+  "C3b_A_stress_conditioned_amplification": "REJECTED",
+  "C3b_B_material_margin_consequence": "REJECTED",
+  "E06_executed": false,
+  "conditioning": {
+    "interpretation": "explanatory only; no candidate decision changed by conditioning",
+    "pvalue_rho_comp_vs_log10_kappa": 4.199567252242743e-186,
+    "pvalue_rho_comp_vs_remaining_margin": 1.3669915620577991e-191,
+    "spearman_rho_comp_vs_log10_kappa": -0.7376641355457139,
+    "spearman_rho_comp_vs_remaining_margin": -0.7447833984006424
+  },
+  "destabilizing_material_delta_zeta_points": 0,
+  "e06_consideration_authorized": false,
+  "frozen_candidate_count": 15,
+  "frozen_pair_count": 10,
+  "frozen_triple_count": 5,
+  "gamma_end_range": [
+    1.0522500000000001,
+    1.083125
+  ],
+  "hard_composition_failure_points": 0,
+  "material_absolute_delta_zeta_points": 0,
+  "maximum_candidate_median_final_rho_comp": 0.001979089268181889,
+  "maximum_rho_comp": 0.0021175800029241453,
+  "median_rho_comp": 6.112501410670344e-05,
+  "new_paraemt_scientific_runs": 0,
+  "new_seed_count": 8,
+  "original_C3_cycle_or_SCC": "UNASSESSED",
+  "screen_composition_failure_points": 0,
+  "stage": "TX3_E05C_MARGIN_CONDITIONED",
+  "stop_reason": "E05C complete; C3b-B is not supported and E06 consideration is not authorized",
+  "strongest_result": {
+    "Delta_lambda_real": 0.020230825461794666,
+    "Delta_zeta": -1.769579509935948e-05,
+    "coalition_key": "A2-A8",
+    "gamma": 1.0546250000000001,
+    "lambda_full_real": -9.533517053654045,
+    "lambda_lower_order_real": -9.55374787911584,
+    "modal_family_id": "R012",
+    "rho_comp": 0.0021175800029241453,
+    "seed_id": "C06",
+    "tau": 1.0
+  },
+  "strongest_stabilizing_result": {
+    "Delta_lambda_real": -0.16680890028676743,
+    "Delta_zeta": 0.00028279391419527844,
+    "coalition_key": "A5-A6",
+    "rho_comp": -0.0026927178317220344,
+    "seed_id": "C00",
+    "tau": 0.0
+  },
+  "tracking_success_rate": 1.0,
+  "valid_externality_rate": 1.0
+}

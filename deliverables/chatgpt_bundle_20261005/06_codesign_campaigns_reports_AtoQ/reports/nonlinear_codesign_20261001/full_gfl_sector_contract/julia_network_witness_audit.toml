@@ -1,0 +1,12 @@
+joint_delta_voltage = [0.0014170835437590235, 0.0014648528142164052]
+max_absolute_voltage_prediction_error = 5.41667405373758e-16
+witness_csv_sha256 = "ad19176aba2983ef87cc06d0d8f6c241e702b2acd94b44addc5dd143e0a2a215"
+status = "INDEPENDENT_NONLINEAR_DAE_CONFIRMS_LOCAL_CONTRACT_CLOSURE_FAILURE"
+violating_pairs = 82
+joint_witness_csv_sha256 = "063ac70f2ad323f526fa83071a05c5dbb1260460670ac7b65458de8e7c21a33c"
+ReducedDAE_sha256 = "c5d721bc371dd6ee424afb2f40638e60307fd62389bba2ac69f3b7d247a2c80d"
+scope = "Algebraic input-assumption failure inside product of local ellipsoids, not instability"
+joint_input_usage = 2.728973196871804
+script_sha256 = "1ca2c5c470ce6b5339587d6e05a0afa82c5d728fdedd9a21145825b30f00b3e0"
+max_input_usage = 6.390331148982694
+cases = 100

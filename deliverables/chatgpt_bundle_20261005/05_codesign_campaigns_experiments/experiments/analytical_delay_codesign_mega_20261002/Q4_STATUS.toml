@@ -1,0 +1,12 @@
+tests = 45
+tau_ms = [0.0, 20.0, 40.0]
+max_PI_condition = 18.84968892499111
+min_PI_authority = 0.002169153883204842
+status = "CONDITIONAL_PI_LAW_VALIDATED_ON_FULL_CHARACTERISTIC"
+target_frequency_Hz = [0.017, 0.5, 3.0]
+buses = [30, 32, 34, 36, 38]
+max_imag_boundary_error = 0.0
+max_real_boundary_error = 0.0
+all_target_roots_converged = true
+max_full_NEp_residual = 1.0197916702699154e-16
+max_gain_equation_residual = 2.2887833992611187e-16

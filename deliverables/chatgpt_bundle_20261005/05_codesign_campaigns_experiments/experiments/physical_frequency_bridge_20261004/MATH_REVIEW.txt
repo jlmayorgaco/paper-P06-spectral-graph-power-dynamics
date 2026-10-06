@@ -1,0 +1,459 @@
+REVISIÓN MATEMÁTICA INDEPENDIENTE — PUENTE FÍSICO DE FRECUENCIA
+2026-10-04. Alcance: ecuaciones, balances, equivalencia tangente y transferencia
+de la ley de área. No se ejecutaron nuevas simulaciones ODE/DDE. Sólo se escribe
+este informe; no se modifican fuentes congeladas ni THEORY.tex.
+
+VEREDICTO
+
+La variante propuesta corrige el balance de energía positiva del capacitor y
+conserva EXACTAMENTE la linealización vista desde los puertos AC en el trim
+declarado. Ambas afirmaciones se pueden probar, no dependen de comparar polos
+numéricamente. No conserva en general las trayectorias no lineales mediante
+la reflexión lineal de vdc. Tampoco traslada automáticamente el piso de
+inercia de la red swing lossless a IEEE39.
+
+La transferencia rigurosa disponible es más limitada pero útil: una identidad
+de área para el balance agregado completo, con almacenamiento positivo y un
+residuo explícito de cargas, pérdidas y limitadores. Sin cotas de ese residuo,
+del endpoint y de los estados ocultos, no hay una exclusión previa de diseños
+IEEE39 por la resistencia secante del teorema anterior.
+
+Fuentes inspeccionadas:
+  src/bnd_design/AnalyticGFLPLL.jl
+  src/bnd_model_expN/PDExactDesignN.jl
+  src/bnd_design/AnalyticSG.jl
+  src/bnd_design_e/CollectiveModel.jl
+  src/pd39/model.jl
+  PowerDynamics instalado, Library/Renewables/ComposableInverter.jl
+  experiments/nonlinear_frequency_limits_20261004/audit_archived_ieee39_balance.py
+  experiments/physical_frequency_bridge_20261004/PhysicalBridge.jl
+  experiments/physical_frequency_bridge_20261004/PREREGISTRATION.json
+Se sigue el estándar de revisión escéptica de ieee-access-academic-quality.
+
+1. CONTRATO DE SIGNOS Y BALANCE LOCAL
+
+Usar las orientaciones reales de las ecuaciones, no la etiqueta textual de
+P_dc en una biblioteca. Sean i la corriente DESDE el conversor hacia el
+filtro/red, v_I la tensión del conversor y u la tensión terminal. Entonces
+  P_ac=v_I^T i, P_t=u^T i,
+  (X_f/omega_b) idot=v_I-u-R_f i+omega_frame X_f J i,
+con J antisimétrica. Las rotaciones dq son ortogonales. Por tanto
+  E_f=X_f ||i||^2/(2 omega_b),
+  dot(E_f)=P_ac-P_t-R_f||i||^2.                               (1)
+
+El capacitor físico, para P_dc positivo suministrado desde la fuente DC,
+satisface
+  C vdot=(P_dc-P_ac)/v, v>0,
+  E_dc=C v^2/2, dot(E_dc)=P_dc-P_ac.
+Sumando,
+  dot(E_f+E_dc)=P_dc-P_t-R_f||i||^2.                          (2)
+Ésta es la corrección física que se obtiene en PhysicalBridge.jl.
+
+Con la ecuación heredada C vdot=(P_ac-P_dc)/v se obtiene, en cambio,
+  dot(E_f-E_dc)=P_dc-P_t-R_f||i||^2,
+mientras que la derivada del almacenamiento positivo E_f+E_dc contiene el
+defecto adicional 2(P_ac-P_dc). No basta denominar P_dc un consumo para
+eliminar esa incompatibilidad: P_ac ya tiene orientación fijada por (1).
+
+Si la corriente externa del dispositivo se escala por rho, también deben
+escalarse SU almacenamiento, fuente DC y pérdida de filtro por rho S_base.
+Las ecuaciones internas sin escalar son compatibles con ese balance:
+  dot[rho S_base(E_f+E_dc)]
+     =rho S_base P_dc-P_t,red-rho S_base R_f||i||^2.
+No sería correcto escalar sólo la corriente de salida y luego sumar un
+capacitor completo sin el mismo peso. Para rho=0 se elimina el dispositivo.
+
+Los errores PI físicos iref=k_p(v-V)+z, zdot=k_i(v-V) tienen la realimentación
+esperada: un exceso de tensión incrementa la corriente exportada, que reduce
+la energía DC. Deben cambiarse los tres signos indicados conjuntamente;
+cambiar únicamente la ecuación del capacitor no preserva el lazo tangente.
+
+Limitación: (2) verifica el balance del modelo promedio declarado. No prueba
+pasividad del control cerrado, invariancia de v>0, disponibilidad de P_dc,
+viabilidad de modulación, límites de corriente, ni protección contra colapso
+DC. La fuente DC sigue siendo ideal y la tensión de control AC no tiene
+límite impuesto por vdc. La singularidad en v=0 permanece.
+
+2. SIMILITUD TANGENTE EXACTA Y SUS HIPÓTESIS
+
+Agrupar todos los estados excepto vdc como r, incluyendo el integrador z.
+Sea f_L el modelo heredado y f_P la variante física. V es constante. Definir
+  psi(r,v)=(r,2V-v), S=Dpsi=diag(1,...,1,-1).
+El -1 corresponde SÓLO a vdc, no al integrador z. Las demás ecuaciones del
+modelo inspeccionado dependen de vdc solamente a través de la referencia de
+corriente y, en la fila DC, del factor 1/vdc. Por ello
+  iref_L(psi(x))=k_p[V-(2V-v)]+z=iref_P(x),
+  zdot_L(psi(x))=k_i(v-V)=zdot_P(x).
+Así, todas las filas excepto la DC coinciden exactamente después del cambio.
+También P_ac,L(psi(x))=P_ac,P(x).
+
+Escribir N(x,u)=P_ac,P(x,u)-P_dc y e_v para el vector de la fila DC. Entonces
+  f_P(x,u)-S f_L(psi(x),u)
+    = e_v * 2(v-V)N(x,u)/[C v(2V-v)].                       (3)
+La expresión se entiende en un entorno con v y 2V-v no nulos. En un trim
+  v*=V, P_ac*=P_dc, f_L(x*,u*)=f_P(x*,u*)=0,
+el lado derecho es de segundo orden en las perturbaciones. En una rama
+diferenciable se sigue EXACTAMENTE
+  A_P=S A_L S, B_P=S B_L,
+  C_P=C_L S, D_P=D_L                                      (4)
+para salida de corriente terminal y entradas AC comunes. La misma relación
+de B vale para una perturbación común de P_dc. Para la salida AC actual,
+C_L no lee vdc directamente y C_L S=C_L.
+
+Consecuencias algebraicas de (4):
+  det(sI-A_P)=det(sI-A_L),
+  C_P(sI-A_P)^(-1)B_P+D_P
+      =C_L(sI-A_L)^(-1)B_L+D_L.                            (5)
+Es igualdad de funciones de transferencia completas donde están definidas,
+no únicamente de un modo elegido. La salida vdc NO es la misma: sus
+desviaciones tangentes tienen signo opuesto. Igualdad de polos no debe
+presentarse como igualdad de todas las variables medidas.
+
+Hipótesis concretas que no se pueden omitir:
+  a) Trim exacto v=V y N=0. Si N0 no es cero, en v=V el defecto de Jacobiano
+     es 2N0/(C V^2) e_v e_v^T. Un residual de trim permite una cota, no una
+     igualdad exacta para las matrices calculadas con ese residual.
+  b) Referencia V constante y mismos parámetros. Para un puerto que perturba
+     V con el mismo signo en ambos modelos, B_P=S B_L deja de ser cierto.
+     Ese puerto necesita su propio cambio de signo de entrada; no es un
+     puerto AC conservado por (5).
+  c) Ausencia de otra dependencia de vdc. Modulación proporcional a vdc,
+     pérdidas DC dependientes de v, saturaciones asimétricas o protecciones
+     de tensión pueden romper (3)-(5). Deben volver a comprobarse.
+  d) Ecuaciones/ordenación de estados y rama algebraica correspondientes.
+     No comparar directamente autovectores sin aplicar S.
+
+PhysicalBridge.jl cambia las tres expresiones correctas y conserva el resto
+de las ecuaciones inspeccionadas. No se detectó un error de signo en esa
+implementación. La preregistración conserva el evento ZIP realizado, distingue
+checks numéricos de certificados y no presupone convergencia a los 61 s.
+
+3. CIERRE DE RED, RETARDOS Y RESULTADOS LINEALES QUE SÍ SE CONSERVAN
+
+En una arquitectura fija, extender S por identidad a todos los estados SG y
+por -1 en cada vdc GFL. El Jacobiano algebraico de red y su regularidad no
+cambian. En el cierre A_red=A-B G_y^(-1)C,
+  A_red,P=S A_red,L S.
+Para el descriptor completo se puede usar T=diag(S,I_algebraico):
+  F_P(s)=T F_L(s) T,
+después de escribir las ecuaciones en las mismas convenciones. Los ceros,
+polos omitidos por Schur y multiplicidades no desaparecen por la corrección.
+La simetría de gauge se transporta por S y se debe excluir de forma idéntica.
+
+Los retardos del detector PLL sólo actúan sobre estados/señales que la
+reflexión DC no cambia. Bajo ese contrato la equivalencia se extiende a la
+matriz característica lineal retardada para cada s; no hay que reemplazar
+exp(-s tau) por una aproximación para justificarla. Esto es una conclusión
+analítica condicional sobre una implementación idéntica del retardo. La
+preregistración actual ensaya tau=0 y no valida su simulador DDE.
+
+Por tanto los resultados lineales anteriores de puerto AC, modos, sensibilidad
+respecto a ganancias PLL y momentos de una transferencia AC se transportan
+a la variante física, siempre que sus demás hipótesis se cumplan. S es
+independiente de esas ganancias y del reparto rho dentro de cada arquitectura.
+En cambios de dimensión rho=0/1 se aplica al sistema activo correspondiente;
+no se conservan artificialmente estados de dispositivos ausentes.
+
+No se transportan automáticamente los nadirs, saturaciones, márgenes de gran
+señal o límites de tensión DC de las trayectorias congeladas. La igualdad
+lineal tampoco certifica que la variante física sea estable si la heredada
+no lo era; conserva el mismo diagnóstico local.
+
+4. NO HAY CONJUGACIÓN NO LINEAL POR LA REFLEXIÓN LINEAL
+
+El defecto (3) es generalmente no nulo. Para perturbaciones pequeñas y un
+horizonte fijo, regularidad local, solvencia algebraica uniforme y soluciones
+en un compacto permiten una cota de diferencia de orden amplitud^2 mediante
+Gronwall. La constante depende del horizonte y de esas condiciones. No es
+una afirmación uniforme para todo tiempo ni cerca de limitadores/singularidad.
+
+Observación adicional exacta, que NO describe el PI físico lineal propuesto:
+si se cambiase el error PI físico por
+  epsilon(v)=V-sqrt(2V^2-v^2),
+entonces phi(v)=sqrt(2V^2-v^2), 0<v<sqrt(2)V, satisface
+  phi'(v)*(P_dc-P_ac)/(Cv)=(P_ac-P_dc)/(C phi(v)).
+Usar iref=k_p epsilon(v)+z, zdot=k_i epsilon(v) produciría una conjugación
+no lineal exacta con el modelo heredado en ese dominio y con condiciones
+iniciales transformadas. Además
+  -C phi(v)^2/2=C v^2/2-CV^2.
+Así se comprende la similitud tangente: phi'(V)=-1 y epsilon'(V)=1.
+Pero esta reinterpretación cambia qué variable representa la tensión física
+y cambia el PI no lineal. No rehabilita la interpretación original del sensor
+vdc heredado ni prueba equivalencia de la variante con error v-V. No se
+recomienda incorporarla como una modificación implícita de la campaña actual.
+
+5. BALANCE AGREGADO POSITIVO EN EL IEEE39 DECLARADO
+
+En el SG inspeccionado, omega es velocidad ABSOLUTA p.u., nu=omega-1 y
+  m_i=2 H_i S_ni, K_i=m_i omega_i^2/2.
+La relación algebraica del estator da
+  S_ni omega_i tau_e,i=P_SG,i+S_ni R_s,i(i_d^2+i_q^2).
+Multiplicar la ecuación de velocidad por S_ni omega_i resulta en
+  dot K_i=P_m,i-P_SG,i-P_Cu,i-S_ni D_i omega_i(omega_i-1).
+Para SG con gobernador, P_m=S_n[xg2-D_T nu]; en el SG no controlado con
+torque fijo, P_m=S_n tau_m omega, NO potencia mecánica fija.
+
+Sumar esto y (2), y usar KCL de potencia activa de la red, prueba
+  dot E = sum P_m + sum P_dc - P_load - P_loss,net
+           - P_loss,filter - P_Cu - sum S_n D omega(omega-1),
+  E=sum K_i + sum E_f,i + sum E_dc,i.                       (6)
+Todos los términos deben usar la misma base/rating. El término de damping
+respecto a velocidad nominal no es siempre positivo para omega<1; no debe
+llamarse una pérdida no negativa sin más. En los congelados inspeccionados
+D=R_s=0. Las pérdidas resistivas de red/filtro sí son no negativas, aunque
+su VARIACIÓN respecto al endpoint puede tener cualquiera de los dos signos.
+
+(6) es un balance exacto del almacenamiento contabilizado por estas ecuaciones
+reducidas. No pretende reconstruir toda energía electromagnética/puertos de
+excitación omitidos por un modelo fasorial de máquina. No confundir energía
+almacenada positiva con un Lyapunov de desviaciones, ni con pasividad global.
+
+Hay otro defecto concreto frente al swing de potencia constante:
+  Delta K = sum m_i nu_i + (1/2)sum m_i nu_i^2.
+Por tanto derivar sum m_i nudot_i directamente de un balance de POTENCIA
+descarta el segundo término. Para sincronía final nu_i=Omega,
+  Delta K=m Omega+(m/2)Omega^2.                             (7)
+Este término es pequeño a frecuencia próxima a nominal, pero no es cero en
+un teorema finito. Sumar las ecuaciones de TORQUE evita esa aproximación,
+pero introduce P/omega, que no se cancela por KCL en potencia.
+
+6. GOBERNADORES: NÚCLEO INTERIOR Y RESIDUO DE SATURACIÓN
+
+En una rama interior de TGOV1, con referencia fija y estados iniciales en
+equilibrio, la potencia mecánica incremental es
+  Delta P_m,i(s)=-D_g,i(s) nu_i(s),
+  D_g,i(s)=S_ni [D_T,i+(1+sT2_i)/
+                            (R_i(1+sT1_i)(1+sT3_i))].      (8)
+En particular
+  D_g,i(0)=S_ni(D_T,i+1/R_i),
+  D_g,i'(0)=S_ni(T2_i-T1_i-T3_i)/R_i.
+Es memoria de RESPUESTA DE POTENCIA, no una identificación exacta de todo el
+modelo con el swing reducido. El torque fijo de bus 39 añade +P_m39,0 nu39
+a las fuentes; si se pasa al lado de damping, su peso DC es NEGATIVO. No
+deducir positividad nodal de c a partir de los TGOV1 que sí tienen droop.
+
+Para conservar exactamente la rama limitada, definir
+  a_i=T1_i xg1dot_i - ref_i + xg1_i.
+En rama interior a_i=0; cuando el limitador congela xg1dot, a_i=xg1-ref.
+Integrando las dos ecuaciones de TGOV1 se obtiene, para referencia fija,
+  integral_0^T Delta P_m,i
+    =-S_ni(1/R_i+D_T,i) integral_0^T nu_i
+     +S_ni[(T2_i-T1_i)Delta xg1_i-T3_i Delta xg2_i]
+     +S_ni integral_0^T (a_i-a_i(0)).                      (9)
+El signo del último término es MÁS. No puede omitirse ni inferirse igual
+entre dos controladores sólo por ser éstos energéticamente neutros. En una
+representación de convolución, a entra además por el filtro de TGOV1; (9)
+es una forma de auditoría que evita esconder ese filtro y sus endpoints.
+Para un trim inicial interior, a_i(0)=0. Centrarlo evita una hipótesis oculta
+si el equilibrio inicial estuviera ya sostenido por un limitador activo.
+Para un horizonte infinito con frecuencia final no nula se centran las
+integrales respecto al valor final; las integrales sin centrar divergen.
+
+Se verificó simbólicamente el residual algebraico de (9), igual a cero, y
+el defecto/derivada de (3). Estos checks no son una simulación dinámica.
+
+7. LEY DE ÁREA QUE SÍ ADMITE EL BALANCE COMPLETO
+
+La siguiente identidad separa lo demostrado de lo que falta para un piso.
+Supóngase que (6) puede organizarse, en desviaciones desde el equilibrio,
+como
+  dot E(t)+sum_i (h_i*nu_i)(t)=P+r(t),                      (10)
+donde los nu_i son velocidades de SG, h_i son núcleos FIJOS de respuesta
+mecánica/potencia, con masa d_i y primer coeficiente kappa_i en Laplace,
+  d0=sum d_i>0, kappa=sum kappa_i.
+Los núcleos pueden tener pesos de signo diferente. r contiene todas las
+partes no representadas por ellos: carga ZIP/tensión, pérdidas variables,
+limitadores, fuentes suplementarias, referencias modificadas, etc. No se
+afirma que r sea independiente del controlador.
+
+Hipótesis de convergencia:
+  nu_i->Omega, E->E_inf, P+r_inf=d0 Omega,
+  integral |nu_i-Omega| finita, integral |r-r_inf| finita,
+  kernel de variación total y primer momento finitos,
+  historial de velocidades nulo antes del evento.
+Sea q_i(t)-q_i(0)-Omega t->eta_i, y para una fase de salida j,
+q_j(t)-q_j(0)-Omega t->eta_j. Definir delta_i-delta_j=eta_i-eta_j,
+  R=integral_0^infinito [r(t)-r_inf]dt.
+Integrar (10) después de restar el valor final produce
+  Delta E + sum_i d_i eta_i + kappa Omega = R.
+Por tanto la ley nodal exacta es
+  d0 A_j = Delta E + kappa Omega
+             + sum_i d_i(delta_i-delta_j) - R,
+  A_j=integral_0^infinito(Omega-nu_j)dt.                    (11)
+Es independiente de una red F(q) senoidal. Si nu_j=qdot_j incluye un salto
+de fase algebraico, se debe interpretar distribucionalmente o emplear el
+estimador de fase realmente medido; omitir el impulso añade un término de
+salto y hace falsa esa identificación de A_j.
+
+Para el estimador causal rectangular de ancho W, definido con la historia
+pre-evento correcta, incluso un salto de fase queda incluido y
+  A_j,W=A_j+Omega W/2.                                    (12)
+La necesidad de no cruzar el valor final es A_j,W/Omega>=0 para Omega!=0.
+La versión ESTRICTA requiere una separación positiva del valor final en un
+intervalo de medida no nula; continuidad desde reposo la garantiza para un
+rotor, pero un bus algebraico puede saltar y debe comprobarse por su salida.
+
+Cuando todos los SG sincronizan y E_f,E_dc tienen límites, (7) da
+  A_j/Omega = [m(1+Omega/2)+kappa
+       +(Delta E_f+Delta E_dc-R)/Omega
+       +sum_i d_i(delta_i-delta_j)/Omega]/d0.               (13)
+Con referencia DC fija y regulación íntegra del PI físico, vdc final=V y
+Delta E_dc=0; no asumirlo si hay limitación, referencia cambiada o falta de
+convergencia. Delta E_f generalmente no es cero.
+
+(13) podría dar un piso NECESARIO condicional si se encierran todos sus
+términos, incluido R, uniformemente sobre la familia de controladores/diseños.
+No da una fórmula de resistencia: los pesos d_i pueden ser negativos, los
+endpoints no están dados por una Laplaciana senoidal fija y R depende de la
+trayectoria. Un ajuste de r(t) posterior siempre puede cerrar el balance;
+eso sería auditoría, no capacidad predictiva independiente.
+
+Dos controladores con iguales endpoints, m, núcleos, Omega y Q neta pueden
+tener áreas diferentes si generan pérdidas/consumo ZIP o limitadores distintos.
+Si sólo cambian carga/pérdidas L(t) y ambos tienen la misma energía neta de
+control, (11) implica
+  d0(A_j^u-A_j^v)=integral_0^infinito [L_u(t)-L_v(t)]dt,
+asumiendo integrabilidad y mismos valores finales. Éste es el defecto exacto
+de la invariancia lossless. Igualdad de energía neta inyectada por el control
+no fuerza igualdad de energía disipada/consumida por el sistema.
+
+8. QUÉ IMPIDE TRANSFERIR DIRECTAMENTE EL PISO POR RESISTENCIA
+
+1) El evento preregistrado es un cambio de Pset de carga ZIP. En el archivo
+   las cargas son impedancia constante: el consumo realizado escala con |V|^2.
+   «100 MW» es el cambio nominal del parámetro, no una inyección d=P e_k
+   constante durante toda la trayectoria. El endpoint y P realizado deben
+   calcularse, no sustituirse por el rótulo de evento.
+2) Tensiones, estados de excitación y flujos variables impiden identificar
+   el endpoint completo con F(q)=B diag(gamma)sin(omega_b B^T q) de gamma fijo.
+   Las pérdidas impiden 1^T F=0; eliminar buses por Schur no las elimina.
+3) Frecuencia PLL, velocidad de rotor y derivada/estimador de fase terminal
+   son salidas distintas. No hay masa diagonal positiva en cada bus GFL o
+   de carga que permita aplicar el teorema a esos buses sin una derivación.
+4) Una reducción Schur conserva un transfer lineal con bookkeeping, pero
+   suele introducir memoria dinámica y feedthrough. No conserva por sí sola
+   positividad, pesos de Laplaciana, principio del máximo ni balance no lineal.
+5) Sustituir SG por GFL cambia rating, gobernadores/d0/kappa, fuente mecánica,
+   puertos y pérdidas, además de m. El LP inertia-only anterior no es un
+   certificado de retención SG para esa sustitución real.
+6) Corregir DC conserva los modos locales, pero (3) permite diferencias
+   finitas capaces de activar limitadores distintos. No reciclar seguridad
+   no lineal congelada como si ya perteneciera a la variante.
+7) Pasar 61 s sin violación no demuestra integrabilidad, endpoint, no cruce
+   ulterior o igualdad de área infinita. Los casos preregistrados son una
+   prueba finita del puente físico; hacen falta colas/cotas para (11).
+
+9. CLAIMS PERMITIDOS Y PRUEBA DECISIVA
+
+DEMOSTRADOS POR LAS ECUACIONES: balance (2)/(6), similitud tangente (4)/(5),
+defecto no lineal (3), identidad TGOV1 con saturación (9), y ley condicional
+de área completa (11) bajo sus hipótesis explícitas.
+
+EVIDENCIA EMPÍRICA QUE LA CAMPAÑA PUEDE DAR: residual de trim, cierre de
+energía positivo por gradiente del almacenamiento por RHS, diferencias
+finitas entre señales AC físicas/heredadas, vdc de signo tangente opuesto,
+activación de limitadores y desempeño de las cuatro perturbaciones fijas.
+La comparación de pequeña amplitud debe comprobar O(amplitud^2) con una
+escala/horizonte y error numérico declarados, no inferirla de un solo par.
+
+NO DEMOSTRADOS: estabilidad global, viabilidad energética de la fuente DC,
+límites de actuador, dominio vdc>0 invariante, piso IEEE39 de retención SG,
+resistencia secante de la red completa, ni neutralidad universal de controles.
+
+Prueba decisiva para transferir un límite, antes de optimizar: declarar una
+familia concreta y acotar UNIFORMEMENTE el residual R y los términos de
+endpoint/almacenamiento de (13), o justificar una reducción exacta a la clase
+anterior. Medir pequeños residuos en una sola trayectoria no proporciona esa
+uniformidad. Un resultado negativo sobre esas cotas también es informativo
+y debe conservarse: puede mostrar que el teorema reducido no decide ese caso.
+
+La similitud y los balances emplean álgebra clásica. La contribución posible
+es el contrato verificable que separa equivalencia espectral, consistencia de
+energía y transferibilidad de una restricción de frecuencia; no denominar
+nuevo teorema general de energía o de similitud a esas identidades.
+
+10. IDENTIDAD FINITA EJECUTABLE PARA LAS TRAZAS IEEE39
+
+Verificado de nuevo contra el archivo instalado Controls/Govs.jl, líneas
+137-149. El código dice tau_m*omega_meas=xg2-DT*DeltaOmega. En consecuencia
+  P_m,i=S_ni tau_m,i omega_i=S_ni(xg2_i-DT_i nu_i)
+EXACTAMENTE para TGOV1. NO añadir un residual de producto nu*tau_m a esa
+expresión. Ese producto ya está incluido por la ecuación de salida del
+gobernador. El SG39 de torque fijo requiere un tratamiento diferente abajo.
+
+Elegir t0 en el trim inicial previo al evento, con omega_i(t0)=1, parámetros
+y ratings constantes durante el caso. Todas las integrales siguientes son
+sobre [t0,T], sin hipótesis de convergencia. Usar E y L en unidades físicas
+coherentes, por ejemplo MJ y MW:
+  E=K+E_f+E_dc,
+  L=P_load+P_loss,net+P_loss,filter+P_Cu
+       +sum_i S_ni D_i omega_i(omega_i-1).
+Definir Delta f(t)=f(t)-f(t0), I_i=integral nu_i dt, y
+  d_i=S_ni(1/R_i+DT_i)   para los SG controlados presentes,
+  B_i=S_ni[(T2_i-T1_i)(xg1_i(T)-xg1_i(t0))
+                         -T3_i(xg2_i(T)-xg2_i(t0))],
+  A_i=S_ni integral [a_i(t)-a_i(t0)]dt,
+  a_i=T1_i xg1dot_i-ref_i+xg1_i,
+  ref_i=(p_ref_i-nu_i)/R_i.
+Para referencias fijas, la identidad local del gobernador es
+  integral Delta P_m,i dt = -d_i I_i+B_i+A_i.              (14)
+Si p_ref_i varía, añadir +(S_ni/R_i)integral Delta p_ref_i
+al lado derecho. El centrado a_i-a_i(t0) cubre también un trim inicialmente
+limitado; para los trims interiores a_i(t0)=0.
+
+En el SG39 presente, con torque y rating fijos y omega(t0)=1,
+  Delta P_m,39(t)=P_m,39(t0) nu_39(t)                     (15)
+exactamente. Si rho39=1 no hay SG39 y se omite ese término. No atribuirle una
+ganancia de droop positiva. Si su torque se cambia durante el evento, se
+debe integrar Delta P_m,39 REAL en lugar de (15).
+
+Restar el balance de potencia del trim inicial a (6), integrar y sustituir
+(14)-(15) da la identidad global ejecutable:
+
+  sum_g d_g I_g - P_m,39(t0) I_39
+    = sum_g B_g + sum_g A_g
+       + integral Delta P_dc,total dt
+       - integral Delta L dt - [E(T)-E(t0)].               (16)
+
+g recorre sólo los SG TGOV1 presentes. P_dc,total incluye rho S_base para
+cada GFL. La potencia DC es una FUENTE con signo positivo en (16); el consumo
+y las pérdidas entran negativos. En la campaña de referencias/DC fijos,
+integral Delta P_dc,total=0 si efectivamente no cambia su parámetro.
+El evento de carga ZIP se incorpora por su consumo L(t) REAL, no por nominal
+MW*(T-t_event). No es preciso identificar un endpoint de frecuencia.
+
+Si el punto inicial tiene residual de balance b0=sum P_m0+sum P_dc0-L0,
+se añade +(T-t0)b0 al lado derecho de (16). Esto permite reportar el efecto
+de tolerancia de trim sin imputarlo a la dinámica. Con punto inicial fuera
+de equilibrio, (14) necesita además el centrado correcto de las ecuaciones
+de xg1/xg2; la fórmula aquí declarada supone un trim, no un reinicio arbitrario.
+
+Extracción de a SIN diferenciar datos ruidosos:
+  - Preferida: usar xg1dot del RHS del modelo en cada estado/parámetro guardado.
+  - Equivalente a.e.: reproducir EXACTAMENTE el condicional instalado:
+      clipped=((xg1>Vmax) AND (ref>xg1)) OR
+              ((xg1<Vmin) AND (ref<xg1));
+      a=xg1-ref si clipped, y a=0 en otro caso.
+    Las desigualdades son estrictas; no sustituir > por >=. No inferir el
+    estado de saturación a partir sólo de P_m cuando ya se exporta xg1 real.
+  - Para comprobar la integral sin derivadas:
+      integral(a-a0)dt
+        =T1 Delta xg1 - integral Delta ref dt + integral Delta xg1 dt
+        =T1 Delta xg1 + I_i/R_i + integral Delta xg1 dt
+    con referencia fija. Aquí Delta xg1(t)=xg1(t)-xg1(t0), y Delta xg1 sin
+    argumento en el primer término denota la diferencia terminal.
+    Esta última identidad es algebraica por definición de a: no usarla como
+    ÚNICA evidencia de que el limitador real se ejecutó correctamente.
+    Contrastar su resultado con a obtenido del RHS/condicional, que es un
+    cálculo independiente de la integral reconstruida.
+
+Comprobaciones separadas recomendadas para evitar un cierre circular:
+  (i)   P_m exportado frente a S_n(xg2-DT nu), por cada SG controlado;
+  (ii)  identidad local (14) con a del RHS/condicional;
+  (iii) energía física dot(E)=grad(E)^T f frente a fuentes menos L;
+  (iv)  identidad integrada (16), con cuadratura refinada/coarsened;
+  (v)   SG39 frente a (15) y fuente DC correctamente ponderada.
+El error de cuadratura se concentra en eventos y cambios de rama; distinguir
+ese error del residual pointwise del RHS. (16) es una identidad de auditoría
+finita, no una garantía de frecuencia en todo tiempo ni una observación
+directa de un piso de inercia para toda la clase de controladores.

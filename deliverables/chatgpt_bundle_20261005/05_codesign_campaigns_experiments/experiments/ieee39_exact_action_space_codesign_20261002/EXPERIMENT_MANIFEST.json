@@ -1,0 +1,123 @@
+{
+  "experiment": "IEEE-39 exact action-space SG-to-GFL co-design",
+  "experiment_date": "2026-10-02",
+  "git_head": "d0fecb3264aeb855ab6700fc6ef66120d4b6c33c",
+  "git_branch": "research/expQ2B-secure-optimum",
+  "repository_dirty_before_this_experiment": true,
+  "preexisting_status_entry_count_excluding_this_directory": 128,
+  "all_new_artifacts_directory": "experiments/ieee39_exact_action_space_codesign_20261002",
+  "commits_or_pushes": false,
+  "julia_version": "1.11.9",
+  "python_version": "3.13.9",
+  "packages": {
+    "PowerDynamics": "5.0.0 (repository environment, verified in prior frozen run)",
+    "NetworkDynamics": "1.3.0 (repository environment, verified in prior frozen run)",
+    "SciMLBase": "3.53.2 (repository environment, verified in prior frozen run)"
+  },
+  "frozen_events": [
+    {
+      "event": "bus8_minus100",
+      "bus": 8,
+      "load_step_MW": -100.0
+    },
+    {
+      "event": "bus16_plus100",
+      "bus": 16,
+      "load_step_MW": 100.0
+    },
+    {
+      "event": "bus16_minus100",
+      "bus": 16,
+      "load_step_MW": -100.0
+    },
+    {
+      "event": "bus29_plus100",
+      "bus": 29,
+      "load_step_MW": 100.0
+    },
+    {
+      "event": "bus29_minus100",
+      "bus": 29,
+      "load_step_MW": -100.0
+    }
+  ],
+  "source_sha256": {
+    "Project.toml": "e170a2f9fca57aa3f8f3f053b318f0d5e3d434679dbdd4a4b8eef5481cfc0e4f",
+    "Manifest.toml": "92bc7849ea4445a4bedd18f732611ec271147e238c349aa5eeefc6d02023e911",
+    "reports/analytic_iteration_20261001/refined/protocol.toml": "8d02a5cf52a4768d21f941c79cca59d7fc5d435773c6bf8bb6f66f9fee6bac1d",
+    "reports/analytic_iteration_20261001/refined/joint_final.toml": "c8a63bcb04e5c2465a9b8faad886def8932cfc932c7237e24595cc807f19a0df",
+    "reports/experiment_N/TABLE_N01_original_operating_point.csv": "d0ea9984f8f0ffffd27f11cd4205c76bde2da30016b21de868f16ed527eac1af",
+    "reports/experiment_N/TABLE_N01_original_operating_point.csv.sha256": "ff3464434335b1a6228557b91904b7dac31ffa0fde9c6cc0f6c0b2770f2a08f5",
+    "src/bnd_model_expN/PDExactDesignN.jl": "f5211509b117d8a06e31efa62aa49b1df20d2c1ef7f5c6f9114bb9eb25838365",
+    "src/bnd_design_e/CollectiveModel.jl": "d13e8a839e138c4315c0893035a233abdb4ed640275ed30d60c576ed137794b8",
+    "experiments/nonlinear_codesign_20261001/PDPhysicalReference.jl": "5e1ca06ca97dd35245b0052d9f50549a9dcd2ba713bf29e8dfd8da99c6f9d50f",
+    "experiments/nonlinear_codesign_20261001/ReducedDAE.jl": "c5d721bc371dd6ee424afb2f40638e60307fd62389bba2ac69f3b7d247a2c80d",
+    "experiments/delay_dressed_replacement_frontier_20261002/DelayCharacteristic.jl": "3cdcbba68e03f9a1938f4f33bec035ca6528f853e719787c0fd6511cb1e9c845",
+    "experiments/delay_dressed_replacement_frontier_20261002/DELAY_MODEL_CONTRACT.md": "a1d5b47d4a085523da2449b220d57dcda65fc3349e0a724a69e05f067b8d95c0",
+    "experiments/delay_dressed_replacement_frontier_20261002/physical_holdout_reproduction.jl": "c4872203bd5839686c506232a9f9bcfd61f4ec82d577d6e5cca46e3d777f0908",
+    "experiments/codesign_validation_20261001/validate_pd.jl": "72f92874dea55be39ddcd7454057885fa19b81c0c646ed6dd3a0036c4bf317be",
+    "experiments/bnd_expQ2B/certified_search/ConsistentEventObservation.jl": "c7c243adea0a759fa7cb7dd99fe0c08d2cfb137ef7aa40b3e7856c0e6ee62483"
+  },
+  "experiment_artifact_sha256": {
+    "FIG_Q01_REDUCED_NYQUIST.png": "68a068a7d4df4aff15f49c1efaa57c39506e92be84903ae9a797e6211e1ce85d",
+    "FIG_Q02_PREDICTED_VS_ACTUAL_BOUNDARY.png": "4f3b2cbaf6c7191275a091804529cee370c78e3fd70eeeb5cdf57080a5c714e3",
+    "FIG_Q03_ANALYTIC_RHO_BOUNDARY.png": "8c631b4d04e304bf221a1aecfbc38195560ecd830f2df550a00c8780542d03e7",
+    "FINAL_REPORT.txt": "3e6911d881552bdf11d50557b8c3791c5d6225b5a8bb9d360012336d87dc2e62",
+    "make_q_figures.py": "331a9c6e60192ef363d2ba212c2001f51b9def9af694bf19bed3c7c047c8b820",
+    "POSTER_CLAIMS.md": "cbe1d5f32a28ccbfe50a4c0f7f8ec6503964c44628e9a490a6a6fd41b5d9e081",
+    "Q0_EVENT_METRICS.csv": "ea18ca597e28a6b792f6068ed906786526de9f1a84021586fa1ba4ab1fa22829",
+    "Q0_FULL_PHYSICAL_SPECTRUM.csv": "7bef9b5b37c8601f8cb8b6904d2d7fc326ef875f5d01301d6e69861494f4f3c6",
+    "Q0_RESULT.toml": "ea1003564d4a6b7aeba8ad7637f05856bdf48fec1d5c7ac5626099fa50b83006",
+    "Q0_TRIM_POWER_AUDIT.csv": "66845ca478915dda89169a50de241bb526cb37217aee075abe488ecdb265205a",
+    "q0_validate_five_events.jl": "5ac40e60fc54ac2e5c7b6f4418d6cf8e39d4751fd2e02969136919f7318fcdf7",
+    "q12_validate_low_rank.jl": "54bbbd5835eca67e68a35358a13223af9f64eee1848ffff710a5f34f709c5ac7",
+    "Q1_Q2_STATUS.toml": "03caa8e8354041ef1bce1755c1f970478d0f5cde962809483b83db642964777d",
+    "q3_count_dde_roots.jl": "a6572233e4833051dcdf456d1e09342c387188b6cc8b0e5bd59d75c25db69264",
+    "Q3_GATE_REPORT.md": "e901eb428e7cb134e751e6af65609266f742fe8b427a140099e102700f00a967",
+    "q3_refine_seeded_roots_balanced.jl": "c9b2bf7acc347e9c3e647159174925a635e491244e53c340f5b05b957d1b8e82",
+    "q3_sample_nyquist_diagnostic.jl": "de634484848d7a07a8024d705f7f302a8b8abe153b4c6fdede787ff7c9a30b4a",
+    "q3_seeded_nep_roots.jl": "00ffbcd5255bc84370ff00bb9d2f36527f947006fda1593208addaa16a7934ea",
+    "q3_track_local_roots.jl": "7d1751fc4494b4abd52b8a6b1c418cd4d8e6809f184c834022de3c26ce87d1d4",
+    "q3_verify_seeded_candidates.jl": "66482daeb5f6561b4d5fda32a2bd0d9e49071b8b023bbd6b49d8498693bd25fe",
+    "Q4_STATUS.toml": "7e9b6e11c169564ae0b00bc7f852db491c5938dccfb7269a878930876ed4438b",
+    "q4_validate_pi_boundary.jl": "13b9d99f6b667b5b860f3b830b8aa2df19af1ce5158f4c51a7267eef85cdcb0d",
+    "q56_validate_action_space.jl": "75b65671aec43a3171f87dc15634a6c70f55e4f3799fa6264e93fcb5e7ca9773",
+    "Q5_STATUS.toml": "4f5807ce2e915bb57209471150bcef0a348a33ad80bd140c1c3de755f058f467",
+    "Q6_STATUS.toml": "9ef9433be2a0698a2226a97eac4560b49f1e7fadb9f43a4fed6393e6bdce5601",
+    "README.md": "c521287fefc993ba7fe97b81e6daa7326cf7807337e0ecd03f9ede41e5b5080d",
+    "REPRODUCE.md": "0d011b152de8d8f9239bfe92db633b90377a7e2be9fb23bdadf0332b1b9b6a9c",
+    "seed_uniform_875.toml": "2bb815e4633b4718ed1c14637b67724505f98a7c1ae9bcf6f222629b4f6cd599",
+    "STATUS.md": "be48f3d2a5bc96078bd403bbbd641d8cf910e933180722465643b37f9fa9e1c9",
+    "TABLE_Q01_PLL_RANK_RESIDUAL.csv": "52cda136616d24e8d6515b54b7dd5301c29f3a9d1c642e67a009cd922750259d",
+    "TABLE_Q02_DDE_REDUCTION_VALIDATION.csv": "24baff2719049d8c6baf3579ae1fba5dd8d68080ef37908246f55cd18236ba06",
+    "TABLE_Q03_BALANCED_BOUND_PREFLIGHT.csv": "4050bd0d155edb0d963fc5c0e3f358b83c70a44c522b27b1a107085ec8568ece",
+    "TABLE_Q03_BALANCED_ROOT_REFINEMENT.csv": "6e19d9df8eda27f722c9eb7f81a25d4ea6c4c109b9000707f3fec620800700e5",
+    "TABLE_Q03_CONTOUR_ATTEMPT.csv": "4a71faacf3ea83279914e9da32a8f5d380ed5550c8ca02e08923c8f4e00a58ba",
+    "TABLE_Q03_DDE_ROOT_COUNTS.csv": "4f58e2e7d1ca4cf15ade220463ba4af8e662aab8ce658bedff49dc36b8797ad8",
+    "TABLE_Q03_INITIAL_OPERATOR_NORM_BOUND.csv": "ea0866e7c04dd409c1b9341011155618f2b881add5dedb575accd35c7ec7cd12",
+    "TABLE_Q03_LOCAL_ROOT_TRACKING.csv": "8595b957d319aeb50076291d255e8b134231912fd332e517f2d850ddf50d06ef",
+    "TABLE_Q03_REDUCED_NYQUIST_DIAGNOSTIC.csv": "3fe391cbe673c5522d59e387796a1529b0a2a0f497f4e88ce5650e8af7e15dd1",
+    "TABLE_Q03_SEEDED_CANDIDATE_SINGULAR_VALUES.csv": "53a5d08df7c6199d49d4041428e3d02c067ee2f4189cce3cb58b904c183cfa8f",
+    "TABLE_Q03_SEEDED_NEP_ROOTS.csv": "33d412f23cc799444d0b3c8e36dc1fc734f57d07d190d2f1b875270512c5ebdf",
+    "TABLE_Q04_PI_CLOSED_FORM_VALIDATION.csv": "d1beb83dec4eb04a7ae9490a3db733dca12c41bb76bc20841487f50830ab503e",
+    "TABLE_Q05_RHO_CLOSED_FORM_VALIDATION.csv": "701fb0711b2792a1a27607f55bffde121b4ce577e99dc2613a96b92904145bf5",
+    "TABLE_Q06_MASTER_ACTION_SPACE.csv": "281d1bfadfa343978e858361284a4dd85631098d024bc83f5ce83609a2916dff",
+    "THEORY_Q1_PLL_RANK_ONE.md": "b1b3c7fa3cca105dddf8b143126af5c97864e1de080244cdc9180a68d07450cf",
+    "THEORY_Q2_DDE_REDUCTION.md": "0c4de931b0b4c7dcc9aa0c966551a48e8897b359a09970bcdb2702acaec96886",
+    "THEORY_Q3_ROOT_COUNT.md": "38a4adeb122f010a585c56c0f0be201c0304462b8b559fef72ece27ddd4ec2e7",
+    "THEORY_Q4_PI_BOUNDARY.md": "4d94a4cc2d210186f4c8cbf2c8cdf711098b33370088e4d78a3945acef2f81e2",
+    "THEORY_Q5_Q6_ACTION_SPACE.md": "ba5413f1503db0345836972960ed5901967911089f83461cf7546b8803a30527",
+    "THEORY_Q6_MASTER_ACTION_SPACE.md": "caaf9034599eee6544e98110a35ac1e03fda0c87b91ea371520b042d8dcc4c4b",
+    "write_manifest.py": "80752678b093e7b47dc9396d937d7989506eee95d54a58e0854b3d6f02b60a0c"
+  },
+  "gate_decisions": {
+    "Q0": "PASS: fully validated zero-delay feasibility witness; not optimized",
+    "Q1_Q2": "PASS at stated source-identity and numerical-reconstruction scope",
+    "Q3": "INDETERMINATE at 20 and 40 ms; positive-delay winding indices are unverified diagnostics",
+    "Q4": "conditional target-root equation validated; nearest-pole boundary not established",
+    "Q5": "rank-two conditional law validated; no physical roots in tested grid",
+    "Q6": "fixed-coordinate action-space factorization validated; rank bound <=30",
+    "Q7_Q8": "NOT RUN because the Q3 gate did not pass"
+  },
+  "note": "Repository has substantial pre-existing dirty/untracked content. New experiment outputs are confined to this directory; hashes identify the read-only source snapshot used here."
+}

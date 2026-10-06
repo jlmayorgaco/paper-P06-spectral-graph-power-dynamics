@@ -1,0 +1,11 @@
+{
+  "source_sha256": "4c195226a9056adf820eb24eae4b0d6ff0ed0fc40c078eaae476adf0536aadcc",
+  "pattern_sha256": "d663338a56d232a19a2f6d0c0d8f148611681942bb9f394ffa99ebbcc3c96b40",
+  "target_guard": -0.0600001,
+  "gain_bounds": [
+    7.853981633974483,
+    125.66370614359172
+  ],
+  "trust_region_relative": 0.05,
+  "max_iterations": 60
+}

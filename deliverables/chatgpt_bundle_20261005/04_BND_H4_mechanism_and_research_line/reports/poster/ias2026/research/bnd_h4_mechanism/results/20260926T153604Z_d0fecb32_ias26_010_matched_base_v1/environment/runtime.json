@@ -1,0 +1,69 @@
+{
+  "run_id": "20260926T153604Z_d0fecb32_ias26_010_matched_base_v1",
+  "run_root": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\poster\\ias2026\\research\\bnd_h4_mechanism\\results\\20260926T153604Z_d0fecb32_ias26_010_matched_base_v1",
+  "git_commit": "d0fecb3264aeb855ab6700fc6ef66120d4b6c33c",
+  "git_dirty": true,
+  "python": {
+    "version": "3.13.9 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 19:09:58) [MSC v.1929 64 bit (AMD64)]",
+    "implementation": "CPython",
+    "executable": "C:\\Users\\walla\\anaconda3\\python.exe"
+  },
+  "packages": {
+    "numpy": "2.3.5"
+  },
+  "source_hashes": {
+    "run_m1a_reconciliation.py": "97f6213f5de22b356cb509239878444c0833326ece81ecf09f8194be774cc231",
+    "tx4_contextual_return.py": "77d4ed0f76f8c4a6ec369bc30b306361cff9b789c6f432e287d5f180d9210b74",
+    "_f7_common.py": "2e6ac2b3490c061d5ee3c344043dbfa6dd663e50bfbe4aadab304ad0a8dfd44f",
+    "ieee39_case.py": "1f38a8e541780ab7205809dc1ba58bdafb6c923933f5772d46407064edc8c722",
+    "ieee39_network.py": "f42144cd02a6dc779ed690fd866ad026f33eb7844584c7f10281fc7d98e3fe13",
+    "ieee39_devices.py": "bcf0c76be65b171b580684065cde4eb88d0433c6b4d7beefec966f8711036d90",
+    "port_admittance.py": "b0fa694dd0111be158133a9cf8c4e36be670e50ef562dcd63f89d7ff87b8d4ef",
+    "IAS26-010_ROOT_CAUSE.md": "d3d11be1badbba23c753bec1f4e8fe3a87087fc9a0f1456aa180d67f709ef613"
+  },
+  "model_hashes": {
+    "base": "447d5b8d9ac3c6f5ed1771ec4ab6ed44fee05d97731751920ec522b3022ec848",
+    "flagship": "5bd6c2c82d876e9667ba177eff952b958902967f19b887fb1e3d7aba06e4fb5c"
+  },
+  "equilibrium_and_canonical_matrix_hashes": {
+    "base": {
+      "xz_sha256": "17a018be296ba90644c714196e057156b95e2ceb38f54035bf78deca3236a002",
+      "reduced_A_sha256": "5dd3da246201a21275c86e3d888239ae584aac8e1f5687ac1ab3792b34a60ce8"
+    },
+    "flagship": {
+      "xz_sha256": "18adf2938aa8263bbdb97165dceba885d7323a935664a1d18f16fbac7294ac34",
+      "reduced_A_sha256": "da25d45096f80d872ef40caa968fa2c996ef0cc6b1bb92420ad2869c7cc92751"
+    }
+  },
+  "regression_checks": {
+    "current_h4": {
+      "state_count": 86,
+      "alpha": 0.12700646782830968,
+      "frequency_hz": 0.6222796695036534,
+      "model_hash_matches_pre_correction": true,
+      "equilibrium_hash_matches_pre_correction": true,
+      "reduced_A_hash_matches_pre_correction": true
+    },
+    "frozen_proper_subset_ledger_read_only": {
+      "path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\poster\\ias2026\\research\\bnd_h4_mechanism\\results\\20260926T083621_h4_f1_f2_assets_v1\\derived\\F1_PORTFOLIOS.csv",
+      "sha256": "beda8de970cdf78e8f36392b626dbebaae765e8a0a2f87bd3558878fde414644",
+      "portfolio_rows": 16,
+      "proper_subset_rows_including_base": 15,
+      "all_proper_subsets_stable": true,
+      "h4_status": "UNSTABLE"
+    },
+    "frozen_julia_gfl11_parity_read_only": {
+      "path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\poster\\ias2026\\research\\bnd_h4_mechanism\\results\\20260925T225832_dee6fe69_h4_modal_schur_v1\\claims\\CROSSCODE_GFL11_RECONCILIATION.json",
+      "sha256": "9e107558c042160527d382b5710b53aa42ba79a379363d71b17459dcfb8f9951",
+      "status": "PASS_GFL11_EXACT_REPRODUCTION",
+      "python_states": 86,
+      "julia_states": 86,
+      "alpha_difference_s-1": 4.9398755e-10,
+      "frequency_difference_hz": 1.50509e-11,
+      "pass": true
+    }
+  },
+  "changed_file_diff": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\poster\\ias2026\\research\\bnd_h4_mechanism\\results\\20260926T153604Z_d0fecb32_ias26_010_matched_base_v1\\raw\\reconciliation\\IAS26_010_CHANGED_FILES.patch",
+  "changed_file_diff_sha256": "5700cefdc0df550d1b902a64c4ca921a0f053ba696217c3cf6de654713ee054b",
+  "output_policy": "all diagnostics are beneath this immutable run root; no zip is produced"
+}

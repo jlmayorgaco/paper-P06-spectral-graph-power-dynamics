@@ -1,0 +1,72 @@
+% References, takeaway, contact, and QR
+\long\def\PosterSectionContent{%
+  \begin{tikzpicture}[x=1mm,y=1mm]
+    \useasboundingbox (0,0) rectangle (\PosterGridWidthMm,\PosterBottomRowHeightMm);
+    \fill[IASDeepGreen] (0,0) rectangle (\PosterGridWidthMm,\PosterBottomRowHeightMm);
+    \fill[IASGold] (0,82) rectangle (\PosterGridWidthMm,\PosterBottomRowHeightMm);
+    \fill[IASDarkGreen] (0,0) rectangle (644,27);
+    \fill[IASHeaderGreen] (644,0) rectangle (\PosterGridWidthMm,82);
+    \fill[IASGold] (643,10) rectangle (644,74);
+
+    \node[anchor=north west,inner sep=0pt,outer sep=0pt,
+      font={\PosterFooterKickerType},text=IASGold] at (22,76)
+      {TAKEAWAY};
+    \node[anchor=north west,inner sep=0pt,outer sep=0pt,
+      font={\PosterFooterTitleType},text=IASWhite] at (22,64)
+      {LOCAL DELAY. TWO OPPOSITE DAMPING EFFECTS.};
+    \node[anchor=north west,inner sep=0pt,outer sep=0pt,
+      font={\PosterFooterSummaryType},text=IASPaleGreen] at (22,42)
+      {Network paths determine the sign; collective bounds quantify the interaction.};
+
+    \node[anchor=west,inner sep=0pt,outer sep=0pt,
+      font={\PosterFooterReferenceHeadingType},text=IASGold] at (22,14)
+      {REFERENCES};
+    \node[anchor=north west,inner sep=0pt,outer sep=0pt,
+      font={\PosterFooterReferenceType},text=IASWhite,align=left] at (130,24)
+      {[1] Markovi\'c et al., IEEE TPWRS, 2021.\\{}
+       [2] Bindel \& Hood, SIAM J. Matrix Anal., 2013.\\{}
+       [3] Beyn, Linear Algebra Appl., 2012.};
+    \node[anchor=north west,inner sep=0pt,outer sep=0pt,
+      font={\PosterFooterReferenceType},text=IASWhite,align=left] at (410,24)
+      {[4] Johansson, IEEE Trans. Comput., 2017.\\{}
+       Theory, proofs, full gain vectors and data: QR.};
+
+    \node[anchor=north west,inner sep=0pt,outer sep=0pt,
+      font={\PosterFooterContactHeadingType},text=IASGold] at (660,75)
+      {CONTACT + CODE};
+    \node[anchor=north west,inner sep=0pt,outer sep=0pt,
+      font={\PosterFooterContactNameType},text=IASWhite] at (660,61)
+      {Jorge Luis Mayorga Taborda};
+    \node[anchor=north west,inner sep=0pt,outer sep=0pt,
+      font={\PosterFooterContactLineType},text=IASPaleGreen] at (660,49)
+      {jl.mayorga@uniandes.edu.co};
+    \node[anchor=north west,inner sep=0pt,outer sep=0pt,
+      font={\PosterFooterContactLineType},text=IASPaleGreen] at (660,37)
+      {Universidad de los Andes};
+    \node[anchor=north west,inner sep=0pt,outer sep=0pt,
+      font={\PosterFooterContactLineType},text=IASPaleGreen] at (660,25)
+      {Bogot\'a, Colombia};
+    \fill[IASWhite] (792,13) rectangle (854,74);
+    \node[anchor=north west,inner sep=0pt,outer sep=0pt] at (796,70)
+      {\includegraphics[width=54mm]{assets/repo_qr.png}};
+    \node[anchor=north,inner sep=0pt,outer sep=0pt,
+      font={\PosterFooterQrLabelType},text=IASPaleGreen] at (823,10)
+      {CODE + DATA};
+  \end{tikzpicture}\par%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewFullPageWidth}
+  \def\PosterPageHeight{\PosterPreviewBottomPageHeight}
+  \def\PosterPreviewLeft{\PosterOuterMargin}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

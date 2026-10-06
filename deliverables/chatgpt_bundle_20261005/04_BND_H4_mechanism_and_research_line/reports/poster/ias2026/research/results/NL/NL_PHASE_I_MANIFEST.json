@@ -1,0 +1,63 @@
+{
+ "program": "nonlinear_portfolio_v2, Phase I (NL00-NL02)",
+ "model_version": "L1-v2.0",
+ "base_commit": "ec408e3005a1d9c11cf00e31f77be61a2cffdcf0",
+ "environment": {
+  "python": "3.13.14",
+  "numpy": "2.5.2",
+  "scipy": "1.18.1",
+  "pandas": "3.0.5",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "venv": ".venv/tx3-analysis (frozen, unmodified)"
+ },
+ "runs": {
+  "NL00_audit.py": {
+   "seeds": {
+    "base_conversion": 7,
+    "rotation": 1
+   },
+   "phi_rad": 0.37,
+   "off_equilibrium_perturbation": 0.001
+  },
+  "NL02_manifold_derivatives.py": {
+   "seed": 20260912,
+   "points": 11,
+   "steps": [
+    0.1,
+    0.03,
+    0.01,
+    0.003,
+    0.001,
+    0.0003,
+    0.0001,
+    3e-05,
+    1e-05
+   ],
+   "formula_step": 0.0001,
+   "first_order_step": 1e-06
+  },
+  "tests/test_nl01_model.py": {
+   "result": "12 passed"
+  }
+ },
+ "code_sha256": {
+  "src/ibr_cycles/nonlinear/__init__.py": "70e20b2a3cab1b71bc5851735453cebeedc6c6b4715b9d06dc2062f17631ae1b",
+  "src/ibr_cycles/nonlinear/manifold.py": "59deed9a983e209b74d030b6ce04d9758ec65143fd184b9606596410a78b6e02",
+  "src/ibr_cycles/nonlinear/model.py": "e568bd72f790da724f288741c851735d055700842b7ae6bcaebee0b8fd5aa059",
+  "src/ibr_cycles/nonlinear/network.py": "0ef28440e7bdf21b97ca141f2a0703ff3048405dca0c30258ca8805ed11be1dc",
+  "experiments/nonlinear_portfolio_v2/NL00_audit.py": "55465d5f3103ac0607d5f9ba31576d5b7a6a4e0fffd3044a23dd2419f7cf60d7",
+  "experiments/nonlinear_portfolio_v2/NL02_manifold_derivatives.py": "9111c530dc0e2dec539c2ad803c5640affdaa2b38e70fdbac630be7b90af5e42",
+  "tests/test_nl01_model.py": "b0ac438dd06baec48dac80b2a3641963198813bfcec0bd87137bbe179138a4d7"
+ },
+ "outputs_sha256": {
+  "results/NL/NL00/NL00_base_conversion.csv": "edb61a269ef98e3e658f8986eb29ec0963c9e6c0b7fbb7497b431a10a1c0974a",
+  "results/NL/NL00/NL00_hashes.json": "af143e1d65f00eaec8bf28ba4866729b2df0065d516e5b43100c645938ede90e",
+  "results/NL/NL00/NL00_rotation_nonlinear.csv": "3546f57f206b81394ff142726d59bf7b0f3450068714f49c5f711503fa715b43",
+  "results/NL/NL00/NL00_slack_audit.csv": "36af86e738e8849dd57f70aaaa970d3ef60118c951cf1ccceadf8c17617f7308",
+  "results/NL/NL00/NL00_symmetry_audit.csv": "fa963c8c122fd05121e126e862e4a4c5e0f53c48a4c803b5a7edc5d6ab9c9e10",
+  "results/NL/NL00/NL00_units.csv": "2e68616f9de404a2e09cc86cff31a1fbee5533e90f3cc2380c503a5902ec1611",
+  "results/NL/NL02/NL02_convergence.csv": "28c03156df7d00701c63fd34ae6eda462b796262f222febbc05dd7a63ba0c6c4",
+  "results/NL/NL02/NL02_summary.csv": "56db5da811c3b2f9e3efc9d9c631809c57f8d76d5f0f4987d883452b89f248a0",
+  "results/NL/NL02/NL02_summary.json": "20318fe0ed7250bf9bf03479ab716b1d5cb71d545240d52f87e294b20e444179"
+ }
+}

@@ -1,0 +1,3 @@
+design_id,replacement_percent,safe_lower_ms,unsafe_upper_ms,bracket_width_ms,tau_critical_estimate_ms,critical_root_real_candidate,critical_frequency_candidate_hz,critical_family_id,candidate_root_residual,status
+seed_875,87.5,39.375,39.4375,0.0625,39.40625,-0.03694636377683381,5.260382964146394,3,6.336871379612127e-16,NUMERICAL_FIRST_OBSERVED_TRANSITION_NOT_GLOBAL_DELAY_CERTIFICATE
+best_zero_delay_88455,88.45514078456176,37.375,37.4375,0.0625,37.40625,-0.03931665064330042,5.638311057941209,5,3.582986286392918e-15,NUMERICAL_FIRST_OBSERVED_TRANSITION_NOT_GLOBAL_DELAY_CERTIFICATE

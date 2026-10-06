@@ -1,0 +1,24 @@
+{
+  "run_id": "20260927T144629Z_d0fecb32_ias26_060_operating_v1",
+  "scenario_ids_in_manifest": 1000,
+  "case_rows": 17000,
+  "scenario_ids_with_17_cases": 1000,
+  "status_counts": {
+    "PASS": 16439,
+    "PHYSICALLY_INFEASIBLE": 561
+  },
+  "valid_scenario_count": 967,
+  "invalid_scenario_count": 33,
+  "scenario_id_replacements": 0,
+  "outcome_dependent_filtering": false,
+  "spectrum_files": 1000,
+  "expected_spectrum_files": 1000,
+  "max_pf_residual": 3.48563674546148e-13,
+  "max_dae_f_residual": 5.536991240588705e-13,
+  "max_dae_g_residual": 3.3395508580724714e-13,
+  "max_eigenpair_residual": 1.0489972360848253e-14,
+  "max_complement_condition": 5814.007554140897,
+  "bootstrap_seed": 20260927,
+  "bootstrap_replicates": 10000,
+  "TDS_model_scope": "nonlinear phasor-domain DAE, not EMT"
+}

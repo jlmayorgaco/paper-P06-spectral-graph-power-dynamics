@@ -1,0 +1,69 @@
+INDEPENDENT REVIEW RECORD — 2026-10-03
+
+Three independent reviews were requested under the publication-quality skill:
+mathematics, evidence/provenance, and literature/contribution. These are internal
+AI-assisted reviews, not journal peer review. No reviewer ran grid simulations.
+
+MATHEMATICAL AUDIT
+Passed conditionally: affine descriptor determinant/factorization, contour
+logarithm identity, cluster remainder, panel enclosure, regional LP, support-
+function dual and exclusion direction. Corrections incorporated:
+- distinguish parameter region from displacement region;
+- use max(abs(lower increment),abs(upper increment)), not unspecified half-width;
+- exclude the structural rotational zero from physical margin requirements;
+- require G(rho) regular throughout the entire chart;
+- coordinate scaling requires consistently rescaled enclosure constants.
+
+Second audit of the new strengthening passed: collective Hessian sign/factor,
+trace-walk majorant, cross-site omission budget and lifted outer relaxation.
+Corrections incorporated:
+- physical rho selector includes both algebraic channel rows;
+- use the canonical trace-log branch in numerical checks;
+- include quadratic coefficient error;
+- subtract lower, not upper, within-site enclosures from the total upper bound;
+- a primal SDP value is not a certified upper bound.
+
+EVIDENCE AUDIT
+77 artifact hashes and 51 input hashes in the two earlier manifests matched.
+The historical THEORY input was resolved through its preserved snapshot.
+The 87.6% design is a constructed finite step, not an optimizer output.
+Fixed gains also pass its spectral check; their nonlinear events were not run.
+The original regional box contains this witness at its upper replacement corner.
+That box cannot establish a physically active interior replacement ceiling.
+Heterogeneous-delay algebra checks and uniform-delay nonlinear evidence must
+not be mixed into a same-problem bracket.
+ForwardDiff parity is a second differentiation path through the same model,
+not an independent simulator. The saved trajectories omit raw device states
+and the actuator's limiting bus/time/type; do not infer those mechanisms.
+
+LITERATURE AUDIT
+Descriptor lifting, contour localization/moments, structured DDE robustness,
+fixed-structure spectral-abscissa optimization and PLL/penetration studies are
+established. The promising application contribution is an informative finite
+regional replacement bound or strict local-controller exclusion witness with
+moving modal patterns and fixed delays. That quantitative application result
+has not yet been established.
+
+REMAINING SUBMISSION GATES
+1. A verified upper bound below the box-only ceiling on a new preregistered
+   physically justified region, or a strict finite controller-exclusion witness.
+2. A fair identical-contract comparison against spectral-abscissa/SQP co-design,
+   plus the missing paired fixed-gain nonlinear events.
+3. A concrete design decision whose error from discarding collective terms is
+   material and explained by the derived interaction budget.
+4. Successful native-editor compilation and final visual/prose/reference review.
+
+No reviewer endorsed a global optimum, necessity of neighboring feedback,
+physical-line-cycle law, GSP compression, or readiness for a poster award.
+
+FOLLOW-UP REVIEW OF EXECUTED CONTINUOUS CERTIFICATE
+The mathematical reviewer confirmed interval segment coverage, the descriptor
+log-derivative trace, interval integration, unique integer count, parameter-box
+homotopy, and algebraic-chart regularity. All 485 saved panels form an exactly
+closed positively oriented chain with no gaps or zero-length segments.
+The square's right edge is -0.082296885884919989...; the one retained root
+therefore satisfies the -0.05 margin throughout the declared box.
+Corrections incorporated: state that tau is exact decimal 1/25; round the
+displayed q upper bound outward to 0.98794235; retain the one-cluster scope.
+The broad scalar remainder and coefficient intervals do not imply a useful
+replacement ceiling. No heavy calculation was repeated for this review.

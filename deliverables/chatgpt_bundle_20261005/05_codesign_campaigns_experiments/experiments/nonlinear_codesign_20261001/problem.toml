@@ -1,0 +1,38 @@
+# Numerical instance of the general theory in METHOD_SPEC.txt.
+# These values define an experiment, not universal grid or control limits.
+backend = "frozen_ieee39_Z_load_SG_GFL"
+dc_convention = "physical_supply"
+disturbance_set_kind = "finite_declared_scenarios"
+monitor_all_buses = true
+horizon_s = 60.0
+window_s = 0.5
+frequency_limit_Hz = 0.5
+rocof_limit_Hz_s = 0.5
+voltage_min_pu = 0.9
+voltage_max_pu = 1.1
+voltage_limits_status = "exploratory_assumption"
+nominal_decay_margin_s_inv = 0.05
+minimum_actuator_fraction_slack = 0.002
+actuator_margin_status = "declared_nonsaturating_search_domain"
+converter_current_limit_supplied = false
+dc_energy_limits_supplied = false
+continuous_disturbance_robustness_certified = false
+
+[[scenarios]]
+bus = 8
+delta_MW = 100.0
+[[scenarios]]
+bus = 8
+delta_MW = -100.0
+[[scenarios]]
+bus = 16
+delta_MW = 100.0
+[[scenarios]]
+bus = 16
+delta_MW = -100.0
+[[scenarios]]
+bus = 29
+delta_MW = 100.0
+[[scenarios]]
+bus = 29
+delta_MW = -100.0

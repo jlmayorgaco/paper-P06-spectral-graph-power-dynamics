@@ -1,0 +1,123 @@
+{
+  "canonical_case": "systems/ieee39_tx3_gfl3/andes_case.xlsx",
+  "canonical_case_sha256": "c317fbc530df0da8766fab614d839d750163012813e662e0022281de6b50a33e",
+  "coalition_outcomes_inspected_before_freeze": false,
+  "freeze_id": "TX3-E05D-HOLDOUT-1.0",
+  "generator": "independent scrambled Sobol base-2 draw of eight points",
+  "old_points_reused": false,
+  "operating_points": [
+    {
+      "gfl_dispatch_scale": 1.0097450087219477,
+      "load_scale": 1.006431670486927,
+      "operating_point_id": "D00",
+      "reactive_load_scale": 1.0085226133652032,
+      "redispatch_mw": 0.7249284908175468,
+      "role": "independent_E05D_scrambled_Sobol_seed",
+      "seed_id": "D00",
+      "sobol_index": 0,
+      "split": "e05d_blind_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 0.9886441337689758,
+      "load_scale": 0.9408194008469581,
+      "operating_point_id": "D01",
+      "reactive_load_scale": 0.9965563801303506,
+      "redispatch_mw": -8.836925998330116,
+      "role": "independent_E05D_scrambled_Sobol_seed",
+      "seed_id": "D01",
+      "sobol_index": 1,
+      "split": "e05d_blind_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 1.024775522928685,
+      "load_scale": 0.9758799751847982,
+      "operating_point_id": "D02",
+      "reactive_load_scale": 1.0272633452713489,
+      "redispatch_mw": 8.440932370722294,
+      "role": "independent_E05D_scrambled_Sobol_seed",
+      "seed_id": "D02",
+      "sobol_index": 2,
+      "split": "e05d_blind_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 0.9736740185506642,
+      "load_scale": 0.9915178867429495,
+      "operating_point_id": "D03",
+      "reactive_load_scale": 0.9777934500388801,
+      "redispatch_mw": -1.5870995819568634,
+      "role": "independent_E05D_scrambled_Sobol_seed",
+      "seed_id": "D03",
+      "sobol_index": 3,
+      "split": "e05d_blind_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 1.0191401298716665,
+      "load_scale": 0.9895416832715273,
+      "operating_point_id": "D04",
+      "reactive_load_scale": 0.9914605553261936,
+      "redispatch_mw": -3.6308627016842365,
+      "role": "independent_E05D_scrambled_Sobol_seed",
+      "seed_id": "D04",
+      "sobol_index": 4,
+      "split": "e05d_blind_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 0.9830539049208165,
+      "load_scale": 0.9626600635796785,
+      "operating_point_id": "D05",
+      "reactive_load_scale": 1.0034011527895927,
+      "redispatch_mw": 6.729193571954966,
+      "role": "independent_E05D_scrambled_Sobol_seed",
+      "seed_id": "D05",
+      "sobol_index": 5,
+      "split": "e05d_blind_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 1.0041120896674693,
+      "load_scale": 0.9577499352395534,
+      "operating_point_id": "D06",
+      "reactive_load_scale": 0.9727232601121067,
+      "redispatch_mw": -5.8757987059652805,
+      "role": "independent_E05D_scrambled_Sobol_seed",
+      "seed_id": "D06",
+      "sobol_index": 6,
+      "split": "e05d_blind_holdout"
+    },
+    {
+      "gfl_dispatch_scale": 0.9980252352915704,
+      "load_scale": 1.0146181343495846,
+      "operating_point_id": "D07",
+      "reactive_load_scale": 1.0221601955778896,
+      "redispatch_mw": 4.0180848725140095,
+      "role": "independent_E05D_scrambled_Sobol_seed",
+      "seed_id": "D07",
+      "sobol_index": 7,
+      "split": "e05d_blind_holdout"
+    }
+  ],
+  "previous_scientific_Sobol_seeds": [
+    20260827,
+    20260828,
+    20260829
+  ],
+  "range_basis": "identical established E05C operating-point dimensions and ranges; not widened",
+  "ranges": {
+    "gfl_dispatch_scale": [
+      0.97,
+      1.03
+    ],
+    "load_scale": [
+      0.94,
+      1.02
+    ],
+    "reactive_load_scale": [
+      0.97,
+      1.03
+    ],
+    "redispatch_mw": [
+      -10.0,
+      10.0
+    ]
+  },
+  "seed": 20260830
+}

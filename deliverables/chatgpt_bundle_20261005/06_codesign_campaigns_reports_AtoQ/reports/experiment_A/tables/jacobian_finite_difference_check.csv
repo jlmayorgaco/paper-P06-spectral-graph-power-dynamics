@@ -1,0 +1,4 @@
+state_index,state_name,finite_difference_step,relative_jacobian_error,sign_matches
+1,"VIndex(1, :busbar₊u_r)",1.036017122904522e-6,1.5195179611323405e-10,true
+94,"VIndex(34, :ctrld_gen₊machine₊ψ″_d)",1.0e-6,1.5649471803316973e-10,true
+189,"VIndex(39, :busbar₊u_i)",1.0e-6,1.855746121394319e-11,true

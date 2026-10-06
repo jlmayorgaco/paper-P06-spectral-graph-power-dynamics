@@ -1,0 +1,150 @@
+{
+  "experiment": "E25_time_domain_validation",
+  "seed": 20260909,
+  "config": {
+    "core": [
+      30,
+      33,
+      35,
+      37
+    ],
+    "step_bus": 16,
+    "step_fraction": 0.02,
+    "settle_time": 0.3,
+    "t_end": 9.0
+  },
+  "python": "3.13.14",
+  "platform_name": "Windows-11-10.0.26200-SP0",
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "dependencies": {
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1",
+    "networkx": "3.6.1",
+    "pyarrow": "25.0.1"
+  },
+  "started_utc": "2026-09-10T02:24:09.583334+00:00",
+  "results": {
+    "rows": [
+      {
+        "configuration": "base",
+        "integrator_ok": true,
+        "linear_real": -0.12647823618208578,
+        "linear_frequency_hz": 0.6385460550566344,
+        "tds_growth_rate": -0.12515976946841548,
+        "tds_frequency_hz": 0.6385064705249729,
+        "frequency_error_hz": 3.958453166152953e-05,
+        "growth_rate_error": 0.0013184667136703077,
+        "identified_modes": 20,
+        "pencil_order": 20,
+        "band_power_share": 0.9250052034748034,
+        "window_stop_s": 9.0,
+        "match_gap": 0.001341720759004351,
+        "peak_signal": 1.5003101798895265e-05,
+        "window_s": 8.7,
+        "cycles_fitted": 5.555350678992719,
+        "refactorizations": 13
+      },
+      {
+        "configuration": "flagship",
+        "integrator_ok": true,
+        "linear_real": 0.14467022043327096,
+        "linear_frequency_hz": 0.5746810861612759,
+        "tds_growth_rate": 0.14300666029657175,
+        "tds_frequency_hz": 0.5742398881141073,
+        "frequency_error_hz": 0.00044119804716857836,
+        "growth_rate_error": 0.0016635601366992159,
+        "identified_modes": 12,
+        "pencil_order": 12,
+        "band_power_share": 0.7676388550167241,
+        "window_stop_s": 9.0,
+        "match_gap": 0.003232975720032739,
+        "peak_signal": 1.739639212826701e-05,
+        "window_s": 8.7,
+        "cycles_fitted": 4.999725449603099,
+        "refactorizations": 36
+      },
+      {
+        "configuration": "repair RC retune",
+        "integrator_ok": true,
+        "linear_real": -0.050006895165341486,
+        "linear_frequency_hz": 0.5549240818977245,
+        "tds_growth_rate": -0.04486722446516563,
+        "tds_frequency_hz": 0.1010272521506585,
+        "frequency_error_hz": 0.45389682974706597,
+        "growth_rate_error": 0.005139670700175854,
+        "identified_modes": 20,
+        "pencil_order": 20,
+        "band_power_share": 0.014813263907185405,
+        "window_stop_s": 9.0,
+        "match_gap": 4.121466989029132,
+        "peak_signal": 1.915618506022073e-05,
+        "window_s": 8.7,
+        "cycles_fitted": 4.827839512510202,
+        "refactorizations": 36
+      },
+      {
+        "configuration": "repair condenser 25%",
+        "integrator_ok": true,
+        "linear_real": -0.20111906128685975,
+        "linear_frequency_hz": 0.9206526124840154,
+        "tds_growth_rate": -0.2322243373400246,
+        "tds_frequency_hz": 0.0399359051375775,
+        "frequency_error_hz": 0.8807167073464379,
+        "growth_rate_error": 0.03110527605316485,
+        "identified_modes": 12,
+        "pencil_order": 12,
+        "band_power_share": 0.09518032389308716,
+        "window_stop_s": 5.0,
+        "match_gap": 6.035635812833068,
+        "peak_signal": 2.0330011000734134e-05,
+        "window_s": 4.7,
+        "cycles_fitted": 4.327067278674873,
+        "refactorizations": 21
+      },
+      {
+        "configuration": "repair voltage control",
+        "integrator_ok": true,
+        "linear_real": -0.0953230702522868,
+        "linear_frequency_hz": 0.7250706144054112,
+        "tds_growth_rate": 0.29852332246644336,
+        "tds_frequency_hz": 0.06172776032578694,
+        "frequency_error_hz": 0.6633428540796242,
+        "growth_rate_error": 0.3938463927187302,
+        "identified_modes": 12,
+        "pencil_order": 12,
+        "band_power_share": 0.37535232783544165,
+        "window_stop_s": 5.0,
+        "match_gap": 4.959263636939404,
+        "peak_signal": 1.931271349770458e-05,
+        "window_s": 4.7,
+        "cycles_fitted": 3.407831887705433,
+        "refactorizations": 35
+      }
+    ],
+    "decisive_max_frequency_error_hz": 0.00044119804716857836,
+    "decisive_max_growth_rate_error": 0.0016635601366992159,
+    "inconclusive": [
+      {
+        "configuration": "repair RC retune",
+        "match_gap": 4.121466989029132,
+        "band_power_share": 0.014813263907185405
+      },
+      {
+        "configuration": "repair condenser 25%",
+        "match_gap": 6.035635812833068,
+        "band_power_share": 0.09518032389308716
+      },
+      {
+        "configuration": "repair voltage control",
+        "match_gap": 4.959263636939404,
+        "band_power_share": 0.37535232783544165
+      }
+    ],
+    "elapsed_s": 230.53217244148254
+  },
+  "status": "SUCCESS",
+  "config_sha256": "6ce46dc51068ab35301bff38ce4ae4b856d04c57b48bcb8e16219358fdcb1860",
+  "finished_utc": "2026-09-10T02:24:09.585748+00:00"
+}

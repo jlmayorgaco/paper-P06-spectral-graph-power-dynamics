@@ -1,0 +1,5 @@
+region,verdict,winding_full,winding_individual,winding_collective,integer_full,integer_individual,integer_collective,residual_full,min_magnitude_full,admissible,clearance,admissibility_reason
+circle_r0.1,COLLECTIVE,0.9999999999999994,-6.446697205917805e-17,1.0,1,0,1,5.551115123125783e-16,0.09513417320468713,1,0.05287833836344809,admissible
+circle_r0.15,COLLECTIVE,0.9999999999999993,4.881440504770043e-16,0.9999999999999999,1,0,1,6.661338147750939e-16,0.12307077189128286,1,0.002879478126815354,admissible
+circle_r0.2,INADMISSIBLE_REGION,0.9999999999999983,-7.9858979306712e-17,1.0000000000000013,1,0,1,1.6653345369377348e-15,0.13401531398342809,0,0.01435013586179476,"Omega also encloses base or lower-order modes, so the individual/collective split is not interpretable"
+circle_r0.3,INADMISSIBLE_REGION,1.0000000000000009,0.9999999999999994,-4.663502106186686e-16,1,1,0,8.881784197001252e-16,0.06299930311214905,0,0.004179808028737135,"Omega also encloses base or lower-order modes, so the individual/collective split is not interpretable"

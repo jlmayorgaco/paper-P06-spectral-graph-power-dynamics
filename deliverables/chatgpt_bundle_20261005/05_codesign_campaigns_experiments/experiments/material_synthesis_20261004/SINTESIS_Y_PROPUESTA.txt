@@ -1,0 +1,364 @@
+REVISIÓN CRUZADA Y PROPUESTA DE CONTRIBUCIÓN — 2026-10-04
+
+Alcance
+=======
+Revisión de los cinco PDF adjuntos, sus resultados rastreables y antecedentes
+primarios. No se ejecutaron nuevas simulaciones de IEEE-39 ni se modificaron
+los PDF, THEORY.tex o resultados congelados. Las revisiones independientes de
+matemáticas, evidencia y literatura están en este mismo directorio. El
+DOCUMENT_MANIFEST.json identifica los documentos mediante SHA-256. Los números
+de página siguientes son páginas físicas del PDF.
+
+DICTAMEN
+========
+Hay material aprovechable, pero los cinco documentos no establecen todavía una
+nueva capacidad de diseño con superioridad demostrada. Unir sus ecuaciones no
+resuelve ese problema. La oportunidad más fuerte es pasar de «una política PLL
+falla» a una afirmación cuantificada sobre las reparaciones posibles:
+
+  Para esta sustitución, estos retardos y estos límites, ¿puede algún ajuste
+  local de Kp,Ki recuperar la seguridad? Si no, ¿qué coordinación por enlaces
+  basta y qué coste mínimo de coordinación es necesario?
+
+El objetivo completo sería una separación certificada entre arquitecturas,
+acompañada de una reparación constructiva que conserve los momentos de
+frecuencia ya derivados. No está demostrado que esa separación exista en los
+casos actuales. Puede ocurrir que un buen PLL local resuelva todo; ese resultado
+refutaría la necesidad de la arquitectura distribuida en el dominio probado.
+
+1. QUÉ APORTA CADA DOCUMENTO
+===========================
+
+D1 — Network Moment Laws, 44 páginas.
+Es el punto de partida más útil para diseño: identidad de momentos, dependencia
+de Ki frente a Kp/retardos, y acciones matriciales que preservan H0,H1,H2.
+La campaña de 41 ms tiene evidencia DDE y cinco eventos, pero mantiene rho y Ki
+fijos. 87.6462% es la penetración del caso, no su máximo demostrado. El diseño
+modal sin restricción de momentos también estabiliza; no se ha establecido una
+ventaja de capacidad, coste o margen frente a un óptimo nodal comparable.
+La propia sección de control matricial avisa que esa arquitectura no está
+implementada ni validada. Los momentos no acotan por sí solos nadir o RoCoF.
+
+D2 — Manuscrito BND, 50 páginas.
+El modelo BND39-R1 es distinto del TX4/GFL11 y del modelo DDE reciente. Contiene
+comparaciones físicas útiles y advertencias correctas sobre Möbius y damping.
+El resultado de bus 38 frente a bus 34 corresponde a variar frecuencia natural
+del PLL: Kp se multiplica por 1.1 y Ki por 1.21. No es un ensayo Kp-only.
+El paquete fuente de esos cálculos R1 no fue localizado en esta revisión.
+R1 tiene un H4 de 33 estados y sus 16 subconjuntos son estables en el caso
+descrito; TX4 tiene 86 estados y un H4 inestable. No son réplicas contradictorias
+del mismo modelo: son modelos diferentes. Véase REVIEW_EVIDENCE.txt.
+
+D3 — Theory Companion v2, 12 páginas.
+El resultado H4={30,33,35,37} es el ancla numérica mejor rastreada entre los
+ejemplos de portafolios: las 15 sustituciones propias son estables y el conjunto
+completo tiene alpha=+0.1270064681/s, f=0.6222796695 Hz, bajo la política fijada.
+Hay resultados Python/Julia concordantes y 33 archivos del ZIP que verifican
+sus hashes. Esta revisión comprobó esos artefactos, sin repetir los simuladores.
+La regularidad de los factores locales y el cierre colectivo están documentados.
+Esto no prueba que todo ajuste PLL admisible falle, ni que el efecto irreducible
+sea de orden cuatro. El rango ciego de reparación por 46 ramas sigue propuesto.
+
+D4 — Análisis avanzado, 15 páginas.
+Es un estudio de robótica. Su distinción entre estabilidad, viabilidad,
+autoridad y optimalidad ayuda a formular bien el problema. Sus experimentos
+no validan ninguna afirmación de la red eléctrica.
+
+D5 — Connected Intervention Calculus, 30 páginas.
+Su mejor intención es llevar cambios finitos, reequilibración AC y efectos
+colectivos a decisiones de intervención y fidelidad del modelo. Su extensión
+algebraica no demuestra, por sí misma, una nueva ley física. Hay objeciones
+matemáticas que deben corregirse antes de usarlo como núcleo de un paper.
+La tabla V, p22, reporta 5.152% -> 2.876% de damping al cerrar el colector;
+todas las topologías siguen siendo asintóticamente estables. Es un fallo del
+umbral del 5%, no un caso demostrado de inestabilidad. El paquete fuente y los
+datos de ese estudio no fueron localizados; sus cifras son evidencia reportada
+en el PDF, no reproducción independiente. El modo limitante cambia al usar
+dos POI. No hay evidencia EMT de fabricante que cierre las puertas propuestas.
+
+2. CORRECCIONES MATEMÁTICAS PRIORITARIAS
+======================================
+
+2.1 La atribución con log|det T| necesita un contrato de representación.
+
+Sea T(s,a) de dimensión n y h(a) cualquier función real suave. La representación
+  T_tilde(s,a)=exp(h(a)/n) T(s,a)
+tiene exactamente los mismos ceros y ecuaciones homogéneas, pero
+  log|det T_tilde|=log|det T|+h(a).
+Con h=c*a1*a2 cambia arbitrariamente el término mixto y el dividendo de dos
+acciones, sin cambiar los polos. Por tanto, los objetos de D5 pp7-8 son
+atribuciones de una representación fijada; no invariantes físicos generales.
+Estado: EXACT_IDENTITY (contraejemplo algebraico).
+
+La corrección disponible en D1 es usar momentos espectrales de un grupo aislado:
+  S_m(a)=(1/(2*pi*i)) integral_Gamma s^m tr(T^-1 T_s) ds.
+Si T es analítico dentro y sobre Gamma, da la suma de lambda^m, con multiplicidad.
+Se conserva bajo T -> L T R cuando L,R son analíticos e invertibles dentro y
+sobre el contorno. Para una única pareja conjugada, S1=2*Re(lambda).
+Para un grupo mayor, el promedio no certifica la estabilidad de cada polo.
+Si se usa Schur meromorfo, hay que restituir los momentos de los polos ocultos;
+corregir sólo el número de polos no basta. Esta corrección ya existe en D1,
+por lo que incorporarla a D5 sería reconciliar documentos, no una novedad.
+Las partes «curvatura» y «feedback» no heredan automáticamente la invariancia
+del total bajo cambios de representación dependientes de las acciones.
+
+2.2 El mínimo de márgenes no admite sin más la integración por partes suaves.
+
+Para f(a,b)=min(a,b) en [0,1]^2, el dividendo finito es 1, mientras que f_ab=0
+en cada región suave fuera de a=b. Integrar sólo esas derivadas da 0.
+La afirmación de D5 apéndice C requiere términos de interfaz/distribucionales
+o una función suave. Esto afecta directamente a zeta_min y alpha con cambio
+de modo activo. Estado: EXACT_IDENTITY (contraejemplo).
+
+2.3 Una cota de curvatura no es toda la cota del modelo congelado.
+
+D5 (52) acota las particiones derivativas omitidas en el punto de acción real.
+No incluye automáticamente el error adicional de congelar G y los bloques Ti
+en la base. Gate A p24 debe añadir ese error de transporte o restringir lo
+que afirma certificar.
+
+D5 (52) tampoco controla por sí sola el modelo tangente congelado. Por ejemplo,
+T(a,b)=1+a^2+b tiene T_ab=0 y cota de curvatura de par igual a cero; el tangente
+en (0,0) es 1+b, cuyo dividendo es cero, mientras que el dividendo verdadero
+de log T en [0,1]^2 es log(3)-2*log(2). Es un contraejemplo directo a usar esa
+cota como cota de todo el error congelado (EXACT_IDENTITY).
+
+2.4 Preservar autoenergía no preserva todos los mapas entrada/salida.
+
+Al eliminar el exterior también cambian B_eff, C_eff y D_eff. La identidad
+de error (120) necesita fijar esos mapas o acotar sus errores. Igual conteo
+de polos no implica igual ranking de reparaciones ni iguales picos de corriente.
+Las afirmaciones EMT requieren además un modelo de referencia de esa fidelidad.
+
+2.5 Holonomía y estructura de bloques.
+
+Conmutación y diagonalizabilidad conjunta requieren matrices comparables en
+un espacio común. Una subálgebra reducible asegura subespacios invariantes,
+no siempre una descomposición en bloques diagonales independientes: puede
+haber extensiones/Jordan. D5 pp11,26-27 necesita precisar las hipótesis.
+
+3. PROPUESTA PRINCIPAL: LÍMITES DEL AJUSTE LOCAL Y REPARACIÓN POR ENLACES
+====================================================================
+
+3.1 La pregunta científica, con cuantificadores explícitos.
+
+Fijar la red física, el modelo, rho, tau y un dominio compacto de ganancias
+locales K_adm. Definir
+  F_loc(rho,tau)={K in K_adm: pasa espectro completo y restricciones declaradas}.
+El hallazgo fuerte sería F_loc vacío y una arquitectura por enlaces factible.
+Un optimizador local fallido no prueba ese vacío. Excluir asignaciones de
+polos/patrones prefijados tampoco excluye otros estabilizadores locales.
+Una prohibición espectral basta para excluir seguridad completa; una prueba
+de estabilidad espectral sola no basta para declarar seguridad de eventos.
+
+No se supone monotonicidad de estabilidad respecto a rho, al número de GFL,
+al refuerzo de líneas o a los retardos.
+
+3.2 Arquitectura constructiva que conecta D1 con D3/D5.
+
+Sea B_c la incidencia de los enlaces de información permitidos entre PLL,
+K_I diagonal positivo, K_P0 local, T_tau=diag(tau_i), T_f diagonal y r=1.
+Para gamma dentro de límites predeclarados:
+  S=B_c diag(gamma) B_c^T,
+  K_P(gamma)=K_P0 + K_I S K_I.
+
+Si gamma>=0, S es un Laplaciano de comunicación ponderado válido. Con pesos
+negativos se lo llama operador de enlaces. No es el Laplaciano físico L_P.
+Como B_c^T r=0, S r=0. En el contrato matricial de D1:
+  K2_ctrl=K_I^-1,
+  K3_ctrl=T_tau K_I^-1 + K_I^-1 T_f - K_I^-1 K_P K_I^-1,
+se obtiene Delta K3_ctrl=-S y Delta K3_ctrl*r=0.
+Así se preservan H0,H1,H2 para cambios finitos de gamma, con planta, rho,
+Ki y retardos fijos y las hipótesis de regularidad/gauge de D1.
+Estado: EXACT_IDENTITY dentro del modelo lineal reducido declarado.
+
+La identidad conserva momentos de transferencia a baja frecuencia, no toda
+la respuesta, nadir, RoCoF, energía o seguridad de corriente. La demostración
+temporal de áreas requiere estabilidad e integrabilidad de ambos diseños.
+Los detectores están calibrados; no se comunican fases absolutas arbitrarias.
+El contrato anterior usa el retardo de la señal fuente. El coste y retardo
+adicional de comunicación se deben fijar antes de comparar arquitecturas.
+Si son distintos por enlace, hay que ampliar la realización; no se puede
+copiar sin demostrar la misma cancelación de momentos ni el mismo kernel.
+
+3.3 Ecuación exacta de reparación finita, no sólo sensibilidad.
+
+Escribir e=G(s)theta para el retorno de la planta ya eliminada y
+E_tau(s)=diag(exp(-s*tau_i)). Con u=0:
+  J0(s)=s^2(I+s*T_f)-(s*K_P0+K_I) E_tau(s) G(s),
+  J_gamma=J0-s*K_I*B_c*diag(gamma)*B_c^T*K_I*E_tau*G.
+Fuera de singularidades de la eliminación y de J0:
+  det(J_gamma)/det(J0)=det(I-diag(gamma)*L_c(s)),
+  L_c(s)=s*B_c^T*K_I*E_tau*G*J0^-1*K_I*B_c.
+
+Estado: EXACT_IDENTITY por el lema del determinante. No se afirma que el lema
+sea nuevo. L_c es un retorno dinámico entre intervenciones por enlaces: no un
+Laplaciano ni una medida positiva de damping. Incluye fases modales, dinámica
+de la red y retardos exactos. Para convertirlo en afirmación de espectro completo
+se conserva el factor oculto o se trabaja con el descriptor/DDE completo.
+
+La relevancia del grafo es concreta: B_c dice qué errores se pueden intercambiar;
+G transporta la intervención a través de la red eléctrica; las entradas de L_c
+dicen cómo se cierran los retornos entre enlaces. Potencias I+L+L^2 son una
+restricción de arquitectura opcional, no una garantía de dirección beneficiosa.
+
+3.4 Teorema condicional de imposibilidad con pocos enlaces.
+
+Fijar K_P0,K_I,rho,tau. Elegir un contorno Gamma completamente dentro de
+Re(s)>-sigma_req que encierre al menos un polo físico prohibido de la base.
+El contorno debe ser libre de raíces; usar representación analítica completa
+o una contabilidad válida de los polos ocultos, invariantes en la homotopía.
+No contar el modo estructural de rotación: excluirlo del interior o deflactarlo
+exactamente antes de identificar el número de polos físicos prohibidos.
+Permitir |gamma_i|<=bar_gamma_i. Sea w>0 fijo y definir
+  q_k = sup_{s in Gamma} max_i
+        [suma de los k mayores valores de
+         {bar_gamma_i*|L_c,ij(s)|*w_j : j=1,...,m}]/w_i.
+
+Si q_k<1, ningún ajuste permitido con a lo sumo k enlaces puede eliminar
+todos los polos prohibidos encerrados por Gamma. En efecto, para cada soporte
+S con |S|<=k, el retorno activo diag(gamma_S)L_c,SS tiene norma infinito
+ponderada menor que uno en Gamma; lo mismo ocurre a lo largo de la homotopía
+t*gamma, 0<=t<=1. No cruza una raíz el contorno y se conserva su conteo positivo.
+
+Una realización factible con k+1 enlaces más ese certificado probaría que k+1
+es el mínimo DENTRO de esta familia, estos límites y esta base local fija.
+Estado: PROVED_REDUCED_MODEL, teorema condicional; sus hipótesis numéricas
+todavía no están verificadas en IEEE-39. q_k puede ser >=1 y la cota vacía.
+Una malla de frecuencia sin control entre puntos no es el supremo certificado.
+
+Este resultado es más fuerte que incompatibilidad para polos prescritos:
+descarta cualquier recolocación que elimine todos los polos del contorno,
+sin fijar eigenvectores o destinos. Sin embargo, NO descarta cambios libres
+de las 20 ganancias locales, pues aquí esas ganancias base están congeladas.
+
+3.5 Cómo pasar del resultado limitado al resultado ambicioso.
+
+Cubrir K_adm por cajas Q_b. En cada caja elegir K_b y un contorno Gamma_b
+en la región prohibida con N_b>=1 raíces físicas. Probar uniformemente
+  sup_{K in Q_b, s in Gamma_b}
+    ||Delta(s;K_b)^-1 [Delta(s;K)-Delta(s;K_b)]|| < 1.
+Entonces toda la caja contiene un polo prohibido, aunque otros polos cambien
+de identidad. Una cobertura completa certifica ausencia de ajuste local.
+La cobertura debe incluir todas las ganancias declaradas, no sólo una sección
+de dos dimensiones. Se pueden usar estructura de bajo rango y aritmética
+validada para abaratar el certificado. Es un uso de teoría clásica de homotopía
+analítica, no una nueva prueba general de estabilidad.
+
+La campaña graph_gain_geometry ya mostró que excluir puntos/frecuencias no
+dio una barrera continua. Por eso este paso se mantiene como objetivo abierto,
+no como algo que se resolverá necesariamente con más optimización.
+
+3.6 Regla física de elección de enlaces y una obstrucción exacta.
+
+Sea lambda un polo simple de J0, con vectores derecho v e izquierdo u, y
+d=u* J0_s(lambda) v distinto de cero. Definir
+  z_lambda=K_I E_tau(lambda) G(lambda) v.
+Para un enlace e con incidencia b_e:
+  d lambda/d gamma_e = lambda (u* K_I b_e)(b_e^T z_lambda)/d.
+Es la sensibilidad NEP conocida aplicada a la intervención física concreta.
+Su signo depende de dos diferencias COMPLEJAS y de los retardos, no sólo de
+distancia, conectividad o diferencia de amplitudes en un modo de L_P.
+
+Más fuerte que sensibilidad cero es la condición compartida
+  B_c^T z_lambda=0  =>  J_gamma(lambda) v=0 para TODO gamma.
+Si el error PLL transformado del modo es constante dentro de cada componente
+de comunicación, ningún intercambio diferencial de esta familia elimina ese
+polo, aunque se aumente arbitrariamente la ganancia. La prueba es sustituir
+la condición en el sello finito de J_gamma. También basta u* K_I B_c=0.
+Estado: EXACT_IDENTITY, condición estructural; no verificada en IEEE-39.
+
+Esto aporta una regla de diseño comprobable: un enlace necesita medir una
+diferencia modal y actuar sobre una dirección receptiva. Deben satisfacerse
+ambas; no basta unir buses con gran separación geográfica o gran participación.
+Un producto no nulo no asegura una mejora estable de magnitud suficiente.
+Pequeñas diferencias dan autoridad local pequeña, no imposibilidad exacta.
+Sensibilidad cero en enlaces separados no prueba imposibilidad conjunta salvo
+que exista una anulación izquierda o derecha compartida como la anterior.
+
+4. CONEXIÓN CON MÁXIMO REEMPLAZO
+===============================
+
+Una vez exista un certificado útil, definir para el presupuesto de enlaces k:
+  P_GFL^*(k,tau)=max sum_i P_i^0*rho_i
+  sujeto a todas las restricciones, ganancias admisibles y ||gamma||_0<=k.
+El dominio k=0 permite TODAS las ganancias locales admisibles, no sólo K_P0.
+Las clases están anidadas si se permiten enlaces de ganancia cero, por lo que
+P_GFL^*(k+1,tau)>=P_GFL^*(k,tau) cuando ambos óptimos están bien definidos.
+No hay una monotonicidad equivalente garantizada respecto a tau o a rho_i.
+
+Una mejora de ingeniería defendible exige
+  P_feasible_graph > P_upper_local,
+con límites, hardware, eventos y coste de comunicación compatibles. Comparar
+dos soluciones locales halladas sólo prueba mejor desempeño de esa búsqueda,
+no superioridad de arquitectura. Un certificado en un rho aislado no da por
+sí mismo una cota global en MW: debe cubrir el conjunto relevante de diseños.
+Estado IEEE-39 de estas fronteras y de la separación: BLOCKED / no ejecutado.
+
+5. QUÉ ES CONOCIDO Y DÓNDE PODRÍA ESTAR EL APORTE
+===============================================
+
+Más conectividad y peor estabilidad ya tiene antecedentes directos:
+Coletta y Jacquod, PRE 2016, https://arxiv.org/abs/1505.07998.
+Localización y estabilización de grupos críticos de inversores también:
+Gorbunov, Vorobev y Peng, https://arxiv.org/abs/2007.09347.
+Regiones de ganancias con certificados de grafo:
+Gorbunov et al., TPWRS 2022, https://arxiv.org/abs/2111.01028.
+Sensibilidades que propagan reequilibración AC a modos de la red:
+Joswig-Jones et al., preprint 2026, https://arxiv.org/html/2607.28764v1.
+Interacciones en espacio de perturbaciones:
+Kook y Park, preprint 2026, https://arxiv.org/abs/2607.25334.
+Certificados de fidelidad fasor/EMT y expansión de regiones tienen competidores:
+https://arxiv.org/html/2606.08082v1 y https://arxiv.org/html/2604.14523v1.
+
+La búsqueda dirigida no establece prioridad ni ausencia de antecedentes para
+la propuesta. Schur, Rouché, retornos, sensibilidad, control distribuido,
+Möbius y optimización dispersa son herramientas conocidas. El aporte posible
+sería una CAPACIDAD demostrada para esta clase física: límite de reparabilidad
+local y reparación colectiva mínima, con retardos y momentos preservados.
+No vender como contribución nueva el mero ensamblaje de esas herramientas.
+
+6. PRUEBA DECISIVA, ANTES DE UNA CAMPAÑA GRANDE
+============================================
+
+1) Fijar un único modelo canónico y sus límites. El DDE de D1 permite reutilizar
+   las identidades; H4/TX4 puede usarse como antecedente separado. No transferir
+   certificados ni cifras entre ellos.
+2) Fijar señales comunicadas, enlaces candidatos, límites y retardos de enlace.
+   Verificar de nuevo las identidades para ese contrato implementable.
+3) Escoger un caso por una regla previa, no por el resultado de comparar métodos.
+4) Dar al ajuste nodal completo una búsqueda competitiva y comparable. Si pasa,
+   no declarar que necesita comunicación.
+5) Intentar el certificado para pocos enlaces/base fija y, sólo si aporta algo,
+   ampliar a cobertura de ganancias locales. Reportar cajas no resueltas.
+6) Construir una reparación por enlaces desde el retorno exacto; verificar todo
+   el espectro y todos los eventos congelados, incluidos límites de actuación.
+7) Comparar igual presupuesto, esfuerzo, retardos y margen de estabilidad. Los
+   momentos conservados no sustituyen las pruebas de nadir/RoCoF/corriente.
+
+Reglas de abandono: si la cota es vacía, no llamarla límite físico; si el local
+pasa, no llamar necesaria la comunicación; si el enlace rompe momentos con
+retardos realistas, restringir o abandonar esa arquitectura; si sólo mejora un
+modo y perjudica otro, no declarar reparación; si no aumenta MW ni margen ni
+reduce coste de forma verificable, no prometer ventaja práctica.
+
+7. RECOMENDACIÓN PARA EL PÓSTER
+==============================
+
+Título aspiracional, no resultado actual:
+  Beyond Nodal Damping: Certified Limits of Local PLL Tuning and Minimal
+  Graph Repair for SG-to-GFL Replacement.
+
+Un panel fuerte tendría tres objetos: un portafolio que falla colectivamente;
+una desigualdad que demuestra qué reparaciones no pueden bastar; y una
+reparación física pequeña que sí pasa validación. La relación con beyond nodal
+damping sería real porque el diseño y el límite dependen de retornos entre
+dispositivos, no de un coeficiente positivo asignado independientemente a cada
+nodo. La gráfica GSP ayuda a explicar y restringir señales, sin reemplazar
+la dinámica completa por lambda_2 o por una etiqueta de centralidad.
+
+Hoy hay un ancla H4 reproducible y leyes de momentos con resultados DDE
+acotados. No hay aún un certificado de imposibilidad de ajuste local, mínimo
+de enlaces, superioridad distribuida, ni máximo global de reemplazo. La
+propuesta establece qué habría que demostrar para que el siguiente resultado
+sea más fuerte; no convierte esos objetivos en resultados ya obtenidos.

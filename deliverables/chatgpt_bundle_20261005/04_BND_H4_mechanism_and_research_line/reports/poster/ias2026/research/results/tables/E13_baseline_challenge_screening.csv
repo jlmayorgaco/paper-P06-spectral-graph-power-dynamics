@@ -1,0 +1,7 @@
+predictor,precision_at_k,recall_at_k,false_negatives,k
+min_scr,0.2,0.2,8,10
+mean_scr,0.0,0.0,10,10
+gscr,0.1,0.1,9,10
+max_miif,0.0,0.0,10,10
+replaced_mw,0.3,0.3,7,10
+replaced_inertia_fraction,0.5,0.5,5,10

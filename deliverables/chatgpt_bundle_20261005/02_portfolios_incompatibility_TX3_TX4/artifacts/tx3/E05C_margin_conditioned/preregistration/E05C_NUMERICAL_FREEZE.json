@@ -1,0 +1,39 @@
+{
+  "E06_execution_permitted": false,
+  "action_homotopy_nodes": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "action_homotopy_refinement_nodes": [
+    9,
+    17
+  ],
+  "composition_closure_tolerance": 1e-10,
+  "development_mode_bmac_minimum": 0.95,
+  "dynamic_pole_factor_band_hz": [
+    0.1,
+    30.0
+  ],
+  "dynamic_pole_factor_nodes": 96,
+  "eigenpair_normalized_residual_maximum": 1e-10,
+  "freeze_id": "TX3-E05C-NUMERICS-1.0",
+  "git_sha_before_preregistration_commit": "78a34059a2b0641efd1db123e36789cdce7ff6ca",
+  "mode_solver": "dense generalized eig of exact algebraic Schur complement (Ar,M), left and right vectors",
+  "new_paraemt_runs_permitted": false,
+  "pseudo_mode_filter_radius": 1e-05,
+  "source_hashes": {
+    "experiments/tx3/E05C_margin_conditioned/calibrate_e05c_stress.py": "34a06fd4ed40b34fec50b5ae2c6677f72bbd66666966410549a8bf72d8dd18c7",
+    "experiments/tx3/E05C_margin_conditioned/margin_conditioned.py": "4d2ed292c2420b2caccc176038ff55a962426277a68064bf7e925b019dcdb989",
+    "experiments/tx3/E05C_margin_conditioned/run_e05c_campaign.py": "56616c4bd37278bf1b4c49700ffc7957eb70fb3c69346e8b721c2de5ba97d13d",
+    "tests/unit/test_e05c_margin_conditioned.py": "9efc06fc98b3fd9b8598fd629a0cfb049569dd9324566a9ac8d7d3d20cd53786"
+  },
+  "stress_and_action_tracking_bmac_minimum": 0.9,
+  "stress_refinement": "recursive half-step then quarter-step continuation; no manual switch",
+  "target_tracking_band_hz": [
+    0.05,
+    45.0
+  ]
+}

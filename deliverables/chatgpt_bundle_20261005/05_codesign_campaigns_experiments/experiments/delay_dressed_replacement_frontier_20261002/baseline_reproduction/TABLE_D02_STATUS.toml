@@ -1,0 +1,5 @@
+validated_count = 27
+attempted_count = 27
+parameter_coverage = "Kp, Ki, tau only; rho sensitivity not derived/validated"
+overall_status = "BLOCKED_PARAMETER_SET_INCOMPLETE"
+root_scope = "two locally tracked roots; no DDE spectral completeness"

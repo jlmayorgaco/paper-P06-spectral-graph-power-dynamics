@@ -1,0 +1,196 @@
+{
+  "campaign": "IEEE-39 final cross-tool validation (Phases A-G)",
+  "date": "2026-09-11",
+  "git_head_at_run": "81ddb963af5a122fefb505682318f06a729273fd",
+  "handoff_outer_zip": {
+    "name": "3f8685bd-claude_final_cross_tool_handoff.zip",
+    "sha256": "39772cf82904a1e22b417a755ffe227593e61e461862f893a85f36307403d1ff"
+  },
+  "environments": {
+    "tx3-analysis (Phase A, D-supp, E internal, assembly)": {
+      "python": "3.13.14",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "pandas": "3.0.5",
+      "matplotlib": "3.11.1",
+      "pytest": "9.1.1"
+    },
+    "tx3-andes (Phase C/D, E ANDES)": {
+      "python": "3.13.14",
+      "andes": "2.0.0",
+      "numpy": "2.5.2",
+      "scipy": "1.18.1",
+      "pandas": "3.0.5",
+      "matplotlib": "3.11.1",
+      "kvxopt": "1.3.3.1",
+      "sympy": "1.14.0",
+      "pytest": "9.1.1"
+    },
+    "xtool-pandapower (Phase B; created for this campaign)": {
+      "python": "3.13.14",
+      "pandapower": "3.4.0",
+      "numpy": "2.3.5",
+      "scipy": "1.16.3",
+      "pandas": "2.3.3"
+    }
+  },
+  "frozen_venvs_package_lists_unchanged": {
+    "bc-cert": true,
+    "tx3-analysis": true,
+    "tx3-andes": true,
+    "tx3-paraemt": true
+  },
+  "andes": {
+    "version": "2.0.0",
+    "case_file": "vendor/andes/andes/cases/ieee39/ieee39_full.xlsx",
+    "case_sha256": "9c2048dc94201ee48ffe816de65d53831fa1f4b0e7fdf32f24c50f1017edcfe5",
+    "case_hash_matches_canonical_source": true,
+    "vendor_git_tag": "v2.0.0 (eda5163c, clean tree)",
+    "operating_point_sha256_8dp": "98373aaf56105e599e38dccc7e55ee83a94687cdbc7ddc21be519fd475807a51",
+    "stale_ybus_npy_used_for_any_verdict": false
+  },
+  "pack_scripts_run_byte_identical_to_supplied": {
+    "canonical_ppc.py": true,
+    "compare_results.py": true,
+    "run_andes_dynamic.py": true,
+    "run_pandapower_parity.py": true,
+    "run_python_reference.py": true
+  },
+  "pack_deviations": [
+    "pandapower 3.4.0 has no pandapower.converter.from_ppc; bound to pandapower.converter.pypower.from_ppc (run_pack_pandapower_compat.py)",
+    "canonical_ppc reads pv keys p/v/sn; canonical JSON has p0/v0/Sn; aliases added with identical values",
+    "pandapower 3.4.0 from_ppc.py:303 indexes sn instead of sn_mva for zero-rated impedance branches; RATE_A=0 set to pandapower's own MAX_VAL=99999 fallback",
+    "from_ppc places the tap on the HV winding when the ppc from-bus is the LV bus (branches 35, 37, 38); B-corrected reorients those rows HV->LV with tap 1/t and z*t^2 (two-port identical to 1.4e-14)"
+  ],
+  "tolerances": {
+    "static": {
+      "ybus_pu": 1e-09,
+      "vm_pu": 1e-05,
+      "va_rad": 1e-05,
+      "gen_p_pu": 1e-08,
+      "gen_q_pu": 1e-05,
+      "branch_mva_preferred": 0.001,
+      "branch_mva_investigate_above": 0.01
+    },
+    "dynamic": {
+      "alpha_1_per_s": 0.0001,
+      "freq_hz": 0.001,
+      "band_nearest_mode_preferred": 0.0001,
+      "rhp": "agree for every subset"
+    },
+    "theory": {
+      "port_identity": 1e-08
+    },
+    "holdout_frozen_strong": {
+      "spearman": 0.9,
+      "signs": "11/12",
+      "top5": "4/5",
+      "median_rel": 0.1,
+      "strong_opposite": 0,
+      "preferred": "12/12 and spearman>=0.95"
+    },
+    "solver": {
+      "python_pf_tol": 1e-12,
+      "pandapower_tolerance_mva": 1e-10,
+      "andes_pflow_tol": 1e-06,
+      "internal_equilibrium_tol": 1e-09,
+      "line_scaling_eps": 0.002
+    }
+  },
+  "holdout": {
+    "seed": 20260911,
+    "lines": [
+      3,
+      9,
+      15,
+      17,
+      22,
+      26,
+      31,
+      32,
+      35,
+      39,
+      42,
+      44
+    ]
+  },
+  "inputs_sha256": {
+    "reports/poster/ias2026/research/validation_inputs/cross_tool_handoff/claude_cross_tool_handoff/ieee39_cross_tool_validation_pack.zip": "f386dc30018b95b68624e6ba26189a04e5359e936301a9fc44ba9cad8b4e8d6e",
+    "reports/poster/ias2026/research/validation_inputs/cross_tool_handoff/claude_cross_tool_handoff/dynamic_forest_ieee39_validation.zip": "5125c192df6514075f0af89d7830e7279ed80221ec0961dd9bf28d4adf612db0",
+    "reports/poster/ias2026/research/validation_inputs/cross_tool_handoff/claude_cross_tool_handoff/ieee39_cross_tool_validation_pack/ieee39_cross_tool_validation/canonical_ppc.py": "b1b8f63373517abf8c7c591e5d275f5d1178e268713b6dfb556ebe4ac13e7e38",
+    "reports/poster/ias2026/research/validation_inputs/cross_tool_handoff/claude_cross_tool_handoff/ieee39_cross_tool_validation_pack/ieee39_cross_tool_validation/compare_results.py": "d63e385c52a0f22913facc2eb5c3ba34294ec4f2454778c16778e71d614f7e0a",
+    "reports/poster/ias2026/research/validation_inputs/cross_tool_handoff/claude_cross_tool_handoff/ieee39_cross_tool_validation_pack/ieee39_cross_tool_validation/run_andes_dynamic.py": "88a7220a3526e6b81b8d51e93afd7cb1ecfb2272428a1cde0c0de44511818764",
+    "reports/poster/ias2026/research/validation_inputs/cross_tool_handoff/claude_cross_tool_handoff/ieee39_cross_tool_validation_pack/ieee39_cross_tool_validation/run_pandapower_parity.py": "84b8db33181979d39f8970c5309b591376ca4a094bb87d23358e4a7e3c7059db",
+    "reports/poster/ias2026/research/validation_inputs/cross_tool_handoff/claude_cross_tool_handoff/ieee39_cross_tool_validation_pack/ieee39_cross_tool_validation/run_python_reference.py": "913d29da7746d983f1cdd6a8e2c2390a2ae1a86415fa1f3dfc23bd62b1bb0f73",
+    "reports/poster/ias2026/research/validation_inputs/cross_tool_handoff/claude_cross_tool_handoff/ieee39_cross_tool_validation_pack/ieee39_cross_tool_validation/README.md": "81c5cd3b00524aeae9206a443312aeb2f724eaa14692916c85e17584d6f022e5",
+    "reports/poster/ias2026/research/validation_inputs/cross_tool_handoff/claude_cross_tool_handoff/dynamic_forest_ieee39_validation/dynamic_forest_ieee39_validation/holdout_lines.json": "872cd3891dc41330f074d4be315aef87215f93f8818d83d2b6b19cefa5733847",
+    "reports/poster/ias2026/research/validation_inputs/cross_tool_handoff/claude_cross_tool_handoff/dynamic_forest_ieee39_validation/dynamic_forest_ieee39_validation/data/F2c_holdout_reequilibrated_port_line_sensitivity.csv": "4d8647d9ec91afbaf66d54f9a914f59cb485e4eaed8228e34ed23a5de47eb6d2",
+    "reports/poster/ias2026/research/validation_inputs/cross_tool_handoff/claude_cross_tool_handoff/dynamic_forest_ieee39_validation/dynamic_forest_ieee39_validation/dynamic_forest_line_port_holdout.py": "836feac4f377c7b10433ffc9cc40f7ca482a5ffb8a88a3b1ea59f14ac7616a03",
+    "reports/poster/ias2026/research/validation_inputs/cross_tool_handoff/claude_cross_tool_handoff/dynamic_forest_ieee39_validation/dynamic_forest_ieee39_validation/CLAUDE_FINAL_ANDES_NETWORK_VALIDATION.md": "c76916155e8a1af681692788645786380b7b649d89eab37b0acf852e75bb318c",
+    "reports/poster/ias2026/research/configs/ias2026/ieee39_network.json": "705f53299b57cbd536ababfe5236f3b2ec621e8b305a5737135cfba8363d995e",
+    "reports/poster/ias2026/research/configs/ias2026/ieee39_andes_powerflow_reference.json": "dde7fc85d8888b301189d0f709e7d95a16bad6ad371034beac05f210334c6272",
+    "reports/poster/ias2026/research/configs/ias2026/ieee39_ybus_andes.npy": "56210f4dca25b4e755ae052f6a5f50e54bea936f9b85d2b46432b5f5a06084c1",
+    "reports/poster/ias2026/research/results/F1_eigenvalue_reconciliation.csv": "1b365c4a766ff4e199d1b9063b1dda5f67fbbdb39327a2e84dea93126ecea0bc",
+    "reports/poster/ias2026/research/results/F1/F1_andes_spectra.npz": "393307464a67e35a6bd93bb076858e9b74779b268aa73fdb31f1953446cbe418",
+    "reports/poster/ias2026/research/results/F1/andes_live_powerflow.json": "1eef9233241a321f4f5b2c3a579bc5fe29345e100e165becfd8fd1c4c5118f12",
+    "reports/poster/ias2026/research/experiments/F1_andes_equivalent_worker.py": "a18978b835f44e343c2f1a47a06af83ca8ca9b854259786d0acce2be45570f14",
+    "reports/poster/ias2026/research/experiments/F1_reconciliation.py": "050a7e4ec9508fa8dfe7f0fcaa43abca139d0f6bf942e43f1588923f4fbab0d6",
+    "vendor/andes/andes/cases/ieee39/ieee39_full.xlsx": "9c2048dc94201ee48ffe816de65d53831fa1f4b0e7fdf32f24c50f1017edcfe5"
+  },
+  "scripts_sha256": {
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/assemble_final.py": "ae10141fad849bbd66c9f8439be8f179d1aca8635f8e4154e5b241a28ac0a2fd",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/build_manifest.py": "691274aa26163692fcaffa14407363a8c9bb64975765901b0563774e48155fb7",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/diag_andes_balance.py": "2855fb99b819298b70ff75149ce79f17d65e90a4297b55296d7d5b24e985dd94",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/diag_andes_lines.py": "094a32e0492d5f0a651c68493994fb2031277a6f71025e47ce2bdd083941dab4",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/diag_andes_regularization.py": "fcdd19df461f0b7331c7be049e8d62c39fd947a535f3ceb9dbeb3f22e4fea326",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/diag_pandapower_ybus.py": "63c06ce7466a5e08b4e1c009eb9333acc64fe3af8611a3dc23833a175f912063",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/diag_port_identity.py": "d199339047c0afcb7d03ca6cc5b87ffcdbad9d32b6e5ba9a0f72f7c6a192e573",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/phaseE_andes.py": "07b3a834f9db0d2bac9516c01d1c56fd6108f16a71da7ba11dbf75b729176575",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/phaseE_internal.py": "702ad4fdade0069ffee75a3e92430babb8e17c318b7dd48dea75a782b765b277",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/run_pack_pandapower_compat.py": "67836c60aeebb72a0af96355483fc5521e3127154c9860c89bc2963506e4a1bc",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/run_pack_pandapower_tapside.py": "7ac7879e3ea22cb5ff326e99c53660d68d1773bbba6a479715dfbe73c3eac060",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/supp_andes_static.py": "e8d46ff75f53960d1c3cb0362446f23a4fd9ef3ef83c1e5fb0ed0f7c3c8cfbc1",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/supp_dynamic_checks.py": "3c1569a512115a914b14117aceb406567ed60ed2f666942bcc09f1eafefca32b",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/supp_static_checks.py": "dbea9f9f93d623b4680798f7792223900fba0d0bae4f52216a05abfc0a77aec8"
+  },
+  "outputs_sha256": {
+    "reports/poster/ias2026/research/docs/FINAL_CROSS_TOOL_VALIDATION.md": "be9ef5b665cfe35bba69982caa6df4e9e1610b2ab0744004b3ea6c0994dad12b",
+    "reports/poster/ias2026/research/results/CROSS_TOOL_EVIDENCE_TABLE.csv": "1d0cb54d3bcf4453fb1a877046980208d17ad4324bf4c825c7b76c828bffb3ad",
+    "reports/poster/ias2026/research/results/PANDAPOWER_STATIC_PARITY.csv": "1d3cb5c472c3ac2b367e51adfb338651368ec892baf20b17ecc92a9f4c52f2b8",
+    "reports/poster/ias2026/research/results/ANDES_DYNAMIC_PARITY.csv": "c0077a89658281845b7eca15183ff04c0e4bd6815ba29426a247dcdc852eead5",
+    "reports/poster/ias2026/research/results/ANDES_LINE_SENSITIVITY_HOLDOUT.csv": "c23d2ed4e9c79ee2215ddf95931ce7ac629eb83c1dc57aa45d5e6d0cbb99ca7e",
+    "reports/poster/ias2026/research/results/CROSS_TOOL_VALIDATION_FIGURE.pdf": "bfa7e5e31b4be815088c56c95a362410fdaf8045dcb72a5d360042fb59e8f6e3",
+    "reports/poster/ias2026/research/results/CROSS_TOOL_VALIDATION_FIGURE.png": "c548aaecefbc699f89d3d14d15d6fa756b841c09527a1a52aa70e6be9d38930d",
+    "reports/poster/ias2026/research/results/CROSS_TOOL_VALIDATION_FIGURE_source.csv": "d72fdb973ecac3f72de5291801c0aa1ec28e4901707fe20d41fc8bb589fb0e19",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/pack/results/andes_dynamic_reconciliation.csv": "40d6fa7c957d271807fe5807be4e48429c5f93254e27e056829b1cf080511ce1",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/pack/results/andes_dynamic_summary.json": "05457a7fefd7a7e700d3f8556c53fc716fd0b560fd4bf7cb7f2547a6604c420a",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/pack/results/andes_equivalent.csv": "d91090ab37792c5ba9370c2b40201f693bfb425f6de933506e8df4f8a1876fde",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/pack/results/andes_live_static.json": "6f974e94351e192b71b4549521953c5c4c464991b08ddc29ab0136f84ae9b6ec",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/pack/results/CROSS_TOOL_EVIDENCE_TABLE.csv": "c9812f664199ef743396605261b25547d2491055ae3b652db2885430b62a3944",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/pack/results/F1_andes_spectra.npz": "393307464a67e35a6bd93bb076858e9b74779b268aa73fdb31f1953446cbe418",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/pack/results/pandapower_branch_flows.csv": "ee277ce21579fd363a2c10562c8fed7e56aa09d864497a493563ab9175a5bcb9",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/pack/results/pandapower_parity.json": "13891bb6553a20f48c6830e82ad0015ee0aa3d7f7b45f5ddcfcbf829b76df6ef",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/pack/results/pandapower_stock_case39_difference.json": "ca3817790ccad7f12eda63a33d9f959f30d71b0e8f1bf112d3da1ec8067d571b",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/pack/results/python_branch_flows.csv": "953075c62f5248bb9701d1c570d26b012c5069ad0cb649959ac7180fb80cd044",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/pack/results/python_reference.json": "12b059ead837c2009db4eb67648eecf7f6f3a9deff7a645fca7cf002664c554f",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/pack_tapside/results/andes_dynamic_summary.json": "05457a7fefd7a7e700d3f8556c53fc716fd0b560fd4bf7cb7f2547a6604c420a",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/pack_tapside/results/CROSS_TOOL_EVIDENCE_TABLE.csv": "038ee35ceddd303e26c51130de8d28aa678074973162d3e57b14f401ee69c39c",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/pack_tapside/results/pandapower_branch_flows.csv": "bb005bf2f7c3cc02f7d3d68da6b40dbc261967ef3dd38438a16bf30cbd2ebe03",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/pack_tapside/results/pandapower_parity.json": "5d45d839dcac2447d00038344ba7c3e1b0af7f54ccaf61f74c4cb9a51c14a801",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/pack_tapside/results/pandapower_stock_case39_difference.json": "ca3817790ccad7f12eda63a33d9f959f30d71b0e8f1bf112d3da1ec8067d571b",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/pack_tapside/results/python_reference.json": "12b059ead837c2009db4eb67648eecf7f6f3a9deff7a645fca7cf002664c554f",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/supp/andes_regularization_diag.json": "1e7a7722b6413e659ab35f789e310c6bee2aa79ef5319f9cbaf7867fe11e7bcb",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/supp/andes_static_supp.json": "0dc058ba8fb13a81d820da3ce4c8d7a9351f24b9ac9d39f18bbfc9f7f6982a96",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/supp/dynamic_supp.json": "c4b791e2eef95f8dc9a30530ff89ddd920cbc489ca053468464277e55288e81c",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/supp/ieee39_network_andes_regularized_DIAGNOSTIC.json": "ab56c7d08da835c5d7aaf16993ff3ac7aebe5ef9b3089dc8d844d1c40aa81ce7",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/supp/static_supp.json": "494679ccf41bf685402ca6271237e8cc3330ea60394626bccb49fee3aead6b1c",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/supp/dynamic_supp.csv": "0b15fc8a3e9d99f68d5b1d93eaee1376368e3b0eae28ff689817220e0725e5fb",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/supp/pandapower_static_parity_long.csv": "56f48381c1ae244a1808fc28a5a31d4c36a52a291affab4952f7de22faec6c8f",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/phaseE/andes_E1.csv": "3a3709bdc8b06a9cb492f001eeadb36a49f91d79e75544c3ad076a023b0e4144",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/phaseE/andes_E1.json": "a31a34c18f63cb2117077731c57a6446a07ac8a98226fe4180d244e13d374b4b",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/phaseE/holdout_metrics.json": "14eef7dcf73e95ba99786edc800b9ae9432416c773e2347f085e2e4ba5896515",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/phaseE/internal_E1.csv": "bc0229470d480aab2aaf9fba8c3d41ed69967b02b691fe12afce1c07355e9b9a",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/phaseE/internal_E1.json": "137afde819d8f4216c7f40a98db634c5472c8b92e4f7ce7c581f067c544feb21",
+    "reports/poster/ias2026/research/validation_runs/cross_tool_final/phaseE/port_identity_diag.json": "df7aca917b6f6f23d62d5c339a97225610bc2e221ecc61fddf4bd7d3767b7b30"
+  }
+}

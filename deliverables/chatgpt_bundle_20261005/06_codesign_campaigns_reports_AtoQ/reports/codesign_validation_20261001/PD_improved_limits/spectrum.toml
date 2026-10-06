@@ -1,0 +1,11 @@
+candidate_sha256 = "c50be90dd7062058705e536fa52b1f058c7f74ec6e9e558980232cecdee357ad"
+physical_poles = 155
+trim_bounds_pass = true
+max_matched_pole_error = 1.4710564318205738e-9
+max_P_error_pu = 3.907985046680551e-15
+max_Q_error_pu = 2.6326510416119218e-15
+nominal_margin_pass = true
+removed_gauge_abs = 5.281786906499176e-10
+trim_residual = 6.574473947344784e-12
+analytic_alpha = -0.052165493256712596
+pd_alpha = -0.05216549325120611

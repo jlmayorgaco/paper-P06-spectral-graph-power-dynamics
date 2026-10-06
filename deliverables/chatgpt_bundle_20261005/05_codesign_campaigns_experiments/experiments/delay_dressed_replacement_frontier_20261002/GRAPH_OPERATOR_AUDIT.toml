@@ -1,0 +1,11 @@
+Lport_symmetry_residual = 0.0
+Lport_row_sum_relative = 1.7342056070991388e-15
+Lport_min_eigenvalue = 1.354472090042691e-14
+Lport_max_offdiagonal = -0.5414895050324908
+Lport_is_laplacian = true
+exact_angle_jacobian_symmetry_residual = 0.014408603832151777
+exact_angle_vs_lossless_relative = 1.9968595946726768
+mass_definition = "original IEEE39 initialized SG: 2*H*Sn/Sbase, frozen reference"
+seed = 20261002
+heuristic_random_candidates = 100000
+random_permutation_count = 100

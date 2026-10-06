@@ -1,0 +1,2 @@
+branch,iterations,status,primal_feasibility,dual_feasibility,complementarity,stationarity_residual,LICQ_min_singular_value,reduced_hessian_min_eigenvalue,reason
+best_analytical_robust_grid_candidate,0,NOT_SOLVED_ACTIVE_TRANSIENT_FREQUENCY_CONSTRAINT,NaN,NaN,NaN,NaN,NaN,NaN,H18 predicts the frequency limit is active at the declared 100 MW screen; KKT active set was not reopened

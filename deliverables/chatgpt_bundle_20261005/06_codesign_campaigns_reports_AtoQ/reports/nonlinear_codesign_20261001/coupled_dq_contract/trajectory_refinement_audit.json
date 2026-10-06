@@ -1,0 +1,91 @@
+{
+  "status": "SIX_FINITE_JULIA_RUNS_AND_SAMPLED_OUTPUT_REFINEMENT_CHECK_PASSED",
+  "tolerance_pair": [
+    1e-06,
+    2e-07
+  ],
+  "horizon_seconds": 20,
+  "epsilon": 3.162277660168379e-07,
+  "columns": [
+    "region_usage",
+    "max_abs_frequency",
+    "max_abs_rocof",
+    "voltage_min",
+    "voltage_max"
+  ],
+  "criterion": "Each sampled-output difference divided by [1, certified f bound, certified RoCoF bound, 0.1 pu, 0.1 pu] is below 1e-3.",
+  "cases": [
+    {
+      "case": "origin_waves",
+      "samples": 2001,
+      "maximum_absolute_difference": [
+        3.235342614121839e-06,
+        5.414680484933856e-14,
+        4.686635825021996e-13,
+        2.2315482794965646e-14,
+        2.708944180085382e-14
+      ],
+      "maximum_scaled_difference": [
+        3.235342614121839e-06,
+        3.4281893280534066e-10,
+        1.8863559717253296e-10,
+        2.2315482794965646e-13,
+        2.708944180085382e-13
+      ]
+    },
+    {
+      "case": "origin_switches",
+      "samples": 2001,
+      "maximum_absolute_difference": [
+        2.2014521736335446e-05,
+        3.2700408918226086e-13,
+        2.7943407194370763e-12,
+        1.5709655798445965e-13,
+        3.022027073029676e-13
+      ],
+      "maximum_scaled_difference": [
+        2.2014521736335446e-05,
+        2.0703565646831424e-09,
+        1.1247132271303891e-09,
+        1.5709655798445965e-12,
+        3.022027073029676e-12
+      ]
+    },
+    {
+      "case": "boundary_waves",
+      "samples": 2001,
+      "maximum_absolute_difference": [
+        2.9071189899809724e-10,
+        4.375786520372524e-14,
+        3.21315345919095e-13,
+        2.5424107263916085e-14,
+        2.7533531010703882e-14
+      ],
+      "maximum_scaled_difference": [
+        2.9071189899809724e-10,
+        2.7704357981455824e-10,
+        1.2932840190940806e-10,
+        2.5424107263916085e-13,
+        2.753353101070388e-13
+      ]
+    }
+  ],
+  "model_source_hashes_verified": {
+    "src\\bnd_design\\AnalyticSG.jl": "50cec450c19a5788053c1d5836867d7ee3b5013335e9b45eec30a8685cf290fa",
+    "reports\\nonlinear_codesign_20261001\\candidate_final_physical.toml": "0be33b8f198419f1a755642a1d9b7a928eb3f0fed4744dafd5fe4deeed46aae3",
+    "experiments\\nonlinear_codesign_20261001\\ReducedDAE.jl": "c5d721bc371dd6ee424afb2f40638e60307fd62389bba2ac69f3b7d247a2c80d",
+    "src\\bnd_model_expN\\PDExactDesignN.jl": "f5211509b117d8a06e31efa62aa49b1df20d2c1ef7f5c6f9114bb9eb25838365"
+  },
+  "scope": "Finite sample checks on the pre-LP modal region, not exhaustive time/input validation or a trajectory discretization error proof. The all-input claim rests on the separate nonlinear certificate.",
+  "source_hashes": {
+    "trajectory_refined_boundary_waves.csv": "eb88c14c680dcbb9ab74803fe7698187634452f28a781454d207ee5fdfad77fe",
+    "trajectory_refined_origin_switches.csv": "e8a1e36ea5ac2198ee0d419f052f6a999ac8fd04357cb557326447b6bae2d6f0",
+    "trajectory_refined_origin_waves.csv": "da47fb89cec77961b03226ecf99c0eab2ca2b073e597f91e8be098dbd477508c",
+    "trajectory_standard_boundary_waves.csv": "7ecbbca82173f1183c751df48023fcf8a88b9c663d2f98fe2b4e965ec3ae405e",
+    "trajectory_standard_origin_switches.csv": "78e9eb65a6b8928a77b7d8ee19f3352c165392a4d2067e5bd57d5a7fc43ae47c",
+    "trajectory_standard_origin_waves.csv": "fd54cf999e1bb9cff1f6cb497135d848b8c1ec767c345835482017ce9afc9f58",
+    "nonlinear_validation_julia_standard.toml": "ecb0e07e23e3567ee022b0de802f0a4494dd35d807248f3b8789395594615a22",
+    "nonlinear_validation_julia_refined.toml": "b14e43b9ab6737eb7bf8cc1f5c331c1aaa8067582c82fbad4a25803248289121"
+  },
+  "script_sha256": "f4f2884d30643d9b4738dfce3ac7429d16176fcf490ef7b24a983581dc664199"
+}

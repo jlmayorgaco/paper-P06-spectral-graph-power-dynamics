@@ -1,0 +1,32 @@
+[
+  {
+    "iteration": 1,
+    "trial": 0,
+    "radius": 0.025,
+    "retained_MW": 565.3009243666436,
+    "max_constraint": 0.0057637115120134745,
+    "accepted": false,
+    "modal_condition": 17.039543853366805,
+    "elapsed_s": 447.76715729996795
+  },
+  {
+    "iteration": 1,
+    "trial": 1,
+    "radius": 0.0125,
+    "retained_MW": 606.0224972961198,
+    "max_constraint": 0.0006597360809934387,
+    "accepted": false,
+    "modal_condition": 17.039543853366805,
+    "elapsed_s": 650.9203834999935
+  },
+  {
+    "iteration": 1,
+    "trial": 2,
+    "radius": 0.00625,
+    "retained_MW": 630.4952092296563,
+    "max_constraint": -0.0010814555246741082,
+    "accepted": true,
+    "modal_condition": 17.039543853366805,
+    "elapsed_s": 869.8582656999934
+  }
+]

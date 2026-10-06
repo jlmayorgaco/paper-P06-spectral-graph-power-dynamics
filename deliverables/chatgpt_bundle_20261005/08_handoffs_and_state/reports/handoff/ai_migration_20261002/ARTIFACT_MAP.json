@@ -1,0 +1,113 @@
+{
+  "snapshot": {
+    "recorded_at": "2026-10-02",
+    "branch": "research/expQ2B-secure-optimum",
+    "head": "d0fecb3264aeb855ab6700fc6ef66120d4b6c33c",
+    "warning": "Working tree had extensive modifications and untracked research files. Inspect current Git status and preserve all existing state."
+  },
+  "handoff_files": [
+    {
+      "path": "reports/handoff/ai_migration_20261002/HANDOFF_MASTER.md",
+      "role": "Authoritative research synthesis with model, equations, evidence, failures, chronology, poster distinction, references, and claim limits."
+    },
+    {
+      "path": "reports/handoff/ai_migration_20261002/START_HERE_FOR_NEXT_AI.md",
+      "role": "Restart instructions and prioritized research sequence."
+    },
+    {
+      "path": "reports/handoff/ai_migration_20261002/ARTIFACT_MAP.json",
+      "role": "Machine-readable navigation map for source artifacts."
+    },
+    {
+      "path": "output/pdf/IEEE39_BND_PROJECT_HANDOFF_20261002.pdf",
+      "role": "IEEE-style rendered dossier; internal transfer document, not a submission-ready manuscript."
+    }
+  ],
+  "workstreams": [
+    {
+      "name": "Fresh fixed-mix PLL counterfactual",
+      "status": "Preliminary finite-event result; not capacity proof",
+      "paths": [
+        "experiments/compensability_ieee39_20261002/pd_compare.jl",
+        "reports/poster/ias2026/compensability_ieee39_20261002/RESULTADOS_ES.txt",
+        "reports/poster/ias2026/compensability_ieee39_20261002/protocol.toml",
+        "reports/poster/ias2026/compensability_ieee39_20261002/comparison.csv",
+        "reports/poster/ias2026/compensability_ieee39_20261002/events.csv",
+        "reports/poster/ias2026/compensability_ieee39_20261002/nominal_PLL_same_rho_events.csv",
+        "reports/poster/ias2026/compensability_ieee39_20261002/tuned_PLL_events.csv",
+        "reports/poster/ias2026/compensability_ieee39_20261002/linear_envelope.toml",
+        "reports/poster/ias2026/compensability_ieee39_20261002/retuning_tradeoff.png"
+      ]
+    },
+    {
+      "name": "Analytical fixed-support and robust replacement sequence",
+      "status": "Exploratory; preserve explicit failure statuses and incompatible contracts",
+      "paths": [
+        "reports/experiment_Q2B/FINAL_SUMMARY_EXP_Q2B.md",
+        "reports/experiment_M/FINAL_SUMMARY_EXP_M.md",
+        "reports/experiment_Q2/FINAL_SUMMARY_EXP_Q2.md",
+        "reports/experiment_N/",
+        "reports/experiment_P/",
+        "reports/experiment_K/"
+      ]
+    },
+    {
+      "name": "Graph/modal BND theory branch",
+      "status": "F0/F1 passed in limited scope; F2 modal-separation gate failed",
+      "paths": [
+        "reports/experiment_F_program/FINAL_SUMMARY.md",
+        "reports/experiment_J0/J0_DECISION.md",
+        "reports/thesis/"
+      ]
+    },
+    {
+      "name": "Trajectory-gradient local design",
+      "status": "Useful local gradient workflow; four of five external events failed",
+      "paths": [
+        "reports/analytic_iteration_20261001/refined/RESULTADOS_ES.txt",
+        "experiments/analytic_iteration_20261001/"
+      ]
+    },
+    {
+      "name": "Nonlinear block certificate prototype",
+      "status": "Mathematical prototype; certified radius too small for operational capacity claim",
+      "paths": [
+        "reports/nonlinear_codesign_20261001/coupled_dq_contract/CONTROL_MODAL_COMPARACION_Y_CODESIGN_ES.txt",
+        "experiments/nonlinear_codesign_20261001/"
+      ]
+    },
+    {
+      "name": "Independent manuscript / poster lines",
+      "status": "Separate research claims; do not transfer evidence to PLL replacement",
+      "paths": [
+        "reports/papers/tx3_connected_intervention_calculus/README.md",
+        "reports/papers/tx4_policy_dependent_incompatibility/README.md",
+        "reports/papers/cdw_contextual_dynamic_weakness/README.md",
+        "reports/poster/ias2026/deliverables/IAS26-110/",
+        "reports/poster/ias2026/concept_review_20261001/",
+        "reports/poster/ias2026/concept_review_20261002/"
+      ]
+    }
+  ],
+  "candidate_percentages_are_not_comparable_without_contract": [
+    {
+      "gfl_percent": 90.78544633,
+      "meaning": "Fixed replacement vector used by newest same-mix PLL counterfactual."
+    },
+    {
+      "gfl_percent": 90.04704209,
+      "meaning": "Earlier trajectory-gradient co-design result; external-event failures."
+    },
+    {
+      "gfl_percent": 91.885,
+      "meaning": "ExpQ2B best-found candidate; optimization/robustness certification failed."
+    }
+  ],
+  "known_unmodeled_or_unproven": [
+    "No explicit PLL digital delay or sampling model in newest experiment.",
+    "Hard current and DC-energy limits are not certified in the six-event counterfactual.",
+    "No finite second-order remainder bound for the trajectory tangent.",
+    "No complete continuous robustness or global capacity certificate.",
+    "Graph basis did not pass the registered physical modal-separation gate."
+  ]
+}

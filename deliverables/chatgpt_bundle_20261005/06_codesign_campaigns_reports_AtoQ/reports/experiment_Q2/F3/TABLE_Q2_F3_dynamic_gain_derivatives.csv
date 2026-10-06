@@ -1,0 +1,11 @@
+point,bus,gain,metric,baseline,centered_derivative,step,omega_rad_s,beta_method
+ExpG_support_bus_38_GFL,38,Kp,alpha,-0.13793268780377974,6.015960280827475e-13,0.11780972450961724,0.30622137413374856,fixed ExpG active peak frequency pointwise singular-value inverse
+ExpG_support_bus_38_GFL,38,Kp,beta,0.00037005454290395614,-3.946857632763638e-9,0.11780972450961724,0.30622137413374856,fixed ExpG active peak frequency pointwise singular-value inverse
+ExpG_support_bus_38_GFL,38,Kp,F_peak,0.0009314247059679135,-3.7090847269478184e-8,0.11780972450961724,0.30622137413374856,fixed ExpG active peak frequency pointwise singular-value inverse
+ExpG_support_bus_38_GFL,38,Kp,R_peak,0.0024914908524637292,-4.7846742021388326e-5,0.11780972450961724,0.30622137413374856,fixed ExpG active peak frequency pointwise singular-value inverse
+ExpG_support_bus_38_GFL,38,Kp,F_inf,0.0004972344005411064,-1.3638836915303623e-15,0.11780972450961724,0.30622137413374856,fixed ExpG active peak frequency pointwise singular-value inverse
+ExpG_support_bus_38_GFL,38,Ki,alpha,-0.13793268780377974,3.341226566533882e-13,0.9252754126021273,0.30622137413374856,fixed ExpG active peak frequency pointwise singular-value inverse
+ExpG_support_bus_38_GFL,38,Ki,beta,0.00037005454290395614,-4.117595239778115e-10,0.9252754126021273,0.30622137413374856,fixed ExpG active peak frequency pointwise singular-value inverse
+ExpG_support_bus_38_GFL,38,Ki,F_peak,0.0009314247059679135,1.921651497134653e-8,0.9252754126021273,0.30622137413374856,fixed ExpG active peak frequency pointwise singular-value inverse
+ExpG_support_bus_38_GFL,38,Ki,R_peak,0.0024914908524637292,1.1440367381007472e-6,0.9252754126021273,0.30622137413374856,fixed ExpG active peak frequency pointwise singular-value inverse
+ExpG_support_bus_38_GFL,38,Ki,F_inf,0.0004972344005411064,7.733626378637306e-18,0.9252754126021273,0.30622137413374856,fixed ExpG active peak frequency pointwise singular-value inverse

@@ -1,0 +1,11 @@
+rocof_limit_Hz_s = 0.5
+event_bus = 16
+base_MVA = 100.0
+design_uses_PowerDynamics = false
+beta_target = 1.6991206999182038e-6
+gain_bounds = "frozen ExpE independent rectangles"
+frequency_limit_Hz = 0.5
+base_frequency_Hz = 60.0
+deltaP_MW = 100.0
+beta_policy = "half the smaller of all-SG exact resolvent radius and half-margin modal-residue radius"
+sigma_req_s_inv = 0.05

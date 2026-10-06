@@ -1,0 +1,56 @@
+RUN FROM THE REPOSITORY / EXTRACTED BUNDLE ROOT
+
+The two PDFs and the poster's generated figures are ready to read or print.
+No simulation or Python environment is needed to compile the copied poster.
+The original poster and historical experiments were preserved.
+
+1. Restore archived dependencies on a fresh clone:
+   python experiments/poster_julia_validation_20261003/restore_inputs.py
+   This adds missing byte-identical inputs and refuses to overwrite differences.
+   It deliberately preserves the current article and root Julia environment.
+   The Julia project used here is included in the historical source archive:
+   experiments/physical_collective_damping_20261003/source_snapshot/
+
+2. Numerical Python requirements used in this closure:
+   Python 3.13.9; numpy 2.3.5; scipy 1.16.3; pandas 2.3.3;
+   matplotlib 3.10.6; Pillow; qrcode 8.2.
+   qrcode was installed only in the new poster's build/vendor directory.
+   Install dependencies into your chosen environment; no vendor tree is archived.
+
+3. Algebra-only check, about seconds:
+   python experiments/poster_julia_validation_20261003/check_rank_law.py
+   This writes all 60 direct Schur-versus-rank-one comparisons.
+
+4. Five fixed-gain nonlinear events, about 6-10 minutes on the original host:
+   julia --project=experiments/physical_collective_damping_20261003/source_snapshot experiments/poster_julia_validation_20261003/run_comparator.jl
+   Julia 1.11.9; use the supplied Project.toml / Manifest.toml.
+   Instantiate that environment first if needed. No delay or gain optimization.
+   Outputs are in this directory, not in the frozen historical experiment.
+
+5. Refresh tables/article and the copied poster from the saved evidence:
+   python experiments/poster_julia_validation_20261003/close_article.py
+   python reports/poster/ias2026/collective_interaction_20261003/build_content.py
+   Historical builder scripts recreate their own earlier manuscript stage;
+   do not use them as the final-stage build entry point.
+
+6. Compile poster (LuaLaTeX plus Poppler on PATH), in PowerShell:
+   ./reports/poster/ias2026/collective_interaction_20261003/compile_section.ps1 -Section full -StrictLayout
+   Use -Section all for every module preview; use an individual section basename
+   for focused editing. The print file is 36 x 48 inches, portrait.
+
+7. Compile article from the repository root, twice:
+   pdflatex -interaction=nonstopmode -halt-on-error -output-directory=output/pdf -jobname=Beyond_Nodal_Damping_Theory_20261003 experiments/theory_collective_damping_20261003/THEORY.tex
+   The native Codex compiler was attempted but unavailable on this host:
+   "Unable to find standard directories for platform".
+   The already-installed MiKTeX compiler produced the verified 34-page PDF.
+   The open editor and its source were preserved.
+
+8. Historical rigorous contour reproduction:
+   Follow experiments/regional_paper_closure_20261003/README.txt.
+   It requires python-flint 0.8.0. No new continuous-contour campaign is claimed
+   in this closure; its previous enclosures are included byte-for-byte.
+
+Do reruns in a fresh extracted copy if you need to preserve this closure's
+recorded runtimes, metadata and checksums. Floating-point and PDF metadata bytes
+can differ across machines. Scientific quantities should be compared at the
+declared tolerances, not by assuming cross-platform bit identity.

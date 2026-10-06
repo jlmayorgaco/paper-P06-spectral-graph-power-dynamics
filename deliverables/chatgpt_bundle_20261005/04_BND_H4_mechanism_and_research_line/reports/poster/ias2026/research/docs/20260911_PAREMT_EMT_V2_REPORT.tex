@@ -1,0 +1,322 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,longtable,array,tabularx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\setlist{nosep,leftmargin=1.3em}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\us}{\,\textmu s}
+\newcommand{\sinv}{\,s$^{-1}$}
+\newcommand{\f}[1]{\nolinkurl{#1}}
+\renewcommand{\arraystretch}{1.15}
+
+\title{\textbf{ParaEMT EMT-validation campaign (IAS2026 / TX4)}\\[3pt]\large V2 report}
+\author{Branch \texttt{research/paremt-emt-validation} (not pushed)}
+\date{2026-09-11}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.94\linewidth}{\textbf{Status: V2 STOPPED at gate G3a.}
+\begin{itemize}
+\item \textbf{V1 (unchanged, permanent):} G3 FAIL, G4 FAIL, EMT04--EMT18
+  BLOCKED.
+\item \textbf{V2} (preregistered at \texttt{0ab8efd4}, before any V2
+  computation):
+  \begin{itemize}
+  \item SW: PASS.
+  \item \textbf{G3a: FAIL.} The preregistered ringdown sub-check failed on the
+    blind case. Every state trajectory agreed to $\le 2.1\times10^{-4}$ of its
+    excursion.
+  \item G3b, G4a, G4b: \textbf{NOT RUN} (stop rule). The GFL blind holdouts
+    remain blind.
+  \item EMT04--EMT18: BLOCKED.
+  \end{itemize}
+\item \textbf{New finding.} The v1-frozen modal estimator A (multi-channel
+  matrix pencil) is numerically unfit. On synthetic IEEE-39-type signals it
+  crashes in 3 of 4 cases and is unresolved in the fourth.
+\end{itemize}}}
+\end{center}
+
+\tableofcontents
+
+\section{Required wording}
+
+\begin{quote}\itshape
+The first preregistered EMT realization failed its device-interface gates. A
+second preregistered realization, designed after diagnosing those failures and
+evaluated on new holdouts, stopped at its synchronous-machine transcription
+gate. Every machine state trajectory agreed with the frozen phasor model to
+$2\times10^{-4}$ of its excursion. The preregistered ringdown sub-check, which
+reused the frozen v1 matrix-pencil estimator, returned a spurious mode for both
+the EMT run and its phasor reference. The grid-following-converter gates were
+not reached, and no portfolio result was produced.
+\end{quote}
+
+The V1 FAIL is not replaced, and there is no V2 PASS.
+
+\section{Side by side}
+
+{\footnotesize
+\begin{longtable}{@{}L{2.1cm}L{2.2cm}L{2.5cm}L{2.7cm}L{3.2cm}L{2.1cm}@{}}
+\toprule
+element & V1 outcome & post hoc V1 diagnosis & V2 prospective design & V2 blind-holdout result & final EMT result\\
+\midrule\endhead
+network / operating point & G1 PASS (Ybus $1.7\times10^{-16}$; $V$ $1.5\times10^{-6}$) & --- & unchanged & --- & \textbf{reproduced} (V19/I01)\\
+SG transcription & not separated (G3) & exact to $1.9\times10^{-4}$ with an algebraic line (D1) & G3a: algebraic network; bus 30 regression + bus 36 blind; v1 rules & trajectories PASS (bus 36: $\le 2.1\times10^{-4}$); \textbf{ringdown sub-check FAIL} (spurious estimator mode in both EMT and reference; $\Delta\alpha$ 0.016 $>$ 0.005) & \textbf{G3a FAIL} (preregistered rule)\\
+SG electromagnetic embedding & G3 FAIL ($e_{fd}$ 2.26\,\% $>$ 2\,\%) & the line's $(X/\omega_0)dI/dt$ (D3: $1.4\times10^{-3}$ against a dynamic-line reference) & G3b: against a dynamic-line reference & NOT RUN & not established\\
+GFL transcription & not separated (G4) & exact to 0.78\,\% with an algebraic line (D1) & G4a: v1 harness; bus 35 and 37 blind & NOT RUN (holdouts blind) & not established\\
+GFL EMT interface & G4 FAIL (ideal current source; Nyquist growth) & current source into a lossless trapezoidal inductor (D4) & G4b: voltage source behind $R_f$--$L_f$; 6 checks & NOT RUN (holdouts blind); software gate SW PASS & not established\\
+modal estimator (frozen v1 \S5) & never exercised on IEEE-39 & --- & reused unchanged & unresolved on every unit ringdown; crashes on 3/4 synthetic multi-channel signals (DV2-2) & \textbf{unfit as frozen}\\
+EMT04--EMT18 portfolio & BLOCKED & --- & resume unchanged if all gates pass & --- & \textbf{BLOCKED}\\
+\bottomrule
+\end{longtable}}
+
+\section{V2-0 ledger reconciliation (commit \texttt{cf8a0b38})}
+
+\begin{itemize}
+\item \textbf{I04/V21.} The final ledger records the custom-GFL results as
+  VALIDATED: reproduced in ANDES with the same equations (post-cumulant Phase 8,
+  GATE 5 PASS). The v1 EMT report had wrongly said ``NOT YET TESTED''.
+  Independent phasor reproduction and EMT reproduction are now kept apart. EMT
+  reproduction was not achieved, in v1 or in V2.
+\item \textbf{T08.} The Kundur holdout scores 28/29 under the preregistered rule.
+  The miss is a real-pair coalescence, so the score is 28/28 for origin
+  crossings.
+\item \textbf{Claim matrix.} It was regenerated from the final canonical ledger:
+  43 rows, none with EMT support.
+\end{itemize}
+
+\section{V2 design}
+
+\paragraph{Documents} (commit \texttt{0ab8efd4}):
+\f{docs/20260911_PAREMT_EMT_PREREG_V2.md} and
+\f{docs/20260911_PAREMT_GFL_VOLTAGE_INTERFACE_DERIVATION.md}.
+
+\paragraph{Gates.} SW $\to$ G3a $\to$ G3b $\to$ G4a $\to$ G4b. Any failure stops
+the sequence.
+
+\paragraph{GFL interface.}
+\begin{itemize}
+\item An average-value voltage source behind the physical $R_f$--$L_f$ filter.
+\item The measured filter currents are $i_d$ and $i_q$; the controller
+  integrates 9 states.
+\item Command: $e_{\rm cmd}=e_{\rm TX4}+j(x_f/\omega_0)\theta' i$, evaluated at
+  the predicted states and at linearly extrapolated phasors.
+\item No numerical damping.
+\end{itemize}
+
+\paragraph{Blind holdouts,} frozen before any run:
+\begin{itemize}
+\item SG: bus 36 at its canonical dispatch;
+\item GFL: bus 35 at $S=2+j0.5$;
+\item GFL: bus 37 at its canonical dispatch.
+\end{itemize}
+
+\paragraph{Code.} Commit \texttt{f8b8fb15}. The v1 kernel is untouched.
+
+\section{Gate SW: PASS}
+
+\noindent\begin{tabularx}{\linewidth}{@{}YL{2.4cm}L{3.6cm}@{}}
+\toprule
+test & criterion & result\\
+\midrule
+T1: (P) at $e_{\rm cmd}$ equals $f_{i,\rm TX4}$ (2000 random vectors, $\theta'\in[-5,5]$ rad/s) & $\le10^{-12}$ rel. & $9.1\times10^{-17}$\\
+T1: $e_{\rm cmd}=e_{\rm TX4}+j(x_f/\omega_0)\theta' i$ & $\le10^{-12}$ & $2.2\times10^{-16}$\\
+T2: abc-level physical filter vs dq ODE (0.2 s) & $\le10^{-7}$ & $2.2\times10^{-12}$ (excursion $6.3\times10^{-3}$)\\
+T3: companion vs ParaEMT \texttt{numba\_InitNet} & $\le10^{-12}$ & $1.8\times10^{-16}$\\
+T4: static bases and signs at $t=0$ & $\le10^{-12}$ & $\le3.0\times10^{-16}$\\
+\bottomrule
+\end{tabularx}
+
+\section{Gate G3a: FAIL}
+
+\paragraph{Run.} Algebraic network, the v1 SG kernel, 50\us, $P_m\times1.02$ on
+$[1.0,1.2)$\,s, 10 s. The reference is the quasi-static phasor model.
+
+\medskip
+\noindent\begin{tabularx}{\linewidth}{@{}YL{2.2cm}L{3.0cm}L{3.4cm}@{}}
+\toprule
+quantity & rule & R-SG30 (regression) & B-SG36 (blind)\\
+\midrule
+equilibrium $\Delta P$, $\Delta Q$ at 0.9 s & $\le10^{-4}$ & 0, 0 & 0, 0\\
+worst state error/excursion (7 states) & $\le0.02$ & $1.9\times10^{-4}$ ($\omega$) & $2.1\times10^{-4}$ ($\omega$)\\
+frozen \texttt{matrix\_pencil} on $\omega-1$: $\alpha_{\rm EMT}$/$\alpha_{\rm ref}$ & $|\Delta\alpha|\le0.005$ & $-0.118368/-0.118367$ & \textbf{$+6.3134/+6.2976$ ($\Delta\alpha$ 0.0158)}\\
+$f_{\rm EMT}/f_{\rm ref}$ & $|\Delta f|\le0.005$ & $1.177112/1.177112$ & $1.1051/1.1097$ ($\Delta f$ 0.0046)\\
+case verdict & all rules & PASS & \textbf{FAIL}\\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\noindent\textbf{Gate G3a: FAIL.} The stop rule applies: G3b, G4a and G4b were
+not run, and EMT04--EMT18 stay BLOCKED. No threshold was changed and nothing was
+retuned.
+
+\section{Diagnosis (post hoc)}
+
+\paragraph{DV2-1: the physical ringdown agrees; the failure is in the estimator.}
+\begin{itemize}
+\item The frozen \texttt{matrix\_pencil} reports \textbf{resolved = False} in all
+  four evaluations: both cases, EMT and reference alike.
+\item Its reconstruction residual is 0.9987--0.9989, with model order 10 or 16.
+\item On B-SG36 it selects a spurious growing mode, $\alpha\approx+6.3$\sinv,
+  for the reference and the EMT run alike. That mode is not physical: the
+  trajectories decay.
+\end{itemize}
+
+An independent fixed-order damped-sinusoid fit of $\omega-1$ over $[1.2,10]$\,s
+gives:
+
+\medskip
+\noindent\begin{tabularx}{\linewidth}{@{}Ylll@{}}
+\toprule
+case & $\alpha_{\rm EMT}$ & $\alpha_{\rm ref}$ & $f_{\rm EMT}=f_{\rm ref}$\\
+\midrule
+R-SG30 & $-0.1182316$ & $-0.1182316$ & 1.177050 Hz\\
+B-SG36 & $-0.2439564$ & $-0.2439563$ & 1.250783 Hz\\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\noindent EMT and the reference agree on the physical mode to about
+$10^{-7}$\sinv. The sub-check failed because the frozen estimator is
+unresolved, which the preregistered G3a rule did not require it to be. It did not
+fail because of a model discrepancy.
+\begin{itemize}
+\item \textbf{v1.} The v1 EMT02 ringdown ``agreement'' came from the same
+  unresolved estimator; its value there happened to be the physical one.
+\item \textbf{V2.} ``Where resolved'' logic was preregistered only for the G4b
+  estimator R. G3a keeps the unconditional v1 rule and is judged by it.
+\end{itemize}
+
+\paragraph{DV2-2: the frozen estimator on synthetic multi-channel data.} The
+input imitates EMT05--EMT18: 20 channels, 30 s, a target mode plus a damped
+0.95-Hz mode, and the pulse at 1 s.
+
+\medskip
+\noindent\begin{tabularx}{\linewidth}{@{}L{2.8cm}YL{3.6cm}L{2.5cm}@{}}
+\toprule
+true $\alpha$, $f$ & estimator A (matrix pencil) & estimator B (Hilbert) & classify\\
+\midrule
+$+0.127$, 0.622 Hz & \textbf{crash} (LinAlgError; Vandermonde overflow) & resolved, $+0.1266$, 0.6216 Hz & \textbf{ERROR}\\
+$-0.144$, 0.637 Hz & unresolved ($-0.1440$, 0.6370 Hz) & resolved, $-0.1468$ & UNRESOLVED\\
+$-0.0174$, 0.71 Hz & \textbf{crash} & unresolved, $-0.0190$ & \textbf{ERROR}\\
+$+0.0036$, 0.705 Hz & \textbf{crash} & unresolved, $+0.0021$ & \textbf{ERROR}\\
+\bottomrule
+\end{tabularx}
+
+\medskip
+\paragraph{Mechanism.} The model order comes from the singular-value threshold
+$10^{-4}$, and it admits spurious modes with $|z|\gg1$. \texttt{z**k} then
+overflows in the least-squares residue fit, which gives inf, then NaN, then an
+SVD failure. When it does not crash, the spurious columns drive the residual to
+about 1, so the case is never ``resolved''.
+
+\paragraph{Consequence.} Estimator A was frozen in v1 \S5 and reused unchanged in
+V2, and its $\alpha_A$ is the reported $\alpha_{\rm EMT}$. It could not have
+produced a STABLE/UNSTABLE verdict for EMT05--EMT18 even if every device gate had
+passed. This is a defect of the frozen v1 design, found only now, and under the
+rules it is not repaired inside V2.
+
+\section{What was not run, and why}
+
+\paragraph{G3b, G4a and G4b were not run} (V2 prereg \S5.1, stop rule).
+\begin{itemize}
+\item The GFL blind holdouts (bus 35, $S=2+j0.5$; bus 37, canonical dispatch)
+  have never been simulated in EMT.
+\item Only their phasor references, computed as frozen predictions, exist. Both
+  GFL holdouts therefore stay prospective.
+\item The voltage-source interface was verified only at the software level (gate
+  SW). It has not been run in any network.
+\end{itemize}
+
+\paragraph{EMT04--EMT18} remain BLOCKED, and no IEEE-39 EMT portfolio run exists.
+
+\section{Claim ledger}
+
+There is no change: \f{results/20260911_EMT_CLAIM_MATRIX.csv} (V2-0) stands.
+\begin{itemize}
+\item No claim receives EMT support, and none is EMT-refuted.
+\item V19 remains the only EMT QUANTITATIVELY REPRODUCED claim.
+\item V20 and V21 keep their final-ledger status. That status rests on the
+  independent ANDES phasor reproductions.
+\end{itemize}
+
+\section{For the author: what a V3 would need}
+
+This is a decision memo, not executed.
+\begin{enumerate}
+\item \textbf{Replace or repair estimator A before any use.} Freeze a numerically
+  safe pencil and pre-validate it on known signals, then commit the validation
+  before any TX4 EMT result.
+  \begin{itemize}
+  \item \emph{Validation set:} synthetic multi-channel signals (including
+    DV2-2), and the frozen phasor TDS of P4 H4 and $G_S$, where it must reproduce
+    the frozen eigenvalues.
+  \item \emph{Example safeguards:} scaled residue evaluation, a model order fixed
+    by an information criterion, and spurious-mode rejection.
+  \end{itemize}
+\item \textbf{SG ringdown sub-check.} Condition it on the estimator being
+  resolved, or use a preregistered fixed-order fit. Keep the 2\,\% trajectory
+  rule unchanged.
+\item \textbf{Blind SG holdout.} B-SG36 has now been seen, so a V3 needs a new
+  one. The GFL holdouts B1-GFL35 and B2-GFL37 are still blind and can be kept.
+\item \textbf{Everything else unchanged:} the V2 interface, derivation and G4b
+  checks; EMT04--EMT18, their frozen predictions and their success rules.
+\item \textbf{Stop rule unchanged.} If the voltage interface fails G4b on the
+  blind holdouts, STOP. There is no other interface in the same campaign.
+\end{enumerate}
+
+\section{Reproducibility}
+
+\paragraph{Rerun from commit \texttt{f8b8fb15}:}
+\begin{enumerate}
+\item \f{EMT_setup_tx4.py};
+\item \f{v2/EMTV2_refs.py} (tx3-analysis);
+\item \f{v2/EMTV2_sw_tests.py};
+\item \f{v2/EMTV2_gates.py};
+\item \f{v2/EMTV2_G3a_diagnostics.py}.
+\end{enumerate}
+
+\paragraph{Byte identity.} The chain was executed twice, before the code commit
+and again from the committed HEAD. The outputs are identical apart from
+provenance fields: see \f{results/EMTV2/EMTV2_rerun_identity.json}.
+
+\paragraph{Provenance.} \f{results/EMTV2/EMTV2_gates.json},
+\f{SW/sw_tests.json} and \f{refs/refs_manifest.json} record the git HEAD,
+ParaEMT \texttt{d79d735a}, the working-copy diff SHA, the environment hash and
+the file sha256.
+
+\section*{What EMT did and did not validate (after V1 and V2)}
+\addcontentsline{toc}{section}{What EMT did and did not validate}
+
+The table separates \textbf{theorem validity} from \textbf{model-fidelity
+corroboration}. Statuses are those of the final canonical ledger.
+
+{\footnotesize
+\begin{longtable}{@{}L{3.0cm}L{1.5cm}L{2.0cm}L{2.2cm}L{3.3cm}L{2.8cm}@{}}
+\toprule
+Theory / claim & Mathem\-atical status & Phasor evidence & Independent phasor evidence & EMT evidence (V1 + V2) & Final status\\
+\midrule\endhead
+V01, V02, V08, V22, V26, T04, T06, T08 (theorems) & proved & yes & where applicable & not applicable & PROVED\\
+V03 P4 trap, $\kappa=4$ [B02] & --- & PCV02; G2 TDS & ANDES Phase 8, 32/32 & BLOCKED & VALIDATED (model-specific witness)\\
+V06, V07 policy dependence [B01] & structure proved & clean $g$-only counterfactual & ANDES Phase 8, P4 vs $G_S$ & BLOCKED & VALIDATED\\
+V10, V11 port derivative, line ranking & proved (V10) & PCV04 & ANDES R3 11/12, $\rho$ 1.00 & BLOCKED & PROVED + VALIDATED; VALIDATED (local)\\
+V13, V14 remediation, governors & --- & PCV04; FC03; G2 & partial ANDES & BLOCKED & VALIDATED (model-specific); BENCHMARK-SPECIFIC\\
+V15--V18 robustness & --- & PCV05 & --- & BLOCKED / not targeted & as in the ledger\\
+V30, B07, B10 nonlinear scope & normal form & G2 TDS 32/32 & --- & BLOCKED & NUMERICALLY VALIDATED\\
+V19 network and operating point [I01] & --- & reference & ANDES; pandapower after the tap fix & \textbf{EMT QUANTITATIVELY REPRODUCED} (V1 G1) & CONDITIONAL (pandapower translation)\\
+V20 SG dynamics [I02, I03] & --- & internal & ANDES R2/R3, E1 & V1 G3 FAIL; V2 G3a FAIL (trajectories $2\times10^{-4}$; estimator sub-check) $\to$ EMT UNRESOLVED & VALIDATED (by ANDES)\\
+V21 custom GFL in a second simulator [I04] & --- & project DAE & \textbf{ANDES Phase 8, GATE 5 PASS} & V1 G4 FAIL; V2 G4a/G4b NOT RUN (blind) $\to$ EMT UNRESOLVED & VALIDATED as a reproduction of computation; EMT reproduction not achieved\\
+cumulant and closure diagnostics, V05, V12, B04, B06, negatives & as in the ledger & as in the ledger & --- & not applicable / BLOCKED & unchanged\\
+\bottomrule
+\end{longtable}}
+
+\end{document}

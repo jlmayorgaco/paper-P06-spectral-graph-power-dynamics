@@ -1,0 +1,71 @@
+{
+  "status": "LOCAL_DIAGNOSTIC_NOT_GLOBAL_OPTIMALITY_CERTIFICATE",
+  "gradient_horizon_s": 60.0,
+  "gradient_step_s": 0.025,
+  "KKT_audits": [
+    {
+      "active_tolerance": 0.001,
+      "active_constraints": [
+        "constraint_0"
+      ],
+      "multipliers": [
+        0.004332533408111114
+      ],
+      "stationarity_inf": 0.15302949508830718,
+      "relative_stationarity_inf": 0.9961226526291745,
+      "primal_violation": 0.0,
+      "constraint_complementarity_inf": 4.262285958439927e-06
+    },
+    {
+      "active_tolerance": 0.003,
+      "active_constraints": [
+        "constraint_0",
+        "constraint_20",
+        "constraint_21",
+        "constraint_31"
+      ],
+      "multipliers": [
+        0.0008870780356545134,
+        0.009974944966456773,
+        0.033551772331759225,
+        0.038348724371369394
+      ],
+      "stationarity_inf": 0.013131408883554484,
+      "relative_stationarity_inf": 0.08547694575020567,
+      "primal_violation": 0.0,
+      "constraint_complementarity_inf": 8.571167600126832e-05
+    },
+    {
+      "active_tolerance": 0.01,
+      "active_constraints": [
+        "constraint_0",
+        "constraint_20",
+        "constraint_21",
+        "constraint_31"
+      ],
+      "multipliers": [
+        0.0008870780356545134,
+        0.009974944966456773,
+        0.033551772331759225,
+        0.038348724371369394
+      ],
+      "stationarity_inf": 0.013131408883554484,
+      "relative_stationarity_inf": 0.08547694575020567,
+      "primal_violation": 0.0,
+      "constraint_complementarity_inf": 8.571167600126832e-05
+    }
+  ],
+  "exchange_active_rows": [
+    0,
+    20,
+    21,
+    30,
+    31
+  ],
+  "cautions": [
+    "Peak ties and active-set changes require gradient bundles.",
+    "KKT with a loose active tolerance is only a diagnostic.",
+    "Exchange signatures require finite nonlinear validation.",
+    "No global lower bound on retained SG has been computed."
+  ]
+}

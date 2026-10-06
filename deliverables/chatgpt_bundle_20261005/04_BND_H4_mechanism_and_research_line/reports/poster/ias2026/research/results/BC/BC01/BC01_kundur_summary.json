@@ -1,0 +1,23 @@
+{
+ "benchmark": "kundur",
+ "points": 5917,
+ "subset_cases": 47336,
+ "status_rest_counts": {
+  "UNSTABLE": 29270,
+  "STABLE": 18065,
+  "BOUNDARY_OR_UNRESOLVED": 1
+ },
+ "status_physical_counts": {
+  "UNSTABLE": 29269,
+  "BOUNDARY_OR_UNRESOLVED": 18067
+ },
+ "neutral_verified_fraction": 1.0,
+ "max_rotation_residual": 2.398825951219428e-10,
+ "max_jordan_residual": 3.947318092153462e-12,
+ "points_exact": 5916,
+ "points_with_unresolved": 1,
+ "compared_with_G1": 5917,
+ "H_phys_equals_G1": 5917,
+ "label_changes": [],
+ "points_with_small_positive_real_mode": 3
+}

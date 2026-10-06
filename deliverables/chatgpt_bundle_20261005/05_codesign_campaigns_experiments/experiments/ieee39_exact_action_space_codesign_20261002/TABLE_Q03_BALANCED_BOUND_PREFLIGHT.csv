@@ -1,0 +1,2 @@
+case_id,tau_ms,status,roots_right_of_margin,margin_s_inv,critical_real_s_inv,norm_bound,contour_radius,contour_points,max_phase_increment,min_logabs_small_factor,refinements,original_Ac_norm,balanced_Ac_norm,diagonal_scale_ratio,CB_norm,CA_norm,B_norm,certified,notes
+Q0_seed,0.0,NUMERICALLY_VALIDATED_ODE_COUNT,0,-0.05,-0.08080909538081596,,,0,0.0,,0,3.5723090248872484e6,,,,,,false,tau=0 reduces to finite ODE; complete eigenvalue list counted

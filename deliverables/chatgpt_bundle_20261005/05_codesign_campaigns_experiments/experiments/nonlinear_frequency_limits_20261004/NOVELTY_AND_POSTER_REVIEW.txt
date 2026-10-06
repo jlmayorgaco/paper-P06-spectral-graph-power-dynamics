@@ -1,0 +1,124 @@
+REVISIÓN DE NOVEDAD Y DEL RECLAMO PARA PÓSTER
+2026-10-04 — Revisión independiente, fuentes primarias, sin simulaciones.
+
+VEREDICTO
+
+La extensión a eventos localizados es necesaria y mejora mucho el alcance físico de la ley. La observación de que los extremos no dependen de M, manteniendo red, evento, D y rama de equilibrio, abre una consecuencia más fuerte que el LP propuesto: el área de CADA BUS FIJO depende de la inercia total, pero no de su distribución. Un piso de inercia para evitar todo cruce de la frecuencia final en todos los buses podría entonces ser independiente de la asignación espacial. Esta consecuencia debe auditarse y declararse como necesaria, nunca como garantía de nadir o de estabilidad.
+
+El LP de área COI es matemáticamente plausible a m fijo, pero su interpretación tiene una dificultad importante: los pesos de COI cambian con las variables de decisión M_i. La variación de su área puede ser enteramente una variación del observable, mientras todas las áreas de buses fijos permanecen iguales. COI sigue siendo un observable físico válido; lo que no se justifica es presentar su mejora como mejora de las áreas locales. Recomiendo hacer visible este hecho y preferir el límite de salida fija como afirmación principal.
+
+QUÉ YA ES CLÁSICO
+
+- Sumar balances, cancelar flujos internos de una red lossless e integrar hasta un estado final.
+- Obtener momentos temporales mediante expansión de la respuesta en s=0; tratar retardos y filtros a través del primer momento de su kernel bajo las condiciones de convergencia apropiadas.
+- Deducir un cruce a partir de un área firmada no positiva y un error inicialmente positivo.
+- Optimizar localización de inercia, incluir varios sitios de perturbación, imponer presupuestos/cotas y convertir casos particulares en problemas convexos.
+- Usar diferencias finitas de gradientes, energías Bregman, pseudoinversas de Laplacianas y pesos secantes.
+- Incorporar inercia, respuesta primaria y almacenamiento a restricciones lineales o convexas de frecuencia para planificación.
+
+La combinación defendible sería una identidad específica, exacta para eventos finitos de la red declarada, que produzca una restricción necesaria comprobable con flujos de potencia y excluya TODAS las redistribuciones de inercia y controles de energía neutra dentro del contrato. No encontré esa fórmula exacta en las pocas fuentes directas examinadas; esto no establece prioridad universal.
+
+AUDITORÍA MATEMÁTICA DEL LP PROPUESTO
+
+Uso notación explícita para evitar confundir c de salida con c de damping:
+  m=1^T M1; d0=1^T D0 1; kappa=1^T D1 1;
+  c_D=D0^T1/d0; r=M1/m; P_e=1^T d_e!=0;
+  delta_e=forma final menos inicial, módulo una rotación;
+  Q_e=integral 1^T u_e(t)dt.
+
+La ley COI del equipo es
+  A_COI,e = P_e(m+kappa)/d0^2 + (c_D-r)^T delta_e - Q_e/d0.
+
+Con d_e, D, red, rama y u_inf=0 fijos, la ecuación de equilibrio final es
+  F(q1,e)=F(q0)+d_e-(P_e/d0)D0 1,
+independiente de M. Deben mantenerse esos datos al variar M: si una desconexión de SG cambia además la inyección previa, la contingencia, D, tensión o red, no se puede reutilizar el mismo delta_e. Tampoco inferir convergencia de un endpoint que simplemente existe.
+
+A m fijo, A_COI,e sí es afín en M_i. Varias condiciones A_COI,e/P_e>=0, junto con cajas y sumas lineales, dan un LP para esa relajación. Sin embargo:
+
+1. El no-sobrepaso verdadero requiere A/P>0 para respuestas continuas que parten de reposo. El caso A/P=0 también obliga a cruzar la frecuencia final. Un LP con >=0 representa la clausura de una condición necesaria. Su mínimo puede ser solo un ínfimo límite del problema físicamente deseado.
+2. Pasar todos los cortes de área no asegura no-sobrepaso: se permiten excursiones positivas y negativas que se cancelan. Es un cribado de imposibilidad, no una certificación de trayectorias seguras.
+3. Una búsqueda escalar en m no es automáticamente exacta. Bisección requiere monotonicidad demostrada de factibilidad. Cotas nodales superiores pueden impedir escalar una asignación factible conservando r. En ausencia de una prueba, usar optimización global unidimensional certificada o afirmar únicamente los resultados realmente verificados.
+4. «Mínimo SG» requiere una relación explícita entre las variables M_i y recursos SG permitidos. La inercia virtual o almacenada también aparece en el modelo; una cota sobre M no distingue tecnología. Retirar SG cambia normalmente más elementos que M. Con cotas M_i=0 hay además un límite singular que no pertenece automáticamente al teorema con M positiva.
+5. Cada delta_e exige una solución de flujo y una selección de rama. «Sin simular la trayectoria» es correcto; «sin resolver la red» o «sin cálculo no lineal» no lo es.
+
+OBSERVABLE FIJO: LA OBJECIÓN Y LA POSIBLE CONTRIBUCIÓN MEJOR
+
+Para cualquier vector FIJO a con a^T1=1, sea A_a,e=integral(Omega_e-a^T nu_e)dt. La misma identidad integrada da
+
+  A_a,e = P_e(m+kappa)/d0^2 + (c_D-a)^T delta_e - Q_e/d0.   (R1)
+
+Por tanto, al mantener m,D,d_e,red,extremos y Q_e fijos, A_a,e no depende de la distribución de M. Para a=e_i, todas las áreas de buses fijos son invariantes. La identidad COI se recupera asignando a=r; su variación con M viene de promediar las mismas áreas nodales con pesos diferentes. Las trayectorias, picos y tiempos pueden cambiar al redistribuir M: (R1) solo restringe sus integrales.
+
+También A_a,e-A_b,e=(b-a)^T delta_e. Las diferencias entre áreas locales están fijadas por el cambio de forma del equilibrio, independientemente de M y Q comunes. Esta es otra interpretación verificable directamente y evita llamar «inercia aparente» a un coeficiente de momento.
+
+Para exigir ausencia de cruce de la frecuencia final en todos los buses i de un conjunto observado y todos los eventos e, la condición necesaria estricta resulta
+
+  m > max_(e,i) { -kappa
+                  + d0^2 [delta_e,i-c_D^T delta_e]/P_e
+                  + d0 Q_e/P_e }.                        (R2)
+
+Con Q_e=0, (R2) es un piso candidato independiente de la asignación de inercia. Si falla, ninguna redistribución a ese m ni acción suplementaria de energía neta nula que conserve los extremos puede impedir todo cruce en todos los buses, entre las soluciones que convergen y cumplen las hipótesis. Usar >= obtiene la clausura de la relajación, no un diseño realizable en igualdad.
+
+La fórmula (R2) es una inferencia algebraica de la ley del equipo y se envió al revisor matemático; no se atribuye a ninguna fuente y este informe no reemplaza esa auditoría. Cambios de D, Q, red o evento pueden escapar al límite porque cambian sus datos. No incluirlos en una imposibilidad más amplia.
+
+R2 es más defendible para un póster que un LP-COI: mantiene los puntos de medición al comparar diseños, produce un test cerrado, cuantifica sobre distribuciones y controles, y deja visible qué intervención debe cambiar para superar el test. Si solo se quiere un promedio fijo de una región, usar a fijo produce la versión correspondiente sin el máximo sobre todos los buses.
+
+FUENTES PRIMARIAS DIRECTAS LEÍDAS
+
+[1] B. K. Poolla, S. Bolognani y F. Dörfler, Optimal Placement of Virtual Inertia in Power Grids.
+Texto completo: https://arxiv.org/pdf/1510.01497
+Lectura relevante: definición de desempeño y localización del disturbio, problema de asignación, teoremas 3–4, corolario 5 y formulación robusta. Ya cubre presupuestos, cotas nodales, peor localización de perturbación y casos convexos con solución global. Su desempeño es cuadrático/H2 de una red linealizada; el nuestro sería un área firmada exacta de un evento finito no lineal. El corolario 5 advierte que una penalización ponderada por la inercia puede resultar independiente de su asignación y poco informativa. Es un antecedente directo de la necesidad de auditar el observable del LP. No sería justo compararlo como si propusiera solo reparto uniforme o ignorase perturbaciones localizadas.
+
+[2] L. Pagnier y P. Jacquod, Optimal Placement of Inertia and Primary Control: A Matrix Perturbation Theory Approach.
+Texto completo: https://arxiv.org/pdf/1906.06922
+Lectura relevante: métrica (13), definición COI (14), perturbaciones localizadas, secciones III–V y conclusiones. Trata heterogeneidad independiente de inercia/control, presupuestos fijos, modos lentos y ubicación del evento, con aproximaciones perturbativas para el desempeño cuadrático. No vender heterogeneidad, COI, localización o relación con la Laplaciana como novedad. La diferencia candidata es exactitud finita por extremos y una restricción necesaria que no requiere resolver el transitorio ni pequeñas desviaciones paramétricas.
+
+[3] S. Kohlhaas y P. Kotyczka, Structured Modal-Energy Dissipation for Inter-Area Oscillations in Low-Inertia Power Systems, RE Grid Integration Week 2026, contribución 111.
+Resumen primario: https://coms.events/regridweek2026/data/abstracts/en/abstract_0094_0111_0653.html
+Solo el resumen pudo verificarse, no el artículo completo. Usa potencia agregada nula para modificar oscilaciones preservando RoCoF COI inicial y frecuencia final; el nadir prácticamente inalterado se reporta numéricamente. Comparador más próximo para separar forma del transitorio y propiedades agregadas invariantes. Nuestra propuesta añade área firmada por extremos y un límite para energía neta nula, más general que suma instantánea nula. La ausencia de esa ley en el resumen no demuestra que no esté en su artículo.
+
+[4] Z. Chu, U. Markovic, G. Hug y F. Teng, Towards Optimal System Scheduling with Synthetic Inertia Provision from Wind Turbines.
+Texto completo: https://arxiv.org/pdf/1911.02857
+Lectura relevante: secciones I–III, extracción/recuperación energética y restricciones de frecuencia para planificación. Incluye dinámica de energía cinética eólica, mitigación de la segunda caída, restricciones analíticas y aproximaciones conservadoras de nadir integradas en scheduling. Energía de recuperación y asignación de soporte ya son temas desarrollados. Nuestra ley sería un balance agregado exacto con extremos dados; no modela límites de velocidad de turbina, energía/potencia de batería ni demuestra una política implementable. Que pueda evitarse una segunda caída específica en ese trabajo no contradice una condición de cruce final bajo otro contrato energético.
+
+[5] M. Rajabdorri, B. Zhou, L. Sigrist y E. Lobato, Implementing General-Order Frequency Dynamic Response Model and Frequency Excursion Duration Criterion in Unit Commitment Problem, 2025.
+Texto completo: https://arxiv.org/pdf/2509.02136
+Lectura relevante: secciones II–III, ecuaciones (12)–(19) y restricción de duración. Transcribe dinámica agregada con polinomios de Bernstein a MILP y usa información de área para estimar duración bajo umbral. Área de frecuencia y restricciones lineales para planificación no son nuevas por sí mismas. Diferencia: nuestro área es firmada respecto del endpoint e integrada hasta infinito; su criterio intenta representar duración respecto de un umbral operativo en una ventana finita. No presentar nuestra ley como reemplazo de ese criterio de seguridad.
+
+[6] F. Aalipour y T. Das, Shaping the Transient Response of Nonlinear Systems to Satisfy a Class of Integral Constraints, 2022, DOI 10.1002/adc2.110.
+Texto completo: https://arxiv.org/pdf/2012.12493
+Releído en la revisión anterior: áreas firmadas, compensación y sobrepaso bajo restricciones integrales, con motivación energética. Impide reclamar como nuevo el principio «un área no positiva con error inicial positivo fuerza sobrepaso». La posible contribución del equipo es identificar el área mediante extremos de una red concreta, y de ahí excluir familias de redistribución/control con un cálculo independiente de trayectoria.
+
+OTRAS REFERENCIAS ÚTILES, SIN AMPLIAR EL ALCANCE DE LA BÚSQUEDA
+
+- Paganini–Mallada, Global Analysis of Synchronization Performance for Power Systems: Bridging the Theory-Practice Gap: https://mallada.ece.jhu.edu/pubs/2020-TAC-PM.pdf . Precedente para sincronización, separación agregado/residual y DC; leído en la revisión anterior.
+- Min–Paganini–Mallada, Accurate Reduced-Order Models for Heterogeneous Coherent Generators: https://mallada.ece.jhu.edu/pubs/2021-LCSS-MPM.pdf . Agregado coherente (sum g_i^-1)^-1; aproximación válida bajo hipótesis, no un teorema universal de toda frecuencia nodal.
+- El registro TU Delft de Xiao et al., Dispatch of Inertia and Damping for Multiconverter Oscillation Mitigation, declara redistribución de presupuestos fijos y mitigación en banda: https://repository.tudelft.nl/record/uuid%3A6fcc513c-4ff0-4f4d-ab62-d409081162fa . Solo resumen/metadata; PDF embargado, volumen con fecha de número futura respecto de esta revisión. No se usó para una comparación fina ni para afirmar prioridad temporal.
+- Markovic et al., Optimal Sizing and Tuning of Storage Capacity for Fast Frequency Control in Low-Inertia Systems, DOI 10.1109/SEST.2019.8849022, aparece en bibliografía primaria y en el manuscrito subido por un autor. No pude obtener aquí el texto completo de un repositorio institucional accesible. Por eso el contraste detallado de energía/scheduling se apoya en Chu et al., cuyo texto sí fue leído.
+
+COMPARACIONES MÍNIMAS JUSTAS PARA SOSTENER VALOR
+
+1. Agregado coherente que solo usa m,d0,kappa: mostrar un evento donde omite el término de extremo y no detecta una imposibilidad que R1/R2 sí detecta.
+2. Asignación uniforme, proporcional a D y una asignación optimizada con un objetivo H2/peor evento razonable, conservando el mismo presupuesto y conjunto de eventos. No pretender dominar H2 con un área: medir cada objetivo y la condición necesaria común por separado.
+3. Mismos buses/regiones de medición para todas las asignaciones. Si se usa COI, mostrar además los resultados de salidas fijas para revelar la reponderación.
+4. Control de potencia agregada nula con distintas ganancias/retardos que mejora modos pero conserva el área; control con Q distinto y mismo endpoint que modifica exactamente el área predicha. La ley no garantiza que tales controladores converjan: comprobarlo por separado.
+5. Si se desea una decisión SG/GFL, comparar la relajación de solo M con el cambio de modelo físico real. La primera puede ser una cota de referencia; no reemplaza la segunda.
+
+RECLAMOS DE PÓSTER
+
+Propuesta prudente, sujeta a auditoría y ejemplo no vacuo:
+«Dos equilibrios de flujo determinan el área firmada de la frecuencia tras un evento finito. Con soporte primario y energía neta fijos, redistribuir la misma inercia cambia las trayectorias pero no las áreas de buses fijos. La identidad produce una cota necesaria de inercia total para evitar el cruce de la frecuencia final en todos los buses observados.»
+
+Para un póster en inglés:
+«Endpoint laws reveal a frequency-area limit that inertia redistribution cannot remove.»
+Subtítulo preciso:
+«A necessary total-inertia bound for avoiding final-frequency crossing in nonlinear lossless swing networks.»
+
+Si se conserva el LP-COI:
+«Exact fixed-budget optimization of necessary COI area constraints», seguido inmediatamente de «changing inertia changes the COI weights; feasibility does not certify nadir or stability».
+
+Evitar: «minimum synchronous generation for stability», «maximum GFL penetration», «optimal frequency security», «nadir invariant», «all controllers cannot help», «exact minimum inertia needed» o «new LP method». El resultado matemático puede ser exacto y la condición de seguridad seguir siendo solo necesaria.
+
+PAQUETE PUBLICABLE MÍNIMO
+
+Teorema de área de salida fija para eventos localizados y D con memoria; corolario de invariancia ante redistribución y energía neta nula; cota necesaria multievento; ejemplo analítico estable que active la cota; al menos un caso donde el agregado sin localización falle al detectar el límite. Si el ejemplo requiere parámetros irreales o solo fuerza una excursión tardía arbitrariamente pequeña, debe presentarse como límite integral, no como solución a la seguridad de frecuencia rápida. Una mejora convincente posterior sería una cota de área en ventana finita con un término terminal/cola certificado.

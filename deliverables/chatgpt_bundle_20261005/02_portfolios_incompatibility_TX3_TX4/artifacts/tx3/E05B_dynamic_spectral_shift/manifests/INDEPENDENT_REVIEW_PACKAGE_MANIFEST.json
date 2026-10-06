@@ -1,0 +1,442 @@
+{
+  "E05C_or_E06_results_included": false,
+  "created_utc": "2026-08-27T22:17:40.448708+00:00",
+  "file_count_excluding_manifest": 86,
+  "files": [
+    {
+      "bytes": 43,
+      "path": "LICENSE",
+      "sha256": "73ca1348c9d172bca0ee59c9b81c8d875606b3df7c3a2e3941b6494f54750977"
+    },
+    {
+      "bytes": 2117,
+      "path": "README.md",
+      "sha256": "0b29572bf0b40a78308f542e9088c9d5d50ff94edad7a7ade476dc55b7c94fb2"
+    },
+    {
+      "bytes": 75318,
+      "path": "artifacts/tx3/E03_E04/direct/discovery_vertices.parquet",
+      "sha256": "849b834f37e79ba4bdbf7e60ad4b4c4af06cf5d43d534da2daad0ee392d2683b"
+    },
+    {
+      "bytes": 44937,
+      "path": "artifacts/tx3/E03_E04/direct/holdout_vertices.parquet",
+      "sha256": "4a8b623d2f99f281ff6d17a7f028ad18a615df6d09c0bd2d02d7af1d3439cd8d"
+    },
+    {
+      "bytes": 2519,
+      "path": "artifacts/tx3/E03_E04/preregistration/ACTION_SET_FREEZE.json",
+      "sha256": "a9b1004eebca5a541aac370c8f465b0fb2156fe3dba34160e1ae3db28b1e33bb"
+    },
+    {
+      "bytes": 3123,
+      "path": "artifacts/tx3/E03_E04/preregistration/NUMERICAL_METHOD_FREEZE.json",
+      "sha256": "16a899d7803b0de40ff7e2538a30e0b045a50d5bc31004b89fde42ce799e15d7"
+    },
+    {
+      "bytes": 7773,
+      "path": "artifacts/tx3/E03_E04/preregistration/OPERATING_POINT_FREEZE.json",
+      "sha256": "ff25b47fe558e8ab50e514645c568fafb8ed8458bb5341b3d9d7fe02c86b004d"
+    },
+    {
+      "bytes": 2983,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/E05B_FINAL_DECISION.json",
+      "sha256": "d98666d6677ef2b5def80f809b6c14163d5ee8636a3c0832078ac04f1722e7af"
+    },
+    {
+      "bytes": 36375,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/contours/connected_contour_moments.parquet",
+      "sha256": "8bb4acf92f40c358a5bd9e5a0e096224180100322323cbff09516a127f8b3211"
+    },
+    {
+      "bytes": 681295,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/contours/connected_xi_samples.parquet",
+      "sha256": "bf3c8aeffc6ee7dae0739fc1b8461eecdbd53f257bf86be9004ae4c50acfc6b0"
+    },
+    {
+      "bytes": 115447,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/development/component_externalities.parquet",
+      "sha256": "9ae373758425e1942abf19efe0e7fda5f10139cfe1894f1a25137a9eda82dfb8"
+    },
+    {
+      "bytes": 179648,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/development/factor_vertices.parquet",
+      "sha256": "318c3bfb5f77dc85df5aaa17df78a301c8410280dd9943d1cfe5c9dc0affcb26"
+    },
+    {
+      "bytes": 6798,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/development/pointwise_factorization_audit.parquet",
+      "sha256": "7e9e4e4fab4b6972b8adc28cf3e40b4aec5f63ca277f04661ecd654559d711d3"
+    },
+    {
+      "bytes": 18017,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/figures/figure_E05B_1_factor_anatomy.pdf",
+      "sha256": "562e0b62e4f4fe307f5e596318b87edd60f4d1423df2ed9130012018a00bfd13"
+    },
+    {
+      "bytes": 61763,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/figures/figure_E05B_1_factor_anatomy.png",
+      "sha256": "5b20c981dea044a367895d99ce3e9c2f2486a7158d42f545449172f46a26239a"
+    },
+    {
+      "bytes": 51236,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/figures/figure_E05B_2_full_vs_components.pdf",
+      "sha256": "27c34fed2e159ad7677f7dda8791cef798134ee9e929b5b1967d48cd74242d20"
+    },
+    {
+      "bytes": 92447,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/figures/figure_E05B_2_full_vs_components.png",
+      "sha256": "b2dcda02f32ff80d954bca4914ce8480c02f5c8dc102b6f8d23610c3c6a68599"
+    },
+    {
+      "bytes": 20804,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/figures/figure_E05B_3_dynamic_replication.pdf",
+      "sha256": "24a52909cada873715dac3093bd3861c16868f74407ffc3b9586c47c8b89a1ec"
+    },
+    {
+      "bytes": 64188,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/figures/figure_E05B_3_dynamic_replication.png",
+      "sha256": "acda20f5b4dfbdcd9ca8cdc29177ea8b98687eb57818390f9bc8dd33381d4620"
+    },
+    {
+      "bytes": 20042,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/figures/figure_E05B_4_contour_moments.pdf",
+      "sha256": "e1c9b063c743d36ed6a796453353a1252fd8e316c7154ab0afc187d816c66524"
+    },
+    {
+      "bytes": 44731,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/figures/figure_E05B_4_contour_moments.png",
+      "sha256": "274d5cd3a4ed7ec601fe68e0d7b7637611c0fb38840f837161d1db187e5a3a74"
+    },
+    {
+      "bytes": 69803,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/holdout/component_externalities.parquet",
+      "sha256": "7a93077f957d96ae2a4aef645f651faaad1800435e43bd10eb748ddde07bc4a2"
+    },
+    {
+      "bytes": 91989,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/holdout/factor_vertices.parquet",
+      "sha256": "a65ded013950eb9a885bf47322d03cc5c3c2c1836715ad19955b62ba79f9c915"
+    },
+    {
+      "bytes": 8035,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/holdout/pointwise_factorization_audit.parquet",
+      "sha256": "452a418fa9f8ab4840d26a09262b94ff9947ce839e17856d414cc94e444f5a63"
+    },
+    {
+      "bytes": 218,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/logs/contour_compute.json",
+      "sha256": "18063b2ef1ed1a0e089daaf6809f86e1e6dce21d88017cdd9a4658df7853628c"
+    },
+    {
+      "bytes": 285,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/logs/development_compute.json",
+      "sha256": "e7379f830f39189e490eb3fa8615014b848b4d8c93c3d0a3d5fad701913b56de"
+    },
+    {
+      "bytes": 280,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/logs/holdout_compute.json",
+      "sha256": "42269b29a5d0580dc7f350658f2721754923833d9dfefe3a0496c9b42b4b3310"
+    },
+    {
+      "bytes": 489,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/manifests/E05B_RUN_MANIFEST.json",
+      "sha256": "069589c23255371fa76731d817acfa2e677f41d4f371c339613d21d850851054"
+    },
+    {
+      "bytes": 235,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/manifests/PACKAGE_SOURCE_VALIDATION.json",
+      "sha256": "731efd7050b4e3d521c214517551023ec8180e2418edf46867b0d95f44329d29"
+    },
+    {
+      "bytes": 6133,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/preregistration/E05B_CANDIDATE_CONTOUR_FREEZE.json",
+      "sha256": "9d9ac4ded950922b3878a5408ad588b1d33a26479b72c01583c1f3ccca00ee20"
+    },
+    {
+      "bytes": 1799,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/preregistration/E05B_GATE_FREEZE.json",
+      "sha256": "cb424a2b109e5b1b99625adacb04bd278aeb86a0928a956ae8b854b6b4bde3fa"
+    },
+    {
+      "bytes": 5673,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/preregistration/E05B_HOLDOUT_FREEZE.json",
+      "sha256": "a5fc345225ecabe7228b2bd48105f57de30fb97fdd056f46ac2715b6aaebf28e"
+    },
+    {
+      "bytes": 5417,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/preregistration/E05B_HOLDOUT_MANIFEST.parquet",
+      "sha256": "89d066ef1314ae9f5562d9f53653c4cabc6846e4ec1cfb3b3819ff5437ec8836"
+    },
+    {
+      "bytes": 2133,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/preregistration/E05B_NUMERICAL_FREEZE.json",
+      "sha256": "be8f5249a1cbc067f2a334604faf94de83f179113c97e9850bd9c7fe1ae4fe81"
+    },
+    {
+      "bytes": 1683,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/preregistration/E05B_PREREGISTRATION.md",
+      "sha256": "1eb4e05653f54c277d7f588c01a6b7f19a5d35888d18b707490cadb9072b7943"
+    },
+    {
+      "bytes": 1852,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/reports/E05B_CLAIMS_EVIDENCE_ADDENDUM.md",
+      "sha256": "4553b47799249bb22d97bf6749598a2793014c782f6fd747e170ac11b10b3f0d"
+    },
+    {
+      "bytes": 994,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/reports/E05B_CONNECTED_SPECTRAL_SHIFT.md",
+      "sha256": "e655002662af8f3ff2315215c60e7bf1b26fb296cc19fb79ab007f9f8fa08b4f"
+    },
+    {
+      "bytes": 657,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/reports/E05B_DECISION.md",
+      "sha256": "6e1c9d3383d1ffbc121495c75a0e74fc10550fd8f8772d188adde270b95d26b0"
+    },
+    {
+      "bytes": 389,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/reports/E05B_DYNAMIC_HOLDOUT.md",
+      "sha256": "960df2471895506968fd592c62deda0eb68f94e06ec497ed3720abc6eef9b88f"
+    },
+    {
+      "bytes": 586,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/reports/E05B_FACTOR_DECOMPOSITION.md",
+      "sha256": "a5f3269ddee46133ba72a8f347e8d8df3599c06aceff12ef4882a106d0cc87cc"
+    },
+    {
+      "bytes": 419,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/reports/E05B_FAILURE_LEDGER.md",
+      "sha256": "768f3ee990c44c8993ea0bd9ee660cbc210a8f425b007f541d5ff126ebad42fd"
+    },
+    {
+      "bytes": 443,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/reports/INDEPENDENT_REVIEW_README.md",
+      "sha256": "39771a443c7dc36453fa4206ab98ae1db22e3044e8847dc50e3b41db1448cff4"
+    },
+    {
+      "bytes": 1553424,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/spectra/development_spectra.npz",
+      "sha256": "ecfd23b3cdd678bc695a6f1e3e9c6ac920662298b0db41d28089172b98ed8840"
+    },
+    {
+      "bytes": 1035790,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/spectra/holdout_spectra.npz",
+      "sha256": "dc3c844cb3fdad0a1706beaf128fd1e6442df1e4073f78e83333cebd6a345892"
+    },
+    {
+      "bytes": 11087,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/tables/component_classification.parquet",
+      "sha256": "67f3985ebc9864417150a05a0544dcec5673a0cabba266f7547d003ab44587df"
+    },
+    {
+      "bytes": 7747,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/tables/contour_candidate_decisions.parquet",
+      "sha256": "44d44626df25d4d85c68fc8b3ea4fef95deaad6b2ae5a1516ec847353d175d82"
+    },
+    {
+      "bytes": 7653,
+      "path": "artifacts/tx3/E05B_dynamic_spectral_shift/tables/holdout_dynamic_reproducibility.parquet",
+      "sha256": "d75857bd5ebab2aa712131ea44b53c90d92fc12c6357710a5bdd098fcd7cc226"
+    },
+    {
+      "bytes": 5455,
+      "path": "artifacts/tx3/E05_mechanism_consequence/E05_FINAL_DECISION.json",
+      "sha256": "9b69b5103a50f058e3b5abcdb76d8f61058c54fd83804b72d2bc0ca36360a263"
+    },
+    {
+      "bytes": 1893,
+      "path": "artifacts/tx3/E05_mechanism_consequence/preregistration/E05_CANDIDATE_FREEZE.json",
+      "sha256": "69a4b77515e7581fb51829fbd52d1a22d92e6f1b1849457fc7c098d079c65f33"
+    },
+    {
+      "bytes": 825,
+      "path": "artifacts/tx3/E05_mechanism_consequence/reports/E05_DECISION.md",
+      "sha256": "2c0b822811e4803aa7f79651c0ae53fbdf5a821f0e4f23e8a61afee956cb5e12"
+    },
+    {
+      "bytes": 9661,
+      "path": "configs/tx3_gfl_common.yaml",
+      "sha256": "f07a6a40369af8a4d1ec4213fe5be1919fbb169ed15a71e05a585bb1054623d5"
+    },
+    {
+      "bytes": 337,
+      "path": "dicgrid/connected/__init__.py",
+      "sha256": "0ed1e47252aa55ebc5e981ef46a330605a8c94065253a15f7f802fb8559ed992"
+    },
+    {
+      "bytes": 3426,
+      "path": "dicgrid/connected/logdet.py",
+      "sha256": "efd162494ff4510ffc2be283037d493fa6a7f3b2c5533365cd6b7943404df532"
+    },
+    {
+      "bytes": 696,
+      "path": "dicgrid/connected/mobius.py",
+      "sha256": "cd8c3d44236ff4d098624d7f8212f5c4fc174f600a75cd524039750d5569c404"
+    },
+    {
+      "bytes": 891,
+      "path": "dicgrid/connected/partitions.py",
+      "sha256": "72844042824cd66d3395d351f3a764a7f1180b2095c64335328b28fa72c21e9f"
+    },
+    {
+      "bytes": 3257,
+      "path": "dicgrid/connected/sparse_logdet.py",
+      "sha256": "9a421942d8e142bb63fe5dbb3bea3e2370b828a5975bf0a8dfb25aae992a44f6"
+    },
+    {
+      "bytes": 10663,
+      "path": "experiments/tx3/E03_finite_externality/campaign_core.py",
+      "sha256": "3f51a9c1f4935bd0e80bbab15b388434a080bcf97eab6c5c8ba074fb2a16c5fb"
+    },
+    {
+      "bytes": 761,
+      "path": "experiments/tx3/E05B_dynamic_spectral_shift/README.md",
+      "sha256": "6ec667c3f4c22f4b7de9dea21f41021bf92981e8134921a3e5079bb2d8fee091"
+    },
+    {
+      "bytes": 6514,
+      "path": "experiments/tx3/E05B_dynamic_spectral_shift/dynamic_spectral_shift.py",
+      "sha256": "f6992939f309dc6863309543ba5c8ed8148f62981b95893cbab1dcca6fb85db7"
+    },
+    {
+      "bytes": 19727,
+      "path": "experiments/tx3/E05B_dynamic_spectral_shift/finalize_e05b.py",
+      "sha256": "9d4e843eb09c0ac449aee154879c5b024f991cf3e34260189538ed0df86be76b"
+    },
+    {
+      "bytes": 7528,
+      "path": "experiments/tx3/E05B_dynamic_spectral_shift/freeze_e05b_candidates.py",
+      "sha256": "f2736c02f58933c5fd9b2a1da7b923ddb1f36dbcfcfe1d40606a69f2a5f62e4a"
+    },
+    {
+      "bytes": 5349,
+      "path": "experiments/tx3/E05B_dynamic_spectral_shift/package_e05b.py",
+      "sha256": "bd10753fc570d8efed022b0fbbf9eda849ce0967ddad9c91daacd210d431b25b"
+    },
+    {
+      "bytes": 10262,
+      "path": "experiments/tx3/E05B_dynamic_spectral_shift/preregister_e05b.py",
+      "sha256": "227149804c479e7b0cae867b57fcacfdb3f836bde294abc8566836ccb31199ca"
+    },
+    {
+      "bytes": 6844,
+      "path": "experiments/tx3/E05B_dynamic_spectral_shift/run_e05b_contours.py",
+      "sha256": "bb6eb01cc1ae2f31c75badde8e1a1f4cd38458652a01e60123a07bc1e2d4fb80"
+    },
+    {
+      "bytes": 12075,
+      "path": "experiments/tx3/E05B_dynamic_spectral_shift/run_e05b_decomposition.py",
+      "sha256": "ed2a953b90d167c5c0449e6e41024fc7bb2a4f3467f8e896daf250f2bc2063a7"
+    },
+    {
+      "bytes": 7762,
+      "path": "experiments/tx3/E05B_dynamic_spectral_shift/validate_e05b.py",
+      "sha256": "ba84e022c835895312f54d5a9eb15c6acf337ff594e031358c45d82ad45b5e40"
+    },
+    {
+      "bytes": 1020,
+      "path": "pyproject.toml",
+      "sha256": "3421384cb6592e333da458df816f58738727153ae93c6cc3c0ceae62cfd1015f"
+    },
+    {
+      "bytes": 6841,
+      "path": "reports/papers/tx3_connected_intervention_calculus/CLAIMS_EVIDENCE_MATRIX.md",
+      "sha256": "ebd2cecddfb755f9357ab875e8ec99d5786017fac8c336b41f05e9dc24535d7b"
+    },
+    {
+      "bytes": 1443,
+      "path": "reports/papers/tx3_connected_intervention_calculus/TX3_THEORY_FREEZE_E05B.md",
+      "sha256": "72e3621de58fb73b3e7ef18db181ae2f047c0d031b317c846a144ad218c1eb22"
+    },
+    {
+      "bytes": 33248,
+      "path": "systems/ieee39_tx3_gfl3/andes_case.xlsx",
+      "sha256": "c317fbc530df0da8766fab614d839d750163012813e662e0022281de6b50a33e"
+    },
+    {
+      "bytes": 349,
+      "path": "tests/integration/test_andes_loader.py",
+      "sha256": "9996db61e5c1850a8de38946b3eac2d8a26b140984bf779079bd2dbd32b3b32e"
+    },
+    {
+      "bytes": 179,
+      "path": "tests/integration/test_beyn_solver.py",
+      "sha256": "c891367914fca74b037f0f19a9397f05b80deb20c2271a12b9a8c03b81b233a9"
+    },
+    {
+      "bytes": 609,
+      "path": "tests/integration/test_e03_e04_campaign.py",
+      "sha256": "e2d2a70b3d11c6ef7adb3e8b08835236eca2038a56f90a064b1ac429faa3ee5e"
+    },
+    {
+      "bytes": 591,
+      "path": "tests/integration/test_e05_campaign.py",
+      "sha256": "3be8742935b8e657f4f2f61de8b9ff7da8386e0d7fa843fde35c57f68bc66967"
+    },
+    {
+      "bytes": 608,
+      "path": "tests/integration/test_e05b_campaign.py",
+      "sha256": "4a3812229521a9ef1d5b5116bc4f1cd77ab08b68d7cead616a4173db23e3ca1e"
+    },
+    {
+      "bytes": 4828,
+      "path": "tests/integration/test_stage1_build_ibr_case.py",
+      "sha256": "4e2287c489d4f647e0d86fea1c7f2022c046a560882c4ca7545b2b32ea1a60ff"
+    },
+    {
+      "bytes": 1932,
+      "path": "tests/integration/test_tx3_gfl_pq_substitution.py",
+      "sha256": "356ffb4e9c69e019daef56ca250b9a03c2094c00b087273829975821baebb0e0"
+    },
+    {
+      "bytes": 5327,
+      "path": "tests/unit/test_connected_logdet.py",
+      "sha256": "c109e487b3ec637e0afd3f23949bb1c65ab3abe78ff59d33e9ac1e60cbb90dbd"
+    },
+    {
+      "bytes": 2041,
+      "path": "tests/unit/test_e05_mode_tracking.py",
+      "sha256": "ca003d08ea5516dc538aff2dff7850e3cbf886806785730d4d861bfbc2f0d0be"
+    },
+    {
+      "bytes": 1885,
+      "path": "tests/unit/test_e05b_dynamic_spectral_shift.py",
+      "sha256": "1e5971b8dcf9d3cae3e461976c25bcd697232d24c6b2886f7bc9ea72f1f819e5"
+    },
+    {
+      "bytes": 431,
+      "path": "tests/unit/test_mode_classifier.py",
+      "sha256": "bb17c855ac5d1b728d8ee0f949eb4c0252ebb874b2826d9f7a24688fdc8c99ba"
+    },
+    {
+      "bytes": 6735,
+      "path": "tests/unit/test_paraemt_transformer_tap.py",
+      "sha256": "7f0322362b97718a7812da670d220e87f89d9e476893471d82f9d355c9c8295c"
+    },
+    {
+      "bytes": 242,
+      "path": "tests/unit/test_pole_sensitivity.py",
+      "sha256": "ab03b98d8552724e372cfae539975407c71513a7b74186348a78afa22fa61df9"
+    },
+    {
+      "bytes": 441,
+      "path": "tests/unit/test_self_energy.py",
+      "sha256": "d59a366cd8373295d42483759d5cd2b813308db5a95cb886d04b4d237c82fdff"
+    },
+    {
+      "bytes": 1612,
+      "path": "tests/unit/test_sparse_logdet.py",
+      "sha256": "2c2ae61020bc2c50afc8eb4f95f2defdca54e1c60661bc6251c1f2e48e406d91"
+    },
+    {
+      "bytes": 396,
+      "path": "tests/unit/test_state_partitioner.py",
+      "sha256": "43cf3e74037f1eb494159bd3f24125cc7bcd8cd22e87690b111477bbdf4bbe11"
+    }
+  ],
+  "manifest_self_excluded_from_hash_list": true,
+  "new_paraemt_scientific_results_included": false,
+  "package": "TX3_E05B_DYNAMIC_SPECTRAL_SHIFT_REVIEW_CHATGPT_UPLOAD_2026-08-27.zip",
+  "scope": "TX3 E05B exact Schur factorization, independent dynamic holdout, connected Xi and contour moments; stop before E05C/E06",
+  "uncompressed_bytes_excluding_manifest": 4531501
+}

@@ -1,0 +1,22 @@
+event,sample_step_s,energy_error_final_MJ,energy_error_max_MJ,method
+bus16_100MW,0.004999999999999893,-0.04593345807471394,0.04643698061068735,trapezoid; pre-jump endpoint replaced by one-sided linear extrapolation
+bus16_100MW,0.009999999999999787,-0.053309319368068486,0.055323830386740935,trapezoid; pre-jump endpoint replaced by one-sided linear extrapolation
+bus16_100MW,0.019999999999999574,-0.1182099924957356,0.1262326983499138,trapezoid; pre-jump endpoint replaced by one-sided linear extrapolation
+bus16_1MW,0.004999999999999893,-0.0004610647144640545,0.00046546928841078965,trapezoid; pre-jump endpoint replaced by one-sided linear extrapolation
+bus16_1MW,0.009999999999999787,-0.0005334152007097082,0.0005513389565561747,trapezoid; pre-jump endpoint replaced by one-sided linear extrapolation
+bus16_1MW,0.019999999999999574,-0.0011978551521270031,0.0012697484962223126,trapezoid; pre-jump endpoint replaced by one-sided linear extrapolation
+bus16_25MW,0.004999999999999893,-0.011515515420839506,0.011631432238711825,trapezoid; pre-jump endpoint replaced by one-sided linear extrapolation
+bus16_25MW,0.009999999999999787,-0.013333479519616276,0.013797104097003743,trapezoid; pre-jump endpoint replaced by one-sided linear extrapolation
+bus16_25MW,0.019999999999999574,-0.029850650342531537,0.03170041348030839,trapezoid; pre-jump endpoint replaced by one-sided linear extrapolation
+bus16_50MW,0.004999999999999893,-0.023011457701905158,0.02324990514930214,trapezoid; pre-jump endpoint replaced by one-sided linear extrapolation
+bus16_50MW,0.009999999999999787,-0.026665621834411013,0.027619649445852934,trapezoid; pre-jump endpoint replaced by one-sided linear extrapolation
+bus16_50MW,0.019999999999999574,-0.05950466439286117,0.06330816268339712,trapezoid; pre-jump endpoint replaced by one-sided linear extrapolation
+bus16_pulse,0.004999999999999893,0.0011308008522218065,0.04609444849975983,trapezoid; pre-jump endpoint replaced by one-sided linear extrapolation
+bus16_pulse,0.009999999999999787,0.003889681098515181,0.05372553330603855,trapezoid; pre-jump endpoint replaced by one-sided linear extrapolation
+bus16_pulse,0.019999999999999574,0.03330801370106731,0.11771839678163709,trapezoid; pre-jump endpoint replaced by one-sided linear extrapolation
+bus29_100MW,0.004999999999999893,-0.043884251803319785,0.04458010173811999,trapezoid; pre-jump endpoint replaced by one-sided linear extrapolation
+bus29_100MW,0.009999999999999787,-0.05160451714471037,0.05438720599961755,trapezoid; pre-jump endpoint replaced by one-sided linear extrapolation
+bus29_100MW,0.019999999999999574,-0.12221493946401552,0.13334478228554758,trapezoid; pre-jump endpoint replaced by one-sided linear extrapolation
+bus8_100MW,0.004999999999999893,-0.04144784115912614,0.04272370608403886,trapezoid; pre-jump endpoint replaced by one-sided linear extrapolation
+bus8_100MW,0.009999999999999787,-0.050028736638523696,0.05512861761762755,trapezoid; pre-jump endpoint replaced by one-sided linear extrapolation
+bus8_100MW,0.019999999999999574,-0.11000834670586812,0.1304105845350918,trapezoid; pre-jump endpoint replaced by one-sided linear extrapolation

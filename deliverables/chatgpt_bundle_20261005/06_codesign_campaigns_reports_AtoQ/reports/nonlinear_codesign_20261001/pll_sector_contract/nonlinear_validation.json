@@ -1,0 +1,91 @@
+{
+  "status": "NONLINEAR_IMPLEMENTATION_CHECK_PASSED_NOT_THE_SOURCE_OF_CERTIFICATION",
+  "random_points": 5000,
+  "max_dissipation_residual": -0.3456775964506198,
+  "max_sampled_boundary_derivative": -4.294261997747995,
+  "trajectories": [
+    {
+      "key": "V0.95_origin_chirp",
+      "V0": 0.95,
+      "initial": "origin",
+      "forcing": "chirp",
+      "max_storage": 0.6623161534486628,
+      "max_phase_error_rad": 0.0018556604187586166,
+      "max_PLL_frequency_hz": 0.00814280234677044,
+      "max_filtered_PLL_rocof_hz_s": 0.04301960187820738
+    },
+    {
+      "key": "V0.95_origin_state_adversary",
+      "V0": 0.95,
+      "initial": "origin",
+      "forcing": "state_adversary",
+      "max_storage": 0.20681755123431195,
+      "max_phase_error_rad": 0.0024487535964746953,
+      "max_PLL_frequency_hz": 0.009684269195884445,
+      "max_filtered_PLL_rocof_hz_s": 0.11160061595887708
+    },
+    {
+      "key": "V0.95_rocof_boundary_chirp",
+      "V0": 0.95,
+      "initial": "rocof_boundary",
+      "forcing": "chirp",
+      "max_storage": 1.0000000000000004,
+      "max_phase_error_rad": 0.002357845129452152,
+      "max_PLL_frequency_hz": 0.0477668566088048,
+      "max_filtered_PLL_rocof_hz_s": 0.49999997499357396
+    },
+    {
+      "key": "V0.95_rocof_boundary_state_adversary",
+      "V0": 0.95,
+      "initial": "rocof_boundary",
+      "forcing": "state_adversary",
+      "max_storage": 1.0000000000000004,
+      "max_phase_error_rad": 0.002357845129452152,
+      "max_PLL_frequency_hz": 0.0477668566088048,
+      "max_filtered_PLL_rocof_hz_s": 0.49999997499357396
+    },
+    {
+      "key": "V1.1_origin_chirp",
+      "V0": 1.1,
+      "initial": "origin",
+      "forcing": "chirp",
+      "max_storage": 0.6448421312073043,
+      "max_phase_error_rad": 0.0015705013636045223,
+      "max_PLL_frequency_hz": 0.008027639912255935,
+      "max_filtered_PLL_rocof_hz_s": 0.04425603660575401
+    },
+    {
+      "key": "V1.1_origin_state_adversary",
+      "V0": 1.1,
+      "initial": "origin",
+      "forcing": "state_adversary",
+      "max_storage": 0.09736934155663371,
+      "max_phase_error_rad": 0.0015421395271114178,
+      "max_PLL_frequency_hz": 0.00815911474098394,
+      "max_filtered_PLL_rocof_hz_s": 0.09199483514054557
+    },
+    {
+      "key": "V1.1_rocof_boundary_chirp",
+      "V0": 1.1,
+      "initial": "rocof_boundary",
+      "forcing": "chirp",
+      "max_storage": 1.0000000000000004,
+      "max_phase_error_rad": 0.002357845129452152,
+      "max_PLL_frequency_hz": 0.0477668566088048,
+      "max_filtered_PLL_rocof_hz_s": 0.49999997499357396
+    },
+    {
+      "key": "V1.1_rocof_boundary_state_adversary",
+      "V0": 1.1,
+      "initial": "rocof_boundary",
+      "forcing": "state_adversary",
+      "max_storage": 1.0000000000000004,
+      "max_phase_error_rad": 0.002357845129452152,
+      "max_PLL_frequency_hz": 0.0477668566088048,
+      "max_filtered_PLL_rocof_hz_s": 0.49999997499357396
+    }
+  ],
+  "synthesis_sha256": "52839e47d87447ea64c03d63ab5469eaf0c6b0e32cd1bda2733b70b282c5b880",
+  "verification_sha256": "83d82df7125e0ee668a855bf38cfa07c095fd1180ce8ff901116e297de86141d",
+  "validation_script_sha256": "d272dfe04e45c9b02ce98ca1959e655bacfb79387a12615457dfd545af1c4c41"
+}

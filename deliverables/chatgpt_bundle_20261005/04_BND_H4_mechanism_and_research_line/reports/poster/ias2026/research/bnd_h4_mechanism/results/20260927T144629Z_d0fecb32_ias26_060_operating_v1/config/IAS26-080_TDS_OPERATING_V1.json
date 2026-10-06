@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "ticket": "IAS26-080",
+  "config_id": "IAS26-080_TDS_OPERATING_V1",
+  "frozen_after_MC_before_TDS": true,
+  "parent_run_id": "20260927T144629Z_d0fecb32_ias26_060_operating_v1",
+  "model_scope": "frozen IEEE-39 TX4/P4, no-governor, exact GFL11; nonlinear phasor-domain DAE, not EMT",
+  "primary_metric": "measured trajectory matrix-pencil alpha_TDS and frequency; eigenvalue used only as comparator and observable-mode locator",
+  "decision_threshold_s-1": 1e-08,
+  "canonical_cases": [
+    {
+      "case_id": "CANONICAL_PROPER_30_33_35",
+      "members": [
+        30,
+        33,
+        35
+      ],
+      "g": 0.03625
+    },
+    {
+      "case_id": "CANONICAL_H4_ORIGINAL",
+      "members": [
+        30,
+        33,
+        35,
+        37
+      ],
+      "g": 0.03625
+    },
+    {
+      "case_id": "CANONICAL_H4_RETUNED",
+      "members": [
+        30,
+        33,
+        35,
+        37
+      ],
+      "g": 0.25
+    }
+  ],
+  "canonical_operating_point": "frozen nominal IEEE-39 base network, source scheduled generation and unperturbed loads",
+  "canonical_trajectory_count": 18,
+  "holdout_trajectory_count": 72,
+  "total_trajectory_count": 90,
+  "canonical_amplitude_multipliers": [
+    0.5,
+    1.0,
+    2.0
+  ],
+  "historical_disturbances": {
+    "D1": {
+      "kind": "rotor-speed kick",
+      "machine_bus": 31,
+      "A0_pu": 0.0001,
+      "duration_s": 0.0
+    },
+    "D2": {
+      "kind": "active-load rectangular pulse",
+      "load_bus": 20,
+      "A0_fraction_of_P": 0.02,
+      "duration_s": 0.2
+    }
+  },
+  "holdout_disturbance": "D2 at A0 (2% active-load pulse, 0.2 s, bus 20), exactly as the frozen historical TX4/G2 common pulse; one trajectory per case per scenario",
+  "holdout_strata": {
+    "A_ROBUST_BLOCKER": "six valid scenarios with largest positive m_s among H4 persistent blockers",
+    "B_NEAR_BOUNDARY": "six remaining valid H4 blockers with smallest positive m_s",
+    "C_WITNESS_CHANGE": "six remaining valid scenarios where a different inclusion-minimal unstable portfolio exists in V4; lexicographic scenario-ID tie/order",
+    "D_DIFFICULT_INTERVENTION": "six remaining valid original-H4-unstable scenarios where retuned H4 remains at/above -tau, ranked by largest retuned alpha; fallback to material deterioration, then all valid IDs if the class is empty",
+    "overlap_policy": "disjoint strata, no repeated IDs; if a preferred class cannot fill six, use only the documented deterministic fallback population, never a new or replacement draw",
+    "proper_subset_case": "for each selected ID, evaluate the most critical strict H4 subset: largest original alpha_perp among the 15 proper subsets; portfolio-mask ascending breaks exact ties"
+  },
+  "integration_and_analysis_contract": {
+    "integrator": "SciPy BDF on reduced differential state, algebraic network solved by Newton at every RHS evaluation",
+    "rtol": 1e-07,
+    "atol": 1e-09,
+    "fixed_relative_central_difference_jacobian_step": 1e-06,
+    "algebraic_residual_target_inf": 1e-10,
+    "disturbance_switch_handling": "separate BDF segments at pulse end; never step across the switch",
+    "horizon_s": "clip(3/abs(alpha_eig), 30, 120)",
+    "divergence_limit_pu": 0.05,
+    "observable": "for each case, difference of the machine-speed pair with maximum separation in the critical right eigenvector, matching historical G2 rule; additionally save the same canonical plot observable omega_sg34-omega_sg39",
+    "small_signal_window": "retain prefix while cumulative machine-speed spread <=1e-3 pu; matrix pencil order 14; minimum 200 samples",
+    "frequency_diagnostic": "matrix-pencil exponent and 0.05-20 Hz Hann-window FFT on actual sampled trace",
+    "outcome": "DIVERGED if speed spread exceeds 0.05 pu or integration/algebraic solve fails; otherwise measured sign from second-half envelope and matrix-pencil; failed fit retained as missing, never replaced",
+    "amplitude_linearity": "all amplitudes retained; eligibility is diagnosed from observed spread and fit window, no amplitude is removed post hoc",
+    "fit_r2": "report OLS fit R2 for the measured complex-exponential signal on the declared small-signal fit window; diagnostic only, no unregistered threshold"
+  },
+  "selection_sha256": "2b73438f93a70c78e091c3c8a9e52c78966bc637016bb5d5a9df01d52f4d5e2c",
+  "mc_case_table_sha256": "a8bc6c2d9b9e9dcf4025a3460738775c121819c7c53eb29e5ce9ede410cf0a0c",
+  "scenario_metrics_sha256": "93daef28f7e804f3e4617f03fa4c3a760ddf6943cf67a01aa01031791bf08e96",
+  "historical_and_model_source_sha256": {
+    "reports/poster/ias2026/research/experiments/tx4_tds_final.py": "871f84a98738b0d92d727082bdb3ea120b9f1f28f7bcb0e94e2eb78e24ff2e9b",
+    "reports/poster/ias2026/research/experiments/G2_tds.py": "5e7ccfe73ec731d92c41c05ea8d0ecf1e7a72fb4dc1486a547f9a6dfaeefdb09",
+    "reports/poster/ias2026/research/experiments/E25_time_domain_validation.py": "902422e63bfa6ba696646e69ea567709ce2f2f087fc14f7ae51284957e3f322b",
+    "reports/poster/ias2026/research/experiments/_f7_common.py": "2e6ac2b3490c061d5ee3c344043dbfa6dd663e50bfbe4aadab304ad0a8dfd44f",
+    "reports/poster/ias2026/research/src/ibr_cycles/models/ieee39_case.py": "1f38a8e541780ab7205809dc1ba58bdafb6c923933f5772d46407064edc8c722",
+    "reports/poster/ias2026/research/src/ibr_cycles/models/ieee39_network.py": "f42144cd02a6dc779ed690fd866ad026f33eb7844584c7f10281fc7d98e3fe13",
+    "reports/poster/ias2026/research/src/ibr_cycles/models/ieee39_devices.py": "bcf0c76be65b171b580684065cde4eb88d0433c6b4d7beefec966f8711036d90"
+  },
+  "historical_audit": {
+    "entry_wrapper": "experiments/tx4_tds_final.py",
+    "integrator_contract": "experiments/G2_tds.py",
+    "historical_same_model_limitation": "a short common pulse did not visibly excite the RHP mode in the historical blocker trace; this is an explicit falsification risk and will not be overridden by eigenvalue curves"
+  },
+  "no_scenario_replacement": true,
+  "no_retuning_or_controller_change": true
+}

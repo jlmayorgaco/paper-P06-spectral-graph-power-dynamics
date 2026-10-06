@@ -1,0 +1,25 @@
+{
+ "points": 11,
+ "hessian_best_rel_error_max": 1.9897895757742608e-05,
+ "hessian_best_rel_error_median": 2.5503854797820034e-06,
+ "jpsi_rel_error_max": 2.7811925217038217e-08,
+ "A_rel_error_max": 1.435483845900115e-08,
+ "B_rel_error_max": 1.0224531588001868e-07,
+ "C_rel_error_max": 2.8210857495414693e-08,
+ "D_rel_error_max": 8.929097551409151e-08,
+ "chart_failures": 10,
+ "hessian_best_independent_by_point": {
+  "IEEE-39 base P4": 2.51e-06,
+  "IEEE-39 base P4 off-eq": 1.31e-06,
+  "IEEE-39 condenser D=2 3%": 2.97e-06,
+  "IEEE-39 flagship P4": 5.68e-06,
+  "IEEE-39 flagship P4 off-eq": 1.39e-06,
+  "IEEE-39 tongue gap g=0.042": 3.25e-06,
+  "IEEE-68 3+4+6+9 off-eq": 0.00017296,
+  "IEEE-68 base": 0.00112729,
+  "Kundur 2 g=0.08 k=1.25": 1.9e-07,
+  "Kundur 2 g=0.08 off-eq": 2.5e-07,
+  "Kundur 2+3 g=0 k=0.75": 5e-07
+ },
+ "elapsed_s": 6.3
+}

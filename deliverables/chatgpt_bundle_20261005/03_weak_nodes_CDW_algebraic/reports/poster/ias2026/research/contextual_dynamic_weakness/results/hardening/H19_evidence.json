@@ -1,0 +1,87 @@
+{
+ "n_positive": 7,
+ "strong_claim": true,
+ "layers": [
+  {
+   "layer": "L1",
+   "question": "arbitrary-context reversal",
+   "value_new_holdout": 1.0,
+   "rule": ">=0.75",
+   "positive": true
+  },
+  {
+   "layer": "L2",
+   "question": "nested-context reversal (level A)",
+   "value_new_holdout": 1.0,
+   "rule": ">=0.75",
+   "positive": true
+  },
+  {
+   "layer": "L3",
+   "question": "same-mode nested reversal (level B)",
+   "value_new_holdout": 0.9473684210526315,
+   "rule": ">=0.50",
+   "positive": true
+  },
+  {
+   "layer": "L4",
+   "question": "EM same-mode nested reversal (level C)",
+   "value_new_holdout": 0.8947368421052632,
+   "rule": ">=0.75",
+   "positive": true
+  },
+  {
+   "layer": "L5",
+   "question": "optimal fixed ranking failure (FULL)",
+   "value_new_holdout": "p*=0.749; regret=0.376",
+   "rule": "p*<=0.90 & regret>=0.10",
+   "positive": true
+  },
+  {
+   "layer": "L6",
+   "question": "ranking transfer failure",
+   "value_new_holdout": "offdiag regret=0.402; diag=0.376",
+   "rule": ">=0.10 and > diagonal",
+   "positive": true
+  },
+  {
+   "layer": "L7",
+   "question": "envelope robustness (fresh draws)",
+   "value_new_holdout": "{\"EC\": 1.0, \"EM-f\": 0.9, \"EM-u\": 0.8, \"EMC\": 1.0}",
+   "rule": ">=0.50 in >=3/4 envelopes",
+   "positive": true
+  },
+  {
+   "layer": "L8",
+   "question": "dynamic-converter holdout (ALT-WECC reversal)",
+   "value_new_holdout": "0.0 (MODEL-SPECIFIC)",
+   "rule": "TRANSFERS",
+   "positive": false
+  }
+ ],
+ "em_qualifiers": {
+  "L5_EM_median_pstar": 0.9728997289972899,
+  "L5_EM_median_regret": 0.034334763948497854,
+  "L5_SAME_median_pstar": 0.9780412823891085,
+  "L5_SAME_median_regret": 0.02262443438914027,
+  "L5_EM_would_pass_A3_rule": false,
+  "L7_EM_same_mode_cov": {
+   "EC": 0.0,
+   "EM-f": 0.5,
+   "EM-u": 0.6,
+   "EMC": 0.7
+  },
+  "L7_EM_n_envs_ge_0.5": 3
+ },
+ "F_conf_raw_p": {
+  "T1_goldA_sign": 1.9073486328125e-06,
+  "T2_goldB_signflip": 0.061193880611938804,
+  "T3_mixing": 0.016298370162983702
+ },
+ "F_conf_holm_p": {
+  "T1_goldA_sign": 5.7220458984375e-06,
+  "T3_mixing": 0.032596740325967405,
+  "T2_goldB_signflip": 0.061193880611938804
+ },
+ "T3_correlates": false
+}

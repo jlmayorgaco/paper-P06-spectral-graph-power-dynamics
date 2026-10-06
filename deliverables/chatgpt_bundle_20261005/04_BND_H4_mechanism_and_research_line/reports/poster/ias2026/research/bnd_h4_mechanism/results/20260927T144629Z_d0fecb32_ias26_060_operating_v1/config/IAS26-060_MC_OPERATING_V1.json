@@ -1,0 +1,291 @@
+{
+  "schema_version": 1,
+  "ticket": "IAS26-060",
+  "config_id": "IAS26-060_MC_OPERATING_V1",
+  "status": "FROZEN_PRE_RUN_AWAITING_USER_REVIEW",
+  "phase": "PRE_RUN_INPUT_GENERATION_ONLY",
+  "execution_authorization": "PRE_RUN_INPUT_GENERATION_ONLY",
+  "frozen_at_utc": "2026-09-26T20:39:16Z",
+  "purpose": "Freeze a synthetic IEEE-39 operating-point stress ensemble and its 1,000 immutable scenario IDs before any IAS26-060B PF/DAE/eigenvalue evaluation.",
+  "scientific_question": "Does the H4 minimal-blocker pattern, and does the fixed preregistered g=0.25 retuning, persist under the declared synthetic IEEE-39 operating-point stress envelope?",
+  "scope_and_claim_limits": {
+    "synthetic_ensemble_only": true,
+    "scenario_frequencies_are_real_world_probabilities": false,
+    "no_model_equation_or_controller_change": true,
+    "no_stability_outcomes_used_for_sampling_or_dispatch": true,
+    "no_optimization_of_participation_factors": true,
+    "no_M1_reduced_root_comparison": "IAS26-010 remains BLOCKED_M1_STRICT; all IAS26-060 stability metrics are direct-DAE transverse spectra.",
+    "thermal_security_claim": "Not available: the frozen IEEE-39 network JSON contains no branch thermal ratings, so this campaign can screen generator and bus-voltage feasibility but not thermal loading or N-1 security.",
+    "poster_figures_generated": false
+  },
+  "uncertainty_contract_reuse": {
+    "reused_contract": "none",
+    "audit": "Reviewed the IAS26 BND-H4 campaign tickets/configs and searched the project research contracts for an identical joint load-scale, base-load-weighted spatial perturbation, and active redispatch law; no semantically identical contract was found. Other project uncertainty studies have different systems/variables and are not reused."
+  },
+  "system": {
+    "network": "Frozen IEEE-39 TX4 network JSON",
+    "network_config_path": "reports/poster/ias2026/research/configs/ias2026/ieee39_network.json",
+    "network_config_sha256": "705f53299b57cbd536ababfe5236f3b2ec621e8b305a5737135cfba8363d995e",
+    "source_case": "data/raw/ieee39_full.xlsx",
+    "source_case_sha256": "9c2048dc94201ee48ffe816de65d53831fa1f4b0e7fdf32f24c50f1017edcfe5",
+    "base_mva": 100.0,
+    "frequency_hz": 60.0,
+    "load_model": "constant_power",
+    "slack_bus": 39,
+    "slack_voltage_setpoint_pu": 1.03,
+    "slack_angle_setpoint_rad": -0.1912880860185785,
+    "bus_voltage_setpoints": "Frozen IEEE-39 PV v0 values; unchanged across scenarios and treatments.",
+    "h4_buses_in_frozen_order": [30, 33, 35, 37],
+    "technology": "all-GFL for replacement portfolios",
+    "portfolio_ids_in_frozen_F1_order": [
+      "BASE", "30", "33", "35", "37", "30+33", "30+35", "30+37", "33+35", "33+37", "35+37",
+      "30+33+35", "30+33+37", "30+35+37", "33+35+37", "30+33+35+37"
+    ],
+    "original_treatment_g": 0.03625,
+    "fixed_intervention_g": 0.25,
+    "unchanged_controller_parameters": {"k": 1.425, "t": 1.5, "h": 1.0, "leak": 0.05},
+    "paired_case_policy": "All 16 portfolios use the same scenario P_L/Q_L and generator P schedules at g=0.03625; one additional H4 all-GFL case uses the same scenario inputs at g=0.25. No other parameter or model change."
+  },
+  "base_case_snapshot": {
+    "units": "p.u. on 100-MVA system base unless a field explicitly says MVA",
+    "loads_pu": [
+      {"bus": 3, "p0_pu": 6.0, "q0_pu": 2.5}, {"bus": 4, "p0_pu": 4.5, "q0_pu": 1.84},
+      {"bus": 7, "p0_pu": 2.338, "q0_pu": 0.84}, {"bus": 8, "p0_pu": 5.22, "q0_pu": 1.766},
+      {"bus": 12, "p0_pu": 1.2, "q0_pu": 0.3}, {"bus": 15, "p0_pu": 3.2, "q0_pu": 1.53},
+      {"bus": 16, "p0_pu": 3.29, "q0_pu": 0.32299999999999995}, {"bus": 18, "p0_pu": 1.58, "q0_pu": 0.3},
+      {"bus": 20, "p0_pu": 6.8, "q0_pu": 1.03}, {"bus": 21, "p0_pu": 2.74, "q0_pu": 1.15},
+      {"bus": 23, "p0_pu": 2.475, "q0_pu": 0.846}, {"bus": 24, "p0_pu": 3.0860000000000003, "q0_pu": -0.922},
+      {"bus": 25, "p0_pu": 2.24, "q0_pu": 0.47200000000000003}, {"bus": 26, "p0_pu": 1.39, "q0_pu": 0.17},
+      {"bus": 27, "p0_pu": 2.81, "q0_pu": 0.755}, {"bus": 28, "p0_pu": 2.06, "q0_pu": 0.276},
+      {"bus": 29, "p0_pu": 2.835, "q0_pu": 1.2690000000000001}, {"bus": 31, "p0_pu": 0.8, "q0_pu": 0.4},
+      {"bus": 39, "p0_pu": 4.0, "q0_pu": 2.5}
+    ],
+    "pv_generators_pu": [
+      {"bus": 30, "p0_pu": 4.36086385, "q0_pu": 1.4, "pmin_pu": 0.0, "pmax_pu": 10.4, "qmin_pu": -0.58084, "qmax_pu": 1.5318, "sn_mva": 1040.0, "v0_pu": 1.035534},
+      {"bus": 31, "p0_pu": 6.45999998, "q0_pu": 3.0, "pmin_pu": 0.0, "pmax_pu": 6.5, "qmin_pu": -1.22665, "qmax_pu": 4.298039999999999, "sn_mva": 836.0, "v0_pu": 1.013246},
+      {"bus": 32, "p0_pu": 7.24999998, "q0_pu": 3.0, "pmin_pu": 0.0, "pmax_pu": 7.5, "qmin_pu": -1.80218, "qmax_pu": 4.46722, "sn_mva": 843.7, "v0_pu": 1.020528},
+      {"bus": 33, "p0_pu": 6.51999998, "q0_pu": 1.5806, "pmin_pu": 0.0, "pmax_pu": 6.82, "qmin_pu": -2.1378, "qmax_pu": 5.48208, "sn_mva": 1174.8, "v0_pu": 1.01343},
+      {"bus": 34, "p0_pu": 5.07999998, "q0_pu": 1.5854, "pmin_pu": 0.0, "pmax_pu": 5.5, "qmin_pu": -1.88028, "qmax_pu": 6.11495, "sn_mva": 1080.2, "v0_pu": 1.019109},
+      {"bus": 35, "p0_pu": 6.86999998, "q0_pu": 2.5777, "pmin_pu": 0.0, "pmax_pu": 6.97, "qmin_pu": -2.34972, "qmax_pu": 5.93788, "sn_mva": 1085.7, "v0_pu": 1.06},
+      {"bus": 36, "p0_pu": 5.79999998, "q0_pu": 0.7876, "pmin_pu": 0.0, "pmax_pu": 5.95, "qmin_pu": -2.49132, "qmax_pu": 5.683719999999999, "sn_mva": 1025.2, "v0_pu": 1.06},
+      {"bus": 37, "p0_pu": 3.2152133800000002, "q0_pu": 0.0, "pmin_pu": 0.0, "pmax_pu": 5.64, "qmin_pu": -2.16122, "qmax_pu": 4.43468, "sn_mva": 970.2, "v0_pu": 1.013996},
+      {"bus": 38, "p0_pu": 7.64783381, "q0_pu": 1.428, "pmin_pu": 0.0, "pmax_pu": 8.65, "qmin_pu": -3.56889, "qmax_pu": 8.34775, "sn_mva": 1684.1, "v0_pu": 1.052803}
+    ],
+    "slack_pu": {"bus": 39, "p0_pu": 5.7417, "q0_pu": 0.5617, "pmin_pu": 0.0, "pmax_pu": 11.0, "sn_mva": 1199.0, "v0_pu": 1.03, "a0_rad": -0.1912880860185785},
+    "known_base_totals_pu": {"P_load": 58.564, "Q_load": 17.345, "P_scheduled_non_slack_PV": 53.20391092}
+  },
+  "scenario_generation": {
+    "n_scenarios": 1000,
+    "seed": 20260926,
+    "scenario_id_template": "IAS26-060-S{index:04d}",
+    "index_range_one_based": [1, 1000],
+    "rng": {
+      "implementation": "numpy.random.Generator(numpy.random.PCG64(seed))",
+      "numpy_version_required": "2.3.5",
+      "stream_order": "For each ID in ascending order draw one load-scale uniform, then draw 19 epsilon uniforms per proposal until the predeclared centered-support condition is satisfied.",
+      "uniform_interval": "[0,1)"
+    },
+    "load_scale_support": [0.9, 1.1],
+    "load_scale_transform": "L_s = 0.90 + 0.20*u_L,s",
+    "spatial_epsilon": {
+      "load_bus_order": [3, 4, 7, 8, 12, 15, 16, 18, 20, 21, 23, 24, 25, 26, 27, 28, 29, 31, 39],
+      "raw_component_law": "independent zero-mean truncated Gaussian; its population standard deviation after scalar truncation and before weighted centering is exactly 0.025 pu",
+      "truncated_normal_scale_pu": 0.034447553102962054,
+      "truncated_population_sd_pu": 0.025,
+      "support_pu": [-0.05, 0.05],
+      "inverse_cdf_transform": "epsilon_raw = sigma_scale * Phi^-1(Phi(lower/sigma_scale) + u*(Phi(upper/sigma_scale)-Phi(lower/sigma_scale)))",
+      "weighted_centering": "epsilon_centered_i = epsilon_raw_i - sum_j(P_L,j^0 * epsilon_raw_j)/sum_j(P_L,j^0)",
+      "final_hard_support_rule": "Accept the raw vector only if every weighted-centered component is within [-0.05,+0.05] pu; otherwise draw a new epsilon proposal for the same scenario ID. No clipping or rescaling. Every accepted and rejected raw uniform/epsilon proposal is stored in that ID's CSV row.",
+      "max_proposals_per_scenario": 10000,
+      "support_comparison_roundoff_pu": 0.0,
+      "dependence_note": "Weighted centering and support-conditioned acceptance induce dependence across load buses. The 0.025 pu standard deviation describes the raw scalar truncated-Gaussian components before centering; final centered sample distributions are reported descriptively and are not rescaled.",
+      "scenario_ids_replaced_if_sampler_exhausts": false
+    },
+    "load_transform": {
+      "active": "P_L,i,s = P_L,i,0 * L_s * (1 + epsilon_i,s)",
+      "reactive": "Q_L,i,s = Q_L,i,0 * L_s * (1 + epsilon_i,s)",
+      "power_factor": "Preserve each signed base Q_L,i,0/P_L,i,0 exactly at every bus; no aggregate Q redistribution."
+    },
+    "all_rows_retained": true,
+    "outcome_dependent_filtering": false,
+    "sampling_rejection_scope": "Only the predeclared epsilon hard-support condition after weighted centering; never a PF, feasibility, DAE, eigenvalue, stability, or portfolio outcome. Scenario IDs are assigned before sampling and are never dropped or replaced."
+  },
+  "redispatch": {
+    "participation_buses": [30, 31, 32, 33, 34, 35, 36, 37, 38],
+    "unit_set_rule": "All nine scheduled non-slack PV generator buses in the frozen IEEE-39 source; this includes the H4 plant sites so station-level dispatch is identical across every replacement subset and both g treatments. Slack bus 39 is excluded.",
+    "base_participation_factor": "beta_i = P_G,i,0 / sum_j(P_G,j,0), using only the frozen base scheduled active generation p0 of the declared participant units; no stability or eigenvalue information.",
+    "required_total_active_redispatch": "delta_P_G,total = sum_i(P_L,i,s - P_L,i,0); equals (L_s-1)*sum_i(P_L,i,0) up to floating-point centering error.",
+    "allocation_rule": "Allocate the remaining delta using the original beta_i among unsaturated units. Clamp any proposed unit schedule crossing its frozen pmin/pmax to that bound, subtract its delivered increment, then iteratively redistribute the remainder among the still-unsaturated units using their original base-P weights renormalized. Bus-order tie handling is ascending bus number. No cost objective, stability-informed weighting, or post-hoc reallocation.",
+    "active_limits_source": "Frozen IEEE-39 PV pmin/pmax fields on 100-MVA system base.",
+    "allocation_residual_tolerance_pu": 1e-12,
+    "if_total_capacity_is_insufficient": "Retain the scenario ID and the clipped schedules; flag REDISPATCH_CAPACITY_SHORTFALL and classify it physically infeasible for the primary outcome. Never drop or replace it.",
+    "baseline_arithmetic_capacity_check": {
+      "base_scheduled_participant_P_pu": 53.20391092,
+      "upward_headroom_pu": 10.72608908,
+      "downward_headroom_pu": 53.20391092,
+      "maximum_load_scale_delta_P_pu": 5.8564,
+      "note": "Aggregate active redispatch capacity exceeds the maximum requested load-scale change before accounting for the power-flow residual; individual saturation is handled by the frozen iterative rule."
+    }
+  },
+  "slack_policy": {
+    "bus": 39,
+    "role": "Conventional AC power-flow swing/slack bus at frozen voltage magnitude and angle; it may absorb only the real/reactive mismatch left by the frozen power-flow equations, including network losses.",
+    "p_schedule": "No scenario-dependent P setpoint is assigned to the slack bus.",
+    "pmin_pu": 0.0,
+    "pmax_pu": 11.0,
+    "reactive_and_apparent_limit": "No independent slack Q limits are present in the frozen JSON; enforce the source machine nameplate apparent-power circle P_slack^2+Q_slack^2 <= (1199/100)^2 pu^2, with P bounds above.",
+    "if_residual_exceeds_limits": "PF case is physically infeasible; no slack clipping, rebalancing, or scenario replacement."
+  },
+  "physical_feasibility": {
+    "load_power_factor": "Exact signed bus-specific base Q/P ratio retained.",
+    "generator_active_power": "Each PV generator schedule must satisfy source pmin/pmax, including the deterministic redispatch participants.",
+    "generator_reactive_power": "At each non-slack PV bus, solved net generator Q must satisfy source qmin/qmax. Q is not separately redispatched; a violation invalidates the case rather than silently changing bus type or clipping Q.",
+    "plant_apparent_power": "At every scheduled PV generator/plant bus, P_G^2+Q_G^2 <= (Sn/100 MVA)^2 in pu units. Apply the same plant-level nameplate check to partial SG/GFL shares using aggregate bus injection.",
+    "slack_apparent_power": "As specified by slack_policy using source Sn=1199 MVA.",
+    "bus_voltage_pu": {
+      "minimum": 0.9,
+      "maximum": 1.1,
+      "scope": "all 39 buses",
+      "origin": "Explicit synthetic engineering screening envelope; these limits are not supplied by the frozen IEEE-39 JSON."
+    },
+    "branch_thermal_limits": "Not screened because the frozen network file has no branch MVA/current ratings. No thermal, contingency, or full operational-security claim is allowed.",
+    "limit_comparison_tolerance_pu": 1e-8,
+    "scenario_outcome_validity": "A scenario is complete/valid for primary proportions only if all 16 original portfolios and the paired H4 g=0.25 case have converged PF/DAE, satisfy every available declared physical limit, and return finite full transverse spectra with accepted eigenpair residuals. Invalid IDs remain in the all-ID denominator bounds and are separately reported.",
+    "metric_specific_missing_band": "A complete finite full spectrum with no admissible 0.3-1.5 Hz alpha_Omega mode remains valid for alpha_perp; alpha_Omega is recorded unavailable with ALPHA_OMEGA_BAND_MISSING."
+  },
+  "numerical_policy": {
+    "power_flow": {
+      "solver": "Frozen scipy.optimize.root(method='hybr') in ieee39_network.solve_power_flow",
+      "root_tolerance": 1e-12,
+      "acceptance": "root.success is true AND max absolute AC mismatch < 1e-9 pu",
+      "initialization": "Frozen source bus voltage magnitudes, zero non-slack initial angles and frozen slack angle; deterministic, no load continuation or alternate initial guesses.",
+      "timeout_seconds_per_case": 60,
+      "retry_policy": "No retry with a changed tolerance, initial guess, solver, or scenario draw. A failure is retained under its original ID."
+    },
+    "dae_equilibrium": {
+      "max_abs_differential_residual": 1e-7,
+      "max_abs_algebraic_residual": 1e-7,
+      "residual_norm": "infinity norm, matching the IAS26-050 nominal check",
+      "timeout_seconds_per_portfolio_treatment_case": 300
+    },
+    "eigenvalues": {
+      "matrix": "Complete direct-DAE transverse operator A_perp; compute every transverse eigenvalue, no target-band-only truncation or reduced roots.",
+      "solver": "numpy.linalg.eig on the dense real A_perp, matching the frozen F1/IAS26-050 implementation.",
+      "alpha_perp": "max(real(lambda)) over the complete finite transverse spectrum.",
+      "alpha_Omega": "Separately report the rightmost positive-frequency transverse eigenvalue in 0.3-1.5 Hz, using the frozen TX4 selector: imag(lambda)>=-1e-10 rad/s, frequency boundary tolerance 1e-10 Hz, and abs(lambda)>1e-3 s^-1. If none exists, mark unavailable; never substitute it for alpha_perp.",
+      "tau_dec_s-1": 1e-8,
+      "classification": {"stable": "alpha < -tau_dec", "unstable": "alpha > +tau_dec", "indeterminate": "abs(alpha) <= tau_dec"},
+      "eigenpair_relative_residual_max": 1e-8,
+      "eigenpair_residual_definition": "||A_perp v-lambda v||_2 / (max(||A_perp||_2,1e-300)*||v||_2)",
+      "critical_family_real_part_tie_tolerance_s-1": 1e-12,
+      "timeout_seconds_per_portfolio_treatment_case": 300,
+      "no_eigenvalue_count_truncation": true
+    },
+    "case_execution": {
+      "per_scenario_order": "Frozen 16 portfolio_ids_in_frozen_F1_order at g=0.03625, followed by H4 all-GFL at g=0.25.",
+      "continue_after_case_failure": "Continue remaining cases in fixed order where execution infrastructure is alive; record each case outcome/failure independently. A process-wide abort leaves every unstarted case explicitly unrun under its original scenario ID.",
+      "timeout_or_failure_replacement": false
+    }
+  },
+  "mode_tracking": {
+    "purpose": "Diagnostic only; never changes alpha_perp, stability classification, feasibility, or primary event gates.",
+    "original_reference": "Complete nominal IAS26-020 F1 eigenpairs, matched by the same portfolio_id at g=0.03625.",
+    "retuned_reference": "Complete nominal IAS26-050 H4 g=0.25 eigenpairs.",
+    "comparison_space": "Right eigenvectors in the transverse quotient. Align reference/current transverse bases by Q=Z_current^T Z_reference; only compare if state layout and quotient subspace match, with relative Frobenius alignment residual <=1e-10. Otherwise mark MODE_TRACKING_NOT_COMPARABLE.",
+    "mac": "Phase-invariant normalized right-eigenvector MAC = |v_ref^H v_current|^2/((v_ref^H v_ref)(v_current^H v_current)); use one representative per conjugate family (imag>=0), and compare the reference critical family against every current eigenfamily.",
+    "identity_resolved_if": "best MAC >= 0.70 AND best-minus-second-best MAC >= 0.10.",
+    "mode_family_dominance": "Track the reference critical family to its best-MAC current eigenfamily and report its eigenvalue plus alpha_perp-real(lambda_tracked). It remains dominant only if that gap <=1e-6 s^-1.",
+    "unresolved_rule": "If MAC threshold, score margin, layout, or basis alignment fails, report identity unresolved; do not claim the H4 mode moved or disappeared based on this diagnostic."
+  },
+  "primary_scenario_quantities": {
+    "x_s": "max alpha_perp,s(R) over all 15 strict subsets R of H4 from the frozen 16-portfolio lattice, original g=0.03625",
+    "y_s": "alpha_perp,s(H4) for original g=0.03625",
+    "m_s": "min(y_s,-x_s), signed H4 minimal-blocker margin in s^-1",
+    "alpha_perp_original": "y_s, complete transverse spectral abscissa at g=0.03625",
+    "alpha_perp_intervention": "complete transverse spectral abscissa for H4 all-GFL at g=0.25",
+    "delta_alpha_s": "alpha_perp_intervention - alpha_perp_original; negative is movement left.",
+    "alpha_Omega": "Record separately for every portfolio/treatment where the target-band mode exists."
+  },
+  "event_definitions": {
+    "H4_MINIMAL_BLOCKER_PERSISTS": {
+      "true": "All 15 proper-subset alpha_perp values are < -tau_dec AND original H4 alpha_perp y_s > +tau_dec; equivalently x_s < -tau_dec and y_s > +tau_dec.",
+      "false": "All required cases are valid/determinate and the conjunction is false.",
+      "indeterminate": "Any required case is invalid or any required alpha_perp lies in [-tau_dec,+tau_dec]."
+    },
+    "PHENOMENON_PERSISTS": {
+      "true": "Within the censused 16 portfolios, at least one non-singleton portfolio S (cardinality 2-4) is unstable (alpha_perp>+tau_dec) and every strict subset T<S in the same lattice is stable (alpha_perp<-tau_dec); this includes the H4 event above and can include a different minimal blocker.",
+      "false": "All 16 original cases are valid/determinate and no such non-singleton inclusion-minimal unstable portfolio exists.",
+      "indeterminate": "The required lattice is incomplete/invalid or threshold-indeterminate cases prevent either conclusion.",
+      "scope": "Only the frozen V4 family is censused; no global minimality claim outside those 16 portfolios."
+    },
+    "INTERVENTION_RESCUES_H4": {
+      "true": "Paired original H4 is unstable (alpha_perp_original>+tau_dec) AND paired g=0.25 H4 is stable (alpha_perp_intervention<-tau_dec), with both cases valid/feasible.",
+      "false": "Both paired cases are valid/determinate and the conjunction is false.",
+      "indeterminate": "Either case is invalid or either relevant alpha_perp is in the decision deadband."
+    },
+    "INTERVENTION_IMPROVES_H4": {
+      "improved": "delta_alpha_s < -tau_dec",
+      "no_material_change": "abs(delta_alpha_s) <= tau_dec",
+      "deteriorated": "delta_alpha_s > +tau_dec",
+      "indeterminate": "The paired full-spectrum values are not both valid/finite."
+    },
+    "OTHER_MINIMAL_BLOCKER_EXISTS": "At least one non-singleton inclusion-minimal unstable S != H4 exists within the frozen V4 lattice; report separately from H4_MINIMAL_BLOCKER_PERSISTS."
+  },
+  "failure_taxonomy": {
+    "input_generation": ["PRERUN_SAMPLER_EXHAUSTED", "REDISPATCH_CAPACITY_SHORTFALL"],
+    "power_flow": ["PF_NO_CONVERGENCE", "PF_SOLVER_FLAG_FAIL", "PF_NONFINITE", "PF_RESIDUAL_EXCEEDED", "GENERATOR_P_LIMIT", "GENERATOR_Q_LIMIT", "GENERATOR_MVA_LIMIT", "SLACK_P_LIMIT", "SLACK_MVA_LIMIT", "BUS_VOLTAGE_LIMIT"],
+    "dae_and_device": ["DEVICE_OR_RATING_LIMIT", "DAE_EQUILIBRIUM_FAILURE", "DAE_NONFINITE", "DAE_F_RESIDUAL_EXCEEDED", "DAE_G_RESIDUAL_EXCEEDED", "TIMEOUT_DAE"],
+    "spectrum": ["EIGENSOLVER_FAILURE", "SPECTRUM_NONFINITE", "EIGENPAIR_RESIDUAL_EXCEEDED", "TIMEOUT_EIGEN", "ALPHA_OMEGA_BAND_MISSING"],
+    "infrastructure": ["TIMEOUT_POWER_FLOW", "UNCLASSIFIED_EXCEPTION", "PROCESS_ABORT_UNSTARTED"],
+    "diagnostic_only_not_case_failure": ["MODE_IDENTITY_UNRESOLVED", "MODE_TRACKING_NOT_COMPARABLE"],
+    "no_retry_or_replacement": "Every original scenario_id and portfolio/treatment cell receives a result or its explicit failure/unrun code. No new random scenario is substituted. ALPHA_OMEGA_BAND_MISSING affects only the secondary metric if the full spectrum is valid."
+  },
+  "statistical_analysis": {
+    "unit_of_analysis": "scenario_id (the 16 original portfolios and paired retuned H4 remain a cluster)",
+    "wilson_95": {
+      "z": 1.959963984540054,
+      "conditional_denominator": "Numerically complete, physically feasible, and determinate scenario IDs for the event being estimated.",
+      "conservative_all_id_bounds": "For N=1000 and k known-true among d determinate valid IDs, report [k/N,(k+N-d)/N], treating all unknown/invalid/indeterminate IDs as failures for the lower bound and possible successes for the upper bound.",
+      "invalid_and_indeterminate_rates": "Report separately for every event denominator."
+    },
+    "scenario_level_bootstrap": {
+      "method": "Nonparametric percentile bootstrap of complete scenario IDs; resample all paired outcomes/portfolios/treatments belonging to an ID together.",
+      "replicates": 10000,
+      "confidence_level": 0.95,
+      "percentiles": [2.5, 97.5],
+      "seed": 20260927,
+      "bit_generator": "NumPy.PCG64",
+      "reported_margin_statistics": "For x_s, y_s, m_s, and paired delta_alpha_s, report median and q05/q25/q75/q95; bootstrap percentile intervals for the median and each reported quantile on complete valid determinate scenario clusters. Also report missing/invalid counts and the all-ID conservative proportion bounds; no imputation."
+    },
+    "interpretation": "All empirical proportions describe only this declared synthetic ensemble; never call them real-world event probabilities."
+  },
+  "prerun_outputs": {
+    "config_path": "reports/poster/ias2026/research/bnd_h4_mechanism/configs/IAS26-060_MC_OPERATING_V1.json",
+    "scenario_manifest_path": "reports/poster/ias2026/research/bnd_h4_mechanism/inputs/IAS26-060_SCENARIOS_V1.csv",
+    "scenario_summary_path": "reports/poster/ias2026/research/bnd_h4_mechanism/inputs/IAS26-060_SCENARIOS_V1_SUMMARY.json",
+    "sha256_sidecar_path": "reports/poster/ias2026/research/bnd_h4_mechanism/inputs/IAS26-060_PRE_RUN_SHA256.json",
+    "pre_run_scope": "The manifest and its input-distribution/redispatch summary are generated before any perturbed power flow, DAE, Jacobian, or eigenvalue solve."
+  },
+  "source_provenance": {
+    "git_head": "d0fecb3264aeb855ab6700fc6ef66120d4b6c33c",
+    "git_worktree_dirty_at_freeze": true,
+    "dirty_state_note": "The repository already had unrelated, uncommitted IAS26-010/020/030/050 artifacts. Every scientific source/data dependency below is individually SHA256-pinned; no unrelated changes were staged or overwritten.",
+    "prerun_generator_path": "reports/poster/ias2026/research/bnd_h4_mechanism/code/freeze_ias26_060_prerun.py",
+    "prerun_generator_sha256": "059850864d13cf5918fcc3c446312c1bc9935f747da73125ea7bebde3b1a2a6d",
+    "sha256": {
+      "reports/poster/ias2026/research/configs/ias2026/ieee39_network.json": "705f53299b57cbd536ababfe5236f3b2ec621e8b305a5737135cfba8363d995e",
+      "reports/poster/ias2026/research/src/ibr_cycles/models/ieee39_network.py": "f42144cd02a6dc779ed690fd866ad026f33eb7844584c7f10281fc7d98e3fe13",
+      "reports/poster/ias2026/research/src/ibr_cycles/models/ieee39_case.py": "1f38a8e541780ab7205809dc1ba58bdafb6c923933f5772d46407064edc8c722",
+      "reports/poster/ias2026/research/src/ibr_cycles/models/ieee39_devices.py": "bcf0c76be65b171b580684065cde4eb88d0433c6b4d7beefec966f8711036d90",
+      "reports/poster/ias2026/research/experiments/_f7_common.py": "2e6ac2b3490c061d5ee3c344043dbfa6dd663e50bfbe4aadab304ad0a8dfd44f",
+      "reports/poster/ias2026/research/experiments/tx4_contextual_return.py": "77d4ed0f76f8c4a6ec369bc30b306361cff9b789c6f432e287d5f180d9210b74",
+      "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260926T161116Z_d0fecb32_ias26_020_f1_audit_v1/raw/F1_FULL_SPECTRA.npz": "db6581d59fa0d042839e9a327c6d682d677ea4d6dd2209bcb2abb0b1e68f34db",
+      "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260926T161116Z_d0fecb32_ias26_020_f1_audit_v1/tables/F1_FINAL_AUDIT.csv": "4ea8042a80bb1e68bee1f272b0daf7baa4f23a9611fa6b5975cd3239ac11f718",
+      "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260926T174848Z_d0fecb32_ias26_050_nominal_v1/raw/H4_G025_FULL_TRANSVERSE_SPECTRUM.npz": "5f43b674daa2ae5c9460bbe5851da7a529d9184911fac371d5cd0ad91b55f0c6",
+      "reports/poster/ias2026/research/bnd_h4_mechanism/configs/IAS26-050_INTERVENTION_V1.json": "54f5b18fb6752efe0bb17c1474abf6c89c5ae9d0f7064be9d67487e5695691e1",
+      "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260926T174848Z_d0fecb32_ias26_050_nominal_v1/claims/IAS26-050_STATUS.json": "b2a6f62f903422dd5be802c602b1dab42faaf58ab4cc189a2ab9287761b9dba2",
+      "reports/poster/ias2026/research/bnd_h4_mechanism/tickets/IAS26-060-MC-OPERATING.md": "004413a9d3930b33cae122f5dbaf3c8aa091b4a135684967f2f865d1d0f9eaee",
+      "reports/poster/ias2026/research/bnd_h4_mechanism/docs/POSTER_CAMPAIGN_MASTER.md": "1dc3dc8019ebf0c5d8b24c2f04df524983d8e8a3b6cf1e32f1b37b0e0269d1b0"
+    }
+  }
+}

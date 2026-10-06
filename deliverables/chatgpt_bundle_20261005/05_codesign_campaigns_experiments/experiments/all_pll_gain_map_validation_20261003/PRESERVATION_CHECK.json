@@ -1,0 +1,122 @@
+{
+  "inputs": {
+    "experiments\\graph_gsp_codesign_20261003\\baseline.toml": {
+      "sha256": "73e01ef3d56abb45731768f87e12ac1830e93806a699489a7aa5b1c4563e8d5f",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\baseline.toml"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\TABLE_02_BASELINE_ROOTS.csv": {
+      "sha256": "9eedc500fbda7bc7f8b46aace5c798230ccfd302be1acb69a4330f5df1a0e327",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\TABLE_02_BASELINE_ROOTS.csv"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\graph_design.py": {
+      "sha256": "68546b57088930203e54bbfcfbe026b5766efe2cdd03ef306c36715abb2d7313",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\graph_design.py"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\DelayedEvents.jl": {
+      "sha256": "864f71792dba687ae0a526f3c13903be883902b9694fe91a1994d120a8cc5950",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\DelayedEvents.jl"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\eval\\baseline\\events.csv": {
+      "sha256": "4c42ebdac3a6426f5be700743bdbb8d67c952be971f3242708e2b961fe01972c",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\eval\\baseline\\events.csv"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\spectral\\baseline_contour.csv": {
+      "sha256": "c4b40dc35b5b2bcc4aa0bf2adca579707a7e38e4c48ee9dec1a9f627dff0b58d",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\spectral\\baseline_contour.csv"
+    },
+    "experiments\\physical_collective_damping_20261003\\analyze_ports.py": {
+      "sha256": "630025acab6c7ca3eab9dff6f6ec59d81b7f569403e5002104c33a0bf51385a8",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\physical_collective_damping_20261003\\analyze_ports.py"
+    },
+    "experiments\\nonlinear_codesign_20261001\\ReducedDAE.jl": {
+      "sha256": "c5d721bc371dd6ee424afb2f40638e60307fd62389bba2ac69f3b7d247a2c80d",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\nonlinear_codesign_20261001\\ReducedDAE.jl"
+    },
+    "src\\bnd_model_expN\\PDExactDesignN.jl": {
+      "sha256": "f5211509b117d8a06e31efa62aa49b1df20d2c1ef7f5c6f9114bb9eb25838365",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\src\\bnd_model_expN\\PDExactDesignN.jl"
+    },
+    "experiments\\theory_collective_damping_20261003\\THEORY.tex": {
+      "sha256": "42c5c7d5fc0a89602712e9df0c7a9cc844e28646e33be4f9a7e436d82a359886",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\all_pll_gain_map_validation_20261003\\source_snapshot\\THEORY_before_validation.tex"
+    },
+    "experiments\\analytical_delay_codesign_mega_20261002\\m3_a_trace_integral.jl": {
+      "sha256": "669a11bf08d7ebc6bb92b79c72e4e276fde19be6ce116f9db546bba885d343bf",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\analytical_delay_codesign_mega_20261002\\m3_a_trace_integral.jl"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\model\\A_check1.csv": {
+      "sha256": "40917039fc2df8657e65b04383d7720cba7a4d49e19f62da238308485e949910",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\model\\A_check1.csv"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\model\\A_check2.csv": {
+      "sha256": "5ff4a5c365896c2cb2e4033ed72307945fc7997aee690c8e3a51e2417b53b4b2",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\model\\A_check2.csv"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\model\\Adev.csv": {
+      "sha256": "a085b62c32d4c0d864d83bfa3cd2b8a902313e7c0b389e508c8d6f8f92c12ac0",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\model\\Adev.csv"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\model\\Bi.csv": {
+      "sha256": "06f4fa5017115a8878e3a0a396be2990f3586e2c3779bef4c559502f4f1ae436",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\model\\Bi.csv"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\model\\Bp.csv": {
+      "sha256": "839e6f3b68a0a5d68051e61ff24c990da0677cdcd2a837c0eb9adc5fd55a291d",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\model\\Bp.csv"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\model\\Bv.csv": {
+      "sha256": "c61dcca032f5cb4581886834d9e89efe8b25c0ee4df4bcfbc207eb1e251b5797",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\model\\Bv.csv"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\model\\Cf.csv": {
+      "sha256": "1d5b76bba3cf9ba1f767975e3463f8521d9776af60230b73d0790293913526dd",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\model\\Cf.csv"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\model\\Cs.csv": {
+      "sha256": "fc3d50d971460d20c7d5ec64add54d727d1a0c32257917087037bb565e1ef56c",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\model\\Cs.csv"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\model\\Ds.csv": {
+      "sha256": "fb91858730b6513dcca1621d6f70c124b5eb48286665b8b47811b2d8bd880999",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\model\\Ds.csv"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\model\\Etheta.csv": {
+      "sha256": "91bfe09a61d810cfd251539e0484af911d8ce1942c8b7eb2f9cc5d741453c1d4",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\model\\Etheta.csv"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\model\\gauge.csv": {
+      "sha256": "6d1cc7ea259b806f447a7f459a12e1d0105d2c2fc92e71e464a2b700266530c5",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\model\\gauge.csv"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\model\\Hv.csv": {
+      "sha256": "1843c3b9c25b161905167f8cf6a3e9ad0c012e24dad3f8f9d840d1ecfb322885",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\model\\Hv.csv"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\model\\L.csv": {
+      "sha256": "df3446259bbf5ecae81b8dcb6fa49dc969246314c070583fbdad6fb5d3c088a0",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\model\\L.csv"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\model\\ports.csv": {
+      "sha256": "128dc226092bd512dee898c6f48ed8d6409c13acc952fc47424b00c802e155ac",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\model\\ports.csv"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\model\\rho_check1.csv": {
+      "sha256": "0ea5c132bf7fa578dbb146de4db5c72c8a1e7c20eaec3e27866e6386a0d5f186",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\model\\rho_check1.csv"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\model\\rho_check2.csv": {
+      "sha256": "0637e0f7cd83878fa189e15660ecec62ab0dfdd766046736fa898b0967fbe9fe",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\model\\rho_check2.csv"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\model\\x0.csv": {
+      "sha256": "b42e2e6956728939fb6dece627ee1682167c2f28d32c9dec1b8ccd7c6d5d0d60",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\model\\x0.csv"
+    },
+    "experiments\\graph_gsp_codesign_20261003\\model\\Y.csv": {
+      "sha256": "8a180a7489c01b618da4d42dac39914333554e1bcac854cf9b2fe5d0f29ac9a5",
+      "verified_path": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\experiments\\graph_gsp_codesign_20261003\\model\\Y.csv"
+    }
+  },
+  "prediction_lock_pass": true,
+  "protocol_pass": true
+}

@@ -1,0 +1,17 @@
+retained_MW = 314.6427891270947
+primal = 4.4656670805665044e-8
+active_rows = ["g10", "upper15", "upper19", "upper20", "upper21", "upper22", "upper23", "lower25"]
+multipliers = [0.19858925570649316, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+disturbance_MW = 100.0
+event_bus = 16
+status = "MERIT_STAGNATION"
+window_s = 0.5
+elapsed_s = 46.4210000038147
+complementarity = 8.868335017626904e-9
+scope = "fixed-support analytical problem; sampled robustness pending full-band audit"
+global_certified = false
+LICQ_rank = 8
+best_feasible_MW = 314.6427891270947
+active_count = 8
+local_certified = false
+stationarity = 0.39953437517855833

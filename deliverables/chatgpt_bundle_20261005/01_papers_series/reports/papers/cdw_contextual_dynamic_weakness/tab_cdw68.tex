@@ -1,0 +1,25 @@
+\begin{table}[!t]
+\centering
+\caption{Replication on the IEEE 68-bus system with PST governors and damping
+(16 policies per converter model; branch ranking on 12 holdout conditions at
+$\gamma_e=1.5$)}\label{tab:cdw68}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+ & A: custom GFL & B: WECC GFL\\
+\midrule
+level-D nested reversal & \sxRevA & \sxRevB\\
+level-T (EM-tracked) reversal & \sxRevTA & \sxRevTB\\
+EM-tracked marginals (s$^{-1}$) & $[\sxEmMinA,\,\sxEmMaxA]$ & $[\sxEmMinB,\,\sxEmMaxB]$\\
+materially stabilizing marginals & 0 & 0\\
+fixed unit ranking, regret & 0 & 0\\
+\midrule
+median $\rho(\Dtot,\text{finite})$ & \sxRhoA & \sxRhoB\\
+selected static index, $\rho$ & \sxStatA{} (el.\ dist.) & \sxStatB{} ($\Delta$gSCR)\\
+median paired advantage & \sxAdvA & \sxAdvB\\
+median top-5 precision & \sxTopA & \sxTopB\\
+largest effect on $\aperp$ (s$^{-1}$) & $\sxTruthMaxA$ & $\sxTruthMaxB$\\
+\bottomrule
+\end{tabular}
+\end{table}

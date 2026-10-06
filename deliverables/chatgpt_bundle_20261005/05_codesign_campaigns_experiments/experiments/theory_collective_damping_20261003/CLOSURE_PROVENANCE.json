@@ -1,0 +1,42 @@
+{
+  "revision": "analytical modal compatibility and design closure, 2026-10-03",
+  "parent_theory_sha256": "9d7469fecb1692eb5063a5dc8e4624128b062b979fc99ba413a366175a47da5d",
+  "current_theory_sha256": "42c5c7d5fc0a89602712e9df0c7a9cc844e28646e33be4f9a7e436d82a359886",
+  "verification_script_sha256": "3700e3ccfc370f731fb80fcf9245dc0af919bc4bdf84b9113f61cc13e36f1204",
+  "checks_sha256": "168986873e1e78d58f3a73929dd54f9879509206c9c748f5d1808ab58ff1ffd9",
+  "python": "3.13.9",
+  "sympy": "1.14.0",
+  "preserved_prior_record_hashes": {
+    "PROVENANCE.json": "cfa4e6c752688afb86c1aee364e9dd46405d1d2677ac6bbd19cc331f923dd50e",
+    "SYMBOLIC_CHECKS.json": "f9a50900de348efaf0a72f0927d64fb7e5e8eefadff404893c1efeacfb9e00fe",
+    "RETUNING_PROVENANCE.json": "6848146ee623885f54b43e3cea09990563019b3e8f5fbbae77aa57a5655ce4b0",
+    "RETUNING_SYMBOLIC_CHECKS.json": "9c355fa00655daade70efa3d759ee00f284e93dbcc5d604a625e9820217dc59b"
+  },
+  "preserved_model_source_hashes": [
+    {
+      "path": "experiments/nonlinear_codesign_20261001/ReducedDAE.jl",
+      "sha256": "c5d721bc371dd6ee424afb2f40638e60307fd62389bba2ac69f3b7d247a2c80d"
+    },
+    {
+      "path": "src/bnd_model_expN/PDExactDesignN.jl",
+      "sha256": "f5211509b117d8a06e31efa62aa49b1df20d2c1ef7f5c6f9114bb9eb25838365"
+    },
+    {
+      "path": "experiments/graph_gsp_codesign_20261003/DelayedEvents.jl",
+      "sha256": "864f71792dba687ae0a526f3c13903be883902b9694fe91a1994d120a8cc5950"
+    },
+    {
+      "path": "experiments/physical_collective_damping_20261003/THEORY.md",
+      "sha256": "f69868711282503f15e58a74b0cf83d490edacc4db81888a1a7d4e6088c0ca88"
+    },
+    {
+      "path": "experiments/physical_collective_damping_20261003/action_attribution.py",
+      "sha256": "e85373896c5b1dc9d4e5861104dd81493d697dca872e78ed3700226e382399b1"
+    },
+    {
+      "path": "experiments/graph_gsp_codesign_20261003/THEORY.md",
+      "sha256": "19f38575b6e03e228f2793cfc9c52b9f96a74371201e01b1e6113eddedef8011"
+    }
+  ],
+  "scope": "No grid simulation, optimization, spectral run, commit or push"
+}

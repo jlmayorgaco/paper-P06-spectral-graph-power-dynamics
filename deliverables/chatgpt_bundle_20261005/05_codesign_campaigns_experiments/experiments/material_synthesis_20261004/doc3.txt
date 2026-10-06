@@ -1,0 +1,1412 @@
+=== PAGE 1 ===
+1
+Minimal Replacement Blockers in SG-to-GFL Grid
+Transitions:
+Exact Collective Closure, Compatibility Geometry,
+and Critical Green-Residue Repair
+Jorge L. Mayorga Taborda
+Universidad de los Andes, Bogota, Colombia
+Abstract—Replacing synchronous generators (SGs) by grid-
+following converters (GFLs) is often summarized by penetra-
+tion, grid-strength, or fixed-composition stability metrics. This
+manuscript develops a different planning object: an inclusion-
+minimal SG-to-GFL replacement portfolio whose transverse
+dynamics are unstable although every proper replacement subset is
+stable. Starting from the full phasor-domain differential-algebraic
+equations (DAEs), we derive an exact transverse quotient, a
+dynamic multiport representation, and a determinant factorization
+that separates local replacement factors from network-mediated
+collective closure. At a simple collective boundary, a critical
+eigenvalue of the interaction operator reaches −1, while every
+blocker member sees the remainder through a contextual return
+with eigenvalue +1. In the frozen IEEE 39-bus benchmark, all
+15 proper subsets of {30, 33, 35, 37} are stable while the complete
+portfolio has 𝛼⊥ = +0.1270 s−1 at 0.6223 Hz; physical local factors
+remain regular while the complete collective singular value falls
+to 1.26 × 10−8. We distinguish the complete-spectrum blocker
+hypergraph H⊥ from a mode-scoped diagnostic hypergraph HΩ,
+because a hard frequency window can change membership without
+an imaginary-axis crossing. Controller policy reorganizes the
+complete-spectrum blocker geometry, showing that compatibility
+is not a scalar penetration number. Finally, we replace a singular
+“Green function at the pole” by the critical resolvent residue
+𝒢★
+𝐻, derive the total pole sensitivity including power-flow re-
+equilibration, and formulate blocker-conditioned line, bus, zone,
+and hypergraph-aware repair scores. These repair equations
+are derived here, but their blind 46-branch ranking experiment
+remains a preregistered validation target rather than a claimed
+result. The manuscript is a detailed theory and presentation
+companion, not a universal stability or EMT certificate.
+Index T erms—Inverter-based resources, grid-following convert-
+ers, small-signal stability, nonlinear eigenvalue problem, Schur
+complement, Green function, dynamic graph, grid strength,
+minimal failure set, topology repair, IEEE 39-bus system.
+I. Motivation and Four-Result Narrative
+T
+HE central engineering question is not only how much
+inverter-based generation a grid can host, but which
+finite combinations of technology substitutions first become
+dynamically incompatible. Existing small-signal, impedance,
+grid-strength, critical-cluster, and stability-manifold methods
+answer important neighboring questions [1], [3], [4], [6]–[8].
+The present program asks instead:
+Working technical companion manuscript for the IEEE IAS Annual Meeting
+2026 poster development. It consolidates proved theory, frozen IEEE-39
+evidence, and one explicitly labeled proposed extension for dynamic topology
+repair.
+Which inclusion-minimal SG-to-GFL replacement
+sets fail, what exact dynamic feedback creates their
+boundary, how does controller policy reorganize the
+failing sets, and which control or topology actions
+move the boundary most effectively?
+The poster-oriented theory is organized around four results:
+1) Minimal blocker: a complete replacement set can be
+unstable although every proper subset is stable.
+2) Exact collective closure: local device factors can remain
+regular while a network-mediated interaction factor alone
+becomes singular.
+3) Compatibility geometry: the minimal incompatible sets
+form a policy-dependent hypergraph, not a single penetration
+threshold.
+4) Diagnose-to-repair: the same dynamic operator yields exact
+boundary derivatives and, after a critical Green-residue lift,
+line/bus/zone repair fields.
+The novelty position is intentionally narrow. Minimal failure
+sets, Schur complements, generalized Nyquist/return ratios,
+eigenvalue sensitivities, and resolvent residues are classical or
+have direct prior use in power-system impedance participation
+and remedial-action studies [5], [9]–[11]. The candidate con-
+tribution is their synthesis around a counterfactual SG →GFL
+replacement hypergraph: identify a minimal failing portfolio,
+prove its collective-return anatomy, track how controller policy
+reorganizes that discrete object, and design repairs that protect
+the hypergraph rather than only one fixed composition.
+Table I distinguishes proved/validated statements from the
+design extension that still requires its dedicated branch-ranking
+experiment.
+II. Physical Power-System Model
+A. AC network and index-one DAE
+Let the network have 𝑁 buses and complex voltages
+𝑉𝑖 = 𝑉𝑅𝑖 + 𝑗𝑉𝐼𝑖 = |𝑉𝑖 |𝑒 𝑗 𝜃𝑖 . (1)
+With 𝑌bus = 𝐺 + 𝑗 𝐵, Kirchhoff current balance may be written
+in rectangular coordinates as
+g(x, z; 𝛿, 𝜃) = Ybusz − idev(x, z; 𝛿, 𝜃) + i𝐿 (z) = 0, (2)
+
+=== PAGE 2 ===
+2
+TABLE I
+Claim ledger: mathematical status, novelty positioning, and evidence. “New” below refers to the present research program, not to the underlying
+classical algebraic identities.
+Result Mathematical status Novelty positioning Evidence/status
+Transverse quotient and symmetry
+removal
+PROVED Classical symmetry reduction specialized to
+the frozen model
+Exact identity; numerical audit
+Minimal replacement blocker H Exact definition / elemen-
+tary structure
+New planning object/application; antichain
+mathematics is classical
+Frozen V4/V9 and policy maps
+Network-closure factorization PROVED Classical Sylvester/Schur algebra; new
+SG→GFL portfolio interpretation
+Identity residual ≤ 1.4 × 10−13
+Contextual return at a blocker PROVED Classical Schur return identity; new blocker-
+conditioned interpretation
+TX4 sign/residual audit
+Policy-dependent compatibility geom-
+etry
+Structural theorem + em-
+pirical map
+Candidate substantive contribution 30/36/16 distinct hypergraphs
+Connected cumulants PROVED secondary layer Classical partition-cumulant machinery adapted
+to finite portfolios
+Flagship found composite ( 𝜈𝐻 = 0.069)
+Critical Green residue / total repair
+derivative
+PROVED from NEP per-
+turbation theory
+Residue–sensitivity link has prior art; novelty
+target is blocker-conditioned, hypergraph-aware
+repair
+DERIVED; blind branch-ranking test pending
+Portfolio-level EMT — — NOT ESTABLISHED
+where
+Ybus =
+𝐺 −𝐵
+𝐵 𝐺
+
+, z = [𝑉 ⊤
+𝑅 𝑉 ⊤
+𝐼 ]⊤. (3)
+Constant-power loads satisfy
+𝐼𝐿,𝑖 = 𝑃𝐿,𝑖 − 𝑗𝑄 𝐿,𝑖
+𝑉 ∗
+𝑖
+. (4)
+Equivalently, for 𝑉𝑖 = 𝑎𝑖 + 𝑗 𝑏𝑖,
+𝐼𝐿,𝑅,𝑖 = 𝑃𝐿,𝑖 𝑎𝑖 + 𝑄 𝐿,𝑖 𝑏𝑖
+𝑎2
+𝑖 + 𝑏2
+𝑖
+, (5)
+𝐼𝐿,𝐼 ,𝑖 = 𝑃𝐿,𝑖 𝑏𝑖 − 𝑄 𝐿,𝑖 𝑎𝑖
+𝑎2
+𝑖 + 𝑏2
+𝑖
+. (6)
+The full phasor model is the index-one DAE
+¤x = f (x, z; 𝛿, 𝜃), (7)
+0 = g(x, z; 𝛿, 𝜃), (8)
+where 𝛿 ∈ { 0, 1}𝑚 is the replacement indicator and 𝜃 collects
+controller-policy coordinates. At a regular equilibrium, 𝑔 𝑧 is
+nonsingular and the usual reduced Jacobian is
+𝐴 = 𝑓𝑥 − 𝑓𝑧𝑔 −1
+𝑧 𝑔 𝑥 . (9)
+B. Two-axis synchronous generator, AVR, and PSS
+For each synchronous unit, let 𝑣 𝑑 + 𝑗 𝑣𝑞 = 𝑉𝑖𝑒− 𝑗 𝛿𝑖 and let
+𝑖𝑑, 𝑖𝑞 be obtained from the transient-reactance stator equations.
+The frozen model uses
+¤𝛿𝑖 = 𝜔𝐵 (𝜔𝑖 − 1), (10)
+𝑀𝑖 ¤𝜔𝑖 = 𝑃𝑚,𝑖 − 𝑃𝑒,𝑖 − 𝐷𝑖 (𝜔𝑖 − 1), (11)
+𝑇 ′
+𝑑0,𝑖 ¤𝑒′
+𝑞,𝑖 = 𝑒 𝑓 𝑑,𝑖 − 𝑒′
+𝑞,𝑖 − ( 𝑥𝑑,𝑖 − 𝑥′
+𝑑,𝑖 )𝑖𝑑,𝑖 , (12)
+𝑇 ′
+𝑞0,𝑖 ¤𝑒′
+𝑑,𝑖 = −𝑒′
+𝑑,𝑖 + ( 𝑥𝑞,𝑖 − 𝑥′
+𝑞,𝑖 )𝑖𝑞,𝑖 . (13)
+The electrical power is
+𝑃𝑒,𝑖 = 𝑣 𝑑,𝑖 𝑖𝑑,𝑖 + 𝑣 𝑞,𝑖 𝑖𝑞,𝑖 + 𝑟𝑎,𝑖 (𝑖2
+𝑑,𝑖 + 𝑖2
+𝑞,𝑖 ). (14)
+The first-order A VR and power-input stabilizer are
+𝑇𝐸,𝑖 ¤𝑒 𝑓 𝑑,𝑖 = 𝐾 𝐴,𝑖 (𝑣 ref,𝑖 + 𝑣 𝑠,𝑖 − |𝑉𝑖 |) − 𝑒 𝑓 𝑑,𝑖 , (15)
+𝑇6,𝑖 ¤𝑥5,𝑖 = 𝑃𝑒,𝑖 − 𝑥5,𝑖 , (16)
+𝑇4,𝑖 ¤𝑥6,𝑖 = 𝑇5,𝑖
+𝑇6,𝑖
+(𝑃𝑒,𝑖 − 𝑥5,𝑖 ) − 𝑥6,𝑖 , (17)
+𝑣 𝑠,𝑖 = 𝐾𝑆,𝑖 𝑥6,𝑖 . (18)
+The frozen benchmark has 𝐷𝑖 = 0 and constant 𝑃𝑚,𝑖; therefore
+it contains no primary frequency restoration. This is the reason
+transverse coordinates are required later.
+C. Eleven-state grid-following converter
+The GFL state vector is
+xgfl = [𝜗, 𝑥pll, 𝑝 𝑓 , 𝑞 𝑓 , 𝑥 𝑝, 𝑥𝑞, 𝑖𝑑, 𝑖𝑞, 𝑥𝑖𝑑 , 𝑥𝑖𝑞 , 𝑥𝑣 ]⊤. (19)
+With 𝑣 𝑑 + 𝑗 𝑣𝑞 = 𝑉𝑖𝑒− 𝑗 𝜗 and
+𝑃 = 𝑣 𝑑𝑖𝑑 + 𝑣 𝑞𝑖𝑞, 𝑄 = 𝑣 𝑞𝑖𝑑 − 𝑣 𝑑𝑖𝑞, (20)
+the PLL is
+¤𝜗 = 𝑘 𝑝,pll𝑣 𝑞 + 𝑥pll, (21)
+¤𝑥pll = 𝑘𝑖,pll𝑣 𝑞. (22)
+Filtered powers obey
+𝜏 ¤𝑝 𝑓 = 𝑃 − 𝑝 𝑓 , (23)
+𝜏 ¤𝑞 𝑓 = 𝑄 − 𝑞 𝑓 . (24)
+The outer PI loops are
+𝑖ref
+𝑑 = 𝑘 𝑝 ( 𝑝ref − 𝑝 𝑓 ) + 𝑥 𝑝, (25)
+𝑖ref
+𝑞 = −𝑘𝑞 (𝑞cmd − 𝑞 𝑓 ) − 𝑥𝑞, (26)
+¤𝑥 𝑝 = 𝑘𝑖 𝑝( 𝑝ref − 𝑝 𝑓 ), (27)
+¤𝑥𝑞 = 𝑘𝑖𝑞 (𝑞cmd − 𝑞 𝑓 ). (28)
+The current loops are
+¤𝑖𝑑 = 𝜔𝐵
+𝑥 𝑓
+
+𝑘𝑖 (𝑖ref
+𝑑 − 𝑖𝑑) + 𝑥𝑖𝑑 − 𝑟 𝑓 𝑖𝑑
+
+, (29)
+¤𝑖𝑞 = 𝜔𝐵
+𝑥 𝑓
+
+𝑘𝑖 (𝑖ref
+𝑞 − 𝑖𝑞) + 𝑥𝑖𝑞 − 𝑟 𝑓 𝑖𝑞
+
+, (30)
+¤𝑥𝑖𝑑 = 𝑘𝑖𝑖 (𝑖ref
+𝑑 − 𝑖𝑑), (31)
+¤𝑥𝑖𝑞 = 𝑘𝑖𝑖 (𝑖ref
+𝑞 − 𝑖𝑞). (32)
+
+=== PAGE 3 ===
+3
+TABLE II
+Core frozen device parameters (per-unit on device rating).
+Block Values
+SG two-axis, 𝐷 = 0, constant 𝑃𝑚
+A VR 𝐾𝐴 = 10.1, 𝑇𝐸 = 0.25 s
+PSS 𝐾𝑆 = −2, 𝑇5 = 1, 𝑇6 = 4.2, 𝑇4 = 0.75 s
+PLL 𝑘 𝑝,pll = 53, 𝑘𝑖,pll = 1400
+Outer loops 𝜏 = 0.03 s, 𝑘 𝑝/𝑘𝑖 𝑝 = 𝑘𝑞/𝑘𝑖𝑞 = 0.2/8
+Current loops 𝑘𝑖/𝑘𝑖𝑖 = 0.25/6, 𝑥 𝑓 = 0.15, 𝑟 𝑓 = 0.01
+Q/V 𝑘 𝑝,𝑣 /𝑘𝑖,𝑣 = 2/20, 𝑤 = 0.05 rad/s
+The leaky 𝑄/𝑉 regulator is
+𝑒𝑣 = 𝑣 ref − |𝑉 |, (33)
+𝑞cmd = 𝑘 𝑝,𝑣 𝑔 𝑒 𝑣 + 𝑥𝑣 , (34)
+¤𝑥𝑣 = 𝑘𝑖,𝑣 𝑔 𝑒 𝑣 − 𝑤 (𝑥𝑣 − 𝑞ref). (35)
+The current injected into the network is
+𝐼gfl
+𝑖 = 𝛾𝑖 (𝑖𝑑 + 𝑗𝑖 𝑞)𝑒 𝑗 𝜗𝑖 . (36)
+The principal frozen values are listed in Table II.
+D. Matched-dispatch replacement portfolio
+Let the candidate set be V = {1, . . . , 𝑚}. A portfolio 𝑆 ⊆ V
+has indicator 𝛿𝑆. Replacing unit 𝑖 installs a GFL with the same
+scheduled 𝑃/𝑄 and the same rating as the removed SG; the
+AC power-flow equilibrium is therefore held fixed across the
+discrete portfolio family. The frozen IEEE-39 core is
+V4 = {30, 33, 35, 37}, (37)
+and the nine-unit census uses generator buses 30–38. The term
+replacement transition in this manuscript refers to a sequence
+of re-equilibrated stationary configurations, not to the fast
+switching transient of physically disconnecting an SG and
+energizing an inverter. The policy vector is
+𝜃 = (𝑔, 𝑘, 𝑡, ℎ ), (38)
+with 𝑔 the GFL 𝑄/𝑉 gain, 𝑘 a common surviving-SG A VR
+gain scale, 𝑡 an A VR time-constant scale, and ℎ a heterogeneity
+exponent.
+III. Exact Transverse Stability
+The frozen model has a structural rotational symmetry and,
+because 𝐷 = 0 and no governor is present, an additional
+frequency-drift Jordan partner. Directly deleting “small” eigen-
+values by magnitude is therefore not an exact stability definition.
+Let 𝑅𝑥 be one on every rotor/PLL angle coordinate and zero
+elsewhere. Let 𝑤 represent a uniform frequency shift.
+Theorem 1 (Exact transverse quotient):Assume device angles
+enter the DAE only through rotation-covariant combinations
+𝑉 𝑒− 𝑗 (·) . Then
+𝐴𝑅 𝑥 = 0. (39)
+If, in addition, synchronous damping is zero, mechanical power
+is constant, and the network is frequency independent, then
+𝐴𝑤 = 𝜔𝐵 𝑅𝑥 . (40)
+Hence C = span{𝑅𝑥, 𝑤 } is 𝐴-invariant. For any orthonormal
+𝑍 spanning C⊥,
+𝐴⊥ = 𝑍 𝑇 𝐴𝑍 (41)
+and
+det(𝑠𝐼 − 𝐴) = 𝑠2 det(𝑠𝐼 − 𝐴⊥). (42)
+Proof: Rotation covariance gives, for an infinitesimal
+common phase 𝜙,
+𝑓 (𝑥 + 𝜙𝑅 𝑥, 𝑒 𝑗 𝜙𝑧) = 𝑓 (𝑥, 𝑧), (43)
+𝑔 (𝑥 + 𝜙𝑅 𝑥, 𝑒 𝑗 𝜙𝑧) = 0. (44)
+Differentiate with respect to 𝜙 at the equilibrium. With 𝑅𝑧 =
+𝑗𝑉 ,
+𝑓𝑥 𝑅𝑥 + 𝑓𝑧 𝑅𝑧 = 0, (45)
+𝑔 𝑥 𝑅𝑥 + 𝑔 𝑧 𝑅𝑧 = 0. (46)
+Because 𝑔 𝑧 is nonsingular, 𝑅𝑧 = −𝑔 −1
+𝑧 𝑔 𝑥 𝑅𝑥, and substitution
+into 𝐴 = 𝑓𝑥 − 𝑓𝑧𝑔 −1
+𝑧 𝑔 𝑥 yields 𝐴𝑅 𝑥 = 0. Under the additional
+no-damping/no-governor assumptions, a uniform speed offset 𝑐
+together with the phase ramp 𝑐𝜔 𝐵𝑡 𝑅𝑥 generates another exact
+solution family; differentiation in 𝑐 gives 𝐴𝑤 = 𝜔𝐵 𝑅𝑥. In the
+orthogonal basis [𝑈 𝑍 ] with 𝑈 spanning C, invariance implies
+𝑍 𝑇 𝐴𝑈 = 0, so the transformed matrix is block upper triangular
+with the 2 × 2 nilpotent Jordan block on C and 𝐴⊥ on C⊥.
+Equation (42) follows.
+Definition 1 (Complete-spectrum transverse abscissa):
+𝛼⊥(𝑆, 𝜃) = max
+𝜆∈spec( 𝐴⊥ (𝑆, 𝜃 ) )
+Re 𝜆. (47)
+A portfolio is transversely stable when 𝛼⊥ < 0.
+Definition 2 (Mode-scoped diagnostic abscissa): For a
+reporting band Ω,
+𝛼Ω(𝑆, 𝜃) = max
+𝜆∈spec( 𝐴⊥ ): | Im 𝜆|/( 2 𝜋 ) ∈Ω
+Re 𝜆. (48)
+For the poster mechanism, Ω = [0.3, 1.5] Hz.
+The distinction is essential. 𝛼⊥ is the stability label used for
+complete-spectrum blocker geometry. 𝛼Ω is a mode-scoped
+diagnostic used to isolate the validated electromechanical
+mechanism. A hard frequency window can change membership
+when a pole crosses a band edge even if it never crosses the
+imaginary axis; therefore the boundary-localization theorem
+below is stated for 𝛼⊥. A continuously tracked modal family
+may be used instead when a family-specific theorem is desired.
+IV . Minimal Replacement Blockers and Hypergraph
+Geometry
+For either stability label 𝛼★ ∈ { 𝛼⊥, 𝛼Ω} define
+U★(𝜃) = {𝑆 ⊆ V : 𝛼★(𝑆, 𝜃) ≥ 0}, (49)
+and the inclusion-minimal unstable family
+H★(𝜃) = min
+⊆
+U★(𝜃) , (50)
+with
+𝜅★(𝜃) = min
+𝐻 ∈ H★ ( 𝜃 )
+|𝐻|. (51)
+
+=== PAGE 4 ===
+4
+We call each 𝐻 ∈ H★ a minimal replacement blocker (MRB).
+Unless a mode subscript is shown, H denotes the complete-
+spectrum object H⊥.
+Proposition 1 (Antichain and any-order safety): For either
+label, H★ is an antichain. A target portfolio 𝑇 is stable for every
+re-equilibrated sequential implementation order, with respect to
+the chosen label, if and only if 𝑇 contains no blocker 𝐻 ∈ H★.
+Proof: Minimal elements of any finite family under
+inclusion form an antichain. If some subset 𝑅 ⊆ 𝑇 is unstable,
+the finite family {𝑆 ⊆ 𝑅 : 𝑆 ∈ U ★} contains an inclusion-
+minimal element 𝐻 ⊆ 𝑅, so 𝐻 ∈ H★ and 𝐻 ⊆ 𝑇. Conversely,
+if 𝐻 ⊆ 𝑇 for some blocker, an implementation order that passes
+through 𝐻 includes an unstable stationary configuration. Thus
+every subset of 𝑇 is stable if and only if no blocker is contained
+in 𝑇.
+Theorem 2 (Complete-spectrum boundary localization): Let
+𝜃 (𝜏) be continuous and suppose 𝑔 𝑧 remains nonsingular for
+every portfolio along the path. Then H⊥(𝜃 (𝜏)) is constant
+on every interval over which no portfolio has a transverse
+eigenvalue on the imaginary axis. Every change of H⊥ is
+bracketed by such a crossing.
+Proof: The Jacobian blocks and therefore 𝐴⊥(𝑆, 𝜃 (𝜏))
+vary continuously while 𝑔 𝑧 is nonsingular. Eigenvalues vary
+continuously as a multiset, so the sign of 𝛼⊥ (𝑆, 𝜃) changes
+only when some transverse eigenvalue satisfies Re 𝜆 = 0. Since
+H⊥ is a deterministic function of the 2𝑚 stability labels, it is
+constant between such crossings.
+Remark 1 (Why the hard-band object is different): For HΩ,
+a change can also occur when an already stable or unstable
+pole crosses the boundary of Ω while retaining the same sign
+of real part. Thus HΩ is used below as a mechanism-specific
+diagnostic, while the policy-geometry theorem and any-order
+planning statements use H⊥ unless explicitly stated otherwise.
+V . From the DAE to Exact Dynamic Multiports
+A. Descriptor pencil and device elimination
+Linearizing (7)–(8) givesΔ ¤𝑥
+0
+
+=
+ 𝑓𝑥 𝑓𝑧
+𝑔 𝑥 𝑔 𝑧
+ Δ𝑥
+Δ𝑧
+
+. (52)
+The descriptor pencil is
+𝑃𝑆 (𝑠) =
+"
+𝑠𝐼 − 𝑓 (𝑆)
+𝑥 − 𝑓 (𝑆)
+𝑧
+−𝑔 (𝑆)
+𝑥 −𝑔 (𝑆)
+𝑧
+#
+. (53)
+From the first block row,
+Δ𝑥 = (𝑠𝐼 − 𝑓𝑥) −1 𝑓𝑧Δ𝑧. (54)
+Substitute into the algebraic row:
+𝑇𝑆 (𝑠)Δ𝑧 = 0, 𝑇 𝑆 (𝑠) = 𝑔 𝑧 + 𝑔 𝑥 (𝑠𝐼 − 𝑓𝑥) −1 𝑓𝑧. (55)
+The sign convention is inherited from the frozen code; changing
+the KCL sign changes corresponding local definitions but not
+the determinant identities.
+The Schur determinant identity gives
+det 𝑃𝑆 (𝑠) = ℎ𝑆 (𝑠) det 𝑇𝑆 (𝑠), ℎ 𝑆 (𝑠) = det(𝑠𝐼 − 𝑓 (𝑆)
+𝑥 ).
+(56)
+Therefore 𝑇𝑆 (𝑠) is an exact nonlinear eigenvalue problem (NEP)
+for network-visible modes away from internal device poles [2].
+B. Local SG and GFL dynamic admittances
+At a candidate terminal, any linearized device realization
+can be written
+Δ ¤𝑥𝑖 = 𝐴𝑖Δ𝑥𝑖 + 𝐵𝑖Δ𝑣 𝑖, (57)
+Δ𝑖𝑖 = 𝐶𝑖Δ𝑥𝑖 + 𝐷𝑖Δ𝑣 𝑖. (58)
+After Laplace transformation,
+Δ𝑥𝑖 = (𝑠𝐼 − 𝐴𝑖) −1𝐵𝑖Δ𝑣 𝑖, (59)
+so
+𝑌𝑖 (𝑠) = 𝐷𝑖 + 𝐶𝑖 (𝑠𝐼 − 𝐴𝑖) −1𝐵𝑖 (60)
+with Δ𝑖𝑖 = 𝑌𝑖 (𝑠)Δ𝑣 𝑖. Thus the finite replacement increment is
+physically
+Δ𝑌𝑖 (𝑠) = 𝑌 GFL
+𝑖 (𝑠) − 𝑌 SG
+𝑖 (𝑠), (61)
+up to the adopted KCL sign. In the implementation, the
+unambiguous definition is
+Δ𝑌𝑖 (𝑠) = 𝐸 𝑇
+𝑖 [𝑇{𝑖 } (𝑠) − 𝑇0 (𝑠)] 𝐸𝑖 ∈ C2×2. (62)
+Proposition 2 (Terminal-map invariance of the collective
+factor): Consider two internal realizations 𝑎 and 𝑏 of every
+candidate replacement. Suppose, on a protected spectral domain
+D, (i) their terminal increments are identical, Δ𝑌 (𝑎)
+𝑖 (𝑠) =
+Δ𝑌 (𝑏)
+𝑖 (𝑠) for all 𝑠 ∈ D , and (ii) neither realization contributes
+an unrepresented unstable internal pole through the eliminated
+device factor ℎ𝑆 (𝑠). Then the two realizations generate identical
+𝐷𝑆, 𝑀𝑆, 𝑄𝑆, and collective closure zeros on D.
+Proof: The collective construction depends on each
+replacement only through Δ𝑌𝑖 (𝑠) and on the reference grid
+through 𝐾 (𝑠). Equality of all terminal increments therefore
+gives identical 𝐷𝑆, hence identical 𝑀𝑆 and 𝑄𝑆. Assumption
+(ii) excludes a different unstable zero/pole arising solely from
+the eliminated factor ℎ𝑆 in (56).
+Remark 2: This proposition is the route to black-box/vendor
+use: measured or supplied terminal impedance/admittance scans
+can feed the same collective calculation without disclosing
+controller states, provided the terminal model is dynamically
+complete over the protected band.
+C. Base Green kernel and replacement-space operator
+Let 𝐸 select the two rectangular-voltage channels of all 𝑚
+candidate buses. Define
+𝐾 (𝑠) = 𝐸 𝑇𝑇 −1
+0 (𝑠)𝐸 (63)
+and, for a portfolio 𝑆,
+𝐷𝑆 (𝑠) = blkdiag𝑖 ∈𝑆 {Δ𝑌𝑖 (𝑠)} . (64)
+Then
+𝑀𝑆 (𝑠) = 𝐷𝑆 (𝑠)𝐾𝑆𝑆 (𝑠). (65)
+Theorem 3 (Exact network-closure factorization): Whenever
+𝑇0(𝑠) is nonsingular and 𝑠 is not an eliminated device pole,
+det 𝑇𝑆 (𝑠)
+det 𝑇0 (𝑠) = det(𝐼 + 𝑀𝑆 (𝑠)) . (66)
+
+=== PAGE 5 ===
+5
+Split 𝐾 = 𝐾𝑑 + 𝐾𝑜 into its block diagonal and off-diagonal
+parts and define
+𝑄𝑆 = (𝐼 + 𝐷𝑆𝐾𝑑,𝑆 ) −1𝐷𝑆𝐾𝑜,𝑆 . (67)
+Then
+det(𝐼 + 𝑀𝑆) =
+Ö
+𝑖 ∈𝑆
+det(𝐼 + 𝑀𝑖𝑖 ) det(𝐼 + 𝑄𝑆). (68)
+Proof: Because each replacement modifies only its own
+two terminal channels,
+𝑇𝑆 = 𝑇0 + 𝐸𝑆 𝐷𝑆 𝐸 𝑇
+𝑆 . (69)
+Apply Sylvester’s determinant identity:
+det 𝑇𝑆 = det 𝑇0 det(𝐼 + 𝐷𝑆 𝐸 𝑇
+𝑆 𝑇 −1
+0 𝐸𝑆) (70)
+= det 𝑇0 det(𝐼 + 𝐷𝑆𝐾𝑆𝑆 ), (71)
+which proves (66). Next,
+𝐼 + 𝐷𝑆𝐾𝑆𝑆 = 𝐼 + 𝐷𝑆𝐾𝑑,𝑆 + 𝐷𝑆𝐾𝑜,𝑆 (72)
+= (𝐼 + 𝐷𝑆𝐾𝑑,𝑆 )
+
+𝐼 + ( 𝐼 + 𝐷𝑆𝐾𝑑,𝑆 ) −1𝐷𝑆𝐾𝑜,𝑆
+
+.
+(73)
+The first factor is block diagonal, so its determinant is the
+product of the physical local factors. The second factor is
+𝐼 + 𝑄𝑆, proving (68).
+Corollary 1 (Collective boundary): If every local factor
+remains nonsingular at 𝑠★,
+det(𝐼 + 𝑄 𝐻 (𝑠★)) = 0 ⇐ ⇒ − 1 ∈ spec(𝑄 𝐻 (𝑠★)) . (74)
+D. Contextual return of each blocker member
+Let 𝐻 = {𝑖} ∪ 𝑅 and set 𝐶𝐻 = 𝐼 + 𝑄 𝐻. Because the local
+terms have been dressed out, the diagonal block of 𝑄 𝐻 is zero:
+𝐶𝐻 =
+ 𝐼 𝑄 𝑖𝑅
+𝑄 𝑅𝑖 𝐶𝑅
+
+, 𝐶 𝑅 = 𝐼 + 𝑄 𝑅𝑅 . (75)
+Define
+R𝑖 | 𝑅 = 𝑄𝑖𝑅 𝐶 −1
+𝑅 𝑄 𝑅𝑖 . (76)
+Theorem 4 (Contextual-return characterization): If 𝐻 is
+an inclusion-minimal blocker at a simple collective root 𝑠★,
+all local factors are regular, and every proper 𝐶𝑅 (𝑠★) is
+nonsingular, then
+1 ∈ spec(R 𝑖 | 𝐻\𝑖 (𝑠★)), ∀𝑖 ∈ 𝐻. (77)
+Moreover, if 𝐶𝐻 𝑞 = 0 and 𝑝𝐻𝐶𝐻 = 0, then every local block
+is nonzero and satisfies
+R𝑖 | 𝑅𝑞𝑖 = 𝑞𝑖, 𝑝 𝐻
+𝑖 R𝑖 | 𝑅 = 𝑝𝐻
+𝑖 , (78)
+so every blocker member participates nontrivially in the critical
+collective return mode.
+Proof: The Schur complement of 𝐶𝑅 is
+𝐼 − 𝑄𝑖𝑅 𝐶 −1
+𝑅 𝑄 𝑅𝑖 = 𝐼 − R𝑖 | 𝑅, (79)
+so
+det 𝐶𝐻 = det 𝐶𝑅 det(𝐼 − R𝑖 | 𝑅). (80)
+At the collective boundary det 𝐶𝐻 = 0, while the stated proper-
+subset regularity gives det 𝐶𝑅 ≠ 0; hence det(𝐼 − R 𝑖 | 𝑅) = 0
+and +1 is an eigenvalue. From 𝐶𝐻 𝑞 = 0, the lower block gives
+𝑞𝑅 = −𝐶 −1
+𝑅 𝑄 𝑅𝑖 𝑞𝑖, and substitution into the upper block gives
+(𝐼 − R 𝑖 | 𝑅)𝑞𝑖 = 0. If 𝑞𝑖 = 0, then 𝐶𝑅𝑞𝑅 = 0; nonsingularity
+of 𝐶𝑅 forces 𝑞𝑅 = 0, contradicting 𝑞 ≠ 0. Thus 𝑞𝑖 ≠ 0 for
+every 𝑖 ∈ 𝐻. The left-vector result follows analogously from
+𝑝𝐻𝐶𝐻 = 0.
+VI. Five-Bus Worked Example: Every Algebraic Step
+This section is intentionally pedagogical. It is not the
+benchmark evidence; it exposes the mechanism with numbers
+that can be recomputed by hand.
+A. Network and Kron reduction
+Consider buses 1–4 connected to an internal collector bus 5
+with unit susceptance, and bus 5 connected to a strong reference
+grid by another unit susceptance. Under unit voltages and small
+angle differences,
+Δ𝑃𝑖 𝑗 ≈ 𝑏𝑖 𝑗 (Δ𝛿𝑖 − Δ𝛿 𝑗 ). (81)
+The grounded Laplacian is
+𝐿5 =
+
+1 0 0 0 −1
+0 1 0 0 −1
+0 0 1 0 −1
+0 0 0 1 −1
+−1 −1 −1 −1 5
+
+. (82)
+Setting Δ𝑃5 = 0 gives
+𝛿5 = 1
+5 (𝛿1 + 𝛿2 + 𝛿3 + 𝛿4). (83)
+Hence the exact Kron-reduced stiffness seen at buses 1–4 is
+𝐿red = 𝐼4 − 1
+511𝑇 . (84)
+The eigenvalues are {1, 1, 1, 0.2}; the soft direction is the
+coherent vector 1.
+By Sherman–Morrison,
+𝐾 = 𝐿 −1
+red = 𝐼4 + 11𝑇 =
+
+2 1 1 1
+1 2 1 1
+1 1 2 1
+1 1 1 2
+
+. (85)
+B. Scalar modal replacement increment
+At one selected frequency/direction, represent the SG-to-GFL
+replacement by the scalar normalized increment
+Δ𝑦 = −0.2. (86)
+This value is chosen only to make the closure transparent. For
+a 𝑘-member portfolio, 𝐷 = −0.2𝐼𝑘. The physical local factor
+is
+𝐼 + 𝐷𝐾 𝑑 = 𝐼 − 0.4𝐼 = 0.6𝐼, (87)
+so no individual replacement is close to local singularity.
+
+=== PAGE 6 ===
+6
+For the off-diagonal complete-graph adjacency 𝐴𝑘,
+𝑄 𝑘 = (0.6𝐼) −1(−0.2𝐴𝑘) = −1
+3 𝐴𝑘 . (88)
+Because spec ( 𝐴𝑘) = {𝑘 − 1, −1, . . . , −1},
+spec(𝑄 𝑘) =
+
+− 𝑘 − 1
+3 , 1
+3 , . . . , 1
+3
+
+. (89)
+Thus the collective critical eigenvalue is
+𝜆𝑐 (𝐼 + 𝑄 𝑘) = 1 − 𝑘 − 1
+3 . (90)
+Therefore
+𝑘 = 1 : 1 , (91)
+𝑘 = 2 : 2
+3 , (92)
+𝑘 = 3 : 1
+3 , (93)
+𝑘 = 4 : 0 . (94)
+The complete four-member portfolio is the first one that closes.
+Direct determinants give
+det(𝐼 + 𝑀𝑘) = {0.6, 0.32, 0.128, 0} (95)
+for 𝑘 = 1, 2, 3, 4, respectively.
+C. Contextual return computed by hand
+For member 1 and 𝑅 = {2, 3, 4},
+𝑄1𝑅 =
+−1/3 −1/3 −1/3
+(96)
+and
+𝐶𝑅 =
+
+1 −1/3 −1/3
+−1/3 1 −1/3
+−1/3 −1/3 1
+
+. (97)
+Its inverse is
+𝐶 −1
+𝑅 =
+
+3/2 3 /4 3 /4
+3/4 3 /2 3 /4
+3/4 3 /4 3 /2
+
+. (98)
+Then
+𝐶 −1
+𝑅 𝑄 𝑅1 =
+−1 −1 −1 𝑇
+(99)
+and finally
+R1|234 = 𝑄1𝑅𝐶 −1
+𝑅 𝑄 𝑅1 = 1. (100)
+By symmetry, every member sees unity contextual return at
+the four-way closure.
+VII. Frozen IEEE-39 Evidence
+A. Evidence hierarchy and blind/frozen protocol
+The numerical hierarchy is deliberately asymmetric: the
+complete transverse DAE supplies the portfolio labels; the
+reduced multiport is asked to predict/explain a selected col-
+lective mode; nonlinear phasor time-domain simulation (TDS)
+checks growth/decay and frequency; independent tools check
+those blocks that can be reproduced; portfolio-level EMT is
+not claimed.
+For the V4 campaign, the reduced closure construction and
+its 16 portfolio verdicts were frozen before comparison with
+5
+1 2
+3 4
+strong grid
+𝐾 = 𝐼 + 11𝑇
+𝑄4 = − 1
+3 𝐴4
+𝑘 < 4: regular 𝑘 = 4: −1 ∈ spec(𝑄)
+Fig. 1. Five-bus mechanism example. The network itself generates dense
+transfer coupling after Kron reduction; four locally regular replacements are
+required before the collective return closes.
+TABLE III
+Evidence hierarchy and current scope.
+Layer Role/status
+Full transverse DAE Complete-spectrum ground truth for frozen portfolios
+Reduced multiport Exact model reduction for selected network-visible
+roots
+Phasor nonlinear TDS 32/32 declared small-disturbance sign checks within
+scope
+Independent implementa-
+tion
+Network/equilibrium, synchronous dynamics, and
+branch sensitivities partially reproduced
+EMT Portfolio-level validation not established
+the full-order answer table. This prevents selecting the four-
+unit witness after seeing the DAE labels. Within the declared
+phasor-model scope, 32 preregistered small-disturbance TDS
+verdicts agreed with the eigenvalue signs; for P4 the fitted
+envelope rate was approximately +0.129 s −1 versus the linear
+prediction +0.127 s −1. Network/equilibrium and synchronous-
+dynamic blocks have additional cross-tool checks; an indepen-
+dently equivalent realization of the custom GFL is not fully
+established.
+B. The canonical four-unit blocker
+At the frozen point 𝑃4 = (𝑔, 𝑘, 𝑡, ℎ ) =
+(0.03625, 1.425, 1.5, 1), the transverse spectral abscissae of
+the 16 core portfolios are listed in Table IV. All 15 proper
+subsets are stable, while the complete set is unstable.
+The unstable mode is at
+𝑓 ★ = 0.6222797 Hz , 𝛼 = +0.1270065 s −1. (101)
+This defines the finite blocker
+𝐻4 = {30, 33, 35, 37}, 𝜅 = 4. (102)
+C. Local regularity versus collective collapse
+At the clean controller boundary, the minimum physical local
+singular value is
+min
+𝑖
+𝜎min (𝐼 + 𝑀𝑖𝑖 ) = 0.2973, (103)
+while the collective factor reaches
+𝜎min(𝐼 + 𝑄 𝐻4) = 1.26 × 10−8. (104)
+
+=== PAGE 7 ===
+7
+∅
+-.144
+30
+-.154
+33
+-.170
+35
+-.173
+37
+-.148
+30,33
+-.182
+30,35
+-.173
+30,37
+-.151
+33,35
+-.214
+33,37
+-.177
+35,37
+-.172
+30,33,35
+-.205
+30,33,37
+-.176
+30,35,37
+-.168
+33,35,37
+-.203
+30,33,35,37
++0.127 15/15 proper subsets stable
+complete portfolio unstable
+Fig. 2. Frozen IEEE-39 core lattice at P4. Numbers are transverse spectral abscissae in s−1. Every proper subset is stable; the complete set is the sole core
+blocker.
+TABLE IV
+Frozen P4 core lattice ( 𝛼⊥ in s−1).
+𝑆 𝛼 ⊥ 𝑆 𝛼 ⊥
+∅ − 0.1441 30+33 −0.1821
+30 −0.1542 30+35 −0.1725
+33 −0.1696 30+37 −0.1511
+35 −0.1734 33+35 −0.2140
+37 −0.1480 33+37 −0.1768
+30+33+35 −0.2047 35+37 −0.1721
+30+33+37 −0.1755 30+35+37 −0.1679
+33+35+37 −0.2030 30+33+35+37 +0.1270
+local 𝐼 + 𝑀𝑖𝑖
+best proper
+𝐼 + 𝑄𝐺10−9
+10−5
+10−1
+minimum singular value
+Fig. 3. Physical local factors and the best proper-subset collective factor
+remain regular while the complete collective factor collapses.
+The minimum proper-subset collective factor at the same
+boundary frequency is 0 .2945. Thus the full collective object
+collapses while every physical local factor and every proper
+collective subset remain separated from singularity.
+At the audited boundary,
+min
+𝜆∈spec(𝑄𝐻 )
+|𝜆 + 1| = 3.51 × 10−8, (105)
+and the contextual returns for buses 30, 33, 35, 37 approach
++1 within approximately 1.1 × 10−7 to 2.3 × 10−7, with Schur
+residuals below 4 × 10−16.
+D. Mode-scoped nine-candidate transfer
+For V9 = {30, . . . , 38} under the same frozen policy, the
+targeted 0.3–1.5 Hz construction classifies 511/512 portfolios
+correctly and recovers the mode-scoped blocker antichain
+HΩ. This result is deliberately distinct from the complete-
+spectrum object H⊥: a separate family of aperiodic right-half-
+plane modes produces 110 same-policy full-spectrum false-safe
+cases for the EM-band predictor. Therefore the collective EM
+construction is not a complete-spectrum safety certificate.
+VIII. Compatibility Is a Geometry , Not a Penetration
+Number
+The complete-spectrum discrete object H⊥(𝜃) reorganizes
+strongly under controller policy. Along one frozen one-
+dimensional path, the minimum blocker order follows
+4 → 3 → 2 → 3 → 4 → ∅. (106)
+The corresponding transition values of the GFL 𝑄/𝑉 gain are
+approximately 0.0102, 0 .1034, 0 .2491, 0 .2931, and 0 .2973.
+Across three two-dimensional policy maps of H⊥, 30, 36,
+and 16 distinct blocker hypergraphs were observed. Up to 15
+distinct hypergraphs can share the same value of 𝜅; therefore
+𝜅 is a useful summary but not the complete planning object.
+A particularly important model-scope experiment is that
+the same P4 four-unit physical portfolio becomes stable when
+the documented turbine-governor dynamics are added: the
+transverse abscissa moves from +0.1270 to approximately
+−0.0745 s −1. This removes the specific P4 witness; it does not
+remove policy dependence in the governed model, where other
+blockers of orders 2–4 persist. The lesson is that a blocker is
+conditional on the full dynamic support model, not an intrinsic
+property of a set of buses.
+
+=== PAGE 8 ===
+8
+0 5 ·10−2 0.1 0.15 0.2 0.25 0.3
+2
+3
+4
+∅
+𝑄/𝑉 gain 𝑔
+minimum blocker order 𝜅
+Fig. 4. One-dimensional slice of the compatibility geometry. The same network
+and replacement locations change their minimum incompatible coalition size
+as one converter-control coordinate is varied.
+Conventional lower-order screens also lose information. At
+P4, first-order modal sensitivity, additive extrapolation from sin-
+gleton studies, and pairwise extrapolation from singletons/pairs
+all predict an empty blocker set. Over 52 policy points they
+recover the exact blocker hypergraph in 22, 30, and 38 cases,
+respectively. SCR/gSCR are policy-blind in the constructed P4
+versus 𝑃∞ comparison.
+IX. A Secondary Mathematical Result: Failure Order Is
+Not Interaction Order
+The exact determinant admits Boolean principal-minor
+coefficients of all orders. However, an algebraic full-order term
+need not represent an irreducible physical |𝑆|-body interaction.
+Define
+𝐹𝑠 (𝑆) = det(𝐼 + 𝑄𝑆𝑆 (𝑠)), 𝐹 𝑠 (∅) = 1. (107)
+The finite-amplitude partition cumulant is
+𝜒𝑆 (𝑠) =
+∑︁
+𝜋 ∈Π (𝑆)
+(−1) | 𝜋 | −1(| 𝜋| − 1)!
+Ö
+𝐵∈ 𝜋
+𝐹𝑠 (𝐵). (108)
+Moment-cumulant inversion gives
+𝐹𝑠 (𝑆) =
+∑︁
+𝜋 ∈Π (𝑆)
+Ö
+𝐵∈ 𝜋
+𝜒𝐵 (𝑠). (109)
+This separates three distinct orders:
+𝑑alg = max{| 𝑆| : 𝜇𝑆 ≠ 0}, (110)
+𝑑conn = max{| 𝑆| : 𝜒𝑆 ≠ 0}, (111)
+𝜅 = min
+𝐻 ∈ H
+|𝐻|. (112)
+They are logically independent. In the flagship IEEE-39
+boundary, 𝜅 = 4 and full algebraic order is necessary to
+close the determinant, yet the preregistered connected-share
+metric is only 𝜈𝐻 = 0.069 and removing the full four-member
+cumulant moves the root by only about 0.024 s −1. Therefore
+the flagship is predominantly composite, not an irreducible
+four-body interaction. This negative result prevents an incorrect
+causal interpretation of the Hasse lattice.
+X. Exact Boundary Motion and Existing Repair Results
+Proposition 3 (Simple-root boundary sensitivity): Let
+𝐹 (𝑠, 𝑎) = 0 describe a simple blocker boundary. Then
+𝜕𝑠 ★
+𝜕𝑎 = − 𝜕𝑎𝐹 (𝑠★, 𝑎)
+𝜕𝑠 𝐹 (𝑠★, 𝑎) . (113)
+Equivalently, if −1 is a simple eigenvalue of 𝑀𝑆 with right/left
+eigenvectors 𝑞, 𝑝 ,
+𝜕𝑠 ★
+𝜕𝑎 = − 𝑝𝐻 (𝜕𝑎 𝑀𝑆)𝑞
+𝑝𝐻 (𝜕𝑠 𝑀𝑆)𝑞 . (114)
+Proof: Differentiate 𝐹 (𝑠★(𝑎), 𝑎) = 0: 𝐹𝑠d𝑠★/d𝑎 + 𝐹𝑎 = 0.
+For a simple zero, 𝐹𝑠 ≠ 0, giving (113). For the eigenvalue form,
+let 𝜆(𝑠, 𝑎) be the simple eigenvalue of 𝑀𝑆 satisfying 𝜆 = −1.
+Eigenvalue perturbation gives d𝜆 = 𝑝𝐻 (d𝑀𝑆)𝑞/( 𝑝𝐻 𝑞); impose
+d𝜆 = 0 along the boundary and solve for d 𝑠/d𝑎.
+In the frozen campaign, port normals agree with direct
+finite differences to angular error below 4.3 × 10−4 degrees.
+A port-derivative Newton continuation moves the four-unit P4
+portfolio to the 𝑄/𝑉 stability boundary 𝑔★ = 0.20768 with
+approximately 2 ×10−10 final error in five iterations. A damped
+synchronous condenser restores small-signal stability above
+approximately 2.48% of the retired rating, about 106 MV A in
+that study. These are existing validated repair results.
+XI. Blocker-Conditioned Critical Green Residue and
+Repair Graph
+This section derives the spatial design extension. It corrects
+an important subtlety: at a critical root 𝑠★, 𝑇 (𝑠★) is singular,
+so the ordinary inverse 𝑇 −1 (𝑠★) does not exist. The correct
+critical Green object is the residue of the resolvent. The
+residue–sensitivity equivalence has prior art in impedance
+participation analysis [5]; the contribution pursued here is its
+blocker-conditioned use together with exact collective closure,
+total re-equilibrated topology derivatives, and hypergraph-aware
+repair.
+A. Self-energy network operator and generalized branch stamps
+Partition retained network variables from hidden con-
+troller/auxiliary states. Exact Schur condensation gives
+𝑆𝑟 (𝑠) = 𝑠𝐼 − 𝐴𝑟𝑟 − 𝐴𝑟 𝑐(𝑠𝐼 − 𝐴𝑐𝑐 ) −1 𝐴𝑐𝑟 . (115)
+When retained coordinates admit a second-order interpretation,
+𝑇 (𝑠) = 𝑠2 𝑀 + 𝑠Σ(𝑠) + 𝐿,
+Σ(𝑠) = 𝐷0 + 𝐶 (𝑠𝐼 − 𝐴𝑐𝑐 ) −1𝐵. (116)
+For a network with lines, transformers, shunts, loads, and
+condensed devices, use generalized terminal stamps
+𝑇 (𝑠) =
+∑︁
+𝑒∈ E
+𝐶 𝐻
+𝑒 𝑌𝑒 (𝑠)𝐶𝑒 + 𝑌sh (𝑠) + Σdev(𝑠). (117)
+Here 𝐶𝑒 maps bus-voltage coordinates to the two branch-
+terminal coordinates and can include off-nominal transformer
+ratios and phase shifts. For a symmetric ordinary line, 𝐶𝑒
+reduces to the usual incidence difference (𝑒𝑖 − 𝑒 𝑗 )𝑇 ⊗ 𝐼2.
+
+=== PAGE 9 ===
+9
+B. Critical Green residue
+Let 𝑠★
+𝐻 be a simple network-visible root of portfolio 𝐻:
+𝑇𝐻 (𝑠★
+𝐻 )𝑟𝐻 = 0, ℓ 𝐻
+𝐻 𝑇𝐻 (𝑠★
+𝐻 ) = 0, (118)
+with
+𝑑★
+𝐻 = ℓ𝐻
+𝐻 𝑇𝐻,𝑠 (𝑠★
+𝐻 )𝑟𝐻 ≠ 0. (119)
+Near the simple pole, the resolvent has the Laurent expansion
+𝑇 −1
+𝐻 (𝑠) = 𝒢★
+𝐻
+𝑠 − 𝑠★
+𝐻
++ 𝐺 𝐻, reg(𝑠), 𝒢★
+𝐻 = 𝑟𝐻ℓ𝐻
+𝐻
+𝑑★
+𝐻
+. (120)
+Thus 𝒢★
+𝐻 is a rank-one critical Green residue. For any differen-
+tiable perturbation direction 𝑇𝑎 evaluated at a fixed equilibrium,
+𝜕𝑠 ★
+𝐻
+𝜕𝑎 = − ℓ𝐻
+𝐻 𝑇𝑎𝑟𝐻
+𝑑★
+𝐻
+= − tr(𝒢★
+𝐻𝑇𝑎). (121)
+A scale-invariant conditioning indicator is
+𝜅NEP(𝑠★
+𝐻 ) = ∥ℓ𝐻 ∥2 ∥𝑟𝐻 ∥2
+|ℓ𝐻
+𝐻 𝑇𝐻,𝑠 𝑟𝐻 | . (122)
+Large 𝜅NEP warns that repair rankings derived from first-order
+pole motion may be fragile to modeling or numerical errors.
+C. Total topology derivative: structural, flow, and controller
+channels
+A finite branch change also moves the AC equilibrium. Let
+𝜉 collect the equilibrium variables and let
+F (𝜉, 𝜌 ) = 0 (123)
+be the equilibrium equations for a scalar branch parameter 𝜌.
+If F𝜉 is nonsingular,
+𝜉𝜌 = −F −1
+𝜉 F𝜌. (124)
+The total derivative of the dynamic operator is therefore
+b𝑇𝜌 = 𝜕𝜌𝑇 + 𝐷 𝜉 𝑇 [𝜉𝜌] = 𝜕𝜌𝑇 − 𝐷 𝜉 𝑇 [F −1
+𝜉 F𝜌]. (125)
+For a branch action it is useful to decompose
+b𝑇𝜌𝑒 = 𝑇 dir
+𝜌𝑒
+|{z}
+structural
++ 𝑇 flow
+𝜌𝑒
+|{z}
+power−flow mediated
++ 𝑇 ctrl
+𝜌𝑒
+|{z}
+controller mediated
+, (126)
+where the latter two terms arise through the re-equilibrated
+state 𝜉𝜌. The re-equilibrated pole sensitivity is
+d𝑠★
+𝐻
+d𝜌𝑒
+= − tr(𝒢★
+𝐻b𝑇𝜌𝑒 ). (127)
+Equation (127), rather than the direct branch stamp alone, is
+the quantity that should be compared against finite branch
+doubling/outage experiments.
+D. Parameterization-invariant line leverage
+Raw derivatives depend on the units used for 𝜌𝑒. For a
+positive branch-strength parameter define 𝜂𝑒 = log 𝜌𝑒. Then
+𝜕𝑠 ★
+𝐻
+𝜕𝜂 𝑒
+= 𝜌𝑒
+𝜕𝑠 ★
+𝐻
+𝜕 𝜌𝑒
+. (128)
+The dimensionally consistent stabilizing score for a fractional
+reinforcement is
+b𝑆★
+𝑒| 𝐻 = − Re
+ 𝜕𝑠 ★
+𝐻
+𝜕𝜂 𝑒
+
+= Re
+n
+𝜌𝑒 tr(𝒢★
+𝐻b𝑇𝜌𝑒 )
+o
+. (129)
+Positive b𝑆★
+𝑒| 𝐻 means that a small percentage increase of the
+selected branch-strength parameter moves the blocker root
+left. A cost-normalized version divides the predicted finite
+displacement by the engineering cost of the admissible action.
+For an ordinary symmetric line and a frozen equilibrium,
+𝜕𝜌𝑒𝑇 = 𝐶 𝐻
+𝑒 𝑌𝑒,𝜌 𝐶𝑒, and (121) reduces to the familiar left/right
+edge-field product. The full score (129) retains the additional
+power-flow and controller-mediated channels.
+E. Bus/control leverage and dynamic hubs
+For a bus-local controller parameter 𝜃𝑖, define its total
+operator derivative b𝑇𝜃𝑖 analogously to (125). Then
+d𝑠★
+𝐻
+d𝜃𝑖
+= − tr(𝒢★
+𝐻b𝑇𝜃𝑖 ). (130)
+A practical node score should be normalized by an admissible
+parameter change (or cost), rather than by arbitrary parameter
+units. For visualization only, incident absolute edge leverage
+can be aggregated as
+𝐻★
+𝑖 =
+∑︁
+𝑒∼𝑖
+|b𝑆★
+𝑒| 𝐻 |. (131)
+This “dynamic hub” is not claimed as a universal graph
+centrality.
+F. Dynamic weak zones via exterior self-energy
+Partition retained network variables into a zone 𝑍 and
+exterior ¯𝑍:
+𝑇 =
+𝑇𝑍 𝑍 𝑇𝑍 ¯𝑍
+𝑇 ¯𝑍 𝑍 𝑇 ¯𝑍 ¯𝑍
+
+. (132)
+When 𝑇 ¯𝑍 ¯𝑍 is nonsingular, eliminating the exterior gives
+𝑇 eff
+𝑍 = 𝑇𝑍 𝑍 − Σext
+𝑍 , Σext
+𝑍 = 𝑇𝑍 ¯𝑍𝑇 −1
+¯𝑍 ¯𝑍𝑇 ¯𝑍 𝑍. (133)
+Introduce the diagnostic interpolation 𝑇𝑍 (𝜂) = 𝑇𝑍 𝑍 − 𝜂Σext
+𝑍 . At
+a simple zone root,
+d𝑠★
+d𝜂 = ℓ𝐻
+𝑍 Σext
+𝑍 (𝑠★)𝑟𝑍
+ℓ𝐻
+𝑍 𝜕𝑠𝑇 eff
+𝑍 (𝑠★)𝑟𝑍
+. (134)
+Its real part diagnoses whether the rest of the grid locally
+supplies stabilizing or destabilizing dynamic feedback to the
+selected zone; 𝜂 is a diagnostic interpolation, not by itself a
+physical switching action.
+
+=== PAGE 10 ===
+10
+G. Complete modal balance over graph and nodal terms
+At a simple root, premultiplying (117) by ℓ𝐻 and postmulti-
+plying by 𝑟 gives the exact complex balance
+∑︁
+𝑒∈ E
+(𝐶𝑒ℓ) 𝐻𝑌𝑒 (𝑠★) (𝐶𝑒𝑟) + ℓ𝐻 
+𝑌sh(𝑠★) + Σdev(𝑠★)
+
+𝑟 = 0.
+(135)
+The second term includes shunts/load Jacobians and de-
+vice/controller self-energy; omitting it would give an incomplete
+balance. Equation (135) is a model-based modal accounting
+identity, not a substitute for measurement-based dissipating-
+energy-flow source localization [12].
+H. Finite low-rank update: exact only at a frozen equilibrium
+For 𝑠 such that 𝑇 (𝑠) is nonsingular, a frozen-operating-point
+low-rank branch modification
+𝑇 +(𝑠) = 𝑇 (𝑠) + 𝐶 𝐻
+𝑒 Δ𝑌𝑒 (𝑠)𝐶𝑒 (136)
+has the exact Woodbury update
+𝐺+ = 𝐺 − 𝐺𝐶 𝐻
+𝑒
+
+Δ𝑌 −1
+𝑒 + 𝐶𝑒𝐺𝐶 𝐻
+𝑒
+ −1
+𝐶𝑒𝐺, (137)
+and determinant ratio
+det 𝑇 + (𝑠)
+det 𝑇 (𝑠) = det
+
+𝐼 + Δ𝑌𝑒 (𝑠)𝐶𝑒𝐺 (𝑠)𝐶 𝐻
+𝑒
+
+. (138)
+At 𝑠 = 𝑠★, 𝐺 = 𝑇 −1 is singular and the residue (120) is the
+correct critical object. Equations (137)–(138) are exact for a
+frozen equilibrium; a physical branch doubling/outage must be
+re-equilibrated and relinearized before its finite final root is
+certified.
+I. Hypergraph-aware minimal repair
+Repairing one blocker while creating another is not accept-
+able. Let {𝐻𝑘 }𝑞
+𝑘=1 be the blockers/near-boundary portfolios
+selected for protection, with critical roots 𝑠★
+𝑘 , and let 𝑥𝑒 = Δ𝜂𝑒
+be relative branch changes. Define
+𝐽𝑘𝑒 = Re
+ 𝜕𝑠 ★
+𝑘
+𝜕𝜂 𝑒
+
+. (139)
+A first-order topology design is
+min
+𝑥
+∑︁
+𝑒
+𝑐𝑒 |𝑥𝑒 | (140)
+s.t. Re 𝑠★
+𝑘 +
+∑︁
+𝑒
+𝐽𝑘𝑒 𝑥𝑒 ≤ −𝜀, 𝑘 = 1, . . . , 𝑞, (141)
+𝑥 ∈ Xadm. (142)
+Controller variables can be appended using (130). The program
+is a proposal generator, not a global certificate: every selected
+finite action is subsequently re-equilibrated, relinearized, and
+the protected portfolio family is re-enumerated to ensure that
+the repair did not create a smaller blocker elsewhere.
+XII. Topology Evidence and the Proposed Blind
+Green-Residue Test
+A frozen finite-action campaign already establishes that
+topology can both repair and create incompatibility. At P4, four
+single branch doublings (campaign indices 0, 1, 13, and 43)
+independently drive the 𝐻4 abscissa negative while every proper
+subset is already stable. Conversely, some outages create new
+smaller blockers, including cases with 𝜅 = 1. Across 810 tested
+policy/action pairs, the complete-spectrum blocker hypergraph
+changes in 169 cases. Static changes in Fiedler value, Kirchhoff
+index, gSCR, and minimum SCR did not consistently predict
+the effect.
+The next experiment should be preregistered before the finite
+labels are consulted:
+1) Freeze P4, 𝐻4, the equilibrium, and the critical root 𝑠★
+𝐻.
+2) Compute 𝑟𝐻, ℓ𝐻, 𝒢★
+𝐻, and 𝜅NEP once.
+3) For each admissible branch, compute both the direct/frozen
+score and the total re-equilibrated score (129), preserving
+the structural/flow/controller decomposition (126).
+4) Rank branches without using finite doubling/outage labels.
+5) Reveal the finite labels and report sign accuracy, Spearman
+correlation with Δ𝛼⊥, recall@4 for the four known P4
+repairs, and precision–recall AUC because the positive repair
+class is sparse.
+6) Re-evaluate the highest-ranked proposed repairs across
+the complete protected portfolio family to test whether
+a repaired blocker is replaced by a new smaller blocker.
+The strongest possible outcome is not merely a high rank
+correlation. It is a mechanistic separation: a static/direct
+topology score fails, while the total Green-residue score
+succeeds because power-flow redistribution and controller self-
+energy materially change the line ranking. A negative result is
+equally informative and should remain in the record without
+retuning.
+XIII. What the Poster Can Claim and What It Cannot
+The strongest defensible chain is
+WHO fails? → H⊥, HΩ
+WHY? → 𝑄 𝐻 , R𝑖 | 𝑅
+WHERE is leverage? → 𝒢★
+𝐻
+WHAT should change? → d𝑠★
+𝐻 /d𝜌, d𝑠★
+𝐻 /d𝜃.
+(143)
+Supported within the frozen model scope are:
+• a finite four-unit complete-spectrum blocker exists at P4, and
+its critical root lies in the targeted EM family;
+• its EM boundary is a collective closure while physical local
+factors remain regular;
+• a critical eigenvalue of 𝑄 𝐻 approaches −1, while each
+contextual return approaches +1 and every blocker member
+has nonzero critical local support;
+• the complete-spectrum blocker hypergraph reorganizes with
+controller policy, including the observed 4 → 3 → 2 → 3 →
+4 → ∅ sequence;
+• exact port derivatives move the boundary and support
+successful iterative Q/V retuning;
+
+=== PAGE 11 ===
+11
+0
+1
+13
+43
+1
+2
+39
+3
+25
+304
+18
+5
+14
+6
+8
+7
+11
+31
+9
+10
+13
+32
+12
+15
+16
+17
+19
+21
+24
+27
+20
+33
+34
+22
+23
+35
+36
+26
+37
+28
+29
+38
+Fig. 5. IEEE-39 topology with the four candidate blocker buses (red) and the four branch reinforcements that independently repaired P4 in the frozen
+finite-action campaign (blue; campaign branch indices 0, 1, 13, and 43). This is known repair evidence, not a Green-residue prediction. The proposed blind
+experiment ranks all admissible branches from one critical blocker mode using (129) and only then reveals the finite-action labels.
+• finite topology and synchronous-support actions can repair
+the benchmark blocker;
+• the V4 mechanism was frozen/blind before full-order reveal
+and is corroborated by nonlinear phasor TDS within the
+declared model scope.
+The following are explicitly not claimed:
+• complete-spectrum safety from the 0 .3–1.5 Hz predictor;
+• universal order-four or irreducible four-body physics;
+• a simple physical cycle/holonomy as the blocker cause;
+• portfolio-level EMT validation or manufacturer-model uni-
+versality;
+• validated Green-residue branch ranking before the preregis-
+tered branch experiment is run;
+• scalability of exact portfolio enumeration to very large
+candidate sets without a pre-screening/search layer.
+XIV . Poster and Presentation Extraction
+The full theory should not be printed on the poster. A four-
+panel extraction is:
+1) Discover – WHO fails? Fig. 2; “15 proper portfolios stable,
+complete portfolio unstable.” State that this P4 blocker is
+complete-spectrum and that its critical pole lies at 0.622
+Hz.
+2) Explain – WHY? Eq. (68), Fig. 3, and the audited 𝑄 𝐻 →
+−1, R𝑖 | 𝑅 → +1 return closure.
+3) Map – HOW does compatibility move? Fig. 4; “compat-
+ibility is a controller-dependent combinatorial geometry,”
+with H⊥ clearly distinguished from the EM diagnostic HΩ.
+4) Repair – WHERE and WHAT? Existing
+Q/V/condenser/topology repairs plus Fig. 5. If the
+blind Green-residue ranking succeeds, overlay the
+
+=== PAGE 12 ===
+12
+normalized total score b𝑆★
+𝑒| 𝐻 and its structural/flow/controller
+decomposition directly on the grid.
+The one equation to emphasize in an expert conversation is
+d𝑠★
+𝐻
+d𝜌𝑒
+= − tr
+h
+𝒢★
+𝐻
+
+𝜕𝜌𝑒𝑇 − 𝐷 𝜉 𝑇 [F −1
+𝜉 F𝜌𝑒 ]
+i
+. (144)
+It unifies the blocker-conditioned critical mode, Green residue,
+topology perturbation, power-flow redistribution, controller self-
+energy, and design direction. The five-bus derivation remains
+presentation backup material for explaining the collective-return
+mechanism without the full IEEE-39 DAE.
+XV . Conclusion
+The theory developed here separates four questions that are
+often conflated in SG-to-GFL transition studies. The complete-
+spectrum blocker hypergraph identifies which finite portfolios
+first fail; the exact dynamic multiport and contextual return ex-
+plain why a selected blocker closes collectively; the policy maps
+show that compatibility is a controller-dependent combinatorial
+geometry rather than a scalar penetration threshold; and the
+critical Green residue provides a mathematically well-defined
+bridge from the singular mode to spatial repair sensitivities.
+The most important pending experiment is deliberately narrow:
+rank the frozen IEEE-39 branch actions from one blocker mode
+using the total re-equilibrated residue score, reveal the known
+finite repair labels only afterward, and verify that the selected
+action repairs the protected hypergraph rather than merely
+one eigenvalue. Success would provide a compact diagnose–
+localize–repair chain; failure would sharply delimit the value
+of modal repair fields. In either case, complete-spectrum labels,
+model scope, and the distinction between classical algebra and
+new interpretation must remain explicit.
+Appendix A
+Principal-Minor Expansion and Why Full Algebraic
+Order Need Not Mean Full Physical Interaction
+For any square 𝑄,
+det(𝐼 + 𝑄) =
+∑︁
+𝑈
+det 𝑄 [𝑈, 𝑈], (145)
+where the empty principal minor is one. Grouping channel-level
+minors by the set of device blocks they touch gives
+det(𝐼 + 𝑄𝑆𝑆 ) =
+∑︁
+𝑇 ⊆𝑆
+𝜇𝑇 , (146)
+with 𝜇∅ = 1 and, because 𝑄𝑖𝑖 = 0, 𝜇{𝑖 } = 0. This exact
+algebraic expansion explains why a truncation below |𝑆| can
+fail even when the irreducibly connected cumulant of order
+|𝑆| is small: products of lower-order connected structures can
+require the full support 𝑆 to assemble.
+Appendix B
+Static Symmetric Limit of the Critical Edge Score
+Suppose the retained operator reduces to the real symmetric
+Laplacian eigenproblem 𝐿(𝜌)𝑣 = 𝜆𝑣 with 𝑣 𝑇 𝑣 = 1, and a
+line weight enters as 𝐿 = 𝐿0 + 𝑤 𝑒𝑏𝑒𝑏𝑇
+𝑒 . Standard perturbation
+theory gives
+𝜕𝜆
+𝜕𝑤 𝑒
+= 𝑣 𝑇 𝑏𝑒𝑏𝑇
+𝑒 𝑣 = (𝑏𝑇
+𝑒 𝑣)2. (147)
+The blocker-conditioned formulas above are the dynamic non-
+Hermitian/NEP generalization: the single symmetric mode
+is replaced by distinct left/right fields, the normalization by
+ℓ𝐻𝑇𝑠𝑟, and the direct line stamp by the total re-equilibrated
+operator derivative. Away from a pole, 𝐶𝑒𝑇 −1 (𝑠)𝐶 𝐻
+𝑒 is a
+matrix-valued dynamic effective-resistance object; in the static
+grounded/pseudoinverse limit it reduces to 𝑏𝑇
+𝑒 𝐿†𝑏𝑒. Thus
+Fiedler/effective-resistance quantities appear as special static
+symmetric limits, not as universal dynamic repair scores.
+References
+[1] N. Hatziargyriou et al., “Definition and classification of power system
+stability–revisited & extended,” IEEE Trans. Power Syst., vol. 36, no. 4,
+pp. 3271–3281, 2021.
+[2] F. Tisseur and K. Meerbergen, “The quadratic eigenvalue problem,”SIAM
+Review, vol. 43, no. 2, pp. 235–286, 2001.
+[3] W. Dong, H. Xin, D. Wu, and L. Huang, “Small signal stability analysis of
+multi-infeed power electronic systems based on grid strength assessment,”
+IEEE Trans. Power Syst., vol. 34, no. 2, pp. 1393–1403, 2019.
+[4] A. Gorbunov, J. C.-H. Peng, and P. Vorobev, “Identification of critical
+clusters in inverter-based microgrids,” Electr. Power Syst. Res., vol. 189,
+Art. no. 106731, 2020.
+[5] Y. Zhu, Y. Gu, Y. Li, and T. C. Green, “Participation analysis in
+impedance models: The grey-box approach for power system stability,”
+IEEE Trans. Power Syst., vol. 37, no. 1, pp. 343–353, Jan. 2022, doi:
+10.1109/TPWRS.2021.3088345.
+[6] Y. Zhu, Y. Gu, Y. Li, and T. C. Green, “Impedance-based root-cause
+analysis: Comparative study of impedance models and calculation of
+eigenvalue sensitivity,” IEEE Trans. Power Syst. , vol. 38, no. 2, pp.
+1642–1654, 2023.
+[7] L. Huang, D. Wang, X. Wang, H. Xin, P. Ju, K. H. Johansson, and F.
+D¨orfler, “Gain and phase: Decentralized stability conditions for power
+electronics-dominated power systems,” IEEE Trans. Power Syst., vol. 39,
+no. 6, pp. 7240–7256, 2024.
+[8] F. Conte, F. Mancilla-David, F. Silvestro, and S. Grillo, “Small-
+signal stability manifolds in converter-dominated power systems,”
+arXiv:2605.26254, 2026.
+[9] T. Joswig-Jones, S. Dong, J. Tan, and B. Zhang, “Sensitivity-based
+system strength assessment: Mapping power flow and network topology
+perturbations to system eigenvalues,” arXiv:2607.28764, 2026.
+[10] A. G. J. MacFarlane, “Return-difference and return-ratio matrices and
+their use in analysis and design of multivariable feedback control systems,”
+Proc. IEE, vol. 117, no. 10, pp. 2037–2049, 1970.
+[11] A. G. J. MacFarlane and I. Postlethwaite, “The generalized Nyquist
+stability criterion and multivariable root loci,” Int. J. Control , vol. 25,
+no. 1, pp. 81–127, 1977.
+[12] S. Maslennikov, B. Wang, and E. Litvinov, “Dissipating energy flow
+method for locating the source of sustained oscillations,” Int. J. Electr.
+Power Energy Syst., vol. 88, pp. 55–62, 2017.

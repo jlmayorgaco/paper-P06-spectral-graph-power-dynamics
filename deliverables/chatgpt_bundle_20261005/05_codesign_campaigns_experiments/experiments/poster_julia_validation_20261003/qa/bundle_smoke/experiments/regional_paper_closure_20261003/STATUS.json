@@ -1,0 +1,27 @@
+{
+  "manuscript": "COMPLETE_RESEARCH_DRAFT_WITH_EXPLICIT_SUBMISSION_GATES",
+  "claim_status": "NUMERICALLY_VALIDATED",
+  "mathematical_derivations": "INDEPENDENTLY_REVIEWED",
+  "one_cluster_continuous_certificate": true,
+  "whole_parameter_box_for_this_cluster": true,
+  "full_DDE_spectral_certificate": false,
+  "new_nonlinear_simulations": 0,
+  "new_IEEE39_replacement_optimization": false,
+  "informative_physical_replacement_upper_bound": null,
+  "verified_coarse_remainder_upper_per_second": 4.458179,
+  "historical_feasible_GFL_MW": 4732.81871482147,
+  "historical_retained_SG_MW": 669.942375157377,
+  "historical_GFL_percent": 87.6,
+  "historical_claim_status": "NUMERICALLY_VALIDATED",
+  "optimal_rho_Kp_Ki": false,
+  "global_or_near_global_gap": null,
+  "poster_ready_for_maximum_replacement_claim": false,
+  "submission_ready": false,
+  "remaining_gates": [
+    "Informative verified bound or strict controller-exclusion witness",
+    "Fair same-contract co-design comparison and paired nonlinear comparator",
+    "Material full-model decision explained by collective terms",
+    "Native LaTeX compilation and visual review"
+  ],
+  "date": "2026-10-03"
+}

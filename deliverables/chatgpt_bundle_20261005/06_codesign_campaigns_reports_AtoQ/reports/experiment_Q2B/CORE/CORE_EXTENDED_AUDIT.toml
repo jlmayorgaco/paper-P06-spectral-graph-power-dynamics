@@ -1,0 +1,12 @@
+max_constraint_coarse = -1.4559497982752748e-6
+support = [30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
+note = "Robustness is deterministic full-frequency refinement, not outward-rounded formal proof; high-resolution analytic trajectory only."
+alpha = -0.05003670621819425
+rocof_peak_T05_Hz_s = 0.12698303552549092
+beta_pass_observed = true
+omega_peak = 0.0
+beta_sampled = 1.699123173752644e-6
+retained_SG_MW = 438.4506226106945
+beta_full_refined_observed = 1.6991227949657214e-6
+frequency_peak_T05_Hz = 0.4984209553875866
+candidate = "Z_Q2B_CORE_d100_extended.toml"

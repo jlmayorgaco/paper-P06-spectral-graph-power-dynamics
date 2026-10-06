@@ -1,0 +1,2 @@
+case,trim_residual,P_error_pu,Q_error_pu,bounds_pass,voltage_error_pu,ZIP_load_error_pu,finite_poles_pd,finite_poles_analytic,alpha_PD,alpha_analytic,alpha_error,complete_pole_max_error,reduced_A_relative_error,pass,candidate_sha256,PD_validation
+ExpP_frozen_nominal,5.395296582857102e-12,1.1368683772161603e-15,1.4813844595451542e-15,true,0.0,0.0,101,101,-0.050000000138500054,-0.0500000011050941,9.66594047857594e-10,4.2772862799896e-8,7.547053308693069e-17,true,dbe727713acccec9b0802619f4b2e10763a0a88b9799ba24a74411ac88ff7046,PASS

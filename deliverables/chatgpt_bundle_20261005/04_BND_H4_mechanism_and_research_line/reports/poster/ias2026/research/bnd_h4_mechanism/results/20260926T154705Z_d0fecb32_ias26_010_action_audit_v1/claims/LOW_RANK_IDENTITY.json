@@ -1,0 +1,21 @@
+{
+  "identity": "TH = T0 + E D E^T",
+  "convention": "TH = T0 + E D E^T; non-conjugate transpose per frozen rectangular-coordinate model; D blocks are Y_base_device - Y_flag_device",
+  "absolute_frobenius_residual": 7.140111712107682e-15,
+  "relative_frobenius_residual": 2.7201720726061947e-18,
+  "maximum_entry_residual": 7.105427357601002e-15,
+  "maximum_block": {
+    "bus_i": 30,
+    "bus_j": 30,
+    "block_class": "diagonal",
+    "absolute_frobenius_residual": 7.122753468078643e-15,
+    "relative_to_TH_block": 9.08926438102331e-17,
+    "max_entry_residual": 7.105427357601002e-15
+  },
+  "block_count": 1521,
+  "blockwise_table": "tables/LOW_RANK_IDENTITY_BLOCKS.csv",
+  "high_precision_from_frozen_binary64_absolute_residual": "1.18046921782245414681582e-14",
+  "high_precision_from_frozen_binary64_relative_residual": "4.497239718878352386693146e-18",
+  "prior_corrected_base_delta_relative_residual": 7.66822908440606e-18,
+  "status": "PASS"
+}

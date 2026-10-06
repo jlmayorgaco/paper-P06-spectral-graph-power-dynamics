@@ -1,0 +1,90 @@
+{
+  "boundary_metrics": {
+    "collective_sigma_min": 4.3936703686787105e-08,
+    "g_boundary_difference": 3.7228686800006017e-10,
+    "g_star": 0.20768140519037842,
+    "max_boundary_schur_residual": 2.2959283690665653e-16,
+    "max_frequency_alignment_delta_hz": 1.6332823982168065e-11,
+    "physical_local_sigma_min": 0.4892354857736281,
+    "root_alpha_residual_bound_from_frozen_solver": 1e-09
+  },
+  "claim_safe": [
+    "Physical local factors remain regular while collective closure approaches singularity."
+  ],
+  "claims_unsafe": [
+    "Do not claim positive local damping.",
+    "Do not compare reduced feedback poles with full DAE poles; IAS26-010 remains BLOCKED_M1_STRICT.",
+    "Do not claim eigenvector-certified mode-family identity across g; the frozen sweep lacks eigenvectors and competing-mode gaps."
+  ],
+  "figure": "F2",
+  "gates": {
+    "boundary_alignment": {
+      "absolute_g_difference": 3.7228686800006017e-10,
+      "baseline_gate": "PASS",
+      "baseline_tolerance": 5e-05,
+      "g_eigen_boundary": 0.20768140519037842,
+      "g_return_minimum": 0.20768140481809155,
+      "nearest_sweep_alpha_abs": 6.472444463139398e-11,
+      "status": "PASS"
+    },
+    "collective_closure": {
+      "baseline_gate": "PASS",
+      "boundary_collective_sigma_min": 4.3936703686787105e-08,
+      "frozen_boundary_maximum": 1e-06,
+      "status": "PASS",
+      "sweep_min_collective_sigma_min": 2.6081328337715837e-08
+    },
+    "frequency_alignment": {
+      "max_abs_local_vs_collective_frequency_difference_hz": 1.6332823982168065e-11,
+      "status": "PASS_SAME_G_AND_PORT_ORDER; FLOAT_DIFFERENCES_RECORDED",
+      "threshold": "none added; exact frequency differences are reported, not gated"
+    },
+    "local_physical_regularity": {
+      "baseline_gate": "PASS",
+      "boundary_frozen_minimum": 0.48,
+      "boundary_min_physical_local_sigma": 0.4892354857736281,
+      "p4_frozen_minimum": 0.2973259,
+      "p4_min_physical_local_sigma": 0.2973267650423262,
+      "status": "PASS"
+    },
+    "m1_reduced_root_comparison": "NOT_PERFORMED; M1 remains BLOCKED_M1_STRICT",
+    "mode_continuity": {
+      "adjacent_complex_lambda_steps": [
+        0.12496584909929917,
+        0.15139267227963052,
+        0.09406518116590819,
+        0.06358430737132197,
+        0.04562820332852384,
+        0.03418333156209763,
+        0.016638364457524188,
+        0.009831288976666108,
+        0.00458622014878952,
+        0.0022169091025653607,
+        0.00015772143432789712,
+        1.2295196923831764e-06,
+        1.6279359859602157e-05,
+        0.001993028028062827,
+        0.012069178235059421,
+        0.017089300506233952
+      ],
+      "alpha_monotone_decreasing_on_frozen_grid": true,
+      "eigenvectors_or_competing_mode_gaps_available": false,
+      "frequency_monotone_increasing_on_frozen_grid": true,
+      "limitation": "The frozen sweep stores only the selected eigenvalue at each g; mode-family/MAC certification cannot be inferred from these artifacts.",
+      "maximum_adjacent_complex_lambda_step": 0.15139267227963052,
+      "minimum_adjacent_complex_lambda_step": 1.2295196923831764e-06,
+      "selection_rule": "largest real part among positive-frequency transverse modes in 0.3-1.5 Hz band (frozen tx4_contextual_return.py)",
+      "status": "SCALAR_CONTINUITY_SUPPORTED_NOT_EIGENVECTOR_CERTIFIED",
+      "sweep_points": 17
+    },
+    "port_schur_identity": {
+      "baseline_gate": "PASS",
+      "frozen_maximum": 1e-08,
+      "max_boundary_schur_residual": 2.2959283690665653e-16,
+      "max_sweep_port_identity_residual": 1.4304896245381993e-16,
+      "status": "PASS"
+    }
+  },
+  "status": "PASS",
+  "ticket": "IAS26-030"
+}

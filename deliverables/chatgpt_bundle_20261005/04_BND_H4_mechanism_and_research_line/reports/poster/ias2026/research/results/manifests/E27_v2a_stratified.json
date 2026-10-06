@@ -1,0 +1,254 @@
+{
+  "experiment": "E27_v2a_stratified",
+  "seed": 20260910,
+  "config": {
+    "protocol": "configs/ias2026/trackA_v2.yaml",
+    "load_strata": [
+      0.85,
+      0.95,
+      1.0,
+      1.05
+    ],
+    "availability_strata": [
+      0.7,
+      0.8,
+      0.9,
+      0.95,
+      1.0
+    ],
+    "per_cell": 30
+  },
+  "python": "3.13.14",
+  "platform_name": "Windows-11-10.0.26200-SP0",
+  "git_commit": "c7998eac83fc4f2d7065e0cd967a8d450770815f",
+  "dependencies": {
+    "numpy": "2.5.2",
+    "scipy": "1.18.1",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1",
+    "networkx": "3.6.1",
+    "pyarrow": "25.0.1"
+  },
+  "started_utc": "2026-09-10T04:10:06.050261+00:00",
+  "results": {
+    "drawn": 360,
+    "accepted": 264,
+    "rejection_rate": 0.2666666666666667,
+    "rejection_reasons": {
+      "not dispatchable": 96
+    },
+    "cells": [
+      {
+        "load_cell": 0,
+        "availability_cell": 0,
+        "load_range": "0.85-0.95",
+        "availability_range": "0.70-0.80",
+        "n": 30,
+        "fraction_degrades": 0.0,
+        "ci_low": 0.0,
+        "ci_high": 0.0,
+        "median_delta_alpha_q": -0.13604514645073104,
+        "q_unstable_fraction": 0.0
+      },
+      {
+        "load_cell": 0,
+        "availability_cell": 1,
+        "load_range": "0.85-0.95",
+        "availability_range": "0.80-0.90",
+        "n": 30,
+        "fraction_degrades": 0.0,
+        "ci_low": 0.0,
+        "ci_high": 0.0,
+        "median_delta_alpha_q": -0.13117129341925873,
+        "q_unstable_fraction": 0.0
+      },
+      {
+        "load_cell": 0,
+        "availability_cell": 2,
+        "load_range": "0.85-0.95",
+        "availability_range": "0.90-0.95",
+        "n": 30,
+        "fraction_degrades": 0.0,
+        "ci_low": 0.0,
+        "ci_high": 0.0,
+        "median_delta_alpha_q": -0.13658671009529658,
+        "q_unstable_fraction": 0.0
+      },
+      {
+        "load_cell": 0,
+        "availability_cell": 3,
+        "load_range": "0.85-0.95",
+        "availability_range": "0.95-1.00",
+        "n": 30,
+        "fraction_degrades": 0.0,
+        "ci_low": 0.0,
+        "ci_high": 0.0,
+        "median_delta_alpha_q": -0.14842576689006404,
+        "q_unstable_fraction": 0.0
+      },
+      {
+        "load_cell": 1,
+        "availability_cell": 0,
+        "load_range": "0.95-1.00",
+        "availability_range": "0.70-0.80",
+        "n": 20,
+        "fraction_degrades": 0.75,
+        "ci_low": 0.55,
+        "ci_high": 0.9,
+        "median_delta_alpha_q": 0.2937409753768972,
+        "q_unstable_fraction": 0.75
+      },
+      {
+        "load_cell": 1,
+        "availability_cell": 1,
+        "load_range": "0.95-1.00",
+        "availability_range": "0.80-0.90",
+        "n": 29,
+        "fraction_degrades": 0.3448275862068966,
+        "ci_low": 0.1724137931034483,
+        "ci_high": 0.5172413793103449,
+        "median_delta_alpha_q": -0.3667654391561052,
+        "q_unstable_fraction": 0.3448275862068966
+      },
+      {
+        "load_cell": 1,
+        "availability_cell": 2,
+        "load_range": "0.95-1.00",
+        "availability_range": "0.90-0.95",
+        "n": 30,
+        "fraction_degrades": 0.2,
+        "ci_low": 0.06666666666666667,
+        "ci_high": 0.3333333333333333,
+        "median_delta_alpha_q": -0.3416481365662843,
+        "q_unstable_fraction": 0.2
+      },
+      {
+        "load_cell": 1,
+        "availability_cell": 3,
+        "load_range": "0.95-1.00",
+        "availability_range": "0.95-1.00",
+        "n": 30,
+        "fraction_degrades": 0.06666666666666667,
+        "ci_low": 0.0,
+        "ci_high": 0.16666666666666666,
+        "median_delta_alpha_q": -0.4052718676622589,
+        "q_unstable_fraction": 0.06666666666666667
+      },
+      {
+        "load_cell": 2,
+        "availability_cell": 0,
+        "load_range": "1.00-1.05",
+        "availability_range": "0.70-0.80",
+        "n": 0,
+        "fraction_degrades": NaN,
+        "ci_low": NaN,
+        "ci_high": NaN,
+        "median_delta_alpha_q": NaN,
+        "q_unstable_fraction": NaN
+      },
+      {
+        "load_cell": 2,
+        "availability_cell": 1,
+        "load_range": "1.00-1.05",
+        "availability_range": "0.80-0.90",
+        "n": 4,
+        "fraction_degrades": 1.0,
+        "ci_low": 1.0,
+        "ci_high": 1.0,
+        "median_delta_alpha_q": 0.35098693220079435,
+        "q_unstable_fraction": 1.0
+      },
+      {
+        "load_cell": 2,
+        "availability_cell": 2,
+        "load_range": "1.00-1.05",
+        "availability_range": "0.90-0.95",
+        "n": 13,
+        "fraction_degrades": 0.8461538461538461,
+        "ci_low": 0.6153846153846154,
+        "ci_high": 1.0,
+        "median_delta_alpha_q": 0.39158572418022786,
+        "q_unstable_fraction": 0.8461538461538461
+      },
+      {
+        "load_cell": 2,
+        "availability_cell": 3,
+        "load_range": "1.00-1.05",
+        "availability_range": "0.95-1.00",
+        "n": 18,
+        "fraction_degrades": 0.8333333333333334,
+        "ci_low": 0.6666666666666666,
+        "ci_high": 1.0,
+        "median_delta_alpha_q": 0.39931317592666615,
+        "q_unstable_fraction": 0.8333333333333334
+      }
+    ],
+    "H1_operating_dependence": {
+      "passed": true,
+      "top_cell": {
+        "load_cell": 2,
+        "availability_cell": 3,
+        "load_range": "1.00-1.05",
+        "availability_range": "0.95-1.00",
+        "n": 18,
+        "fraction_degrades": 0.8333333333333334,
+        "ci_low": 0.6666666666666666,
+        "ci_high": 1.0,
+        "median_delta_alpha_q": 0.39931317592666615,
+        "q_unstable_fraction": 0.8333333333333334
+      },
+      "bottom_cell": {
+        "load_cell": 0,
+        "availability_cell": 0,
+        "load_range": "0.85-0.95",
+        "availability_range": "0.70-0.80",
+        "n": 30,
+        "fraction_degrades": 0.0,
+        "ci_low": 0.0,
+        "ci_high": 0.0,
+        "median_delta_alpha_q": -0.13604514645073104,
+        "q_unstable_fraction": 0.0
+      }
+    },
+    "H2_conditional_mitigation": {
+      "passed": true,
+      "fraction": 1.0,
+      "ci": [
+        1.0,
+        1.0
+      ],
+      "n_unstable": 63
+    },
+    "H2b_modal_restoration": {
+      "passed": false,
+      "fraction": 0.14393939393939395,
+      "ci": [
+        0.10227272727272728,
+        0.1856060606060606
+      ],
+      "auxiliary_damping_only": {
+        "fraction": 1.0,
+        "ci": [
+          1.0,
+          1.0
+        ]
+      }
+    },
+    "H4_frontier": {
+      "passed": true,
+      "cells_above_half": 3,
+      "cells_below_half": 6
+    },
+    "H5_closure_tracks": {
+      "passed": false,
+      "spearman": 0.1593221112770578,
+      "p_value": 0.009514896128900534
+    },
+    "reactive_binding_samples": 0,
+    "slack_within_limits": 264,
+    "elapsed_s": 109.40534806251526
+  },
+  "status": "V2A_INCOMPLETE",
+  "config_sha256": "d2dfe3bd8b30b31621eefab26a74d55a776e95bc99b69716e2b7b2f86274af9c",
+  "finished_utc": "2026-09-10T04:10:06.053660+00:00"
+}

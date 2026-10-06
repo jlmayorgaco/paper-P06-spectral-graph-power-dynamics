@@ -1,0 +1,17 @@
+{
+  "build_status_counts": {
+    "SUCCESS": 776
+  },
+  "cache_hit_rate": 0.20491803278688525,
+  "cache_hits": 200,
+  "cache_requests": 976,
+  "candidate_count": 15,
+  "eigensolve_count": 776,
+  "externality_success_rate": 1.0,
+  "mode_track_success_rate": 1.0,
+  "physical_build_count": 776,
+  "scope": "descriptive post-mortem at kappa_grid=1; no claim gate",
+  "seed_count": 8,
+  "subset_count_per_seed": 25,
+  "wall_time_s": 42.16938569996273
+}

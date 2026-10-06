@@ -1,0 +1,15 @@
+{
+  "target_root": 2,
+  "lambda_real": -0.8015607744782098,
+  "lambda_imag": 30.850471693237324,
+  "P_total_MW": 5402.761089978847,
+  "baseline_GFL_MW": 4727.415953731492,
+  "trial_GFL_MW": 4732.81871482147,
+  "gain_bounds_pass": true,
+  "trial_hashes": {
+    "designs\\analytic.toml": "b54c134d25d7ef9e70707437867fdbd813df9c65aa70651c8c3b611a8b147123",
+    "designs\\fixed.toml": "467b012702b49084c5cb99c43e60fcffe3c6cb8e2ae79070a7d610e7ae7ff78f",
+    "PREDICTED_ROOTS.csv": "d35c65ef26bda3d97a2dffdda27ae1648e2170ed57c44ad5d39d783dd5115941",
+    "TARGET_PATTERN.csv": "fa254e008c82d60640d833d9ccfdd6b8e532cb66b61e324b852be2ebd75050eb"
+  }
+}

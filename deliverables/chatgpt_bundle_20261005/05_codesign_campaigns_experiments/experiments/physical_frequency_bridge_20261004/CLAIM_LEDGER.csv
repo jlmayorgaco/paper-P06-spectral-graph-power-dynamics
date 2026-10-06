@@ -1,0 +1,9 @@
+claim_id,status,claim,evidence,scope
+C1,EXACT_IDENTITY,Positive DC/filter/rotor storage closes under the new declared model,PHYSICAL_BRIDGE_SECTION.tex,Not global passivity or all physical device energy
+C2,EXACT_IDENTITY,DC-state reflection preserves tangent descriptor/AC transfer at trim,PHYSICAL_BRIDGE_SECTION.tex,Fixed V; no additional vdc modulation dependence; not nonlinear conjugacy
+C3,NUMERICALLY_VALIDATED,144 finite poles match bijectively; equilibrium and mass/Jacobian parity pass,PARITY.toml;POLE_MATCHING.csv,One gauge excluded for physical alpha
+C4,EXACT_IDENTITY,Finite rotor-frequency area balance includes governor endpoints and antiwindup,PHYSICAL_BRIDGE_SECTION.tex,"Fixed references, trim, actual load and losses"
+C5,NUMERICALLY_VALIDATED,Positive storage RHS gate passes in all four physical runs,EVENT_RESULTS.csv,Five-ms quadrature residuals retained separately
+C6,NEGATIVE_RESULT,Fixed 94.215489% candidate fails bus8 RoCoF and bus29 frequency,EVENT_RESULTS.csv,"Windowed generator-bus outputs, selected events, not a new optimum"
+C7,NUMERICALLY_VALIDATED,SG35 limiter directly active in bus29 case; antiwindup area is nonzero,GOVERNOR_BRANCHES.csv,Sampling duration; not an actuator guarantee
+C8,BLOCKED,Predictive graph replacement floor for full IEEE39,MATH_REVIEW.txt,Uniform residual/endpoint/tail bounds not established

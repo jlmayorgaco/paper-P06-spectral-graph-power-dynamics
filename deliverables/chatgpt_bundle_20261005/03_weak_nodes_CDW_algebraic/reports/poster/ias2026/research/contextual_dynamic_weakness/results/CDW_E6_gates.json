@@ -1,0 +1,25 @@
+{
+ "n_holdout_conditions": 32,
+ "top3_frequency": {
+  "TXother": 0.9375,
+  "TXall": 0.90625,
+  "K2_01": 0.8125,
+  "K3_02": 0.0625,
+  "K4_02": 0.0625,
+  "K4_13": 0.0625,
+  "K4_03": 0.0625,
+  "TXcore": 0.0625,
+  "K3_01": 0.03125
+ },
+ "robust_weak_corridors": [
+  "TXother",
+  "TXall"
+ ],
+ "H3_true": true,
+ "median_rho_sum_dtotal": 0.9631336405529953,
+ "median_rho_sum_single_finite": 0.9907834101382487,
+ "median_rho_sum_static_S4": 0.815668202764977,
+ "median_NA": 0.013616937683811722,
+ "max_NA": 0.915107286600907,
+ "corridor_ranking_predictive": true
+}

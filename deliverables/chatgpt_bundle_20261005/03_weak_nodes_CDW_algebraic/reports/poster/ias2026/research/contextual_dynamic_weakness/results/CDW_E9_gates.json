@@ -1,0 +1,170 @@
+{
+ "cases": [
+  {
+   "target": "T1",
+   "family": "control",
+   "single_T_stable": true,
+   "single_phi": -0.018959405793718655,
+   "single_leaves_unsafe_subset": false,
+   "plan_phi": -0.018959406379729385,
+   "plan_safe": true
+  },
+  {
+   "target": "T1",
+   "family": "joint",
+   "single_T_stable": true,
+   "single_phi": -0.021962879708368032,
+   "single_leaves_unsafe_subset": false,
+   "plan_phi": -0.021962879708368032,
+   "plan_safe": true
+  },
+  {
+   "target": "T1",
+   "family": "topology",
+   "single_T_stable": true,
+   "single_phi": -0.04420179670553953,
+   "single_leaves_unsafe_subset": false,
+   "plan_phi": -0.04420179670553953,
+   "plan_safe": true
+  },
+  {
+   "target": "T2",
+   "family": "control",
+   "single_T_stable": false,
+   "single_phi": 3749.6559568331622,
+   "single_leaves_unsafe_subset": false,
+   "plan_phi": 1275.9569492893697,
+   "plan_safe": false
+  },
+  {
+   "target": "T2",
+   "family": "joint",
+   "single_T_stable": false,
+   "single_phi": 150244.43491867272,
+   "single_leaves_unsafe_subset": false,
+   "plan_phi": 15291.261219190656,
+   "plan_safe": false
+  },
+  {
+   "target": "T2",
+   "family": "topology",
+   "single_T_stable": false,
+   "single_phi": 25701.131439788198,
+   "single_leaves_unsafe_subset": false,
+   "plan_phi": 9563.070215314638,
+   "plan_safe": false
+  },
+  {
+   "target": "T3",
+   "family": "control",
+   "single_T_stable": true,
+   "single_phi": -0.017945462661827602,
+   "single_leaves_unsafe_subset": false,
+   "plan_phi": -0.01917837108812065,
+   "plan_safe": true
+  },
+  {
+   "target": "T3",
+   "family": "joint",
+   "single_T_stable": true,
+   "single_phi": -0.019247783921481243,
+   "single_leaves_unsafe_subset": false,
+   "plan_phi": -0.019333443698671793,
+   "plan_safe": true
+  },
+  {
+   "target": "T3",
+   "family": "topology",
+   "single_T_stable": true,
+   "single_phi": -0.019784569224565618,
+   "single_leaves_unsafe_subset": false,
+   "plan_phi": -0.019784559498538523,
+   "plan_safe": true
+  },
+  {
+   "target": "T4",
+   "family": "control",
+   "single_T_stable": false,
+   "single_phi": 3749.6558015562377,
+   "single_leaves_unsafe_subset": false,
+   "plan_phi": 1275.956931878156,
+   "plan_safe": false
+  },
+  {
+   "target": "T4",
+   "family": "joint",
+   "single_T_stable": false,
+   "single_phi": 8707.348751291853,
+   "single_leaves_unsafe_subset": false,
+   "plan_phi": 3090.7245972548303,
+   "plan_safe": false
+  },
+  {
+   "target": "T4",
+   "family": "topology",
+   "single_T_stable": false,
+   "single_phi": 19617.985931197138,
+   "single_leaves_unsafe_subset": false,
+   "plan_phi": 10327.649763252368,
+   "plan_safe": false
+  }
+ ],
+ "GOLD_D_pass": false,
+ "single_boundary_suffices": [
+  {
+   "target": "T1",
+   "family": "control",
+   "single_T_stable": true,
+   "single_phi": -0.018959405793718655,
+   "single_leaves_unsafe_subset": false,
+   "plan_phi": -0.018959406379729385,
+   "plan_safe": true
+  },
+  {
+   "target": "T1",
+   "family": "joint",
+   "single_T_stable": true,
+   "single_phi": -0.021962879708368032,
+   "single_leaves_unsafe_subset": false,
+   "plan_phi": -0.021962879708368032,
+   "plan_safe": true
+  },
+  {
+   "target": "T1",
+   "family": "topology",
+   "single_T_stable": true,
+   "single_phi": -0.04420179670553953,
+   "single_leaves_unsafe_subset": false,
+   "plan_phi": -0.04420179670553953,
+   "plan_safe": true
+  },
+  {
+   "target": "T3",
+   "family": "control",
+   "single_T_stable": true,
+   "single_phi": -0.017945462661827602,
+   "single_leaves_unsafe_subset": false,
+   "plan_phi": -0.01917837108812065,
+   "plan_safe": true
+  },
+  {
+   "target": "T3",
+   "family": "joint",
+   "single_T_stable": true,
+   "single_phi": -0.019247783921481243,
+   "single_leaves_unsafe_subset": false,
+   "plan_phi": -0.019333443698671793,
+   "plan_safe": true
+  },
+  {
+   "target": "T3",
+   "family": "topology",
+   "single_T_stable": true,
+   "single_phi": -0.019784569224565618,
+   "single_leaves_unsafe_subset": false,
+   "plan_phi": -0.019784559498538523,
+   "plan_safe": true
+  }
+ ],
+ "already_safe": []
+}

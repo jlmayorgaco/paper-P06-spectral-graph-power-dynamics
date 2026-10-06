@@ -1,0 +1,137 @@
+{
+  "scope": "archived Q2B, no pure delay, no new simulation; numerical audit",
+  "source_hashes": [
+    {
+      "path": "src/pd39/model.jl",
+      "expected": "d2cc3b542cec12662d589689df7d807e029de5475a8217678275d5c91a840953",
+      "actual": "d2cc3b542cec12662d589689df7d807e029de5475a8217678275d5c91a840953",
+      "pass_exact": true
+    },
+    {
+      "path": "src/bnd_model_expN/PDExactDesignN.jl",
+      "expected": "f5211509b117d8a06e31efa62aa49b1df20d2c1ef7f5c6f9114bb9eb25838365",
+      "actual": "f5211509b117d8a06e31efa62aa49b1df20d2c1ef7f5c6f9114bb9eb25838365",
+      "pass_exact": true
+    },
+    {
+      "path": "src/bnd_model_expN/PDReferenceN.jl",
+      "expected": "79226d8115158d8ba99e2a00b3fbdd2ad7274e08afff2ce27930794435ac2d83",
+      "actual": "79226d8115158d8ba99e2a00b3fbdd2ad7274e08afff2ce27930794435ac2d83",
+      "pass_exact": true
+    },
+    {
+      "path": "src/bnd_design/AnalyticSG.jl",
+      "expected": "50cec450c19a5788053c1d5836867d7ee3b5013335e9b45eec30a8685cf290fa",
+      "actual": "50cec450c19a5788053c1d5836867d7ee3b5013335e9b45eec30a8685cf290fa",
+      "pass_exact": true
+    }
+  ],
+  "input_files": [
+    {
+      "path": "reports/experiment_Q2B/CERTIFIED_SEARCH/PD/bus16_100MW_SENSORS.csv",
+      "sha256": "410e234f1bc5371b2191fec6211dbd50a31b03f66571630700e9fdd9cec55a21",
+      "rows": 12201,
+      "time_start": 0.0,
+      "time_end": 61.0,
+      "sample_period": 0.004999999999999893
+    },
+    {
+      "path": "reports/experiment_Q2B/CERTIFIED_SEARCH/PD/bus16_1MW_SENSORS.csv",
+      "sha256": "a57183c41a5ffcbd42f6b58dd5fb40c7784076e366286381b9c346470555f900",
+      "rows": 12201,
+      "time_start": 0.0,
+      "time_end": 61.0,
+      "sample_period": 0.004999999999999893
+    },
+    {
+      "path": "reports/experiment_Q2B/CERTIFIED_SEARCH/PD/bus16_25MW_SENSORS.csv",
+      "sha256": "3052528b60d8be1dd6420a865f60642ace40bb51e25a2e617817cb60593f0b6b",
+      "rows": 12201,
+      "time_start": 0.0,
+      "time_end": 61.0,
+      "sample_period": 0.004999999999999893
+    },
+    {
+      "path": "reports/experiment_Q2B/CERTIFIED_SEARCH/PD/bus16_50MW_SENSORS.csv",
+      "sha256": "7d9095d1c84a5a7eb88bfac8a1dfee5d60e2e494c15c5d08a404407604ab47a2",
+      "rows": 12201,
+      "time_start": 0.0,
+      "time_end": 61.0,
+      "sample_period": 0.004999999999999893
+    },
+    {
+      "path": "reports/experiment_Q2B/CERTIFIED_SEARCH/PD/bus16_pulse_SENSORS.csv",
+      "sha256": "d9292c155b9064294974415fa479402b346abda38cff7d12abf2a54b88d65d39",
+      "rows": 12201,
+      "time_start": 0.0,
+      "time_end": 61.0,
+      "sample_period": 0.004999999999999893
+    },
+    {
+      "path": "reports/experiment_Q2B/CERTIFIED_SEARCH/PD/bus29_100MW_SENSORS.csv",
+      "sha256": "0d97641b7b2fff775f6ead21a989187b8f67d18c96e60bbc523a8c0e653db4de",
+      "rows": 12201,
+      "time_start": 0.0,
+      "time_end": 61.0,
+      "sample_period": 0.004999999999999893
+    },
+    {
+      "path": "reports/experiment_Q2B/CERTIFIED_SEARCH/PD/bus8_100MW_SENSORS.csv",
+      "sha256": "00bc921599aa21e1be0d8ed1b5a7e621d341ca09730453d958f140b726fe2a45",
+      "rows": 12201,
+      "time_start": 0.0,
+      "time_end": 61.0,
+      "sample_period": 0.004999999999999893
+    }
+  ],
+  "candidate_sha256": "66513a8d3a1b4cc37c9d6f2b1a5824371fed2d0c5621d2ccdb7540490fe59124",
+  "installed_stock_source": {
+    "path": "C:\\Users\\walla\\.julia\\packages\\PowerDynamics\\VzOiZ\\src\\Library\\Renewables\\ComposableInverter.jl",
+    "available": true,
+    "sha256": "37d2d22aaadd14d9f089912257a58494dd17651b0fa54dd121a319ff7a5577ae",
+    "same_DC_sign": true,
+    "export_power_comment_present": true
+  },
+  "parameter_inputs": [
+    {
+      "path": "reports/experiment_Q2B/CERTIFIED_SEARCH/Z_LOCAL_SECURE_FINAL.toml",
+      "sha256": "66513a8d3a1b4cc37c9d6f2b1a5824371fed2d0c5621d2ccdb7540490fe59124"
+    },
+    {
+      "path": "reports/experiment_N/TABLE_N01_original_operating_point.csv",
+      "sha256": "d0ea9984f8f0ffffd27f11cd4205c76bde2da30016b21de868f16ed527eac1af"
+    },
+    {
+      "path": "reports/experiment_D/inputs/machine.csv",
+      "sha256": "8cf9a02574f650d2c459f536a02ae6bbfe16122e927dbbd54ca54ec2556616a1"
+    },
+    {
+      "path": "reports/experiment_D/inputs/gov.csv",
+      "sha256": "2cd24f6c43c0fb4175b0b6e5f579239e23f6b7a01805e0c71eb88b1fb892d7ac"
+    },
+    {
+      "path": "experiments/bnd_expQ2B/certified_search/validate_independent_pd.jl",
+      "sha256": "b8a60101a76e2a429f8adeebc6e132b41b2c82c831e44dba365fc94d788dc4c6"
+    }
+  ],
+  "python": "3.13.9",
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "constants": {
+    "SBASE_MVA": 100.0,
+    "FBASE_Hz": 60.0,
+    "Rf": 0.01,
+    "Xf": 0.03,
+    "Cdc": 1.25,
+    "window_s": 0.5
+  },
+  "physical_storage_gate": "NOT_PASSED: executed DC sign gives K+Ef-Edc, not K+Ef+Edc",
+  "frozen_source_gate": true,
+  "outputs": [
+    "IEEE39_BALANCE_SUMMARY.csv",
+    "IEEE39_BALANCE_NODES.csv",
+    "IEEE39_BALANCE_QUADRATURE.csv",
+    "IEEE39_BALANCE_TRACES.csv",
+    "IEEE39_GOVERNOR_BALANCE.csv"
+  ]
+}

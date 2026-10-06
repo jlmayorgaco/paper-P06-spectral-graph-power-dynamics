@@ -1,0 +1,15 @@
+{
+  "hidden_dimension": 174,
+  "hidden_condition_raw": 3884266205.6739235,
+  "hidden_condition_balanced": 22197908.715510685,
+  "hidden_min_sv": 0.0009196882133216095,
+  "gauge_rank_second_smallest_sv": 0.9034520242692952,
+  "gauge_rank_smallest_sv_restored": 5.9742342208672e-17,
+  "d": 0.09286351207409993,
+  "G0_gauge_correction_norm": 6.683808883592112e-12,
+  "T0_gauge_correction_norm": 1.2885435089622577e-11,
+  "G0_gauge_correction_relative": 1.54058539033261e-12,
+  "A0_export_model_relative": 1.2234449938397143e-18,
+  "C_export_model_relative": 5.259955047921067e-16,
+  "status": "NUMERICALLY_VALIDATED; explicit symmetry-restored germ, not interval certificate"
+}

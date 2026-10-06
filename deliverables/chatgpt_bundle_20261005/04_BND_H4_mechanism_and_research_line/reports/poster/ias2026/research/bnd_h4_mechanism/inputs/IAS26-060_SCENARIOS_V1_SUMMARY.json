@@ -1,0 +1,262 @@
+{
+  "P_G_redispatch_total_distribution_MW": {
+    "count": 1000,
+    "max": 584.783274341121,
+    "mean": -9.016276448467544,
+    "median": -20.350420466918948,
+    "min": -585.4004141487976,
+    "q05": -518.6387595166635,
+    "q95": 517.0447520855423,
+    "std_population": 333.9198914676024
+  },
+  "P_G_redispatch_total_distribution_pu": {
+    "count": 1000,
+    "max": 5.84783274341121,
+    "mean": -0.09016276448467542,
+    "median": -0.2035042046691895,
+    "min": -5.854004141487977,
+    "q05": -5.186387595166635,
+    "q95": 5.170447520855423,
+    "std_population": 3.3391989146760235
+  },
+  "P_L_total_distribution_MW": {
+    "count": 1000,
+    "max": 6441.183274341121,
+    "mean": 5847.383723551532,
+    "median": 5836.049579533081,
+    "min": 5270.999585851202,
+    "q05": 5337.761240483336,
+    "q95": 6373.444752085543,
+    "std_population": 333.9198914676024
+  },
+  "P_L_total_distribution_pu": {
+    "count": 1000,
+    "max": 64.41183274341121,
+    "mean": 58.473837235515326,
+    "median": 58.360495795330806,
+    "min": 52.70999585851202,
+    "q05": 53.377612404833364,
+    "q95": 63.734447520855426,
+    "std_population": 3.3391989146760235
+  },
+  "Q_L_total_distribution_Mvar": {
+    "count": 1000,
+    "max": 1914.7276027894848,
+    "mean": 1732.0856006448164,
+    "median": 1729.5419810446012,
+    "min": 1553.1610089500195,
+    "q05": 1581.8071067724807,
+    "q95": 1889.2113819661283,
+    "std_population": 99.28718029751649
+  },
+  "Q_L_total_distribution_pu": {
+    "count": 1000,
+    "max": 19.147276027894847,
+    "mean": 17.320856006448164,
+    "median": 17.295419810446013,
+    "min": 15.531610089500195,
+    "q05": 15.818071067724807,
+    "q95": 18.892113819661283,
+    "std_population": 0.9928718029751648
+  },
+  "bit_generator": "NumPy.PCG64",
+  "branch_thermal_feasibility": "NOT_SCREENED: frozen IEEE-39 JSON contains no branch thermal ratings",
+  "epsilon_final_by_load_bus_pu": {
+    "12": {
+      "mean": 8.610253415539976e-05,
+      "std_population": 0.024122569391197963
+    },
+    "15": {
+      "mean": -0.0004452667312025915,
+      "std_population": 0.024113074544723136
+    },
+    "16": {
+      "mean": -0.00024017227859183664,
+      "std_population": 0.023229444813582422
+    },
+    "18": {
+      "mean": -0.00011908215724317529,
+      "std_population": 0.02408338379350412
+    },
+    "20": {
+      "mean": -0.0013678128235976186,
+      "std_population": 0.022559917162229125
+    },
+    "21": {
+      "mean": -0.0002762553223454928,
+      "std_population": 0.02464442678663191
+    },
+    "23": {
+      "mean": -2.9992420834070222e-05,
+      "std_population": 0.0240663210458566
+    },
+    "24": {
+      "mean": -0.00020820174313181328,
+      "std_population": 0.0234323372931382
+    },
+    "25": {
+      "mean": 0.00016089872777936716,
+      "std_population": 0.024207951338378098
+    },
+    "26": {
+      "mean": 0.0001235309357454119,
+      "std_population": 0.024558897866277626
+    },
+    "27": {
+      "mean": 0.00025032620060492036,
+      "std_population": 0.024353825458315832
+    },
+    "28": {
+      "mean": 0.00017582645819105632,
+      "std_population": 0.023192041915219484
+    },
+    "29": {
+      "mean": 0.00026004903294960565,
+      "std_population": 0.02345953388694747
+    },
+    "3": {
+      "mean": 0.0003854568935671764,
+      "std_population": 0.023289101761279477
+    },
+    "31": {
+      "mean": -0.00012008953555740337,
+      "std_population": 0.023817663565298162
+    },
+    "39": {
+      "mean": -1.2077188927032745e-05,
+      "std_population": 0.023591257545891548
+    },
+    "4": {
+      "mean": 0.001160833980011842,
+      "std_population": 0.02376920834081488
+    },
+    "7": {
+      "mean": -3.0305341449240463e-06,
+      "std_population": 0.023646823817846115
+    },
+    "8": {
+      "mean": 0.0006426528588244886,
+      "std_population": 0.0235276185559386
+    }
+  },
+  "epsilon_final_max_abs_weighted_mean_pu": 3.469446951953614e-18,
+  "epsilon_final_pooled_distribution_pu": {
+    "count": 19000,
+    "max": 0.04998664069522064,
+    "mean": 2.2299836118595232e-05,
+    "median": 0.00013855778623653658,
+    "min": -0.04998655127633371,
+    "q05": -0.03919697715776618,
+    "q95": 0.03879956434952569,
+    "std_population": 0.023782237486426713
+  },
+  "epsilon_raw_truncated_pooled_distribution_pu": {
+    "count": 19000,
+    "max": 0.04994248661856249,
+    "mean": -3.0183861145252938e-05,
+    "median": 0.00012168219257195219,
+    "min": -0.04998910510670523,
+    "q05": -0.039984828597771575,
+    "q95": 0.03953027503852795,
+    "std_population": 0.02427434481394903
+  },
+  "epsilon_sampler_rejections_for_declared_final_support_only": 369,
+  "epsilon_sampler_rejections_used_any_scientific_outcome": false,
+  "first_scenario_id": "IAS26-060-S0001",
+  "generator_redispatch_by_bus_pu": {
+    "30": {
+      "at_limit_count": 0,
+      "base_pu": 4.36086385,
+      "mean_redispatch_pu": 0.21342666972925242,
+      "scheduled_max_pu": 6.424808376027671,
+      "scheduled_min_pu": 3.881039818327759
+    },
+    "31": {
+      "at_limit_count": 462,
+      "base_pu": 6.45999998,
+      "mean_redispatch_pu": -0.16279441144083878,
+      "scheduled_max_pu": 6.5,
+      "scheduled_min_pu": 5.74920887492888
+    },
+    "32": {
+      "at_limit_count": 360,
+      "base_pu": 7.24999998,
+      "mean_redispatch_pu": -0.09868643323201798,
+      "scheduled_max_pu": 7.5,
+      "scheduled_min_pu": 6.452285504225373
+    },
+    "33": {
+      "at_limit_count": 336,
+      "base_pu": 6.51999998,
+      "mean_redispatch_pu": -0.06252537922012047,
+      "scheduled_max_pu": 6.82,
+      "scheduled_min_pu": 5.80260709993874
+    },
+    "34": {
+      "at_limit_count": 267,
+      "base_pu": 5.07999998,
+      "mean_redispatch_pu": 0.007623457437415085,
+      "scheduled_max_pu": 5.5,
+      "scheduled_min_pu": 4.521049699702094
+    },
+    "35": {
+      "at_limit_count": 434,
+      "base_pu": 6.86999998,
+      "mean_redispatch_pu": -0.14725643133312405,
+      "scheduled_max_pu": 6.97,
+      "scheduled_min_pu": 6.114096745829592
+    },
+    "36": {
+      "at_limit_count": 386,
+      "base_pu": 5.79999998,
+      "mean_redispatch_pu": -0.09755258183517551,
+      "scheduled_max_pu": 5.95,
+      "scheduled_min_pu": 5.161828399820417
+    },
+    "37": {
+      "at_limit_count": 0,
+      "base_pu": 3.2152133800000002,
+      "mean_redispatch_pu": 0.15735696131910498,
+      "scheduled_max_pu": 4.73693528738354,
+      "scheduled_min_pu": 2.8614447919992223
+    },
+    "38": {
+      "at_limit_count": 211,
+      "base_pu": 7.64783381,
+      "mean_redispatch_pu": 0.10024538409082893,
+      "scheduled_max_pu": 8.65,
+      "scheduled_min_pu": 6.8063458437399476
+    }
+  },
+  "last_scenario_id": "IAS26-060-S1000",
+  "load_scale_distribution": {
+    "count": 1000,
+    "max": 1.0998537112118572,
+    "mean": 0.9984604404671014,
+    "median": 0.9965250972496893,
+    "min": 0.9000409100900216,
+    "q05": 0.9114406871940676,
+    "q95": 1.0882871306750808,
+    "std_population": 0.05701794472160412
+  },
+  "no_outcome_dependent_filtering": true,
+  "outcome_solves": {
+    "DAE": 0,
+    "eigenvalue": 0,
+    "power_flow": 0
+  },
+  "phase": "PRE_RUN_INPUT_GENERATION_ONLY",
+  "pre_run_only_note": "This file summarizes generated inputs and arithmetic redispatch only; it contains no PF, DAE, Jacobian, eigenvalue, or stability outcomes.",
+  "redispatch_capacity_shortfall_scenario_count": 0,
+  "scenario_count": 1000,
+  "scenario_rows_dropped_or_replaced": 0,
+  "seed": 20260926,
+  "slack": {
+    "actual_scenario_slack_outputs": "not computed; require power flow",
+    "base_scheduled_p0_pu_from_case": 5.7417,
+    "bus": 39,
+    "role": "absorb only real/reactive residual required by frozen slack-bus PF convention, subject to frozen limits"
+  },
+  "status": "FROZEN_PRE_RUN_AWAITING_USER_REVIEW",
+  "ticket": "IAS26-060"
+}

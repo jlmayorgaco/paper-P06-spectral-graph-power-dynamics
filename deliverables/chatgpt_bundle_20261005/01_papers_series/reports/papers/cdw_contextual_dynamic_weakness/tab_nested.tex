@@ -1,0 +1,18 @@
+\begin{table}[!t]
+\centering
+\caption{Coverage of reversal across the tested base-stable policies at $\tau_{\rm mat}=0.01$\,s$^{-1}$. Level C is the preregistered primary gate ($\ge0.75$ on the new holdout).}\label{tab:nested}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+reversal type & discovery & old holdout & new holdout \\
+\midrule
+any stable-context pair & 15/15 & 18/18 & 19/19 \\
+A: nested, global $\aperp$ & 15/15 & 18/18 & 19/19 \\
+B: nested, tracked mode & 14/15 & 16/18 & 18/19 \\
+C: B, EM-band critical modes & 14/15 & 16/18 & 17/19 \\
+D: C, same mode in both contexts & 14/15 & 16/18 & 17/19 \\
+\bottomrule
+\end{tabular}
+\\[2pt]\parbox{\columnwidth}{\scriptsize New holdout by direction (s$\to$d / d$\to$s / both): level C 9/15/7, level D 6/14/3 of 19. Excluding pairs whose rightmost-eigenvalue gap is below $\tau_{\rm mat}$ at any of the four portfolios (post hoc): level C 16/19, level D 16/19. Base-unstable policies (kept, excluded): discovery 0, old 6, new 5.}
+\end{table}

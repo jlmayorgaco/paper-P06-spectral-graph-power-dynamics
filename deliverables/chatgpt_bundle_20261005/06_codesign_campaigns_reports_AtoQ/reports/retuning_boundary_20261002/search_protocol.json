@@ -1,0 +1,25 @@
+{
+  "seed": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\reports\\analytic_iteration_20261001\\refined\\joint_final.toml",
+  "extra_MW_grid": [
+    2,
+    5,
+    10,
+    20
+  ],
+  "rho_direction": "uniform increment at all ten generator buses",
+  "all_20_PLL_gains_free": true,
+  "iterations_per_target": 5,
+  "primary_event": [
+    8,
+    100
+  ],
+  "limits": {
+    "F_Hz": 0.5,
+    "R_Hz_s": 0.5,
+    "Vmin": 0.9,
+    "Vmax": 1.1,
+    "alpha": -0.05,
+    "actuator_slack": 0.002
+  },
+  "claim": "exploratory finite-event feasibility; no global or continuous-disturbance guarantee"
+}

@@ -1,0 +1,304 @@
+{
+  "run_id": "20260926T154705Z_d0fecb32_ias26_010_action_audit_v1",
+  "scope": "IAS26-010 action-space residual audit only; no eta/M2/M3, IAS26-020, or figures",
+  "lambda_c_exact_binary64": {
+    "real": 0.12700646777028055,
+    "imag": 3.909898476444902,
+    "array_path": "raw/reconciliation/frozen_matrices/lambda_c.npy"
+  },
+  "matrix_convention": "TH = T0 + E D E^T; non-conjugate transpose per frozen rectangular-coordinate model; D blocks are Y_base_device - Y_flag_device",
+  "network_bus_order": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39
+  ],
+  "bus_component_order": [
+    "real",
+    "imag"
+  ],
+  "action_bus_order": [
+    30,
+    33,
+    35,
+    37
+  ],
+  "action_port_order": [
+    "30.real",
+    "30.imag",
+    "33.real",
+    "33.imag",
+    "35.real",
+    "35.imag",
+    "37.real",
+    "37.imag"
+  ],
+  "DeltaY_block_order": [
+    "DeltaY_30",
+    "DeltaY_33",
+    "DeltaY_35",
+    "DeltaY_37"
+  ],
+  "E_column_order": [
+    "30.real",
+    "30.imag",
+    "33.real",
+    "33.imag",
+    "35.real",
+    "35.imag",
+    "37.real",
+    "37.imag"
+  ],
+  "matrix_shapes": {
+    "T0": [
+      78,
+      78
+    ],
+    "TH": [
+      78,
+      78
+    ],
+    "E": [
+      78,
+      8
+    ],
+    "D": [
+      8,
+      8
+    ]
+  },
+  "array_manifest": {
+    "lambda_c": {
+      "path": "raw/reconciliation/frozen_matrices/lambda_c.npy",
+      "dtype": "<c16",
+      "shape": [],
+      "sha256": "8cafac8d83632e4467a6b76be0550d2a65689e09aa27617a8e54452f5701b316",
+      "npy_file_sha256": "3bb643a57ceb3aa492df2406d1f553e842c0d7a325a07bdb3da038dd5cbc88f1"
+    },
+    "T0": {
+      "path": "raw/reconciliation/frozen_matrices/T0.npy",
+      "dtype": "<c16",
+      "shape": [
+        78,
+        78
+      ],
+      "sha256": "cc45ef8777c3e23b7e04ec95be4b33e5ea9edf1dba389d65225638f332e95a96",
+      "npy_file_sha256": "30c9c6b8aabd2e613a9860d8f344770ea35341d0a8fb2fec2baba6bdcb117b7a"
+    },
+    "TH": {
+      "path": "raw/reconciliation/frozen_matrices/TH.npy",
+      "dtype": "<c16",
+      "shape": [
+        78,
+        78
+      ],
+      "sha256": "044899fbc220f48c2489c78615cfccdcc81e9f2d63f59c96a49b597812dd8531",
+      "npy_file_sha256": "7ac50bddec3137c7dda22ac3a132265a31a2c74a728aa7ee0950f546a592161d"
+    },
+    "E": {
+      "path": "raw/reconciliation/frozen_matrices/E.npy",
+      "dtype": "<c16",
+      "shape": [
+        78,
+        8
+      ],
+      "sha256": "e4d0d2a9eddeaf6964dae4307dbab8d44eddec515d0f9746b870384f174ed7cf",
+      "npy_file_sha256": "cf36ca872286ae3acb11679afee0cfe88ceb9673c563992bad8bcbba61caab71"
+    },
+    "D": {
+      "path": "raw/reconciliation/frozen_matrices/D.npy",
+      "dtype": "<c16",
+      "shape": [
+        8,
+        8
+      ],
+      "sha256": "174ca76cb1fca4454def2eab7b0ee6be6a4205011645bca35191651ba4717b18",
+      "npy_file_sha256": "2d176536838152a75c48327ed7685d2ac5029d6d80547798167c0b0130e099fc"
+    },
+    "K": {
+      "path": "raw/reconciliation/frozen_matrices/K.npy",
+      "dtype": "<c16",
+      "shape": [
+        8,
+        8
+      ],
+      "sha256": "05cf50feaa89974e7200c23695aff15541a0728a7362e74c860f5b67b576aa9f",
+      "npy_file_sha256": "27e539d23301befd60ac97b5b92ed6aecd384ec2e35be890cd4be26b00690eb2"
+    },
+    "M": {
+      "path": "raw/reconciliation/frozen_matrices/M.npy",
+      "dtype": "<c16",
+      "shape": [
+        8,
+        8
+      ],
+      "sha256": "478ada4e31a9a1019c922476e78653faabcbcba8ac8456c25cef1df4cd7b1058",
+      "npy_file_sha256": "7388a45a6c907440f24b4c523ef7e59b3c369ea2fa1d5c3631ff1edd7ed9565d"
+    },
+    "F_action": {
+      "path": "raw/reconciliation/frozen_matrices/F_action.npy",
+      "dtype": "<c16",
+      "shape": [
+        8,
+        8
+      ],
+      "sha256": "a69a9410b5e39cae1654b8c873d0a0e8c6cf4b5bbf7783a113ec49ec20ea6b13",
+      "npy_file_sha256": "b00f1239786a4433ead99462361a1309e7db17a088f5658e22232a511e605c8f"
+    },
+    "critical_reduced_right_eigenvector": {
+      "path": "raw/reconciliation/frozen_matrices/critical_reduced_right_eigenvector.npy",
+      "dtype": "<c16",
+      "shape": [
+        86
+      ],
+      "sha256": "5886b587c3736d45fc9d80fa92ee0272bd73a949ce34c1b66b103d872b849f8d",
+      "npy_file_sha256": "ddfee4546f35cd5b34315ee54bfe25991c8ee56c30d44be0ff5f33c5d8cf3c12"
+    },
+    "critical_algebraic_right_eigenvector": {
+      "path": "raw/reconciliation/frozen_matrices/critical_algebraic_right_eigenvector.npy",
+      "dtype": "<c16",
+      "shape": [
+        78
+      ],
+      "sha256": "00ece5683178c664fa6ef5588880a7986f94a9d0ac0993de563a054f40987465",
+      "npy_file_sha256": "2ddad6dbac5ebabcdff5bd0e322d79d85ca7e2aa2e98300db2c8a82068f3937a"
+    },
+    "critical_descriptor_right_eigenvector": {
+      "path": "raw/reconciliation/frozen_matrices/critical_descriptor_right_eigenvector.npy",
+      "dtype": "<c16",
+      "shape": [
+        164
+      ],
+      "sha256": "79d985df8f28006f76b916837e2f57a4ef6dd2f6bad463380806f470164dfa72",
+      "npy_file_sha256": "d4e16e378bac998325cf296643c528b20d84c87caa6e72ea09b71b04cee70742"
+    },
+    "action_right_smallest_singular_vector": {
+      "path": "raw/reconciliation/frozen_matrices/action_right_smallest_singular_vector.npy",
+      "dtype": "<c16",
+      "shape": [
+        8
+      ],
+      "sha256": "4e35dd86c2ffa6f0124e33e04ef7707693a56846cea69dedff8c315df5256499",
+      "npy_file_sha256": "6ca17cb3b35781c7ab028c570780d065748e05d008d10bde3c00b8986cde03ee"
+    },
+    "action_left_smallest_singular_vector": {
+      "path": "raw/reconciliation/frozen_matrices/action_left_smallest_singular_vector.npy",
+      "dtype": "<c16",
+      "shape": [
+        8
+      ],
+      "sha256": "653172a1b94a2a5d66021d97d60744bad71a482cb85e527b1bd55bc5782a0c48",
+      "npy_file_sha256": "98afe5111937c5848c6cb2da9eefd31d1a4d1041aee5fbcf3ee037d0a206f358"
+    },
+    "terminal_bus_right_vector": {
+      "path": "raw/reconciliation/frozen_matrices/terminal_bus_right_vector.npy",
+      "dtype": "<c16",
+      "shape": [
+        78
+      ],
+      "sha256": "cfecdf186c6fd66bca7940b1fc99378f8e7f5f4e68b5e76214aa31ade6cb8f3e",
+      "npy_file_sha256": "c67e48579d11429a90be1be9190c7d1a25575d87d31232ae6cd9317230747c61"
+    },
+    "terminal_bus_residual": {
+      "path": "raw/reconciliation/frozen_matrices/terminal_bus_residual.npy",
+      "dtype": "<c16",
+      "shape": [
+        78
+      ],
+      "sha256": "e6a0528a6258f3c16a6d2c71c9ad6c6671df9f32912a66548e169e537c4f6df3",
+      "npy_file_sha256": "0093c72656385d9747c967aff1314534dce698fe53e6f4ea867a0a95b4b87973"
+    },
+    "action_singular_values": {
+      "path": "raw/reconciliation/frozen_matrices/action_singular_values.npy",
+      "dtype": "<f8",
+      "shape": [
+        8
+      ],
+      "sha256": "e4a18104c8e24d06bc9e6a316994e82ca5728cd676e619786da70e0679bc5338",
+      "npy_file_sha256": "7ccbe866c02c4e3dd34e63116563e0338cfaf83deaba8bcfd30b09a18eb673d6"
+    },
+    "DeltaY_30": {
+      "path": "raw/reconciliation/frozen_matrices/DeltaY_30.npy",
+      "dtype": "<c16",
+      "shape": [
+        2,
+        2
+      ],
+      "sha256": "ca94ee822e68fb2f07db66462153715dbb148212c29d8226cb25dd644f7836dd",
+      "npy_file_sha256": "ed0825a50e35644dea05b6ef871f83521d053ff7cdee7b42e1c044e891bbedcf"
+    },
+    "DeltaY_33": {
+      "path": "raw/reconciliation/frozen_matrices/DeltaY_33.npy",
+      "dtype": "<c16",
+      "shape": [
+        2,
+        2
+      ],
+      "sha256": "34d5bda26b4daf2dd88bcd42c8d3105f60c27da8e2eec9c2762f9e279bafcca4",
+      "npy_file_sha256": "19c4482959cd72055349f757c07d75bf7c84803b4204ffd58129acbad8364169"
+    },
+    "DeltaY_35": {
+      "path": "raw/reconciliation/frozen_matrices/DeltaY_35.npy",
+      "dtype": "<c16",
+      "shape": [
+        2,
+        2
+      ],
+      "sha256": "ff0da54727fc8983bdaa00b91fcd79a7d600ae78b15e134f367a9396dc3a708b",
+      "npy_file_sha256": "cd1ee5b34b91aad8c0a1add06b5214e07569b98c4855aa022ddd0aebfa91b3e0"
+    },
+    "DeltaY_37": {
+      "path": "raw/reconciliation/frozen_matrices/DeltaY_37.npy",
+      "dtype": "<c16",
+      "shape": [
+        2,
+        2
+      ],
+      "sha256": "2cae3c7b6191062038673f68b6af0748a2c29c81ccd1b62b7640e3135d116b80",
+      "npy_file_sha256": "ae636ed24733741a673f63d2027996c62d13db80616e60b0ef7c367410818612"
+    }
+  },
+  "source_hashes_sha256": {
+    "reports/poster/ias2026/research/bnd_h4_mechanism/code/run_m1a_reconciliation.py": "97f6213f5de22b356cb509239878444c0833326ece81ecf09f8194be774cc231",
+    "reports/poster/ias2026/research/experiments/tx4_contextual_return.py": "77d4ed0f76f8c4a6ec369bc30b306361cff9b789c6f432e287d5f180d9210b74",
+    "reports/poster/ias2026/research/src/ibr_cycles/dynamics/linearize.py": "6d4e546657b46aeb7b018b7828341c9100dc6b50173b80a06601304a87741fef",
+    "reports/poster/ias2026/research/src/ibr_cycles/models/port_admittance.py": "b0fa694dd0111be158133a9cf8c4e36be670e50ef562dcd63f89d7ff87b8d4ef",
+    "reports/poster/ias2026/research/src/ibr_cycles/models/ieee39_case.py": "1f38a8e541780ab7205809dc1ba58bdafb6c923933f5772d46407064edc8c722",
+    "reports/poster/ias2026/research/src/ibr_cycles/models/ieee39_devices.py": "bcf0c76be65b171b580684065cde4eb88d0433c6b4d7beefec966f8711036d90"
+  }
+}

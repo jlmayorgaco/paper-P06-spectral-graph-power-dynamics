@@ -1,0 +1,16 @@
+{
+  "N_scenarios": 50,
+  "N_case_comparisons": 100,
+  "max_abs_delta_alpha": 3.749537466971042e-09,
+  "median_abs_delta_alpha": 1.515713969266197e-10,
+  "max_abs_delta_f_hz": 1.5349310711343378e-10,
+  "verdict_agreement_count": 100,
+  "verdict_agreement_rate": 1.0,
+  "mode_identity_resolved_count": 0,
+  "mode_identity_status_counts": {
+    "IDENTITY_UNRESOLVED": 100
+  },
+  "crosscode_scope": "same-model cross-language reproduction; not independent physical validation",
+  "powerdynamics_exact_model_available": false,
+  "thresholds_unchanged": true
+}

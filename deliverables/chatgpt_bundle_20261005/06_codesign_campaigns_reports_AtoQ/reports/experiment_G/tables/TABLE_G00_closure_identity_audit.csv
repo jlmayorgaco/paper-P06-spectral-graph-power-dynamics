@@ -1,0 +1,5 @@
+check,residual,tolerance,status
+full-state/collective determinant identity at a regular complex point,5.054476603184061e-13,1.0e-9,PASS
+critical exact closure residual,2.4474809488545203e-10,1.0e-7,PASS
+critical full-state eigenvector residual,3.69350544582336e-9,1.0e-8,PASS
+low-rank determinant lemma,1.066583887182615e-17,1.0e-8,PASS

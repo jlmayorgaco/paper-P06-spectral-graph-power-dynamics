@@ -1,0 +1,70 @@
+{
+ "label": "DECLARED POST-HOC, descriptive",
+ "0.0": {
+  "hyperedges": 259,
+  "modes": 259,
+  "classes": {
+   "IN_BAND": 259
+  },
+  "dominant_group": {
+   "surviving_machine": 259
+  },
+  "f_hz_range": [
+   0.5845329423224875,
+   0.6232722275197363
+  ],
+  "re_range": [
+   9.119762163534162e-05,
+   0.25762008357332056
+  ],
+  "top_states": {
+   "delta": 130,
+   "omega": 129
+  },
+  "plant_9_in_every_edge": false
+ },
+ "0.25": {
+  "hyperedges": 1,
+  "modes": 1,
+  "classes": {
+   "OSCILLATORY": 1
+  },
+  "dominant_group": {
+   "converter": 1
+  },
+  "f_hz_range": [
+   2.343139903955497,
+   2.343139903955497
+  ],
+  "re_range": [
+   2.2758080068741604,
+   2.2758080068741604
+  ],
+  "top_states": {
+   "theta_pll": 1
+  },
+  "plant_9_in_every_edge": true
+ },
+ "1.0": {
+  "hyperedges": 2,
+  "modes": 2,
+  "classes": {
+   "OSCILLATORY": 2
+  },
+  "dominant_group": {
+   "converter": 2
+  },
+  "f_hz_range": [
+   3.496776601352096,
+   3.547076577572616
+  ],
+  "re_range": [
+   0.053811723501474784,
+   0.56319331411283
+  ],
+  "top_states": {
+   "theta_pll": 2
+  },
+  "plant_9_in_every_edge": true
+ }
+}

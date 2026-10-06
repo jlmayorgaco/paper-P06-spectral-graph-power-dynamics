@@ -1,0 +1,25 @@
+{
+  "BMAC_minimum": 0.9,
+  "action_homotopy_nodes": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "action_refinement_node_counts": [
+    9,
+    17
+  ],
+  "algorithm": "global one-to-one Hungarian assignment on biorthogonal MAC",
+  "all_active_actions_scaled_together": true,
+  "continuity_diagnostics": [
+    "BMAC",
+    "eigenvalue continuity",
+    "frequency continuity"
+  ],
+  "freeze_id": "TX3-E05D-TRACKING-1.0",
+  "manual_reassignment_permitted": false,
+  "stress_direction": "tau=1 backward to tau=0",
+  "stress_refinement": "recursive half-step then quarter-step; otherwise MODE_TRACK_FAIL"
+}

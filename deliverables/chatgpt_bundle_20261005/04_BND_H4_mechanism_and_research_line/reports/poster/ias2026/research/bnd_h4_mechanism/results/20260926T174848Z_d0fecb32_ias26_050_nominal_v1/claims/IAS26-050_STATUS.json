@@ -1,0 +1,49 @@
+{
+  "claims_safe": [
+    "The fixed g=0.25 intervention moves the direct-DAE target-band eigenvalue left at the canonical nominal point."
+  ],
+  "claims_unsafe": [
+    "Do not claim universal rescue or operational robustness before IAS26-060.",
+    "Do not claim the same mode family across g without eigenvector-based tracking.",
+    "Do not compare reduced feedback poles with DAE poles; IAS26-010 remains BLOCKED_M1_STRICT.",
+    "Do not claim positive local damping or optimality/cost superiority."
+  ],
+  "gates": {
+    "complete_transverse_alpha_perp_stable_at_g025": "PASS",
+    "equilibrium_finite_and_residuals": "PASS",
+    "frozen_input_and_source_hashes": "PASS",
+    "target_band_sign_change": "PASS"
+  },
+  "mc_execution_authorized": false,
+  "nominal_metrics": {
+    "alpha_Omega_g003625_s-1": 0.12700646782830968,
+    "alpha_Omega_g025_s-1": -0.017384676061556643,
+    "alpha_perp_g003625_s-1": 0.12700646782830968,
+    "alpha_perp_g025_s-1": -0.017384676061556643,
+    "coupling_residual": 2.1037304829463538e-11,
+    "delta_alpha_Omega_g025_minus_g003625_s-1": -0.14439114388986632,
+    "delta_alpha_perp_g025_minus_g003625_s-1": -0.14439114388986632,
+    "equilibrium_f_residual": 5.645987131151473e-13,
+    "equilibrium_g_residual": 7.500666754367558e-13,
+    "equilibrium_hash": "59af394c2f2959715ad201aa951edda8be7b67364f0c43d003d6f614ebbc0ad0",
+    "existing_sweep_g025_reproduction_difference_s-1": 0.0,
+    "family_id": "not_assigned; no cross-g eigenvector MAC performed",
+    "frequency_Omega_g025_hz": 0.7105408660892832,
+    "frequency_perp_g025_hz": 0.7105408660892832,
+    "gap_to_next_family_g025_s-1": 0.13656258591664835,
+    "lambda_Omega_g025_imag_rad_s-1": 4.4644599299628425,
+    "lambda_Omega_g025_real_s-1": -0.017384676061556643,
+    "lambda_perp_g025_imag_rad_s-1": 4.4644599299628425,
+    "lambda_perp_g025_real_s-1": -0.017384676061556643,
+    "max_eigenpair_relative_residual": 2.557244091569566e-15,
+    "model_hash": "ea9cb54c65d8b80830297eed600151f0c2c198070b14618070b347dc20d9ae6a",
+    "next_family_alpha_g025_s-1": -0.153947261978205,
+    "pre_run_predicted_delta_alpha_Omega_s-1": -0.14439114388986632,
+    "pre_run_prediction_error_s-1": 0.0,
+    "state_count": 86,
+    "transverse_dimension": 84
+  },
+  "status": "PASS",
+  "tau_dec_s-1": 1e-08,
+  "ticket": "IAS26-050"
+}

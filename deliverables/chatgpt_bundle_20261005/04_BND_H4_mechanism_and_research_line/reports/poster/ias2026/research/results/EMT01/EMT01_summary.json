@@ -1,0 +1,58 @@
+{
+ "ybus": {
+  "25us": {
+   "rel_residual_continuous": 1.7404900161731565e-16,
+   "rel_warp_discrete_vs_continuous": 7.381036369452661e-06,
+   "companion_is_pure_trapezoidal_max_rel_dev": 2.324697921295736e-16
+  },
+  "50us": {
+   "rel_residual_continuous": 1.7404900161731565e-16,
+   "rel_warp_discrete_vs_continuous": 2.9524280843363556e-05,
+   "companion_is_pure_trapezoidal_max_rel_dev": 2.1447220681669503e-16
+  },
+  "100us": {
+   "rel_residual_continuous": 1.7404900161731565e-16,
+   "rel_warp_discrete_vs_continuous": 0.00011809928930163336,
+   "companion_is_pure_trapezoidal_max_rel_dev": 2.177352678063765e-16
+  }
+ },
+ "ybus_gate_rel_1e-8": true,
+ "equilibrium": {
+  "max_dV_pu": 1.4760637767619045e-06,
+  "max_dAngle_rad": 5.854512683617363e-06,
+  "max_dP_pu": 1.7290253220281215e-05,
+  "max_dQ_pu": 5.8325255205882165e-05,
+  "max_speed_deviation_pu": 8.324728573150253e-08
+ },
+ "equilibrium_gate": true,
+ "official_vs_tx4": {
+  "network_rows": 195,
+  "network_rows_identical": 171,
+  "max_abs_op_difference": 801.0
+ },
+ "manifest": {
+  "run_id": "EMT05_P4_BASE_dt50us_a0",
+  "git_head": "4e53db55ee03f31177d9d0330345e02b1ac25fcd",
+  "paremt_upstream_sha": "d79d735a4a587d56c5b88187d1a499195b6b2b84",
+  "paremt_working_copy_diff_sha": "a61698cb2b7f9355193aa821e3388f71851c962f92cdbf3ce2badde98ccc99e5",
+  "environment_hash": "e3d193e7e476d7a66e07571af1adb0bb6fe331465d2499c4035711c9b29dc275",
+  "case_hash": "80a35039d51a3132",
+  "params_sg_hash": "e2ac1aed3318abe9",
+  "params_gfl_hash": "4f53cda18c2baa0c",
+  "operating_point_hash": "f5caac15d1ed225e",
+  "dt_s": 5e-05,
+  "duration_s": 2.0,
+  "disturbance": {
+   "bus": 20,
+   "fraction": 0.0,
+   "t0": 1.0,
+   "t1": 1.2
+  },
+  "tau_m_s": 0.001,
+  "stored_interval_s": 0.001,
+  "seed": null,
+  "wall_s": 6.56,
+  "finite": true
+ },
+ "GATE_G1": "PASS"
+}

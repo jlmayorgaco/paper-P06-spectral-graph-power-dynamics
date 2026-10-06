@@ -1,0 +1,7 @@
+design_id,tau_ms,roots_right_of_margin,phase_count,trace_count,refined_positive_imag_roots,root_count_refinement_match,status,directed_rounding_certified,full_nonlinear_DDE_events_validated,note
+M1_ZERO_DELAY_DESIGN,20.0,0,-1.0371917888241556e-15,4.889435645559653e-08,0,True,NUMERICALLY_VALIDATED_STABLE,False,False,Exact characteristic evaluated numerically; phase and trace agree. Not an interval certificate.
+M1_ZERO_DELAY_DESIGN,30.0,0,1.5910969823733033e-15,2.084251253295606e-07,0,True,NUMERICALLY_VALIDATED_STABLE,False,False,Exact characteristic evaluated numerically; phase and trace agree. Not an interval certificate.
+M1_ZERO_DELAY_DESIGN,40.0,12,11.999999999999998,12.000000279453989,6,True,NUMERICALLY_VALIDATED_UNSTABLE,False,False,Exact characteristic evaluated numerically; phase and trace agree. Not an interval certificate.
+seed_uniform_875,20.0,0,-7.03502734841183e-16,-1.4170852136656716e-07,0,True,NUMERICALLY_VALIDATED_STABLE,False,False,Exact characteristic evaluated numerically; phase and trace agree. Not an interval certificate.
+seed_uniform_875,30.0,0,-1.6556761159202716e-17,-1.2874840295957285e-07,0,True,NUMERICALLY_VALIDATED_STABLE,False,False,Exact characteristic evaluated numerically; phase and trace agree. Not an interval certificate.
+seed_uniform_875,40.0,6,6.000000000000001,5.999999837795872,3,True,NUMERICALLY_VALIDATED_UNSTABLE,False,False,Exact characteristic evaluated numerically; phase and trace agree. Not an interval certificate.

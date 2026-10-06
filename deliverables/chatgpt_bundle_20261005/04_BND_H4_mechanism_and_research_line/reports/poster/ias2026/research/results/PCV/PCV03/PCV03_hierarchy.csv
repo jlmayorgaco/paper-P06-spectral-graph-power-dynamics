@@ -1,0 +1,21 @@
+point,space,level,predicted_alpha,predicted_unstable,residual_to_exact,flags_H4,predicted_freq_hz,zero_status,abs_truncation_at_exact_lambda,abs_local_at_exact_lambda
+P4,alpha,B3 first-order modal sensitivity,-0.2032491385593977,False,-0.3302556057035979,False,,,,
+P4,alpha,B4 additive singles,-0.212867216480235,False,-0.33987368362443515,False,,,,
+P4,alpha,B5 pairwise,-0.2103891551662844,False,-0.3373956223104846,False,,,,
+P4,alpha,B5b third order,-0.1836729322356837,False,-0.31067939937988387,False,,,,
+P4,alpha,exact (B0),0.1270064671442002,True,0.0,True,,,,
+P4,characteristic,local factors only (order <= 1),,,,,,no zero within radius,1.0,0.14401487719810036
+P4,characteristic,pairwise closure (order <= 2),-0.014789954445868095,False,0.198406779363363,False,0.6001926417060535,converged,0.44708671385010496,0.14401487719810036
+P4,characteristic,third-order closure (order <= 3),0.1267286711356813,True,0.029419055609148155,True,0.6175976902050141,converged,0.061778532323435414,0.14401487719810036
+P4,characteristic,exact full closure (order 4),0.12700646696352696,True,2.682452369962282e-10,True,0.6222796695463791,converged,5.063391284698653e-10,0.14401487719810036
+P4,reference,exact critical eigenvalue,0.1270064671442002,,,,0.6222796695779355,,,
+G_S,alpha,B3 first-order modal sensitivity,-0.1310099349446348,False,-0.1136252586258763,False,,,,
+G_S,alpha,B4 additive singles,-0.0416235720301958,False,-0.0242388957114373,False,,,,
+G_S,alpha,B5 pairwise,0.0280099627879763,True,0.0453946391067348,True,,,,
+G_S,alpha,B5b third order,-0.0215068471364555,False,-0.004122170817696998,False,,,,
+G_S,alpha,exact (B0),-0.0173846763187585,False,0.0,False,,,,
+G_S,characteristic,local factors only (order <= 1),-0.09016386893114094,False,0.3433154920914713,False,0.6571423746275825,converged,1.0,0.10482307593571966
+G_S,characteristic,pairwise closure (order <= 2),-0.0560577908961902,False,0.1156762742763981,False,0.6931897721399932,converged,0.6111340033147323,0.10482307593571966
+G_S,characteristic,third-order closure (order <= 3),-0.021495726420280276,False,0.02307157516051774,False,0.7069276743537581,converged,0.15445316113899885,0.10482307593571966
+G_S,characteristic,exact full closure (order 4),-0.017384676117922035,False,2.919753809938837e-10,False,0.7105408660748757,converged,2.0470883406981663e-09,0.10482307593571966
+G_S,reference,exact critical eigenvalue,-0.0173846763187585,,,,0.7105408661086053,,,

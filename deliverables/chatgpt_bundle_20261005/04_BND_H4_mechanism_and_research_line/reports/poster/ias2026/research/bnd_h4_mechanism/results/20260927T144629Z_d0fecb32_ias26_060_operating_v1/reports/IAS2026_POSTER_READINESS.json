@@ -1,0 +1,80 @@
+{
+  "run_id": "20260927T144629Z_d0fecb32_ias26_060_operating_v1",
+  "finalized_at_utc": "2026-09-27T20:36:30.921441+00:00",
+  "campaign": "IAS26-020, 030, 050, 060, 080 evidence assembly; IAS26-010 remains blocked and unchanged",
+  "MC": {
+    "n_total": 1000,
+    "n_valid": 967,
+    "n_infeasible": 33,
+    "replacements": 0,
+    "interpretation": "descriptive synthetic envelope; not real-world probabilities"
+  },
+  "TDS": {
+    "n_planned": 90,
+    "n_completed_finite_primary_fits": 60,
+    "n_sign_agreement": 56,
+    "n_sign_disagreement": 4,
+    "run_status_counts": {
+      "COMPLETED": 60,
+      "SOLVER_FAILED": 30
+    },
+    "alpha_mae_completed_s-1": 0.015225312678028905,
+    "frequency_mae_completed_hz": 0.061079379659893136,
+    "scope": "same-model nonlinear phasor DAE; not EMT"
+  },
+  "crosscode": {
+    "N_scenarios": 50,
+    "N_case_comparisons": 100,
+    "max_abs_delta_alpha": 3.749537466971042e-09,
+    "median_abs_delta_alpha": 1.515713969266197e-10,
+    "max_abs_delta_f_hz": 1.5349310711343378e-10,
+    "verdict_agreement_count": 100,
+    "verdict_agreement_rate": 1.0,
+    "mode_identity_resolved_count": 0,
+    "mode_identity_status_counts": {
+      "IDENTITY_UNRESOLVED": 100
+    },
+    "crosscode_scope": "same-model cross-language reproduction; not independent physical validation",
+    "powerdynamics_exact_model_available": false,
+    "thresholds_unchanged": true
+  },
+  "falsification_N8": {
+    "status": "NOT_TESTABLE_MODE_IDENTITY",
+    "completed_comparable_n": 60,
+    "sign_mismatch_n": 4,
+    "mismatches_zero_frequency_n": 4,
+    "mismatches_missing_r2_n": 4,
+    "mode_identity_resolved": false
+  },
+  "blocked_or_excluded": [
+    "IAS26-010 remains BLOCKED_M1_STRICT",
+    "no eta/M2/M3",
+    "no GFM",
+    "no N-1",
+    "no mode-family identity claim",
+    "no real-world probability or universal-stability claim"
+  ],
+  "safe_claims": [
+    "Nominal H4 is an inclusion-minimal transverse blocker: all 15 proper subsets stable; H4 unstable.",
+    "At the frozen nominal boundary, physical local factors remain nonsingular while collective closure approaches singularity.",
+    "H4 minimal-blocker pattern occurs in 190/967 valid frozen synthetic scenarios.",
+    "Fixed g=0.25 improves \u03b1\u22a5 in 594/967 and rescues H4 in 186/967 valid scenarios.",
+    "Python\u2013Julia verdict agreement 100/100; the TDS primary estimator agrees in sign in 56/60 completed finite fits."
+  ],
+  "unsafe_claims": [
+    "MC event frequencies are real-world IEEE-39 probabilities.",
+    "The H4 blocker persists for every perturbed operating point or every grid.",
+    "g=0.25 universally stabilizes H4 or never deteriorates stability margins.",
+    "Mode identity is tracked across scenarios or Python and Julia eigenmodes are physically independent validation.",
+    "The nonlinear phasor DAE trajectories are EMT/field validation.",
+    "IAS26-010 M1 strict gate has passed or any eta/M2/M3/GFM claim is established."
+  ],
+  "poster_readiness": "READY_WITH_EXPLICIT_LIMITATIONS",
+  "final_figures": [
+    "figures/final/P1_STABILITY_CLIFF.pdf",
+    "figures/final/P2_LOCAL_COLLECTIVE_CLOSURE.pdf",
+    "figures/final/P3_MC_BLOCKER_ROBUSTNESS.pdf",
+    "figures/final/P4_FIXED_INTERVENTION_TDS.pdf",
+    "figures/final/EVIDENCE_STRIP_CROSSCODE.pdf"
+  ]
+}

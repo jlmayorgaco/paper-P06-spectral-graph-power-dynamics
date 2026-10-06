@@ -1,0 +1,52 @@
+{
+  "status": "PROVED_REDUCED_MODEL; exact formulas with numerical algebra checks",
+  "dynamic_ode_dde_simulations": 0,
+  "model": "Dimensionless two-node nonlinear lossless sine network; D=I, M=(m/2)I, d=(P,0)",
+  "P": 1.0,
+  "Omega": 0.5,
+  "z_star": 0.5235987755982989,
+  "sharp_total_inertia_infimum": 1.0471975511965979,
+  "sharp_infimum_exact": "2 asin(P/2)/P; at P=1: pi/3",
+  "linearized_floor": 1.0,
+  "below_threshold": {
+    "m": 1.025,
+    "COI_exact": "0.5*(1-exp(-2*t/m))",
+    "bus1_area_exact": "(123-40*pi)/480",
+    "bus1_area": -0.005549387799149437,
+    "bus2_area": 0.5180493877991494,
+    "COI_area": 0.25625,
+    "initial_rotating_energy": 0.128125,
+    "cohesive_boundary_energy": 0.2146018366025517,
+    "energy_barrier_margin": 0.08647683660255169,
+    "claim": "Convergence proved for u=0; some local endpoint crossing is unavoidable for every convergent energy-neutral controller."
+  },
+  "constructive_case": {
+    "m": 1.5,
+    "k": 1.3333333333333333,
+    "ell_min": 3.0836039100170454,
+    "ell": 6.167207820034091,
+    "a": 0.849065850398866,
+    "bus1_area_formula": 0.11320061220085054,
+    "bus1_area_quadrature": 0.11320061220085041,
+    "bus2_area_formula": 0.6367993877991495,
+    "bus2_area_quadrature": 0.6367993877991494,
+    "max_equation_residual": 6.661338147750939e-16,
+    "u1_initial": 1.4636370821139182,
+    "scope": "Exact bounded feedforward with u2=-u1, no actuator limit. Absolute node frequency <= final-frequency magnitude is proved algebraically; grid values are diagnostics only."
+  },
+  "window_note": "For a causal rectangular frequency window W, each area adds Omega*W/2. The necessary inertia floor subtracts d0*W/2. Sharpness theorem above is W=0 only.",
+  "static_graph_checks": {
+    "cases": 24,
+    "all_maxima_at_event_bus": true,
+    "max_endpoint_residual": 2.3028452510142456e-15,
+    "max_secant_potential_error": 7.494005416219807e-16,
+    "scope": "Six-node illustrative graph, endpoint calculations only; no trajectory convergence asserted."
+  },
+  "versions": {
+    "python": "3.13.9",
+    "numpy": "2.3.5",
+    "scipy": "1.16.3",
+    "sympy": "1.14.0"
+  },
+  "source_sha256": "27b9693056e981335b51be3abb190a29de11337d0a819afe0e455e3ff1696c4d"
+}

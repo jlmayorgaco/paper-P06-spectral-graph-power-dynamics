@@ -1,0 +1,13 @@
+{
+  "scope": "exact binary64 matrices exported by Julia; G0 restored by right multiplication I-11T/10",
+  "precision_bits": 192,
+  "hidden_inverse_enclosed": true,
+  "gauge_nine_minor_nonzero": true,
+  "gauge_minor_determinant": "[0.24989013370622519888943557158580206 +/- 3.90e-36]",
+  "d_nonzero": true,
+  "d_interval": "[0.092863512244101576535781403505367400 +/- 1.41e-37]",
+  "all_weight_signs_enclosed": true,
+  "max_float_weight_error": 1.0584197518426208e-08,
+  "physical_uncertainty_certificate": false,
+  "source_sha256": "f7a33105d98f8a96ce4b2418b2e10f4cc989152d89b87ebd871a5d9aaed2a64a"
+}

@@ -1,0 +1,193 @@
+{
+  "ticket": "IAS26-111",
+  "run_id": "20260928T045410Z_d0fecb32_ias26_111_v4_atlas_v1",
+  "status": "PASS_WITH_LIMITATIONS",
+  "created_utc": "20260928T045410Z",
+  "post_hoc_exploratory": true,
+  "source_run_id": "20260927T144629Z_d0fecb32_ias26_060_operating_v1",
+  "source_paths": {
+    "MC_CASES": "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260927T144629Z_d0fecb32_ias26_060_operating_v1/derived/MC_CASES.csv",
+    "SCENARIO_METRICS": "reports/poster/ias2026/research/bnd_h4_mechanism/results/20260927T144629Z_d0fecb32_ias26_060_operating_v1/derived/SCENARIO_METRICS.csv",
+    "frozen_config": "reports/poster/ias2026/research/bnd_h4_mechanism/configs/IAS26-060_MC_OPERATING_V1.json",
+    "frozen_scenario_manifest": "reports/poster/ias2026/research/bnd_h4_mechanism/inputs/IAS26-060_SCENARIOS_V1.csv",
+    "prior_read_only_atlas_memo": "reports/poster/ias2026/research/bnd_h4_mechanism/docs/IAS26-060_V4_BLOCKER_ATLAS_DESCRIPTIVE.md"
+  },
+  "source_sha256": {
+    "frozen_config": "75db11e64299757bbe170f5ecadcb8c1a3f2ea969583e3c95bcdebc008bfb4b4",
+    "frozen_scenario_manifest": "45c425fa4d146aa3a0a3bf26cfbdda1c99590da67ea6c4318cf788c1006b6eb3",
+    "frozen_MC_CASES": "a8bc6c2d9b9e9dcf4025a3460738775c121819c7c53eb29e5ce9ede410cf0a0c",
+    "frozen_SCENARIO_METRICS": "93daef28f7e804f3e4617f03fa4c3a760ddf6943cf67a01aa01031791bf08e96",
+    "prior_read_only_atlas_memo": "730b808e84f30e5d50a3e7254ae7a3d49e00362d784fa0f4c1eb6a3be76d5c29"
+  },
+  "source_census": {
+    "MC_CASES_rows_total": 17000,
+    "original_treatment_cases_used": 16000,
+    "SCENARIO_METRICS_rows": 1000,
+    "model_hashes": [
+      "51d45c02e4899a97efb953b13315ed1f806f3f285e9362a57a8e38b00f4448dc"
+    ],
+    "distinct_equilibrium_hashes_across_cases": 16000
+  },
+  "analysis_contract": {
+    "V4_bus_order": [
+      30,
+      33,
+      35,
+      37
+    ],
+    "mask_bit_order": "bit 0..3 maps to bus 30,33,35,37",
+    "tau_dec_s-1": 1e-08,
+    "stable": "alpha_perp < -tau_dec",
+    "unstable": "alpha_perp > tau_dec",
+    "indeterminate": "-tau_dec <= alpha_perp <= tau_dec",
+    "minimal_unstable": "unstable nonempty mask for which every strict subset including BASE is stable",
+    "x_s": "maximum alpha_perp across the 15 strict proper subsets of H4, including BASE",
+    "y_s": "alpha_perp of mask 15 / H4",
+    "m_comp": "min(y_s,-x_s); signed coordinate margin in (x,y) plane, not a probability",
+    "validity": "scenario_valid from frozen SCENARIO_METRICS; invalid IDs retained, not replaced, and excluded from atlas frequencies",
+    "new_solves": 0,
+    "poster_modified": false
+  },
+  "gate": {
+    "ticket": "IAS26-111",
+    "run_id": "20260928T045410Z_d0fecb32_ias26_111_v4_atlas_v1",
+    "source_run_id": "20260927T144629Z_d0fecb32_ias26_060_operating_v1",
+    "status": "PASS_WITH_LIMITATIONS",
+    "post_hoc_exploratory": true,
+    "new_power_flow_DAE_or_eigenvalue_solves": 0,
+    "tau_dec_s-1": 1e-08,
+    "valid_scenario_count": 967,
+    "invalid_scenario_count": 33,
+    "invalid_ids_retained_and_not_replaced": true,
+    "outcome_dependent_filtering_applied": false,
+    "outcome_dependent_filtering_true_count_in_frozen_metrics": 0,
+    "physical_validity_mismatch_count": 0,
+    "exact_categories": {
+      "none": 412,
+      "h4_only": 190,
+      "alternative": 365,
+      "valid": 967
+    },
+    "exact_blocker_set_pattern_counts": {
+      "NONE": 412,
+      "H4_ONLY": 190,
+      "{30,33,35}": 77,
+      "{30,33,35} | {30,33,37}": 151,
+      "{30,33,35} | {30,33,37} | {33,35,37}": 137
+    },
+    "unexpected_blocker_set_patterns": {},
+    "kappa_counts_including_none": {
+      "kappa_1": 0,
+      "kappa_2": 0,
+      "kappa_3": 365,
+      "kappa_4": 190,
+      "empty_set": 412
+    },
+    "singletons": {
+      "mask_count": 4,
+      "unstable_classifications": 0,
+      "indeterminate_classifications": 0,
+      "scenarios_with_any_unstable_singleton": 0
+    },
+    "pairs": {
+      "mask_count": 6,
+      "unstable_classifications": 0,
+      "indeterminate_classifications": 0,
+      "scenarios_with_any_unstable_pair": 0
+    },
+    "triple_portfolios": {
+      "7": {
+        "portfolio": "{30,33,35}",
+        "unstable_scenarios": 365,
+        "minimal_blocker_memberships": 365
+      },
+      "11": {
+        "portfolio": "{30,33,37}",
+        "unstable_scenarios": 288,
+        "minimal_blocker_memberships": 288
+      },
+      "13": {
+        "portfolio": "{30,35,37}",
+        "unstable_scenarios": 0,
+        "minimal_blocker_memberships": 0
+      },
+      "14": {
+        "portfolio": "{33,35,37}",
+        "unstable_scenarios": 137,
+        "minimal_blocker_memberships": 137
+      }
+    },
+    "H4_unstable_scenarios": 555,
+    "alternative_witness_with_H4_unstable": 365,
+    "metric_mask_mismatch_count": 0,
+    "metric_xy_mismatch_count": 0,
+    "structural_errors": [],
+    "gate_checks": {
+      "valid_count": true,
+      "none_count": true,
+      "h4_only_count": true,
+      "alternative_witness_count": true,
+      "exact_pattern_counts": true,
+      "all_1000_ids_retained": true,
+      "frozen_manifest_id_set": true,
+      "all_portfolios_present_once": true,
+      "physical_feasibility_gate_consistency": true,
+      "no_outcome_dependent_filtering": true,
+      "valid_rows_have_complete_finite_spectra_and_pass_status": true,
+      "frozen_threshold_port_order_and_original_g": true,
+      "no_base_instability": true,
+      "no_indeterminate_valid_portfolios": true,
+      "no_unstable_singletons": true,
+      "no_unstable_pairs": true,
+      "metric_mask_reconciliation": true,
+      "metric_xy_reconciliation": true,
+      "no_structural_errors": true
+    },
+    "source_sha256": {
+      "frozen_config": "75db11e64299757bbe170f5ecadcb8c1a3f2ea969583e3c95bcdebc008bfb4b4",
+      "frozen_scenario_manifest": "45c425fa4d146aa3a0a3bf26cfbdda1c99590da67ea6c4318cf788c1006b6eb3",
+      "frozen_MC_CASES": "a8bc6c2d9b9e9dcf4025a3460738775c121819c7c53eb29e5ce9ede410cf0a0c",
+      "frozen_SCENARIO_METRICS": "93daef28f7e804f3e4617f03fa4c3a760ddf6943cf67a01aa01031791bf08e96",
+      "prior_read_only_atlas_memo": "730b808e84f30e5d50a3e7254ae7a3d49e00362d784fa0f4c1eb6a3be76d5c29"
+    }
+  },
+  "output_sha256": {
+    "claims/CLAIM_LEDGER.csv": "61fcc96e51d4d55f1d5a5f14dedd9c668f32714eeebe28ed6117490c6565c36f",
+    "claims/FAILED_OR_UNSUPPORTED_CLAIMS.md": "173d9b6ab8a5c7e35bde213983e3470d91b37fe8ed20b522b03d7b3ed5e178a5",
+    "claims/SAFE_CLAIMS.md": "8f2bda59f8effd6a6883619e51b93481e99ebfc29d27e40f969fd5c70705f467",
+    "code/ias26_111_v4_atlas.py": "914c0fc07cb86e04f9a0d07c711dedad685e675a7f74692c86b1731f02e10052",
+    "derived/BLOCKER_MASK_COUNTS.csv": "9cbcb8c5e46a0493653b1c2e4e9b84c81f92f67543176e9e2e5725549bd10e0d",
+    "derived/BLOCKER_ORDER_COUNTS.csv": "f6b847c0157bd97d3f20fc526f73cf0a3fbd178ba6767f1df3d7986a7557aa55",
+    "derived/BLOCKER_SET_COUNTS.csv": "6af33ea17d8b0767291ddad3708755afd72a888ca4a1f155855304f22c9f59cd",
+    "derived/BOUNDARY_COORDINATE_SUMMARY.csv": "c9b53a005a5d3fe43163d428e1ff247cb0fb600331be175235408a1bc1b54f24",
+    "derived/COUNTEREXAMPLES.csv": "35a79228850261d0b1b60fc0bda35ab80be7d8798a9ea9d40934bcf5ff60a1ff",
+    "derived/PORTFOLIO_CLASS_COUNTS.csv": "bc8ddac86be6f4c67fd95a6acbe6abf2d5add8965ddbc8c73d11c6b90a15f778",
+    "derived/SCENARIO_ATLAS.csv": "4bcbc99c186d72ae51970a06099cb770df5057ba4c4f92105e9b94d6896d11e3",
+    "derived/SINGLETON_PAIR_AUDIT.csv": "4867bfe2e091dd3c82e91052ac4d8ee0923cfdc697db1218a67777c93e1f2428",
+    "derived/TRIPLE_AUDIT.csv": "d83e64b56e13326a187eeb719a360093318fdaafd3711ecedb87078381c1c39e",
+    "figures/IAS26-111_F01_DUAL_BOUNDARY_PLANE.pdf": "97679655d953d1f81886068438f2a7992e7b34032c6eb06021bc9eee6736ef3e",
+    "figures/IAS26-111_F01_DUAL_BOUNDARY_PLANE.svg": "6c48d74106451b9af4c459f1eaa928278a59ef7d43839eab1902425b6dca86dc",
+    "figures/IAS26-111_F02_BLOCKER_SET_FLOW.pdf": "0ffe8cc384e710019a46200cced03e6087eb2a3cd51df33b0281a486cab27f64",
+    "figures/IAS26-111_F02_BLOCKER_SET_FLOW.svg": "b98c9a930442a3ba694fefc27e181d5bc5213970b66d7d0b654910a7a148da37",
+    "provenance/SCENARIO_SOURCE_LINES.csv": "b46b640b8f8a1da88c545f1c6fdbbb52a9d547df300d21da43520ddb22d276bb",
+    "qa/pdf_render/FINAL_IAS26-111_F01_DUAL_BOUNDARY_PLANE.png": "21e675374b2b4ce488e6f29b415866911e917c2717887c79235c09b4fb16fe4c",
+    "qa/pdf_render/FINAL_IAS26-111_F02_BLOCKER_SET_FLOW.png": "583db44b5cf78aed8067cb05e9c91ccdd9bfecc0856ef82295c6e09d3966ce41",
+    "qa/pdf_render/IAS26-111_F01_DUAL_BOUNDARY_PLANE.png": "21e675374b2b4ce488e6f29b415866911e917c2717887c79235c09b4fb16fe4c",
+    "qa/pdf_render/IAS26-111_F02_BLOCKER_SET_FLOW.png": "583db44b5cf78aed8067cb05e9c91ccdd9bfecc0856ef82295c6e09d3966ce41",
+    "reports/IAS26-111_RECONCILIATION_GATE.json": "7188099f82d5aa4763efed1096d2bc715949f991e85918b89a812e210fc09a87",
+    "reports/IAS26-111_REPORT.md": "638bd63733d5236e4a8d51cf2bf5b31e3f23fb05c113ab109637097ff58ec15c"
+  },
+  "environment": {
+    "python": "3.13.9",
+    "pandas": "2.3.3",
+    "numpy": "2.3.5",
+    "matplotlib": "3.10.6",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "scope_limitations": [
+    "Post-hoc descriptive analysis of one frozen synthetic scenario ensemble.",
+    "V4 only; no V9/general IEEE-39 blocker census.",
+    "No Q factorization, local-factor audit, causal anchor test, g sweep, or mode-identity resolution.",
+    "Scenario frequencies are not real-world probabilities."
+  ]
+}

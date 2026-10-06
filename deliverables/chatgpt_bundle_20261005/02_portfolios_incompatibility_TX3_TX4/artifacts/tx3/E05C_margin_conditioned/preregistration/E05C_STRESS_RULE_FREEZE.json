@@ -1,0 +1,53 @@
+{
+  "boundary_bisection_tolerance": 0.0025,
+  "coalitions_inspected_during_endpoint_calibration": false,
+  "coarse_increment": 0.02,
+  "freeze_id": "TX3-E05C-STRESS-RULE-1.0",
+  "gamma_cap": 1.5,
+  "gamma_start": 1.0,
+  "gfl_reference_rule": "fixed along gamma except explicit A7 vertex",
+  "hard_stops": [
+    "PF_FAIL",
+    "INIT_FAIL",
+    "voltage_min<0.85",
+    "voltage_max>1.15",
+    "generator_limit",
+    "LIMITER_ACTIVE",
+    "NONSMOOTH_REGIME",
+    "EIG_FAIL",
+    "EIGENPAIR_RESIDUAL_FAIL",
+    "BASELINE_UNSTABLE"
+  ],
+  "mapping": "P_L(gamma)=gamma*P_L(seed); Q_L(gamma)=gamma*Q_L(seed)",
+  "participation_basis": "fixed proportional canonical active-power contribution of retained non-reference synchronous PV generators",
+  "primary_coordinate": "uniform constant-power-factor scaling of every seeded PQ load",
+  "safe_endpoint_fraction": 0.95,
+  "slack_rule": "slack absorbs only residual PF mismatch",
+  "synchronous_participation_buses": [
+    30,
+    31,
+    32,
+    33,
+    34,
+    35
+  ],
+  "synchronous_participation_factors": [
+    0.07661825414581373,
+    0.17558758539104424,
+    0.1992074607791157,
+    0.19369094648061713,
+    0.1556882924242935,
+    0.1992074607791157
+  ],
+  "tau_grid": [
+    0.0,
+    0.125,
+    0.25,
+    0.375,
+    0.5,
+    0.625,
+    0.75,
+    0.875,
+    1.0
+  ]
+}

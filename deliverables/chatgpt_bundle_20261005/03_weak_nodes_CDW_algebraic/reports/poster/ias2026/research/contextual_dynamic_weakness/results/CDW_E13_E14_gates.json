@@ -1,0 +1,170 @@
+{
+ "families": [
+  {
+   "family": "GM12",
+   "state_ratio": 1.0,
+   "e2e_speedup": 0.9997330890110704,
+   "eig_speedup": 0.9565231555441572,
+   "acc": 0.8629776021080369,
+   "abstention": 0.0,
+   "false_cert": 0,
+   "H_exact": 0.7083333333333334,
+   "pass": false
+  },
+  {
+   "family": "GM16",
+   "state_ratio": 1.0,
+   "e2e_speedup": 0.9996914791113454,
+   "eig_speedup": 0.9483384018416676,
+   "acc": 0.9591567852437418,
+   "abstention": 0.0,
+   "false_cert": 0,
+   "H_exact": 0.75,
+   "pass": false
+  },
+  {
+   "family": "GM2",
+   "state_ratio": 1.0,
+   "e2e_speedup": 0.9998658802558382,
+   "eig_speedup": 0.9795613504568668,
+   "acc": 0.5797101449275363,
+   "abstention": 0.0,
+   "false_cert": 0,
+   "H_exact": 0.625,
+   "pass": false
+  },
+  {
+   "family": "GM24",
+   "state_ratio": 1.0,
+   "e2e_speedup": 0.9995277253182544,
+   "eig_speedup": 0.9249006781259688,
+   "acc": 0.9934123847167324,
+   "abstention": 0.0,
+   "false_cert": 0,
+   "H_exact": 0.9583333333333334,
+   "pass": false
+  },
+  {
+   "family": "GM39",
+   "state_ratio": 1.0,
+   "e2e_speedup": 0.9990877971388378,
+   "eig_speedup": 0.8589774566237756,
+   "acc": 1.0,
+   "abstention": 0.0,
+   "false_cert": 0,
+   "H_exact": 1.0,
+   "pass": false
+  },
+  {
+   "family": "GM4",
+   "state_ratio": 1.0,
+   "e2e_speedup": 0.999974610617925,
+   "eig_speedup": 0.9962684487168902,
+   "acc": 0.6258234519104084,
+   "abstention": 0.0,
+   "false_cert": 0,
+   "H_exact": 0.625,
+   "pass": false
+  },
+  {
+   "family": "GM8",
+   "state_ratio": 1.0,
+   "e2e_speedup": 0.9998018222420704,
+   "eig_speedup": 0.965053776678948,
+   "acc": 0.7457180500658761,
+   "abstention": 0.0,
+   "false_cert": 0,
+   "H_exact": 0.625,
+   "pass": false
+  },
+  {
+   "family": "POD12",
+   "state_ratio": 1.0,
+   "e2e_speedup": 0.9998258567010988,
+   "eig_speedup": 0.9708856410505952,
+   "acc": 0.4861660079051383,
+   "abstention": 0.0,
+   "false_cert": 0,
+   "H_exact": 0.25,
+   "pass": false
+  },
+  {
+   "family": "POD16",
+   "state_ratio": 1.0,
+   "e2e_speedup": 0.9998505546831876,
+   "eig_speedup": 0.9745979405983164,
+   "acc": 0.9855072463768116,
+   "abstention": 0.0,
+   "false_cert": 0,
+   "H_exact": 1.0,
+   "pass": false
+  },
+  {
+   "family": "POD2",
+   "state_ratio": 1.0,
+   "e2e_speedup": 0.9999990030046298,
+   "eig_speedup": 0.9995306974381089,
+   "acc": 0.4861660079051383,
+   "abstention": 0.0,
+   "false_cert": 0,
+   "H_exact": 0.25,
+   "pass": false
+  },
+  {
+   "family": "POD4",
+   "state_ratio": 1.0,
+   "e2e_speedup": 0.9999452035037166,
+   "eig_speedup": 0.9893943063593308,
+   "acc": 0.4861660079051383,
+   "abstention": 0.0,
+   "false_cert": 0,
+   "H_exact": 0.25,
+   "pass": false
+  },
+  {
+   "family": "POD8",
+   "state_ratio": 1.0,
+   "e2e_speedup": 0.9999216047640558,
+   "eig_speedup": 0.9865542915473664,
+   "acc": 0.4980237154150198,
+   "abstention": 0.0,
+   "false_cert": 0,
+   "H_exact": 0.25,
+   "pass": false
+  },
+  {
+   "family": "TSa",
+   "state_ratio": 0.8536585365853658,
+   "e2e_speedup": 1.0019401701864128,
+   "eig_speedup": 1.456840162253439,
+   "acc": 1.0,
+   "abstention": 0.0,
+   "false_cert": 0,
+   "H_exact": 1.0,
+   "pass": false
+  },
+  {
+   "family": "TSb",
+   "state_ratio": 0.7804878048780488,
+   "e2e_speedup": 1.0025433680738471,
+   "eig_speedup": 1.6786329252015435,
+   "acc": 1.0,
+   "abstention": 0.49444444444444446,
+   "false_cert": 0,
+   "H_exact": 0.9583333333333334,
+   "pass": false
+  },
+  {
+   "family": "TSc",
+   "state_ratio": 0.7073170731707317,
+   "e2e_speedup": 1.0028898762851668,
+   "eig_speedup": 1.8341766463875,
+   "acc": 1.0,
+   "abstention": 0.5277777777777778,
+   "false_cert": 0,
+   "H_exact": 0.9583333333333334,
+   "pass": false
+  }
+ ],
+ "GOLD_C_pass": false
+}

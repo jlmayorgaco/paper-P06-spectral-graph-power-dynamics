@@ -1,0 +1,596 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs,longtable,array}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\setlist{nosep,leftmargin=1.2em}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newcommand{\Hy}{\mathcal{H}}
+\newcommand{\aperp}{\alpha_\perp}
+\newcommand{\Aperp}{A_\perp}
+\DeclareMathOperator{\spanop}{span}
+\DeclareMathOperator{\blkdiag}{blkdiag}
+\newcommand{\status}[1]{\textsf{\small #1}}
+
+\title{\textbf{IAS2026 / TX4 Research Dossier}\\[2pt]
+\large Theory, equations, thesis, claims, experiments, results, and open items\\
+of the synchronous-to-inverter replacement-portfolio programme}
+\author{Compiled from the repository state of 2026-09-11\\ (branch \nolinkurl{ias2026/final-closure-campaign}, head \texttt{cdfcefcf}, not pushed)}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This dossier is a self-contained restatement of the research programme for a
+collaborator (human or language model) who has lost the conversational context.
+It collects, in one place: the research question and thesis; the frozen model
+and its equations; every mathematical statement with its proof status; the
+experiment catalogue; the key numerical results with their source files; the
+canonical claim ledger with explicit status labels; the preserved negative
+results; the independent-tool validation status; and what is still missing
+before the TPWRS submission. Every number below is copied from a frozen result
+file or a committed document; nothing new was computed for this dossier.
+\end{abstract}
+
+\tableofcontents
+
+%==========================================================================
+\section{How to use this dossier}
+
+\paragraph{Canonical sources.} When this dossier and a file disagree, the file wins.
+\begin{itemize}
+\item Claim ledger: \nolinkurl{docs/20260911_CANONICAL_THEORY_LEDGER.md},
+      \nolinkurl{results/20260911_CLAIM_MATRIX.csv} (44 claims).
+\item Evidence: \nolinkurl{docs/FINAL_TRANSACTION_THEORY_AND_EVIDENCE.md}, \nolinkurl{results/FINAL_EVIDENCE_TABLE.csv},
+      \nolinkurl{docs/FINAL_TPWRS_CLAIMS.md}.
+\item Cross-tool validation: \nolinkurl{docs/FINAL_CROSS_TOOL_VALIDATION.md} (commit \texttt{0a4e18c2}).
+\item Connected-cumulant extension: \nolinkurl{theory/FINITE_AMPLITUDE_CONNECTED_CUMULANTS.md},
+      \nolinkurl{docs/CONNECTED_CUMULANTS_EXTENSION.md} (commits \texttt{de09db3b}, \texttt{cdfcefcf}).
+\item Manuscript draft: \nolinkurl{reports/papers/tx4_policy_dependent_incompatibility/main.tex} (11~pp, IEEEtran).
+\end{itemize}
+All paths are relative to \nolinkurl{reports/poster/ias2026/research/} unless stated.
+
+\paragraph{Working rules of the programme.}
+\begin{itemize}
+\item Frozen results are never rewritten; new work goes to new files and new commits.
+\item Every new campaign is preregistered (rules, thresholds, hypotheses) and committed \emph{before} it is run.
+\item No push to the remote. Commits use explicit pathspecs because about 888 staged files belong to other work.
+\item No retuning to obtain agreement; negative results are recorded and not reinterpreted.
+\item Status vocabulary: \status{PROVED}, \status{NUMERICALLY VALIDATED}, \status{BENCHMARK-SPECIFIC},
+      \status{CONDITIONAL}, \status{REFUTED}, \status{NOT YET TESTED}.
+      An IEEE-39 observation is never promoted to a theorem.
+\item Mandatory scope sentence: \emph{``The frozen IEEE-39 model has no primary frequency restoration and is
+      analysed in relative / transverse coordinates. Absolute common-frequency restoration is outside this benchmark.''}
+\item MW always means active dispatch ($P_g$); MVA always means rating ($S_n$). They are never merged.
+\end{itemize}
+
+%==========================================================================
+\section{Research question and thesis}
+
+\paragraph{Question.} Synchronous generators (SGs) are replaced by grid-following
+inverters (GFLs) unit by unit. Small-signal stability is not additive: every
+proper subset of a replacement portfolio can be stable while the complete
+portfolio is not. Which minimal groups of replacements are mutually
+incompatible, why does the network make them so, and how does the converter
+control policy move that structure?
+
+\paragraph{Thesis (current, after the cumulant negative results).}
+\begin{center}
+\fbox{\parbox{0.9\textwidth}{\centering
+local device changes $\;\to\;$ exact network-mediated collective closure $\;\to\;$
+policy-dependent minimal failing coalitions $\;\to\;$ non-composable replacement
+portfolios $\;\to\;$ exact diagnosis, planning and targeted design.}}
+\end{center}
+
+\paragraph{Three manuscript contributions (TX4).}
+\begin{itemize}
+\item[\textbf{C1}] \textbf{Policy-dependent minimal incompatibility.} The minimal incompatibility
+hypergraph $\Hy(\theta)$ and its minimum order $\kappa(\theta)$, defined exactly in transverse
+coordinates; $\Hy$ changes only at imaginary-axis crossings; a target is safe in every
+implementation order iff it contains no hyperedge. On IEEE-39 the converter policy reorganizes
+which coalitions fail; with documented governors the four-unit witness disappears while
+policy dependence persists.
+\item[\textbf{C2}] \textbf{Network-closure anatomy.} Replacement actions are affine and bus-local in the
+descriptor; exact network closure turns them into principal-minor interactions of all orders;
+every boundary is a zero of the interaction factor. At ten frozen boundaries no
+\emph{Boolean} truncation below the cardinality of the changing coalition reaches the zero.
+\item[\textbf{C3}] \textbf{Actionable boundary motion.} The port derivative gives exact boundary normals and
+supports iterative (Newton) retuning; a symmetry-deflated port extends the test to
+zero-frequency crossings.
+\end{itemize}
+
+\paragraph{Not claimed.} Rank explains $\kappa$ (refuted); a dominant network path explains a failure
+(non-executable); a simple cycle causes a failure (refuted); nonlinear composability as a
+contribution (negative result); connected cumulants as the mechanism (refuted on the flagship,
+Section~\ref{sec:cc}); universality of order four (refuted).
+
+%==========================================================================
+\section{Model (frozen IEEE-39 benchmark)}\label{sec:model}
+
+\subsection{Phasor DAE}
+\begin{equation}
+\dot x=f(x,z;\delta,\theta),\qquad 0=g(x,z;\delta,\theta),\qquad A=f_x-f_z g_z^{-1}g_x ,
+\end{equation}
+with $x$ the device states, $z\in\mathbb{R}^{2N}$ the rectangular bus voltages, $g$ Kirchhoff's
+current law (bus admittance matrix, device current injections, constant-power loads), index one
+($g_z$ nonsingular).
+
+\subsection{Synchronous generators (two-axis, own base)}
+\begin{align}
+\dot\delta&=\omega_B(\omega-1), & M\dot\omega&=P_m-P_e-D(\omega-1),\\
+T'_{d0}\dot e'_q&=e_{fd}-e'_q-(x_d-x'_d)i_d, & T'_{q0}\dot e'_d&=-e'_d+(x_q-x'_q)i_q,
+\end{align}
+$P_e=v_di_d+v_qi_q+r_a(i_d^2+i_q^2)$; $D=0$ and constant $P_m$ (no governor) in the frozen model.
+AVR (harmonized from IEEEX1, first order): $T_E\dot e_{fd}=K_A(v_{\rm ref}+v_s-|V|)-e_{fd}$.
+PSS (power-input washout plus lag): $T_6\dot x_5=P_e-x_5$, $T_4\dot x_6=T_5(P_e-x_5)/T_6-x_6$, $v_s=K_Sx_6$.
+Code: \nolinkurl{src/ibr_cycles/models/ieee39_devices.py}, class \texttt{SynchronousMachine}.
+
+\subsection{Custom grid-following inverter (10 states + 1 Q/V state)}
+States $(\vartheta,x_{\rm pll},p_f,q_f,x_p,x_q,i_d,i_q,x_{id},x_{iq},x_v)$, on the device rating,
+current injection $\gamma\,(i_d+ji_q)e^{j\vartheta}$ on the system base ($\gamma$ = rating/100\,MVA).
+With $v_d+jv_q=Ve^{-j\vartheta}$, $P=v_di_d+v_qi_q$, $Q=v_qi_d-v_di_q$:
+\begin{align}
+\dot\vartheta&=k_{p,\rm pll}v_q+x_{\rm pll}, & \dot x_{\rm pll}&=k_{i,\rm pll}v_q,\\
+\tau\dot p_f&=P-p_f, & \tau\dot q_f&=Q-q_f,\\
+i_d^{\rm ref}&=k_p(p_{\rm ref}-p_f)+x_p, & i_q^{\rm ref}&=-\big(k_q(q_{\rm cmd}-q_f)+x_q\big),\\
+\dot x_p&=k_{ip}(p_{\rm ref}-p_f), & \dot x_q&=k_{iq}(q_{\rm cmd}-q_f),\\
+\dot i_d&=\tfrac{\omega_B}{x_f}\big(k_i(i_d^{\rm ref}-i_d)+x_{id}-r_fi_d\big), &
+\dot i_q&=\tfrac{\omega_B}{x_f}\big(k_i(i_q^{\rm ref}-i_q)+x_{iq}-r_fi_q\big),\\
+\dot x_{id}&=k_{ii}(i_d^{\rm ref}-i_d), & \dot x_{iq}&=k_{ii}(i_q^{\rm ref}-i_q),\\
+q_{\rm cmd}&=k_{p,v}\,g\,(v_{\rm ref}-|V|)+x_v, & \dot x_v&=k_{i,v}\,g\,(v_{\rm ref}-|V|)-w\,(x_v-q_{\rm ref}).
+\end{align}
+The current-loop form above is the code form $e_{d}=v_d+k_i(i_d^{\rm ref}-i_d)+x_{id}-x_fi_q$,
+$\dot i_d=(\omega_B/x_f)(e_d-v_d-r_fi_d+x_fi_q)$ after cancellation. The leak is $w=0.05$\,rad/s;
+$g=0$ is exact fixed-$Q$ operation plus one decoupled pole at $-w$. No current limits, DC link,
+modulation delay or ride-through logic. Code: class \texttt{GridFollowingConverter}.
+
+\subsection{Portfolios, dispatch and policy}
+Candidates $V=\{30,33,35,37\}$ (the \emph{core}); the census uses SGs 30--38 ($2^9=512$ portfolios);
+bus 39 (interconnection) is never replaced. Replacing unit $i$ installs a GFL with the same active and
+reactive dispatch and rating equal to the SG rating (\emph{matched dispatch}), so the AC power flow is
+identical for every portfolio. The policy is $\theta=(g,k,t,h)$: Q/V gain $g$, common scale $k$ of every
+SG AVR gain, scale $t$ of every AVR time constant, heterogeneity exponent $h$
+($T_{E,i}\mapsto G(T_{E,i}/G)^h$). Reference points: \textbf{P4} $=(0.03625,1.425,1.5,1)$ and
+\textbf{P$_\infty$} $=(1,0.5,1.5,1)$. Note: P4$\to$P$_\infty$ changes \emph{both} the converter Q/V gain
+and the SG excitation-gain scale.
+
+\begin{center}
+\small
+\begin{tabular}{@{}lL{0.68\textwidth}@{}}
+\toprule
+Item & Value (per unit on the device rating)\\
+\midrule
+SG & two-axis, power-form swing, $D=0$, constant $P_m$\\
+AVR & $K_A=10.1$, $T_E=0.25$\,s (harmonized IEEEX1)\\
+PSS & $K_S=-2$, $T_5=1$, $T_6=4.2$, $T_4=0.75$\,s\\
+PLL & $k_{p,\rm pll}=53$, $k_{i,\rm pll}=1400$\\
+Outer loops & $\tau=0.03$\,s; $k_p/k_{ip}=k_q/k_{iq}=0.2/8$\\
+Inner loops & $k_i/k_{ii}=0.25/6$; $x_f=0.15$, $r_f=0.01$\\
+Q/V regulator & $k_{p,v}/k_{i,v}=2/20$; leak $w=0.05$\,rad/s; $g\in[0,1]$\\
+Loads & constant power\\
+Core & SGs 30, 33, 35, 37: 2096.6\,MW active dispatch on 4270.7\,MVA of rating\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Other benchmarks (same code; corroboration, not independent implementation).}
+Kundur two-area (policy dependence recurs; aperiodic Q/V crossings); documented IEEE-68
+(power flow reproduced to $5\times10^{-5}$, 15/15 modes within $5\times10^{-4}$\,Hz).
+
+%==========================================================================
+\section{Theory}\label{sec:theory}
+
+\subsection{Exact transverse quotient}
+Let $R_x$ be $1$ on every rotor and PLL angle and $0$ elsewhere, and $w$ the uniform frequency shift
+(speed $+1$, PLL integrator $+\omega_B$).
+\begin{theorem}[Transverse quotient; \status{PROVED}, classical symmetry reduction]
+If device angles enter only through $Ve^{-j\cdot}$ (rotation covariance), then $AR_x=0$. If moreover
+$D=0$, $P_m$ constant and the network is frequency independent, then $Aw=\omega_BR_x$; hence
+$C=\spanop\{R_x,w\}$ is $A$-invariant with Jordan block $\left[\begin{smallmatrix}0&\omega_B\\0&0\end{smallmatrix}\right]$,
+and for any orthonormal $Z$ spanning $C^\perp$, $\Aperp=Z^\top AZ$,
+\begin{equation}\det(sI-A)=s^2\det(sI-\Aperp).\end{equation}
+The reduced field satisfies $r(x+\phi R_x)=r(x)$, $r(x+cw)=r(x)+c\,\omega_BR_x$, so
+$\dot y=Z^\top r(x^*+Zy)$ is the exact nonlinear transverse system. With $D\ne0$ or governors only
+$C=\spanop\{R_x\}$ remains.
+\end{theorem}
+The rotation is a gauge; the drift is a physical consequence of absent primary frequency control.
+\emph{Transverse stability}: $\aperp(S,\theta)=\max\mathrm{Re}\,\sigma(\Aperp)<0$. No eigenvalue is
+discarded by magnitude; a three-state numerical classifier labels unresolved points instead of guessing.
+
+\subsection{Minimal incompatibility hypergraph and planning}
+\begin{definition}
+With a stable base, $\mathcal U(\theta)=\{S:\aperp(S,\theta)\ge0\}$; $\Hy(\theta)$ is the family of
+inclusion-minimal elements of $\mathcal U$; $\kappa(\theta)=\min_{e\in\Hy}|e|$ ($\infty$ if empty).
+\end{definition}
+\begin{proposition}[Structure, any-order safety; \status{PROVED}, elementary]
+$\Hy$ is an antichain; a portfolio containing no hyperedge is stable; $\mathcal U$ need not be upward
+closed. For a target $T$: (A) $T$ stable; (B) some one-at-a-time chain is stable throughout; (C) every
+$R\subseteq T$ stable. Then C$\Rightarrow$B$\Rightarrow$A, no converse in general, and $T$ satisfies C iff it
+contains no hyperedge.
+\end{proposition}
+\begin{theorem}[Boundary localization; \status{PROVED}]
+Along a continuous policy path with $g_z$ nonsingular, $\Hy$ is constant on every interval on which no
+$\Aperp(S)$ has an imaginary-axis eigenvalue; every change of $\Hy$ is bracketed by such a crossing.
+\end{theorem}
+\textbf{Supporting results (\status{PROVED}, credited).} Monotone (Metzler, order-preserving) class
+$\Rightarrow$ A$=$B$=$C (Perron--Frobenius); IEEE-39 is outside it (three robust re-stabilizing pairs).
+Minimum-cardinality destabilization is NP-complete (sparse-PCA clique reduction; no priority claimed).
+Resilience complex $K(\rho)$: minimal non-faces $=\Hy_{NL}(\rho)$ (Stanley--Reisner, tautological).
+
+\subsection{Descriptor realization, network closure, principal minors}
+Under matched dispatch every candidate bus carries both devices (SG weight $1-\delta_i$, GFL weight
+$\delta_i$); an absent device is a stable filler.
+\begin{lemma}[Affinity]
+$J(\delta)=J_0+\sum_i\delta_iJ_i$ exactly, each $J_i$ bus-local. The reduced $A(\delta)$ is \emph{not} affine.
+\end{lemma}
+Port $T_S(s)=g_z+g_x(sI-f_x)^{-1}f_z$ (network variables kept). With $E$ selecting the $2m$ voltage
+channels of candidate buses, $\Delta Y_i=E_i^\top(T_{\{i\}}-T_0)E_i$ ($2\times2$), $D=\blkdiag(\Delta Y_i)$,
+$K=E^\top T_0^{-1}E=K_d+K_o$ (diagonal and off-diagonal $2\times2$ blocks),
+\begin{equation} M=DK,\qquad Q=(I+DK_d)^{-1}DK_o .\end{equation}
+\begin{theorem}[Network-closure factorization; \status{PROVED}, Sylvester + multilinearity]
+\begin{align}
+\det P_S&=h_S\det T_0\det(I+M_{SS}),\\
+\det(I+M_{SS})&=\textstyle\prod_{i\in S}\det(I+M_{ii})\;\det(I+Q_{SS}),\\
+\det(I+Q_{SS})&=\textstyle\sum_{T\subseteq S}\mu_T,\quad \mu_\emptyset=1,\ \mu_{\{i\}}=0,\
+\mu_T=\sum_{U:\,\mathrm{blocks}(U)=T}\det Q_{UU}.
+\end{align}
+$\mu_T$ is the Boolean M\"obius coefficient and is invariant under block-diagonal port-basis changes.
+\end{theorem}
+\begin{corollary}[Boundaries are network-closure zeros]
+If no member alone and no device has an eigenvalue at $s^*$: $s^*\in\sigma(\Aperp(S))$ iff
+$-1\in\sigma(M_{SS}(s^*))$ iff $\det(I+Q_{SS}(s^*))=0$. With $K_o=0$ no boundary exists.
+\end{corollary}
+The algebraic degree of $S\mapsto\det(I+Q_{SS})$ and $\kappa$ are independent quantities.
+
+\subsection{Boundary motion (port derivative)}
+\begin{proposition}[Boundary sensitivity; \status{PROVED}, implicit function theorem]
+If $-1$ is a simple eigenvalue of $M_{SS}(s^*,\theta^*)$ with right/left eigenvectors $q,p$,
+\begin{equation}\frac{\partial s^*}{\partial\theta}=-\frac{p^H\partial_\theta M_{SS}\,q}{p^H\partial_sM_{SS}\,q},\end{equation}
+and $\nabla_\theta\mathrm{Re}\,s^*$ is the boundary normal. Equivalently, at a simple zero of
+$F(H)=\det(I+Q_{HH})$: $\partial s^*/\partial a=-\partial_aF/\partial_sF$, with
+$\partial_aF=\mathrm{tr}(\mathrm{adj}(I+Q)\,\partial_aQ)$ valid at the singular point.
+\end{proposition}
+
+\subsection{Symmetry-deflated zero-frequency port}
+$\det T_S(0)$ vanishes structurally. Relocate $f_x^\#=f_x-\beta UU^\top$ ($U=R_x/\|R_x\|$), then deflate the
+Jordan partner $x_0=w+aR_x$: $f_x^{\#\#}=f_x^\#-\beta_2x_0x_0^\top/\|x_0\|^2$, $T^{\#\#}(0)=g_z-g_x(f_x^{\#\#})^{-1}f_z$.
+\begin{theorem}[\status{PROVED}; Brauer + Schur]
+$\sigma(A^{\#\#})=\sigma(\Aperp)\cup\{-\beta,-\beta_2\}$; $\det T^{\#\#}(0)=\det g_z\det A^{\#\#}/\det f_x^{\#\#}$;
+its sign flips iff the parity of positive real transverse eigenvalues changes. It does not see complex
+crossings or real-pair coalescences.
+\end{theorem}
+
+\subsection{Finite-amplitude connected cumulants (secondary layer)}\label{sec:cc}
+For $F_s(S)=\det(I+Q_{SS}(s))$, $F(\emptyset)=1$, and $\Pi(S)$ the set partitions of $S$:
+\begin{equation}\chi_S=\sum_{\pi\in\Pi(S)}(-1)^{|\pi|-1}(|\pi|-1)!\prod_{B\in\pi}F(B).\end{equation}
+All statements \status{PROVED} in \nolinkurl{theory/FINITE_AMPLITUDE_CONNECTED_CUMULANTS.md}:
+\begin{itemize}
+\item \textbf{C1 inversion:} $F(S)=\sum_{\pi}\prod_{B\in\pi}\chi_B$, unique (exponential formula in $\mathbb C[x]/(x_i^2)$).
+\item \textbf{C2:} $F$ factorizes across $\{S_1,S_2\}$ iff all mixed cumulants vanish; $\chi_S=0$ alone does not imply factorization.
+\item \textbf{Connectivity:} if $F(H)=0$ and $F(B)\ne0$ for all proper $B$, the support $\{B\subseteq H:|B|\ge2,\chi_B\ne0\}$ is connected and spans $H$; boundary identity $\chi_H(s^*)=-C_H(s^*)$, $C_H=F(H)-\chi_H$.
+\item \textbf{C3 scalar ports:} $\chi_S=(-1)^{|S|-1}\sum_{\gamma}\prod_{(i,j)\in\gamma}q_{ij}$ over spanning directed cycles for $|S|\ge2$ ($\chi_{\{i\}}=1+q_{ii}$).
+\item \textbf{C3 $2\times2$ ports:} the scalar formula does not transfer; $\chi_S$ is the sum over block-connected channel permutations; $\chi_{ab}=-\mathrm{tr}(Q_{ab}Q_{ba})+\det Q_{ab}\det Q_{ba}$. The naive holonomy sum is only the infinitesimal cumulant.
+\item \textbf{C4:} Boolean degree $d_{\rm alg}$, connected order $d_{\rm conn}$ and $\kappa$ are logically independent (ring, path, star, tuned, ring+pair constructions).
+\item \textbf{Connected share} at a zero: $\nu_H=|\chi_H|/\sum_\pi|\prod\chi_B|\le1/2$; deletion displacement $\delta_B=|\chi_BF(H\setminus B)|/|\partial_sF(H)|$.
+\end{itemize}
+\textbf{IEEE-39 verdict (preregistered):} the flagship boundary is \emph{composite}
+($\nu=0.069<0.10$; deleting $\chi_{30,33,35,37}$ moves the zero by $0.024$\,s$^{-1}<0.05$); triple boundaries
+are connected at 0.10 (not at 0.20). Hence $\kappa=4$ is \emph{not} an irreducible four-way interaction.
+Connected cumulants are a mathematically valid, diagnostically interesting, practically limited layer.
+
+\subsection{Second-order consistency (methodological support)}
+A second-order reduced response is consistent only if the algebraic-manifold (KCL) curvature
+$f_zD^2\psi$ is retained; dropping it breaks the rotation/drift symmetry and makes the frequency
+prediction about $10^3$ times worse than linear (FC07 v2). Taylor consistency, not new.
+
+%==========================================================================
+\section{Experiment catalogue}\label{sec:exp}
+\small
+\begin{longtable}{@{}L{2.1cm}L{7.2cm}L{6.9cm}@{}}
+\toprule
+ID & Question / content & Key output (status)\\
+\midrule\endhead
+F1 & Equation-equivalent ANDES reconciliation (R2 manual, R3 first-order AVR; static-injection replacement) & band match $1.6\times10^{-6}$; RHP 12/12; flagship $+0.329$ in both tools\\
+F7A/B/C & Policy maps: $g\times k$, $g\times t$, $g\times h$; 345\,229 points & 30/36/16 distinct $\Hy$; witness contraction $4\to3\to2\to3\to4\to\emptyset$ on F7B $t=0.852$\\
+F8 & Mechanism points P1--P4, P$_{\rm fold}$, P$_\infty$ & P4: $\Hy=\{30{+}33{+}35{+}37\}$, $\aperp=+0.127$; P$_\infty$: $\emptyset$\\
+F10 & Conventional baselines on 52 policy points & modal sensitivity 22/52, additive 30/52, pairwise 38/52 exact $\Hy$; SCR/gSCR policy-blind; GN on every sub-loop 52/52 (= our computation)\\
+F11 & Computational scaling & port core 22--119$\times$ faster \emph{at a common operating point} only\\
+F12 & Kundur second benchmark & policy dependence 61/61, 36/36 lines\\
+G1 & Whole-RHP composability, condensers & damped condenser threshold 2.48\% (106.0\,MVA); undamped condenser unstable\\
+G2 & Nonlinear phasor TDS confirmation & 32/32 verdicts (P4 unstable, P$_\infty$ stable, condenser 2\%/3\%, tongue)\\
+G3 & IEEE-68 & documented model reproduced; preregistered map EMPTY\\
+E12/E13/E39 & 512-portfolio census; conventional predictors & MW/MVA/SCR/gSCR/MIIF AUCs (re-audited in UC02)\\
+E14 N6 / FC04 & Pg-matched controls & 25/25 controls keep the inter-area family stable; 8/10 failing have it unstable\\
+E18 & Cycle holonomies & falsified as explanation (Pg rerun ratio 0.72)\\
+UC01--03 & Unit correction & legacy ``replaced\_mw'' is MVA; true-dispatch AUC 0.57\\
+BC01--02b & Binary certification, principal minors & $d^*=m$ on all benchmarks; zero-frequency port 194/194 (method development)\\
+FC01 & Transverse re-audit & 0 label changes over 345\,229 points; 1.5\% unresolved\\
+FC02 & Zero-frequency port holdout (Kundur) & 28/28 zero crossings, coalescence not flagged, 0/445 false positives\\
+FC03 & Governed replication (TGOV1N) & P4 flagship $+0.127\to-0.0745$; 10 vs 26 distinct $\Hy$\\
+FC05/06 & Nonlinear thresholds, resilience complex & $\Hy_{NL}=\Hy$ inside scope 6/6; 84/96 thresholds are guard events\\
+FC07 & Second-order curvature & KCL curvature required\\
+FC08/09 & Certificates & failed as useful certificates\\
+FC10 & Monotone class, order dependence & 3 robust counterexamples; 3/327 order-dependent targets\\
+FC12 & Planning & any-order-safe plans; 106 vs 684--792\,MVA support gap (envelope)\\
+FC13 & Hopf type & subcritical, $\ell_1=+0.0095,+0.025,+0.026$\\
+FC18 & Targeted port checks at 10 frozen boundaries & identity $1.4\times10^{-13}$; truncation below $|S|$ leaves 0.13--0.60; normals $4.3\times10^{-4}$\,deg; Newton retune $2\times10^{-10}$; walk expansion non-executable\\
+MC01--04 & Preregistered Monte Carlo (S1--S7 synthetic, P1--P4 IEEE-39) & all pass except P2 as implemented (post-hoc correction disclosed)\\
+Cross-tool A--G & Python / pandapower / ANDES & network, equilibrium, synchronous dynamics, branch sensitivities reproduced; custom GFL not\\
+CC02--CC06 & Connected cumulants (toy + frozen IEEE-39) & flagship composite; $|\chi|$ AUC 0.952 $\approx$ closure 0.944; H5, H6 refuted\\
+\bottomrule
+\end{longtable}
+\normalsize
+
+%==========================================================================
+\section{Key results}\label{sec:results}
+
+\subsection{The canonical replacement-portfolio trap (frozen FC03 values)}
+Transverse spectral abscissa $\aperp$ [s$^{-1}$] of all 16 core subsets; frozen model versus the
+model with the documented TGOV1N governors.
+\begin{center}\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+& \multicolumn{2}{c}{P4 $(g,k)=(0.03625,1.425)$} & \multicolumn{2}{c}{P$_\infty$ $(g,k)=(1,0.5)$}\\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Subset & frozen & governed & frozen & governed\\
+\midrule
+BASE & $-0.1441$ & $-0.2385$ & $-0.1759$ & $-0.2385$\\
+30 & $-0.1542$ & $-0.2385$ & $-0.1680$ & $-0.2386$\\
+33 & $-0.1696$ & $-0.2387$ & $-0.1590$ & $-0.2386$\\
+35 & $-0.1734$ & $-0.2389$ & $-0.1662$ & $-0.2387$\\
+37 & $-0.1480$ & $-0.2386$ & $-0.1693$ & $-0.2386$\\
+30+33 & $-0.1821$ & $-0.2074$ & $-0.1535$ & $-0.2388$\\
+30+35 & $-0.1725$ & $-0.2242$ & $-0.1606$ & $-0.2392$\\
+30+37 & $-0.1511$ & $-0.2213$ & $-0.1654$ & $-0.2386$\\
+33+35 & $-0.2140$ & $-0.2390$ & $-0.1608$ & $-0.2388$\\
+33+37 & $-0.1768$ & $-0.2389$ & $-0.1550$ & $-0.2387$\\
+35+37 & $-0.1721$ & $-0.2387$ & $-0.1622$ & $-0.2389$\\
+30+33+35 & $-0.2047$ & $-0.1368$ & $-0.1568$ & $-0.2392$\\
+30+33+37 & $-0.1755$ & $-0.1868$ & $-0.1522$ & $-0.2388$\\
+30+35+37 & $-0.1679$ & $-0.2135$ & $-0.1598$ & $-0.2391$\\
+33+35+37 & $-0.2030$ & $-0.2387$ & $-0.1574$ & $-0.2390$\\
+\textbf{30+33+35+37} & $\mathbf{+0.1270}$ & $-0.0745$ & $-0.1554$ & $-0.2390$\\
+\bottomrule
+\end{tabular}
+\end{center}
+At P4 every proper subset is stable and the complete portfolio is unstable: $\kappa=4$,
+$\Hy=\{\{30,33,35,37\}\}$ (critical mode 0.62\,Hz, inter-area). The same physical portfolio, same
+network, same injections and ratings is stable at P$_\infty$ ($\Hy=\emptyset$). With documented governors
+the P4 portfolio is stable. Source: \nolinkurl{outputs/ias2026/final_math_nonlinear_validation_20260910T231539/FC03_governed_replication/FC03_subsets.csv.gz}.
+Nonlinear phasor TDS confirms P4 unstable (envelope $+0.129$\,s$^{-1}$ vs $+0.127$ predicted) and P$_\infty$
+stable (G2).
+
+\paragraph{Lower-order screens at P4 (frozen F10).} First-order modal sensitivity, additive extrapolation
+from single studies, and pairwise extrapolation from single+pair studies all predict
+$\Hy=\emptyset$ (``safe'') at P4, where the truth is the complete four-unit portfolio. Over 52 policy points
+they recover the exact $\Hy$ in 22, 30 and 38 cases respectively. SCR/gSCR are identical at P4 and
+P$_\infty$ by construction.
+
+\subsection{Policy dependence (C1)}
+\begin{itemize}
+\item 30/36/16 distinct hypergraphs on F7A/B/C; up to 15 hypergraphs behind one value of $\kappa$.
+\item F7B line $t=0.852$: witness $4\to3\to2\to3\to4\to\emptyset$ as $g$ increases.
+\item P4 line ($k=1.425$, $t=1.5$): the complete portfolio is unstable for $g<g^*=0.20768$ and stable above;
+$\kappa=4$ for $g\in[0.016,g^*)$, while below $g\approx0.016$ the triple 30+33+35 is the witness (frozen FC03 path).
+This is a converter-only counterfactual: only the Q/V gain changes.
+\item Governed model: policy dependence persists (10 distinct $\Hy$, $\kappa=2$--4 at 74/399 plane points)
+but the P4 coalition is stabilized.
+\item Kundur: 61/61 and 36/36 lines change $\Hy$. IEEE-68: preregistered map empty.
+\end{itemize}
+
+\subsection{Network-closure anatomy (C2, FC18)}
+\begin{center}\small
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+Event & $S$ changing & $g^*$ & Hz & local factor & Boolean trunc. at $|S|-1$\\
+\midrule
+E1 $\kappa\,4\to3$ & 30+33+35 & 0.0102 & 0.628 & 0.315 & 0.336\\
+E2 & 30+33+37 & 0.0188 & 0.633 & 0.198 & 0.396\\
+E3 & 33+35+37 & 0.0609 & 0.671 & 0.080 & 0.385\\
+E4 $\kappa\,3\to2$ & 30+33 & 0.1034 & 0.656 & 0.081 & 1\\
+E5 & 33+35+37 & 0.1870 & 0.695 & 0.135 & 0.296\\
+E6 $\kappa\,2\to3$ & 30+33 & 0.2491 & 0.672 & 0.104 & 1\\
+E7 & 30+33+35 & 0.2778 & 0.706 & 0.130 & 0.372\\
+E8 $\kappa\,3\to4$ & 30+33+37 & 0.2931 & 0.685 & 0.132 & 0.293\\
+E9 $\to\emptyset$ & 30+33+35+37 & 0.2973 & 0.718 & 0.134 & 0.132\\
+FLAG (P4 line) & 30+33+35+37 & 0.2077 & 0.706 & 0.089 & 0.161\\
+\bottomrule
+\end{tabular}
+\end{center}
+Identity $\det T_S/\det T_0=\det(I+M_{SS})$ to $1.4\times10^{-13}$ (160 checks); descriptor affinity
+to $4.5\times10^{-16}$; effective rank of $Q$ stays 7--8 while $\kappa$ changes (negative control).
+Caveat from CC03: at the flagship the full-order Boolean term is composite in cumulant terms and its
+eigenvalue weight is only 0.024\,s$^{-1}$.
+
+\subsection{Boundary motion and remediation (C3)}
+\begin{itemize}
+\item Port normals vs direct finite differences: angle $\le4.3\times10^{-4}$\,deg, magnitude $\le4.3\times10^{-6}$.
+\item Q/V retuning of P4: one linear step predicts $\Delta g=0.052$ (30\% of the required 0.171; the slope
+drifts from $-2.45$ to $-0.46$); port-derivative Newton reaches $g^*=0.20768$ to $2\times10^{-10}$ in 5 steps.
+\item Damped condenser: stability restored above 2.48\% of the retired rating (106.0\,MVA); TDS 2.47\%.
+\item Documented governors: P4 flagship stable without support.
+\item Line reinforcement (cross-tool E1 / F2c): port line sensitivities reproduce the DAE (12/12 signs,
+Spearman 1.00) and ANDES in the equation-equivalent configuration; the GFL line ranking does not transfer
+across converter models (7/12 signs).
+\end{itemize}
+
+\subsection{Planning}
+Any-order-safe optimum: P4 core 30+33+35 (1775.1\,MW / 3300.5\,MVA); P$_\infty$ core full set
+(2096.6\,MW / 4270.7\,MVA); census 31+32+34+35+37+38 (3652.3\,MW / 6499.9\,MVA). Order dependence: 3 of
+327 stable census targets (unit 34 converted last passes through an unstable state).
+Support gap: 106\,MVA (small-signal) vs 684--792\,MVA (keeping a 200\,MW disturbance inside the declared
+converter voltage envelope; an envelope requirement, not stability).
+
+\subsection{Nonlinear scope check}
+Inside declared guards, $\Hy_{NL}=\Hy$ and $\kappa_{NL}=\kappa$ in 6/6 (point, family) cases; no transversely
+stable portfolio fails in scope; 84/96 thresholds are guard activations. Boundaries are subcritical Hopf.
+TDS verdicts: 32/32 (G2) and 80/80 (MC P4, rate vs $\aperp$ $r=0.969$).
+
+\subsection{Monte Carlo (preregistered)}
+S1 (1000 draws) transverse identity $\le5.5\times10^{-9}$, magnitude cutoff wrong in 235/235 planted
+positives; S2 (2000) 0 violations; S3 (300) 1044 crossings bracketed; S4 Metzler 0 violations; S5 500/500;
+S6 identities $\le3.4\times10^{-15}$; S7 817/817. IEEE-39: P1 300/300; P3 identities $\le8.1\times10^{-13}$;
+P4 80/80; P2 failed as implemented (post-hoc re-bisection $\le2\times10^{-9}$, disclosed, not counted).
+
+\subsection{Cross-tool validation (commit 0a4e18c2)}
+\begin{itemize}
+\item Network/equilibrium: ANDES 2.0.0 live Ybus $1.1\times10^{-13}$; voltages $1.7\times10^{-7}$
+(entirely ANDES's $+10^{-8}$ r/x regularization); pandapower 3.4.0 $3\times10^{-14}$ \emph{after} a tap-convention
+translation fix (as supplied: FAIL).
+\item Equation-equivalent synchronous dynamics (R2/R3, 12 subsets): $\alpha$ error $1.5\times10^{-6}$, band
+nearest-mode $1.6\times10^{-6}$, RHP counts agree.
+\item Equation-equivalent branch sensitivities (12 frozen lines): DAE vs ANDES 12/12 signs, Spearman 1.000;
+port vs ANDES 11/12 (the only mismatch on a near-zero line).
+\item Custom GFL: \textbf{not} independently implemented.
+\end{itemize}
+
+\subsection{Connected-cumulant results (commit cdfcefcf)}
+Ten boundaries: reconstruction $\le10^{-16}$; connectivity 10/10; triples connected at 0.10; flagship and E9
+composite. Diagnostic: $|\chi|$ AUC 0.952 (failing vs Pg-matched stable), closure distance 0.944, best older
+non-definitional diagnostic 0.812 ($|\mu|$), simple-cycle holonomy 0.084 (anti-predictive). ``Dominant
+cluster tracks the witness'' refuted (34\%); ``best stabilizing line suppresses $|\chi|$'' refuted
+(Spearman $-0.34$).
+
+%==========================================================================
+\section{Claim ledger (condensed)}\label{sec:ledger}
+\small
+\begin{longtable}{@{}L{1.0cm}L{10.6cm}L{3.8cm}@{}}
+\toprule
+ID & Claim & Status\\
+\midrule\endhead
+T01 & Exact transverse quotient; exact nonlinear transverse system & PROVED\\
+T02 & $\Hy$ antichain; hyperedge-free $\Rightarrow$ stable; changes only at crossings & PROVED\\
+T03 & Any-order safety iff hyperedge-free; C$\Rightarrow$B$\Rightarrow$A & PROVED\\
+T04 & Metzler monotone class $\Rightarrow$ A=B=C (IEEE-39 outside it) & PROVED\\
+T05 & NP-completeness of minimum destabilizing cardinality (credited) & PROVED\\
+T06 & Resilience complex organization & PROVED (tautological)\\
+T07 & Principal-minor / M\"obius structure and invariants & PROVED\\
+T08 & Symmetry-deflated zero-frequency port & PROVED; Kundur holdout 28/28, 0/445\\
+T09 & Network-closure anatomy at 10 frozen boundaries & BENCHMARK-SPECIFIC\\
+T10 & Port derivative = DAE eigenvalue sensitivity & NUMERICALLY VALIDATED; independently reproduced (equation-equivalent)\\
+C01--C06 & Connected-cumulant theorems (inversion, factorization, connectivity, scalar cycle formula, block expansion, order independence) & PROVED\\
+C07 & Flagship boundary composite ($\nu=0.069$) & BENCHMARK-SPECIFIC\\
+C08 & Triple boundaries connected at 0.10 & BENCHMARK-SPECIFIC (threshold-sensitive)\\
+C09 & $|\chi|$ discriminates (AUC 0.952), equals closure distance & BENCHMARK-SPECIFIC\\
+C10 & Dominant connected support tracks the witness & REFUTED\\
+C11 & Most stabilizing intervention suppresses $|\chi|$ & REFUTED\\
+B01 & Policy-dependent minimal incompatibility & CONDITIONAL (custom GFL, no governor)\\
+B02 & Flagship $\kappa=4$ at P4, $\emptyset$ at P$_\infty$ & CONDITIONAL (removed by governors)\\
+B03 & Governed replication & BENCHMARK-SPECIFIC\\
+B04--B06 & Inter-area mechanism; condenser 106\,MVA; 3/327 order-dependent & BENCHMARK-SPECIFIC\\
+B07--B10 & Nonlinear = spectral in scope; subcritical Hopf; TDS 32/32; KCL curvature & NUMERICALLY VALIDATED\\
+I01 & Network/equilibrium implementation-independent & CONDITIONAL (pandapower fix)\\
+I02, I03 & Equation-equivalent synchronous dynamics; branch sensitivities & NUMERICALLY VALIDATED (ANDES)\\
+I04 & Custom-GFL portfolio results reproduced in a second simulator & NOT YET TESTED\\
+N01--N09 & Simple cycles; static quantities alone; universal order 4; robustness to governors; rank; paths; certificates; low-degree representation; transferable GFL line ranking & REFUTED\\
+\bottomrule
+\end{longtable}
+\normalsize
+
+%==========================================================================
+\section{Negative results (preserved)}
+\begin{itemize}
+\item Simple-cycle causality failed (E18/UC02); the single-cycle holonomy score is anti-predictive (AUC 0.084).
+\item Static topology or size alone fails: true-dispatch AUC 0.57; SCR/gSCR cannot see the policy.
+\item Order four is model- and policy-dependent: witness contraction, governors, IEEE-68 empty, composite flagship.
+\item Governors change the witness: the P4 coalition is stable with TGOV1N.
+\item ANDES does not implement the custom GFL.
+\item Rank does not explain $\kappa$; the walk/path expansion is non-executable; certificates failed; no exact low-degree Boolean representation.
+\item Connected cumulants: not the mechanism of the flagship; do not track the witness; not a design target.
+\item P2 Monte Carlo rule failed as implemented; the pandapower translation failed as supplied.
+\end{itemize}
+
+%==========================================================================
+\section{What is missing}\label{sec:missing}
+
+\subsection{Pending final validation campaign (specified, not yet run)}
+The last instruction defines one final campaign, \emph{before} any new ``weak-node'' theory. Status:
+Phase~0 reading done; preregistration \textbf{not yet written}; nothing computed.
+\begin{enumerate}
+\item \textbf{Preregistration} (\nolinkurl{docs/20260911_POST_CUMULANT_VALIDATION_PREREG.md}) committed before any computation.
+\item \textbf{Industrial decision case} on the frozen P4 portfolio: D1 admissible? D2 minimum blocking coalition?
+D3 predictable from MW/MVA, static strength, single-device modal data, pairwise data, topology? D4 intrinsic or
+policy-dependent? D5 which targeted intervention restores stability? D6 robust to uncertainty?
+Terminology: ``budget-limited subset screening'', not ``N-k''.
+\item \textbf{Fair baselines} B0 oracle, B1 MW/MVA/penetration, B2 SCR/gSCR/MIIF, B3 first-order modal sensitivity,
+B4 additive, B5 pairwise (and third order), B6 participation (localization only), B7 static network metrics,
+B8 closure distance (operator-only and oracle-assisted versions), B9 $|\chi|$ (secondary). Old counts
+(22/52, 30/52, 38/52, AUC 0.57) must be re-verified from frozen files.
+\item \textbf{Preregistered metrics}: Task A ranking (AUC, AP, Spearman), Task B minimum-set recovery, Task C
+margin (sign, MAE/RMSE), Task D policy transfer P4 vs P$_\infty$, Task E intervention ranking; N/A where a method
+does not answer the question.
+\item \textbf{Policy counterfactual}: what stays constant (network, locations, injections, ratings, MW, SCR/gSCR) and
+what changes ($\aperp$, $\Hy$, $\kappa$, frequency). Note that P4$\to$P$_\infty$ changes both $g$ and $k$; a
+converter-only counterfactual exists on the frozen P4 line ($k=1.425$, $g\ge0.2256$ gives $\emptyset$).
+\item \textbf{Why lower orders fail}: hierarchy local $\to$ additive $\to$ pairwise $\to$ third order $\to$ exact, in both
+$\aperp$ space and characteristic-function space; distinguish $\kappa=4$ from the (composite) connected order.
+\item \textbf{Targeted remediation}: Q/V gain, excitation gain $k$ (frozen F7A line), condenser, governors, frozen lines;
+restored? $\Delta\aperp$? port prediction? Newton boundary? TDS corroboration?
+\item \textbf{Parameter robustness} (optional, high value): R1 existence robustness vs R2 exact-witness robustness,
+with the uncertainty set committed before running.
+\item \textbf{Independent custom-GFL reproduction} (highest remaining external validation): equation-equivalent
+implementation of the 10+1-state GFL, the two-axis machine, first-order AVR and power-input PSS in a
+\emph{separate} ANDES copy and environment (the frozen \texttt{tx3-andes} must not change); preregistered
+tolerances; 16 subsets at P4 and P$_\infty$ at minimum. Feasibility: ANDES substitutes static generators through
+the dynamic device's \texttt{gen} link; IEEEST can express washout+lag with power input if configured exactly.
+\item \textbf{Reviewer decision table}, one four-panel decision figure (no cumulant hero panel), final validation ledger
+with columns for proof, synthetic, IEEE-39, nonlinear, independent tool, parameter robustness, baseline
+comparison, status and exact manuscript wording.
+\end{enumerate}
+
+\subsection{Open manuscript decisions (author)}
+\begin{enumerate}
+\item \textbf{pandapower fix}: accept or reject the tap-convention translation correction (three LV-from
+transformers 35, 37, 38 reoriented with tap $1/t$ and $z\,t^2$). If rejected, cite only the Python--ANDES static agreement.
+\item \textbf{Limitations sentence} (\texttt{main.tex}:959) is stale (``within 4.1\%''); replace with the equation-equivalent
+cross-tool wording.
+\item \textbf{Clarify the C2 wording}: the full-order Boolean closure term is exact but is not an irreducible four-way
+interaction (flagship composite in cumulant terms).
+\item Affiliation/e-mail, funding, repository/DOI, page policy (11 pp).
+\end{enumerate}
+
+\subsection{Older gaps still open (not blocking)}
+Machine-parameter sensitivity map (E37: full pattern in 418 of 1000 draws); dispatch-dependence map; adaptive
+per-point retune; extended-precision spot check; a second benchmark with an order-4 core (IEEE-68 map empty);
+limiter-equipped, governed and mixed GFM models (new, separately versioned).
+
+\subsection{Future study (only after the campaign)}
+A separate preregistered study of weak nodes, weak corridors and intervention locations.
+
+%==========================================================================
+\section{Where everything is}
+\small
+\begin{longtable}{@{}L{6.5cm}L{9.5cm}@{}}
+\toprule
+Item & Location / commit\\
+\midrule\endhead
+Scientific evidence freeze & tag \texttt{IAS2026\_FINAL\_SCIENTIFIC\_EVIDENCE\_FREEZE} = \texttt{b9f274e2}\\
+Post-freeze addenda & \texttt{f775db89} (FC18), \texttt{7a772808}/\texttt{f2946257} (MC prereg), \texttt{cfe9fe4b} (MC + manuscript), \texttt{81ddb963} (hardening)\\
+Cross-tool validation & \texttt{0a4e18c2}; \nolinkurl{validation_runs/cross_tool_final/}\\
+Connected cumulants & \texttt{de09db3b} (theory, prereg), \texttt{cdfcefcf} (results, ledger)\\
+Model code & \nolinkurl{src/ibr_cycles/models/} (\texttt{ieee39\_case.py}, \texttt{ieee39\_devices.py}, \texttt{ieee39\_network.py})\\
+Transverse / port code & \nolinkurl{src/ibr_cycles/certification/}, \nolinkurl{src/ibr_cycles/models/port_admittance.py}\\
+Cumulant code & \nolinkurl{src/ibr_cycles/cycles/connected.py} (finite), \texttt{cumulants.py} (infinitesimal)\\
+Frozen FC outputs & \nolinkurl{outputs/ias2026/final_math_nonlinear_validation_20260910T231539/}\\
+Policy maps & \nolinkurl{results/F7/} (F7A/B/C points, labels, lines)\\
+Baselines & \nolinkurl{results/F10/}, \nolinkurl{results/UC/UC02/}, \nolinkurl{results/tables/E13_*}\\
+Monte Carlo & \nolinkurl{results/paper_mc/}, \nolinkurl{experiments/paper_tx4/}\\
+Environments & \nolinkurl{.venv/tx3-analysis} (frozen), \nolinkurl{.venv/tx3-andes} (frozen, ANDES 2.0.0 from \nolinkurl{vendor/andes}), \nolinkurl{.venv/xtool-pandapower} (pandapower 3.4.0)\\
+Numerical gotcha & set \nolinkurl{OPENBLAS/OMP/MKL_NUM_THREADS=1} in the shell before multiprocessing runs\\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\end{document}

@@ -1,0 +1,4 @@
+delay_pattern_id,mean_tau_ms,gamma,norm_derived_radius,contour_root_count,tracked_roots_inside,tracked_root_count,converged_root_count,max_phase_increment,contour_points,minimum_logabs_small_determinant,contour_status,root_coverage_match,status
+uniform_10ms,10.0,-0.25,,,2,2,2,,,,NOT_COMPLETED_CONSERVATIVE_BOUND_COST,false,BLOCKED_EXACT_DDE_SPECTRUM
+min_commutator,24.999999999999996,-0.25,,,2,2,2,,,,NOT_COMPLETED_CONSERVATIVE_BOUND_COST,false,BLOCKED_EXACT_DDE_SPECTRUM
+max_commutator,25.0,-0.25,,,2,2,2,,,,NOT_COMPLETED_CONSERVATIVE_BOUND_COST,false,BLOCKED_EXACT_DDE_SPECTRUM

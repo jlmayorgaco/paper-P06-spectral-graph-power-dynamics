@@ -1,0 +1,11 @@
+question_id,question,status,finding,evidence_path
+N1,Do proper subsets become unstable before H4?,SUPPORTED,365 valid scenarios have an unstable strict H4 subset,tables/CASE_GALLERY.csv; derived/SCENARIO_METRICS.csv
+N2,Is H4 stable in some operating scenarios?,SUPPORTED,412 valid scenarios have stable H4,derived/SCENARIO_METRICS.csv
+N3,Does g=0.25 worsen alpha?,SUPPORTED,373 material deteriorations among valid paired scenarios,tables/MC_EVENT_RATES.csv
+N4,Does g=0.25 fail to rescue unstable H4?,SUPPORTED,781 valid determinate non-rescues; rescue=186,tables/MC_EVENT_RATES.csv
+N5,Do modal families switch?,NOT_TESTABLE,"The primary runner retains eigenvectors, but no cross-scenario quotient-basis MAC alignment is computed in this postprocessor; no identity claim is made.",derived/SCENARIO_METRICS.csv
+N6,Do results change materially with load level?,NOT_TESTABLE,Load-decile results are descriptive; no material-effect threshold was preregistered. No causal or inferential load trend is claimed.,tables/MC_STRATIFIED_DESCRIPTIVE.csv
+N7,Does maximum generator saturation explain extreme outcomes?,NOT_TESTABLE,Saturation strata are descriptive and cannot establish explanation/causality without a preregistered attribution contrast.,tables/MC_STRATIFIED_DESCRIPTIVE.csv
+N8,Does nonlinear TDS contradict eigenanalysis?,NOT_TESTABLE_MODE_IDENTITY,"Among 60/90 completed trajectories with finite primary matrix-pencil alpha, 56 agree in sign with the linear eigenvalue and 4 disagree; all 4 discrepant fits have zero fitted frequency and 4 have no finite R2 diagnostic, so the critical mode identity is unresolved. 30 records are solver-failed or otherwise excluded from completed-fit sign agreement. Same-model nonlinear phasor TDS; not EMT.",tables/IAS26-080_TDS_RESULTS.csv; derived/tds/IAS26-080_TDS_SUMMARY.json
+N9,Is there a rightmost full-spectrum instability outside 0.3–1.5 Hz while alpha_Omega is stable?,REFUTED,"0 valid case cells in 0 scenarios satisfy alpha_perp>tau, alpha_Omega<-tau, and critical frequency outside [0.3,1.5] Hz",derived/MC_CASES.csv
+N10,Is a substantial share physically infeasible?,NOT_TESTABLE,"Observed 33/1000 (3.3%) physically infeasible IDs; 'substantial' has no preregistered cutoff, so no threshold is invented",tables/MC_EVENT_RATES.csv; derived/SCENARIO_METRICS.csv

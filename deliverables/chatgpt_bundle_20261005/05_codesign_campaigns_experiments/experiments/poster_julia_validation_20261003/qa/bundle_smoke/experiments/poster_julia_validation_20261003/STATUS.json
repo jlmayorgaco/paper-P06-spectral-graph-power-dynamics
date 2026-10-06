@@ -1,0 +1,21 @@
+{
+  "status": "POSTER_AND_ARTICLE_COMPILED",
+  "scientific_status": "THEORY_PLUS_TARGETED_VALIDATION",
+  "article_pages": 34,
+  "poster_pages": 1,
+  "rank_law_cases": 60,
+  "rank_law_identity_pass": true,
+  "fixed_gain_events_passed": 5,
+  "analytical_gain_events_passed": 5,
+  "max_replacement_established": false,
+  "superiority_established": false,
+  "native_latex": "UNAVAILABLE_PLATFORM_DIRECTORIES",
+  "terminal_latex": "SUCCESS_WITH_EXISTING_MIKTEX",
+  "independent_review": "PASSED_WITH_CORRECTIONS_INTEGRATED",
+  "git_branch": "codex/collective-interaction-bounds-20261003",
+  "python": "3.13.9",
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "scipy": "1.16.3",
+  "matplotlib": "3.10.6"
+}

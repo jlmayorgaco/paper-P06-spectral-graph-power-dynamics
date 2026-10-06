@@ -1,0 +1,45 @@
+{
+  "E06_execution_permitted": false,
+  "composition_closure_tolerance": 1e-10,
+  "critical_mode_band_hz": [
+    0.1,
+    30.0
+  ],
+  "eigenpair_normalized_residual_maximum": 1e-10,
+  "freeze_id": "TX3-E05D-NUMERICS-1.0",
+  "git_sha_before_preregistration_commit": "c8763a5bb71042ef3d905df0faef8c43757d6c68",
+  "mode_solver": "dense generalized eig of exact algebraic Schur complement (Ar,M), left and right vectors",
+  "new_paraemt_runs_permitted": false,
+  "pseudo_mode_filter_radius": 1e-05,
+  "source_hashes": {
+    "experiments/tx3/E05D_weak_grid/calibrate_e05d_stress.py": "151e0fb1b081bd1758c2b1107e80c603e7f21df80bce9406f89c1c8446625e4f",
+    "experiments/tx3/E05D_weak_grid/finalize_e05d.py": "24723a54cc803152387e3c48a87e1a8cfd4ca6f10e96af33778546d0ebd6f335",
+    "experiments/tx3/E05D_weak_grid/freeze_e05d_endpoints_modes.py": "cf21c2f63d4dd716fcbd1e7af32b0c2316be086b9a3ea19902406f905f392d99",
+    "experiments/tx3/E05D_weak_grid/package_e05d.py": "fecfe73b3868237655fe96a095ea70b0e02cd7f77033f80569c624d13abacf03",
+    "experiments/tx3/E05D_weak_grid/preregister_e05d.py": "5703758e38f25546a9b642177c2781112819cdffa3199ad6d2c3b341698b3f78",
+    "experiments/tx3/E05D_weak_grid/run_e05d_campaign.py": "2e2b238d88f9071b58a9ac37c13b7c8a9805d5f4d3a39bdb27edfb9a3db1a0ee",
+    "experiments/tx3/E05D_weak_grid/validate_e05d.py": "c4a3e946d24fed738b55e0424bfa2ffdfb4b8b11ad6fd10bb63aed978f844a5a",
+    "experiments/tx3/E05D_weak_grid/weak_grid.py": "d5746de27fab61dddeae8db720a84b137deb7d325615946fb9385a64c8fa0234",
+    "tests/unit/test_e05d_weak_grid.py": "c6dbc5230f3155d0af5cbd0ea5f4c3ce072a7768199bab7a3b2abc69fe10c713"
+  },
+  "stress_and_action_tracking_bmac_minimum": 0.9,
+  "tracking_band_hz": [
+    0.05,
+    45.0
+  ],
+  "valid_statuses": [
+    "SUCCESS",
+    "PF_FAIL",
+    "INIT_FAIL",
+    "EIG_FAIL",
+    "MODE_TRACK_FAIL",
+    "EIGENPAIR_RESIDUAL_FAIL",
+    "NONSMOOTH_REGIME",
+    "LIMITER_ACTIVE",
+    "VOLTAGE_LIMIT",
+    "GENERATOR_LIMIT",
+    "BASELINE_UNSTABLE",
+    "LOWER_ORDER_UNSTABLE",
+    "NUMERICAL_UNRESOLVED"
+  ]
+}

@@ -1,0 +1,160 @@
+\section{Collective curvature and a graph-resolved finite remainder}
+\label{sec:walkbounds}
+\status{EXACT\_IDENTITY}
+Let $d\in\mathbb R^{3n}$ denote ordinary replacement and gain increments.
+Define fixed diagonal selectors $E_a$ such that
+$\Theta(d)=\sum_a d_a E_a$: a replacement selector contains two unit
+entries, whereas a gain selector contains one. In the affine descriptor
+chart, $H(s,d)=\sum_a d_a E_aT(s)$ exactly.
+All delays remain fixed inside $T(s)$.
+
+\begin{theorem}[Collective cluster curvature]
+Under the contour hypotheses of Section~\ref{sec:regional}, the real
+cluster margin has the second-order expansion
+\begin{equation}
+ g_\Gamma(p_0+d)=g_{\Gamma,0}+J_\Gamma d+
+       \tfrac12d^TQ_\Gamma d+\mathcal R_{\Gamma,3}(d),\qquad
+ (Q_\Gamma)_{ab}=
+ \Re\frac{1}{2\pi\ii m_\Gamma}
+       \oint_\Gamma\operatorname{tr}(E_aTE_bT)\,ds .
+ \label{eq:collective-hessian}
+\end{equation}
+The matrix $Q_\Gamma$ is real symmetric. It is not required to be
+positive semidefinite and is not a Laplacian.
+\end{theorem}
+\begin{proof}
+Substitute $H=\sum_a d_aE_aT$ in the convergent series for
+$-\operatorname{tr}\log(I+H)=-\operatorname{tr}H+
+\operatorname{tr}H^2/2-\cdots$ in \eqref{eq:regional-log}.
+Cyclic invariance of the trace gives
+$\operatorname{tr}(E_aTE_bT)=\operatorname{tr}(E_bTE_aT)$.
+Collecting terms proves the formula. Uniform convergence on the
+compact contour permits termwise integration. This differentiates a
+cluster moment, so internal root collisions do not require eigenvector
+derivatives or a simple-root assumption.
+\end{proof}
+For scalar selectors the integrand is $T_{ab}T_{ba}$.
+Thus a mixed change at two sites follows a return path through the
+full dynamical network. Two individually favorable first-order
+changes need not remain favorable when combined. The sign is set by
+the complex contour integral, not by graph adjacency or a positive
+edge weight. Diagonal terms already include the full grid.
+
+\status{PROVED\_REDUCED\_MODEL}
+Suppose a continuous, piecewise bounded nonnegative envelope satisfies
+\[
+ |H(s,d)|\le M(s),\qquad
+ \sup_{s\in\Gamma}\rho(M(s))<1,\qquad d\in\mathcal D_d .
+\]
+A verified positive-vector inequality on every panel is one sufficient
+way to establish this condition. Set
+\[
+ \Psi_k(M)=\sum_{\ell=k}^{\infty}\frac{\operatorname{tr}M^\ell}{\ell}
+ =-\log\det(I-M)-
+     \sum_{\ell=1}^{k-1}\frac{\operatorname{tr}M^\ell}{\ell},
+ \qquad k\ge2 .
+\]
+Here the determinant is positive and the logarithm is real: real
+eigenvalues of $M$ are below one, and nonreal eigenvalues occur in
+conjugate pairs. Despite that spectral representation, every term in
+the defining trace series is nonnegative.
+
+\begin{theorem}[Closed-walk remainder and interaction-omission budget]
+The remainder after degree $k-1$ obeys
+\begin{equation}
+ \boxed{|\mathcal R_{\Gamma,k}(d)|\le
+ \beta_{\Gamma,k}^{\rm walk}:=
+ \frac{1}{2\pi m_\Gamma}
+       \oint_\Gamma\Psi_k(M(s))\,|ds|.}
+ \label{eq:walk-remainder}
+\end{equation}
+Partition channels into physical intervention sites and let
+$H_{\rm b}=\operatorname{blockdiag}(H_{11},\ldots,H_{nn})$.
+The omitted contribution to the cluster-shift formula, obtained by
+replacing $H$ with $H_{\rm b}$, is bounded by
+\begin{equation}
+ \boxed{\beta_\Gamma^{\rm cross}=
+ \frac{1}{2\pi m_\Gamma}\oint_\Gamma
+ \left[\Psi_2(M)-\sum_i\Psi_2(M_{ii})\right]|ds|.}
+ \label{eq:cross-budget}
+\end{equation}
+This is a bound on an algebraic approximation to the contour formula;
+it does not assert that $H_{\rm b}$ is a realizable physical grid.
+\end{theorem}
+\begin{proof}
+The entrywise inequality $|H^\ell|\le M^\ell$ implies
+$|\operatorname{tr}H^\ell|\le\operatorname{tr}M^\ell$.
+Sum the tail of the logarithm series and integrate its absolute value
+to obtain \eqref{eq:walk-remainder}.
+For \eqref{eq:cross-budget}, the terms remaining after block-diagonal
+subtraction are exactly index sequences that visit more than one
+block before returning to their starting channel. Bounding the
+absolute value of each product by the corresponding product of
+entries of $M$ gives
+$\operatorname{tr}M^\ell-\sum_i\operatorname{tr}M_{ii}^\ell$.
+The degree-one difference is zero. Summation proves the result.
+\end{proof}
+
+The earlier scalar bound follows from
+$\operatorname{tr}M^\ell\le r\kappa^\ell$ whenever a common induced
+norm of $M$ is bounded by $\kappa<1$. Retaining the actual walk sums
+can therefore substantially reduce conservatism. A computable,
+slightly looser expression avoids logarithms:
+\[
+ \Psi_k(M)\le\frac1k\operatorname{tr}\!\left[M^k(I-M)^{-1}\right].
+\]
+All inverse, determinant, integration and rounding errors must still
+be enclosed. In particular, a verified evaluation of
+\eqref{eq:cross-budget} requires an \emph{upper} enclosure of the
+total minus \emph{lower} enclosures of the within-site terms;
+subtracting two upper bounds would be invalid. Directly summing
+cross-site walks is an alternative.
+
+\paragraph{Meaning of beyond nodal damping.}
+Equation~\eqref{eq:collective-hessian} identifies the signed,
+frequency-dependent interaction between two replacement or tuning
+actions. Equation~\eqref{eq:cross-budget} quantifies the error made
+by dropping those interactions. These are not nodal damping
+constants: $T$ contains the grid resolvent, SG dynamics, voltage/PQ
+coupling and the exact phases $e^{-s\tau_i}$. They supplement the
+physical torque--speed damping operator derived in the appendices;
+they do not turn a contour return matrix into a physical impedance.
+The closed walks are paths in the intervention-port representation,
+not automatically cycles of transmission lines. No communication
+between PLLs has been introduced.
+
+\subsection{A stronger necessary replacement relaxation}
+Write $d\in[l,u]$ and introduce a real symmetric matrix $Z$.
+Every actual design admits $Z=dd^T$, hence satisfies
+\begin{align}
+ &\begin{bmatrix}1&d^T\\d&Z\end{bmatrix}\succeq0,\\
+ &Z_{ab}\ge l_ad_b+l_bd_a-l_al_b,\qquad
+ Z_{ab}\ge u_ad_b+u_bd_a-u_au_b,\\
+ &Z_{ab}\le u_ad_b+l_bd_a-u_al_b,\qquad
+ Z_{ab}\le l_ad_b+u_bd_a-l_au_b .
+\end{align}
+Retain the diagonal case of these inequalities as well.
+Impose, for each verified cluster,
+\begin{equation}
+ g_{\Gamma,0}+J_\Gamma d+
+       \tfrac12\langle Q_\Gamma,Z\rangle
+       \le\beta_{\Gamma,3}^{\rm walk}.
+ \label{eq:quadratic-outer}
+\end{equation}
+Maximizing $(P^0)^T\delta\rho$ over this semidefinite relaxation gives
+an optimistic regional replacement upper bound. Dropping
+$Z=dd^T$ enlarges the feasible set, which is the required direction;
+the returned gains need not be physically feasible.
+Neither a primal floating-point optimum nor a tiny solver residual
+is a certified upper bound. A feasible dual with enclosed errors,
+or another verified objective bound, is required for that label.
+
+Certified coefficient errors add
+$e_0+\sum_a e_{J,a}r_a+
+\tfrac12\sum_{a,b}e_{Q,ab}r_ar_b$ to the right-hand side,
+where $r_a=\max(|l_a|,|u_a|)$. The lift may sharpen the linear
+relaxation, but no universal dominance follows if different
+remainders or additional relaxations are used. Both outer problems
+can be intersected because each contains all secure designs.
+This strengthening has been derived and identity-tested; the
+IEEE--39 semidefinite upper-bound problem has not been solved.

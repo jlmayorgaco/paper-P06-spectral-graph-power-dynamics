@@ -1,0 +1,10 @@
+{
+  "source_reference_sha256": "79226d8115158d8ba99e2a00b3fbdd2ad7274e08afff2ce27930794435ac2d83",
+  "source_model_sha256": "d2cc3b542cec12662d589689df7d807e029de5475a8217678275d5c91a840953",
+  "physical_reference_sha256": "5e1ca06ca97dd35245b0052d9f50549a9dcd2ba713bf29e8dfd8da99c6f9d50f",
+  "changes": [
+    "DC energy balance uses positive Pdc supply minus converter-to-AC power.",
+    "Both DC PI errors use measured voltage minus reference.",
+    "No shared core source or installed library was modified."
+  ]
+}

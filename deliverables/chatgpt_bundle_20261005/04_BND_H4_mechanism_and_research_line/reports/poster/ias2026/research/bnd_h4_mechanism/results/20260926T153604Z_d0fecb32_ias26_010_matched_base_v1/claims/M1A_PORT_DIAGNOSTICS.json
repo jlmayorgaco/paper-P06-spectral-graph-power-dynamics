@@ -1,0 +1,22 @@
+{
+  "candidate_port_max_relative_residual": 1.3083705992724766e-11,
+  "base_delta_max_relative_residual": 7.66822908440606e-18,
+  "base_delta_high_precision_relative_residual": 2.7201720726061944e-18,
+  "largest_load_block_mismatch": {
+    "bus": 3,
+    "absolute_residual": 0.0,
+    "relative_residual": 0.0
+  },
+  "action_space_relative_backward_error": 2.340724075262523e-11,
+  "action_space_lifted_relative_backward_error": 1.363399305353116e-13,
+  "action_space_det_identity_residual": 4.59854310426928e-16,
+  "modal_roundtrip_relative_error": 3.4403145719119106e-16,
+  "modal_orthogonality_error": 1.1594360297820934e-15,
+  "scalar_h_abs": 7.862140057515609e-11,
+  "scalar_h_relative": 2.3407240816848483e-11,
+  "scalar_schur_root": [
+    0.1270064680014381,
+    3.9098984766512177
+  ],
+  "scalar_schur_root_residual": 2.449604234915217e-16
+}

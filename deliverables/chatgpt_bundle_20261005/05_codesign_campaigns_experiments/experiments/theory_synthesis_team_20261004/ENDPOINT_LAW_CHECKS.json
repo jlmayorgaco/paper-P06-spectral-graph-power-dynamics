@@ -1,0 +1,48 @@
+{
+  "status": "PROVED_REDUCED_MODEL / NUMERICALLY_VALIDATED_ALGEBRA_ONLY",
+  "dynamic_simulations_executed": 0,
+  "model": "Dimensionless nonlinear lossless swing; not IEEE-39 or a PLL realization",
+  "example": {
+    "M_diagonal": [
+      "41/80",
+      "41/80"
+    ],
+    "D_diagonal": [
+      3,
+      1
+    ],
+    "line_sine_coefficient": 1,
+    "step": [
+      1,
+      1
+    ],
+    "final_frequency": 0.5,
+    "final_angle_difference": "-pi/6",
+    "secant_mismatch": "pi/3",
+    "signed_frequency_area_exact": "41/320 - pi/24",
+    "signed_frequency_area_numeric": -0.0027746938995747185,
+    "signed_frequency_area_linearized": "1/320",
+    "net_opposing_energy_strict_lower_bound": "-41/80 + pi/6",
+    "net_opposing_energy_lower_bound_numeric": 0.011098775598298874,
+    "initial_rotating_frame_energy": "41/320",
+    "lowest_cohesive_boundary_energy": "1 - pi/4",
+    "energy_barrier_margin": 0.08647683660255169,
+    "claim": "Stable convergent baseline with unavoidable endpoint overshoot; the linear signed-area test misses this case."
+  },
+  "six_node_static_check": {
+    "secant_identity_residual": 4.577566798522237e-16,
+    "E_pseudoinverse": 25.907727720210598,
+    "E_flow": 25.9077277202106,
+    "E_gsp": 25.9077277202106,
+    "E_incremental_divided_by_Omega_squared": 25.907727720210595,
+    "max_cut_lower_bound": 23.342001517438646,
+    "positive_damping_min": 11.29326520261147,
+    "note": "Endpoint algebra only; no assertion of dynamical convergence for this constructed pair."
+  },
+  "versions": {
+    "python": "3.13.9",
+    "numpy": "2.3.5",
+    "sympy": "1.14.0"
+  },
+  "script_sha256": "ea762e6f7dc4841e4994666b0bf49cff00dcdf290749f199385d6422d248bc34"
+}

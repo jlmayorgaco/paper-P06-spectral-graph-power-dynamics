@@ -1,0 +1,5 @@
+bus,rho_star,P0_MW,MW_star,Kp_star,Ki_star,pll_scale,rightmost_pole_real,rightmost_pole_imag,alpha,required_margin,non_gauge_mode_count,total_finite_mode_count,all_modes_pass,active_constraint,matrix_source,omega_star,boundary_real,boundary_imag
+33,1.0,632.0,632.0,31.41592653589793,246.74011002723395,1.0,-0.09884700664631951,-0.43026220070517623,-0.09884700664631951,0.05,110,111,true,rho_upper_bound,reports/experiment_C/matrices/C33_regenerated_Ared.csv,0.43026220070517623,,
+30,1.0,250.0,250.0,31.41592653589793,246.74011002723395,1.0,-0.10658545410744248,-0.4677852467717655,-0.10658545410744248,0.05,110,111,true,rho_upper_bound,reports/experiment_C/matrices/C30_Ared.csv,0.4677852467717655,,
+35,1.0,650.0,650.0,31.41592653589793,246.74011002723395,1.0,-0.09864801168090992,-0.4298290581668989,-0.09864801168090992,0.05,110,111,true,rho_upper_bound,reports/experiment_C/matrices/C35_Ared.csv,0.4298290581668989,,
+37,1.0,540.0,540.0,31.41592653589793,246.74011002723395,1.0,-0.13790490492384927,0.0,-0.13790490492384927,0.05,110,111,true,rho_upper_bound,reports/experiment_C/matrices/C37_Ared.csv,0.0,,

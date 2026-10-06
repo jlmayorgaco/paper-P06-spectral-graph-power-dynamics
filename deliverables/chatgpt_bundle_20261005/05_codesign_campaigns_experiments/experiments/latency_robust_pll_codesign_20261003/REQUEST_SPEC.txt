@@ -1,0 +1,840 @@
+# FINAL DECISIVE EXPERIMENT
+# LATENCY-ROBUST PLL CO-DESIGN IN THE EXACT LOW-RANK ACTION SPACE
+
+You are continuing the IEEE-39 / Beyond Nodal Damping research campaign.
+
+Do NOT restart previous experiments.
+
+Do NOT reopen the rejected hypothesis that SG→GFL replacement itself materially reduces latency margin in the currently tested corridor.
+
+The previous experiment established the following empirical facts that must first be reproduced:
+
+1. At fixed/nominal PLL gains, changing replacement from approximately
+
+\[
+87.5\%\rightarrow88.455\%
+\]
+
+changed the critical latency by only approximately
+
+\[
++0.0034\ {\rm ms},
+\]
+
+i.e. essentially no material replacement-only effect in that corridor.
+
+2. At the SAME approximately 88.455% GFL replacement, changing only the PLL tuning changed the critical latency from approximately
+
+\[
+37.387\ {\rm ms}
+\]
+
+to
+
+\[
+39.384\ {\rm ms}.
+\]
+
+3. The corresponding limiting eigenvectors had approximately
+
+\[
+{\rm MAC}\approx0.0018,
+\]
+
+indicating that the tuning change selected a fundamentally different limiting modal family.
+
+4. A fast delay-sensitive family appears around approximately
+
+\[
+5.2-5.7\ {\rm Hz}
+\]
+
+near the latency boundary.
+
+5. The complete design action enters the full characteristic model through an exact low-rank action space with dimension approximately
+
+\[
+r\le30
+\]
+
+and reconstruction error near machine precision.
+
+These are references only.
+
+Reproduce them before building new claims.
+
+---
+
+# 1. PRIMARY RESEARCH QUESTION
+
+The new question is:
+
+> For a fixed physically admissible SG→GFL replacement level, how should all GFL PLL gains be tuned to maximize tolerance to heterogeneous or uniform latency without violating the required zero-delay operating and dynamic constraints?
+
+Define:
+
+\[
+\boxed{
+\tau_{\rm crit}^{\star}(\rho)
+=
+\max_{K_p,K_i\in\mathcal K}
+\tau_{\rm crit}(\rho,K_p,K_i)
+}
+\]
+
+where:
+
+\[
+\tau_{\rm crit}
+=
+\inf\{
+\tau:
+\alpha_{\rm DDE}(\rho,K_p,K_i,\tau)
+=
+-\sigma_{\rm req}
+\}.
+\]
+
+The primary experiment initially fixes:
+
+\[
+\boxed{
+\rho=\rho_{\rm H}
+}
+\]
+
+to the currently best fully validated zero-delay replacement design near 88.455%.
+
+Only after the tuning problem is solved at this replacement level may additional \(\rho\) values be tested.
+
+---
+
+# 2. PROPOSED CONTRIBUTION
+
+The target contribution is NOT:
+
+```text
+more GFL always reduces latency margin
+```
+
+because the previous experiment did not support that claim.
+
+The target contribution is instead:
+
+\[
+\boxed{
+\text{nominal PLL tuning}
+\neq
+\text{latency-robust PLL tuning}
+}
+\]
+
+and potentially:
+
+\[
+\boxed{
+\text{PLL tuning selects which delayed modal family becomes limiting.}
+}
+\]
+
+The desired mathematical chain is:
+
+\[
+\boxed{
+\text{exact low-rank action space}
+\rightarrow
+\frac{\partial\tau_{\rm crit}}{\partial K}
+\rightarrow
+K^\star
+\rightarrow
+\tau_{\rm crit}^\star
+\rightarrow
+\text{modal-family switching}.
+}
+\]
+
+---
+
+# 3. NEW EXPERIMENT DIRECTORY
+
+Create:
+
+```text
+experiments/latency_robust_pll_codesign_20261003/
+```
+
+Do not modify existing experiment outputs.
+
+Create:
+
+```text
+README.md
+STATUS.md
+PROVENANCE.md
+EXPERIMENT_MANIFEST.json
+THEORY_LATENCY_ROBUST_CODESIGN.md
+POSTER_CLAIM_LEDGER.md
+```
+
+Record:
+
+- git HEAD;
+- dirty state;
+- model hashes;
+- Julia/Python versions;
+- gain bounds;
+- spectral margin;
+- replacement vector;
+- delay definitions;
+- numerical precision;
+- exact event set.
+
+Do not commit or push.
+
+---
+
+# 4. STAGE L0 — REPRODUCE THE TWO KEY DESIGNS
+
+At the SAME replacement vector near 88.455%, reproduce:
+
+## DESIGN Z
+
+the gains previously tuned primarily for the zero-delay design.
+
+Expected reference latency margin:
+
+\[
+\tau_{\rm crit}\approx37.387\ {\rm ms}.
+\]
+
+## DESIGN N
+
+the alternative / nominal gains at the same replacement.
+
+Expected reference:
+
+\[
+\tau_{\rm crit}\approx39.384\ {\rm ms}.
+\]
+
+Recompute both.
+
+Do not copy old values.
+
+For each design record:
+
+```text
+rho_i
+Kp_i
+Ki_i
+alpha(tau=0)
+critical_zero_delay_frequency
+tau_crit
+critical_delay_frequency
+critical_root
+margin_violating_root_count
+critical_family_id
+zero_delay_event_metrics
+```
+
+Output:
+
+```text
+L0_REPRODUCTION.csv
+```
+
+GATE L0 passes only if the approximately 2 ms difference is reproduced.
+
+If not:
+
+```text
+STATUS = BLOCKED_REPRODUCTION
+```
+
+Stop.
+
+---
+
+# 5. EXACT LOW-RANK ACTION SPACE
+
+Reproduce:
+
+\[
+\boxed{
+T(s;K,\rho,\tau)
+=
+T_{\rm ref}(s,\rho,\tau)
++
+U\Theta(K,\rho,s,\tau)V^H
+}
+\]
+
+and:
+
+\[
+\boxed{
+\det T
+=
+\det T_{\rm ref}
+\det
+\left[
+I_r+\Theta G_r
+\right],
+\qquad
+G_r=V^HT_{\rm ref}^{-1}U.
+}
+\]
+
+Verify the exact compressed rank.
+
+Do NOT hard-code 30.
+
+Report:
+
+\[
+r_{\rm exact}.
+\]
+
+Test reconstruction at at least:
+
+- Design Z;
+- Design N;
+- 20 random admissible gain vectors;
+- several points close to delay instability.
+
+Require numerical reconstruction near machine precision.
+
+Output:
+
+```text
+L1_ACTION_SPACE_VALIDATION.csv
+```
+
+---
+
+# 6. DEFINE TAU_CRIT RELIABLY
+
+For a fixed design \(K\), define:
+
+\[
+\boxed{
+\tau_{\rm crit}(K)
+}
+\]
+
+as the first delay at which:
+
+\[
+\max_m \Re \lambda_m
+=
+-\sigma_{\rm req}.
+\]
+
+Allow modal-family switching.
+
+Do NOT follow only one preselected eigenvalue.
+
+Use the already validated DDE root-count / root-discovery infrastructure.
+
+For headline results require classification:
+
+```text
+SAFE
+UNSAFE
+```
+
+not INDETERMINATE.
+
+Locate:
+
+\[
+\tau_{\rm crit}
+\]
+
+to at least:
+
+\[
+0.05\ {\rm ms}
+\]
+
+and preferably:
+
+\[
+0.01\ {\rm ms}.
+\]
+
+---
+
+# 7. DERIVE THE ANALYTICAL LATENCY-MARGIN GRADIENT
+
+At an active boundary:
+
+\[
+\alpha(K,\tau_{\rm crit})=-\sigma_{\rm req}.
+\]
+
+Differentiate:
+
+\[
+\nabla_K\alpha^T dK
++
+\alpha_\tau d\tau_{\rm crit}
+=0.
+\]
+
+Therefore:
+
+\[
+\boxed{
+\nabla_K\tau_{\rm crit}
+=
+-
+\frac{
+\nabla_K\alpha
+}{
+\alpha_\tau
+}.
+}
+\]
+
+Here:
+
+\[
+K=
+[
+K_{p,1},K_{i,1},
+\ldots,
+K_{p,n},K_{i,n}
+]^T.
+\]
+
+Compute:
+
+\[
+\frac{\partial\lambda}{\partial K_j}
+=
+-
+\frac{
+w^HT_{K_j}v
+}{
+w^HT_sv
+}
+\]
+
+and:
+
+\[
+\frac{\partial\lambda}{\partial\tau}
+=
+-
+\frac{
+w^HT_\tau v
+}{
+w^HT_sv
+}.
+\]
+
+Then:
+
+\[
+\alpha_{K_j}
+=
+\Re
+\left(
+\frac{\partial\lambda}{\partial K_j}
+\right),
+\]
+
+\[
+\alpha_\tau
+=
+\Re
+\left(
+\frac{\partial\lambda}{\partial\tau}
+\right).
+\]
+
+Validate:
+
+\[
+\nabla_K\tau_{\rm crit}
+\]
+
+against finite perturbations of actual critical latency.
+
+Test at least:
+
+- Design Z;
+- Design N;
+- one intermediate design;
+- one design close to a modal-family switch.
+
+Output:
+
+```text
+L2_TAU_MARGIN_GRADIENT_VALIDATION.csv
+```
+
+Target:
+
+```text
+sign agreement = 100% for material derivatives
+median relative error <= 5%
+```
+
+Report failures explicitly.
+
+---
+
+# 8. ANALYTICAL OPTIMAL LOCAL RETUNING
+
+At a current design \(K_k\), calculate:
+
+\[
+c_k
+=
+\nabla_K\tau_{\rm crit}.
+\]
+
+For an ellipsoidal trust region:
+
+\[
+\Delta K^TR_K\Delta K\le\kappa^2,
+\]
+
+the analytical best first-order step is:
+
+\[
+\boxed{
+\Delta K^\star
+=
+\kappa
+\frac{
+R_K^{-1}c_k
+}{
+\sqrt{
+c_k^TR_K^{-1}c_k
+}
+}.
+}
+\]
+
+For box-only constraints:
+
+\[
+K_{\min}\le K+\Delta K\le K_{\max},
+\]
+
+use the exact support-function direction:
+
+\[
+\boxed{
+\Delta K_j^\star
+=
+\begin{cases}
+K_j^{\max}-K_j,&c_j>0,\\
+K_j^{\min}-K_j,&c_j<0.
+\end{cases}
+}
+\]
+
+subject to a trust-region / line-search scaling.
+
+This is the analytical predictor.
+
+---
+
+# 9. IMPORTANT: ZERO-DELAY PERFORMANCE CONSTRAINT
+
+We are NOT allowed to maximize latency margin by destroying nominal dynamics.
+
+Impose:
+
+\[
+\boxed{
+\alpha_0(K)
+\le
+-\sigma_0
+}
+\]
+
+where:
+
+\[
+\alpha_0
+=
+\max\Re\lambda(\tau=0).
+\]
+
+Also preserve all declared zero-delay physical constraints:
+
+- all five frozen nonlinear events;
+- maximum frequency deviation;
+- RoCoF;
+- SG actuator limits;
+- gain bounds;
+- initialization/equilibrium guards.
+
+Thus the real optimization is:
+
+\[
+\boxed{
+\max_K
+\tau_{\rm crit}(K)
+}
+\]
+
+subject to:
+
+\[
+\alpha_0(K)\le-\sigma_0
+\]
+
+and the existing physical constraints.
+
+---
+
+# 10. ACTIVE-SET ANALYTICAL SUBPROBLEM
+
+Locally write:
+
+\[
+\tau_{\rm crit}
+\approx
+\tau_k+c_\tau^T\Delta K.
+\]
+
+Linearize active nominal constraints:
+
+\[
+g_j(K_k)
++
+\nabla_Kg_j^T\Delta K
+\le0.
+\]
+
+Solve:
+
+\[
+\boxed{
+\max_{\Delta K}
+c_\tau^T\Delta K
+}
+\]
+
+subject to:
+
+\[
+J_g\Delta K\le-g
+\]
+
+\[
+K_{\min}\le K+\Delta K\le K_{\max}
+\]
+
+plus trust region.
+
+This is an LP/QP.
+
+Use the exact analytical unconstrained direction first, then active-set correction.
+
+Record both.
+
+---
+
+# 11. EXACT CORRECTOR
+
+After every analytical step:
+
+1. rebuild full equilibrium if required;
+2. rebuild exact low-rank characteristic operator;
+3. recompute all margin-relevant roots;
+4. recompute:
+
+\[
+\tau_{\rm crit};
+\]
+
+5. run zero-delay constraints/events;
+6. accept/reject the step.
+
+Do NOT trust the first-order prediction by itself.
+
+Use:
+
+\[
+\boxed{
+\text{analytical predictor}
+\rightarrow
+\text{exact spectral corrector}.
+}
+\]
+
+---
+
+# 12. OPTIMIZATION LOOP
+
+Initialize independently from BOTH:
+
+```text
+Design Z
+Design N
+```
+
+and optionally several random admissible starts.
+
+At iteration \(k\):
+
+1. compute exact \(\tau_{\rm crit}\);
+2. identify active modal family;
+3. compute \(\nabla_K\tau_{\rm crit}\);
+4. compute active nominal constraints;
+5. solve analytical LP/QP update;
+6. line search;
+7. exact corrector;
+8. accept if feasible and \(\tau_{\rm crit}\) improves;
+9. otherwise shrink trust region.
+
+Stop when:
+
+\[
+\Delta\tau_{\rm crit}<0.01\ {\rm ms}
+\]
+
+for several accepted iterations or the active-set KKT residual is below tolerance.
+
+Output:
+
+```text
+L3_OPTIMIZATION_TRACE.csv
+```
+
+Columns:
+
+```text
+iteration
+start_id
+tau_crit_ms
+alpha_zero_delay
+critical_delay_frequency_hz
+critical_family_id
+KKT_residual
+max_gain_fraction
+worst_zero_delay_event
+max_frequency_deviation
+max_RoCoF
+accepted
+```
+
+---
+
+# 13. MULTIPLE CRITICAL ROOTS
+
+If several roots simultaneously approach the margin, do NOT optimize only one.
+
+Let:
+
+\[
+g_m(K,\tau)
+=
+\Re\lambda_m+\sigma_{\rm req}.
+\]
+
+Linearize:
+
+\[
+g+
+J_K\Delta K
++
+g_\tau\Delta\tau
+\le0.
+\]
+
+Then solve:
+
+\[
+\boxed{
+\max_{\Delta K,\Delta\tau}
+\Delta\tau
+}
+\]
+
+subject to:
+
+\[
+g+J_K\Delta K+g_\tau\Delta\tau\le0
+\]
+
+plus nominal constraints, gain bounds and trust region.
+
+This is the mandatory rescue when multimode activity occurs.
+
+---
+
+# 14. MODAL-FAMILY SWITCHING IS A PRIMARY RESULT
+
+At every optimization iteration compute modal identity.
+
+Use:
+
+- right-eigenvector MAC;
+- left-eigenvector overlap;
+- participation-factor similarity;
+- frequency continuity;
+- continuation history.
+
+Assign family IDs.
+
+Generate a map:
+
+```text
+gain vector -> limiting family
+```
+
+Output:
+
+```text
+L4_MODAL_FAMILY_MAP.csv
+```
+
+The key question:
+
+\[
+\boxed{
+\text{Does improving latency margin require switching which family is limiting?}
+}
+\]
+
+or:
+
+\[
+\boxed{
+\text{Does the optimizer balance multiple competing delayed families?}
+}
+\]
+
+---
+
+# 15. FIND THE TRUE BEST LATENCY-ROBUST TUNING
+
+Return the best fully validated design:
+
+\[
+\boxed{
+K_p^\star,\quad K_i^\star
+}
+\]
+
+and:
+
+\[
+\boxed{
+\tau_{\rm crit}^\star.
+}
+\]
+
+Compare against:
+
+### Zero-delay-tuned design
+
+\[

@@ -1,0 +1,134 @@
+{
+  "source": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\results\\TX4_V9_GLOBAL_VS_EM_TRUTH.csv",
+  "source_sha256": "5ffb97ba332486bfad5678a930280e4e58b4b47b71531acc5c4ce8730df52015",
+  "policy": "(g,k,t,h)=(0.03625,1.425,1.5,1), frozen TX4 P4",
+  "status": "NUMERICALLY_VALIDATED",
+  "scope": "Exact combinatorics of existing full-spectrum numerical labels; no switching/transient certification.",
+  "nodes": [
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38
+  ],
+  "portfolio_count": 512,
+  "stable_portfolio_count": 332,
+  "stable_and_reachable_count": 332,
+  "stable_but_unreachable_count": 0,
+  "stable_all_orders_count": 330,
+  "stable_order_dependent_count": 2,
+  "unstable_to_stable_one_addition_count": 2,
+  "smallest_absolute_alpha": 0.0025024315103997948,
+  "order_dependent_examples": [
+    {
+      "portfolio": "30+32+33+34+35",
+      "cardinality": 5,
+      "alpha_global": "-0.22120029078082973",
+      "global_status": "STABLE",
+      "stable_equilibrium_order_count": 96,
+      "all_order_count": 120,
+      "reachable_through_stable_equilibria": true,
+      "all_equilibrium_orders_stable": false,
+      "one_stable_equilibrium_order": "35+34+33+32+30"
+    },
+    {
+      "portfolio": "30+33+34+35+37",
+      "cardinality": 5,
+      "alpha_global": "-0.20498278428294325",
+      "global_status": "STABLE",
+      "stable_equilibrium_order_count": 96,
+      "all_order_count": 120,
+      "reachable_through_stable_equilibria": true,
+      "all_equilibrium_orders_stable": false,
+      "one_stable_equilibrium_order": "37+35+34+33+30"
+    }
+  ],
+  "restoration_examples": [
+    {
+      "unstable_portfolio": "30+32+33+35",
+      "added_GFL_bus": 34,
+      "stable_portfolio": "30+32+33+34+35",
+      "alpha_before": 0.02209736424873665,
+      "alpha_after": -0.22120029078082973
+    },
+    {
+      "unstable_portfolio": "30+33+35+37",
+      "added_GFL_bus": 34,
+      "stable_portfolio": "30+33+34+35+37",
+      "alpha_before": 0.1270064671440848,
+      "alpha_after": -0.20498278428294325
+    }
+  ],
+  "h4_same_final_portfolio_two_orders": {
+    "stable_equilibria_order": [
+      {
+        "portfolio": "BASE",
+        "alpha_global": -0.1441317795065167,
+        "global_status": "STABLE"
+      },
+      {
+        "portfolio": "34",
+        "alpha_global": -0.14148314227141467,
+        "global_status": "STABLE"
+      },
+      {
+        "portfolio": "30+34",
+        "alpha_global": -0.14322575905122215,
+        "global_status": "STABLE"
+      },
+      {
+        "portfolio": "30+33+34",
+        "alpha_global": -0.17138591944669346,
+        "global_status": "STABLE"
+      },
+      {
+        "portfolio": "30+33+34+35",
+        "alpha_global": -0.22133085133716324,
+        "global_status": "STABLE"
+      },
+      {
+        "portfolio": "30+33+34+35+37",
+        "alpha_global": -0.20498278428294325,
+        "global_status": "STABLE"
+      }
+    ],
+    "unstable_intermediate_order": [
+      {
+        "portfolio": "BASE",
+        "alpha_global": -0.1441317795065167,
+        "global_status": "STABLE"
+      },
+      {
+        "portfolio": "30",
+        "alpha_global": -0.15424459288482723,
+        "global_status": "STABLE"
+      },
+      {
+        "portfolio": "30+33",
+        "alpha_global": -0.18206711955522514,
+        "global_status": "STABLE"
+      },
+      {
+        "portfolio": "30+33+35",
+        "alpha_global": -0.20468769022510608,
+        "global_status": "STABLE"
+      },
+      {
+        "portfolio": "30+33+35+37",
+        "alpha_global": 0.1270064671440848,
+        "global_status": "UNSTABLE"
+      },
+      {
+        "portfolio": "30+33+34+35+37",
+        "alpha_global": -0.20498278428294325,
+        "global_status": "STABLE"
+      }
+    ],
+    "interpretation": "Stationary spectral labels only; transitions between equilibria are not simulated."
+  },
+  "verification": "Dynamic programming counts agree with independent direct permutation enumeration for both order-dependent targets."
+}

@@ -1,0 +1,21 @@
+{
+  "status": "ALGEBRAIC_IDENTITIES_AUDITED_NOT_A_POWER_SYSTEM_CERTIFICATE",
+  "seed": 20261001,
+  "random_graphs": 120,
+  "schur_sign_checks": 642,
+  "negative_semidefinite_blocks": 582,
+  "blocks_failing_condition": 60,
+  "max_absolute_errors": {
+    "port_assembly": 1.7763568394002505e-15,
+    "spectral_blocks": 7.105427357601002e-15,
+    "spectral_eigenvalues": 3.552713678800501e-15,
+    "ellipsoid_attainment": 1.7763568394002505e-15,
+    "ellipsoid_boundary": 1.3322676295501878e-15,
+    "permutation": 1.7763568394002505e-15,
+    "spectral_endpoint_excess": 0.0
+  },
+  "theory_sha256": "2fa9cc6ef240535042d196e48e01e72dffe515c3ee37d4f1bc30a22fcfe5415e",
+  "script_sha256": "5e8a2d56f9698c18085a8f961cc871ade43aa9d2bef618fa771e3e5d62b4bc1d",
+  "numpy_version": "2.3.5",
+  "scope": "Floating-point algebra checks; the conditional proof is in the theory document. This audit does not certify SG/GFL dynamics; the later coupled result has its own verifier and restricted scope."
+}

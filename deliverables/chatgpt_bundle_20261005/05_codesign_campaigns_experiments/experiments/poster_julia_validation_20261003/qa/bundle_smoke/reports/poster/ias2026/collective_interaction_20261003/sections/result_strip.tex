@@ -1,0 +1,29 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\leavevmode{\setlength{\fboxsep}{0pt}%
+\colorbox{IASDeepGreen}{\begin{minipage}[c][\PosterStripHeight][c]{\PosterGridWidth}
+\begin{minipage}[c]{215.6mm}\MetricCell{\RankChecks/ \RankChecks}{finite-delay identities}{two designs, three frequencies}\end{minipage}%
+\begin{minipage}[c]{2mm}\textcolor{IASPaleGreen}{\rule{.7pt}{30mm}}\end{minipage}%
+\begin{minipage}[c]{215.6mm}\MetricCell{$\WalkMin$--$\WalkMax\times$}{tighter remainder}{three pointwise comparisons}\end{minipage}%
+\begin{minipage}[c]{2mm}\textcolor{IASPaleGreen}{\rule{.7pt}{30mm}}\end{minipage}%
+\begin{minipage}[c]{215.6mm}\MetricCell{5/5}{nonlinear events pass}{Julia method of steps}\end{minipage}%
+\begin{minipage}[c]{2mm}\textcolor{IASPaleGreen}{\rule{.7pt}{30mm}}\end{minipage}%
+\begin{minipage}[c]{215.6mm}\MetricCell{\PanelCount}{verified contour panels}{one cluster over a full box}\end{minipage}
+\end{minipage}}}\par%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewFullPageWidth}
+  \def\PosterPageHeight{\PosterPreviewStripPageHeight}
+  \def\PosterPreviewLeft{\PosterOuterMargin}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

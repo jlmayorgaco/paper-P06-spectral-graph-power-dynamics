@@ -1,0 +1,77 @@
+
+% BEGIN GENERATED ALL-PLL VALIDATION
+\section{Targeted validation of the all-PLL construction}\label{sec:mapvalidation}
+\status{NUMERICALLY\_VALIDATED}
+This subsequent experiment tests Eq.~\eqref{eq:allgain} with one
+preregistered replacement step. It is not an optimization campaign.
+All ten fractions change from $\rho_i=0.875$ to $0.876$ with
+$\tau_i=40$ ms fixed. The target is the leading PLL-family pole
+in the frozen 2--12 Hz catalog, not the globally rightmost pole:
+\[
+ \lambda_\star=-0.80156077+\ii\,30.85047169\ \mathrm{s}^{-1}.
+\]
+Its PLL-angle pattern is held fixed and all twenty gains are calculated
+from the full-grid return. The trial design and modal predictions
+were hashed before independent full-model validation.
+
+Known gains were reconstructed for all eleven nonreal catalog roots,
+with maximum relative error $7.266\times10^{-8}$. Nine vector derivative tests,
+using three modes and buses 30, 34 and 38, had maximum relative error
+$2.629\times10^{-5}$ and maximum absolute infinity error $2.965\times10^{-1}$.
+The largest hidden-block condition number was $1.637\times10^{9}$;
+these residuals establish numerical consistency, not physical accuracy
+to all the reported digits.
+Direct automatic differentiation of the nonlinear equations gave
+maximum relative Jacobian discrepancy $3.682\times10^{-18}$ and maximum equilibrium
+infinity residual $2.807\times10^{-9}$.
+
+The independent delayed full-model calculation preserved the target
+pole within $1.511\times10^{-13}\ \mathrm{s}^{-1}$ with PLL-pattern MAC $1.000000000000$.
+For the other modes, the largest relative finite-step prediction error
+was 2.791\%; the preregistered 1\% criterion concerns derivative
+validation, not a finite-step Taylor remainder bound.
+A numerical argument-principle count, cross-checked against determinant
+phase and closed by a tail bound after rotational deflation, found no
+roots with $\Re s>-0.05\ \mathrm{s}^{-1}$ for the baseline, retuned
+design, or fixed-gain comparator. Exact exponentials were used;
+floating-point contour counts are not interval certificates.
+
+The retuned design passed all five frozen nonlinear events, simulated
+with the canonical method of steps (Rodas5P, tolerance $10^{-9}$,
+maximum step $0.01$ s, horizon $60$ s). The 39-bus phase metrics use
+$0.5$ s windows. Frequency and RoCoF limits are $0.5$ Hz and
+$0.5$ Hz/s; normalized SG actuator slack must exceed $0.002$.
+\begin{center}\small
+\begin{tabular}{rrrrr}\toprule
+Bus & Load change [MW] & $|\Delta f|$ [Hz] & RoCoF [Hz/s] & SG slack\\
+\midrule
+8 & -100 & 0.465412 & 0.138451 & 0.096623\\
+16 & +100 & 0.447157 & 0.126491 & 0.006341\\
+16 & -100 & 0.474624 & 0.129044 & 0.093434\\
+29 & +100 & 0.431226 & 0.128104 & 0.011190\\
+29 & -100 & 0.444619 & 0.200774 & 0.102894\\
+\bottomrule\end{tabular}
+\end{center}
+All voltage samples remained within $[0.972062,1.078775]$ pu
+against the declared $[0.9,1.1]$ limits.
+The candidate contains 4732.818715 MW of GFL (87.600\%) and
+669.942375 MW of retained SG: a prescribed increase of 5.402761 MW.
+The full vectors are in
+\path{experiments/all_pll_gain_map_validation_20261003/designs/analytic.toml}.
+
+\paragraph{Interpretation and negative evidence.}
+This closes the numerical chain from an analytical gain construction
+to a feasible full-model candidate for the declared events.
+It does not establish a maximum or demonstrate that retuning is needed
+for this step: the same replacement with unchanged gains also passes
+the spectral margin. Its nonlinear events were not run, so nonlinear
+superiority or equivalence is undetermined.
+Two frozen eigenpairs/patterns produce nonzero assignment residuals
+after replacement, but this does not prove that local PLLs cannot
+stabilize the network when their modal patterns are allowed to change.
+No heterogeneous-delay, neighboring-feedback, GSP-compression,
+convergence, or global-optimality claim follows from this trial.
+Data, prediction hashes, code, trajectories and claim limits are in
+\path{experiments/all_pll_gain_map_validation_20261003/}.
+% END GENERATED ALL-PLL VALIDATION
+

@@ -1,0 +1,190 @@
+state_index,reduced_state_index,state_name,component,bus,differential_or_algebraic,retained_or_condensed,reason
+1,,"VIndex(1, :busbar₊u_r)",busbar,1,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+2,,"VIndex(1, :busbar₊u_i)",busbar,1,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+3,,"VIndex(2, :busbar₊u_r)",busbar,2,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+4,,"VIndex(2, :busbar₊u_i)",busbar,2,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+5,,"VIndex(5, :busbar₊u_r)",busbar,5,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+6,,"VIndex(5, :busbar₊u_i)",busbar,5,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+7,,"VIndex(6, :busbar₊u_r)",busbar,6,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+8,,"VIndex(6, :busbar₊u_i)",busbar,6,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+9,,"VIndex(9, :busbar₊u_r)",busbar,9,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+10,,"VIndex(9, :busbar₊u_i)",busbar,9,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+11,,"VIndex(10, :busbar₊u_r)",busbar,10,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+12,,"VIndex(10, :busbar₊u_i)",busbar,10,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+13,,"VIndex(11, :busbar₊u_r)",busbar,11,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+14,,"VIndex(11, :busbar₊u_i)",busbar,11,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+15,,"VIndex(13, :busbar₊u_r)",busbar,13,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+16,,"VIndex(13, :busbar₊u_i)",busbar,13,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+17,,"VIndex(14, :busbar₊u_r)",busbar,14,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+18,,"VIndex(14, :busbar₊u_i)",busbar,14,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+19,,"VIndex(17, :busbar₊u_r)",busbar,17,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+20,,"VIndex(17, :busbar₊u_i)",busbar,17,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+21,,"VIndex(19, :busbar₊u_r)",busbar,19,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+22,,"VIndex(19, :busbar₊u_i)",busbar,19,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+23,,"VIndex(22, :busbar₊u_r)",busbar,22,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+24,,"VIndex(22, :busbar₊u_i)",busbar,22,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+25,,"VIndex(3, :busbar₊u_r)",busbar,3,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+26,,"VIndex(3, :busbar₊u_i)",busbar,3,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+27,,"VIndex(4, :busbar₊u_r)",busbar,4,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+28,,"VIndex(4, :busbar₊u_i)",busbar,4,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+29,,"VIndex(7, :busbar₊u_r)",busbar,7,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+30,,"VIndex(7, :busbar₊u_i)",busbar,7,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+31,,"VIndex(8, :busbar₊u_r)",busbar,8,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+32,,"VIndex(8, :busbar₊u_i)",busbar,8,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+33,,"VIndex(12, :busbar₊u_r)",busbar,12,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+34,,"VIndex(12, :busbar₊u_i)",busbar,12,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+35,,"VIndex(15, :busbar₊u_r)",busbar,15,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+36,,"VIndex(15, :busbar₊u_i)",busbar,15,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+37,,"VIndex(16, :busbar₊u_r)",busbar,16,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+38,,"VIndex(16, :busbar₊u_i)",busbar,16,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+39,,"VIndex(18, :busbar₊u_r)",busbar,18,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+40,,"VIndex(18, :busbar₊u_i)",busbar,18,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+41,,"VIndex(20, :busbar₊u_r)",busbar,20,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+42,,"VIndex(20, :busbar₊u_i)",busbar,20,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+43,,"VIndex(21, :busbar₊u_r)",busbar,21,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+44,,"VIndex(21, :busbar₊u_i)",busbar,21,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+45,,"VIndex(23, :busbar₊u_r)",busbar,23,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+46,,"VIndex(23, :busbar₊u_i)",busbar,23,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+47,,"VIndex(24, :busbar₊u_r)",busbar,24,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+48,,"VIndex(24, :busbar₊u_i)",busbar,24,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+49,,"VIndex(25, :busbar₊u_r)",busbar,25,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+50,,"VIndex(25, :busbar₊u_i)",busbar,25,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+51,,"VIndex(26, :busbar₊u_r)",busbar,26,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+52,,"VIndex(26, :busbar₊u_i)",busbar,26,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+53,,"VIndex(27, :busbar₊u_r)",busbar,27,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+54,,"VIndex(27, :busbar₊u_i)",busbar,27,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+55,,"VIndex(28, :busbar₊u_r)",busbar,28,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+56,,"VIndex(28, :busbar₊u_i)",busbar,28,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+57,,"VIndex(29, :busbar₊u_r)",busbar,29,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+58,,"VIndex(29, :busbar₊u_i)",busbar,29,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+59,1,"VIndex(30, :ctrld_gen₊gov₊xg2)",ctrld_gen₊gov,30,differential,condensed,"all remaining differential device, controller, filter, or network states"
+60,2,"VIndex(30, :ctrld_gen₊gov₊xg1)",ctrld_gen₊gov,30,differential,condensed,"all remaining differential device, controller, filter, or network states"
+61,3,"VIndex(30, :ctrld_gen₊avr₊v_fb)",ctrld_gen₊avr,30,differential,condensed,"all remaining differential device, controller, filter, or network states"
+62,4,"VIndex(30, :ctrld_gen₊avr₊vfout)",ctrld_gen₊avr,30,differential,condensed,"all remaining differential device, controller, filter, or network states"
+63,5,"VIndex(30, :ctrld_gen₊avr₊vr)",ctrld_gen₊avr,30,differential,condensed,"all remaining differential device, controller, filter, or network states"
+64,6,"VIndex(30, :ctrld_gen₊avr₊vm)",ctrld_gen₊avr,30,differential,condensed,"all remaining differential device, controller, filter, or network states"
+65,7,"VIndex(30, :ctrld_gen₊machine₊ψ″_q)",ctrld_gen₊machine,30,differential,condensed,"all remaining differential device, controller, filter, or network states"
+66,8,"VIndex(30, :ctrld_gen₊machine₊ψ″_d)",ctrld_gen₊machine,30,differential,condensed,"all remaining differential device, controller, filter, or network states"
+67,9,"VIndex(30, :ctrld_gen₊machine₊E′_d)",ctrld_gen₊machine,30,differential,condensed,"all remaining differential device, controller, filter, or network states"
+68,10,"VIndex(30, :ctrld_gen₊machine₊E′_q)",ctrld_gen₊machine,30,differential,condensed,"all remaining differential device, controller, filter, or network states"
+69,11,"VIndex(30, :ctrld_gen₊machine₊ω)",ctrld_gen₊machine,30,differential,retained,paired machine/PLL frequency coordinate
+70,12,"VIndex(30, :ctrld_gen₊machine₊δ)",ctrld_gen₊machine,30,differential,retained,rotor/PLL angle coordinate
+71,,"VIndex(30, :busbar₊u_r)",busbar,30,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+72,,"VIndex(30, :busbar₊u_i)",busbar,30,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+73,13,"VIndex(32, :ctrld_gen₊gov₊xg2)",ctrld_gen₊gov,32,differential,condensed,"all remaining differential device, controller, filter, or network states"
+74,14,"VIndex(32, :ctrld_gen₊gov₊xg1)",ctrld_gen₊gov,32,differential,condensed,"all remaining differential device, controller, filter, or network states"
+75,15,"VIndex(32, :ctrld_gen₊avr₊v_fb)",ctrld_gen₊avr,32,differential,condensed,"all remaining differential device, controller, filter, or network states"
+76,16,"VIndex(32, :ctrld_gen₊avr₊vfout)",ctrld_gen₊avr,32,differential,condensed,"all remaining differential device, controller, filter, or network states"
+77,17,"VIndex(32, :ctrld_gen₊avr₊vr)",ctrld_gen₊avr,32,differential,condensed,"all remaining differential device, controller, filter, or network states"
+78,18,"VIndex(32, :ctrld_gen₊avr₊vm)",ctrld_gen₊avr,32,differential,condensed,"all remaining differential device, controller, filter, or network states"
+79,19,"VIndex(32, :ctrld_gen₊machine₊ψ″_q)",ctrld_gen₊machine,32,differential,condensed,"all remaining differential device, controller, filter, or network states"
+80,20,"VIndex(32, :ctrld_gen₊machine₊ψ″_d)",ctrld_gen₊machine,32,differential,condensed,"all remaining differential device, controller, filter, or network states"
+81,21,"VIndex(32, :ctrld_gen₊machine₊E′_d)",ctrld_gen₊machine,32,differential,condensed,"all remaining differential device, controller, filter, or network states"
+82,22,"VIndex(32, :ctrld_gen₊machine₊E′_q)",ctrld_gen₊machine,32,differential,condensed,"all remaining differential device, controller, filter, or network states"
+83,23,"VIndex(32, :ctrld_gen₊machine₊ω)",ctrld_gen₊machine,32,differential,retained,paired machine/PLL frequency coordinate
+84,24,"VIndex(32, :ctrld_gen₊machine₊δ)",ctrld_gen₊machine,32,differential,retained,rotor/PLL angle coordinate
+85,,"VIndex(32, :busbar₊u_r)",busbar,32,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+86,,"VIndex(32, :busbar₊u_i)",busbar,32,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+87,25,"VIndex(34, :ctrld_gen₊gov₊xg2)",ctrld_gen₊gov,34,differential,condensed,"all remaining differential device, controller, filter, or network states"
+88,26,"VIndex(34, :ctrld_gen₊gov₊xg1)",ctrld_gen₊gov,34,differential,condensed,"all remaining differential device, controller, filter, or network states"
+89,27,"VIndex(34, :ctrld_gen₊avr₊v_fb)",ctrld_gen₊avr,34,differential,condensed,"all remaining differential device, controller, filter, or network states"
+90,28,"VIndex(34, :ctrld_gen₊avr₊vfout)",ctrld_gen₊avr,34,differential,condensed,"all remaining differential device, controller, filter, or network states"
+91,29,"VIndex(34, :ctrld_gen₊avr₊vr)",ctrld_gen₊avr,34,differential,condensed,"all remaining differential device, controller, filter, or network states"
+92,30,"VIndex(34, :ctrld_gen₊avr₊vm)",ctrld_gen₊avr,34,differential,condensed,"all remaining differential device, controller, filter, or network states"
+93,31,"VIndex(34, :ctrld_gen₊machine₊ψ″_q)",ctrld_gen₊machine,34,differential,condensed,"all remaining differential device, controller, filter, or network states"
+94,32,"VIndex(34, :ctrld_gen₊machine₊ψ″_d)",ctrld_gen₊machine,34,differential,condensed,"all remaining differential device, controller, filter, or network states"
+95,33,"VIndex(34, :ctrld_gen₊machine₊E′_d)",ctrld_gen₊machine,34,differential,condensed,"all remaining differential device, controller, filter, or network states"
+96,34,"VIndex(34, :ctrld_gen₊machine₊E′_q)",ctrld_gen₊machine,34,differential,condensed,"all remaining differential device, controller, filter, or network states"
+97,35,"VIndex(34, :ctrld_gen₊machine₊ω)",ctrld_gen₊machine,34,differential,retained,paired machine/PLL frequency coordinate
+98,36,"VIndex(34, :ctrld_gen₊machine₊δ)",ctrld_gen₊machine,34,differential,retained,rotor/PLL angle coordinate
+99,,"VIndex(34, :busbar₊u_r)",busbar,34,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+100,,"VIndex(34, :busbar₊u_i)",busbar,34,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+101,37,"VIndex(35, :ctrld_gen₊gov₊xg2)",ctrld_gen₊gov,35,differential,condensed,"all remaining differential device, controller, filter, or network states"
+102,38,"VIndex(35, :ctrld_gen₊gov₊xg1)",ctrld_gen₊gov,35,differential,condensed,"all remaining differential device, controller, filter, or network states"
+103,39,"VIndex(35, :ctrld_gen₊avr₊v_fb)",ctrld_gen₊avr,35,differential,condensed,"all remaining differential device, controller, filter, or network states"
+104,40,"VIndex(35, :ctrld_gen₊avr₊vfout)",ctrld_gen₊avr,35,differential,condensed,"all remaining differential device, controller, filter, or network states"
+105,41,"VIndex(35, :ctrld_gen₊avr₊vr)",ctrld_gen₊avr,35,differential,condensed,"all remaining differential device, controller, filter, or network states"
+106,42,"VIndex(35, :ctrld_gen₊avr₊vm)",ctrld_gen₊avr,35,differential,condensed,"all remaining differential device, controller, filter, or network states"
+107,43,"VIndex(35, :ctrld_gen₊machine₊ψ″_q)",ctrld_gen₊machine,35,differential,condensed,"all remaining differential device, controller, filter, or network states"
+108,44,"VIndex(35, :ctrld_gen₊machine₊ψ″_d)",ctrld_gen₊machine,35,differential,condensed,"all remaining differential device, controller, filter, or network states"
+109,45,"VIndex(35, :ctrld_gen₊machine₊E′_d)",ctrld_gen₊machine,35,differential,condensed,"all remaining differential device, controller, filter, or network states"
+110,46,"VIndex(35, :ctrld_gen₊machine₊E′_q)",ctrld_gen₊machine,35,differential,condensed,"all remaining differential device, controller, filter, or network states"
+111,47,"VIndex(35, :ctrld_gen₊machine₊ω)",ctrld_gen₊machine,35,differential,retained,paired machine/PLL frequency coordinate
+112,48,"VIndex(35, :ctrld_gen₊machine₊δ)",ctrld_gen₊machine,35,differential,retained,rotor/PLL angle coordinate
+113,,"VIndex(35, :busbar₊u_r)",busbar,35,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+114,,"VIndex(35, :busbar₊u_i)",busbar,35,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+115,49,"VIndex(36, :ctrld_gen₊gov₊xg2)",ctrld_gen₊gov,36,differential,condensed,"all remaining differential device, controller, filter, or network states"
+116,50,"VIndex(36, :ctrld_gen₊gov₊xg1)",ctrld_gen₊gov,36,differential,condensed,"all remaining differential device, controller, filter, or network states"
+117,51,"VIndex(36, :ctrld_gen₊avr₊v_fb)",ctrld_gen₊avr,36,differential,condensed,"all remaining differential device, controller, filter, or network states"
+118,52,"VIndex(36, :ctrld_gen₊avr₊vfout)",ctrld_gen₊avr,36,differential,condensed,"all remaining differential device, controller, filter, or network states"
+119,53,"VIndex(36, :ctrld_gen₊avr₊vr)",ctrld_gen₊avr,36,differential,condensed,"all remaining differential device, controller, filter, or network states"
+120,54,"VIndex(36, :ctrld_gen₊avr₊vm)",ctrld_gen₊avr,36,differential,condensed,"all remaining differential device, controller, filter, or network states"
+121,55,"VIndex(36, :ctrld_gen₊machine₊ψ″_q)",ctrld_gen₊machine,36,differential,condensed,"all remaining differential device, controller, filter, or network states"
+122,56,"VIndex(36, :ctrld_gen₊machine₊ψ″_d)",ctrld_gen₊machine,36,differential,condensed,"all remaining differential device, controller, filter, or network states"
+123,57,"VIndex(36, :ctrld_gen₊machine₊E′_d)",ctrld_gen₊machine,36,differential,condensed,"all remaining differential device, controller, filter, or network states"
+124,58,"VIndex(36, :ctrld_gen₊machine₊E′_q)",ctrld_gen₊machine,36,differential,condensed,"all remaining differential device, controller, filter, or network states"
+125,59,"VIndex(36, :ctrld_gen₊machine₊ω)",ctrld_gen₊machine,36,differential,retained,paired machine/PLL frequency coordinate
+126,60,"VIndex(36, :ctrld_gen₊machine₊δ)",ctrld_gen₊machine,36,differential,retained,rotor/PLL angle coordinate
+127,,"VIndex(36, :busbar₊u_r)",busbar,36,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+128,,"VIndex(36, :busbar₊u_i)",busbar,36,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+129,61,"VIndex(37, :ctrld_gen₊gov₊xg2)",ctrld_gen₊gov,37,differential,condensed,"all remaining differential device, controller, filter, or network states"
+130,62,"VIndex(37, :ctrld_gen₊gov₊xg1)",ctrld_gen₊gov,37,differential,condensed,"all remaining differential device, controller, filter, or network states"
+131,63,"VIndex(37, :ctrld_gen₊avr₊v_fb)",ctrld_gen₊avr,37,differential,condensed,"all remaining differential device, controller, filter, or network states"
+132,64,"VIndex(37, :ctrld_gen₊avr₊vfout)",ctrld_gen₊avr,37,differential,condensed,"all remaining differential device, controller, filter, or network states"
+133,65,"VIndex(37, :ctrld_gen₊avr₊vr)",ctrld_gen₊avr,37,differential,condensed,"all remaining differential device, controller, filter, or network states"
+134,66,"VIndex(37, :ctrld_gen₊avr₊vm)",ctrld_gen₊avr,37,differential,condensed,"all remaining differential device, controller, filter, or network states"
+135,67,"VIndex(37, :ctrld_gen₊machine₊ψ″_q)",ctrld_gen₊machine,37,differential,condensed,"all remaining differential device, controller, filter, or network states"
+136,68,"VIndex(37, :ctrld_gen₊machine₊ψ″_d)",ctrld_gen₊machine,37,differential,condensed,"all remaining differential device, controller, filter, or network states"
+137,69,"VIndex(37, :ctrld_gen₊machine₊E′_d)",ctrld_gen₊machine,37,differential,condensed,"all remaining differential device, controller, filter, or network states"
+138,70,"VIndex(37, :ctrld_gen₊machine₊E′_q)",ctrld_gen₊machine,37,differential,condensed,"all remaining differential device, controller, filter, or network states"
+139,71,"VIndex(37, :ctrld_gen₊machine₊ω)",ctrld_gen₊machine,37,differential,retained,paired machine/PLL frequency coordinate
+140,72,"VIndex(37, :ctrld_gen₊machine₊δ)",ctrld_gen₊machine,37,differential,retained,rotor/PLL angle coordinate
+141,,"VIndex(37, :busbar₊u_r)",busbar,37,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+142,,"VIndex(37, :busbar₊u_i)",busbar,37,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+143,73,"VIndex(38, :ctrld_gen₊gov₊xg2)",ctrld_gen₊gov,38,differential,condensed,"all remaining differential device, controller, filter, or network states"
+144,74,"VIndex(38, :ctrld_gen₊gov₊xg1)",ctrld_gen₊gov,38,differential,condensed,"all remaining differential device, controller, filter, or network states"
+145,75,"VIndex(38, :ctrld_gen₊avr₊v_fb)",ctrld_gen₊avr,38,differential,condensed,"all remaining differential device, controller, filter, or network states"
+146,76,"VIndex(38, :ctrld_gen₊avr₊vfout)",ctrld_gen₊avr,38,differential,condensed,"all remaining differential device, controller, filter, or network states"
+147,77,"VIndex(38, :ctrld_gen₊avr₊vr)",ctrld_gen₊avr,38,differential,condensed,"all remaining differential device, controller, filter, or network states"
+148,78,"VIndex(38, :ctrld_gen₊avr₊vm)",ctrld_gen₊avr,38,differential,condensed,"all remaining differential device, controller, filter, or network states"
+149,79,"VIndex(38, :ctrld_gen₊machine₊ψ″_q)",ctrld_gen₊machine,38,differential,condensed,"all remaining differential device, controller, filter, or network states"
+150,80,"VIndex(38, :ctrld_gen₊machine₊ψ″_d)",ctrld_gen₊machine,38,differential,condensed,"all remaining differential device, controller, filter, or network states"
+151,81,"VIndex(38, :ctrld_gen₊machine₊E′_d)",ctrld_gen₊machine,38,differential,condensed,"all remaining differential device, controller, filter, or network states"
+152,82,"VIndex(38, :ctrld_gen₊machine₊E′_q)",ctrld_gen₊machine,38,differential,condensed,"all remaining differential device, controller, filter, or network states"
+153,83,"VIndex(38, :ctrld_gen₊machine₊ω)",ctrld_gen₊machine,38,differential,retained,paired machine/PLL frequency coordinate
+154,84,"VIndex(38, :ctrld_gen₊machine₊δ)",ctrld_gen₊machine,38,differential,retained,rotor/PLL angle coordinate
+155,,"VIndex(38, :busbar₊u_r)",busbar,38,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+156,,"VIndex(38, :busbar₊u_i)",busbar,38,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+157,85,"VIndex(31, :ctrld_gen₊gov₊xg2)",ctrld_gen₊gov,31,differential,condensed,"all remaining differential device, controller, filter, or network states"
+158,86,"VIndex(31, :ctrld_gen₊gov₊xg1)",ctrld_gen₊gov,31,differential,condensed,"all remaining differential device, controller, filter, or network states"
+159,87,"VIndex(31, :ctrld_gen₊avr₊v_fb)",ctrld_gen₊avr,31,differential,condensed,"all remaining differential device, controller, filter, or network states"
+160,88,"VIndex(31, :ctrld_gen₊avr₊vfout)",ctrld_gen₊avr,31,differential,condensed,"all remaining differential device, controller, filter, or network states"
+161,89,"VIndex(31, :ctrld_gen₊avr₊vr)",ctrld_gen₊avr,31,differential,condensed,"all remaining differential device, controller, filter, or network states"
+162,90,"VIndex(31, :ctrld_gen₊avr₊vm)",ctrld_gen₊avr,31,differential,condensed,"all remaining differential device, controller, filter, or network states"
+163,91,"VIndex(31, :ctrld_gen₊machine₊ψ″_q)",ctrld_gen₊machine,31,differential,condensed,"all remaining differential device, controller, filter, or network states"
+164,92,"VIndex(31, :ctrld_gen₊machine₊ψ″_d)",ctrld_gen₊machine,31,differential,condensed,"all remaining differential device, controller, filter, or network states"
+165,93,"VIndex(31, :ctrld_gen₊machine₊E′_d)",ctrld_gen₊machine,31,differential,condensed,"all remaining differential device, controller, filter, or network states"
+166,94,"VIndex(31, :ctrld_gen₊machine₊E′_q)",ctrld_gen₊machine,31,differential,condensed,"all remaining differential device, controller, filter, or network states"
+167,95,"VIndex(31, :ctrld_gen₊machine₊ω)",ctrld_gen₊machine,31,differential,retained,paired machine/PLL frequency coordinate
+168,96,"VIndex(31, :ctrld_gen₊machine₊δ)",ctrld_gen₊machine,31,differential,retained,rotor/PLL angle coordinate
+169,,"VIndex(31, :busbar₊u_r)",busbar,31,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+170,,"VIndex(31, :busbar₊u_i)",busbar,31,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+171,97,"VIndex(33, :gfl₊cc1₊γ_q)",gfl₊cc1,33,differential,condensed,"all remaining differential device, controller, filter, or network states"
+172,98,"VIndex(33, :gfl₊cc1₊γ_d)",gfl₊cc1,33,differential,condensed,"all remaining differential device, controller, filter, or network states"
+173,99,"VIndex(33, :gfl₊pll₊θ)",gfl₊pll,33,differential,retained,rotor/PLL angle coordinate
+174,100,"VIndex(33, :gfl₊pll₊Δω_rad_s)",gfl₊pll,33,differential,retained,paired machine/PLL frequency coordinate
+175,101,"VIndex(33, :gfl₊pll₊Δω_i_rad_s)",gfl₊pll,33,differential,condensed,"all remaining differential device, controller, filter, or network states"
+176,102,"VIndex(33, :gfl₊filter₊i_f_i)",gfl₊filter,33,differential,condensed,"all remaining differential device, controller, filter, or network states"
+177,103,"VIndex(33, :gfl₊filter₊i_f_r)",gfl₊filter,33,differential,condensed,"all remaining differential device, controller, filter, or network states"
+178,104,"VIndex(33, :gfl₊v_dc_i)",gfl,33,differential,condensed,"all remaining differential device, controller, filter, or network states"
+179,105,"VIndex(33, :gfl₊v_dc_state)",gfl,33,differential,condensed,"all remaining differential device, controller, filter, or network states"
+180,,"VIndex(33, :busbar₊u_r)",busbar,33,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+181,,"VIndex(33, :busbar₊u_i)",busbar,33,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+182,106,"VIndex(39, :machine₊ψ″_q)",machine,39,differential,condensed,"all remaining differential device, controller, filter, or network states"
+183,107,"VIndex(39, :machine₊ψ″_d)",machine,39,differential,condensed,"all remaining differential device, controller, filter, or network states"
+184,108,"VIndex(39, :machine₊E′_d)",machine,39,differential,condensed,"all remaining differential device, controller, filter, or network states"
+185,109,"VIndex(39, :machine₊E′_q)",machine,39,differential,condensed,"all remaining differential device, controller, filter, or network states"
+186,110,"VIndex(39, :machine₊ω)",machine,39,differential,retained,paired machine/PLL frequency coordinate
+187,111,"VIndex(39, :machine₊δ)",machine,39,differential,retained,rotor/PLL angle coordinate
+188,,"VIndex(39, :busbar₊u_r)",busbar,39,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y
+189,,"VIndex(39, :busbar₊u_i)",busbar,39,algebraic,algebraic_eliminated,algebraic network/component constraint eliminated through G_y

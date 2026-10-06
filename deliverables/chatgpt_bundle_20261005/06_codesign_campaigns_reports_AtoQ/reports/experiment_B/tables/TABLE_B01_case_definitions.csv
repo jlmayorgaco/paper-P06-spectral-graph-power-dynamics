@@ -1,0 +1,7 @@
+case,m,nc,seed,min_eig_M,zero_modes,Ac_spectral_abscissa,description
+S0,5,5,301,1.0386608996132358,1,-1.2566370614359172,Commuting dynamic baseline: Σ̂(s) diagonal for all s.
+S1,5,0,302,1.0386608996132358,1,,Static symmetric non-proportional modal self-energy.
+S2,5,25,303,1.0386608996132358,1,-1.2566370614359172,Dynamic state-space self-energy with frequency-dependent intermodal entries.
+S3,5,25,304,1.0386608996132358,1,-1.2566370614359172,Weak-to-strong physically realized off-diagonal coupling sweep.
+S4,5,7,305,1.0386608996132358,1,-1.2566370614359172,Near-resonant nondegenerate graph-mode pair with small dynamic coupling.
+S5,5,0,306,1.0386608996132358,1,,Optional positive diagonal but indefinite Hermitian counterexample.

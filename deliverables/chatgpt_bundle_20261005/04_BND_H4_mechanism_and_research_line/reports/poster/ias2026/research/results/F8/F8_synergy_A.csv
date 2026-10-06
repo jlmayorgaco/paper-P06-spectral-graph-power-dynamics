@@ -1,0 +1,10 @@
+point,pair,context,H_base,H_joint
+P1,A1_inertia x A3_flux,01010,EMPTY,30|33
+P1,A1_inertia x A3_flux,01011,EMPTY,33|30+35|30+37
+P2,A1_inertia x A3_flux,01010,EMPTY,30+33+35|30+33+37
+P2,A1_inertia x A3_flux,01011,EMPTY,30+33+35|30+33+37
+P4,A1_inertia x A3_flux,01010,EMPTY,30+33+35+37
+P4,A1_inertia x A3_flux,01011,EMPTY,30+33+35+37
+P_fold,A1_inertia x A5_pss,00110,EMPTY,30+33+35+37
+P_fold,A1_inertia x A3_flux,11010,EMPTY,30|33|35
+P_fold,A1_inertia x A3_flux,11011,EMPTY,33|30+35|30+37

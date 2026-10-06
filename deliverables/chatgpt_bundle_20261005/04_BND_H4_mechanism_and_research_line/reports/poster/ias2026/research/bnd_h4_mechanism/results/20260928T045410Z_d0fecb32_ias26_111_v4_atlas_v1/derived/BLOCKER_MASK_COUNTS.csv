@@ -1,0 +1,16 @@
+portfolio_mask,portfolio_set,cardinality,minimal_blocker_scenario_memberships,scenario_frequency_over_valid_n,interpretation
+1,{30},1,0,0.0,membership count; scenarios with multiple minimal blockers contribute once per blocker
+2,{33},1,0,0.0,membership count; scenarios with multiple minimal blockers contribute once per blocker
+3,"{30,33}",2,0,0.0,membership count; scenarios with multiple minimal blockers contribute once per blocker
+4,{35},1,0,0.0,membership count; scenarios with multiple minimal blockers contribute once per blocker
+5,"{30,35}",2,0,0.0,membership count; scenarios with multiple minimal blockers contribute once per blocker
+6,"{33,35}",2,0,0.0,membership count; scenarios with multiple minimal blockers contribute once per blocker
+7,"{30,33,35}",3,365,0.37745604963805585,membership count; scenarios with multiple minimal blockers contribute once per blocker
+8,{37},1,0,0.0,membership count; scenarios with multiple minimal blockers contribute once per blocker
+9,"{30,37}",2,0,0.0,membership count; scenarios with multiple minimal blockers contribute once per blocker
+10,"{33,37}",2,0,0.0,membership count; scenarios with multiple minimal blockers contribute once per blocker
+11,"{30,33,37}",3,288,0.29782833505687695,membership count; scenarios with multiple minimal blockers contribute once per blocker
+12,"{35,37}",2,0,0.0,membership count; scenarios with multiple minimal blockers contribute once per blocker
+13,"{30,35,37}",3,0,0.0,membership count; scenarios with multiple minimal blockers contribute once per blocker
+14,"{33,35,37}",3,137,0.14167528438469493,membership count; scenarios with multiple minimal blockers contribute once per blocker
+15,"{30,33,35,37}",4,190,0.19648397104446744,membership count; scenarios with multiple minimal blockers contribute once per blocker
