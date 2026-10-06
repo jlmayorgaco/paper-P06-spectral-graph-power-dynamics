@@ -18,3 +18,13 @@
 - Remaining cosmetic points: the four flow icons are small relative to their boxes; a blank area right of the legend.
 
 MODULE_1_PASS
+
+## Refinement pass (2026-10-06, "más pixel perfect")
+- Header: title Bahnschrift Bold Condensed at natural proportions (140 pt), x 335-820 vs reference 339-820. Subtitle (Bahnschrift SemiBold SemiCondensed 31 pt), author line (28.8 pt) and tagline (23 pt, letter-spaced) placed within 1-4 px of the reference extents (measure.py).
+- Footer: both lines in Bahnschrift condensed, extents 284-881 / 211-947 vs reference 284-881 / 207-951; em dash fixed; footer art redrawn in TikZ (pylons, mountains, pines, Vancouver block) without overlapping the text.
+- Skyline: thin, low, light buildings + distant range + pines at the far right, behind the tagline only (no overlap with the author line).
+- Gold numbers now have a thin deep-gold ring; inner step markers are dark-green discs with a gold ring, as in the reference.
+- Module 1 recomposed on the reference layout (statement, SG -> grid -> replace -> GFL schematic, portfolio variable with its meaning, engineering objective, red scope note, four numbered steps, green callout). No optimality claim.
+- Known difference: the IEEE IAS logo is the repository asset, whose artwork differs from the logo drawn in the reference image.
+
+MODULE_1_PASS (refined)

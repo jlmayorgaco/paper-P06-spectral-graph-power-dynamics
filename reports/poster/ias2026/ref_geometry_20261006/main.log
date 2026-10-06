@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (MiKTeX 25.12) (format=lualatex 2026.4.29)  6 OCT 2026 02:03
+This is LuaHBTeX, Version 1.24.0 (MiKTeX 25.12) (format=lualatex 2026.4.29)  6 OCT 2026 02:36
  restricted system commands enabled.
 **main.tex
 (./main.tex
@@ -964,147 +964,67 @@ arydecorations.code.tex"
 ations.pathmorphing.code.tex"))
 
 Package fontspec Info: 
-(fontspec)             Segoe UI scale = 1.0.
-
-
-Package fontspec Info: 
-(fontspec)             Segoe UI scale = 1.0.
-
-
-Package fontspec Info: 
-(fontspec)             Segoe UI scale = 1.0.
-
-
-Package fontspec Info: 
-(fontspec)             Segoe UI/B scale = 1.0.
-
-
-Package fontspec Info: 
-(fontspec)             Segoe UI/B scale = 1.0.
-
-
-Package fontspec Info: 
-(fontspec)             Segoe UI/I scale = 1.0.
-
-
-Package fontspec Info: 
-(fontspec)             Segoe UI/I scale = 1.0.
-
-
-Package fontspec Info: 
-(fontspec)             Segoe UI/BI scale = 1.0.
-
-
-Package fontspec Info: 
-(fontspec)             Segoe UI/BI scale = 1.0.
-
-
-Package fontspec Info: 
 (fontspec)             Font family 'SegoeUI(0)' created for font 'Segoe UI'
-(fontspec)             with options [Ligatures=TeX,Ligatures=TeX,Scale=1.0].
+(fontspec)             with options [Ligatures=TeX,Ligatures=TeX].
 (fontspec)              
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
 (fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.: <->s*[1.0]"name:Segoe
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"name:Segoe
 (fontspec)             UI:mode=node;script=latn;language=dflt;+tlig;"
-(fontspec)             - 'small caps'  (m/sc) with NFSS spec.:
-(fontspec)             <->s*[1.0]"name:Segoe
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: <->"name:Segoe
 (fontspec)             UI:mode=node;script=latn;language=dflt;+tlig;+smcp;"
-(fontspec)             - 'bold' (b/n) with NFSS spec.: <->s*[1.0]"name:Segoe
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"name:Segoe
 (fontspec)             UI/B:mode=node;script=latn;language=dflt;+tlig;"
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.:
-(fontspec)             <->s*[1.0]"name:Segoe
+(fontspec)             <->"name:Segoe
 (fontspec)             UI/B:mode=node;script=latn;language=dflt;+tlig;+smcp;"
-(fontspec)             - 'italic' (m/it) with NFSS spec.:
-(fontspec)             <->s*[1.0]"name:Segoe
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"name:Segoe
 (fontspec)             UI/I:mode=node;script=latn;language=dflt;+tlig;"
 (fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.:
-(fontspec)             <->s*[1.0]"name:Segoe
+(fontspec)             <->"name:Segoe
 (fontspec)             UI/I:mode=node;script=latn;language=dflt;+tlig;+smcp;"
-(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
-(fontspec)             <->s*[1.0]"name:Segoe
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"name:Segoe
 (fontspec)             UI/BI:mode=node;script=latn;language=dflt;+tlig;"
 (fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
-(fontspec)             <->s*[1.0]"name:Segoe
+(fontspec)             <->"name:Segoe
 (fontspec)             UI/BI:mode=node;script=latn;language=dflt;+tlig;+smcp;"
 
 
 Package fontspec Info: 
-(fontspec)             Segoe UI scale = 1.0.
-
-
-Package fontspec Info: 
-(fontspec)             Segoe UI scale = 1.0.
-
-
-Package fontspec Info: 
-(fontspec)             Segoe UI scale = 1.0.
-
-
-Package fontspec Info: 
-(fontspec)             Segoe UI/B scale = 1.0.
-
-
-Package fontspec Info: 
-(fontspec)             Segoe UI/B scale = 1.0.
-
-
-Package fontspec Info: 
-(fontspec)             Segoe UI/I scale = 1.0.
-
-
-Package fontspec Info: 
-(fontspec)             Segoe UI/I scale = 1.0.
-
-
-Package fontspec Info: 
-(fontspec)             Segoe UI/BI scale = 1.0.
-
-
-Package fontspec Info: 
-(fontspec)             Segoe UI/BI scale = 1.0.
-
-
-Package fontspec Info: 
 (fontspec)             Font family 'SegoeUI(1)' created for font 'Segoe UI'
-(fontspec)             with options [Renderer=Basic,Ligatures=TeX,Scale=1.0].
+(fontspec)             with options [Renderer=Basic,Ligatures=TeX].
 (fontspec)              
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
 (fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.: <->s*[1.0]"name:Segoe
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"name:Segoe
 (fontspec)             UI:mode=base;script=latn;language=dflt;+tlig;"
-(fontspec)             - 'small caps'  (m/sc) with NFSS spec.:
-(fontspec)             <->s*[1.0]"name:Segoe
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: <->"name:Segoe
 (fontspec)             UI:mode=base;script=latn;language=dflt;+tlig;+smcp;"
-(fontspec)             - 'bold' (b/n) with NFSS spec.: <->s*[1.0]"name:Segoe
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"name:Segoe
 (fontspec)             UI/B:mode=base;script=latn;language=dflt;+tlig;"
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.:
-(fontspec)             <->s*[1.0]"name:Segoe
+(fontspec)             <->"name:Segoe
 (fontspec)             UI/B:mode=base;script=latn;language=dflt;+tlig;+smcp;"
-(fontspec)             - 'italic' (m/it) with NFSS spec.:
-(fontspec)             <->s*[1.0]"name:Segoe
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"name:Segoe
 (fontspec)             UI/I:mode=base;script=latn;language=dflt;+tlig;"
 (fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.:
-(fontspec)             <->s*[1.0]"name:Segoe
+(fontspec)             <->"name:Segoe
 (fontspec)             UI/I:mode=base;script=latn;language=dflt;+tlig;+smcp;"
-(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
-(fontspec)             <->s*[1.0]"name:Segoe
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"name:Segoe
 (fontspec)             UI/BI:mode=base;script=latn;language=dflt;+tlig;"
 (fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
-(fontspec)             <->s*[1.0]"name:Segoe
+(fontspec)             <->"name:Segoe
 (fontspec)             UI/BI:mode=base;script=latn;language=dflt;+tlig;+smcp;"
 
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
 (Font)                  TU/LatinModernMath(1)/m/n --> TU/SegoeUI(1)/m/n on inpu
-t line 34.
+t line 38.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/SegoeUI(1)/m/it on input line 34.
+(Font)                  OT1/cmr/m/it --> TU/SegoeUI(1)/m/it on input line 38.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/SegoeUI(1)/b/n on input line 34.
-LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 34.
+(Font)                  OT1/cmr/bx/n --> TU/SegoeUI(1)/b/n on input line 38.
 
 Package fontspec Info: 
 (fontspec)             Could not resolve font "Bahnschrift/BI" (it probably
@@ -1135,19 +1055,115 @@ Package fontspec Info:
 
 
 Package fontspec Info: 
-(fontspec)             Font family 'SegoeSB(0)' created for font 'SegoeSB'
-(fontspec)             with options
-(fontspec)             [Path=C:/Windows/Fonts/,UprightFont=seguisb.ttf].
+(fontspec)             Could not resolve font "Bahnschrift/BI" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Bahnschrift/B" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Bahnschrift/I" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'Bahnschrift(1)' created for font
+(fontspec)             'Bahnschrift' with options
+(fontspec)             [RawFeature={+axis={wght=700,wdth=87.5}}].
 (fontspec)              
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
 (fontspec)              
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->"[C:/Windows/Fonts/seguisb.ttf]:mode=node;script=latn
-;language=dflt;"
-(fontspec)             - 'small caps'  (m/sc) with NFSS spec.:
-(fontspec)             <->"[C:/Windows/Fonts/seguisb.ttf]:mode=node;script=latn
-;language=dflt;+smcp;"
+(fontspec)             <->"name:Bahnschrift:mode=node;script=latn;language=dflt
+;+axis={wght=700,wdth=87.5};"
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Bahnschrift/BI" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Bahnschrift/B" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Bahnschrift/I" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'Bahnschrift(2)' created for font
+(fontspec)             'Bahnschrift' with options
+(fontspec)             [RawFeature={+axis={wght=600,wdth=87.5}}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"name:Bahnschrift:mode=node;script=latn;language=dflt
+;+axis={wght=600,wdth=87.5};"
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Bahnschrift/BI" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Bahnschrift/B" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Bahnschrift/I" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'Bahnschrift(3)' created for font
+(fontspec)             'Bahnschrift' with options
+(fontspec)             [RawFeature={+axis={wght=400,wdth=87.5}}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"name:Bahnschrift:mode=node;script=latn;language=dflt
+;+axis={wght=400,wdth=87.5};"
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Bahnschrift/BI" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Bahnschrift/B" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Bahnschrift/I" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'Bahnschrift(4)' created for font
+(fontspec)             'Bahnschrift' with options
+(fontspec)             [RawFeature={+axis={wght=300,wdth=87.5}}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"name:Bahnschrift:mode=node;script=latn;language=dflt
+;+axis={wght=300,wdth=87.5};"
 
 
 Package fontspec Info: 
@@ -1166,35 +1182,13 @@ lt;"
 (fontspec)             <->"[C:/Windows/Fonts/ARIALNB.TTF]:mode=node;language=df
 lt;"
 
-
-Package fontspec Info: 
-(fontspec)             Font family 'ArialBoldF(0)' created for font
-(fontspec)             'ArialBoldF' with options
-(fontspec)             [Path=C:/Windows/Fonts/,UprightFont=arialbd.ttf,BoldFont
-=arialbd.ttf].
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->"[C:/Windows/Fonts/arialbd.ttf]:mode=node;script=latn
-;language=dflt;"
-(fontspec)             - 'small caps'  (m/sc) with NFSS spec.:
-(fontspec)             <->"[C:/Windows/Fonts/arialbd.ttf]:mode=node;script=latn
-;language=dflt;+smcp;"
-(fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->"[C:/Windows/Fonts/arialbd.ttf]:mode=node;script=latn
-;language=dflt;"
-(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.:
-(fontspec)             <->"[C:/Windows/Fonts/arialbd.ttf]:mode=node;script=latn
-;language=dflt;+smcp;"
-
 \PX=\skip54
 \PY=\skip55
-) (./extra.tex
+ (./art.tex (./skyline.tex))) (./extra.tex
 \TitleBox=\box67
 \TitleW=\skip56
-) (./main.aux)
+)
+(./main.aux)
 \openout1 = main.aux
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
@@ -1283,107 +1277,86 @@ File: assets/ias_annual_2026_logo.png Graphic file (type png)
 Package luatex.def Info: assets/ias_annual_2026_logo.png  used on input line 20
 .
 (luatex.def)             Requested size: 443.70236pt x 134.19456pt.
+LaTeX Font Info:    Calculating math sizes for size <31> on input line 23.
 
 warning  (file assets/uniandes_logo_color.pdf) (pdf inclusion): PDF inclusion: f
 ound PDF version '1.7', but at most version '1.5' allowed
 <assets/uniandes_logo_color.pdf, id=5, 201.75375pt x 70.2625pt>
 File: assets/uniandes_logo_color.pdf Graphic file (type pdf)
 <use assets/uniandes_logo_color.pdf>
-Package luatex.def Info: assets/uniandes_logo_color.pdf  used on input line 24.
+Package luatex.def Info: assets/uniandes_logo_color.pdf  used on input line 25.
 
 (luatex.def)             Requested size: 304.76526pt x 106.13858pt.
-LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
-(Font)              scaled to size 36.0pt on input line 29.
-LaTeX Font Info:    Calculating math sizes for size <36> on input line 29.
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Bahnschrift/BI" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Bahnschrift/B" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Bahnschrift/I" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'Bahnschrift(5)' created for font
+(fontspec)             'Bahnschrift' with options
+(fontspec)             [RawFeature={+axis={wght=700,wdth=87.5}},LetterSpace=8].
+
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"name:Bahnschrift:mode=node;script=latn;language=dflt
+;letterspace=8;+axis={wght=700,wdth=87.5};"
+
+Inserting `luaotfload.letterspace' in `pre_linebreak_filter'.
+Inserting `luaotfload.letterspace' in `hpack_filter'.
+LaTeX Font Info:    Calculating math sizes for size <37> on input line 30.
 (./module1.tex
-LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
-(Font)              scaled to size 17.5pt on input line 6.
-LaTeX Font Info:    Font shape `TU/SegoeUI(0)/b/n' will be
-(Font)              scaled to size 17.5pt on input line 6.
-LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
-(Font)              scaled to size 23.0pt on input line 10.
-LaTeX Font Info:    Calculating math sizes for size <23> on input line 10.
-LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
-(Font)              scaled to size 16.09993pt on input line 10.
-LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
-(Font)              scaled to size 11.5pt on input line 10.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 23.0pt on input line 10.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 16.09993pt on input line 10.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 11.5pt on input line 10.
-LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
-(Font)              scaled to size 26.0pt on input line 12.
-LaTeX Font Info:    Calculating math sizes for size <26> on input line 12.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 26.0pt on input line 12.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 18.19992pt on input line 12.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 13.0pt on input line 12.
-LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
-(Font)              scaled to size 17.0pt on input line 15.
-LaTeX Font Info:    Calculating math sizes for size <17> on input line 15.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 17.0pt on input line 15.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 11.89995pt on input line 15.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 8.5pt on input line 15.
-LaTeX Font Info:    Font shape `TU/SegoeUI(0)/b/n' will be
-(Font)              scaled to size 17.0pt on input line 23.
-LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
-(Font)              scaled to size 38.0pt on input line 24.
-LaTeX Font Info:    Calculating math sizes for size <38> on input line 24.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 38.0pt on input line 24.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 26.59988pt on input line 24.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 19.0pt on input line 24.
-LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
-(Font)              scaled to size 22.0pt on input line 25.
-LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
-(Font)              scaled to size 28.0pt on input line 26.
-LaTeX Font Info:    Calculating math sizes for size <28> on input line 26.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 28.0pt on input line 26.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 19.59991pt on input line 26.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 14.0pt on input line 26.
-LaTeX Font Info:    Calculating math sizes for size <17.5> on input line 27.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 17.5pt on input line 27.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 12.24994pt on input line 27.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 8.75pt on input line 27.
-LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/it' will be
-(Font)              scaled to size 17.0pt on input line 28.
-LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
-(Font)              scaled to size 15.0pt on input line 48.
-LaTeX Font Info:    Font shape `TU/SegoeUI(0)/b/n' will be
-(Font)              scaled to size 15.0pt on input line 48.
-LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
-(Font)              scaled to size 18.0pt on input line 72.
-LaTeX Font Info:    Font shape `TU/SegoeUI(0)/b/n' will be
-(Font)              scaled to size 18.0pt on input line 72.
-LaTeX Font Info:    Calculating math sizes for size <18> on input line 72.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 18.0pt on input line 72.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 12.59995pt on input line 72.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 9.0pt on input line 72.
+LaTeX Font Info:    Calculating math sizes for size <21> on input line 26.
+LaTeX Font Info:    Calculating math sizes for size <32> on input line 29.
+LaTeX Font Info:    Calculating math sizes for size <17> on input line 30.
+LaTeX Font Info:    Calculating math sizes for size <26> on input line 35.
+LaTeX Font Info:    Calculating math sizes for size <22.5> on input line 49.
+LaTeX Font Info:    Calculating math sizes for size <23> on input line 53.
 )
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 52.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 52.
-LaTeX Font Info:    Font shape `TU/SegoeUI(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 52.
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Bahnschrift/BI" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Bahnschrift/B" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Bahnschrift/I" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'Bahnschrift(6)' created for font
+(fontspec)             'Bahnschrift' with options
+(fontspec)             [RawFeature={+axis={wght=600,wdth=87.5}},LetterSpace=6].
+
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"name:Bahnschrift:mode=node;script=latn;language=dflt
+;letterspace=6;+axis={wght=600,wdth=87.5};"
+
+LaTeX Font Info:    Calculating math sizes for size <35.6> on input line 53.
  [1
 
 {C:/Users/walla/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}<./assets/ias_a
@@ -1396,23 +1369,23 @@ L3 programming layer <2025-12-24>
 )
 
 Here is how much of LuaTeX's memory you used:
- 22593 strings out of 476081
+ 22688 strings out of 476081
  100000,1144653 words of node,token memory allocated
  505 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 8 attribute, 54 glue_spec,
  8 attribute_list, 2 write nodes
-   avail lists: 2:8314,3:4911,4:986,5:166,6:4,7:6408,8:15,9:1168,10:3,11:338
- 44516 multiletter control sequences out of 65536+600000
- 260 fonts using 128998207 bytes
- 89i,13n,98p,480b,819s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/WINDOWS/Fonts/arialbd.ttf><C:/WINDOWS/Fonts/segoeuii.ttf><C:/WINDOWS/Fonts/s
-egoeui.ttf><C:/WINDOWS/Fonts/segoeuib.ttf><C:/Windows/Fonts/ARIALNB.TTF><C:/WIND
-OWS/Fonts/segoeui.ttf><C:/Users/walla/AppData/Roaming/MiKTeX/fonts/opentype/publ
-ic/lm-math/latinmodern-math.otf><C:/Windows/Fonts/seguisb.ttf><C:/WINDOWS/Fonts/
-bahnschrift.ttf>
-Output written on main.pdf (1 page, 174752 bytes).
+   avail lists: 2:9593,3:5841,4:1162,5:410,6:4,7:6022,8:33,9:1044,10:1,11:302
+ 44601 multiletter control sequences out of 65536+600000
+ 286 fonts using 125947407 bytes
+ 89i,7n,96p,480b,823s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/WINDOWS/Fonts/bahnschrift.ttf><C:/WINDOWS/Fonts/segoeui.ttf><C:/WINDOWS/Font
+s/segoeuib.ttf><C:/WINDOWS/Fonts/segoeui.ttf><C:/Windows/Fonts/ARIALNB.TTF><C:/W
+INDOWS/Fonts/bahnschrift.ttf><C:/WINDOWS/Fonts/bahnschrift.ttf><C:/Users/walla/A
+ppData/Roaming/MiKTeX/fonts/opentype/public/lm-math/latinmodern-math.otf><C:/WIN
+DOWS/Fonts/bahnschrift.ttf><C:/WINDOWS/Fonts/bahnschrift.ttf>
+Output written on main.pdf (1 page, 162249 bytes).
 
-PDF statistics: 77 PDF objects out of 1000 (max. 8388607)
+PDF statistics: 84 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 1048576)
  16 words of extra memory for PDF output out of 10000 (max. 100000000)
 

@@ -1,73 +1,54 @@
-% MODULE 1: THE PROBLEM: SAFE SG -> GFL REPLACEMENT. Panel box in reference pixels: x 12-397, y 119.5-451 (bar to y 145.5).
-% Drawn inside the OnPage picture; every size is physical (pt on a 36 x 42 in sheet).
+% MODULE 1: THE PROBLEM: SAFE SG -> GFL TRANSITION. Panel box (reference px): x 12-397, y 119.5-451, title bar to y 145.5.
+% Positions measured on panel 1 of the resources2 reference: left column (statement, schematic, portfolio variable,
+% objective, scope note), right column (four numbered steps), full-width green callout. Sizes are physical pt (36 x 42 in sheet).
 \begin{scope}
-  % ---------------------------------------------------------------- 1A opening statement (about 2.3 lines)
-  \node[anchor=north west,inner sep=0pt,text=PText] at (22,149.5)
-    {\parbox{293mm}{\fontsize{17.5pt}{21.5pt}\selectfont Replacing a synchronous generator (SG) by a grid-following inverter (GFL) is a \textbf{local} hardware action, but its dynamical consequence is \textbf{collective}. The admissibility of a replacement belongs to the closed grid, not to the device in isolation.}};
+  % ---------------------------------------------------------------- opening statement (2 lines)
+  \node[anchor=north west,inner sep=0pt,text=PText] at (23,150.5)
+    {\parbox{283mm}{\fontsize{26pt}{30.5pt}\selectfont A replacement is local hardware, but stability is a property of the closed grid and its controller architecture.}};
 
-  % ---------------------------------------------------------------- 1B binary portfolio variable
-  \draw[PBlue!55,line width=0.6pt,fill=white,rounded corners=2pt] (22,181) rectangle (226,226);
-  \node[text=PBlue,inner sep=0pt] at (124,203.5) {\fontsize{23pt}{26pt}\selectfont $\displaystyle \delta_i=\begin{cases}0,&\text{retain }\mathrm{SG}_i,\\[1pt] 1,&\mathrm{SG}_i\rightarrow \mathrm{GFL}_i\end{cases}$};
-  \draw[PBlue!55,line width=0.6pt,fill=white,rounded corners=2pt] (234,181) rectangle (388,226);
-  \node[text=PBlue,inner sep=0pt] at (311,203.5) {\fontsize{26pt}{28pt}\selectfont $S(\delta)=\{\,i:\delta_i=1\,\}$};
-  % legend (symbols, not prose)
-  \node[anchor=north west,inner sep=0pt,text=PMuted] at (24,229.5)
-    {\fontsize{17pt}{20.5pt}\selectfont\begin{tabular}{@{}l@{\ \ }l@{}}
-      $P_i^{0}$ & rated/scheduled active generation\\
-      $K$ & GFL controller architecture and gains\\
-      $\alpha_\perp$ & transverse spectral abscissa\end{tabular}};
+  % ---------------------------------------------------------------- schematic: SG -> grid -> replace -> GFL (port i)
+  \draw[PTeal,line width=2pt,fill=white] (59.5,210) circle (21);
+  \node[inner sep=0pt,text=PTeal,font=\CondBold\fontsize{27pt}{27pt}\selectfont] at (59.5,202.5) {SG};
+  \draw[PTeal,line width=1.4pt] (49,217.5) .. controls (52.5,211) and (56,211) .. (59.5,217.5) .. controls (63,224) and (66.5,224) .. (70,217.5);
+  \draw[-{Stealth[length=5pt,width=5pt]},PBlue!75!black,line width=1.1pt] (81,212.5) -- (108.5,212.5);
+  \draw[PBlue!80!black,line width=1.1pt,fill=PBlue!8,rounded corners=0.8pt] (109.5,205.5) rectangle (141.5,219.5);
+  \node[inner sep=0pt,text=PMuted,font=\fontsize{21pt}{21pt}\selectfont] at (125.5,232.5) {grid};
+  \draw[PBlue!75!black,line width=1.1pt] (141.5,212.5) -- (147,212.5);
+  \fill[PGold] (151,208) rectangle (174,217);
+  \fill[PGold] (173,202.5) -- (188,212.5) -- (173,222.5) -- cycle;
+  \node[inner sep=0pt,text=PText,font=\fontsize{23.5pt}{23.5pt}\selectfont\bfseries] at (169,230) {replace};
+  \draw[-{Stealth[length=5pt,width=5pt]},PBlue!75!black,line width=1.1pt] (193,212.5) -- (213,212.5);
+  \draw[PBlue,line width=2pt,fill=PBlue!6,rounded corners=4pt] (214.5,189.5) rectangle (258.5,232);
+  \node[inner sep=0pt,text=PBlue,font=\CondBold\fontsize{27pt}{27pt}\selectfont] at (236.5,199.5) {GFL};
+  \draw[PBlue,line width=1.1pt] (227.5,208.5) rectangle (245.5,226.5) (227.5,226.5) -- (245.5,208.5);
+  \draw[PBlue,line width=0.9pt] (229.6,213.6) .. controls (231.2,211.4) and (232.8,211.4) .. (234.4,213.6);
+  \draw[PBlue,line width=0.9pt] (238.8,221.3) -- (243.6,221.3) (238.8,223.6) -- (243.6,223.6);
+  \node[inner sep=0pt,text=PText,font=\fontsize{21pt}{21pt}\selectfont] at (237,242) {port $i$};
 
-  % ---------------------------------------------------------------- 1C design objective (hero equation)
-  \fill[PPaleGold] (18,262) rectangle (392,352);
-  \draw[PGold,line width=0.7pt,rounded corners=2pt] (18,262) rectangle (392,352);
-  \node[anchor=north west,inner sep=0pt,text=PGold!60!black] at (26,264.5) {\fontsize{17pt}{17pt}\selectfont\bfseries DESIGN OBJECTIVE};
-  \node[text=PBlue,inner sep=0pt] at (205,291) {\fontsize{38pt}{42pt}\selectfont $\displaystyle \max_{S,\;K\in\mathcal K_n}\ \sum_{i\in S}P_i^{0}$};
-  \node[text=PBlue,inner sep=0pt,anchor=east] at (200,321) {\fontsize{22pt}{24pt}\selectfont subject to};
-  \node[text=PBlue,inner sep=0pt,anchor=west] at (208,321) {\fontsize{28pt}{30pt}\selectfont $\alpha_\perp(S,K)\le-\sigma_{\rm req}$};
-  \node[text=PText,inner sep=0pt] at (205,340.5) {\fontsize{17.5pt}{19pt}\selectfont $K\in\mathcal K_n,\quad K^{-}\le K\le K^{+},\quad$ physical/event guards satisfied.};
-  \node[anchor=north,inner sep=0pt,text=PMuted] at (205,353.2) {\fontsize{17pt}{17pt}\selectfont\itshape The paper reports the largest verified design found; global optimality is not claimed.};
+  % ---------------------------------------------------------------- portfolio variable
+  \node[inner sep=0pt,text=PBlue] at (153,265) {\fontsize{32pt}{34pt}\selectfont $\delta_i\in\{0,1\},\qquad S(\delta)=\{\,i:\delta_i=1\,\}$};
+  \node[inner sep=0pt,text=PMuted] at (153,279.5) {\fontsize{17pt}{18pt}\selectfont $\delta_i=0$: retain $\mathrm{SG}_i$\qquad $\delta_i=1$: replace $\mathrm{SG}_i$ by $\mathrm{GFL}_i$};
 
-  % ---------------------------------------------------------------- 1D four-block flow
-  \foreach \cx in {60,156,252}{
-    \draw[line width=0.7pt,rounded corners=2pt,fill=white,draw=PBlue!70] (\cx-38,370) rectangle (\cx+38,431);}
-  \draw[line width=1.1pt,rounded corners=2pt,fill=white,draw=PTeal] (310,370) rectangle (386,431);
-  \foreach \a/\b in {98/118,194/214,290/310}{\draw[-{Stealth[length=3.2pt,width=3.6pt]},PGold,line width=1.6pt] (\a+2,400.5) -- (\b-2,400.5);}
-  % icon 1: network with a generator
-  \begin{scope}[shift={(60,382)}]
-    \coordinate (n1) at (-6,3); \coordinate (n2) at (6,-3); \coordinate (n3) at (17,3); \coordinate (n4) at (6,7);
-    \draw[PBlue,line width=0.6pt] (n1)--(n2)--(n3) (n2)--(n4) (n1)--(n4);
-    \foreach \p in {n2,n3,n4}{\fill[PBlue] (\p) circle (1.6);}
-    \draw[PTeal,line width=0.7pt,fill=white] (-14,3) circle (5.2);
-    \draw[PTeal,line width=0.7pt] (-17.6,3) .. controls (-16,-0.6) and (-14.8,-0.6) .. (-14,3) .. controls (-13.2,6.6) and (-12,6.6) .. (-10.4,3);
-    \draw[PBlue,line width=0.6pt] (-9,3)--(n1);
-  \end{scope}
-  % icon 2: binary pattern
-  \begin{scope}[shift={(156,382)}]
-    \foreach \x/\d in {-17/0,-6/1,5/0,16/1}{
-      \draw[PBlue,line width=0.5pt,fill=PPaleGreen] (\x-5,-6) rectangle (\x+5,6);
-      \node[inner sep=0pt,text=PText,font=\fontsize{15pt}{15pt}\selectfont\bfseries] at (\x,0) {\d};}
-    \node[inner sep=0pt,text=PMuted,font=\fontsize{15pt}{15pt}\selectfont] at (27,2) {\ldots};
-  \end{scope}
-  % icon 3: local -> n-hop motif
-  \begin{scope}[shift={(252,382)}]
-    \draw[PBlue!60,dashed,line width=0.5pt] (0,0) circle (7.5);
-    \draw[PBlue!60,dashed,line width=0.5pt] (0,0) circle (13);
-    \foreach \a in {0,90,180,270}{\draw[PBlue,line width=0.5pt] (0,0) -- (\a:7.5); \fill[PBlue] (\a:7.5) circle (1.6);}
-    \foreach \a in {45,135,225,315}{\fill[PBlue!50] (\a:13) circle (1.5);}
-    \fill[PGold] (0,0) circle (2.6);
-  \end{scope}
-  % icon 4: eigenvalue plane with the margin line
-  \begin{scope}[shift={(348,382)}]
-    \draw[PMuted,line width=0.5pt] (-20,0) -- (20,0) (0,-9) -- (0,9);
-    \draw[PRed,dashed,line width=0.8pt] (6,-9.5) -- (6,9.5);
-    \foreach \x/\y in {-16/4,-16/-4,-11/6,-11/-6,-8/2,-8/-2,-3/5,-3/-5}{\draw[PTeal,line width=0.8pt] (\x-1.5,\y-1.5) -- (\x+1.5,\y+1.5) (\x-1.5,\y+1.5) -- (\x+1.5,\y-1.5);}
-  \end{scope}
-  % labels (bottom aligned)
-  \foreach \cx/\l in {60/{IEEE-39\\[-1pt]SG GRID},156/{CHOOSE\\[-1pt]PORTFOLIO $\delta$},252/{CHOOSE\\[-1pt]CONTROLLER\\[-1pt]CLASS $K\in\mathcal K_n$},348/{FULL-GRID CHECK\\[-1pt]$\alpha_\perp\le-\sigma_{\rm req}$}}{
-    \node[anchor=south,inner sep=0pt,text=PText,align=center,font=\fontsize{17pt}{18.2pt}\selectfont\bfseries] at (\cx,429) {\l};}
+  % ---------------------------------------------------------------- engineering objective (central equation)
+  \EquationCallout{23}{287.5}{282}{344}
+  \node[inner sep=0pt,text=PGreen,font=\fontsize{23.5pt}{23.5pt}\selectfont\bfseries] at (152.5,297.5) {Engineering objective};
+  \node[inner sep=0pt,text=PBlue] at (152.5,321.5) {\fontsize{26pt}{28pt}\selectfont $\displaystyle\max_{S,\,K}\ \sum_{i\in S}P_i^{0}\quad\text{s.t.}\quad \alpha_\perp(S,K)\le-\sigma_{\rm req},\quad K\in\mathcal K_n$};
 
-  % ---------------------------------------------------------------- 1E bottom takeaway strip
-  \fill[PPaleGold] (18,433.5) rectangle (392,448);
-  \draw[PGold,line width=0.6pt,rounded corners=1.5pt] (18,433.5) rectangle (392,448);
-  \node[inner sep=0pt,text=PText] at (205,440.8) {\fontsize{18pt}{18pt}\selectfont\bfseries A safe SG\,$\rightarrow$\,GFL transition is a portfolio--controller co-design problem.};
+  % ---------------------------------------------------------------- scope note (no optimality claim)
+  \node[anchor=north west,inner sep=0pt,text=PRed,align=left,font=\fontsize{20pt}{23.5pt}\selectfont] at (40,349)
+    {Report the largest independently verified portfolio found.\\Certified global optimality is future work.};
+
+  % ---------------------------------------------------------------- four numbered steps (right column)
+  \foreach \ya/\yb/\n/\l in {
+      181/215/1/{\textbf{Choose}\\[-1pt]\textbf{portfolio} $\delta$},
+      217.5/263.5/2/{\textbf{Choose}\\[-1pt]\textbf{information}\\[-1pt]{\fontsize{18.5pt}{20pt}\selectfont (architecture)}},
+      266.5/304/3/{\textbf{Design gains}\\[-1pt]$K_p,\ K_I$},
+      307/345.5/4/{\textbf{Verify grid}\\[-1pt]{\fontsize{18.5pt}{20pt}\selectfont spectrum + events}}}{
+    \fill[PCard,rounded corners=3.5pt] (289.5,\ya) rectangle (389,\yb);
+    \StepNumber{304}{(\ya+\yb)/2}{\n}
+    \node[anchor=west,inner sep=0pt,text=PGreen,align=left,font=\fontsize{22.5pt}{24.5pt}\selectfont] at (317.5,{(\ya+\yb)/2+0.5}) {\l};}
+
+  % ---------------------------------------------------------------- bottom callout
+  \GreenCallout{23}{381}{389}{410}
+  \node[inner sep=0pt,text=PGreen,font=\fontsize{23pt}{23pt}\selectfont\bfseries] at (206,395.8) {A safe SG\,$\rightarrow$\,GFL transition is a portfolio--controller co-design problem.};
 \end{scope}
