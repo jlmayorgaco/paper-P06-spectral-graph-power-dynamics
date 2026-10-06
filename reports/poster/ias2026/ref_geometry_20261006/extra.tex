@@ -1,0 +1,16 @@
+% Title fitting without distortion + unnumbered support sections.
+\newsavebox{\TitleBox}
+\newlength{\TitleW}
+% natural size; only if the text is wider than #1 reference pixels is it scaled DOWN uniformly (aspect ratio preserved)
+\newcommand{\FitTitle}[2]{%
+  \sbox{\TitleBox}{\PanelFont #2}\setlength{\TitleW}{#1\PX}%
+  \ifdim\wd\TitleBox>\TitleW \resizebox{\TitleW}{!}{\usebox{\TitleBox}}\else\usebox{\TitleBox}\fi}
+
+% \RefSection{TITLE}{x0/y0/x1/y1}{bar height/title size in pt}: same bar as RefPanel, but NO gold number
+\newcommand{\RefSection}[3]{%
+  \foreach \xa/\ya/\xb/\yb in {#2}{\foreach \bh/\fs in {#3}{%
+  \draw[PBorder,line width=0.7pt,fill=PBody,rounded corners=1.2pt] (\xa,\ya) rectangle (\xb,\yb);
+  \fill[PGreen,rounded corners=1.5pt] (\xa,\ya) rectangle (\xb,\ya+\bh);
+  \fill[PGreen] (\xa,\ya+\bh-4) rectangle (\xb,\ya+\bh);
+  \draw[PGold,line width=0.9pt] (\xa+1.5,\ya) -- (\xb-1.5,\ya);
+  \node[anchor=west,inner sep=0pt,text=white,font=\PanelFont\fontsize{\fs pt}{\fs pt}\selectfont] at (\xa+14,\ya+\bh/2+0.3) {#1};}}}

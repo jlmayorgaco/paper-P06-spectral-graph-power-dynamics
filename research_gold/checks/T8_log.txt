@@ -1,0 +1,21 @@
+RULE on design A selects ((-16.34629153843205+6.543885486116494j), np.float64(-0.12293500407290078), np.float64(213.31435832835783))
+{'design': 'A', 'strategy': 'taylor node 4.91 Hz', 'tau_ms': 42, 'unstable_roots': 0, 'beyond_guard_excl_gauge': 0, 'Kp': np.float64(28.677159714504374), 'Ki': np.float64(192.8834922947605)}
+{'design': 'A', 'strategy': 'taylor node 4.91 Hz', 'tau_ms': 44, 'unstable_roots': 0, 'beyond_guard_excl_gauge': 0, 'Kp': np.float64(29.079985546700605), 'Ki': np.float64(139.02687456228705)}
+{'design': 'A', 'strategy': 'taylor node 4.91 Hz', 'tau_ms': 46, 'unstable_roots': 0, 'beyond_guard_excl_gauge': 0, 'Kp': np.float64(29.48281137889684), 'Ki': np.float64(85.17025682981358)}
+{'design': 'A', 'strategy': 'taylor node 4.91 Hz', 'tau_ms': 48, 'unstable_roots': 0, 'beyond_guard_excl_gauge': 0, 'Kp': np.float64(29.885637211093076), 'Ki': np.float64(31.313639097340115)}
+{'design': 'A', 'strategy': 'taylor node 1.04 Hz', 'tau_ms': 42, 'unstable_roots': 0, 'beyond_guard_excl_gauge': 0, 'Kp': np.float64(26.9190920835819), 'Ki': np.float64(229.20868370375285)}
+{'design': 'A', 'strategy': 'taylor node 1.04 Hz', 'tau_ms': 44, 'unstable_roots': 0, 'beyond_guard_excl_gauge': 0, 'Kp': np.float64(25.563850284855665), 'Ki': np.float64(211.67725738027173)}
+{'design': 'A', 'strategy': 'taylor node 1.04 Hz', 'tau_ms': 46, 'unstable_roots': 0, 'beyond_guard_excl_gauge': 0, 'Kp': np.float64(24.208608486129428), 'Ki': np.float64(194.14583105679063)}
+{'design': 'A', 'strategy': 'taylor node 1.04 Hz', 'tau_ms': 48, 'unstable_roots': 0, 'beyond_guard_excl_gauge': 0, 'Kp': np.float64(22.85336668740319), 'Ki': np.float64(176.61440473330953)}
+{'design': 'A', 'strategy': 'low-frequency rule', 'tau_ms': 46, 'unstable_roots': 14, 'beyond_guard_excl_gauge': 14, 'Kp': np.float64(29.75477454247154), 'Ki': np.float64(246.74011002723395)}
+design B base count (unstable, beyond guard): 0 0
+catalog B ['-0.126+0.35j', '-0.291+0.37j', '-16.647+5.85j', '-3.198+28.60j', '-4.710+29.31j', '-1.896+29.61j', '-1.579+30.27j', '-1.853+30.83j', '-0.796+30.88j', '-0.850+31.11j', '-1.114+31.34j']
+RULE on design B selects (np.complex128(-16.64733713891287+5.846177871188935j), np.float64(-0.12656474548134095), np.float64(213.21488528091436))
+{'design': 'B', 'strategy': 'no retune', 'tau_ms': 42, 'unstable_roots': 4, 'beyond_guard_excl_gauge': 4, 'Kp': np.float64(28.274333882308138), 'Ki': np.float64(246.74011002723395)}
+{'design': 'B', 'strategy': 'no retune', 'tau_ms': 44, 'unstable_roots': 10, 'beyond_guard_excl_gauge': 12, 'Kp': np.float64(28.274333882308138), 'Ki': np.float64(246.74011002723395)}
+{'design': 'B', 'strategy': 'low-frequency rule', 'tau_ms': 42, 'unstable_roots': 6, 'beyond_guard_excl_gauge': 6, 'Kp': np.float64(28.767814102362607), 'Ki': np.float64(246.74011002723395)}
+{'design': 'B', 'strategy': 'low-frequency rule', 'tau_ms': 44, 'unstable_roots': 12, 'beyond_guard_excl_gauge': 12, 'Kp': np.float64(29.261294322417072), 'Ki': np.float64(246.74011002723395)}
+{'design': 'B', 'strategy': 'exact, rule-selected node 0.93 Hz', 'tau_ms': 42, 'unstable_roots': 0, 'beyond_guard_excl_gauge': 0, 'Kp': np.float64(26.913351470868772), 'Ki': np.float64(229.56246138207248)}
+{'design': 'B', 'strategy': 'exact, rule-selected node 0.93 Hz', 'tau_ms': 44, 'unstable_roots': 0, 'beyond_guard_excl_gauge': 0, 'Kp': np.float64(25.607625548513), 'Ki': np.float64(213.21488528091436)}
+{'design': 'B', 'strategy': 'exact, rule-selected node 0.93 Hz', 'tau_ms': 46, 'unstable_roots': 0, 'beyond_guard_excl_gauge': 0, 'Kp': np.float64(24.355169288434354), 'Ki': np.float64(197.66359962961118)}
+{'design': 'B', 'strategy': 'exact, least-damped cluster node 4.91 Hz', 'tau_ms': 44, 'unstable_roots': 0, 'beyond_guard_excl_gauge': 0, 'Kp': np.float64(28.86145367680901), 'Ki': np.float64(137.57287615288465)}

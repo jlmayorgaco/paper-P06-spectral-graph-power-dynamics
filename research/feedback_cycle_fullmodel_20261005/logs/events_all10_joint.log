@@ -1,0 +1,10 @@
+EVENT_START EV_all10_joint 8 -100.0
+EVENT_DONE (label = "EV_all10_joint", tau_ms = 44.0, bus = 8, delta = -100.0, F = 0.4631272025968777, R = 0.13739726126710824, Vmin = 0.9861612469282679, Vmax = 1.078178635174124, slack = 0.09738221834238353, runtime = 251.77999997138977, pass = true, error = "")
+EVENT_START EV_all10_joint 16 100.0
+EVENT_DONE (label = "EV_all10_joint", tau_ms = 44.0, bus = 16, delta = 100.0, F = 0.44526344311986094, R = 0.12581496733818012, Vmin = 0.9721083659192574, Vmax = 1.061256972594065, slack = 0.006976816502329841, runtime = 171.24699997901917, pass = true, error = "")
+EVENT_START EV_all10_joint 16 -100.0
+EVENT_DONE (label = "EV_all10_joint", tau_ms = 44.0, bus = 16, delta = -100.0, F = 0.47239639204791956, R = 0.12836758180287255, Vmin = 0.9858642010752776, Vmax = 1.0787135984023526, slack = 0.09418003842892282, runtime = 196.19900012016296, pass = true, error = "")
+EVENT_START EV_all10_joint 29 100.0
+EVENT_DONE (label = "EV_all10_joint", tau_ms = 44.0, bus = 29, delta = 100.0, F = 0.4295878277159383, R = 0.12701415185607684, Vmin = 0.9733884855031921, Vmax = 1.061303022184815, slack = 0.01174691028246233, runtime = 176.42899990081787, pass = true, error = "")
+EVENT_START EV_all10_joint 29 -100.0
+EVENT_DONE (label = "EV_all10_joint", tau_ms = 44.0, bus = 29, delta = -100.0, F = 0.44266922447713497, R = 0.19917578373679876, Vmin = 0.9831894269867207, Vmax = 1.0747306417957747, slack = 0.1035456769279499, runtime = 210.02099990844727, pass = true, error = "")

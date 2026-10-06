@@ -1,0 +1,27 @@
+\ProvidesPackage{beamerthemeIAS2026}[2026/09/27 IAS 2026 Gemini-derived poster theme]
+
+% A restrained Gemini-derived poster shell: square-edged editorial panels,
+% semantic columns, high-contrast section bands, and no application-style cards.
+\mode<presentation>
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize item}{\raisebox{0.15ex}{\scriptsize$\blacktriangleright$}}
+\setbeamertemplate{itemize subitem}{\raisebox{0.15ex}{\tiny$\blacktriangleright$}}
+\setbeamercolor{normal text}{fg=IASDarkText,bg=IASWhite}
+\setbeamercolor{block title}{fg=white,bg=IASDarkGreen}
+\setbeamercolor{block body}{fg=IASDarkText,bg=white}
+\setbeamertemplate{block begin}{%
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[wd=\linewidth,sep=0pt,rounded=false]{block title}%
+    \usebeamerfont{block title}\insertblocktitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=\linewidth,sep=0pt,rounded=false]{block body}%
+    \vskip\smallskipamount
+}
+\setbeamertemplate{block end}{%
+    \vskip\smallskipamount
+  \end{beamercolorbox}%
+  \vskip\medskipamount
+}
+\setbeamerfont{block title}{series=\bfseries}
+\setbeamertemplate{bibliography item}[text]
+\mode<all>

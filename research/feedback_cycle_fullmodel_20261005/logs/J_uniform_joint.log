@@ -1,0 +1,15 @@
+[uniform_joint] it 0: worst Re=+0.9688 @ 4.649 Hz, beyond margin=5, radius=0.1000
+[uniform_joint] it 1: worst Re=-0.0074 @ 4.429 Hz, beyond margin=1, radius=0.1000
+[uniform_joint] it 2: worst Re=-0.0529 @ 4.419 Hz, beyond margin=0, radius=0.1000
+FINAL {'label': 'uniform_joint', 'kind': 'joint', 'sites': '30 31 32 33 34 35 36 37 38 39', 'N_unstable': 0, 'N_margin_excl_gauge': 0, 'max_noninteger_winding': np.float64(5.768718835952313e-12), 'iterations': 2, 'success': True, 'Kp': '25.6764 25.6764 25.6764 25.6764 25.6764 25.6764 25.6764 25.6764 25.6764 25.6764', 'Ki': '232.9288 232.9288 232.9288 232.9288 232.9288 232.9288 232.9288 232.9288 232.9288 232.9288', 'worst_re_catalog': np.float64(-0.05291839907121254)}
+[uniform_ki] it 0: worst Re=+0.9688 @ 4.649 Hz, beyond margin=5, radius=0.1000
+[uniform_ki] it 1: worst Re=+0.5107 @ 4.686 Hz, beyond margin=3, radius=0.1000
+[uniform_ki] it 2: worst Re=+0.1030 @ 4.724 Hz, beyond margin=2, radius=0.1000
+[uniform_ki] it 3: worst Re=-0.0491 @ 4.740 Hz, beyond margin=1, radius=0.1000
+[uniform_ki] it 4: worst Re=-0.0530 @ 4.740 Hz, beyond margin=0, radius=0.1000
+FINAL {'label': 'uniform_ki', 'kind': 'ki', 'sites': '30 31 32 33 34 35 36 37 38 39', 'N_unstable': 0, 'N_margin_excl_gauge': 0, 'max_noninteger_winding': np.float64(1.558853046645936e-11), 'iterations': 4, 'success': True, 'Kp': '28.2743 28.2743 28.2743 28.2743 28.2743 28.2743 28.2743 28.2743 28.2743 28.2743', 'Ki': '193.7528 193.7528 193.7528 193.7528 193.7528 193.7528 193.7528 193.7528 193.7528 193.7528', 'worst_re_catalog': np.float64(-0.0529974031269016)}
+[uniform_kp] it 0: worst Re=+0.9688 @ 4.649 Hz, beyond margin=5, radius=0.1000
+[uniform_kp] it 1: worst Re=+0.2495 @ 4.390 Hz, beyond margin=2, radius=0.1000
+[uniform_kp] it 2: worst Re=-0.0228 @ 4.257 Hz, beyond margin=1, radius=0.1000
+[uniform_kp] it 3: worst Re=-0.0525 @ 4.241 Hz, beyond margin=0, radius=0.1000
+FINAL {'label': 'uniform_kp', 'kind': 'kp', 'sites': '30 31 32 33 34 35 36 37 38 39', 'N_unstable': 0, 'N_margin_excl_gauge': 0, 'max_noninteger_winding': np.float64(6.813216657519661e-12), 'iterations': 3, 'success': True, 'Kp': '24.1923 24.1923 24.1923 24.1923 24.1923 24.1923 24.1923 24.1923 24.1923 24.1923', 'Ki': '246.7401 246.7401 246.7401 246.7401 246.7401 246.7401 246.7401 246.7401 246.7401 246.7401', 'worst_re_catalog': np.float64(-0.05249980204626198)}

@@ -1,0 +1,928 @@
+This is LuaHBTeX, Version 1.24.0 (MiKTeX 25.12) (format=lualatex 2026.4.29)  6 OCT 2026 01:53
+ restricted system commands enabled.
+**components_demo.tex
+(./components_demo.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+Lua module: luaotfload 2024-12-03 v3.29 Lua based OpenType font support
+Lua module: lualibs 2023-07-13 v2.76 ConTeXt Lua standard libraries.
+Lua module: lualibs-extended 2023-07-13 v2.76 ConTeXt Lua libraries -- extended 
+collection.
+luaotfload | conf : Root cache directory is "C:/Users/walla/AppData/Local/MiKTeX
+/luatex-cache/generic/names".
+luaotfload | init : Loading fontloader "fontloader-2023-12-28.lua" from kpse-res
+olved path "C:/Program Files/MiKTeX/tex/luatex/luaotfload/fontloader-2023-12-28.
+lua".
+Lua-only attribute luaotfload@noligature = 1
+luaotfload | init : Context OpenType loader version 3.134
+Inserting `luaotfload.node_processor' in `pre_linebreak_filter'.
+Inserting `luaotfload.node_processor' in `hpack_filter'.
+Inserting `luaotfload.glyph_stream' in `glyph_stream_provider'.
+Inserting `luaotfload.define_font' in `define_font'.
+Lua-only attribute luaotfload_color_attribute = 2
+luaotfload | conf : Root cache directory is "C:/Users/walla/AppData/Local/MiKTeX
+/luatex-cache/generic/names".
+Inserting `luaotfload.harf.strip_prefix' in `find_opentype_file'.
+Inserting `luaotfload.harf.strip_prefix' in `find_truetype_file'.
+Removing  `luaotfload.glyph_stream' from `glyph_stream_provider'.
+Inserting `luaotfload.harf.glyphstream' in `glyph_stream_provider'.
+Inserting `luaotfload.harf.finalize_vlist' in `post_linebreak_filter'.
+Inserting `luaotfload.harf.finalize_hlist' in `hpack_filter'.
+Inserting `luaotfload.cleanup_files' in `wrapup_run'.
+Inserting `luaotfload.harf.finalize_unicode' in `finish_pdffile'.
+Inserting `luaotfload.glyphinfo' in `glyph_info'.
+Lua-only attribute luaotfload.letterspace_done = 3
+Inserting `luaotfload.aux.set_sscale_dimens' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_font_index' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.patch_cambria_domh' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.fixup_fontdata' in `luaotfload.patch_font_unsafe'.
+Inserting `luaotfload.aux.set_capheight' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_xheight' in `luaotfload.patch_font'.
+Inserting `luaotfload.rewrite_fontname' in `luaotfload.patch_font'.
+Inserting `tracingstacklevels' in `input_level_string'. ("C:/Program Files/MiKT
+eX/tex/latex/base/article.cls"
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+("C:/Program Files/MiKTeX/tex/latex/base/size10.clo"
+File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+luaotfload | db : Font names database loaded from C:/Users/walla/AppData/Local/M
+iKTeX/luatex-cache/generic/names/luaotfload-names.luc.gz)
+\c@part=\count273
+\c@section=\count274
+\c@subsection=\count275
+\c@subsubsection=\count276
+\c@paragraph=\count277
+\c@subparagraph=\count278
+\c@figure=\count279
+\c@table=\count280
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen147
+)
+(C:/Users/walla/AppData/Roaming/MiKTeX/tex/latex/geometry/geometry.sty
+Package: geometry 2026/03/07 v6.0 Page Geometry
+
+("C:/Program Files/MiKTeX/tex/latex/graphics/keyval.sty"
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+("C:/Program Files/MiKTeX/tex/generic/iftex/ifvtex.sty"
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+("C:/Program Files/MiKTeX/tex/generic/iftex/iftex.sty"
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+))
+\Gm@cnth=\count281
+\Gm@cntv=\count282
+\c@Gm@tempcnt=\count283
+\Gm@bindingoffset=\dimen148
+\Gm@wd@mp=\dimen149
+\Gm@odd@mp=\dimen150
+\Gm@even@mp=\dimen151
+\Gm@layoutwidth=\dimen152
+\Gm@layoutheight=\dimen153
+\Gm@layouthoffset=\dimen154
+\Gm@layoutvoffset=\dimen155
+\Gm@dimlist=\toks18
+
+(C:/Users/walla/AppData/Roaming/MiKTeX/tex/latex/geometry/geometry.cfg))
+(./refstyle.tex ("C:/Program Files/MiKTeX/tex/latex/fontspec/fontspec.sty"
+("C:/Program Files/MiKTeX/tex/latex/l3packages/xparse/xparse.sty"
+("C:/Program Files/MiKTeX/tex/latex/l3kernel/expl3.sty"
+Package: expl3 2025-12-24 L3 programming layer (loader) 
+
+("C:/Program Files/MiKTeX/tex/latex/l3backend/l3backend-luatex.def"
+File: l3backend-luatex.def 2025-10-09 L3 backend support: PDF output (LuaTeX)
+\l__color_backend_stack_int=\count284
+Inserting `l3color' in `luaotfload.parse_color'.))
+Package: xparse 2025-10-09 L3 Experimental document command parser
+)
+Package: fontspec 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTeX
+Lua module: fontspec 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTeX
+("C:/Program Files/MiKTeX/tex/latex/fontspec/fontspec-luatex.sty"
+Package: fontspec-luatex 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaT
+eX
+\l__fontspec_script_int=\count285
+\l__fontspec_language_int=\count286
+\l__fontspec_strnum_int=\count287
+\l__fontspec_tmp_int=\count288
+\l__fontspec_tmpa_int=\count289
+\l__fontspec_tmpb_int=\count290
+\l__fontspec_tmpc_int=\count291
+\l__fontspec_em_int=\count292
+\l__fontspec_emdef_int=\count293
+\l__fontspec_strong_int=\count294
+\l__fontspec_strongdef_int=\count295
+\l__fontspec_tmpa_dim=\dimen156
+\l__fontspec_tmpb_dim=\dimen157
+\l__fontspec_tmpc_dim=\dimen158
+
+("C:/Program Files/MiKTeX/tex/latex/base/fontenc.sty"
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+)
+("C:/Program Files/MiKTeX/tex/latex/fontspec/fontspec.cfg")))
+("C:/Program Files/MiKTeX/tex/latex/xcolor/xcolor.sty"
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+
+("C:/Program Files/MiKTeX/tex/latex/graphics-cfg/color.cfg"
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: luatex.def on input line 274.
+
+("C:/Program Files/MiKTeX/tex/latex/graphics-def/luatex.def"
+File: luatex.def 2025/09/29 v1.2f Graphics/color driver for luatex
+)
+("C:/Program Files/MiKTeX/tex/latex/graphics/mathcolor.ltx")
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+)
+("C:/Program Files/MiKTeX/tex/latex/graphics/graphicx.sty"
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:/Program Files/MiKTeX/tex/latex/graphics/graphics.sty"
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+
+("C:/Program Files/MiKTeX/tex/latex/graphics/trig.sty"
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+("C:/Program Files/MiKTeX/tex/latex/graphics-cfg/graphics.cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: luatex.def on input line 106.
+)
+\Gin@req@height=\dimen159
+\Gin@req@width=\dimen160
+)
+("C:/Program Files/MiKTeX/tex/latex/amsmath/amsmath.sty"
+Package: amsmath 2025/07/09 v2.17z AMS math features
+\@mathmargin=\skip51
+
+For additional information on amsmath, use the `?' option.
+("C:/Program Files/MiKTeX/tex/latex/amsmath/amstext.sty"
+Package: amstext 2024/11/17 v2.01 AMS text
+
+("C:/Program Files/MiKTeX/tex/latex/amsmath/amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks19
+\ex@=\dimen161
+))
+("C:/Program Files/MiKTeX/tex/latex/amsmath/amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen162
+)
+("C:/Program Files/MiKTeX/tex/latex/amsmath/amsopn.sty"
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count296
+LaTeX Info: Redefining \frac on input line 235.
+\uproot@=\count297
+\leftroot@=\count298
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count299
+\DOTSCASE@=\count300
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box53
+\strutbox@=\box54
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen163
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count301
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count302
+\dotsspace@=\muskip17
+\c@parentequation=\count303
+\dspbrk@lvl=\count304
+\tag@help=\toks20
+\row@=\count305
+\column@=\count306
+\maxfields@=\count307
+\andhelp@=\toks21
+\eqnshift@=\dimen164
+\alignsep@=\dimen165
+\tagshift@=\dimen166
+\tagwidth@=\dimen167
+\totwidth@=\dimen168
+\lineht@=\dimen169
+\@envbody=\toks22
+\multlinegap=\skip52
+\multlinetaggap=\skip53
+\mathdisplay@stack=\toks23
+LaTeX Info: Redefining \[ on input line 2950.
+LaTeX Info: Redefining \] on input line 2951.
+)
+("C:/Program Files/MiKTeX/tex/latex/amsfonts/amssymb.sty"
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+("C:/Program Files/MiKTeX/tex/latex/amsfonts/amsfonts.sty"
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+("C:/Program Files/MiKTeX/tex/latex/pgf/frontendlayer/tikz.sty"
+("C:/Program Files/MiKTeX/tex/latex/pgf/basiclayer/pgf.sty"
+("C:/Program Files/MiKTeX/tex/latex/pgf/utilities/pgfrcs.sty"
+("C:/Program Files/MiKTeX/tex/generic/pgf/utilities/pgfutil-common.tex"
+\pgfutil@everybye=\toks24
+\pgfutil@tempdima=\dimen170
+\pgfutil@tempdimb=\dimen171
+)
+("C:/Program Files/MiKTeX/tex/generic/pgf/utilities/pgfutil-latex.def"
+\pgfutil@abb=\box55
+)
+("C:/Program Files/MiKTeX/tex/generic/pgf/utilities/pgfrcs.code.tex"
+("C:/Program Files/MiKTeX/tex/generic/pgf/pgf.revision.tex")
+Package: pgfrcs 2025-08-29 v3.1.11a (3.1.11a)
+))
+Package: pgf 2025-08-29 v3.1.11a (3.1.11a)
+
+("C:/Program Files/MiKTeX/tex/latex/pgf/basiclayer/pgfcore.sty"
+("C:/Program Files/MiKTeX/tex/latex/pgf/systemlayer/pgfsys.sty"
+("C:/Program Files/MiKTeX/tex/generic/pgf/systemlayer/pgfsys.code.tex"
+Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
+
+("C:/Program Files/MiKTeX/tex/generic/pgf/utilities/pgfkeys.code.tex"
+\pgfkeys@pathtoks=\toks25
+\pgfkeys@temptoks=\toks26
+
+("C:/Program Files/MiKTeX/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code
+.tex"
+\pgfkeys@tmptoks=\toks27
+))
+\pgf@x=\dimen172
+\pgf@y=\dimen173
+\pgf@xa=\dimen174
+\pgf@ya=\dimen175
+\pgf@xb=\dimen176
+\pgf@yb=\dimen177
+\pgf@xc=\dimen178
+\pgf@yc=\dimen179
+\pgf@xd=\dimen180
+\pgf@yd=\dimen181
+\w@pgf@writea=\write3
+\r@pgf@reada=\read2
+\c@pgf@counta=\count308
+\c@pgf@countb=\count309
+\c@pgf@countc=\count310
+\c@pgf@countd=\count311
+\t@pgf@toka=\toks28
+\t@pgf@tokb=\toks29
+\t@pgf@tokc=\toks30
+\pgf@sys@id@count=\count312
+ ("C:/Program Files/MiKTeX/tex/generic/pgf/systemlayer/pgf.cfg"
+File: pgf.cfg 2025-08-29 v3.1.11a (3.1.11a)
+)
+Driver file for pgf: pgfsys-luatex.def
+
+("C:/Program Files/MiKTeX/tex/generic/pgf/systemlayer/pgfsys-luatex.def"
+File: pgfsys-luatex.def 2025-08-29 v3.1.11a (3.1.11a)
+
+("C:/Program Files/MiKTeX/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def"
+File: pgfsys-common-pdf.def 2025-08-29 v3.1.11a (3.1.11a)
+))) ("C:/Program Files/MiKTeX/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.t
+ex"
+File: pgfsyssoftpath.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfsyssoftpath@smallbuffer@items=\count313
+\pgfsyssoftpath@bigbuffer@items=\count314
+) ("C:/Program Files/MiKTeX/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+"
+File: pgfsysprotocol.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)) ("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcore.code.tex"
+Package: pgfcore 2025-08-29 v3.1.11a (3.1.11a)
+
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmath.code.tex"
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathutil.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathparser.code.tex"
+\pgfmath@dimen=\dimen182
+\pgfmath@count=\count315
+\pgfmath@box=\box56
+\pgfmath@toks=\toks31
+\pgfmath@stack@operand=\toks32
+\pgfmath@stack@operation=\toks33
+)
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathfunctions.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex"
+)
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathfunctions.trigonometric.c
+ode.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathfunctions.random.code.tex
+")
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathfunctions.comparison.code
+.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathfunctions.base.code.tex") ("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathfunctions.round.code.tex") ("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathfunctions.integerarithmet
+ics.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathcalc.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmathfloat.code.tex"
+\c@pgfmathroundto@lastzeros=\count316
+))
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfint.code.tex")
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex"
+File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@picminx=\dimen183
+\pgf@picmaxx=\dimen184
+\pgf@picminy=\dimen185
+\pgf@picmaxy=\dimen186
+\pgf@pathminx=\dimen187
+\pgf@pathmaxx=\dimen188
+\pgf@pathminy=\dimen189
+\pgf@pathmaxy=\dimen190
+\pgf@xx=\dimen191
+\pgf@xy=\dimen192
+\pgf@yx=\dimen193
+\pgf@yy=\dimen194
+\pgf@zx=\dimen195
+\pgf@zy=\dimen196
+)
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.
+tex"
+File: pgfcorepathconstruct.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@path@lastx=\dimen197
+\pgf@path@lasty=\dimen198
+)
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex"
+File: pgfcorepathusage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@shorten@end@additional=\dimen199
+\pgf@shorten@start@additional=\dimen256
+) ("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex"
+File: pgfcorescopes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfpic=\box57
+\pgf@hbox=\box58
+\pgf@layerbox@main=\box59
+\pgf@picture@serial@count=\count317
+)
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.t
+ex"
+File: pgfcoregraphicstate.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgflinewidth=\dimen257
+)
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcoretransformations.cod
+e.tex"
+File: pgfcoretransformations.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@pt@x=\dimen258
+\pgf@pt@y=\dimen259
+\pgf@pt@temp=\dimen260
+)
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcorequick.code.tex"
+File: pgfcorequick.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex"
+File: pgfcoreobjects.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code
+.tex"
+File: pgfcorepathprocessing.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex"
+File: pgfcorearrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfarrowsep=\dimen261
+)
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex"
+File: pgfcoreshade.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@max=\dimen262
+\pgf@sys@shading@range@num=\count318
+\pgf@shadingcount=\count319
+)
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex"
+File: pgfcoreimage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex"
+File: pgfcoreexternal.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfexternal@startupbox=\box60
+) ("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex"
+File: pgfcorelayers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcoretransparency.code.t
+ex"
+File: pgfcoretransparency.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex"
+File: pgfcorepatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+) ("C:/Program Files/MiKTeX/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex"
+File: pgfcorerdf.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)))
+("C:/Program Files/MiKTeX/tex/generic/pgf/modules/pgfmoduleshapes.code.tex"
+File: pgfmoduleshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfnodeparttextbox=\box61
+)
+("C:/Program Files/MiKTeX/tex/generic/pgf/modules/pgfmoduleplot.code.tex"
+File: pgfmoduleplot.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+("C:/Program Files/MiKTeX/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty"
+Package: pgfcomp-version-0-65 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@nodesepstart=\dimen263
+\pgf@nodesepend=\dimen264
+) ("C:/Program Files/MiKTeX/tex/latex/pgf/compatibility/pgfcomp-version-1-18.st
+y"
+Package: pgfcomp-version-1-18 2025-08-29 v3.1.11a (3.1.11a)
+)) ("C:/Program Files/MiKTeX/tex/latex/pgf/utilities/pgffor.sty"
+("C:/Program Files/MiKTeX/tex/latex/pgf/utilities/pgfkeys.sty"
+("C:/Program Files/MiKTeX/tex/generic/pgf/utilities/pgfkeys.code.tex"))
+("C:/Program Files/MiKTeX/tex/latex/pgf/math/pgfmath.sty"
+("C:/Program Files/MiKTeX/tex/generic/pgf/math/pgfmath.code.tex"))
+("C:/Program Files/MiKTeX/tex/generic/pgf/utilities/pgffor.code.tex"
+Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
+\pgffor@iter=\dimen265
+\pgffor@skip=\dimen266
+\pgffor@stack=\toks34
+\pgffor@toks=\toks35
+))
+("C:/Program Files/MiKTeX/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex"
+Package: tikz 2025-08-29 v3.1.11a (3.1.11a)
+
+("C:/Program Files/MiKTeX/tex/generic/pgf/libraries/pgflibraryplothandlers.code
+.tex"
+File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgf@plot@mark@count=\count320
+\pgfplotmarksize=\dimen267
+)
+\tikz@lastx=\dimen268
+\tikz@lasty=\dimen269
+\tikz@lastxsaved=\dimen270
+\tikz@lastysaved=\dimen271
+\tikz@lastmovetox=\dimen272
+\tikz@lastmovetoy=\dimen273
+\tikzleveldistance=\dimen274
+\tikzsiblingdistance=\dimen275
+\tikz@figbox=\box62
+\tikz@figbox@bg=\box63
+\tikz@tempbox=\box64
+\tikz@tempbox@bg=\box65
+\tikztreelevel=\count321
+\tikznumberofchildren=\count322
+\tikznumberofcurrentchild=\count323
+\tikz@fig@count=\count324
+
+("C:/Program Files/MiKTeX/tex/generic/pgf/modules/pgfmodulematrix.code.tex"
+File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfmatrixcurrentrow=\count325
+\pgfmatrixcurrentcolumn=\count326
+\pgf@matrix@numberofcolumns=\count327
+)
+\tikz@expandcount=\count328
+
+("C:/Program Files/MiKTeX/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibr
+arytopaths.code.tex"
+File: tikzlibrarytopaths.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)))
+("C:/Program Files/MiKTeX/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibr
+arycalc.code.tex"
+File: tikzlibrarycalc.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+)
+("C:/Program Files/MiKTeX/tex/generic/pgf/libraries/pgflibraryarrows.meta.code.
+tex"
+File: pgflibraryarrows.meta.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+\pgfarrowinset=\dimen276
+\pgfarrowlength=\dimen277
+\pgfarrowwidth=\dimen278
+\pgfarrowlinewidth=\dimen279
+)
+("C:/Program Files/MiKTeX/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibr
+aryshapes.geometric.code.tex"
+File: tikzlibraryshapes.geometric.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+
+("C:/Program Files/MiKTeX/tex/generic/pgf/libraries/shapes/pgflibraryshapes.geo
+metric.code.tex"
+File: pgflibraryshapes.geometric.code.tex 2025-08-29 v3.1.11a (3.1.11a)
+))
+("C:/Program Files/MiKTeX/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibr
+arydecorations.pathmorphing.code.tex"
+("C:/Program Files/MiKTeX/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibr
+arydecorations.code.tex"
+("C:/Program Files/MiKTeX/tex/generic/pgf/modules/pgfmoduledecorations.code.tex
+"
+\pgfdecoratedcompleteddistance=\dimen280
+\pgfdecoratedremainingdistance=\dimen281
+\pgfdecoratedinputsegmentcompleteddistance=\dimen282
+\pgfdecoratedinputsegmentremainingdistance=\dimen283
+\pgf@decorate@distancetomove=\dimen284
+\pgf@decorate@repeatstate=\count329
+\pgfdecorationsegmentamplitude=\dimen285
+\pgfdecorationsegmentlength=\dimen286
+)
+\tikz@lib@dec@box=\box66
+)
+("C:/Program Files/MiKTeX/tex/generic/pgf/libraries/decorations/pgflibrarydecor
+ations.pathmorphing.code.tex"))
+luaotfload | cache : Lookup cache loaded from C:/Users/walla/AppData/Local/MiKTe
+X/luatex-cache/generic/names/luaotfload-lookup-cache.luc.
+
+Package fontspec Info: 
+(fontspec)             Segoe UI scale = 1.0.
+
+
+Package fontspec Info: 
+(fontspec)             Segoe UI scale = 1.0.
+
+
+Package fontspec Info: 
+(fontspec)             Segoe UI scale = 1.0.
+
+
+Package fontspec Info: 
+(fontspec)             Segoe UI/B scale = 1.0.
+
+
+Package fontspec Info: 
+(fontspec)             Segoe UI/B scale = 1.0.
+
+
+Package fontspec Info: 
+(fontspec)             Segoe UI/I scale = 1.0.
+
+
+Package fontspec Info: 
+(fontspec)             Segoe UI/I scale = 1.0.
+
+
+Package fontspec Info: 
+(fontspec)             Segoe UI/BI scale = 1.0.
+
+
+Package fontspec Info: 
+(fontspec)             Segoe UI/BI scale = 1.0.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'SegoeUI(0)' created for font 'Segoe UI'
+(fontspec)             with options [Ligatures=TeX,Ligatures=TeX,Scale=1.0].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->s*[1.0]"name:Segoe
+(fontspec)             UI:mode=node;script=latn;language=dflt;+tlig;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.:
+(fontspec)             <->s*[1.0]"name:Segoe
+(fontspec)             UI:mode=node;script=latn;language=dflt;+tlig;+smcp;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->s*[1.0]"name:Segoe
+(fontspec)             UI/B:mode=node;script=latn;language=dflt;+tlig;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.:
+(fontspec)             <->s*[1.0]"name:Segoe
+(fontspec)             UI/B:mode=node;script=latn;language=dflt;+tlig;+smcp;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.:
+(fontspec)             <->s*[1.0]"name:Segoe
+(fontspec)             UI/I:mode=node;script=latn;language=dflt;+tlig;"
+(fontspec)             - 'italic small caps'  (m/scit) with NFSS spec.:
+(fontspec)             <->s*[1.0]"name:Segoe
+(fontspec)             UI/I:mode=node;script=latn;language=dflt;+tlig;+smcp;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->s*[1.0]"name:Segoe
+(fontspec)             UI/BI:mode=node;script=latn;language=dflt;+tlig;"
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.:
+(fontspec)             <->s*[1.0]"name:Segoe
+(fontspec)             UI/BI:mode=node;script=latn;language=dflt;+tlig;+smcp;"
+
+LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
+(Font)              scaled to size 10.0pt on input line 32.
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Impact/BI" (it probably doesn't
+(fontspec)             exist).
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Impact/B" (it probably doesn't
+(fontspec)             exist).
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Impact/I" (it probably doesn't
+(fontspec)             exist).
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'Impact(0)' created for font 'Impact' with
+(fontspec)             options [].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"name:Impact:mode=node;script=latn;language=dflt;"
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'SegoeSB(0)' created for font 'SegoeSB'
+(fontspec)             with options
+(fontspec)             [Path=C:/Windows/Fonts/,UprightFont=seguisb.ttf].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"[C:/Windows/Fonts/seguisb.ttf]:mode=node;script=latn
+;language=dflt;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.:
+(fontspec)             <->"[C:/Windows/Fonts/seguisb.ttf]:mode=node;script=latn
+;language=dflt;+smcp;"
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'ArialNarrowBold(0)' created for font
+(fontspec)             'ArialNarrowBold' with options
+(fontspec)             [Path=C:/Windows/Fonts/,UprightFont=ARIALNB.TTF,BoldFont
+=ARIALNB.TTF].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"[C:/Windows/Fonts/ARIALNB.TTF]:mode=node;language=df
+lt;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->"[C:/Windows/Fonts/ARIALNB.TTF]:mode=node;language=df
+lt;"
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'ArialBoldF(0)' created for font
+(fontspec)             'ArialBoldF' with options
+(fontspec)             [Path=C:/Windows/Fonts/,UprightFont=arialbd.ttf,BoldFont
+=arialbd.ttf].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"[C:/Windows/Fonts/arialbd.ttf]:mode=node;script=latn
+;language=dflt;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.:
+(fontspec)             <->"[C:/Windows/Fonts/arialbd.ttf]:mode=node;script=latn
+;language=dflt;+smcp;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->"[C:/Windows/Fonts/arialbd.ttf]:mode=node;script=latn
+;language=dflt;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.:
+(fontspec)             <->"[C:/Windows/Fonts/arialbd.ttf]:mode=node;script=latn
+;language=dflt;+smcp;"
+
+\PX=\skip54
+\PY=\skip55
+) (./components_demo.aux)
+\openout1 = components_demo.aux
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: luatex
+*geometry* verbose mode - [ preamble ] result:
+* driver: luatex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(0.0pt, 2601.71997pt, 0.0pt)
+* v-part:(T,H,B)=(0.0pt, 3035.34pt, 0.0pt)
+* \paperwidth=2601.71997pt
+* \paperheight=3035.34pt
+* \textwidth=2601.71997pt
+* \textheight=3035.34pt
+* \oddsidemargin=-72.26999pt
+* \evensidemargin=-72.26999pt
+* \topmargin=-109.26999pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+Package fontspec Info: 
+(fontspec)             Adjusting the maths setup (use [no-math] to avoid
+(fontspec)             this).
+
+\symlegacymaths=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 6.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 6.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 6.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 6.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 6.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 6.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 6.
+LaTeX Font Info:    Redeclaring math accent \check on input line 6.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 6.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 6.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 6.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 6.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 6.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 6.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 6.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 6.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 6.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 6.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 6.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 6.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 6.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 6.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 6.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 6.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `normal' on input line 6.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> TU/SegoeUI(0)/m/n on input line 6.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `bold' on input line 6.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> TU/SegoeUI(0)/m/n on input line 6.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  TU/SegoeUI(0)/m/n --> TU/SegoeUI(0)/m/n on input line 6
+.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> TU/SegoeUI(0)/m/it on input line 6.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> TU/SegoeUI(0)/b/n on input line 6.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 6.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 6.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  TU/SegoeUI(0)/m/n --> TU/SegoeUI(0)/b/n on input line 6
+.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> TU/SegoeUI(0)/b/it on input line 6.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 6.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 6.
+("C:/Program Files/MiKTeX/tex/context/base/mkii/supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count330
+\scratchdimen=\dimen287
+\scratchbox=\box67
+\nofMPsegments=\count331
+\nofMParguments=\count332
+\everyMPshowfont=\toks36
+\MPscratchCnt=\count333
+\MPscratchDim=\dimen288
+\MPnumerator=\count334
+\makeMPintoPDFobject=\count335
+\everyMPtoPDFconversion=\toks37
+) ("C:/Program Files/MiKTeX/tex/latex/epstopdf-pkg/epstopdf-base.sty"
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+("C:/Program Files/MiKTeX/tex/latex/00miktex/epstopdf-sys.cfg"
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
+LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
+(Font)              scaled to size 30.0pt on input line 11.
+LaTeX Font Info:    Calculating math sizes for size <30> on input line 11.
+LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
+(Font)              scaled to size 20.99991pt on input line 11.
+LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
+(Font)              scaled to size 15.0pt on input line 11.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <30> not available
+(Font)              size <24.88> substituted on input line 11.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <15> not available
+(Font)              size <14.4> substituted on input line 11.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <30> not available
+(Font)              size <24.88> substituted on input line 11.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <15> not available
+(Font)              size <14.4> substituted on input line 11.
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 11.
+
+("C:/Program Files/MiKTeX/tex/latex/amsfonts/umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 11.
+
+
+("C:/Program Files/MiKTeX/tex/latex/amsfonts/umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <30> not available
+(Font)              size <24.88> substituted on input line 11.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <15> not available
+(Font)              size <14.4> substituted on input line 11.
+
+LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
+(Font)              scaled to size 20.0pt on input line 13.
+LaTeX Font Info:    Calculating math sizes for size <20> on input line 13.
+LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
+(Font)              scaled to size 13.99994pt on input line 13.
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <20> not available
+(Font)              size <20.74> substituted on input line 13.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <13.99994> not available
+(Font)              size <14.4> substituted on input line 13.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <20> not available
+(Font)              size <20.74> substituted on input line 13.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <13.99994> not available
+(Font)              size <14.4> substituted on input line 13.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <20> not available
+(Font)              size <20.74> substituted on input line 13.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <13.99994> not available
+(Font)              size <14.4> substituted on input line 13.
+
+LaTeX Font Info:    Font shape `TU/SegoeUI(0)/m/n' will be
+(Font)              scaled to size 18.0pt on input line 15.
+LaTeX Font Info:    Font shape `TU/SegoeUI(0)/b/n' will be
+(Font)              scaled to size 10.0pt on input line 16.
+LaTeX Font Info:    Font shape `TU/SegoeUI(0)/b/n' will be
+(Font)              scaled to size 15.0pt on input line 16.
+[1
+
+{C:/Users/walla/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+(./components_demo.aux)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+ ***********
+
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 5.12pt have occurred.
+
+)
+
+Here is how much of LuaTeX's memory you used:
+ 17754 strings out of 476081
+ 100000,953878 words of node,token memory allocated
+ 500 words of node memory still in use:
+   6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 8 attribute, 53 glue_spec,
+ 8 attribute_list, 2 write nodes
+   avail lists: 2:856,3:533,4:78,5:44,6:2,7:688,8:31,9:172,11:38
+ 39733 multiletter control sequences out of 65536+600000
+ 79 fonts using 24009415 bytes
+ 89i,7n,97p,491b,746s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/WINDOWS/Fonts/segoeuib.ttf><C:/WINDOWS/Fonts/segoeui.ttf><C:/Windows/Fonts/A
+RIALNB.TTF><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C
+:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Fil
+es/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX/font
+s/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on components_demo.pdf (1 page, 76675 bytes).
+
+PDF statistics: 46 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 1048576)
+ 16 words of extra memory for PDF output out of 10000 (max. 100000000)
+

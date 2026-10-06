@@ -1,0 +1,21 @@
+\begin{minipage}[t][\PosterTopRowHeight][t]{\PosterThreeWidth}\vspace{0pt}
+  \begin{TicketTwoPanel}{\PosterTopRowHeight}{3}{THE LAW}
+
+    {\FigureSize PLL loop factor: $\kappa(s)=(k_p s+k_I)\,e^{-s\tau}$. Let the delay grow by $h$ and pick a mode $\lambda=\alpha+\mathrm{j}\omega$ to protect.\par}
+    \vspace{1mm}
+    {\FigureSize\textbf{Exact transport of the gains}\par}
+    {\EquationSize\color{IASBlue}\[
+      k_p(h)\lambda+k_I(h)=(k_p\lambda+k_I)\,e^{\lambda h}
+    \]}
+    \vspace{-2mm}
+    {\FigureSize\textbf{What is left at every other frequency}\par}
+    {\fontsize{29pt}{34pt}\selectfont\color{IASBlue}\[
+      \Delta\kappa(s)=-(s-\lambda)(s-\bar\lambda)\,e^{-s\tau}\!\!\int_0^h\!\! k_p(t)e^{-st}dt
+    \]}
+    \vspace{-1mm}
+    \begin{InWords}\InWordsLabel Two real gains match the old loop at one complex frequency. The error is zero at the protected mode and grows quadratically away from it.\end{InWords}
+    \vspace{2mm}
+    {\FigureSize Unique if $\omega\neq0$. All sites using the same $\lambda$ keep it exactly, for any delays $h_i$. Derivation: differentiate $\kappa$; the gain flow has eigenvalues $\lambda,\bar\lambda$.\par}
+
+  \end{TicketTwoPanel}
+\end{minipage}%

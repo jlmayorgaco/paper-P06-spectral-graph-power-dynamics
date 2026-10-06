@@ -1,0 +1,39 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterTopRowHeight][t]{\PosterOneWidth}\vspace{0pt}
+  \begin{TicketTwoPanel}{\PosterTopRowHeight}{1}{INTRO AND OBJECTIVES}
+
+    {\Subhead\color{IASDarkGreen}Introduction\par}\vspace{1mm}
+    {\FigureSize Inverters (GFL) lock to the grid with a phase-locked loop (PLL). Measurement and processing add latency. A few extra milliseconds can make a converter-dominated grid oscillate.\par}
+    \vspace{2mm}
+    {\FigureSize The usual answer is to retune the PLL gains $k_p,k_I$ so that a chosen oscillation mode is unchanged.\par}
+    \vspace{3mm}
+    {\Subhead\color{IASDarkGreen}Objectives\par}\vspace{1mm}
+    {\FigureSize
+    \StepBadge{1}\ Find the exact gains that hide a delay change from one mode.\par\vspace{1.5mm}
+    \StepBadge{2}\ Compute what that retune does to every other mode.\par\vspace{1.5mm}
+    \StepBadge{3}\ Use it to choose which mode to protect, and check spectrum and events.\par}
+    \vspace{3mm}
+    \begin{InWords}\InWordsLabel If the retune keeps one mode exactly where it was, is the rest of the grid safe?\end{InWords}
+    \vspace{3mm}
+    {\FigureSize \textbf{Setting.} IEEE-39, ten SG/GFL sites at 87.5\,\% inverter share, PLL delay 40 ms raised at all sites, five nonlinear events.\par}
+
+  \end{TicketTwoPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewOnePageWidth}
+  \def\PosterPageHeight{\PosterPreviewTopRowPageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewOneLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

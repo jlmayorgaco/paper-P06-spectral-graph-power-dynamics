@@ -1,0 +1,36 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterLowerRowHeight][t]{\PosterHalfWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterLowerRowHeight}{8}{LIMITS, AND WHAT DID NOT WORK}
+
+    {\Subhead\color{IASDarkGreen}Where the rule runs out\par}\vspace{1mm}
+    {\FigureSize \textbf{Phase budget.} Protecting the 4.91 Hz mode drives $k_I$ to zero at $h^{\star}=8.99$ ms. The spectrum is still inside the margin there, but the events already fail at 44 ms. The budget is a limit of the formula, not an operating limit.\par}
+    \vspace{2mm}
+    {\FigureSize \textbf{Frequency-response reserve.} Every protected mode lowers $k_I$. The 1.04 Hz choice passes all events up to 46 ms and loses one at 48 ms (SG reserve 0.0018).\par}
+    \vspace{3mm}
+    {\Subhead\color{IASDarkGreen}What failed\par}\vspace{1mm}
+    {\FigureSize \textbf{Linear programme over the spillover formula.} Extrapolated far from the base point it proposed a design with 16 unstable roots. The formula ranks nearby choices; it does not bound large steps.\par}
+    \vspace{2mm}
+    {\FigureSize \textbf{One assigned pole is not stability.} In the nine-bus bank an exactly assigned pole sits at $-0.30\ \mathrm{s^{-1}}$ while another pair stays at $+0.57\ \mathrm{s^{-1}}$.\par}
+    \vspace{3mm}
+    \begin{InWords}\InWordsLabel Not claimed: an optimal mode, a maximum tolerable delay, a maximum inverter share, or superiority over other compensators. Root counts are floating-point, checked against eigenvalues at zero delay, not interval-certified.\end{InWords}
+
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewHalfPageWidth}
+  \def\PosterPageHeight{\PosterPreviewLowerPageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewHalfLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

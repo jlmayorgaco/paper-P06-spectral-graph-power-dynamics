@@ -1,0 +1,17 @@
+[S0_kp] it 0: worst Re=+0.9688 @ 4.649 Hz, beyond margin=5, radius=0.1000
+[S0_kp] it 1: worst Re=+0.7370 @ 4.752 Hz, beyond margin=5, radius=0.1000
+[S0_kp] it 2: worst Re=+0.7119 @ 4.609 Hz, beyond margin=5, radius=0.1000
+[S0_kp] it 3: worst Re=+0.7119 @ 4.609 Hz, beyond margin=5, radius=0.0500
+[S0_kp] it 4: worst Re=+0.6606 @ 4.715 Hz, beyond margin=4, radius=0.0500
+[S0_kp] it 5: worst Re=+0.6606 @ 4.715 Hz, beyond margin=4, radius=0.0250
+[S0_kp] it 6: worst Re=+0.6592 @ 4.599 Hz, beyond margin=4, radius=0.0250
+[S0_kp] it 7: worst Re=+0.6592 @ 4.599 Hz, beyond margin=4, radius=0.0125
+[S0_kp] it 8: worst Re=+0.6592 @ 4.599 Hz, beyond margin=4, radius=0.0063
+[S0_kp] it 9: worst Re=+0.6555 @ 4.717 Hz, beyond margin=4, radius=0.0063
+[S0_kp] it 10: worst Re=+0.6551 @ 4.721 Hz, beyond margin=4, radius=0.0063
+[S0_kp] it 11: worst Re=+0.6551 @ 4.721 Hz, beyond margin=4, radius=0.0031
+[S0_kp] it 12: worst Re=+0.6550 @ 4.718 Hz, beyond margin=4, radius=0.0031
+[S0_kp] it 13: worst Re=+0.6550 @ 4.718 Hz, beyond margin=4, radius=0.0016
+[S0_kp] it 14: worst Re=+0.6539 @ 4.719 Hz, beyond margin=4, radius=0.0016
+[S0_kp] it 15: worst Re=+0.6539 @ 4.719 Hz, beyond margin=4, radius=0.0008
+FINAL {'label': 'S0_kp', 'kind': 'kp', 'sites': '30 33 36 37', 'N_unstable': 6, 'N_margin_excl_gauge': 8, 'max_noninteger_winding': np.float64(2.045319469345941e-11), 'iterations': 15, 'success': False, 'Kp': '22.4816 28.2743 28.2743 30.6651 28.2743 28.2743 26.0274 21.5498 28.2743 28.2743', 'Ki': '246.7401 246.7401 246.7401 246.7401 246.7401 246.7401 246.7401 246.7401 246.7401 246.7401', 'worst_re_catalog': np.float64(0.6539159358790572)}

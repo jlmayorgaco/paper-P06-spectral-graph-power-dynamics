@@ -1,0 +1,10 @@
+EVENT_START EV_phys6_joint 8 -100.0
+EVENT_DONE (label = "EV_phys6_joint", tau_ms = 44.0, bus = 8, delta = -100.0, F = 0.48167478020890203, R = 0.1314585449378246, Vmin = 0.9867426228883912, Vmax = 1.077691373228216, slack = 0.09125016505860492, runtime = 255.45299983024597, pass = true, error = "")
+EVENT_START EV_phys6_joint 16 100.0
+EVENT_DONE (label = "EV_phys6_joint", tau_ms = 44.0, bus = 16, delta = 100.0, F = 0.4622251582514789, R = 0.11787749323355842, Vmin = 0.9721083659192574, Vmax = 1.0614193564403225, slack = 0.0014077666627745344, runtime = 181.14800000190735, pass = false, error = "")
+EVENT_START EV_phys6_joint 16 -100.0
+EVENT_DONE (label = "EV_phys6_joint", tau_ms = 44.0, bus = 16, delta = -100.0, F = 0.4916408199306347, R = 0.12143445428880553, Vmin = 0.9855415837342618, Vmax = 1.0787135984023526, slack = 0.0878318116581994, runtime = 171.74700021743774, pass = true, error = "")
+EVENT_START EV_phys6_joint 29 100.0
+EVENT_DONE (label = "EV_phys6_joint", tau_ms = 44.0, bus = 29, delta = 100.0, F = 0.44783119068586197, R = 0.10587391202210684, Vmin = 0.9733884855031921, Vmax = 1.061890386214248, slack = 0.005791344487019123, runtime = 133.7409999370575, pass = true, error = "")
+EVENT_START EV_phys6_joint 29 -100.0
+EVENT_DONE (label = "EV_phys6_joint", tau_ms = 44.0, bus = 29, delta = -100.0, F = 0.4636744290899514, R = 0.16419981313398133, Vmin = 0.9845142371401416, Vmax = 1.0747306417957747, slack = 0.09674917487042617, runtime = 130.61300015449524, pass = true, error = "")

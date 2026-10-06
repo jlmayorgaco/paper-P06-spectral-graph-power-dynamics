@@ -1,0 +1,61 @@
+CLAIM LEDGER -- ONLY EXECUTED OR PROVED RESULTS
+
+C1 EXACT_IDENTITY
+At a fixed operating point and frequency, one PLL-channel latency change
+induces delta Z = gamma u v*. If both hidden blocks are invertible, gamma
+is nonzero and u,v independent, Herm(delta Z) has exactly one positive
+and one negative eigenvalue. Proof: THEORY.tex, physical damping appendix.
+This describes harmonic mechanical supply in declared torque/speed ports.
+It is not a stability or nonlinear-energy certificate.
+
+C2 NUMERICALLY_VALIDATED
+The finite physical identity passes all 60 preregistered IEEE-39 algebra
+checks: 2 designs x 3 frequencies x 10 individual delay changes.
+Maximum relative update residual: 4.8476337614923296e-8.
+All 60 numerical Hermitian increments have the predicted two signs.
+Evidence: TABLE_02_FINITE_DELAY_RANK_LAW.csv and check_rank_law.py.
+
+C3 EXACT_IDENTITY / PROVED_REDUCED_MODEL
+The analytic gain map assigns a prescribed nonreal PLL eigenpair where
+the hidden block and detector denominators are regular. The cluster
+trace-log identity, mixed Hessian and nonnegative walk-tail bound hold
+under the stated contour and envelope hypotheses. Closed walks are on
+intervention ports; they are not automatically physical transmission cycles.
+These formulas do not themselves establish a physical replacement maximum.
+
+C4 NUMERICALLY_VALIDATED
+At all three frozen IEEE-39 algebraic points, the walk remainder bound is
+18.11--45.78 times smaller than the scalar-norm bound. Rounded poster:
+18--46 times. The unchanged approximation has the same actual error.
+Evidence: regional_paper_closure_20261003/TABLE_01_WALK_REMAINDER.csv.
+This comparison is pointwise, not a rigorous integrated capacity bound.
+
+C5 NUMERICALLY_VALIDATED
+Constructed rho_i=0.876, fixed uniform tau_i=40 ms, analytical nodal gains:
+4732.81871482147 MW GFL; 669.942375157377 MW retained SG.
+Five frozen nonlinear events pass. Largest windowed frequency excursion
+0.4746236216347366 Hz, largest windowed RoCoF 0.2007741415039342 Hz/s.
+All-root margin checked numerically; no whole-spectrum interval certificate.
+Evidence: preserved all_pll_gain_map_validation_20261003 results.
+This is a prescribed finite step, not an optimization result.
+
+C6 NUMERICALLY_VALIDATED / NEGATIVE_RESULT
+At the same rho and delays, original common gains also pass all five events.
+Analytical gains trade slightly lower RoCoF for slightly higher frequency
+excursion and slightly lower SG actuator slack. No superiority established.
+Evidence: TABLE_03_PAIRED_COMPARISON.csv; no accuracy-certified claim about
+the very small metric differences is made.
+
+C7 PROVED_REDUCED_MODEL (computer-assisted, exported linear model)
+485 interval panels and complex-ball tests retain exactly one root inside
+the declared square throughout the full rho/gain box, with real part
+below -0.08229 /s. Delay is exact decimal 1/25 s; exported binary64 model
+coefficients are treated as exact data. This concerns one cluster only.
+Evidence: regional_paper_closure_20261003/CONTOUR_RESULT.json, PANELS.json,
+verify_contour.py and the preserved independent review.
+
+OPEN / UNSUPPORTED
+Maximum SG-to-GFL replacement; global or meaningful near-global optimality;
+superiority versus fair optimization baselines; local-PLL impossibility;
+need for neighbor communication; GSP controller compression; heterogeneous
+delay nonlinear replacement frontier; converter current-limiter safety.

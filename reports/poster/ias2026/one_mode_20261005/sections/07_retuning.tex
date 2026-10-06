@@ -1,0 +1,37 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterLowerRowHeight][t]{\PosterHalfWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterLowerRowHeight}{7}{HOW FAR IT REACHES: INVERTER SHARE $\times$ DELAY}
+
+    \noindent\begin{minipage}[t]{190mm}\vspace{0pt}
+      {\FigureSize Each cell retunes the PLLs by the rule and counts roots beyond the margin. Red bars mark the same cell without retuning: roots appear at 44 and 48 ms. Numbers are nonlinear events passed.\par}
+      \vspace{2mm}
+      \begin{InWords}\InWordsLabel The rule extends latency tolerance at every share where the 40 ms design is feasible; it does not raise the maximum share (92.5\,\% already fails at 40 ms).\end{InWords}
+      \vspace{2mm}
+      {\FigureSize \textbf{At 90\,\%} the 40 ms design with its original gains already fails the events (0 of 2, up to 0.58 Hz). The retuned 44 and 48 ms cases fail the same way: the limit there is set by the inverter share, not by the retune.\par}
+    \end{minipage}\hfill%
+    \begin{minipage}[t]{230mm}\vspace{0pt}
+      \includegraphics[width=228mm,height=140mm,keepaspectratio]{generated/figures/share_delay_map.pdf}\par
+    \end{minipage}\par
+    \vspace{3mm}
+    {\FigureSize The damping-signature result ($\delta D_H$ has one positive and one negative eigenvalue) is in the companion paper.\par}
+
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewHalfPageWidth}
+  \def\PosterPageHeight{\PosterPreviewLowerPageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewHalfLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

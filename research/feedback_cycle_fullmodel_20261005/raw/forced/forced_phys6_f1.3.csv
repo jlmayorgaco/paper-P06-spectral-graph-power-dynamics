@@ -1,0 +1,2 @@
+label,freq_hz,amp_MW,bus,tau_ms,status,t_end_s,peak_pll_err_deg,peak_pll_omega_dev,peak_busfreq_dev_Hz,peak_pll_err_deg_first10s,peak_busfreq_dev_Hz_first10s,t_pll_err_gt_5deg_s,vmin,vmax,sg_slack_min
+phys6_f1.3,6.0439708,5.0,29,44.0,ok,30.0,0.27745173417861446,0.14668481465505656,0.0004270769893520613,0.27745173417861446,0.0004270769893520613,NaN,0.9814600666071659,1.0643225789066229,0.15328438590666604

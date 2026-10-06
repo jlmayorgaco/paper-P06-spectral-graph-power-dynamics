@@ -1,0 +1,20 @@
+% Demo of the reusable components (panel, gold number, equation callout, warning note, evidence tags).
+\documentclass{article}
+\usepackage[paperwidth=914.4mm,paperheight=1066.8mm,margin=0pt]{geometry}
+\pagestyle{empty}
+\input{refstyle.tex}
+\begin{document}\noindent\mbox{}%
+\begin{OnPage}
+  \fill[white] (0,0) rectangle (1161,1355);
+  \RefPanel{1}{DEMO PANEL}{12/119.5/397/451}{26/23}{50/150}
+  \EquationCallout{30}{160}{380}{215}
+  \node[text=PBlue,font=\fontsize{30pt}{30pt}\selectfont] at (205,187) {$\det(I+M_S)=\prod_i\det(I+M_{ii})\,\det(I+Q_S)$};
+  \GreenCallout{30}{230}{380}{275}
+  \node[text=PText,font=\fontsize{20pt}{20pt}\selectfont] at (205,252) {local return $\times$ collective closure};
+  \WarningNote{30}{290}{380}{335}
+  \node[text=PRed,font=\fontsize{18pt}{18pt}\selectfont] at (205,312) {If not found: a certified global optimum is future work.};
+  \ProvedTag{90}{365}{\ExactTagText}
+  \ObservedTag{250}{365}{\ObservedTagText}
+  \ProposedTag{90}{400}{\ProposedTagText}
+\end{OnPage}
+\end{document}

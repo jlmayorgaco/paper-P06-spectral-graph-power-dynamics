@@ -1,0 +1,20 @@
+\begin{minipage}[t][\PosterMiddleRowHeight][t]{\PosterHalfWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterMiddleRowHeight}{5}{RESULTS: SPECTRUM AND NONLINEAR EVENTS, IEEE-39}
+
+    \begin{center}\fontsize{26pt}{33pt}\selectfont
+    \begin{tabular}{@{}lrrcccc@{}}
+    \textbf{rule} & \textbf{ms} & \textbf{$k_I$} & \textbf{roots} & \textbf{events} & \textbf{$|\Delta f|$ [Hz]} & \textbf{SG reserve}\\\hline
+    no retune        & 42 & 246.7 & 4 / 4   & 1 of 1$^{\dagger}$ & 0.444 & 0.0074\\
+    no retune        & 44 & 246.7 & 8 / 10  & aborted & -- & --\\
+    low-frequency    & 44 & 246.7 & 12 / 12 & aborted & -- & --\\
+    protect 4.91 Hz  & 42 & 192.5 & 0 / 0   & 5 of 5 & 0.486 & 0.0032\\
+    protect 4.91 Hz  & 44 & 137.8 & 0 / 0   & \textbf{2 of 5} & 0.505 & $\approx0$\\
+    protect 1.04 Hz  & 44 & 213.3 & 0 / 0   & 5 of 5 & 0.480 & 0.0047\\
+    protect 1.04 Hz  & 46 & 197.8 & 0 / 0   & 5 of 5 & 0.485 & 0.0033\\
+    protect 1.04 Hz  & 48 & 183.0 & 0 / 0   & \textbf{4 of 5} & 0.491 & 0.0018\\
+    \end{tabular}\end{center}
+    \vspace{1mm}
+    {\fontsize{22.5pt}{25.5pt}\selectfont Limits: 0.5 Hz, 0.5 Hz/s, $V\in[0.9,1.1]$, SG reserve $\ge0.002$. Worst value over the events run. Delayed nonlinear model, method of steps, 60 s. ``Aborted'': the integrator stopped on the events tried. $^{\dagger}$One 30 s event meets the limits although four roots are unstable ($+0.096\ \mathrm{s^{-1}}$ at 4.8 Hz): 0.5 s windows do not see slow 5 Hz growth, so events are always read together with the root count.\par}
+
+  \end{PosterPanel}
+\end{minipage}%

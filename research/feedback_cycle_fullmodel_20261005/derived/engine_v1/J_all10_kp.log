@@ -1,0 +1,5 @@
+[all10_kp] it 0: worst Re=+0.9688 @ 4.649 Hz, roots beyond margin=5
+[all10_kp] it 1: worst Re=+0.1834 @ 4.383 Hz, roots beyond margin=4
+[all10_kp] it 2: worst Re=-0.0355 @ 4.271 Hz, roots beyond margin=4
+[all10_kp] it 3: worst Re=-0.0529 @ 4.261 Hz, roots beyond margin=0
+FINAL {'label': 'all10_kp', 'kind': 'kp', 'sites': '30 31 32 33 34 35 36 37 38 39', 'N_unstable': 0, 'N_margin_excl_gauge': 0, 'max_noninteger_winding': np.float64(1.535505056438069e-11), 'iterations': 3, 'success': True, 'Kp': '24.4100 25.5443 25.5474 25.5806 25.5875 24.4338 25.0191 28.2750 25.5176 25.8679', 'Ki': '246.7401 246.7401 246.7401 246.7401 246.7401 246.7401 246.7401 246.7401 246.7401 246.7401', 'worst_re_catalog': np.float64(-0.05285571240264786)}

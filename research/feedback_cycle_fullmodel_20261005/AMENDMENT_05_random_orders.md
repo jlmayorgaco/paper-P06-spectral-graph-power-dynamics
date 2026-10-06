@@ -1,0 +1,3 @@
+# AMENDMENT 05 (2026-10-05, before the random-order scans)
+Five random site orders, np.random.default_rng(20261005+k).permutation(30..39), k=0..4, scanned exactly like the frozen sens/core/phys orders (engine v2, joint Kp/Ki, tau=44 ms, first successful support size). Added so that the three rule-based orders can be compared with chance.
+Orders: {"rand0": [32, 36, 31, 37, 39, 38, 35, 30, 33, 34], "rand1": [36, 31, 34, 32, 30, 37, 33, 39, 35, 38], "rand2": [33, 30, 38, 35, 36, 32, 34, 31, 39, 37], "rand3": [31, 38, 32, 35, 34, 36, 33, 39, 37, 30], "rand4": [30, 32, 31, 33, 34, 35, 39, 36, 37, 38]}

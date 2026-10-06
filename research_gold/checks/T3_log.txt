@@ -1,0 +1,13 @@
+VALIDATION tau=0  eig(Re>0.01)= 0 counter= (0, np.float64(5.17719200843203e-12)) | eig(Re>-0.05)= 1 counter= (1, np.float64(1.903177615503182e-11))
+{'strategy': 'none', 'tau_ms': 40.0, 'unstable_roots': 0.0, 'roots_right_of_guard_excl_gauge': 0.0, 'max_noninteger_winding': 0.0, 'Kp': 28.2743, 'Ki': 246.7401}
+{'strategy': 'none', 'tau_ms': 41.0, 'unstable_roots': 0.0, 'roots_right_of_guard_excl_gauge': 0.0, 'max_noninteger_winding': 0.0, 'Kp': 28.2743, 'Ki': 246.7401}
+{'strategy': 'none', 'tau_ms': 42.0, 'unstable_roots': 4.0, 'roots_right_of_guard_excl_gauge': 4.0, 'max_noninteger_winding': 0.0, 'Kp': 28.2743, 'Ki': 246.7401}
+{'strategy': 'none', 'tau_ms': 44.0, 'unstable_roots': 8.0, 'roots_right_of_guard_excl_gauge': 10.0, 'max_noninteger_winding': 0.0, 'Kp': 28.2743, 'Ki': 246.7401}
+{'strategy': 'protect_slow', 'tau_ms': 41.0, 'unstable_roots': 0.0, 'roots_right_of_guard_excl_gauge': 0.0, 'max_noninteger_winding': 0.0, 'Kp': 28.5141, 'Ki': 246.7367}
+{'strategy': 'protect_slow', 'tau_ms': 42.0, 'unstable_roots': 4.0, 'roots_right_of_guard_excl_gauge': 6.0, 'max_noninteger_winding': 0.0, 'Kp': 28.7539, 'Ki': 246.7333}
+{'strategy': 'protect_slow', 'tau_ms': 44.0, 'unstable_roots': 12.0, 'roots_right_of_guard_excl_gauge': 12.0, 'max_noninteger_winding': 0.0, 'Kp': 29.2331, 'Ki': 246.7263}
+{'strategy': 'protect_fast', 'tau_ms': 42.0, 'unstable_roots': 0.0, 'roots_right_of_guard_excl_gauge': 0.0, 'max_noninteger_winding': 0.0, 'Kp': 28.6225, 'Ki': 192.5345}
+{'strategy': 'protect_fast', 'tau_ms': 44.0, 'unstable_roots': 0.0, 'roots_right_of_guard_excl_gauge': 0.0, 'max_noninteger_winding': 0.0, 'Kp': 28.8607, 'Ki': 137.7704}
+{'strategy': 'protect_fast', 'tau_ms': 46.0, 'unstable_roots': 0.0, 'roots_right_of_guard_excl_gauge': 0.0, 'max_noninteger_winding': 0.0, 'Kp': 28.9884, 'Ki': 82.6578}
+{'strategy': 'protect_fast', 'tau_ms': 48.0, 'unstable_roots': 0.0, 'roots_right_of_guard_excl_gauge': 0.0, 'max_noninteger_winding': 0.0, 'Kp': 29.0054, 'Ki': 27.4072}
+{'strategy': 'protect_fast', 'tau_ms': 48.9, 'unstable_roots': 0.0, 'roots_right_of_guard_excl_gauge': 0.0, 'max_noninteger_winding': 0.0, 'Kp': 28.9771, 'Ki': 2.5556}

@@ -1,0 +1,47 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterRowHeight][t]{\PosterColWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterRowHeight}{5}{EFFECTIVE DAMPING OPERATORS}
+
+    {\FigureSize The controllers add a self-energy $\Pi(s)$ to the swing operator:\par}
+    {\fontsize{25pt}{30pt}\selectfont\color{IASBlue}\[
+      T(s)=s^{2}M+sD_0+L+\Pi(s)
+    \]
+    \[
+      M_{\rm eff}=M+\frac{\Pi_e(s)-\Pi_e(0)}{s^{2}},\qquad
+      D_{\rm eff}=D_0+\frac{\Pi_o(s)}{s}
+    \]}\par\vspace{2.5mm}
+    \vspace{-3mm}
+    {\FigureSize Harmonic damping supplied to the generators, and what one PLL change does to it:\par}
+    {\fontsize{27pt}{32pt}\selectfont\color{IASBlue}\[
+      D_H(\Omega)=\mathrm{Herm}\,Z(\mathrm{j}\Omega),\qquad
+      \delta D_H=\tfrac12\,(a\,v^{*}+v\,a^{*})
+    \]}\par\vspace{2.5mm}
+    \vspace{-4mm}
+    \begin{center}\includegraphics[width=262mm,height=78mm,keepaspectratio]{generated/figures/rank_two2.pdf}\end{center}
+    \vspace{-1mm}
+    {\fontsize{22pt}{25pt}\selectfont IEEE-39, $+1$ ms at each PLL, 5 Hz: one positive and one negative eigenvalue (60 of 60 checks).\par}
+    \vspace{1mm}
+    \begin{tcolorbox}[colback=IASPaleGold,colframe=IASGold,boxrule=0.8pt,arc=1.5mm,left=2mm,right=2mm,top=1mm,bottom=1mm]
+      {\fontsize{22pt}{25pt}\selectfont\textbf{IN WORDS} A local change moves damping up along one network path and down along another. Damping at one frequency is not a stability test.\par}
+    \end{tcolorbox}
+
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewHalfPageWidth}
+  \def\PosterPageHeight{\PosterPreviewMiddlePageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewHalfLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

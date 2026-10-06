@@ -1,0 +1,30 @@
+\begin{minipage}[t][\PosterRowHeightA][t]{\PosterColWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterRowHeightA}{1}{THE QUESTION: A COLLECTIVE PROBLEM}
+
+    {\FigureSize Replacing a synchronous generator (SG) by a grid-following inverter (GFL) is a \textbf{local} hardware action. Its stability is a \textbf{collective} property of the network, because every PLL listens to the same grid.\par}
+    \vspace{1mm}
+    \begin{center}
+    \begin{tikzpicture}[x=1mm,y=1mm,font=\fontsize{20pt}{22pt}\selectfont,
+      blk/.style={draw=IASDarkGreen,fill=IASPaleGreen,line width=1.1pt,rounded corners=1.5mm,minimum height=13mm,align=center,inner sep=1.5mm},
+      arr/.style={-{Stealth[length=3mm]},line width=1.2pt,color=IASDarkGreen}]
+      \node[blk,minimum width=40mm] (g) at (0,0) {grid\\$u_d,u_q$};
+      \node[blk,minimum width=54mm] (d) at (62,0) {detector\\$e=-s_\theta u_d+c_\theta u_q$};
+      \node[blk,minimum width=32mm,fill=IASPaleGold] (t) at (126,0) {delay\\$e^{-s\tau}$};
+      \node[blk,minimum width=40mm] (p) at (186,0) {PI\\$k_p+k_I/s$};
+      \draw[arr] (g) -- (d); \draw[arr] (d) -- (t); \draw[arr] (t) -- (p);
+      \draw[arr] (p.south) -- ++(0,-12) -| node[pos=0.25,below,font=\fontsize{19pt}{21pt}\selectfont\color{IASDarkText}] {angle $\theta$ and current injection at every bus} (g.south);
+    \end{tikzpicture}
+    \end{center}
+    \vspace{-2mm}
+    \begin{tcolorbox}[colback=IASPaleGold,colframe=IASGold,boxrule=0.8pt,arc=1.5mm,left=2mm,right=2mm,top=1mm,bottom=1mm]
+      {\FigureSize\textbf{Key question.} Which closed loops does the network create between PLLs that are individually fine, and which gains break them?\par}
+    \end{tcolorbox}
+    \vspace{1.5mm}
+    {\FigureSize
+    \StepBadge{1}\ Exact factorization: local $\times$ collective.\par\vspace{1mm}
+    \StepBadge{2}\ Damping is an operator, not a number per bus.\par\vspace{1mm}
+    \StepBadge{3}\ Exact gain synthesis and delay transport.\par\vspace{1mm}
+    \StepBadge{4}\ Co-design algorithm, tested in the full grid.\par}
+
+  \end{PosterPanel}
+\end{minipage}%

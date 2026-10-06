@@ -1,0 +1,4 @@
+[uniform_joint] it 0: worst Re=+0.9688 @ 4.649 Hz, roots beyond margin=5
+[uniform_joint] it 1: worst Re=-0.0074 @ 4.429 Hz, roots beyond margin=1
+[uniform_joint] it 2: worst Re=-0.0529 @ 4.419 Hz, roots beyond margin=0
+FINAL {'label': 'uniform_joint', 'kind': 'joint', 'sites': '30 31 32 33 34 35 36 37 38 39', 'N_unstable': 0, 'N_margin_excl_gauge': 0, 'max_noninteger_winding': np.float64(5.768718835952313e-12), 'iterations': 2, 'success': True, 'Kp': '25.6764 25.6764 25.6764 25.6764 25.6764 25.6764 25.6764 25.6764 25.6764 25.6764', 'Ki': '232.9288 232.9288 232.9288 232.9288 232.9288 232.9288 232.9288 232.9288 232.9288 232.9288', 'worst_re_catalog': np.float64(-0.05291839907121254)}

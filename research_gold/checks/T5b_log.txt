@@ -1,0 +1,14 @@
+limits kp (7.853981633974483, 7.853981633974483)(125.66370614359172, 125.66370614359172) ki (61.68502750680849, 61.68502750680849)(986.9604401089358, 986.9604401089358)
+design A kp 28.622477286447797 ki 192.53453591872508 within limits: true
+EVENT_START A_transport_42ms 16 100.0
+EVENT_DONE (design = "A_transport_42ms", bus = 16, delta = 100.0, horizon = 60.0, F = 0.4568877774867341, R = 0.11859979662047751, Vmin = 0.9721083659192574, Vmax = 1.0612667708289307, slack = 0.003180561151133632, pass = true, error = "")
+EVENT_START A_transport_42ms 8 -100.0
+EVENT_DONE (design = "A_transport_42ms", bus = 8, delta = -100.0, horizon = 60.0, F = 0.47607257321760654, R = 0.13183866230194896, Vmin = 0.9873254765733595, Vmax = 1.0774185459481533, slack = 0.09310833999993767, pass = true, error = "")
+EVENT_START A_transport_42ms 16 -100.0
+EVENT_DONE (design = "A_transport_42ms", bus = 16, delta = -100.0, horizon = 60.0, F = 0.4858030259351803, R = 0.12218063926160751, Vmin = 0.9857808605471526, Vmax = 1.0787135984023526, slack = 0.08976868106239015, pass = true, error = "")
+EVENT_START A_transport_42ms 29 100.0
+EVENT_DONE (design = "A_transport_42ms", bus = 29, delta = 100.0, horizon = 60.0, F = 0.44187513764981773, R = 0.11156792576116814, Vmin = 0.9733884855031921, Vmax = 1.0612661523740146, slack = 0.007735579578681651, pass = true, error = "")
+EVENT_START A_transport_42ms 29 -100.0
+EVENT_DONE (design = "A_transport_42ms", bus = 29, delta = -100.0, horizon = 60.0, F = 0.4570453731053038, R = 0.17336929332806644, Vmin = 0.984829485991467, Vmax = 1.0747306417957747, slack = 0.09881155860394672, pass = true, error = "")
+EVENT_START B_original_gains_42ms 16 100.0
+EVENT_DONE (design = "B_original_gains_42ms", bus = 16, delta = 100.0, horizon = 30.0, F = 0.4439224035594017, R = 0.12609820562502105, Vmin = 0.9721083659192574, Vmax = 1.0652621120680672, slack = 0.007406375551700872, pass = true, error = "")

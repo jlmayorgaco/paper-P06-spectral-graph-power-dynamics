@@ -1,0 +1,10 @@
+EVENT_START EV_uniform_ki 8 -100.0
+EVENT_DONE (label = "EV_uniform_ki", tau_ms = 44.0, bus = 8, delta = -100.0, F = 0.47592234447846427, R = 0.13203933744211044, Vmin = 0.9873141807312956, Vmax = 1.0777016765872842, slack = 0.09316078581649828, runtime = 231.1100001335144, pass = true, error = "")
+EVENT_START EV_uniform_ki 16 100.0
+EVENT_DONE (label = "EV_uniform_ki", tau_ms = 44.0, bus = 16, delta = 100.0, F = 0.45674207569147846, R = 0.11896211252928324, Vmin = 0.9721083659192574, Vmax = 1.0612798514476818, slack = 0.0032319422863892333, runtime = 172.06200003623962, pass = true, error = "")
+EVENT_START EV_uniform_ki 16 -100.0
+EVENT_DONE (label = "EV_uniform_ki", tau_ms = 44.0, bus = 16, delta = -100.0, F = 0.48560865700689687, R = 0.12249824366317567, Vmin = 0.9857731840020552, Vmax = 1.0787135984023526, slack = 0.08983592295760659, runtime = 196.69799995422363, pass = true, error = "")
+EVENT_START EV_uniform_ki 29 100.0
+EVENT_DONE (label = "EV_uniform_ki", tau_ms = 44.0, bus = 29, delta = 100.0, F = 0.4416369835599509, R = 0.11199740229788177, Vmin = 0.9733884855031921, Vmax = 1.0612773663235018, slack = 0.007814805344080966, runtime = 177.5970001220703, pass = true, error = "")
+EVENT_START EV_uniform_ki 29 -100.0
+EVENT_DONE (label = "EV_uniform_ki", tau_ms = 44.0, bus = 29, delta = -100.0, F = 0.45670228251714823, R = 0.17403231454170873, Vmin = 0.9846203960354621, Vmax = 1.0747306417957747, slack = 0.09892738909911154, runtime = 205.64299988746643, pass = true, error = "")

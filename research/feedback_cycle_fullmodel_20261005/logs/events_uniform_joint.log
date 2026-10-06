@@ -1,0 +1,10 @@
+EVENT_START EV_uniform_joint 8 -100.0
+EVENT_DONE (label = "EV_uniform_joint", tau_ms = 44.0, bus = 8, delta = -100.0, F = 0.46566889952937623, R = 0.13642825327720934, Vmin = 0.98741324982167, Vmax = 1.0780857251002576, slack = 0.09655764832808093, runtime = 230.7920000553131, pass = true, error = "")
+EVENT_START EV_uniform_joint 16 100.0
+EVENT_DONE (label = "EV_uniform_joint", tau_ms = 44.0, bus = 16, delta = 100.0, F = 0.4474804787411343, R = 0.12500361339145588, Vmin = 0.9721083659192574, Vmax = 1.0612566637837275, slack = 0.006262234315743576, runtime = 171.18499994277954, pass = true, error = "")
+EVENT_START EV_uniform_joint 16 -100.0
+EVENT_DONE (label = "EV_uniform_joint", tau_ms = 44.0, bus = 16, delta = -100.0, F = 0.4748755549099281, R = 0.1277406101914276, Vmin = 0.9858787878948514, Vmax = 1.0787135984023526, slack = 0.09337563600900431, runtime = 193.6289999485016, pass = true, error = "")
+EVENT_START EV_uniform_joint 29 100.0
+EVENT_DONE (label = "EV_uniform_joint", tau_ms = 44.0, bus = 29, delta = 100.0, F = 0.43163244961203906, R = 0.1245622602103076, Vmin = 0.9733884855031921, Vmax = 1.0612651594619864, slack = 0.011081596504239566, runtime = 175.37999987602234, pass = true, error = "")
+EVENT_START EV_uniform_joint 29 -100.0
+EVENT_DONE (label = "EV_uniform_joint", tau_ms = 44.0, bus = 29, delta = -100.0, F = 0.4449785781538512, R = 0.19442269866516987, Vmin = 0.9835592255394283, Vmax = 1.0747306417957747, slack = 0.10279276361168796, runtime = 204.22399997711182, pass = true, error = "")

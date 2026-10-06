@@ -1,0 +1,57 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterRowHeight][t]{\PosterColWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterRowHeight}{4}{EXACT CLOSURE FACTORIZATION}
+
+    {\FigureSize Open the ten PLLs, keep the whole grid:\par}
+    {\fontsize{26pt}{31pt}\selectfont\color{IASBlue}\[
+      G=C(sI-A_0)^{-1}B,\quad L_i=1-G_{ii}e^{-s\tau_i},\quad
+      Q_{ij}=-\frac{G_{ij}e^{-s\tau_j}}{L_i}
+    \]}\par\vspace{1mm}
+    \vspace{-3mm}
+    {\fontsize{32pt}{38pt}\selectfont\color{IASBlue}\[
+      \boxed{\det\Delta=\det(sI-A_0)\prod_i L_i\cdot\det(I+Q)}
+    \]}\par\vspace{1mm}
+    \vspace{-3mm}
+    {\fontsize{24pt}{29pt}\selectfont\color{IASBlue}\[
+      \det(I+Q)=1-\!\sum_{i<j}p_{ij}+\!\sum Q_{ij}Q_{jk}Q_{ki}-\cdots,\quad p_{ij}=Q_{ij}Q_{ji}
+    \]}\par\vspace{1mm}
+    \vspace{-2mm}
+    \noindent\begin{minipage}[c]{128mm}
+      \begin{tikzpicture}[x=0.8mm,y=0.8mm,font=\fontsize{21pt}{23pt}\selectfont,
+        nd/.style={circle,draw=IASDarkGreen,fill=IASPaleGreen,line width=1.1pt,minimum size=15mm,inner sep=0pt},
+        hot/.style={circle,draw=IASVermillion,fill=IASPaleGold,line width=1.5pt,minimum size=15mm,inner sep=0pt},
+        gr/.style={-{Stealth[length=3mm]},line width=1.1pt,color=IASGray},
+        rd/.style={-{Stealth[length=3.5mm]},line width=2.2pt,color=IASVermillion}]
+        \node[nd] (a) at (10,50) {$G_1$}; \node[hot] (b) at (70,50) {$G_2$}; \node[hot] (c) at (70,6) {$G_3$}; \node[nd] (d) at (10,6) {$G_4$};
+        \draw[gr] (a)--(b); \draw[gr] (d)--(a); \draw[gr] (c)--(d); \draw[gr] (a)--(c); \draw[gr] (d)--(b);
+        \draw[rd] ([xshift=-3mm]b.south)--([xshift=-3mm]c.north); \draw[rd] ([xshift=3mm]c.north)--([xshift=3mm]b.south);
+        \node[align=center,font=\fontsize{19pt}{21pt}\selectfont\color{IASDarkText}] at (40,28) {network\\$K(s)$};
+        \node[anchor=west,font=\fontsize{20pt}{22pt}\selectfont\color{IASVermillion}] at (76,28) {$p_{23}\!\to\!1$};
+      \end{tikzpicture}
+    \end{minipage}\hfill%
+    \begin{minipage}[c]{136mm}
+      \begin{tcolorbox}[colback=IASPaleGold,colframe=IASGold,boxrule=0.8pt,arc=1.5mm,left=2mm,right=2mm,top=1mm,bottom=1mm]
+        {\fontsize{22pt}{25pt}\selectfont\textbf{IN WORDS} Delay drives $\det(I+Q)$ to zero while every $L_i$ stays away from zero: the failure belongs to a cycle, not to a device.\par}
+      \end{tcolorbox}
+    \end{minipage}\par
+
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewFullPageWidth}
+  \def\PosterPageHeight{\PosterPreviewFourPageHeight}
+  \def\PosterPreviewLeft{\PosterOuterMargin}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

@@ -1,0 +1,44 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterRowHeightC][t]{\PosterColWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterRowHeightC}{8}{FULL-GRID DELAY EVIDENCE}
+
+    \includegraphics[width=268mm,height=108mm,keepaspectratio]{generated/figures/delay_locus.pdf}\par
+    {\fontsize{21pt}{24pt}\selectfont Exact-delay roots of the 4.5--5 Hz PLL family. Unstable roots: 0, 0, 4, 6, 8 at 40, 41, 42, 43, 44 ms. Absent from the all-SG grid (modes stop at 1.5 Hz).\par}
+    \vspace{1mm}
+    \noindent\begin{minipage}[t]{130mm}\vspace{0pt}
+      \includegraphics[width=130mm,height=100mm,keepaspectratio]{generated/figures/closure_scan.pdf}\par
+    \end{minipage}\hfill%
+    \begin{minipage}[t]{136mm}\vspace{0pt}
+      \includegraphics[width=136mm,height=100mm,keepaspectratio]{generated/figures/pair_cycles.pdf}\par
+    \end{minipage}\par
+    {\fontsize{21pt}{24pt}\selectfont $\sigma_{\min}(I+Q)$ dips at 4.7 Hz while local factors stay regular. Gold: predicted pairs. Closest cycles: 35$-$36 ($0.008$), 33$-$34, 36$-$37; the predicted pairs are the three strongest electrical couplings.\par}
+
+    \vspace{2mm}
+    {\fontsize{21pt}{25pt}\selectfont
+    \begin{tabular}{@{}lccccccc@{}}
+      \textbf{delay [ms]} & 40 & 41 & 42 & 43 & 44 & 46 & 48\\\hline
+      unstable roots & 0 & 0 & 4 & 6 & 8 & 14 & 16\\
+      beyond $-0.05$ & 0 & 0 & 4 & 6 & 10 & 14 & 16\\
+    \end{tabular}\par}
+    {\fontsize{20pt}{23pt}\selectfont Full-spectrum argument-principle counts (floating point, validated against eigenvalues at zero delay).\par}
+
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewHalfPageWidth}
+  \def\PosterPageHeight{\PosterPreviewLowerPageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewHalfLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

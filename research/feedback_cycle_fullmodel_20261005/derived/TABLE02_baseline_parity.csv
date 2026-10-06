@@ -1,0 +1,12 @@
+test,rho,value,tol,passed,max_eig_diff,N_unstable,N_margin_excl_gauge,max_noninteger_winding
+Fx_julia_vs_python_rel_fro,0.125,3.74570871523481e-16,1e-08,True,1.2622113882469775e-10,,,
+Fx_julia_vs_python_rel_fro,0.25,3.3551934589193524e-16,1e-08,True,2.195225853237342e-10,,,
+Fx_julia_vs_python_rel_fro,0.375,2.910647295570941e-16,1e-08,True,6.790885096842847e-10,,,
+Fx_julia_vs_python_rel_fro,0.5,2.373032532886086e-16,1e-08,True,6.810553276738454e-10,,,
+Fx_julia_vs_python_rel_fro,0.625,1.7236576809145643e-16,1e-08,True,4.2875133664606806e-10,,,
+Fx_julia_vs_python_rel_fro,0.75,9.51694805573398e-17,1e-08,True,1.2912467329353867e-09,,,
+Fx_julia_vs_python_rel_fro,0.875,3.42668188254767e-18,1e-08,True,9.207183369490819e-10,,,
+baseline_11_roots_refine_shift,0.875,1.03748209636632e-10,1e-08,True,,,,
+fresh_catalog_recovers_historical_roots(re_floor=-20),0.875,0.0,0.0,True,,,,
+full_count_tau40ms,0.875,0.0,,True,,0.0,0.0,3.1081359708196026e-11
+full_count_tau44ms,0.875,8.0,,True,,8.0,10.0,2.145161825950481e-11

@@ -1,0 +1,21 @@
+\begin{minipage}[t][\PosterMiddleRowHeight][t]{\PosterHalfWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterMiddleRowHeight}{6}{DOES THE RULE TRANSFER?}
+
+    {\FigureSize\textbf{Second base design} (85\,\% inverter share at every site). The selection rule was fixed on the first design and applied without change; it picks the 0.93 Hz mode.\par}
+    \vspace{1mm}
+    \begin{center}\fontsize{26pt}{33pt}\selectfont
+    \begin{tabular}{@{}lccc@{}}
+    \textbf{rule, 44 ms} & \textbf{roots} & \textbf{events} & \textbf{SG reserve}\\\hline
+    no retune & 10 / 12 & aborted & --\\
+    low-frequency & 12 / 12 & not run & --\\
+    rule-selected mode & 0 / 0 & 5 of 5 & 0.027\\
+    \end{tabular}\end{center}
+    \vspace{1mm}
+    {\FigureSize\textbf{Is the exact formula needed?} Its first-order version gives the same root counts at 42--48 ms for both protected modes. At these delays the choice of mode matters; the truncation does not.\par}
+    \vspace{2mm}
+    {\FigureSize\textbf{Checks of the identities.} Spillover formula against finite differences: 219 mode pairs, largest relative error $3.9\times10^{-5}$. Predicted against exact worst root over 11 candidate modes: rank correlation 0.99.\par}
+    \vspace{2mm}
+    {\FigureSize\textbf{Third model, re-run here:} a nine-bus SG--GFL bank with assumed dynamic data. From 20 to 21 ms the rightmost root is $+0.886$\,s$^{-1}$ unchanged and $-0.131$\,s$^{-1}$ with transport on its three PLLs (spectral re-run); the 12 of 12 events are reported, not re-run.\par}
+
+  \end{PosterPanel}
+\end{minipage}%

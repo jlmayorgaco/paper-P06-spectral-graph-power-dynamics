@@ -1,0 +1,11 @@
+none44m tau=0.044 event=16 100.0
+ABORTED none44m DDE integration MaxIters
+┌ Warning: Verbosity toggle: max_iters 
+│  Interrupted. Larger maxiters is needed. If you are using an integrator for non-stiff ODEs or an automatic switching algorithm (the default), you may want to consider using a method for stiff equations. See the solver pages for more details (e.g. https://docs.sciml.ai/DiffEqDocs/stable/solvers/ode_solve/#Stiff-Problems).
+│ 
+│ Diagnostics:
+│ 
+│ Jacobian Analysis:
+│   row(s) [18, 19, 39, 40, 60, 61, 81, 82, 102, 103, and 10 more] have unusually large entries (e.g. J[123,118] = -3.552e+06, J[124,119] = -3.552e+06, J[201,196] = -3.487e+06, J[202,197] = -3.487e+06, J[144,140] = -3.408e+06), suggesting a singularity in those equation(s)
+│   column(s) [13, 14, 34, 35, 55, 56, 76, 77, 97, 98, and 10 more] have unusually large entries, suggesting those state component(s) are diverging
+└ @ DiffEqBase C:\Users\walla\.julia\packages\DiffEqBase\xEDij\src\check_error.jl:37

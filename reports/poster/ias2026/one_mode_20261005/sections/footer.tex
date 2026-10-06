@@ -1,0 +1,58 @@
+% References, takeaway, contact, and QR
+\long\def\PosterSectionContent{%
+  \begin{tikzpicture}[x=1mm,y=1mm]
+    \useasboundingbox (0,0) rectangle (\PosterGridWidthMm,\PosterBottomRowHeightMm);
+    \fill[IASDeepGreen] (0,0) rectangle (\PosterGridWidthMm,\PosterBottomRowHeightMm);
+    \fill[IASGold] (0,81) rectangle (\PosterGridWidthMm,\PosterBottomRowHeightMm);
+    \fill[IASHeaderGreen] (350,0) rectangle (\PosterGridWidthMm,81);
+    \fill[IASMidGreen] (700,0) rectangle (\PosterGridWidthMm,81);
+    \fill[IASGold] (349,9) rectangle (350,72);
+    \fill[IASGold] (699,9) rectangle (700,72);
+
+    \node[anchor=north west,inner sep=0pt,font={\PosterFooterKickerType},text=IASGold] at (22,77) {TAKEAWAY};
+    \node[anchor=north west,inner sep=0pt,font={\PosterFooterTitleType},text=IASWhite] at (22,68) {PRESERVING ONE MODE};
+    \node[anchor=north west,inner sep=0pt,font={\PosterFooterTitleType},text=IASWhite] at (22,49) {DOES NOT PROTECT THE GRID.};
+    \node[anchor=north west,inner sep=0pt,text width=312mm,align=left,font={\fontsize{25pt}{29pt}\selectfont},text=IASPaleGreen] at (22,29)
+      {The gains that hide a delay from one mode are exact. The network decides what they do to all the others.};
+
+    \node[anchor=north west,inner sep=0pt,font={\PosterFooterReferenceHeadingType},text=IASGold] at (364,77) {REFERENCES};
+    \node[anchor=north west,inner sep=0pt,text width=166mm,align=left,font={\PosterFooterReferenceType},text=IASWhite] at (364,66)
+      {[1] Markovi\'c et al., IEEE Trans. Power Syst., 2021.};
+    \node[anchor=north west,inner sep=0pt,text width=166mm,align=left,font={\PosterFooterReferenceType},text=IASWhite] at (364,52)
+      {[2] Huang et al., arXiv:1903.05489.};
+    \node[anchor=north west,inner sep=0pt,text width=166mm,align=left,font={\PosterFooterReferenceType},text=IASWhite] at (364,38)
+      {[3] Michiels \& Gumussoy, arXiv:2003.05496.};
+    \node[anchor=north west,inner sep=0pt,text width=160mm,align=left,font={\PosterFooterReferenceType},text=IASWhite] at (534,66)
+      {[4] D\"orfler et al., IEEE Trans. Power Syst., 2014.};
+    \node[anchor=north west,inner sep=0pt,text width=160mm,align=left,font={\PosterFooterReferenceType},text=IASWhite] at (534,52)
+      {[5] Bindel \& Hood, SIAM J. Matrix Anal. Appl., 2013.};
+    \node[anchor=north west,inner sep=0pt,text width=160mm,align=left,font={\PosterFooterReferenceType},text=IASWhite] at (534,38)
+      {[6] Johansson, IEEE Trans. Comput., 2017.};
+    \node[anchor=north west,inner sep=0pt,text width=318mm,align=left,font={\PosterFooterReferenceType},text=IASPaleGreen] at (364,22)
+      {Topics: [1] converter small-signal stability; [2] PLL stability and grid structure; [3] fixed-order design with delays; [4] sparse wide-area control; [5] nonlinear eigenvalues; [6] interval arithmetic.};
+
+    \node[anchor=north west,inner sep=0pt,font={\PosterFooterContactHeadingType},text=IASGold] at (714,77) {CONTACT};
+    \node[anchor=north west,inner sep=0pt,font={\PosterFooterContactNameType},text=IASWhite] at (714,66) {Jorge Luis Mayorga Taborda};
+    \node[anchor=north west,inner sep=0pt,font={\PosterFooterContactLineType},text=IASPaleGreen] at (714,55) {jl.mayorga@uniandes.edu.co};
+    \node[anchor=north west,inner sep=0pt,font={\PosterFooterContactLineType},text=IASPaleGreen] at (714,46) {Universidad de los Andes};
+    \node[anchor=north west,inner sep=0pt,font={\PosterFooterContactLineType},text=IASPaleGreen] at (714,37) {Bogot\'a, Colombia};
+    \node[anchor=north west,inner sep=0pt,font={\PosterFooterContactLineType},text=IASGold] at (714,24) {IEEE IAS Annual Meeting 2026};
+    \node[anchor=north west,inner sep=0pt,font={\PosterFooterContactLineType},text=IASGold] at (714,15) {Vancouver, Canada};
+  \end{tikzpicture}\par%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewFullPageWidth}
+  \def\PosterPageHeight{\PosterPreviewBottomPageHeight}
+  \def\PosterPreviewLeft{\PosterOuterMargin}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

@@ -1,0 +1,48 @@
+% Collective-interaction version. Original poster preserved.
+\long\def\PosterSectionContent{%
+\begin{minipage}[t][\PosterRowHeight][t]{\PosterColWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterRowHeight}{6}{EXACT PLL GAIN SYNTHESIS}
+
+    {\FigureSize \textbf{Target mode} $\lambda=\alpha+\mathrm{j}\omega$, right vector $q$, $y=G(\lambda)q$:\par}
+    {\fontsize{25pt}{30pt}\selectfont\color{IASBlue}\[
+      W_i=\frac{\lambda^{2}(1+t_f\lambda)e^{\lambda\tau_i}q_i}{y_i},\quad
+      k_{p,i}=\frac{\mathrm{Im}W_i}{\omega},\quad
+      k_{I,i}=\mathrm{Re}W_i-\alpha k_{p,i}
+    \]}\par\vspace{1mm}
+    \vspace{-4mm}
+    {\FigureSize \textbf{Delay grows by $h$, keep $\lambda$} (exact transport):\par}
+    {\fontsize{29pt}{34pt}\selectfont\color{IASBlue}\[
+      \boxed{k_p(h)\lambda+k_I(h)=(k_p\lambda+k_I)\,e^{\lambda h}}
+    \]}\par\vspace{1mm}
+    \vspace{-4mm}
+    {\FigureSize \textbf{Price paid by every other mode} $\mu$:\par}
+    {\fontsize{27pt}{32pt}\selectfont\color{IASBlue}\[
+      \frac{d\mu}{dh}=-k_p(\mu-\lambda)(\mu-\bar\lambda)\frac{\partial\mu}{\partial k_I},\quad
+      \frac{\partial\mu}{\partial k_I}=-\frac{\ell^{H}Z_{k_I}r}{\ell^{H}Z_{s}r}
+    \]}\par\vspace{1mm}
+    \vspace{-4mm}
+    {\fontsize{22pt}{25pt}\selectfont \textbf{Rule (fixed in advance):} among modes predicted safe, protect the one that keeps the most $k_I$. 9-bus bank: $+0.886\to-0.131\ \mathrm{s^{-1}}$.\par}
+    \vspace{1mm}
+    \begin{tcolorbox}[colback=IASPaleGold,colframe=IASGold,boxrule=0.8pt,arc=1.5mm,left=2mm,right=2mm,top=1mm,bottom=1mm]
+      {\fontsize{22pt}{25pt}\selectfont\textbf{IN WORDS} PLL: quadratic factor. Grid: residue.\par}
+    \end{tcolorbox}
+
+  \end{PosterPanel}
+\end{minipage}%
+}%
+\ifdefined\PosterFull
+  \PosterSectionContent
+  \let\PosterSectionFinish\relax
+\else
+  \def\PosterPageWidth{\PosterPreviewHalfPageWidth}
+  \def\PosterPageHeight{\PosterPreviewMiddlePageHeight}
+  \def\PosterPreviewLeft{\PosterPreviewHalfLeft}
+  \input{poster_preview_start.tex}
+  \begin{frame}[t]
+  \vspace*{\PosterPreviewTop}
+  \noindent\hspace*{\PosterPreviewLeft}%
+  \PosterSectionContent
+  \end{frame}
+  \def\PosterSectionFinish{\input{poster_preview_end.tex}}
+\fi
+\PosterSectionFinish

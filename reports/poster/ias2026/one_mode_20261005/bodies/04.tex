@@ -1,0 +1,36 @@
+\begin{minipage}[t][\PosterFourHeight][t]{\PosterGridWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterFourHeight}{4}{HOW: THE GRID SETS THE PRICE, AND THE PRICE CHOOSES THE MODE}
+
+    \noindent\begin{minipage}[t]{300mm}\vspace{0pt}
+      {\Subhead\color{IASDarkGreen}A. Spillover onto any other mode $\mu$\par}\vspace{1mm}
+      {\HeroEquation\color{IASBlue}\[
+        \frac{d\mu}{dh}=-k_p\,(\mu-\lambda)(\mu-\bar\lambda)\,\frac{\partial\mu}{\partial k_I}
+      \]}
+      \vspace{-1mm}
+      {\FigureSize The PLL fixes the quadratic factor. The grid fixes the residue, through its reduced operator $Z(s)$ with left and right vectors $\ell,r$:\par}
+      {\EquationSize\[
+        \frac{\partial\mu}{\partial k_I}=-\frac{\ell^{H}Z_{k_I}(\mu)\,r}{\ell^{H}Z_{s}(\mu)\,r}
+      \]}
+    \end{minipage}\hfill%
+    \begin{minipage}[t]{262mm}\vspace{0pt}
+      {\Subhead\color{IASDarkGreen}B. Selection rule (fixed in advance)\par}\vspace{1mm}
+      {\FigureSize \StepBadge{1}\ One eigen-analysis of the base design gives the residues.\par}\vspace{1.5mm}
+      {\FigureSize \StepBadge{2}\ For each candidate mode, predict the worst root after the delay step from the spillover formula.\par}\vspace{1.5mm}
+      {\FigureSize \StepBadge{3}\ Among candidates predicted inside the margin, protect the one that keeps the largest $k_I$.\par}\vspace{1.5mm}
+      {\FigureSize \StepBadge{4}\ Verify: full-spectrum root count and nonlinear events.\par}
+      \vspace{2mm}
+      {\FigureSize The transport itself needs no network model; choosing $\lambda$ does.\par}
+    \end{minipage}\hfill%
+    \begin{minipage}[t]{262mm}\vspace{0pt}
+      {\Subhead\color{IASDarkGreen}C. Three rules compared\par}\vspace{1mm}
+      {\FigureSize \textbf{Low-frequency rule} (node at $s=0$): $k_p\!\leftarrow\!k_p+h\,k_I$, $k_I$ unchanged.\par}\vspace{1.5mm}
+      {\FigureSize \textbf{First-order modal rule}: $k_p\!\leftarrow\!k_p+h(2\alpha k_p+k_I)$, $k_I\!\leftarrow\!k_I-h|\lambda|^{2}k_p$.\par}\vspace{1.5mm}
+      {\FigureSize \textbf{Exact transport}: the closed form of panel 3.\par}
+      \vspace{2mm}
+      {\FigureSize \textbf{Phase budget.} $k_I$ stays positive while $h<h^{\star}=\varphi_{PI}(\omega)/\omega$ (for $\alpha\approx0$), the PI's own phase lag at the protected mode.\par}
+    \end{minipage}\par
+    \vspace{2mm}
+    \begin{InWords}\InWordsLabel Preserving a mode is exact and local. Whether it is safe is decided elsewhere: by how strongly the network couples the retuned PLLs to every other mode, and by how much integral gain the choice spends.\end{InWords}
+
+  \end{PosterPanel}
+\end{minipage}%

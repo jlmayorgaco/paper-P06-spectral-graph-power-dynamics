@@ -1,0 +1,10 @@
+EVENT_START EV_all10_kp 8 -100.0
+EVENT_DONE (label = "EV_all10_kp", tau_ms = 44.0, bus = 8, delta = -100.0, F = 0.4622062267460381, R = 0.13880139698639216, Vmin = 0.987337840160576, Vmax = 1.0782665006742744, slack = 0.0977050782393956, runtime = 243.75999999046326, pass = true, error = "")
+EVENT_START EV_all10_kp 16 100.0
+EVENT_DONE (label = "EV_all10_kp", tau_ms = 44.0, bus = 16, delta = 100.0, F = 0.4443669779066592, R = 0.12658472272251628, Vmin = 0.9721083659192574, Vmax = 1.0612784916908309, slack = 0.007268633062830432, runtime = 170.60199999809265, pass = true, error = "")
+EVENT_START EV_all10_kp 16 -100.0
+EVENT_DONE (label = "EV_all10_kp", tau_ms = 44.0, bus = 16, delta = -100.0, F = 0.47133925179025327, R = 0.12903588100967464, Vmin = 0.9858817901955359, Vmax = 1.0787135984023526, slack = 0.09452705714801435, runtime = 197.66400003433228, pass = true, error = "")
+EVENT_START EV_all10_kp 29 100.0
+EVENT_DONE (label = "EV_all10_kp", tau_ms = 44.0, bus = 29, delta = 100.0, F = 0.4285544864540973, R = 0.1286612115168926, Vmin = 0.9733884855031921, Vmax = 1.0612936665405635, slack = 0.012084785736588333, runtime = 173.85000014305115, pass = true, error = "")
+EVENT_START EV_all10_kp 29 -100.0
+EVENT_DONE (label = "EV_all10_kp", tau_ms = 44.0, bus = 29, delta = -100.0, F = 0.44145348332362766, R = 0.2016390486864555, Vmin = 0.9831632536165611, Vmax = 1.0747306417957747, slack = 0.10393710370955557, runtime = 205.71599984169006, pass = true, error = "")

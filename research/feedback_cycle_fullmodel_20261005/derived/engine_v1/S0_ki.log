@@ -1,0 +1,13 @@
+[S0_ki] it 0: worst Re=+0.9688 @ 4.649 Hz, roots beyond margin=5
+[S0_ki] it 1: worst Re=+0.6904 @ 4.713 Hz, roots beyond margin=4
+[S0_ki] it 2: worst Re=+0.6949 @ 4.666 Hz, roots beyond margin=3
+[S0_ki] it 3: worst Re=+0.6902 @ 4.665 Hz, roots beyond margin=3
+[S0_ki] it 4: worst Re=+0.6889 @ 4.664 Hz, roots beyond margin=3
+[S0_ki] it 5: worst Re=+0.6884 @ 4.664 Hz, roots beyond margin=3
+[S0_ki] it 6: worst Re=+0.6881 @ 4.663 Hz, roots beyond margin=3
+[S0_ki] it 7: worst Re=+0.6880 @ 4.663 Hz, roots beyond margin=3
+[S0_ki] it 8: worst Re=+0.6879 @ 4.663 Hz, roots beyond margin=3
+[S0_ki] it 9: worst Re=+0.6878 @ 4.663 Hz, roots beyond margin=3
+[S0_ki] it 10: worst Re=+0.6878 @ 4.662 Hz, roots beyond margin=3
+[S0_ki] it 11: worst Re=+0.6878 @ 4.662 Hz, roots beyond margin=3
+FINAL {'label': 'S0_ki', 'kind': 'ki', 'sites': '30 33 36 37', 'N_unstable': 6, 'N_margin_excl_gauge': 6, 'max_noninteger_winding': np.float64(9.13413789049855e-12), 'iterations': 11, 'success': False, 'Kp': '28.2743 28.2743 28.2743 28.2743 28.2743 28.2743 28.2743 28.2743 28.2743 28.2743', 'Ki': '234.8259 246.7401 246.7401 182.9100 246.7401 246.7401 225.0177 82.1326 246.7401 246.7401', 'worst_re_catalog': np.float64(0.6877777989941742)}

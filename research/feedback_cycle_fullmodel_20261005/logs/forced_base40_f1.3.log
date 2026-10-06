@@ -1,0 +1,5 @@
+1×16 DataFrame
+ Row │ label        freq_hz  amp_MW   bus    tau_ms   status  t_end_s  peak_pll_err_deg  peak_pll_omega_dev  peak_busfreq_dev_Hz  peak_pll_err_deg_first10s  peak_busfreq_dev_Hz_first10s  t_pll_err_gt_5deg_s  vmin     vmax     sg_slack_min
+     │ String       Float64  Float64  Int64  Float64  String  Float64  Float64           Float64             Float64              Float64                    Float64                       Float64              Float64  Float64  Float64
+─────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+   1 │ base40_f1.3  6.04397      5.0     29     40.0  ok         30.0          0.277265             0.14252          0.000411087                   0.277265                   0.000411087                  NaN  0.98154  1.06403      0.153279

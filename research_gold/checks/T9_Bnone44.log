@@ -1,0 +1,11 @@
+B_none_44ms tau=0.044 kp=28.274333882308138 ki=246.74011002723395 within limits: true
+EVENT_DONE (design = "B_none_44ms", tau_ms = 44.0, rho = 0.85, kp = 28.274333882308138, ki = 246.74011002723395, bus = 16, delta = 100.0, horizon = 20.0, F = NaN, R = NaN, Vmin = NaN, Vmax = NaN, slack = NaN, pass = false, error = "DDE integration MaxIters")
+┌ Warning: Verbosity toggle: max_iters 
+│  Interrupted. Larger maxiters is needed. If you are using an integrator for non-stiff ODEs or an automatic switching algorithm (the default), you may want to consider using a method for stiff equations. See the solver pages for more details (e.g. https://docs.sciml.ai/DiffEqDocs/stable/solvers/ode_solve/#Stiff-Problems).
+│ 
+│ Diagnostics:
+│ 
+│ Jacobian Analysis:
+│   row(s) [18, 19, 39, 40, 60, 61, 81, 82, 102, 103, and 10 more] have unusually large entries (e.g. J[144,140] = -3.503e+06, J[145,139] = 3.503e+06, J[18,14] = -3.492e+06, J[19,13] = 3.492e+06, J[165,161] = -3.485e+06), suggesting a singularity in those equation(s)
+│   column(s) [13, 14, 34, 35, 55, 56, 76, 77, 97, 98, and 10 more] have unusually large entries, suggesting those state component(s) are diverging
+└ @ DiffEqBase C:\Users\walla\.julia\packages\DiffEqBase\xEDij\src\check_error.jl:37

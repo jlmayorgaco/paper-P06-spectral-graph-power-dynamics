@@ -1,0 +1,2 @@
+# AMENDMENT 04 (2026-10-05)
+Engine v2 = engine v1 + step acceptance: a step is accepted only if the exact worst catalogued real part decreases by > 1e-6; otherwise the iterate is restored and the step cap (initially 0.1, log) is halved (at most 8 halvings, cap floor 1e-3). The best iterate is returned. Bounds, tau, margin, supports, orders, success criterion unchanged. Decided after seeing v1 results and BEFORE any v2 run; reason: v1 may have overstated failure for sparse supports.

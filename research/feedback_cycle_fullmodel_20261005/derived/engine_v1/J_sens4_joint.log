@@ -1,0 +1,10 @@
+[sens4_joint] it 0: worst Re=+0.9688 @ 4.649 Hz, roots beyond margin=5
+[sens4_joint] it 1: worst Re=+1.0855 @ 4.963 Hz, roots beyond margin=4
+[sens4_joint] it 2: worst Re=+0.9903 @ 4.917 Hz, roots beyond margin=5
+[sens4_joint] it 3: worst Re=+0.9888 @ 4.794 Hz, roots beyond margin=5
+[sens4_joint] it 4: worst Re=+0.9370 @ 5.161 Hz, roots beyond margin=5
+[sens4_joint] it 5: worst Re=+1.0575 @ 4.116 Hz, roots beyond margin=7
+[sens4_joint] it 6: worst Re=+1.2467 @ 4.722 Hz, roots beyond margin=7
+[sens4_joint] it 7: worst Re=+1.1007 @ 4.179 Hz, roots beyond margin=7
+[sens4_joint] it 8: worst Re=+1.2945 @ 4.720 Hz, roots beyond margin=7
+FINAL {'label': 'sens4_joint', 'kind': 'joint', 'sites': '30 37 39 38', 'N_unstable': 12, 'N_margin_excl_gauge': 14, 'max_noninteger_winding': np.float64(1.3987699887252347e-11), 'iterations': 8, 'success': False, 'Kp': '21.9812 28.2743 28.2743 28.2743 28.2743 28.2743 28.2743 20.9066 34.5343 32.8249', 'Ki': '300.6174 246.7401 246.7401 246.7401 246.7401 246.7401 246.7401 332.4111 402.5456 157.9713', 'worst_re_catalog': np.float64(1.2945005642404928)}

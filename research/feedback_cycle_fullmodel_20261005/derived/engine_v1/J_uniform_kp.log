@@ -1,0 +1,5 @@
+[uniform_kp] it 0: worst Re=+0.9688 @ 4.649 Hz, roots beyond margin=5
+[uniform_kp] it 1: worst Re=+0.2495 @ 4.390 Hz, roots beyond margin=2
+[uniform_kp] it 2: worst Re=-0.0228 @ 4.257 Hz, roots beyond margin=1
+[uniform_kp] it 3: worst Re=-0.0525 @ 4.241 Hz, roots beyond margin=0
+FINAL {'label': 'uniform_kp', 'kind': 'kp', 'sites': '30 31 32 33 34 35 36 37 38 39', 'N_unstable': 0, 'N_margin_excl_gauge': 0, 'max_noninteger_winding': np.float64(6.813216657519661e-12), 'iterations': 3, 'success': True, 'Kp': '24.1923 24.1923 24.1923 24.1923 24.1923 24.1923 24.1923 24.1923 24.1923 24.1923', 'Ki': '246.7401 246.7401 246.7401 246.7401 246.7401 246.7401 246.7401 246.7401 246.7401 246.7401', 'worst_re_catalog': np.float64(-0.05249980204626198)}

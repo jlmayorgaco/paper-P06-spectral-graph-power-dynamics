@@ -1,0 +1,2 @@
+label,freq_hz,amp_MW,bus,tau_ms,status,t_end_s,peak_pll_err_deg,peak_pll_omega_dev,peak_busfreq_dev_Hz,peak_pll_err_deg_first10s,peak_busfreq_dev_Hz_first10s,t_pll_err_gt_5deg_s,vmin,vmax,sg_slack_min
+S44_f0.7,3.2544458,5.0,29,44.0,aborted: retcode MaxIters,11.924000000000008,39.926882507837455,22.004388229128384,0.17727342304374455,38.559505551464085,0.045799268824922225,6.73,0.9370845292039298,1.1248144918182084,-6.059966156230372e-8

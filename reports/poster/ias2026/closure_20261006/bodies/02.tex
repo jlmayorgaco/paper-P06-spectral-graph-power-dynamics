@@ -1,0 +1,30 @@
+\begin{minipage}[t][\PosterRowHeightA][t]{\PosterColWidth}\vspace{0pt}
+  \begin{PosterPanel}{\PosterRowHeightA}{2}{MODEL: DAE TO DELAYED LOOP}
+
+    \begin{center}
+    \begin{tikzpicture}[x=1mm,y=1mm,font=\fontsize{20pt}{22pt}\selectfont,
+      bx/.style={draw=IASDarkGreen,fill=IASPaleGreen,line width=1.1pt,rounded corners=1.5mm,minimum height=12mm,minimum width=118mm,align=center,inner sep=1.5mm},
+      hi/.style={draw=IASGold,fill=IASPaleGold,line width=1.4pt,rounded corners=1.5mm,minimum height=12mm,minimum width=118mm,align=center,inner sep=1.5mm},
+      ar/.style={-{Stealth[length=3mm]},line width=1.2pt,color=IASDarkGreen}]
+      \node[bx] (a) at (0,0) {nonlinear DAE: SG, AVR, governor, GFL, PLL, network};
+      \node[bx] (b) at (0,-17) {equilibrium $(x^\star,z^\star)$ at the declared dispatch};
+      \node[bx] (c) at (0,-34) {linearize, eliminate algebra (Kron/Schur)};
+      \node[hi] (d) at (0,-51) {delayed characteristic $\Delta(s)$, 204 states};
+      \draw[ar] (a) -- (b); \draw[ar] (b) -- (c); \draw[ar] (c) -- (d);
+    \end{tikzpicture}
+    \end{center}
+    \vspace{-1mm}
+    {\FigureSize \textbf{Port operator} (algebraic network seen from the retained variables):\par}
+    {\fontsize{27pt}{32pt}\selectfont\color{IASBlue}\[
+      T_S(s)=g_z+g_x\,(sI-f_x)^{-1}f_z
+    \]}\par\vspace{2.5mm}
+    \vspace{-3mm}
+    {\FigureSize \textbf{Delayed loop} (PLL error is the only delayed signal):\par}
+    {\fontsize{27pt}{32pt}\selectfont\color{IASBlue}\[
+      \Delta(s)=sI-A_0-B\,E(s)\,C,\qquad E=\mathrm{diag}\,e^{-s\tau_i}
+    \]}\par\vspace{2.5mm}
+    \vspace{-3mm}
+    {\fontsize{23pt}{26pt}\selectfont $A_0$: grid and devices; $B$: PLL injection ($k_p,k_I$); $C$: detector. Exact exponentials, never Pad\'e. Baseline: $\rho=0.875$, $k_p=28.27$, $k_I=246.7$, $\tau=40$ ms.\par}
+
+  \end{PosterPanel}
+\end{minipage}%
