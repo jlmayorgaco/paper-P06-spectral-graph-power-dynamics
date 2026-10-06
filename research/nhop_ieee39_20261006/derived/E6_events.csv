@@ -1,0 +1,8 @@
+label,design_file,tau_ms,rho,graph,n,events_passed,worst_abs_df_Hz,worst_RoCoF_Hz_s,min_SG_slack,integration_errors,failures
+frozen_n0_tau52_rho875,raw/designs/frozen_n0_tau52_rho875.toml,52,0.875,frozen,0,4/5,0.491121,0.16774,0.00160899,0,"ev2(bus16,100.0): slack=1.61e-03<0.002"
+frozen_n1_tau52_rho875,raw/designs/frozen_n1_tau52_rho875.toml,52,0.875,frozen,1,5/5,0.470638,0.207198,0.00753443,0,
+frozen_n3_tau52_rho875,raw/designs/frozen_n3_tau52_rho875.toml,52,0.875,frozen,3,0/5,0.458706,0.177543,0.0985433,3,"ev1(bus8,-100.0): V band Vmin=0.9282 Vmax=1.1224 | ev2(bus16,100.0): DDE integration MaxIters | ev3(bus16,-100.0): V band Vmin=0.9299 Vmax=1.1215 | ev4(bus29,100.0): DDE integration MaxIters | ev5(bus29,-100.0): DDE integration MaxIters"
+frozen_n0_tau48_rho875,raw/designs/frozen_n0_tau48_rho875.toml,48,0.875,frozen,0,5/5,0.481088,0.18456,0.00446229,0,
+frozen_n1_tau48_rho875,raw/designs/frozen_n1_tau48_rho875.toml,48,0.875,frozen,1,5/5,0.471774,0.201743,0.00715815,0,
+frozen_n0_tau44_rho900,raw/designs/frozen_n0_tau44_rho900.toml,44,0.9,frozen,0,0/5,0.585242,0.193286,-3.12339e-07,0,"ev1(bus8,-100.0): F=0.5795>0.5 | ev2(bus16,100.0): F=0.5428>0.5; slack=-2.60e-07<0.002 | ev3(bus16,-100.0): F=0.5852>0.5 | ev4(bus29,100.0): F=0.5155>0.5; slack=-3.12e-07<0.002 | ev5(bus29,-100.0): F=0.5376>0.5"
+frozen_n1_tau44_rho900,raw/designs/frozen_n1_tau44_rho900.toml,44,0.9,frozen,1,0/5,0.58321,0.196788,-3.81942e-07,0,"ev1(bus8,-100.0): F=0.5775>0.5 | ev2(bus16,100.0): F=0.5410>0.5; slack=-3.82e-07<0.002 | ev3(bus16,-100.0): F=0.5832>0.5 | ev4(bus29,100.0): F=0.5138>0.5; slack=-2.74e-07<0.002 | ev5(bus29,-100.0): F=0.5357>0.5"

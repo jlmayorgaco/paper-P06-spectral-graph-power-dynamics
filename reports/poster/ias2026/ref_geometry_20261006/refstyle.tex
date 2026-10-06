@@ -5,7 +5,9 @@
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb}
 \usepackage{unicode-math}
-\setmathfont{Latin Modern Math}
+\setmathfont{FiraMath-Regular.otf}
+% Fira Math has no calligraphic alphabet: take \mathcal (e.g. \mathcal K_n vs K) from STIX Two Math so the distinction survives
+\setmathfont{STIXTwoMath-Regular.otf}[range={cal,bfcal},Scale=MatchUppercase]
 \usepackage{tikz}
 \usetikzlibrary{calc,arrows.meta,shapes.geometric,decorations.pathmorphing}
 
@@ -17,14 +19,17 @@
 \definecolor{PGoldDeep}{HTML}{B68A12}
 \definecolor{PGoldLine}{HTML}{ECC441}
 \definecolor{PFootGold}{HTML}{E8D44C}
-\definecolor{PBlue}{HTML}{2867A8}       % mathematical accent
-\definecolor{PRed}{HTML}{C73E3E}
+\definecolor{PBlue}{HTML}{1E4F8A}       % navy: math, data series 2 (alias PNavy)
+\definecolor{PNavy}{HTML}{1E4F8A}
+\definecolor{PRed}{HTML}{B83A3A}        % ONLY unstable / fails / limit
+\definecolor{PGrey}{HTML}{6B7773}
 \definecolor{PTeal}{HTML}{2C7A70}
 \definecolor{PTagline}{HTML}{1D6B5B}
 \definecolor{PSub}{HTML}{2C5D6E}
 \definecolor{PAuthor}{HTML}{3E4A55}
-\definecolor{PText}{HTML}{18302A}
-\definecolor{PMuted}{HTML}{53625E}
+\definecolor{PText}{HTML}{1C2B27}
+\definecolor{PMuted}{HTML}{4F5D59}
+\definecolor{PGrid}{HTML}{E3EBE7}
 \definecolor{PBorder}{HTML}{D3E6DF}
 \definecolor{PBody}{HTML}{FCFEFC}
 \definecolor{PPaleGreen}{HTML}{EAF4EF}
@@ -35,13 +40,17 @@
 \definecolor{PSky}{HTML}{DDE8EA}
 
 % ---- fonts (system fonts): humanist sans body, condensed bold display
-\setmainfont{Segoe UI}[Ligatures=TeX]
+\setmainfont{FiraSans-Regular.otf}[Ligatures=TeX,ItalicFont=FiraSans-Italic.otf,BoldFont=FiraSans-Bold.otf,BoldItalicFont=FiraSans-BoldItalic.otf]
+\newfontfamily\FiraMed{FiraSans-Medium.otf}[Ligatures=TeX,ItalicFont=FiraSans-MediumItalic.otf,BoldFont=FiraSans-Bold.otf,BoldItalicFont=FiraSans-BoldItalic.otf]
+\newfontfamily\FiraSemi{FiraSans-SemiBold.otf}[Ligatures=TeX,ItalicFont=FiraSans-SemiBoldItalic.otf,BoldFont=FiraSans-Bold.otf,BoldItalicFont=FiraSans-BoldItalic.otf]
+\newfontfamily\FiraBold{FiraSans-Bold.otf}[Ligatures=TeX,ItalicFont=FiraSans-BoldItalic.otf]
+\newfontfamily\FiraXBold{FiraSans-ExtraBold.otf}[Ligatures=TeX,ItalicFont=FiraSans-ExtraBoldItalic.otf]
 \newfontfamily\TitleFont{Bahnschrift}[RawFeature={+axis={wght=700,wdth=75}}]
 \newfontfamily\CondBold{Bahnschrift}[RawFeature={+axis={wght=700,wdth=87.5}}]
 \newfontfamily\CondSemi{Bahnschrift}[RawFeature={+axis={wght=600,wdth=87.5}}]
 \newfontfamily\CondReg{Bahnschrift}[RawFeature={+axis={wght=400,wdth=87.5}}]
 \newfontfamily\CondLight{Bahnschrift}[RawFeature={+axis={wght=300,wdth=87.5}}]
-\newfontfamily\PanelFont[Path=C:/Windows/Fonts/,UprightFont=ARIALNB.TTF,BoldFont=ARIALNB.TTF]{ArialNarrowBold}
+\newfontfamily\PanelFont{Bahnschrift}[RawFeature={+axis={wght=700,wdth=75}},LetterSpace=1.5]
 
 % ---- coordinate system: origin = page top-left, unit = one reference pixel, y downwards
 \newlength{\PX}\setlength{\PX}{0.787597mm}
@@ -71,15 +80,26 @@
   \node[anchor=west,inner sep=0pt,text=white] at (\xs,\ya+\bh/2+0.3) {\fontsize{37pt}{37pt}\selectfont\FitTitle{\tw}{#2}};}}}}
 
 % tinted boxes used inside panels (pale-green, gold equation callout, red warning)
-\newcommand{\TintBox}[6]{\draw[#6,line width=0.5pt,fill=#5,rounded corners=2.2pt] (#1,#2) rectangle (#3,#4);}
-\newcommand{\EquationCallout}[4]{\TintBox{#1}{#2}{#3}{#4}{PPaleGold}{PGold!75}}
-\newcommand{\GreenCallout}[4]{\TintBox{#1}{#2}{#3}{#4}{PPaleGreen}{PBorder}}
-\newcommand{\WarningNote}[4]{\TintBox{#1}{#2}{#3}{#4}{PPaleRed}{PRed!45}}
+% design v2: three container kinds, no outlines.
+\newcommand{\HeroBox}[4]{\begin{scope}\clip[rounded corners=3pt] (#1,#2) rectangle (#3,#4);
+  \fill[PPaleGold] (#1,#2) rectangle (#3,#4);\fill[PGold] (#1,#2) rectangle (#1+3,#4);\end{scope}}
+\newcommand{\CardBox}[4]{\fill[PPaleGreen,rounded corners=3pt] (#1,#2) rectangle (#3,#4);}
+\newcommand{\NoteBox}[5]{\fill[white] (#1,#2) rectangle (#3,#4);\fill[#5] (#1,#2) rectangle (#1+2.2,#4);}
+\newcommand{\EquationCallout}[4]{\HeroBox{#1}{#2}{#3}{#4}}
+\newcommand{\GreenCallout}[4]{\CardBox{#1}{#2}{#3}{#4}}
+\newcommand{\WarningNote}[4]{\NoteBox{#1}{#2}{#3}{#4}{PRed}}
 
-% evidence tags
-\newcommand{\ProvedTag}[3]{\node[fill=PPaleGreen,draw=PTeal,line width=0.4pt,rounded corners=2pt,inner sep=1.6pt,text=PTeal,font=\bfseries\fontsize{15.5pt}{15.5pt}\selectfont] at (#1,#2) {#3};}
-\newcommand{\ObservedTag}[3]{\node[fill=white,draw=PBlue,line width=0.4pt,rounded corners=2pt,inner sep=1.6pt,text=PBlue,font=\bfseries\fontsize{15.5pt}{15.5pt}\selectfont] at (#1,#2) {#3};}
-\newcommand{\ProposedTag}[3]{\node[fill=PPaleGold,draw=PGold,line width=0.4pt,rounded corners=2pt,inner sep=1.6pt,text=PMuted,font=\bfseries\fontsize{15.5pt}{15.5pt}\selectfont] at (#1,#2) {#3};}
+% lettered subhead: gold chip with letter + SemiBold green text; (x,y) = left edge, vertical centre
+\newcommand{\SubHead}[4]{\fill[PGold,rounded corners=1.5pt] (#3,#4-5.5) rectangle (#3+11,#4+5.5);
+  \node[inner sep=0pt,text=PGreenDark,font=\FiraBold\fontsize{15.5pt}{15.5pt}\selectfont] at (#3+5.5,#4+0.3) {#1};
+  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{23pt}{23pt}\selectfont] at (#3+16,#4+0.3) {#2};}
+
+% evidence tags: filled pills
+\newcommand{\TagPill}[5]{\node[fill=#4,text=#5,rounded corners=2.4mm,inner xsep=3.4pt,inner ysep=2.2pt,font=\FiraBold\fontsize{15.5pt}{15.5pt}\selectfont\addfontfeature{LetterSpace=6}] at (#1,#2) {#3};}
+\newcommand{\ProvedTag}[3]{\TagPill{#1}{#2}{#3}{PTeal}{white}}
+\newcommand{\ObservedTag}[3]{\TagPill{#1}{#2}{#3}{PNavy}{white}}
+\newcommand{\ProposedTag}[3]{\TagPill{#1}{#2}{#3}{PGold}{PText}}
+\newcommand{\ExploratoryTag}[3]{\TagPill{#1}{#2}{#3}{PGrey}{white}}
 \newcommand{\ExactTagText}{EXACT / PROVED}
 \newcommand{\ObservedTagText}{NUMERICAL OBSERVATION}
 \newcommand{\ProposedTagText}{PROPOSED / FUTURE}

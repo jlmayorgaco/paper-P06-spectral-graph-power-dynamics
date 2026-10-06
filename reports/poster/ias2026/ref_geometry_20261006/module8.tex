@@ -1,0 +1,36 @@
+% MODULE 8: N-HOP RESULTS ON THE FULL IEEE-39. Panel box (reference px): x 398-756, y 796.5-1129.5, title bar to y 822.5.
+% Design v2: two real plots (authority, spillover), one repair card, one HeroBox. Text edge x = 409, right edge x = 745.
+% Plots: figures/module8/make_m8_plotA.py and make_m8_plotB.py read research/nhop_ieee39_20261006/derived/ (frozen graph = primary).
+\begin{scope}
+  % ---------------------------------------------------------------- tag row
+  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{19pt}{19pt}\selectfont] at (409,835) {Full IEEE-39, exact delay 44\,ms}; % source: REPORT_E1_E2_E5.md (targets at 44 ms)
+  \node[anchor=east,fill=PNavy,text=white,rounded corners=2.4mm,inner xsep=3.4pt,inner ysep=2.2pt,font=\FiraBold\fontsize{15.5pt}{15.5pt}\selectfont\addfontfeature{LetterSpace=6}] at (745,835) {NUMERICAL OBSERVATION};
+
+  % ---------------------------------------------------------------- A: authority
+  \SubHead{A}{Authority: residual vs radius}{409}{853}
+  % source: derived/E1_residuals.csv (graph=frozen, eps by m, n) and E1_nmin.csv: n_min = 0, 1, 1, 2 for m = 1..4; m = 5 not reached (eps = 4.816e-4 at n = 3)
+  \node[anchor=north west,inner sep=0pt] at (409,859) {\includegraphics[width=336\PX,height=80\PY]{figures/module8/m8_plotA.pdf}};
+  \node[anchor=north west,inner sep=0pt,text=PMuted,align=left,font=\FiraMed\fontsize{17.5pt}{19pt}\selectfont] at (409,942)
+    {\parbox{336\PX}{\raggedright Each extra mode pinned needs more measured neighbours\\[-2pt](dimension count $2m\le 2|\mathcal N_i|$).}};
+
+  % ---------------------------------------------------------------- B: spillover (largest plot)
+  \SubHead{B}{Spillover on other roots}{409}{968}
+  % legend right-aligned on the subhead row
+  \fill[PRed] (553,964.5) rectangle (562,972.5);
+  \node[anchor=west,inner sep=0pt,text=PRed,font=\FiraSemi\fontsize{17pt}{17pt}\selectfont] at (565,968.5) {absolute gains};
+  \fill[PNavy] (641,968.5) -- (646,963.5) -- (651,968.5) -- (646,973.5) -- cycle;
+  \node[anchor=west,inner sep=0pt,text=PNavy,font=\FiraSemi\fontsize{17pt}{17pt}\selectfont] at (654,968.5) {baseline + change};
+  % source: derived/E5_spillover.csv (graph=frozen): 12 exact assignments (eps <= 1e-8), N_margin > 0 in 11 (absolute and delta variants); baseline 10 roots beyond -0.05.
+  %   All graphs and variants: 56 of 62 leave roots beyond the margin (REPORT_E1_E2_E5.md; verified by count of spill_beyond_margin = True).
+  \node[anchor=north west,inner sep=0pt] at (409,977) {\includegraphics[width=336\PX,height=100\PY]{figures/module8/m8_plotB.pdf}};
+
+  % ---------------------------------------------------------------- repair card (E3/E4)
+  \CardBox{409}{1080}{745}{1109}
+  % source: derived/E3_repair.csv (frozen, rho 0.875: n = 0 succeeds at tau 44, 48, 52 ms; frozen n = 2 stalls at 52 ms), E4_largest_rho.csv (0.9 for every n; 0.925 and 0.95 fail for every n)
+  \node[anchor=west,inner sep=0pt,text=PText,font=\FiraMed\fontsize{17.5pt}{19pt}\selectfont] at (417,1094.5)
+    {\parbox{322\PX}{\raggedright Repair at 44--52 ms already works with $n=0$. Largest verified share: 90\,\% for every $n$; 92.5\,\% fails for all $n$. Declared sweep, not a certified optimum.}};
+
+  % ---------------------------------------------------------------- hero
+  \HeroBox{409}{1112}{745}{1127}
+  \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraBold\fontsize{26pt}{26pt}\selectfont] at (420,1119.6) {More modal authority $\neq$ a safer grid.};
+\end{scope}

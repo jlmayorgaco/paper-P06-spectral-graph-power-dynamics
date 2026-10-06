@@ -1,0 +1,37 @@
+% MODULE 10: lower strip (three unnumbered sections). Bars are drawn in main.tex; bodies start at y 1160 (bars end at 1157.5).
+% MAIN CONTRIBUTIONS x 13-548 | SCOPE OF THE RESULTS x 555-837 | REFERENCES / CONTACT x 844-1148 (x 1058-1146 stays blank for the future QR code).
+% Every statement summarises other panels of this poster (panels 3-9); no new numbers are introduced here.
+\begin{scope}
+  \hyphenpenalty=10000 \exhyphenpenalty=10000 \tolerance=9999 \emergencystretch=3em
+  % ---------------------------------------------------------------- MAIN CONTRIBUTIONS: five numbered items in two columns
+  \newcommand{\ContribItem}[4]{% x, y (top), number, text
+    \StepNumber{#1+9.6}{#2+9.6}{#3}
+    \node[anchor=north west,inner sep=0pt,text=PText,align=left,text width=228\PX,font=\FiraMed\fontsize{18pt}{20.5pt}\selectfont] at (#1+22,#2-1.5) {#4};}
+  \ContribItem{22}{1163}{1}{\textbf{Minimal replacement blockers:} the $H_4$ witness is unstable although all its proper subsets are stable.}
+  \ContribItem{22}{1189}{2}{\textbf{Exact closure factorization} of the network return into a local and a collective part.}
+  \ContribItem{22}{1215}{3}{\textbf{Beyond nodal damping:} self-energy and signed damping redistribution.}
+  \ContribItem{290}{1163}{4}{\textbf{Grid-embedded PLL gain synthesis} and exact delay transport.}
+  \ContribItem{290}{1189}{5}{\textbf{Information radius on the full IEEE-39:} authority grows, safety must still be verified.}
+
+  % ---------------------------------------------------------------- SCOPE OF THE RESULTS: three mini-columns with evidence pills
+  % pills
+  \ProvedTag{591}{1169.5}{EXACT}
+  \ObservedTag{692}{1169.5}{NUMERICAL}
+  \ProposedTag{795}{1169.5}{PROPOSED}
+  \node[anchor=north west,inner sep=0pt,text=PText,align=left,text width=76\PX,font=\FiraMed\fontsize{17pt}{19.5pt}\selectfont] at (561,1180)
+    {closure factorization\par gain map $W_i$\par delay transport\par commutator identity\par signed $\delta D_H$};
+  \node[anchor=north west,inner sep=0pt,text=PText,align=left,text width=100\PX,font=\FiraMed\fontsize{17pt}{19.5pt}\selectfont] at (641,1180)
+    {$H_4$ witness (TX4 contract)\par\addvspace{1.5pt}full IEEE-39 delay campaign\par\addvspace{1.5pt}$n$-hop authority, spillover, repair\par\addvspace{1.5pt}nonlinear events};
+  \node[anchor=north west,inner sep=0pt,text=PText,align=left,text width=82\PX,font=\FiraMed\fontsize{17pt}{19.5pt}\selectfont] at (750,1180)
+    {$M_\mathrm{eff}$, $D_\mathrm{eff}$ graph diagnostics\par certified global maximum share\par EMT and current limits};
+
+  % ---------------------------------------------------------------- REFERENCES / CONTACT (right 90 px kept blank for the QR code)
+  \node[anchor=north west,inner sep=0pt,text=PText,align=left,text width=198\PX,font=\FiraMed\fontsize{17pt}{19.3pt}\selectfont] at (851,1159.5)
+    {\hangindent=1.9em\hangafter=1\noindent\makebox[1.9em][l]{[1]}P. Kundur, \emph{Power System Stability and Control}, 1994.\par
+     \hangindent=1.9em\hangafter=1\noindent\makebox[1.9em][l]{[2]}F. D\"orfler et al., Sparsity-promoting optimal wide-area control, IEEE TPWRS, 2014.\par
+     \hangindent=1.9em\hangafter=1\noindent\makebox[1.9em][l]{[3]}L. Huang et al., Impacts of grid structure on PLL-synchronization stability, arXiv:1903.05489.\par
+     \hangindent=1.9em\hangafter=1\noindent\makebox[1.9em][l]{[4]}W. Michiels, S. Gumussoy, fixed-order controllers for time-delay systems, arXiv:2003.05496.\par
+     \hangindent=1.9em\hangafter=1\noindent\makebox[1.9em][l]{[5]}J. L. Mayorga T., Beyond nodal damping, in prep.\par
+     {\FiraSemi\color{PGreen}jl.mayorga@uniandes.edu.co}};
+  % reserved blank space (x 1058-1146): QR code placeholder intentionally empty
+\end{scope}

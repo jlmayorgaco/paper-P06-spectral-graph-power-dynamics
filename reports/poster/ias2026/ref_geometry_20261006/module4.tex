@@ -1,0 +1,50 @@
+% MODULE 4: EXACT NETWORK CLOSURE: LOCAL x COLLECTIVE. Panel box (reference px): x 13-396, y 459.5-793.5, title bar to y 485.5.
+% Design v2 (illustrated): definitions -> closure illustration (local loop teal, collective loop red) -> hero identity -> teal audit note -> hero sentence.
+% Left text edge x = 23, right edge x = 386. Formulas follow plans/POSTER_PLAN.md (M4). Numbers: see % source comments.
+\begin{scope}
+  % ---------------------------------------------------------------- definitions (compact)
+  \node[anchor=west,inner sep=0pt,text=PNavy] at (23,497) {\fontsize{26pt}{28pt}\selectfont $T_S(s)=T_0(s)+\sum_{i\in S}E_i\,\Delta Y_i(s)\,E_i^{\mathsf T}$};
+  \node[anchor=west,inner sep=0pt,text=PNavy] at (23,514.5) {\fontsize{22pt}{24pt}\selectfont $\Delta Y_i=E_i^{\mathsf T}\big[T_{\{i\}}(s)-T_0(s)\big]E_i,\ \ \mathcal K=E^{\mathsf T}T_0^{-1}E=\mathcal K_d+\mathcal K_o$};
+  \node[anchor=north west,inner sep=0pt,text=PMuted] at (23,524) {\parbox{283mm}{\raggedright\FiraMed\fontsize{17.5pt}{19.5pt}\selectfont $E_i$ selects port $i$; $T_S$: devices of $S$ replaced; $T_0$: all-SG network. $\mathcal D=\mathrm{blkdiag}(\Delta Y_i)$: device-determined; $\mathcal K$: network-determined.}}; % source: plans/POSTER_PLAN.md (M4 definitions)
+
+  % ---------------------------------------------------------------- closure illustration
+  \CardBox{23}{547}{386}{657}
+  \begin{scope}[line cap=round,line join=round,shift={(0,6)}]
+    % network between the two ports
+    \fill[white,rounded corners=14pt] (104,558) rectangle (305,617);
+    \node[inner sep=0pt,text=PMuted,font=\CondSemi\fontsize{17.5pt}{17.5pt}\selectfont] at (204.5,609) {NETWORK};
+    \draw[PMist,line width=1.8pt] (150,586) -- (186,573) -- (232,573) -- (264,586) (150,586) -- (186,597) -- (232,597) -- (264,586) (186,573) -- (186,597) (232,573) -- (232,597);
+    \foreach \x/\y in {150/586,186/573,186/597,232/573,232/597,264/586}{\fill[PTeal!55!PMist] (\x,\y) circle (4.6);}
+    % cross-coupling loop (collective closure Q): out through the network and back
+    \draw[-{Stealth[length=7pt,width=7pt]},PRed,line width=1.8pt] (90,576) .. controls (125,552) and (284,552) .. (318,576);
+    \draw[-{Stealth[length=7pt,width=7pt]},PRed,line width=1.8pt] (318,598) .. controls (284,622) and (125,622) .. (90,598);
+    \node[fill=white,inner sep=1.2pt,text=PRed] at (204.5,562.5) {\fontsize{22pt}{22pt}\selectfont $Q_S$};
+    % device ports with local return loops (M_ii)
+    \foreach \x/\p in {63/i,345/j}{
+      \draw[PNavy,line width=1.8pt,fill=white,rounded corners=4pt] (\x-24,566) rectangle (\x+24,609);
+      \node[inner sep=0pt,text=PNavy,font=\FiraMed\fontsize{17.5pt}{17.5pt}\selectfont] at (\x,576) {port $\p$};
+      \node[inner sep=0pt,text=PNavy] at (\x,594) {\fontsize{22pt}{22pt}\selectfont $\Delta Y_\p$};
+      \draw[-{Stealth[length=7pt,width=7pt]},PTeal,line width=1.8pt] (\x-12,566) .. controls (\x-30,538) and (\x+30,538) .. (\x+12,565);}
+    \node[inner sep=0pt,text=PTeal] at (63,553) {\fontsize{20pt}{20pt}\selectfont $M_{ii}$};
+    \node[inner sep=0pt,text=PTeal] at (345,553) {\fontsize{20pt}{20pt}\selectfont $M_{jj}$};
+  \end{scope}
+  \node[anchor=west,inner sep=0pt,text=PTeal,font=\CondBold\fontsize{20pt}{20pt}\selectfont] at (31,638) {LOCAL RETURN};
+  \node[anchor=west,inner sep=0pt,text=PTeal] at (31,650.5) {\fontsize{21pt}{21pt}\selectfont $M=\mathcal D\mathcal K,\ \ M_{ii}=\Delta Y_i\mathcal K_{ii}$};
+  \node[anchor=west,inner sep=0pt,text=PRed,font=\CondBold\fontsize{20pt}{20pt}\selectfont] at (212,638) {COLLECTIVE CLOSURE};
+  \node[anchor=west,inner sep=0pt,text=PRed] at (212,650.5) {\fontsize{21pt}{21pt}\selectfont $Q=(I+\mathcal D\mathcal K_d)^{-1}\mathcal D\mathcal K_o$};
+
+  % ---------------------------------------------------------------- hero identity
+  \HeroBox{23}{663}{386}{699}
+  \node[inner sep=0pt,text=PNavy] at (200,682) {\fontsize{27pt}{30pt}\selectfont $\displaystyle\det(I+M_S)=\prod_{i\in S}{\color{PTeal}\det(I+M_{ii})}\cdot{\color{PRed}\det(I+Q_S)}$};
+  \ProvedTag{362}{670}{EXACT}
+
+  % ---------------------------------------------------------------- audit (teal note)
+  \NoteBox{23}{705}{386}{753}{PTeal}
+  \node[anchor=west,inner sep=0pt,text=PTeal,font=\FiraSemi\fontsize{19.5pt}{19.5pt}\selectfont] at (32,713) {Audit: stored boundary $\mathrm H_4=\{30,33,35,37\}$, $f\approx0.7064$\,Hz}; % source: research/bnd_h4_mechanism/results/20260925T204017_549c3c07_h4_crossmode_v3/claims/tx4_summary.json (core.frequency_root_hz=0.706424788006417)
+  \node[anchor=west,inner sep=0pt,text=PNavy] at (32,729) {\fontsize{22pt}{24pt}\selectfont $\min_i\sigma_{\min}(I{+}M_{ii})={\color{PTeal}0.4892}$,\quad $\sigma_{\min}(I{+}Q_{\mathrm H_4})={\color{PRed}4.39\times10^{-8}}$}; % source: same tx4_summary.json (physical_local.root_physical_local_sigma=0.4892354857736281; core.collective_sigma_min_root=4.3936703686787105e-08)
+  \node[anchor=north west,inner sep=0pt,text=PText] at (32,740) {\parbox{268mm}{\raggedright\FiraMed\fontsize{17.5pt}{19pt}\selectfont Delayed full IEEE-39, 44\,ms: $\mathrm{eig}(Q)=-1$ at every unstable root, with all $|L_i|\ge0.011$.}}; % source: research/feedback_cycle_fullmodel_20261005/FINAL_FEEDBACK_CYCLE_REPORT.md (|L_i| in [0.011,0.28]; eig(Q)=-1 at every unstable root)
+
+  % ---------------------------------------------------------------- hero sentence
+  \CardBox{23}{760}{386}{788}
+  \node[inner sep=0pt,text=PGreen,font=\FiraBold\fontsize{21pt}{21pt}\selectfont] at (204.5,775.2) {Nothing failed locally. The network closed the destabilising loop.};
+\end{scope}

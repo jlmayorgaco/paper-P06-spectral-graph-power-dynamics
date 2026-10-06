@@ -1,0 +1,2 @@
+EVENT_START sanity 1 8 -100.0
+EVENT_DONE (label = "sanity", tau_ms = 40.0, bus = 8, delta = -100.0, F = 0.46149811335722424, R = 0.1382904128785802, Vmin = 0.9874454160921052, Vmax = 1.0776638693828022, slack = 0.09791915191086013, runtime = 222.864000082016, pass = true, error = "")

@@ -1,0 +1,49 @@
+% Decorative vector art (TikZ only, no raster), placed in reference-pixel coordinates.
+\newcommand{\Pine}[4]{% x, base y, height, colour  -- three-tier pine
+  \fill[#4] (#1,#2-#3) -- (#1-#3*0.16,#2-#3*0.55) -- (#1+#3*0.16,#2-#3*0.55) -- cycle;
+  \fill[#4] (#1,#2-#3*0.78) -- (#1-#3*0.22,#2-#3*0.32) -- (#1+#3*0.22,#2-#3*0.32) -- cycle;
+  \fill[#4] (#1,#2-#3*0.52) -- (#1-#3*0.27,#2-#3*0.1) -- (#1+#3*0.27,#2-#3*0.1) -- cycle;
+  \fill[#4] (#1-#3*0.035,#2) rectangle (#1+#3*0.035,#2-#3*0.12);}
+\newcommand{\Pylon}[4]{% x, base y, height, colour -- lattice transmission tower (line art)
+  \draw[#4,line width=0.75pt,line join=round]
+    (#1-#3*0.2,#2) -- (#1-#3*0.05,#2-#3*0.86) -- (#1,#2-#3) -- (#1+#3*0.05,#2-#3*0.86) -- (#1+#3*0.2,#2)
+    (#1-#3*0.32,#2-#3*0.74) -- (#1+#3*0.32,#2-#3*0.74) (#1-#3*0.24,#2-#3*0.56) -- (#1+#3*0.24,#2-#3*0.56)
+    (#1-#3*0.32,#2-#3*0.74) -- (#1-#3*0.32,#2-#3*0.68) (#1+#3*0.32,#2-#3*0.74) -- (#1+#3*0.32,#2-#3*0.68)
+    (#1-#3*0.16,#2-#3*0.18) -- (#1+#3*0.1,#2-#3*0.48) (#1+#3*0.16,#2-#3*0.18) -- (#1-#3*0.1,#2-#3*0.48);}
+
+% ---------------------------------------------------------------- header: faint hills (left) and city skyline (right)
+\newcommand{\HillsLeft}{%
+  \fill[PSky,opacity=0.7] (0,111) -- (0,86) .. controls (25,80) and (48,74) .. (74,77) .. controls (102,81) and (122,92) .. (150,90)
+     .. controls (182,88) and (205,80) .. (232,86) .. controls (262,93) and (300,100) .. (345,111) -- cycle;
+  \fill[PSky!60!PMist,opacity=0.45] (0,111) -- (0,99) .. controls (40,93) and (85,91) .. (130,98) .. controls (170,104) and (220,107) .. (265,111) -- cycle;}
+\input{skyline.tex}
+
+% ---------------------------------------------------------------- footer: left (grid + mountains) and right (Vancouver)
+\newcommand{\FooterArtLeft}{%
+  \begin{scope}
+  \clip (2,1259) rectangle (77,1343);
+  \fill[PTeal!40!PGreenDark,opacity=0.95] (22,1343) -- (52,1296) -- (68,1308) -- (96,1270) -- (118,1294) -- (134,1282) -- (176,1343) -- cycle;
+  \draw[PTeal!35!white,line width=0.6pt,line join=round] (22,1343) -- (52,1296) -- (68,1308) -- (96,1270) -- (118,1294) -- (134,1282) -- (176,1343);
+  \draw[white!80!PGreenDark,line width=0.6pt] (90,1278) -- (96,1283) -- (102,1278) (128,1290) -- (134,1287) -- (140,1291) (47,1303) -- (52,1300) -- (57,1304);
+  \fill[PTeal!22!PGreenDark] (36,1343) -- (66,1320) -- (88,1331) -- (110,1318) -- (152,1343) -- cycle;
+  \Pylon{22}{1341}{46}{white!82!PGreenDark}
+  \Pylon{48}{1341}{32}{white!72!PGreenDark}
+  \Pylon{66}{1341}{22}{white!62!PGreenDark}
+  \draw[white!55!PGreenDark,line width=0.4pt] (14.6,1307) .. controls (30,1316) .. (42.9,1317.3) (29.4,1307) .. controls (41,1314) .. (53.1,1317.3)
+     (51.1,1317.3) .. controls (58,1323) .. (63.6,1324.7);
+  \foreach \x/\h in {172/18,180/26,188/20,196/24}{\Pine{\x}{1342}{\h}{PTeal!55!PGreenDark}}
+  \end{scope}
+  \draw[white!65!PGreenDark,line width=0.6pt] (79,1296) -- (79,1331);
+  \node[anchor=west,text=white!90!PGreenDark,align=left,font=\CondSemi\fontsize{19pt}{24pt}\selectfont\addfontfeature{LetterSpace=6}] at (86,1313.5) {IEEE IAS ANNUAL MEETING\\OCT 4\textendash 8, 2026};}
+\newcommand{\FooterArtRight}{%
+  \begin{scope}
+  \clip (970,1259) rectangle (1159,1343);
+  \fill[PGreenDark!70!white,opacity=0.18] (985,1292) -- (1010,1276) -- (1024,1284) -- (1046,1265) -- (1070,1282) -- (1084,1275) -- (1106,1292) -- cycle;
+  \draw[white!90!PGreenDark,line width=0.9pt,line join=round] (985,1292) -- (1010,1276) -- (1024,1284) -- (1046,1265) -- (1070,1282) -- (1084,1275) -- (1106,1292);
+  \draw[white!90!PGreenDark,line width=0.6pt] (1040,1270) -- (1046,1274) -- (1052,1270) (1004,1280) -- (1010,1283) -- (1016,1280);
+  \foreach \x/\h in {1116/24,1124/34,1133/28,1142/38,1151/30}{\Pine{\x}{1338}{\h}{white!90!PGreenDark}}
+  \foreach \x/\h in {1109/16,1157/18}{\Pine{\x}{1339}{\h}{white!68!PGreenDark}}
+  \draw[white!75!PGreenDark,line width=0.6pt] (1104,1339) -- (1159,1339);
+  \end{scope}
+  \node[anchor=west,text=white,font=\CondBold\fontsize{19.5pt}{19.5pt}\selectfont] at (984,1309) {VANCOUVER 2026};
+  }

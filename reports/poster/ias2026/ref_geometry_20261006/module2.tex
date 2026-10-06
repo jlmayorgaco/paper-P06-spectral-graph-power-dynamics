@@ -1,0 +1,75 @@
+% MODULE 2: MODEL: DAE -> TRANSVERSE STABILITY. Panel box (reference px): x 405-756, y 119.5-451, title bar to y 145.5.
+% Design v2 (illustration version): four mint step cards with line icons, navy delay note, mint flow chips joined by gold chevrons.
+% Content follows plans/POSTER_PLAN.md (M2). No numerical data are printed in this panel.
+\begin{scope}
+  % ---------------------------------------------------------------- DAE (hero equation) and symbol legend
+  \HeroBox{413}{150}{748}{190}
+  \node[inner sep=0pt,text=PNavy,anchor=west] at (425,161) {\fontsize{26pt}{28pt}\selectfont $E(x,\delta)\,\dot x=f(x,z;\delta,K,\tau)$};
+  \node[inner sep=0pt,text=PNavy,anchor=west] at (425,179.5) {\fontsize{26pt}{28pt}\selectfont $0=g(x,z;\delta)$};
+  \node[anchor=north west,inner sep=0pt,text=PMuted,align=left,font=\FiraMed\fontsize{17.5pt}{19.5pt}\selectfont] at (621,152.5)
+    {$x$ dynamic states\\[-1.5pt]$z$ network\\[-1.5pt]$\delta$ portfolio\\[-1.5pt]$K$ gains, $\tau$ delays};
+
+  % ---------------------------------------------------------------- four step cards: number, title, equation, line icon
+  \foreach \ya/\yb/\n/\t in {
+      193/223/1/{Operating\\[-3pt]point},
+      227/271/2/{Linearise},
+      275/309/3/{Eliminate\\[-3pt]algebra},
+      313/351/4/{Transverse\\[-3pt]quotient}}{
+    \CardBox{413}{\ya}{748}{\yb}
+    \StepNumber{425}{(\ya+\yb)/2}{\n}
+    \node[anchor=west,inner sep=0pt,text=PGreen,align=left,font=\FiraSemi\fontsize{20pt}{21pt}\selectfont] at (440,{(\ya+\yb)/2}) {\t};}
+  \node[inner sep=0pt,text=PNavy,anchor=west] at (505,208) {\fontsize{24pt}{26pt}\selectfont $f(x^\ast\!,z^\ast)=0,\ \ g(x^\ast\!,z^\ast)=0$};
+  \node[inner sep=0pt,text=PNavy,anchor=west] at (505,249) {\fontsize{24pt}{26pt}\selectfont $\begin{bmatrix}\Delta\dot x\\0\end{bmatrix}=\begin{bmatrix}f_x&f_z\\g_x&g_z\end{bmatrix}\begin{bmatrix}\Delta x\\\Delta z\end{bmatrix}$};
+  \node[inner sep=0pt,text=PNavy,anchor=west] at (505,285) {\fontsize{24pt}{26pt}\selectfont $A=f_x-f_z\,g_z^{-1}g_x$};
+  \node[inner sep=0pt,text=PMuted,anchor=west,font=\FiraMed\fontsize{17.5pt}{18pt}\selectfont] at (505,300) {Schur complement, $g_z$ invertible};
+  \node[inner sep=0pt,text=PNavy,anchor=west] at (505,325.5) {\fontsize{24pt}{26pt}\selectfont $A_\perp=Z^{\mathsf T}AZ$};
+  \node[inner sep=0pt,text=PMuted,anchor=west,font=\FiraMed\fontsize{17.5pt}{18pt}\selectfont] at (505,341.5) {$Z$: orthonormal basis of $\gamma^\perp$ (gauge $A\gamma=0$)};
+
+  % ---------------------------------------------------------------- line icons (right end of each card), strokes 1.8 pt
+  \begin{scope}[line cap=round,line join=round,line width=1.8pt,draw=PTeal]
+    % 1 equilibrium: potential well with a resting point
+    \begin{scope}[shift={(730,208)}]
+      \draw (-12,-7) .. controls (-9,8) and (9,8) .. (12,-7);
+      \draw (-13,9) -- (13,9);
+      \fill[PGold] (0,4.6) circle (3.4);
+    \end{scope}
+    % 2 Jacobian matrix: brackets around a 2x2 grid of entries
+    \begin{scope}[shift={(730,249)}]
+      \draw (-6.5,-13) -- (-12,-13) -- (-12,13) -- (-6.5,13);
+      \draw (6.5,-13) -- (12,-13) -- (12,13) -- (6.5,13);
+      \foreach \u in {-4,4}{\foreach \v in {-6.5,6.5}{\fill[PTeal] (\u,\v) circle (2.4);}}
+    \end{scope}
+    % 3 Schur elimination: block matrix, the algebraic block is struck out
+    \begin{scope}[shift={(730,292)}]
+      \fill[PTeal] (-12,-12) rectangle (-1.5,-1.5);
+      \draw (1.5,-12) rectangle (12,-1.5);
+      \draw (-12,1.5) rectangle (-1.5,12);
+      \draw (1.5,1.5) rectangle (12,12);
+      \draw[PRed,line width=1.8pt] (3.5,3.5) -- (10,10) (10,3.5) -- (3.5,10);
+    \end{scope}
+    % 4 quotient: gauge direction pierces the transverse plane
+    \begin{scope}[shift={(730,332)}]
+      \draw (-12,7) -- (6,7) -- (13,-1) -- (-5,-1) -- cycle;
+      \draw[-{Stealth[length=6pt,width=6pt]}] (0.5,12) -- (0.5,-14);
+      \fill[PGold] (0.5,3) circle (2.6);
+    \end{scope}
+  \end{scope}
+
+  % ---------------------------------------------------------------- hero: transverse abscissa
+  \HeroBox{413}{356}{748}{386}
+  \node[inner sep=0pt,text=PNavy,anchor=west] at (425,371.5) {\fontsize{27pt}{29pt}\selectfont $\alpha_\perp(S,K)=\max\,\mathrm{Re}\,\sigma(A_\perp)$};
+  \node[anchor=east,fill=PTeal,text=white,rounded corners=2.4mm,inner xsep=3.4pt,inner ysep=2.2pt,font=\FiraBold\fontsize{15.5pt}{15.5pt}\selectfont\addfontfeature{LetterSpace=6}] at (740,364.5) {$<0$ STABLE};
+  \node[anchor=east,fill=PRed,text=white,rounded corners=2.4mm,inner xsep=3.4pt,inner ysep=2.2pt,font=\FiraBold\fontsize{15.5pt}{15.5pt}\selectfont\addfontfeature{LetterSpace=6}] at (740,378.5) {$>0$ UNSTABLE};
+
+  % ---------------------------------------------------------------- delay note (navy bar)
+  \NoteBox{413}{391}{748}{416}{PNavy}
+  \node[anchor=west,inner sep=0pt,text=PNavy,align=left,font=\FiraMed\fontsize{17.5pt}{19.5pt}\selectfont] at (423,403.5)
+    {{\FiraSemi With PLL delay,} $\alpha_\perp$ is the rightmost root of $\det\Delta_\perp(s)$;\\[-1pt]$\Delta(s)=sI-A_0-B\,E(s)\,C$, exact exponentials.};
+
+  % ---------------------------------------------------------------- flow strip: mint chips joined by gold chevrons
+  \foreach \i/\t in {0/{PORTFOLIO},1/{EQUILIBRIUM},2/{DAE\\[-2pt]JACOBIAN},3/{TRANSVERSE\\[-2pt]QUOTIENT},4/{RIGHTMOST\\[-2pt]ROOT}}{
+    \pgfmathsetmacro{\xa}{413+\i*69.2}
+    \fill[PPaleGreen,rounded corners=3pt] (\xa,421) rectangle (\xa+58,447);
+    \node[inner sep=0pt,text=PGreen,align=center,font=\CondBold\fontsize{16.5pt}{17.5pt}\selectfont] at (\xa+29,434) {\t};
+    \ifnum\i<4 \fill[PGold] (\xa+60.4,427) -- (\xa+64,427) -- (\xa+67.4,434) -- (\xa+64,441) -- (\xa+60.4,441) -- (\xa+63.8,434) -- cycle; \fi}
+\end{scope}

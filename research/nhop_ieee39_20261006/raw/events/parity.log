@@ -1,0 +1,4 @@
+EVENT_START parity 1 8 -100.0
+EVENT_DONE (label = "parity", tau_ms = 40.0, bus = 8, delta = -100.0, F = 0.4615490788454758, R = 0.1382758495928848, Vmin = 0.9874643533937851, Vmax = 1.0777110517139958, slack = 0.09790327434111055, runtime = 233.40899991989136, pass = true, error = "")
+EVENT_START parity 2 16 100.0
+EVENT_DONE (label = "parity", tau_ms = 40.0, bus = 16, delta = 100.0, F = 0.4438596322629803, R = 0.126035744299283, Vmin = 0.9721083659192574, Vmax = 1.0612480273995026, slack = 0.007426701452854956, runtime = 74.92599987983704, pass = true, error = "")

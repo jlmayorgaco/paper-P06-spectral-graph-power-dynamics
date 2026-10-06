@@ -1,0 +1,221 @@
+{
+ "parity_max_rel_err": 1.4606884534798304e-18,
+ "parity_pass": true,
+ "refine_vs_Model_max_diff": 0.0,
+ "count_40ms": {
+  "N_unstable": 0,
+  "N_margin": 0,
+  "max_noninteger_winding": 7.194023154966089e-12,
+  "seconds": 42.71115469932556
+ },
+ "count_44ms": {
+  "N_unstable": 8,
+  "N_margin": 10,
+  "max_noninteger_winding": 3.4335867482582216e-12,
+  "seconds": 86.12091875076294
+ },
+ "open_pll_checks": {
+  "A_rest_rows_from_omega_xi": 0.0,
+  "C_cols_omega_xi": 0.0,
+  "A_PLLrows_from_rest": 0.0
+ },
+ "identity_constant": "c = t_f^-10 = (600 pi)^10",
+ "identity_max_rel_err": 1.0685961789624304e-11,
+ "identity_pass": true,
+ "graph_frozen": {
+  "n_edges": 13,
+  "components": 2,
+  "labels": [
+   0,
+   0,
+   0,
+   1,
+   1,
+   1,
+   1,
+   0,
+   0,
+   0
+  ],
+  "largest_finite_diam": 3,
+  "bridge": null,
+  "edges": [
+   [
+    30,
+    37
+   ],
+   [
+    30,
+    38
+   ],
+   [
+    30,
+    39
+   ],
+   [
+    31,
+    32
+   ],
+   [
+    31,
+    39
+   ],
+   [
+    32,
+    39
+   ],
+   [
+    33,
+    34
+   ],
+   [
+    33,
+    35
+   ],
+   [
+    33,
+    36
+   ],
+   [
+    34,
+    35
+   ],
+   [
+    35,
+    36
+   ],
+   [
+    37,
+    38
+   ],
+   [
+    37,
+    39
+   ]
+  ],
+  "degrees": [
+   3,
+   2,
+   2,
+   3,
+   2,
+   3,
+   2,
+   3,
+   2,
+   4
+  ]
+ },
+ "Y_block_convention": {
+  "block_form_violation_max": 1.4210854715202004e-14,
+  "convention": "2x2 block [[a,-b],[b,a]] -> a+jb (b = lower-left entry)",
+  "Yc_symmetry_err": 7.105427357601002e-15,
+  "rcond": 0.11176227325006753,
+  "Z": "inverse",
+  "bridge_added": null,
+  "components": 2,
+  "labels": [
+   0,
+   0,
+   0,
+   1,
+   1,
+   1,
+   1,
+   0,
+   0,
+   0
+  ]
+ },
+ "graph_bridge": {
+  "n_edges": 14,
+  "components": 1,
+  "labels": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "largest_finite_diam": 4,
+  "bridge": [
+   0,
+   3
+  ],
+  "edges": [
+   [
+    30,
+    33
+   ],
+   [
+    30,
+    37
+   ],
+   [
+    30,
+    38
+   ],
+   [
+    30,
+    39
+   ],
+   [
+    31,
+    32
+   ],
+   [
+    31,
+    39
+   ],
+   [
+    32,
+    39
+   ],
+   [
+    33,
+    34
+   ],
+   [
+    33,
+    35
+   ],
+   [
+    33,
+    36
+   ],
+   [
+    34,
+    35
+   ],
+   [
+    35,
+    36
+   ],
+   [
+    37,
+    38
+   ],
+   [
+    37,
+    39
+   ]
+  ],
+  "degrees": [
+   4,
+   2,
+   2,
+   4,
+   2,
+   3,
+   2,
+   3,
+   2,
+   4
+  ]
+ }
+}
