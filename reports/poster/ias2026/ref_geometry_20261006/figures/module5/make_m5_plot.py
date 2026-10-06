@@ -6,11 +6,12 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib import rcParams, font_manager as fm
 FD = "C:/Users/walla/AppData/Roaming/MiKTeX/fonts/opentype/public/fira/"
-for f in ["FiraSans-Regular", "FiraSans-Medium", "FiraSans-SemiBold"]:
+for f in ["FiraSans-Regular", "FiraSans-Medium", "FiraSans-SemiBold", "FiraSans-Italic", "FiraSans-Bold"]:
     fm.fontManager.addfont(FD + f + ".otf")
 W_PX, H_PX = float(sys.argv[1]), float(sys.argv[2])
 PXW, PXH = 0.787597/25.4, 0.787299/25.4
 rcParams.update({"font.family": "Fira Sans", "font.weight": "medium", "font.size": 19, "pdf.fonttype": 42,
+                 "mathtext.fontset": "custom", "mathtext.rm": "Fira Sans", "mathtext.it": "Fira Sans:italic", "mathtext.bf": "Fira Sans:bold", "mathtext.default": "it",
                  "axes.linewidth": 1.4, "xtick.major.width": 0, "ytick.major.width": 1.2,
                  "xtick.major.size": 0, "ytick.major.size": 5, "ytick.direction": "out"})
 d = pd.read_csv("../../../one_mode_20261005/generated/data/TABLE_02_FINITE_DELAY_RANK_LAW.csv")
