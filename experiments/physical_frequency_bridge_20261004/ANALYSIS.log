@@ -1,0 +1,43 @@
+{
+  "status": "EXECUTED_LIMITED_VALIDATION",
+  "parity": {
+    "candidate_sha256": "66513a8d3a1b4cc37c9d6f2b1a5824371fed2d0c5621d2ccdb7540490fe59124",
+    "finite_pole_count": 144,
+    "legacy_residual": 6.574477230018709e-12,
+    "jacobian_similarity_relative": 0.0,
+    "max_P_error_pu": 3.9790393202565614e-15,
+    "max_Q_error_pu": 2.7227525789541572e-15,
+    "gauge_abs": 5.357769197365306e-10,
+    "pole_hausdorff_absolute": 0.0,
+    "physical_residual": 6.574477230018709e-12,
+    "mass_similarity_relative": 0.0,
+    "physical_alpha": -0.050057324249547404,
+    "bijective_pole_matching_absolute": 0.0
+  },
+  "physical_event_count": 4,
+  "physical_frequency_and_rocof_pass_count": 2,
+  "max_energy_RHS_error_MW": 2.9190355688157865e-10,
+  "positive_energy_gate_pass": true,
+  "fixed_GFL_MW": 5090.237801543714,
+  "fixed_GFL_percent": 94.21548939088187,
+  "retained_SG_MW": 312.52328843513294,
+  "new_optimization": false,
+  "replacement_optimum_claim": false,
+  "lossless_graph_floor_transfer": "BLOCKED_UNBOUNDED_FULL_MODEL_DEFECTS",
+  "delay_validation": false,
+  "poster_main_claim_ready": false,
+  "all_frozen_inputs_unchanged": true,
+  "generated_model_unchanged": true
+}
+   model       event  legacy_archived_Fpeak_Hz  new_Fpeak_Hz  legacy_archived_Rpeak_Hz_s  new_Rpeak_Hz_s  max_grid_difference_Hz  max_RoCoF_difference_Hz_s  max_GFL_power_difference_MW  max_vdc_reflection_error_pu
+  legacy   bus16_1MW                  0.005000      0.005000                    0.001670        0.001670            0.000000e+00               0.000000e+00                 0.000000e+00                          NaN
+physical   bus16_1MW                  0.005000      0.005000                    0.001670        0.001670            4.157020e-11               1.356403e-10                 9.608561e-08                 5.486278e-12
+physical bus16_100MW                  0.468755      0.468755                    0.171771        0.171772            6.008659e-07               1.658227e-06                 9.436002e-04                 5.400450e-08
+physical  bus8_100MW                  0.410549      0.410549                    0.512750        0.512750            2.346544e-06               4.940584e-06                 6.361107e-04                 3.595064e-08
+physical bus29_100MW                  0.588571      0.588571                    0.281889        0.281888            6.328171e-07               1.894274e-06                 3.632615e-03                 2.664353e-07
+   model       event  energy_RHS_error_MW  energy_integral_final_error_MJ  energy_integral_max_error_MJ  frequency_area_MJ  frequency_area_final_error_MJ  frequency_area_max_error_MJ  governor_final_error_MJ  antiwindup_MJ  terminal_governor_MJ  delta_energy_MJ  load_losses_integral_MJ  realized_tail_delta_load_MW
+  legacy   bus16_1MW         2.536334e-10                       -0.000461                      0.000465         -69.323001                      -0.000461                     0.000465             2.682103e-07       0.000000             -6.827662        -1.356744                63.851622                     1.237882
+physical   bus16_1MW         2.919036e-10                       -0.000461                      0.000465         -69.323001                      -0.000461                     0.000465             2.681909e-07       0.000000             -6.827662        -1.356744                63.851622                     1.237882
+physical bus16_100MW         2.156432e-10                       -0.045934                      0.046437       -6201.216873                      -0.045908                     0.046402             2.512388e-05       0.000000           -604.805030      -119.095774              5715.461709                   108.505700
+physical  bus8_100MW         2.603002e-10                       -0.041448                      0.042724       -5152.980256                      -0.041437                     0.042692             1.079218e-05       0.000000           -515.416807      -101.573592              4739.095603                    90.545119
+physical bus29_100MW         2.112133e-10                       -0.043884                      0.044580       -7077.822193                      -0.044043                     0.044579            -1.584794e-04      -0.728187           -673.547299      -132.642123              6536.144787                   124.185019

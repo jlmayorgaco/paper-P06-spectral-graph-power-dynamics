@@ -1,0 +1,331 @@
+REVISIÓN INDEPENDIENTE: PUENTE FÍSICO IEEE39
+2026-10-04 — interaction_evidence_review
+
+ESTADO: revisión de fuentes, contrato, runner, análisis y resultados completada.
+Paridad lineal y balance positivo del modelo: PASS. Seguridad muestreada:
+2 de 4 eventos físicos cumplen ambos límites. Transferencia de la cota
+lossless a IEEE39: NO DEMOSTRADA. El revisor no ejecutó simulación ni modificó
+código de la campaña.
+Este archivo es la única escritura del revisor en esta campaña.
+
+1. Contrato y procedencia
+------------------------
+Primera inspección independiente: la carpeta contenía únicamente PhysicalBridge.jl,
+prepare.py, PREREGISTRATION.json y PREREGISTRATION.sha256; todavía no había
+run_validation.jl ni resultados. La preregistración declara UTC
+2026-10-05T02:18:29.952763+00:00.
+
+SHA256 observado de PREREGISTRATION.json:
+4831c1df134ba3e1717eb38a8aa26fe5407728d762457e6cd93305df127914a5
+Coincide con PREREGISTRATION.sha256. Se comprobaron los ocho hashes de inputs
+y el hash de PhysicalBridge.jl: todos coinciden con la preregistración.
+
+El candidato es el Q2B congelado, sin reoptimización:
+reports/experiment_Q2B/CERTIFIED_SEARCH/Z_LOCAL_SECURE_FINAL.toml
+SHA256 66513a8d3a1b4cc37c9d6f2b1a5824371fed2d0c5621d2ccdb7540490fe59124.
+La campaña declara cuatro eventos del modelo nuevo y una reproducción nueva
+legacy de bus16/+1 MW, con comparación adicional contra el archivo legacy.
+Su alcance no es una nueva búsqueda de reemplazo ni certificación robusta.
+
+El runner todavía no existía cuando se congeló este protocolo. Su hash se
+preservó antes de construir/simular, según la sección 8. En la revisión inicial
+se detectó que prepare.py comprobaba la existencia de la preregistración
+después de escribir el modelo. El autor movió el guard al inicio; comprobé
+que los hashes del modelo y protocolo congelados permanecen intactos.
+
+2. Comprobación textual independiente del modelo
+-----------------------------------------------
+Se extrajo el componente WeightedSimpleGFLDC de src/pd39/model.jl y se
+aplicaron en memoria exclusivamente estas sustituciones:
+  nombre WeightedSimpleGFLDC -> PhysicalGFLDC;
+  referencia d: (Vdc-vdc)*kp + integrador -> (vdc-Vdc)*kp + integrador;
+  Cdc*vdc_dot: (Pac-Pdc)/vdc -> (Pdc-Pac)/vdc;
+  integrador: (Vdc-vdc)*ki -> (vdc-Vdc)*ki.
+La cadena resultante coincide exactamente con el componente generado.
+
+Se comparó también el builder contra el bloque original de PDReferenceN.jl,
+permitiendo sólo renombrar componente y referencias al módulo P. Coincide
+exactamente. Por tanto no se detectó cambio escondido de parámetros, escalado,
+ZIP, topología, SG, AVR, gobernador, PLL ni lazo de corriente en esta copia.
+La dependencia ScaledPortLFilter sigue siendo la implementación congelada.
+
+3. Qué debe establecer la paridad
+--------------------------------
+En el equilibrio vdc=Vdc, los errores PI se anulan en ambas versiones y el
+integrador conserva el mismo valor id de trim. Pac=Pdc en ambas. Esto permite
+usar el mismo punto de operación, pero debe confirmarse con residuo y P/Q.
+
+Para perturbaciones LINEALES, el cambio de coordenadas esperado es
+  delta vdc_physical = -delta vdc_legacy,
+y todas las otras coordenadas, incluido el integrador v_dc_i, se conservan.
+Con T diagonal de signos, deben comprobarse J_phys = T*J_legacy*T y las
+masas/órdenes de coordenadas compatibles. El T de estados dinámicos también
+induce similitud en el Jacobiano reducido. No mezclar bases de gauge distintas.
+
+Para entradas ZIP y salida de voltaje/frecuencia AC, revisar también que la
+entrada y salida respetan B_phys=T*B_legacy y C_phys=C_legacy*T. Es importante
+si se afirma igualdad de transferencia y no sólo igualdad de polos.
+Para una perturbación física Pdc el mapa de entrada necesita su propio signo.
+
+La similitud lineal NO es conjugación no lineal: bajo la reflexión vdc' =
+2*Vdc-vdc, los denominadores de las ecuaciones DC son diferentes fuera del
+equilibrio. Una diferencia en eventos grandes sería compatible con la paridad
+lineal y por sí sola no prueba error en ninguna ejecución.
+
+Un error de Hausdorff espectral por sí solo no controla multiplicidades;
+conservar conteos y emparejamiento uno-a-uno, o apoyar la conclusión en la
+similitud matricial. El modo de gauge debe identificarse y conservarse en
+el reporte, no borrar automáticamente el polo que más convenga.
+
+4. Balance energético que sí corresponde al modelo nuevo
+------------------------------------------------------
+Usar las bases y orientaciones ya auditadas en
+experiments/nonlinear_frequency_limits_20261004/IEEE39_BALANCE_REVIEW.txt.
+Con s_i=100*rho_i y omega rotor en pu:
+  K_i = H_i*Sn_i*omega_i^2;
+  Ef_i = (s_i/2)*(Xf/omega_base)*|if_i|^2;
+  Edc_i = (s_i/2)*Cdc*vdc_i^2;
+  Lf_i = s_i*Rf*|if_i|^2.
+La modificación DC da Edc_dot = Pdc - Pinverter y por tanto
+  (Ef+Edc)_dot = Pdc - Pgfl - Lf.
+Con estator SG algebraico:
+  K_dot = Pmech - Psg - Pcu - Pdamping,
+donde Pmech = Sn*tau_m*omega y Pdamping = Sn*D*omega*(omega-1).
+En este candidato los parámetros Rs=D=0.
+Al sumar con el cierre de la red fasorial:
+  d(K+Ef+Edc)/dt = sum(Pmech)+sum(Pdc)-Pload-Lnetwork-Lfilter.
+
+Este balance positivo es una identidad del modelo modificado bajo esas
+aproximaciones. El exportador debe contrastar gradiente del almacenamiento
+por RHS contra las potencias; comprobar únicamente KCL no basta. Debe evitar
+construir ambos lados a partir de la misma potencia sustituyendo derivadas.
+Las pérdidas de red deben calcularse desde las ramas o la suma independiente
+de inyecciones; documentar cualquier dependencia compartida.
+
+Esta suma positiva no constituye una prueba de un dispositivo físico completo:
+subsisten fuentes, referencias, actuadores y controladores idealizados,
+aproximación fasorial y estator algebraico. No implica límites de corriente,
+pasividad global, estabilidad no lineal ni una certificación del hardware.
+
+5. Comparación justa y métricas
+------------------------------
+La nueva reproducción legacy debe igualar candidato, punto de operación,
+solver/tolerancias, horizonte, parámetros ZIP, consistencia del salto,
+ventana de medida y buses observados del archivo. Comparar tiempo y nombre de
+columnas antes de restar CSV. No normalizar una discrepancia que esconda
+un evento distinto ni borrar el transitorio de entrada por conveniencia.
+
+El exportador legacy mide grid_Hz y RoCoF en buses generadores 30–39. Si el
+nuevo runner mantiene esa selección, sus máximos no deben llamarse máximos
+de todos los 39 buses. Los voltajes extremos también requieren alcance claro.
+La medida legacy es diferencia causal de fase con W=0.5 s, historia de
+perturbación cero, y segunda diferencia para RoCoF. Es distinta de velocidad
+rotor, frecuencia PLL y derivada instantánea; no es un delay físico de PLL.
+
+La fase debe desenvolverse y los estados algebraicos del salto evaluarse con
+parámetros posteriores manteniendo estados diferenciales continuos. Los
+muestreos a 5 ms y las cuadraturas a 5/10/20 ms no certifican un máximo de
+tiempo continuo. Debe conservarse cualquier fallo/incompleto del solver.
+
+El evento +100 MW modifica Pset ZIP en -1 pu con Qset fijo. No asegura que
+el consumo realizado suba exactamente 100 MW. Debe integrarse el consumo y
+pérdidas reales; no sustituirlos por MW_nominal*duración. Tampoco inferir
+equilibrio asintótico de la última muestra a 61 s.
+
+6. Frontera de inferencia hacia una ley de frecuencia
+---------------------------------------------------
+La identidad anterior permite verificar un ledger físico del modelo nuevo.
+No convierte al IEEE39 en red lossless de voltaje constante. Los términos
+adicionales conservan relevancia: conductancias y pérdidas, voltaje variable,
+ZIP, energía de filtro/DC, torque fijo SG39, memoria TGOV1, posibles ramas
+limitadas y ausencia de endpoint demostrado.
+
+La integración de la frecuencia de rotor con TGOV1 requiere términos
+terminales y de anti-windup. La de frecuencia por ventana de fase de bus
+representa otra identidad; no sustituir una por otra sin mapa probado.
+Un resultado favorable en estos cuatro eventos no demuestra seguridad para
+otros buses, amplitudes, fallas, retardos, estados iniciales ni controles.
+El 94.215% es un candidato fijo de otro contrato, no un óptimo probado del
+modelo físico nuevo. Ningún no-go universal o cota global se deduce aquí.
+
+7. Resultados y dictamen final
+-----------------------------
+Véase la sección 9 para el cierre independiente después de las cinco
+ejecuciones. Las secciones 1–6 documentan la revisión hecha antes de resultados.
+
+8. Revisión del runner recibido después del freeze inicial
+---------------------------------------------------------
+RUN_ENVIRONMENT.toml registra el inicio antes de construir/simular:
+2026-10-05T02:22:45.438 UTC, Julia 1.11.9, PowerDynamics 5.0.0,
+NetworkDynamics 1.3.0. Hash del runner registrado:
+3fcf1cc0cce86e3daf6e5e6adc55cbe5f12f6d5da92a91913739c01c70a92651.
+El modelo registrado coincide con el hash congelado. Los imports preceden
+ese registro; no se observó evaluación de eventos antes del freeze del runner.
+
+matrix_audit empareja coordenadas por nombre completo y compara Jacobiano y
+matriz de masa con T. Conserva el mapa y ambos espectros. Usa distancia
+Hausdorff, no asignación uno-a-uno; la evidencia principal de paridad será
+la similitud matricial, y se puede auditar multiplicidad desde los CSV.
+Elimina para alpha solamente el polo de menor módulo; hace falta revisar
+el conteo y que corresponde al gauge esperado. No exporta B/C, por lo que
+la afirmación de transferencia AC debe descansar en la demostración del
+mapa de entradas/salidas, no decir que se verificaron esas matrices.
+
+El gradiente energético por RHS se implementa correctamente:
+  2 H Sn omega * omega_dot;
+  100 rho Xf/omega_base * (ir*ir_dot + ii*ii_dot);
+  100 rho Cdc vdc * vdc_dot.
+El último término se suma en physical y se resta en legacy. Las derivadas
+se extraen de la variable correcta por nombre y dividen por md. Esto es
+correcto si la masa es diagonal y las entradas consultadas son no nulas;
+la compilación concreta debe verificarlo. Para UniformScaling el código
+asume I y no una escala arbitraria, compatible con el contrato esperado.
+
+Los nombres R_s, xg1, xg2, V_min y V_max coinciden con el stock instalado.
+Rf/Xf se consultan bajo gfl/filter aunque el padre pasa parámetros simbólicos.
+Se señaló inicialmente una posible eliminación del alias; las cinco
+ejecuciones completadas confirmaron que el acceso funciona. No se cambió el
+runner ni se sustituyeron parámetros por constantes para salvar ese punto.
+
+El balance de red se calcula sumando potencias observadas de todos los buses;
+no es la misma resta que el balance de dispositivos, pero depende de la misma
+red algebraica. El contraste de almacenamiento usa estados/RHS directamente
+y aporta evidencia adicional. No exporta una energía electromagnética de
+líneas: esa energía no existe como estado en la red fasorial declarada.
+
+El runner conserva fallos de integración como INCOMPLETE y ejecuta las cuatro
+ubicaciones físicas sin detenerse por un fallo de umbral de frecuencia.
+EXECUTION_COMPLETE.all_complete sólo significa que las cinco integraciones
+terminaron; NO afirma que se cumplieran los límites ni el gate energético.
+El umbral energético de 1e-6 MW está predeclarado pero el runner sólo exporta
+su residuo. analyze.py lo evalúa ahora exigiendo cuatro casos físicos
+completos y residuos finitos: se corrigió una primera versión cuyo max con
+NaN podía ignorar casos incompletos. Los cinco casos efectivamente terminaron.
+
+9. Verificación independiente de las salidas finales
+---------------------------------------------------
+Archivos usados: PARITY.toml, LEGACY_POLES.csv, PHYSICAL_POLES.csv,
+JACOBIAN_STATE_MAP.csv, EVENT_RESULTS.csv, los cinco *_SENSORS.csv,
+ENERGY_AND_FREQUENCY_AREA.csv, GOVERNOR_BRANCHES.csv, PAIRED_COMPARISON.csv,
+QUADRATURE_SENSITIVITY.csv, RESULTS.json y EXECUTION_COMPLETE.toml.
+Se volvieron a comprobar los hashes del protocolo, modelo, runner y ocho
+inputs al terminar: todos coinciden con sus freezes. Las cinco series
+contienen 12201 muestras de 0 a 61 s y el mismo consumo inicial
+5359.0500272312365 MW. No se detectó acumulación de eventos entre casos;
+NetworkDynamics/src/post_utils.jl:127 copia pflat antes de cada ODEProblem.
+
+Paridad:
+  residuo de ambos trims: 6.574477230018709e-12;
+  errores relativos de similitud de Jacobiano y masa: 0, 0;
+  máximo error P/Q: 3.9790e-15 / 2.7228e-15 pu;
+  144 polos finitos por modelo, exactamente un |lambda|<1e-7;
+  gauge: 5.357769197365306e-10;
+  alpha sin gauge: -0.050057324249547404 s^-1.
+Se ejecutó de forma independiente una asignación húngara 144 a 144: distancia
+máxima 0. No se sostiene la conclusión sólo con Hausdorff. El conteo incluye
+el gauge; quedan 143 polos regulares. No se exportaron B/C para auditoría
+matricial; su relación permanece una consecuencia de las ecuaciones.
+
+Reproducción legacy:
+Las columnas de frecuencia por ventana, RoCoF, frecuencia rotor/PLL, voltaje,
+potencia GFL, voltaje DC y potencia mecánica coinciden exactamente, muestra
+por muestra, con reports/experiment_Q2B/CERTIFIED_SEARCH/PD/bus16_1MW_SENSORS.csv.
+El vector temporal también es idéntico. Es una reproducción independiente
+del exportador, con el mismo stack y modelo, no una validación de campo.
+
+Máximos físicos, medidos en los diez buses 30–39:
+  evento          |f| máximo Hz   |RoCoF| máximo Hz/s  resultado
+  bus16/+1 MW      0.0050000213       0.0016704333       PASS/PASS
+  bus16/+100 MW    0.4687554513       0.1717723838       PASS/PASS
+  bus8/+100 MW     0.4105490667       0.5127497003       PASS/FAIL
+  bus29/+100 MW    0.5885706131       0.2818880643       FAIL/PASS
+Se recalcularon los máximos directamente de los CSV y coinciden con el
+resumen. Son máximos del muestreo y de la métrica declarada, no de frecuencia
+instantánea en todos los buses ni extremos certificados en tiempo continuo.
+
+Balance energético:
+El máximo residuo gradiente(E)*RHS menos potencia neta de los cuatro casos
+físicos es 2.9190355688157865e-10 MW, inferior al gate 1e-6 MW. Para descartar
+una cancelación artificial entre subsistemas, se recomputó por separado
+  dotK - (sum Pm - sum Psg),
+  dotEf + sign_dc*dotEdc - (sum Pdc - sum Pgfl - Lf).
+Sobre los cinco CSV, sus máximos son menores de 2.3e-13 MW y 2.7e-12 MW,
+respectivamente. Pdc agregado es constante exactamente en cada archivo.
+Esto es evidencia directa del balance de almacenamiento y no sólo de KCL.
+
+La cuadratura a 5 ms mantiene errores finales de energía de
+  -0.000461064, -0.045933506, -0.041447856, -0.043884357 MJ
+en el orden de los cuatro eventos físicos. Los errores máximos absolutos
+llegan a 0.0464371 MJ; el muestreo de 20 ms llega a 0.133342 MJ. Por ello
+no llamar a la integral numérica una igualdad exacta o certificado. El error
+puntual de la identidad de modelo y el error de cuadratura son evidencias
+distintas y no deben mezclarse.
+
+Comparación no lineal:
+Máxima diferencia de frecuencia entre physical y archivo legacy:
+  +1 MW bus16: 4.15702e-11 Hz;
+  +100 MW bus16: 6.00866e-7 Hz;
+  +100 MW bus8: 2.34654e-6 Hz;
+  +100 MW bus29: 6.32817e-7 Hz.
+Los resultados son muy próximos y conservan los dos fallos. Esto no prueba
+equivalencia no lineal; sólo mide cercanía para cuatro perturbaciones y este
+candidato. No hay campaña de escalamiento que certifique una tasa cuadrática
+uniforme, ni muestra suficiente para inferencia estadística poblacional.
+
+10. Identidad finita TGOV1 y limitación observada
+----------------------------------------------
+Se revisó PHYSICAL_BRIDGE_SECTION.tex. La identidad finita conserva el signo
+del término de SG39, la memoria de TGOV1, el aporte DC y el consumo/pérdidas
+reales. No introduce una hipótesis de equilibrio al final de 61 s. Su derivación
+es correcta para el trim nominal y las referencias fijas declaradas.
+
+En analyze.py, ref=x1(0)-nu/R requiere trim nominal interior. El assert
+a_aw(0)=0, aislado, no prueba interioridad: se construye usando esa misma
+referencia. El revisor comprobó adicionalmente en las cinco trazas que
+nu_i(0)=0 y V_min<x1_i(0)<V_max para SG30/33/35/37. Junto al residuo de trim
+verificado, esto justifica la reconstrucción de ref para esta campaña.
+La selección de rama reproduce exactamente la condición estricta del TGOV1
+instalado: x1>Vmax y ref>x1, o x1<Vmin y ref<x1. Se usa el estado x1 exportado,
+sin reconstrucción por diferenciación ni ajuste para cerrar el balance.
+
+Bus29/+100 MW: SG35 activa esa rama en 380 muestras, desde 6.475 hasta
+8.370 s; x1 máximo=1.00000002366701. La pequeña superación de 1 proviene del
+limitador condicional ejecutado, no de una proyección exacta al intervalo.
+La duración 380*0.005=1.900 s es un estimador muestral, no tiempo exacto de
+conmutación. Integral anti-windup ponderada=-0.72818664981663 MJ.
+El error final de la identidad mecánica agregada es -0.0001584794 MJ;
+el mayor error por máquina es 0.0001995995 MJ en SG35. Los demás casos
+tienen errores por máquina menores de 2.2e-5 MJ. Esta validación conserva
+explícitamente el error de cuadratura de la rama híbrida.
+
+En bus29, Bgov=-673.547299 MJ, DeltaE=-132.642123 MJ y el integral de
+Delta(consumo+pérdidas)=6536.144787 MJ. La identidad completa predice el
+área ponderada de frecuencia -7077.822193 MJ con residuo -0.0440428 MJ.
+Omitir memoria del gobernador o confundir esta área con la del estimador
+de fase de bus destruiría el contenido cuantitativo de la identidad.
+
+11. Dictamen de alcance
+----------------------
+SOPORTADO: una reparación coherente de orientación DC/PI permite almacenamiento
+positivo en el modelo promedio declarado, conserva exactamente el trim y
+la dinámica lineal AC por similitud, y reproduce muy de cerca las cuatro
+trayectorias seleccionadas. El balance energético y la identidad integral
+TGOV1 quedan contrastados con residuos publicados. Dos fallos de seguridad
+permanecen y se conservan en el resultado.
+
+CONDICIONAL: la transferencia lineal se apoya en la demostración de puertos;
+la exactitud de tiempo continuo, la duración del limitador y las integrales
+de las trazas tienen las limitaciones numéricas declaradas. Las afirmaciones
+físicas se refieren al almacenamiento contabilizado por este modelo promedio,
+con red fasorial y controles idealizados.
+
+NO DEMOSTRADO: nuevo óptimo a 94.215489%, seguridad para todos los eventos,
+robustez de otro contrato, validación de delay puro, hardware/limitadores,
+endpoint asintótico, cota uniforme de defectos del modelo completo ni cota
+global de reemplazo. La ley lossless de resistencia efectiva necesita todavía
+ese puente predictivo; la identidad numérica posterior a la simulación no
+lo sustituye. RESULTS.json conserva explícitamente esta frontera.
+
+No queda un error de implementación material detectado en los resultados
+examinados. Los puntos de prepare.py y gate de casos incompletos fueron
+corregidos sin alterar el modelo, protocolo o runner ejecutado congelados.

@@ -1,0 +1,115 @@
+experiment = "BND_EXP_E"
+domain_status = "FROZEN_BEFORE_EXP_E_STABILITY"
+system_base_MVA = 100.0
+sigma_req_per_s = 0.05
+gauge_tolerance = 1.0e-8
+replaceable_buses = [30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
+Kp_nom = 31.41592653589793
+Ki_nom = 246.74011002723395
+Kp_factor_min = 0.25
+Kp_factor_max = 4.0
+Ki_factor_min = 0.25
+Ki_factor_max = 4.0
+independent_PLL_gains = true
+primary_objective = "sum(actual_SG_dispatch_MW[i] * rho[i])"
+epsilon_metric = 1.0e-6
+eta_PLL_metric = 1.0
+gamma_graph_metric = 1.0
+closure_residual_tolerance = 1.0e-9
+KKT_residual_tolerance = 1.0e-7
+active_constraint_tolerance = 1.0e-9
+step_norm_tolerance = 1.0e-8
+objective_relative_tolerance = 1.0e-8
+bus_csv_sha256 = "d732a896e95c013fa3906941a540f2d9161ca99a2c60e571a890174680cb6943"
+machine_csv_sha256 = "8cf9a02574f650d2c459f536a02ae6bbfe16122e927dbbd54ca54ec2556616a1"
+load_csv_sha256 = "635e38cb30ed983be884d2e1e88cbe4069d69097a98969648390da1464df0d30"
+
+[[generator]]
+bus = 30
+rho_min = 0.0
+rho_max = 1.0
+Kp_min = 7.853981633974483
+Kp_max = 125.66370614359172
+Ki_min = 61.68502750680849
+Ki_max = 986.9604401089358
+
+[[generator]]
+bus = 31
+rho_min = 0.0
+rho_max = 1.0
+Kp_min = 7.853981633974483
+Kp_max = 125.66370614359172
+Ki_min = 61.68502750680849
+Ki_max = 986.9604401089358
+
+[[generator]]
+bus = 32
+rho_min = 0.0
+rho_max = 1.0
+Kp_min = 7.853981633974483
+Kp_max = 125.66370614359172
+Ki_min = 61.68502750680849
+Ki_max = 986.9604401089358
+
+[[generator]]
+bus = 33
+rho_min = 0.0
+rho_max = 1.0
+Kp_min = 7.853981633974483
+Kp_max = 125.66370614359172
+Ki_min = 61.68502750680849
+Ki_max = 986.9604401089358
+
+[[generator]]
+bus = 34
+rho_min = 0.0
+rho_max = 1.0
+Kp_min = 7.853981633974483
+Kp_max = 125.66370614359172
+Ki_min = 61.68502750680849
+Ki_max = 986.9604401089358
+
+[[generator]]
+bus = 35
+rho_min = 0.0
+rho_max = 1.0
+Kp_min = 7.853981633974483
+Kp_max = 125.66370614359172
+Ki_min = 61.68502750680849
+Ki_max = 986.9604401089358
+
+[[generator]]
+bus = 36
+rho_min = 0.0
+rho_max = 1.0
+Kp_min = 7.853981633974483
+Kp_max = 125.66370614359172
+Ki_min = 61.68502750680849
+Ki_max = 986.9604401089358
+
+[[generator]]
+bus = 37
+rho_min = 0.0
+rho_max = 1.0
+Kp_min = 7.853981633974483
+Kp_max = 125.66370614359172
+Ki_min = 61.68502750680849
+Ki_max = 986.9604401089358
+
+[[generator]]
+bus = 38
+rho_min = 0.0
+rho_max = 1.0
+Kp_min = 7.853981633974483
+Kp_max = 125.66370614359172
+Ki_min = 61.68502750680849
+Ki_max = 986.9604401089358
+
+[[generator]]
+bus = 39
+rho_min = 0.0
+rho_max = 1.0
+Kp_min = 7.853981633974483
+Kp_max = 125.66370614359172
+Ki_min = 61.68502750680849
+Ki_max = 986.9604401089358

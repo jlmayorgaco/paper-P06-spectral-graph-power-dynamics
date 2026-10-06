@@ -1,0 +1,15 @@
+# Final experiment report
+
+**Question.** At a fixed 88.455141% GFL replacement in IEEE-39, can independent PLL gains enlarge the numerical uniform measurement-latency margin while preserving the frozen zero-delay dynamics and five external events?
+
+**Observed answer.** Yes, locally. The best fully validated gain set found has τ≈40.844904 ms, versus N=39.383359 ms and Z=37.387188 ms. The gain vectors are in `BEST_FOUND_DESIGN.toml`; ρ stays fixed, with 4779.02 MW GFL and 623.74 MW SG. This is an executed feasible improvement, not a proof of the maximum over all gains.
+
+**Mechanism.** Twenty gains update the characteristic matrix through ten PLL measurement channels exactly. The simple-root sensitivity accurately predicts tested local directions, but the margin envelope switches between two nearly orthogonal physical modal families at η≈0.880008; the root MAC there is 0.0041. The exact exponential characteristic and numerical contour are the spectral corrector. The strongest limit on the found tuning is the zero-delay SG actuator under `bus16_plus100`: fraction slack 0.002002883 against a 0.002 floor.
+
+**Frozen event evidence.** All five 61-second zero-delay events pass. Maximum |Δf| is 0.490071 Hz (event `bus16_minus100`); maximum RoCoF is 0.206449 Hz/s (event `bus29_minus100`). Full event-level voltage, DC, current-ratio, and actuator observations are stored in `event_validations/N_step1_multimode_lp_event_active_lp_followup_lp_followup_lp_followup_lp_followup_lp/Q0_RESULT.toml`. A current ratio is reported, but no independent current-limit safety claim is made.
+
+**Falsification.** Holding gains nominal, the independently recomputed 87.5%→88.455% replacement path changes the observed threshold by only +0.003126 ms. A larger gain step reached a higher spectral threshold but breached the frozen SG-actuator floor. Near the family switch the lower-envelope gradient is nonsmooth, so a single active-mode derivative is not a valid global direction. These results constrain the poster narrative.
+
+**Validity.** The matrix update and determinant lemma are identities in the declared model. Spectrum/contour, event simulation, gradients, and modal labels are Float64 numerical evidence. The reported threshold is local and observed over the checked delay range, without exhaustive DDE root certification. The local search still had material improving steps and did not meet the prescribed <0.01 ms/KKT stopping gate. We did not execute nonlinear positive-delay DDE events, heterogeneous-delay optimization, uncertainty sweeps, a KKT stationarity proof, or a global upper bound. Therefore neither delayed dynamic security nor globally optimal tuning is established.
+
+**Poster decision.** The rank-10 action, measured gradient accuracy, and two-family switch form a concrete mathematical result. A strong latency-robust operating claim requires positive-delay nonlinear events and a wider robustness check at the nearly active actuator limit. The poster should say “best found” rather than “optimal.”

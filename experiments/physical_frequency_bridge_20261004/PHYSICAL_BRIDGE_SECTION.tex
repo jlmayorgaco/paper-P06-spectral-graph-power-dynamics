@@ -1,0 +1,166 @@
+\section{A physical-energy bridge to the detailed IEEE--39 model}
+\label{sec:physical-energy-bridge}
+
+The obstruction in Section~\ref{sec:nonlinear-fixed-bus} has a declared
+lossless swing contract. Before using it to constrain converter replacement
+in the detailed network, we audit the energy ports of that network. This
+section establishes an exact model identity and a restricted numerical
+bridge; it does not identify a new maximum-replacement design.
+
+\subsection{DC power orientation and a spectrally invisible distinction}
+Write $p_a$ for converter power delivered to the AC filter and $p_d$ for
+power supplied at its DC port. The frozen implementation uses
+\begin{align}
+ C\dot v_o&=(p_a-p_d)/v_o,&
+ i_{d,o}^{\rm ref}&=k_v(V-v_o)+z_o,&
+ \dot z_o&=k_{iv}(V-v_o).\label{eq:legacy-dc-bridge}
+\end{align}
+For the positive-energy variant constructed in a new experiment directory,
+the three corresponding equations are
+\begin{align}
+ C\dot v&=(p_d-p_a)/v,&
+ i_d^{\rm ref}&=k_v(v-V)+z,&
+ \dot z&=k_{iv}(v-V).\label{eq:physical-dc-bridge}
+\end{align}
+Here $V>0$ is constant. The remaining current, PLL, SG and network equations
+are unchanged. In this implementation $v$ does not otherwise enter a
+modulation or protection block. Both models have the same trim
+$v_o=v=V$, $p_a=p_d$ and the same integral-controller state.
+
+\begin{proposition}[Tangent equivalence at the declared trim]
+Let $S$ reflect only the deviation of each DC-voltage state, and act as the
+identity on every other differential and algebraic coordinate. At an exact
+common trim, with corresponding equation order, the descriptor matrices obey
+\begin{equation}
+ E_p=SE_oS,\qquad A_p=SA_oS.\label{eq:dc-similarity-bridge}
+\end{equation}
+For perturbations of the unchanged AC/DC power ports, $B_p=SB_o$; for AC
+outputs independent of the DC-voltage coordinate, $C_p=C_oS$, with unchanged
+feedthrough. Hence the linear AC transfer functions and finite spectra agree.
+\end{proposition}
+\begin{proof}
+Put $\widetilde v=-\delta v_o$, $\widetilde z=\delta z_o$. The two PI
+equations have identical first variations under this substitution. Since
+$p_a-p_d=0$ at trim, differentiation of the denominator adds no first-order
+term; the DC power row changes sign exactly. Every remaining row is unchanged
+after the same state substitution. This proves the descriptor and port
+identities. Algebraic elimination preserves the similarity wherever its
+eliminated block is nonsingular.
+\end{proof}
+This is classical similarity algebra applied to the actual port equations,
+not a new general spectral theorem. The nonlinear reflection
+$v_o=2V-v$ fails in general: its DC-row defect is proportional to
+\begin{equation}
+ \frac{p_d-p_a}{C}\left(\frac1v-\frac1{2V-v}\right),
+\end{equation}
+which is second order near trim. Limits, modulation dependence on $v$, or
+perturbing the voltage reference require a new analysis. Identical poles
+therefore do not establish identical finite-disturbance security. An
+identically inserted PLL measurement delay would preserve the corresponding
+linear characteristic-operator similarity; no nonlinear DDE simulation is
+claimed by the present zero-delay campaign.
+
+\subsection{Positive storage and an exact finite-time frequency identity}
+Use $s_i=100\rho_i$ MVA for the aggregate converter scale, and the declared
+per-unit filter and capacitor equations. The accounted storage is
+\begin{align}
+ E&=K+E_f+E_{dc},\nonumber\\
+ K&=\sum_{i\in\mathcal S}H_iS_{n,i}\omega_i^2,\nonumber\\
+ E_f&=\sum_i\frac{s_iX_{f,i}}{2\omega_b}\|i_{f,i}\|^2,
+ &E_{dc}&=\sum_i\frac{s_iC_i}{2}v_i^2.
+ \label{eq:bridge-storage}
+\end{align}
+The filter equations cancel their rotational cross terms and give
+$\dot E_f=P_a-P_{\rm GFL}-P_{\rm loss,f}$, while
+\eqref{eq:physical-dc-bridge} gives $\dot E_{dc}=P_d-P_a$.
+The SG swing and algebraic stator equations give
+$\dot K=\sum_i P_{m,i}-P_{\rm SG}-P_{\rm Cu}
+-\sum_iS_{n,i}D_i\omega_i(\omega_i-1)$.
+Network active-power balance then proves
+\begin{equation}
+ \boxed{\dot E=\sum_iP_{m,i}+P_{d,\rm total}-\mathcal L(t)},
+ \label{eq:bridge-energy}
+\end{equation}
+where $\mathcal L$ includes realized load, network/filter/copper losses,
+and the displayed machine-damping term. In this frozen SG parameter set,
+$R_s=D=0$. The storage is positive in the declared state variables; this
+does not make it a deviation Lyapunov function or certify passivity, DC-source
+energy availability, or omitted electromagnetic storage.
+
+An exact finite-time identity follows without assuming a final equilibrium.
+Set $\nu_i=\omega_i-1$, $I_i(T)=\int_0^T\nu_i(t)\,dt$, and let $\mathcal G$
+contain retained SGs with TGOV1. Their implemented equations satisfy
+\begin{align}
+ T_{1i}\dot x_{1i}&=r_i-x_{1i}+a_i,&
+ T_{3i}\dot x_{2i}&=x_{1i}+T_{2i}\dot x_{1i}-x_{2i},\nonumber\\
+ r_i&=(p_{{\rm ref},i}-\nu_i)/R_i,&
+ P_{m,i}&=S_{n,i}(x_{2i}-D_{T,i}\nu_i).
+\end{align}
+The actual limiter supplies $a_i=0$ in the interior and
+$a_i=x_{1i}-r_i$ when it freezes $\dot x_{1i}$. For fixed references and
+an initial trim, define
+\begin{align}
+ d_i&=S_{n,i}(R_i^{-1}+D_{T,i}),\nonumber\\
+ B_g(T)&=\sum_{i\in\mathcal G}S_{n,i}
+ [(T_{2i}-T_{1i})\Delta x_{1i}-T_{3i}\Delta x_{2i}],\nonumber\\
+ A_{aw}(T)&=\sum_{i\in\mathcal G}S_{n,i}
+ \int_0^T[a_i(t)-a_i(0)]\,dt.
+\end{align}
+The remaining retained SG at bus39 has fixed torque, so
+$\Delta P_{m,39}=P_{m,39}(0)\nu_{39}$ exactly. Integrating the two governor
+equations and \eqref{eq:bridge-energy} yields
+\begin{equation}
+ \boxed{\begin{aligned}
+ \sum_{i\in\mathcal G}d_iI_i-P_{m,39}(0)I_{39}
+ &=B_g+A_{aw}-\Delta E\\
+ &\quad+\int_0^T\Delta P_{d,\rm total}\,dt
+       -\int_0^T\Delta\mathcal L\,dt .
+ \end{aligned}}\label{eq:bridge-finite-area}
+\end{equation}
+The bus39 term is omitted if that SG is absent. A nonzero initial power
+residual $b_0$ adds $Tb_0$ on the right. No nonlinear mechanical-power product
+has been dropped: the implemented TGOV1 output is torque times speed.
+This identity uses rotor frequency, not the PLL state or the windowed bus
+phase estimator. The actual ZIP consumption and limiter branch must be used.
+
+\subsection{What is still required for a predictive replacement bound}
+For a convergent full-model trajectory, a conditional infinite-horizon form
+is also possible. Suppose the balance is represented as
+$\dot E+\sum_i(h_i*\nu_i)=P+r(t)$, with fixed causal power-response kernels,
+finite first moments, and integrable deviations from the final synchronized
+frequency $\Omega$. Require $E\to E_\infty$, $r-r_\infty\in L^1$,
+zero perturbation prehistory, and integrable frequency deviations.
+Write $H_i(s)$ for the Laplace transform of $h_i$.
+Let $d_i=H_i(0)$ denote DC transfer gains,
+$d_0=\sum_i d_i>0$, $\kappa=\sum_i H_i'(0)$ denote the sum of first Laplace
+coefficients, and $\mathcal R=\int_0^\infty(r-r_\infty)dt$.
+For consistent phase endpoints $\delta_i$ in coordinates
+$q_i=\theta_i/\omega_b$, relative to the nominal rotating frame, and
+output $j$, define
+$\eta_i=\lim_{t\to\infty}[q_i(t)-q_i(0)-\Omega t]$ and
+$\delta_i-\delta_j=\eta_i-\eta_j$. These are changes of relative phase
+from the initial trim, not absolute final phase differences. Integration gives
+\begin{equation}
+ d_0\mathcal A_j=\Delta E+\kappa\Omega
+       +\sum_i d_i(\delta_i-\delta_j)-\mathcal R .
+ \label{eq:bridge-defect-area}
+\end{equation}
+Here $\mathcal A_j=\int_0^\infty(\Omega-\nu_j)dt$. Algebraic phase jumps
+must be included distributionally or through the declared phase estimator.
+For a causal rectangular estimator of width $W$ with the proper prehistory,
+$\mathcal A_{j,W}=\mathcal A_j+\Omega W/2$.
+For synchronized rotors and $m=2\sum_{i\in\mathcal S}H_iS_{n,i}$,
+$\Delta K=m\Omega+(m/2)\Omega^2$, not merely $m\Omega$.
+The torque-fixed SG can give a negative $d_i$.
+
+Equation~\eqref{eq:bridge-defect-area} separates the missing predictive
+ingredients: full-model phase endpoints, storage change, and a uniform bound
+on $\mathcal R$ over the admissible design family. ZIP consumption, losses
+and limiter engagement depend on the controller trajectory. A residual
+measured after a run is an audit, not such a uniform bound. Consequently,
+the lossless effective-resistance floor cannot yet be asserted for this
+IEEE--39 replacement contract. PLL retuning changes collective trajectories
+and governor engagement; it adds no independent sustained active-power
+droop source to the present converter equations.
+
+% NUMERICAL_BRIDGE_RESULTS

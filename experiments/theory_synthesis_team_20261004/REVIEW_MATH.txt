@@ -1,0 +1,348 @@
+REVISIÓN MATEMÁTICA INDEPENDIENTE — SEGUNDA SÍNTESIS DEL EQUIPO
+2026-10-04. Sin simulación de trayectorias ni modificaciones de congelados.
+Lecturas: PDF1, especialmente pp24-30 y37-40; PDF5 y auditoría previa;
+THEORY.tex y network_moment_codesign_20261004/REVIEW_MATH.md.
+
+VEREDICTO
+
+La mejor candidata es una restricción FINITA de respuesta para una red swing
+no lineal con memoria causal: el balance agregado, la geometría del equilibrio
+final y la energía neta del control fijan exactamente el área de frecuencia.
+Esto permite excluir TODA una clase de controles de energía neta nula, incluidos
+controles no locales y no lineales, sin optimizar sus ganancias. El resultado
+tiene un ejemplo analítico de dos nodos donde la predicción del Jacobiano
+inicial tiene el signo equivocado. Es una contribución específica posible;
+no se traslada automáticamente al DDAE de PLL/GFL del repositorio.
+
+Una segunda consecuencia, más modesta pero directamente válida para ese DDAE,
+es el conflicto exacto entre conservar un polo complejo frente a latencia y
+conservar las áreas de frecuencia mediante un único PLL local. Conecta dos
+teoremas existentes de PDF1 y cuantifica el precio de esa retuning. No constituye
+un límite de estabilización de toda la familia distribuida de ganancias.
+
+RESULTADO 1. BALANCE FINITO, MEMORIA Y ENERGÍA NETA DE CONTROL
+
+1. Contrato y regularidad
+
+Considérese
+  theta_dot=omega,
+  M omega_dot+(h*omega)(t)+F(theta)=p0+d*1_(t>=0)+u(t),             (1)
+con M diagonal positiva constante, m=1^T M1, F(theta+c1)=F(theta),
+1^T F(theta)=0, y equilibrio inicial F(theta*)=p0, omega(t)=0 para t<=0.
+La convolución causal parte de historia nula. Puede contener una matriz delta
+instantánea y átomos retardados; no se exige un kernel ordinario continuo.
+Una hipótesis suficiente es una medida matricial causal de variación total y
+primer momento finitos. Su transformada satisface
+  D(s)=D0+s D1+o(s), D0=integral h(dt), D1=-integral t*h(dt).
+Definir d0=1^T D0 1>0, kappa=1^T D1 1, P=1^T d no nulo.
+No se incluyen derivadas de delta/synthetic-inertia feedthrough en este contrato;
+si existen, se deben extraer y añadir a M con el signo y realización correctos.
+
+Supóngase que u(t)->0, Q=integral_0^infty 1^T u(t)dt es finito, y que la
+trayectoria converge a sincronía:
+  omega->Omega*1, theta-theta*−Omega*t*1 -> delta.
+Se requiere integrabilidad suficiente de omega−Omega*1 y de los términos usados
+abajo. Un caso suficiente es convergencia exponencial transversal. La simetría
+hace delta físicamente libre de gauge, pero su representante temporal queda
+fijado por theta(0)=theta*. Como u_inf=0, Omega=P/d0 y
+  F(theta*+delta)-F(theta*)=d−Omega D0 1.                          (2)
+La unicidad de la solución cohesiva, módulo gauge, permite comparar controles.
+
+No se presupone estabilidad para todos los parámetros ni para todo control.
+La afirmación es: cada control admisible que converge al endpoint declarado
+debe obedecer el balance. Un control que no converge tampoco demuestra la
+respuesta segura pretendida.
+
+2. Identidad exacta de área
+
+Sea omega_COI=(1^T M omega)/m y
+  A=integral_0^infty (Omega−omega_COI(t))dt,
+  b_L=D0^T 1−(d0/m)M1.
+Entonces
+  A=[(m+kappa)Omega+b_L^T delta−Q]/d0.                            (3)
+
+Prueba. Escribir eta=theta−theta*−Omega*t*1, de modo que
+integral(omega−Omega*1)=delta y A=−1^T M delta/m. Para el kernel causal,
+  integral[(h*omega)(t)−D0*Omega*1]dt=D0 delta+Omega D1 1.          (4)
+La identidad se obtiene separando omega−Omega*1 de la respuesta del kernel a
+Omega*1_(t>=0), intercambiando integrales bajo los momentos finitos. La integral
+de la cola de esa respuesta escalón es −Omega*integral t h(dt)=Omega D1.
+Integrar la suma de (1) después de restar su balance final da
+  m Omega+1^T D0 delta+kappa Omega=Q.
+Finalmente b_L^T delta=Q−(m+kappa)Omega+d0 A, que prueba (3).
+
+Consecuencia de autoridad. Si se conservan planta, memoria, perturbación,
+endpoint y Q, todos los controles tienen el MISMO A. No necesitan ser locales,
+lineales, proporcionales ni utilizar una misma información. El caso Q=0 incluye
+redistribución instantáneamente balanceada (1^T u(t)=0), pero es más amplio:
+incluye control que entrega y recupera exactamente la misma energía neta.
+El criterio es energía neta agregada, no energía bruta intercambiada.
+
+3. Geometría secante exacta y heterogeneidad
+
+Supóngase además D0 simétrica, F=grad U de una red lossless, y el escalón
+  d=P M1/m.
+Definir b=D0 1−d0 M1/m, cuya suma es cero. Para una rama cohesiva conectada,
+  Lbar=integral_0^1 J_F(theta*+t delta)dt
+es una Laplaciana positiva en 1-perp. La condición final implica
+  Lbar delta=−(P/d0)b.
+Por tanto
+  E_sec=b^T Lbar^dagger b >=0,
+  E_inc=delta^T[F(theta*+delta)-F(theta*)]=(P^2/d0^2) E_sec,
+  A=P(m+kappa−E_sec)/d0^2−Q/d0.                                  (5)
+Equivalentemente A=P(m+kappa)/d0^2−E_inc/P−Q/d0.
+E_inc es la suma de las dos divergencias de Bregman de U entre los endpoints,
+no la energía de una trayectoria ni por sí sola una función de Lyapunov.
+El término es FINITO: depende del secante entre equilibrios, no del Jacobiano
+inicial. La positividad sólo usa convexidad de U a lo largo del segmento.
+
+Para damping diagonal puramente retardado,
+  D(s)=diag(d_i exp(−s tau_i)), kappa=−sum_i d_i tau_i,
+de modo que el término disponible es m−sum_i d_i tau_i−E_sec.
+El signo negativo del retardo es correcto. Esto NO representa automáticamente
+el PLL del repositorio: allí el retardo actúa en la medición del detector y su
+eliminación no produce sin prueba esta memoria mecánica diagonal.
+
+Si D0 no es simétrica, (3) sigue siendo válida pero aparecen dos vectores:
+b_R=D0 1−d0 M1/m y b_L=D0^T1−d0 M1/m. El término correspondiente es
+b_L^T Lbar^dagger b_R, que puede tener cualquier signo. No conservar el nombre
+de energía positiva en ese caso. Para una perturbación arbitraria d, sustituir
+el término espacial por b_L^T Lbar^dagger(d−P D0 1/d0)/d0; la simplificación
+cuadrática de (5) pertenece al reparto proporcional a la inercia.
+
+4. Exclusión de no-sobreimpulso y energía necesaria
+
+Definir no-sobreimpulso respecto al valor síncrono final mediante
+  sign(P)*(omega_COI(t)−Omega)<=0 para todo t>=0.
+Con omega_COI continua, omega_COI(0)=0 y P no nulo, esa condición obliga a
+  A/P>0,                                                        (6)
+estrictamente: la diferencia normalizada es positiva durante un intervalo
+inicial. No basta A/P>=0. Permitir un impulso ideal que cambie instantáneamente
+omega(0) invalidaría este argumento; no está incluido en las acciones físicas.
+
+Para Q=0, si m+kappa−E_sec<=0, ningún control de la clase que conserve el
+endpoint puede evitar sobreimpulso y converger. Puede mover polos y modificar
+las oscilaciones, pero no eliminar esa obligación integral.
+
+Definir energía neta opuesta al evento E_op=−sign(P)*Q. Para no-sobreimpulso,
+  E_op > (|P|/d0)*(E_sec−m−kappa).                               (7)
+Cuando el lado derecho es positivo, es una cota inferior estricta de energía
+neta de absorción para P>0, o de inyección para P<0. Una capacidad neta máxima
+menor o igual a esa cota excluye no-sobreimpulso. Potencia opuesta limitada por
+Umax durante T implica E_op<=Umax*T y ofrece la correspondiente cota de duración.
+El resultado no calcula energía nominal de batería con eficiencia, recarga,
+estado de carga o reservas múltiples: esos contratos requieren más variables.
+
+Es preferible acompañar la exclusión cualitativa con un área inevitable. Sea
+  O=integral [sign(P)*(omega_COI−Omega)]_+ dt.
+Como el área inicial de déficit es estrictamente positiva,
+  O > |P|(E_sec−m−kappa)/d0^2−E_op/d0                            (8)
+si el lado derecho es no negativo. Si es negativo, O>=0 es la cota útil.
+Para convertirla en un pico se necesita duración/cola: si toda el área anterior
+a T tiene pico <=epsilon y la cola tiene área <=r_tail, entonces
+O<=epsilon*T+r_tail. Sin esos supuestos, área negativa no prueba un nadir fuera
+de un límite como 0.5 Hz. Un control de energía neta cero puede desplazar el
+sobreimpulso a muy tarde y hacerlo pequeño: no confundir obligación integral
+con una violación de un umbral operativo arbitrario.
+
+5. Frontera exacta inercia–damping–retardo
+
+Para M=alpha M0, D(s)=beta D_base(s), con alpha,beta>0 y reparto del escalón
+d=P M0*1/m0, el equilibrio final relativo depende de D0/d0, no de alpha,beta.
+En la misma rama única: delta y Lbar no cambian, b=beta b0,
+E_sec=beta^2 E0(P), kappa=beta kappa0, d0=beta d00. De (5), para Q=0:
+  A/P=[alpha*m0+beta*kappa0−beta^2*E0(P)]/(beta^2*d00^2).          (9)
+Para damping puramente retardado, T_D=sum_i d_i tau_i del diseño base:
+  alpha*m0−beta*T_D−beta^2*E0(P)>0                               (10)
+es condición NECESARIA de no-sobreimpulso. Es una frontera de desempeño,
+no una frontera de estabilidad. Más damping heterogéneo aumenta cuadráticamente
+la penalidad espacial mientras la penalidad de memoria crece linealmente.
+Cuando E0>0, esto da una cota superior necesaria de beta para alpha fijo:
+  beta < [−T_D+sqrt(T_D^2+4 E0 alpha m0)]/(2 E0).
+Si E0=0, queda alpha*m0>beta*T_D. Damping/inercia proporcionales anulan b y la
+penalidad espacial para esta familia de perturbaciones; no eliminan la memoria.
+
+Esta ley no presupone que al retirar SG el damping permanezca fijo ni que todo
+GFL sea una inercia reducida. Es válida sólo cuando el contrato físico produce
+exactamente esos cambios. Una 'fracción SG mínima universal' sería injustificada.
+
+6. Certificado por cortes y ubicación de inercia
+
+Para F=B diag(k_e) sin(B^T theta−phi_e), en un segmento cohesivo
+  Lbar=B diag(kbar_e)B^T,
+  kbar_e=k_e*integral_0^1 cos(phi_e_initial+t*delta_phi_e)dt
+pertenece a (0,k_e]. Para cualquier corte no trivial C,
+  E_sec >= b(C)^2 / sum_(e in cut C) kbar_e
+        >= b(C)^2 / sum_(e in cut C) k_e,                        (11)
+donde b(C)=D0(C)−d0*M(C)/m para D0 diagonal. Prueba: en la fórmula variacional
+max_x [2 b^T x−x^T Lbar x] elegir x=t*1_C y optimizar t.
+
+Con Q=0, no-sobreimpulso exige, para todos los cortes,
+  m+kappa > b(C)^2/Kcut(C).                                     (12)
+Es un test necesario de ubicación de inercia: compara la fracción de damping
+con la fracción de inercia a cada lado y la capacidad sincronizante del corte.
+Para (10), se requiere alpha*m0>beta*T_D y, si b0(C) no es cero,
+  Kcut(C)> beta^2*b0(C)^2/(alpha*m0−beta*T_D).                    (13)
+Un déficit del corte da una cota inferior de refuerzo agregado necesario; con
+costes lineales, el mínimo coste por unidad admisible en ese corte multiplica
+el déficit como cota inferior simple. No es un diseño suficiente ni óptimo.
+
+Precaución: no se ha probado que reforzar UNA línea reduzca monótonamente el
+E_sec exacto, pues también cambia el equilibrio y la Laplaciana secante. La
+cota de capacidad del corte sí es inequívoca. Las desigualdades no valen con una
+Laplaciana que pierde positividad/cohesión, ni con pérdidas no compensadas.
+
+7. Ejemplo finito exacto que falsifica el uso del Jacobiano inicial
+
+Dos nodos, una línea sin pérdidas:
+  M1=M2=41/80, D=diag(3,1), F=(sin z,−sin z), z=theta1−theta2,
+  theta*=0, omega(0)=0, d=(1,1), u=0, tau=0.
+Entonces m=41/40, d0=4, P=2, Omega=1/2, b=(1,−1), z_inf=−pi/6.
+El secante tiene peso kbar=3/pi, por lo que E_sec=pi/3 y
+  A=(123−40*pi)/960 < 0.                                       (14)
+En cambio, usar el Jacobiano inicial (peso 1) produce E_lin=1 y
+  A_lin=1/320 > 0.                                             (15)
+Así el signo de la restricción cambia por la geometría FINITA del evento.
+
+No es necesario simular para probar convergencia del ejemplo. En el marco
+rotante nu=omega−(1/2)1, la energía es
+  V=0.5*nu^T M nu + 1−cos z+z/2,
+  V_dot=−3 nu1^2−nu2^2,
+  V(0)=41/320.
+Las fronteras cohesivas z=−pi/2 y z=pi/2 tienen energía potencial
+1−pi/4 y 1+pi/4, ambas mayores que 41/320. No pueden alcanzarse. En el espacio
+reducido (z,nu), el subnivel es compacto; LaSalle da convergencia al único
+equilibrio z=−pi/6, nu=0. Su linealización transversal es exponencialmente
+estable porque cos(z_inf)>0, M>0 y D>0, de modo que las áreas convergen.
+El sobreimpulso de COI es, por tanto, real y matemáticamente inevitable.
+
+Todo control que converge a ese mismo endpoint con Q=0 conserva (14), aunque
+su ley sea global y no lineal. Para no-sobreimpulso necesita energía opuesta
+  E_op > (40*pi−123)/240.
+Esto es energía en las unidades normalizadas del modelo; no se rotula MWh.
+
+8. Defecto exacto por pérdidas: qué rompe el traslado a IEEE39
+
+Si en lugar de suma cero se tiene ell(t)=1^T F(theta(t)), el equilibrio cumple
+  d0*Omega=P+ell_initial−ell_final.
+Con las mismas hipótesis de integrabilidad y u_inf=0, el balance correcto es
+  A=[(m+kappa)Omega+b_L^T delta
+     +integral(ell(t)−ell_final)dt−Q]/d0.                         (16)
+Para dos controles con mismos endpoint, Omega, memoria y Q,
+  A_u−A_v=integral(ell_u−ell_v)dt/d0.                            (17)
+Por ello no basta afirmar que 'las pérdidas son pequeñas': se requiere una cota
+del área de su diferencia. Si se verifica |integral Delta ell|<=E_loss, la ley
+lossless se convierte en un intervalo de radio E_loss/d0. Con un cambio de
+endpoint o de Q se deben añadir también sus términos explícitos. Esta identidad
+sirve como auditoría de la aproximación, no como permiso para reemplazar el
+modelo PLL/voltaje/corriente/DC por un swing de memoria supuesta.
+
+9. Balance de horizonte finito y capacidad temporal de almacenamiento
+
+La recarga tardía no se puede ocultar dentro de una cota de energía neta infinita
+si el servicio se exige hasta T. Definir A_T=integral_0^T(Omega−omega_COI),
+Q_T=integral_0^T1^T u, delta_T=theta(T)−theta* módulo gauge, y
+  R_D(T)=integral_(v>=0) h(dv) integral_(max(0,T−v))^T omega(a)da.
+Fubini da exactamente integral_0^T(h*omega)=D0 integral_0^T omega−R_D(T).
+Por ello
+  d0 A_T=m omega_COI(T)+b_L^T delta_T−1^T R_D(T)
+         +integral_0^T(ell−ell_inf)dt−Q_T.                      (18T)
+Para damping instantáneo R_D=0. Para retardo diagonal,
+  [R_D(T)]_i=d_i integral_(max(0,T−tau_i))^T omega_i(a)da,
+y −1^T R_D(T)->kappa Omega. El signo coincide con el límite infinito.
+
+Como auditoría exacta, (18T) es válida con cantidades observadas. Para una cota
+DE DISEÑO previa necesita tolerancias terminales y de memoria. En el caso
+lossless supóngase que se verifica
+  |m omega_COI(T)+b^T delta_T−1^T R_D(T)
+    −[(m+kappa)Omega+b^T delta_inf]|<=epsilon_T.
+Entonces no-sobreimpulso durante [0,T] obliga a la energía temporal
+  E_op,T=−sign(P)Q_T > |P|(E_sec−m−kappa)/d0−epsilon_T.            (19T)
+Puede ser una cota de excursión de almacenamiento aunque se recargue después,
+si se declara el contrato de eficiencia/energía y el lado derecho es positivo.
+Una cota suficiente para epsilon_T, con retardo diagonal y T>=max tau_i, es
+  m*epsilon_omega + epsilon_delta + sum_i d_i tau_i epsilon_i,
+donde |omega_COI(T)−Omega|<=epsilon_omega,
+|b^T(delta_T−delta_inf)|<=epsilon_delta y
+|omega_i(t)−Omega|<=epsilon_i en TODA [T−tau_i,T]. Una observación en el punto
+T no basta para controlar la memoria. Los términos de pérdidas requieren su
+propia cota integral. Sin esas restricciones terminales, (19T) no es un límite
+previo de capacidad: el controlador puede posponer la obligación fuera de T.
+
+RESULTADO 2. PRECIO EXACTO DE CONSERVAR UN POLO AL COMPENSAR LATENCIA
+
+Aplicación directamente al DDAE del repositorio, a planta/rho/equilibrio fijos.
+Fijar todos los sitios salvo el PLL i. Para un polo simple lambda=alpha+j*omega,
+omega>0, visible en el retorno abierto regular y con lambda_Ki no nulo, PDF1
+pp27-29 obtiene la única rama real de ganancias que conserva lambda al aumentar
+h=tau_i−tau_i0:
+  Kp_dot=2 alpha Kp+Ki,
+  Ki_dot=−|lambda|^2 Kp.                                       (18)
+Considerar un intervalo conectado 0<=h<=hmax donde ambas ganancias son positivas
+y están dentro de los límites declarados. Para interpretar coeficientes como
+áreas temporales, las respuestas comparadas deben ser estables y sus momentos
+converger. Conservar un polo no garantiza esas condiciones. PDF1 pp37-39
+demuestra que para todos
+los buses/entradas con respuesta final no nula, la misma área normalizada cambia
+  A_bus(h)−A_bus(0)=w_i[1/Ki(h)−1/Ki(0)],                       (19)
+con w_i fijo por el residuo de sincronía de la planta. Por tanto
+  d A_bus/dh=w_i |lambda|^2 Kp(h)/Ki(h)^2.                       (20)
+
+Si w_i no es cero, el cambio es estricto y monótono. Así no puede conservarse
+simultáneamente el polo complejo y todas esas áreas mediante ese único PLL
+cuando h>0. w_i>0 aumenta el área normalizada; w_i<0 la disminuye. Ningún signo
+es universalmente mejor: aumentar el área puede reducir sobreimpulso o retrasar
+la recuperación según la forma de la respuesta y el objetivo. No se deduce el
+signo de nadir, RoCoF o estabilidad de los demás polos.
+
+Con Kp>=Kp_min>0 y Ki<=Ki_max en todo el intervalo,
+  |Delta A_bus|>=|w_i| |lambda|^2 Kp_min*h/Ki_max^2.              (21)
+Una tolerancia de área epsilon_A impone la cota necesaria de latencia
+  h<=epsilon_A*Ki_max^2/(|w_i| |lambda|^2 Kp_min).
+La fórmula exacta (19), usando el transporte cerrado de ganancias, es más aguda.
+La divergencia formal de 1/Ki cuando Ki->0 no es un resultado físico admisible:
+los límites positivos de ganancias y la estabilidad pueden cortar la rama antes.
+La retuning tampoco elimina la falta causal de la medición antes de su llegada;
+se compara el polo preservado, no una cancelación física del retardo.
+
+Excepciones y alcance: w_i=0; salida final cero (no normalizar); abandono de la
+rama positiva; intervención en otros sitios o en la planta; conservación sólo
+de Re(lambda), que deja variar la frecuencia; asignación de otro polo. Retuning
+colectiva puede escapar de este límite local. No es una prueba de que veinte
+ganancias libres no puedan cumplir ambos requisitos. Es un corolario físico
+concreto de dos resultados existentes, no un nuevo teorema de asignación.
+
+NOVEDAD, CONTRAEJEMPLOS Y PRÓXIMO PASO SIN SIMULACIONES
+
+La integración de balance, los momentos de convolución, Laplacianas secantes,
+Bregman simétrico, pseudoinversas y cotas por cortes son herramientas clásicas.
+La aportación específica candidata es su combinación en una exclusión finita de
+TODA la clase de controles con Q=0 y endpoint fijo, con precio energético y un
+ejemplo donde falla el signo de la aproximación lineal. Esa capacidad supera
+una identidad decorativa o una optimización fallida, pero necesita literatura
+comparativa antes de reivindicar prioridad. El resultado 2 tiene menor ambición
+de novedad y mejor conexión inmediata con el DDAE existente.
+
+La búsqueda primaria de esta revisión confirmó el trabajo vecino de Paganini y
+Mallada sobre respuesta de redes heterogéneas, parámetros proporcionales y
+métricas de sincronización:
+  https://arxiv.org/abs/1710.07195
+  https://mallada.ece.jhu.edu/pubs/2020-TAC-PM.pdf
+No se ha establecido aquí ausencia de un antecedente de la identidad finita.
+La revisión bibliográfica paralela del equipo debe contrastar la clase de
+control, el endpoint, el término de memoria y el no-go energético, no sólo las
+palabras 'overshoot' o 'inertia'.
+
+Antes de nuevas trayectorias: verificar algebraicamente (3)-(5), el ejemplo
+exacto y las desigualdades estrictas; declarar el criterio de desempeño y sus
+unidades; fijar si el interés es clase swing+memoria o DDAE real; y decidir si
+el coste energético bajo ese criterio cambia una decisión. Para el DDAE real,
+probar (19)-(20) con la ley ya certificada exige sólo cálculos estáticos de
+ganancias/residuo. Ninguna de estas pruebas requiere una campaña pesada.
+
+La principal amenaza de sobreventa es llamar (10) 'frontera de estabilidad' o
+'mínimo de SG para cualquier GFL'. La segunda es atribuir (7) a cualquier límite
+de nadir en lugar del contrato de no-sobreimpulso/área. La tercera es tratar un
+control balanceado que cambia el endpoint o las pérdidas como si conservara A.
+Con esos límites explícitos, el resultado 1 es la candidata más prometedora
+de esta ronda y merece derivación formal antes de otra búsqueda numérica.

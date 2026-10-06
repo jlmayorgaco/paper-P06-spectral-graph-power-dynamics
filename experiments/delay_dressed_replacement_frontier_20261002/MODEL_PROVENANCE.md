@@ -1,0 +1,52 @@
+# Model provenance and audit
+
+- Repository HEAD d0fecb3264aeb855ab6700fc6ef66120d4b6c33c, branch research/expQ2B-secure-optimum.
+- The pre-existing working tree was dirty in 126 paths before this experiment folder was created. Exact path list is in BASELINE_MANIFEST.json; this experiment does not modify those files.
+- Julia 1.11.9; PowerDynamics 5.0.0; NetworkDynamics 1.3.0; SciMLBase 3.53.2. Source hashes are in BASELINE_MANIFEST.json.
+- Canonical model sources: experiments/nonlinear_codesign_20261001/PDPhysicalReference.jl, experiments/nonlinear_codesign_20261001/ReducedDAE.jl, src/pd39/model.jl, src/bnd_model_expN/PDExactDesignN.jl, and src/bnd_design_e/CollectiveModel.jl.
+- The physical PLL uses e_ang=-sin(theta)u_r+cos(theta)u_i. Kp and Ki both act on this error, but the frequency-output channel also has the existing 300-Hz low-pass. No pure time delay is present.
+- The frozen event set is design bus 8 +100 MW plus holdouts bus 8 -100 MW, bus 16 +/-100 MW, and bus 29 +/-100 MW. Metrics use a 0.5-s window. Declared exploratory limits: frequency 0.5 Hz, RoCoF 0.5 Hz/s, voltage 0.9-1.1 pu, modal decay 0.05 s^-1, actuator slack 0.002. Current/DC hard limits are not certified.
+- ExpN uses dispatch-weighted component semantics: SG rating scales with epsilon=1-rho while H is fixed; GFL terminal current is scaled by rho. Preserve initialized generator P/Q.
+- Equilibrium: PowerDynamics initialize_equilibrium and PDPhysicalReference trim. Spectrum: fixed-support reduced ODE and full PowerDynamics Jacobian. Nonlinear integration for D0 is ODE Rodas5P. The checked-in manifest has no DDE integrator; the retarded characteristic/root continuation is custom experiment code, and its root-completeness contour did not finish.
+- Historical reports summarize the joint candidate as failing 4/5 external events when frequency and actuator constraints are counted. This D00 event-parity reproduction separately confirms two frequency-limit misses (bus 8 -100 MW and bus 16 -100 MW); actuator slack was not recomputed in this D00 run.
+- D0 equilibrium/full-spectrum and the design event were independently reproduced for all three stored no-delay designs; the five external events were independently rerun for the 90.047% joint candidate. Full finite ODE pole matching error is at most 5.90e-10; the tested post-event extrema match within the tolerances in baseline_reproduction/D00_GATE_REPORT.md.
+- D4 Schur attempt was repeated after projecting out global rotation. The hidden block at s=0 is singular (condition estimate 3.10e18), so no exact retained slope is accepted. Earlier values were preserved only as explicitly discarded diagnostics.
+
+## Hashed sources
+
+- Project.toml: SHA-256 e170a2f9fca57aa3f8f3f053b318f0d5e3d434679dbdd4a4b8eef5481cfc0e4f
+- Manifest.toml: SHA-256 92bc7849ea4445a4bedd18f732611ec271147e238c349aa5eeefc6d02023e911
+- src/pd39/PD39.jl: SHA-256 5d85c0e4053f4c40bd04541ea6814dd48fecf65618d8be5b89430dec418d04c4
+- src/pd39/model.jl: SHA-256 d2cc3b542cec12662d589689df7d807e029de5475a8217678275d5c91a840953
+- src/pd39/equilibrium.jl: SHA-256 ace2392075d5252460a32df54e7713f8923040e424381a9e38e2cbfea1afa5b0
+- src/pd39/stability.jl: SHA-256 8e291e636f393cc09af10fa5110a0ff8dc512323ffe8ce6fb31f52332e2b5dc2
+- src/pd39/tds.jl: SHA-256 62723df304ce2cbad9ee6095548542c835690c8290a0d0715bd1a1b8b45f54a6
+- experiments/analytic_iteration_20261001/run_experiment.jl: SHA-256 edf0aa00519e5eafef6b5d39fa979f47cf4676877be51ede1c685b92e1ca49ed
+- experiments/analytic_iteration_20261001/validate_pd.jl: SHA-256 81403762368123ff33705ec39c11020094bb35537e7ca6ed94aa81e83c6ccdc0
+- experiments/analytic_iteration_20261001/report.py: SHA-256 2440acabb49983b3c9d8f72797e92b7dbef0a501b6a887bb25b6c479ac5bc243
+- experiments/nonlinear_codesign_20261001/ReducedDAE.jl: SHA-256 c5d721bc371dd6ee424afb2f40638e60307fd62389bba2ac69f3b7d247a2c80d
+- experiments/nonlinear_codesign_20261001/PDPhysicalReference.jl: SHA-256 5e1ca06ca97dd35245b0052d9f50549a9dcd2ba713bf29e8dfd8da99c6f9d50f
+- src/bnd_model_expN/PDExactDesignN.jl: SHA-256 f5211509b117d8a06e31efa62aa49b1df20d2c1ef7f5c6f9114bb9eb25838365
+- src/bnd_design_e/CollectiveModel.jl: SHA-256 d13e8a839e138c4315c0893035a233abdb4ed640275ed30d60c576ed137794b8
+- reports/analytic_iteration_20261001/refined/protocol.toml: SHA-256 8d02a5cf52a4768d21f941c79cca59d7fc5d435773c6bf8bb6f66f9fee6bac1d
+- reports/analytic_iteration_20261001/refined/baseline.toml: SHA-256 66191aa97ca07410bece70ca1cb95bab4c65531145b9be3987a208b78d9aa30f
+- reports/analytic_iteration_20261001/refined/joint_final.toml: SHA-256 c8a63bcb04e5c2465a9b8faad886def8932cfc932c7237e24595cc807f19a0df
+- reports/analytic_iteration_20261001/refined/fixed_gains_final.toml: SHA-256 ecd1a86b37bda97c8ae25e1b0450e17102711724d8308c0f0de65fef7498279f
+- reports/analytic_iteration_20261001/refined/RESULT.json: SHA-256 c74b7b3d85983c1c8aecbf42177cb6897563a59487f9bd0155fb0619977f50fb
+- reports/analytic_iteration_20261001/refined/RESULTADOS_ES.txt: SHA-256 66770a0350592fc45dca76873b5bf481188c8916167aaaeeaab53fd135130c76
+- reports/analytic_iteration_20261001/refined/source_hashes_before.toml: SHA-256 f0158a61c765a39da043c57537bd3831c0cef15595db1c93c1209ccf84166aae
+- reports/analytic_iteration_20261001/refined/source_hashes_after.toml: SHA-256 f0158a61c765a39da043c57537bd3831c0cef15595db1c93c1209ccf84166aae
+- reports/experiment_N/MODEL_FREEZE.json: SHA-256 64713823d6bf982ee8a5824135b41aecad923a21adb5637a1263ac57dc5f3819
+- reports/experiment_N/FINAL_SUMMARY_EXP_N.md: SHA-256 87278459f318c3179952a1dcbd5f0b5e5c649e0cb5a8d948ce9153d4d2251aea
+- reports/experiment_P/FINAL_SUMMARY_EXP_P.md: SHA-256 fbc85a813301f0ee1384bd316104bd9f1d39c1d3f60e6ebdc40bea8171583fa4
+- reports/experiment_P/README_REPRODUCE.md: SHA-256 d17ac31ba5e0db390740d075e65731c7a4363e71720d7fa3dbb8cf9ae1a6f739
+- reports/experiment_P/PROVENANCE.toml: SHA-256 ac9515ff4d897c2342904362cbe353ed3641aaab9e8b9ebbf20b07d157d04994
+- src/bnd_graphpll/PhysicalGraph.jl: SHA-256 ba686b54e9e00f369a93bd97bc15720704115337ff5ad26077095f518c018e56
+- src/bnd_graphpll/ModalGainLaw.jl: SHA-256 430da3039ce9f60b4fa6cb2c4ef7a7c1ad9c8cbf47b5353564cd1a2623269ab0
+- src/bnd_graphpll/NodeVariantGraphLaw.jl: SHA-256 4111e7356fc4c8183158a8652f6987bc1cf2e76e070bf79fcb1c5a075b7669bf
+- src/bnd_graphpll/ModalGFL.jl: SHA-256 9c873615a8ab783ff5172a261153429f025fd130624cbfda183c8906fe0b4d2f
+- src/bnd_graphpll/SelfEnergyCorrection.jl: SHA-256 8c19cd158aa3e19fcd9752a5e58687b0756f94958a30b05dfaf8b814e916a74e
+- src/bnd_graphpll/GraphPLLContinuation.jl: SHA-256 299fa6a986a2a6127dab4cb2bf76fa574d55d98f09fe480ca89247505c1c6397
+- src/bnd_graphpll/GraphFilterRealization.jl: SHA-256 0d9507709a43933226c6370583959846ca38b500cfa24f76a90318bc3af7a4df
+- src/bnd_graphpll/IdealDamping.jl: SHA-256 182bb2de6255cb4b0b6d3dd94ee222c36938c58515257f14c7794042e96026f9
+- src/bnd_graphpll/SafetyMetrics.jl: SHA-256 30debad997c05455df2539fb496143d5299b4e9796bae03277aa0ba25bea767a

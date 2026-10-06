@@ -1,0 +1,69 @@
+{
+  "source": "C:\\Users\\walla\\Documents\\Github\\paper-P06-spectral-graph-power-dynamics\\results\\TX4_V9_GLOBAL_VS_EM_TRUTH.csv",
+  "source_sha256": "5ffb97ba332486bfad5678a930280e4e58b4b47b71531acc5c4ce8730df52015",
+  "model": "TX4 frozen P4, complete transverse spectrum of equilibria after removing rotational/drift modes; not the later delayed model",
+  "status": "NUMERICALLY_VALIDATED",
+  "theorem_status": "EXACT_IDENTITY for the finite optimization defined on this table",
+  "objective": "maximize the minimum of -alpha_global over all prefix equilibria, including BASE",
+  "target": [
+    30,
+    33,
+    34,
+    35,
+    37
+  ],
+  "optimal_order": [
+    30,
+    33,
+    34,
+    35,
+    37
+  ],
+  "optimal_minimum_decay_margin_s-1": 0.1441317795065167,
+  "optimal_order_alpha_s-1": [
+    -0.1441317795065167,
+    -0.15424459288482723,
+    -0.18206711955522514,
+    -0.17138591944669346,
+    -0.22133085133716324,
+    -0.20498278428294325
+  ],
+  "bad_order": [
+    30,
+    33,
+    35,
+    37,
+    34
+  ],
+  "bad_order_alpha_s-1": [
+    -0.1441317795065167,
+    -0.15424459288482723,
+    -0.18206711955522514,
+    -0.20468769022510608,
+    0.1270064671440848,
+    -0.20498278428294325
+  ],
+  "bad_minimum_decay_margin_s-1": -0.1270064671440848,
+  "orders_total": 120,
+  "orders_all_prefixes_stable": 96,
+  "orders_attaining_optimum_within_1e-12": 60,
+  "contextual_bus34_effect": {
+    "alpha_base": -0.1441317795065167,
+    "alpha_34_only": -0.14148314227141467,
+    "alpha_H4": 0.1270064671440848,
+    "alpha_H4_plus_34": -0.20498278428294325,
+    "delta_alpha_at_base": 0.0026486372351020304,
+    "delta_alpha_at_H4": -0.33198925142702806,
+    "two_block_interaction": -0.33463788866213007,
+    "scope": "Finite marginal of spectral abscissa; mode identity may switch. H4 is one action block here, not an irreducible fifth-order interaction."
+  },
+  "optimality_upper_bound": "Every path includes BASE, so its minimum margin cannot exceed -alpha(BASE); the witness attains this upper bound.",
+  "verification": "Dynamic program independently agrees with all 120 permutations.",
+  "limitations": [
+    "fixed gains and binary replacement candidates",
+    "no numerical eigenvalue enclosures or continuous replacement interpolation",
+    "no nonlinear transition, event, voltage, current, or RoCoF validation",
+    "not an optimum for MW, gain tuning, or replacement fraction",
+    "TX4 SG has D=0 and no governor; these are transverse synchronization results, not frequency-security certificates"
+  ]
+}

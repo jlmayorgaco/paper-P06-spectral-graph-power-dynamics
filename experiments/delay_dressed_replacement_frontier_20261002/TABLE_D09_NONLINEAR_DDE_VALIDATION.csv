@@ -1,0 +1,7 @@
+case_id,event_id,max_frequency_Hz,max_RoCoF_Hz_s,settling_s,actuator_margin,guards_pass,status,reason
+tau0_baseline,all_frozen_events,,,,,,BLOCKED_NONLINEAR_DDE,No reliable method-of-steps DDE integrator was established; delayed event simulation not run
+uniform_delay,all_frozen_events,,,,,,BLOCKED_NONLINEAR_DDE,No reliable method-of-steps DDE integrator was established; delayed event simulation not run
+graph_smooth,all_frozen_events,,,,,,BLOCKED_NONLINEAR_DDE,No reliable method-of-steps DDE integrator was established; delayed event simulation not run
+graph_rough,all_frozen_events,,,,,,BLOCKED_NONLINEAR_DDE,No reliable method-of-steps DDE integrator was established; delayed event simulation not run
+best_validated_replacement,all_frozen_events,,,,,,BLOCKED_NONLINEAR_DDE,No reliable method-of-steps DDE integrator was established; delayed event simulation not run
+adverse_delay_perturbation,all_frozen_events,,,,,,BLOCKED_NONLINEAR_DDE,No reliable method-of-steps DDE integrator was established; delayed event simulation not run

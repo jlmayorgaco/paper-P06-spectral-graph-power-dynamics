@@ -1,0 +1,168 @@
+OTROS RESULTADOS VALIOSOS — 2026-10-04
+
+Objeto: extraer capacidades e ideas de los cinco PDF sin subordinarlas a la
+propuesta de comunicación entre PLL ni prometer novedad bibliográfica.
+No se ejecutaron nuevos modelos dinámicos. Se realizó un análisis combinatorio
+pequeño de las etiquetas espectrales completas del censo TX4 ya congelado.
+
+1. MÁS SUSTITUCIONES GFL PUEDEN RECUPERAR LA ESTABILIDAD
+
+Fuente: results/TX4_V9_GLOBAL_VS_EM_TRUTH.csv, política P4 fija
+(g,k,t,h)=(0.03625,1.425,1.5,1). No es el modelo DDE de 41 ms del PDF1.
+
+Portafolio GFL               alpha global [1/s]
+30+33+35                    -0.20468769022510608
+30+33+35+37                  +0.1270064671440848
+30+33+34+35+37               -0.20498278428294325
+
+Sustituir también el SG del bus 34 recupera estabilidad de pequeña señal en
+este modelo/política. Otro caso 30+32+33+35 pasa de +0.0220973642 a
+-0.2212002908 al agregar la sustitución 34. Son cambios discretos completos:
+no se conoce todavía qué sucede en todos los valores intermedios de rho34.
+
+Estado: NUMERICALLY_VALIDATED a partir de resultados archivados; sus polos no
+se recalcularon en esta revisión. No es validación EMT, de eventos o del cambio
+físico entre configuraciones. No se ha identificado aún por qué el bus 34
+produce la reparación, ni verificado robustez al retuning, carga o incertidumbre.
+
+Consecuencia lógica exacta de las etiquetas: no se puede descartar un
+superconjunto porque contenga un subconjunto inestable. Un blocker caracteriza
+el fallo de seguridad para todos los órdenes, no una prohibición hereditaria
+de cada destino final. No inferir monotonía de seguridad con porcentaje GFL.
+
+2. DESTINO ESTABLE Y ORDEN DE IMPLANTACIÓN SON PREGUNTAS DISTINTAS
+
+Se calcularon cadenas de equilibrios estables mediante programación dinámica:
+  N(empty)=1;
+  N(S)=1_{S estable} * sum_{i in S} N(S\{i}).
+Se verificaron independientemente los conteos relevantes enumerando las
+permutaciones completas. Reproducir:
+  python experiments/material_synthesis_20261004/audit_existing_sequences.py
+
+Resultado del censo completo de 512 configuraciones:
+  332 destinos estables;
+  330 con todos los órdenes de incorporación estables en sus equilibrios;
+  2 con 96 de 120 órdenes estables y 24 que visitan un equilibrio inestable;
+  0 destinos estables sin ningún orden de equilibrios estables;
+  2 aristas discretas inestable -> estable al agregar un GFL.
+
+Los dos destinos dependientes del orden son 30+32+33+34+35 y 30+33+34+35+37.
+Para el segundo, 34->30->33->35->37 tiene todos los equilibrios estables;
+30->33->35->37->34 visita H4 inestable. Ambos terminan en la misma configuración.
+Esto NO demuestra que conmutar físicamente en el primer orden sea seguro.
+Faltan la trayectoria, la región de atracción, las rampas y los límites.
+
+Valor potencial: planificación de transición SG/GFL; separar máxima capacidad
+final de máxima capacidad alcanzable por una trayectoria segura. El censo no
+demuestra un destino estable inaccesible, y la excepción de orden aparece en
+sólo 2/332 destinos estables: no presentarla como predominante.
+
+3. EL GRAFO CORRIGE LA INERCIA APARENTE Y PUEDE FORZAR SOBREPASO
+
+Fuente: PDF1, pp24-25. Clase reducida explícita:
+  Z(s)=sM+D0+sD1+L/s+O(s^2), L=B W B^T conectado, W>0.
+Para D0 simétrica, m=1^T M 1, d0=1^T D0 1>0,
+  b=D0 1-(d0/m)M1,
+  m_app=m+1^T D1 1-b^T L^dagger b.
+
+El término de heterogeneidad tiene dos interpretaciones exactas:
+  b^T L^dagger b = sum_{k>0} |u_k^T b|^2/lambda_k
+                = min_{Bf=b} f^T W^-1 f.
+Aquí u_k,lambda_k son los modos ortonormales del L sin normalización de masa.
+Las direcciones débiles del grafo amplifican el desajuste damping/inercia.
+En esta identidad, agregar un flujo de ciclo aumenta el coste respecto al flujo
+mínimo; no demuestra que los ciclos físicos siempre perjudiquen la estabilidad.
+
+Para un déficit escalón proporcional a la inercia, estabilidad e integrabilidad:
+  integral_0^infty (x_infty-x(t))dt = P*m_app/d0^2.
+Si m_app<0, necesariamente existe sobrepaso por debajo de la frecuencia final.
+No determina cuánto, ni implica incumplimiento de un límite de frecuencia.
+
+El ejemplo exacto de dos nodos mantiene m=2,d0=10: D0=5I da m_app=2 y
+respuesta monótona; D0=diag(1,9) da m_app=-14, estabilidad y sobrepaso.
+No es energía cinética negativa ni resultado IEEE39. Cambiar la localización
+del escalón añade un término de numerador; no omitir esa dependencia.
+
+Estado: PROVED_REDUCED_MODEL. Valor: separar inercia almacenada de la deducida
+de un momento de respuesta; diseñar la distribución de damping, no sólo su suma.
+El paso pendiente es derivar/validar una clase adecuada para el modelo lossy
+con PLL/DC. Hay antecedentes fuertes sobre heterogeneidad y agregación:
+Paganini y Mallada, TAC 65(7), 3007-3022 (2020),
+https://mallada.ece.jhu.edu/pubs/2020-TAC-PM.pdf.
+No se ha establecido prioridad para esta formulación concreta.
+
+4. COMPENSAR EL RETARDO DE UN MODO TIENE EFECTOS OBLIGADOS SOBRE OTROS
+
+Fuente: PDF1, pp28-29. A planta fija, una retunación local de Kp,Ki puede
+preservar exactamente una pareja oscilatoria lambda,conj(lambda) mientras
+cambia tau_i. Para otro polo simple mu:
+  dmu/dtau_i = -Kp_i (mu-lambda)(mu-conj(lambda)) * partial mu/partial Ki_i.
+Es la derivada a lo largo de esa rama de compensación, no la derivada con
+ganancias fijas. Si Kp_i>0, mu es distinto y sensible a Ki_i, el desplazamiento
+no es cero. Su parte real puede mejorar o empeorar: no afirmar daño universal.
+
+Estado: EXACT_IDENTITY con las hipótesis de regularidad y polo simple.
+Valor: tabla analítica de efectos cruzados de una compensación, diagnóstico
+de cambio de modo limitante y selección de un segundo actuador. Es más preciso
+que repetir que los retardos perjudican la estabilidad. No certifica espectro
+completo ni demora máxima global. Prioridad bibliográfica aún no establecida.
+
+5. HAY INTERVALOS Y ASPECTOS DE LA RESPUESTA QUE UN CONTROL NO PUEDE CAMBIAR
+
+Fuente: PDF1 pp25-26 y38; PDF4 pp9-10.
+Con historial de error PLL nulo y trim independiente de ganancias, dos diseños
+que difieren sólo en ganancias PLL tienen la misma trayectoria antes del
+menor retardo de esos canales. Otros estados GFL sí pueden responder antes.
+Una violación en ese intervalo es irreparable por esas ganancias.
+Estado: EXACT_IDENTITY causal bajo el contrato; no una nueva teoría de causalidad.
+
+La aplicación ya intentada al mapa inicial de eventos con ventanas de 0.5 s
+no produjo un mínimo útil de SG: ese chequeo pasa incluso al 100% GFL. Conservar
+este NEGATIVE_RESULT y no convertirlo en certificado de trayectoria al 100%.
+
+También las diferencias entre áreas normalizadas de frecuencia de distintos
+buses son invariantes frente a retuning PLL admisible a planta fija (PDF1 p38).
+Valor: reconocer cuándo el objetivo requiere modificar potencia/droop/arquitectura
+en vez de seguir optimizando una ganancia sin autoridad sobre ese objetivo.
+
+6. MODELOS PEQUEÑOS QUE CONSERVAN DECISIONES, NO SÓLO CURVAS
+
+Fuentes: PDF3 pp4-5, PDF5 pp14-18.
+La eliminación exacta identifica qué retorno dinámico del exterior debe
+preservarse. Una aplicación útil es elegir el menor modelo que mantenga una
+decisión determinada: qué configuración falla o qué reparación conviene.
+Para una cantidad escalar de seguridad, intervalos validados separados pueden
+preservar un ranking. Igual número de polos inestables no preserva ese ranking.
+Hay que incluir mapas de entrada/salida si se protegen picos o señales externas.
+
+Se puede trabajar con mapas terminales de fabricantes sin estados internos,
+pero exige incertidumbre cuantificada y descartar modos internos inestables
+ocultos. La identificación de caja negra no autoriza causalidad interna.
+Estado: propuesta de aplicación; no producto EMT validado. Hay competidores
+directos en fidelidad fasor/EMT y expansión de zonas, citados en REVIEW_LITERATURE.
+
+7. UNA LECCIÓN TRANSVERSAL DEL DOCUMENTO DE ROBÓTICA
+
+PDF4 demuestra en su propio modelo que un QP instantáneo bien condicionado
+puede coexistir con equilibrios que nunca llegan al objetivo, o con pérdida
+de autoridad física. Esto sugiere auditar cuatro preguntas independientes:
+  ¿existe una acción factible?, ¿mantiene seguridad?, ¿produce progreso?,
+  ¿qué cota permite llamarla óptima para la tarea completa?
+Las pruebas Farkas/KKT/HJB usadas son conocidas; su valor está en no confundir
+certificados de subproblemas con garantías de misión. No trasladar sus cifras
+ni su ley simplificada de consenso retardado al modelo eléctrico.
+
+PRIORIZACIÓN
+
+Mejor hallazgo empírico disponible para investigar inmediatamente:
+  recuperación de estabilidad al agregar GFL y dependencia del orden.
+Mejor ley física compacta para desarrollar con lápiz y papel:
+  corrección de inercia aparente por desajuste proyectado sobre el grafo.
+Mejor herramienta analítica próxima al PLL/DDE implementado:
+  compensación exacta de un modo y ley de efectos sobre los demás.
+Mayor potencial industrial pero mayor evidencia externa pendiente:
+  modelo reducido que certifica una decisión de intervención.
+
+Son líneas separadas. No juntarlas todas como una única contribución ni llamar
+novedad a su mera coexistencia. Ninguna demuestra máximo global de reemplazo,
+superioridad de arquitectura, seguridad de conmutación o premio de póster.

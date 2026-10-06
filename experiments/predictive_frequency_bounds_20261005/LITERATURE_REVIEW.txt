@@ -1,0 +1,104 @@
+REVISIÓN PRIMARIA — PREDICCIÓN DE FRECUENCIA CON RESIDUOS VERIFICADOS
+Fecha: 2026-10-04. Lectura bibliográfica y auditoría conceptual; sin simulaciones.
+Único archivo modificado: este informe.
+
+DICTAMEN
+
+La metodología central ya pertenece a una línea clásica: representar un integral de salida mediante una ecuación de transporte/Lyapunov, aproximar su solución por Taylor mediante ecuaciones lineales sucesivas y acotar el error integrando un residuo sobre trayectorias estables. Un antecedente de 2026 es especialmente cercano: Jun Liu deriva cotas verificables de error del valor a partir del residuo de la PDE, y aclara que el resultado sirve para cualquier aproximación, no solo PINNs. La propuesta no debe anunciar esa cadena como nueva teoría.
+
+La contribución defendible sería una especialización útil al modelo GFL/DAE declarado: una región no vacua de eventos y parámetros, constantes de error verificadas que no sean prohibitivamente conservadoras, y decisiones de diseño con certificados válidos para observables de frecuencia concretos. La parte todavía pendiente y más importante es pasar de una cota de COSTE INTEGRAL a envolventes PUNTUALES de frecuencia y RoCoF en ventanas. No es una consecuencia automática.
+
+SEIS ANTECEDENTES CENTRALES Y ALCANCE VERIFICADO
+
+1. J. M. A. Scherpen, Balancing for Nonlinear Systems, Systems & Control Letters 21(2), 143–153, 1993.
+DOI verificado en editorial: https://doi.org/10.1016/0167-6911(93)90117-O
+Texto primario: https://research.utwente.nl/files/247174545/Scherpen1993balancing.pdf
+Registro editorial: https://www.sciencedirect.com/science/article/pii/016769119390117O
+El teorema 3.2 caracteriza la energía de observabilidad Lo(x)=1/2 integral ||y||^2 dt como solución suave de grad Lo·f=−||h||^2/2, con Lo(0)=0 y estabilidad local. Se verificaron el enunciado y la prueba mediante el texto indexado del PDF institucional; la apertura directa del PDF tuvo problemas. Una versión ECC 1993 está accesible, pero su extracción tiene glifos defectuosos. Esto ya contiene la representación integral/PDE y su relación con el Gramiano lineal. Un h firmado de frecuencia produce un funcional de salida, que no es automáticamente una función de energía positiva ni un certificado de Lyapunov.
+
+2. E. G. Al'brekht, On the Optimal Stabilization of Nonlinear Systems, Journal of Applied Mathematics and Mechanics 25(5), 1254–1266, 1961.
+Editorial y DOI verificados: https://www.sciencedirect.com/science/article/pii/0021892861900053
+https://doi.org/10.1016/0021-8928(61)90005-3
+Original verificado bibliográficamente; no se obtuvo su texto completo. Para verificar el procedimiento se leyó la exposición primaria de A. J. Krener, Al'brekht's Method in Infinite Dimensions (2020), sección II:
+https://arxiv.org/pdf/2003.03427
+Expande coste y realimentación por grados; tras el término LQR resuelve ecuaciones lineales recursivas cuyos operadores tienen sumas de autovalores del sistema estable. Nuestra recurrencia para un controlador fijo es más simple que el problema HJB de optimización. No son nuevas las ecuaciones de Taylor para el valor, las ecuaciones generalizadas de Lyapunov ni la separación por grados. «Usar solo una resolución adjunta y una Lyapunov» podría ser una elección computacional útil, no una novedad matemática por sí sola.
+
+3. J. Liu, Verifiable Error Bounds for Physics-Informed Neural Network Solutions of Lyapunov and Hamilton–Jacobi–Bellman Equations, arXiv:2603.19545v2, 20 mayo 2026.
+Texto completo: https://arxiv.org/html/2603.19545v2
+Registro: https://arxiv.org/abs/2603.19545
+El registro anuncia aparición en IEEE Control Systems Letters; no se inventa aquí DOI editorial. Teorema 1: un residuo relativo verificable |r|<=epsilon*omega sobre el dominio adecuado proporciona cotas del error del valor y estimaciones a posteriori. Incluye condiciones unilaterales para certificados de Lyapunov y estimaciones locales mediante Hessianas. Aunque el título menciona PINNs, el artículo dice explícitamente que aplica a cualquier aproximación. El contraste pertinente sería h firmado con error absoluto cúbico integrado por decaimiento certificado; es una adaptación, no prueba de una nueva familia de principios residuo-error. Un residuo pequeño únicamente en muestras no satisface sus hipótesis.
+
+4. M. M. Peet, Exponentially Stable Nonlinear Systems Have Polynomial Lyapunov Functions on Bounded Regions.
+Texto primario completo, versión arXiv 2007: https://arxiv.org/pdf/0707.0218
+Se leyeron el resumen y el teorema 11: bajo regularidad y estabilidad exponencial en una región acotada existe un polinomio con cotas cuadráticas y derivada negativa apropiadas. La existencia de un polinomio no garantiza que el truncamiento de grado dos baste ni que la región calculada sea grande. El contexto Zubov también es anterior: F. Camilli, L. Grüne y F. Wirth, A Generalization of Zubov's Method to Perturbed Systems, SIAM JCO 40(2), 496–515, 2001, DOI 10.1137/S036301299936316X; resumen/editorial verificados en https://epubs.siam.org/doi/10.1137/S036301299936316X . Este último caracteriza dominios de atracción mediante una PDE en sentido de viscosidad; no se leyó su texto completo. No llamar «Zubov» a cualquier aproximación cuadrática de un integral firmado ni atribuirle automáticamente un dominio de atracción certificado.
+
+5. M. Althoff y B. H. Krogh, Reachability Analysis of Nonlinear Differential-Algebraic Systems, IEEE TAC 59(2), 371–383, 2014.
+Texto primario completo: https://mediatum.ub.tum.de/doc/1281529/770926.pdf
+Registro institucional: https://mediatum.ub.tum.de/1281529
+DOI: 10.1109/TAC.2013.2285751
+Se leyeron formulación índice uno, procedimiento de linealización conservadora, inclusión del residuo, tratamiento de variables algebraicas y ejemplo IEEE 14-bus. Construye sobreaproximaciones de TODAS las trayectorias para conjuntos de estados iniciales/entradas mediante zonotopos y errores de linealización acotados. Predicción por conjuntos verificados de DAE eléctricas ya existe. Nuestro método podría ahorrar mucho coste si solo se necesitan unos pocos funcionales; eso debe medirse frente a una envolvente de alcance estándar. No equiparar un certificado matemático de inclusión, una implementación con tolerancias flotantes y una prueba que incluye redondeo: hay que declarar qué nivel se alcanza realmente.
+
+6. S. Uzun, P. Elango, A. G. Kamath, T. Kim y B. Açıkmeşe, Successive Convexification for Nonlinear Model Predictive Control with Continuous-Time Constraint Satisfaction, 2024.
+Texto primario completo: https://arxiv.org/pdf/2405.00061
+Se leyeron reformulación con integradores de coste/violación, discretización y discusión de tolerancias. Usa SCP/prox-linear y restricciones integrales para satisfacción continua, diferenciándola de imponer condiciones solo en nodos temporales. La relajación numérica puede requerir endurecimiento de restricciones; el artículo lo trata explícitamente. Diseño secuencial convexo con restricciones continuas no es novedoso. Una región de confianza por sí sola no convierte un subproblema linealizado en un certificado robusto para el modelo original. La envolvente propuesta tendría valor si proporciona un endurecimiento verificable, actualizado o uniforme sobre cada región de ganancias aceptada.
+
+AUDITORÍA DE LA PROPUESTA CONCRETA
+
+Sea dot z=F(z), F(0)=0, A=DF(0) Hurwitz después de tratar la simetría, y
+  J(z0)=integral_0^infty h(z(t;z0))dt.
+Suponiendo regularidad, convergencia e integrabilidad, el funcional resuelve
+  grad J(z)·F(z)=-h(z), J(0)=0.
+«Poisson determinista» o «ecuación de transporte/Lyapunov» son nombres razonables; no hay que prometer una nueva ecuación.
+
+Con las convenciones
+  F(z)=Az+(1/2)F2[z,z]+O(||z||^3),
+  h(z)=c^Tz+(1/2)z^TCz+O(||z||^3),
+  V2(z)=ell^Tz+(1/2)z^THz,
+las igualdades por grados son
+  A^T ell=-c,
+  A^T H+HA=-C-sum_i ell_i D^2F_i(0).
+El término que contrae ell con las Hessianas de la dinámica es necesario. Si se omite, generalmente queda un residuo cuadrático. Las convenciones de factores 1/2 deben fijarse en código y texto.
+
+Defina r(z)=grad V2(z)·F(z)+h(z). Entonces
+  J(z0)-V2(z0)=integral_0^infty r(z(t;z0))dt.
+Si, en una región invariante certificada,
+  |r(z)|<=C3 ||z||^3,
+  ||z(t;z0)||<=K exp(-lambda t)||z0||,
+se obtiene directamente
+  |J(z0)-V2(z0)|<=C3 K^3 ||z0||^3/(3 lambda).
+Esta integración elemental del residuo explica la cota; no debe constituir la novedad central. Para un conjunto de parámetros, C3,K,lambda y la región deben ser uniformes o recalculados con garantías. Unas derivadas evaluadas en el equilibrio o una tasa modal aislada no bastan para ello.
+
+La cota finita correspondiente para integrar r hasta T contiene el factor (1-exp(-3 lambda T))/(3 lambda). Pero para recuperar integral_0^T h también aparece V2(z0)-V2(z(T)): hace falta conocer o encerrar el estado terminal. Sustituirlo por una trayectoria aproximada exige otra cota de error. Tener J_infinito no equivale a predecir el valor de h en un instante.
+
+Si h tiene un término lineal no nulo, V2 suele cambiar de signo y no puede servir como el certificado positivo de contracción. Se necesita una función/estimación de estabilidad separada. Si h es energía no negativa, puede estudiarse el enfoque relativo de Liu directamente, pero deben verificarse también sus hipótesis de invariancia y positividad. No llamar «energía» a un área firmada de frecuencia.
+
+OBSTÁCULOS ESPECÍFICOS DEL GFL IEEE39
+
+- Gauge: la rotación hace singular el A completo. Resolver A^Tell=-c por pseudoinversa sin justificar compatibilidad y observabilidad no elimina el problema. Usar coordenadas cociente o una formulación consistente con la simetría y su salida.
+- DAE: la eliminación algebraica debe ser regular en toda la región, no solo en el equilibrio. Incluir límites de tensión, inversas del Jacobiano algebraico y derivadas del mapa implícito en las cotas de F y h.
+- Retardo PLL exacto: el estado es una historia, no un vector finito. La PDE finita no certifica automáticamente la DDE. O se declara un modelo ODE con aproximación de retardo y se acota su error, o se desarrolla el resultado funcional sobre historias. Un buen ajuste de Padé no es ese certificado.
+- Evento: después de un escalón se centra F en el equilibrio POST-evento, y z0 es el estado inicial consistente respecto de él. Cubrir varios eventos exige encerrar sus equilibrios, resets algebraicos e inicializaciones.
+- Saturaciones, limitadores, conmutaciones y límites de corriente pueden romper suavidad. Una expansión suave solo cubre la región donde las ramas activas están verificadas; fuera, hace falta tratamiento híbrido o declarar el caso no certificado.
+- Estabilidad de A prueba una propiedad local; una prueba uniforme hasta el tamaño de evento usado debe aportar región y constantes. Si la contracción falla, el resultado es inconcluso, no evidencia de inestabilidad.
+
+FRECUENCIA Y ROCOF EN VENTANA: BRECHA QUE NO HAY QUE OCULTAR
+
+Un intervalo certificado para un área firmada permite cancelaciones. Incluso una cota de energía L2 no determina por sí sola un máximo puntual sin información adicional sobre regularidad, tasa de cambio o trayectoria. Por tanto, no pasar directamente de |J-V2|<=epsilon a «nadir certificado».
+
+Para una RoCoF de ventana definida como [f(t+Delta)-f(t)]/Delta, una envolvente puntual |f-fhat|<=e_f proporciona error <=[e_f(t+Delta)+e_f(t)]/Delta. Para un máximo sobre t continuo todavía hay que cubrir todos los t, no solo muestras. La definición de la ventana, filtro y unidades debe fijarse antes de diseñar restricciones. Una RoCoF instantánea requiere encerrar también la derivada de la salida algebraica/PLL correspondiente.
+
+Rutas válidas: (a) tubo de trayectoria verificado y proyección a salidas; (b) cota de coste junto con una desigualdad adicional demostrada que controle picos o ventanas; (c) ecuación de valor de horizonte finito con sus errores de estado terminal y discretización. Elegir una ruta explícita. La ruta (a) tiene como comparador directo Althoff–Krogh; las otras no eliminan las hipótesis necesarias.
+
+QUÉ NO PODEMOS LLAMAR NUEVO
+
+La representación del coste por PDE; la adjunta lineal; la recurrencia Taylor/Lyapunov; un residuo de orden tres; integrar ese residuo mediante decaimiento exponencial; certificación de Lyapunov por residuo; envolver DAE mediante error de linealización; regiones de confianza y SCP; endurecer restricciones usando una cota. Tampoco usar IEEE39 o cambiar «coste» por «frecuencia» basta para probar novedad sustantiva.
+
+POSICIÓN HONESTA Y MÍNIMO ÚTIL
+
+«Un evaluador local de funcionales de frecuencia para un modelo GFL detallado, con cotas verificadas de truncamiento y un contrato explícito de validez, utilizado para aceptar o rechazar intervenciones bajo restricciones de salida certificadas.»
+
+Para que esto sea publicable, mostrar (i) región/eventos de tamaño relevante que sí se certifican; (ii) anchura de las cotas y fracción de casos inconclusos; (iii) coste frente a alcance verificado o integración validada, no solo frente a un barrido ingenuo; (iv) casos donde el predictor lineal o cuadrático sin cota acepta una decisión que el certificado rechaza correctamente; (v) diseño final validado en el mismo modelo y mismas salidas; (vi) separación entre matemática probada, cálculo flotante y enclosures con redondeo. Si solo se certifica un integral, titular y concluir sobre ese integral.
+
+Comparadores mínimos: predictor lineal; predictor cuadrático sin residuo; linealización con cota tipo Gronwall/tubo estándar; método propuesto con idéntico presupuesto de cálculo y región; y alcance DAE verificado para un subconjunto manejable. El diseño secuencial debe compararse con la misma función objetivo sin endurecimiento y con un endurecimiento convencional. Fallar en construir una cota no demuestra una limitación física del controlador.
+
+No se ejecutaron simulaciones ni se revisó una implementación nueva en esta tarea. No se establece prioridad universal: la búsqueda fue acotada y dirigida a los antecedentes que más directamente restringen el reclamo de novedad.

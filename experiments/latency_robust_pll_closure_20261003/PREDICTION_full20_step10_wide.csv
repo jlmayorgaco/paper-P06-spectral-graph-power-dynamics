@@ -1,0 +1,2 @@
+candidate_id,parent,base_tau_ms,predicted_tau_ms,base_actuator_slack,predicted_actuator_slack,actuator_target,max_coordinate_log_step,l1_trust,log_gain_l1,active_mode_count,lp_status
+full20_step10_wide,full20_step9_wide,42.50526792697801,42.76964457465455,0.002003403981888807,0.002003,0.002003,0.02,0.1,0.1,6,Optimization terminated successfully. (HiGHS Status 7: Optimal)

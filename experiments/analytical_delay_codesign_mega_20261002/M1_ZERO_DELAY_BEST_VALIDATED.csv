@@ -1,0 +1,2 @@
+candidate_id,eta,simulation_complete,all_five_events_pass,fully_validated,GFL_percent,GFL_MW,retained_SG_MW,critical_real_s_inv,equilibrium_residual_inf,max_frequency_deviation_Hz,max_RoCoF_Hz_s,min_actuator_slack,worst_frequency_event,design_path,output_dir,status
+eta_0375_bisect,0.375,True,True,True,88.45514078456176,4779.019928394313,623.7411615845335,-0.08014983362991729,1.518785097687214e-11,0.4855131438792751,0.2167265000824923,0.0033003572353912,bus16_minus100,m1_candidates/eta_0375_bisect.toml,m1_validations/eta_0375_bisect,FULLY_VALIDATED

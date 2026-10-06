@@ -1,0 +1,85 @@
+{
+  "frozen_at_utc": "2026-10-03T05:41:06.380113+00:00",
+  "git_head": "d0fecb3264aeb855ab6700fc6ef66120d4b6c33c",
+  "git_dirty": true,
+  "julia_version": "julia version 1.11.9",
+  "python_version": "3.13.9",
+  "model_sources_sha256": {
+    "src/bnd_model_expN/PDExactDesignN.jl": "f5211509b117d8a06e31efa62aa49b1df20d2c1ef7f5c6f9114bb9eb25838365",
+    "experiments/nonlinear_codesign_20261001/ReducedDAE.jl": "c5d721bc371dd6ee424afb2f40638e60307fd62389bba2ac69f3b7d247a2c80d",
+    "experiments/nonlinear_codesign_20261001/PDPhysicalReference.jl": "5e1ca06ca97dd35245b0052d9f50549a9dcd2ba713bf29e8dfd8da99c6f9d50f",
+    "experiments/delay_dressed_replacement_frontier_20261002/DelayCharacteristic.jl": "3cdcbba68e03f9a1938f4f33bec035ca6528f853e719787c0fd6511cb1e9c845",
+    "experiments/analytical_delay_codesign_mega_20261002/m3_a_trace_integral.jl": "669a11bf08d7ebc6bb92b79c72e4e276fde19be6ce116f9db546bba885d343bf",
+    "experiments/analytical_delay_codesign_mega_20261002/q56_validate_action_space.jl": "34ebd2ccdbaca3509e1b76cf0fe49405a9709ade5a85ff263b46b7cedfa39cca",
+    "experiments/optimal_latency_margin_20261002/run_fast_root_locus.jl": "75685e8d6b55a7de7b94a90b13ba87f757e6fc7a2879d96035e84af84858741a",
+    "experiments/analytical_delay_codesign_mega_20261002/m1_validate_candidate.jl": "b25e19e4defeae124cf57ef42319213eaebfd866c3b467fc761f2da7ef0ad63b",
+    "experiments/latency_robust_pll_codesign_20261003/run_event_local.jl": "6899b9b1287c23b39bac8036e738f23bc14f1736adf6180ee46caf8bf5791fc0",
+    "experiments/latency_robust_pll_codesign_20261003/designs/Z_zero_delay_tuned.toml": "c9f0bea066c0e7eca0ae028dca7a3d652a28f3fd933f20cca74379df5744ee33",
+    "experiments/latency_robust_pll_codesign_20261003/designs/N_nominal.toml": "83d4f73c2afa3320f36680c52873d9d87a08ed1b7adbf053c3f878598084e479"
+  },
+  "physical_replacement_percent": 88.45514078456176,
+  "rho_vector": [
+    0.88625,
+    0.88625,
+    0.88625,
+    0.88625,
+    0.88625,
+    0.88625,
+    0.8835994479151296,
+    0.88625,
+    0.8824044839323419,
+    0.8696437304514312
+  ],
+  "gain_bounds": {
+    "Kp_min": 7.853981633974483,
+    "Kp_max": 125.66370614359172,
+    "Ki_min": 61.68502750680849,
+    "Ki_max": 986.9604401089358,
+    "source": "m1_validate_candidate.jl frozen bounds"
+  },
+  "spectral_margin_alpha_max_s_inv": -0.05,
+  "zero_delay_alpha_limit_s_inv": -0.05,
+  "uniform_delay_definition": "same exogenous PLL error/measurement delay at all ten active GFL PLLs",
+  "heterogeneous_delay_definition": "fixed exogenous vector on the same ten PLL error paths; not optimized",
+  "numerical_precision": "Float64/ComplexF64; not interval certified",
+  "frozen_events": [
+    {
+      "id": "bus8_minus100",
+      "bus": 8,
+      "delta_load_MW": -100
+    },
+    {
+      "id": "bus16_plus100",
+      "bus": 16,
+      "delta_load_MW": 100
+    },
+    {
+      "id": "bus16_minus100",
+      "bus": 16,
+      "delta_load_MW": -100
+    },
+    {
+      "id": "bus29_plus100",
+      "bus": 29,
+      "delta_load_MW": 100
+    },
+    {
+      "id": "bus29_minus100",
+      "bus": 29,
+      "delta_load_MW": -100
+    }
+  ],
+  "event_limits": {
+    "max_frequency_deviation_Hz": 0.5,
+    "max_RoCoF_Hz_s": 0.5,
+    "min_bus_voltage_pu": 0.9,
+    "max_bus_voltage_pu": 1.1,
+    "min_SG_actuator_fraction_slack": 0.002,
+    "event_duration_s": 61.0,
+    "sampling_dt_s": 0.01,
+    "frequency_RoCoF_window_s": 0.5
+  },
+  "optimizer_condition": "Only designs passing equilibrium, zero-delay physical spectrum and all five frozen nonlinear events are feasible; no global-optimum claim without proof.",
+  "critical_delay_accuracy_target_ms": 0.05,
+  "do_not_commit_or_push": true
+}

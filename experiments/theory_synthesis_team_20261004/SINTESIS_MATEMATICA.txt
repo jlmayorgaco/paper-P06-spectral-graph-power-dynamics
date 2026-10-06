@@ -1,0 +1,407 @@
+RECONSIDERACIÓN DEL EQUIPO — 4 OCTUBRE 2026
+Del amortiguamiento local a una limitación no lineal de frecuencia
+
+ESTADO
+Derivación nueva dentro de este repositorio, contrastada por el equipo y con
+comprobaciones algebraicas. No se establece prioridad bibliográfica universal.
+No se ejecutaron simulaciones dinámicas nuevas. No se modificaron resultados
+congelados, el manuscrito abierto ni el póster. No commit ni push.
+
+CONCLUSIÓN DE LA REVISIÓN
+La candidata teórica más interesante ya no es presentar únicamente que una
+sustitución GFL adicional reestabiliza un caso. Esa reparación puede explicarse
+parcialmente con participación modal convencional y pertenece a un modelo
+sin damping SG ni gobernadores. Tampoco basta bautizar un operador matricial.
+
+La conexión más prometedora encontrada es:
+  dos equilibrios de una red no lineal
+  -> una identidad exacta de área de frecuencia
+  -> una imposibilidad para toda una clase de controles energéticamente neutros
+  -> un mínimo necesario de energía neta de apoyo
+  -> restricciones de cortes, distribución de inercia y latencia.
+
+La ley es exacta en la clase declarada a continuación. Su transferencia al
+IEEE-39 AC con PLL y DC constituye un problema abierto explícito, no una
+validación que pueda darse por realizada con las simulaciones antiguas.
+
+1. CONTRATO FÍSICO Y UNIDADES
+
+Sea q el ángulo eléctrico dividido por la frecuencia angular nominal omega_b;
+nu=qdot es la desviación de velocidad en p.u. Considérese
+
+  M nudot + (D * nu)(t) + F(q) = p0 + d 1_{t>=0} + u(t),
+  F(q)=B diag(gamma) sin(omega_b B^T q).
+
+M es diagonal positiva, la red es conexa, gamma_e>0, las tensiones son fijas,
+la red no tiene pérdidas y 1^T F=0. El controlador primario lineal con memoria
+es causal; su transformada es D(s)=D0+s D1+o(s). Se requieren estabilidad
+interna, momentos de kernel finitos suficientes para las integraciones y
+historia incremental nula antes del escalón. El caso instantáneo es D(s)=D0.
+El estado previo satisface F(q0)=p0 y nu(t)=0 para t<=0.
+La acción suplementaria u puede ser no lineal, local o no local, pero converge
+a cero y tiene integral neta finita Q=integral_0^infty 1^T u(t)dt.
+
+La solución considerada converge a una sincronía en una misma rama de flujo:
+  nu(t)->Omega 1,
+  q(t)-q0-Omega t 1 -> eta_inf,
+con transitorios integrables. La convergencia ES HIPÓTESIS de la ley general;
+se demuestra por separado en el ejemplo de dos nodos de la sección 8.
+
+Definiciones:
+  m=1^T M1, d0=1^T D0 1>0, P=1^T d !=0, Omega=P/d0,
+  kappa=1^T D1 1,
+  b_L=D0^T1-(d0/m)M1, b_R=D0 1-(d0/m)M1,
+  nu_COI=1^T M nu/m,
+  A=integral_0^infty (Omega-nu_COI(t))dt.
+
+La diferencia de formas final-inicial delta es eta_inf salvo una rotación
+uniforme arbitraria; b_L^T delta no depende de esa elección. En estas unidades
+M,kappa y el término de grafo E_sec tienen unidades MW*s; A tiene segundos;
+Q tiene MW*s (energía). Los ejemplos numéricos son adimensionales.
+
+No se ha identificado D(s) con Kp,Ki de un PLL. Retardar una respuesta de
+potencia a frecuencia y retardar el detector PLL son canales diferentes.
+
+2. LEY EXACTA DE LOS DOS EQUILIBRIOS
+
+Estado: EXACT_IDENTITY en la clase no lineal declarada.
+
+  A = [(m+kappa)Omega + b_L^T delta - Q]/d0.                (1)
+
+PRUEBA. Escriba nu=Omega 1+etadot. Al integrar la ecuación sumada, la red
+lossless desaparece exactamente. El término de memoria satisface
+  integral_0^infty [(D*nu)(t)-D0 Omega 1]dt
+       = D0 eta_inf + Omega D1 1.
+La igualdad procede de Fubini y del primer momento del kernel, incluida la
+contribución de historia nula; para un retardo puro se obtiene directamente
+desplazando el intervalo de integración. Por tanto
+  (m+kappa)Omega + 1^T D0 eta_inf = Q.
+Además A=-1^T M eta_inf/m y
+  1^T D0 eta_inf = -d0 A+b_L^T delta.
+La sustitución prueba (1). No se linealizó F ni se integró una simulación.
+
+Esta ley acepta localización arbitraria del escalón mediante delta. La forma
+cuadrática positiva que sigue necesita hipótesis adicionales; no ocultarlas.
+
+3. EL GRAFO SECANTE Y LA ENERGÍA ENTRE EQUILIBRIOS
+
+Suponga D0 simétrica y d=P M1/m. Así b_L=b_R=b. El equilibrio final cumple
+  F(q0+delta)-F(q0)=-(P/d0)b.
+Por el teorema fundamental del cálculo vectorial,
+  DeltaF=Lbar delta,
+  Lbar=integral_0^1 J_F(q0+t delta)dt
+      = B diag(wbar_e) B^T,
+  wbar_e=omega_b gamma_e integral_0^1
+           cos(omega_b B_e^T(q0+t delta))dt.
+
+Si el segmento se mantiene en una celda cohesiva |omega_b B_e^T q|<pi/2,
+wbar_e>0 y Lbar es una Laplaciana legítima. Defina
+  E_sec=b^T Lbar^dagger b >=0.
+Entonces la ley finita, no lineal, es
+
+  A = P/d0^2 [m+kappa-E_sec] - Q/d0.                       (2)
+
+Lbar NO es el Jacobiano en q0: depende de los dos equilibrios y de la amplitud
+del evento. Cuando P->0 dentro de una rama regular recupera la corrección
+b^T L0^dagger b derivada anteriormente en el PDF1. No hace falta una serie de
+Taylor de la red para (2).
+
+La red es gradiente de U(q)=sum_e gamma_e/omega_b [1-cos(omega_b B_e^T q)].
+  E_inc=delta^T DeltaF
+       =D_U(q1,q0)+D_U(q0,q1)
+       =P^2 E_sec/d0^2.
+Aquí D_U es la divergencia de Bregman asociada a U. Por tanto
+  A=P(m+kappa)/d0^2 - E_inc/P - Q/d0.                      (3)
+La identidad de Bregman es clásica. Su uso aquí vincula un cambio finito de
+flujo con una limitación integral de frecuencia; no se presenta como un
+nuevo concepto de energía cinética.
+
+4. IMPOSIBILIDAD Y ENERGÍA NECESARIA
+
+Estado: PROVED_REDUCED_MODEL; cuantificador sobre controladores, no gain box.
+
+Con M,D,evento y rama final fijos, cualquier control con u_inf=0 y Q=0 deja
+A invariante. La condición 1^T u(t)=0 para todo t es suficiente, pero más
+restrictiva que la neutralidad energética neta Q=0. Puede cambiar mucho la
+trayectoria, los modos y el pico; no puede cambiar esa integral.
+
+Si m+kappa-E_sec<0, entonces sign(P) A<0. Necesariamente existe t con
+  sign(P)[nu_COI(t)-Omega]>0:
+un sobrepaso respecto de la frecuencia final. Para P<0 es un nadir por debajo
+del endpoint. Esto rige para todo controlador de esa clase que converja al
+mismo endpoint, incluso un controlador de grafo de orden arbitrario.
+
+No es una imposibilidad para todos los GFL/PLL ni para controles que cambien
+el droop final, la energía neta, el equilibrio, la topología o la inercia.
+El caso de igualdad m+kappa-E_sec=0 con Q=0 también requiere sobrepaso:
+el área positiva inicial debe ser compensada para que el área total sea cero.
+
+Ejemplo de arquitectura incluida: u=B_c f_c(t), con flujos de control de arista
+arbitrarios, cumple 1^T u=0. Una ley u=-p(L_c)nu con Laplaciana simétrica y
+p(0)=0 es un caso particular si converge a u_inf=0. Los términos L_c,L_c^2,...
+pueden modificar los modos relativos y preservar A. El término a0*I en un
+polinomio no es neutro en general y queda fuera de esta conclusión: puede
+cambiar soporte primario/energía/endpoint. Los retardos implementados dentro
+de los flujos B_c f_c preservan el balance; retardar por separado inyecciones
+nodales no garantiza esa misma arquitectura de potencia balanceada.
+
+Sea E_op=-sign(P)Q la energía neta opuesta al desequilibrio: inyección positiva
+para un déficit, absorción para un exceso. Para evitar TODO sobrepaso es
+necesario, si el lado derecho es positivo,
+
+  E_op > |P|/d0 [E_sec-m-kappa].                           (4)
+
+La desigualdad es estricta porque nu(0)=0 y Omega!=0, de modo que una respuesta
+continua sin sobrepaso tiene sign(P)A>0. La versión >= es una relajación válida.
+No es suficiente: tener esa energía no construye un controlador seguro.
+Si el lado derecho no es positivo, (4) no da un mínimo positivo de energía.
+
+Un almacenamiento que descarga y después recarga hasta Q=0 puede desplazar el
+sobrepaso a un tiempo tardío y hacerlo pequeño; no puede eliminarlo bajo
+estas mismas hipótesis. La ley NO da directamente una violación de 0.5 Hz.
+
+Hay una consecuencia de área más robusta que exigir nadir exactamente nulo:
+  O=integral [sign(P)(nu_COI-Omega)]_+ dt
+     > |P|(E_sec-m-kappa)/d0^2 - E_op/d0
+cuando el lado derecho es no negativo. Se debe a O-U=-sign(P)A y a U>0 al
+inicio. Para convertir área en pico hace falta una duración o una cota de
+cola demostrada; sin ella no existe la cota de pico que se busca.
+
+5. GSP, FLUJOS Y CORTES: QUÉ HACE REALMENTE LA RED
+
+Para autovectores ortonormales u_k de Lbar, lambda_k>0 fuera de la rotación:
+
+  E_sec=sum_{k>0} |u_k^T b|^2/lambda_k
+       =min_{Bf=b} sum_e f_e^2/wbar_e.                     (5)
+
+El mínimo se alcanza en f=diag(wbar) B^T Lbar^dagger b; cualquier flujo de
+ciclo adicional añade coste cuadrático no negativo. Esta identidad no dice
+que añadir una línea física empeore necesariamente un transitorio.
+
+Para cualquier corte C de nodos, Cauchy-Schwarz da
+  E_sec >= b(C)^2 / sum_{e en frontera C} wbar_e
+        >= b(C)^2 / sum_{e en frontera C} omega_b gamma_e, (6)
+  b(C)=sum_{i en C}(D0 1)_i - d0 sum_{i en C} M_i/m.
+
+La interpretación física es concreta: un desequilibrio regional entre el
+damping y la inercia debe ser transportado por la red; los cortes débiles y
+los modos con lambda pequena amplifican su coste. No basta sumar damping.
+Las identidades de flujo, pseudoinversa y Fourier de grafo son clásicas;
+la candidata específica es su papel en la restricción no lineal (2)-(4).
+
+6. REGLA DE DISEÑO INERCIA–DAMPING–LATENCIA
+
+En la subfamilia M=alpha M0, D(s)=beta D_base(s), alpha,beta>0, con evento
+d=P M0 1/m0, el endpoint relativo y Lbar no cambian al variar alpha,beta.
+Escriba E0=b0^T Lbar^dagger b0 y kappa0=1^T D_base'(0)1. Entonces
+
+  A/P=[alpha m0+beta kappa0-beta^2 E0]/(beta^2 d00^2)
+                                                       si Q=0. (7)
+
+Para damping de frecuencia con retardos físicos fijos,
+  D_base(s)=diag(d_i exp(-s tau_i)),
+  T_D=sum_i d_i tau_i, kappa0=-T_D.
+Una condición necesaria estricta para ausencia de sobrepaso es
+
+  alpha m0 > beta T_D + beta^2 E0.                        (8)
+
+Si E0>0, beta debe ser menor que
+  [sqrt(T_D^2+4 E0 alpha m0)-T_D]/(2 E0).
+Con beta fijo, (8) da un piso de inercia en ESTA familia. Con datos de cortes,
+E0 puede reemplazarse por la cota necesaria b0(C)^2/Kcut de (6).
+
+Esto no es una condición suficiente de estabilidad ni seguridad. alpha no es
+automáticamente 1-rho del modelo de reemplazo real, porque rho también cambia
+inyecciones, control y otras escalas. beta tampoco es Kp del PLL. No se ha
+demostrado P_GFL máximo usando (8). La condición puede ser muy conservadora
+respecto de un límite operacional que admita algo de sobrepaso.
+
+El primer momento del retardo entra mediante sum_i d_i tau_i. Si todos los
+d_i son iguales, permutar un mismo multiset de retardos no cambia ese término.
+No inferir de (8) un efecto de conmutador chi_tau o una diferencia espacial de
+frontera que no demuestra; esos efectos pueden aparecer en otros momentos/modos.
+
+7. PÉRDIDAS: DEFECTO EXACTO, NO EXCUSA PARA IGNORARLAS
+
+Si 1^T F(q,V)=ell(t) y la potencia previa satisface 1^T p0=ell0, entonces
+  Omega=(P+ell0-ell_inf)/d0,
+  A=[(m+kappa)Omega+b_L^T delta+I_loss-Q]/d0,
+  I_loss=integral_0^infty [ell(t)-ell_inf]dt.               (9)
+
+Para dos controles con iguales endpoints, M,D y Q, la diferencia de áreas
+es exactamente Delta I_loss/d0 en este modelo. Así la invariancia lossless
+se rompe por un término observable de pérdidas, incluso con potencia neta
+suplementaria cero. Con un encierro riguroso de ese término se podría obtener
+una versión robusta, pero un rango observado no es un certificado.
+
+El IEEE-39 completo también tiene voltajes, energía DC, filtros y estados SG:
+deben entrar en su balance real. Los sensores Q2B guardan pérdidas, potencias
+terminales/mecánicas, SG_Hz y Vdc, pero no todos los estados de energía. Su
+balance_error_MW es cierre KCL, no balance energético total. Por eso no se
+declara todavía verificada (9) para el modelo completo.
+
+Versión a tiempo finito, para no ocultar una recarga tardía:
+  A_T=integral_0^T(Omega-nu_COI)dt,
+  Q_T=integral_0^T 1^T u dt,
+  R_D(T)=integral_0^infty h(v)
+            [integral_max(0,T-v)^T nu(a)da]dv.
+Si h es el kernel de D y delta_T es la forma q(T)-q0, el balance exacto es
+  d0 A_T=m nu_COI(T)+b_L^T delta_T-1^T R_D(T)
+         +integral_0^T(ell-ell_inf)dt-Q_T.                (9b)
+El término de historia desaparece para damping instantáneo; al infinito
+-1^T R_D(T)->kappa Omega. La fórmula no predice por sí sola estados terminales.
+Para una cota operacional antes de simular hacen falta encierros de velocidad,
+forma, pérdidas y memoria a T. O_T>=max(0,-sign(P)A_T) es una cota de área
+de sobrepaso dentro de la ventana. No se omite el estado de energía al final.
+
+Si se demuestra, en el caso lossless, un tubo terminal
+  |[m nu_COI(T)+b_L^T delta_T-1^T R_D(T)]
+      -[(m+kappa)Omega+b_L^T delta_inf]| <= epsilon_T,
+la ausencia de sobrepaso hasta T requiere
+  E_op,T > |P|(E_sec-m-kappa)/d0 - epsilon_T.              (9c)
+epsilon_T tiene unidades de energía. Esta cota sigue siendo útil aunque el
+almacenamiento recargue después de T. Para retardo diagonal, cotas uniformes
+en la última ventana de memoria dan
+  epsilon_T <= m*epsilon_omega + epsilon_delta
+                 +sum_i d_i tau_i epsilon_i,
+donde epsilon_delta acota |b_L^T(delta_T-delta_inf)| y epsilon_i acota
+|nu_i-Omega| en [max(0,T-tau_i),T], con T>=max_i tau_i si se quiere excluir
+historia previa. No se ha certificado ese tubo para el IEEE39.
+
+8. EJEMPLO NO LINEAL CON PRUEBA DE CONVERGENCIA, SIN SIMULACIÓN
+
+Unidades adimensionales, omega_b=1. Dos nodos:
+  M=diag(41/80,41/80), D=diag(3,1), F=(sin z,-sin z),
+  z=q1-q2, q0=0, nu0=0, d=(1,1), u=0.
+Entonces m=41/40, d0=4, P=2, Omega=1/2, b=(1,-1).
+El endpoint cohesivo es z_inf=-pi/6 y E_sec=pi/3.
+
+  A=(123-40*pi)/960 = -0.0027746938995747185.
+  A_linearizado_en_q0=1/320 = +0.003125.
+
+El momento basado en el Jacobiano inicial no detecta el sobrepaso; su signo
+positivo NO prueba por sí mismo ausencia de sobrepaso. La ley finita sí lo
+fuerza aquí. La energía opuesta necesaria para eliminarlo es mayor que
+  (40*pi-123)/240 = 0.011098775598298874.
+Ese número no está en MW*s reales: el ejemplo es adimensional.
+
+Prueba de convergencia de la respuesta sin control suplementario: en el marco
+rotante, la energía es
+  V=0.5(nu-Omega1)^T M(nu-Omega1)+1-cos z+z/2,
+  Vdot=-(nu-Omega1)^T D(nu-Omega1)<=0.
+V(0)=41/320 < min{V(z=pi/2),V(z=-pi/2)}=1-pi/4.
+La solución permanece en |z|<pi/2; las velocidades relativas están acotadas
+y la única sincronía en esta región tiene z=-pi/6. LaSalle en el cociente
+rotacional da convergencia; la estabilidad local exponencial asegura la
+integrabilidad usada. No se asumió convergencia al concluir el ejemplo.
+
+check_endpoint_law.py reproduce los valores exactos con SymPy, la barrera,
+el balance y las identidades secante/flujo/GSP/corte en otra red estática de
+seis nodos. ENDPOINT_LAW_CHECKS.json contiene versiones y hash del script.
+El residual secante fue 4.58e-16. Esto verifica álgebra, no la física IEEE-39.
+FIG_ENDPOINT_AREA_ANALYTIC.png grafica endpoints, no trayectorias simuladas.
+
+9. SEGUNDA LEY: CONFLICTO EXACTO ENTRE COMPENSAR UN POLO PLL Y EL ÁREA
+
+Esta consecuencia usa el modelo PLL/DDAE real linealizado de los PDF1 y la
+planta fija, no el swing anterior. Sea lambda=a+i w un polo simple oscilatorio.
+Al variar sólo tau_i=h+tau_i0 y retunar sólo su Kp_i,Ki_i para mantener lambda,
+la rama real exacta ya derivada en el proyecto satisface
+  dKp_i/dh=2a Kp_i+Ki_i,
+  dKi_i/dh=-|lambda|^2 Kp_i.
+La ley de momentos previamente demostrada da, para cada área normalizada
+calibrada por su salida DC no nula,
+  Delta A_j=weight_i [1/Ki_i(h)-1/Ki_i(0)].
+Por tanto
+
+  d A_j/dh=weight_i |lambda|^2 Kp_i(h)/Ki_i(h)^2.           (10)
+
+Con weight_i!=0, Kp_i,Ki_i>0, no puede conservar simultáneamente ese polo
+complejo y todas esas áreas retunando sólo un PLL. El peso es el residuo de
+red firmado ya calculado, no una centralidad elegida. Aumentar el área no se
+llama automáticamente empeorar el nadir: es una integral firmada.
+
+Excepciones: weight_i=0, modificar otros controladores, conservar sólo Re(lambda)
+y permitir que cambie su frecuencia, cambiar planta/rho o arquitectura.
+La rama debe seguir físicamente admisible y todo el sistema debe permanecer
+estable para interpretar la integral. Preservar el polo no garantiza esto.
+Es EXACT_IDENTITY bajo esas hipótesis; no se ejecutó un nuevo test dinámico
+de (10). Su novedad bibliográfica específica sigue por establecerse.
+
+10. ORO EMPÍRICO RECUPERADO Y LÍMITES
+
+A. Q2B CERTIFIED_SEARCH es posterior al resumen raíz desactualizado.
+TERMINAL_SUMMARY.json reporta 312.523288435 MW SG, 5090.237801544 MW GFL,
+94.215489391%, soporte {30,33,35,37,39}; KKT residual 8.28e-7 y SOSC numérico.
+Pero sólo pasa el evento primario y falla bus8/+100MW y bus29/+100MW fuera
+de muestra. No es máximo global ni robusto al conjunto actual de cinco eventos,
+ni experimento DDE de 41 ms. En la lectura de este equipo, sus multiplicadores
+separan anclas para picos de frecuencia de anclas para el requisito resolvente.
+Ver REVIEW_EVIDENCE.txt para fuentes/alcance de cada cifra.
+
+B. El ranking contextual de líneas tiene evidencia IEEE39 y réplica IEEE68.
+La réplica primaria sigue un polo PSS real con efecto diminuto; la evidencia EM
+más material es post hoc. Es soporte para una regla de intervención basada en
+reequilibrio, no prueba confirmatoria de un nuevo mecanismo universal.
+
+C. La reparación TX4 con bus34 es real en el censo archivado, pero SG34 ya es
+el mayor participante del modo H4 (~49.76%). Sin comparación no demuestra que
+nuestro retorno elija mejor que la participación modal. El modo es 98.28% SG,
+no una oscilación dominada por estados PLL. No será la tesis teórica principal.
+
+D. El diseño retardado 41ms de network_moment_codesign conserva 87.646222%
+GFL y pasa cinco eventos. No aumentó el reemplazo ni convergió el optimizador;
+sirve como validación de esa arquitectura, no como evidencia de (2)-(9).
+
+11. NOVEDAD Y DECISIÓN DE PÓSTER
+
+Fuentes primarias que impiden presentar los ingredientes como nuevos:
+- Paganini & Mallada, TAC2020: heterogeneidad, inercia y respuesta agregada.
+  https://mallada.ece.jhu.edu/pubs/2020-TAC-PM.pdf
+- Jiang et al., 2026: frequency shaping, COI sin nadir y tuning modal;
+  usa proporcionalidad y modelo de red linealizado.
+  https://arxiv.org/html/2601.19665v1
+- Kohlhaas & Kotyczka, RE Grid Integration Week2026: damping redistributivo
+  con potencia neta cero, invariancia de RoCoF inicial y endpoint; el abstract
+  reporta nadir casi inalterado. Se verificó el abstract, no el paper completo.
+  https://coms.events/regridweek2026/data/abstracts/en/abstract_0094_0111_0653.html
+- Aalipour & Das, 2022: restricciones integrales y sobrepaso en sistemas no
+  lineales con fuente/almacenamiento. El argumento genérico de área y energía
+  ya existe; la candidata aquí depende específicamente del flujo de red.
+  https://arxiv.org/abs/2012.12493
+- De Persis & Monshizadeh, TAC2018: almacenamiento Bregman para microrredes.
+  La función incremental de energía no es una herramienta nueva.
+  https://arxiv.org/abs/1510.05811
+
+La candidata de aportación es más precisa: identidad de área no lineal por
+endpoints + imposibilidad sobre toda una clase energética de controladores +
+energía necesaria computable mediante grafo secante/cortes + defecto de pérdidas.
+La ausencia de una coincidencia en la búsqueda no prueba prioridad.
+
+Título de trabajo, sólo si supera el puente al modelo eléctrico:
+  Beyond Nodal Damping: Network Limits on Frequency Recovery
+No incluir maximum SG-to-GFL replacement en el título con la evidencia actual.
+
+12. SIGUIENTE VALIDACIÓN MÍNIMA, ANTES DE CUALQUIER BARRIDO
+
+Gate1: derivar del código IEEE39 un balance exacto con SG, DC, filtros, cargas
+y pérdidas; fijar la salida COI y su diferencia con frecuencia de fase/0.5s.
+No insertar una Laplaciana lossless en la DAE con pérdidas por conveniencia.
+
+Gate2: con los mismos archivos archivados Q2B de 1,25,50,100MW y pulse, evaluar
+qué términos de (9) son observables y qué defecto queda. Comparar dos estados
+finales obtenidos del modelo real, sin todavía retunar ni seleccionar casos.
+Es una prueba de alcance del balance; no una validación de retardo PLL.
+
+Gate3: sólo después, un caso nominal y un caso retenido para probar (10), usando
+los pesos y la rama exacta de ganancias, con error de cola declarado. Dos o
+tres controles distintos bastan para falsificar invariancia; no hacen falta
+cientos de optimizaciones. Mantener por separado el test de seguridad.
+
+Gate4: si el defecto de modelo domina el efecto previsto, reportar NEGATIVE_RESULT
+y limitar la teoría a su clase. Si es pequeño y acotable, formular la versión
+con defecto antes de afirmar que la ley explica el IEEE39.
+
+PUBLICACIÓN/POSTER: tenemos una candidata teórica concreta, con prueba y
+contraejemplo al test lineal; no está aún demostrada una contribución completa
+de reemplazo SG/GFL ni un póster que pueda reclamar esa frontera máxima.

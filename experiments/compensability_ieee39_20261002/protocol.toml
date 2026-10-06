@@ -1,0 +1,34 @@
+experiment = "finite_PLL_compensability_same_replacement_mix"
+date = "2026-10-02"
+network = "modified IEEE 39 bus, physical_supply DC convention"
+backend = "compiled PowerDynamics DAE using existing frozen physical model"
+candidate_source = "reports/nonlinear_codesign_20261001/candidate_final_physical.toml"
+
+[fixed_design]
+rho_source = "candidate_final_physical.toml"
+replacement_percent = 90.78544633492469
+retained_sg_MW = 497.8403200319095
+arm_tuned = "per-node Kp and Ki from candidate_final_physical.toml"
+arm_nominal = "Kp=2*pi*5 and Ki=(2*pi*5)^2/4 at every installed GFL"
+
+[events]
+type = "finite preregistered holdout set; examples only, not the theory's input class"
+buses = [8, 16, 29]
+load_setpoint_changes_MW = [-100, 100]
+duration_s = 60.0
+measurement_window_s = 0.5
+sampling_s = 0.005
+frequency_limit_Hz = 0.5
+rocof_limit_Hz_s = 0.5
+voltage_limits_pu = [0.9, 1.1]
+monitored_buses = "all 39"
+
+[method]
+idea = "bounded local PLL recourse envelope followed by nonlinear same-rho validation"
+gain_coordinates = "log(Kp), log(Ki)"
+gain_box_for_linear_envelope = "symmetric log radius log(1.1) around the tuned design, multiplier interval [1/1.1,1.1]"
+linearization_source = "existing 60-s SDIRK tangent at dt=0.025 s plus analytic descriptor modal gradient at the frozen candidate"
+curvature_remainder = "not certified in this experiment"
+robust_over_all_bounded_inputs = false
+global_optimality_claim = false
+current_and_dc_energy_hardware_limits_certified = false

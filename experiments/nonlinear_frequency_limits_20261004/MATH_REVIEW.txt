@@ -1,0 +1,356 @@
+REVISIÓN MATEMÁTICA INDEPENDIENTE — EVENTOS FÍSICOS FIJOS
+2026-10-04. No se ejecutaron simulaciones dinámicas. No se editó THEORY.tex.
+
+VEREDICTO PRINCIPAL
+
+El pivote de COI a buses físicos fijos es correcto y fortalece mucho el resultado.
+Para una red swing lossless con memoria fija, evento físico fijo y endpoint
+fijo, las áreas de frecuencia de cada bus dependen de la inercia TOTAL pero no
+de su ubicación. En un evento localizado, el bus perturbado tiene exactamente
+la restricción de área más exigente, representada por una resistencia secante.
+Esto produce un piso necesario de inercia y un LP exacto para la relajación de
+retención/energía. El piso instantáneo es además un ínfimo alcanzable por controles
+balanceados en una familia de dos nodos, sin límites de potencia.
+
+Las restricciones siguen siendo de área/no-sobrepaso, no de estabilidad global,
+RoCoF, tensión o reemplazo real SG/GFL. El observable y la ventana de medición
+deben fijarse antes de optimizar: mover la inercia cambia el propio COI, pero no
+cambia qué bus físico se está observando.
+
+1. MODELO, EVENTOS Y SUPUESTOS
+
+Se usan las unidades de la síntesis principal: q=theta/omega_b, nu=qdot en p.u.
+  M nudot+(h*nu)(t)+F(q)=p0+d_e 1_(t>=0)+u_e(t).
+M=diag(x_i)>0, m=sum_i x_i. F es rotacionalmente invariante y 1^T F=0.
+El equilibrio inicial satisface F(q0)=p0 y nu(t)=0 para t<=0.
+La memoria causal es fija, con transformada D(s)=D0+s D1+o(s), primer momento
+absoluto finito, d0=1^T D0 1>0 y kappa=1^T D1 1. Se admiten átomos de retardo
+y damping instantáneo. No se incluye una derivada de delta sin extraer antes
+su contribución a la inercia.
+
+Cada evento e tiene vector físico FIJO d_e y P_e=1^T d_e no nulo. No se cambia
+su reparto al variar M. Se exige u_e(t)->0 y energía neta
+Q_e=integral_0^infty 1^T u_e(t)dt finita. La trayectoria considerada converge
+con transitorios integrables a frecuencia Omega_e=P_e/d0 y forma delta_e:
+  q(t)−q0−Omega_e t1 -> eta_e,inf,
+  delta_e=eta_e,inf modulo una rotación uniforme.
+
+El endpoint satisface
+  F(q0+delta_e)−F(q0)=d_e−Omega_e D0 1.                          (1)
+Por ello delta_e no depende de M ni del control transitorio, siempre que se
+mantenga la misma rama única y u_inf=0. No necesita que d_e sea proporcional a M.
+Cambiar D0, la red, el equilibrio previo o la inyección final cambia el endpoint.
+La convergencia es hipótesis general, no algo demostrado por pasar una LP.
+
+Definir
+  c_L=D0^T1/d0, c_R=D0 1/d0, sum c_L=sum c_R=1,
+  v_e=delta_e/P_e.
+Para las leyes positivas de resistencia se requiere D0 simétrica, normalmente
+diagonal positiva, por lo que c_L=c_R=c>0. La identidad de área no exige simetría.
+
+2. LEY EXACTA PARA UN BUS FIJO Y VENTANA CAUSAL
+
+Sea A_j,e=integral_0^infty(Omega_e−nu_j(t))dt. Entonces
+  A_j,e=P_e(m+kappa)/d0^2+c_L^T delta_e−delta_e,j−Q_e/d0.        (2)
+
+Prueba. Del balance sumado y el momento del kernel,
+  (m+kappa)Omega_e+1^T D0 eta_e,inf=Q_e.
+Por otra parte A_j,e=−eta_e,inf,j. Escribir eta_e,inf=delta_e+a1; el balance
+determina a=[Q_e−(m+kappa)Omega_e]/d0−c_L^T delta_e y da (2).
+La combinación c_L^T delta_e−delta_e,j es invariante de gauge.
+
+En particular todas las áreas de buses son independientes de la DISTRIBUCIÓN
+de x cuando m es fijo. Esa afirmación no implica que los picos, modos, transitorios
+o estabilidad sean independientes de dónde se pone la inercia.
+
+Para la frecuencia medida con ventana común W>=0,
+  nu_j,W(t)=[q_j(t)−q_j(t−W)]/W,
+con historia constante antes del evento (W=0 denota frecuencia instantánea),
+la convolución rectangular tiene media temporal W/2. Exactamente,
+  A_j,e,W=A_j,e+Omega_e W/2,
+  A_j,e,W/P_e=(m+kappa)/d0^2−phi_e,j−Q_e/(d0 P_e)+W/(2d0),      (3)
+  phi_e=v_e−1(c_L^T v_e).
+La ventana actúa como un incremento aparente d0 W/2 en esta área; no crea
+inercia física. Aplicar sin corrección el piso instantáneo a la métrica de fase
+de 0.5 s sería un error.
+
+Para ventanas distintas W_j hay que maximizar phi_e,j−W_j/(2d0), no phi_e,j.
+La afirmación posterior sobre el bus perturbado usa una ventana COMÚN.
+Para salidas con saltos algebraicos, historia distinta o impulsos de fase, debe
+revisarse la interpretación de frecuencia y la estrictitud inicial: el modelo
+M>0 de este teorema tiene q y nu continuas.
+
+3. NO-SOBREPASO EN TODOS LOS BUSES: PISO NECESARIO
+
+Definir el servicio exactamente como
+  sign(P_e)[nu_j,W(t)−Omega_e]<=0, para todos j y t>=0.
+Con historia nula, continuidad y P_e no nulo, esto implica A_j,e,W/P_e>0:
+la diferencia normalizada es positiva durante un intervalo inicial.
+Por tanto es necesario
+  m > F_e+(d0 Q_e/P_e),
+  F_e=−kappa+d0^2 max_j phi_e,j−d0 W/2.                        (4)
+Para varios eventos independientes, tomar el máximo de sus lados derechos.
+Usar >= en una optimización es el cierre NECESARIO de estas desigualdades;
+no convierte un punto de igualdad en una solución real sin sobrepaso.
+
+Si c>0 y delta_e no es constante, max phi_e,j>0. Para damping instantáneo y
+W=0, esto da un piso positivo siempre que el endpoint cambie de forma. En una
+rama conectada/cohesiva con D0 simétrica, ello sucede cuando d_e no es
+proporcional a D0 1. Memoria con kappa negativo eleva el piso; una ventana causal
+lo reduce y puede volverlo vacuo. No hay piso positivo garantizado para cualquier
+kernel, ventana, evento o criterio de frecuencia.
+
+La condición excluye no-sobrepaso de al menos un bus si falla. No determina qué
+trayectoria es estable, cuál es el nadir máximo ni una violación de 0.5 Hz.
+Puede haber sobrepaso pequeño o tardío. Tampoco se normaliza por P=0: eventos
+de redistribución con potencia neta cero requieren una versión no normalizada.
+
+4. EVENTO LOCALIZADO: PRINCIPIO DEL MÁXIMO Y RESISTENCIA SECANTE
+
+Supóngase F=grad U y una rama cohesiva donde
+  Lbar_e=integral_0^1 J_F(q0+t delta_e)dt
+es una Laplaciana conectada positiva en 1-perp. Para la red seno,
+  Lbar=B diag(wbar_l)B^T,
+  wbar_l=omega_b*gamma_l*integral_0^1
+          cos(omega_b*B_l^T(q0+t delta_e))dt >0.
+El endpoint general da
+  Lbar v_e=a_e−c, a_e=d_e/P_e,
+  phi_e=(I−1c^T)Lbar^dagger(a_e−c).                            (5)
+Esto es exacto FINITO; Lbar no se sustituye por J_F(q0).
+
+Para d_e=P_e e_k, tanto déficit como exceso de potencia,
+  Lbar v_e=e_k−c.
+Si j!=k fuera un máximo de v, (Lbar v)_j=sum_l w_jl(v_j−v_l)>=0,
+contradiciendo (e_k−c)_j=−c_j<0. Luego el máximo está exactamente en k y
+  max_j phi_e,j=phi_e,k
+     =(e_k−c)^T Lbar^dagger(e_k−c)=R_c(k)>0.                   (6)
+Es el bus limitante para esta ÁREA; no se ha demostrado que sea el de mayor
+nadir, participación modal o tiempo de establecimiento.
+
+Interpretaciones equivalentes clásicas:
+  R_c(k)=sum_(l>0) |u_l^T(e_k−c)|^2/lambda_l
+        =min_(Bf=e_k−c) sum_l f_l^2/wbar_l.
+También, con resistencias entre pares R_ij,
+  R_c(k)=sum_i c_i R_ki−0.5 sum_ij c_i c_j R_ij.
+La cantidad mide la caída/energía de transporte entre una inyección unitaria
+en k y una extracción distribuida según el damping DC; no es una centralidad
+escogida por conveniencia. Los ingredientes espectrales/Thomson son clásicos;
+su consecuencia física aquí es el piso de frecuencia (4).
+
+Para cualquier corte C que contenga k,
+  R_c(k)>=(1−c(C))^2 / sum_(l en cut C) wbar_l
+        >=(1−c(C))^2 / sum_(l en cut C) omega_b gamma_l.         (7)
+Prueba: en la fórmula variacional de la pseudoinversa elegir un potencial
+constante a cada lado del corte y optimizar su diferencia. La segunda cota usa
+wbar_l<=omega_b gamma_l. Es una cota necesaria aun sin resolver los endpoints.
+Para D0 diagonal, d0^2(1−c(C))^2 es el cuadrado del damping fuera del corte.
+Un corte débil produce un requisito de inercia/energía; no una prueba suficiente
+de seguridad al reforzarlo. Cambiar una línea también modifica Lbar y los
+equilibrios: no se infiere monotonicidad de todo el transitorio.
+
+5. LP DE RETENCIÓN Y ENERGÍA: QUÉ ES EXACTO Y QUÉ ES SÓLO NECESARIO
+
+Fijar D(s), F, los eventos, sus ramas finales, ventanas y Q_e. Definir
+  Fstar=max_e[F_e+d0 Q_e/P_e].
+Considérese el contrato INERTIA-ONLY
+  M_i=M_i,fixed+M_i0 epsilon_i,
+  l_i<=epsilon_i<=u_i, M_i0>0,
+  coste/MW retenidos=sum_i P_i epsilon_i, P_i>=0.
+Toda solución sin sobrepaso debe satisfacer
+  m_fixed+sum_i M_i0 epsilon_i > Fstar.                         (8)
+El problema cerrado
+  minimizar sum_i P_i epsilon_i
+  sujeto a caja y m_fixed+sum_i M_i0 epsilon_i>=Fstar            (9)
+es una relajación necesaria cuyo óptimo es un límite inferior de retención.
+Si es infactible, la familia no puede satisfacer el servicio bajo los supuestos.
+Si es factible, no demuestra estabilidad, no-sobrepaso, capacidad de corriente,
+ni existencia de un control implementable.
+
+La solución de (9) es fractional knapsack: empezar en epsilon=l, ordenar
+P_i/M_i0 de menor a mayor y llenar capacidad de inercia hasta cubrir el déficit.
+Existe un óptimo extremo con a lo sumo un epsilon parcial (empates permiten
+otros óptimos). Esto es dualidad/LP estándar, no un nuevo algoritmo. Si se exige
+retención binaria, usar MILP; el LP sigue siendo cota inferior, no plan binario.
+Si Fstar ya queda por debajo de la inercia mínima física, el bound es vacuo.
+
+La desigualdad física es estricta. El óptimo del cierre es un ínfimo necesario;
+un candidato exactamente en el piso puede no ser admisible. M_i=0 también
+cambia el tipo/soporte del modelo M>0: puede usarse como relajación de cierre
+para una cota inferior, pero no como testigo dinámico sin tratar la nueva DAE.
+
+No llamar (9) mínimo SG del modelo real del repositorio. Retirar SG cambia
+damping, gobernadores, puertos, tensiones, GFL, equilibrio y posiblemente M de
+manera distinta. Sólo si el contrato físico garantiza el modelo inertia-only
+puede interpretarse P_total−opt(9) como cota superior de potencia reemplazable
+para el criterio declarado. No es una frontera de reemplazo validada en IEEE39.
+
+ENERGÍA. Definir E_e=−sign(P_e)Q_e>=0 como energía neta opuesta al evento.
+La relajación necesaria se vuelve
+  m+(d0/|P_e|)E_e>=F_e, para cada evento.                       (10)
+Es lineal en retención y energías. Puede minimizarse coste retenido más coste
+de capacidad bajo E_e<=E_capacity para escenarios alternativos. No sumar
+energías de eventos alternativos como si ocurrieran simultáneamente.
+Con un único SOC inicial y carga/descarga, hay que separar headrooms: al menos
+max_deficit(E_e/eta_discharge)+max_surplus(eta_charge E_e) de capacidad si se
+permite elegir SOC inicial. Son cotas necesarias de energía NETA, no un tamaño
+suficiente de batería ni de potencia; picos de intercambio pueden exigir más.
+
+6. PISO AJUSTADO EN DOS NODOS: PRUEBA CONSTRUCTIVA
+
+Unidades adimensionales, D=I, M=(m/2)I, F=(sin z,−sin z), z=q1−q2,
+d=(P,0), 0<P<2, q0=nu0=0. Considerar controles balanceados u=(u1,−u1)
+sin límites de potencia, u_inf=0, convergentes al endpoint cohesivo
+  Omega=P/2, z*=arcsin(P/2), k=2/m.
+El balance agregado fija EXACTAMENTE, para todo ese control,
+  w=(nu1+nu2)/2=Omega(1−exp(−k t)).
+
+Necesidad. No-sobrepaso de ambos buses, nu1,nu2<=Omega, equivale a
+  |zdot(t)|<=P exp(−k t).
+Por tanto z*=integral zdot<=P/k=mP/2. La igualdad es imposible con zdot continua
+y zdot(0)=0: existe un intervalo inicial de desigualdad estricta. Luego
+  m>2 z*/P                                                      (11)
+es necesario, aun permitiendo acciones balanceadas arbitrarias.
+Es exactamente (4)-(6): c=(1/2,1/2), wbar=P/(2 z*),
+R_c(1)=z*/(2P), d0^2 R_c(1)=2 z*/P.
+
+Suficiencia nominal. Para m>2 z*/P, elegir
+  ell>z* k^2/(P−z* k),
+  a=z* k(k+ell)/ell < P,
+  zdot=a exp(−k t)[1−exp(−ell t)],
+  z(t)=a[(1−exp(−k t))/k−(1−exp(−(k+ell)t))/(k+ell)].
+Entonces z(0)=zdot(0)=0, z_inf=z*, z aumenta dentro de la región cohesiva y
+0<=zdot<P exp(−k t). Definir nu1=w+zdot/2, nu2=w−zdot/2 y
+  u1=(m/4)zddot+zdot/2+sin z−P/2, u2=−u1.                     (12)
+Las ecuaciones sumada y diferencia se verifican exactamente. Ambas frecuencias
+son <=Omega, convergen a Omega y u1->0. La acción es finita para cada m>piso:
+  u1=(m a ell/4)exp(−(k+ell)t)+sin z−P/2.
+Esto prueba que el piso es el ÍNFIMO EXACTO para esta clase nominal de control
+balanceado y no-sobrepaso instantáneo. No sólo se trata de una cota de momentos.
+De hecho (4) impone el mismo piso a toda la clase de controles con Q=0 y endpoint
+fijo. Como el testigo balanceado pertenece a esa clase más amplia, su ínfimo
+también coincide con (11), aunque el argumento de w(t) fijo no se aplique a
+controles que sólo son balanceados en energía al finalizar el evento.
+
+Límites de sharpness: se permite nu2<0 (desviación opuesta al evento), no hay
+límites de potencia, información, ganancia o robustez, y la señal depende del
+evento/modelo conocido. En esta construcción la potencia inicial crece sin
+cota al acercarse m al piso. No atribuir sharpness a controladores limitados
+ni al piso filtrado W>0. Con ventana común, la condición instantánea sí sigue
+siendo suficiente porque promediar una señal siempre <=Omega conserva el límite;
+pero la condición necesaria filtrada es más débil y no se ha probado ajustada.
+
+Ejemplo limpio: P=1, m=41/40 < pi/3=2 z*/P. El COI es exactamente monótono,
+pero algún bus debe sobrepasar Omega para todo control balanceado convergente.
+Este contraste evita confundir una mejora del promedio con servicio local.
+
+7. POR QUÉ NO USAR COMO RESULTADO CENTRAL EL LP DE COI
+
+La fórmula COI para eventos arbitrarios es correcta:
+  A_COI,e/P_e=(m+kappa)/d0^2+c_L^T v_e−x^T v_e/m−Q_e/(d0 P_e).
+Para m fijo, las condiciones cerradas son lineales en x. La desigualdad sin
+normalizar propuesta inicialmente invierte su sentido cuando P_e<0; dividir
+por P_e antes de imponer A/P>0 evita ese error.
+
+En principio min coste con m variable se reduce a una búsqueda GLOBAL 1D de
+LPs. La factibilidad no es monótona en m con límites por sitio. Ejemplo:
+d0=1, c=(1/2,1/2), kappa=0, v=(10,−10), x2=1, x1 in [0,10]. La condición es
+  m^2−10m+20>=0,
+factible en m<=5−sqrt(5) o m>=5+sqrt(5), no entre ambos. Es realizable con una
+línea seno cohesiva: P=.01, delta=(.1,−.1), gamma=.01 y
+d=(P/2+gamma sin(.2), P/2−gamma sin(.2)). No usar bisección asumiendo monotonía.
+
+Más importante: elegir x/m=c para damping instantáneo diagonal hace
+  m wdot+d0 w=P,
+por pequeño que sea m>0. El COI tiene una respuesta monótona exacta, aunque los
+buses puedan violar (4). Además el observable COI cambia cuando cambia x.
+La ley de bus fijo evita ambos problemas y simplifica el lower bound a (9).
+
+8. HORIZONTE FINITO, VENTANA Y RECARGA TARDÍA
+
+Definir delta_T=q(T)−q0 módulo gauge, Q_T=integral_0^T1^T u, y
+  R_D(T)=integral h(dv) integral_(max(0,T−v))^T nu(a)da,
+  R_W,j(T)=(1/W)integral_0^W integral_(max(0,T−v))^T nu_j(a)da dv.
+Con I_loss,T=integral_0^T(ell(t)−ell_inf)dt si se incluyen pérdidas,
+  A_j,W,T=[m w(T)−1^T R_D(T)+I_loss,T−Q_T]/d0
+           +(c_L−e_j)^T delta_T+R_W,j(T).                     (13)
+Es una identidad de auditoría exacta. En lossless I_loss,T=0; para W=0,
+R_W=0. Los límites son −1^T R_D->kappa Omega y R_W,j->Omega W/2.
+
+Para convertirla en una cota previa de energía temporal, definir
+  L_j,T=m w(T)−1^T R_D(T)+I_loss,T
+        +d0[(c_L−e_j)^T delta_T+R_W,j(T)],
+y su valor de endpoint lossless
+  L_j,inf=(P/d0)(m−F_e,j),
+  F_e,j=−kappa+d0^2 phi_e,j−d0 W/2.
+Si se verifica |L_j,T−L_j,inf|<=epsilon_j,T, no-sobrepaso hasta T requiere
+  E_op,T=−sign(P)Q_T > (|P|/d0)(F_e,j−m)−epsilon_j,T.            (14)
+Puede limitar la excursión temporal de almacenamiento aunque se recargue luego.
+
+Para damping retardado diagonal y T>=max(W,max tau_i), una cota suficiente es
+  epsilon_j,T=m*epsilon_COI+sum_i d_i tau_i epsilon_i
+               +d0*epsilon_delta,j+d0*(W/2)*epsilon_j,
+si |w(T)−Omega|<=epsilon_COI, |(c−e_j)^T(delta_T−delta_inf)|<=epsilon_delta,j,
+y cada epsilon_i limita |nu_i−Omega| en TODA su ventana de memoria (y epsilon_j
+en [T−W,T]). Se añade la correspondiente cota de pérdidas si procede.
+Sin tolerancias de fase relativa y memoria, la recarga/obligación puede aplazarse
+fuera de T: no hay un certificado previo de capacidad a partir de (13) solamente.
+
+9. LÍMITES Y EVIDENCIA QUE FALTA
+
+El endpoint/área, pseudoinversa, principio del máximo, Thomson y fractional
+knapsack usan matemática clásica. La capacidad específica candidata es el
+piso de servicio LOCAL no lineal para toda una clase de controles de energía
+neta fija, con corrección exacta de ventana, corte físico y sharpness nominal.
+La prioridad bibliográfica requiere comparar ese contrato completo; no se
+deduce de no encontrar una fórmula idéntica en una búsqueda.
+
+No se ha verificado el traslado a PLL/GFL, no se han construido ganancias
+realistas, no se ha demostrado que pasar el área implique seguridad y no se ha
+ejecutado dinámica nueva. Los endpoints deben certificarse en su rama, y las
+cotas estáticas usadas para un lower bound deben encerrarse con el signo correcto.
+Para certificar un piso necesario se necesita una cota INFERIOR de R_c/max phi;
+una cota superior podría excluir falsamente diseños. Si el piso está por debajo
+del mínimo físico de retención, reportar el resultado como vacuo.
+
+10. REVISIÓN FINAL DE FREQUENCY_LIMITS_SECTION.tex (2026-10-04)
+
+Revisados la sección, verify_closed_form.py y CLOSED_FORM_RESULTS.json.
+La única corrección sustantiva detectada fue declarar damping instantáneo
+en el teorema de sharpness: D0=I por sí solo permite kernels con memoria.
+La versión final ya dice D(s) identicamente I2, sin memoria, y corrige esto.
+
+Pasan la revisión algebraica:
+  d0 A_j,T = m nu_COI(T) - 1^T R_h(T)
+             + d0(c_D-e_j)^T delta_T - Q_T,
+y, si el término independiente de Q_T se encierra con error epsilon,
+  E_op,T > -d0 sign(P) A_j,0 - epsilon.
+La desigualdad estricta usa T>0, continuidad desde reposo y P no nulo.
+Para un kernel de soporte no acotado, la cota de memoria debe incluir toda
+la integral ponderada de R_h y su cola; no basta una ventana finita elegida
+sin acotar esa cola. En damping retardado de soporte finito basta la ventana
+de memoria completa que especifica la sección.
+
+La afirmación bilateral |nu_j|<=Omega de la construcción es correcta:
+  0 <= zdot < P exp(-kt), 0 <= w <= Omega,
+  nu1=w+zdot/2 <= Omega, nu2=w-zdot/2 <= Omega,
+  nu1>=0 y nu2>=-zdot/2>-Omega.
+No se afirma nu2>=0. El control es acotado para cada m estrictamente por
+encima del umbral; no uniformemente al acercarse al ínfimo. La necesidad
+cubre cualquier distribución positiva de M, y la suficiencia exhibe una
+distribución igualitaria y un control instantáneamente balanceado. No hay
+salto lógico entre esos cuantificadores. También sería válido ampliar el
+ínfimo a controles de energía agregada neta cero que respeten las mismas
+hipótesis de convergencia: la necesidad cubre la clase ampliada, y el testigo
+balanceado pertenece a ella. La redacción actual más estrecha es correcta.
+
+El hash SHA256 leído del script coincide con el registrado en el JSON:
+eb8aa5ae383c31641f6a43cf10e2cc63ce1d85587648b9209fca37c715ad2901.
+Sus residuos ODE (máximo 6.66e-16) y cuadraturas comprueban implementación
+de fórmulas cerradas, sin integrar una ODE. No constituyen aritmética de
+intervalos ni prueban por sí solos las desigualdades entre puntos muestreados;
+éstas quedan justificadas por la prueba analítica anterior. No se reejecutó
+el script, ni se modificaron la sección, las figuras o resultados congelados.
+
+Veredicto: no quedan errores matemáticos centrales detectados en la ley
+nodal, energía, resistencia secante y sharpness bajo su contrato explícito.
+La transferencia a IEEE39/PLL sigue abierta y no se deriva de este veredicto.

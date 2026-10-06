@@ -1,0 +1,11 @@
+candidate_id,gain_kind,bus,delta_log_gain,path
+pending_41ms,BASE,,0.0,designs/pending_41ms.toml
+pending_probe_Kp33_plus,Kp,33,0.001,designs/pending_probe_Kp33_plus.toml
+pending_probe_Kp34_plus,Kp,34,0.001,designs/pending_probe_Kp34_plus.toml
+pending_probe_Kp35_plus,Kp,35,0.001,designs/pending_probe_Kp35_plus.toml
+pending_probe_Kp36_plus,Kp,36,0.001,designs/pending_probe_Kp36_plus.toml
+pending_probe_Kp39_plus,Kp,39,0.001,designs/pending_probe_Kp39_plus.toml
+pending_probe_Ki33_plus,Ki,33,0.001,designs/pending_probe_Ki33_plus.toml
+pending_probe_Ki35_plus,Ki,35,0.001,designs/pending_probe_Ki35_plus.toml
+pending_probe_Ki36_plus,Ki,36,0.001,designs/pending_probe_Ki36_plus.toml
+pending_probe_Ki39_plus,Ki,39,0.001,designs/pending_probe_Ki39_plus.toml

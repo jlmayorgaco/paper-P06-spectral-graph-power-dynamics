@@ -1,0 +1,3 @@
+# Frozen preliminary modal scan
+
+At the **same** 88.45514078456176% replacement vector, interpolate each PLL gain geometrically from stored zero-delay-tuned Design Z (η=0) to stored nominal Design N (η=1). Evaluate η=0,0.1,…,1.0. This scan is for modal-family discovery, **not** the optimized controller. Seed all positive-imaginary fast roots from the prior 40 ms Z and seed root catalogues, deduplicate converged roots, and locate local simple-root crossings by exact-characteristic Newton correction. Compare full physical right-vector MAC with the two endpoint templates. An active root in this local catalogue is not a complete rightmost-root certificate; full contour checks are required for headline designs.

@@ -1,0 +1,32 @@
+INDEPENDENT_PARITY (design = "baseline", equilibrium_inf = 2.800618601538812e-9, jacobian_relative = 3.682265253180128e-18, detector_relative = 3.2195778393557836e-16, gauge_relative = 6.161559995161776e-18, detector_gauge = 1.2663582974664823e-16, GFL_MW = 4727.415953731491, SG_MW = 675.3451362473559, pass = true, design_sha256 = "1f807b6bc57e7f92a271e57abdbacb0911e051347888d76c924fc2fe0873741b")
+CONTOUR_START baseline
+M3_A_EDGE_DONE edge=1 tau_ms=40.0 evals=4161
+M3_A_EDGE_DONE edge=2 tau_ms=40.0 evals=12481
+M3_A_EDGE_DONE edge=3 tau_ms=40.0 evals=16641
+M3_A_EDGE_DONE edge=4 tau_ms=40.0 evals=25929
+CONTOUR_DONE (design = "baseline", status = "PASS_NUMERICAL", count = 0, count_real = -1.5545777934477365e-7, count_imag = -4.91923029834863e-16, phase_count = -3.2366354253586795e-16, integer_distance = 1.5545777934477365e-7, quadrature_error = 1.0987441849040923e-5, largest_phase_step = 0.2930833618679052, min_sigma = 0.02891023289271761, radius = 10398.625804701951, evaluations = 25929, seconds = 28.139999866485596, error = "")
+INDEPENDENT_PARITY (design = "analytic", equilibrium_inf = 2.804190353113265e-9, jacobian_relative = 3.218809324910142e-18, detector_relative = 2.560527563049154e-16, gauge_relative = 6.179708141473491e-18, detector_gauge = 8.564314299725878e-17, GFL_MW = 4732.81871482147, SG_MW = 669.942375157377, pass = true, design_sha256 = "b54c134d25d7ef9e70707437867fdbd813df9c65aa70651c8c3b611a8b147123")
+CONTOUR_START analytic
+M3_A_EDGE_DONE edge=1 tau_ms=40.0 evals=4161
+M3_A_EDGE_DONE edge=2 tau_ms=40.0 evals=12481
+M3_A_EDGE_DONE edge=3 tau_ms=40.0 evals=16641
+M3_A_EDGE_DONE edge=4 tau_ms=40.0 evals=25929
+CONTOUR_DONE (design = "analytic", status = "PASS_NUMERICAL", count = 0, count_real = -9.565525012583046e-8, count_imag = -5.553201538566564e-16, phase_count = 2.2355164965692435e-15, integer_distance = 9.565525012583046e-8, quadrature_error = 1.095390125909605e-5, largest_phase_step = 0.30486473304798356, min_sigma = 0.028918168140627767, radius = 10397.423796899222, evaluations = 25929, seconds = 9.64900016784668, error = "")
+INDEPENDENT_PARITY (design = "fixed", equilibrium_inf = 2.8069511431776328e-9, jacobian_relative = 3.109922560487216e-18, detector_relative = 2.560527563049154e-16, gauge_relative = 6.179394885494261e-18, detector_gauge = 8.564314299725878e-17, GFL_MW = 4732.81871482147, SG_MW = 669.942375157377, pass = true, design_sha256 = "467b012702b49084c5cb99c43e60fcffe3c6cb8e2ae79070a7d610e7ae7ff78f")
+CONTOUR_START fixed
+M3_A_EDGE_DONE edge=1 tau_ms=40.0 evals=4161
+M3_A_EDGE_DONE edge=2 tau_ms=40.0 evals=12481
+M3_A_EDGE_DONE edge=3 tau_ms=40.0 evals=16641
+M3_A_EDGE_DONE edge=4 tau_ms=40.0 evals=25937
+CONTOUR_DONE (design = "fixed", status = "PASS_NUMERICAL", count = 0, count_real = -8.28444815394035e-8, count_imag = -5.496603126266214e-16, phase_count = 1.9247256417090037e-15, integer_distance = 8.28444815394035e-8, quadrature_error = 1.0843417273399935e-5, largest_phase_step = 0.2929163793592483, min_sigma = 0.028916455925317438, radius = 10397.404406253241, evaluations = 25937, seconds = 9.842000007629395, error = "")
+EVENT_START analytic 8 -100.0
+EVENT_DONE (design = "analytic", bus = 8, delta = -100.0, F = 0.4654124510523089, R = 0.1384506005074954, Vmin = 0.9874728511929499, Vmax = 1.0777416329223404, slack = 0.09662304865042588, runtime = 116.3140001296997, pass = true, error = "")
+EVENT_START analytic 16 100.0
+EVENT_DONE (design = "analytic", bus = 16, delta = 100.0, F = 0.44715729423395195, R = 0.1264914042192185, Vmin = 0.9720617223334936, Vmax = 1.0612459567978691, slack = 0.006341307994856327, runtime = 89.86800003051758, pass = true, error = "")
+EVENT_START analytic 16 -100.0
+EVENT_DONE (design = "analytic", bus = 16, delta = -100.0, F = 0.4746236216347366, R = 0.12904352451788845, Vmin = 0.985936014910606, Vmax = 1.0787752486101438, slack = 0.09343436912748718, runtime = 96.5809998512268, pass = true, error = "")
+EVENT_START analytic 29 100.0
+EVENT_DONE (design = "analytic", bus = 29, delta = 100.0, F = 0.4312263417679378, R = 0.1281040195211659, Vmin = 0.9733403369677511, Vmax = 1.0612533791203542, slack = 0.011189958159488311, runtime = 86.59500002861023, pass = true, error = "")
+EVENT_START analytic 29 -100.0
+EVENT_DONE (design = "analytic", bus = 29, delta = -100.0, F = 0.44461876222425595, R = 0.20077414150393427, Vmin = 0.9837004353759219, Vmax = 1.0747909047648097, slack = 0.10289439576901885, runtime = 103.08899998664856, pass = true, error = "")
+VALIDATION_COMPLETE fully_feasible=true

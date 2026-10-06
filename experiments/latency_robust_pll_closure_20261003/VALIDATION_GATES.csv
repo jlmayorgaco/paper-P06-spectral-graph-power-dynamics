@@ -1,0 +1,12 @@
+gate,status,evidence_or_reason
+parent_baseline_parity,PASS,F00_PARENT_REPRODUCTION.csv reconciles Z N previous best from frozen outputs
+fixed_replacement,PASS,Every gain-action rank check asserts identical rho vector
+numerical_full_characteristic_root_coverage,PASS_FOR_ACCEPTED_DESIGNS,ROOT_COVERAGE.csv and safe/unsafe contour checks in each accepted evaluation
+five_zero_delay_nonlinear_events,PASS_FOR_ACCEPTED_DESIGNS,Q0_RESULT.toml and Q0_EVENT_METRICS.csv in event_validations
+positive_delay_linear_method_of_steps,PASS_FOR_REPORTED_BEST,TABLE_F8_POSITIVE_DELAY_VALIDATION.csv with 80 and 160 steps per delay
+positive_delay_nonlinear_five_events,NOT_ESTABLISHED,Full nonlinear delayed DAE/DDE method-of-steps was not executed
+full_model_optimality_KKT,NOT_ESTABLISHED,Only local multimode LP KKT multipliers were computed
+generic_optimizer_comparison,NOT_EXECUTED,No event-constrained generic comparison completed
+multistart_convergence,NOT_EXECUTED,No six-start event-constrained campaign completed
+optimized_nominal_latency_Pareto,NOT_EXECUTED,FIG_F3 contains evaluated design scatter only
+uncertain_load_robustness,INDETERMINATE,Reequilibrated ±1% ZIP-load event solves terminated numerically

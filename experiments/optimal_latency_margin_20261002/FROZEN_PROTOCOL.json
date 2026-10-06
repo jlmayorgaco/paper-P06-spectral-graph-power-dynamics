@@ -1,0 +1,61 @@
+{
+  "created_utc": "2026-10-03T04:35:48.587182+00:00",
+  "git_head": "d0fecb3264aeb855ab6700fc6ef66120d4b6c33c",
+  "git_dirty_at_start": true,
+  "python": "3.13.9",
+  "status": "FROZEN_BEFORE_TARGETED_EVALUATION",
+  "objective": "maximize uniform PLL measurement delay tolerated by exact linear DDE at fixed nodal rho, optimizing only in frozen gain box if materiality gate passes",
+  "spectral_margin_s_inv": -0.05,
+  "uniform_delay_transition_grid_ms": [
+    20,
+    25,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40
+  ],
+  "tau_critical_bracket_target_ms": 0.1,
+  "fixed_gain_replacement_percent_levels": [
+    87.5,
+    87.75,
+    88.0,
+    88.25,
+    88.45514078456176
+  ],
+  "fixed_gain_rho_path": "linear interpolation in generator-MW-weighted replacement between stored seed A and stored best-zero-delay B rho vectors; use exact solved nodal vector at each requested percent",
+  "fixed_gain_Kp_Ki": "uniform stored seed A gains, held fixed at all five replacement levels",
+  "materiality_gate_ms": {
+    "weak_below": 2.0,
+    "strong_at_least": 5.0
+  },
+  "allow_positive_delay_nonlinear_safety_claim": false,
+  "do_not_commit_or_push": true,
+  "source": {
+    "design_A": {
+      "path": "experiments/analytical_delay_codesign_mega_20261002/seed_uniform_875.toml",
+      "sha256": "2bb815e4633b4718ed1c14637b67724505f98a7c1ae9bcf6f222629b4f6cd599"
+    },
+    "design_B": {
+      "path": "experiments/analytical_delay_codesign_mega_20261002/M1_ZERO_DELAY_DESIGN.toml",
+      "sha256": "c9f0bea066c0e7eca0ae028dca7a3d652a28f3fd933f20cca74379df5744ee33"
+    },
+    "trace_count_source": {
+      "path": "experiments/analytical_delay_codesign_mega_20261002/m3_a_trace_integral.jl",
+      "sha256": "669a11bf08d7ebc6bb92b79c72e4e276fde19be6ce116f9db546bba885d343bf"
+    },
+    "root_refinement_source": {
+      "path": "experiments/analytical_delay_codesign_mega_20261002/m3_c_refine_roots.jl",
+      "sha256": "fae8e38ae1b798ef8d940e2759716701bfbd4d28620e7fd88d115cc67c5c8c2d"
+    },
+    "delay_characteristic_source": {
+      "path": "experiments/delay_dressed_replacement_frontier_20261002/DelayCharacteristic.jl",
+      "sha256": "3cdcbba68e03f9a1938f4f33bec035ca6528f853e719787c0fd6511cb1e9c845"
+    },
+    "action_space_source": {
+      "path": "experiments/analytical_delay_codesign_mega_20261002/q56_validate_action_space.jl",
+      "sha256": "34ebd2ccdbaca3509e1b76cf0fe49405a9709ade5a85ff263b46b7cedfa39cca"
+    }
+  }
+}

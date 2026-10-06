@@ -1,0 +1,11 @@
+Ac_reconstruction_relative_residual = 0.0
+state_dimension = 203
+action_rank_bound_PLL = 10
+status = "Q1_Q2_NUMERICALLY_VALIDATED_CONDITIONAL_ON_FIXED_DELAY_CHANNEL"
+delayed_channels = 10
+max_Q2_phase_error_rad = 8.002037056824613e-11
+max_Q2_logabsdet_error = 7.173639460233971e-11
+tau_test_ms = [0.0, 20.0, 40.0]
+max_Q2_operator_relative_residual = 3.1220559576706406e-18
+points_per_delay = 6
+max_Q1_relative_residual = 0.0

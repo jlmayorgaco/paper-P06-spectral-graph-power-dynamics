@@ -1,0 +1,16 @@
+{
+  "status": "PROVED_REDUCED_MODEL",
+  "scope": "two-state scalar-parameter DDE fixture only",
+  "parameter_interval": [
+    "-1/100",
+    "1/100"
+  ],
+  "contour_center": -1,
+  "contour_radius": "1/4",
+  "reference_root_count": 1,
+  "small_matrix_dimension": 2,
+  "uniform_kappa_exact": "12/175",
+  "uniform_remainder_exact": "36/28525",
+  "proof": "On the entire circle min|s+1|=1/4 and min|s+2|>=3/4. exp(-Re(s)/10)<=exp(1/8)<=sum_(k>=0)(1/8)^k=8/7. Matrix norm sqrt(2)<=3/2. Thus kappa<=12/175<1. Baseline has one enclosed root; homotopy preserves its count. The matrix perturbation is affine in p, so H_rem=0. The log-series remainder is bounded by radius*dimension*kappa^2/[2(1-kappa)]=36/28525.",
+  "IEEE39_certificate": false
+}

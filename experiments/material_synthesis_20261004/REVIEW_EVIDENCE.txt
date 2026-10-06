@@ -1,0 +1,270 @@
+INDEPENDENT EVIDENCE / PROVENANCE REVIEW — 2026-10-04
+
+Scope and method
+----------------
+Read-only review of the supplied PDF extractions and repository artifacts; no
+simulations, manuscript rewrites, new statistical claims, or external citation
+verification. This review is the only file created. Paths below are relative to:
+C:/Users/walla/Documents/Github/paper-P06-spectral-graph-power-dynamics
+
+Page numbers are physical PDF pages (the index in docN_pages.json plus one).
+For doc2, the main-body printed page is generally PDF page minus six.
+DOCUMENT_MANIFEST.json in this directory records source filenames and hashes.
+The source PDFs are attachments, not necessarily products of this checkout.
+
+Main finding
+------------
+The four-unit H4 blocker is the best-supported numerical anchor among the
+requested claims: frozen source code, two-language numerical results, all 16
+subset verdicts, device parity, modal agreement, and a byte-verifiable archived
+bundle are present. The node-38/node-34 retuning and three-GFL collector results
+are explicit numerical claims in different PDFs using materially different
+models; their advertised/raw source packages were not located in this checkout
+or the inspected deliverables ZIP inventories. That is a provenance gap, not a
+finding that the PDF calculations are false.
+
+1. H4 = {30,33,35,37}: reproduced result and essential boundaries
+----------------------------------------------------------------
+PDF source: doc3, pp. 6–7; doc2, p. 35; doc3 pp. 10–11 for proposed extensions.
+
+Exact evidence:
+  results/TX4_EXACT_P4_HEADLINE.json
+  results/TX4_EXACT_P4_V4_CROSSCODE.csv
+  results/TX4_GFL11_DEVICE_PARITY.csv
+  results/TX4_EXACT_P4_MODE_MATCH.csv
+  results/TX4_EXACT_P4_STATE_COUNTS.csv
+  results/TX4_EXACT_P4_ALLSG_PARITY.csv
+  results/TX4_EXACT_P4_REPRO_MANIFEST.json
+  reports/TX4_EXACT_P4_JULIA_FINAL_REPORT.md
+  code/tx4/run_tx4_exact_p4_python.py
+  code/tx4/run_tx4_exact_p4_ieee39.jl
+  code/tx4/compare_tx4_exact.py
+  deliverables/TX4_EXACT_P4_JULIA_REPRO.zip
+
+The frozen policy is (g,k,t,h)=(0.03625,1.425,1.5,1.0). The full H4 case has
+86 differential states: four 11-state GFL devices and six 7-state SGs. All 15
+proper subsets are stable, whereas the full H4 is unstable in both implementations.
+The checked 16-row CSV gives:
+  Python alpha = +0.1270064680506376 s^-1;
+  Julia alpha  = +0.12700646832229723 s^-1;
+  Python frequency = 0.6222796695029233 Hz;
+  Julia frequency  = 0.6222796695187043 Hz;
+  critical voltage-mode MAC = 0.9999999999999988.
+All 16 stable/unstable verdicts agree. This is same-model cross-language
+reproduction. It is not independent validation against a different controller,
+EMT model, manufacturer implementation, or field measurement.
+
+Cheap independent provenance check executed for this review: all 33 files in
+the manifest match the SHA-256 values inside TX4_EXACT_P4_JULIA_REPRO.zip.
+In the current checkout, 15 match byte-for-byte; 17 match after CRLF-to-LF
+normalization; the remaining Julia file has identical decoded splitlines to
+the archived file (mixed line endings). No substantive code difference was
+found by this comparison. The manifest records commit
+02fad7f88cbb63f1383e70f10fc33ee636f4026a, Python 3.13.14, Julia 1.11.9.
+This audit verified the artifacts; it did not rerun either simulator.
+
+The physical collective-closure interpretation has separately traceable evidence:
+  docs/TX4_FINAL_MODAL_SCOPE_REPORT.md
+  results/TX4_FINAL_MODAL_SCOPE_HEADLINE.json
+  results/TX4_TRUE_COLLECTIVE_SUBSET_FACTORS.csv
+  results/TX4_V9_GLOBAL_VS_EM_TRUTH.csv
+
+The corrected headline gives minimum physical local-factor singular value
+0.2973268809593455 over the inspected sweep, collective singular value
+1.261484530209848e-8, proper-subset collective minimum 0.2945460505423897,
+distance of the relevant Q eigenvalue to -1 of 3.509875e-8, contextual-return
+distance to +1 at most 2.280538e-7, and Schur residual at most 3.625891e-16.
+Use the corrected physical factors I+M_ii. The identity diagonal of the normalized
+I+Q is not a test of physical local regularity. The older
+results/TX4_CONTEXTUAL_RETURN_AT_BOUNDARY.csv reports normalized local values
+of one and must not substitute for the corrected physical-factor evidence.
+
+The same-policy V9 comparison is a mandatory scope limit: 511/512 agreement in
+the targeted EM band does not imply global safety. Complete-spectrum agreement
+is 402/512, with 110 false-safe cases, all classified as aperiodic. Do not recycle
+the archived mixed-policy 395/512 number or call the selected-mode screen a
+complete stability certificate. The full H4 subset census and the reduced
+predictor's generalization across V9 answer different questions.
+
+Minimal blocker cardinality four also does not prove a genuinely fourth-order
+Möbius interaction. Doc2 p. 21 explicitly constructs an additive margin whose
+four-member set fails while every proper subset passes. Claim finite collective
+incompatibility and local-factor regularity; establish irreducible interaction
+order separately if it is part of the novelty claim.
+
+Doc3 p. 6's statement that exact custom-GFL cross-language reproduction is not
+fully established is stale relative to the archived exact-GFL11 result above.
+Its phasor TDS checks do not become EMT validation because this gap was closed.
+The later topology/Green-residue ranker in doc3 p. 10 is explicitly proposed;
+the PDF's existing topology census is not an executed blind ranking test.
+
+2. Node 38 versus node 34: a different, reduced R1 experiment
+-----------------------------------------------------------
+PDF source: doc2 p. 2 and pp. 28–35; reproduction contract pp. 40, 45–46.
+
+At the R1 nine-GFL baseline, alpha=+0.091025 s^-1. Raising the PLL natural
+frequency by 10% at bus 38 gives alpha=-0.061419 s^-1, while the same change at
+bus 34 gives +0.191664 s^-1 (p. 32). The fixed-damping-ratio parameterization
+is Kp multiplied by r and Ki multiplied by r^2, with zeta_PLL=0.8. It is not
+a Kp-only perturbation. The reported log-frequency sensitivities are -1.243884
+at bus 38 and +1.143242 at bus 34. The bus-38 action is the least |log(r)| among
+36 enumerated one-bus actions meeting alpha<-0.05; no continuous/global optimum
+was established by that enumeration.
+
+R1 is not TX4/GFL11. It uses constant-magnitude SG internal sources, swing and
+first-order governor dynamics, normalized PLL and complex-current lag GFLs,
+constant-PQ loads, and a finite SG at bus 39. Its relative-frame state count is
+3*n_SG-1+4*n_GFL: 29 all-SG, 33 for H4, and 38 for nine GFL plus one SG
+(doc2 pp. 28–29). A first-order current lag is not a pure digital time delay.
+
+Doc2 p. 35 reports that all 16 H4 portfolios are stable in R1 at PLL 5 Hz,
+also in its 2-Hz and 12-Hz censuses. The margin rises from 0.0811384 to
+0.1043014 s^-1 from empty set to H4. This is explicit model dependence,
+not a contradiction of the 86-state TX4 result. Its fourth-order Möbius value
+1.29249e-4 does not establish a dominant fourth-order mechanism. Its global
+margin context reversal need not represent reversal of the same tracked mode.
+
+Other R1 claims belong to this same unlocated source package: re-equilibrated
+branch strengthening 26–29 versus 8–9 (p. 34), and 100-MW availability/reference
+loss, 12-s linear response, worst-frequency bus 31 versus worst 100-ms RoCoF
+bus 34 (pp. 35–37). The event is not a physical converter trip. These bus rankings
+must not be merged with the current delayed-model window-frequency rankings.
+
+The PDF advertises code/explore.py, campaign.py, design_extension.py,
+structural.py, control_actions.py, figures_tables.py; load_step_ranking.csv;
+metadata.json and a SHA-256 package manifest. Those named campaign scripts and
+CSV were not found by targeted repository filename searches, and their names
+were absent from the inspected deliverables ZIP inventories. The repository's
+code directory instead contains the TX4 package. Therefore the PDF's numbers
+are attributable and internally interpretable but not independently reproducible
+from the located R1 artifacts here. Obtain the exact R1 package before elevating
+these results into a repository-backed headline or regenerating its figures.
+
+3. 43.9% Fiedler improvement / damping 5.152 -> 2.876 -> 5.326
+----------------------------------------------------------------
+PDF source: doc5 abstract p. 1, Table V and sections E–F p. 22, Fig. 9 p. 23.
+
+The 43.9% is (5.117/3.556-1)*100 from the retained-port Fiedler values of a
+closed versus radial single-POI collector. Damping falls from 5.152% to 2.876%
+(44.2% relative loss). The recommended radial two-POI (25,26) case has 5.326%
+minimum damping and Fiedler 8.549. Table V's other radial two-POI (25,29)
+case has 5.327%; those nearby numbers refer to different topologies, not a typo.
+
+This is an IEEE-39 PLUS three-project cluster: new buses 40–42 at 345 kV inject
+95 MW each, totaling 285 MW. Every topology gets a new nonlinear AC solution;
+the full P-Q injection Jacobian is formed; constant-PQ load buses are eliminated;
+angle/frequency/voltage/PLL/reactive-control states are retained. Nominal reduced
+GFL gains are Kp=13 and Ki=400. These are declared transparent surrogates,
+not manufacturer models. It is an added-project connection study, not an
+SG-to-GFL replacement-fraction study and not the TX4 H4 experiment.
+
+All six Table V cases are stated to be AC feasible and asymptotically stable.
+The relevant failure is the selected 5% damping screen. The loop-closure sweep
+crosses that screen near 0.543; the reduced cycle-return magnitude becomes
+order one near 0.488. Neither event makes rho(H+)=1 a universal stability
+threshold. A single-POI radial/closed mode comparison is 7.98/7.51 Hz, whereas
+the radial two-POI design's limiting mode is 2.64 Hz. Do not describe the full
+5.152 -> 2.876 -> 5.326 sequence as one continuously tracked eigenpair unless
+the absent tracking data establish that identity.
+
+The PDF preserves important negative results. For its 10-MW, 100-ms pulse at
+bus 40, closed versus recommended radial (25,26) frequency deviation is
+0.152 versus 0.175 Hz, PLL angle error 1.93 versus 2.36 degrees, and voltage
+deviation 1.44e-3 versus 7.21e-4 pu. Better damping does not improve every
+reported transient output. Gmax remains near eight; the paper expressly does
+not demonstrate a non-normal Braess effect (p. 22).
+
+The source code, six-topology CSV, 31x33 closure/Kp sweep, AC operating points,
+localization records, and pulse traces for this package were not located.
+Targeted searches covered collector/three_gfl/cluster filenames and the
+characteristic numerical claims in textual artifacts; deliverables ZIP member
+lists also lacked the matching campaign identifiers. Appendix M (p. 28) states
+what a submission-ready implementation SHOULD archive, rather than identifying
+a deposited runnable artifact. Thus these are PDF-only measurements for this
+audit. Do not reconstruct raw data from the PDF table and present it as a
+reproduced simulation.
+
+Other doc5 numbers share that provenance status, including its 17,664 and
+23,000 action-pair scans (p. 21), 1,023 collector cases, and connected-calculus
+random identity checks (p. 20). Their explicit counts are not additional
+independent confirmations when all originate in this one unlocated package.
+The controller-frequency example on p. 21 is 5.1 -> 4.8 rad/s, not Hz.
+
+4. Existing TX3 calculus artifacts are not the doc5 collector package
+--------------------------------------------------------------------
+The similarly named repository package has its own frozen evidence and limits:
+  reports/papers/tx3_connected_intervention_calculus/TX3_FINAL_CLAIM_FREEZE.md
+  reports/papers/tx3_connected_intervention_calculus/TX3_FINAL_PACKAGE_README.md
+  reports/papers/tx3_connected_intervention_calculus/TX3_FINAL_VALIDATION_SUMMARY.md
+  artifacts/tx3/critical_mode_baseline_audit/CRITICAL_MODE_BASELINE_AUDIT_DECISION.json
+  artifacts/tx3/E05D_weak_grid/baseline_calibration/E05D_BASELINE_ELIGIBILITY.parquet
+
+This is a frozen matched IEEE-39/three-GFL ANDES finite-DAE action campaign,
+with actions A1–A8. Its supported story is finite re-equilibrated pair/triple
+externalities, connected reconstruction, descriptor-factor decomposition,
+and conditionally valid pole localization. Its final claim freeze explicitly
+rejects nominal and uniform-load modal-materiality claims and leaves weak-grid
+materiality unresolved. All eight empty-coalition E05D baselines already fail
+the immutable 5% screen, with damping 0.0416536–0.0452751. No eligible weak-grid
+endpoint exists; no E05D coalition outcomes were inspected after that gate.
+
+The descriptive critical-mode audit says the actual limiting modes are
+98.62–98.98% synchronous-electromechanical, unlike the heavily damped
+converter-control development modes. Its maximum absolute finite damping
+interaction is only 5.1467388e-6. A large connected determinant observable
+does not by itself establish a material loss on the limiting mode.
+
+Do not use the TX3 archive as provenance for doc5's Table V, cycle-surgery
+causality, corrective-control success, or EMT transfer. The TX3 claim freeze
+explicitly leaves those mechanisms unassessed. Doc5 pp. 23–25 likewise presents
+Gates A–F as required/future tests, not completed external EMT validation.
+
+5. Doc4 is robotics: useful discipline, no power-system validation
+-----------------------------------------------------------------
+Doc4 p. 1 identifies a TFM robotics/automation audit of
+MROB_Integracion_v3/src/cargo_cl.py, with 199 snapshots from ten existing worlds.
+It is not a power-system experiment. Useful transferable ideas are separating
+equilibrium, stability, physical feasibility, safety, and mission performance;
+distinguishing an algebraic infeasibility witness from a solver failure; testing
+the actually sampled controller; recognizing loss of control authority; and
+requiring a true lower bound before claiming global optimality (pp. 3, 14–15).
+Its 199 correlated snapshots are not 199 independent trials. Do not transplant
+robotics numerical certificates, constants, or empirical outcomes into the
+power-system evidence chain. Its monotonicity cautions are conceptual analogies.
+
+6. Recommended strongest existing story and evidence requirements
+----------------------------------------------------------------
+Use the exact, finite H4 compatibility failure as the empirical anchor, with the
+physical collective closure as its model-scoped explanation. State the model,
+policy, state count, same-model Python/Julia agreement, and all 16 subset labels
+together. Preserve the 110 global false-safe cases as a limit on selected-mode
+prediction, rather than suppressing them. This yields a useful engineering
+message: compatibility is contextual, and a targeted modal explanation is not
+an all-mode safety certificate.
+
+Use doc2 to explain why nominally identical network benchmarks and retuning
+actions can give different answers under different device/load models. Its
+node-placement example becomes a stronger design result only once its own
+code/data/parameters are recovered. The R1 all-stable H4 result is informative
+transfer evidence, not a reason to silently choose whichever model is favorable.
+
+Use the existing TX3 package for the supported finite-interaction theory, while
+retaining its negative operational-materiality result. The proposed connected
+calculus can organize a new test, but theoretical decomposition, a large proxy,
+and a successful intervention are three separate evidence claims.
+
+The doc5 collector story is an attractive candidate application, but currently
+has the weakest provenance among these numerical anchors. Recover and verify
+its exact model, AC equilibria, branch definitions/units, six raw spectra,
+mode-tracking records, full 1,023-case sweep, and pulse outputs before claiming
+it as reproduced evidence. Keep additions of new GFL plants, whole-machine
+replacement, and the current fractional delayed-PLL model in separate tables.
+Neither these PDFs nor these artifact checks establish a maximum replacement
+fraction, a gain-independent global barrier, an EMT validation, or a globally
+optimal design.
+
+For the current network-moment experiment, use its own export/model manifest
+and independent review rather than importing model parameters or metrics from
+R1/TX4/doc5. The present review did not rerun or assess that newer experiment's
+latest nonlinear outputs. A lower-frequency moment identity is also not, by
+itself, a broadband transient-performance or all-mode stability guarantee.

@@ -53,6 +53,16 @@ while controlling collective modes. Section~\ref{sec:networkmoments} derives
 exact constraints on this authority and tests a targeted delay-compensation
 design. The ultimate maximum-replacement problem remains open.
 
+A separate nonlinear development in Section~\ref{sec:nonlinear-fixed-bus}
+uses fixed measurement buses and arbitrary fixed events. It derives a
+total-inertia obstruction from the two power-flow endpoints and proves a
+sharp two-node threshold with an explicit feasible control above it.
+This lossless swing result has a different model contract from the
+detailed delayed IEEE--39 examples. An audit of the archived converter
+energy sign and governor limits identifies why transfer to that full
+model remains an explicit gate.
+
+
 Detailed low-inertia models already connect converter control settings
 to collective modal behavior \cite{markovic}. Grid structure and PLL
 synchronization are also established concerns \cite{huang}.
@@ -1320,6 +1330,615 @@ These results do not yet establish a physically limiting replacement ceiling
 or superior co-design performance. The new finite-decision closure certifies one collective margin violation and an interaction-budget correction, but not a replacement ceiling. The next planning result remains an informative bound on a preregistered region extending beyond the
 current feasible corner, followed by a comparison under the same
 nonlinear security contract.
+
+% BEGIN NONLINEAR_FREQUENCY_LIMITS_20261004
+\section{Nonlinear frequency limits at fixed measurement buses}
+\label{sec:nonlinear-fixed-bus}
+
+\paragraph{Question and contribution boundary.}
+Can redistributing a fixed amount of inertia, or adding damping that only
+redistributes power, remove every local frequency overshoot? We answer a
+precise version for a nonlinear lossless swing network with causal primary
+response. The answer follows from two equilibria, rather than a linearized
+transient. We obtain a necessary total-inertia bound for arbitrary fixed
+events, a graph-resistance expression for a localized event, and a sharp
+two-node example with a constructive controller above the bound.
+These results do not identify an optimal SG--GFL replacement in the detailed
+IEEE--39 model. Inertia allocation, graph performance metrics and integral
+response restrictions have substantial prior work
+\cite{poollainertia,pagnier,malladamoments,aalipourmoments}.
+Aggregate-neutral damping is also a direct recent antecedent
+\cite{kohlhaas2026}. The specific candidate contribution is the finite
+endpoint constraint and its quantified exclusion of a controller class.
+The distinction between a well-shaped COI response and local oscillations
+is already established, including recent frequency-shaping design
+\cite{jiangfs}; the sharp finite-amplitude obstruction below is the result
+to compare, rather than that general distinction.
+
+\subsection{Physical class, fixed events and fixed outputs}
+Use scaled electrical angle $q=\theta/\omega_b$ and per-unit frequency
+deviation $\nu=\dot q$. Consider
+\begin{equation}
+ M\dot\nu+(h*\nu)(t)+F(q)=p^0+d\,1_{t\geq0}+u(t),\qquad
+ F(q)=B\diag(\gamma_e)\sin(\omega_bB^Tq).
+ \label{eq:nfl-model}
+\end{equation}
+Here $M\succ0$ is diagonal, the graph is connected, $\gamma_e>0$, and
+voltage magnitudes are fixed. In particular $\one^TF(q)=0$.
+The causal matrix-valued kernel $h$ may contain instantaneous and delayed
+atoms; assume finite total variation and first moment. Write
+\[
+ \mathcal D(s)=D_0+sD_1+o(s),\quad
+ m=\one^TM\one,\quad d_0=\one^TD_0\one>0,\quad
+ \kappa=\one^TD_1\one,\quad c_D=D_0^T\one/d_0.
+\]
+No derivative-of-delta inertial feedthrough is hidden in $h$.
+Such a realization requires an explicit, justified change of $M$.
+Initially $F(q^0)=p^0$ and $\nu(t)=0$ for $t\leq0$.
+Let $P=\one^Td\ne0$, $u(t)\to0$, and
+$Q=\int_0^\infty\one^Tu(t)\,dt$ be finite.
+Every trajectory to which the theorem is applied must converge with
+integrable transients to
+\[
+ \nu\to\Omega\one,\qquad q-q^0-\Omega t\one\to\eta_\infty,
+ \qquad \Omega=P/d_0.
+\]
+Existence of an endpoint is not a proof of convergence.
+The final relative shape $\delta$ equals $\eta_\infty$ modulo a common
+rotation and solves
+\begin{equation}
+ F(q^0+\delta)-F(q^0)=d-(P/d_0)D_0\one.
+ \label{eq:nfl-endpoint}
+\end{equation}
+For fixed network, $D_0,d$ and equilibrium branch, this equation is
+independent of the distribution and total amount of $M$.
+Actual removal of SG generally changes more than $M$ and need not preserve
+this contract.
+
+\begin{theorem}[Finite endpoint law for a fixed output]
+For a fixed vector $a$ satisfying $a^T\one=1$, define
+$A_a=\int_0^\infty(\Omega-a^T\nu(t))\,dt$. Under the preceding assumptions,
+\begin{equation}
+ \boxed{A_a=\frac{P(m+\kappa)}{d_0^2}
+              +(c_D-a)^T\delta-\frac{Q}{d_0}.}
+ \label{eq:nfl-fixed-area}
+\end{equation}
+\end{theorem}
+\status{EXACT\_IDENTITY}
+\begin{proof}
+Integration of the summed balance, after subtracting its final value, gives
+\[
+ (m+\kappa)\Omega+\one^TD_0\eta_\infty=Q.
+\]
+The memory contribution follows from
+$\int_0^\infty[(h*\nu)-D_0\Omega\one]\,dt
+=D_0\eta_\infty+\Omega D_1\one$.
+This is Fubini's identity for a kernel with the stated moments.
+Since $A_a=-a^T\eta_\infty$ and
+$(c_D-a)^T\one=0$, eliminating the common rotation proves the result.
+\end{proof}
+
+Consequently, keeping $m,D_0,D_1,d,\delta,Q$ fixed preserves the area of
+\emph{every fixed measurement bus}, even if inertia is redistributed and
+the control law changes. Also
+$A_i-A_j=\delta_j-\delta_i$.
+The trajectories, peaks, modal damping and settling times need not be
+invariant. An optimization of COI area must be interpreted carefully:
+its output weights $a=M\one/m$ themselves change with inertia allocation.
+An improved COI area can therefore reflect reweighting of unchanged nodal
+areas. The fixed-output theorem avoids that ambiguity.
+
+\subsection{A necessary all-bus bound and its graph form}
+Absence of crossing beyond the final frequency means
+$\operatorname{sign}(P)(\nu_j(t)-\Omega)\leq0$ for every monitored bus and
+every $t\geq0$. Continuity from $\nu_j(0)=0$ makes $A_j/P>0$ necessary,
+strictly. For a finite family of fixed events, put
+$v_e=\delta_e/P_e$ and
+$\Phi_e=\max_{j\in\mathcal O}(v_{e,j}-c_D^Tv_e)$.
+Equation~\eqref{eq:nfl-fixed-area} implies
+\begin{equation}
+ \boxed{m>\max_e\left\{-\kappa+d_0^2\Phi_e+
+                              d_0 Q_e/P_e\right\}.}
+ \label{eq:nfl-general-floor}
+\end{equation}
+The weak inequality is only the closure of a necessary condition.
+Neither version guarantees convergence or absence of overshoot.
+The event $d_e$ is fixed when comparing inertia assignments; it is not
+silently redistributed in proportion to the new $M$.
+
+Assume now $D_0$ is positive diagonal, $c=D_0\one/d_0$, and the initial
+and final shapes lie in one cohesive angle cell. Define the exact secant
+operator
+\begin{align}
+ \bar L_e&=\int_0^1J_F(q^0+t\delta_e)\,dt
+          =B\diag(\bar w_{\ell,e})B^T,\\
+ \bar w_{\ell,e}
+    &=\omega_b\gamma_\ell\int_0^1
+          \cos\!\left(\omega_b B_\ell^T(q^0+t\delta_e)\right)\,dt>0.
+ \label{eq:nfl-secant}
+\end{align}
+It is a genuine Laplacian on this domain. No initial-Jacobian substitution
+has been made.
+
+\begin{theorem}[Localized event and a placement-independent floor]
+For $d=P e_k$, with every bus monitored, define
+\begin{equation}
+ \mathcal R_k(P)=(e_k-c)^T\bar L_k^\dagger(e_k-c).
+ \label{eq:nfl-resistance}
+\end{equation}
+Then $\Phi=\mathcal R_k(P)$ and the most restrictive nodal \emph{area}
+constraint is at the disturbed bus $k$. With $Q=0$,
+\begin{equation}
+ \boxed{m+\kappa>d_0^2\mathcal R_k(P)}
+ \label{eq:nfl-local-floor}
+\end{equation}
+is necessary for absence of local final-frequency crossing, for every
+inertia distribution and every convergent energy-neutral supplementary
+controller preserving the same endpoint.
+\end{theorem}
+\status{PROVED\_REDUCED\_MODEL}
+\begin{proof}
+The endpoint equation gives $\bar L_kv=e_k-c$.
+Set $\phi=v-\one c^Tv$ so that $c^T\phi=0$.
+At any maximum with index $j\ne k$,
+$(\bar L_k\phi)_j=\sum_l\bar w_{jl}(\phi_j-\phi_l)\geq0$,
+contradicting $(e_k-c)_j=-c_j<0$.
+Thus the maximum is at $k$, and
+$\phi_k=(e_k-c)^T\bar L_k^\dagger(e_k-c)$.
+Substitution in \eqref{eq:nfl-general-floor} proves the bound.
+\end{proof}
+This does not identify the bus of the largest instantaneous frequency peak.
+For nonnegative damping with some zero entries, the maximum is still
+attained at $k$, but uniqueness needs qualification.
+
+The graph quantity has the exact representations
+\begin{equation}
+ \mathcal R_k(P)=
+ \sum_{\ell>0}\frac{|u_\ell^T(e_k-c)|^2}{\lambda_\ell}
+ =\min_{Bf=e_k-c}\sum_\ell\frac{f_\ell^2}{\bar w_{\ell,k}}.
+ \label{eq:nfl-gsp-flow}
+\end{equation}
+These are classical spectral and Thomson identities applied to the
+finite secant graph. For every cut $C$ containing $k$,
+\begin{equation}
+ \mathcal R_k(P)\geq
+ \frac{[1-c(C)]^2}{\sum_{\ell\in\partial C}\bar w_{\ell,k}}
+ \geq\frac{[1-c(C)]^2}
+                {\omega_b\sum_{\ell\in\partial C}\gamma_\ell}.
+ \label{eq:nfl-cut}
+\end{equation}
+Indeed the net unit flow through the cut is $1-c(C)$; weighted
+Cauchy--Schwarz gives the first inequality, and $\bar w\leq\omega_b\gamma$
+the second. A weak cut separating the event from primary response creates
+a calculable necessary support requirement. Strengthening a physical line
+also moves the endpoint; these formulas do not prove a frozen-endpoint
+monotonic improvement of actual nadir.
+
+\subsection{Latency, measurement windows and energy}
+For delayed frequency damping
+$\mathcal D(s)=\diag(d_i e^{-s\tau_i})$,
+$\kappa=-\sum_i d_i\tau_i$. The delays are fixed physical parameters.
+This is not the same channel as a delayed PLL detector.
+A causal rectangular measurement
+$\nu_{j,W}(t)=[q_j(t)-q_j(t-W)]/W$ satisfies
+\begin{equation}
+ A_{j,W}=A_j+\Omega W/2.
+ \label{eq:nfl-window}
+\end{equation}
+This follows by integrating the difference between a signal and its
+causal average; equivalently its filter has first moment $W/2$.
+Therefore the necessary measured-frequency bound is
+\begin{equation}
+ \boxed{m>\sum_i d_i\tau_i+d_0^2\mathcal R_k(P)
+                        +d_0Q/P-d_0W/2.}
+ \label{eq:nfl-delay-window}
+\end{equation}
+A measurement window can make this area-based obstruction vacuous.
+The term $d_0W/2$ is not physical inertia. Strictness here assumes
+continuous angle/frequency from rest; algebraic phase jumps require their
+actual filtered-output contract.
+
+Let $E_{\rm op}=-\operatorname{sign}(P)Q$ be net energy opposing the
+disturbance. The unfiltered localized bound becomes
+\begin{equation}
+ \boxed{E_{\rm op}>
+     \frac{|P|}{d_0}\left[d_0^2\mathcal R_k(P)-m-\kappa\right]}
+ \label{eq:nfl-energy}
+\end{equation}
+when the right side is positive. This is net energy over the declared
+horizon, not rated battery capacity, and is necessary rather than sufficient.
+A storage device that later recharges to $Q=0$ may move a required crossing
+to a late, small excursion. A regulatory frequency limit does not generally
+require zero crossing of the final value.
+
+For finite $T$, define
+$A_{j,T}=\int_0^T(\Omega-\nu_j)\,dt$,
+$Q_T=\int_0^T\one^Tu\,dt$ and
+\[
+ R_h(T)=\int h(dv)\int_{\max(0,T-v)}^T\nu(a)\,da,\qquad
+ \delta_T=q(T)-q^0\quad\text{modulo rotation}.
+\]
+The exact lossless identity is
+\begin{equation}
+ d_0A_{j,T}=m\nu_{\rm COI}(T)-\one^TR_h(T)
+                   +d_0(c_D-e_j)^T\delta_T-Q_T.
+ \label{eq:nfl-finite}
+\end{equation}
+Suppose the first three terms on the right are enclosed within
+$\varepsilon_{j,T}$ of
+$(m+\kappa)\Omega+d_0(c_D-e_j)^T\delta$.
+Then absence of crossing at $j$ up to $T$ requires
+$E_{{\rm op},T}>-d_0\operatorname{sign}(P)A_{j,0}
+ -\varepsilon_{j,T}$, where $A_{j,0}$ denotes the infinite-horizon
+zero-energy endpoint value. Such an enclosure must include terminal shape,
+frequency and the entire memory integral, including a bounded tail for
+kernels of infinite support. No such IEEE--39 enclosure
+has been certified here.
+
+\subsection{A sharp two-node limit with an explicit control}
+\begin{theorem}[Sharp inertia infimum in a nonlinear two-node class]
+In dimensionless units, let $\mathcal D(s)\equiv I_2$ (instantaneous damping,
+no memory), and $F=(\sin z,-\sin z)$ with
+$z=q_1-q_2$, $q^0=\nu^0=0$, and $d=(P,0)$, $0<P<2$.
+Let admissible controllers satisfy $u_2=-u_1$, $u(t)\to0$,
+continuous state velocities and convergence to
+$z_*=\arcsin(P/2)$, $\Omega=P/2$.
+Across all positive inertia allocations of total $m$ and all such
+controllers, the infimum total inertia admitting
+$|\nu_j(t)|\leq\Omega$ for both buses and all time is
+\begin{equation}
+ \boxed{m_{\inf}(P)=\frac{2\arcsin(P/2)}{P}.}
+ \label{eq:nfl-sharp}
+\end{equation}
+The infimum is not attained. The claim imposes no actuator, communication
+or control-gain limit.
+\end{theorem}
+\status{PROVED\_REDUCED\_MODEL}
+\begin{proof}
+Here $c=(1/2,1/2)^T$ and
+$d_0^2\mathcal R_1(P)=2z_*/P$, so necessity for any allocation follows
+from \eqref{eq:nfl-local-floor}; equality also forces a crossing.
+For sufficiency choose $M=(m/2)I_2$ and $m>2z_*/P$.
+Put $k=2/m$, choose
+\[
+ \ell>\frac{z_*k^2}{P-z_*k},\qquad
+ a=z_*\,\frac{k(k+\ell)}{\ell}<P,
+\]
+and prescribe
+\begin{align}
+ w(t)&=\Omega(1-e^{-kt}),\\
+ z(t)&=a\left[\frac{1-e^{-kt}}{k}
+                    -\frac{1-e^{-(k+\ell)t}}{k+\ell}\right],\\
+ u_1(t)&=\frac m4\ddot z+\frac12\dot z+\sin z-\frac P2,\qquad
+ u_2(t)=-u_1(t). \label{eq:nfl-construction}
+\end{align}
+Take $\nu_1=w+\dot z/2$, $\nu_2=w-\dot z/2$.
+Their sum obeys $m\dot w+2w=P$ and their difference obeys
+$(m/2)\ddot z+\dot z+2\sin z=P+2u_1$, proving both original equations.
+The initial state is continuous and at rest.
+Since $0\leq\dot z=a e^{-kt}(1-e^{-\ell t})<P e^{-kt}$,
+both $\nu_j\leq\Omega$, while $\nu_1\geq0$ and $\nu_2\geq-\Omega$.
+Also $z\to z_*$ monotonically inside the cohesive interval and $u\to0$.
+The control is bounded for each fixed $m>m_{\inf}$ and has zero aggregate
+power at all times. This supplies an admissible construction for every
+strictly larger $m$.
+\end{proof}
+The construction can require arbitrarily large power as $m\downarrow
+m_{\inf}$. It proves no sharp threshold with physical actuator limits.
+Bus 2 can transiently move opposite to the event, although its absolute
+frequency deviation remains within $\Omega$.
+
+\paragraph{Monotone COI does not remove the obstruction.}
+Set $P=1$ and $m=41/40<\pi/3$ with equal inertia allocation.
+For any aggregate-balanced control, $w(t)=\tfrac12(1-e^{-2t/m})$ is
+monotone, yet
+\[
+ A_1=\frac{123-40\pi}{480}<0,\qquad
+ A_{\rm COI}=\frac{41}{160}>0.
+\]
+The uncontrolled trajectory converges: in the rotating frame use
+$V=\tfrac12(\nu-\Omega\one)^TM(\nu-\Omega\one)
+ +1-\cos z-z/2$.
+Then $\dot V=-(\nu-\Omega\one)^T(\nu-\Omega\one)$ and
+$V(0)=41/320<1-\pi/4$, the smaller potential at $z=\pm\pi/2$.
+The trajectory stays cohesive, and LaSalle on the rotational quotient
+gives the unique synchronized endpoint. Thus the forbidden local crossing
+is not inferred from an unstable or nonexistent endpoint.
+The initial-Jacobian threshold is only $1$ and misses this finite-amplitude
+case. The area test is a necessary test; a positive linearized area never
+constituted a proof of no crossing.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{experiments/nonlinear_frequency_limits_20261004/FIG_SHARP_NETWORK_LIMIT.png}
+\caption{Exact dimensionless construction, not an ODE simulation.
+Left: the finite-amplitude threshold and its initial-Jacobian counterpart.
+The marked $m=41/40$, $P=1$ example has monotone COI but forced local crossing.
+Right: the explicit feasible control at $m=3/2$, with equal positive inertia
+allocation. No actuator bound is imposed. The figure does not represent
+IEEE--39 replacement capacity.}
+\label{fig:nfl-sharp}
+\end{figure}
+
+\subsection{A necessary SG-retention relaxation, with its exact scope}
+Suppose a separate physical contract really gives
+$m=m_{\rm fixed}+\sum_iM_i^0\epsilon_i$, while holding the network, primary
+response and fixed events in the theorem unchanged. Let
+$F_*$ be the maximum required inertia from
+\eqref{eq:nfl-general-floor}, with the declared measurement and energy
+corrections. An optimistic minimum-retention relaxation is
+\begin{equation}
+ J_L=\min_{0\leq\epsilon_i\leq1}\sum_i P_i^0\epsilon_i
+ \quad\text{subject to}\quad
+ \sum_iM_i^0\epsilon_i\geq\max(0,F_*-m_{\rm fixed}).
+ \label{eq:nfl-retention-lp}
+\end{equation}
+For positive coefficients it is solved by sorting $P_i^0/M_i^0$ in
+increasing order, filling each resource until the requirement is met.
+An optimum with at most one partial resource exists. This is the classical
+fractional-knapsack LP, not a new optimization algorithm.
+Every genuinely feasible design within this contract has retained
+dispatch at least $J_L$, hence replacement at most
+$P_{\rm total}-J_L$. It is not a full-model optimum or a certificate
+that the LP design satisfies frequency constraints.
+The actual repository replacement changes ratings, droop, injections and
+device dynamics. Its equivalence to this inertia-only contract has not
+been established. Zero-inertia support changes also require a separate
+DAE limit; $M\succ0$ was assumed in the theorem.
+
+\subsection{The detailed IEEE--39 model: an explicit transfer gate}
+Losses already break the endpoint-only identity. If
+$\one^TF(q,V)=p_{\rm loss}(t)$, the area formula acquires
+$d_0^{-1}\int_0^\infty[p_{\rm loss}(t)-p_{{\rm loss},\infty}]\,dt$
+and the final frequency changes accordingly. Governors, saturation,
+DC storage and electromagnetic states require their own balances.
+
+A read-only audit of seven archived Q2B traces, not a new simulation,
+reconstructed kinetic energy and filter/DC terms. The frozen converter
+equation is
+$C_{\rm dc}\dot v_{\rm dc}=(p_{\rm ac}-P_{\rm dc})/v_{\rm dc}$,
+with $p_{\rm ac}$ directed from converter to AC filter.
+Combining it with the filter balance produces the executed identity
+\begin{equation}
+ \frac{d}{dt}(K+E_f-E_{\rm dc})
+ =P_m+P_{\rm dc}-P_{\rm load}-P_{\rm loss}-P_{R_f}.
+ \label{eq:nfl-executed-energy}
+\end{equation}
+It does not produce the usual sum of positive physical capacitor and
+filter energies. The source hashes and archived derivative checks confirm
+the executed sign. This is a blocker for interpreting the new support
+bound as a physical DC-energy certificate in that model, not a reason to
+rewrite its frozen eigenvalues or reported trajectories.
+Also, the load events are voltage-dependent and one archived event gives
+indirect evidence consistent with a governor limiter being active; direct
+limiter-state confirmation is still required. A linear primary-response kernel cannot be
+assumed valid for all those trajectories.
+
+The audit and exact constructions are preserved in
+\texttt{experiments/nonlinear\_frequency\_limits\_20261004/}.
+No dynamic ODE/DDE campaign was run for this section.
+The next gate is a declared, physically consistent energy/measurement
+contract, followed by a small withheld test of the fixed-bus identity and
+its defect terms. A large gain search before this gate would not validate
+the theorem.
+
+\paragraph{Poster claim that the evidence currently supports.}
+In the declared nonlinear lossless class, a finite graph quantity sets
+a necessary local-frequency inertia floor that no redistribution of a
+fixed inertia budget or convergent energy-neutral control can evade.
+The bound is sharp in the explicit two-node class, with a closed-form
+feasible construction above it. Full IEEE--39 SG/GFL transfer, actuator
+constraints, publication priority and competition performance remain open.
+
+% END NONLINEAR_FREQUENCY_LIMITS_20261004
+
+% BEGIN PHYSICAL_FREQUENCY_BRIDGE_20261004
+\section{A physical-energy bridge to the detailed IEEE--39 model}
+\label{sec:physical-energy-bridge}
+
+The obstruction in Section~\ref{sec:nonlinear-fixed-bus} has a declared
+lossless swing contract. Before using it to constrain converter replacement
+in the detailed network, we audit the energy ports of that network. This
+section establishes an exact model identity and a restricted numerical
+bridge; it does not identify a new maximum-replacement design.
+
+\subsection{DC power orientation and a spectrally invisible distinction}
+Write $p_a$ for converter power delivered to the AC filter and $p_d$ for
+power supplied at its DC port. The frozen implementation uses
+\begin{align}
+ C\dot v_o&=(p_a-p_d)/v_o,&
+ i_{d,o}^{\rm ref}&=k_v(V-v_o)+z_o,&
+ \dot z_o&=k_{iv}(V-v_o).\label{eq:legacy-dc-bridge}
+\end{align}
+For the positive-energy variant constructed in a new experiment directory,
+the three corresponding equations are
+\begin{align}
+ C\dot v&=(p_d-p_a)/v,&
+ i_d^{\rm ref}&=k_v(v-V)+z,&
+ \dot z&=k_{iv}(v-V).\label{eq:physical-dc-bridge}
+\end{align}
+Here $V>0$ is constant. The remaining current, PLL, SG and network equations
+are unchanged. In this implementation $v$ does not otherwise enter a
+modulation or protection block. Both models have the same trim
+$v_o=v=V$, $p_a=p_d$ and the same integral-controller state.
+
+\begin{proposition}[Tangent equivalence at the declared trim]
+Let $S$ reflect only the deviation of each DC-voltage state, and act as the
+identity on every other differential and algebraic coordinate. At an exact
+common trim, with corresponding equation order, the descriptor matrices obey
+\begin{equation}
+ E_p=SE_oS,\qquad A_p=SA_oS.\label{eq:dc-similarity-bridge}
+\end{equation}
+For perturbations of the unchanged AC/DC power ports, $B_p=SB_o$; for AC
+outputs independent of the DC-voltage coordinate, $C_p=C_oS$, with unchanged
+feedthrough. Hence the linear AC transfer functions and finite spectra agree.
+\end{proposition}
+\begin{proof}
+Put $\widetilde v=-\delta v_o$, $\widetilde z=\delta z_o$. The two PI
+equations have identical first variations under this substitution. Since
+$p_a-p_d=0$ at trim, differentiation of the denominator adds no first-order
+term; the DC power row changes sign exactly. Every remaining row is unchanged
+after the same state substitution. This proves the descriptor and port
+identities. Algebraic elimination preserves the similarity wherever its
+eliminated block is nonsingular.
+\end{proof}
+This is classical similarity algebra applied to the actual port equations,
+not a new general spectral theorem. The nonlinear reflection
+$v_o=2V-v$ fails in general: its DC-row defect is proportional to
+\begin{equation}
+ \frac{p_d-p_a}{C}\left(\frac1v-\frac1{2V-v}\right),
+\end{equation}
+which is second order near trim. Limits, modulation dependence on $v$, or
+perturbing the voltage reference require a new analysis. Identical poles
+therefore do not establish identical finite-disturbance security. An
+identically inserted PLL measurement delay would preserve the corresponding
+linear characteristic-operator similarity; no nonlinear DDE simulation is
+claimed by the present zero-delay campaign.
+
+\subsection{Positive storage and an exact finite-time frequency identity}
+Use $s_i=100\rho_i$ MVA for the aggregate converter scale, and the declared
+per-unit filter and capacitor equations. The accounted storage is
+\begin{align}
+ E&=K+E_f+E_{dc},\nonumber\\
+ K&=\sum_{i\in\mathcal S}H_iS_{n,i}\omega_i^2,\nonumber\\
+ E_f&=\sum_i\frac{s_iX_{f,i}}{2\omega_b}\|i_{f,i}\|^2,
+ &E_{dc}&=\sum_i\frac{s_iC_i}{2}v_i^2.
+ \label{eq:bridge-storage}
+\end{align}
+The filter equations cancel their rotational cross terms and give
+$\dot E_f=P_a-P_{\rm GFL}-P_{\rm loss,f}$, while
+\eqref{eq:physical-dc-bridge} gives $\dot E_{dc}=P_d-P_a$.
+The SG swing and algebraic stator equations give
+$\dot K=\sum_i P_{m,i}-P_{\rm SG}-P_{\rm Cu}
+-\sum_iS_{n,i}D_i\omega_i(\omega_i-1)$.
+Network active-power balance then proves
+\begin{equation}
+ \boxed{\dot E=\sum_iP_{m,i}+P_{d,\rm total}-\mathcal L(t)},
+ \label{eq:bridge-energy}
+\end{equation}
+where $\mathcal L$ includes realized load, network/filter/copper losses,
+and the displayed machine-damping term. In this frozen SG parameter set,
+$R_s=D=0$. The storage is positive in the declared state variables; this
+does not make it a deviation Lyapunov function or certify passivity, DC-source
+energy availability, or omitted electromagnetic storage.
+
+An exact finite-time identity follows without assuming a final equilibrium.
+Set $\nu_i=\omega_i-1$, $I_i(T)=\int_0^T\nu_i(t)\,dt$, and let $\mathcal G$
+contain retained SGs with TGOV1. Their implemented equations satisfy
+\begin{align}
+ T_{1i}\dot x_{1i}&=r_i-x_{1i}+a_i,&
+ T_{3i}\dot x_{2i}&=x_{1i}+T_{2i}\dot x_{1i}-x_{2i},\nonumber\\
+ r_i&=(p_{{\rm ref},i}-\nu_i)/R_i,&
+ P_{m,i}&=S_{n,i}(x_{2i}-D_{T,i}\nu_i).
+\end{align}
+The actual limiter supplies $a_i=0$ in the interior and
+$a_i=x_{1i}-r_i$ when it freezes $\dot x_{1i}$. For fixed references and
+an initial trim, define
+\begin{align}
+ d_i&=S_{n,i}(R_i^{-1}+D_{T,i}),\nonumber\\
+ B_g(T)&=\sum_{i\in\mathcal G}S_{n,i}
+ [(T_{2i}-T_{1i})\Delta x_{1i}-T_{3i}\Delta x_{2i}],\nonumber\\
+ A_{aw}(T)&=\sum_{i\in\mathcal G}S_{n,i}
+ \int_0^T[a_i(t)-a_i(0)]\,dt.
+\end{align}
+The remaining retained SG at bus39 has fixed torque, so
+$\Delta P_{m,39}=P_{m,39}(0)\nu_{39}$ exactly. Integrating the two governor
+equations and \eqref{eq:bridge-energy} yields
+\begin{equation}
+ \boxed{\begin{aligned}
+ \sum_{i\in\mathcal G}d_iI_i-P_{m,39}(0)I_{39}
+ &=B_g+A_{aw}-\Delta E\\
+ &\quad+\int_0^T\Delta P_{d,\rm total}\,dt
+       -\int_0^T\Delta\mathcal L\,dt .
+ \end{aligned}}\label{eq:bridge-finite-area}
+\end{equation}
+The bus39 term is omitted if that SG is absent. A nonzero initial power
+residual $b_0$ adds $Tb_0$ on the right. No nonlinear mechanical-power product
+has been dropped: the implemented TGOV1 output is torque times speed.
+This identity uses rotor frequency, not the PLL state or the windowed bus
+phase estimator. The actual ZIP consumption and limiter branch must be used.
+
+\subsection{What is still required for a predictive replacement bound}
+For a convergent full-model trajectory, a conditional infinite-horizon form
+is also possible. Suppose the balance is represented as
+$\dot E+\sum_i(h_i*\nu_i)=P+r(t)$, with fixed causal power-response kernels,
+finite first moments, and integrable deviations from the final synchronized
+frequency $\Omega$. Require $E\to E_\infty$, $r-r_\infty\in L^1$,
+zero perturbation prehistory, and integrable frequency deviations.
+Write $H_i(s)$ for the Laplace transform of $h_i$.
+Let $d_i=H_i(0)$ denote DC transfer gains,
+$d_0=\sum_i d_i>0$, $\kappa=\sum_i H_i'(0)$ denote the sum of first Laplace
+coefficients, and $\mathcal R=\int_0^\infty(r-r_\infty)dt$.
+For consistent phase endpoints $\delta_i$ in coordinates
+$q_i=\theta_i/\omega_b$, relative to the nominal rotating frame, and
+output $j$, define
+$\eta_i=\lim_{t\to\infty}[q_i(t)-q_i(0)-\Omega t]$ and
+$\delta_i-\delta_j=\eta_i-\eta_j$. These are changes of relative phase
+from the initial trim, not absolute final phase differences. Integration gives
+\begin{equation}
+ d_0\mathcal A_j=\Delta E+\kappa\Omega
+       +\sum_i d_i(\delta_i-\delta_j)-\mathcal R .
+ \label{eq:bridge-defect-area}
+\end{equation}
+Here $\mathcal A_j=\int_0^\infty(\Omega-\nu_j)dt$. Algebraic phase jumps
+must be included distributionally or through the declared phase estimator.
+For a causal rectangular estimator of width $W$ with the proper prehistory,
+$\mathcal A_{j,W}=\mathcal A_j+\Omega W/2$.
+For synchronized rotors and $m=2\sum_{i\in\mathcal S}H_iS_{n,i}$,
+$\Delta K=m\Omega+(m/2)\Omega^2$, not merely $m\Omega$.
+The torque-fixed SG can give a negative $d_i$.
+
+Equation~\eqref{eq:bridge-defect-area} separates the missing predictive
+ingredients: full-model phase endpoints, storage change, and a uniform bound
+on $\mathcal R$ over the admissible design family. ZIP consumption, losses
+and limiter engagement depend on the controller trajectory. A residual
+measured after a run is an audit, not such a uniform bound. Consequently,
+the lossless effective-resistance floor cannot yet be asserted for this
+IEEE--39 replacement contract. PLL retuning changes collective trajectories
+and governor engagement; it adds no independent sustained active-power
+droop source to the present converter equations.
+
+
+\subsection{Preregistered zero-delay numerical check}
+Five Julia/PowerDynamics integrations comprise one independent replay of the
+legacy 1 MW event and four physical-variant events. The fixed candidate has
+94.215489\% GFL and 312.523288 MW retained SG;
+no design variable is retuned. The trim residual is
+$6.574\times10^{-12}$, and all 144 finite poles,
+including one gauge, match bijectively with numerical error
+$0$. The physical rightmost pole is
+$-0.050057324\,\mathrm{s}^{-1}$.
+
+\begin{center}\begin{tabular}{lrrl}\toprule
+ZIP event & $\max|\Delta f|$ [Hz] & RoCoF [Hz/s] & Both limits\\\midrule
+bus16\_1MW & 0.005000 & 0.001670 & pass \\
+bus16\_100MW & 0.468755 & 0.171772 & pass \\
+bus8\_100MW & 0.410549 & 0.512750 & fail \\
+bus29\_100MW & 0.588571 & 0.281888 & fail \\
+\bottomrule\end{tabular}\end{center}
+These are sampled maxima at generator buses 30--39, measured by a causal
+0.5 s phase window over 0--61 s, with limits 0.5 Hz and 0.5 Hz/s.
+The event is a nominal ZIP-setpoint increment, not constant realized demand.
+The two failed 100 MW events remain failed after correcting the energy port.
+
+The positive-energy gradient-times-RHS identity has maximum residual
+$2.919\times10^{-10}$ MW. Independently integrating stored
+traces at 5 ms leaves maximum energy and frequency-area residuals of
+0.046437 MJ and
+0.046402 MJ; these are exposed quadrature
+errors, not interval certificates. The SG35 governor is directly observed
+on its limiting branch in 380 samples of the
+bus29 event, giving approximately 1.900 s
+of sampled limiting and an antiwindup integral of
+-0.728187 MJ. Ignoring it changes the area balance.
+The isolated campaign is reproducible from
+\texttt{experiments/physical\_frequency\_bridge\_20261004/}.
+All frozen source and candidate hashes were checked unchanged.
+This closes the physical-port audit for the new variant. It does not close
+the full-model replacement-floor or global-optimality gates.
+
+
+% END PHYSICAL_FREQUENCY_BRIDGE_20261004
 
 \section*{Reproducibility and research integrity}
 The main source is edited in place; pre-edit source bytes and prior
@@ -2829,6 +3448,21 @@ Bridging the Theory-Practice Gap}, IEEE Transactions on Automatic Control,
 \emph{Shaping the Transient Response of Nonlinear Systems to Satisfy a Class
 of Integral Constraints}, Advances in Control Applications,4(3):e110,2022.
 \url{https://arxiv.org/abs/2012.12493}.
+
+
+\bibitem{poollainertia} B. K. Poolla, S. Bolognani, and F. D\"orfler,
+\emph{Optimal Placement of Virtual Inertia in Power Grids},
+IEEE Transactions on Automatic Control,62(12):6209--6220,2017.
+\url{https://doi.org/10.1109/TAC.2017.2703302}.
+\bibitem{kohlhaas2026} S. Kohlhaas and P. Kotyczka,
+\emph{Structured Modal-Energy Dissipation for Inter-Area Oscillations in
+Low-Inertia Power Systems}, RE Grid Integration Week,2026, contribution111.
+Official abstract consulted; full paper not obtained.
+\url{https://coms.events/regridweek2026/data/abstracts/en/abstract_0094_0111_0653.html}.
+\bibitem{jiangfs} Y. Jiang, W. Chen, Z. Lyu, X. Zhang, D. Wang, and S. Hara,
+\emph{Frequency Shaping Control for Oscillation Damping in Weakly-Connected
+Power Network: A Root Locus Method}, arXiv:2601.19665,2026.
+\url{https://arxiv.org/abs/2601.19665}.
 
 \end{thebibliography}
 \end{document}

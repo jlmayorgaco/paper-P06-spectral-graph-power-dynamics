@@ -1,0 +1,7 @@
+tau_ms,target_frequency_Hz,full_descriptor_dimension,analytical_action_dimension_upper_bound,numerical_difference_rank,explicit_action_factorization_relative_residual,PLL_removed_core_invariance_error,Schur_reduction_relative_residual,similarity_or_gauge_removed,claim_class
+0.0,0.017,282,30,30,7.678127371335151e-15,3.21126903865484e-16,2.0171917923008015e-18,false,exact augmented descriptor update; numerical factorization check
+0.0,0.5,282,30,30,7.678127371335151e-15,3.21126903865484e-16,2.017191792292813e-18,false,exact augmented descriptor update; numerical factorization check
+0.0,3.0,282,30,30,7.678127371335151e-15,3.21126903865484e-16,2.0171917920128927e-18,false,exact augmented descriptor update; numerical factorization check
+20.0,0.017,282,30,30,8.357502555469521e-15,3.21126903865484e-16,2.0973410915365668e-18,false,exact augmented descriptor update; numerical factorization check
+20.0,0.5,282,30,30,9.065167546041663e-15,3.21126903865484e-16,2.154292557489597e-18,false,exact augmented descriptor update; numerical factorization check
+20.0,3.0,282,30,30,7.790648420063427e-15,3.21126903865484e-16,2.0633344175454773e-18,false,exact augmented descriptor update; numerical factorization check

@@ -1,0 +1,8 @@
+id,claim,status,scope
+C1,Fixed-output area follows from two equilibria and aggregate memory/energy,EXACT_IDENTITY,Declared nonlinear lossless class; convergent integrable trajectories
+C2,Localized event yields a secant-resistance necessary total-inertia floor,PROVED_REDUCED_MODEL,All fixed buses monitored; positive diagonal DC damping; cohesive endpoints
+C3,"Two-node threshold is a sharp infimum, with explicit feasible control above it",PROVED_REDUCED_MODEL,Instantaneous damping; no actuator constraints; dimensionless two-node class
+C4,24 static graph cases and exact constructed equations satisfy the algebraic checks,NUMERICALLY_VALIDATED,No ODE/DDE simulation; illustrative graphs only
+C5,Seven archived IEEE39 traces reproduce signed DC/filter storage balance,NUMERICALLY_VALIDATED,Frozen Q2B model; numerical sampling/quadrature error retained
+C6,Detailed-model energy certificate and maximum SG/GFL frontier,BLOCKED,"Positive physical storage contract, limiter and endpoint/tail gates unresolved"
+C7,Publication priority and superiority over literature,BLOCKED,Direct prior work exists; exact priority not established

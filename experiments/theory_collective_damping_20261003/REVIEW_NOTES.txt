@@ -1,0 +1,39 @@
+Theory review notes — 2026-10-03
+
+1. The finite Schur update uses fixed rho, gains, trim, row normalization,
+   retained physical ports and evaluation frequency. Both old/new hidden
+   blocks must be nonsingular. It is not continuation of a moving root.
+2. Hermitian indefiniteness requires linearly independent complex port
+   paths and a nonzero update. Distinct bus labels do not imply that
+   condition. Multiple delayed channels need not have the same sign pattern.
+3. A low-rank incremental change does not imply low-rank total damping.
+4. The PLL series is for the closed phase-tracking transfer of the actual
+   detector-error delay and existing first-order frequency filter. Singular
+   later reductions can change its order. No full s=0 grid reduction was run.
+5. The graph-moment theorem permits nonsymmetric D0 through separate bL/bR,
+   but assumes a symmetric connected L. Its nonnegative correction and
+   minimum-flow interpretation additionally require symmetric D0.
+6. A negative response moment forces overshoot for a stable integrable
+   response. It does not give a numerical nadir, prove instability, or
+   prove violation of the frozen 0.5 Hz limit.
+7. The inertia coefficient in the response moment is not stored energy;
+   physical SG inertia remains positive in the stable two-node example.
+8. Mechanical torque-step COI RoCoF is not the campaign's windowed
+   bus-voltage-phase RoCoF. The formal knapsack bound is not a certificate
+   for the frozen IEEE-39 event problem.
+9. The causal pre-delay theorem allows immediate current/DC/governor
+   response. Only dependence on the specified PLL gain change is excluded.
+10. No bibliography-first novelty claim is established. Rank-one update,
+    Hermitian eigenvalue formulas, Green functions and transfer moments
+    use standard mathematics. The physical claim requires comparison.
+
+Verification history:
+The first symbolic run stopped at the characteristic-polynomial check.
+SymPy charpoly replaced a real-assumed generator by a distinct symbol
+with the same printed name. Substituting its actual generator corrected
+the checker; no theorem formula was changed. All eleven exact checks
+then passed. No numerical dynamics or optimization was executed.
+
+Compilation:
+Two native-editor attempts returned an environment error, recorded in
+EDITOR_STATUS.txt. No PDF compilation success is claimed.

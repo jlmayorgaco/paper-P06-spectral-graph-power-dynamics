@@ -1,0 +1,14 @@
+{
+  "status": "PASS_NUMERICAL_EVIDENCE_AND_ARCHIVE_COMPLETENESS",
+  "best_design_id": "N_step1_multimode_lp_event_active_lp_followup_lp_followup_lp_followup_lp_followup_lp",
+  "frozen_source_hashes_match": true,
+  "zero_delay_frozen_events_pass": 5,
+  "action_checks": 48,
+  "gradient_checks": 9,
+  "figure_count": 7,
+  "postrun_source_snapshot_files": 30,
+  "postrun_input_snapshot_files": 6,
+  "global_optimality_certified": false,
+  "positive_delay_nonlinear_events_validated": false,
+  "model_requires_referenced_repository_sources": true
+}

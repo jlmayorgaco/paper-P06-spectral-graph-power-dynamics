@@ -1,0 +1,2 @@
+event,bus,delta_load_MW,complete,retcode,last_time_s,F_peak_Hz,RoCoF_peak_Hz_s,Vmin_pu,Vmax_pu,max_GFL_current_ratio,min_GFL_Vdc_pu,max_GFL_Vdc_pu,min_SG_actuator_fraction_slack,pass,runtime_s
+bus16_plus100,16,100.0,true,Success,61.0,0.4597842716257235,0.12526651707474334,0.9717871222459472,1.0611550917904176,1.01099219973188,2.499925991243927,2.500517817591373,0.0020022801433304815,true,49.30299997329712

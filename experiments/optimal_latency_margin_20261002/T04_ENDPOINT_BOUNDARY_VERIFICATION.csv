@@ -1,0 +1,5 @@
+design_id,replacement_percent,side,tau_ms,status,roots_violating_margin,trace_count_real,phase_count,min_sigma_small,max_phase_step,quadrature_error_estimate,contour_evaluations,error
+rho_00,87.5,below,39.37922613525391,INDETERMINATE,,NaN,NaN,NaN,NaN,NaN,,contour quadrature unresolved at depth 15; err=9.249980271792246e-7
+rho_00,87.5,above,39.381226135253904,INDETERMINATE,,NaN,NaN,NaN,NaN,NaN,,contour quadrature unresolved at depth 15; err=6.261487124775964e-7
+rho_04,88.45514078456176,below,39.38265936279297,INDETERMINATE,,NaN,NaN,NaN,NaN,NaN,,contour quadrature unresolved at depth 15; err=8.051214078526876e-7
+rho_04,88.45514078456176,above,39.384659362792966,INDETERMINATE,,NaN,NaN,NaN,NaN,NaN,,contour quadrature unresolved at depth 15; err=5.472853863507422e-7

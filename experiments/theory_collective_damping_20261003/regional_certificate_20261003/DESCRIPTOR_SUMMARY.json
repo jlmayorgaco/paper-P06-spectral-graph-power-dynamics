@@ -1,0 +1,12 @@
+{
+  "status": "NUMERICALLY_VALIDATED",
+  "scope": "three preregistered algebraic frequency points",
+  "points_passed": 3,
+  "matrix_parameter_remainder": "EXACTLY_ZERO_IN_AFFINE_DESCRIPTOR",
+  "weighted_box_bound_min": 0.016741185103235603,
+  "weighted_box_bound_max": 0.24076579019205474,
+  "pointwise_conditions_under_one": 3,
+  "maximum_algebra_error": 1.0107344612071024e-12,
+  "IEEE39_certificate": "BLOCKED_CONTINUOUS_CONTOUR_ENCLOSURES",
+  "IEEE39_replacement_upper_MW": null
+}

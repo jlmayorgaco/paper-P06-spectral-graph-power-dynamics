@@ -1,0 +1,29 @@
+EXPERIMENT_STATUS: Q0 passed; Q1/Q2/Q4/Q5/Q6 completed at stated scope; Q3 INDETERMINATE; Q7/Q8 not run.
+PLL_RANK_ONE_PROVED: YES, from the shared scalar delayed PLL error in the repository equations.
+PLL_RANK_RESIDUAL: 0 in the constructed outer product; this is an algebraic assembly check, not a blind rank-discovery test.
+DDE_LOW_RANK_IDENTITY: YES, exact determinant-lemma factorization; maximum tested operator residual 3.13e-18.
+ACTION_SPACE_DIMENSION: r <= 30 for the fixed interior augmented descriptor; tested numerical difference rank 30.
+DDE_ROOT_COUNT_CERTIFIED: NO. At zero delay the complete finite ODE count to the right of -0.05 s^-1 is zero. At 20/40 ms the numerical winding indices 64/62 are unverified and independently refined roots were not established.
+PI_CLOSED_FORM: YES, as an exact conditional target-root equation when the remainder operator is nonsingular.
+MAX_PI_BOUNDARY_ERROR: NOT independently measured against nearest pole; seeded target-root Newton returns the prescribed target and full characteristic residual <= 1.02e-16.
+PI_AUTHORITY_RESULT: Only 5/45 gain pairs are inside frozen bounds; exploratory Spearman rho(sigma_min(G), gain norm) = -0.951 on this fixed grid only.
+SG_RANK_TWO_PROVED: YES for the fixed interior augmented descriptor; only the two terminal KCL rows change.
+RHO_QUADRATIC_LAW: YES, exact conditional determinant quadratic; zero real physical roots in [0,1] among 120 tested candidates.
+MAX_RHO_BOUNDARY_ERROR: N/A, no physical conditional roots; maximum Schur-reduction residual 2.15e-18.
+UNIFIED_ACTION_SPACE_MODEL: Validated descriptor update with r <= 30 and maximum factorization residual 9.07e-15 on six tested cases.
+ZERO_DELAY_MAX_VALIDATED_GFL_PERCENT: NOT COMPUTED; 87.5% is a feasible witness only.
+ZERO_DELAY_RETAINED_SG_MW: 675.345 MW at the 87.5% witness.
+DELAY_20MS_MAX_VALIDATED_GFL_PERCENT: NOT COMPUTED.
+DELAY_20MS_RETAINED_SG_MW: NOT COMPUTED.
+DELAY_40MS_MAX_VALIDATED_GFL_PERCENT: NOT COMPUTED.
+DELAY_40MS_RETAINED_SG_MW: NOT COMPUTED.
+OPTIMAL_RHO_BY_DELAY: None. Zero-delay witness rho_i=0.875 for all ten candidate buses.
+OPTIMAL_KP_BY_DELAY: No optimum computed. Zero-delay witness Kp_i=31.4159265.
+OPTIMAL_KI_BY_DELAY: No optimum computed. Zero-delay witness Ki_i=246.7401100.
+ACTIVE_CONSTRAINT_BY_DELAY: Unknown; no co-design optimization performed.
+ALL_FIVE_EVENTS_PASS: YES for the no-delay 87.5% feasibility witness; delayed event simulations were not run.
+STRONGEST_ANALYTICAL_RESULT: Exact conditional PI target-root law and fixed-coordinate descriptor action-space rank bound r<=30.
+STRONGEST_NUMERICAL_RESULT: 87.5% no-delay witness passed all five nonlinear events; Q6 factorization residual <=9.07e-15.
+STRONGEST_NEGATIVE_RESULT: The conditional SG-retention quadratic produced no physical real root in 120 tests; positive-delay root counts remain unresolved.
+CONTINUE_TO_HETEROGENEOUS_DELAY_PLACEMENT: NO.
+REASON: The positive-delay DDE root-count gate is indeterminate, Q4 lacks an independent nearest-pole boundary validation, Q5 found no physical conditional roots, and no delayed frontier/full-event validation exists.

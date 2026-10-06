@@ -1,0 +1,75 @@
+{
+  "all_passed": true,
+  "check_count": 13,
+  "checks": [
+    {
+      "name": "finite_complex_PI_action_transport",
+      "passed": true,
+      "status": "EXACT_SYMBOLIC_ALGEBRA"
+    },
+    {
+      "name": "transport_recovers_baseline_Kp",
+      "passed": true,
+      "status": "EXACT_SYMBOLIC_ALGEBRA"
+    },
+    {
+      "name": "transport_recovers_baseline_Ki",
+      "passed": true,
+      "status": "EXACT_SYMBOLIC_ALGEBRA"
+    },
+    {
+      "name": "gain_flow_Kp",
+      "passed": true,
+      "status": "EXACT_SYMBOLIC_ALGEBRA"
+    },
+    {
+      "name": "gain_flow_Ki",
+      "passed": true,
+      "status": "EXACT_SYMBOLIC_ALGEBRA"
+    },
+    {
+      "name": "pole_assignment_gain_inverse",
+      "passed": true,
+      "status": "EXACT_SYMBOLIC_ALGEBRA"
+    },
+    {
+      "name": "gain_derivative_ratio_at_characteristic_operator",
+      "passed": true,
+      "status": "EXACT_SYMBOLIC_ALGEBRA"
+    },
+    {
+      "name": "delay_gain_identity_at_characteristic_operator",
+      "passed": true,
+      "status": "EXACT_SYMBOLIC_ALGEBRA"
+    },
+    {
+      "name": "unavoidable_spillover_polynomial",
+      "passed": true,
+      "status": "EXACT_SYMBOLIC_ALGEBRA"
+    },
+    {
+      "name": "full_modal_spillover_identity",
+      "passed": true,
+      "status": "EXACT_SYMBOLIC_ALGEBRA"
+    },
+    {
+      "name": "single_mode_gain_Jacobian_nonsingularity",
+      "passed": true,
+      "status": "EXACT_SYMBOLIC_ALGEBRA"
+    },
+    {
+      "name": "Hopf_transport_Kp",
+      "passed": true,
+      "status": "EXACT_SYMBOLIC_ALGEBRA"
+    },
+    {
+      "name": "Hopf_transport_Ki",
+      "passed": true,
+      "status": "EXACT_SYMBOLIC_ALGEBRA"
+    }
+  ],
+  "simulation_count": 0,
+  "optimization_runs": 0,
+  "spectral_sweeps": 0,
+  "interpretation": "Algebra verification only; no IEEE-39 claim or novelty certificate"
+}

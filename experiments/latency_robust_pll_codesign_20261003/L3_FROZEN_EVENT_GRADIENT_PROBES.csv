@@ -1,0 +1,10 @@
+candidate_id,gain_kind,bus,delta_log_gain,path
+N_step1_multimode_lp,BASE,,0.0,designs/N_step1_multimode_lp.toml
+N_step1_multimode_lp_probe_Kp30_plus,Kp,30,0.002,designs/N_step1_multimode_lp_probe_Kp30_plus.toml
+N_step1_multimode_lp_probe_Kp35_plus,Kp,35,0.002,designs/N_step1_multimode_lp_probe_Kp35_plus.toml
+N_step1_multimode_lp_probe_Kp36_plus,Kp,36,0.002,designs/N_step1_multimode_lp_probe_Kp36_plus.toml
+N_step1_multimode_lp_probe_Kp37_plus,Kp,37,0.002,designs/N_step1_multimode_lp_probe_Kp37_plus.toml
+N_step1_multimode_lp_probe_Kp39_plus,Kp,39,0.002,designs/N_step1_multimode_lp_probe_Kp39_plus.toml
+N_step1_multimode_lp_probe_Ki30_plus,Ki,30,0.002,designs/N_step1_multimode_lp_probe_Ki30_plus.toml
+N_step1_multimode_lp_probe_Ki35_plus,Ki,35,0.002,designs/N_step1_multimode_lp_probe_Ki35_plus.toml
+N_step1_multimode_lp_probe_Ki36_plus,Ki,36,0.002,designs/N_step1_multimode_lp_probe_Ki36_plus.toml

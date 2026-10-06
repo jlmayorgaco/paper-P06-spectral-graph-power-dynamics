@@ -1,0 +1,41 @@
+PREDICTIVE NONLINEAR FREQUENCY BOUNDS — THEORY-FIRST CONTRACT
+Registered before the new checks; directory identifier 20261005 is UTC.
+
+Question: construct the missing uniform remainder and operational-output
+bounds, rather than substitute an area/no-overshoot condition for security.
+No reoptimization or nonlinear simulation of IEEE39 is part of these checks.
+The resulting solver is a regional certificate interface, not a global optimizer.
+
+THEORETICAL WORK
+1. Prove a counterexample to area-negative implies operational violation.
+2. Derive nonlinear Poisson expansion, graph/modal pair coupling, and an
+explicit cubic residual bound over a declared design-and-state region.
+3. Derive finite-time frequency/RoCoF envelopes including DAE phase jumps.
+4. Give safe sequential design and an independent optimistic bound; retain
+UNKNOWN whenever any uniform bound or smooth-branch condition is unavailable.
+5. State exact-delay extension assumptions; no finite-state Padé substitution.
+
+FIXED LIGHT CHECKS (no tuning after results)
+A. f(t)=0.1(1-exp(-t))+0.2*t*exp(-t), t>=0, zero prehistory;
+   W=.5s, frequency limit .5Hz and RoCoF limit .5Hz/s.
+B. Three-node path L=[[1,-1,0],[-1,2,-1],[0,-1,1]],
+   A=-d I-k L, F(z)=Az+beta*(1'z)z, beta=.2, h(z)=z1.
+   Parameter family d in [1,1.5], k in [.5,2], ||z0||2<=.25.
+   Fixed evaluation designs (d,k)=(1,.5),(1,2),(1.25,1),(1.5,.5),(1.5,2).
+   Fixed initial states (.1,0,0),(.15,-.1,.05),(.1,.1,.1).
+   Exact flow via scalar denominator and graph exponential; exact cost via
+   convergent one-dimensional quadrature/hypergeometric representation.
+   Quadrature values are numerical checks, not a proof of uniformity.
+   Uniform constants are derived analytically over the ENTIRE family.
+C. Nonlinear closed-form inverse iteration: scalar z'=-d z+beta z^2,
+   beta=.2,z0=.2,d in [.5,2], require J=int z dt <=.15.
+   Minimize d (abstract retention-cost analogue, not actual SG MW).
+   Compare analytic optimum and certified-surrogate monotone bisection.
+D. Read-only IEEE39 applicability audit: retain the independently verified
+   physical-bridge results; inspect frozen local linear A for conditioning.
+   A linear Lyapunov matrix alone cannot validate nonlinear derivative bounds,
+   post-event equilibria, active governor branches or a design box.
+
+No new IEEE39 rho/Kp/Ki optimum or global SG replacement bound is promised.
+Any missing IEEE39 constant is a named BLOCKED gate, never estimated by
+sampling and renamed a certificate. Existing frozen sources/results unchanged.

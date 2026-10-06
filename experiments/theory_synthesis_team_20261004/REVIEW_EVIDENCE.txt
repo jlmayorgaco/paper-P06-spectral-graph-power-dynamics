@@ -1,0 +1,416 @@
+REVISIÓN INDEPENDIENTE DE EVIDENCIA MÁS ALLÁ DE LOS CINCO PDF
+2026-10-04 — auditoría de solo lectura; sin nuevas simulaciones
+
+Raíz para todas las rutas relativas:
+C:/Users/walla/Documents/Github/paper-P06-spectral-graph-power-dynamics
+
+Conclusión de selección
+======================
+Sí había resultados ejecutados importantes omitidos. Los dos mejores candidatos
+son (1) el refuerzo condicionado al portafolio y al equilibrio, con validación
+reservada y réplica IEEE68, y (2) el cierre posterior de Q2B con optimalidad local
+numérica y asignación explícita de servicios de seguridad. El segundo NO aparece
+en los resúmenes raíz de Q2B: hay que leer CERTIFIED_SEARCH. La reentrancia SG34
+es una observación válida, pero más débil como nueva capacidad predictiva: el
+ranking de participación ya señala SG34 y el resultado cambia con gobernadores.
+
+Un tercer candidato es la atribución física de la acción de control mediante
+impedancia par–velocidad y sensibilidad completa del polo. Tiene comprobaciones
+independientes y un contraejemplo que descarta una ley escalar de signo, pero
+todavía no una intervención diseñada con ella y superior a un comparador justo.
+
+La selección no debe basarse en el número de casos o en una anomalía llamativa.
+Debe preguntar qué decisión puede predecirse, qué servicio limita esa decisión,
+y qué resultado reservado podría refutarla. Los resultados de las familias de
+modelos siguientes no son réplicas del mismo sistema físico.
+
+1. ORO A: sensibilidad total de refuerzo, con réplica y límite de materialidad
+============================================================================
+Raíz CDW:
+reports/poster/ias2026/research/contextual_dynamic_weakness/
+
+Fuentes principales dentro de esa raíz:
+  docs/CDW_HARDENING_FINAL_REPORT.md
+  docs/report_parts/03_E34.md
+  docs/CDW_THEORY_V1.md, sección C4
+  results/hardening/H07_goldb_gate.json
+  results/hardening/H18_gate.json
+  results/hardening/H31_revision.json
+  ieee68_replication/docs/CDW68_FINAL_REPLICATION_REPORT.md
+  ieee68_replication/results/CDW68_R12_gate.json
+  ieee68_replication/results/CDW68_R12_metrics.csv
+  ieee68_replication/results/CDW68_R07_A_gate.json
+  ieee68_replication/results/CDW68_R07_B_gate.json
+  ieee68_replication/results/CDW_CROSS_BENCHMARK_MATRIX.csv
+
+La regla ejecutada no es «refuerce donde crezca lambda2». Para un portafolio
+físico dado se resuelve R(w,a)=0, incluyendo las ecuaciones de programación y
+las referencias que el contrato permite cambiar. Se deriva w_a=-R_w^{-1}R_a.
+Para un polo simple de T(s,w(a),a),
+
+  ds/da = -l* [T_a + T_w w_a] r / (l* T_s r).
+
+Se conserva signo, semántica de la intervención y normalización por su rango;
+se ordenan refuerzos finitos y se contrasta con el equilibrio final re-resuelto.
+SPR re-inicializa para preservar el despacho y RP preserva referencias: no son
+intervenciones equivalentes. La fórmula es clásica; la capacidad interesante es
+su evaluación reservada, su corrección respecto al análisis congelado y su
+dependencia verificable del modelo/portafolio. Cerca de cambios de modo no se
+puede diferenciar alpha=max Re(lambda) como una rama suave única.
+
+Resultados CDW39 realmente disponibles:
+- Validación IFT frente a diferencias reequilibradas: 8002/8002 comparaciones;
+  contraste independiente de puertos para 46 líneas: error máximo 2.0e-6 y
+  Spearman 1.000. Bajo SPR, coordenadas solo de control dan congelado=total;
+  las coordenadas de red/carga/consigna son las que hacen imprescindible el
+  término de equilibrio. No atribuir a Kp el desplazamiento de un trim que no
+  depende de Kp bajo ese contrato.
+- Hardening: conjunto literalmente elegible prerregistrado de 8 condiciones,
+  6 clústeres: rho total 0.984582, congelado 0.912920, mejor estático 0.490595;
+  top-5 1.00 frente a 0.20; ventaja mediana 0.491520. El p sign-flip 0.06119
+  NO es significativo al 5%. Las cifras se leen directamente de H07_gate.
+- Conjunto ampliado de 64 condiciones: rho total 0.987357, congelado 0.895159,
+  mejor estático por condición 0.498797; top-5 1.00. No mezclarlo con el conjunto
+  de 8 ni presentar sus 64 filas como 64 redes independientes.
+- El método total supera a la lista aprendida y al congelado; el reporte da
+  rho 0.996 en las nuevas políticas. Las condiciones de red y modelo son parte
+  del resultado. El ranking concreto de líneas no transfiere a WECC (Kendall
+  mediana 0.06 en CDW39); la ventaja del método sí transfiere marginalmente.
+
+La réplica IEEE68 ya ejecutada cambia la historia:
+- Dos modelos, TX4 custom y cadena WECC en ANDES; 16 políticas y 64 portafolios
+  por modelo, con gobernadores PST y damping documentado. La calificación previa
+  de la base, equilibrio y espectro está archivada.
+- CASE B: reversión contextual nivel D 0/16 en ambos, también nivel EM T 0/16.
+  Todos los portafolios son estables; el ranking fijo de unidades tiene regret
+  cero en el estrato seguido. No generaliza «las listas fijas deben fallar».
+- Refuerzo x1.5, 12 condiciones reservadas/modelo: rho 0.99553965 / 0.98098317;
+  top-5 1.0 / 0.8; ventaja sobre estático 0.79873851 / 0.54655556.
+- Límite importante: el objetivo prerregistrado es un polo real lento asociado
+  al washout PSS cerca de -0.067 s^-1. La mediana del máximo efecto finito por
+  condición es solo 4.2237e-5 / 3.3499e-5 s^-1; cero líneas materiales en la
+  condición mediana. Un ranking perfecto de cambios minúsculos no equivale a
+  una mejora útil del amortiguamiento.
+- El análisis EM posterior, solo modelo A, sí da rho 0.99775408, top-5 1.0,
+  máximo efecto mediano 0.0201307 s^-1 y hasta 0.047 s^-1. Es POST HOC.
+- El test sign-flip B da p=0.08984; no convertir el gate por medianas en una
+  significancia que no existe. La lista de líneas tampoco es universal entre
+  modelos: rho cruzada mediana 0.50, top-5 overlap 0.4.
+
+Mejor continuación verificable: fijar de antemano un objetivo EM material y
+varios polos protegidos, predecir refuerzos de costo comparable con la derivada
+total, y comprobar el resultado finito más eventos físicos. Esa prueba cerraría
+precisamente la brecha que ya identificaron los datos; no requiere buscar otra
+reentrancia para justificar la pregunta. No está ejecutada como confirmatoria.
+
+2. ORO B: Q2B posterior sí cerró el problema local, pero no los eventos externos
+=============================================================================
+La lectura de reports/experiment_Q2B/FINAL_SUMMARY_EXP_Q2B.md o
+TERMINAL_SUMMARY_EXP_Q2B.txt por sí sola lleva a una conclusión desactualizada:
+describen FAIL_OPTIMIZATION, 438.446282 MW, estacionariedad 0.830 y beta
+incompleta. Se conservan correctamente como historia, pero no son el último
+resultado. La evidencia posterior está en:
+
+  reports/experiment_Q2B/CERTIFIED_SEARCH/TERMINAL_SUMMARY.json
+  reports/experiment_Q2B/CERTIFIED_SEARCH/RESULTADO_LOCAL_Y_BRECHA_GLOBAL.md
+  reports/experiment_Q2B/CERTIFIED_SEARCH/DERIVACION_CERTIFICADOS.md
+  reports/experiment_Q2B/CERTIFIED_SEARCH/LOCAL_CERTIFICATE_FEASIBLE.toml
+  reports/experiment_Q2B/CERTIFIED_SEARCH/RICCATI_FULL_BAND_CERTIFICATE.toml
+  reports/experiment_Q2B/CERTIFIED_SEARCH/ALL_TIME_CERTIFICATE.toml
+  reports/experiment_Q2B/CERTIFIED_SEARCH/PD/EVENTS.csv
+  reports/experiment_Q2B/CERTIFIED_SEARCH/PD/SPECTRUM.toml
+  reports/experiment_Q2B/CERTIFIED_SEARCH/MARGINAL_SECURITY_VALUES.csv
+  reports/experiment_Q2B/CERTIFIED_SEARCH/ADJACENT_EXACT_LIMITS.csv
+  reports/experiment_Q2B/CERTIFIED_SEARCH/REPRODUCE.md
+  experiments/bnd_expQ2B/certified_search/
+
+Resultado: PASS_LOCAL_SECURE, explícitamente NUMERICAL_NOT_FORMAL.
+312.523288435 MW SG, 5090.237801544 MW GFL, 94.215489% del despacho inicial.
+Soporte SG {30,33,35,37,39}. Reducción de 125.922994 MW respecto al anterior
+candidato, para el problema analítico y evento de diseño declarados.
+SHA del diseño verificado de nuevo en esta revisión:
+66513a8d3a1b4cc37c9d6f2b1a5824371fed2d0c5621d2ccdb7540490fe59124.
+
+Certificado local numérico del representante congelado:
+  primal 0; estacionariedad 8.27784e-7; complementariedad 1.30214e-9;
+  23 restricciones activas independientes, condición 4.89298;
+  dos direcciones tangentes; Hessiana reducida positiva ~9.05284 y 374.39189,
+  variación por pasos ~0.01054; signos de multiplicadores y SOSC comprobados.
+El óptimo es del problema ANALÍTICO en ese soporte. La validación no lineal de
+su candidato no convierte esos KKT en optimalidad de restricciones no lineales.
+
+Robustez: desigualdad bounded-real estricta a 256 bits, residuo Riccati
+3.99824e-24 y margen 3.39824e-14; toda frecuencia y cola. Redondeo al más cercano,
+NO exterior. Es un resultado numérico mucho más fuerte que una malla, pero no
+una prueba intervalar formal. Incertidumbre: full-block en coordenadas físicas
+del cociente ortogonal congelado, no toda incertidumbre paramétrica de equipos.
+La norma no es invariante ante escalados arbitrarios de estados. Las exclusiones
+de inserción SG infinitesimal dependen de ese contrato y dimensión de estados;
+no son imposibilidad física de añadir generación síncrona.
+
+Cobertura temporal analítica: dos picos simultáneamente activos en bus34 a
+~7.29445 y 14.62293 s, más 1844 intervalos y cola desde 60 s. Mantener ambos
+picos como restricciones resolvió el estancamiento; diferenciar solo el máximo
+ganador habría sido incorrecto. Alpha está holgada, multiplicador modal cero.
+
+Validación PD independiente: alpha=-0.05005732425, error de todos los polos
+2.337e-9, error relativo de matriz 1.085e-15. Bus16/+100 MW:
+Fpeak=0.468755455 Hz, Rpeak=0.171771439 Hz/s: pasa límites 0.5/0.5.
+PERO bus8/+100 MW da Rpeak=0.512749949 (falla) y bus29/+100 MW da
+Fpeak=0.588570649 (falla). No son errores de solver: retcode Success.
+No sustituir esta verdad por «pasa los cinco eventos». El candidato anterior
+438.446 MW tenía otra generalización; optimizar el evento elegido redujo esa
+reserva. El gap global sigue [0,312.523288435] MW y los 1024 soportes no están
+globalmente cerrados. No hay óptimo máximo de reemplazo ni seguridad arbitraria.
+
+Ley de diseño verificable que sí emerge de los datos:
+para cada epsilon_i interior, la estacionariedad da
+
+  1 = sum_a (1000 mu_a) [-(1/P_i^0) partial g_a/partial epsilon_i].
+
+MARGINAL_SECURITY_VALUES.csv verifica la suma con error máximo 1.93e-6:
+SG30 obtiene 98.09% de su valor marginal de los picos de frecuencia;
+SG39 ~100.51%, con contribución robusta negativa -0.51%; SG33/35/37 obtienen
+70.7–73.0% de robustez y el resto de frecuencia. Modal, RoCoF y steady tienen
+multiplicador cero. No inventar una descomposición BND de un modo no activo.
+Esta asignación demuestra que «dónde conservar SG» depende del servicio que
+limita el diseño. La fórmula KKT es clásica; lo útil es el vínculo verificable
+entre servicio, localización y costo, con dos picos activos y validación externa.
+Falta una comparación de diseño justa y confirmatoria para reclamar superioridad
+de este método frente a alternativas o exportar el soporte a otro problema.
+
+3. Contratos N/P/Q/Q2: por qué no equivalen estabilidad y servicio energético
+============================================================================
+Fuentes:
+  reports/experiment_N/FINAL_SUMMARY_EXP_N.md
+  reports/experiment_N/MODEL_FREEZE.json
+  reports/experiment_N/DERIVATION_RHO_SCALING.md
+  reports/experiment_P/CLAIM_LEDGER_EXP_P.csv
+  reports/experiment_P/FINAL_SUMMARY_EXP_P.md
+  reports/experiment_Q/FINAL_SUMMARY_EXP_Q.md
+  reports/experiment_Q2/FINAL_SUMMARY_EXP_Q2.md
+
+Contrato ExpN: P/Q de COMPONENTE dividido proporcionalmente al V congelado;
+no confundir con inyección neta de bus, en especial 31/39 con cargas separadas.
+Sn_SG=(1-rho)Sn0, H fijo, por tanto H*Sn escala. GFL es agregado paralelo rho;
+sus estados internos pu no se escalan. Pdc incluye pérdidas del filtro y no es
+P_AC terminal. Referencias AVR/gobernador se conservan; SG39 carece de TGOV1.
+El modelo SHA e2f104608f1eb1705f0ad2c07764e7beab0a5df4deb4d4ce4f359b1e79947f0a
+es el contrato que une estas etapas, no el TX4 del póster.
+
+ExpN conservó solo 1.124344 MW SG y cumplió margen espectral local con acuerdo
+PD, pero el margen numérico era ~1.4e-10 s^-1 y no había seguridad de gran evento.
+ExpP reproduce identidades rank-1 PLL, rank-2 retención y rank-4 dos SG; los
+términos cruzados entre dispositivos no desaparecen porque el determinante sea
+afín en Kp/Ki de un único dispositivo. El candidato falla el escalón sostenido:
+39.3334 Hz y 1.07221 Hz/s; también falla el radio robusto por un test puntual.
+Esto invalida el candidato combinado, no toda retención pequeña posible.
+
+ExpQ/Q2: la PLL cambia dinámica, pero no crea potencia activa primaria sostenida
+en SimpleGFLDC; derivadas numéricas de F_inf respecto a Kp/Ki ~1e-12–1e-14.
+La ley afín de stiffness en rho fue refutada: no usar una mochila lineal ni
+sumar coeficientes gobernador/inercia como si dieran un límite global exacto.
+El mapa DC no afín se verificó después en 100 casos dentro de CERTIFIED_SEARCH,
+pero el intento Bernstein global no dio cota admisible. Esto es una frontera
+física útil para cualquier nueva ley endpoint/integral: ni retuning PLL ni un
+momento de transferencia equivale automáticamente a aportar energía sostenida.
+Si una nueva derivación dice que Ki cambia el mismo DC, reconciliar primero
+salida, gauge, unidades, contrato y equilibrio con estos archivos.
+
+Q2 corrigió la salida: frecuencia de fase de bus continua al insertar GFL,
+en vez de intercambiar SG-rotor por PLL interna. Un escalón algebraico produce
+salto de fase, por lo que RoCoF ideal sin filtro es distribución, no número
+finito. Q2B fija diferencia causal T=0.5 s y segunda diferencia para RoCoF.
+No comparar sin más el peak Q2 con los otros estimadores o ventanas.
+
+4. Reentrancia, SG34, gobernadores y la jerarquía de evidencia del póster
+======================================================================
+Fuentes exactas:
+  results/TX4_V9_GLOBAL_VS_EM_TRUTH.csv
+  results/TX4_EXACT_P4_HEADLINE.json
+  docs/TX4_FINAL_MODAL_SCOPE_REPORT.md
+  reports/poster/ias2026/research/docs/FINAL_TRANSACTION_THEORY_AND_EVIDENCE.md
+  reports/poster/ias2026/research/results/FINAL_CLOSURE/FC03_summary.json
+  reports/poster/ias2026/research/results/FINAL_CLOSURE/FC10_summary.json
+  experiments/material_synthesis_20261004/POSTER_ARGUMENTO_Y_DERIVACIONES.txt
+
+En el CSV TX4 actual: base alpha=-0.14413178; solo34=-0.14148314;
+H4=+0.12700647; H4+34=-0.20498278. Hay reestabilización inequívoca de etiquetas
+transversales. En H4, participación SG 98.2802%, GFL 1.7198%, SG34 49.76%.
+SG34 ya es el mayor participante de la base (40.18%). La intervención elimina
+ese SG y lo sustituye por GFL; no demuestra «la PLL adicional amortigua una
+oscilación PLL colectiva». Tras la reparación sigue dominando SG (95.4361%).
+Participación no es causalidad, pero constituye un comparador imprescindible
+que ya puede seleccionar el bus34. Un retorno calculado a posteriori no gana
+por sí solo a esa regla. Los alpha globales también pueden cambiar de rama.
+
+TX4 tiene D=0 y Pm constante, sin gobernador; se quitan rotación y deriva
+estructurales. Estabilidad transversal no implica restauración de frecuencia.
+FC03 agrega TGOV1N documentado: P4 cambia +0.12700647 -> -0.07454098 sin
+condenser. Sobre 399 puntos, 74 mantienen incompatibilidad gobernada, con
+orden 2/3/4; desaparece el ejemplo P4 y la lengua U-S-U-S declarada. No usar
+este resultado como respaldo a que el MISMO H4 sea físicamente robusto.
+
+FC10, una política E12 anterior, da 327 destinos estables, 3 no seguros en todo
+orden y ninguno sin camino seguro. El mejor plan tiene 3652.304711 MW tanto
+si exige destino seguro, algún camino seguro, o todo orden seguro: secuenciación
+no cambia allí el óptimo. Sus alpha H4~0.14467 no son el P4 GFL11~0.12700647.
+
+Negativas del FINAL_TRANSACTION_THEORY_AND_EVIDENCE que sí cambian la elección:
+- Holonomía/magnitud de ciclo simple no explica el fallo; no revivir ese lema
+  con terminología distinta sin nueva prueba.
+- No se observó composición no lineal más estricta que espectral dentro del
+  dominio del modelo: 84/96 umbrales fueron OUTSIDE_MODEL_SCOPE, no inestabilidad.
+- Condenser: 106 MVA espectrales frente a 684–792 MVA de permanencia en el
+  envelope; son servicios diferentes. Gobernadores eliminan la necesidad P4.
+- Certificados Lyapunov/mu/small-gain anteriores no fueron útiles; ratios de
+  radio <=1e-11 y rho de envolventes >1. No son cotas operativas aceptables.
+- Curvatura KCL completa sí mejora predicción no lineal y evita artefactos de
+  simetría, pero es consistencia de Taylor, no novedad ni ley de diseño sola.
+
+CDW hardening explica otra falsa pista: el regret 0.38 de ranking fijo FULL
+proviene principalmente de cruces tipo singularidad del DAE a altas fracciones.
+En EM regret~0.03; con pantalla de estabilidad error~0.065. Las reversales EM
+reservadas existen en 17/19 pero son ~0.0127 s^-1, no se reproducen materialmente
+en IEEE68 y no sustentan una ley universal de imposibilidad de rankings nodales.
+
+5. PD39: mantener las advertencias, no reciclar un blockbuster como validado
+==========================================================================
+  docs/PD39_CONFIRMATORY_FINAL_REPORT.md
+  docs/PD39_COMPOSITION_NUMERICAL_REPORT.md
+  docs/PD39_255PLUS1_FINAL_REPORT.md
+  docs/PD39_BLOCKER_ATLAS_FINAL_REPORT.md
+
+255+1 es exacto en las nueve condiciones de descubrimiento: 255 propios pasan
+0.05, V8 no; V8 nominal es estable y verdaderamente inestable solo en cuatro
+condiciones de PLL alto. Nueve esquinas no equivalen a incertidumbre continua.
+Refuerzos de línea que reparan descubrimiento fallan todos al menos un holdout.
+
+La validación posterior termina CASE C: FD independiente de alpha falla en
+72/81 casos; holdout 6144 filas produce 42 H0 y 47 H0.05 y 17 fallos de solución
+conservados; V8 ya no identifica el único blocker. El atlas físico posterior
+termina CASE C-STOP: H1/H3 cambian de signo al variar la ruta de inicialización,
+y los tres candidatos H1/H2/H3 alcanzan MaxIters en TDS. No hubo atlas,
+reparación, mecanismo de cierre o teorema de blocker físico aceptado.
+Estos resultados no refutan TX4 exacto, pues son otros modelos/contratos, pero
+sí prohíben presentar PD39 como réplica física general del H4.
+
+6. ORO C condicional: puertos físicos y sensibilidad, no signo de damping
+=======================================================================
+  experiments/physical_collective_damping_20261003/THEORY.md
+  experiments/physical_collective_damping_20261003/REPORT_ES.md
+  experiments/physical_collective_damping_20261003/POSTER_CLAIMS.md
+  experiments/physical_collective_damping_20261003/DELAY_MODEL_CONTRACT.md
+  experiments/physical_collective_damping_20261003/TABLE_08_ACTION_ATTRIBUTION.csv
+
+Se fija rho (88.4551408%, 623.741162 MW SG), no se optimiza capacidad. Puertos
+de par externo y velocidad SG, con M_i=2H_i Sn_i, permiten Z(s)=M Schur(Delta).
+La parte Hermítica representa suministro MECÁNICO INCREMENTAL armónico:
+0.5*nu* D_H nu. No es energía AC total ni Lyapunov de la red controlada.
+60 comprobaciones de identidad contra transferencia completa, error 1.2e-10.
+T a45ms: nodal+38.658333, cruzado-737.485824, total-698.827491: omitir el
+colectivo invierte el signo para esa dirección y frecuencia física.
+
+Pero N a40ms tiene damping proyectado positivo y polo PLL inestable. Por tanto
+el signo escalar está REFUTADO como clasificador general. La condición compleja
+y los estados ocultos importan. Los seis casos de historia modal, dos amplitudes,
+3s, son validación local del DDE no lineal, no los cinco escalones de 100 MW.
+Condicionamiento oculto hasta 2.686e11 y raíces solo rastreadas: no certificado
+de todo el espectro DDE. N/T/Z difieren en ganancias ya elegidas previamente.
+
+La vía útil es ds/dp=-(l*Z_p r)/(l*Z_s r), con partes reactivas y disipativas,
+normalización física fija y regularidad del bloque eliminado. Sus 42 derivadas
+contra FD tienen error relativo máximo 1.78236e-7; contraste con característica
+completa ~4.82e-8. Puede alimentar el diseño multirrestricción y atribuir qué
+interacciones lo permiten. Es estándar y exploratorio: no hay diseño nuevo
+validado que demuestre mejora frente a sensibilidad completa convencional.
+
+7. GSP y certificado regional: recursos válidos, conclusiones incompletas
+=======================================================================
+  experiments/graph_gsp_codesign_20261003/STATUS.md
+  experiments/graph_gsp_codesign_20261003/NUMERICAL_NOTES.md
+  experiments/graph_gsp_codesign_20261003/TABLE_07_LOCAL_PREDICTORS.csv
+  experiments/graph_gsp_codesign_20261003/TABLE_05B_NEUMANN_CONVERGENCE.csv
+  experiments/regional_paper_closure_20261003/POSTER_CLAIMS.txt
+  experiments/regional_paper_closure_20261003/CONTOUR_RESULT.json
+  experiments/regional_paper_closure_20261003/CHECKS_SUMMARY.json
+
+GSP: diez predictores locales ejecutados; evaluación correctora no lineal de
+todas las familias incompleta. Cada fila dice LOCAL_PREDICTOR_NOT_NONLINEAR_FEASIBLE.
+La mejora predicha full de 20 ganancias supera common de 2 ganancias en solo
+0.036723 MW: no prueba una ganancia material de GSP o de grados de libertad.
+24/24 expansiones Neumann divergen: radio espectral 1.73049–4.10117, no solo
+falla de condición suficiente por norma. Eso refuta esa expansión en esos puntos,
+no el uso de una base de grafos ni toda reducción dinámica.
+
+Regional: sí existe verificación intervalar para matrices binary64 exportadas
+y delay decimal exacto0.04. 485 paneles mantienen exactamente UNA raíz en la
+caja a rho +/-0.001 y ganancias +/-1%, con Re<-0.08229. Es más que muestreo,
+pero solo ese clúster; no todo espectro ni seguridad no lineal. El walk tail es
+18.11–45.78 veces más ajustado en tres frecuencias; la cota escalar global de
+resto~4.45818 s^-1 sigue inútil para capacidad. La región ya toca el techo rho
+en una esquina numéricamente factible, así que no prueba reserva SG interior.
+El candidato rho=.876 y669.942375 MW SG pasa cinco eventos a40ms, pero ganancias
+fijas también pasan el test espectral: no demuestra superioridad del retuning.
+
+No comparar 94.215% Q2B con88.455% physical o87.6% regional como una frontera
+única: cambian delay, eventos, soporte, ganancias, incertidumbre y criterios.
+
+8. Datos ya archivados para una futura identidad déficit/integral/energía
+=======================================================================
+Sin ejecutar campaña ni calcular nuevas integrales, identifiqué:
+  reports/experiment_Q2B/CERTIFIED_SEARCH/PD/bus16_100MW_SENSORS.csv
+  reports/experiment_Q2B/CERTIFIED_SEARCH/PD/bus16_1MW_SENSORS.csv
+  reports/experiment_Q2B/CERTIFIED_SEARCH/PD/bus16_25MW_SENSORS.csv
+  reports/experiment_Q2B/CERTIFIED_SEARCH/PD/bus16_50MW_SENSORS.csv
+  reports/experiment_Q2B/CERTIFIED_SEARCH/PD/bus8_100MW_SENSORS.csv
+  reports/experiment_Q2B/CERTIFIED_SEARCH/PD/bus29_100MW_SENSORS.csv
+  reports/experiment_Q2B/CERTIFIED_SEARCH/PD/bus16_pulse_SENSORS.csv
+  experiments/bnd_expQ2B/certified_search/validate_independent_pd.jl
+
+Cada CSV tiene 12201 muestras, 0–61s, dt=.005s. Incluye load_MW, pérdidas de
+red, balance eléctrico y por bus frecuencia de red/SG/PLL, V, SG/GFL P y Q,
+potencia mecánica SG, Vdc y Pdc. Son mejores datos para un balance que los CSV
+delayed actuales, que solo guardan frecuencias de39buses y extremos de voltaje.
+Las trazas physical_collective guardan coordenadas modales y normas, insuficientes
+para reconstruir un balance energético completo.
+
+Semántica confirmada en el exportador: SG_mechanical=Sn*tau_m*omega;
+GFL_MW=100*rho*(v dot if); Pdc_pu es interno, falta convertir por100*rho.
+El error de balance es sum(P_SG_terminal+P_GFL_terminal)-Pload-Ploss_red:
+es cierre eléctrico/KCL, no certificación del balance de toda energía almacenada.
+No están guardadas las corrientes internas del filtro ni todos los flujos SG;
+la energía cinética puede obtenerse con SG_Hz y H*Sn documentados, la DC con
+Vdc y capacitancia/base, pero no asumir que esas son todas las reservas.
+La energía mecánica real y la energía incremental 0.5*M*nu^2 son distintas.
+
+Los endpoint a61s no son automáticamente equilibrios: existe offset y relajación
+lenta. Para una ley de integral de frecuencia de ventana también hay términos
+de borde de la ventana. El evento cambia Pset ZIP; consumo efectivo y pérdidas
+varían. Estas trazas permiten una prueba económica del balance y sus defectos,
+pero no una afirmación de no-go para todo controlador energéticamente neutro
+sin hipótesis de energía almacenada, disipación, límites y condición terminal.
+
+9. Prioridad final y comprobaciones efectuadas
+=============================================
+1) Mejor contribución predictiva ya probada: refuerzo total condicionado al
+   equilibrio/portafolio. El paso confirmatorio pendiente es objetivo EM material
+   y seguridad de intervención; no repetir el descubrimiento de reversión.
+2) Mejor resultado de co-diseño y física de servicios: Q2B CERTIFIED_SEARCH,
+   con dos picos, asignación marginal por servicio y fallos externos conservados.
+   Es una base fuerte para investigar endpoint/integral y reserva energética,
+   sin vender su óptimo local como capacidad global.
+3) Mejor soporte de mecanismo para Beyond Nodal Damping: puertos físicos más
+   sensibilidad COMPLEJA del polo, unido a restricciones activas. El signo solo
+   y el Laplaciano estático ya tienen controles negativos que deben conservarse.
+
+Reentrancia H4+34 puede ser motivación breve, no prueba principal de una ley
+nueva. PD39 255+1, GSP incompleto, región al techo y cota escalar vacua no deben
+desplazar resultados más maduros por tener un título más atractivo.
+
+Esta auditoría leyó resúmenes, contratos, código exportador y artefactos crudos;
+recalculó solo SHA del candidato Q2B, sumas KKT, rango de los 24 radios Neumann,
+diferencia common/full de predictores y tamaños/periodos de CSV. No reejecutó
+solvers, certificados, simulaciones ni literatura. Reproducibilidad de una fórmula
+o coincidencia de dos códigos no establece novedad mundial, realismo de un
+modelo o transferencia entre familias. Solo se escribió este informe.

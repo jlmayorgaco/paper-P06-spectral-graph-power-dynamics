@@ -1,0 +1,717 @@
+=== PAGE 1 ===
+TFM / ROBÓTICA Y AUTOMATIZACIÓN DE PROCESOS
+El dominio real
+del Mega Juego
+Estabilidad, equilibrio, viabilidad,
+seguridad y optimalidad
+Auditoría matemática de la V3 y nuevas derivaciones analíticas
+Este suplemento estudia qué puede garantizar el sistema existente y dónde pierde esas garantías. Incluye
+un contraejemplo de equilibrio fuera del objetivo, certificados de infactibilidad tras pérdida de motor, una
+comprobación de fricción lateral ausente y análisis de la competencia entre atractores. No modifica el
+controlador V3 ni se presenta como una nueva misión integrada exitosa.
+Preparado para:Jorge Luis Mayorga Taborda
+Fecha editorial:5 de septiembre de 2026
+Base inspeccionada:MROB_Integracion_v3/src/cargo_cl.py
+Evidencia nueva:199 instantáneas de 10 mundos; 10 estados terminales de fallo; contraejemplos construidos
+y análisis local del mapa muestreado.
+Las demostraciones son argumentos escritos para las hipótesis indicadas, no pruebas mecanizadas. Los cálculos en
+coma flotante se identifican como evidencia numérica. No se reivindica novedad bibliográfica por renombrar resultados
+estándar.
+
+=== PAGE 2 ===
+MROB / Análisis del Mega Juego Auditoría V3 + desarrollo A4
+Índice
+1. Resultado principal y procedencia 2
+2. Mecánica, geometría y dominio de validez 2
+2.1. Modelo que realmente ejecuta V3 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+2.2. Rigidez no equivale a movilidad . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+2.3. Una desigualdad necesaria de fricción de suelo . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+2.4. Pérdida de apoyo y pérdida de motor . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+3. Qué juego existe: equilibrio y optimalidad instantánea 4
+3.1. Potencial cooperativo condicionado al estado . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+3.2. Certificado cuantitativo de suboptimalidad . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+3.3. El campo espacial no es un potencial conservativo . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+4. Estabilidad real: un contraejemplo del controlador V3 5
+4.1. Zona muerta angular . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+4.2. Estabilidad del mapa realmente muestreado . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+4.3. Sensibilidad KKT y cambios de conjunto activo . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+5. Seguridad, autoridad y viabilidad 8
+5.1. Cadena correcta de la carga . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+5.2. No basta estar lejos de la pared . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+5.3. Certificados de infactibilidad después del fallo . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+5.4. Pérdida de autoridad y grado relativo . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+5.5. Retención, error y factibilidad recursiva . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+6. Competencia de atractores y vivacidad 10
+6.1. Una bifurcación que la suavidad no elimina . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+6.2. Deadlocks como equilibrios restringidos . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+7. Precios que sí llegan hasta los torques 11
+7.1. La fuerza instantánea de contacto no es una acción libre . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+7.2. La congestión aparece una derivada después . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+8. Estabilidad de la interconexión distribuida 11
+8.1. Qué permite la disipatividad . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+8.2. Más consenso no siempre admite más retardo . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+8.3. Acciones ensambladas bajo información inconsistente . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+9. Optimalidad de misión y certificado de desempeño 12
+10. Mapa de fallos y cierre recomendado 13
+11. Reproducción y límites del suplemento 13
+1
+
+=== PAGE 3 ===
+MROB / Análisis del Mega Juego Auditoría V3 + desarrollo A4
+1. Resultado principal y procedencia
+Lasiguientepreguntaesmásprecisaquepreguntarsiunasimulaciónterminabien: ¿enquédominiodeestados,
+geometrías, acciones e información existe una acción físicamente admisible, el juego la selecciona y la planta
+permanece segura mientras progresa?
+La V3 ya distingue entre un QP cooperativo convexo por estado congelado y la dinámica completa de contacto
+y movimiento. Su documento contiene un balance de energía, una prueba de grado relativo tres para contacto
+Kelvin–Voigt,unacadenaHOCBFyunaimplicaciónISScondicionadaalaexistenciadeunLyapunovnominal.
+Estaauditoríanotransformaesaimplicaciónenunapruebaglobal:examinaprecisamentelashipótesisfaltantes.
+Procedencia Contenido
+V3 inspeccionada Código, informes fuente, configuraciones y trazas originales. Se preservan ensource
+_v3/.
+Nueva auditoría Condicionamiento del QP, rango mecánico, equilibrio con error, espectro muestreado,
+certificados de Farkas y fricción lateral.
+Nueva derivación Bifurcaciónsoft-min,sensibilidadKKT,cotadesuboptimalidad,transmisiónpredictiva
+de precios, condiciones de contracción y factibilidad robusta.
+Literatura HOCBF,sistemasmuestreados,GNEdistribuido,disipatividaddejuegospoblacionales
+y contracción.
+No son nuevas campañas completas de misión.Los 199 puntos pertenecen a diez mundos ya ejecutados
+en V3; los estados de pérdida de motor también provienen de sus trazas. Los contraejemplos se construyen
+ahora y se evalúan con el código original. No se convierten instantáneas correlacionadas en 199 ensayos
+independientes.
+Tresconclusionesguíaneldocumento.Primera:elQPpuedeserfuertementeconvexoyestarbiencondicionado,
+mientraslaplantaadmiteequilibriosnodeseados.Segunda:unainfactibilidadpuedecertificarsealgebraicamente
+y no debe atribuirse automáticamente al solver. Tercera: mayor rigidez, más ganancia o más mensajes no son
+mejoras monótonas; su conveniencia depende de movilidad, retardo y autoridad de control.
+2. Mecánica, geometría y dominio de validez
+2.1. Modelo que realmente ejecuta V3
+Para el AMR𝑖, 𝑝𝑖 ∈ R2, orientación 𝜃𝑖, velocidad longitudinal𝑣 𝑖 y angular𝜔𝑖. Sea 𝑒𝑖 = (cos 𝜃𝑖, sin 𝜃𝑖)⊤,
+𝑒⊥
+𝑖 = 𝐽𝑒 𝑖 y 𝐽 =
+ 0 −1
+1 0
+
+. La carga tiene pose( 𝑝, 𝜓), twist𝜉 = (𝑉𝑥, 𝑉𝑦, Ω). Sus puntos materiales de apoyo son
+𝑟𝑖 = 𝑅(𝜓) ¯𝑟𝑖. El error y la velocidad de deformación son
+𝜖𝑖 = 𝑝𝑖 − 𝑝 − 𝑟𝑖, 𝑢 𝑖 = 𝑣 𝑖𝑒𝑖 − 𝑉 − Ω𝐽𝑟 𝑖. (1)
+Dentro del dominio de adherencia del modelo,
+𝑓𝑖 = 𝑘𝑡 𝜖𝑖 + 𝑑𝑡 𝑢𝑖, ∥ 𝑓𝑖 ∥ ≤ 𝜇𝑡 𝑁𝑖, 𝑁 𝑖 > 0. (2)
+La carga recibe+ 𝑓𝑖 y el AMR− 𝑓𝑖. Las únicas entradas aplicadas son𝜏 ∈ R6. Las normales𝑁𝑖 se calculan
+cuasiestáticamente; no se ha integrado aquí una dinámica vertical completa.
+2.2. Rigidez no equivale a movilidad
+En el límite de apoyos perfectamente adheridos y sin deformación,𝑣 𝑖𝑒𝑖 = 𝑉 + Ω𝐽𝑟 𝑖. Multiplicar por𝑒⊥⊤
+𝑖
+produce
+𝐴kin(𝜃, 𝑟)𝜉 = 0, [ 𝐴kin]𝑖 = [− sin 𝜃𝑖, cos 𝜃𝑖, 𝑒 ⊤
+𝑖 𝑟𝑖]. (3)
+2
+
+=== PAGE 4 ===
+MROB / Análisis del Mega Juego Auditoría V3 + desarrollo A4
+Proposición 2.1(Dimensión instantánea de movilidad). Para una configuración fija, el espacio de twists
+compatibles con los apoyos rígidos y la rodadura ideal tiene dimensión3 − rank 𝐴kin. Si el rango es tres, solo
+es posible𝜉 = 0 en ese instante.
+Demostración. La igualdad(3) es una restricción lineal homogénea sobre tres componentes de𝜉. Aplicar
+rango–nulidad. La conclusión es instantánea: no prohíbe reorientar los chasis y cambiar posteriormente el
+núcleo admisible. □
+La capacidad de tracción es un objeto distinto. Para tracciones escalares𝑡𝑖,
+𝑤 = 𝑊tr𝑡, [𝑊tr]𝑖 =
+ 𝑒𝑖
+𝑟𝑖 𝑥𝑒𝑖 𝑦 − 𝑟𝑖 𝑦𝑒𝑖 𝑥
+
+. (4)
+El rango de𝑊tr mide direcciones de wrench; el de𝐴kin mide restricciones de movimiento. Ninguno sustituye
+al otro.
+Ejes ensayados rank 𝐴kin Movilidad rígida rank 𝑊tr
+Paralelos (0, 0, 0) 2 1 2
+Genéricos (0, 0.6, −0.4) 3 0 3
+Radiales 3 0 2
+LasposicionessonlasdeltriángulodeapoyoV3.Paracompararvaloressingularessenormalizólacomponente
+angular con el radio de carga. Los rangos se refieren a este modelo ideal, no a la ausencia total de movimiento
+del modelo compliant.
+2.3. Una desigualdad necesaria de fricción de suelo
+En el modelo planar utilizado, la reacción del suelo satisface
+𝐹𝑔
+𝑖 ∥ = 𝑚𝑖 ¤𝑣 𝑖 + 𝑑𝑣 𝑣 𝑖 + 𝑒⊤
+𝑖 𝑓𝑖, (5)
+𝐹𝑔
+𝑖⊥ = 𝑚𝑖𝑣 𝑖𝜔𝑖 + 𝑒⊥⊤
+𝑖 𝑓𝑖. (6)
+Una condición física necesaria para no deslizar lateralmente es
+(𝐹𝑔
+𝑖 ∥ )2 + ( 𝐹𝑔
+𝑖⊥)2 ≤ 𝜇2
+𝑔 (𝑚𝑖𝑔 + 𝑁𝑖)2. (7)
+El QP V3 restringe la componente longitudinal por un cuadrado inscrito, pero no introduce la desigualdad
+lateral complementaria en su conjunto admisible. El diagnóstico sí calcula el cociente resultante; el criterio
+terminal derun()no lo utiliza como condición de salida.
+Se construyó un estado con∥𝜖𝑖 ∥ = 0.04 m, normales positivas y ejes paralelos. Para𝜇𝑔 = 0.05, el QP tiene
+residual primal cero y el cociente de utilización de suelo es aproximadamente1.595. Estono demuestra que
+las campañas nominales patinen: muestra que el QP acepta un estado de estrés situado fuera de la hipótesis
+de rodadura sin deslizamiento. La condición(7), o una aproximación interna con ambas componentes, debe
+acompañarse de una condición de invariancia temporal.
+2.4. Pérdida de apoyo y pérdida de motor
+El equilibrio vertical exige que el centro de masas proyectado pertenezca a la envolvente convexa de los apoyos.
+Con normales limitadas también debe resolverse la factibilidad de𝐴𝑧 𝑁 = 𝑏𝑧, 0 ≤ 𝑁 ≤ 𝑁m´ax. La pérdida de
+motor no retira ese apoyo; cambia el conjunto de torques. La pérdida de contacto retira una columna de𝐴𝑧 y
+modifica la geometría vertical. Los certificados y campañas deben mantener separados estos dos fallos.
+Si se incorpora alturaℎ𝑐 del centro de masas, una aceleración horizontal introduce transferencia de carga. En
+un modelo cuasiestático sin aceleración vertical, el centro efectivo de presión se desplaza aproximadamente
+como 𝑐eff = 𝑐 − ℎ𝑐𝑎/𝑔. La condición de soporte debe evaluarse sobre ese punto, no únicamente sobre𝑐. Esta
+extensión no está simulada en la presente auditoría.
+3
+
+=== PAGE 5 ===
+MROB / Análisis del Mega Juego Auditoría V3 + desarrollo A4
+10 1
+Coeficiente de fricción rueda suelo
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+3.5
+4.0Fuerza resultante / capacidad de fricción
+Estado de estrés: el QP no comprueba toda la reacción lateral
+Límite físico
+Figura 1: Contraejemplo construido, no una trayectoria histórica. El cociente superior a uno significa que el
+estado/comando exige más fricción de suelo de la disponible.
+3. Qué juego existe: equilibrio y optimalidad instantánea
+3.1. Potencial cooperativo condicionado al estado
+Con 𝑋 y el torque anterior𝜏− fijos, V3 resuelve
+m´ın
+𝜏 ∈𝐾 (𝑋)
+Φ𝑋 (𝜏), Φ𝑋 (𝜏) = 1
+2 𝜏⊤𝐻 (𝑋)𝜏 + 𝑔 (𝑋, 𝜏 −)⊤𝜏, 𝐾 (𝑋) = {𝜏 : 𝐴(𝑋)𝜏 ≥ 𝑏(𝑋)} . (8)
+El código construye𝐻 = A⊤𝑊 A + 0.045𝐼. Por ello𝐻 ⪰ 0.045𝐼. Con𝐾 no vacío y límites de torque, existe
+un mínimo único. En el juego de interés idéntico𝐽𝑖 = Φ 𝑋, el pseudogradiente es𝐹𝑋 = 𝐻𝜏 + 𝑔 y esa solución
+es el equilibrio variacional.
+La auditoría de 199 instantáneas encontró𝜆m´ın(𝐻) ∈ [ 1.3473, 1.4302] y 𝜅2(𝐻) ∈ [ 7.4423, 9.0586]. Son
+diagnósticos del QP en unidades de torque, no de la estabilidad mecánica.
+Proposición 3.1(Un GNE general no sustituye al v-GNE). Incluso con potencial fuertemente convexo, las
+restricciones compartidas pueden hacer que todos los perfiles factibles sean GNE mientras existe un único
+v-GNE.
+Demostración. Considérese 𝑥1, 𝑥2 ≥ 0, 𝑥1 + 𝑥2 = 1ycostecomún Φ = (𝑥2
+1 + 4𝑥2
+2)/2.Dado 𝑥−𝑖,laigualdadno
+permite cambiar unilateralmente𝑥𝑖: todos los perfiles factibles son GNE. La VI conjunta equivale a minimizar
+Φ sobre el segmento y tiene solución única(0.8, 0.2). Por ejemplo(0, 1) cuesta 2, mientras el mínimo vale
+0.4. □
+Lacooperaciónefectivaexigeportantounaselecciónvariacionalounmecanismoequivalentedemultiplicadores
+comunes; no basta escribir “Nash” en el controlador. Los marcos distribuidos de [8, 2, 3] proporcionan
+herramientas bajo hipótesis específicas.
+3.2. Certificado cuantitativo de suboptimalidad
+Proposición 3.2(Cota por estacionariedad y complementariedad). Sea 𝐻 ⪰ 𝑚𝐻 𝐼, ˆ𝜏 ∈ 𝐾, ˆ𝜆 ≥ 0 y
+𝑟 = 𝐻 ˆ𝜏 + 𝑔 − 𝐴⊤ ˆ𝜆, 𝑐 = ˆ𝜆⊤( 𝐴 ˆ𝜏 − 𝑏) ≥ 0.
+4
+
+=== PAGE 6 ===
+MROB / Análisis del Mega Juego Auditoría V3 + desarrollo A4
+0.0 2.5 5.0 7.5 10.0 12.5 15.0 17.5
+Tiempo [s]
+7.4
+7.6
+7.8
+8.0
+8.2
+8.4
+8.6
+8.8
+9.0Condición espectral de H
+199 instantáneas de 10 mundos: el QP está bien condicionado
+Figura 2: Condicionamiento espectral de𝐻 en diez mundos originales. Un QP bien condicionado no elimina
+equilibrios indeseados de la planta.
+Si 𝜏∗ es el mínimo, entonces
+0 ≤ Φ( ˆ𝜏) − Φ(𝜏∗) ≤ ∥𝑟 ∥2
+2𝑚𝐻
++ 𝑐. (9)
+Demostración. Por convexidad fuerte, para𝑑 = ˆ𝜏 − 𝜏∗, Φ( ˆ𝜏) − Φ(𝜏∗) ≤ ∇ Φ( ˆ𝜏)⊤𝑑 − 𝑚𝐻 ∥𝑑 ∥2 /2. Como
+∇Φ = 𝑟 + 𝐴⊤ ˆ𝜆 y 𝐴𝜏∗ ≥ 𝑏, se tieneˆ𝜆⊤ 𝐴𝑑 ≤ 𝑐. Acotar𝑟 ⊤𝑑 − 𝑚𝐻 ∥𝑑 ∥2 /2 por ∥𝑟 ∥2 /(2𝑚𝐻). □
+La factibilidad deˆ𝜏 es esencial. Esta cota no se obtiene del residual primal solo. Tampoco mide energía o
+tiempo óptimos de toda la misión.
+3.3. El campo espacial no es un potencial conservativo
+El campo V3 añade circulación con quiralidad fija. En el punto(6.77, 3.05), con el obstáculo y destino
+nominales, una diferencia central de paso10−5 m da
+𝜕𝑥𝑢 𝑦 − 𝜕𝑦𝑢 𝑥 ≃ −0.27118644 ≠ 0. (10)
+En ese punto no actúa la saturación de norma. Por tanto el campo no puede ser el gradiente euclídeo de un
+escalar en una vecindad. Esto no invalida el potencial del QP respecto de𝜏: son espacios distintos. Sí impide
+usar ese campo como evidencia automática de una energía potencial física global.
+Unaconstruccióndecirculacióncompatibleconunafunción 𝑉 enunsistemadeprimerordenes ¤𝑞 = −( 𝐷+𝑆)∇𝑉,
+𝐷 ≻ 0, 𝑆⊤ = −𝑆. Entonces ¤𝑉 = −∇𝑉 ⊤𝐷∇𝑉. Sin embargo, no elimina los puntos críticos de𝑉 y no debe
+insertarse directamente en la planta de segundo orden sin efectuar el mapeo mecánico correspondiente.
+4. Estabilidad real: un contraejemplo del controlador V3
+4.1. Zona muerta angular
+El código utiliza una referencia angular nula cuando la norma de la velocidad objetivo de un apoyo no supera
+𝑢0 = 0.015m/s. Esta es una conmutación numérica del controlador, no un modo de misión, pero afecta a la
+estabilidad y a su regularidad.
+5
+
+=== PAGE 7 ===
+MROB / Análisis del Mega Juego Auditoría V3 + desarrollo A4
+Proposición 4.1(Equilibrios fuera del destino exacto). En V3, sin obstáculos interiores, existen estados en
+reposo con apoyos sin deformación, normales positivas y error lateral de carga arbitrariamente pequeño pero
+no nulo, para los que el QP prescribe𝜏 = 0.
+Demostración. Fijar 𝜓 = 0.12, 𝜃𝑖 = 0, velocidades nulas,𝑝𝑖 = 𝑝 + 𝑅(𝜓) ¯𝑟𝑖 y 𝑝 = 𝑝𝑑 + ( 0, 𝛿). Entonces
+𝜖𝑖 = 𝑢𝑖 = 𝑓𝑖 = 0. El campo es puramente lateral y su magnitud es
+∥𝑢∥ = 0.38|𝛿|√
+0.452 + 𝛿2
+.
+Si ∥𝑢∥ < 𝑢 0, la referencia angular es cero. La proyección longitudinal de𝑢 sobre todos los ejes también es
+cero. La fila de jerk lateral no tiene autoridad de torque, pues todos los𝑒𝑖 son horizontales. Todos los términos
+lineales del QP son cero:𝑔 = 0. Como𝐻 ≻ 0y 𝜏 = 0es factible lejos de las fronteras, es el único minimizador.
+La dinámica completa tiene¤𝑋 = 0. □
+La franja correspondiente cumple
+|𝛿| < 0.45𝑢0√︃
+0.382 − 𝑢2
+0
+= 0.017777 . . . m. (11)
+Para 𝛿 = 0.01 m, la evaluación del código produjo∥𝜏∥∞ ≈ 8.79 × 10−15 N m y
+ ¤𝑋
+
+∞ ≈ 4.23 × 10−15 en
+unidades mixtas de estado. Son residuos de redondeo alrededor del equilibrio algebraico.
+Consecuencia.Eldestinoexactonoesasintóticamenteatractivodesdetodaunavecindaddeestasconfiguracio-
+nes. Esto no contradice 30/30 entregas con tolerancia de posición0.16 m: aceptación práctica y convergencia
+exacta son afirmaciones diferentes.
+0 5 10 15 20 25 30 35 40
+Error lateral al destino [mm]
+0.00
+0.25
+0.50
+0.75
+1.00
+1.25
+1.50
+1.75
+2.00Máximo torque ordenado [N·m]
+El controlador puede detenerse antes del destino exacto
+Umbral derivado: 17,78 mm
+Figura3:Eltorquepasadeprácticamenteceroaunaordenfinitaalcruzarelumbralangular.Nosehacambiado
+ningún parámetro V3 para producir esta curva.
+Una posible reparación local consiste en una referencia sin normalización singular,𝜔𝑑
+𝑖 = 𝑘 𝜃 𝑒⊥⊤
+𝑖 𝑢𝑖. El campo
+lateraldelcontraejemploproduceentoncesgirononulo.Estamodificacióneliminaesecontraejemploparticular,
+perosuestabilidadcontodaslasrestriccionesdebedemostrarseyensayarse;nosehasustituidosilenciosamente
+el controlador.
+6
+
+=== PAGE 8 ===
+MROB / Análisis del Mega Juego Auditoría V3 + desarrollo A4
+4.2. Estabilidad del mapa realmente muestreado
+El sistema implementado tiene memoria de𝜏− y retiene el torque duranteΔ. La variable de análisis es
+𝑌 = (𝑋, 𝜏 −):
+𝑌𝑘+1 = TΔ(𝑌𝑘) =
+𝜙Δ(𝑋𝑘, 𝜅(𝑋𝑘, 𝜏−
+𝑘 ))
+𝜅(𝑋𝑘, 𝜏−
+𝑘 )
+
+. (12)
+Su derivada local es
+𝐷TΔ =
+𝜙𝑋 + 𝜙𝜏 𝐾𝑋 𝜙𝜏 𝐾−
+𝐾𝑋 𝐾−
+
+, 𝐾 𝑋 = 𝐷 𝑋𝜅, 𝐾 − = 𝐷 𝜏 − 𝜅. (13)
+En un equilibrio diferenciable, radio espectral menor que uno implica estabilidad exponencial local. Esta
+prueba no puede reemplazarse por verificar que𝐻 ≻ 0.
+Una diferencia central de paso10−6 del mapa de 27 variables, con integración RK4 de la planta a 2 ms y
+retención de 20 ms, produjo seis autovalores numéricamente próximos a uno. El máximo fue1.00000000014:
+la diferencia de10−10 no se interpreta como crecimiento físico. El contraejemplo exacto anterior, no este
+redondeo, es el que demuestra falta de atracción al destino exacto.
+1.00
+ 0.75
+ 0.50
+ 0.25
+ 0.00 0.25 0.50 0.75 1.00
+Parte real
+1.00
+0.75
+0.50
+0.25
+0.00
+0.25
+0.50
+0.75
+1.00
+Parte imaginaria
+Equilibrio con error: seis autovalores próximos a 1
+Círculo unidad
+Autovalores del mapa linealizado
+Figura 4: Espectro del mapa muestreado en el equilibrio con error lateral. Los modos neutros impiden concluir
+contracción estricta del estado completo.
+4.3. Sensibilidad KKT y cambios de conjunto activo
+En una región con conjunto activo𝐼 constante, LICQ y complementariedad estricta, las condiciones KKT son
+ 𝐻 −𝐴⊤
+𝐼
+𝐴𝐼 0
+ 𝜏∗
+𝜆∗
+𝐼
+
+=
+−𝑔
+𝑏𝐼
+
+. (14)
+Para una perturbación de estado, la sensibilidad se obtiene resolviendo
+ 𝐻 −𝐴⊤
+𝐼
+𝐴𝐼 0
+ 𝑑𝜏 ∗
+𝑑𝜆∗
+𝐼
+
+=
+−( 𝑑𝐻)𝜏∗ − 𝑑𝑔 + ( 𝑑𝐴𝐼 )⊤𝜆∗
+𝐼
+𝑑𝑏 𝐼 − ( 𝑑𝐴𝐼 )𝜏∗
+
+. (15)
+La inversa de esta matriz determina amplificación local. El buen condicionamiento de𝐻 no garantiza el de
+toda la KKT si las filas activas son casi dependientes.
+7
+
+=== PAGE 9 ===
+MROB / Análisis del Mega Juego Auditoría V3 + desarrollo A4
+Cuando cambia𝐼, la derivada puede cambiar. Para una certificación regional del mapa, buscar𝑃 ≻ 0y 𝑞 < 1
+tales que𝑀 ⊤
+𝑗 𝑃𝑀 𝑗 ⪯ 𝑞2𝑃 para todas las ramas relevantes. Verificar autovalores estables por separado no basta
+para un sistema que conmuta. Las herramientas de contracción, semicontracción y sistemas interconectados de
+Bullo son apropiadas para esta distinción [1].
+5. Seguridad, autoridad y viabilidad
+5.1. Cadena correcta de la carga
+Con 𝑑𝑡 > 0, ¥𝑝 = 𝑎(𝑋) y 𝑝 (3) = 𝑏 𝑗 (𝑋) + 𝐵 𝑗 (𝑋)𝜏. Para una barreraℎ( 𝑝),
+𝜓0 = ℎ, 𝜓 1 = ¤ℎ + 𝜅ℎ, 𝜓 2 = ¥ℎ + 2𝜅 ¤ℎ + 𝜅2ℎ.
+Se requiere
+𝐵3 = ℎ (3) + 3𝜅 ¥ℎ + 3𝜅2 ¤ℎ + 𝜅3ℎ ≥ 0. (16)
+La condición inicial incluye𝜓0, 𝜓1, 𝜓2 ≥ 0. La invariancia es condicional a una acción admisible y a la
+permanencia en el dominio mecánico [4].
+5.2. No basta estar lejos de la pared
+El conjunto geométrico seguro es𝑆 = {𝑋 : ℎ(𝑋) ≥ 0}. Su núcleo de viabilidad, relativo al modelo y límites de
+entrada, es
+V = {𝑋0 : ∃𝜏(·)admisible que mantiene el dominio físico yℎ ≥ 0 para todo tiempo}. (17)
+Generalmente V ⊊ 𝑆: una carga rápida puede no tener distancia de frenado suficiente. Un QP factible
+ahora tampoco garantiza factibilidad futura. La factibilidad bajo restricciones de entrada y la construcción de
+subconjuntos seguros controlables son temas explícitos de [6, 7].
+Para medir reserva instantánea, con filas escaladas de forma declarada, definir
+𝜎(𝑋) = m´ax
+𝜏 ∈𝑈 (𝑋)
+m´ın
+𝑗
+𝐴 𝑗 (𝑋)𝜏 − 𝑏 𝑗 (𝑋)
+𝑠 𝑗
+, 𝑠 𝑗 > 0. (18)
+Loslímitesdeactuadorsemantienenexactosen 𝑈.Elsignode 𝜎 indicacompatibilidadinstantáneadelasfilas;
+su valor depende de la normalización. No es distancia física al choque ni un núcleo de viabilidad por sí mismo.
+Proposición5.1 (Reservasuficienteantedatosperturbados) . Supóngasequeunaacciónsatisface 𝐴 𝑗 𝜏 ≥ 𝑏 𝑗 +𝛿 𝑗,
+que
+Δ𝐴 𝑗
+ ≤ 𝜖 𝐴, 𝑗, |Δ𝑏 𝑗 | ≤ 𝜖𝑏, 𝑗 y ∥𝜏∥ ≤ 𝑇.Lamismaacciónsatisfacelasfilasperturbadassi 𝛿 𝑗 ≥ 𝑇 𝜖𝐴, 𝑗 + 𝜖𝑏, 𝑗.
+Demostración. ( 𝐴 𝑗 + Δ𝐴 𝑗)𝜏 − ( 𝑏 𝑗 + Δ𝑏 𝑗) ≥ 𝛿 𝑗 −
+Δ𝐴 𝑗
+ ∥𝜏∥ − | Δ𝑏 𝑗 | ≥ 0. □
+Sicambianloslímitesdeactuadortambiéndebenincluirseenlosdatosperturbados,ocertificarseporseparado.
+Un fallo completo de motor no es necesariamente una perturbación pequeña.
+5.3. Certificados de infactibilidad después del fallo
+Proposición5.2 (AlternativadeFarkasparaelQPdeseguridad) . Siexisten 𝑦 ≥ 0talesque 𝐴⊤𝑦 = 0y 𝑏⊤𝑦 > 0,
+el sistema𝐴𝜏 ≥ 𝑏 es infactible.
+Demostración. Si existiera𝜏, multiplicar las desigualdades por𝑦 daría 0 = 𝑦⊤ 𝐴𝜏 ≥ 𝑦⊤𝑏 > 0, contradicción.
+□
+8
+
+=== PAGE 10 ===
+MROB / Análisis del Mega Juego Auditoría V3 + desarrollo A4
+SeresolvióunLPindependienteparamaximizar 𝑏⊤𝑦con 𝐴⊤𝑦 = 0, 𝑦 ≥ 0y 1⊤𝑦 = 1endiezestadosterminales
+V3 tras pérdida de motor. Los diez admiten certificado positivo. En el mundo 300, a𝑡 = 10.12s, aparece la fila
+normalizada
+(𝜏𝐿3 + 𝜏𝑅3)/
+√
+2 ≥ 0.137444, (19)
+mientras ambos torques están fijados a cero por el fallo. Un certificado usa pesos
+√
+2 − 1 para esa fila y
+(2 −
+√
+2)/2 para cada límite superior de torque. Su𝑏⊤𝑦 ≃ 0.0569312es positivo.
+Enlosdiezcasos,retirar paradiagnóstico lafamiliadedeformacióndevuelvefactibilidad;retirarsololabarrera
+de obstáculo no la devuelve. No se propone eliminar la restricción de contacto del controlador. El resultado
+identifica que la demanda de conservar la deformación exige autoridad que el AMR averiado ya no posee.
+300 301 302 303 304 305 306 307 308 309
+Mundo V3
+0.00
+0.01
+0.02
+0.03
+0.04
+0.05b y, con A y = 0 y y  0
+Certificados de infactibilidad del QP tras fallo de motor
+Figura 5: Los certificados tienen residual∥ 𝐴⊤𝑦∥∞ nulo dentro de la aritmética reportada. Certifican el QP de
+esos estados, no imposibilidad de toda política física alternativa.
+5.4. Pérdida de autoridad y grado relativo
+La parte traslacional del jerk inducido por torque contiene
+𝐵 𝑗 (𝑋) = 𝑑𝑡
+𝑚
+∑︁
+𝑖
+𝑒𝑖
+e𝑚𝑖𝑟𝑤
+
+0 · · · 1 1 · · · 0
+
+. (20)
+Si todos los ejes son tangentes a la frontera relevante,∇ℎ⊤𝐵 𝑗 = 0. El torque no puede modificar esa derivada
+de la barrera en ese instante. Asimismo,𝑑𝑡 → 0 hace desaparecer esa autoridad; para resorte puro cambia el
+grado relativo. No es válido aumentar indefinidamente la ganancia HOCBF para compensar una dirección de
+control inexistente.
+5.5. Retención, error y factibilidad recursiva
+Bajo una cota certificada| ¤𝐵3| ≤ 𝐿 𝐵 en el tubo del paso, error de estado𝜖𝑋, constante𝐿 𝑋, error de modelo𝜖𝑚
+y residual físico de solver𝜖𝑞, basta imponer
+b𝐵3,𝑘 ≥ 𝐿 𝐵Δ + 𝐿 𝑋𝜖𝑋 + 𝜖𝑚 + 𝜖𝑞. (21)
+La prueba es comparación temporal y coincide con la clase de condiciones estudiada en [5]. Para datos
+envejecidos hay que incluir su error en𝜖𝑋 o ampliar el tubo, sin declarar una garantía solo por observar cero
+colisiones.
+9
+
+=== PAGE 11 ===
+MROB / Análisis del Mega Juego Auditoría V3 + desarrollo A4
+Para factibilidad recursiva, debe diseñarse un conjunto terminal controlable o una familia de acciones de
+respaldo físicamente compatibles. Parar el programa cuando𝐾 (𝑋) = ∅no es una política de respaldo. Todas
+esas acciones pueden pertenecer al mismo conjunto estratégico: no requieren una máquina de estados nominal.
+6. Competencia de atractores y vivacidad
+6.1. Una bifurcación que la suavidad no elimina
+Esta sección analiza la familia soft-min propuesta en las primeras formulaciones del proyecto.No es el campo
+de circulación actualmente ejecutado por V3. Sea
+𝐸±(𝑥) = 𝑘
+2 (𝑥 ∓ 𝑎)2, 𝑉 𝛽 (𝑥) = −𝛽−1 log(𝑒−𝛽𝐸+ ( 𝑥 ) + 𝑒−𝛽𝐸 − ( 𝑥 ) ). (22)
+Proposición6.1 (Umbral dediferenciaciónde dosatractores). El punto medioes estacionario.Su curvatura es
+𝑉 ′′
+𝛽 (0) = 𝑘 − 𝛽𝑘 2𝑎2. Para𝛽𝑘𝑎 2 < 1 es un mínimo atractivo del flujo¤𝑥 = −𝑉 ′
+𝛽 (𝑥); para𝛽𝑘𝑎 2 > 1 es inestable
+y existen dos mínimos simétricos no nulos. En el umbral el término cuadrático desaparece.
+Demostración. Reescribir
+𝑉𝛽 = 𝑘
+2 (𝑥2 + 𝑎2) − 𝛽−1 log[2 cosh(𝛽𝑘𝑎𝑥 )] .
+Entonces 𝑉 ′
+𝛽 = 𝑘𝑥 − 𝑘𝑎 tanh(𝛽𝑘𝑎𝑥 ) y 𝑉 ′′
+𝛽 (0) = 𝑘 − 𝛽𝑘 2𝑎2. Si𝛽𝑘𝑎 2 < 1, la ecuación𝑥 = 𝑎 tanh(𝛽𝑘𝑎𝑥 ) tiene
+una única raíz, cero, por contracción. Si𝛽𝑘𝑎 2 > 1, la pendiente de la derecha en cero supera uno, mientras
+permanece acotada por𝑎; en cada semieje existe una raíz adicional. La concavidad estricta detanh en el
+semiejepositivodaunicidadallíypendienteinferioraunoenlaintersección,porloquelacurvaturaespositiva.
+La simetría da la otra raíz. □
+2.0
+ 1.5
+ 1.0
+ 0.5
+ 0.0 0.5 1.0 1.5 2.0
+Posición adimensional
+0.8
+0.6
+0.4
+0.2
+0.0
+0.2
+0.4
+Potencial soft-min
+Bifurcación de dos atractores: k = a = 1
+ = 0.5
+ = 1
+ = 2
+Figura 6: Con𝑘 = 𝑎 = 1, 𝛽 = 0.5 atrae hacia el punto medio;𝛽 = 2 separa dos pozos. Mayor suavidad no
+equivale a mejor selección de tarea.
+Para múltiples alternativas, la Hessiana del soft-min satisface
+∇2𝑉𝛽 =
+∑︁
+ℓ
+𝜌ℓ ∇2𝐸ℓ − 𝛽 Cov𝜌 (∇𝐸ℓ). (23)
+El segundo término puede destruir convexidad aunque cada𝐸ℓ sea convexa. Una temperatura alta o baja debe
+analizarse en relación con geometría, ganancias y retardo, no como parámetro estético.
+10
+
+=== PAGE 12 ===
+MROB / Análisis del Mega Juego Auditoría V3 + desarrollo A4
+6.2. Deadlocks como equilibrios restringidos
+En el sistema ideal de primer orden¤𝑞 = Π 𝑇𝐾 (𝑞) (−∇𝑉), un punto bloqueado satisface−∇𝑉 ∈ 𝑁𝐾 (𝑞). Si no
+está en el objetivo, es un equilibrio seguro indeseado. Para el sistema mecánico, la condición real requiere
+además velocidades nulas y un control de equilibrio; el argumento de primer orden es una proyección analítica,
+no una sustitución de la planta.
+Una tarifa de congestión puede mover esos equilibrios, pero no prueba por sí sola que desaparezcan todos, ni
+que exista equidad entre misiones. Una formulación de progreso debe distinguir llegada a la región objetivo,
+espera acotada, ausencia de exclusión permanente y ausencia de oscilación de preferencias.
+Un mismo horizonte finito puede producir bloqueo en un mundo y ser suficiente en otro con geometría o
+información diferentes. Por eso no se recomienda inferir vivacidad global a partir de un único orden de paso
+exitoso.
+7. Precios que sí llegan hasta los torques
+7.1. La fuerza instantánea de contacto no es una acción libre
+En el dominio Kelvin–Voigt de V3,𝑓 = 𝑓 (𝑋). En consecuencia,
+𝜕 𝑓
+𝜕𝜏
+
+𝑋
+= 0, ¤𝑓 = 𝑓0(𝑋) + 𝐵 𝑓 (𝑋)𝜏. (24)
+Un precio añadido únicamente como𝜇⊤ 𝑓 (𝑋) es constante respecto a𝜏. No modifica el minimizador del juego
+instantáneo. En una predicción de duración𝑇,
+𝑓 (𝑡 + 𝑇) = 𝑓 (𝑋) + 𝑇 [ 𝑓0(𝑋) + 𝐵 𝑓 (𝑋)𝜏] + 𝑂 (𝑇 2), (25)
+y entonces el precio sí produce una sensibilidad𝑇 𝐵⊤
+𝑓 𝜇 + 𝑂 (𝑇 2).
+7.2. La congestión aparece una derivada después
+Para la posición de carga,
+𝑝(𝑡 + 𝑇) = 𝑝 + 𝑇𝑉 + 𝑇2
+2 𝑎(𝑋) + 𝑇3
+6 [𝑏 𝑗 (𝑋) + 𝐵 𝑗 (𝑋)𝜏] + 𝑂 (𝑇 4). (26)
+Por tanto, para una ocupación suave𝜌𝑐 ( 𝑝) y torque retenido,
+∇𝜏 [𝜆𝑐 𝜌𝑐 ( 𝑝(𝑡 + 𝑇))] = 𝜆𝑐𝑇 3
+6 𝐵⊤
+𝑗 ∇𝜌𝑐 + 𝑂 (𝑇 4). (27)
+Estaidentidadesunaexplicaciónmecánicadelescasoefectodeunpeajeenunhorizonteextremadamentecorto.
+Multiplicar la ganancia por un factor enorme para compensar𝑇 3 puede deteriorar el cálculo y la dinámica;
+ampliar un horizonte o usar sensibilidad adjunta son alternativas que preservan un único juego de acciones
+sobre trayectoria.
+El juego predictivo puede tener controles𝜏𝑖 (·)como estrategias, física y CBF como restricciones compartidas,
+y campos de utilidad en sus costes. No exige introducir rutas discretas ni estados de misión. Pero su no
+convexidad y su estabilidad recursiva deberán tratarse explícitamente.
+8. Estabilidad de la interconexión distribuida
+8.1. Qué permite la disipatividad
+Los marcos de juegos poblacionales y modelos de payoff proporcionan condiciones para estabilidad del
+conjuntoGNEeninterconexionesEDM–PDM[ 2,3].Estomotivaunapruebadecomposición,peronoautoriza
+trasladarla a una planta con contacto y restricciones móviles sin comprobar sus hipótesis.
+11
+
+=== PAGE 13 ===
+MROB / Análisis del Mega Juego Auditoría V3 + desarrollo A4
+Proposición 8.1(Criterio comparativo de pequeña ganancia). Supóngase que, en una región invariante,
+magnitudesdeerror 𝑧 ≥ 0verifican ¤𝑧 ≤ (− 𝐷 +𝐶)𝑧 + 𝑑,con 𝐷 diagonalpositiva, 𝐶 nonegativay 𝜌(𝐷 −1𝐶) < 1.
+Entonces el sistema de comparación es exponencialmente estable; para perturbación acotada,𝑧 permanece
+finalmente acotado.
+Demostración. La condición de radio espectral convierte𝐷 − 𝐶 en una 𝑀-matriz no singular. Existe un
+vector positivo𝑣 y una constante𝛼 > 0con (−𝐷 + 𝐶)𝑣 ≤ −𝛼𝑣. La norma ponderadam´ax𝑖 𝑧𝑖/𝑣 𝑖 satisface una
+desigualdad escalar de decaimiento con entrada. Aplicar comparación e integrar esa desigualdad. □
+Las componentes pueden medir error mecánico, de equilibrio y de información. Son coordenadas de análisis
+del mismo sistema cerrado, no módulos nuevos del controlador. Debe construirse el certificado regional de
+cada desigualdad; asignar números arbitrarios a las ganancias no es una demostración.
+8.2. Más consenso no siempre admite más retardo
+En el modelo simplificado¤𝑒 = −𝑐𝐿𝑒 (𝑡 − 𝑑) con grafo no dirigido fijo y retardo uniforme sobre todo el término
+Laplaciano, cada modo no consensual satisface¤𝜂 = −𝑐𝜆𝜂 (𝑡 − 𝑑). Su condición de estabilidad es𝑐𝜆𝑑 < 𝜋 /2.
+Por tanto la tasa nominal ligada a𝜆2 y el límite de retardo ligado a𝜆m´ax compiten.
+Esta fórmula no se traslada sin cambio a un sistema con términos propios instantáneos, vecinos retardados,
+pérdidas y grafo móvil. Es una reducción analítica para diseñar un barrido de retardo y ganancias, no una
+frontera ya validada de la misión completa.
+8.3. Acciones ensambladas bajo información inconsistente
+Si cada actor aplica un bloque𝜏∗
+𝑖 + 𝑒𝑖 de un vector nominal seguro, la fila compartidaÍ
+𝑖 𝑎⊤
+𝑖 𝜏𝑖 ≥ 𝑏 se mantiene
+con margen𝛿 si
+𝛿 ≥
+∑︁
+𝑖
+∥𝑎𝑖 ∥∗ ∥𝑒𝑖 ∥ . (28)
+La demostración es desigualdad triangular. Un QP factible en cada estimación local no garantiza que la acción
+ensamblada lo sea para el estado real. Esta es la diferencia entre replicar idealmente un QP y resolver de forma
+distribuida con seguridad bajo incertidumbre [8].
+9. Optimalidad de misión y certificado de desempeño
+El óptimo del QP minimiza una pérdida instantánea de seguimiento y torque. No determina automáticamente
+ruta más corta, energía mínima, tiempo mínimo ni óptimo social de toda la misión.
+Fijar primero un funcional comparable, por ejemplo
+𝐽 =
+∫ 𝑇𝑓
+0
+ 
+𝑐𝑇 + 𝜏⊤𝑅𝜏 + 𝑐𝑒
+∑︁
+𝑖
+∥𝜖𝑖 ∥2 + 𝑐𝑢
+∑︁
+𝑖
+∥𝑢𝑖 ∥2
+!
+𝑑𝑡 + 𝑉 𝑓 (𝑋 (𝑇 𝑓 )) . (29)
+Los términos y unidades deben normalizarse y justificarse antes de evaluar. La comparación solo tiene sentido
+con la misma física, restricciones, información disponible y criterio de entrega.
+Proposición9.1 (Cotainferiormediantesubsolución) . Supóngaseque 𝑊 esdiferenciable, 𝑊 = 0enelobjetivo
+y para toda acción admisible se cumpleℓ(𝑋, 𝜏 ) + ∇𝑊 (𝑋)⊤ 𝑓 (𝑋, 𝜏 ) ≥ 0. Entonces toda trayectoria que llega
+al objetivo tiene coste integral al menos𝑊 (𝑋0).
+Demostración. Integrar la desigualdad a lo largo de la trayectoria:𝐽 + 𝑊 (𝑋 𝑓 ) − 𝑊 (𝑋0) ≥ 0. Usar𝑊 (𝑋 𝑓 ) =
+0. □
+12
+
+=== PAGE 14 ===
+MROB / Análisis del Mega Juego Auditoría V3 + desarrollo A4
+La dificultad está en construir una subsolución válida para el dominio real. Alternativamente, una relajación
+globalverificadapuedeproporcionarunacotainferior.Unsolvernoconvexolocalqueencuentreunatrayectoria
+factible proporciona una cota superior, no un oráculo global.
+Si se dispone de𝐽𝐿 𝐵 ≤ 𝐽∗ ≤ 𝐽𝑀𝐺, entonces𝐽𝑀𝐺 − 𝐽𝐿 𝐵es una cota de suboptimalidad. Sin cota inferior, debe
+hablarse de diferencia respecto a una referencia, no de porcentaje respecto al verdadero óptimo.
+10. Mapa de fallos y cierre recomendado
+Situación Qué se pierde Evidencia o condición
+Error lateral pequeño Atracción al objetivo exacto Contraejemplo de zona muerta de 17.78
+mm en configuración paralela.
+Ejes genéricos rígidos Movilidad instantánea rank 𝐴kin = 3; no implica imposibilidad
+tras reorientación.
+Pérdida de motor Factibilidad del QP actual Certificados positivos en diez estados ter-
+minales; no prueba inexistencia de otra po-
+lítica.
+Baja fricción superior Dominio Kelvin–Voigt stick ResultadonegativoV3;faltatransiciónplás-
+tica compatible con el controlador.
+Baja fricción de suelo Rodadura lateral ideal QP acepta el contraejemplo construido; fal-
+ta guardia lateral completa.
+Retardo/partición Consistencia de acciones Copias locales factibles no bastan; se nece-
+sitan márgenes e información suficiente.
+Cuellos y simetrías Vivacidad Equilibrios seguros fuera de meta y exclu-
+sión temporal no acotada son posibles.
+Amortiguamiento nulo Grado relativo tres La derivación cambia: el torque entra una
+derivada después en el caso elástico.
+Mayor carga/CG alto Reserva de soporte Normales,tracciónytransferenciadinámica
+pueden invalidar el modelo cuasiestático.
+Laprioridadnoesaumentarindiscriminadamenteelnúmerodeteoremas.Escerrar,enesteorden,losdominios
+físicos de suelo y apoyo, eliminar o caracterizar el equilibrio de zona muerta, medir la reserva de factibilidad,
+construir un Lyapunov o certificado de contracción regional del mapa ejecutado y transmitir los precios a
+decisiones que realmente afecten al movimiento.
+Las campañas siguientes deberían usar casos nominales y adversariales con semillas y reglas de decisión
+congeladas.Losbarridosdecisivossonrigidez–amortiguamiento–ganancia,fricción–masa–orientación,retardo–
+ganancia de consenso y simetría–temperatura de competencia. Un mapa de regiones “factible / seguro /
+convergente / eficiente” resulta más informativo que contar únicamente entregas.
+11. Reproducción y límites del suplemento
+Los scriptssrc/audit_v3.py y src/additional_checks.py utilizan una copia preservada del modelo
+y veinte trazas originales. La variable de entornoMROB_V3 permite apuntar al paquete V3 completo; de no
+existir se usasource_v3/. El ficheroresults/audit_summary.json incluye el SHA–256 del controlador
+utilizado.
+python -m pip install -r requirements.txt
+OPENBLAS_NUM_THREADS=1 python src/audit_v3.py
+OPENBLAS_NUM_THREADS=1 python src/additional_checks.py
+13
+
+=== PAGE 15 ===
+MROB / Análisis del Mega Juego Auditoría V3 + desarrollo A4
+python src/make_figures.py
+python src/check_results.py
+cd reports && pdflatex analisis_avanzado.tex
+pdflatex analisis_avanzado.tex
+Los rangos, espectros y certificados LP se evalúan en coma flotante. La prueba del equilibrio fuera de objetivo
+es analítica para la configuración construida; el código verifica esa instancia. Los resultados de soft-min son
+analíticos para esa familia, no una campaña completa del controlador V3. No se han ejecutado aquí nuevos
+recorridos de nueve AMR, ensayos hardware ni verificación formal mecanizada.
+Referencias
+[1] Bullo, F. (2026).Contraction Theory for Dynamical Systems, edición 1.3. Sitio oficial:https://fbullo
+.github.io/ctds/.
+[2] Martínez-Piazuelo,J.,Quijano,N.yOcampo-Martínez,C.(2022).Apayoffdynamicsmodelforgeneralized
+Nash equilibrium seeking in population games.Automatica, 140, 110227.https://www.iri.upc.edu/
+publications/show/2582.
+[3] Martínez-Piazuelo, J., Ocampo-Martínez, C. y Quijano, N. (2026). A delta dissipativity-based fra-
+mework for generalized Nash equilibrium seeking in population games.Automatica, 112909. DOI:
+10.1016/j.automatica.2026.112909. Se utiliza su alcance composicional; no se atribuyen al artículo las
+constantes específicas propuestas aquí.
+[4] Xiao, W. y Belta, C. (2019). Control Barrier Functions for Systems with High Relative Degree.https:
+//arxiv.org/abs/1903.04706.
+[5] Breeden, J., Garg, K. y Panagou, D. (2021). Control Barrier Functions in Sampled-Data Systems.
+https://arxiv.org/abs/2103.03677.
+[6] Xiao, W., Belta, C. y Cassandras, C. G. (2020). Sufficient Conditions for Feasibility of Optimal Control
+Problems Using Control Barrier Functions.https://arxiv.org/abs/2011.08248.
+[7] Breeden, J. y Panagou, D. (2023, versión revisada). Robust Control Barrier Functions under High Relative
+Degree and Input Constraints for Satellite Trajectories.https://arxiv.org/abs/2107.04094.
+[8] Pavel,L.(2018,prepublicación).DistributedGNEseekingunderpartial-decisioninformationovernetworks
+via a doubly-augmented operator splitting approach.https://arxiv.org/abs/1808.04465.
+14

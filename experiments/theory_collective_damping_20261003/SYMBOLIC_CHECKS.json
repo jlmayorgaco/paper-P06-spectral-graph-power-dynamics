@@ -1,0 +1,72 @@
+{
+  "method": "symbolic exact algebra; written proofs are in THEORY.tex",
+  "simulation_count": 0,
+  "optimizer_runs": 0,
+  "checks": [
+    {
+      "name": "actual_PLL_series_through_cubic",
+      "passed": true,
+      "scope": "EXACT_SYMBOLIC_ALGEBRA_NOT_DYNAMIC_VALIDATION"
+    },
+    {
+      "name": "finite_physical_Schur_update",
+      "passed": true,
+      "scope": "EXACT_SYMBOLIC_ALGEBRA_NOT_DYNAMIC_VALIDATION"
+    },
+    {
+      "name": "Hermitian_rank_two_characteristic",
+      "passed": true,
+      "scope": "EXACT_SYMBOLIC_ALGEBRA_NOT_DYNAMIC_VALIDATION"
+    },
+    {
+      "name": "Hermitian_eigenvalue_product",
+      "passed": true,
+      "scope": "EXACT_SYMBOLIC_ALGEBRA_NOT_DYNAMIC_VALIDATION"
+    },
+    {
+      "name": "general_two_node_COI_DC",
+      "passed": true,
+      "scope": "EXACT_SYMBOLIC_ALGEBRA_NOT_DYNAMIC_VALIDATION"
+    },
+    {
+      "name": "general_two_node_COI_moment",
+      "passed": true,
+      "scope": "EXACT_SYMBOLIC_ALGEBRA_NOT_DYNAMIC_VALIDATION"
+    },
+    {
+      "name": "general_two_node_input_location_area",
+      "passed": true,
+      "scope": "EXACT_SYMBOLIC_ALGEBRA_NOT_DYNAMIC_VALIDATION"
+    },
+    {
+      "name": "stable_overshoot_example_transfer",
+      "passed": true,
+      "scope": "EXACT_SYMBOLIC_ALGEBRA_NOT_DYNAMIC_VALIDATION"
+    },
+    {
+      "name": "stable_overshoot_example_moment",
+      "passed": true,
+      "scope": "EXACT_SYMBOLIC_ALGEBRA_NOT_DYNAMIC_VALIDATION"
+    },
+    {
+      "name": "stable_overshoot_example_signed_area",
+      "passed": true,
+      "scope": "EXACT_SYMBOLIC_ALGEBRA_NOT_DYNAMIC_VALIDATION"
+    },
+    {
+      "name": "homogeneous_example_is_monotone_first_order",
+      "passed": true,
+      "scope": "EXACT_SYMBOLIC_ALGEBRA_NOT_DYNAMIC_VALIDATION"
+    }
+  ],
+  "all_passed": true,
+  "example": {
+    "network": "illustrative two-node, not IEEE-39",
+    "m": 2,
+    "d0": 10,
+    "graph_correction": 16,
+    "m_app": -14,
+    "signed_area_per_unit_step": "-7/50",
+    "stable_by": "Routh-Hurwitz: 10*11 > 10"
+  }
+}

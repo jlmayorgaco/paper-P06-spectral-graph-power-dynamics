@@ -1,0 +1,8 @@
+{
+  "rule": "single midpoint between highest coarse feasible eta and nearest higher coarse infeasible eta",
+  "eta_feasible": 0.25,
+  "eta_infeasible": 0.5,
+  "eta_midpoint": 0.375,
+  "candidate_file": "m1_candidates/eta_0375_bisect.toml",
+  "candidate_sha256": "95489cbb7f7cdd4fc28cdadba0e30cb18178e536c178ece6a58aac05f2514c9b"
+}

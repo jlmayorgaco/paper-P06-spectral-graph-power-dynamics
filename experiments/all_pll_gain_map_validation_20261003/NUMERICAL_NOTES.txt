@@ -1,0 +1,10 @@
+Initial reconstruction attempt:
+The inherited low-rank root-refinement stopping rule failed on the second
+slow frozen root: its unscaled 10x10 return residual plateaued around 7.75e-10,
+above that helper's internal 3e-11 threshold. No candidate was generated.
+
+Correction before any finite trial:
+Use a diagonal similarity balancing and Newton on the full exponential
+characteristic, with left/right singular vectors. The declared full residual
+and target-preservation gates in PROTOCOL.txt remain unchanged. This changes
+the numerical solver, not the physical model, input pole selection or trial.

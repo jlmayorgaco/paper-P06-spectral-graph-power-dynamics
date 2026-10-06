@@ -1,0 +1,32 @@
+BUILD_BASELINE
+BUILD_LEGACY
+Vertex batch 3 containing 4 components not directly SCT compatible! Pass `showerror=true` to see full stacktraces, hide message with verbose=false.
+ - try to filter conditionals in compf...
+BUILD_PHYSICAL
+Vertex batch 3 containing 4 components not directly SCT compatible! Pass `showerror=true` to see full stacktraces, hide message with verbose=false.
+ - try to filter conditionals in compf...
+PARITY Dict{String, Any}("candidate_sha256" => "66513a8d3a1b4cc37c9d6f2b1a5824371fed2d0c5621d2ccdb7540490fe59124", "finite_pole_count" => 144, "legacy_residual" => 6.574477230018709e-12, "jacobian_similarity_relative" => 0.0, "max_P_error_pu" => 3.9790393202565614e-15, "max_Q_error_pu" => 2.7227525789541572e-15, "gauge_abs" => 5.357769197365306e-10, "pole_hausdorff_absolute" => 0.0, "physical_residual" => 6.574477230018709e-12, "mass_similarity_relative" => 0.0, "physical_alpha" => -0.050057324249547404)
+CASE_START legacy_bus16_1MW
+Vertex batch 3 containing 4 components not directly SCT compatible! Pass `showerror=true` to see full stacktraces, hide message with verbose=false.
+ - try to filter conditionals in compf...
+CASE_DONE (model = "legacy", event = "bus16_1MW", complete = true, Fpeak = 0.005000021333863815, Rpeak = 0.0016704332183777152, frequency_pass = true, rocof_pass = true, voltage_min = 0.9818757535807429, voltage_max = 1.0635267540001083, vdc_min = 2.4999943072016695, vdc_max = 2.5000013545286066, energy_RHS_error_MW = 2.5363339206663227e-10, power_balance_error_MW = 2.530811116230325e-10, governor_upper_margin = 0.18583582607857518, governor_lower_margin = 0.24994854136083647, elapsed_s = 38.11999988555908)
+CASE_START physical_bus16_1MW
+Vertex batch 3 containing 4 components not directly SCT compatible! Pass `showerror=true` to see full stacktraces, hide message with verbose=false.
+ - try to filter conditionals in compf...
+CASE_DONE (model = "physical", event = "bus16_1MW", complete = true, Fpeak = 0.005000021332672451, Rpeak = 0.001670433269038721, frequency_pass = true, rocof_pass = true, voltage_min = 0.9818757535807429, voltage_max = 1.0635267540010345, vdc_min = 2.499998645471133, vdc_max = 2.5000056927957606, energy_RHS_error_MW = 2.9190355688157865e-10, power_balance_error_MW = 2.915498953370843e-10, governor_upper_margin = 0.18583582607848337, governor_lower_margin = 0.24994854135602904, elapsed_s = 24.026000022888184)
+CASE_START physical_bus16_100MW
+Vertex batch 3 containing 4 components not directly SCT compatible! Pass `showerror=true` to see full stacktraces, hide message with verbose=false.
+ - try to filter conditionals in compf...
+PROGRESS physical_bus16_100MW t=42.93354852417292 wall=30.00100016593933
+CASE_DONE (model = "physical", event = "bus16_100MW", complete = true, Fpeak = 0.4687554513147062, Rpeak = 0.17177238384097906, frequency_pass = true, rocof_pass = true, voltage_min = 0.9697169186867218, voltage_max = 1.065674736115298, vdc_min = 2.499824860200814, vdc_max = 2.50056646009813, energy_RHS_error_MW = 2.1564316998734512e-10, power_balance_error_MW = 2.15550244320184e-10, governor_upper_margin = 0.03179758649479081, governor_lower_margin = 0.23996061893401432, elapsed_s = 55.64400005340576)
+CASE_START physical_bus8_100MW
+Vertex batch 3 containing 4 components not directly SCT compatible! Pass `showerror=true` to see full stacktraces, hide message with verbose=false.
+ - try to filter conditionals in compf...
+PROGRESS physical_bus8_100MW t=43.78333995538111 wall=30.00100016593933
+CASE_DONE (model = "physical", event = "bus8_100MW", complete = true, Fpeak = 0.4105490666635514, Rpeak = 0.5127497002651278, frequency_pass = true, rocof_pass = false, voltage_min = 0.9518582790727376, voltage_max = 1.0763075907821142, vdc_min = 2.4990234029536835, vdc_max = 2.500573064826406, energy_RHS_error_MW = 2.603002258183551e-10, power_balance_error_MW = 2.6008706299762707e-10, governor_upper_margin = 0.050975861761035524, governor_lower_margin = 0.1595574472514099, elapsed_s = 55.78999996185303)
+CASE_START physical_bus29_100MW
+Vertex batch 3 containing 4 components not directly SCT compatible! Pass `showerror=true` to see full stacktraces, hide message with verbose=false.
+ - try to filter conditionals in compf...
+PROGRESS physical_bus29_100MW t=30.465075178157605 wall=30.000999927520752
+PROGRESS physical_bus29_100MW t=58.298154781180386 wall=60.001999855041504
+CASE_DONE (model = "physical", event = "bus29_100MW", complete = true, Fpeak = 0.5885706131165999, Rpeak = 0.2818880643033722, frequency_pass = false, rocof_pass = true, voltage_min = 0.9684649437053557, voltage_max = 1.066256036511049, vdc_min = 2.499349780347922, vdc_max = 2.5010986179965, energy_RHS_error_MW = 2.1121326909678828e-10, power_balance_error_MW = 2.1194068722252268e-10, governor_upper_margin = -2.3667009907413217e-8, governor_lower_margin = 0.24999999999990988, elapsed_s = 76.31900000572205)
