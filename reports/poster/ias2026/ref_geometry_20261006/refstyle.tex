@@ -95,7 +95,7 @@
   \node[anchor=west,inner sep=0pt,text=PGreen,font=\FiraSemi\fontsize{23pt}{23pt}\selectfont] at (#3+16,#4+0.3) {#2};}
 
 % evidence tags: filled pills
-\newcommand{\TagPill}[5]{\node[fill=#4,text=#5,rounded corners=2.4mm,inner xsep=3.4pt,inner ysep=2.2pt,font=\FiraBold\fontsize{15.5pt}{15.5pt}\selectfont\addfontfeature{LetterSpace=6}] at (#1,#2) {#3};}
+\newcommand{\TagPill}[5]{\node[fill=#4,text=#5,rounded corners=2.4mm,inner xsep=5pt,inner ysep=3pt,font=\FiraBold\fontsize{15.5pt}{15.5pt}\selectfont\addfontfeature{LetterSpace=6}] at (#1,#2) {#3};}
 \newcommand{\ProvedTag}[3]{\TagPill{#1}{#2}{#3}{PTeal}{white}}
 \newcommand{\ObservedTag}[3]{\TagPill{#1}{#2}{#3}{PNavy}{white}}
 \newcommand{\ProposedTag}[3]{\TagPill{#1}{#2}{#3}{PGold}{PText}}
@@ -111,7 +111,7 @@
   \node[anchor=west,inner sep=0pt,text=PText,align=left,font=\FiraMed\fontsize{18pt}{20.5pt}\selectfont] at ([xshift=6pt]BNnum.east) {#5};}
 % \NextChip{x}{y}{text}: story-thread chip; (x,y) = right edge, vertical centre; draws "-> text"
 \newcommand{\NextChip}[3]{%
-  \node[anchor=east,inner xsep=6pt,inner ysep=3.2pt,fill=PGold,rounded corners=3pt,text=PGreenDark,font=\FiraSemi\fontsize{16.5pt}{16.5pt}\selectfont] at (#1,#2) {\Arr\ #3};}
+  \node[anchor=east,inner xsep=7pt,inner ysep=3.6pt,fill=PGold,rounded corners=3pt,text=PGreenDark,font=\FiraSemi\fontsize{16.5pt}{16.5pt}\selectfont] at (#1,#2) {\Arr\ #3};}
 % \SectionRule{letter}{text}{x}{y}{xend}: gold letter chip + SemiBold heading + 0.8 pt hairline rule running to xend; (x,y) = left edge, vertical centre
 \newcommand{\SectionRule}[5]{%
   \fill[PGold,rounded corners=1.5pt] (#3,#4-5.5) rectangle (#3+11,#4+5.5);
